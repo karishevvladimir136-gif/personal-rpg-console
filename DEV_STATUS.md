@@ -1,6 +1,52 @@
 # Development status
 
-**Current milestone: game player same-world 1 — one hidden layer per table, frozen**
+**Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
+at 23220d6; the amendment of 2026-10-27 governs) — **harness built, world frozen, Haiku dry run done; stopped for the
+owner's word before any real table.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+to `main`.
+
+- **What was built** (`scripts/game-party-1/`):
+  - **Seats and rounds.** Three seats; each round every seated player writes one message, in seat order (in a fight, the
+    fight's own order). The DM gets the round as one message, one paragraph per character. Characters who part get one
+    DM turn per scene, interleaved by rounds.
+  - **One screen per player.** No player reads the DM's narration as written. The DM's relay (the same model) writes
+    each character's screen: first what the others did and said, then the narration, only what that character
+    perceives. «?» answers go to the asker only. Records and journal are per player.
+  - **Cards per player.** A roll card goes to its own character's player. 11b, 11w′ and 11w″ work as before. A press
+    with no card of one's own is refused on screen and never counts as «stuck».
+  - **Doors and welfare.** `[END]` leaves the table and the others play on. Welfare is ask-don't-cut: a flagged
+    message still goes through, and one line goes on that player's next screen. Three after-questions per player.
+  - **Leak check (Q0)** over the record. DeepSeek's reasoning field is stored, never relayed.
+  - **The app's own party.** Bram (fighter) is the hero record; Sefa (warlock) and Pell (rogue) are party companions
+    with full records. Their rolls are their players' cards (the owner's «companion rolls: player» setting).
+- **Frozen** (`docs/runs/game-party-1-frozen/`, DM-private):
+  - The three arms' campaigns: snapshot `1649b61c…`.
+  - P-GOAL layer `abeeb0ec…` (26 threads). P-DUNGEON layer `f703c8d3…` (26 threads; the DM chose a dragon).
+  - P-SAND has no prep.
+  - Design hash now `83a3f0d2…`. The world was built under `ac76277d…`; only the relay's rules changed after.
+- **Two fixes found on the way:**
+  1. The first build's openings did not know Sefa and Pell were player characters. The app writes the opening while
+     the campaign holds only its hero, so the DUNGEON opening gave Sefa a bow. Fix: a DM-facing line in the
+     adventure text, and the owner's truthful answer to the opening's question. Rebuilt; the first build is not used.
+  2. The first Haiku dry run showed table talk lost from round 2: the relay passed on only the narration. Fix: the
+     relay now opens each screen with the others' visible actions and audible speech. Rerun; the talk reaches all three.
+- **Checks:** `tests/game-party-1.test.mjs` 11/11 — a fake table, plus the real app on the mocked host in a child
+  process. Zero-warning lint on the new files; typecheck pass.
+- **Money:**
+  - OpenRouter $1.78 of $400: three builds $1.03 (two superseded) and the layers $0.75.
+  - Haiku dry runs $0.14 on their own ledger. OpenAI $0 of $60.
+  - **The shared OpenRouter account had $214.77 left** at the last spend check. That is below the $400 cap and
+    near the estimated cost of six tables (≈ $170–250). A 402 would stop the run.
+- **Known issues:**
+  - Rerolls are the table's shared count (2 per session).
+  - Heroic Inspiration is the hero's only (Bram).
+  - The hero record may draw more of the DM's spotlight than the two companions.
+  - Under Haiku, the relay sometimes repeats a player's own message back to them.
+- **Next step:** the owner reads the three screens of a round
+  (`docs/runs/game-party-1-haiku-rounds.md` / `.html`) and gives the word. Then P-SAND, P-GOAL, P-DUNGEON with T1
+  and T2, one table at a time.
+
+**Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for
 the owner's reading.** Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3`, with
 `origin/claude/game-player-replicate-1` merged. Nothing to `main`. Report `docs/runs/game-player-same-world-1-report.md`;

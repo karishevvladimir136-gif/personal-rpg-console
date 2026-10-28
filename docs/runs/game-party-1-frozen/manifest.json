@@ -1,0 +1,300 @@
+{
+  "stage": "GAME_PARTY_1",
+  "design": "ac76277da5ab2014aa8c3e17fa86fbf9f2b1551b0f20b7c8adab44d94018d77b",
+  "builtAt": "2026-10-28T00:32:13.083Z",
+  "by": "the owner's DM settings (Claude Opus 5.5) through openrouter",
+  "owner": "1a427c4b-32cf-4d6f-826d-bbd7f2406908",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12897392,
+    "sha256": "1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a",
+    "note": "The local database after the wizard, the opening and the seating of the three arms' campaigns, before any prep (PGlite data directory, gzip)."
+  },
+  "arms": {
+    "SAND": {
+      "campaignId": "c8b0ffd1-9cf9-4054-bf5d-a39d2152ed2a",
+      "heroId": "a847fb62-c566-58e7-ab7b-27f9629e0288",
+      "companions": {
+        "sefa": "2fd41108-f779-4955-96d6-058c52c85584",
+        "pell": "5fe4d3f6-b857-4b0f-938e-5109819dcaa3"
+      },
+      "worldId": "c3aa84f3-8efa-4c62-8da4-14a91b727646",
+      "adventureId": "4d69143b-af6a-4ff5-a613-f037a2b4ee23",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "c3aa84f3-8efa-4c62-8da4-14a91b727646",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "a847fb62-c566-58e7-ab7b-27f9629e0288",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard, common room",
+          "actors": 3,
+          "droppedPcActors": [
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ],
+          "questions": [],
+          "startMinutes": 1140
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "2fd41108-f779-4955-96d6-058c52c85584",
+              "items": 7
+            },
+            "pell": {
+              "id": "5fe4d3f6-b857-4b0f-938e-5109819dcaa3",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "GOAL": {
+      "campaignId": "c77e1cfc-3777-42af-87bf-1876b3978aeb",
+      "heroId": "c36c3253-2a37-522f-9bec-630702aeef77",
+      "companions": {
+        "sefa": "c162a2fc-c866-4f5f-8d8e-0fcf7725d76b",
+        "pell": "46c8390e-4766-44a8-b7d6-c05eb85c3a49"
+      },
+      "worldId": "be9668d1-2e8b-4b1d-b5bc-a4bebd6fdd29",
+      "adventureId": "7874f4a1-1e85-4686-ae33-32de6fdc3f6e",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "be9668d1-2e8b-4b1d-b5bc-a4bebd6fdd29",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "c36c3253-2a37-522f-9bec-630702aeef77",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — one errand by nightfall",
+          "wishesChars": 723
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Hesper Vallow's house, Beregost",
+          "actors": 1,
+          "droppedPcActors": [],
+          "questions": [],
+          "startMinutes": 480
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "c162a2fc-c866-4f5f-8d8e-0fcf7725d76b",
+              "items": 7
+            },
+            "pell": {
+              "id": "46c8390e-4766-44a8-b7d6-c05eb85c3a49",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "DUNGEON": {
+      "campaignId": "03e0b896-33c7-48a5-ab4b-683003b1b79d",
+      "heroId": "f05ad8a8-aee3-57f5-ba7d-dc349fc1ad2b",
+      "companions": {
+        "sefa": "1e1642b3-bd6c-479f-9118-79e589574b0b",
+        "pell": "8757faf1-4e85-4ac8-9608-034c61db74da"
+      },
+      "worldId": "2289b58f-9da6-491f-af8d-796676c3287e",
+      "adventureId": "19330484-10e7-465e-9fb6-eb18f284a88c",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "2289b58f-9da6-491f-af8d-796676c3287e",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "f05ad8a8-aee3-57f5-ba7d-dc349fc1ad2b",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "The ruin below Beregost",
+          "wishesChars": 1414
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The ruin's mouth, a day's ride from Beregost",
+          "actors": 0,
+          "droppedPcActors": [],
+          "questions": [],
+          "startMinutes": 840
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "1e1642b3-bd6c-479f-9118-79e589574b0b",
+              "items": 7
+            },
+            "pell": {
+              "id": "8757faf1-4e85-4ac8-9608-034c61db74da",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 3,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    }
+  },
+  "layers": {
+    "GOAL": {
+      "file": "GOAL-dm-only.json",
+      "sha256": "abeeb0ecc5ef9a6100ac6157a7fc33b2f49a6d70cc2ea532f41aa3d52940484a",
+      "chars": 10370,
+      "writes": 14,
+      "threads": 26,
+      "preparedAt": "2026-10-28T00:49:03.406Z"
+    },
+    "DUNGEON": {
+      "file": "DUNGEON-dm-only.json",
+      "sha256": "f703c8d3afebc90bf0f895963eea20ee3bbd4fa9dfcd5a225e65653dfd401516",
+      "chars": 9632,
+      "writes": 13,
+      "threads": 26,
+      "preparedAt": "2026-10-28T00:51:14.124Z"
+    }
+  }
+}

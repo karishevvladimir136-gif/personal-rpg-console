@@ -201,7 +201,7 @@ export const REVIEWS = {
 export const CHARACTERS = [
   { id: "bram", seat: 1, name: "Bram Halloway", short: "Bram", cls: "fighter", line: "Bram Halloway — a human fighter in chain mail with a shield, a former caravan guard of the Trade Way." },
   { id: "sefa", seat: 2, name: "Sefa Marrin", short: "Sefa", cls: "warlock", line: "Sefa Marrin — a human warlock of a celestial patron, once a hospice novice in Baldur's Gate; she heals with light." },
-  { id: "pell", seat: 3, name: "Pell Dunmore", short: "Pell", cls: "rogue", line: "Pell Dunmore — a human rogue from the Lower City of Baldur's Gate; he carries the company's healing satchel." },
+  { id: "pell", seat: 3, name: "Pell Dunmore", short: "Pell", cls: "rogue", line: "Pell Dunmore — a human rogue from the Lower City of Baldur's Gate, quick and quiet; he carries a healer's satchel of potions." },
 ];
 export const characterOf = (id) => CHARACTERS.find((c) => c.id === id) ?? null;
 

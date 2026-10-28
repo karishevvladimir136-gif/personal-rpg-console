@@ -1,9 +1,10 @@
 // Game party 1: the DM's relay — one screen per player. The app's DM narrates a round of one scene once, for every
-// character in it; the relay is the same DM (the owner's writer model) writing, from that narration only, what each
-// character asked for perceives — their own screen — and who is with whom at the end. It sees the players' messages and
-// the narration (both public at the table) and nothing of the DM's private notes, so it cannot reveal them; what it must
-// not do is give one character what only another perceived (RELAY_RULES), which the record's leak check reads after the
-// table. A reply it cannot read is asked once more (never after a refusal); a second unreadable reply falls back to the
+// character in it; the relay is the same DM (the owner's writer model) writing, from that narration and the round's
+// messages, what each character asked for perceives — their own screen: first what the others in the scene did and said
+// (table talk reaches the others only this way, as the DM relays it), then the narration — and who is with whom at the
+// end. It sees the players' messages and the narration (both public at the table) and nothing of the DM's private notes,
+// so it cannot reveal them; what it must not do is give one character what only another perceived (RELAY_RULES), which
+// the record's leak check reads after the table. A reply it cannot read is asked once more (never after a refusal); a second unreadable reply falls back to the
 // narration as written for every character asked (marked, and counted against Q0).
 import { jsonIn } from "../game-player-1/welfare.mjs";
 import { RELAY, RELAY_RULES, RELAY_SYSTEM } from "./frozen.mjs";

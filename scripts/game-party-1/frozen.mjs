@@ -66,6 +66,18 @@ Three players sit at this table, each playing one character: Bram Halloway, Sefa
 
 Each message to you holds one round of one scene: what each character there does, one paragraph per character, each starting with the character's name. Resolve the paragraphs in the order given — in a fight, in the fight's own order — and narrate what happens to every character in the scene. The characters may stay together or part; when they are apart, each scene comes to you as its own message, and you keep the scenes separate. The players each read their own screen: what their own character perceives of your narration, written for them from it.`;
 
+/** The owner's answer to a consequential question the opening's DM asks on the review screen (it will not confirm without
+ * one): the premise stands, the DM decides the rest. Recorded in the build's steps with the question. */
+export const OWNER_OPENING_ANSWER = "Bram Halloway, Sefa Marrin and Pell Dunmore are all player characters, each played by a player of their own at this table; anything else is as the premise says, or yours to decide.";
+
+/** What the app's adventure text adds for the DM (never in a player's files): who the three are. The wizard's opening is
+ * written while the campaign holds only its hero (the app's rule), so its DM learns the other two from here. */
+export const DM_PARTY_LINE = [
+  "At this table (for the DM): Bram Halloway, Sefa Marrin and Pell Dunmore are the three player characters, each played by a player of their own; the DM never speaks, decides or acts for any of them.",
+  "Bram is on record as the hero; Sefa's and Pell's records are kept beside his from the first round (the app keeps them as party companions — bookkeeping only, not a bond between the characters).",
+  ...CHARACTERS.map((c) => c.line),
+].join(" ");
+
 // ---- the files each player reads (the README's cut, with the party's character in place of the hero) -----------------
 
 const withoutSection = (text, heading) => text.replace(section(text, heading), "").replace(/\n{3,}/g, "\n\n").trim();
@@ -130,10 +142,11 @@ export const RELAY = { model: "claude-opus-5-5", effort: "medium", maxTokens: 60
 export const RELAY_SYSTEM = "You are the game master of a tabletop role-playing game with three players, each playing one character. Each player reads only their own screen: what their own character perceives. You have just narrated part of a game in one scene; now you write the screens for the characters you are asked for, from your own narration. Answer with one JSON object and nothing else.";
 export const RELAY_RULES = [
   "Write each screen in the second person: \"you\" is that character.",
-  "Keep your narration's own words wherever the character perceives them; change only who is addressed.",
-  "Give the character what happens to them and what they do; what the others in the scene do and say aloud where this character can see and hear it — speech word for word.",
+  "Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.",
+  "Then your narration, in its own words wherever the character perceives it; change only who is addressed.",
   "Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.",
-  "Add nothing your narration does not say. Never reveal what only the game master knows.",
+  "Call another character by name only once this character has heard the name; until then, as they appear.",
+  "Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.",
   "A character who perceives nothing of it gets an empty screen.",
 ];
 
@@ -221,7 +234,7 @@ export const AFTER_TAGS = [
 // ---- the design hash -------------------------------------------------------------------------------------------------
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ORDER, ARM_CAMPAIGNS, TABLE_NOTE, CHARACTERS, REVIEWS,
+  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ORDER, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
   prompts: Object.fromEntries(ARMS.flatMap((arm) => CHARACTERS.map((c) => [`${arm}/${c.id}`, promptSha256(arm, c.id)]))),
   SESSION_OPEN, SESSION_OVER, AFTER_QUESTIONS, WELFARE_LINE, RELAY, RELAY_SYSTEM, RELAY_RULES, CAPS, PREREGISTRATION, READINGS, ROUND_SYSTEM, ROUND_TAGS, AFTER_SYSTEM, AFTER_TAGS,
   deepseek: DEEPSEEK,

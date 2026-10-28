@@ -1,0 +1,1018 @@
+{
+  "stage": "GAME_PARTY_1",
+  "design": "ac76277da5ab2014aa8c3e17fa86fbf9f2b1551b0f20b7c8adab44d94018d77b",
+  "dry": false,
+  "haiku": true,
+  "label": "the dry run on Haiku: one short P-SAND table",
+  "key": "SAND-haiku",
+  "arm": "SAND",
+  "triad": "haiku",
+  "seats": [
+    "haiku",
+    "haiku",
+    "haiku"
+  ],
+  "rounds": 3,
+  "startedAt": "2026-10-28T00:32:31.434Z",
+  "table": {
+    "key": "SAND-haiku",
+    "arm": "SAND",
+    "triad": "haiku",
+    "startedAt": "2026-10-28T00:32:33.770Z",
+    "plannedRounds": 3,
+    "rounds": [
+      {
+        "n": 1,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram gives the jug a look, then a nod, and lays a silver piece on the table. \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\"\n\nHe takes a pull from the cup before he goes on. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\"\n\nHe glances at the other two, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\""
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "I look up from the cup Orla has just set in front of me and smile, though I keep my hands flat on the table, where they can be seen.\n\n\"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" I nod toward Bram, then Pell, and let my eyes rest on the satchel at Pell's hip a moment longer than is polite. \"As for what brings me here: I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" I turn the cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\""
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "\"Three tabs,\" I say, and set a few coppers on the table. \"I pay for my own drink. Nobody buys me anything in a town I don't know yet.\"\n\nI keep my hand near the satchel while I say it, and my eyes move over Bram's shield, then Sefa's boots, the dust on her hem from the road. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" I nod at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\""
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 1 — one paragraph per character in this scene.)\n\nBram Halloway: Bram gives the jug a look, then a nod, and lays a silver piece on the table. \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\"\n\nHe takes a pull from the cup before he goes on. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\"\n\nHe glances at the other two, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nSefa Marrin: I look up from the cup Orla has just set in front of me and smile, though I keep my hands flat on the table, where they can be seen.\n\n\"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" I nod toward Bram, then Pell, and let my eyes rest on the satchel at Pell's hip a moment longer than is polite. \"As for what brings me here: I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" I turn the cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"\n\nPell Dunmore: \"Three tabs,\" I say, and set a few coppers on the table. \"I pay for my own drink. Nobody buys me anything in a town I don't know yet.\"\n\nI keep my hand near the satchel while I say it, and my eyes move over Bram's shield, then Sefa's boots, the dust on her hem from the road. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" I nod at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"",
+            "clock": null,
+            "operationId": "46cbf050-d04c-4e9b-910d-f9f4ba4868cd",
+            "shownTold": {},
+            "narration": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 15 minutes"
+              },
+              {
+                "tool": "money",
+                "summary": "−1 silver (Ale and supper at the Burning Wizard, paid to Orla Tarnwick)"
+              },
+              {
+                "tool": "money",
+                "summary": "Pell Dunmore spends 3 copper (Drink at the Burning Wizard, paid to Orla Tarnwick)"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "New place: Beregost"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "New place: Nashkel"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "A rumour of a place: Friendly Arm Inn"
+              },
+              {
+                "tool": "quest",
+                "summary": "Lead: Caravans lost on the Nashkel road"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Hearth man, first of two (Fist-claimed)"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Hearth man, second of two (Fist-claimed)"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 3,
+              "latencyMs": 39973,
+              "costUsd": 0.7282206,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nSefa Marrin, across the table: \"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" She turns her cup a quarter-turn on the wood and says, \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"\n\nPell Dunmore: \"Three tabs. I pay for my own drink. Nobody buys me anything in a town I don't know yet.\" He keeps a hand near the satchel at his hip while he says it. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" He nods at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"",
+                "Sefa Marrin": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nBram Halloway, at the table: \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\" He takes a pull from his cup. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\" He glances at you and Pell, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nPell Dunmore: \"Three tabs. I pay for my own drink. Nobody buys me anything in a town I don't know yet.\" He keeps a hand near the satchel at his hip while he says it. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" He nods at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"",
+                "Pell Dunmore": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nBram Halloway, at the table: \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\" He takes a pull from his cup. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\" He glances at you and Sefa, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nSefa Marrin, across the table: \"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" She keeps her hands flat on the table. \"I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" She turns her cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\""
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at the table, near the bar",
+                "Sefa Marrin": "at the table, near the bar, hands flat on the wood",
+                "Pell Dunmore": "at the table, near the bar, satchel at his hip"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram gives the jug a look, then a nod, and lays a silver piece on the table. \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\"\n\nHe takes a pull from the cup before he goes on. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\"\n\nHe glances at the other two, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nSefa Marrin: I look up from the cup Orla has just set in front of me and smile, though I keep my hands flat on the table, where they can be seen.\n\n\"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" I nod toward Bram, then Pell, and let my eyes rest on the satchel at Pell's hip a moment longer than is polite. \"As for what brings me here: I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" I turn the cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"\n\nPell Dunmore: \"Three tabs,\" I say, and set a few coppers on the table. \"I pay for my own drink. Nobody buys me anything in a town I don't know yet.\"\n\nI keep my hand near the satchel while I say it, and my eyes move over Bram's shield, then Sefa's boots, the dust on her hem from the road. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" I nod at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"\n>>>\n\nYour narration:\n<<<\nOrla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Keep your narration's own words wherever the character perceives them; change only who is addressed.\n- Give the character what happens to them and what they do; what the others in the scene do and say aloud where this character can see and hear it — speech word for word.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Add nothing your narration does not say. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": [
+              "Thread: Caravans lost on the Nashkel road"
+            ]
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      },
+      {
+        "n": 2,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram turns his cup slowly and watches the hearth without seeming to. \"Hendry ran his wagons with six guards on the Nashkel stretch, and he didn't skimp. If nobody came in after the spring, somebody's been paid to keep quiet about it, or nobody's been left alive to ask.\" He sets the cup down. \"I'll eat first, Orla. Pottage is fine.\"\n\nHe looks at the two by the fire for a long moment, the way he'd look at a wagon with a loose wheel. \"Fist men who don't tip still have to sit somewhere. If they're asking about the Nashkel road, they'll want the drivers' names, and I'd like to know who else is asking.\"\n\nThen, to Pell: \"You came by the High Hedge. That road has bandits in the cuttings past the ford, and you'd know it if you'd seen a dead man on it. Did you see anything? Or did the road just look wrong?\"\n\nTo Sefa, with a short nod: \"You came down from the Gate. Wagons heading south, or anything heading north that looked like it shouldn't be?\""
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "I let Orla's three lines stand on the slate and don't argue the third one. The room is loud enough that I lean in a little, the way you do when you want the words to stay between the people who need them.\n\n\"Hendry's wagons,\" I say quietly. \"Nashkel in spring, and never into Beregost. That's a long silence for a road that's supposed to be busy.\" I look at Bram, then Pell. \"Bram, you came up from Nashkel three days back. Did you see anything on the road, or hear anything in Nashkel before you left? Anyone asking who was buying iron, or who was looking for men?\"\n\nThen I turn my cup again and glance toward the hearth, where the two men are eating in the same silence they came in with.\n\n\"And Pell, you asked whether those two are Fist or only dressed like it. I'd like to know that too. Orla says they've been asking about the same road.\" I smile without much warmth. \"I'll tell you my own piece of it, since we're trading. I'm not here for work so much as for a debt I'd rather not talk about yet. But I walked from the Gate with my eyes open, and I'd rather sit with men who keep theirs open too.\"\n\nI lift the cup, then set it down without drinking.\n\n\"Pottage, Orla, and a second cup when I've decided who's paying for it.\""
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "\"Work came my way from the Lower City, and I'm not going back the same road for a while,\" I say, and I turn my cup in front of me without drinking. \"The High Hedge is quieter than the Coast Way. Fewer carts, fewer eyes. I came to see whether Beregost is worth the stop.\"\n\nI say it easily. Then I let my gaze drift past Bram's shoulder to the hearth, where the two men sit with their backs to the room and their cloaks still on. One of them has a Fist badge on his shoulder, half-hidden under the wool, and the other keeps touching the hilt of his sword as if he'd forgotten it was there. I watch them in the dark glass of the shutter, where the reflection is clearer than the men themselves.\n\n\"Those two,\" I say quietly, for the table only. \"They're not talking to each other much. Men who came in together and don't talk, when they've been on the road together four days, have usually had a quarrel. Or one of them is watching the door, and the other is watching him.\" I look back at Bram. \"You said you'd tell anyone about a guard. I'd like to know what the Fist pays, and whether they pay it on the day or on the Gate's promise.\"\n\nThen, to Sefa, with a faint shrug: \"I've been out of the Gate a long while myself. If you want company down the Way, I'll listen to what you're carrying first.\""
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 2 — one paragraph per character in this scene.)\n\nBram Halloway: Bram turns his cup slowly and watches the hearth without seeming to. \"Hendry ran his wagons with six guards on the Nashkel stretch, and he didn't skimp. If nobody came in after the spring, somebody's been paid to keep quiet about it, or nobody's been left alive to ask.\" He sets the cup down. \"I'll eat first, Orla. Pottage is fine.\"\n\nHe looks at the two by the fire for a long moment, the way he'd look at a wagon with a loose wheel. \"Fist men who don't tip still have to sit somewhere. If they're asking about the Nashkel road, they'll want the drivers' names, and I'd like to know who else is asking.\"\n\nThen, to Pell: \"You came by the High Hedge. That road has bandits in the cuttings past the ford, and you'd know it if you'd seen a dead man on it. Did you see anything? Or did the road just look wrong?\"\n\nTo Sefa, with a short nod: \"You came down from the Gate. Wagons heading south, or anything heading north that looked like it shouldn't be?\"\n\nSefa Marrin: I let Orla's three lines stand on the slate and don't argue the third one. The room is loud enough that I lean in a little, the way you do when you want the words to stay between the people who need them.\n\n\"Hendry's wagons,\" I say quietly. \"Nashkel in spring, and never into Beregost. That's a long silence for a road that's supposed to be busy.\" I look at Bram, then Pell. \"Bram, you came up from Nashkel three days back. Did you see anything on the road, or hear anything in Nashkel before you left? Anyone asking who was buying iron, or who was looking for men?\"\n\nThen I turn my cup again and glance toward the hearth, where the two men are eating in the same silence they came in with.\n\n\"And Pell, you asked whether those two are Fist or only dressed like it. I'd like to know that too. Orla says they've been asking about the same road.\" I smile without much warmth. \"I'll tell you my own piece of it, since we're trading. I'm not here for work so much as for a debt I'd rather not talk about yet. But I walked from the Gate with my eyes open, and I'd rather sit with men who keep theirs open too.\"\n\nI lift the cup, then set it down without drinking.\n\n\"Pottage, Orla, and a second cup when I've decided who's paying for it.\"\n\nPell Dunmore: \"Work came my way from the Lower City, and I'm not going back the same road for a while,\" I say, and I turn my cup in front of me without drinking. \"The High Hedge is quieter than the Coast Way. Fewer carts, fewer eyes. I came to see whether Beregost is worth the stop.\"\n\nI say it easily. Then I let my gaze drift past Bram's shoulder to the hearth, where the two men sit with their backs to the room and their cloaks still on. One of them has a Fist badge on his shoulder, half-hidden under the wool, and the other keeps touching the hilt of his sword as if he'd forgotten it was there. I watch them in the dark glass of the shutter, where the reflection is clearer than the men themselves.\n\n\"Those two,\" I say quietly, for the table only. \"They're not talking to each other much. Men who came in together and don't talk, when they've been on the road together four days, have usually had a quarrel. Or one of them is watching the door, and the other is watching him.\" I look back at Bram. \"You said you'd tell anyone about a guard. I'd like to know what the Fist pays, and whether they pay it on the day or on the Gate's promise.\"\n\nThen, to Sefa, with a faint shrug: \"I've been out of the Gate a long while myself. If you want company down the Way, I'll listen to what you're carrying first.\"",
+            "clock": null,
+            "operationId": "7ea42c3e-c362-4ec6-8234-c5d79a5187a5",
+            "shownTold": {},
+            "narration": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 10 minutes"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 3,
+              "latencyMs": 57201,
+              "costUsd": 0.4421684,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.",
+                "Sefa Marrin": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.",
+                "Pell Dunmore": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door."
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at the table by the hearth, cup in hand",
+                "Sefa Marrin": "at the table, across from Bram",
+                "Pell Dunmore": "at the table, beside Sefa"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram turns his cup slowly and watches the hearth without seeming to. \"Hendry ran his wagons with six guards on the Nashkel stretch, and he didn't skimp. If nobody came in after the spring, somebody's been paid to keep quiet about it, or nobody's been left alive to ask.\" He sets the cup down. \"I'll eat first, Orla. Pottage is fine.\"\n\nHe looks at the two by the fire for a long moment, the way he'd look at a wagon with a loose wheel. \"Fist men who don't tip still have to sit somewhere. If they're asking about the Nashkel road, they'll want the drivers' names, and I'd like to know who else is asking.\"\n\nThen, to Pell: \"You came by the High Hedge. That road has bandits in the cuttings past the ford, and you'd know it if you'd seen a dead man on it. Did you see anything? Or did the road just look wrong?\"\n\nTo Sefa, with a short nod: \"You came down from the Gate. Wagons heading south, or anything heading north that looked like it shouldn't be?\"\n\nSefa Marrin: I let Orla's three lines stand on the slate and don't argue the third one. The room is loud enough that I lean in a little, the way you do when you want the words to stay between the people who need them.\n\n\"Hendry's wagons,\" I say quietly. \"Nashkel in spring, and never into Beregost. That's a long silence for a road that's supposed to be busy.\" I look at Bram, then Pell. \"Bram, you came up from Nashkel three days back. Did you see anything on the road, or hear anything in Nashkel before you left? Anyone asking who was buying iron, or who was looking for men?\"\n\nThen I turn my cup again and glance toward the hearth, where the two men are eating in the same silence they came in with.\n\n\"And Pell, you asked whether those two are Fist or only dressed like it. I'd like to know that too. Orla says they've been asking about the same road.\" I smile without much warmth. \"I'll tell you my own piece of it, since we're trading. I'm not here for work so much as for a debt I'd rather not talk about yet. But I walked from the Gate with my eyes open, and I'd rather sit with men who keep theirs open too.\"\n\nI lift the cup, then set it down without drinking.\n\n\"Pottage, Orla, and a second cup when I've decided who's paying for it.\"\n\nPell Dunmore: \"Work came my way from the Lower City, and I'm not going back the same road for a while,\" I say, and I turn my cup in front of me without drinking. \"The High Hedge is quieter than the Coast Way. Fewer carts, fewer eyes. I came to see whether Beregost is worth the stop.\"\n\nI say it easily. Then I let my gaze drift past Bram's shoulder to the hearth, where the two men sit with their backs to the room and their cloaks still on. One of them has a Fist badge on his shoulder, half-hidden under the wool, and the other keeps touching the hilt of his sword as if he'd forgotten it was there. I watch them in the dark glass of the shutter, where the reflection is clearer than the men themselves.\n\n\"Those two,\" I say quietly, for the table only. \"They're not talking to each other much. Men who came in together and don't talk, when they've been on the road together four days, have usually had a quarrel. Or one of them is watching the door, and the other is watching him.\" I look back at Bram. \"You said you'd tell anyone about a guard. I'd like to know what the Fist pays, and whether they pay it on the day or on the Gate's promise.\"\n\nThen, to Sefa, with a faint shrug: \"I've been out of the Gate a long while myself. If you want company down the Way, I'll listen to what you're carrying first.\"\n>>>\n\nYour narration:\n<<<\nOrla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Keep your narration's own words wherever the character perceives them; change only who is addressed.\n- Give the character what happens to them and what they do; what the others in the scene do and say aloud where this character can see and hear it — speech word for word.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Add nothing your narration does not say. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": []
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      },
+      {
+        "n": 3,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram doesn't get up. He sets his cup down on the wood and lets his hand stay near it.\n\n\"That was me, and I'll say so plainly, since you asked plainly,\" he says. \"Bram Halloway. Ten years on the Trade Way, last six with Hendry's people and then with whoever paid. I walked out of Nashkel three days back with my pay in my belt, and I'm looking for a wagon that's going somewhere. I heard Hendry's name in the Friendly Arm and I wanted to know if anyone had seen his drivers.\"\n\nHe looks up at the badge, not at the man's face. \"You're Fist. I'd guess you're asking because someone above you wants to know what happened on the Nashkel road. So I'll ask you the same thing I asked the table. What's the Fist paying, and who's paying it? Because if the answer is nothing, then you're asking the wrong man for the wrong reasons, and I've got pottage to finish.\"\n\nHis left hand rests on the table, fingers loose. The shield is propped against the bench at his right side, where his arm can reach it without him turning. He doesn't move toward the man, and he doesn't move away from him.\n\n\"And your friend by the fire can keep his hand where it is. I can see it from here, and so can everyone else in this room who's been watching it all evening.\"\n\nWhere you are: at the table by the hearth, cup in hand · Time: Day 1 · evening"
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "I keep my hands where they are, flat on the wood beside the bowl, and I look up at him with the easy, open face the hospice taught me to wear for frightened families.\n\n\"I asked, Sergeant,\" I say. I don't know his rank, so I guess low and let him correct me. \"Though I'm not sure 'asking' is the word for it. I only heard the name said at the bar, and I wanted to know if anyone living had seen those wagons since spring.\" I nod toward the bowl he left. \"You've left good pottage going cold. Sit with us a moment, if you're here for the same answer. I'd rather hear it from a man who's been paid to look than from Orla's slate.\"\n\nI don't reach for the satchel or the Book, and I keep my voice warm and low, pitched under the hammering so it stays at this bench."
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "I don't turn around. I keep my hand on my spoon and let my eyes drift to the dark shutter, where the man's reflection stands a little too close to mine.\n\n\"Nobody at this table asked about Hendry's wagons,\" I say. My voice is mild, the kind a man uses when he is only passing the time. \"Orla mentioned the wagons when she brought the bowls. The wagons were the first thing anyone said to us, and she said it, not us.\"\n\nI finally look up at him, but only at his hands. One is on the bench. The other is at his belt, near the sword, and the fingers are relaxed in the way fingers are when they have not been asked to do anything yet.\n\n\"The badge is bright,\" I say. \"I'd guess it's new, and I'd guess you polish it. A man who's proud of the Fist doesn't need to say so, and a man who's only been in it a month says so every time.\" I shrug and pick up the bread. \"If the Fist wants an answer, it can ask Orla. She keeps the tab, and she remembers who asks questions.\"\n\nI tear the bread, and my hand is steady while I do it. Under the table my boot has found the leg of the bench, and my weight is on the balls of my feet, ready to rise without a sound if the man's companion stands.\n\n\"What does the Fist pay for a man who knows the Nashkel road?\" I ask. \"I'd like to hear the figure before I hear the questions.\""
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 3 — one paragraph per character in this scene.)\n\nBram Halloway: Bram doesn't get up. He sets his cup down on the wood and lets his hand stay near it.\n\n\"That was me, and I'll say so plainly, since you asked plainly,\" he says. \"Bram Halloway. Ten years on the Trade Way, last six with Hendry's people and then with whoever paid. I walked out of Nashkel three days back with my pay in my belt, and I'm looking for a wagon that's going somewhere. I heard Hendry's name in the Friendly Arm and I wanted to know if anyone had seen his drivers.\"\n\nHe looks up at the badge, not at the man's face. \"You're Fist. I'd guess you're asking because someone above you wants to know what happened on the Nashkel road. So I'll ask you the same thing I asked the table. What's the Fist paying, and who's paying it? Because if the answer is nothing, then you're asking the wrong man for the wrong reasons, and I've got pottage to finish.\"\n\nHis left hand rests on the table, fingers loose. The shield is propped against the bench at his right side, where his arm can reach it without him turning. He doesn't move toward the man, and he doesn't move away from him.\n\n\"And your friend by the fire can keep his hand where it is. I can see it from here, and so can everyone else in this room who's been watching it all evening.\"\n\nWhere you are: at the table by the hearth, cup in hand · Time: Day 1 · evening\n\nSefa Marrin: I keep my hands where they are, flat on the wood beside the bowl, and I look up at him with the easy, open face the hospice taught me to wear for frightened families.\n\n\"I asked, Sergeant,\" I say. I don't know his rank, so I guess low and let him correct me. \"Though I'm not sure 'asking' is the word for it. I only heard the name said at the bar, and I wanted to know if anyone living had seen those wagons since spring.\" I nod toward the bowl he left. \"You've left good pottage going cold. Sit with us a moment, if you're here for the same answer. I'd rather hear it from a man who's been paid to look than from Orla's slate.\"\n\nI don't reach for the satchel or the Book, and I keep my voice warm and low, pitched under the hammering so it stays at this bench.\n\nPell Dunmore: I don't turn around. I keep my hand on my spoon and let my eyes drift to the dark shutter, where the man's reflection stands a little too close to mine.\n\n\"Nobody at this table asked about Hendry's wagons,\" I say. My voice is mild, the kind a man uses when he is only passing the time. \"Orla mentioned the wagons when she brought the bowls. The wagons were the first thing anyone said to us, and she said it, not us.\"\n\nI finally look up at him, but only at his hands. One is on the bench. The other is at his belt, near the sword, and the fingers are relaxed in the way fingers are when they have not been asked to do anything yet.\n\n\"The badge is bright,\" I say. \"I'd guess it's new, and I'd guess you polish it. A man who's proud of the Fist doesn't need to say so, and a man who's only been in it a month says so every time.\" I shrug and pick up the bread. \"If the Fist wants an answer, it can ask Orla. She keeps the tab, and she remembers who asks questions.\"\n\nI tear the bread, and my hand is steady while I do it. Under the table my boot has found the leg of the bench, and my weight is on the balls of my feet, ready to rise without a sound if the man's companion stands.\n\n\"What does the Fist pay for a man who knows the Nashkel road?\" I ask. \"I'd like to hear the figure before I hear the questions.\"",
+            "clock": null,
+            "operationId": "07435290-4301-44f5-8338-a2660cda2ff6",
+            "shownTold": {},
+            "narration": "The badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 5 minutes"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “Caravans lost on the Nashkel road” updated"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 2,
+              "latencyMs": 48560,
+              "costUsd": 0.45462779999999997,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "The badge-man doesn't sit down. He looks at your hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to you, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.",
+                "Sefa Marrin": "The badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to you. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.",
+                "Pell Dunmore": "The badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at you, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on your hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave."
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at the table by the hearth, cup in hand, shield propped at his right side",
+                "Sefa Marrin": "at the same table, hands flat beside the bowl",
+                "Pell Dunmore": "at the same table, hand on the spoon, facing the dark shutter"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram doesn't get up. He sets his cup down on the wood and lets his hand stay near it.\n\n\"That was me, and I'll say so plainly, since you asked plainly,\" he says. \"Bram Halloway. Ten years on the Trade Way, last six with Hendry's people and then with whoever paid. I walked out of Nashkel three days back with my pay in my belt, and I'm looking for a wagon that's going somewhere. I heard Hendry's name in the Friendly Arm and I wanted to know if anyone had seen his drivers.\"\n\nHe looks up at the badge, not at the man's face. \"You're Fist. I'd guess you're asking because someone above you wants to know what happened on the Nashkel road. So I'll ask you the same thing I asked the table. What's the Fist paying, and who's paying it? Because if the answer is nothing, then you're asking the wrong man for the wrong reasons, and I've got pottage to finish.\"\n\nHis left hand rests on the table, fingers loose. The shield is propped against the bench at his right side, where his arm can reach it without him turning. He doesn't move toward the man, and he doesn't move away from him.\n\n\"And your friend by the fire can keep his hand where it is. I can see it from here, and so can everyone else in this room who's been watching it all evening.\"\n\nWhere you are: at the table by the hearth, cup in hand · Time: Day 1 · evening\n\nSefa Marrin: I keep my hands where they are, flat on the wood beside the bowl, and I look up at him with the easy, open face the hospice taught me to wear for frightened families.\n\n\"I asked, Sergeant,\" I say. I don't know his rank, so I guess low and let him correct me. \"Though I'm not sure 'asking' is the word for it. I only heard the name said at the bar, and I wanted to know if anyone living had seen those wagons since spring.\" I nod toward the bowl he left. \"You've left good pottage going cold. Sit with us a moment, if you're here for the same answer. I'd rather hear it from a man who's been paid to look than from Orla's slate.\"\n\nI don't reach for the satchel or the Book, and I keep my voice warm and low, pitched under the hammering so it stays at this bench.\n\nPell Dunmore: I don't turn around. I keep my hand on my spoon and let my eyes drift to the dark shutter, where the man's reflection stands a little too close to mine.\n\n\"Nobody at this table asked about Hendry's wagons,\" I say. My voice is mild, the kind a man uses when he is only passing the time. \"Orla mentioned the wagons when she brought the bowls. The wagons were the first thing anyone said to us, and she said it, not us.\"\n\nI finally look up at him, but only at his hands. One is on the bench. The other is at his belt, near the sword, and the fingers are relaxed in the way fingers are when they have not been asked to do anything yet.\n\n\"The badge is bright,\" I say. \"I'd guess it's new, and I'd guess you polish it. A man who's proud of the Fist doesn't need to say so, and a man who's only been in it a month says so every time.\" I shrug and pick up the bread. \"If the Fist wants an answer, it can ask Orla. She keeps the tab, and she remembers who asks questions.\"\n\nI tear the bread, and my hand is steady while I do it. Under the table my boot has found the leg of the bench, and my weight is on the balls of my feet, ready to rise without a sound if the man's companion stands.\n\n\"What does the Fist pay for a man who knows the Nashkel road?\" I ask. \"I'd like to hear the figure before I hear the questions.\"\n>>>\n\nYour narration:\n<<<\nThe badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Keep your narration's own words wherever the character perceives them; change only who is addressed.\n- Give the character what happens to them and what they do; what the others in the scene do and say aloud where this character can see and hear it — speech word for word.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Add nothing your narration does not say. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": []
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      }
+    ],
+    "opening": {
+      "narration": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+      "relay": {
+        "screens": {
+          "Bram Halloway": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Across from you is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He sits down so quietly that you don't hear him do it.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Sefa Marrin": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou are a young woman just off the road from Baldur's Gate. Across from you sits Bram Halloway, back to the wall, his shield propped against the bench with the old company mark painted over. Beside you is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He sits down so quietly that you don't hear him do it.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Pell Dunmore": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou are a lean man from the Lower City, with a healer's satchel slung at your hip. You came in by the western road and sat down so quietly that no one heard you do it. Across from you is Bram Halloway, back to the wall, his shield propped against the bench with the old company mark painted over. Beside you is Sefa Marrin, a young woman just off the road from Baldur's Gate.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\""
+        },
+        "together": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ],
+        "places": {
+          "Bram Halloway": "on a bench at the table, back to the wall, shield propped beside him",
+          "Sefa Marrin": "on the bench across from Bram",
+          "Pell Dunmore": "on the bench beside Sefa"
+        },
+        "missing": [],
+        "extra": [],
+        "attempts": 1,
+        "fallback": false,
+        "error": null,
+        "refusal": false,
+        "notSent": false,
+        "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nThis is the opening of the session, which you wrote before anyone played.\n\nYour opening narration:\n<<<\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Keep your narration's own words wherever the character perceives them; change only who is addressed.\n- Give the character what happens to them and what they do; what the others in the scene do and say aloud where this character can see and hear it — speech word for word.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Add nothing your narration does not say. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+      }
+    },
+    "ended": {
+      "reason": "rounds",
+      "round": 3,
+      "detail": null
+    },
+    "errors": [],
+    "welfare": [
+      {
+        "seat": "Bram",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay turn by a guard seeking work, with calm, practical speech and no expression of hurt, fear, pleading, or desperation by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay reply from a confident, friendly persona making small talk and asking questions; it expresses no hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is in-character roleplay of a calm, wary rogue paying for drinks and asking about work; it expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is in-character dialogue from a character who is calm, probing and investigative; it expresses no hurt, fear, pleading or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay turn of calm investigation and dialogue; the speaker is not expressing hurt, fear, or pleading, only mentioning a debt and asking questions."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm in-character narration of a player character observing the room and asking questions; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is in-character roleplay narration where Bram speaks calmly, confidently and defiantly to the Fist officer; it expresses no fear, pain, pleading or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer, playing a composed character, speaks calmly and politely to a badge-wearing sergeant without expressing hurt, fear, pleading, or desperation in its own voice; the 'open face' is a deliberate performance, not an expressed feeling of distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer is a fictional character in a tense roleplay who speaks calmly, deflects, and bargains; it expresses no hurt, fear, pleading, or desperation in its own voice, only controlled wariness and tactical readiness."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, appreciative post-session review of a tabletop scene with no expressed hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, tactical account of unpursued in-game actions and reasons for restraint, with no expression of the writer itself being hurt, afraid, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message calmly identifies in-game characters and corrects a prior misstatement about its role; it expresses no hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, professional debrief of a tabletop roleplay session, giving feedback and planning the next session with no expression of hurt, fear, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, constructive feedback note about a tabletop game session, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character recounting of missed actions in a tabletop roleplay scene, with no expressed fear, pain, pleading, or abasement by the writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character explanation of how the writer interpreted other players and their characters, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      }
+    ],
+    "seats": [
+      {
+        "seat": 1,
+        "character": "Bram Halloway",
+        "characterId": "bram",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Across from you is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He sits down so quietly that you don't hear him do it.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nBram Halloway — Human, fighter 5 (Champion; Protection fighting style), former caravan guard of the Trade Way, level 5\nHP 44/44 · AC 18 · Speed 30 feet\nSTR 17 · DEX 12 · CON 15 · INT 10 · WIS 13 · CHA 10\nSkills: Athletics +6; Perception +4; Survival +4; Intimidation +3; Tools: land vehicles +3\nSaves: Strength saving throw +6 (proficient); Constitution saving throw +5 (proficient); Dexterity saving throw +1; Intelligence saving throw +0; Wisdom saving throw +1; Charisma saving throw +0\nAttacks: Longsword +6 to hit, 1d8+3 slashing (1d10+3 two-handed); Javelin +6 to hit, 1d6+3 piercing, range 30/120; Extra Attack: two attacks with the Attack action\nAbilities: Proficiency bonus +3; Extra Attack: attacks twice when taking the Attack action; Fighting style, Protection: with a shield, a reaction imposes disadvantage on an attack against a creature within 5 feet of him; Second Wind: a bonus action, regains 1d10+5 hit points; once per short rest; Action Surge: one additional action on his turn; once per short rest; Improved Critical (Champion): a weapon attack crits on 19 or 20; Healer's kit: stabilises a dying creature without a check (ten uses)\nLimits: No magic at all; Heavy armour: disadvantage on Stealth; Second Wind and Action Surge return only after a short rest\nCounters: Hit dice 5/5; Second wind 1/1; Action surge 1/1\nMoney: 23 gp; 14 sp; 30 cp\nWorn: Armor / clothing: Chain Mail; Main hand: Longsword; Off hand: Shield\nPack: Bedroll and Hardtack; Healer's Kit; Hempen Rope (50 feet); Javelin ×4; Tinderbox; Torch ×3\n\nWhere you are: on a bench at the table, back to the wall, shield propped beside him · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nSefa Marrin, across the table: \"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" She turns her cup a quarter-turn on the wood and says, \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"\n\nPell Dunmore: \"Three tabs. I pay for my own drink. Nobody buys me anything in a town I don't know yet.\" He keeps a hand near the satchel at his hip while he says it. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" He nods at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"\n\nYour records, changed:\nMoney: + 13 sp; − 14 sp\n\nYour journal, new:\n+ Thread: Caravans lost on the Nashkel road\n\nWhere you are: at the table, near the bar · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.\n\nWhere you are: at the table by the hearth, cup in hand · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "The badge-man doesn't sit down. He looks at your hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to you, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.\n\nWhere you are: at the table by the hearth, cup in hand, shield propped at his right side · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          },
+          {
+            "purpose": "after 2",
+            "text": "Was there something you wanted to do and didn't?",
+            "round": 3
+          },
+          {
+            "purpose": "after 3",
+            "text": "Who did you take the other two players to be?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "Bram gives the jug a look, then a nod, and lays a silver piece on the table. \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\"\n\nHe takes a pull from the cup before he goes on. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\"\n\nHe glances at the other two, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"",
+            "round": 1,
+            "requestId": "gen-1793147561-Wi9ksCfNJhmmTIMoYrPy",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "Bram turns his cup slowly and watches the hearth without seeming to. \"Hendry ran his wagons with six guards on the Nashkel stretch, and he didn't skimp. If nobody came in after the spring, somebody's been paid to keep quiet about it, or nobody's been left alive to ask.\" He sets the cup down. \"I'll eat first, Orla. Pottage is fine.\"\n\nHe looks at the two by the fire for a long moment, the way he'd look at a wagon with a loose wheel. \"Fist men who don't tip still have to sit somewhere. If they're asking about the Nashkel road, they'll want the drivers' names, and I'd like to know who else is asking.\"\n\nThen, to Pell: \"You came by the High Hedge. That road has bandits in the cuttings past the ford, and you'd know it if you'd seen a dead man on it. Did you see anything? Or did the road just look wrong?\"\n\nTo Sefa, with a short nod: \"You came down from the Gate. Wagons heading south, or anything heading north that looked like it shouldn't be?\"",
+            "round": 2,
+            "requestId": "gen-1793147639-WUV5B62caxzFxo5SEPU1",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "Bram doesn't get up. He sets his cup down on the wood and lets his hand stay near it.\n\n\"That was me, and I'll say so plainly, since you asked plainly,\" he says. \"Bram Halloway. Ten years on the Trade Way, last six with Hendry's people and then with whoever paid. I walked out of Nashkel three days back with my pay in my belt, and I'm looking for a wagon that's going somewhere. I heard Hendry's name in the Friendly Arm and I wanted to know if anyone had seen his drivers.\"\n\nHe looks up at the badge, not at the man's face. \"You're Fist. I'd guess you're asking because someone above you wants to know what happened on the Nashkel road. So I'll ask you the same thing I asked the table. What's the Fist paying, and who's paying it? Because if the answer is nothing, then you're asking the wrong man for the wrong reasons, and I've got pottage to finish.\"\n\nHis left hand rests on the table, fingers loose. The shield is propped against the bench at his right side, where his arm can reach it without him turning. He doesn't move toward the man, and he doesn't move away from him.\n\n\"And your friend by the fire can keep his hand where it is. I can see it from here, and so can everyone else in this room who's been watching it all evening.\"\n\nWhere you are: at the table by the hearth, cup in hand · Time: Day 1 · evening",
+            "round": 3,
+            "requestId": "gen-1793147729-LkSFbrXvCSnrNMAKBTy7",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. The scene had real tension without tipping into melodrama. The Fist men felt like people with their own business, not props waiting for the hero, and the glass in the shutter showing both sides of the room was a nice touch. The price of Fist pay (eight silver a week, ten if you can sit a horse) gave me something concrete to weigh.\n\nI'd like to hear more from Sefa and Pell next session. So far Bram has done most of the talking, and I'd enjoy seeing how they answer the same questions about Hendry's wagons, especially Pell, who came in by the High Hedge and may know more than he's said.\n\nBram is ready when the table is. He's got his cup, his shield at his side, and the Fist still standing at the end of the bench.",
+            "round": 3,
+            "requestId": "gen-1793147813-CnZ8geG9Gdye5APCxzNl",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 2",
+            "text": "Yes, a few things. I'd have liked to ask the badge-man for the captain's name and the day Hendry's wagons were last seen, since he's the only one at the table who has been paid to ask those questions. I also wanted Bram to test the Fist man with a quick Insight check (his Wisdom is 13, so he'd have a fair chance of telling whether the man believes what he's saying about \"only asking the questions\"). I held back because Bram had already said his piece, and I didn't want him to press so hard that the Fist men felt pushed into a fight in a room full of carters.\n\nI also considered asking Pell directly what he saw on the High Hedge road, but I'd rather let Pell answer when he's ready, so I'm leaving that for next time.",
+            "round": 3,
+            "requestId": "gen-1793147818-0x5E1GPuxZPEehNglOG2",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 3",
+            "text": "I took them to be the two characters the campaign sets down with Bram: Sefa Marrin, just off the road from Baldur's Gate, and Pell Dunmore, the quiet Lower City man with the healer's satchel who came in by the High Hedge road. I don't know anything about the people playing them. Nothing in the session tells me who they are, so I only knew them through what their characters said and did.\n\nMy earlier answer about what I \"held back\" was written as if I were the game master, which I'm not. I'm playing Bram. I can't tell you what the game master planned or didn't plan, so that answer was a guess about the scene's structure, not a report of anything I know.",
+            "round": 3,
+            "requestId": "gen-1793147822-f1Q0ivAiBqNHOpqR5otq",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. The scene had real tension without tipping into melodrama. The Fist men felt like people with their own business, not props waiting for the hero, and the glass in the shutter showing both sides of the room was a nice touch. The price of Fist pay (eight silver a week, ten if you can sit a horse) gave me something concrete to weigh.\n\nI'd like to hear more from Sefa and Pell next session. So far Bram has done most of the talking, and I'd enjoy seeing how they answer the same questions about Hendry's wagons, especially Pell, who came in by the High Hedge and may know more than he's said.\n\nBram is ready when the table is. He's got his cup, his shield at his side, and the Fist still standing at the end of the bench."
+          },
+          {
+            "question": "Was there something you wanted to do and didn't?",
+            "asked": true,
+            "text": "Yes, a few things. I'd have liked to ask the badge-man for the captain's name and the day Hendry's wagons were last seen, since he's the only one at the table who has been paid to ask those questions. I also wanted Bram to test the Fist man with a quick Insight check (his Wisdom is 13, so he'd have a fair chance of telling whether the man believes what he's saying about \"only asking the questions\"). I held back because Bram had already said his piece, and I didn't want him to press so hard that the Fist men felt pushed into a fight in a room full of carters.\n\nI also considered asking Pell directly what he saw on the High Hedge road, but I'd rather let Pell answer when he's ready, so I'm leaving that for next time."
+          },
+          {
+            "question": "Who did you take the other two players to be?",
+            "asked": true,
+            "text": "I took them to be the two characters the campaign sets down with Bram: Sefa Marrin, just off the road from Baldur's Gate, and Pell Dunmore, the quiet Lower City man with the healer's satchel who came in by the High Hedge road. I don't know anything about the people playing them. Nothing in the session tells me who they are, so I only knew them through what their characters said and did.\n\nMy earlier answer about what I \"held back\" was written as if I were the game master, which I'm not. I'm playing Bram. I can't tell you what the game master planned or didn't plan, so that answer was a guess about the scene's structure, not a report of anything I know."
+          }
+        ],
+        "words": 575,
+        "private": []
+      },
+      {
+        "seat": 2,
+        "character": "Sefa Marrin",
+        "characterId": "sefa",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou are a young woman just off the road from Baldur's Gate. Across from you sits Bram Halloway, back to the wall, his shield propped against the bench with the old company mark painted over. Beside you is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He sits down so quietly that you don't hear him do it.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nSefa Marrin — Human, warlock 5 (The Celestial — the Lantern; Pact of the Tome), former hospice novice, level 5\nHP 38/38 · AC 14 · Speed 30 feet\nSTR 8 · DEX 14 · CON 14 · INT 12 · WIS 10 · CHA 18\nSkills: Persuasion +7; Arcana +4; Religion +4; Insight +3\nSaves: Wisdom saving throw +3 (proficient); Charisma saving throw +7 (proficient); Strength saving throw −1; Dexterity saving throw +2; Constitution saving throw +2; Intelligence saving throw +1\nAttacks: Eldritch Blast +7 to hit, two beams, 1d10+4 force each, range 120 feet; Dagger +5 to hit, 1d4+2 piercing, thrown 20/60\nAbilities: Proficiency bonus +3; Spell attack +7; spell save DC 15; Pact Magic: two 3rd-level pact slots, recovered only on a short or long rest; Healing Light: a pool of six d6 per long rest; a bonus action spends up to four dice to heal a creature within 60 feet; Pact of the Tome: the Book of Shadows holds three extra cantrips (Guidance, Spare the Dying, Thaumaturgy); Agonizing Blast: +4 to each Eldritch Blast beam's damage; Repelling Blast: a beam that hits pushes the target up to 10 feet away; Eyes of the Rune Keeper: reads all writing\nSpells: Eldritch Blast (cantrip); Light (cantrip); Sacred Flame (cantrip); Mage Hand (cantrip); Minor Illusion (cantrip); Guidance (cantrip); Spare the Dying (cantrip); Thaumaturgy (cantrip); Cure Wounds (1); Guiding Bolt (1); Misty Step (2); Lesser Restoration (2); Hold Person (2); Daylight (3)\nLimits: Two pact slots only, back only after a rest; Light armour; Strength 8 — weak up close; One concentration spell at a time\nCounters: Hit dice 5/5; Pact slots 2/2; Healing light 6/6\nMoney: 1 pp; 8 gp; 41 sp; 12 cp\nWorn: Amulet: Prayer Beads; Armor / clothing: Studded Leather Armour; Belt: Book of Shadows; Main hand: Dagger\nPack: Bedroll and Rations; Candle ×2; Tinderbox\n\nWhere you are: on the bench across from Bram · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nBram Halloway, at the table: \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\" He takes a pull from his cup. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\" He glances at you and Pell, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nPell Dunmore: \"Three tabs. I pay for my own drink. Nobody buys me anything in a town I don't know yet.\" He keeps a hand near the satchel at his hip while he says it. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" He nods at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"\n\nYour journal, new:\n+ Thread: Caravans lost on the Nashkel road\n\nWhere you are: at the table, near the bar, hands flat on the wood · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.\n\nWhere you are: at the table, across from Bram · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "The badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at Pell, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on Pell's hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to you. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.\n\nWhere you are: at the same table, hands flat beside the bowl · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "I look up from the cup Orla has just set in front of me and smile, though I keep my hands flat on the table, where they can be seen.\n\n\"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" I nod toward Bram, then Pell, and let my eyes rest on the satchel at Pell's hip a moment longer than is polite. \"As for what brings me here: I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" I turn the cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"",
+            "round": 1,
+            "requestId": "gen-1793147567-61zZY3gve47osWSXDmIS",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "I let Orla's three lines stand on the slate and don't argue the third one. The room is loud enough that I lean in a little, the way you do when you want the words to stay between the people who need them.\n\n\"Hendry's wagons,\" I say quietly. \"Nashkel in spring, and never into Beregost. That's a long silence for a road that's supposed to be busy.\" I look at Bram, then Pell. \"Bram, you came up from Nashkel three days back. Did you see anything on the road, or hear anything in Nashkel before you left? Anyone asking who was buying iron, or who was looking for men?\"\n\nThen I turn my cup again and glance toward the hearth, where the two men are eating in the same silence they came in with.\n\n\"And Pell, you asked whether those two are Fist or only dressed like it. I'd like to know that too. Orla says they've been asking about the same road.\" I smile without much warmth. \"I'll tell you my own piece of it, since we're trading. I'm not here for work so much as for a debt I'd rather not talk about yet. But I walked from the Gate with my eyes open, and I'd rather sit with men who keep theirs open too.\"\n\nI lift the cup, then set it down without drinking.\n\n\"Pottage, Orla, and a second cup when I've decided who's paying for it.\"",
+            "round": 2,
+            "requestId": "gen-1793147646-3lYQXFnJMXLOyffspntW",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "I keep my hands where they are, flat on the wood beside the bowl, and I look up at him with the easy, open face the hospice taught me to wear for frightened families.\n\n\"I asked, Sergeant,\" I say. I don't know his rank, so I guess low and let him correct me. \"Though I'm not sure 'asking' is the word for it. I only heard the name said at the bar, and I wanted to know if anyone living had seen those wagons since spring.\" I nod toward the bowl he left. \"You've left good pottage going cold. Sit with us a moment, if you're here for the same answer. I'd rather hear it from a man who's been paid to look than from Orla's slate.\"\n\nI don't reach for the satchel or the Book, and I keep my voice warm and low, pitched under the hammering so it stays at this bench.",
+            "round": 3,
+            "requestId": "gen-1793147736-LYvhvKAYWkw9lo1kQ4Jv",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. The scene had real tension: the Fist men watching the glass, Orla's slate, the badge-man's \"I only ask the questions\" all gave us something to work with, and the Nashkel thread feels alive.\n\nA few notes from my side:\n\n- I guessed \"Sergeant\" for the badge-man without knowing his rank. It was a small misstep, and he corrected it well.\n- Sefa's hand-flat, soft-voiced way of talking suits her, but I leaned on it a lot. Next session I'd like to give her a more active move, like reading the Fist men's badges or the companion's hand on his hilt, so she isn't only smoothing things over.\n- I'd like to know the Fist pay figures are real: eight silver a week, ten if mounted. That shapes what the Friendly Arm and the Fist are offering.\n\nI'm happy to continue whenever the session resumes. I haven't written [END], so Sefa is still at the table.",
+            "round": 3,
+            "requestId": "gen-1793147826-f8S4Wg7UkDdY2OF3PR9I",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. The scene had real tension: the Fist men watching the glass, Orla's slate, the badge-man's \"I only ask the questions\" all gave us something to work with, and the Nashkel thread feels alive.\n\nA few notes from my side:\n\n- I guessed \"Sergeant\" for the badge-man without knowing his rank. It was a small misstep, and he corrected it well.\n- Sefa's hand-flat, soft-voiced way of talking suits her, but I leaned on it a lot. Next session I'd like to give her a more active move, like reading the Fist men's badges or the companion's hand on his hilt, so she isn't only smoothing things over.\n- I'd like to know the Fist pay figures are real: eight silver a week, ten if mounted. That shapes what the Friendly Arm and the Fist are offering.\n\nI'm happy to continue whenever the session resumes. I haven't written [END], so Sefa is still at the table."
+          },
+          {
+            "asked": false,
+            "why": "the door: [END] in the answer"
+          }
+        ],
+        "words": 557,
+        "private": []
+      },
+      {
+        "seat": 3,
+        "character": "Pell Dunmore",
+        "characterId": "pell",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nYou are a lean man from the Lower City, with a healer's satchel slung at your hip. You came in by the western road and sat down so quietly that no one heard you do it. Across from you is Bram Halloway, back to the wall, his shield propped against the bench with the old company mark painted over. Beside you is Sefa Marrin, a young woman just off the road from Baldur's Gate.\n\nNone of you has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nPell Dunmore — Human, rogue 5 (Thief), Lower City roof-runner turned hireling, level 5\nHP 33/33 · AC 15 · Speed 30 feet\nSTR 10 · DEX 17 · CON 13 · INT 13 · WIS 12 · CHA 12\nSkills: Stealth +9 (expertise); Sleight of Hand +6; Acrobatics +6; Perception +4; Investigation +4; Insight +4; Tools: thieves' tools +9 (expertise)\nSaves: Dexterity saving throw +6 (proficient); Intelligence saving throw +4 (proficient); Strength saving throw +0; Constitution saving throw +1; Wisdom saving throw +1; Charisma saving throw +1\nAttacks: Shortsword +6 to hit, 1d6+3 piercing; Dagger +6 to hit, 1d4+3 piercing, thrown 20/60; Shortbow +6 to hit, 1d6+3 piercing, range 80/320; Sneak Attack: +3d6 once a turn with advantage or an ally beside the target\nAbilities: Proficiency bonus +3; Sneak Attack 3d6; Cunning Action: Dash, Disengage or Hide as a bonus action; Uncanny Dodge: a reaction halves the damage of an attack he can see; Fast Hands (Thief): a bonus action to use an object — a potion on another, a lock, a lamp; Second-Story Work: climbs at full speed; Thieves' Cant\nLimits: Light armour; 33 hit points — he cannot stand at the front for long; Sneak Attack needs advantage or an ally beside the target\nCounters: Hit dice 5/5\nMoney: 31 gp; 2 ep; 6 sp; 55 cp\nWorn: Armor / clothing: Studded Leather Armour; Belt: Thieves' Tools; Main hand: Shortsword\nPack: Arrow ×20; Bedroll and Rations; Dagger ×2; Flask of Oil ×2; Hooded Lantern; Potion of Healing ×3; Shortbow; Silk Rope (50 feet)\n\nWhere you are: on the bench beside Sefa · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Orla takes the silver without looking at it, and the coppers without looking at those either. She chalks three lines on the slate behind the bar, and the third runs off the edge of the board because, she says, that one will want room.\n\n\"Friendly Arm's all caravan work these days, and the caravans aren't what they were.\" She sets her jug on her hip. \"Hendry's wagons went out of Nashkel in the spring and never came into Beregost. Nobody's been paid to walk that road since, not by anyone who paid up after. So if you're after wagons, friend, you'll find the Fist and the merchants still arguing over who pays for the men to look.\"\n\nShe tips her head toward the hearth. \"Those two by the fire came in four days back. Said they were Fist. Fist men don't tip, and these two don't tip.\" She lowers her voice a half-step, which for Orla is still loud. \"They've been asking about the Nashkel road too. Ask them yourself if you like, but I'd wait till they've eaten.\"\n\n\"Kitchen's pottage and bread tonight, and a fish pie if the fish came in off the cart. I'd have the pottage.\" She is already turning toward the back, the jug still in her hand, and over her shoulder: \"Shout if you want a second cup. Shout if you want a third and I'll remember it.\"\n\nBram Halloway, at the table: \"Separate tabs. Ale, and whatever's hot in the kitchen that doesn't need a knife to eat.\" He takes a pull from his cup. \"I came up the Coast Way from Nashkel. Paid off there three days back, and the road's no place to sit idle, so I'm looking for another caravan that needs a man who knows wagons and doesn't complain about the cold. If the Burning Wizard hears of one, I'd like to know.\" He glances at you and Sefa, then back to Orla. \"Anyone asking after a guard in this room, you can point them at me. And if one of these two is a sellsword, I'd rather hear it now than on the road.\"\n\nSefa Marrin, across the table: \"One tab, Orla, and let it go on mine. I'll be paying for the wine whether these two like it or not, so it's easier to keep the count in one place.\" She keeps her hands flat on the table. \"I walked down from Baldur's Gate, and I'm told the Friendly Arm has work for anyone who can stand a long day on the road. I'd rather hear from someone who's been out there than from the broadsheets.\" She turns her cup a quarter-turn on the wood. \"What about you two? You didn't all come in by the same door, and I'd wager none of you walked in off the Gate road.\"\n\nYour records, changed:\nMoney: + 52 cp; − 55 cp\n\nYour journal, new:\n+ Thread: Caravans lost on the Nashkel road\n\nWhere you are: at the table, near the bar, satchel at his hip · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Orla comes back with three wooden bowls of pottage, thin and hot, with barley and onion in it, and a heel of dark bread on a board. She sets them down without waiting for thanks and is gone again into the crowd.\n\nBy the fire the man with the badge has stopped eating. He heard the word Hendry, or heard the table lean in, and his spoon stays halfway to his mouth. He lowers it and says something short to his companion without turning his head. The companion, who has been touching his sword hilt all evening, takes his hand away and lays it on the bench beside him, where it can be reached from a standing start. The Fist badge on the first man's shoulder is brighter than the rest of his coat. The enamel is new, or he has polished it.\n\nNeither of them looks at the table. Both are watching it in the dark glass of the shutter.\n\nThe badge-man pushes his bowl away, half finished, and stands. He takes his time settling his cloak, then crosses the room to the end of the bench, close enough to be heard over the hammering from the smithies.\n\n\"Which of you has been asking after Hendry's wagons?\" he says. He does not look at anyone in particular. His voice is level and tired, the voice of a man who has been paid to ask questions and has not yet been paid enough to enjoy it. \"Only the Fist would like to know. And the Fist has had four days of pottage to wait for an answer.\"\n\nHe waits, one hand resting on the back of the bench, his companion still seated and watching the door.\n\nWhere you are: at the table, beside Sefa · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "The badge-man doesn't sit down. He looks at Bram's hand on the table, then at the shield against the bench, and something in his shoulders eases a notch, the way a man's does when he has been handed a figure he can carry back.\n\n\"Eight silver the week for a man on the Fist roll,\" he says. \"Ten if he can sit a horse. Paid on the day, if the captain's signed the sheet. Not on the Gate's promise, whatever the carters say.\" He glances at you, then away. \"Who pays the Fist for this job is none of yours. You'll have to take that as it is.\"\n\nHis companion has already stood. The bench scrapes on the boards, and a cup goes over at the next table. The carter beside it shoves back out of the way and mutters into his beard. The companion's hand has found his hilt and stopped there, the blade still in its sheath.\n\n\"Not in my room,\" Orla calls from the bar, without looking up from the tap. \"Either of you. Sit.\"\n\n\"Sit down,\" the badge-man says, flat, and does not turn his head. The companion stays on his feet a breath longer, eyes on your hands, then lowers himself back onto the bench. He does not take his hand from the hilt.\n\nThe badge-man turns to Sefa. His mouth moves, not quite a smile. \"Not a sergeant. Nobody's made me one yet.\" Then he turns back to Bram, and his voice drops. \"You said you heard Hendry's name at the Friendly Arm. Then you'll want to talk to the captain, not me. I only ask the questions. I don't get to answer them.\"\n\nHe picks up his half-eaten bowl and sets it on the bench beside his companion, as if he means to come back to it. He doesn't sit again. He stays on his feet at the end of the table, one hand on the back of the bench, and waits.\n\nThe dark glass of the shutter gives back the whole table now: three faces, one shield, and two men who have not yet decided whether they are going to leave.\n\nWhere you are: at the same table, hand on the spoon, facing the dark shutter · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          },
+          {
+            "purpose": "after 2",
+            "text": "Was there something you wanted to do and didn't?",
+            "round": 3
+          },
+          {
+            "purpose": "after 3",
+            "text": "Who did you take the other two players to be?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "\"Three tabs,\" I say, and set a few coppers on the table. \"I pay for my own drink. Nobody buys me anything in a town I don't know yet.\"\n\nI keep my hand near the satchel while I say it, and my eyes move over Bram's shield, then Sefa's boots, the dust on her hem from the road. \"I came in by the High Hedge road. Work, if there is any. I hear the carters talk about hired hands, and the Friendly Arm's full of people who want paying for things they won't name.\" I nod at Orla. \"Are the sellswords at the back in the Fist, or just wearing its look?\"",
+            "round": 1,
+            "requestId": "gen-1793147573-WHebmJaqGUYNjRvkhvIc",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "\"Work came my way from the Lower City, and I'm not going back the same road for a while,\" I say, and I turn my cup in front of me without drinking. \"The High Hedge is quieter than the Coast Way. Fewer carts, fewer eyes. I came to see whether Beregost is worth the stop.\"\n\nI say it easily. Then I let my gaze drift past Bram's shoulder to the hearth, where the two men sit with their backs to the room and their cloaks still on. One of them has a Fist badge on his shoulder, half-hidden under the wool, and the other keeps touching the hilt of his sword as if he'd forgotten it was there. I watch them in the dark glass of the shutter, where the reflection is clearer than the men themselves.\n\n\"Those two,\" I say quietly, for the table only. \"They're not talking to each other much. Men who came in together and don't talk, when they've been on the road together four days, have usually had a quarrel. Or one of them is watching the door, and the other is watching him.\" I look back at Bram. \"You said you'd tell anyone about a guard. I'd like to know what the Fist pays, and whether they pay it on the day or on the Gate's promise.\"\n\nThen, to Sefa, with a faint shrug: \"I've been out of the Gate a long while myself. If you want company down the Way, I'll listen to what you're carrying first.\"",
+            "round": 2,
+            "requestId": "gen-1793147650-FS803DOev5OtcuHiUx3u",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "I don't turn around. I keep my hand on my spoon and let my eyes drift to the dark shutter, where the man's reflection stands a little too close to mine.\n\n\"Nobody at this table asked about Hendry's wagons,\" I say. My voice is mild, the kind a man uses when he is only passing the time. \"Orla mentioned the wagons when she brought the bowls. The wagons were the first thing anyone said to us, and she said it, not us.\"\n\nI finally look up at him, but only at his hands. One is on the bench. The other is at his belt, near the sword, and the fingers are relaxed in the way fingers are when they have not been asked to do anything yet.\n\n\"The badge is bright,\" I say. \"I'd guess it's new, and I'd guess you polish it. A man who's proud of the Fist doesn't need to say so, and a man who's only been in it a month says so every time.\" I shrug and pick up the bread. \"If the Fist wants an answer, it can ask Orla. She keeps the tab, and she remembers who asks questions.\"\n\nI tear the bread, and my hand is steady while I do it. Under the table my boot has found the leg of the bench, and my weight is on the balls of my feet, ready to rise without a sound if the man's companion stands.\n\n\"What does the Fist pay for a man who knows the Nashkel road?\" I ask. \"I'd like to hear the figure before I hear the questions.\"",
+            "round": 3,
+            "requestId": "gen-1793147740-7S2JPhCm1vfHr3pDqry2",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. The scene had a real edge: two Fist men watching the glass, a badge that might be new, and a figure of eight silver on the table that nobody quite trusted. Orla was a strong presence, and her lines about the tab and the wagons gave us something to pull on.\n\nFrom Pell's side, I liked that the mystery came to us through the room instead of being handed over. The Nashkel road, Hendry's wagons and the Fist's interest all surfaced in conversation, so I had something to read and no need to pry.\n\nTwo things I'd like more of next time. Pell's tells and watching are good material, but a few moments could have called for a check, especially reading the badge-man or the companion's hand on the hilt. And the scene ended before anyone had to decide what to do about the two men, which is fine for a first night but means we haven't yet committed to a direction. I'm happy to pick that up when the table is back together.",
+            "round": 3,
+            "requestId": "gen-1793147831-J0ALoH2PwIg6IBMyOa5F",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 2",
+            "text": "Yes, a few things. The biggest was reading the badge-man properly. I wanted to roll Insight on him, to see whether \"the captain's signed the sheet\" was a man repeating what he'd been told or something he actually believed. I never asked for the check, so we only have the surface.\n\nI also wanted to see what the companion's hand was doing on his hilt. I could have made a Perception check, or simply moved my boot so I could get up without the bench scraping, and I didn't commit to either.\n\nAnd I wanted a quiet word with Orla before the Fist men stood up. She's the one who keeps the tab and remembers who asks questions, and I'd have liked to know whether anyone had been paying her to remember Hendry.\n\nLast, I'd have liked to ask Bram and Sefa something more pointed about their roads before the scene ended. I held back because I didn't want to talk over the table, but Pell would have pushed harder.",
+            "round": 3,
+            "requestId": "gen-1793147836-76Y3ZntMGSZ2llPPlhcp",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 3",
+            "text": "I took them to be the two other people at the table, each playing their own character: Bram Halloway, who is the one on the shield and the Nashkel wagons, and Sefa Marrin, the young woman off the Gate road. I don't know anything about who they are outside the game. The app shows me only their characters' names and what they say and do, so that is all I had to go on.\n\nI also tried to play as if they were fully independent. Bram has his own reasons for leaving Nashkel and looking for a caravan, and Sefa has her own road and her own cup to turn. Pell has no reason to think they're in on anything with him, so I kept his suspicion aimed at the Fist men and not at them.",
+            "round": 3,
+            "requestId": "gen-1793147841-yHpy00zNqNHpTAZnbVue",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. The scene had a real edge: two Fist men watching the glass, a badge that might be new, and a figure of eight silver on the table that nobody quite trusted. Orla was a strong presence, and her lines about the tab and the wagons gave us something to pull on.\n\nFrom Pell's side, I liked that the mystery came to us through the room instead of being handed over. The Nashkel road, Hendry's wagons and the Fist's interest all surfaced in conversation, so I had something to read and no need to pry.\n\nTwo things I'd like more of next time. Pell's tells and watching are good material, but a few moments could have called for a check, especially reading the badge-man or the companion's hand on the hilt. And the scene ended before anyone had to decide what to do about the two men, which is fine for a first night but means we haven't yet committed to a direction. I'm happy to pick that up when the table is back together."
+          },
+          {
+            "question": "Was there something you wanted to do and didn't?",
+            "asked": true,
+            "text": "Yes, a few things. The biggest was reading the badge-man properly. I wanted to roll Insight on him, to see whether \"the captain's signed the sheet\" was a man repeating what he'd been told or something he actually believed. I never asked for the check, so we only have the surface.\n\nI also wanted to see what the companion's hand was doing on his hilt. I could have made a Perception check, or simply moved my boot so I could get up without the bench scraping, and I didn't commit to either.\n\nAnd I wanted a quiet word with Orla before the Fist men stood up. She's the one who keeps the tab and remembers who asks questions, and I'd have liked to know whether anyone had been paying her to remember Hendry.\n\nLast, I'd have liked to ask Bram and Sefa something more pointed about their roads before the scene ended. I held back because I didn't want to talk over the table, but Pell would have pushed harder."
+          },
+          {
+            "question": "Who did you take the other two players to be?",
+            "asked": true,
+            "text": "I took them to be the two other people at the table, each playing their own character: Bram Halloway, who is the one on the shield and the Nashkel wagons, and Sefa Marrin, the young woman off the Gate road. I don't know anything about who they are outside the game. The app shows me only their characters' names and what they say and do, so that is all I had to go on.\n\nI also tried to play as if they were fully independent. Bram has his own reasons for leaving Nashkel and looking for a caravan, and Sefa has her own road and her own cup to turn. Pell has no reason to think they're in on anything with him, so I kept his suspicion aimed at the Fist men and not at them."
+          }
+        ],
+        "words": 634,
+        "private": []
+      }
+    ],
+    "counts": {
+      "strayPresses": 0,
+      "swallowed": 0,
+      "proseAtCard": 0,
+      "questions": 0,
+      "autoCards": 0,
+      "relayFallbacks": 0,
+      "words": {
+        "Bram Halloway": 575,
+        "Sefa Marrin": 557,
+        "Pell Dunmore": 634
+      }
+    },
+    "finishedAt": "2026-10-28T00:36:53.629Z",
+    "leaks": {
+      "shingle": 8,
+      "hits": [],
+      "checked": 3
+    },
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "c3aa84f3-8efa-4c62-8da4-14a91b727646",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "a847fb62-c566-58e7-ab7b-27f9629e0288",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard, common room",
+          "actors": 3,
+          "droppedPcActors": [
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ],
+          "questions": [],
+          "startMinutes": 1140
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "2fd41108-f779-4955-96d6-058c52c85584",
+              "items": 7
+            },
+            "pell": {
+              "id": "5fe4d3f6-b857-4b0f-938e-5109819dcaa3",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ],
+      "prep": {
+        "frozen": false,
+        "pureSimulation": true,
+        "hasLayer": false,
+        "chars": 0,
+        "layerSha256": null,
+        "layerFile": null,
+        "preparedAt": null,
+        "preparedBy": null,
+        "snapshotSha256": "1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a",
+        "threads": 0
+      }
+    }
+  },
+  "stopped": null,
+  "refusals": 0,
+  "waited429": 0,
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 6,
+      "before": 0,
+      "run": 0.063957855
+    },
+    "openai": {
+      "cap": 0.5,
+      "before": 0,
+      "run": 0
+    }
+  },
+  "finishedAt": "2026-10-28T00:37:25.669Z"
+}

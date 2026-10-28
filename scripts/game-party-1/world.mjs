@@ -20,7 +20,7 @@ import { join } from "node:path";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import { campaignFiles } from "../game-player-1/frozen.mjs";
 import { canonical, layerSha256, privateStateOf, storedOf, threadsOf, writesBetween } from "../game-player-same-world-1/world.mjs";
-import { ARMS, ARM_CAMPAIGNS, DESIGN_SHA256, STAGE, TABLE_NOTE } from "./frozen.mjs";
+import { ARMS, ARM_CAMPAIGNS, DESIGN_SHA256, DM_PARTY_LINE, OWNER_OPENING_ANSWER, STAGE, TABLE_NOTE } from "./frozen.mjs";
 import { CHARACTERS, REVIEWS } from "./sheets.mjs";
 
 export const SNAPSHOT = "world-base.tar.gz";
@@ -83,11 +83,12 @@ export async function createArmCampaign(app, arm, { log = () => {}, closed = () 
   if (!guide) throw new Error(`${arm}: the campaign has no DM guide document`);
   await mutate("document.save", { id: guide.id, title: guide.title, status: guide.status, body: files.guide }, guide.revision);
   await mutate("document.save", { title: "The Sword Coast — canon", status: "canon", body: files.canon }, 0);
-  // Adventure: the wishes (DM-only) first, then the adventure (the premise names all three; no «who goes with the hero»).
+  // Adventure: the wishes (DM-only) first, then the adventure: the arm's premise and, for the DM, who the three are (no
+  // «who goes with the hero»).
   if (campaign.wishes.trim()) await server.secrets.saveDmSecrets(cid, { scope: "wishes", body: campaign.wishes.trim(), rebuild: false });
   const adventures = await server.adventures.adventureService(cid);
   const catalog = await adventures.read(cid, await fence(cid));
-  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title: campaign.title, premise: lib.wizardText.wizardAdventurePremise(campaign.premise, "", "en"), pacing: { kind: "evening", custom: null } }));
+  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title: campaign.title, premise: lib.wizardText.wizardAdventurePremise(`${campaign.premise}\n\n${DM_PARTY_LINE}`, "", "en"), pacing: { kind: "evening", custom: null } }));
   const adventure = prepared.snapshot.adventures.find((a) => a.status === "prepared");
   steps.push({ step: "adventure", title: campaign.title, wishesChars: campaign.wishes.length });
   // DM: the owner's settings; the companions' rolls are their players' cards; P-SAND plays pure simulation.
@@ -111,10 +112,14 @@ export async function createArmCampaign(app, arm, { log = () => {}, closed = () 
   const pcWords = CHARACTERS.flatMap((c) => [c.name.toLowerCase(), c.short.toLowerCase()]);
   const isPc = (actor) => pcWords.some((w) => String(actor.name ?? "").toLowerCase().includes(w));
   const dropped = opening.proposal.actors.filter(isPc).map((a) => a.name);
-  const openingReview = lib.openingAnswers.applyOpeningAnswers({ ...lib.validation.initialOpeningReview(opening.proposal), actors: opening.proposal.actors.filter((a) => !isPc(a)), publicOpeningConfirmed: true }, opening.proposal.questions, "en");
+  // A consequential question the DM puts to the owner gets the owner's one neutral line (the premise stands; the DM
+  // decides the rest); an optional one is left unanswered. Both are recorded in the build's steps.
+  const answers = opening.proposal.questions.map((q) => (q.consequential ? OWNER_OPENING_ANSWER : null));
+  const openingReview = lib.openingAnswers.applyOpeningAnswers({ ...lib.validation.initialOpeningReview(opening.proposal), actors: opening.proposal.actors.filter((a) => !isPc(a)), answers, publicOpeningConfirmed: true }, opening.proposal.questions, "en");
   const startMinutes = lib.wizardText.startMinutesFromText(`${opening.proposal.narration ?? ""} ${opening.proposal.situation ?? ""}`, "en");
   await server.bootstrap.performBootstrap({ action: "opening.commit", input: { requestId: randomUUID(), campaignId: cid, draftId: opening.draftId, review: openingReview, startMinutes } });
-  steps.push({ step: "opening", proposals, location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, droppedPcActors: dropped, questions: opening.proposal.questions.length, startMinutes });
+  steps.push({ step: "opening", proposals, location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, droppedPcActors: dropped,
+    questions: opening.proposal.questions.map((q, i) => ({ question: q.question, consequential: q.consequential, answer: answers[i] })), startMinutes });
   log(`  ${arm}: opening committed${dropped.length ? ` (the review left out ${dropped.join(", ")}: already at the table)` : ""}`);
   // Sefa and Pell: party companions with the same records (the owner's saves) — after the opening, which the app
   // starts only for a campaign whose one character is its hero.

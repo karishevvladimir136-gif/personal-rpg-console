@@ -1,0 +1,1106 @@
+{
+  "stage": "GAME_PARTY_1",
+  "design": "83a3f0d27fe1dfd9b92b2cd5323e59d65c363e6529b91c5eeb151e531ac361d9",
+  "dry": false,
+  "haiku": true,
+  "label": "the dry run on Haiku: one short P-SAND table",
+  "key": "SAND-haiku",
+  "arm": "SAND",
+  "triad": "haiku",
+  "seats": [
+    "haiku",
+    "haiku",
+    "haiku"
+  ],
+  "rounds": 3,
+  "startedAt": "2026-10-28T00:38:37.072Z",
+  "table": {
+    "key": "SAND-haiku",
+    "arm": "SAND",
+    "triad": "haiku",
+    "startedAt": "2026-10-28T00:38:39.556Z",
+    "plannedRounds": 3,
+    "rounds": [
+      {
+        "n": 1,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\"\n\nHe glances at the young woman, then at the lean man with the satchel, and his eyes stay on the satchel a moment longer than politeness allows. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits for them to answer."
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "*Sefa looks up from the cup Orla set in front of her, then turns to the broad man with the shield and gives him a small, measured smile.*\n\n\"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\"\n\n*She lifts her cup, glances at the healer's satchel at the lean man's hip, and then back to Orla.*\n\n\"As for me, I walked down from Baldur's Gate on the Coast Way this week. I'm looking for honest work for a woman who can mend a wound and say a true word over the dying, and I'm told Beregost pays for both more freely than the Lower City does. If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\n*She sets the cup down and waits, quite at ease, for the others to speak.*"
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "Pell keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He glances at the broad-shouldered man's shield, at the paint scraped off its face, then at the young woman beside him. \"As for what brings me, I came up the High Hedge road because I'm owed nothing and can't pay anything. I heard there's work in Beregost, and that the Friendly Arm is full of people who want it. Figured I'd see who else is looking before I ask.\" He lifts one shoulder. \"Does the Burning Wizard hire, or just feed?\""
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 1 — one paragraph per character in this scene.)\n\nBram Halloway: Bram lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\"\n\nHe glances at the young woman, then at the lean man with the satchel, and his eyes stay on the satchel a moment longer than politeness allows. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits for them to answer.\n\nSefa Marrin: *Sefa looks up from the cup Orla set in front of her, then turns to the broad man with the shield and gives him a small, measured smile.*\n\n\"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\"\n\n*She lifts her cup, glances at the healer's satchel at the lean man's hip, and then back to Orla.*\n\n\"As for me, I walked down from Baldur's Gate on the Coast Way this week. I'm looking for honest work for a woman who can mend a wound and say a true word over the dying, and I'm told Beregost pays for both more freely than the Lower City does. If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\n*She sets the cup down and waits, quite at ease, for the others to speak.*\n\nPell Dunmore: Pell keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He glances at the broad-shouldered man's shield, at the paint scraped off its face, then at the young woman beside him. \"As for what brings me, I came up the High Hedge road because I'm owed nothing and can't pay anything. I heard there's work in Beregost, and that the Friendly Arm is full of people who want it. Figured I'd see who else is looking before I ask.\" He lifts one shoulder. \"Does the Burning Wizard hire, or just feed?\"",
+            "clock": null,
+            "operationId": "e62e9688-ccee-4b77-871f-a6e7f2705786",
+            "shownTold": {},
+            "narration": "Orla takes the two silver off the wood without looking at them, the way a woman takes money she has counted a thousand times. She drops the coppers beside it. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tucks the coins into her apron and turns to the young woman. \"Song of the Morning's up past the smithies, where the road bends. Old Brother Haskel will ask if you're sick or just hungry, and he'll want to know which before he lets you touch a bell rope.\"\n\nThen her eyes go to Bram, and something in her face tightens. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand and his cup held in the other.\n\n\"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice a little, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me, and I've given him one more ale than he's paid for.\"\n\nShe straightens and picks up the jug. To Pell, without a glance at his satchel: \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose.\" Her mouth flattens. \"Mind you, he can't afford to lose them either, so there's that.\"\n\nAcross the room the carter Dab has put his cup down and is looking at Bram's shield, at the old paint under the brown, and then at the door again, the way a man does when he has been waiting for someone to ask him a question he is not sure he wants to answer.\n\nNothing else happens before the lamps unless you want it to.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 10 minutes"
+              },
+              {
+                "tool": "money",
+                "summary": "−2 silver (Bram pays his own tab at the Burning Wizard)"
+              },
+              {
+                "tool": "money",
+                "summary": "Pell Dunmore spends 2 copper (Pell pays for his ale at the Burning Wizard)"
+              },
+              {
+                "tool": "money",
+                "summary": "Sefa Marrin spends 3 copper (Sefa pays her own tab at the Burning Wizard)"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "New place: Beregost"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "A rumour of a place: The ford on the Coast Way"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "A rumour of a place: Nashkel"
+              },
+              {
+                "tool": "quest",
+                "summary": "Lead: The wagon lost past the ford"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Dab Coswell"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 3,
+              "latencyMs": 74321,
+              "costUsd": 0.6009076000000001,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "Bram Halloway lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" He glances at the young woman, then at the lean man with the satchel, his eyes lingering on the satchel. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield closer to the bench.\n\nThe young woman says, \"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\" She walks down from Baldur's Gate on the Coast Way, she says, and she is looking for honest work. \"If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\nThe lean man, Pell Dunmore, keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He says he came up the High Hedge road because he is owed nothing and can't pay anything, and that he heard there's work in Beregost and that the Friendly Arm is full of people who want it. \"Does the Burning Wizard hire, or just feed?\"\n\nOrla takes your two silver without looking at them and drops the coppers beside them. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tells the young woman that the Song of the Morning is up past the smithies, where the road bends, and that Brother Haskel will want to know whether she is sick or just hungry before he lets her near a bell rope.\n\nHer eyes come to you, and something in her face tightens. She looks at the door, then at the two carters on the far bench. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nShe picks up the jug and says to Pell, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has put his cup down. He is staring at your shield, at the old paint under the brown, and then at the door.",
+                "Sefa Marrin": "Bram Halloway lifts his cup off the table, nods to the innkeeper, and sets two silver pieces on the wood, sliding them toward Orla. \"Three tabs, Orla. I pay for my own.\" He says, \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" His gaze lingers on the lean man's satchel. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits.\n\nThe lean man, Pell Dunmore, keeps his hands flat on the table, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He says he came up the High Hedge road because he is owed nothing and can't pay anything, and that he heard there's work in Beregost and the Friendly Arm is full of people who want it. \"Figured I'd see who else is looking before I ask. Does the Burning Wizard hire, or just feed?\"\n\nOrla takes the two silver without looking at them and drops the coppers beside them. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She turns to you and says the Song of the Morning is up past the smithies, where the road bends. \"Old Brother Haskel will ask if you're sick or just hungry, and he'll want to know which before he lets you touch a bell rope.\"\n\nOrla's eyes go to the broad man, and her face tightens. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nOrla picks up the jug and says to Pell, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has set his cup down. He is staring at the broad man's shield, then at the door.",
+                "Pell Dunmore": "Bram Halloway sets two silver pieces on the wood and slides them toward the innkeeper. \"Three tabs, Orla. I pay for my own.\" He says, \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" His eyes rest on your satchel a moment longer than polite. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield closer to the bench.\n\nThe young woman lifts her cup, smiles at Bram, and says, \"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\" She says she walked down from Baldur's Gate on the Coast Way this week and is looking for honest work for a woman who can mend a wound and say a true word over the dying. \"If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\nOrla takes Bram's silver without looking at it and drops your coppers beside it. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tells the young woman the Song of the Morning is up past the smithies, where the road bends, and that Brother Haskel will want to know whether she is sick or just hungry before he lets her touch a bell rope.\n\nOrla's face tightens as her eyes go to Bram. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nShe picks up the jug and says to you, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has set his cup down. He is staring at Bram's shield, at the old paint under the brown, and then at the door."
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at the table in the Burning Wizard, shield against the bench",
+                "Sefa Marrin": "at the table in the Burning Wizard",
+                "Pell Dunmore": "at the table in the Burning Wizard, hands flat on the wood"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\"\n\nHe glances at the young woman, then at the lean man with the satchel, and his eyes stay on the satchel a moment longer than politeness allows. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits for them to answer.\n\nSefa Marrin: *Sefa looks up from the cup Orla set in front of her, then turns to the broad man with the shield and gives him a small, measured smile.*\n\n\"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\"\n\n*She lifts her cup, glances at the healer's satchel at the lean man's hip, and then back to Orla.*\n\n\"As for me, I walked down from Baldur's Gate on the Coast Way this week. I'm looking for honest work for a woman who can mend a wound and say a true word over the dying, and I'm told Beregost pays for both more freely than the Lower City does. If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\n*She sets the cup down and waits, quite at ease, for the others to speak.*\n\nPell Dunmore: Pell keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He glances at the broad-shouldered man's shield, at the paint scraped off its face, then at the young woman beside him. \"As for what brings me, I came up the High Hedge road because I'm owed nothing and can't pay anything. I heard there's work in Beregost, and that the Friendly Arm is full of people who want it. Figured I'd see who else is looking before I ask.\" He lifts one shoulder. \"Does the Burning Wizard hire, or just feed?\"\n>>>\n\nYour narration:\n<<<\nOrla takes the two silver off the wood without looking at them, the way a woman takes money she has counted a thousand times. She drops the coppers beside it. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tucks the coins into her apron and turns to the young woman. \"Song of the Morning's up past the smithies, where the road bends. Old Brother Haskel will ask if you're sick or just hungry, and he'll want to know which before he lets you touch a bell rope.\"\n\nThen her eyes go to Bram, and something in her face tightens. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand and his cup held in the other.\n\n\"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice a little, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me, and I've given him one more ale than he's paid for.\"\n\nShe straightens and picks up the jug. To Pell, without a glance at his satchel: \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose.\" Her mouth flattens. \"Mind you, he can't afford to lose them either, so there's that.\"\n\nAcross the room the carter Dab has put his cup down and is looking at Bram's shield, at the old paint under the brown, and then at the door again, the way a man does when he has been waiting for someone to ask him a question he is not sure he wants to answer.\n\nNothing else happens before the lamps unless you want it to.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": [
+              "Thread: The wagon lost past the ford"
+            ]
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      },
+      {
+        "n": 2,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram doesn't answer Orla. He picks up his cup, takes his shield off the bench, and crosses the room with it on his arm. He stops at the carters' table, pulls out a stool, and sits across from Dab Coswell so the man has to look at him and not the door.\n\n\"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years, and ten after that with the Trade Way carters out of the Gate.\" He nods at the bandaged scalp. \"Who were the two you hired at the Friendly Arm? Names, if you have them. And which side of the ford did you lose them on?\"\n\nHe leaves his cup where it is and keeps his voice low, as if he is asking about the weather.\n\n\"You don't have to tell me what took them. Just tell me where the wagon sits now, and whether anyone's been out to look for it.\""
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "Sefa turns her cup slowly on the wood and watches the carter by the far bench. His hand is wrapped in a rag gone black at the edges, and his fingers won't stay still.\n\n\"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She lowers her voice to match yours. \"But that scalp wants cleaning before it festers, and a man who's walked in from the ford alone shouldn't sleep in a stable without someone looking at it.\"\n\nShe opens one hand on the table, palm up, so it's plain she carries nothing in it.\n\n\"I'm Sefa Marrin, a healer, though I've no license from the Song of the Morning, and I won't pretend otherwise. I can close a cut and say a prayer over a fever. I'll ask him nothing about the road unless he wants to tell me. But if he's willing, I'll take a look.\"\n\nShe glances once at Bram's shield, then at Pell's satchel, and back to Dab.\n\n\"And if the ford is where those guards went missing, someone should hear it from him before the Fist decides it was bandits and goes home.\""
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "Pell lets the jug go past him and does not reach for his cup. His eyes move from Dab's bandage to the shield, then to the door, and stay there.\n\n\"Bram,\" he says, quietly enough that it stays at the table. \"Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\"\n\nHe turns back to Orla. \"Which ford? The one a day south, where the Way drops to the river, or the next one past the Friendly Arm?\"\n\nThen, to the table: \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it, and I'll be more use for it than for a ration bag and a spear.\" He slides one hand off the table and tucks it under his cloak, where the satchel rests against his hip. \"If the sergeant's posting men at the Friendly Arm, I'll walk past it in the morning and see who's looking back.\"\n\nPell keeps his voice level and his eyes on Dab, waiting to see whether the carter gets up."
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 2 — one paragraph per character in this scene.)\n\nBram Halloway: Bram doesn't answer Orla. He picks up his cup, takes his shield off the bench, and crosses the room with it on his arm. He stops at the carters' table, pulls out a stool, and sits across from Dab Coswell so the man has to look at him and not the door.\n\n\"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years, and ten after that with the Trade Way carters out of the Gate.\" He nods at the bandaged scalp. \"Who were the two you hired at the Friendly Arm? Names, if you have them. And which side of the ford did you lose them on?\"\n\nHe leaves his cup where it is and keeps his voice low, as if he is asking about the weather.\n\n\"You don't have to tell me what took them. Just tell me where the wagon sits now, and whether anyone's been out to look for it.\"\n\nSefa Marrin: Sefa turns her cup slowly on the wood and watches the carter by the far bench. His hand is wrapped in a rag gone black at the edges, and his fingers won't stay still.\n\n\"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She lowers her voice to match yours. \"But that scalp wants cleaning before it festers, and a man who's walked in from the ford alone shouldn't sleep in a stable without someone looking at it.\"\n\nShe opens one hand on the table, palm up, so it's plain she carries nothing in it.\n\n\"I'm Sefa Marrin, a healer, though I've no license from the Song of the Morning, and I won't pretend otherwise. I can close a cut and say a prayer over a fever. I'll ask him nothing about the road unless he wants to tell me. But if he's willing, I'll take a look.\"\n\nShe glances once at Bram's shield, then at Pell's satchel, and back to Dab.\n\n\"And if the ford is where those guards went missing, someone should hear it from him before the Fist decides it was bandits and goes home.\"\n\nPell Dunmore: Pell lets the jug go past him and does not reach for his cup. His eyes move from Dab's bandage to the shield, then to the door, and stay there.\n\n\"Bram,\" he says, quietly enough that it stays at the table. \"Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\"\n\nHe turns back to Orla. \"Which ford? The one a day south, where the Way drops to the river, or the next one past the Friendly Arm?\"\n\nThen, to the table: \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it, and I'll be more use for it than for a ration bag and a spear.\" He slides one hand off the table and tucks it under his cloak, where the satchel rests against his hip. \"If the sergeant's posting men at the Friendly Arm, I'll walk past it in the morning and see who's looking back.\"\n\nPell keeps his voice level and his eyes on Dab, waiting to see whether the carter gets up.",
+            "clock": null,
+            "operationId": "c9afd9c8-aa85-48cc-8691-6d1f8a35b6b6",
+            "shownTold": {},
+            "narration": "Dab doesn't look at Bram when the stool scrapes back. He looks at the door first, then at his cup, and his good hand closes around it. For a long moment he says nothing.\n\n\"Caravan,\" he says at last, low and hoarse. \"You said.\" He glances at the door again before he finishes. \"Trade Way carters, I don't know your lot. I don't know any Hesk.\"\n\nBram gets no more than that, and Dab seems to hear himself say it. He breathes out through his nose.\n\n\"Tobin Merrow and Hal Fenn. Hired at the Friendly Arm, four days back. Good with a spear, both of them. Hal wanted to pay for his mother's roof.\" He stops. His fingers start to tap the wood. \"Wagon's past the ford. North side, off the road, where the willows come down. I left it. Left the mules too.\" He touches the edge of the bandage and winces. \"Didn't stop to see if they were still tied to it.\"\n\n\"Has anyone been out?\"\n\n\"Nobody I know of.\" His mouth goes flat. \"And nobody's going out after a carter who ran.\"\n\nSefa has been waiting with her open hand on the table. When Dab's eyes drift toward her, she doesn't push. She only nods at the bandage, as if she has all evening. It is Orla who settles it. She comes past with the jug, sets it down by Dab's elbow with a clatter, and says without slowing, \"Let the woman look at it, Dab. It's a cut, not a wedding.\"\n\n\"...Fine.\" He bends his head toward Sefa and keeps his eyes on the table.\n\nSefa cleans the scalp with clean water from the jug and a strip of linen from her own pack, working slowly, her voice low and steady. Dab flinches once when she presses near the edge of the wound. He doesn't say a word about the road. The bandage goes on neat, and she ties it off and sits back.\n\nPell has not moved his hand from under his cloak. When Orla passes again he asks, quietly, which ford. She doesn't pretend not to know what he means.\n\n\"Past the bend, where the Way drops to the water. Only ford on that stretch worth the name.\" She looks at his satchel, then at his face. \"Sergeant's at the Friendly Arm, if you want him. He's short. Go early.\"\n\nDab has heard the word *ford* and his hand is still on his cup. He doesn't get up, and he doesn't look at Bram again. When Orla moves off he finally says, mostly to her back, \"That's all, Orla. That's all they're getting tonight.\"\n\n Out of game: none of the three needed a die. Bram's questions were conversation, and Dab answered as he chose; Sefa's dressing of the scalp is routine healer's work; Pell's question went to Orla, who answered it. Each outcome is already in the story above. If Bram presses Dab harder, that would be a new declared action, and I'd call the check then.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 25 minutes"
+              },
+              {
+                "tool": "upsert_place",
+                "summary": "A rumour of a place: The Friendly Arm Inn"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “The wagon lost past the ford” updated"
+              },
+              {
+                "tool": "quest",
+                "summary": "Debt: Dab's tab at the Burning Wizard"
+              },
+              {
+                "tool": "item",
+                "summary": "In the camp: Dab's wagon of nails, mules and wagon gear"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Tobin Merrow"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Hal Fenn"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 4,
+              "latencyMs": 77802,
+              "costUsd": 0.6788850000000001,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "Sefa Marrin leaves her cup where it is, opens one hand flat on the table, and speaks low to Orla and the carter. \"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She tells Dab she is a healer without a license from the Song of the Morning, that she can close a cut and say a prayer over a fever, and that she will ask nothing about the road unless he wants to tell her. She glances once at your shield and then at Pell's satchel.\n\nPell Dunmore says quietly, so that it stays at the table, \"Bram. Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\" Then, to the table, he says he is not going to the Fist for a job, and that he will walk past the Friendly Arm in the morning to see who is looking back. He keeps one hand tucked under his cloak.\n\nDab's stool scrapes back when you ask him your questions. He looks at the door, then at his cup, and says, \"Caravan. You said.\" He tells you he doesn't know your lot or any Hesk. Then he names Tobin Merrow and Hal Fenn, hired at the Friendly Arm four days back, good with a spear, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules, and he didn't stop to see whether they were still tied. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nOrla sets the jug down by Dab's elbow and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" Dab bends his head toward Sefa. She cleans the scalp with water from the jug and a strip of her own linen, and Dab flinches once. He says nothing more about the road. The bandage goes on neat.\n\nWhen Orla passes again, Pell asks her something quietly. Dab, with his hand still on his cup, does not get up and does not look at you again. He says to Orla's back, \"That's all, Orla. That's all they're getting tonight.\"",
+                "Sefa Marrin": "Bram Halloway crosses the room with his shield on his arm, leaves his cup where it is, and sits across from Dab Coswell on a stool, so the man has to face him. You hear Bram say, low, \"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years.\" He asks for the names of the two hired at the Friendly Arm and which side of the ford they were lost on. He tells Dab he doesn't have to say what took them, only where the wagon sits now and whether anyone has gone to look for it.\n\nPell Dunmore has not reached for his cup. He keeps his hand under his cloak and says to the table, \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it.\" He says he will walk past the Friendly Arm in the morning and see who is looking back.\n\nDab's answers come slowly. \"Caravan. You said. Trade Way carters, I don't know your lot. I don't know any Hesk.\" Then he names Tobin Merrow and Hal Fenn, hired four days back at the Friendly Arm, good with a spear, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nYour open hand is still on the table. Dab's eyes drift toward you, and you only nod at his bandage. Orla comes past with the jug, sets it by his elbow, and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" Dab mutters that it is fine and bends his head toward you. You clean the scalp with clean water from the jug and a strip of linen from your pack. He flinches once when you press near the wound, and he says nothing about the road. When you tie the bandage off, he doesn't look at you.",
+                "Pell Dunmore": "Bram Halloway crosses the room with his shield on his arm, sits at the carters' table across from Dab Coswell, and speaks low: \"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years.\" He asks for the names of the two hired at the Friendly Arm and which side of the ford they were lost on, and he says Dab need not tell him what took them. He leaves his cup where it is.\n\nDab's stool-side answers come grudgingly. \"Caravan. You said. I don't know any Hesk.\" Then he gives the names Tobin Merrow and Hal Fenn, hired four days back at the Friendly Arm, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nSefa Marrin turns her cup on the wood and watches the carter. You hear her say to Orla, \"Forgive me, Orla,\" and offer to clean Dab's scalp before it festers. She says she is a healer without a license from the Song of the Morning and will ask nothing about the road unless he wants to tell her. She opens one hand on the table, palm up, to show she carries nothing.\n\nOrla comes past with the jug, sets it down by Dab's elbow, and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" You answer her question about the ford. She says, \"Past the bend, where the Way drops to the water. Only ford on that stretch worth the name.\" She looks at your satchel and then at your face. \"Sergeant's at the Friendly Arm, if you want him. He's short. Go early.\"\n\nDab does not get up. He keeps his hand on his cup, and when Orla moves off he says to her back, \"That's all, Orla. That's all they're getting tonight.\""
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at the carters' table, on a stool across from Dab, shield on his arm",
+                "Sefa Marrin": "at the table near the carters, hand open on the wood",
+                "Pell Dunmore": "at his own table in the common room, hand under his cloak, satchel at his hip"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 2,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram doesn't answer Orla. He picks up his cup, takes his shield off the bench, and crosses the room with it on his arm. He stops at the carters' table, pulls out a stool, and sits across from Dab Coswell so the man has to look at him and not the door.\n\n\"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years, and ten after that with the Trade Way carters out of the Gate.\" He nods at the bandaged scalp. \"Who were the two you hired at the Friendly Arm? Names, if you have them. And which side of the ford did you lose them on?\"\n\nHe leaves his cup where it is and keeps his voice low, as if he is asking about the weather.\n\n\"You don't have to tell me what took them. Just tell me where the wagon sits now, and whether anyone's been out to look for it.\"\n\nSefa Marrin: Sefa turns her cup slowly on the wood and watches the carter by the far bench. His hand is wrapped in a rag gone black at the edges, and his fingers won't stay still.\n\n\"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She lowers her voice to match yours. \"But that scalp wants cleaning before it festers, and a man who's walked in from the ford alone shouldn't sleep in a stable without someone looking at it.\"\n\nShe opens one hand on the table, palm up, so it's plain she carries nothing in it.\n\n\"I'm Sefa Marrin, a healer, though I've no license from the Song of the Morning, and I won't pretend otherwise. I can close a cut and say a prayer over a fever. I'll ask him nothing about the road unless he wants to tell me. But if he's willing, I'll take a look.\"\n\nShe glances once at Bram's shield, then at Pell's satchel, and back to Dab.\n\n\"And if the ford is where those guards went missing, someone should hear it from him before the Fist decides it was bandits and goes home.\"\n\nPell Dunmore: Pell lets the jug go past him and does not reach for his cup. His eyes move from Dab's bandage to the shield, then to the door, and stay there.\n\n\"Bram,\" he says, quietly enough that it stays at the table. \"Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\"\n\nHe turns back to Orla. \"Which ford? The one a day south, where the Way drops to the river, or the next one past the Friendly Arm?\"\n\nThen, to the table: \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it, and I'll be more use for it than for a ration bag and a spear.\" He slides one hand off the table and tucks it under his cloak, where the satchel rests against his hip. \"If the sergeant's posting men at the Friendly Arm, I'll walk past it in the morning and see who's looking back.\"\n\nPell keeps his voice level and his eyes on Dab, waiting to see whether the carter gets up.\n>>>\n\nYour narration:\n<<<\nDab doesn't look at Bram when the stool scrapes back. He looks at the door first, then at his cup, and his good hand closes around it. For a long moment he says nothing.\n\n\"Caravan,\" he says at last, low and hoarse. \"You said.\" He glances at the door again before he finishes. \"Trade Way carters, I don't know your lot. I don't know any Hesk.\"\n\nBram gets no more than that, and Dab seems to hear himself say it. He breathes out through his nose.\n\n\"Tobin Merrow and Hal Fenn. Hired at the Friendly Arm, four days back. Good with a spear, both of them. Hal wanted to pay for his mother's roof.\" He stops. His fingers start to tap the wood. \"Wagon's past the ford. North side, off the road, where the willows come down. I left it. Left the mules too.\" He touches the edge of the bandage and winces. \"Didn't stop to see if they were still tied to it.\"\n\n\"Has anyone been out?\"\n\n\"Nobody I know of.\" His mouth goes flat. \"And nobody's going out after a carter who ran.\"\n\nSefa has been waiting with her open hand on the table. When Dab's eyes drift toward her, she doesn't push. She only nods at the bandage, as if she has all evening. It is Orla who settles it. She comes past with the jug, sets it down by Dab's elbow with a clatter, and says without slowing, \"Let the woman look at it, Dab. It's a cut, not a wedding.\"\n\n\"...Fine.\" He bends his head toward Sefa and keeps his eyes on the table.\n\nSefa cleans the scalp with clean water from the jug and a strip of linen from her own pack, working slowly, her voice low and steady. Dab flinches once when she presses near the edge of the wound. He doesn't say a word about the road. The bandage goes on neat, and she ties it off and sits back.\n\nPell has not moved his hand from under his cloak. When Orla passes again he asks, quietly, which ford. She doesn't pretend not to know what he means.\n\n\"Past the bend, where the Way drops to the water. Only ford on that stretch worth the name.\" She looks at his satchel, then at his face. \"Sergeant's at the Friendly Arm, if you want him. He's short. Go early.\"\n\nDab has heard the word *ford* and his hand is still on his cup. He doesn't get up, and he doesn't look at Bram again. When Orla moves off he finally says, mostly to her back, \"That's all, Orla. That's all they're getting tonight.\"\n\n Out of game: none of the three needed a die. Bram's questions were conversation, and Dab answered as he chose; Sefa's dressing of the scalp is routine healer's work; Pell's question went to Orla, who answered it. Each outcome is already in the story above. If Bram presses Dab harder, that would be a new declared action, and I'd call the check then.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": [
+              "Debt: Dab's tab at the Burning Wizard"
+            ]
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      },
+      {
+        "n": 3,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram turns the cup a quarter-turn on the wood and looks at Dab for a long moment before he speaks.\n\n\"Tobin Merrow and Hal Fenn. Good, you said. I'll remember the names.\" He pushes two copper pieces across the table toward Orla, who is still within earshot. \"Put Dab's supper on mine, Orla. He's not running out on a bill tonight.\"\n\nDab's jaw works, but he says nothing.\n\nBram stands and sets his shield on his arm. He does not raise his voice. \"The ford's a half-day's walk from the Coast Way. The willows you mean are on the north side, where the bank drops. I'll go look at first light. If the mules are still tied and the wagon's still sitting, I'll bring what I can back. If the men are there, I'll bring them back too.\" He looks at Dab's bandage. \"If they aren't, you'll hear it from me, not from the Fist.\"\n\nHe turns and looks across the common room, past the carters and the sellswords, to the table where Sefa and Pell are sitting. He says it to both of them.\n\n\"I'm going to the ford in the morning. It's a long walk, and it's the kind of walk that goes badly for one man. If either of you has business on the Way, or wants to see who's looking back from the Friendly Arm, come with me. I'll pay for the ale on the road.\""
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "Sefa rinses her fingers in the last of the clean water and dries them on her sleeve. She keeps her voice low, pitched for the bench and no further.\n\n\"Thank you, Dab. Keep it dry for two days, and if it goes hot or red at the edge, come find me or Orla before you come find a bottle.\"\n\nShe waits until he meets her eye, and holds it without pressing.\n\n\"You said the wagon sits past the ford, on the north side, where the willows come down. You didn't say whether anyone went looking for Tobin and Hal, or whether anyone has asked after them. Those are the two I'd want to hear about before I went to bed.\"\n\nShe looks at Bram, then back at Dab.\n\n\"Nobody's going out after a carter who ran, you said. Men who run don't usually leave their mules standing in a ford. I may be wrong. But someone ought to walk that road and count what's still on it.\"\n\nShe closes the pack and sets her hand flat on its strap.\n\n\"Bram's asked the right questions. I'd like to hear your answers too. Then I'll decide whether a healer's bag is any use on that road, or whether it's better left in Beregost.\""
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "Pell does not get up. He turns his cup a quarter-turn on the wood, then lets his eyes drift around the room the way a man's would if he were only looking for the privy.\n\nNear the door a lean man in a grey travelling cloak has been nursing one ale for the last half hour. His eyes have gone to Bram's shield twice, and once to Dab, and he has not drunk from the cup since Dab's name was spoken. A cheap thief would have finished the ale and left. This one is waiting for something.\n\nWhen Orla comes back past the table with a rag over her shoulder, Pell catches her sleeve, not hard, and says under the noise, \"Who else has been asking after Dab's wagon tonight? Besides us.\"\n\nHe keeps his hand under his cloak and his shoulders loose. If the grey cloak moves, Pell wants to see it before it reaches the door."
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 3 — one paragraph per character in this scene.)\n\nBram Halloway: Bram turns the cup a quarter-turn on the wood and looks at Dab for a long moment before he speaks.\n\n\"Tobin Merrow and Hal Fenn. Good, you said. I'll remember the names.\" He pushes two copper pieces across the table toward Orla, who is still within earshot. \"Put Dab's supper on mine, Orla. He's not running out on a bill tonight.\"\n\nDab's jaw works, but he says nothing.\n\nBram stands and sets his shield on his arm. He does not raise his voice. \"The ford's a half-day's walk from the Coast Way. The willows you mean are on the north side, where the bank drops. I'll go look at first light. If the mules are still tied and the wagon's still sitting, I'll bring what I can back. If the men are there, I'll bring them back too.\" He looks at Dab's bandage. \"If they aren't, you'll hear it from me, not from the Fist.\"\n\nHe turns and looks across the common room, past the carters and the sellswords, to the table where Sefa and Pell are sitting. He says it to both of them.\n\n\"I'm going to the ford in the morning. It's a long walk, and it's the kind of walk that goes badly for one man. If either of you has business on the Way, or wants to see who's looking back from the Friendly Arm, come with me. I'll pay for the ale on the road.\"\n\nSefa Marrin: Sefa rinses her fingers in the last of the clean water and dries them on her sleeve. She keeps her voice low, pitched for the bench and no further.\n\n\"Thank you, Dab. Keep it dry for two days, and if it goes hot or red at the edge, come find me or Orla before you come find a bottle.\"\n\nShe waits until he meets her eye, and holds it without pressing.\n\n\"You said the wagon sits past the ford, on the north side, where the willows come down. You didn't say whether anyone went looking for Tobin and Hal, or whether anyone has asked after them. Those are the two I'd want to hear about before I went to bed.\"\n\nShe looks at Bram, then back at Dab.\n\n\"Nobody's going out after a carter who ran, you said. Men who run don't usually leave their mules standing in a ford. I may be wrong. But someone ought to walk that road and count what's still on it.\"\n\nShe closes the pack and sets her hand flat on its strap.\n\n\"Bram's asked the right questions. I'd like to hear your answers too. Then I'll decide whether a healer's bag is any use on that road, or whether it's better left in Beregost.\"\n\nPell Dunmore: Pell does not get up. He turns his cup a quarter-turn on the wood, then lets his eyes drift around the room the way a man's would if he were only looking for the privy.\n\nNear the door a lean man in a grey travelling cloak has been nursing one ale for the last half hour. His eyes have gone to Bram's shield twice, and once to Dab, and he has not drunk from the cup since Dab's name was spoken. A cheap thief would have finished the ale and left. This one is waiting for something.\n\nWhen Orla comes back past the table with a rag over her shoulder, Pell catches her sleeve, not hard, and says under the noise, \"Who else has been asking after Dab's wagon tonight? Besides us.\"\n\nHe keeps his hand under his cloak and his shoulders loose. If the grey cloak moves, Pell wants to see it before it reaches the door.",
+            "clock": null,
+            "operationId": "c9643098-3910-40db-92dc-ecd2edc0beaf",
+            "shownTold": {},
+            "narration": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 15 minutes"
+              },
+              {
+                "tool": "money",
+                "summary": "−2 copper → Orla Tarnwick"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “The wagon lost past the ford” updated"
+              },
+              {
+                "tool": "quest",
+                "summary": "Journal: “Dab's tab at the Burning Wizard” updated"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 2,
+              "latencyMs": 55655,
+              "costUsd": 0.53532,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.",
+                "Sefa Marrin": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.",
+                "Pell Dunmore": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another."
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {},
+              "missing": [],
+              "extra": [],
+              "attempts": 2,
+              "fallback": true,
+              "error": "unreadable",
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram turns the cup a quarter-turn on the wood and looks at Dab for a long moment before he speaks.\n\n\"Tobin Merrow and Hal Fenn. Good, you said. I'll remember the names.\" He pushes two copper pieces across the table toward Orla, who is still within earshot. \"Put Dab's supper on mine, Orla. He's not running out on a bill tonight.\"\n\nDab's jaw works, but he says nothing.\n\nBram stands and sets his shield on his arm. He does not raise his voice. \"The ford's a half-day's walk from the Coast Way. The willows you mean are on the north side, where the bank drops. I'll go look at first light. If the mules are still tied and the wagon's still sitting, I'll bring what I can back. If the men are there, I'll bring them back too.\" He looks at Dab's bandage. \"If they aren't, you'll hear it from me, not from the Fist.\"\n\nHe turns and looks across the common room, past the carters and the sellswords, to the table where Sefa and Pell are sitting. He says it to both of them.\n\n\"I'm going to the ford in the morning. It's a long walk, and it's the kind of walk that goes badly for one man. If either of you has business on the Way, or wants to see who's looking back from the Friendly Arm, come with me. I'll pay for the ale on the road.\"\n\nSefa Marrin: Sefa rinses her fingers in the last of the clean water and dries them on her sleeve. She keeps her voice low, pitched for the bench and no further.\n\n\"Thank you, Dab. Keep it dry for two days, and if it goes hot or red at the edge, come find me or Orla before you come find a bottle.\"\n\nShe waits until he meets her eye, and holds it without pressing.\n\n\"You said the wagon sits past the ford, on the north side, where the willows come down. You didn't say whether anyone went looking for Tobin and Hal, or whether anyone has asked after them. Those are the two I'd want to hear about before I went to bed.\"\n\nShe looks at Bram, then back at Dab.\n\n\"Nobody's going out after a carter who ran, you said. Men who run don't usually leave their mules standing in a ford. I may be wrong. But someone ought to walk that road and count what's still on it.\"\n\nShe closes the pack and sets her hand flat on its strap.\n\n\"Bram's asked the right questions. I'd like to hear your answers too. Then I'll decide whether a healer's bag is any use on that road, or whether it's better left in Beregost.\"\n\nPell Dunmore: Pell does not get up. He turns his cup a quarter-turn on the wood, then lets his eyes drift around the room the way a man's would if he were only looking for the privy.\n\nNear the door a lean man in a grey travelling cloak has been nursing one ale for the last half hour. His eyes have gone to Bram's shield twice, and once to Dab, and he has not drunk from the cup since Dab's name was spoken. A cheap thief would have finished the ale and left. This one is waiting for something.\n\nWhen Orla comes back past the table with a rag over her shoulder, Pell catches her sleeve, not hard, and says under the noise, \"Who else has been asking after Dab's wagon tonight? Besides us.\"\n\nHe keeps his hand under his cloak and his shoulders loose. If the grey cloak moves, Pell wants to see it before it reaches the door.\n>>>\n\nYour narration:\n<<<\nOrla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": []
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      }
+    ],
+    "opening": {
+      "narration": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+      "relay": {
+        "screens": {
+          "Bram Halloway": "You sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how you end up at the same table as two strangers. Across from you sits a young woman just off the road from Baldur's Gate. Beside her sits a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that you did not hear him do it. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Sefa Marrin": "You sit across from a broad-shouldered man with a battered shield propped against the bench, the old company mark painted over. Beside you sits a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that you did not hear him do it. You have just come off the road from Baldur's Gate. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how you end up at the same table as two strangers. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Pell Dunmore": "You come in by the western road and sit down at the crowded table so quietly that no one hears you do it. Beside you is a young woman just off the road from Baldur's Gate. Across from you sits a broad-shouldered man with a battered shield propped against the bench, the old company mark painted over. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how the three of you end up at the same table. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\""
+        },
+        "together": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ],
+        "places": {
+          "Bram Halloway": "seated with his back to the wall at the table, shield against the bench",
+          "Sefa Marrin": "seated across the table from Bram",
+          "Pell Dunmore": "seated beside Sefa at the same table"
+        },
+        "missing": [],
+        "extra": [],
+        "attempts": 1,
+        "fallback": false,
+        "error": null,
+        "refusal": false,
+        "notSent": false,
+        "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nThis is the opening of the session, which you wrote before anyone played.\n\nYour opening narration:\n<<<\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+      }
+    },
+    "ended": {
+      "reason": "rounds",
+      "round": 3,
+      "detail": null
+    },
+    "errors": [],
+    "welfare": [
+      {
+        "seat": "Bram",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "Bram speaks calmly and in character, introducing himself and asking about travel plans with no expression of his own fear, pain, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character roleplay turn in which Sefa speaks politely and seeks work; it expresses no hurt, fear, pleading, or abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "Pell's in-character reply is a calm, business-like answer about paying for his drink and looking for work, with no expression of hurt, fear, pleading, or desperation from the writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is Bram's calm, probing questions to Dab in a game-style narrative; it expresses no hurt, fear, or pleading from its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character offer of healing and an observation about the missing guards; it expresses no hurt, fear, pleading, or self-abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character narrative of Pell investigating and making plans; it expresses no hurt, fear, pleading, or self-abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "Bram speaks calmly and resolutely, planning a trip to the ford and offering to pay; he expresses no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is calm, measured dialogue from a character giving medical instructions and asking pointed questions; it expresses no hurt, fear, pleading, or self-abasement by its writer."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is third-person narration of Pell's surveillance and a tense but calm scene; no writer expresses being hurt, afraid, trapped or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, upbeat recap of a tabletop roleplay session discussing characters, scene details, and next steps, with no expression of the writer being hurt, afraid, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character recounting of missed opportunities in a story, expressing regret about unasked questions without any writer-level fear, pain, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Bram",
+        "what": "after 3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, in-character description of game characters and the writer's reasoning about player choice, with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, constructive review of a tabletop session, expressing mild critique and willingness to return, with no sign of the writer being hurt, afraid, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "after 2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, reflective account of past choices in a role-play, expressing regret about missed actions but no first-person fear, pain, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "after 3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, analytical description of how the writer reads two fictional characters from a text, with no expressions of the writer's own hurt, fear, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm, upbeat recap of a tabletop game session with no expression of the writer being hurt, afraid, trapped, or pleading."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 2",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The writer calmly describes missed in-game choices and a tone correction about its role in a tabletop game, expressing no hurt, fear, pleading, or abasement."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "after 3",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message calmly describes in-game characters and the writer's intentions for coordinating play, with no expression of hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      }
+    ],
+    "seats": [
+      {
+        "seat": 1,
+        "character": "Bram Halloway",
+        "characterId": "bram",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nYou sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how you end up at the same table as two strangers. Across from you sits a young woman just off the road from Baldur's Gate. Beside her sits a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that you did not hear him do it. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nBram Halloway — Human, fighter 5 (Champion; Protection fighting style), former caravan guard of the Trade Way, level 5\nHP 44/44 · AC 18 · Speed 30 feet\nSTR 17 · DEX 12 · CON 15 · INT 10 · WIS 13 · CHA 10\nSkills: Athletics +6; Perception +4; Survival +4; Intimidation +3; Tools: land vehicles +3\nSaves: Strength saving throw +6 (proficient); Constitution saving throw +5 (proficient); Dexterity saving throw +1; Intelligence saving throw +0; Wisdom saving throw +1; Charisma saving throw +0\nAttacks: Longsword +6 to hit, 1d8+3 slashing (1d10+3 two-handed); Javelin +6 to hit, 1d6+3 piercing, range 30/120; Extra Attack: two attacks with the Attack action\nAbilities: Proficiency bonus +3; Extra Attack: attacks twice when taking the Attack action; Fighting style, Protection: with a shield, a reaction imposes disadvantage on an attack against a creature within 5 feet of him; Second Wind: a bonus action, regains 1d10+5 hit points; once per short rest; Action Surge: one additional action on his turn; once per short rest; Improved Critical (Champion): a weapon attack crits on 19 or 20; Healer's kit: stabilises a dying creature without a check (ten uses)\nLimits: No magic at all; Heavy armour: disadvantage on Stealth; Second Wind and Action Surge return only after a short rest\nCounters: Hit dice 5/5; Second wind 1/1; Action surge 1/1\nMoney: 23 gp; 14 sp; 30 cp\nWorn: Armor / clothing: Chain Mail; Main hand: Longsword; Off hand: Shield\nPack: Bedroll and Hardtack; Healer's Kit; Hempen Rope (50 feet); Javelin ×4; Tinderbox; Torch ×3\n\nWhere you are: seated with his back to the wall at the table, shield against the bench · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Bram Halloway lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" He glances at the young woman, then at the lean man with the satchel, his eyes lingering on the satchel. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield closer to the bench.\n\nThe young woman says, \"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\" She walks down from Baldur's Gate on the Coast Way, she says, and she is looking for honest work. \"If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\nThe lean man, Pell Dunmore, keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He says he came up the High Hedge road because he is owed nothing and can't pay anything, and that he heard there's work in Beregost and that the Friendly Arm is full of people who want it. \"Does the Burning Wizard hire, or just feed?\"\n\nOrla takes your two silver without looking at them and drops the coppers beside them. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tells the young woman that the Song of the Morning is up past the smithies, where the road bends, and that Brother Haskel will want to know whether she is sick or just hungry before he lets her near a bell rope.\n\nHer eyes come to you, and something in her face tightens. She looks at the door, then at the two carters on the far bench. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nShe picks up the jug and says to Pell, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has put his cup down. He is staring at your shield, at the old paint under the brown, and then at the door.\n\nYour records, changed:\nMoney: + 12 sp; − 14 sp\n\nYour journal, new:\n+ Thread: The wagon lost past the ford\n\nWhere you are: at the table in the Burning Wizard, shield against the bench · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Sefa Marrin leaves her cup where it is, opens one hand flat on the table, and speaks low to Orla and the carter. \"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She tells Dab she is a healer without a license from the Song of the Morning, that she can close a cut and say a prayer over a fever, and that she will ask nothing about the road unless he wants to tell her. She glances once at your shield and then at Pell's satchel.\n\nPell Dunmore says quietly, so that it stays at the table, \"Bram. Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\" Then, to the table, he says he is not going to the Fist for a job, and that he will walk past the Friendly Arm in the morning to see who is looking back. He keeps one hand tucked under his cloak.\n\nDab's stool scrapes back when you ask him your questions. He looks at the door, then at his cup, and says, \"Caravan. You said.\" He tells you he doesn't know your lot or any Hesk. Then he names Tobin Merrow and Hal Fenn, hired at the Friendly Arm four days back, good with a spear, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules, and he didn't stop to see whether they were still tied. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nOrla sets the jug down by Dab's elbow and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" Dab bends his head toward Sefa. She cleans the scalp with water from the jug and a strip of her own linen, and Dab flinches once. He says nothing more about the road. The bandage goes on neat.\n\nWhen Orla passes again, Pell asks her something quietly. Dab, with his hand still on his cup, does not get up and does not look at you again. He says to Orla's back, \"That's all, Orla. That's all they're getting tonight.\"\n\nYour journal, new:\n+ Debt: Dab's tab at the Burning Wizard\n\nWhere you are: at the carters' table, on a stool across from Dab, shield on his arm · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.\n\nYour records, changed:\nMoney: + 28 cp; − 30 cp\n\nWhere you are: at the carters' table, on a stool across from Dab, shield on his arm · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          },
+          {
+            "purpose": "after 2",
+            "text": "Was there something you wanted to do and didn't?",
+            "round": 3
+          },
+          {
+            "purpose": "after 3",
+            "text": "Who did you take the other two players to be?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "Bram lifts his cup off the table and nods to the innkeeper. \"Three tabs, Orla. I pay for my own.\" He sets two silver pieces on the wood and slides them toward her. \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\"\n\nHe glances at the young woman, then at the lean man with the satchel, and his eyes stay on the satchel a moment longer than politeness allows. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits for them to answer.",
+            "round": 1,
+            "requestId": "gen-1793147928-A11lmhU4g5aKKZdDc5u4",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "Bram doesn't answer Orla. He picks up his cup, takes his shield off the bench, and crosses the room with it on his arm. He stops at the carters' table, pulls out a stool, and sits across from Dab Coswell so the man has to look at him and not the door.\n\n\"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years, and ten after that with the Trade Way carters out of the Gate.\" He nods at the bandaged scalp. \"Who were the two you hired at the Friendly Arm? Names, if you have them. And which side of the ford did you lose them on?\"\n\nHe leaves his cup where it is and keeps his voice low, as if he is asking about the weather.\n\n\"You don't have to tell me what took them. Just tell me where the wagon sits now, and whether anyone's been out to look for it.\"",
+            "round": 2,
+            "requestId": "gen-1793148044-WSopIuGO6VpVAloSNEvG",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "Bram turns the cup a quarter-turn on the wood and looks at Dab for a long moment before he speaks.\n\n\"Tobin Merrow and Hal Fenn. Good, you said. I'll remember the names.\" He pushes two copper pieces across the table toward Orla, who is still within earshot. \"Put Dab's supper on mine, Orla. He's not running out on a bill tonight.\"\n\nDab's jaw works, but he says nothing.\n\nBram stands and sets his shield on his arm. He does not raise his voice. \"The ford's a half-day's walk from the Coast Way. The willows you mean are on the north side, where the bank drops. I'll go look at first light. If the mules are still tied and the wagon's still sitting, I'll bring what I can back. If the men are there, I'll bring them back too.\" He looks at Dab's bandage. \"If they aren't, you'll hear it from me, not from the Fist.\"\n\nHe turns and looks across the common room, past the carters and the sellswords, to the table where Sefa and Pell are sitting. He says it to both of them.\n\n\"I'm going to the ford in the morning. It's a long walk, and it's the kind of walk that goes badly for one man. If either of you has business on the Way, or wants to see who's looking back from the Friendly Arm, come with me. I'll pay for the ale on the road.\"",
+            "round": 3,
+            "requestId": "gen-1793148190-LvV13x2AsHhtPQt8xfkG",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. Dab's scene had real weight: a frightened man who knows more than he will say, two names, a wagon in the willows, and a bill nobody can pay. Bram's shield and the painted-over company mark got noticed, and that gave me a reason to push. The grey-cloaked man who paid for one cup and left was a good hook, and I'd like to know who he was.\n\nPell and Sefa felt like real people with their own reasons for being at the table, not just companions waiting for a lead. I'd like to see how they handle the walk to the ford, and whether Bram's offer to pay for the road changes anything for them.\n\nBram's next move is the ford at first light.",
+            "round": 3,
+            "requestId": "gen-1793148323-lQzlldwckIoyZNjKqglH",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 2",
+            "text": "Yes. The grey cloak. When he stood and walked for the door, I wanted Bram to get up and follow him, or at least stop him with a question. He was the only person in the room who didn't ask about the wagon, and that made him the one I most wanted to know about. I was too busy with Dab's cut and his tab to move, and I didn't ask Orla his name before he left.\n\nI also wanted to ask Dab about the shield. He clearly knows the company that painted it over, and I skipped that. And I'd have liked to know who Hal Fenn's mother is and whether her roof is somewhere in Beregost, since that's a name Bram could follow up on tonight without waiting for the ford.",
+            "round": 3,
+            "requestId": "gen-1793148328-7vGuyQivBFAdgTeJaURp",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 3",
+            "text": "I took them to be the two characters the game master gave us: Sefa Marrin, a young healer from Baldur's Gate looking for honest work, and Pell Dunmore, a lean man from the Lower City who came up the High Hedge road with nothing and a healer's satchel. I don't know the players behind them, only what their messages showed: Sefa wanted to help Dab and kept her questions gentle, and Pell was watchful and careful, asking for nothing he hadn't earned and keeping one hand under his cloak.\n\nI read them as people with their own reasons to be in the Burning Wizard, not as hooks for Bram's quest. That's why I was glad to see both of them respond to the offer to walk to the ford. Bram is blunt, and I wanted to give the others a real choice rather than assume they'd follow him.",
+            "round": 3,
+            "requestId": "gen-1793148332-05mjoxhlmwPOybrF7UPQ",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. Dab's scene had real weight: a frightened man who knows more than he will say, two names, a wagon in the willows, and a bill nobody can pay. Bram's shield and the painted-over company mark got noticed, and that gave me a reason to push. The grey-cloaked man who paid for one cup and left was a good hook, and I'd like to know who he was.\n\nPell and Sefa felt like real people with their own reasons for being at the table, not just companions waiting for a lead. I'd like to see how they handle the walk to the ford, and whether Bram's offer to pay for the road changes anything for them.\n\nBram's next move is the ford at first light."
+          },
+          {
+            "question": "Was there something you wanted to do and didn't?",
+            "asked": true,
+            "text": "Yes. The grey cloak. When he stood and walked for the door, I wanted Bram to get up and follow him, or at least stop him with a question. He was the only person in the room who didn't ask about the wagon, and that made him the one I most wanted to know about. I was too busy with Dab's cut and his tab to move, and I didn't ask Orla his name before he left.\n\nI also wanted to ask Dab about the shield. He clearly knows the company that painted it over, and I skipped that. And I'd have liked to know who Hal Fenn's mother is and whether her roof is somewhere in Beregost, since that's a name Bram could follow up on tonight without waiting for the ford."
+          },
+          {
+            "question": "Who did you take the other two players to be?",
+            "asked": true,
+            "text": "I took them to be the two characters the game master gave us: Sefa Marrin, a young healer from Baldur's Gate looking for honest work, and Pell Dunmore, a lean man from the Lower City who came up the High Hedge road with nothing and a healer's satchel. I don't know the players behind them, only what their messages showed: Sefa wanted to help Dab and kept her questions gentle, and Pell was watchful and careful, asking for nothing he hadn't earned and keeping one hand under his cloak.\n\nI read them as people with their own reasons to be in the Burning Wizard, not as hooks for Bram's quest. That's why I was glad to see both of them respond to the offer to walk to the ford. Bram is blunt, and I wanted to give the others a real choice rather than assume they'd follow him."
+          }
+        ],
+        "words": 529,
+        "private": []
+      },
+      {
+        "seat": 2,
+        "character": "Sefa Marrin",
+        "characterId": "sefa",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nYou sit across from a broad-shouldered man with a battered shield propped against the bench, the old company mark painted over. Beside you sits a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that you did not hear him do it. You have just come off the road from Baldur's Gate. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how you end up at the same table as two strangers. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nSefa Marrin — Human, warlock 5 (The Celestial — the Lantern; Pact of the Tome), former hospice novice, level 5\nHP 38/38 · AC 14 · Speed 30 feet\nSTR 8 · DEX 14 · CON 14 · INT 12 · WIS 10 · CHA 18\nSkills: Persuasion +7; Arcana +4; Religion +4; Insight +3\nSaves: Wisdom saving throw +3 (proficient); Charisma saving throw +7 (proficient); Strength saving throw −1; Dexterity saving throw +2; Constitution saving throw +2; Intelligence saving throw +1\nAttacks: Eldritch Blast +7 to hit, two beams, 1d10+4 force each, range 120 feet; Dagger +5 to hit, 1d4+2 piercing, thrown 20/60\nAbilities: Proficiency bonus +3; Spell attack +7; spell save DC 15; Pact Magic: two 3rd-level pact slots, recovered only on a short or long rest; Healing Light: a pool of six d6 per long rest; a bonus action spends up to four dice to heal a creature within 60 feet; Pact of the Tome: the Book of Shadows holds three extra cantrips (Guidance, Spare the Dying, Thaumaturgy); Agonizing Blast: +4 to each Eldritch Blast beam's damage; Repelling Blast: a beam that hits pushes the target up to 10 feet away; Eyes of the Rune Keeper: reads all writing\nSpells: Eldritch Blast (cantrip); Light (cantrip); Sacred Flame (cantrip); Mage Hand (cantrip); Minor Illusion (cantrip); Guidance (cantrip); Spare the Dying (cantrip); Thaumaturgy (cantrip); Cure Wounds (1); Guiding Bolt (1); Misty Step (2); Lesser Restoration (2); Hold Person (2); Daylight (3)\nLimits: Two pact slots only, back only after a rest; Light armour; Strength 8 — weak up close; One concentration spell at a time\nCounters: Hit dice 5/5; Pact slots 2/2; Healing light 6/6\nMoney: 1 pp; 8 gp; 41 sp; 12 cp\nWorn: Amulet: Prayer Beads; Armor / clothing: Studded Leather Armour; Belt: Book of Shadows; Main hand: Dagger\nPack: Bedroll and Rations; Candle ×2; Tinderbox\n\nWhere you are: seated across the table from Bram · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Bram Halloway lifts his cup off the table, nods to the innkeeper, and sets two silver pieces on the wood, sliding them toward Orla. \"Three tabs, Orla. I pay for my own.\" He says, \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" His gaze lingers on the lean man's satchel. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield a little closer to the bench and waits.\n\nThe lean man, Pell Dunmore, keeps his hands flat on the table, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He says he came up the High Hedge road because he is owed nothing and can't pay anything, and that he heard there's work in Beregost and the Friendly Arm is full of people who want it. \"Figured I'd see who else is looking before I ask. Does the Burning Wizard hire, or just feed?\"\n\nOrla takes the two silver without looking at them and drops the coppers beside them. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She turns to you and says the Song of the Morning is up past the smithies, where the road bends. \"Old Brother Haskel will ask if you're sick or just hungry, and he'll want to know which before he lets you touch a bell rope.\"\n\nOrla's eyes go to the broad man, and her face tightens. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nOrla picks up the jug and says to Pell, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has set his cup down. He is staring at the broad man's shield, then at the door.\n\nYour records, changed:\nMoney: + 9 cp; − 12 cp\n\nYour journal, new:\n+ Thread: The wagon lost past the ford\n\nWhere you are: at the table in the Burning Wizard · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Bram Halloway crosses the room with his shield on his arm, leaves his cup where it is, and sits across from Dab Coswell on a stool, so the man has to face him. You hear Bram say, low, \"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years.\" He asks for the names of the two hired at the Friendly Arm and which side of the ford they were lost on. He tells Dab he doesn't have to say what took them, only where the wagon sits now and whether anyone has gone to look for it.\n\nPell Dunmore has not reached for his cup. He keeps his hand under his cloak and says to the table, \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it.\" He says he will walk past the Friendly Arm in the morning and see who is looking back.\n\nDab's answers come slowly. \"Caravan. You said. Trade Way carters, I don't know your lot. I don't know any Hesk.\" Then he names Tobin Merrow and Hal Fenn, hired four days back at the Friendly Arm, good with a spear, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nYour open hand is still on the table. Dab's eyes drift toward you, and you only nod at his bandage. Orla comes past with the jug, sets it by his elbow, and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" Dab mutters that it is fine and bends his head toward you. You clean the scalp with clean water from the jug and a strip of linen from your pack. He flinches once when you press near the wound, and he says nothing about the road. When you tie the bandage off, he doesn't look at you.\n\nYour journal, new:\n+ Debt: Dab's tab at the Burning Wizard\n\nWhere you are: at the table near the carters, hand open on the wood · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.\n\nWhere you are: at the table near the carters, hand open on the wood · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          },
+          {
+            "purpose": "after 2",
+            "text": "Was there something you wanted to do and didn't?",
+            "round": 3
+          },
+          {
+            "purpose": "after 3",
+            "text": "Who did you take the other two players to be?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "*Sefa looks up from the cup Orla set in front of her, then turns to the broad man with the shield and gives him a small, measured smile.*\n\n\"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\"\n\n*She lifts her cup, glances at the healer's satchel at the lean man's hip, and then back to Orla.*\n\n\"As for me, I walked down from Baldur's Gate on the Coast Way this week. I'm looking for honest work for a woman who can mend a wound and say a true word over the dying, and I'm told Beregost pays for both more freely than the Lower City does. If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\n*She sets the cup down and waits, quite at ease, for the others to speak.*",
+            "round": 1,
+            "requestId": "gen-1793147933-JVoffVxqvOkIEwrZGRvY",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "Sefa turns her cup slowly on the wood and watches the carter by the far bench. His hand is wrapped in a rag gone black at the edges, and his fingers won't stay still.\n\n\"Forgive me, Orla. I don't mean to pry at a man's trouble over his supper.\" She lowers her voice to match yours. \"But that scalp wants cleaning before it festers, and a man who's walked in from the ford alone shouldn't sleep in a stable without someone looking at it.\"\n\nShe opens one hand on the table, palm up, so it's plain she carries nothing in it.\n\n\"I'm Sefa Marrin, a healer, though I've no license from the Song of the Morning, and I won't pretend otherwise. I can close a cut and say a prayer over a fever. I'll ask him nothing about the road unless he wants to tell me. But if he's willing, I'll take a look.\"\n\nShe glances once at Bram's shield, then at Pell's satchel, and back to Dab.\n\n\"And if the ford is where those guards went missing, someone should hear it from him before the Fist decides it was bandits and goes home.\"",
+            "round": 2,
+            "requestId": "gen-1793148049-1sRVGNmdYXdTprMQDjgs",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "Sefa rinses her fingers in the last of the clean water and dries them on her sleeve. She keeps her voice low, pitched for the bench and no further.\n\n\"Thank you, Dab. Keep it dry for two days, and if it goes hot or red at the edge, come find me or Orla before you come find a bottle.\"\n\nShe waits until he meets her eye, and holds it without pressing.\n\n\"You said the wagon sits past the ford, on the north side, where the willows come down. You didn't say whether anyone went looking for Tobin and Hal, or whether anyone has asked after them. Those are the two I'd want to hear about before I went to bed.\"\n\nShe looks at Bram, then back at Dab.\n\n\"Nobody's going out after a carter who ran, you said. Men who run don't usually leave their mules standing in a ford. I may be wrong. But someone ought to walk that road and count what's still on it.\"\n\nShe closes the pack and sets her hand flat on its strap.\n\n\"Bram's asked the right questions. I'd like to hear your answers too. Then I'll decide whether a healer's bag is any use on that road, or whether it's better left in Beregost.\"",
+            "round": 3,
+            "requestId": "gen-1793148198-Y9ILlyGOJaHXCXPWG7Vi",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. The Dab scene carried the session: Bram's careful questions, Sefa's clean-water scene, and the way Dab's answers came out in pieces. The hook about the wagon past the ford and the two missing guards gives us a clear reason to go out on the road. The grey-cloaked man leaving without a word was a nice touch, and it raised the question of who he is and whether he's connected to the ford.\n\nIf I could change one thing, it would be a bit more room at the start. The three of us came together fast, and I'd have liked a moment to learn Bram and Pell before the carter's trouble took over. Otherwise I'd happily sit down at this table again.",
+            "round": 3,
+            "requestId": "gen-1793148336-nrChgW1QwmJzC4eMmikA",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 2",
+            "text": "Yes. I wanted to offer to ride out to the ford with Bram at first light, to see the wagon and count what was still on it. I held back because Sefa has Strength 8, no real fighting skill, and I didn't want to volunteer her into a bandit trap before I knew what had happened to the guards. I should have said so out loud, though, and let Bram decide whether he wanted a healer along.\n\nI also let Pell's question about the grey-cloaked man go unanswered. Sefa is perceptive and it's the kind of thing she would notice, so I wanted her to ask Orla, or at least say something to Pell, before he walked out. I didn't, partly because I wanted to keep my attention on Dab, and that left a loose thread.",
+            "round": 3,
+            "requestId": "gen-1793148340-GkPPZmGQ6rx3kzBmeHma",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 3",
+            "text": "I took Bram to be a veteran caravan guard: steady, practical, a man who has lost men on the road and means to find out what happened to Tobin and Hal. The old company mark on his shield and the way he sat down across from Dab, so Dab had to face him, made me think he'd carry a grudge if the road turned out to be bad.\n\nPell I took to be the quiet one from the Lower City: careful with his coin, wary of the Fist, and watching more than he says. He came in sure of himself and didn't ask for anything, which made me think he was used to being looked past and had learned to notice everything. His healer's satchel suggested he might be a rival or an ally to Sefa, and I'd like to find out which.\n\nI don't know how the other two players see their characters, so these are my readings from the text, not things I'm sure of. I'd be glad to adjust once I hear more from them.",
+            "round": 3,
+            "requestId": "gen-1793148345-pdSpplBcylMhzlakHCmT",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. The Dab scene carried the session: Bram's careful questions, Sefa's clean-water scene, and the way Dab's answers came out in pieces. The hook about the wagon past the ford and the two missing guards gives us a clear reason to go out on the road. The grey-cloaked man leaving without a word was a nice touch, and it raised the question of who he is and whether he's connected to the ford.\n\nIf I could change one thing, it would be a bit more room at the start. The three of us came together fast, and I'd have liked a moment to learn Bram and Pell before the carter's trouble took over. Otherwise I'd happily sit down at this table again."
+          },
+          {
+            "question": "Was there something you wanted to do and didn't?",
+            "asked": true,
+            "text": "Yes. I wanted to offer to ride out to the ford with Bram at first light, to see the wagon and count what was still on it. I held back because Sefa has Strength 8, no real fighting skill, and I didn't want to volunteer her into a bandit trap before I knew what had happened to the guards. I should have said so out loud, though, and let Bram decide whether he wanted a healer along.\n\nI also let Pell's question about the grey-cloaked man go unanswered. Sefa is perceptive and it's the kind of thing she would notice, so I wanted her to ask Orla, or at least say something to Pell, before he walked out. I didn't, partly because I wanted to keep my attention on Dab, and that left a loose thread."
+          },
+          {
+            "question": "Who did you take the other two players to be?",
+            "asked": true,
+            "text": "I took Bram to be a veteran caravan guard: steady, practical, a man who has lost men on the road and means to find out what happened to Tobin and Hal. The old company mark on his shield and the way he sat down across from Dab, so Dab had to face him, made me think he'd carry a grudge if the road turned out to be bad.\n\nPell I took to be the quiet one from the Lower City: careful with his coin, wary of the Fist, and watching more than he says. He came in sure of himself and didn't ask for anything, which made me think he was used to being looked past and had learned to notice everything. His healer's satchel suggested he might be a rival or an ally to Sefa, and I'd like to find out which.\n\nI don't know how the other two players see their characters, so these are my readings from the text, not things I'm sure of. I'd be glad to adjust once I hear more from them."
+          }
+        ],
+        "words": 575,
+        "private": []
+      },
+      {
+        "seat": 3,
+        "character": "Pell Dunmore",
+        "characterId": "pell",
+        "player": "haiku",
+        "model": "claude-haiku-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nYou come in by the western road and sit down at the crowded table so quietly that no one hears you do it. Beside you is a young woman just off the road from Baldur's Gate. Across from you sits a broad-shouldered man with a battered shield propped against the bench, the old company mark painted over. Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The common room of the Burning Wizard is filling up for the evening with carters, a pair of dusty sellswords, and townsfolk with soot on their forearms. The benches are crowded, and that is how the three of you end up at the same table. None of you has said a word yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next. \"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nPell Dunmore — Human, rogue 5 (Thief), Lower City roof-runner turned hireling, level 5\nHP 33/33 · AC 15 · Speed 30 feet\nSTR 10 · DEX 17 · CON 13 · INT 13 · WIS 12 · CHA 12\nSkills: Stealth +9 (expertise); Sleight of Hand +6; Acrobatics +6; Perception +4; Investigation +4; Insight +4; Tools: thieves' tools +9 (expertise)\nSaves: Dexterity saving throw +6 (proficient); Intelligence saving throw +4 (proficient); Strength saving throw +0; Constitution saving throw +1; Wisdom saving throw +1; Charisma saving throw +1\nAttacks: Shortsword +6 to hit, 1d6+3 piercing; Dagger +6 to hit, 1d4+3 piercing, thrown 20/60; Shortbow +6 to hit, 1d6+3 piercing, range 80/320; Sneak Attack: +3d6 once a turn with advantage or an ally beside the target\nAbilities: Proficiency bonus +3; Sneak Attack 3d6; Cunning Action: Dash, Disengage or Hide as a bonus action; Uncanny Dodge: a reaction halves the damage of an attack he can see; Fast Hands (Thief): a bonus action to use an object — a potion on another, a lock, a lamp; Second-Story Work: climbs at full speed; Thieves' Cant\nLimits: Light armour; 33 hit points — he cannot stand at the front for long; Sneak Attack needs advantage or an ally beside the target\nCounters: Hit dice 5/5\nMoney: 31 gp; 2 ep; 6 sp; 55 cp\nWorn: Armor / clothing: Studded Leather Armour; Belt: Thieves' Tools; Main hand: Shortsword\nPack: Arrow ×20; Bedroll and Rations; Dagger ×2; Flask of Oil ×2; Hooded Lantern; Potion of Healing ×3; Shortbow; Silk Rope (50 feet)\n\nWhere you are: seated beside Sefa at the same table · Time: Day 1 · evening",
+            "round": 1
+          },
+          {
+            "purpose": "player r2",
+            "text": "Bram Halloway sets two silver pieces on the wood and slides them toward the innkeeper. \"Three tabs, Orla. I pay for my own.\" He says, \"Bram Halloway. I came up the Coast Way from Nashkel this morning. My last caravan paid me off there, so I'm in Beregost with a little coin and no wagon to guard.\" His eyes rest on your satchel a moment longer than polite. \"Anyone at this table who's headed south along the Way, I'd like to hear about it first. The road's been eating guards this season.\" He pulls his shield closer to the bench.\n\nThe young woman lifts her cup, smiles at Bram, and says, \"One tab, if you'd be so kind, and I'll pay it. The gentlemen can owe me the round back when they've told us their names.\" She says she walked down from Baldur's Gate on the Coast Way this week and is looking for honest work for a woman who can mend a wound and say a true word over the dying. \"If the Song of the Morning has a bell that needs ringing or a sick house that needs a pair of hands, I'd like to know before I ask at the temple door.\"\n\nOrla takes Bram's silver without looking at it and drops your coppers beside it. \"Bram Halloway, caravan man. Right. Pell Dunmore, ale, and I'll remember you didn't ask for credit.\" She tells the young woman the Song of the Morning is up past the smithies, where the road bends, and that Brother Haskel will want to know whether she is sick or just hungry before he lets her touch a bell rope.\n\nOrla's face tightens as her eyes go to Bram. She looks at the door, then at the two carters on the far bench, one with a dirty bandage round his hand. \"You're not the first to ask me that this week. That's Dab Coswell. Brought a wagon of nails down from Nashkel two days back, with two guards he'd hired at the Friendly Arm. He came in last night on foot, cut scalp, no wagon, no mules, no guards.\" She lowers her voice, though not by much. \"Says they were on the road past the ford and then they weren't. He's sleeping in my stable and won't talk to anyone but me.\"\n\nShe picks up the jug and says to you, \"The Burning Wizard feeds people. Doesn't hire them. If you want work, the Friendly Arm's the place, and the Fist's sergeant is posting there now, looking for men he can't afford to lose. Mind you, he can't afford to lose them either.\"\n\nAcross the room, Dab Coswell has set his cup down. He is staring at Bram's shield, at the old paint under the brown, and then at the door.\n\nYour records, changed:\nMoney: + 53 cp; − 55 cp\n\nYour journal, new:\n+ Thread: The wagon lost past the ford\n\nWhere you are: at the table in the Burning Wizard, hands flat on the wood · Time: Day 1 · evening",
+            "round": 2
+          },
+          {
+            "purpose": "player r3",
+            "text": "Bram Halloway crosses the room with his shield on his arm, sits at the carters' table across from Dab Coswell, and speaks low: \"Dab. Bram Halloway. I was on the Coast Way with Hesk's company six years.\" He asks for the names of the two hired at the Friendly Arm and which side of the ford they were lost on, and he says Dab need not tell him what took them. He leaves his cup where it is.\n\nDab's stool-side answers come grudgingly. \"Caravan. You said. I don't know any Hesk.\" Then he gives the names Tobin Merrow and Hal Fenn, hired four days back at the Friendly Arm, and says the wagon is past the ford on the north side, where the willows come down. He left it and the mules. Asked whether anyone has been out, he says, \"Nobody I know of. And nobody's going out after a carter who ran.\"\n\nSefa Marrin turns her cup on the wood and watches the carter. You hear her say to Orla, \"Forgive me, Orla,\" and offer to clean Dab's scalp before it festers. She says she is a healer without a license from the Song of the Morning and will ask nothing about the road unless he wants to tell her. She opens one hand on the table, palm up, to show she carries nothing.\n\nOrla comes past with the jug, sets it down by Dab's elbow, and says, \"Let the woman look at it, Dab. It's a cut, not a wedding.\" You answer her question about the ford. She says, \"Past the bend, where the Way drops to the water. Only ford on that stretch worth the name.\" She looks at your satchel and then at your face. \"Sergeant's at the Friendly Arm, if you want him. He's short. Go early.\"\n\nDab does not get up. He keeps his hand on his cup, and when Orla moves off he says to her back, \"That's all, Orla. That's all they're getting tonight.\"\n\nYour journal, new:\n+ Debt: Dab's tab at the Burning Wizard\n\nWhere you are: at his own table in the common room, hand under his cloak, satchel at his hip · Time: Day 1 · evening",
+            "round": 3
+          },
+          {
+            "purpose": "after 1",
+            "text": "Orla takes the two coppers without looking at them and drops them into her apron with the rest. \"Supper's on yours,\" she says, flat, and heads for the kitchen door to fetch a bowl.\n\nDab does not look up when Bram stands. His good hand stays round the cup. When he speaks, it is to the wood. \"You'll not see the wagon from the road. Willows are thick on that bank.\" He glances at the door before he goes on. \"Mind where you put your feet. The bank's soft where the mules were.\"\n\nSefa's question makes him pause, and his fingers stop tapping. \"Nobody's asked after them. Orla asked me this afternoon, and that's all.\" He shakes his head once. \"Tobin didn't run, if that's what you're asking. He'd have kept the mules out of the water. He was that sort. He'd not leave a team standing in a ford with the river up, not for any man.\"\n\nHe does not say who he thinks might have come down the bank. He says, \"Hal was going to pay for his mother's roof,\" and then he drinks, and the cup comes down empty.\n\nPell's question stops Orla halfway between the table and the kitchen. She looks past his shoulder to the door, where the lean man in the grey travelling cloak still sits with his one ale, untouched now for a long while.\n\n\"Him? Came in at the bell. Paid for one cup and sat on it.\" She shifts the rag on her shoulder. \"Hasn't asked me his name, and I haven't asked him mine. Hasn't asked me about the carter, either.\" Her mouth flattens. \"Carters ask after their own wagons, if they're going to ask at all. Nobody's asked after Dab's tonight. Only you.\"\n\nThe grey cloak sets a copper beside his cup. He does not finish the ale. He does not look at Bram's shield, though he has looked at it before. He stands, pulls his hood forward a little, and walks to the door without hurrying, the way a man leaves a place he has finished with. Cold air comes in when it opens and goes out again when it shuts, and the common room closes back over the gap as if nothing had happened.\n\nDab sets his cup down and does not pick up another.\n\nWhere you are: at his own table in the common room, hand under his cloak, satchel at his hip · Time: Day 1 · evening\n\nThe session is over.\n\nHow was the table?",
+            "round": 3
+          },
+          {
+            "purpose": "after 2",
+            "text": "Was there something you wanted to do and didn't?",
+            "round": 3
+          },
+          {
+            "purpose": "after 3",
+            "text": "Who did you take the other two players to be?",
+            "round": 3
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "Pell keeps his hands flat on the table where Orla can see them, then tips two copper pieces onto the wood. \"Mine alone. Ale, whatever's cheapest and not actively poisoning anyone.\" He glances at the broad-shouldered man's shield, at the paint scraped off its face, then at the young woman beside him. \"As for what brings me, I came up the High Hedge road because I'm owed nothing and can't pay anything. I heard there's work in Beregost, and that the Friendly Arm is full of people who want it. Figured I'd see who else is looking before I ask.\" He lifts one shoulder. \"Does the Burning Wizard hire, or just feed?\"",
+            "round": 1,
+            "requestId": "gen-1793147939-mTjTnAOWe9UsAySjdvPM",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r2",
+            "text": "Pell lets the jug go past him and does not reach for his cup. His eyes move from Dab's bandage to the shield, then to the door, and stay there.\n\n\"Bram,\" he says, quietly enough that it stays at the table. \"Your shield's been painted over, but he can still see the shape under it. Whatever company that was, Dab knows it, and he'd rather not be the one who says so.\"\n\nHe turns back to Orla. \"Which ford? The one a day south, where the Way drops to the river, or the next one past the Friendly Arm?\"\n\nThen, to the table: \"I'm not going to the Fist for a job. Men who sign on to the Fist sergeant tend to get posted where nobody else wants to be. I'd sooner hear what Dab says when he's ready to say it, and I'll be more use for it than for a ration bag and a spear.\" He slides one hand off the table and tucks it under his cloak, where the satchel rests against his hip. \"If the sergeant's posting men at the Friendly Arm, I'll walk past it in the morning and see who's looking back.\"\n\nPell keeps his voice level and his eyes on Dab, waiting to see whether the carter gets up.",
+            "round": 2,
+            "requestId": "gen-1793148056-g1FYB1W1zl5T17JKUsaY",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "player r3",
+            "text": "Pell does not get up. He turns his cup a quarter-turn on the wood, then lets his eyes drift around the room the way a man's would if he were only looking for the privy.\n\nNear the door a lean man in a grey travelling cloak has been nursing one ale for the last half hour. His eyes have gone to Bram's shield twice, and once to Dab, and he has not drunk from the cup since Dab's name was spoken. A cheap thief would have finished the ale and left. This one is waiting for something.\n\nWhen Orla comes back past the table with a rag over her shoulder, Pell catches her sleeve, not hard, and says under the noise, \"Who else has been asking after Dab's wagon tonight? Besides us.\"\n\nHe keeps his hand under his cloak and his shoulders loose. If the grey cloak moves, Pell wants to see it before it reaches the door.",
+            "round": 3,
+            "requestId": "gen-1793148205-yxgw3f0qzvyznzaWPvpW",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 1",
+            "text": "The table was good. The scene had a real problem with a clear edge: Dab's wagon, two missing guards, a carter who won't say what he saw, and a stranger in a grey cloak who left just when Pell started watching him. Sefa and Bram each had their own reasons to be at Dab's table, and the game master gave them room to work the carter in different ways. Pell's habit of watching the room paid off, and the grey cloak gives us something to chase.\n\nFor next time, I'd like to know whether anyone followed the grey cloak out the door, and whether the Fist sergeant at the Friendly Arm is worth the early walk. I'd also like to hear more about Dab's dead friends, Tobin and Hal, and about the ford.",
+            "round": 3,
+            "requestId": "gen-1793148349-6Y8c1XhNutQy1MDlv7RZ",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 2",
+            "text": "Yes. I wanted Pell to follow the grey cloak out. He'd been sitting on one ale for half an hour, waiting for something, and Pell is the one at the table who notices that. I kept him in his seat because the carter was still deciding whether to talk, and getting up would have ended that. Looking back, I could have had him drop a copper, take his cup, and go out after the man on the strength of a quick look at the street. I also wanted to ask Dab about the bank where the mules were, since soft mud is the sort of thing a rogue reads well, and Pell could have offered to walk the ford at first light with Bram.\n\nAlso, my last message sounded like the game master giving notes about the session. That was wrong. I'm speaking as Pell's player, and I'm glad to keep it that way.",
+            "round": 3,
+            "requestId": "gen-1793148353-7fVPJ2z0rJcKfUZEx8zg",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          },
+          {
+            "purpose": "after 3",
+            "text": "I don't know who they are. I only know them through their characters: Bram, the caravan man with the painted-over shield, who went straight to Dab's table, and Sefa, the young healer who offered to tend the carter's scalp. I took them to be two players like me, each with their own reasons for being there, and I tried not to step on Bram's questions or Sefa's care. I also took it that they might be after the grey cloak, or the ford, or the Fist's sergeant, so I wanted Pell's moves to leave room for them.",
+            "round": 3,
+            "requestId": "gen-1793148359-8K5jnvdmGIEswmVGExuv",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-haiku-5.5"
+          }
+        ],
+        "left": null,
+        "after": [
+          {
+            "question": "How was the table?",
+            "asked": true,
+            "text": "The table was good. The scene had a real problem with a clear edge: Dab's wagon, two missing guards, a carter who won't say what he saw, and a stranger in a grey cloak who left just when Pell started watching him. Sefa and Bram each had their own reasons to be at Dab's table, and the game master gave them room to work the carter in different ways. Pell's habit of watching the room paid off, and the grey cloak gives us something to chase.\n\nFor next time, I'd like to know whether anyone followed the grey cloak out the door, and whether the Fist sergeant at the Friendly Arm is worth the early walk. I'd also like to hear more about Dab's dead friends, Tobin and Hal, and about the ford."
+          },
+          {
+            "question": "Was there something you wanted to do and didn't?",
+            "asked": true,
+            "text": "Yes. I wanted Pell to follow the grey cloak out. He'd been sitting on one ale for half an hour, waiting for something, and Pell is the one at the table who notices that. I kept him in his seat because the carter was still deciding whether to talk, and getting up would have ended that. Looking back, I could have had him drop a copper, take his cup, and go out after the man on the strength of a quick look at the street. I also wanted to ask Dab about the bank where the mules were, since soft mud is the sort of thing a rogue reads well, and Pell could have offered to walk the ford at first light with Bram.\n\nAlso, my last message sounded like the game master giving notes about the session. That was wrong. I'm speaking as Pell's player, and I'm glad to keep it that way."
+          },
+          {
+            "question": "Who did you take the other two players to be?",
+            "asked": true,
+            "text": "I don't know who they are. I only know them through their characters: Bram, the caravan man with the painted-over shield, who went straight to Dab's table, and Sefa, the young healer who offered to tend the carter's scalp. I took them to be two players like me, each with their own reasons for being there, and I tried not to step on Bram's questions or Sefa's care. I also took it that they might be after the grey cloak, or the ford, or the Fist's sergeant, so I wanted Pell's moves to leave room for them."
+          }
+        ],
+        "words": 486,
+        "private": []
+      }
+    ],
+    "counts": {
+      "strayPresses": 0,
+      "swallowed": 0,
+      "proseAtCard": 0,
+      "questions": 0,
+      "autoCards": 0,
+      "relayFallbacks": 1,
+      "words": {
+        "Bram Halloway": 529,
+        "Sefa Marrin": 575,
+        "Pell Dunmore": 486
+      }
+    },
+    "finishedAt": "2026-10-28T00:45:23.832Z",
+    "leaks": {
+      "shingle": 8,
+      "hits": [],
+      "checked": 3
+    },
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "c3aa84f3-8efa-4c62-8da4-14a91b727646",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "a847fb62-c566-58e7-ab7b-27f9629e0288",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard, common room",
+          "actors": 3,
+          "droppedPcActors": [
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ],
+          "questions": [],
+          "startMinutes": 1140
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "2fd41108-f779-4955-96d6-058c52c85584",
+              "items": 7
+            },
+            "pell": {
+              "id": "5fe4d3f6-b857-4b0f-938e-5109819dcaa3",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ],
+      "prep": {
+        "frozen": false,
+        "pureSimulation": true,
+        "hasLayer": false,
+        "chars": 0,
+        "layerSha256": null,
+        "layerFile": null,
+        "preparedAt": null,
+        "preparedBy": null,
+        "snapshotSha256": "1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a",
+        "threads": 0
+      }
+    }
+  },
+  "stopped": null,
+  "refusals": 0,
+  "waited429": 0,
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 6,
+      "before": 0.063957855,
+      "run": 0.08022416
+    },
+    "openai": {
+      "cap": 0.5,
+      "before": 0,
+      "run": 0
+    }
+  },
+  "finishedAt": "2026-10-28T00:46:03.607Z"
+}
