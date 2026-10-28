@@ -800,6 +800,86 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-28T03:58:37.283Z",
+      "when": "before SAND-T2",
+      "openrouter": {
+        "keyUsage": 858.335686525,
+        "keyLimitRemaining": null,
+        "totalCredits": 1100,
+        "totalUsage": 858.335686525,
+        "remaining": 241.66,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 36.6166,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 1.1424,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-28T03:58:38.143Z",
+      "when": "before SAND-T2",
+      "openrouter": {
+        "keyUsage": 858.335686525,
+        "keyLimitRemaining": null,
+        "totalCredits": 1100,
+        "totalUsage": 858.335686525,
+        "remaining": 241.66,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 36.6166,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 1.1424,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
