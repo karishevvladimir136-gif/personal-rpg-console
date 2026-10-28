@@ -1,14 +1,16 @@
 # Planner seat 2 — the OpenAI ledger (GPT-6 Astra, GPT-6.1 Sol)
 
-Cap $15. Spent **$1.9893** in 15 calls over 2 run(s).
+Cap $15. Spent **$11.2570** in 58 calls over 3 run(s).
 - 2026-10-27 23:59 UTC: planner-seat-2: the dry run, Sol, one B and one C seat — 6 calls, $0.7964 → `planner-seat-2-dry-20261027-235913.json`
 - 2026-10-28 00:41 UTC: planner-seat-2: the second dry run, Sol, one B, one B′ and one C seat — 9 calls, $1.1929 → `planner-seat-2-dry-20261028-004114.json`
+- 2026-10-28 03:48 UTC: planner-seat-2: 18 seats (sol, astra) — 43 calls, $9.2677 (stopped: the openai cap of $15 would be passed (spent $11.0511)) → `planner-seat-2-run-20261028-034848.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; GPT-6 Astra `gpt-6-astra` $10 / $1 / $12.5 / $50; GPT-6.1 Sol `gpt-6.1-sol` $2 / $2 / $2.5 / $10; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. DeepSeek is booked at OpenRouter's own charge (`usage.cost`). Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
-| gpt-6.1-sol — seat | 15 | 45 | 570647 | 291101 | 12013 (846) | $1.9893 |
+| gpt-6.1-sol — seat | 42 | 126 | 1566338 | 800193 | 34646 (2535) | $5.4799 |
+| gpt-6-astra — seat | 16 | 48 | 575842 | 357126 | 14734 (1313) | $5.7771 |
 
 ## Every call
 
@@ -29,3 +31,46 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-28 00:41 | 7 | seat dry2/B/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 55336/591 | 615 | $0.11831 | 15.4 | end_turn | req_a0f1e51968b54b208e132acbf14fa5c9 | resp_00759b657f655e7f016ae1444d741887d18c49ff338f6a2c33 |  |
 | 2026-10-28 00:41 | 8 | seat dry2/Bp/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 56540/673 | 579 | $0.12056 | 16.2 | end_turn | req_b68397018c4e48ff98bec8175de18c7b | resp_0925a7f2f6ece4f8016ae14459883487d1a07ee701b1c2687b |  |
 | 2026-10-28 00:41 | 9 | seat dry2/C/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 60432/629 | 697 | $0.12941 | 20.6 | end_turn | req_dd1745c5029f4c70a4d612e69b21b99c | resp_0ce14b36203413c1016ae14458689887d19b359399b0ed3211 |  |
+| 2026-10-28 03:48 | 1 | seat C/sol/0 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/59311 | 1223 | $0.16051 | 36 | end_turn | req_b30a76c204874f8e83c335963a13986b | resp_06b826eb1eb4bb2c016ae16e6eacac87d19cb41375e5cd1b22 |  |
+| 2026-10-28 03:48 | 2 | seat B/sol/0 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/54260 | 1193 | $0.14759 | 39.4 | end_turn | req_3d35725a86c945db9f2031a4b232f866 | resp_0395ef12f7b792a3016ae16e6ea44c87d1b0acec590a671500 |  |
+| 2026-10-28 03:48 | 3 | seat Bp/sol/0 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/55196 | 1530 | $0.15330 | 47.2 | end_turn | req_67a34f643ba448e29d9298ac295e2508 | resp_007549743e81a929016ae16e6ebd4887d194fe119cf1598b02 |  |
+| 2026-10-28 03:48 | 4 | seat B/sol/0 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 54260/1031 | 492 | $0.11602 | 11.5 | end_turn | req_f4f4e1f7921449499cd4e3602ab4bf1e | resp_04e863aa4c0a0a3b016ae16e9a394087d198a9b8219f417016 |  |
+| 2026-10-28 03:48 | 5 | seat C/sol/0 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 59311/1070 | 635 | $0.12765 | 16.4 | end_turn | req_c0455698de3e446b99707df39f006096 | resp_01ceffae347a3a8b016ae16e96f6cc87d1974a2c377156a672 |  |
+| 2026-10-28 03:48 | 6 | seat Bp/sol/0 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 55196/1339 | 666 | $0.12041 | 17.8 | end_turn | req_72503e1c78434987995ea87dfc425caa | resp_0037d2fefc2976b9016ae16ea1f60087d1a039456bac603384 |  |
+| 2026-10-28 03:48 | 7 | seat B/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 55291/561 | 638 | $0.11837 | 18.5 | end_turn | req_f6d4a2ddd1a749939795d2cda28eca63 | resp_012f90425ad96424016ae16eaa777487d1b4674d5f85f44c12 |  |
+| 2026-10-28 03:48 | 8 | seat C/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 60381/704 | 674 | $0.12927 | 19.4 | end_turn | req_c1d047ff9c5a4e259f70e893febe48c8 | resp_0c91c96cc51d5aec016ae16eac32cc87d1b0b283216c744a4e |  |
+| 2026-10-28 03:48 | 9 | seat Bp/sol/0 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 56535/735 | 794 | $0.12285 | 23.1 | end_turn | req_77ed9b74e58e4186b61a49b65cb798e5 | resp_0e16c6dc5baf07ae016ae16eb893fc87d1921ab7834cbacc06 |  |
+| 2026-10-28 03:48 | 10 | seat B/sol/1 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/55181 | 1155 | $0.14951 | 37.3 | end_turn | req_e2cab37a7fcc4da5a1fc4c2477116742 | resp_0d603fc864010143016ae16ec1ac8087d18797ff108a82a860 |  |
+| 2026-10-28 03:48 | 11 | seat Bp/sol/1 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/56143 | 1231 | $0.15267 | 38.5 | end_turn | req_ddca7baf22f74c608534922b133b0335 | resp_0043f1095d420a04016ae16ec45da887d190fb53af1edee451 |  |
+| 2026-10-28 03:48 | 12 | seat B/sol/1 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 55181/1120 | 464 | $0.11781 | 13.6 | end_turn | req_4d201ec581eb46e48c040fe0348b2f7b | resp_0442c5265a860104016ae16eebcd0087d1993d283f64a235dc |  |
+| 2026-10-28 03:48 | 13 | seat Bp/sol/1 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 56143/1188 | 592 | $0.12118 | 14.5 | end_turn | req_f21bc5b4a2014167acedc33f046b6d1d | resp_0f225b3b95928ad6016ae16eefbd2c87d1b2ef77c76634a9ac |  |
+| 2026-10-28 03:48 | 14 | seat C/sol/1 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/51639 | 1606 | $0.14516 | 48.9 | end_turn | req_6ac81ea08764499ebc3c58bf6507792a | resp_095aa645125ee459016ae16ed4b15087d1b9f8c70f3ac3fb2c |  |
+| 2026-10-28 03:48 | 15 | seat B/sol/1 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 56301/533 | 383 | $0.11777 | 10.4 | end_turn | req_c25a17f1a9d2453b8541382e2c77afd9 | resp_0c117489301f491a016ae16efeb89487d18140016223584e9a |  |
+| 2026-10-28 03:48 | 16 | seat Bp/sol/1 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 57331/661 | 593 | $0.12225 | 13.9 | end_turn | req_fd2ededf760049b5b8ea6393592cdacf | resp_044ef394171f12e0016ae16f0307cc87d1a829c08f53a6fa27 |  |
+| 2026-10-28 03:48 | 17 | seat C/sol/1 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 51639/1449 | 671 | $0.11362 | 19.7 | end_turn | req_af10a14b72694d54b7cf611cb9f22ce7 | resp_0523e63f2b0796b0016ae16f0af6b887d18ed96928c238d3fb |  |
+| 2026-10-28 03:48 | 18 | seat B/sol/2 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/52390 | 1191 | $0.14289 | 29.4 | end_turn | req_f620fc6a186c42c79e34a685931784bc | resp_09ff43a0faf52c01016ae16f0df99487d1810fa4f4294f0e2a |  |
+| 2026-10-28 03:48 | 19 | seat C/sol/1 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 53088/740 | 441 | $0.11244 | 14.6 | end_turn | req_236f6848a7734e0fa188956daa90b037 | resp_0fec797af1dc83b8016ae16f237da087d1bbe1d8054c9ca43b |  |
+| 2026-10-28 03:48 | 20 | seat Bp/sol/2 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/53256 | 1259 | $0.14574 | 37.5 | end_turn | req_6ad3f2884a2945f5a7fbd48cdd7035fe | resp_06a7e72a9a92c57b016ae16f15afa887d1882ab7e4ab017da1 |  |
+| 2026-10-28 03:48 | 21 | seat B/sol/2 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 52390/1071 | 634 | $0.11380 | 16.1 | end_turn | req_6ee69f731b734786bfbd7abdd8619778 | resp_03914116332b61f8016ae16f303bd887d1a9fa764433015083 |  |
+| 2026-10-28 03:48 | 22 | seat Bp/sol/2 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 53256/1144 | 642 | $0.11580 | 15.9 | end_turn | req_602a84e8932b418590ef4f3854159564 | resp_05ad1d07acf93a88016ae16f3ff29c87d18b55fbcd38259dcc |  |
+| 2026-10-28 03:48 | 23 | seat B/sol/2 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 53461/681 | 433 | $0.11296 | 12.2 | end_turn | req_376b547386b2481d8605dd10ac06f4b8 | resp_021907b40bf37d7e016ae16f45295887d1ad71553f512f772d |  |
+| 2026-10-28 03:48 | 24 | seat C/sol/2 t1 | gpt-6.1-sol | reasoning.effort=medium | 3 | 0/55199 | 1465 | $0.15265 | 42 | end_turn | req_84493f4d7083431d97a7b6c88d564f39 | resp_0119d1dfe00d1a02016ae16f36bc1c87d1948cbdeb87643c6f |  |
+| 2026-10-28 03:48 | 25 | seat Bp/sol/2 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 54400/711 | 783 | $0.11841 | 22.9 | end_turn | req_5804aad88d5748c4826c776a35553b3b | resp_0929cf112e1c0e44016ae16f54891c87d1b2adab08e16bb4d6 |  |
+| 2026-10-28 03:48 | 26 | seat C/sol/2 t2 | gpt-6.1-sol | reasoning.effort=medium | 3 | 55199/1129 | 581 | $0.11904 | 14.6 | end_turn | req_acc542b56ae149c5a3f19399ba58461a | resp_0dc073aec545b64c016ae16f6593e887d1b4ac957556e10f42 |  |
+| 2026-10-28 03:48 | 27 | seat C/sol/2 t3 | gpt-6.1-sol | reasoning.effort=medium | 3 | 56328/650 | 664 | $0.12093 | 19.5 | end_turn | req_891d6743649c4266b1e6c58ba832616f | resp_04ebce18476c2ee1016ae16f78ddc087d1ad3b5d08384ce05e |  |
+| 2026-10-28 03:48 | 28 | seat B/astra/0 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/53020 | 1357 | $0.73063 | 37.1 | end_turn | req_c25a9105474246eb86500a0d99fd5292 | resp_0d27a1044f367697016ae170056e5487d181f09b1f62ac6c17 |  |
+| 2026-10-28 03:48 | 29 | seat C/astra/0 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/59311 | 1594 | $0.82112 | 37.5 | end_turn | req_29e1bc540dc1476aa54ff7733f67d599 | resp_072543046c5c07d0016ae17005759c87d1995234e8dfcdce37 |  |
+| 2026-10-28 03:48 | 30 | seat Bp/astra/0 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/53852 | 1601 | $0.75323 | 40.5 | end_turn | req_08a0acd3175049a6b08b093579d8f135 | resp_0de087b649395749016ae170056b3c87d18c7953fe1bf47ea7 |  |
+| 2026-10-28 03:48 | 31 | seat C/astra/0 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 59311/1446 | 531 | $0.10397 | 13.5 | end_turn | req_12c52242c6884df0826bc8694fb61cf1 | resp_03de507ea6a4ded4016ae1702fa56487d184e0433cf1f2d9f1 |  |
+| 2026-10-28 03:48 | 32 | seat B/astra/0 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 53020/1225 | 529 | $0.09481 | 14.9 | end_turn | req_1794c611edb1417cb8791028c64bbbd6 | resp_00e7cade2d75c032016ae1702f26c887d18759f312d1f65e2f |  |
+| 2026-10-28 03:48 | 33 | seat Bp/astra/0 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 53852/1437 | 695 | $0.10659 | 18.7 | end_turn | req_a29ddde313644c089e7fc2de3742bc67 | resp_031a60b9e46dbd64016ae17032ab1c87d1834c47714a731dd1 |  |
+| 2026-10-28 03:48 | 34 | seat C/astra/0 t3 | gpt-6-astra | reasoning.effort=medium | 3 | 60757/561 | 586 | $0.09710 | 16.1 | end_turn | req_d2c83d1efbf0423dac038ffbffe110ca | resp_023c5f4d13a3b159016ae17041f30087d1994144dcb4ae3744 |  |
+| 2026-10-28 03:48 | 35 | seat B/astra/0 t3 | gpt-6-astra | reasoning.effort=medium | 3 | 54245/598 | 600 | $0.09175 | 17.2 | end_turn | req_8c9242a9f96e462daeb9fcacc1543caa | resp_040b1ae4d5116c6f016ae17042c9e087d1adbf7d17bfc382f5 |  |
+| 2026-10-28 03:48 | 36 | seat Bp/astra/0 t3 | gpt-6-astra | reasoning.effort=medium | 3 | 55289/726 | 692 | $0.09899 | 19.5 | end_turn | req_181fc6acd9f142fa9854c756cedc79a5 | resp_0a6d851030d4b566016ae1704a296487d1b4041f836837a679 |  |
+| 2026-10-28 03:48 | 37 | seat B/astra/1 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/57563 | 1205 | $0.77982 | 33.3 | end_turn | req_edf64449b8314558a266ee74d8b2fcfb | resp_01ab5af6b9ba7d9e016ae1705771fc87d18ae3e24a2fc51861 |  |
+| 2026-10-28 03:48 | 38 | seat Bp/astra/1 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/58602 | 1486 | $0.80685 | 34.6 | end_turn | req_50992a2cceb4459ea70651074aaa222b | resp_0a5d4ff550c37c5f016ae17058e73887d18eb07b142e129364 |  |
+| 2026-10-28 03:48 | 39 | seat C/astra/1 t1 | gpt-6-astra | reasoning.effort=medium | 3 | 0/64480 | 1555 | $0.88378 | 37.9 | end_turn | req_488ff23b5a9d40ddb660c6c9ec8988c7 | resp_0907820a6eb63eaf016ae17062817087d1873fd9d93f2b4dff |  |
+| 2026-10-28 03:48 | 40 | seat B/astra/1 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 57563/1160 | 513 | $0.09774 | 14.9 | end_turn | req_e1c5dc3e337146fe91ba895ac98a1061 | resp_01cccc82342715f3016ae1707e292c87d1ab295f0ed9d106e7 |  |
+| 2026-10-28 03:48 | 41 | seat Bp/astra/1 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 58602/1196 | 624 | $0.10478 | 13.6 | end_turn | req_89bf4868ba23405093f00f3dcf558828 | resp_013014b17d9f6cda016ae17080372887d199f766c2ac94a7bb |  |
+| 2026-10-28 03:48 | 42 | seat C/astra/1 t2 | gpt-6-astra | reasoning.effort=medium | 3 | 64480/1391 | 639 | $0.11385 | 14.1 | end_turn | req_ae6dceb2eb074f5bb4167dcc7c1abba4 | resp_0de7e1cabbd99b95016ae1708d539487d1a909f0d89227aa26 |  |
+| 2026-10-28 03:48 | 43 | seat B/astra/1 t3 | gpt-6-astra | reasoning.effort=medium | 3 | 58723/558 | 527 | $0.09208 | 15.5 | end_turn | req_94253223061c483bb96c5d60ba17c11a | resp_01756b2eb0c39fac016ae170919e4487d190c6a15176bfb727 |  |
