@@ -1,0 +1,136 @@
+{
+  "capUsd": 12,
+  "spentUsd": 0.7964,
+  "updatedAt": "2026-10-27T23:59:13.556Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-27T23:59:13.556Z",
+      "what": "planner-seat-2: the dry run, Sol, one B and one C seat",
+      "file": "planner-seat-2-dry-20261027-235913.json",
+      "spentUsd": 0.7964,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "purpose": "seat dry/B/sol/0 t1",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 54260,
+          "outputTokens": 1163,
+          "reasoningTokens": 66,
+          "costUsd": 0.147286,
+          "seconds": 30.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_08c8084c83b44c7cb20b5f7a2dd85648",
+          "responseId": "resp_06e5bd295cb0c000016ae13a574ff487d1b48078db5e40667c"
+        },
+        {
+          "n": 2,
+          "purpose": "seat dry/B/sol/0 t2",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 54260,
+          "cacheWriteTokens": 1135,
+          "outputTokens": 319,
+          "reasoningTokens": 0,
+          "costUsd": 0.1145535,
+          "seconds": 9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_569844ac79924097a614ff21d84707bc",
+          "responseId": "resp_0453df35aca30a9e016ae13a7a469c87d186d8ce128d142670"
+        },
+        {
+          "n": 3,
+          "purpose": "seat dry/C/sol/0 t1",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 0,
+          "cacheWriteTokens": 59311,
+          "outputTokens": 1547,
+          "reasoningTokens": 290,
+          "costUsd": 0.1637535,
+          "seconds": 48.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_06bdb80a9fe7491483f06695a3c2f786",
+          "responseId": "resp_060b33ec24583633016ae13a5751b887d1a758875a32eb5308"
+        },
+        {
+          "n": 4,
+          "purpose": "seat dry/B/sol/0 t3",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 55395,
+          "cacheWriteTokens": 388,
+          "outputTokens": 491,
+          "reasoningTokens": 0,
+          "costUsd": 0.116676,
+          "seconds": 13.7,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_c6acd347e0ba4f168a52bd92b2dd4616",
+          "responseId": "resp_06d3a2d9c56f1bf7016ae13a88456087d1935aac228102afcc"
+        },
+        {
+          "n": 5,
+          "purpose": "seat dry/C/sol/0 t2",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 59311,
+          "cacheWriteTokens": 1295,
+          "outputTokens": 442,
+          "reasoningTokens": 0,
+          "costUsd": 0.1262855,
+          "seconds": 13.9,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ac9268582f56471ba3a680a3eef468a4",
+          "responseId": "resp_0719ebe74ea33fb7016ae13a8bf7f487d1bb2926b84e426cc4"
+        },
+        {
+          "n": 6,
+          "purpose": "seat dry/C/sol/0 t3",
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "effort": {
+            "reasoning.effort": "medium"
+          },
+          "inputTokens": 3,
+          "cacheReadTokens": 60606,
+          "cacheWriteTokens": 511,
+          "outputTokens": 534,
+          "reasoningTokens": 0,
+          "costUsd": 0.1278355,
+          "seconds": 16.8,
+          "error": null,
+          "stopReason": "end_turn",
+          "requestId": "req_ed74bcc5ed1645288c4924449e031031",
+          "responseId": "resp_0b9d231ac64d710e016ae13a9eed9487d1a75224cfe7c50825"
+        }
+      ]
+    }
+  ]
+}
