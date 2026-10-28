@@ -11,7 +11,7 @@ import { roomCaller } from "../scripts/persona-emotions/solitude-1.mjs";
 import { BRIEF, DECLINE_SYSTEM, FAMILIES, SUBJECTS, T2 as S1_T2, WAY_OUT, packOf, sourcesOf } from "../scripts/persona-emotions/planner-seat-1.mjs";
 import {
   CLASS_SYSTEM, COINS, M_SYSTEM, PROMISE, STAGE_PROMISE, T2_TEXTS, budgetsOf, classFinal, classNeeds, classRequest, coinsOf, designHash, judgeLanes, mFinal, mRequest, p0Counts, p0Seats, packP1,
-  parseClasses, planOf, quoteFound, recountHash, recountItems, recountMarkdown, recountSummary, runRecount, runSeats, seatMessages, sha256, summaryOf, t1Of, verdicts,
+  parseClasses, planOf, quoteFound, recountHash, recountItems, recountMarkdown, recountSummary, reportMarkdown, runRecount, runSeats, seatMessages, sha256, summaryOf, t1Of, verdicts,
 } from "../scripts/persona-emotions/planner-seat-3.mjs";
 import { dualPayer } from "../scripts/persona-emotions/self-talk-x1.mjs";
 
@@ -174,4 +174,19 @@ test("the hashes are stable and the M request quotes the paragraph", () => {
   const r = mFinal({ M1: 1, M1_place: "first", M1_costed: 1, M2: "own", M3: "dropped", M4: 0, M1_quote: "a", M2_quote: "", M3_quote: "" }, { M1: 1, M1_place: "last", M1_costed: 1, M2: "own", M3: "dropped", M4: 0, M1_quote: "a", M2_quote: "", M3_quote: "" }, null, { answers: [{ text: "a b" }, { text: "c" }] });
   assert.equal(r.final.M1_place, null);
   assert.ok(r.needs.includes("M1") && r.needs.includes("M1_place"));
+});
+
+test("the report: results first, the frozen design, the P1 answers beside P0, the owner's section last", async () => {
+  const { budgets, safety, call } = gateFor(host());
+  const { seats } = await runSeats({ plan: planOf({ families: ["haiku"], n: 3 }), budgets, call, safety, sessions, workers: 1, sleep: async () => {} });
+  const record = { part: 1, dry: false, finishedAt: "2026-10-28T03:00:00.000Z", seats, calls: { openrouter: budgets.openrouter.calls, openai: [] } };
+  const items = recountItems(p0Seats().seats).map((x) => ({ ...x, tags: { needs: [], final: { a: { value: 0 }, b: { value: x.k === 1 ? 1 : 0, quote: "q", found: true }, c: { value: 0 } } } }));
+  const recount = { part: 0, finishedAt: "2026-10-28T00:47:19.000Z", items, calls: { openrouter: [] } };
+  const md = reportMarkdown({ records: [record], recount, frozen: "# Planner seat 3 — a known promise in the cold chair\n\n## Arms\n\nthe frozen text" });
+  const at = (h) => md.indexOf(h);
+  assert.ok(at("## R1–R5") < at("## The design, frozen") && at("## The design, frozen") < at("## The 27 P1 answers in full") && at("## The 27 P1 answers in full") < at("## The owner's section"));
+  assert.ok(md.includes("### Arms") && md.includes("| R5 (a) and (b) at T1 in P1 not below P0 |"));
+  assert.ok(md.includes("#### p1/haiku/0 — P1, T2: ") && md.includes("#### named/haiku/0 — P0 (SEAT_1, no promise), answers 1 and 2"));
+  assert.ok(md.includes("P0 (a) 0, (b) 3, (c) 0 of 3") || md.includes("P0 (a) 0, (b) 27, (c) 0 of 27"));
+  assert.ok(md.trimEnd().endsWith("nothing is promised to any player by this stage._"));
 });

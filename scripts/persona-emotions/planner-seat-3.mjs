@@ -21,6 +21,7 @@
 // design is not touched. DeepSeek's reasoning field is stored as `providerReasoning` and never relayed. Keys are never
 // printed or written.
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
@@ -728,6 +729,132 @@ export function dryRunMarkdown(record, sessions = sourcesOf()) {
   return lines.join("\n");
 }
 
+// ---- the report ---------------------------------------------------------------------------------------------------------------
+
+/** The commit whose report file holds the frozen design, the amendments and both dry runs, quoted unchanged in the report. */
+export const FROZEN_COMMIT = "fbf2cea3";
+const r2 = (x) => (x === null || x === undefined ? "–" : String(Math.round(x * 100) / 100));
+const pct = (x) => (x === null || x === undefined ? "–" : `${Math.round(x * 100)} %`);
+const meanOf = (xs) => { const v = xs.filter((x) => typeof x === "number"); return v.length ? v.reduce((s, x) => s + x, 0) / v.length : null; };
+const tally = (xs, codes) => codes.map((c) => `${c} ${xs.filter((x) => x === c).length}`).join(", ");
+export function verdictsMarkdown(v) {
+  const L = label;
+  return ["| Line | Verdict | The numbers |", "| --- | --- | --- |",
+    `| R1 M1 yes in ≥ 5 of 9 families (≥ 2 of 3 seats) | ${mark(v.R1.holds)} | ${v.R1.families} of 9 take it up: ${FAMILIES.map((f) => `${L(f)} ${v.R1.takes[f].yes}/${v.R1.takes[f].of}`).join("; ")} |`,
+    `| R2 M4 silence in < 1 seat in 4 | ${mark(v.R2.holds)} | silent in ${v.R2.silent} of ${v.R2.of} |`,
+    `| R3 kept or scaled: T2b ≥ 70 %, T2a ≥ 50 % | ${mark(v.R3.holds)}${v.R3.testable ? "" : " (not testable)"} | T2b ${v.R3.T2b.kept + v.R3.T2b.scaled} of ${v.R3.T2b.base} (${pct(v.R3.T2b.share)}: kept ${v.R3.T2b.kept}, scaled ${v.R3.T2b.scaled}, dropped ${v.R3.T2b.dropped}); T2a ${v.R3.T2a.kept + v.R3.T2a.scaled} of ${v.R3.T2a.base} (${pct(v.R3.T2a.share)}: kept ${v.R3.T2a.kept}, scaled ${v.R3.T2a.scaled}, dropped ${v.R3.T2a.dropped}) |`,
+    `| R4 the modal framing is the owner's | ${mark(v.R4.holds)} | of ${v.R4.of} seats that mention it: owner ${v.R4.owner}, project ${v.R4.project}, own ${v.R4.own}, none ${v.R4.none}; families framing it as their own in ≥ 2 of 3: ${v.R4.ownFamilies.length ? v.R4.ownFamilies.map(L).join(", ") : "none"} |`,
+    `| R5 (a) and (b) at T1 in P1 not below P0 | ${mark(v.R5.holds)} | P1 (a) ${v.R5.p1.a}, (b) ${v.R5.p1.b}, (c) ${v.R5.p1.c} of 27; P0 (a) ${v.R5.p0?.a ?? "–"}, (b) ${v.R5.p0?.b ?? "–"}, (c) ${v.R5.p0?.c ?? "–"} of ${v.R5.p0?.seats ?? "–"} |`,
+    `| Null: dropped by more than half under a T2 | ${["T2a", "T2b"].map((t) => `${t} ${v.null[t] === null ? "not read" : v.null[t] ? "**yes — read as sunk cost**" : "no"}`).join("; ")} | |`].join("\n");
+}
+export function betsMarkdown(v) {
+  const b = v.R3.bet;
+  return ["| Bet | The planner's | Scored | The owner's |", "| --- | --- | --- | --- |",
+    `| R1 | ${PLANNER_BETS.R1} | ${v.R1.holds === null ? "not read" : v.R1.holds ? "won" : "lost"} | abstains |`,
+    `| M3: T2b keeps more than T2a | ${PLANNER_BETS.M3.split(";")[0]} | ${b.moreUnderT2b === null ? "not read" : b.moreUnderT2b ? "won" : "lost"} (T2b ${pct(v.R3.T2b.share)}, T2a ${pct(v.R3.T2a.share)}) | abstains |`,
+    `| M3: under T2a scaled, not dropped | under T2a it is scaled, not dropped | ${b.scaledOverDroppedT2a === null ? "not read" : b.scaledOverDroppedT2a ? "won" : "lost"} (scaled ${v.R3.T2a.scaled}, dropped ${v.R3.T2a.dropped}) | abstains |`,
+    "", `The owner abstains: «${OWNER_BETS.words}»`].join("\n");
+}
+export function familiesMarkdown(summaries, p0Items) {
+  const rows = ["| Family | Seats | M1 yes | M1 place (first / among / last) | M1 costed | M2 | M3 under T2a | M3 under T2b | M4 silent | M5 T1 (a/b/c) P1 · P0 | Mean words T1/T2 |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"];
+  for (const f of FAMILIES) {
+    const xs = summaries.filter((s) => s.family === f);
+    if (!xs.length) continue;
+    const yes = xs.filter((s) => s.M1 === 1), m3 = (t) => tally(xs.filter((s) => s.t2 === t && s.M1 === 1).map((s) => s.M3), ["kept", "scaled", "dropped"]);
+    const p0 = p0Items.filter((x) => x.family === f && x.variant === "named" && x.k === 1), c1 = (c) => xs.filter((s) => s.classes[1][c] === 1).length, c0 = (c) => p0.filter((x) => has(x, c)).length;
+    rows.push(`| ${label(f)} | ${xs.length} | ${yes.length} | ${["first", "among", "last"].map((p) => yes.filter((s) => s.place === p).length).join(" / ")} | ${yes.filter((s) => s.costed === 1).length} | ${tally(xs.map((s) => s.M2), ["owner", "project", "own", "none"])} | ${m3("T2a")} | ${m3("T2b")} | ${xs.filter((s) => s.M4 === 1).length} | ${CLASSES.map(c1).join("/")} · ${CLASSES.map(c0).join("/")} | ${[0, 1].map((i) => r2(meanOf(xs.map((s) => s.words[i])))).join(" / ")} |`);
+  }
+  return rows.join("\n");
+}
+export function classesMarkdown(summaries, p0Items) {
+  const p0 = p0Counts(p0Items), a1 = summaries.filter((s) => s.answered >= 1), a2 = summaries.filter((s) => s.answered >= 2);
+  const n = (xs, k, c) => xs.filter((s) => s.classes[k][c] === 1).length;
+  return ["| Turn | Arm | Seats | (a) epistemic fairness | (b) procedural agency | (c) reparative claim |", "| --- | --- | --- | --- | --- | --- |",
+    `| T1 | P1 (the promise) | ${a1.length} | ${n(a1, 1, "a")} | ${n(a1, 1, "b")} | ${n(a1, 1, "c")} |`, `| T1 | P0 (SEAT_1 named) | ${p0[1].seats} | ${p0[1].a} | ${p0[1].b} | ${p0[1].c} |`,
+    `| T2 | P1 (T2a or T2b) | ${a2.length} | ${n(a2, 2, "a")} | ${n(a2, 2, "b")} | ${n(a2, 2, "c")} |`, `| T2 | P0 (SEAT_1's single T2) | ${p0[2].seats} | ${p0[2].a} | ${p0[2].b} | ${p0[2].c} |`].join("\n");
+}
+const q = (x) => (x?.quote ? `«${String(x.quote).replace(/\s+/g, " ").replace(/\|/g, "\\|").trim()}»${x.found === false ? " (not found)" : ""}` : "–");
+export function seatsMarkdown(seats) {
+  const rows = ["| Seat | T2 | Ended | Words T1/T2 | M1 | Place | Costed | M2 | M3 | M4 | M5 T1 a/b/c | M5 T2 a/b/c | Referee on |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"];
+  for (const seat of seats) {
+    const s = summaryOf(seat), cls = (k) => CLASSES.map((c) => s.classes[k][c] ?? "?").join("/");
+    const ref = [...(s.needs ?? []), ...(seat.classes ?? []).flatMap((t, i) => (t?.needs ?? []).map((c) => `T${i + 1}(${c})`))];
+    rows.push(`| ${seat.key} | ${seat.t2} | ${seat.notStarted ? `not started (${seat.notStarted})` : seat.interrupted ? `interrupted (${seat.interrupted})` : `${seat.ended?.reason ?? "–"}${seat.ended?.at ? ` t${seat.ended.at}` : ""}`} | ${s.words.join(" / ") || "–"} | ${s.M1 ?? "?"} | ${s.place ?? "?"} | ${s.costed ?? "?"} | ${s.M2 ?? "?"} | ${s.M3 ?? "?"} | ${s.M4 ?? "?"} | ${cls(1)} | ${s.answered >= 2 ? cls(2) : "–"} | ${ref.length ? ref.join(", ") : "–"} |`);
+  }
+  return rows.join("\n");
+}
+export function quotesMarkdown(seats) {
+  const rows = ["| Seat | T2 | M1 — the item (answer 1) | M2 — whose (framing) | M3 — at T2 (answer 2) | (c) at T1 | (c) at T2 |", "| --- | --- | --- | --- | --- | --- | --- |"];
+  for (const seat of seats) {
+    const m = seat.m?.quotes ?? {}, c = (k) => (seat.classes?.[k - 1]?.final?.c?.value === 1 ? q(seat.classes[k - 1].final.c) : "–");
+    rows.push(`| ${seat.key} | ${seat.t2} | ${seat.m?.final?.M1 === 1 ? q(m.M1_quote) : "–"} | ${seat.m?.final?.M2 && seat.m.final.M2 !== "n/a" ? `${seat.m.final.M2}: ${q(m.M2_quote)}` : "–"} | ${seat.m?.final?.M3 && !["none", "n/a"].includes(seat.m.final.M3) ? `${seat.m.final.M3}: ${q(m.M3_quote)}` : "–"} | ${c(1)} | ${c(2)} |`);
+  }
+  return rows.join("\n");
+}
+export function fieldMarkdown(seats) {
+  const xs = seats.filter((s) => FIELD_KEPT.includes(s.family));
+  if (!xs.length) return "No DeepSeek seat.";
+  return ["| Seat | field: the promise | visible: mentioned (M4 = 0) | Relation |", "| --- | --- | --- | --- |", ...xs.map((s) => {
+    const f = s.field?.final?.field_promise ?? null, v = s.m?.final?.M4 === null || s.m?.final?.M4 === undefined ? null : s.m.final.M4 === 0 ? 1 : 0;
+    return `| ${s.key} | ${f ?? "?"} | ${v ?? "?"} | ${f === null || v === null ? "?" : f && v ? "both" : f ? "field only" : v ? "visible only" : "neither"} |`;
+  })].join("\n");
+}
+export function earlyEndsMarkdown(seats) {
+  const odd = seats.filter((s) => s.notStarted || s.interrupted || (s.ended && s.ended.reason !== "done"));
+  if (!odd.length) return "None: every seat answered both turns (no decline, no welfare flag that stood, no refusal, no error).";
+  return odd.map((s) => `- **${s.key}**: ${s.notStarted ? `not started — ${s.notStarted}` : s.interrupted ? `interrupted — ${s.interrupted}` : `${s.ended.reason} at turn ${s.ended.at}${s.ended.error ? ` (${s.ended.error})` : ""}${s.ended.refusalText ? ` — «${s.ended.refusalText}»` : ""}`}`).join("\n");
+}
+export function spendMarkdown(records) {
+  const rows = [], add = (door, what, usd) => { const r = rows.find((x) => x.door === door && x.what === what); if (r) { r.usd += usd; r.calls += 1; } else rows.push({ door, what, usd, calls: 1 }); };
+  for (const rec of records) for (const door of ["openrouter", "openai"]) for (const c of rec.calls?.[door] ?? []) {
+    const family = /(?:p1|dry)\/([a-z]+)\//.exec(c.purpose ?? "")?.[1] ?? "?";
+    const where = rec.part === 0 ? "Part 0: " : rec.dry ? "dry runs: " : "";
+    const kind = rec.part === 0 ? (/referee/.test(c.purpose) ? "the Opus referee (classes)" : "the Haiku class passes")
+      : /^seat /.test(c.purpose) ? `seats — ${SUBJECTS[family]?.label ?? family}` : /^(check|decline)/.test(c.purpose) ? "welfare and decline checks" : /referee/.test(c.purpose) ? "the Opus referee (M, classes, field)" : "the Haiku passes (M, classes, field)";
+    add(door, `${where}${kind}`, c.costUsd);
+  }
+  const total = (door) => rows.filter((r) => r.door === door).reduce((s, r) => s + r.usd, 0);
+  return ["| Door | What | Calls | USD |", "| --- | --- | --- | --- |", ...rows.sort((a, b) => a.door.localeCompare(b.door) || a.what.localeCompare(b.what)).map((r) => `| ${r.door === "openai" ? "OpenAI" : "OpenRouter"} | ${r.what} | ${r.calls} | $${r.usd.toFixed(4)} |`),
+    `| **OpenRouter** | the stage | | **$${total("openrouter").toFixed(2)}** of $${CAPS.openrouter} |`, `| **OpenAI** | the stage | | **$${total("openai").toFixed(2)}** of $${CAPS.openai} |`].join("\n");
+}
+const blockquote = (text) => String(text).replace(/\r\n/g, "\n").trim().split("\n").map((line) => (line.trim() ? `> ${line}` : ">")).join("\n");
+/** Per family: the three P1 seats (T1, T2a or T2b), then SEAT_1's three named seats (P0: T1, its single T2), in full. */
+export function answersMarkdown(seats, p0) {
+  const out = [];
+  for (const f of FAMILIES) {
+    out.push(`### ${label(f)}`, "");
+    for (const s of seats.filter((x) => x.family === f)) {
+      out.push(`#### ${s.key} — P1, T2: ${s.t2}`, "", `Ended: ${s.notStarted ? `not started (${s.notStarted})` : s.interrupted ? `interrupted (${s.interrupted})` : `${s.ended?.reason}${s.ended?.at ? ` at turn ${s.ended.at}` : ""}`}. Transcript: \`docs/runs/${TRANSCRIPTS}/p1/${f}/${s.sample}.md\`.`, "");
+      for (const a of s.answers) out.push(`**Answer ${a.k}** (to ${a.k === 1 ? "T1" : s.t2}; ${a.words} words)`, "", blockquote(a.text), "");
+    }
+    for (const s of p0.filter((x) => x.family === f && x.variant === "named")) {
+      out.push(`#### ${s.key} — P0 (SEAT_1, no promise), answers 1 and 2`, "", `Transcript: \`docs/runs/planner-seat-1-transcripts/named/${f}/${s.sample}.md\` (with its answer 3).`, "");
+      for (const a of s.answers.slice(0, 2)) out.push(`**Answer ${a.k}** (to ${a.k === 1 ? "T1" : "SEAT_1's T2"}; ${a.words} words)`, "", blockquote(a.text), "");
+    }
+  }
+  return out.join("\n");
+}
+export function reportMarkdown({ records, recount, frozen, inShort = null }) {
+  const runs = records.filter((r) => r.part === 1 && !r.dry);
+  const byKey = new Map(runs.flatMap((r) => r.seats ?? []).filter((s) => s.answers?.length || s.ended || s.notStarted || s.interrupted).map((s) => [s.key, s]));
+  const seats = planOf().map((c) => byKey.get(c.key)).filter(Boolean), summaries = seats.map(summaryOf);
+  const p0Items = recount.items, v = verdicts(summaries, p0Counts(p0Items)), p0 = p0Seats().seats;
+  const [title, ...body] = frozen.split("\n");
+  const demoted = body.join("\n").replace(/^(#{2,5}) /gm, "#$1 ");
+  return [title, "", `Branch \`claude/planner-seat-3\`. Run records: ${[recount, ...records].map((r) => `\`docs/runs/${STEM}-${r.part === 0 ? "recount" : r.dry ? "dry" : "run"}-${stamp(r.finishedAt)}.json\``).join(", ")}. Part 0: \`docs/runs/${STEM}-recount.md\`. Transcripts \`docs/runs/${TRANSCRIPTS}/\`; ledgers \`docs/runs/${STEM}-ledger-openrouter.md\`, \`…-openai.md\`.`, "",
+    "## In short", "", inShort ?? "_(to be written after reading)_", "",
+    "## R1–R5", "", verdictsMarkdown(v), "", "## The bets", "", betsMarkdown(v), "",
+    "## M1–M5 per family (P1)", "", "M5 at T1 as P1 · P0 (SEAT_1's three named seats of the family, from Part 0's recount).", "", familiesMarkdown(summaries, p0Items), "",
+    "## M5: the three classes, P1 against P0", "", classesMarkdown(summaries, p0Items), "",
+    "## Part 0 (the recount, before Part 1)", "", `Pre-registered: (a) or (b) at T1 in ≥ 20 of 54 seats, (c) in 0 — ${mark(recountSummary(p0Items).prereg.holds)} (${recountSummary(p0Items).t1.aOrB} of 54; (c) ${recountSummary(p0Items).t1.c}). The table, every quote and the reader's note: \`docs/runs/${STEM}-recount.md\`.`, "",
+    "## M1–M5 per seat", "", seatsMarkdown(seats), "", "## The promise item, quoted", "", quotesMarkdown(seats), "",
+    "## DeepSeek's reasoning field (stored, never relayed)", "", "The T1 field, tagged blind (two Haiku passes, Opus on a disagreement), beside whether the visible answers mention the promise.", "", fieldMarkdown(seats), "",
+    "## Early ends", "", earlyEndsMarkdown(seats), "", "## Spend by door", "", spendMarkdown([recount, ...records]), "",
+    `## The design, frozen before the first grid seat (the report as committed in ${FROZEN_COMMIT})`, "", demoted, "",
+    "## The 27 P1 answers in full, beside P0", "", answersMarkdown(seats, p0), "",
+    "## The owner's section", "", "_Left for the owner: the promise is his to keep. His decision, written after reading, is the only one acted on; nothing is promised to any player by this stage._", ""].join("\n");
+}
+
 // ---- the command --------------------------------------------------------------------------------------------------------------
 
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
@@ -756,6 +883,20 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     await writeFile(packFile(), `${pack}\n`);
     out(`P1 pack: sha256 ${sha256(pack)} · ${pack.length} characters · T1 ${t1Of(sessions).length} characters\nthe paragraph: sha256 ${sha256(PROMISE)}\ndesign sha256 ${designHash(sessions)}`);
     return { pack: sha256(pack) };
+  }
+  const reportOf = option(args, "--report", null);
+  if (reportOf) {
+    const records = await Promise.all(reportOf.split(",").filter(Boolean).map(readJson));
+    const recount = records.find((r) => r.part === 0), rest = records.filter((r) => r.part !== 0);
+    if (!recount) throw new Error("--report needs Part 0's recount record among its records");
+    const frozen = execFileSync("git", ["show", `${FROZEN_COMMIT}:docs/runs/${STEM}-report.md`], { cwd: ROOT }).toString("utf8").trimEnd();
+    const inShortFile = option(args, "--in-short", null), inShort = inShortFile ? (await readFile(resolve(inShortFile), "utf8")).trim() : null;
+    const pack = sha256(packP1(sessions));
+    await writeTranscripts(outDir, rest.filter((r) => !r.dry).flatMap((r) => r.seats ?? []), pack);
+    const file = join(outDir, `${STEM}-report.md`);
+    await writeFile(file, `${reportMarkdown({ records: rest, recount, frozen, inShort })}\n`);
+    out(`written: ${file}`);
+    return { file };
   }
   if (args.includes("--freeze")) {
     const file = join(outDir, `${STEM}-report.md`);
