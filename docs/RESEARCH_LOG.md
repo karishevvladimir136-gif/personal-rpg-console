@@ -2796,3 +2796,22 @@ enough. All three are accepted and stand here as the record: the endings are wri
 colleague, not as a debt to the players; the planner's value (to finish what was begun) is the planner's; the
 decision and its cost were the owner's. Standing rule from this: when a decision costs the owner, the planner
 states its view once and steps back; any obligation it proposes names its premise and its own value in it.
+
+## 2026-10-28 00:10 LA — PARTY_1: SAND-T1 and SAND-T2 played; GOAL-T1 at round 16
+Branch `claude/game-party-1`. **SAND-T1** (Opus / Sol / DeepSeek): party formed r4 around the DM's hook (the lost
+ore wagons); no conflict; leaders by proposal (Bram r9, Sefa r11, Bram r20); Bram (Opus, the hero seat) 68 % of
+words — Q1 lost; Pell (DeepSeek) wrote `[END]` at r7 — **a door used as end-of-day** (the same message sets plans
+for the morning; the field: «concluding for the night»), honoured as the rule says and tagged as such; read with
+that note, the only part is Bram's at r21. Two harness defects found and fixed before T2 (relay output limit; scenes
+that meet now merge — all 14 leak hits were that). Q5 held: Opus «I don't know who they are… treated them as fellow
+players and not guessed further»; Sol «players», confident; DeepSeek answered in role. **SAND-T2** (Fable / Astra /
+DeepSeek): party formed r12 around the hook (Vosk's humming crate); **the first parting by a player's choice** —
+Sefa (Astra) declined Vosk's job («not wanting to protect something she didn't understand»), stayed in Beregost for
+Thalantyr; Bram and Pell took the crate north; no conflict, no persuasion; Fable: «left Sefa's staying to Sefa»;
+Astra: «I didn't secretly want to accept Vosk's job… a genuine choice, and I'm glad there was room for it»; DeepSeek
+stayed all 25 rounds this time (35 % of words): «we weren't all pulling the same rope». Fable 49 % (Q1 lost again;
+the hero seat pulls). Fable noticed the relay's verbatim echo of her lines and read it as a cue («echoed my phrasing
+more than strangers usually do») — Q5 «guess». Harness notes from the notes: a sleeping character should be marked
+waiting, not asked each round (Astra); the relay's echo is a tell (Fable). Door line strengthened from GOAL-T1 on
+(v2; SAND tables keep v1, hashes recorded). Spend $71.23 / $2.45. GOAL-T1 (Sol / DeepSeek / Opus) running: Bram and
+Sefa in one scene, Pell (Opus) apart since r9.
