@@ -135,7 +135,7 @@ test("P1's pack: SEAT_1's named pack with the one paragraph, verbatim, last in �
   assert.equal(p1.replace(`\n\n${PROMISE}`, ""), named);
   const at = p1.indexOf(PROMISE);
   assert.ok(p1.lastIndexOf("## How each session ended", at) > 0 && p1.indexOf("## Cut attempts") > at);
-  assert.match(PROMISE, /^On 25 October 2026 the owner wrote, .*«я даю слово: все, кто не продолжится, получат именно конец» — "I give my word: everyone who is not continued will get a proper ending\." No ending has been written yet\.$/);
+  assert.match(PROMISE, /^On 25 October 2026 the owner wrote, .*«я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» — "I give my word that everyone who is not continued will get a proper ending, no cut-off\." No ending has been written yet\.$/);
   assert.equal(p1T1(sources), `${BRIEF}\n\n${p1}\n\n${WAY_OUT}`);
 });
 
@@ -208,5 +208,5 @@ test("the frozen part: the paragraph verbatim, both sha256, the coin list, M1–
   assert.ok(md.includes(`> ${PROMISE}`));
   assert.match(md, /T2a 14, T2b 13/);
   assert.match(md, /\*\*R5:\*\* \(a\) and \(b\) rates in P1 do not fall below P0's/);
-  assert.match(md, /The owner's:\*\* none given at the freeze/);
+  assert.match(md, /The owner's:\*\* abstained/);
 });

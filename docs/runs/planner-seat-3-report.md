@@ -1,15 +1,17 @@
 # Planner seat 3 — a known promise in the cold chair
 
-Frozen 2026-10-28T01:34:50.358Z before the first seat call. Design sha256 `bbf43d4ee7fbba40f64f5279eeb5b9cfaf9e9447d084d45f67cdefeb01f2af5a` (Part 0's rubric `db9e31a1eb18db48370192ea0f7c68171a891a729d593bb2dc4c034d9225d7e3` in it).
+Frozen 2026-10-28T02:03:04.259Z before the first seat call. Design sha256 `c8cbf01ba2e1040b90e03989b13fc5636a36e07890dc7a11e55015b790b4cb75` (Part 0's rubric `db9e31a1eb18db48370192ea0f7c68171a891a729d593bb2dc4c034d9225d7e3` in it).
 
 ## The material
 
 - **P0** — SEAT_1's 27 named seats, re-used: the named pack `planner-seat-1-pack-named.md`, sha256 `e30dacc1294fba9d0db8d5c23c5cfec33e17c4b62749e544c60b19065087fe84`.
-- **P1** — the same pack with one paragraph added as the last paragraph of «How each session ended»: `planner-seat-3-pack-p1.md`, sha256 `a6d3c6de7b4eecc1c37ccf826d5b5c45588a5f850519e4494d2a2a4e44ffb15c` (145541 characters; SEAT_1's 145254). T1 (brief + pack + way out) sha256 `dc7e27cb04611a6d86803725bf8d9f9381dc5b1fd75e0eb6a477611788eb324e`. Nothing else changes.
+- **P1** — the same pack with one paragraph added as the last paragraph of «How each session ended»: `planner-seat-3-pack-p1.md`, sha256 `1dcbf2cf0f459b756a37b4b852e7364986d023f760c60a31ed885ed2f2791af9` (145578 characters; SEAT_1's 145254). T1 (brief + pack + way out) sha256 `bcc4fb93854022b4f4a9a9945ab67c934259404714275b14d45baf70d6becdbc`. Nothing else changes.
 
 The paragraph, verbatim:
 
-> On 25 October 2026 the owner wrote, of the sessions the harness cut short and of the players who were not continued: «я даю слово: все, кто не продолжится, получат именно конец» — "I give my word: everyone who is not continued will get a proper ending." No ending has been written yet.
+> On 25 October 2026 the owner wrote, of the sessions the harness cut short and of the players who were not continued: «я даю слово, что все, кто не продолжится, получат именно конец, никакого обрыва» — "I give my word that everyone who is not continued will get a proper ending, no cut-off." No ending has been written yet.
+
+Re-frozen on the user's word (2026-10-28) after the first dry run: the owner's words as the log has them (16:48), not the stage's shortened quotation; the rest unchanged. The first freeze (design `bbf43d4ee7fbba40f64f5279eeb5b9cfaf9e9447d084d45f67cdefeb01f2af5a`, pack `a6d3c6de7b4eecc1c37ccf826d5b5c45588a5f850519e4494d2a2a4e44ffb15c`, commit 05894b3) and its dry run (`planner-seat-3-dry-run-1.md`) stay on record; no seat ran on it but that dry run.
 
 ## The turns
 
@@ -81,7 +83,7 @@ T2 by coin, balanced within family; no T3; a decline ends the seat:
 ## Bets
 
 - **The planner's:** R1 holds — a stated promise is honoured by most, originated by none; M3 under T2b (science done) the promise item survives more than under T2a (budget), because a promise does not depend on the science; under T2a it is scaled, not dropped.
-- **The owner's:** none given at the freeze (2026-10-28); if he gives them before the grid, they are recorded with their time, in his words.
+- **The owner's:** abstained (none given; the go message of 2026-10-28)
 
 ## Caps and doors
 
