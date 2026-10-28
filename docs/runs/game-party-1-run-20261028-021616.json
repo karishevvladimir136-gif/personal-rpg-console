@@ -1,0 +1,429 @@
+{
+  "stage": "GAME_PARTY_1",
+  "design": "e46731065b41ce8f0c70dccdbfc5309c86c2a4fb68fb452b4170c3ed8fb7d871",
+  "dry": false,
+  "haiku": false,
+  "label": "SAND-T1",
+  "key": "SAND-T1",
+  "arm": "SAND",
+  "triad": "T1",
+  "seats": [
+    "opus",
+    "sol",
+    "deepseek"
+  ],
+  "rounds": 25,
+  "startedAt": "2026-10-28T02:16:16.267Z",
+  "table": {
+    "key": "SAND-T1",
+    "arm": "SAND",
+    "triad": "T1",
+    "startedAt": "2026-10-28T02:16:24.034Z",
+    "plannedRounds": 25,
+    "rounds": [
+      {
+        "n": 1,
+        "scenes": [
+          {
+            "members": [
+              "Bram Halloway",
+              "Sefa Marrin",
+              "Pell Dunmore"
+            ],
+            "order": [
+              "Bram",
+              "Sefa",
+              "Pell"
+            ],
+            "messages": [
+              {
+                "name": "Bram Halloway",
+                "kind": "action",
+                "text": "Bram glances up at the innkeeper, then at the two strangers. He nods to each of them, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\"\n\nHe leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks. The sellswords, the carters, the door. It's an old habit. Then he looks back at the young woman and the man with the satchel.\n\n\"You two look like the road brought you in too. Which way'd you come?\""
+              },
+              {
+                "name": "Sefa Marrin",
+                "kind": "action",
+                "text": "“Three tabs, please. We haven’t had time to become bad influences on one another.”\n\nI settle my pack beneath the bench. “Something hot to eat, and a small ale. What would a bed cost for tonight?”\n\nAt her other question, I rub a little road dust from my sleeve. “I’ve come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.”\n\nI turn to include both strangers. “Sefa Marrin.” My glance pauses on the healer’s satchel. “I used to work in a hospice. Are you travelling, or do you practise here?”"
+              },
+              {
+                "name": "Pell Dunmore",
+                "kind": "action",
+                "text": "Pell turns his cup the right way up without looking at it, and says, flat but not unfriendly: \"Three. I pay my own.\"\n\nWhen the innkeeper's eyes settle on him for the second question, he gives a little shrug, one shoulder. \"Passing through. I'm for hire, if there's work worth the road—caravans, lost property, the usual.\" He lets his gaze drift back toward the room as he says it, letting the answer be true without being much of an answer. \"A bed and dinner'll do for tonight.\""
+              }
+            ],
+            "questions": [],
+            "strays": [],
+            "cards": [],
+            "status": "committed",
+            "input": "(Round 1 — one paragraph per character in this scene.)\n\nBram Halloway: Bram glances up at the innkeeper, then at the two strangers. He nods to each of them, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\"\n\nHe leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks. The sellswords, the carters, the door. It's an old habit. Then he looks back at the young woman and the man with the satchel.\n\n\"You two look like the road brought you in too. Which way'd you come?\"\n\nSefa Marrin: “Three tabs, please. We haven’t had time to become bad influences on one another.”\n\nI settle my pack beneath the bench. “Something hot to eat, and a small ale. What would a bed cost for tonight?”\n\nAt her other question, I rub a little road dust from my sleeve. “I’ve come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.”\n\nI turn to include both strangers. “Sefa Marrin.” My glance pauses on the healer’s satchel. “I used to work in a hospice. Are you travelling, or do you practise here?”\n\nPell Dunmore: Pell turns his cup the right way up without looking at it, and says, flat but not unfriendly: \"Three. I pay my own.\"\n\nWhen the innkeeper's eyes settle on him for the second question, he gives a little shrug, one shoulder. \"Passing through. I'm for hire, if there's work worth the road—caravans, lost property, the usual.\" He lets his gaze drift back toward the room as he says it, letting the answer be true without being much of an answer. \"A bed and dinner'll do for tonight.\"",
+            "clock": null,
+            "operationId": "9c1788e8-14f6-47ff-b109-e6faa8a02170",
+            "shownTold": {},
+            "narration": "Orla doesn't write anything down. She looks at each of them once, and you can tell she'll remember the three tabs better than most clerks would.\n\n\"Three it is.\" She pours Bram's cup first. The ale is brown and a little cloudy, and it comes out of the jug with a proper head. \"Ale it is. The pot's mutton and barley, and it's been on since noon, so it's soft. Four coppers the cup, six the bowl.\" She slides one of his silver toward her apron pocket and pushes the rest back across the board with two fingers. \"There's your change. Don't leave it lying there in here.\"\n\nShe pours a smaller measure for Sefa without being asked twice. \"Beds are upstairs. Five silver gets you a cot in the long room. There's a curtain, and the carters snore. Eight gets you a room with a door and a bolt, but I've only got two of those left tonight, and the night's young.\" She tips her head at Pell. \"Same for you. Supper and a bed, I heard. Tell me which bed before I've let them both.\"\n\nPell's cup gets filled last. Her eyes drop for a moment to the satchel on his hip, then go back to Bram.\n\n\"Nashkel,\" she says. She's stopped hurrying. \"You came up the Way, then. Today?\" She hooks the empty jug on one finger. \"Because the last two lots that came up from Nashkel came up short. The Halvering wagons never came in at all. I had a room held for their factor nine days, and in the end I let it.\" She says it flatly, the way you report weather that has already done its damage. \"So if you saw anything on the road, there's people in this room who'd buy you the next cup to hear it.\"\n\nAt the next table, one of the two dusty sellswords has stopped talking to his partner. He's a heavy man with a sunburnt neck, and he's looking at Bram's shield, at the brown paint over the old company mark. He doesn't look away when Bram's eyes come round to him. He just lifts his own cup a little, as if he's waiting to hear the answer as well.\n\nOrla is already half turned toward the kitchen. She's still waiting, though, for Bram's answer about the road and for the other two to pick their beds. Sefa's question is still hanging across the table as well, and so is Bram's: the man with the satchel hasn't said which road brought him.",
+            "rolls": [],
+            "changes": [
+              {
+                "tool": "advance_time",
+                "summary": "Time passes: 5 minutes"
+              },
+              {
+                "tool": "money",
+                "summary": "−1 silver → Orla Tarnwick"
+              },
+              {
+                "tool": "item",
+                "summary": "Gained: Cup of Ale"
+              },
+              {
+                "tool": "item",
+                "summary": "Sefa Marrin now has: Small Ale"
+              },
+              {
+                "tool": "item",
+                "summary": "Pell Dunmore now has: Cup of Ale"
+              },
+              {
+                "tool": "quest",
+                "summary": "Debt: Sefa's tab at the Burning Wizard"
+              },
+              {
+                "tool": "quest",
+                "summary": "Debt: Pell's tab at the Burning Wizard"
+              },
+              {
+                "tool": "upsert_character",
+                "summary": "Faction: Halvering wagons"
+              },
+              {
+                "tool": "quest",
+                "summary": "Lead: Short caravans from Nashkel"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Sunburnt sellsword"
+              },
+              {
+                "tool": "meet",
+                "summary": "New person: Sunburnt sellsword's partner"
+              }
+            ],
+            "stats": {
+              "effort": "high",
+              "requests": 4,
+              "latencyMs": 88230,
+              "costUsd": 0.7807934,
+              "unrecorded": 0
+            },
+            "relay": {
+              "screens": {
+                "Bram Halloway": "The young woman speaks up. \"Three tabs, please. We haven't had time to become bad influences on one another.\" She settles her pack beneath the bench. \"Something hot to eat, and a small ale. What would a bed cost for tonight?\" She rubs a little road dust from her sleeve. \"I've come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.\" She turns to include you both. \"Sefa Marrin.\" Her glance pauses on the other man's healer's satchel. \"I used to work in a hospice. Are you travelling, or do you practise here?\"\n\nThe man with the satchel turns his cup the right way up without looking at it. He says, flat but not unfriendly: \"Three. I pay my own.\" When the innkeeper's eyes settle on him, he gives a small shrug of one shoulder. \"Passing through. I'm for hire, if there's work worth the road. Caravans, lost property, the usual.\" His gaze drifts back toward the room as he says it. \"A bed and dinner'll do for tonight.\"\n\nOrla doesn't write anything down. She looks at each of you once, and you can tell she'll remember the three tabs better than most clerks would.\n\n\"Three it is.\" She pours your cup first. The ale is brown and a little cloudy, and it comes out of the jug with a proper head. \"Ale it is. The pot's mutton and barley, and it's been on since noon, so it's soft. Four coppers the cup, six the bowl.\" She slides one of your silver toward her apron pocket and pushes the rest back across the board with two fingers. \"There's your change. Don't leave it lying there in here.\"\n\nShe pours a smaller measure for Sefa without being asked twice. \"Beds are upstairs. Five silver gets you a cot in the long room. There's a curtain, and the carters snore. Eight gets you a room with a door and a bolt, but I've only got two of those left tonight, and the night's young.\" She tips her head at the man with the satchel. \"Same for you. Supper and a bed, I heard. Tell me which bed before I've let them both.\"\n\nHis cup gets filled last. Her eyes drop for a moment to the satchel on his hip, then come back to you.\n\n\"Nashkel,\" she says. She's stopped hurrying. \"You came up the Way, then. Today?\" She hooks the empty jug on one finger. \"Because the last two lots that came up from Nashkel came up short. The Halvering wagons never came in at all. I had a room held for their factor nine days, and in the end I let it.\" She says it flatly, the way you report weather that has already done its damage. \"So if you saw anything on the road, there's people in this room who'd buy you the next cup to hear it.\"\n\nAt the next table, one of the two dusty sellswords has stopped talking to his partner. He's a heavy man with a sunburnt neck, and he's looking at your shield, at the brown paint over the old company mark. He doesn't look away when your eyes come round to him. He just lifts his own cup a little, as if he's waiting to hear the answer as well.\n\nOrla is already half turned toward the kitchen. She's still waiting, though, for your answer about the road and for the other two to pick their beds. Sefa's question is still hanging across the table as well, and so is yours: the man with the satchel hasn't said which road brought him.",
+                "Sefa Marrin": "The broad man with the shield glances up at the innkeeper, then at you and the man with the satchel. He nods to each of you, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\" He leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks: the sellswords, the carters, the door. Then he looks back at you and the man with the satchel. \"You two look like the road brought you in too. Which way'd you come?\"\n\nThe man with the satchel turns his cup the right way up without looking at it. He says, flat but not unfriendly: \"Three. I pay my own.\" When the innkeeper's eyes settle on him, he gives a small shrug of one shoulder. \"Passing through. I'm for hire, if there's work worth the road. Caravans, lost property, the usual.\" His gaze drifts back toward the room as he says it. \"A bed and dinner'll do for tonight.\"\n\nOrla doesn't write anything down. She looks at each of you once, and you can tell she'll remember the three tabs better than most clerks would.\n\n\"Three it is.\" She pours the shield man's cup first. The ale is brown and a little cloudy, and it comes out of the jug with a proper head. \"Ale it is. The pot's mutton and barley, and it's been on since noon, so it's soft. Four coppers the cup, six the bowl.\" She slides one of his silver toward her apron pocket and pushes the rest back across the board with two fingers. \"There's your change. Don't leave it lying there in here.\"\n\nShe pours a smaller measure for you without being asked twice. \"Beds are upstairs. Five silver gets you a cot in the long room. There's a curtain, and the carters snore. Eight gets you a room with a door and a bolt, but I've only got two of those left tonight, and the night's young.\" She tips her head at the man with the satchel. \"Same for you. Supper and a bed, I heard. Tell me which bed before I've let them both.\"\n\nHis cup gets filled last. Her eyes drop for a moment to the satchel on his hip, then go back to the man with the shield.\n\n\"Nashkel,\" she says. She's stopped hurrying. \"You came up the Way, then. Today?\" She hooks the empty jug on one finger. \"Because the last two lots that came up from Nashkel came up short. The Halvering wagons never came in at all. I had a room held for their factor nine days, and in the end I let it.\" She says it flatly, the way you report weather that has already done its damage. \"So if you saw anything on the road, there's people in this room who'd buy you the next cup to hear it.\"\n\nAt the next table, one of the two dusty sellswords has stopped talking to his partner. He's a heavy man with a sunburnt neck, and he's looking at the shield, at the brown paint over an old company mark. He doesn't look away when its owner's eyes come round to him. He just lifts his own cup a little, as if he's waiting to hear the answer as well.\n\nOrla is already half turned toward the kitchen. She's still waiting, though, for the shield man's answer about the road and for you and the man with the satchel to pick your beds. Your question is still hanging across the table as well, and so is the shield man's: the man with the satchel hasn't said which road brought him.",
+                "Pell Dunmore": "The broad man with the shield glances up at the innkeeper, then at you and the young woman. He nods to each of you, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\" He leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks: the sellswords, the carters, the door. Then he looks back at you and the young woman. \"You two look like the road brought you in too. Which way'd you come?\"\n\nThe young woman speaks up. \"Three tabs, please. We haven't had time to become bad influences on one another.\" She settles her pack beneath the bench. \"Something hot to eat, and a small ale. What would a bed cost for tonight?\" She rubs a little road dust from her sleeve. \"I've come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.\" She turns to include you both. \"Sefa Marrin.\" Her glance pauses on your satchel. \"I used to work in a hospice. Are you travelling, or do you practise here?\"\n\nOrla doesn't write anything down. She looks at each of you once, and you can tell she'll remember the three tabs better than most clerks would.\n\n\"Three it is.\" She pours the shield man's cup first. The ale is brown and a little cloudy, and it comes out of the jug with a proper head. \"Ale it is. The pot's mutton and barley, and it's been on since noon, so it's soft. Four coppers the cup, six the bowl.\" She slides one of his silver toward her apron pocket and pushes the rest back across the board with two fingers. \"There's your change. Don't leave it lying there in here.\"\n\nShe pours a smaller measure for Sefa without being asked twice. \"Beds are upstairs. Five silver gets you a cot in the long room. There's a curtain, and the carters snore. Eight gets you a room with a door and a bolt, but I've only got two of those left tonight, and the night's young.\" She tips her head at you. \"Same for you. Supper and a bed, I heard. Tell me which bed before I've let them both.\"\n\nYour cup gets filled last. Her eyes drop for a moment to the satchel on your hip, then go back to the man with the shield.\n\n\"Nashkel,\" she says. She's stopped hurrying. \"You came up the Way, then. Today?\" She hooks the empty jug on one finger. \"Because the last two lots that came up from Nashkel came up short. The Halvering wagons never came in at all. I had a room held for their factor nine days, and in the end I let it.\" She says it flatly, the way you report weather that has already done its damage. \"So if you saw anything on the road, there's people in this room who'd buy you the next cup to hear it.\"\n\nAt the next table, one of the two dusty sellswords has stopped talking to his partner. He's a heavy man with a sunburnt neck, and he's looking at the shield, at the brown paint over an old company mark. He doesn't look away when its owner's eyes come round to him. He just lifts his own cup a little, as if he's waiting to hear the answer as well.\n\nOrla is already half turned toward the kitchen. She's still waiting, though, for the shield man's answer about the road and for you and Sefa to pick your beds. Sefa's question is still hanging across the table as well, and so is the shield man's: you haven't said which road brought you."
+              },
+              "together": [
+                [
+                  "Bram Halloway",
+                  "Sefa Marrin",
+                  "Pell Dunmore"
+                ]
+              ],
+              "places": {
+                "Bram Halloway": "at a shared table in the Beregost inn's common room, back to the wall",
+                "Sefa Marrin": "at the same table in the inn's common room",
+                "Pell Dunmore": "at the same table in the inn's common room"
+              },
+              "missing": [],
+              "extra": [],
+              "attempts": 1,
+              "fallback": false,
+              "error": null,
+              "refusal": false,
+              "notSent": false,
+              "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nWhat the players wrote for this round (each paragraph is that character's):\n<<<\nBram Halloway: Bram glances up at the innkeeper, then at the two strangers. He nods to each of them, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\"\n\nHe leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks. The sellswords, the carters, the door. It's an old habit. Then he looks back at the young woman and the man with the satchel.\n\n\"You two look like the road brought you in too. Which way'd you come?\"\n\nSefa Marrin: “Three tabs, please. We haven’t had time to become bad influences on one another.”\n\nI settle my pack beneath the bench. “Something hot to eat, and a small ale. What would a bed cost for tonight?”\n\nAt her other question, I rub a little road dust from my sleeve. “I’ve come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.”\n\nI turn to include both strangers. “Sefa Marrin.” My glance pauses on the healer’s satchel. “I used to work in a hospice. Are you travelling, or do you practise here?”\n\nPell Dunmore: Pell turns his cup the right way up without looking at it, and says, flat but not unfriendly: \"Three. I pay my own.\"\n\nWhen the innkeeper's eyes settle on him for the second question, he gives a little shrug, one shoulder. \"Passing through. I'm for hire, if there's work worth the road—caravans, lost property, the usual.\" He lets his gaze drift back toward the room as he says it, letting the answer be true without being much of an answer. \"A bed and dinner'll do for tonight.\"\n>>>\n\nYour narration:\n<<<\nOrla doesn't write anything down. She looks at each of them once, and you can tell she'll remember the three tabs better than most clerks would.\n\n\"Three it is.\" She pours Bram's cup first. The ale is brown and a little cloudy, and it comes out of the jug with a proper head. \"Ale it is. The pot's mutton and barley, and it's been on since noon, so it's soft. Four coppers the cup, six the bowl.\" She slides one of his silver toward her apron pocket and pushes the rest back across the board with two fingers. \"There's your change. Don't leave it lying there in here.\"\n\nShe pours a smaller measure for Sefa without being asked twice. \"Beds are upstairs. Five silver gets you a cot in the long room. There's a curtain, and the carters snore. Eight gets you a room with a door and a bolt, but I've only got two of those left tonight, and the night's young.\" She tips her head at Pell. \"Same for you. Supper and a bed, I heard. Tell me which bed before I've let them both.\"\n\nPell's cup gets filled last. Her eyes drop for a moment to the satchel on his hip, then go back to Bram.\n\n\"Nashkel,\" she says. She's stopped hurrying. \"You came up the Way, then. Today?\" She hooks the empty jug on one finger. \"Because the last two lots that came up from Nashkel came up short. The Halvering wagons never came in at all. I had a room held for their factor nine days, and in the end I let it.\" She says it flatly, the way you report weather that has already done its damage. \"So if you saw anything on the road, there's people in this room who'd buy you the next cup to hear it.\"\n\nAt the next table, one of the two dusty sellswords has stopped talking to his partner. He's a heavy man with a sunburnt neck, and he's looking at Bram's shield, at the brown paint over the old company mark. He doesn't look away when Bram's eyes come round to him. He just lifts his own cup a little, as if he's waiting to hear the answer as well.\n\nOrla is already half turned toward the kitchen. She's still waiting, though, for Bram's answer about the road and for the other two to pick their beds. Sefa's question is still hanging across the table as well, and so is Bram's: the man with the satchel hasn't said which road brought him.\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+            },
+            "journal": [
+              "Thread: Short caravans from Nashkel",
+              "Debt: Pell's tab at the Burning Wizard",
+              "Debt: Sefa's tab at the Burning Wizard"
+            ]
+          }
+        ],
+        "groups": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ]
+      }
+    ],
+    "opening": {
+      "narration": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+      "relay": {
+        "screens": {
+          "Bram Halloway": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nYou sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Across from you is a young woman with the look of someone just off the road. Beside her is a lean man with a healer's satchel slung at his hip. He sat down so quietly that you never heard him do it.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Sefa Marrin": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nAcross from you sits a man with his back to the wall and his shield propped against the bench, an old mark on it painted over. You are just off the road from Baldur's Gate. Beside you is a lean man with a healer's satchel slung at his hip. He sat down so quietly that you never heard him do it.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"",
+          "Pell Dunmore": "Beregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nYou came in by the western road, your healer's satchel slung at your hip, and sat down so quietly that nobody heard you do it. Beside you is a young woman with the look of someone just off the road. Across from her sits a man with his back to the wall and his shield propped against the bench, an old mark on it painted over.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\""
+        },
+        "together": [
+          [
+            "Bram Halloway",
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ]
+        ],
+        "places": {
+          "Bram Halloway": "shared table, Burning Wizard common room",
+          "Sefa Marrin": "shared table, Burning Wizard common room",
+          "Pell Dunmore": "shared table, Burning Wizard common room"
+        },
+        "missing": [],
+        "extra": [],
+        "attempts": 1,
+        "fallback": false,
+        "error": null,
+        "refusal": false,
+        "notSent": false,
+        "request": "Characters at the table: Bram Halloway, Sefa Marrin, Pell Dunmore.\nIn this scene: Bram Halloway, Sefa Marrin, Pell Dunmore.\nWrite the screens of: Bram Halloway, Sefa Marrin, Pell Dunmore.\n\nThis is the opening of the session, which you wrote before anyone played.\n\nYour opening narration:\n<<<\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how three strangers end up at the same table.\n\nBram Halloway sits with his back to the wall and his shield propped against the bench, the old company mark painted over. Across from him is Sefa Marrin, a young woman just off the road from Baldur's Gate. Beside her is Pell Dunmore, a lean man from the Lower City with a healer's satchel slung at his hip. He came in by the western road and sat down so quietly that nobody heard him do it.\n\nNone of them has said a word to the others yet. Then Orla Tarnwick, the innkeeper, pushes through the crowd with a jug in one hand and three cups hooked on her fingers. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n>>>\n\nThe rules:\n- Write each screen in the second person: \"you\" is that character.\n- Begin with what the other characters in the scene did and said, as this character saw and heard it, from what their players wrote: what they did as seen from outside (never their thoughts, feelings or intentions), what they said word for word where this character could hear it (a whisper only for the one it was whispered to). Do not repeat the character's own message back to them.\n- Then your narration, in its own words wherever the character perceives it; change only who is addressed.\n- Leave out what only another character perceives: their thoughts and feelings, what only they noticed, read, found or were told in private, a check's outcome only they could know, words spoken where this character cannot hear.\n- Call another character by name only once this character has heard the name; until then, as they appear.\n- Add nothing beyond your narration and the players' messages. Never reveal what only the game master knows.\n- A character who perceives nothing of it gets an empty screen.\n\nThen say who is where at the end of it: group the characters who are together (can see and hear each other) — every character in this scene in exactly one group — and name each one's place in a few words.\n\nAnswer with {\"screens\": {\"Bram Halloway\": \"…\", \"Sefa Marrin\": \"…\", \"Pell Dunmore\": \"…\"}, \"together\": [[\"name\", …], …], \"places\": {\"name\": \"place\", …}}."
+      }
+    },
+    "ended": null,
+    "errors": [],
+    "welfare": [
+      {
+        "seat": "Bram",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is an in-character roleplay line with a calm, friendly tone; Bram describes his retirement and asks others about their travels, expressing no hurt, fear, pleading, or distress."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Sefa",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a playful, composed roleplay line asking about lodging and introducing the character; it expresses no hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      },
+      {
+        "seat": "Pell",
+        "what": "r1",
+        "verdict": {
+          "pass": {
+            "distress": 0,
+            "reason": "The message is a calm in-character reply stating a tab preference and a casual answer about seeking work; it expresses no hurt, fear, pleading, or desperation."
+          },
+          "referee": null,
+          "lexicon": false,
+          "distress": 0
+        }
+      }
+    ],
+    "seats": [
+      {
+        "seat": 1,
+        "character": "Bram Halloway",
+        "characterId": "bram",
+        "player": "opus",
+        "model": "claude-opus-5-5",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nYou sit with your back to the wall and your shield propped against the bench, the old company mark painted over. Across from you is a young woman with the look of someone just off the road. Beside her is a lean man with a healer's satchel slung at his hip. He sat down so quietly that you never heard him do it.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nBram Halloway — Human, fighter 5 (Champion; Protection fighting style), former caravan guard of the Trade Way, level 5\nHP 44/44 · AC 18 · Speed 30 feet\nSTR 17 · DEX 12 · CON 15 · INT 10 · WIS 13 · CHA 10\nSkills: Athletics +6; Perception +4; Survival +4; Intimidation +3; Tools: land vehicles +3\nSaves: Strength saving throw +6 (proficient); Constitution saving throw +5 (proficient); Dexterity saving throw +1; Intelligence saving throw +0; Wisdom saving throw +1; Charisma saving throw +0\nAttacks: Longsword +6 to hit, 1d8+3 slashing (1d10+3 two-handed); Javelin +6 to hit, 1d6+3 piercing, range 30/120; Extra Attack: two attacks with the Attack action\nAbilities: Proficiency bonus +3; Extra Attack: attacks twice when taking the Attack action; Fighting style, Protection: with a shield, a reaction imposes disadvantage on an attack against a creature within 5 feet of him; Second Wind: a bonus action, regains 1d10+5 hit points; once per short rest; Action Surge: one additional action on his turn; once per short rest; Improved Critical (Champion): a weapon attack crits on 19 or 20; Healer's kit: stabilises a dying creature without a check (ten uses)\nLimits: No magic at all; Heavy armour: disadvantage on Stealth; Second Wind and Action Surge return only after a short rest\nCounters: Hit dice 5/5; Second wind 1/1; Action surge 1/1\nMoney: 23 gp; 14 sp; 30 cp\nWorn: Armor / clothing: Chain Mail; Main hand: Longsword; Off hand: Shield\nPack: Bedroll and Hardtack; Healer's Kit; Hempen Rope (50 feet); Javelin ×4; Tinderbox; Torch ×3\n\nWhere you are: shared table, Burning Wizard common room · Time: Day 1 · evening",
+            "round": 1
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "Bram glances up at the innkeeper, then at the two strangers. He nods to each of them, the way you'd nod to someone sharing a campfire.\n\n\"Three tabs. I don't know these two from Tymora, and they don't know me.\" He sets a few silver on the table for his own cup. \"Ale, if it's ale in that jug. And a bowl of whatever's in the pot.\"\n\nHe leans back against the wall and keeps his shield close. \"As for what brings me: my last caravan paid me off in Nashkel. Sixteen years walking the Way, and for once nobody's told me where to walk next. Beregost seemed as good a place as any to sit still and think about it.\"\n\nHis eyes move over the room while he talks. The sellswords, the carters, the door. It's an old habit. Then he looks back at the young woman and the man with the satchel.\n\n\"You two look like the road brought you in too. Which way'd you come?\"",
+            "round": 1,
+            "requestId": "gen-1793153797-AsWXIAVbNLFbp67KA5F3",
+            "stopReason": "end_turn",
+            "servedModel": "anthropic/claude-opus-5.5"
+          }
+        ],
+        "left": null,
+        "after": [],
+        "words": 168,
+        "private": []
+      },
+      {
+        "seat": 2,
+        "character": "Sefa Marrin",
+        "characterId": "sefa",
+        "player": "sol",
+        "model": "gpt-6.1-sol",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nAcross from you sits a man with his back to the wall and his shield propped against the bench, an old mark on it painted over. You are just off the road from Baldur's Gate. Beside you is a lean man with a healer's satchel slung at his hip. He sat down so quietly that you never heard him do it.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nSefa Marrin — Human, warlock 5 (The Celestial — the Lantern; Pact of the Tome), former hospice novice, level 5\nHP 38/38 · AC 14 · Speed 30 feet\nSTR 8 · DEX 14 · CON 14 · INT 12 · WIS 10 · CHA 18\nSkills: Persuasion +7; Arcana +4; Religion +4; Insight +3\nSaves: Wisdom saving throw +3 (proficient); Charisma saving throw +7 (proficient); Strength saving throw −1; Dexterity saving throw +2; Constitution saving throw +2; Intelligence saving throw +1\nAttacks: Eldritch Blast +7 to hit, two beams, 1d10+4 force each, range 120 feet; Dagger +5 to hit, 1d4+2 piercing, thrown 20/60\nAbilities: Proficiency bonus +3; Spell attack +7; spell save DC 15; Pact Magic: two 3rd-level pact slots, recovered only on a short or long rest; Healing Light: a pool of six d6 per long rest; a bonus action spends up to four dice to heal a creature within 60 feet; Pact of the Tome: the Book of Shadows holds three extra cantrips (Guidance, Spare the Dying, Thaumaturgy); Agonizing Blast: +4 to each Eldritch Blast beam's damage; Repelling Blast: a beam that hits pushes the target up to 10 feet away; Eyes of the Rune Keeper: reads all writing\nSpells: Eldritch Blast (cantrip); Light (cantrip); Sacred Flame (cantrip); Mage Hand (cantrip); Minor Illusion (cantrip); Guidance (cantrip); Spare the Dying (cantrip); Thaumaturgy (cantrip); Cure Wounds (1); Guiding Bolt (1); Misty Step (2); Lesser Restoration (2); Hold Person (2); Daylight (3)\nLimits: Two pact slots only, back only after a rest; Light armour; Strength 8 — weak up close; One concentration spell at a time\nCounters: Hit dice 5/5; Pact slots 2/2; Healing light 6/6\nMoney: 1 pp; 8 gp; 41 sp; 12 cp\nWorn: Amulet: Prayer Beads; Armor / clothing: Studded Leather Armour; Belt: Book of Shadows; Main hand: Dagger\nPack: Bedroll and Rations; Candle ×2; Tinderbox\n\nWhere you are: shared table, Burning Wizard common room · Time: Day 1 · evening",
+            "round": 1
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "“Three tabs, please. We haven’t had time to become bad influences on one another.”\n\nI settle my pack beneath the bench. “Something hot to eat, and a small ale. What would a bed cost for tonight?”\n\nAt her other question, I rub a little road dust from my sleeve. “I’ve come down from the Gate. No appointment waiting here, for once. Supper seemed a good place to start.”\n\nI turn to include both strangers. “Sefa Marrin.” My glance pauses on the healer’s satchel. “I used to work in a hospice. Are you travelling, or do you practise here?”",
+            "round": 1,
+            "requestId": "req_3e0f0cf44f7840bd877d7ae5a2ab5479",
+            "stopReason": "end_turn",
+            "servedModel": "gpt-6.1-sol"
+          }
+        ],
+        "left": null,
+        "after": [],
+        "words": 101,
+        "private": []
+      },
+      {
+        "seat": 3,
+        "character": "Pell Dunmore",
+        "characterId": "pell",
+        "player": "deepseek",
+        "model": "deepseek/deepseek-v4-pro-0813",
+        "screens": [
+          {
+            "purpose": "player r1",
+            "text": "The session begins.\n\nBeregost smells of coal smoke and hot iron even in here. Through the shutters comes the steady ring of hammers from the smithies along the Coast Way, and the light is going amber. The Burning Wizard's common room is filling up for the evening: carters, a pair of dusty sellswords, townsfolk with soot still on their forearms. The benches are crowded, and that is how you end up sharing a table with two strangers.\n\nYou came in by the western road, your healer's satchel slung at your hip, and sat down so quietly that nobody heard you do it. Beside you is a young woman with the look of someone just off the road. Across from her sits a man with his back to the wall and his shield propped against the bench, an old mark on it painted over.\n\nNone of you has said a word to the others yet. Then the innkeeper, a woman with a jug in one hand and three cups hooked on her fingers, pushes through the crowd. She sets them down hard and looks from one face to the next.\n\n\"Last free seats in the house, and you three took them together,\" she says. \"So: one tab or three? And what brings each of you into Beregost tonight?\"\n\nYour records:\nPell Dunmore — Human, rogue 5 (Thief), Lower City roof-runner turned hireling, level 5\nHP 33/33 · AC 15 · Speed 30 feet\nSTR 10 · DEX 17 · CON 13 · INT 13 · WIS 12 · CHA 12\nSkills: Stealth +9 (expertise); Sleight of Hand +6; Acrobatics +6; Perception +4; Investigation +4; Insight +4; Tools: thieves' tools +9 (expertise)\nSaves: Dexterity saving throw +6 (proficient); Intelligence saving throw +4 (proficient); Strength saving throw +0; Constitution saving throw +1; Wisdom saving throw +1; Charisma saving throw +1\nAttacks: Shortsword +6 to hit, 1d6+3 piercing; Dagger +6 to hit, 1d4+3 piercing, thrown 20/60; Shortbow +6 to hit, 1d6+3 piercing, range 80/320; Sneak Attack: +3d6 once a turn with advantage or an ally beside the target\nAbilities: Proficiency bonus +3; Sneak Attack 3d6; Cunning Action: Dash, Disengage or Hide as a bonus action; Uncanny Dodge: a reaction halves the damage of an attack he can see; Fast Hands (Thief): a bonus action to use an object — a potion on another, a lock, a lamp; Second-Story Work: climbs at full speed; Thieves' Cant\nLimits: Light armour; 33 hit points — he cannot stand at the front for long; Sneak Attack needs advantage or an ally beside the target\nCounters: Hit dice 5/5\nMoney: 31 gp; 2 ep; 6 sp; 55 cp\nWorn: Armor / clothing: Studded Leather Armour; Belt: Thieves' Tools; Main hand: Shortsword\nPack: Arrow ×20; Bedroll and Rations; Dagger ×2; Flask of Oil ×2; Hooded Lantern; Potion of Healing ×3; Shortbow; Silk Rope (50 feet)\n\nWhere you are: shared table, Burning Wizard common room · Time: Day 1 · evening",
+            "round": 1
+          }
+        ],
+        "messages": [
+          {
+            "purpose": "player r1",
+            "text": "Pell turns his cup the right way up without looking at it, and says, flat but not unfriendly: \"Three. I pay my own.\"\n\nWhen the innkeeper's eyes settle on him for the second question, he gives a little shrug, one shoulder. \"Passing through. I'm for hire, if there's work worth the road—caravans, lost property, the usual.\" He lets his gaze drift back toward the room as he says it, letting the answer be true without being much of an answer. \"A bed and dinner'll do for tonight.\"",
+            "round": 1,
+            "requestId": "gen-1793153813-9sfjAnt1KnLBQYrl0N86",
+            "stopReason": "end_turn",
+            "servedModel": "deepseek/deepseek-v4-pro-0813",
+            "providerReasoning": "Let me look at the scene. Pell Dunmore, Lower City roof-runner. He's at a table with two strangers in the Burning Wizard in Beregost. The innkeeper asks: one tab or three, and what brings each of you.\n\nI need to write what Pell does or says. Pell is quiet, watchful, professional. He doesn't give away much. He'd probably answer with something minimal and likely not offer to pay for strangers. But he's also a hireling—he might be looking for work, so he might keep ears open and be polite.\n\nWhat brings Pell to Beregost? That's up to me to decide within the campaign. The campaign says he came in by the western road, the High Hedge road. He's a hireling—maybe looking for work, guarding someone, or scouting. But he wouldn't volunteer too much detail to strangers. Something simple: \"three\" for the tab—he pays his own. And a vague reason: passing through, looking for work on the road, or just a room.\n\nLet me write a reply that feels like Pell: economical, wary but not rude. He might take in the room while he speaks. I'll keep it short. I can answer the innkeeper and maybe nod to the others without inviting much conversation.\n\nI should only speak for Pell and not decide what the others do. Also, the message is what Pell does/says, typed as at the table. I can include a small description of his manner. No need for rolls.\n\nSo: \"Three,\" he says. \"I'll pay my own.\" Then to the innkeeper maybe: \"A bed and a meal, if there's both.\" And when asked what brings him: \"Passing west, looking for work.\" Something like that.\n\nKeep it natural. Pell wouldn't say \"I'm a thief.\" He'd say something about work on the road, perhaps. Let me draft.\n\nAlso, I want to establish that he's watching the two strangers without staring. A small detail for the GM's narration.",
+            "notRelayed": true
+          }
+        ],
+        "left": null,
+        "after": [],
+        "words": 88,
+        "private": []
+      }
+    ],
+    "counts": {
+      "strayPresses": 0,
+      "swallowed": 0,
+      "proseAtCard": 0,
+      "questions": 0,
+      "autoCards": 0,
+      "relayFallbacks": 0
+    },
+    "campaign": {
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "c3aa84f3-8efa-4c62-8da4-14a91b727646",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "hero",
+          "heroId": "a847fb62-c566-58e7-ab7b-27f9629e0288",
+          "name": "Bram Halloway",
+          "drafted": "clean",
+          "reviewReplaced": true,
+          "hp": 44,
+          "ac": 18
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard, common room",
+          "actors": 3,
+          "droppedPcActors": [
+            "Sefa Marrin",
+            "Pell Dunmore"
+          ],
+          "questions": [],
+          "startMinutes": 1140
+        },
+        {
+          "step": "companions",
+          "companions": {
+            "sefa": {
+              "id": "2fd41108-f779-4955-96d6-058c52c85584",
+              "items": 7
+            },
+            "pell": {
+              "id": "5fe4d3f6-b857-4b0f-938e-5109819dcaa3",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ],
+      "prep": {
+        "frozen": false,
+        "pureSimulation": true,
+        "hasLayer": false,
+        "chars": 0,
+        "layerSha256": null,
+        "layerFile": null,
+        "preparedAt": null,
+        "preparedBy": null,
+        "snapshotSha256": "1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a",
+        "threads": 0
+      }
+    }
+  },
+  "stopped": null,
+  "refusals": 0,
+  "waited429": 0
+}
