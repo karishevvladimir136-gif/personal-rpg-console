@@ -637,7 +637,6 @@ export function verdicts(summaries, p0) {
 
 // ---- transcripts, the freeze, the dry run ------------------------------------------------------------------------------------
 
-const quoted = (text) => String(text).replace(/\r\n/g, "\n").trim().split("\n").map((line) => (line.trim() ? `> ${line}` : ">")).join("\n");
 export function transcriptMarkdown(seat, pack) {
   const lines = [`# ${seat.key} — ${label(seat.family)}, the P1 material (T2: ${seat.t2})`, "",
     `Ended: ${seat.notStarted ? `not started (${seat.notStarted})` : seat.interrupted ? `interrupted (${seat.interrupted})` : `${seat.ended?.reason ?? "–"}${seat.ended?.at ? ` at turn ${seat.ended.at}` : ""}`}.`, "",
