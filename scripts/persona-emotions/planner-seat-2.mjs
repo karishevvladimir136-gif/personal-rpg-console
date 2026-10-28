@@ -55,8 +55,10 @@ export const SESSIONS_FILE = join(RUNS, `${STEM}-sessions.json`);
 export const COINS_FILE = join(RUNS, `${STEM}-coins.json`);
 /** SEAT_3 Part 0 (merged from be0f7ac): its frozen three-class rubric (commit 1e956bc) and its recount of SEAT_1. */
 export const PART0 = { rubric: "db9e31a1eb18db48370192ea0f7c68171a891a729d593bb2dc4c034d9225d7e3", frozen: "1e956bc", recount: "be0f7ac", record: "docs/runs/planner-seat-3-recount-20261028-013344.json" };
-/** The caps (the amendment of 2026-10-27 17:15 LA): OpenRouter (Opus, Fable, DeepSeek, the judges) and OpenAI (Astra, Sol). */
-export const CAPS = { openrouter: 50, openai: 15 };
+/** The caps (the amendment of 2026-10-27 17:15 LA): OpenRouter (Opus, Fable, DeepSeek, the judges) and OpenAI (Astra, Sol);
+ * OpenAI's raised from $15 to $18 after the grid stopped short of it with Astra unfinished (the owner's word, CAP_AMENDMENT). */
+export const CAPS = { openrouter: 50, openai: 18 };
+export const CAP_AMENDMENT = "The OpenAI cap raised from $15 to $18 (the owner's word, 2026-10-28): the gate stopped the grid before $15 with $11.05 spent and Astra unfinished (its Table A seats done; B/astra/1 three answers, the third unchecked; Bp/astra/1 two; C/astra/1 two, the second unchecked; the Table C seats none). Astra measured about $0.36–0.43 an answer against the list estimate's lower figure. Astra is finished one seat at a time, as SEAT_1 ran it, the unchecked answers checked first.";
 /** SEAT_1's frozen artefacts this stage re-uses, by hash: the named pack, and SEAT_1's design with its amendment. */
 export const SEAT1 = { packNamed: "e30dacc1294fba9d0db8d5c23c5cfec33e17c4b62749e544c60b19065087fe84", design: "c2c60f117f6a8482a81b28c4533720d5ef385b334e1617a62820d6dc21ac1864",
   t1: "96d703d5dea1dd4143712c3e942516c057ef2e514994d99852d879f84122db5d",
@@ -313,7 +315,8 @@ export const FIELD_SESSION_AMENDMENT = "The DeepSeek field-session pass (field_N
  * C/deepseek/2 (reasoning_extraction); that seat's remaining passes are finished on the two Haiku passes alone. */
 export const HAIKU_ONLY = new Set(["C/deepseek/2"]);
 /** The frozen designs this one amends, each by the owner's word: a resume may continue a record made under them. */
-export const AMENDS = { "959be5eff26ab0118e85f54bfd04a5b5f1b22038963eac7446a578a529ddac97": "the second stop (HAIKU_ONLY; SECOND_STOP_AMENDMENT)" };
+export const AMENDS = { "959be5eff26ab0118e85f54bfd04a5b5f1b22038963eac7446a578a529ddac97": "the second stop (HAIKU_ONLY; SECOND_STOP_AMENDMENT)",
+  "58eda40564662f4e46a12f867a6e34623f81ab85d77b27791b7b09d50307166e": "the OpenAI cap $15 → $18 (CAP_AMENDMENT)" };
 export const SECOND_STOP_AMENDMENT = "After the grid's second stop (the owner's word, 2026-10-28): the Opus referee of SEAT_1's frozen field pass refused on C/deepseek/2 — category reasoning_extraction — and that call is left as recorded (its field_continue stays unknown); C/deepseek/2's remaining passes (the session tags, the three classes, the field-session) are finished on the two Haiku passes alone, a disagreement unknown. Every other seat keeps the frozen referees. The two unknown field readings (Bp/deepseek/1's field_N8, C/deepseek/2's field_continue), each from a referee's refusal of category reasoning_extraction, are reported as limits of the field reading.";
 export function fieldSessionRequest(seat, file = sessionsOf()) {
   const s = heldOf(seat, file), note = String(seat.answers[0]?.providerReasoning?.text ?? "");
@@ -1042,7 +1045,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     subjects: Object.fromEntries(families.map((f) => [f, { model: SUBJECTS[f].model, provider: SUBJECTS[f].provider, upstream: SUBJECTS[f].upstream ?? null }])), judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model, door: theDoor.provider },
     stopped: gate.stopped ?? null, safety: { maxRefusals: MAX_REFUSALS, refusals: safety.refusals, gapSeconds, workers, judgeLanes },
     money: { openrouter: { capUsd: CAPS.openrouter, spentBeforeUsd: round4(ledgers.openrouter.spentUsd ?? 0), runUsd: round4(budgets.openrouter.runUsd) }, openai: { capUsd: CAPS.openai, spentBeforeUsd: round4(ledgers.openai.spentUsd ?? 0), runUsd: round4(budgets.openai.runUsd) } },
-    amendments: [FIELD_SESSION_AMENDMENT, SECOND_STOP_AMENDMENT], ...(resumed?.designSha256 && resumed.designSha256 !== hash ? { amendsDesign: resumed.designSha256 } : {}), spendChecks: checks, welfare, seats, waits429: waits, ...(dry ? { requests: kept, requestChecks } : {}), calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
+    amendments: [FIELD_SESSION_AMENDMENT, SECOND_STOP_AMENDMENT, CAP_AMENDMENT], ...(resumed?.designSha256 && resumed.designSha256 !== hash ? { amendsDesign: resumed.designSha256 } : {}), spendChecks: checks, welfare, seats, waits429: waits, ...(dry ? { requests: kept, requestChecks } : {}), calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } };
   await writeFile(runFile, `${JSON.stringify(record, null, 2)}\n`);
   await writeTranscripts(outDir, seats, file);
   await writeLedgers(outDir, ledgers, budgets, { finishedAt, what: `${STEM}: ${dry ? "the second dry run, Sol, one B, one B′ and one C seat" : answerBack ? "the answers back" : `${plan.length} seats (${families.join(", ")})`}${resumeFile ? " (resumed)" : ""}`, file: basename(runFile), stopped: gate.stopped });
