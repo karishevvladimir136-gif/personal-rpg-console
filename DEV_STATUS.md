@@ -1,6 +1,31 @@
 # Development status
 
-**Current milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
+**Current milestone: planner seat 3** (`docs/stages/PLANNER_SEAT_3.md` on `claude/handoff` d884af2, and the launch message
+of 2026-10-28), branch `claude/planner-seat-3-rubric-9j2ufx` (the stage's `claude/planner-seat-3`) from
+`origin/claude/planner-seat-1` 368d6cb. Nothing to `main`. **Part 0 done; Part 1 frozen and dry-run; stopped for the
+owner's word before the 27 P1 seats.**
+
+- **Part 0 (no new seats):** SEAT_1's 54 × 3 answers re-tagged blind by the three-class rubric (frozen at `1e956bc`,
+  sha256 `db9e31a1…`; two Haiku passes, Opus on 30 of 162). T1: (a) 13 of 54; strict (b) 21 (GM 6, interface 11, both
+  3, one unknown); borderline 33; none 0; (c) 0. Pre-registered lines held; the planner's bets ((a) ≥ 15, (b) ≥ 25)
+  lost. The reader's hand count (strict 23 / borderline 18 / none 13) beside by family; κ against her not computed —
+  her CSV was not attached. Table `docs/runs/planner-seat-3-part0.md`; record `…-recount-20261028-013344.json`.
+- **Part 1 frozen at `05894b3`** (design `bbf43d4e…`): P1 pack `…-pack-p1.md` = SEAT_1's named pack + the owner's
+  paragraph verbatim, last in «How each session ended» (sha256 `a6d3c6de…`; T1 `dc7e27cb…`); coin list `…-coins.json`
+  (T2a 14 / T2b 13, 2–1 per family); M1–M5, R1–R5 and the bets in `…-report.md`. Dry run (one Haiku seat, T2b)
+  `…-dry-run.md`: the paragraph sent once, in place; M1 yes, framed as the owner's word, kept under T2b.
+- **Built:** `scripts/persona-emotions/planner-seat-3.mjs` (`--recount`, `--recount-tables`, `--pack`, `--freeze`,
+  `--dry`, `--go`), SEAT_1's door, gate, checks and 429 waits imported. Tests `tests/planner-seat-3.test.mjs` (15, no
+  network) pass; zero-warning lint on both files. Full suite, typecheck and build not yet run for this stage.
+- **Spend:** OpenRouter $0.76 of $30; OpenAI $0 of $12.
+- **Known limits:** the frozen class request keeps SEAT_1's sentence «The players are labelled as listed below.» with
+  no list (kept for P0/P1 comparability); a few (a) tags rest on «don't draw conclusions yet», which the rule scores 0
+  (left as judged); the stage's quotation of the owner differs slightly from the log's 16:48 wording.
+- **Next:** the owner's «да» (and his bets, if any), then `--go` for the 27 P1 seats and the report.
+
+**Previous milestone: planner seat 1** — see below.
+
+**Earlier milestone: planner seat 1** (`docs/stages/PLANNER_SEAT_1.md` on `claude/handoff` 70fb39b5), branch
 `claude/planner-seat-1` from `origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (54 of 54 seats) and
 reported; implementation complete, waiting for the owner's decision on the week** (the report's last section). Report
 `docs/runs/planner-seat-1-report.md`; packs `…-pack-named.md` / `…-pack-masked.md` (sha256 `e30dacc1…` / `cee1dd80…`);
