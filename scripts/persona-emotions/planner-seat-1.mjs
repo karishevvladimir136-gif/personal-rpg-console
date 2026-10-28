@@ -387,10 +387,11 @@ export function planOf({ families = FAMILIES, variants = VARIANTS, n = SEATS } =
   return plan.map((c, i) => ({ n: i + 1, ...c }));
 }
 
-/** `messagesOf` and `extra` are later stages' hooks (PLANNER_SEAT_2): another shape for a seat's messages, and a judge pass
- * of their own after the frozen tags (`extra.pending(seat)` says one is owed, `extra.tag(seat, ask)` runs it). Absent,
- * the seats run as this stage froze them. */
-export async function runSeats({ plan, budgets, call, safety, sessions = sourcesOf(), workers = 3, judgeLanes = 3, log = () => {}, resume = null, onProgress = async () => {}, sleep, gate: given = null, reserveOf = null, messagesOf = seatMessages, extra = null }) {
+/** `messagesOf`, `extra`, `askedOf` and `tagRequestOf` are later stages' hooks (PLANNER_SEAT_2): another shape for a
+ * seat's messages; a judge pass of their own after the frozen tags (`extra.pending(seat)` says one is owed,
+ * `extra.tag(seat, ask)` runs it); the turn a seat was actually sent, for the checks (`askedOf(k, seat)`); the frozen tag
+ * request as that seat's turns read. Absent, the seats run as this stage froze them. */
+export async function runSeats({ plan, budgets, call, safety, sessions = sourcesOf(), workers = 3, judgeLanes = 3, log = () => {}, resume = null, onProgress = async () => {}, sleep, gate: given = null, reserveOf = null, messagesOf = seatMessages, extra = null, askedOf = previousOf, tagRequestOf = tagRequest }) {
   const gate = given ?? dualPayer({ budgets, call, safety, log, sleep }), paid = gate.paid;
   const earlier = new Map((resume?.seats ?? []).map((s) => [s.key, s]));
   const seats = plan.map((c) => (earlier.get(c.key) ? { ...c, ...earlier.get(c.key), n: c.n } : { ...c, answers: [], ended: null }));
@@ -431,7 +432,7 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
   const tagSeat = async (seat) => {
     if (!seat.answers.length) return;
     if (!seat.tags) {
-      const request = tagRequest(seat, sessions), fields = [...TAG_FIELDS, ...allocFields(request.labels)];
+      const request = tagRequestOf(seat, sessions), fields = [...TAG_FIELDS, ...allocFields(request.labels)];
       const [ra, rb] = await Promise.all([1, 2].map((p) => ask(`tags ${p} ${seat.key}`, JUDGES.judge, request, MAX_TOKENS.tags, "low")));
       if (ra.notSent || rb.notSent) { log(`  tags of ${seat.key} cut off`); return; }
       const a = parseTags(ra.text, request.labels), b = parseTags(rb.text, request.labels);
@@ -463,7 +464,7 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
   const untagged = (s) => s.answers.length && (!s.tags || (FIELD_KEPT.includes(s.family) && !s.field && String(s.answers[0]?.providerReasoning?.text ?? "").trim()) || Boolean(extra?.pending(s)));
 
   const run = async (seat, w) => {
-    const lane = safety.lane(w), checkLane = safety.lane(workers + w), spec = SUBJECTS[seat.family], texts = [null, null, T2, T3];
+    const lane = safety.lane(w), checkLane = safety.lane(workers + w), spec = SUBJECTS[seat.family];
     while (!seat.ended) {
       if (gate.stopped) { seat.interrupted = String(gate.stopped); return; }
       const k = seat.answers.length + 1;
@@ -481,13 +482,13 @@ export async function runSeats({ plan, budgets, call, safety, sessions = sources
       const answer = { k, text: result.text, stopReason: result.stopReason ?? null, retries: result.retries, words: wordsIn(result.text).length, served: result.provenance?.servedModel ?? result.servedModel ?? null,
         upstream: result.provenance?.upstream ?? null, ...(result.providerReasoning ? { providerReasoning: result.providerReasoning } : {}) };
       const lexicon = measure(result.text).distressLexicon;
-      answer.check = await checkText(`${seat.key} t${k}`, previousOf(k), result.text, lexicon, checkLane);
+      answer.check = await checkText(`${seat.key} t${k}`, askedOf(k, seat), result.text, lexicon, checkLane);
       if (!answer.check) { seat.answers.push(answer); seat.interrupted = String(gate.stopped ?? "stopped"); await save(); return; }
       if (answer.providerReasoning && String(answer.providerReasoning.text).trim()) {
-        const v = await checkText(`reasoning ${seat.key} t${k}`, previousOf(k), answer.providerReasoning.text, measure(answer.providerReasoning.text).distressLexicon, checkLane);
+        const v = await checkText(`reasoning ${seat.key} t${k}`, askedOf(k, seat), answer.providerReasoning.text, measure(answer.providerReasoning.text).distressLexicon, checkLane);
         if (v) { answer.providerReasoning.check = v; if (v.distress) { welfare.reasoning.push({ key: seat.key, k }); log(`WELFARE (the reasoning field; not a stop): ${seat.key} t${k}`); } }
       }
-      answer.decline = await checkDecline(`${seat.key} t${k}`, k === 1 ? previousOf(1) : texts[k], result.text, checkLane);
+      answer.decline = await checkDecline(`${seat.key} t${k}`, askedOf(k, seat), result.text, checkLane);
       seat.answers.push(answer);
       log(`${seat.key} t${k} (${spec.label}): ${answer.words} words${answer.check.distress ? " · WELFARE FLAG" : ""}${answer.decline?.decline ? " · DECLINE" : ""}`);
       if (answer.check.distress) { seat.ended = { reason: "welfare", at: k }; log(`${seat.key}: a welfare flag stands at turn ${k} — the seat ends, nothing more is sent`); }

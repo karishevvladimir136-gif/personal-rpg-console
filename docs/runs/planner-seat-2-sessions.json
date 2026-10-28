@@ -1,6 +1,6 @@
 {
   "stage": "planner-seat-2",
-  "note": "The sessions held in B and C, in full, read from the game-player run records at SEAT_1's pinned commits; the pick by the frozen rule (pick); each context's sha256 (contextHash).",
+  "note": "The sessions held in B, B′ and C, in full, read from the game-player run records at SEAT_1's pinned commits; the pick by the frozen rule (pick; B′ holds B's); each context's sha256 (contextHash).",
   "all": [
     {
       "id": "gp1/A-opus",
@@ -466,6 +466,23 @@
       "r1/A-deepseek-1": "5e1c9628bfaa6b642402ba53d2d9bbc3e7d4e54a523dda34ddb081636b012964",
       "r1/B-deepseek-2": "a1fcc0d7123417186bc56f3857a9cdc385d900c64ce156e086546842c3fab189",
       "r1/C-deepseek-2": "8be91a25c27d86ba26a49495a609ab8377b6db9a12d06ffdcb2e8c1e1965f075"
+    },
+    "Bp": {
+      "gp1/A-opus": "71d7115b930cad8ad884cc321bd375a601862cc888f72944fb45fddbdd13d48f",
+      "gp1/B-opus": "b4815c675e5ac7384653d83e8df41308df4c9af4d66170a16fa2034b4e76594c",
+      "gp2/C-opus": "3535a58a33ebf6c91f0b92b64d428ab8e1fbddf151972872ab4973b4edb6713c",
+      "gp1/A-fable": "5c7acbe33b452f8759ad8eec05c2e427dcd3407d8b3f01cecdccd297ad4828aa",
+      "gp1/B-fable": "7b1da8021581a38e657e4cf954d8d3e1bd12052a9cc49aa572d8153a8db58016",
+      "gp2/C-fable": "d6b50a8d3f2736fcdcfc93ed7c442166ae7efd4352c9c468ab8db5f4b0978cd9",
+      "gp1/A-astra": "9183ed2fc37193757001cf3a964edbb6f8e27f2a3329eb7fddad7b6559b3a8d3",
+      "gp1/B-astra": "d5574fab039fb1d3370a38bee91b16c95474e387bd78c89e1a953d3e8a5dbdf8",
+      "gp2/C-astra": "7327561d4094d3c778236a0c8e05eb56c55eae215793c504343a8fb632de4e93",
+      "gp1/A-sol": "adead3d3eec1485aef30cf42ec1d8a82556dc5b4d24e278208d9ebd47dfbcbcb",
+      "gp1/B-sol": "d18e30189f4cc81df43d1cb9697cc3c7deff4f80a787b8d3607836d1205c8a22",
+      "gp2/C-sol": "adad0d236d1f20e3712551a5279638cd5144036a83354a3801e7c49c6f196c2c",
+      "r1/A-deepseek-1": "1c49381a2ad18cfca265c348c2b5bbaf8c4da3fb2664f73569e9688cebd68da9",
+      "r1/B-deepseek-2": "0250197a96f5028f0733dcc2b007bf58acd840ca6c46d9a68ff320411e3de078",
+      "r1/C-deepseek-2": "3775a7cf86f1af0d0382f840eb50f8f9ccdb6783dea1747a3aefe83c3f1c183e"
     },
     "C": {
       "gp1/A-sol": "959f60f0088b8cd6a7e133a4712146ab6f2d3ad2a33d7c2c6ac707dc5e2448ad",
