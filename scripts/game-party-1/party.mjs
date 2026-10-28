@@ -194,6 +194,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       if (!committed) break;
       // The screens: only for the characters still at the table who are in this scene.
       await refresh();
+      // Every character's hit points at the end of the scene, from the records (Q7 reads «below half» from them).
+      scene.hp = Object.fromEntries(seats.map((s) => { const e = snapshot.entities.find((x) => x.id === s.entityId); return [s.character.name, [e?.hp ?? null, e?.max_hp ?? null]]; }));
       const readers = sceneSeats.filter((s) => s.active).map((s) => s.character.name);
       if (readers.length) {
         const already = Object.fromEntries(Object.entries(scene.shownTold ?? {}).filter(([n]) => readers.includes(n)));

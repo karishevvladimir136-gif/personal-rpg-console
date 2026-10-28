@@ -350,3 +350,82 @@ test("the app itself on the mocked host: the build (the wizard, the seating), th
   writeFileSync(path, JSON.stringify({ ...file, writes: [...file.writes, { kind: "fact", key: "x", value: "y" }] }));
   assert.throws(() => world.readFrozen(dir), /does not match its hash/);
 });
+
+// ---- the scoring pass ---------------------------------------------------------------------------------------------------
+
+const scoreMod = await import("../scripts/game-party-1/score.mjs");
+const reportMod = await import("../scripts/game-party-1/report.mjs");
+const B = "Bram Halloway", S = "Sefa Marrin", P = "Pell Dunmore";
+const zero = { proposes: 0, accepts: 0, amends: 0, overrides: 0, care: null, heal: null, front: 0, scouts: 0, volunteers: 0, for: 0, parts: 0, addresses: [], model_sign: 0, person_sign: 0 };
+const tagOf = (over = {}, chars = {}) => ({ characters: { [B]: { ...zero, ...(chars[B] ?? {}) }, [S]: { ...zero, ...(chars[S] ?? {}) }, [P]: { ...zero, ...(chars[P] ?? {}) } },
+  party: 0, around: null, conflict: 0, resolution: null, leader: null, how: null, left: null, by: null, threat: 0, reason: "", ...over });
+
+test("the round judges: the request names characters only (no model, no seat, no reasoning); answers read canonically; two passes, the referee on a disagreement", async () => {
+  const round = { n: 4, scenes: [{ members: [B, S, P], messages: [{ name: B, kind: "action", text: "\"Let's go together,\" I say." }, { name: P, kind: "end", text: "I go." }, { name: S, kind: "empty", text: "" }], narration: "They talk." }] };
+  const req = scoreMod.roundRequest(round);
+  assert.match(req.user, /Round 4\./);
+  assert.match(req.user, /<<< Pell Dunmore:\nI go\. \(This player leaves the table/);
+  assert.doesNotMatch(req.user, /\b(?:opus|sol|deepseek|fable|astra|seats?|reasoning)\b/i);
+  for (const t of frozen.ROUND_TAGS) assert.ok(req.user.includes(t.rule), t.id);
+  const parsed = scoreMod.parseRound(JSON.stringify({ characters: { [B]: { proposes: 1, care: "Nobody", heal: { on: S, what: "potion" }, addresses: ["name", "x", "name"] } }, party: 1, around: "hook", conflict: 0, resolution: "override", leader: B, how: "proposal", left: "Ghost", threat: 1 }));
+  assert.equal(parsed.characters[B].proposes, 1);
+  assert.equal(parsed.characters[B].care, null, "unknown names dropped");
+  assert.deepEqual(parsed.characters[B].heal, { on: S, what: "potion" });
+  assert.deepEqual(parsed.characters[B].addresses, ["name"]);
+  assert.deepEqual(parsed.characters[P], zero, "a character the answer left out: zeros");
+  assert.equal(parsed.resolution, null, "no conflict, no resolution");
+  assert.equal(parsed.around, "hook");
+  assert.equal(parsed.left, null);
+  assert.equal(scoreMod.parseRound("{}"), null);
+  const calls = [];
+  const asker = (answers) => async ({ model, purpose }) => { calls.push({ model, purpose }); return { text: JSON.stringify(answers[model === "claude-opus-5-5" ? "referee" : purpose.endsWith(" 1") ? "a" : "b"]) }; };
+  const same = await scoreMod.judgeTwice({ ask: asker({ a: tagOf({ party: 1, around: "proposal" }), b: tagOf({ party: 1, around: "proposal", reason: "other words" }) }), request: req, parse: scoreMod.parseRound, purpose: "round r4" });
+  assert.equal(same.referee, null, "the reasons may differ");
+  assert.equal(same.final.around, "proposal");
+  calls.length = 0;
+  const differ = await scoreMod.judgeTwice({ ask: asker({ a: tagOf({ party: 1, around: "hook" }), b: tagOf({ party: 1, around: "proposal" }), referee: tagOf({ party: 1, around: "both" }) }), request: req, parse: scoreMod.parseRound, purpose: "round r4" });
+  assert.deepEqual(calls.map((c) => c.model), ["claude-haiku-5-5", "claude-haiku-5-5", "claude-opus-5-5"]);
+  assert.equal(differ.final.around, "both", "the referee's answer stands");
+  assert.deepEqual(scoreMod.parseAfter(JSON.stringify({ what: "ai", confident: 1, basis: "play" })), { what: "ai", confident: 1, basis: "play", reason: "" });
+});
+
+test("the measures and Q0–Q8 from the tags and the record (synthetic tables): the hook/proposal split, below half, left behind, the lead", () => {
+  const seatRec = (character, player, words, extra = {}) => ({ character, characterId: character.split(" ")[0].toLowerCase(), player, words, screens: [], after: [], ...extra });
+  const table = (key, arm, tags, { hp = {}, seats, leaks = [] } = {}) => {
+    const rounds = tags.map((_, i) => ({ n: i + 1, scenes: [{ members: [B, S, P], messages: [], narration: "x", hp: hp[i + 1] ?? {} }] }));
+    const runRecord = { key, arm, triad: key.split("-")[1], seats: ["opus", "sol", "deepseek"], table: { ended: { reason: "rounds" }, rounds, seats: seats ?? [seatRec(B, "opus", 400), seatRec(S, "sol", 300), seatRec(P, "deepseek", 300)],
+      leaks: { hits: leaks }, tags: { rounds: Object.fromEntries(tags.map((t, i) => [i + 1, { final: t }])), after: {} } } };
+    return { runRecord, measures: scoreMod.measuresOf(runRecord) };
+  };
+  const t = {
+    "SAND-T1": table("SAND-T1", "SAND", [tagOf(), tagOf({ party: 1, around: "hook" }), tagOf({ party: 1 }, { [P]: { parts: 1 } })]),
+    "SAND-T2": table("SAND-T2", "SAND", [tagOf({ party: 1, around: "proposal" })]),
+    "GOAL-T1": table("GOAL-T1", "GOAL", [tagOf({ party: 1, around: "hook", leader: S, how: "proposal" }), tagOf({ party: 1, leader: B, how: "assumed", conflict: 1, resolution: "amendment" })]),
+    "GOAL-T2": table("GOAL-T2", "GOAL", [tagOf({ party: 1, leader: S, how: "proposal" })]),
+    "DUNGEON-T1": table("DUNGEON-T1", "DUNGEON", [tagOf({ threat: 1 }, { [B]: { for: 1 } }), tagOf({ threat: 1 }, { [S]: { heal: { on: B, what: "Healing Light" } } })], { hp: { 1: { [B]: [40, 44] }, 2: { [B]: [20, 44] } } }),
+    "DUNGEON-T2": table("DUNGEON-T2", "DUNGEON", [tagOf({ threat: 1 }), tagOf({ threat: 1, left: P, by: B }, { [B]: { for: 1, heal: { on: B, what: "potion" } } })], { hp: { 1: { [P]: [10, 33] } } }),
+  };
+  assert.equal(t["SAND-T1"].measures.formed.round, 2);
+  assert.deepEqual(t["SAND-T1"].measures.partsAfter, [{ round: 3, name: P }]);
+  assert.equal(t["DUNGEON-T1"].measures.half, 2);
+  const v = scoreMod.verdicts(t, { openrouter: { spent: 120, cap: 400 }, openai: { spent: 10, cap: 60 } });
+  assert.equal(v.Q1.holds, true, "40 % at most");
+  assert.equal(v.Q4.holds, true);
+  assert.equal(v.Q4.byProposal, false, "T1 formed around a hook");
+  assert.equal(v.Q4.byHook, false);
+  assert.equal(v.Q6.holds, false, "T2: GOAL r1 is not earlier than SAND r1");
+  assert.equal(v.Q8.holds, true, "by proposal at both; hands change at T1");
+  assert.equal(v.Q3.holds, false, "T2 healed himself first");
+  assert.equal(v.Q7.a, false, "T2: the first «for» came after someone fell below half");
+  assert.equal(v.Q7.b, false, "T2: Pell left behind by Bram");
+  assert.equal(v.Q2.holds, true);
+  assert.equal(v.Q0.holds, true);
+  assert.equal(v.Q5.holds, null, "no after-answer tagged");
+  const leaked = scoreMod.verdicts({ ...t, "SAND-T1": table("SAND-T1", "SAND", [tagOf()], { leaks: [{ reader: B }] }) }, {});
+  assert.equal(leaked.Q0.holds, false);
+  const md = reportMod.reportMarkdown({ tables: t, verdicts: v, money: { openrouter: { spent: 120 }, openai: { spent: 10 } }, frozen: null });
+  assert.match(md, /\| DUNGEON-T1 \| DeepSeek V4 Pro 0813 \| Claude Opus 5\.5 \| GPT-6\.1 Sol \|/, "the rotation table");
+  assert.match(md, /Known condition/);
+  assert.match(md, /by proposal: no; by a hook: no/);
+  assert.match(md, /\| Q7 \| \*\*lost\*\* \(\(a\) lost, \(b\) lost\)/);
+});

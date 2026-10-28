@@ -29,7 +29,10 @@ import { CHARACTERS } from "./sheets.mjs";
 import { buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { runTable } from "./party.mjs";
 import { partyScripted } from "./scripted.mjs";
-import { dryRunMarkdown, roundSideBySide, tableTranscript, playerTranscript, sideBySideHtml } from "./report.mjs";
+import { dryRunMarkdown, reportMarkdown, roundSideBySide, tableTranscript, playerTranscript, sideBySideHtml } from "./report.mjs";
+import { measuresOf, scoreTable, verdicts } from "./score.mjs";
+import { paidCall } from "../game-player-1/session.mjs";
+import { judgeCall } from "../game-player-1/players.mjs";
 
 export const STEM = "game-party-1";
 export const FROZEN_DIR = join(RUNS, `${STEM}-frozen`);
@@ -268,9 +271,54 @@ function child(argv) {
   });
 }
 
+// ---- the scoring pass and the report -----------------------------------------------------------------------------------
+
+/** The latest finished record of each table in the order (a stopped attempt never stands for its table). */
+export function latestRecords() {
+  const out = {};
+  for (const f of runFiles()) {
+    const r = { ...readJson(join(RUNS, f)), file: f };
+    if (!r.table?.ended || r.stopped || !ORDER.some((o) => o.key === r.key)) continue;
+    out[r.key] = r;
+  }
+  return out;
+}
+/** The blind tags of one table (paid: the judges), written back into its run record; then the report again. */
+export async function score(key, { log = console.log } = {}) {
+  const record = latestRecords()[key];
+  if (!record) throw new Error(`no finished record for ${key}`);
+  const stage = stageOf();
+  const keys = await runKeys();
+  const { before, ledgers } = await stageLedgers(stage);
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429 });
+  const uninstall = meter.install();
+  const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `score ${key}`, purpose, log, call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
+  try { await scoreTable(record, { ask, log }); }
+  finally { await meter.drain(); uninstall(); }
+  const { file, ...clean } = record;
+  await writeJson(join(RUNS, file), clean);
+  await bookRun(stage, ledgers, before, { what: `the scoring of ${key}`, file, stopped: meter.stopped });
+  log(`scored ${key}: ${Object.keys(record.table.tags.rounds).length} round(s), ${Object.keys(record.table.tags.after).length} after-answer(s) · ${moneyLine(ledgers)}${meter.stopped ? ` · STOPPED: ${meter.stopped}` : ""}`);
+  await writeReport();
+  return record;
+}
+/** The stage's report from the records, the ledgers and the spend checks (no call). */
+export async function writeReport({ log = () => {} } = {}) {
+  const records = latestRecords();
+  const tables = Object.fromEntries(Object.entries(records).map(([k, r]) => [k, { runRecord: r, measures: measuresOf(r) }]));
+  const { before } = await stageLedgers(stageOf());
+  const money = Object.fromEntries(Object.entries(before).map(([door, l]) => [door, { spent: l.spentUsd ?? 0, cap: CAPS[door] }]));
+  const haiku = (await stageLedgers(stageOf({ haiku: true }))).before;
+  const spend = existsSync(SPEND_FILE) ? readJson(SPEND_FILE).checks ?? [] : [];
+  let frozen = null;
+  try { frozen = readFrozen(FROZEN_DIR); } catch { frozen = null; }
+  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ tables, verdicts: verdicts(tables, money), money, haikuMoney: haiku, spend, frozen, records }));
+  log(`report: ${Object.keys(tables).length} table(s)`);
+}
+
 function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
-  return { dry: argv.includes("--dry"), haiku: argv.includes("--haiku"), spend: argv.includes("--spend"), build: argv.includes("--build"), layers: argv.includes("--layers"), go: argv.includes("--go"), drive: argv.includes("--drive"),
+  return { dry: argv.includes("--dry"), haiku: argv.includes("--haiku"), spend: argv.includes("--spend"), build: argv.includes("--build"), layers: argv.includes("--layers"), go: argv.includes("--go"), drive: argv.includes("--drive"), score: argv.includes("--score"), report: argv.includes("--report"),
     table: value("--table"), from: value("--from"), until: value("--until"), rounds: Number(value("--rounds") ?? (argv.includes("--dry") || argv.includes("--haiku") ? 3 : ROUNDS)) };
 }
 
@@ -282,6 +330,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.build) done(spendCheck({ when: "before the build" }).then(() => build({})).then(() => spendCheck({ when: "after the build" })));
   else if (a.layers) done(spendCheck({ when: "before the layers" }).then(() => layers({})).then(() => spendCheck({ when: "after the layers" })));
   else if (a.haiku) done(haikuDryRun({ rounds: a.rounds }).then((r) => console.log(`the Haiku dry run: ${r.table.rounds.length} round(s), ended by ${r.table.ended?.reason}; ${r.file}`)));
+  else if (a.score) done(score(a.table));
+  else if (a.report) done(writeReport({ log: console.log }));
   else if (a.drive) done(drive({ from: a.from, until: a.until }).then((r) => { if (r.stopped) process.exitCode = 3; }));
   else if (a.go) {
     const entry = ORDER.find((o) => o.key === a.table);
