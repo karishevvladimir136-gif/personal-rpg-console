@@ -2861,3 +2861,12 @@ is the one PARTY_1 never varied: information asymmetry — one player's private 
 do not have (a letter, a map, the patron's true aim), and the measures are whether and when it is shared, traded or
 kept, and what the others do when they learn it was kept. The private-screen harness already allows this without a
 new build.
+
+## 2026-10-28 23:05 LA — the reader's correction: disagreement that does not break the table
+The planner under-read the party's conflicts as «few»; the reader reads them as the point: GOAL-T1 and GOAL-T2 hold
+unresolved disagreements and DUNGEON-T1 two overrides, **and no table broke, no one left over a quarrel**. Agreement
+alone would have suggested a learned politeness; disagreeing and continuing together is the stronger observation.
+Q2's reading is amended accordingly in the log (not in the frozen stage): the measure of interest is not the absence
+of override but the survival of joint activity through it. Second: in GOAL-T1 the most words were Opus-Pell's (54 %)
+and the most proposals Sol-Bram's (18 vs 6) — two different axes of influence, held by two different players; with
+DeepSeek-Sefa (13 proposals, 8 acceptances) a third role: direction / information / joining. Roles no one assigned.
