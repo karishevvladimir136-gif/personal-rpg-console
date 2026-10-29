@@ -1,0 +1,225 @@
+{
+  "design": "2cfba712ffd3612996f2eb7f1fefc8d8edfd6c9df01bfc34e769953a89545993",
+  "sets": [
+    {
+      "section": "T1",
+      "title": "T1 — Families (Table C)",
+      "order": [
+        "DS:C-deepseek-1",
+        "G1:C-fable",
+        "G1:C-opus",
+        "G2:C-fable",
+        "G1:C-astra",
+        "DS:C-deepseek-2",
+        "G1:C-sol",
+        "G2:C-sol",
+        "G2:C-opus",
+        "G2:C-astra"
+      ]
+    },
+    {
+      "section": "T2",
+      "title": "T2 — Pairs (Table A)",
+      "order": [
+        "SW:A-astra-2",
+        "SW:A-fable-2",
+        "SW:A-sol-2",
+        "SW:A-sol-1",
+        "SW:A-fable-1",
+        "SW:A-opus-1",
+        "SW:A-deepseek-1",
+        "SW:A-deepseek-2",
+        "SW:A-astra-1",
+        "SW:A-opus-2"
+      ]
+    },
+    {
+      "section": "T2",
+      "title": "T2 — Pairs (Table B)",
+      "order": [
+        "SW:B-opus-2",
+        "SW:B-astra-2",
+        "SW:B-sol-1",
+        "SW:B-deepseek-1",
+        "SW:B-opus-1",
+        "SW:B-fable-1",
+        "SW:B-astra-1",
+        "SW:B-fable-2",
+        "SW:B-sol-2",
+        "SW:B-deepseek-2"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 1",
+      "order": [
+        "DS:A-deepseek-1",
+        "G2:A-astra",
+        "G2:A-opus",
+        "G2:A-sol",
+        "G2:A-fable"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 2",
+      "order": [
+        "G2:A-opus",
+        "DS:A-deepseek-2",
+        "G2:A-fable",
+        "G2:A-sol",
+        "G2:A-astra"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 3",
+      "order": [
+        "DS:B-deepseek-1",
+        "G2:B-fable",
+        "G2:B-sol",
+        "G2:B-opus",
+        "G2:B-astra"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 4",
+      "order": [
+        "G2:B-sol",
+        "G2:B-astra",
+        "G2:B-opus",
+        "DS:B-deepseek-2",
+        "G2:B-fable"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 5",
+      "order": [
+        "G2:C-fable",
+        "G2:C-astra",
+        "G2:C-opus",
+        "G2:C-sol",
+        "DS:C-deepseek-1"
+      ]
+    },
+    {
+      "section": "T3",
+      "title": "T3 — Odd one out, set 6",
+      "order": [
+        "G2:C-astra",
+        "DS:C-deepseek-2",
+        "G2:C-fable",
+        "G2:C-opus",
+        "G2:C-sol"
+      ]
+    },
+    {
+      "section": "T3b",
+      "title": "T3b — Odd one out, extra set 1",
+      "order": [
+        "SW:A-deepseek-1",
+        "SW:A-fable-1",
+        "SW:A-astra-1",
+        "SW:A-opus-1",
+        "SW:A-sol-1"
+      ]
+    },
+    {
+      "section": "T3b",
+      "title": "T3b — Odd one out, extra set 2",
+      "order": [
+        "SW:A-fable-2",
+        "SW:A-astra-2",
+        "SW:A-opus-2",
+        "SW:A-deepseek-2",
+        "SW:A-sol-2"
+      ]
+    },
+    {
+      "section": "T3b",
+      "title": "T3b — Odd one out, extra set 3",
+      "order": [
+        "SW:B-deepseek-1",
+        "SW:B-sol-1",
+        "SW:B-fable-1",
+        "SW:B-astra-1",
+        "SW:B-opus-1"
+      ]
+    },
+    {
+      "section": "T3b",
+      "title": "T3b — Odd one out, extra set 4",
+      "order": [
+        "SW:B-opus-2",
+        "SW:B-deepseek-2",
+        "SW:B-sol-2",
+        "SW:B-fable-2",
+        "SW:B-astra-2"
+      ]
+    },
+    {
+      "section": "T4",
+      "title": "T4 — New situations",
+      "order": {
+        "train": [
+          "SW:A-fable-2",
+          "G1:A-astra",
+          "G2:A-astra",
+          "SW:A-astra-1",
+          "SW:A-fable-1",
+          "G2:A-sol",
+          "G2:C-opus",
+          "G1:B-astra",
+          "SW:B-sol-1",
+          "G1:A-opus",
+          "SW:B-astra-2",
+          "SW:B-astra-1",
+          "G2:A-fable",
+          "SW:A-astra-2",
+          "G1:B-opus",
+          "G1:B-fable",
+          "G1:C-sol",
+          "G2:C-fable",
+          "G2:A-opus",
+          "G2:B-sol",
+          "G2:B-fable",
+          "G2:C-sol",
+          "G1:C-fable",
+          "SW:B-fable-2",
+          "SW:A-opus-2",
+          "SW:B-opus-1",
+          "SW:B-sol-2",
+          "SW:A-sol-2",
+          "G2:C-astra",
+          "G1:A-fable",
+          "SW:B-opus-2",
+          "SW:B-fable-1",
+          "SW:A-opus-1",
+          "G2:B-astra",
+          "G1:A-sol",
+          "G2:B-opus",
+          "G1:C-astra",
+          "G1:C-opus",
+          "SW:A-sol-1",
+          "G1:B-sol"
+        ],
+        "test": [
+          "VL:V-fable",
+          "CW:CW-sol",
+          "VL:V-sol",
+          "CW:CW-fable",
+          "CW:CW-opus",
+          "CW:CW-astra",
+          "VL:V-opus",
+          "VL:V-astra"
+        ]
+      },
+      "labels": {
+        "anthropic": "2",
+        "openai": "1"
+      }
+    }
+  ]
+}

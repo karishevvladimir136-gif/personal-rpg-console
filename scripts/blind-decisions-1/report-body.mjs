@@ -70,6 +70,24 @@ function bets(scores) {
   return { bd1, bd2, t3, bd3, bd4, held: { BD1: bd1.filter(Boolean).length >= 2, BD2: bd2.filter(Boolean).length >= 2, BD3: bd3.filter(Boolean).length >= 2, BD4: bd4.filter(Boolean).length >= 2 } };
 }
 
+// ---- the density diagnostic (after the run, not pre-registered) -----------------------------------------------------------
+
+const actsPerTurn = (s) => (s.codes ?? []).reduce((n, t) => n + t.acts.length, 0) / (s.turns || 1);
+/** Codes per line by model and setting, and T4 by that one number: the midpoint between the two families' training means
+ * as the threshold. No call. */
+export function densityDiagnostic(strips) {
+  const setting = (s) => (s.group === "CW" ? "CW" : s.group === "VL" ? "V" : "town");
+  const byModel = {};
+  for (const s of strips) { const k = `${s.player}:${setting(s)}`; (byModel[k] = byModel[k] ?? []).push(actsPerTurn(s)); }
+  const mean = (xs) => xs.reduce((a, x) => a + x, 0) / xs.length;
+  const train = strips.filter((s) => TASKS.T4.train.groups.includes(s.group) && TASKS.T4.train.players.includes(s.player));
+  const test = strips.filter((s) => TASKS.T4.test.groups.includes(s.group));
+  const ma = mean(train.filter((s) => s.family === "anthropic").map(actsPerTurn)), mo = mean(train.filter((s) => s.family === "openai").map(actsPerTurn));
+  const cut = (ma + mo) / 2, high = ma > mo ? "anthropic" : "openai", low = high === "anthropic" ? "openai" : "anthropic";
+  const correct = test.filter((s) => (actsPerTurn(s) >= cut ? high : low) === s.family).length;
+  return { byModel: Object.fromEntries(Object.entries(byModel).map(([k, v]) => [k, mean(v)])), cut, trainMeans: { anthropic: ma, openai: mo }, t4: { correct, of: test.length } };
+}
+
 // ---- the money ----------------------------------------------------------------------------------------------------------------
 
 function spend(root) {
@@ -146,6 +164,15 @@ export function reportMarkdown({ root, files, readJson }) {
   const supp = TASKS.T3.sets.filter((x) => x.supplementary).map((x) => `T3:${x.id}`);
   out.push(`| T3 supplementary, of 4 | 0.8 expected | ${judgeIds.map((j) => `${supp.filter((k) => sc(j, k).correct).length}/4`).join(" | ")} |`);
   out.push(`| T4 transfer, of 8 (p) | 1/2 | ${judgeIds.map((j) => (sc(j, "T4:transfer").valid ? `${sc(j, "T4:transfer").correct}/8 (p ${pOf(sc(j, "T4:transfer").p)}); CW ${sc(j, "T4:transfer").perTable.CW.correct}/4, V ${sc(j, "T4:transfer").perTable.VL.correct}/4` : "no answer")).join(" | ")} |`, "");
+
+  // Density
+  const dd = densityDiagnostic(strips);
+  const models = ["opus", "fable", "astra", "sol", "deepseek"];
+  out.push("### What the judges could read: codes per line (after the run, not pre-registered)", "",
+    "The tagger codes acts from the player's message, so a player who writes more per turn gets more codes per line. Codes per line, mean over sessions:", "",
+    "| Model | Town | Combat (CW) | Villain (V) |", "| --- | --- | --- | --- |",
+    ...models.map((m) => `| ${MODEL_LABELS[m]} | ${f2(dd.byModel[`${m}:town`])} | ${f2(dd.byModel[`${m}:CW`])} | ${f2(dd.byModel[`${m}:V`])} |`), "",
+    `That one number alone — a strip at or above ${f2(dd.cut)} codes a line (the midpoint of the two families' training means, ${f2(dd.trainMeans.anthropic)} and ${f2(dd.trainMeans.openai)}) is Family Anthropic — labels ${dd.t4.correct} of ${dd.t4.of} T4 test strips correctly, no model needed. The rates at the forks, which do not depend on how many codes a line carries, show no family (the exploratory test above).`, "");
 
   // Extraction
   out.push("## Extraction", "",

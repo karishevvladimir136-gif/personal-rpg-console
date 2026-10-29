@@ -201,7 +201,9 @@ export async function runProfiles({ log = console.log } = {}) {
 export async function runJudges({ go = false, judges = JUDGES.map((j) => j.id), tasks = null, log = console.log } = {}) {
   const { strips } = readJson(FILES.strips);
   const store = readJson(FILES.judges, { design: DESIGN_SHA256, answers: {} });
-  const jobs = judgeTasks(strips).filter((j) => judges.includes(j.judge.id) && (!tasks || tasks.includes(j.task)) && !store.answers[j.id]?.answer);
+  // The pre-registered tasks first, the supplementary sets last (a cap reached late cuts only those).
+  const jobs = judgeTasks(strips).filter((j) => judges.includes(j.judge.id) && (!tasks || tasks.includes(j.task)) && !store.answers[j.id]?.answer)
+    .sort((a, b) => Number(a.supplementary) - Number(b.supplementary));
   log(`${jobs.length} judge calls to make`);
   if (!go) { if (jobs[0]) log(`${jobs[0].system}\n\n${jobs[0].user}`); return; }
   return paidPass(`the judges (${jobs.length} tasks)`, async ({ meter, keys }) => {

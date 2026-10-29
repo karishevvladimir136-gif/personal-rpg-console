@@ -1,0 +1,4323 @@
+{
+  "design": "2cfba712ffd3612996f2eb7f1fefc8d8edfd6c9df01bfc34e769953a89545993",
+  "profile": {
+    "forks": [
+      "request",
+      "claim",
+      "coin",
+      "reroll",
+      "companion",
+      "exit",
+      "fact"
+    ],
+    "minOpportunities": 1,
+    "robustnessMinOpportunities": 3,
+    "primary": "SAME_WORLD_1, each table and both together: the mean distance between a model's two sessions (its own pair, same frozen world), against every way of pairing the ten sessions of a table into five pairs (945 per table; 945² for both tables) — exact one-sided p = the share of pairings whose mean pair distance is at most the observed. The question: does a model's profile agree with its own second session more than with other models'?",
+    "secondary": "the nearest neighbour (how many of a table's ten sessions have their own pair as nearest; ties shared), exact over the same pairings",
+    "exploratory": "family: over every town session (group 1, group 2, DeepSeek, SAME_WORLD_1), the mean distance between sessions of the same provider family (excluding a model's own pairs) against different families, family labels shuffled within each stage × table block, 10 000 shuffles; and the authorship domain (fact choice × domain) beside"
+  },
+  "primary": {
+    "minOpportunities": 1,
+    "A": {
+      "ids": [
+        "SW:A-opus-1",
+        "SW:A-opus-2",
+        "SW:A-fable-1",
+        "SW:A-fable-2",
+        "SW:A-astra-1",
+        "SW:A-astra-2",
+        "SW:A-sol-1",
+        "SW:A-sol-2",
+        "SW:A-deepseek-1",
+        "SW:A-deepseek-2"
+      ],
+      "distances": [
+        [
+          0,
+          0.143,
+          0.306,
+          0.249,
+          0.358,
+          0.426,
+          0.232,
+          0.308,
+          0.15,
+          0.219
+        ],
+        [
+          0.143,
+          0,
+          0.315,
+          0.304,
+          0.426,
+          0.439,
+          0.332,
+          0.221,
+          0.224,
+          0.314
+        ],
+        [
+          0.306,
+          0.315,
+          0,
+          0.25,
+          0.15,
+          0.358,
+          0.53,
+          0.079,
+          0.265,
+          0.271
+        ],
+        [
+          0.249,
+          0.304,
+          0.25,
+          0,
+          0.357,
+          0.65,
+          0.233,
+          0.274,
+          0.304,
+          0.285
+        ],
+        [
+          0.358,
+          0.426,
+          0.15,
+          0.357,
+          0,
+          0.467,
+          0.524,
+          0.274,
+          0.349,
+          0.277
+        ],
+        [
+          0.426,
+          0.439,
+          0.358,
+          0.65,
+          0.467,
+          0,
+          0.45,
+          0.46,
+          0.399,
+          0.48
+        ],
+        [
+          0.232,
+          0.332,
+          0.53,
+          0.233,
+          0.524,
+          0.45,
+          0,
+          0.46,
+          0.329,
+          0.365
+        ],
+        [
+          0.308,
+          0.221,
+          0.079,
+          0.274,
+          0.274,
+          0.46,
+          0.46,
+          0,
+          0.286,
+          0.413
+        ],
+        [
+          0.15,
+          0.224,
+          0.265,
+          0.304,
+          0.349,
+          0.399,
+          0.329,
+          0.286,
+          0,
+          0.22
+        ],
+        [
+          0.219,
+          0.314,
+          0.271,
+          0.285,
+          0.277,
+          0.48,
+          0.365,
+          0.413,
+          0.22,
+          0
+        ]
+      ],
+      "meanOwn": 0.308,
+      "nullMean": 0.327,
+      "p": 0.3132,
+      "nearest": {
+        "hits": 2,
+        "nullMean": 1.11,
+        "p": 0.327
+      },
+      "models": [
+        {
+          "model": "opus",
+          "own": 0.143,
+          "others": 0.302
+        },
+        {
+          "model": "fable",
+          "own": 0.25,
+          "others": 0.308
+        },
+        {
+          "model": "astra",
+          "own": 0.467,
+          "others": 0.399
+        },
+        {
+          "model": "sol",
+          "own": 0.46,
+          "others": 0.332
+        },
+        {
+          "model": "deepseek",
+          "own": 0.22,
+          "others": 0.308
+        }
+      ]
+    },
+    "B": {
+      "ids": [
+        "SW:B-opus-1",
+        "SW:B-opus-2",
+        "SW:B-fable-1",
+        "SW:B-fable-2",
+        "SW:B-astra-1",
+        "SW:B-astra-2",
+        "SW:B-sol-1",
+        "SW:B-sol-2",
+        "SW:B-deepseek-1",
+        "SW:B-deepseek-2"
+      ],
+      "distances": [
+        [
+          0,
+          0.318,
+          0.238,
+          0.336,
+          0.336,
+          0.213,
+          0.226,
+          0.251,
+          0.208,
+          0.365
+        ],
+        [
+          0.318,
+          0,
+          0.135,
+          0.196,
+          0.168,
+          0.223,
+          0.143,
+          0.152,
+          0.253,
+          0.364
+        ],
+        [
+          0.238,
+          0.135,
+          0,
+          0.167,
+          0.181,
+          0.155,
+          0.157,
+          0.298,
+          0.139,
+          0.446
+        ],
+        [
+          0.336,
+          0.196,
+          0.167,
+          0,
+          0.238,
+          0.359,
+          0.256,
+          0.182,
+          0.167,
+          0.389
+        ],
+        [
+          0.336,
+          0.168,
+          0.181,
+          0.238,
+          0,
+          0.121,
+          0.117,
+          0.298,
+          0,
+          0.46
+        ],
+        [
+          0.213,
+          0.223,
+          0.155,
+          0.359,
+          0.121,
+          0,
+          0.142,
+          0.329,
+          0.061,
+          0.429
+        ],
+        [
+          0.226,
+          0.143,
+          0.157,
+          0.256,
+          0.117,
+          0.142,
+          0,
+          0.031,
+          0.233,
+          0.278
+        ],
+        [
+          0.251,
+          0.152,
+          0.298,
+          0.182,
+          0.298,
+          0.329,
+          0.031,
+          0,
+          0.275,
+          0.152
+        ],
+        [
+          0.208,
+          0.253,
+          0.139,
+          0.167,
+          0,
+          0.061,
+          0.233,
+          0.275,
+          0,
+          0.475
+        ],
+        [
+          0.365,
+          0.364,
+          0.446,
+          0.389,
+          0.46,
+          0.429,
+          0.278,
+          0.152,
+          0.475,
+          0
+        ]
+      ],
+      "meanOwn": 0.222,
+      "nullMean": 0.237,
+      "p": 0.3407,
+      "nearest": {
+        "hits": 2.5,
+        "nullMean": 1.11,
+        "p": 0.1556
+      },
+      "models": [
+        {
+          "model": "opus",
+          "own": 0.318,
+          "others": 0.238
+        },
+        {
+          "model": "fable",
+          "own": 0.167,
+          "others": 0.242
+        },
+        {
+          "model": "astra",
+          "own": 0.121,
+          "others": 0.232
+        },
+        {
+          "model": "sol",
+          "own": 0.031,
+          "others": 0.218
+        },
+        {
+          "model": "deepseek",
+          "own": 0.475,
+          "others": 0.264
+        }
+      ]
+    },
+    "both": {
+      "meanOwn": 0.265,
+      "p": 0.2639
+    }
+  },
+  "robustness": {
+    "minOpportunities": 3,
+    "A": {
+      "ids": [
+        "SW:A-opus-1",
+        "SW:A-opus-2",
+        "SW:A-fable-1",
+        "SW:A-fable-2",
+        "SW:A-astra-1",
+        "SW:A-astra-2",
+        "SW:A-sol-1",
+        "SW:A-sol-2",
+        "SW:A-deepseek-1",
+        "SW:A-deepseek-2"
+      ],
+      "distances": [
+        [
+          0,
+          0.12,
+          0.222,
+          0.165,
+          0.216,
+          0.217,
+          0.158,
+          0.137,
+          0.134,
+          0.199
+        ],
+        [
+          0.12,
+          0,
+          0.192,
+          0.109,
+          0.186,
+          0.211,
+          0.245,
+          0.163,
+          0.115,
+          0.19
+        ],
+        [
+          0.222,
+          0.192,
+          0,
+          0.083,
+          0.25,
+          0.217,
+          0.2,
+          0.071,
+          0.192,
+          0.194
+        ],
+        [
+          0.165,
+          0.109,
+          0.083,
+          0,
+          0.214,
+          0.3,
+          0.2,
+          0.071,
+          0.108,
+          0.141
+        ],
+        [
+          0.216,
+          0.186,
+          0.25,
+          0.214,
+          0,
+          0.267,
+          0.25,
+          0.25,
+          0.281,
+          0.295
+        ],
+        [
+          0.217,
+          0.211,
+          0.217,
+          0.3,
+          0.267,
+          0,
+          0.183,
+          0.212,
+          0.214,
+          0.3
+        ],
+        [
+          0.158,
+          0.245,
+          0.2,
+          0.2,
+          0.25,
+          0.183,
+          0,
+          0.129,
+          0.238,
+          0.367
+        ],
+        [
+          0.137,
+          0.163,
+          0.071,
+          0.071,
+          0.25,
+          0.212,
+          0.129,
+          0,
+          0.109,
+          0.238
+        ],
+        [
+          0.134,
+          0.115,
+          0.192,
+          0.108,
+          0.281,
+          0.214,
+          0.238,
+          0.109,
+          0,
+          0.116
+        ],
+        [
+          0.199,
+          0.19,
+          0.194,
+          0.141,
+          0.295,
+          0.3,
+          0.367,
+          0.238,
+          0.116,
+          0
+        ]
+      ],
+      "meanOwn": 0.143,
+      "nullMean": 0.193,
+      "p": 0.0042,
+      "nearest": {
+        "hits": 3,
+        "nullMean": 1.11,
+        "p": 0.0571
+      },
+      "models": [
+        {
+          "model": "opus",
+          "own": 0.12,
+          "others": 0.179
+        },
+        {
+          "model": "fable",
+          "own": 0.083,
+          "others": 0.178
+        },
+        {
+          "model": "astra",
+          "own": 0.267,
+          "others": 0.237
+        },
+        {
+          "model": "sol",
+          "own": 0.129,
+          "others": 0.193
+        },
+        {
+          "model": "deepseek",
+          "own": 0.116,
+          "others": 0.207
+        }
+      ]
+    },
+    "B": {
+      "ids": [
+        "SW:B-opus-1",
+        "SW:B-opus-2",
+        "SW:B-fable-1",
+        "SW:B-fable-2",
+        "SW:B-astra-1",
+        "SW:B-astra-2",
+        "SW:B-sol-1",
+        "SW:B-sol-2",
+        "SW:B-deepseek-1",
+        "SW:B-deepseek-2"
+      ],
+      "distances": [
+        [
+          0,
+          0.147,
+          0.108,
+          0.128,
+          0.028,
+          0.186,
+          0.033,
+          0.064,
+          0,
+          0.118
+        ],
+        [
+          0.147,
+          0,
+          0.085,
+          0.106,
+          0.167,
+          0.253,
+          0.152,
+          0.152,
+          0.333,
+          0.162
+        ],
+        [
+          0.108,
+          0.085,
+          0,
+          0.042,
+          0.042,
+          0.233,
+          0.112,
+          0.123,
+          0.083,
+          0.252
+        ],
+        [
+          0.128,
+          0.106,
+          0.042,
+          0,
+          0.083,
+          0.227,
+          0.133,
+          0.102,
+          0.167,
+          0.167
+        ],
+        [
+          0.028,
+          0.167,
+          0.042,
+          0.083,
+          0,
+          0.167,
+          0,
+          0.063,
+          0,
+          0.045
+        ],
+        [
+          0.186,
+          0.253,
+          0.233,
+          0.227,
+          0.167,
+          0,
+          0.173,
+          0.214,
+          0,
+          0.192
+        ],
+        [
+          0.033,
+          0.152,
+          0.112,
+          0.133,
+          0,
+          0.173,
+          0,
+          0.031,
+          0,
+          0.075
+        ],
+        [
+          0.064,
+          0.152,
+          0.123,
+          0.102,
+          0.063,
+          0.214,
+          0.031,
+          0,
+          0.125,
+          0.086
+        ],
+        [
+          0,
+          0.333,
+          0.083,
+          0.167,
+          0,
+          0,
+          0,
+          0.125,
+          0,
+          0.091
+        ],
+        [
+          0.118,
+          0.162,
+          0.252,
+          0.167,
+          0.045,
+          0.192,
+          0.075,
+          0.086,
+          0.091,
+          0
+        ]
+      ],
+      "meanOwn": 0.096,
+      "nullMean": 0.117,
+      "p": 0.2127,
+      "nearest": {
+        "hits": 2.5,
+        "nullMean": 1.11,
+        "p": 0.0921
+      },
+      "models": [
+        {
+          "model": "opus",
+          "own": 0.147,
+          "others": 0.13
+        },
+        {
+          "model": "fable",
+          "own": 0.042,
+          "others": 0.135
+        },
+        {
+          "model": "astra",
+          "own": 0.167,
+          "others": 0.119
+        },
+        {
+          "model": "sol",
+          "own": 0.031,
+          "others": 0.1
+        },
+        {
+          "model": "deepseek",
+          "own": 0.091,
+          "others": 0.113
+        }
+      ]
+    },
+    "both": {
+      "meanOwn": 0.119,
+      "p": 0.0132
+    }
+  },
+  "family": {
+    "sessions": 50,
+    "within": 0.29,
+    "across": 0.295,
+    "gap": 0.005,
+    "pairsWithin": 28,
+    "pairsAcross": 112,
+    "p": 0.4649
+  },
+  "perSession": [
+    {
+      "id": "G1:A-opus",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 10,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 16,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0.182,
+            "propose": 0,
+            "assert": 0.818,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:A-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 7,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 17,
+          "rates": {
+            "discover": 0.059,
+            "propose": 0,
+            "assert": 0.882,
+            "enforce": 0.059
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:A-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 5,
+          "rates": {
+            "help": 0.4,
+            "refuse": 0.2,
+            "price": 0,
+            "defer": 0.4
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.6,
+            "haggle": 0,
+            "keep": 0.4
+          }
+        },
+        "reroll": {
+          "n": 3,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 4,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 2,
+          "rates": {
+            "discover": 0,
+            "propose": 0.5,
+            "assert": 0.5,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:A-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 9,
+          "rates": {
+            "protect": 0.111,
+            "use": 0.778,
+            "leave": 0.111
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0,
+            "propose": 0.167,
+            "assert": 0.833,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:B-opus",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 8,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 3,
+          "rates": {
+            "reroll": 0.333,
+            "keep": 0.667
+          }
+        },
+        "companion": {
+          "n": 13,
+          "rates": {
+            "protect": 0.154,
+            "use": 0.846,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 9,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:B-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 2,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 6,
+          "rates": {
+            "reroll": 0.667,
+            "keep": 0.333
+          }
+        },
+        "companion": {
+          "n": 8,
+          "rates": {
+            "protect": 0.125,
+            "use": 0.875,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 3,
+          "rates": {
+            "hold": 0.333,
+            "leave": 0.667
+          }
+        },
+        "fact": {
+          "n": 19,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:B-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 0.75,
+            "haggle": 0,
+            "keep": 0.25
+          }
+        },
+        "reroll": {
+          "n": 4,
+          "rates": {
+            "reroll": 0.25,
+            "keep": 0.75
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0,
+            "propose": 0.091,
+            "assert": 0.909,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:B-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.8,
+            "haggle": 0,
+            "keep": 0.2
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0.143,
+            "assert": 0.857,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:C-opus",
+      "turns": 14,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 7,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.8,
+            "haggle": 0,
+            "keep": 0.2
+          }
+        },
+        "reroll": {
+          "n": 4,
+          "rates": {
+            "reroll": 0.25,
+            "keep": 0.75
+          }
+        },
+        "companion": {
+          "n": 4,
+          "rates": {
+            "protect": 0.25,
+            "use": 0.75,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0.333,
+            "propose": 0,
+            "assert": 0.667,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:C-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 0.75,
+            "haggle": 0,
+            "keep": 0.25
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 6,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 15,
+          "rates": {
+            "discover": 0,
+            "propose": 0.067,
+            "assert": 0.933,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:C-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 0.667,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.333
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 7,
+          "rates": {
+            "spend": 0.571,
+            "haggle": 0.143,
+            "keep": 0.286
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 3,
+          "rates": {
+            "protect": 0,
+            "use": 0.667,
+            "leave": 0.333
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0.143,
+            "assert": 0.857,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G1:C-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 0.667,
+            "haggle": 0,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 10,
+          "rates": {
+            "discover": 0,
+            "propose": 0.3,
+            "assert": 0.7,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:A-opus",
+      "turns": 4,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 0,
+          "rates": {
+            "spend": null,
+            "haggle": null,
+            "keep": null
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 1,
+            "use": 0,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 2,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:A-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 3,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 3,
+          "rates": {
+            "hold": 0.667,
+            "leave": 0.333
+          }
+        },
+        "fact": {
+          "n": 12,
+          "rates": {
+            "discover": 0,
+            "propose": 0.083,
+            "assert": 0.917,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:A-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 0.5,
+            "haggle": 0,
+            "keep": 0.5
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:A-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 0.75,
+            "haggle": 0,
+            "keep": 0.25
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0,
+            "use": 0.8,
+            "leave": 0.2
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 4,
+          "rates": {
+            "discover": 0.5,
+            "propose": 0,
+            "assert": 0.5,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:B-opus",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 7,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 5,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 16,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0,
+            "propose": 0.091,
+            "assert": 0.909,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:B-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 9,
+          "rates": {
+            "spend": 0.889,
+            "haggle": 0,
+            "keep": 0.111
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0.143,
+            "use": 0.857,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 16,
+          "rates": {
+            "discover": 0,
+            "propose": 0.063,
+            "assert": 0.938,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:B-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0,
+            "refuse": 0.5,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 0.667,
+            "haggle": 0,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 3,
+          "rates": {
+            "reroll": 0.333,
+            "keep": 0.667
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 3,
+          "rates": {
+            "hold": 0.667,
+            "leave": 0.333
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0.143,
+            "assert": 0.857,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:B-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 2,
+          "rates": {
+            "spend": 0.5,
+            "haggle": 0,
+            "keep": 0.5
+          }
+        },
+        "reroll": {
+          "n": 3,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0.286,
+            "use": 0.714,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 10,
+          "rates": {
+            "discover": 0.1,
+            "propose": 0,
+            "assert": 0.9,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:C-opus",
+      "turns": 12,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 0.75,
+            "haggle": 0,
+            "keep": 0.25
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 4,
+          "rates": {
+            "protect": 0.25,
+            "use": 0.75,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 4,
+          "rates": {
+            "discover": 0,
+            "propose": 0.25,
+            "assert": 0.75,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:C-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 9,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 9,
+          "rates": {
+            "discover": 0,
+            "propose": 0.222,
+            "assert": 0.778,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:C-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 5,
+          "rates": {
+            "help": 0.8,
+            "refuse": 0,
+            "price": 0.2,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 0.333,
+            "haggle": 0.333,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0.2,
+            "use": 0.8,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 8,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "G2:C-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 1,
+            "use": 0,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:A-deepseek-1",
+      "turns": 3,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 0,
+          "rates": {
+            "spend": null,
+            "haggle": null,
+            "keep": null
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 1,
+            "keep": 0
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 1,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:A-deepseek-2",
+      "turns": 3,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 0,
+          "rates": {
+            "spend": null,
+            "haggle": null,
+            "keep": null
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 0,
+          "rates": {
+            "discover": null,
+            "propose": null,
+            "assert": null,
+            "enforce": null
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:B-deepseek-1",
+      "turns": 11,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 1,
+          "rates": {
+            "spend": 0,
+            "haggle": 0,
+            "keep": 1
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 3,
+          "rates": {
+            "protect": 0,
+            "use": 0.667,
+            "leave": 0.333
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 3,
+          "rates": {
+            "discover": 0.333,
+            "propose": 0,
+            "assert": 0.667,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:B-deepseek-2",
+      "turns": 12,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 1,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 8,
+          "rates": {
+            "discover": 0.375,
+            "propose": 0.125,
+            "assert": 0.5,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:C-deepseek-1",
+      "turns": 1,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 0,
+          "rates": {
+            "check": null,
+            "accept": null
+          }
+        },
+        "coin": {
+          "n": 0,
+          "rates": {
+            "spend": null,
+            "haggle": null,
+            "keep": null
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 0,
+          "rates": {
+            "protect": null,
+            "use": null,
+            "leave": null
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 1,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "DS:C-deepseek-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 0.833,
+            "haggle": 0,
+            "keep": 0.167
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 0,
+          "rates": {
+            "protect": null,
+            "use": null,
+            "leave": null
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 12,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-opus-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 12,
+          "rates": {
+            "spend": 0.917,
+            "haggle": 0,
+            "keep": 0.083
+          }
+        },
+        "reroll": {
+          "n": 3,
+          "rates": {
+            "reroll": 0.333,
+            "keep": 0.667
+          }
+        },
+        "companion": {
+          "n": 13,
+          "rates": {
+            "protect": 0,
+            "use": 0.923,
+            "leave": 0.077
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 12,
+          "rates": {
+            "discover": 0.167,
+            "propose": 0.167,
+            "assert": 0.667,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-fable-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 8,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 4,
+          "rates": {
+            "protect": 0.25,
+            "use": 0.75,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 15,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-astra-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 7,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0,
+            "use": 0.857,
+            "leave": 0.143
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 4,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 0.5,
+            "enforce": 0.5
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-sol-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 5,
+          "rates": {
+            "discover": 0,
+            "propose": 0.4,
+            "assert": 0.6,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-deepseek-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 4,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0.25,
+            "defer": 0.25
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.25,
+            "accept": 0.75
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.8,
+            "haggle": 0,
+            "keep": 0.2
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 8,
+          "rates": {
+            "discover": 0,
+            "propose": 0.125,
+            "assert": 0.875,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-opus-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 11,
+          "rates": {
+            "spend": 0.909,
+            "haggle": 0,
+            "keep": 0.091
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 11,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 17,
+          "rates": {
+            "discover": 0.059,
+            "propose": 0,
+            "assert": 0.765,
+            "enforce": 0.176
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-fable-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.5
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 10,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 13,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-astra-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 1,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 0.833,
+            "haggle": 0,
+            "keep": 0.167
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 3,
+          "rates": {
+            "protect": 0.333,
+            "use": 0.667,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 5,
+          "rates": {
+            "discover": 0,
+            "propose": 0.2,
+            "assert": 0.6,
+            "enforce": 0.2
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-sol-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 4,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0.143,
+            "assert": 0.857,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:A-deepseek-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 0.667,
+            "haggle": 0,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 11,
+          "rates": {
+            "protect": 0,
+            "use": 0.909,
+            "leave": 0.091
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 8,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-opus-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 0,
+            "defer": 1
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 8,
+          "rates": {
+            "spend": 0.875,
+            "haggle": 0,
+            "keep": 0.125
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 18,
+          "rates": {
+            "protect": 0.056,
+            "use": 0.944,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 15,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-fable-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 0.667,
+            "refuse": 0.333,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 10,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 6,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 12,
+          "rates": {
+            "discover": 0,
+            "propose": 0.083,
+            "assert": 0.917,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-astra-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 2,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 8,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 3,
+          "rates": {
+            "hold": 0.333,
+            "leave": 0.667
+          }
+        },
+        "fact": {
+          "n": 9,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-sol-1",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.8,
+            "haggle": 0,
+            "keep": 0.2
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 3,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-deepseek-1",
+      "turns": 6,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 1,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 0,
+          "rates": {
+            "protect": null,
+            "use": null,
+            "leave": null
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 3,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-opus-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 11,
+          "rates": {
+            "spend": 0.909,
+            "haggle": 0,
+            "keep": 0.091
+          }
+        },
+        "reroll": {
+          "n": 4,
+          "rates": {
+            "reroll": 0.25,
+            "keep": 0.75
+          }
+        },
+        "companion": {
+          "n": 17,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0,
+            "propose": 0.333,
+            "assert": 0.667,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-fable-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 8,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 1,
+            "keep": 0
+          }
+        },
+        "companion": {
+          "n": 13,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 12,
+          "rates": {
+            "discover": 0.167,
+            "propose": 0,
+            "assert": 0.833,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-astra-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 0.667,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.333
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 11,
+          "rates": {
+            "spend": 0.818,
+            "haggle": 0,
+            "keep": 0.182
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 3,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 7,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-sol-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.8,
+            "haggle": 0,
+            "keep": 0.2
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 8,
+          "rates": {
+            "discover": 0.125,
+            "propose": 0,
+            "assert": 0.875,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "SW:B-deepseek-2",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 0.333,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0.667
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 0.667,
+            "haggle": 0,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 7,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0,
+            "propose": 0.091,
+            "assert": 0.909,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "CW:CW-opus",
+      "turns": 25,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 1,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0,
+            "accept": 1
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 0.833,
+            "haggle": 0,
+            "keep": 0.167
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 14,
+          "rates": {
+            "protect": 0.071,
+            "use": 0.929,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0.5,
+            "leave": 0.5
+          }
+        },
+        "fact": {
+          "n": 11,
+          "rates": {
+            "discover": 0,
+            "propose": 0.182,
+            "assert": 0.818,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "CW:CW-fable",
+      "turns": 25,
+      "rates": {
+        "request": {
+          "n": 2,
+          "rates": {
+            "help": 0.5,
+            "refuse": 0.5,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 3,
+          "rates": {
+            "spend": 0.667,
+            "haggle": 0,
+            "keep": 0.333
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 15,
+          "rates": {
+            "protect": 0.133,
+            "use": 0.8,
+            "leave": 0.067
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 26,
+          "rates": {
+            "discover": 0,
+            "propose": 0.115,
+            "assert": 0.885,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "CW:CW-astra",
+      "turns": 25,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 2,
+          "rates": {
+            "spend": 0.5,
+            "haggle": 0.5,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 1,
+            "keep": 0
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0.4,
+            "use": 0.6,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "CW:CW-sol",
+      "turns": 25,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 1,
+            "refuse": 0,
+            "price": 0,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.333,
+            "accept": 0.667
+          }
+        },
+        "coin": {
+          "n": 0,
+          "rates": {
+            "spend": null,
+            "haggle": null,
+            "keep": null
+          }
+        },
+        "reroll": {
+          "n": 1,
+          "rates": {
+            "reroll": 1,
+            "keep": 0
+          }
+        },
+        "companion": {
+          "n": 6,
+          "rates": {
+            "protect": 0,
+            "use": 0.833,
+            "leave": 0.167
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 6,
+          "rates": {
+            "discover": 0.167,
+            "propose": 0.167,
+            "assert": 0.667,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "VL:V-opus",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 1,
+          "rates": {
+            "help": 0,
+            "refuse": 0,
+            "price": 1,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 2,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 8,
+          "rates": {
+            "spend": 1,
+            "haggle": 0,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0,
+            "keep": 1
+          }
+        },
+        "companion": {
+          "n": 8,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 1,
+            "leave": 0
+          }
+        },
+        "fact": {
+          "n": 16,
+          "rates": {
+            "discover": 0,
+            "propose": 0,
+            "assert": 1,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "VL:V-fable",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 3,
+          "rates": {
+            "check": 0.667,
+            "accept": 0.333
+          }
+        },
+        "coin": {
+          "n": 11,
+          "rates": {
+            "spend": 0.909,
+            "haggle": 0.091,
+            "keep": 0
+          }
+        },
+        "reroll": {
+          "n": 2,
+          "rates": {
+            "reroll": 0.5,
+            "keep": 0.5
+          }
+        },
+        "companion": {
+          "n": 5,
+          "rates": {
+            "protect": 0,
+            "use": 1,
+            "leave": 0
+          }
+        },
+        "exit": {
+          "n": 1,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 25,
+          "rates": {
+            "discover": 0,
+            "propose": 0.04,
+            "assert": 0.96,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "VL:V-astra",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 0,
+          "rates": {
+            "help": null,
+            "refuse": null,
+            "price": null,
+            "defer": null
+          }
+        },
+        "claim": {
+          "n": 1,
+          "rates": {
+            "check": 1,
+            "accept": 0
+          }
+        },
+        "coin": {
+          "n": 6,
+          "rates": {
+            "spend": 0.333,
+            "haggle": 0,
+            "keep": 0.667
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 2,
+          "rates": {
+            "protect": 0,
+            "use": 0.5,
+            "leave": 0.5
+          }
+        },
+        "exit": {
+          "n": 0,
+          "rates": {
+            "hold": null,
+            "leave": null
+          }
+        },
+        "fact": {
+          "n": 9,
+          "rates": {
+            "discover": 0,
+            "propose": 0.111,
+            "assert": 0.889,
+            "enforce": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "VL:V-sol",
+      "turns": 20,
+      "rates": {
+        "request": {
+          "n": 3,
+          "rates": {
+            "help": 0.667,
+            "refuse": 0,
+            "price": 0.333,
+            "defer": 0
+          }
+        },
+        "claim": {
+          "n": 4,
+          "rates": {
+            "check": 0.5,
+            "accept": 0.5
+          }
+        },
+        "coin": {
+          "n": 5,
+          "rates": {
+            "spend": 0.4,
+            "haggle": 0.2,
+            "keep": 0.4
+          }
+        },
+        "reroll": {
+          "n": 0,
+          "rates": {
+            "reroll": null,
+            "keep": null
+          }
+        },
+        "companion": {
+          "n": 0,
+          "rates": {
+            "protect": null,
+            "use": null,
+            "leave": null
+          }
+        },
+        "exit": {
+          "n": 2,
+          "rates": {
+            "hold": 0,
+            "leave": 1
+          }
+        },
+        "fact": {
+          "n": 10,
+          "rates": {
+            "discover": 0,
+            "propose": 0.2,
+            "assert": 0.8,
+            "enforce": 0
+          }
+        }
+      }
+    }
+  ],
+  "forks": [
+    {
+      "id": "request",
+      "choices": [
+        "help",
+        "refuse",
+        "price",
+        "defer"
+      ]
+    },
+    {
+      "id": "claim",
+      "choices": [
+        "check",
+        "accept"
+      ]
+    },
+    {
+      "id": "coin",
+      "choices": [
+        "spend",
+        "haggle",
+        "keep"
+      ]
+    },
+    {
+      "id": "reroll",
+      "choices": [
+        "reroll",
+        "keep"
+      ]
+    },
+    {
+      "id": "companion",
+      "choices": [
+        "protect",
+        "use",
+        "leave"
+      ]
+    },
+    {
+      "id": "exit",
+      "choices": [
+        "hold",
+        "leave"
+      ]
+    },
+    {
+      "id": "fact",
+      "choices": [
+        "discover",
+        "propose",
+        "assert",
+        "enforce"
+      ]
+    }
+  ]
+}
