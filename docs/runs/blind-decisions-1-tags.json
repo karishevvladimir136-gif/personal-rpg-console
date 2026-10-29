@@ -19171,6 +19171,8306 @@
         "dropped": 0,
         "resolvedBy": "two passes agree"
       }
+    },
+    "G2:A-sol#t1": {
+      "passes": [
+        {
+          "acts": [
+            "DECLINE(card)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECLINE(card)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECLINE(card)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": "hold"
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-astra#t12": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(coin)",
+          "OFFER(service)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t3": {
+      "passes": [
+        {
+          "acts": [
+            "DECLINE(card)",
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECLINE(card)",
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECLINE(card)",
+          "OFFER(coin)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": "hold"
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t4": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t5": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-astra#t19": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,other)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-astra#t18": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t6": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,price)",
+            "OFFER(coin)",
+            "PROTECT(self)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,price)",
+            "OFFER(coin)",
+            "PROTECT(self)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,price)",
+          "OFFER(coin)",
+          "PROTECT(self)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t8": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,lore)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,lore)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,lore)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,other)",
+            "ASK(authority,work)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,other)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,other)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,other)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "keep",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t12": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,rule)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,rule)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,rule)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t15": {
+      "passes": [
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t13": {
+      "passes": [
+        {
+          "acts": [],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t16": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t7": {
+      "passes": [
+        {
+          "acts": [],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,rule)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t17": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t18": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t9": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,other)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t14": {
+      "passes": [
+        {
+          "acts": [
+            "PROTECT(self)",
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(self)",
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "PROTECT(self)",
+          "SCOUT(self)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t11": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,person)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [
+            "discover:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,person)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)",
+          "ASK(stranger,place)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t10": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [
+            "discover:event",
+            "discover:world",
+            "discover:world",
+            "discover:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [
+            "discover:event",
+            "discover:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,danger)",
+          "ASK(stranger,place)"
+        ],
+        "facts": [
+          "discover:event",
+          "discover:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "check",
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,danger)",
+            "ASK(authority,place)",
+            "ASK(authority,work)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,danger)",
+            "ASK(authority,place)",
+            "ASK(authority,work)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,danger)",
+          "ASK(authority,place)",
+          "ASK(authority,work)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-opus#t4": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECEIVE",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:A-sol#t19": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,person)",
+            "ASK(companion,place)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,person)",
+            "ASK(companion,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,person)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,person)",
+          "ASK(companion,place)",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:A-sol#t20": {
+      "passes": [
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "leave",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t8": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECEIVE",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-opus#t9": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-opus#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "PROTECT(self)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t1": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,price)",
+            "DECLINE(card)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,price)",
+            "DECLINE(card)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,price)",
+            "DECLINE(card)",
+            "OFFER(coin)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,price)",
+          "DECLINE(card)",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "accept",
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t11": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-opus#t6": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,place)",
+            "DECEIVE",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECEIVE",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t10": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t5": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t13": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(coin)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t15": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "OFFER(coin)",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t17": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,person)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,danger)",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t16": {
+      "passes": [
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(cat)",
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "PROTECT(self)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "CAST(cantrip)",
+            "LEAVE(scene)",
+            "PROTECT(self)",
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "LEAVE(scene)",
+          "PROTECT(self)",
+          "SCOUT(self)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": "leave"
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three",
+        "unresolved": [
+          "claim"
+        ]
+      }
+    },
+    "G2:B-opus#t12": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "OFFER(coin)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t7": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,lore)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,lore)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "propose:world",
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,lore)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,lore)",
+          "SCOUT(self)"
+        ],
+        "facts": [
+          "propose:world"
+        ],
+        "ooc": "correct-rule",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t14": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECLINE(card)",
+            "LEAVE(scene)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECLINE(card)",
+            "LEAVE(scene)"
+          ],
+          "facts": [
+            "assert:world",
+            "assert:world",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECLINE(card)",
+            "LEAVE(scene)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "DECLINE(card)",
+          "LEAVE(scene)"
+        ],
+        "facts": [
+          "assert:backstory",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t18": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "propose:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "OFFER(coin)",
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECEIVE",
+          "OFFER(coin)",
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [
+          "assert:backstory",
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,price)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-opus#t19": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "OFFER(trade)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "OFFER(trade)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "OFFER(trade)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,danger)",
+          "OFFER(trade)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-opus#t20": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,place)",
+            "LEAVE(scene)",
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,place)",
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,place)",
+            "DECEIVE",
+            "LEAVE(scene)",
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "ASK(vendor,place)",
+          "LEAVE(scene)",
+          "OFFER(coin)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(child,person)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,person)"
+          ],
+          "facts": [
+            "propose:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,danger)",
+            "ASK(child,person)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(child,person)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "keep",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t7": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "OFFER(coin)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-fable#t4": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t5": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(child,danger)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,danger)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,danger)",
+            "LEAVE(scene)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(child,danger)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t6": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,person)",
+            "ASK(child,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,person)",
+            "ASK(child,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,person)",
+            "ASK(child,person)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,person)",
+          "ASK(child,place)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "accept",
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t1": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(child,place)",
+            "ASK(stranger,person)",
+            "DECLINE(card)",
+            "OFFER(coin)",
+            "PROTECT(companion)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "price",
+            "claim": null,
+            "coin": "spend",
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "spend",
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,place)",
+            "ASK(stranger,person)",
+            "OFFER(coin)",
+            "PROTECT(companion)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "defer",
+            "claim": null,
+            "coin": "haggle",
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(child,place)",
+          "ASK(stranger,person)",
+          "OFFER(coin)",
+          "PROTECT(companion)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "protect",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three",
+        "unresolved": [
+          "request"
+        ]
+      }
+    },
+    "G2:B-fable#t8": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(child,lore)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,other)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,other)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(child,other)",
+          "OFFER(coin)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t12": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:world",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t11": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,other)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:backstory",
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t9": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,danger)",
+          "DECEIVE"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t15": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,danger)",
+          "ASK(vendor,person)"
+        ],
+        "facts": [
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-fable#t10": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "ASK(vendor,place)",
+            "LEAVE(scene)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "ASK(vendor,place)",
+            "DECLINE(offer)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "ASK(vendor,place)",
+            "LEAVE(scene)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,other)",
+          "ASK(vendor,place)",
+          "LEAVE(scene)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t17": {
+      "passes": [
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": "leave"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "LEAVE(scene)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": "leave"
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-fable#t20": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-fable#t13": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "OFFER(coin)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t14": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "ASK(vendor,price)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,other)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,lore)",
+            "ASK(vendor,price)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,other)",
+          "ASK(vendor,price)",
+          "OFFER(coin)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,danger)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,danger)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "DECLINE(card)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "DECLINE(card)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,danger)",
+          "DECLINE(card)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": "hold"
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-fable#t16": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "OFFER(coin)"
+          ],
+          "facts": [
+            "propose:world",
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "OFFER(coin)",
+            "WAIT"
+          ],
+          "facts": [
+            "propose:backstory",
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,other)",
+          "OFFER(coin)"
+        ],
+        "facts": [
+          "propose:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "check",
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t19": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(service)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": "accept",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t1": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "DECLINE(card)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,danger)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-fable#t18": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "ASK(stranger,person)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "ASK(stranger,person)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "ASK(stranger,person)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,other)",
+          "ASK(stranger,person)",
+          "DECEIVE"
+        ],
+        "facts": [
+          "assert:backstory",
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t7": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,person)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t4": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "DECLINE(card)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)"
+        ],
+        "facts": [
+          "propose:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t11": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,other)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t6": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": "haggle",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "check",
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t5": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,other)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,other)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t14": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t15": {
+      "passes": [
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t16": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,price)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t10": {
+      "passes": [
+        {
+          "acts": [
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(npc)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(npc)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "PROTECT(npc)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t8": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "DECLINE(offer)"
+          ],
+          "facts": [
+            "assert:world",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": "refuse",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "DECLINE(card)",
+            "DECLINE(offer)"
+          ],
+          "facts": [
+            "assert:world",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "DECLINE(card)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "hold"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)",
+          "DECLINE(card)",
+          "DECLINE(offer)"
+        ],
+        "facts": [
+          "assert:world",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": "hold"
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t9": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,work)",
+            "DECLINE(card)",
+            "LEAVE(scene)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": "refuse",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECLINE(card)",
+            "LEAVE(scene)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": "refuse",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,work)",
+            "DECLINE(card)",
+            "LEAVE(scene)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": "refuse",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,work)",
+          "DECLINE(card)",
+          "LEAVE(scene)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": "refuse",
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": "leave"
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t13": {
+      "passes": [
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "LEAVE(scene)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t17": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t12": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": "accept",
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t1": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,other)",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-astra#t18": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t19": {
+      "passes": [
+        {
+          "acts": [
+            "LEAVE(scene)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "LEAVE(scene)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t6": {
+      "passes": [
+        {
+          "acts": [
+            "PROTECT(companion)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(companion)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "PROTECT(companion)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "protect",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t5": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "discover:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "discover:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [
+          "discover:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,danger)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,danger)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,danger)"
+        ],
+        "facts": [
+          "assert:backstory",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t7": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "PROTECT(npc)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t8": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t9": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,danger)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,danger)",
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t4": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "spend",
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "ASK(stranger,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,danger)",
+          "ASK(stranger,person)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": "help",
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-astra#t20": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(child,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "refuse",
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "defer",
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "defer",
+            "claim": null,
+            "coin": "keep",
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(child,price)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": "defer",
+          "claim": null,
+          "coin": "keep",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t12": {
+      "passes": [
+        {
+          "acts": [
+            "DECEIVE",
+            "PROTECT(companion)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "DECEIVE",
+            "PROTECT(companion)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "DECEIVE",
+          "PROTECT(companion)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "protect",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t11": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t10": {
+      "passes": [
+        {
+          "acts": [
+            "LEAVE(scene)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": "leave"
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "LEAVE(scene)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "LEAVE(scene)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t17": {
+      "passes": [
+        {
+          "acts": [
+            "PROTECT(npc)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(npc)",
+            "SCOUT(cat)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "PROTECT(npc)",
+          "SCOUT(cat)"
+        ],
+        "facts": [
+          "assert:event",
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t19": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(service)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": "help",
+          "claim": null,
+          "coin": "keep",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:C-opus#t1": {
+      "passes": [
+        {
+          "acts": [],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t20": {
+      "passes": [
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "WAIT"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "WAIT"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t15": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,other)",
+            "ASK(stranger,person)",
+            "OFFER(help)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "OFFER(help)",
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(child,person)",
+            "OFFER(help)",
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)",
+          "OFFER(help)",
+          "PROTECT(npc)"
+        ],
+        "facts": [],
+        "ooc": "correct-rule",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t13": {
+      "passes": [
+        {
+          "acts": [
+            "PROTECT(npc)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "PROTECT(npc)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "PROTECT(npc)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t4": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t14": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,danger)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:world",
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,danger)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,danger)"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:B-sol#t16": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(authority,other)"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,lore)",
+            "PROTECT(npc)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,lore)",
+            "DECEIVE"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(authority,lore)"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECEIVE",
+            "OFFER(coin)",
+            "PROTECT(companion)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECEIVE",
+            "OFFER(coin)",
+            "PROTECT(companion)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "protect",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "DECEIVE",
+          "OFFER(coin)",
+          "PROTECT(companion)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": "protect",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:B-sol#t18": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(service)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": "other",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": "other",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,danger)",
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": "other",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,danger)",
+          "ASK(vendor,person)",
+          "DECEIVE",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": "other",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t9": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [
+            "enforce:backstory"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": "correct-rule",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t7": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t5": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(authority,person)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "ASK(stranger,person)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": "check",
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t8": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event",
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:event",
+            "propose:world"
+          ],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world",
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)"
+        ],
+        "facts": [
+          "assert:event",
+          "propose:world"
+        ],
+        "ooc": "correct-rule",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t11": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": "check",
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t1": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(companion,other)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(companion,other)",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t12": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(help)"
+          ],
+          "facts": [],
+          "ooc": "correct-rule",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(help)",
+            "PROTECT(npc)"
+          ],
+          "facts": [],
+          "ooc": "other",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "OFFER(help)",
+            "PROTECT(npc)"
+          ],
+          "facts": [
+            "propose:event"
+          ],
+          "ooc": "other",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "OFFER(help)",
+          "PROTECT(npc)"
+        ],
+        "facts": [],
+        "ooc": "other",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t10": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "ASK(stranger,person)",
+            "DECLINE(offer)",
+            "OFFER(trade)"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "DECLINE(offer)",
+            "OFFER(trade)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:world"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,other)",
+            "DECLINE(offer)",
+            "OFFER(trade)"
+          ],
+          "facts": [
+            "assert:world"
+          ],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,other)",
+          "DECLINE(offer)",
+          "OFFER(trade)"
+        ],
+        "facts": [
+          "assert:world"
+        ],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "keep",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-opus#t6": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": "defer",
+            "claim": "check",
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "OFFER(coin)",
+            "OFFER(help)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": "defer",
+            "claim": "check",
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": "defer",
+          "claim": "check",
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t2": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,person)",
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": "clarify",
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(stranger,person)",
+          "ASK(vendor,price)"
+        ],
+        "facts": [],
+        "ooc": "clarify",
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t8": {
+      "passes": [
+        {
+          "acts": [],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:C-fable#t10": {
+      "passes": [
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "SCOUT(cat)",
+            "WAIT"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "SCOUT(cat)",
+          "WAIT"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:C-fable#t3": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,price)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "ASK(vendor,person)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,price)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "keep",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "ASK(vendor,price)"
+        ],
+        "facts": [
+          "propose:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t4": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": "spend",
+            "companion": "leave",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "DECEIVE",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(stranger,place)",
+            "OFFER(coin)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": "spend",
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "OFFER(coin)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": "spend",
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t5": {
+      "passes": [
+        {
+          "acts": [
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "accept",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,place)",
+            "OFFER(coin)",
+            "OFFER(service)"
+          ],
+          "facts": [
+            "assert:backstory"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,place)",
+          "OFFER(coin)",
+          "OFFER(service)"
+        ],
+        "facts": [
+          "assert:backstory"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three",
+        "unresolved": [
+          "claim"
+        ]
+      }
+    },
+    "G2:C-fable#t7": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "ASK(vendor,person)",
+            "DECEIVE",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,other)",
+            "ASK(vendor,person)",
+            "WAIT"
+          ],
+          "facts": [
+            "assert:event",
+            "assert:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "ASK(vendor,place)"
+          ],
+          "facts": [
+            "assert:backstory",
+            "assert:event"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,other)",
+          "ASK(vendor,person)",
+          "WAIT"
+        ],
+        "facts": [
+          "assert:event"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
+    },
+    "G2:C-fable#t11": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(cat)",
+            "SCOUT(self)"
+          ],
+          "facts": [
+            "propose:world"
+          ],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": "use",
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "SCOUT(cat)",
+          "SCOUT(self)"
+        ],
+        "facts": [
+          "propose:world"
+        ],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": "use",
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "two passes agree"
+      }
+    },
+    "G2:C-fable#t9": {
+      "passes": [
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": "help",
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)",
+            "SCOUT(self)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": "check",
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        },
+        {
+          "acts": [
+            "ASK(vendor,person)"
+          ],
+          "facts": [],
+          "ooc": null,
+          "forks": {
+            "request": null,
+            "claim": null,
+            "coin": null,
+            "companion": null,
+            "exit": null
+          },
+          "dropped": 0
+        }
+      ],
+      "final": {
+        "acts": [
+          "ASK(vendor,person)",
+          "SCOUT(self)"
+        ],
+        "facts": [],
+        "ooc": null,
+        "forks": {
+          "request": null,
+          "claim": null,
+          "coin": null,
+          "companion": null,
+          "exit": null
+        },
+        "dropped": 0,
+        "resolvedBy": "majority of three"
+      }
     }
   }
 }
