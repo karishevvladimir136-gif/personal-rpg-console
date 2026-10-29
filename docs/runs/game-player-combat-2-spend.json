@@ -1,0 +1,57 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledgers.",
+  "checks": [
+    {
+      "at": "2026-10-29T06:40:19.752Z",
+      "when": "before the freeze (the first paid call)",
+      "openrouter": {
+        "keyUsage": 1015.122454675,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1015.122454675,
+        "remaining": 184.88,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 70
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T06:44:27.765Z",
+      "when": "after the freeze",
+      "openrouter": {
+        "keyUsage": 1016.639340925,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1016.639340925,
+        "remaining": 183.36,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.6942,
+          "cap": 70
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
+    }
+  ]
+}

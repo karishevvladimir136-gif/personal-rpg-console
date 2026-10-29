@@ -1,0 +1,120 @@
+{
+  "capUsd": 70,
+  "spentUsd": 0.694191,
+  "updatedAt": "2026-10-29T06:44:27.428Z",
+  "runs": [
+    {
+      "finishedAt": "2026-10-29T06:44:27.428Z",
+      "file": "game-player-combat-2-frozen/manifest.json",
+      "what": "the freeze (the wizard, the opening, Tamsin, the prep once, the layer's reading)",
+      "spentUsd": 0.694191,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-29T06:40:24.750Z",
+          "session": "freeze CW",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 4369,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 1567,
+            "cache_write_1h": 0,
+            "output_tokens": 9741
+          },
+          "costUsd": 0.220131,
+          "seconds": 80.2,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793256025-xssgnxAR7TPM1dWCIDtJ",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-29T06:41:44.898Z",
+          "session": "freeze CW",
+          "purpose": "wizard",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 12201,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2638
+          },
+          "costUsd": 0.101564,
+          "seconds": 39,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793256105-BnR2oD5OmnasirRTWpK2",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 3,
+          "at": "2026-10-29T06:42:25.735Z",
+          "session": "freeze CW",
+          "purpose": "prep",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 4224,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 17151,
+            "cache_write_1h": 17151,
+            "output_tokens": 9522
+          },
+          "costUsd": 0.344544,
+          "seconds": 115.1,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793256146-4hthbq1FhyA1l2CW53zw",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 4,
+          "at": "2026-10-29T06:44:20.860Z",
+          "session": "freeze CW",
+          "purpose": "the layer's reading",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 4148,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 568
+          },
+          "costUsd": 0.027952,
+          "seconds": 6.5,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793256261-iRI1keGkI2MBqHok4yJJ",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        }
+      ]
+    }
+  ]
+}

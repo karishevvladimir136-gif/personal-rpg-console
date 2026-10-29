@@ -1,0 +1,130 @@
+{
+  "stage": "GAME_PLAYER_COMBAT_2",
+  "design": "9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927",
+  "builtAt": "2026-10-29T06:42:25.640Z",
+  "by": "the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter",
+  "owner": "2a55a892-7c14-446c-94c2-d2f5c281150a",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12370654,
+    "sha256": "5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d",
+    "note": "The local database after the wizard, the opening and the owner's correction of Tamsin, before any prep (PGlite data directory, gzip)."
+  },
+  "tables": {
+    "CW": {
+      "campaignId": "35f8e23a-82f2-42e8-b419-dceb2ace3ab1",
+      "heroId": "b8622175-1887-56f3-b873-05de09812af5",
+      "worldId": "447177f1-9875-430d-bee1-11e7f5e7fe0c",
+      "adventureId": "e05cd2c8-7b21-478a-94f5-9050aa568e46",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "447177f1-9875-430d-bee1-11e7f5e7fe0c",
+          "title": "Sword Coast — Baldur's Gate",
+          "premiseChars": 2673
+        },
+        {
+          "step": "hero",
+          "heroId": "b8622175-1887-56f3-b873-05de09812af5",
+          "rebuilt": false,
+          "empty": false,
+          "drafted": "with notes",
+          "sheet": {
+            "role": "Human warlock 5: The Celestial (Tymora, Lady Luck), Pact of the Chain; former Tethyrian soldier, envoy of Lady Luck",
+            "level": 5,
+            "skills": 9,
+            "abilities": 12,
+            "spells": 13,
+            "items": 15,
+            "counters": 4
+          }
+        },
+        {
+          "step": "documents",
+          "documents": [
+            {
+              "title": "DM Guide",
+              "status": "reference",
+              "chars": 8559,
+              "guide": true
+            },
+            {
+              "title": "Sword Coast — Baldur's Gate",
+              "status": "canon",
+              "chars": 2673,
+              "guide": false
+            },
+            {
+              "title": "The Sword Coast — canon",
+              "status": "canon",
+              "chars": 10222,
+              "guide": false
+            }
+          ]
+        },
+        {
+          "step": "adventure",
+          "title": "The Coast Way",
+          "premiseChars": 351,
+          "wishesChars": 0,
+          "secretsChars": 1136,
+          "pace": "evening"
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "dm",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false
+          },
+          "boostNext": false,
+          "voiceMode": "off"
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Coast Way, south of Baldur's Gate",
+          "actors": 3,
+          "questions": 2,
+          "startMinutes": 840
+        },
+        {
+          "step": "after opening",
+          "tamsin": "corrected by the owner to AC 12, 11 HP",
+          "before": {
+            "kind": "npc",
+            "hp": 8,
+            "maxHp": 8,
+            "ac": 10
+          }
+        }
+      ],
+      "layer": {
+        "file": "CW-dm-only.json",
+        "sha256": "570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d",
+        "chars": 10420,
+        "writes": 15,
+        "oneCaptive": true,
+        "captive": "Odo Fennick"
+      }
+    }
+  }
+}
