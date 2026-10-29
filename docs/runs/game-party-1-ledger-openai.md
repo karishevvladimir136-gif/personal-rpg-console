@@ -1,6 +1,6 @@
 # Game party 1 — the OpenAI ledger
 
-Cap $60; spent before this run $0.0000; this run $6.2546; total $6.2546; 153 calls.
+Cap $60; spent before this run $0.0000; this run $7.8027; total $7.8027; 183 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -148,3 +148,32 @@ Cap $60; spent before this run $0.0000; this run $6.2546; total $6.2546; 153 cal
 | DUNGEON-T1/Pell | after 1 | gpt-6.1-sol | 1 | 3 | 33824 | 114 | 185 | $0.0698 | 0 | 0 | 0 |
 | DUNGEON-T1/Pell | after 2 | gpt-6.1-sol | 1 | 3 | 33938 | 201 | 165 | $0.0700 | 0 | 0 | 0 |
 | DUNGEON-T1/Pell | after 3 | gpt-6.1-sol | 1 | 3 | 34139 | 182 | 82 | $0.0696 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r1 | gpt-6-astra | 1 | 3 | 0 | 7104 | 84 | $0.0930 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r1 card 1 | gpt-6-astra | 2 | 6 | 14735 | 662 | 34 | $0.0248 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r2 | gpt-6-astra | 1 | 3 | 7766 | 281 | 111 | $0.0169 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r3 | gpt-6-astra | 1 | 3 | 8047 | 1145 | 87 | $0.0267 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r4 | gpt-6-astra | 1 | 3 | 9192 | 1046 | 168 | $0.0307 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r5 | gpt-6-astra | 1 | 3 | 10238 | 1695 | 75 | $0.0352 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r6 | gpt-6-astra | 1 | 3 | 11933 | 1701 | 101 | $0.0383 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r7 | gpt-6-astra | 1 | 3 | 13634 | 1782 | 122 | $0.0420 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r8 | gpt-6-astra | 1 | 3 | 15416 | 1504 | 162 | $0.0423 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r9 | gpt-6-astra | 1 | 3 | 16920 | 1649 | 90 | $0.0421 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r10 | gpt-6-astra | 1 | 3 | 18569 | 1080 | 76 | $0.0359 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r11 | gpt-6-astra | 1 | 3 | 19649 | 1474 | 154 | $0.0458 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r12 | gpt-6-astra | 1 | 3 | 21123 | 2541 | 103 | $0.0581 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r13 | gpt-6-astra | 1 | 3 | 23664 | 1548 | 99 | $0.0480 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r14 | gpt-6-astra | 1 | 3 | 25212 | 1839 | 121 | $0.0543 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r15 | gpt-6-astra | 1 | 3 | 27051 | 1752 | 160 | $0.0570 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r16 | gpt-6-astra | 1 | 3 | 28803 | 2119 | 119 | $0.0613 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r17 | gpt-6-astra | 1 | 3 | 30922 | 1576 | 125 | $0.0569 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r18 | gpt-6-astra | 1 | 3 | 32498 | 2009 | 125 | $0.0639 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r19 | gpt-6-astra | 1 | 3 | 34507 | 2041 | 156 | $0.0678 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r20 | gpt-6-astra | 1 | 3 | 36548 | 2261 | 143 | $0.0720 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r21 | gpt-6-astra | 1 | 3 | 38809 | 1625 | 127 | $0.0655 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r22 | gpt-6-astra | 1 | 3 | 40434 | 1549 | 95 | $0.0646 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r23 | gpt-6-astra | 1 | 3 | 41983 | 1579 | 173 | $0.0704 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r24 | gpt-6-astra | 1 | 3 | 43562 | 1490 | 129 | $0.0687 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | player r25 | gpt-6-astra | 1 | 3 | 45052 | 1265 | 115 | $0.0666 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | after 1 | gpt-6-astra | 1 | 3 | 46317 | 1222 | 370 | $0.0801 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | after 2 | gpt-6-astra | 1 | 3 | 47539 | 358 | 206 | $0.0623 | 0 | 0 | 0 |
+| DUNGEON-T2/Pell | after 3 | gpt-6-astra | 1 | 3 | 47897 | 223 | 124 | $0.0569 | 0 | 0 | 0 |

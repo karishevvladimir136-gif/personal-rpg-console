@@ -1,6 +1,6 @@
 # Game party 1 — the OpenRouter ledger
 
-Cap $400; spent before this run $0.0000; this run $174.3079; total $174.3079; 1946 calls.
+Cap $400; spent before this run $0.0000; this run $203.4440; total $203.4440; 2299 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1123,3 +1123,250 @@ Cap $400; spent before this run $0.0000; this run $174.3079; total $174.3079; 19
 | DUNGEON-T1/check | check DUNGEON-T1 Pell after 1 | anthropic/claude-haiku-5.5 | 1 | 660 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
 | DUNGEON-T1/check | check DUNGEON-T1 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 592 | 0 | 0 | 65 | $0.0001 | 0 | 0 | 0 |
 | DUNGEON-T1/check | check DUNGEON-T1 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 444 | 0 | 0 | 59 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay opening | anthropic/claude-opus-5.5 | 1 | 967 | 0 | 0 | 1199 | $0.0278 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r1 | deepseek/deepseek-v4-pro-0813 | 1 | 7172 | 0 | 0 | 562 | $0.0108 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r1 | anthropic/claude-haiku-5.5 | 1 | 1586 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r1 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 11000 | 396 | $0.1573 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r1 | anthropic/claude-haiku-5.5 | 1 | 1810 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r1 | anthropic/claude-haiku-5.5 | 1 | 1489 | 0 | 0 | 78 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r1 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 42519 | 3601 | $0.3409 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r1 card | anthropic/claude-opus-5.5 | 3 | 5338 | 0 | 0 | 2750 | $0.0764 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r1 card | anthropic/claude-haiku-5.5 | 2 | 1457 | 0 | 0 | 124 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r1 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 22797 | 983 | 16 | $0.0189 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r1 card | anthropic/claude-haiku-5.5 | 2 | 1309 | 0 | 0 | 119 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r1 card 1 | deepseek/deepseek-v4-pro-0813 | 2 | 1578 | 14592 | 0 | 2116 | $0.0090 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r1 card | anthropic/claude-haiku-5.5 | 3 | 3140 | 0 | 0 | 224 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r1 card prose (with a press) | anthropic/claude-opus-5.5 | 2 | 29108 | 17951 | 17951 | 1700 | $0.2976 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r1 card prose | anthropic/claude-opus-5.5 | 1 | 14787 | 17951 | 0 | 1107 | $0.0849 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r1 card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 912 | 7936 | 0 | 152 | $0.0024 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r1 onward | anthropic/claude-opus-5.5 | 3 | 10 | 89336 | 53541 | 4454 | $0.4388 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r1 onward | anthropic/claude-haiku-5.5 | 2 | 5601 | 0 | 0 | 616 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r1 | anthropic/claude-opus-5.5 | 1 | 4298 | 0 | 0 | 2256 | $0.0623 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r2 | deepseek/deepseek-v4-pro-0813 | 1 | 461 | 8704 | 0 | 481 | $0.0027 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r2 | anthropic/claude-haiku-5.5 | 1 | 1011 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r2 | anthropic/claude-fable-5.1 | 1 | 4 | 11983 | 471 | 440 | $0.0309 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r2 | anthropic/claude-haiku-5.5 | 1 | 1142 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r2 | anthropic/claude-haiku-5.5 | 1 | 873 | 0 | 0 | 81 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r2 | anthropic/claude-opus-5.5 | 3 | 12 | 93145 | 60945 | 7968 | $0.4885 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r2 | anthropic/claude-haiku-5.5 | 2 | 4881 | 0 | 0 | 662 | $0.0008 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r2 | anthropic/claude-opus-5.5 | 1 | 2511 | 0 | 0 | 4666 | $0.1034 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r3 | deepseek/deepseek-v4-pro-0813 | 1 | 1362 | 8960 | 0 | 1272 | $0.0060 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r3 | anthropic/claude-haiku-5.5 | 1 | 1903 | 0 | 0 | 60 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r3 | anthropic/claude-fable-5.1 | 1 | 4 | 12454 | 1662 | 621 | $0.0550 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r3 | anthropic/claude-haiku-5.5 | 1 | 2074 | 0 | 0 | 87 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r3 | anthropic/claude-haiku-5.5 | 1 | 1924 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r3 | anthropic/claude-opus-5.5 | 1 | 4 | 20662 | 32351 | 3060 | $0.2326 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r3 card | anthropic/claude-opus-5.5 | 1 | 2251 | 0 | 0 | 1299 | $0.0350 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r3 card 1 | anthropic/claude-fable-5.1 | 4 | 16 | 62051 | 2251 | 277 | $0.0577 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r3 card | anthropic/claude-haiku-5.5 | 4 | 3058 | 0 | 0 | 235 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r3 onward | anthropic/claude-opus-5.5 | 2 | 6 | 74390 | 35506 | 4719 | $0.2868 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r3 onward | anthropic/claude-haiku-5.5 | 2 | 4427 | 0 | 0 | 344 | $0.0006 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r3 | anthropic/claude-opus-5.5 | 1 | 3700 | 0 | 0 | 3770 | $0.0902 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r4 | deepseek/deepseek-v4-pro-0813 | 1 | 1162 | 10240 | 0 | 1073 | $0.0053 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r4 | anthropic/claude-haiku-5.5 | 1 | 2338 | 0 | 0 | 89 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r4 | anthropic/claude-fable-5.1 | 1 | 4 | 16367 | 328 | 607 | $0.0386 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r4 | anthropic/claude-haiku-5.5 | 1 | 1140 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r4 | anthropic/claude-haiku-5.5 | 1 | 1899 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r4 | anthropic/claude-opus-5.5 | 3 | 12 | 95266 | 63109 | 9943 | $0.5392 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r4 | anthropic/claude-haiku-5.5 | 2 | 6181 | 0 | 0 | 662 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r4 | anthropic/claude-opus-5.5 | 1 | 3663 | 0 | 0 | 6891 | $0.1525 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r5 | deepseek/deepseek-v4-pro-0813 | 1 | 1943 | 11264 | 0 | 886 | $0.0060 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r5 | anthropic/claude-haiku-5.5 | 1 | 2532 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r5 | anthropic/claude-fable-5.1 | 1 | 4 | 16695 | 2476 | 658 | $0.0681 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r5 | anthropic/claude-haiku-5.5 | 1 | 2803 | 0 | 0 | 76 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r5 | anthropic/claude-haiku-5.5 | 1 | 2635 | 0 | 0 | 71 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r5 | anthropic/claude-opus-5.5 | 3 | 12 | 107275 | 78256 | 10669 | $0.6351 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r5 | anthropic/claude-haiku-5.5 | 2 | 7054 | 0 | 0 | 382 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r5 | anthropic/claude-opus-5.5 | 1 | 3628 | 0 | 0 | 7437 | $0.1633 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r6 | deepseek/deepseek-v4-pro-0813 | 1 | 2060 | 13056 | 0 | 877 | $0.0063 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r6 | anthropic/claude-haiku-5.5 | 1 | 2953 | 0 | 0 | 67 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r6 | anthropic/claude-fable-5.1 | 1 | 4 | 19171 | 2484 | 812 | $0.0765 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r6 | anthropic/claude-haiku-5.5 | 1 | 2844 | 0 | 0 | 67 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r6 | anthropic/claude-haiku-5.5 | 1 | 2809 | 0 | 0 | 82 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r6 | anthropic/claude-opus-5.5 | 3 | 12 | 113954 | 80907 | 13194 | $0.7001 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r6 | anthropic/claude-haiku-5.5 | 2 | 6816 | 0 | 0 | 677 | $0.0010 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r6 | anthropic/claude-opus-5.5 | 1 | 3464 | 0 | 0 | 6606 | $0.1460 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r7 | deepseek/deepseek-v4-pro-0813 | 1 | 1765 | 14848 | 0 | 517 | $0.0051 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r7 | anthropic/claude-haiku-5.5 | 1 | 2215 | 0 | 0 | 74 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r7 | anthropic/claude-fable-5.1 | 1 | 4 | 21655 | 2267 | 726 | $0.0701 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 2671 | 0 | 0 | 81 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r7 | anthropic/claude-haiku-5.5 | 1 | 2843 | 0 | 0 | 83 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r7 | anthropic/claude-opus-5.5 | 3 | 12 | 126196 | 92773 | 10619 | $0.7099 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r7 | anthropic/claude-haiku-5.5 | 2 | 6278 | 0 | 0 | 635 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r7 | anthropic/claude-opus-5.5 | 1 | 3183 | 0 | 0 | 6544 | $0.1436 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r8 | deepseek/deepseek-v4-pro-0813 | 1 | 1793 | 16384 | 0 | 1881 | $0.0089 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r8 | anthropic/claude-haiku-5.5 | 1 | 2778 | 0 | 0 | 71 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r8 | anthropic/claude-fable-5.1 | 1 | 4 | 23922 | 2132 | 854 | $0.0754 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r8 | anthropic/claude-haiku-5.5 | 1 | 2515 | 0 | 0 | 88 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r8 | anthropic/claude-haiku-5.5 | 1 | 2515 | 0 | 0 | 84 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r8 | anthropic/claude-opus-5.5 | 4 | 16 | 191600 | 108394 | 25146 | $1.0908 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r8 | anthropic/claude-haiku-5.5 | 3 | 12928 | 0 | 0 | 2911 | $0.0027 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r8 | anthropic/claude-opus-5.5 | 1 | 3983 | 0 | 0 | 7526 | $0.1665 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r9 | deepseek/deepseek-v4-pro-0813 | 1 | 1994 | 17920 | 0 | 1346 | $0.0079 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r9 | anthropic/claude-haiku-5.5 | 1 | 2632 | 0 | 0 | 77 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r9 | anthropic/claude-haiku-5.5 | 1 | 2645 | 0 | 0 | 61 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r9 | anthropic/claude-opus-5.5 | 5 | 20 | 247748 | 153865 | 14132 | $1.1178 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r9 | anthropic/claude-haiku-5.5 | 3 | 10258 | 0 | 0 | 2125 | $0.0021 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r9 | anthropic/claude-opus-5.5 | 2 | 6689 | 0 | 0 | 4709 | $0.1209 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r9 | anthropic/claude-fable-5.1 | 1 | 4 | 0 | 28927 | 1355 | $0.4294 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r9 | anthropic/claude-haiku-5.5 | 1 | 3227 | 0 | 0 | 70 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r9 card | anthropic/claude-opus-5.5 | 1 | 2036 | 0 | 0 | 654 | $0.0212 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r9 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 59313 | 1642 | 16 | $0.0362 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r9 card | anthropic/claude-haiku-5.5 | 2 | 1522 | 0 | 0 | 129 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r9 onward | anthropic/claude-opus-5.5 | 4 | 14 | 271644 | 64691 | 10230 | $0.5824 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r9 onward | anthropic/claude-haiku-5.5 | 3 | 12057 | 0 | 0 | 1605 | $0.0020 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r10 | deepseek/deepseek-v4-pro-0813 | 1 | 1220 | 19712 | 0 | 689 | $0.0053 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r10 | anthropic/claude-haiku-5.5 | 1 | 1609 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r10 | anthropic/claude-fable-5.1 | 1 | 4 | 30569 | 1324 | 1697 | $0.1091 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r10 | anthropic/claude-haiku-5.5 | 1 | 2610 | 0 | 0 | 75 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r10 | anthropic/claude-haiku-5.5 | 1 | 1835 | 0 | 0 | 54 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r10 | anthropic/claude-opus-5.5 | 4 | 14 | 242235 | 100253 | 11983 | $0.7976 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r10 | anthropic/claude-haiku-5.5 | 2 | 7283 | 0 | 0 | 545 | $0.0010 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r10 | anthropic/claude-opus-5.5 | 1 | 3820 | 0 | 0 | 6215 | $0.1396 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r11 | deepseek/deepseek-v4-pro-0813 | 1 | 1280 | 20736 | 0 | 537 | $0.0051 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r11 | anthropic/claude-haiku-5.5 | 1 | 2099 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r11 | anthropic/claude-fable-5.1 | 1 | 4 | 31893 | 2471 | 1231 | $0.1005 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r11 | anthropic/claude-haiku-5.5 | 1 | 2731 | 0 | 0 | 81 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r11 | anthropic/claude-haiku-5.5 | 1 | 2501 | 0 | 0 | 82 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r11 | anthropic/claude-opus-5.5 | 3 | 12 | 157348 | 105489 | 17398 | $0.9163 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r11 | anthropic/claude-haiku-5.5 | 2 | 9255 | 0 | 0 | 1303 | $0.0016 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r11 | anthropic/claude-opus-5.5 | 1 | 5150 | 0 | 0 | 10921 | $0.2390 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r12 | deepseek/deepseek-v4-pro-0813 | 1 | 2949 | 21760 | 0 | 279 | $0.0067 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r12 | anthropic/claude-haiku-5.5 | 1 | 3788 | 0 | 0 | 71 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r12 | anthropic/claude-fable-5.1 | 1 | 4 | 34364 | 3611 | 633 | $0.0854 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r12 | anthropic/claude-haiku-5.5 | 1 | 3539 | 0 | 0 | 74 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r12 | anthropic/claude-haiku-5.5 | 1 | 3881 | 0 | 0 | 62 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r12 | anthropic/claude-opus-5.5 | 2 | 8 | 68269 | 104035 | 12238 | $0.7920 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r12 | anthropic/claude-haiku-5.5 | 1 | 4019 | 0 | 0 | 337 | $0.0006 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r12 | anthropic/claude-opus-5.5 | 1 | 3248 | 0 | 0 | 6608 | $0.1452 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r13 | deepseek/deepseek-v4-pro-0813 | 1 | 1719 | 24576 | 0 | 453 | $0.0059 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r13 | anthropic/claude-haiku-5.5 | 1 | 2648 | 0 | 0 | 64 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r13 | anthropic/claude-fable-5.1 | 1 | 4 | 37975 | 2280 | 616 | $0.0688 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r13 | anthropic/claude-haiku-5.5 | 1 | 2554 | 0 | 0 | 71 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r13 | anthropic/claude-haiku-5.5 | 1 | 2482 | 0 | 0 | 62 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r13 | anthropic/claude-opus-5.5 | 2 | 8 | 72739 | 109390 | 13570 | $0.8406 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r13 | anthropic/claude-haiku-5.5 | 1 | 4451 | 0 | 0 | 390 | $0.0006 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r13 | anthropic/claude-opus-5.5 | 1 | 3623 | 0 | 0 | 7818 | $0.1709 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r14 | deepseek/deepseek-v4-pro-0813 | 1 | 2118 | 26112 | 0 | 944 | $0.0078 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r14 | anthropic/claude-haiku-5.5 | 1 | 3118 | 0 | 0 | 65 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r14 | anthropic/claude-fable-5.1 | 1 | 4 | 40255 | 2537 | 694 | $0.0765 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r14 | anthropic/claude-haiku-5.5 | 1 | 2938 | 0 | 0 | 80 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r14 | anthropic/claude-haiku-5.5 | 1 | 2911 | 0 | 0 | 62 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r14 | anthropic/claude-opus-5.5 | 3 | 12 | 144927 | 102003 | 11090 | $0.7697 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r14 | anthropic/claude-haiku-5.5 | 2 | 7525 | 0 | 0 | 1180 | $0.0013 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r14 | anthropic/claude-opus-5.5 | 1 | 3190 | 0 | 0 | 6913 | $0.1510 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r15 | deepseek/deepseek-v4-pro-0813 | 1 | 1883 | 28160 | 0 | 950 | $0.0077 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r15 | anthropic/claude-haiku-5.5 | 1 | 2993 | 0 | 0 | 84 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r15 | anthropic/claude-fable-5.1 | 1 | 4 | 42792 | 2461 | 1323 | $0.1077 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r15 | anthropic/claude-haiku-5.5 | 1 | 3060 | 0 | 0 | 72 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r15 | anthropic/claude-haiku-5.5 | 1 | 2811 | 0 | 0 | 67 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r15 | anthropic/claude-opus-5.5 | 4 | 16 | 261937 | 114883 | 9379 | $0.8220 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r15 | anthropic/claude-haiku-5.5 | 3 | 10300 | 0 | 0 | 1240 | $0.0017 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r15 | anthropic/claude-opus-5.5 | 1 | 3947 | 0 | 0 | 8139 | $0.1786 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r16 | deepseek/deepseek-v4-pro-0813 | 1 | 2309 | 29952 | 0 | 724 | $0.0079 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r16 | anthropic/claude-haiku-5.5 | 1 | 2988 | 0 | 0 | 65 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r16 | anthropic/claude-fable-5.1 | 1 | 4 | 45253 | 3022 | 1159 | $0.1071 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r16 | anthropic/claude-haiku-5.5 | 1 | 3300 | 0 | 0 | 83 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r16 | anthropic/claude-haiku-5.5 | 1 | 3241 | 0 | 0 | 62 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r16 | anthropic/claude-opus-5.5 | 3 | 12 | 194724 | 119606 | 15970 | $0.9662 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r16 | anthropic/claude-haiku-5.5 | 2 | 8847 | 0 | 0 | 877 | $0.0013 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r16 | anthropic/claude-opus-5.5 | 1 | 4706 | 0 | 0 | 7149 | $0.1618 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r17 | deepseek/deepseek-v4-pro-0813 | 1 | 1666 | 32000 | 0 | 829 | $0.0075 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r17 | anthropic/claude-haiku-5.5 | 1 | 2329 | 0 | 0 | 71 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r17 | anthropic/claude-fable-5.1 | 1 | 4 | 48275 | 2863 | 2035 | $0.1496 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r17 | anthropic/claude-haiku-5.5 | 1 | 3458 | 0 | 0 | 64 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r17 | anthropic/claude-haiku-5.5 | 1 | 2565 | 0 | 0 | 65 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r17 | anthropic/claude-opus-5.5 | 2 | 8 | 84027 | 112897 | 10744 | $0.8083 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r17 | anthropic/claude-haiku-5.5 | 2 | 6850 | 0 | 0 | 655 | $0.0010 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r17 | anthropic/claude-opus-5.5 | 1 | 3966 | 0 | 0 | 8240 | $0.1807 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r18 | deepseek/deepseek-v4-pro-0813 | 1 | 2201 | 33536 | 0 | 878 | $0.0085 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r18 | anthropic/claude-haiku-5.5 | 1 | 3146 | 0 | 0 | 69 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r18 | anthropic/claude-fable-5.1 | 1 | 4 | 51138 | 3122 | 950 | $0.0993 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r18 | anthropic/claude-haiku-5.5 | 1 | 2988 | 0 | 0 | 82 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r18 | anthropic/claude-haiku-5.5 | 1 | 3153 | 0 | 0 | 64 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r18 | anthropic/claude-opus-5.5 | 3 | 12 | 211704 | 118456 | 12947 | $0.9035 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r18 | anthropic/claude-haiku-5.5 | 2 | 7671 | 0 | 0 | 665 | $0.0011 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r18 | anthropic/claude-opus-5.5 | 1 | 4075 | 0 | 0 | 8913 | $0.1946 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r19 | deepseek/deepseek-v4-pro-0813 | 1 | 2397 | 35584 | 0 | 642 | $0.0083 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r19 | anthropic/claude-haiku-5.5 | 1 | 3413 | 0 | 0 | 81 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r19 | anthropic/claude-fable-5.1 | 1 | 4 | 54260 | 3105 | 2043 | $0.1546 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r19 | anthropic/claude-haiku-5.5 | 1 | 3642 | 0 | 0 | 73 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r19 | anthropic/claude-haiku-5.5 | 1 | 3252 | 0 | 0 | 77 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r19 | anthropic/claude-opus-5.5 | 1 | 4 | 69962 | 55716 | 6775 | $0.4383 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r19 card | anthropic/claude-opus-5.5 | 1 | 3795 | 0 | 0 | 2488 | $0.0649 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r19 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 117776 | 3226 | 254 | $0.0825 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r19 card | anthropic/claude-haiku-5.5 | 2 | 2982 | 0 | 0 | 119 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r19 onward | anthropic/claude-opus-5.5 | 3 | 10 | 279767 | 65594 | 11210 | $0.6082 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r19 onward | anthropic/claude-haiku-5.5 | 2 | 9557 | 0 | 0 | 1069 | $0.0015 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r19 | anthropic/claude-opus-5.5 | 1 | 7021 | 0 | 0 | 8569 | $0.1995 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r20 | deepseek/deepseek-v4-pro-0813 | 1 | 2541 | 37888 | 0 | 607 | $0.0087 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r20 | anthropic/claude-haiku-5.5 | 1 | 3708 | 0 | 0 | 64 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r20 | anthropic/claude-fable-5.1 | 1 | 4 | 60591 | 840 | 1101 | $0.0807 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r20 | anthropic/claude-haiku-5.5 | 1 | 1942 | 0 | 0 | 82 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r20 | anthropic/claude-haiku-5.5 | 1 | 3499 | 0 | 0 | 76 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r20 | anthropic/claude-opus-5.5 | 3 | 12 | 172575 | 115431 | 12823 | $0.8810 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r20 | anthropic/claude-haiku-5.5 | 1 | 4450 | 0 | 0 | 696 | $0.0008 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r20 | anthropic/claude-opus-5.5 | 1 | 3910 | 0 | 0 | 7122 | $0.1581 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r21 | deepseek/deepseek-v4-pro-0813 | 1 | 1771 | 40192 | 0 | 1170 | $0.0094 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r21 | anthropic/claude-haiku-5.5 | 1 | 2516 | 0 | 0 | 82 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r21 | anthropic/claude-fable-5.1 | 1 | 4 | 61431 | 2705 | 1620 | $0.1302 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r21 | anthropic/claude-haiku-5.5 | 1 | 3446 | 0 | 0 | 77 | $0.0004 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r21 | anthropic/claude-haiku-5.5 | 1 | 2622 | 0 | 0 | 59 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r21 | anthropic/claude-opus-5.5 | 1 | 4 | 77621 | 57728 | 4489 | $0.4037 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r21 card | anthropic/claude-opus-5.5 | 1 | 2862 | 0 | 0 | 1327 | $0.0380 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r21 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 130389 | 2303 | 95 | $0.0662 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r21 card | anthropic/claude-haiku-5.5 | 2 | 1720 | 0 | 0 | 115 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r21 onward | anthropic/claude-opus-5.5 | 4 | 14 | 381768 | 64192 | 8632 | $0.5700 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r21 onward | anthropic/claude-haiku-5.5 | 3 | 11614 | 0 | 0 | 1687 | $0.0020 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r21 | anthropic/claude-opus-5.5 | 1 | 5188 | 0 | 0 | 5244 | $0.1256 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r22 | deepseek/deepseek-v4-pro-0813 | 1 | 1679 | 41728 | 0 | 596 | $0.0079 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r22 | anthropic/claude-haiku-5.5 | 1 | 2241 | 0 | 0 | 65 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r22 | anthropic/claude-fable-5.1 | 1 | 4 | 66439 | 860 | 894 | $0.0721 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r22 | anthropic/claude-haiku-5.5 | 1 | 1982 | 0 | 0 | 93 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r22 | anthropic/claude-haiku-5.5 | 1 | 2474 | 0 | 0 | 68 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r22 | anthropic/claude-opus-5.5 | 2 | 8 | 108593 | 108535 | 10766 | $0.7908 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r22 | anthropic/claude-haiku-5.5 | 1 | 4346 | 0 | 0 | 623 | $0.0007 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r22 | anthropic/claude-opus-5.5 | 1 | 3259 | 0 | 0 | 5933 | $0.1317 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r23 | deepseek/deepseek-v4-pro-0813 | 1 | 1381 | 43264 | 0 | 253 | $0.0068 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r23 | anthropic/claude-haiku-5.5 | 1 | 1888 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r23 | anthropic/claude-fable-5.1 | 1 | 4 | 67299 | 2432 | 2261 | $0.1603 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r23 | anthropic/claude-haiku-5.5 | 1 | 2934 | 0 | 0 | 111 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r23 | anthropic/claude-haiku-5.5 | 1 | 2722 | 0 | 0 | 64 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r23 | anthropic/claude-opus-5.5 | 3 | 12 | 250368 | 125490 | 10247 | $0.8902 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r23 | anthropic/claude-haiku-5.5 | 2 | 6439 | 0 | 0 | 552 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r23 | anthropic/claude-opus-5.5 | 1 | 3558 | 0 | 0 | 6010 | $0.1344 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r24 | deepseek/deepseek-v4-pro-0813 | 1 | 1750 | 44544 | 0 | 870 | $0.0090 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r24 | anthropic/claude-haiku-5.5 | 1 | 2723 | 0 | 0 | 69 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r24 | anthropic/claude-fable-5.1 | 1 | 4 | 69731 | 2432 | 1823 | $0.1390 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r24 | anthropic/claude-haiku-5.5 | 1 | 2648 | 0 | 0 | 78 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r24 | anthropic/claude-haiku-5.5 | 1 | 2394 | 0 | 0 | 76 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r24 | anthropic/claude-opus-5.5 | 1 | 4 | 87131 | 60273 | 4231 | $0.4121 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r24 card | anthropic/claude-opus-5.5 | 1 | 2935 | 0 | 0 | 1625 | $0.0442 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r24 card 1 | anthropic/claude-fable-5.1 | 2 | 8 | 146476 | 2313 | 279 | $0.0796 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r24 card | anthropic/claude-haiku-5.5 | 2 | 2048 | 0 | 0 | 113 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r24 onward | anthropic/claude-opus-5.5 | 3 | 10 | 320664 | 64975 | 4513 | $0.4793 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r24 onward | anthropic/claude-haiku-5.5 | 2 | 6080 | 0 | 0 | 604 | $0.0009 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r24 | anthropic/claude-opus-5.5 | 1 | 4535 | 0 | 0 | 4578 | $0.1097 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | player r25 | deepseek/deepseek-v4-pro-0813 | 1 | 1513 | 46080 | 0 | 621 | $0.0082 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram r25 | anthropic/claude-haiku-5.5 | 1 | 2173 | 0 | 0 | 66 | $0.0003 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | player r25 | anthropic/claude-fable-5.1 | 1 | 4 | 74476 | 276 | 708 | $0.0575 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa r25 | anthropic/claude-haiku-5.5 | 1 | 1221 | 0 | 0 | 77 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell r25 | anthropic/claude-haiku-5.5 | 1 | 2088 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r25 | anthropic/claude-opus-5.5 | 4 | 14 | 425040 | 138338 | 10115 | $0.9871 | 0 | 0 | 0 |
+| DUNGEON-T2 | dm r25 | anthropic/claude-haiku-5.5 | 2 | 6244 | 0 | 0 | 683 | $0.0010 | 0 | 0 | 0 |
+| DUNGEON-T2 | relay r25 | anthropic/claude-opus-5.5 | 1 | 3276 | 0 | 0 | 5023 | $0.1136 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | after 1 | deepseek/deepseek-v4-pro-0813 | 1 | 1458 | 47360 | 0 | 573 | $0.0081 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram after 1 | anthropic/claude-haiku-5.5 | 1 | 906 | 0 | 0 | 69 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | after 2 | deepseek/deepseek-v4-pro-0813 | 1 | 611 | 48640 | 0 | 1350 | $0.0092 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram after 2 | anthropic/claude-haiku-5.5 | 1 | 752 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Bram | after 3 | deepseek/deepseek-v4-pro-0813 | 1 | 409 | 49152 | 0 | 1705 | $0.0099 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Bram after 3 | anthropic/claude-haiku-5.5 | 1 | 784 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | after 1 | anthropic/claude-fable-5.1 | 1 | 4 | 74752 | 1914 | 756 | $0.0805 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa after 1 | anthropic/claude-haiku-5.5 | 1 | 1026 | 0 | 0 | 91 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | after 2 | anthropic/claude-fable-5.1 | 1 | 4 | 76666 | 721 | 662 | $0.0613 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa after 2 | anthropic/claude-haiku-5.5 | 1 | 939 | 0 | 0 | 106 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/Sefa | after 3 | anthropic/claude-fable-5.1 | 1 | 4 | 77387 | 621 | 789 | $0.0666 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Sefa after 3 | anthropic/claude-haiku-5.5 | 1 | 902 | 0 | 0 | 81 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell after 1 | anthropic/claude-haiku-5.5 | 1 | 919 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 664 | 0 | 0 | 80 | $0.0001 | 0 | 0 | 0 |
+| DUNGEON-T2/check | check DUNGEON-T2 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 529 | 0 | 0 | 54 | $0.0001 | 0 | 0 | 0 |
