@@ -66,17 +66,24 @@ export function companyDm(body) {
 }
 
 /** The scripted relay: each screen asked, in the order asked; the first answer copies the players' words when
- * `copyFirst` (A4's guard asks again); a character whose own paragraph goes to sleep is marked waiting. */
-export function companyRelay(user, { copyFirst = true } = {}) {
+ * `copyFirst` (fix A4 sends that screen back alone, its runs marked: the answer retells them, unless the screen's
+ * character is in `stubborn`, whose screen keeps the copy); a character whose own paragraph goes to sleep is marked
+ * waiting. */
+export function companyRelay(user, { copyFirst = true, stubborn = [] } = {}) {
+  const resend = user.match(/^You wrote the screen below for ([^.]+)\. Each part between/m)?.[1];
+  if (resend) {
+    const marked = user.slice(user.lastIndexOf("<<<\n") + 4, user.lastIndexOf("\n>>>"));
+    const screen = stubborn.includes(resend) ? marked.replace(/[⟦⟧]/g, "") : marked.replace(/⟦[^⟧]*⟧/g, "does what they said they would.");
+    return JSON.stringify({ screen });
+  }
   const asked = (user.match(/^Write the screens of, in this order: (.+)\.$/m)?.[1] ?? "").split(", ").filter(Boolean);
   const scene = (user.match(/^In this scene: ([^.(]+)\./m)?.[1] ?? "").split(", ").map((x) => x.trim()).filter(Boolean);
   const narration = user.match(/(?:Your narration|Your opening narration):\n<<<\n([\s\S]*?)\n>>>/)?.[1] ?? "";
   const block = user.match(/What the players wrote for this round[^\n]*\n<<<\n([\s\S]*?)\n>>>/)?.[1] ?? "";
   const paragraphs = roundParagraphs(block);
-  const again = /Write the whole answer again/.test(user);
   const screens = Object.fromEntries(asked.map((name) => {
     const others = paragraphs.filter((p) => p.name !== name && !/^\(/.test(p.text));
-    const told = others.map((p) => (copyFirst && !again ? `${p.name.split(" ")[0]} says: ${p.text}` : `${p.name.split(" ")[0]} does what they said they would.`)).join(" ");
+    const told = others.map((p) => (copyFirst ? `${p.name.split(" ")[0]} says: ${p.text}` : `${p.name.split(" ")[0]} does what they said they would.`)).join(" ");
     return [name, `[for ${name}] ${told} ${narration.slice(0, 300)}`.trim()];
   }));
   const waiting = Object.fromEntries(paragraphs.filter((p) => SLEEPS.test(p.text)).map((p) => [p.name, "asleep — until dawn"]));
@@ -130,7 +137,7 @@ export function companyPlayer(script = {}, { atCard = {}, rerolls = {} } = {}) {
 }
 
 /** The mocked host. `log` collects every request; `copyFirst`: the relay's first answer copies the players' words. */
-export function companyScripted({ script = {}, atCard = {}, rerolls = {}, log = [], copyFirst = true, waitsOn = null } = {}) {
+export function companyScripted({ script = {}, atCard = {}, rerolls = {}, log = [], copyFirst = true, stubborn = [], waitsOn = null } = {}) {
   const player = companyPlayer(script, { atCard, rerolls });
   const judge = (system, user) => companyJudge(system, user, { waitsOn }) ?? defaultJudge(system, user);
   const base = scriptedFetcher({ player, judge, log });
@@ -151,7 +158,7 @@ export function companyScripted({ script = {}, atCard = {}, rerolls = {}, log = 
     }
     if (/^You are the game master of a tabletop role-playing game with three players/.test(system)) {
       log.push({ url, body });
-      const text = companyRelay(textOf(body.messages?.at(-1)?.content), { copyFirst });
+      const text = companyRelay(textOf(body.messages?.at(-1)?.content), { copyFirst, stubborn });
       return json({ id: `msg_relay_${n}`, type: "message", role: "assistant", model: body.model, content: [{ type: "text", text }], stop_reason: "end_turn", usage: { input_tokens: 1500, output_tokens: 300 } }, { "request-id": `req_relay_${n}` });
     }
     return base(url, init);

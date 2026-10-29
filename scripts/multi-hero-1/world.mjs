@@ -4,14 +4,14 @@
 // DM the three are player characters with none at the centre; the DM settings carry the option `company` before the
 // opening, so the opening is asked in the company's words; every record carries Heroic Inspiration (sheets.mjs). The
 // prep of P-GOAL and P-DUNGEON runs once each on the snapshot, as the company's prep (A8's addressees in the layer).
-import { createHash, randomUUID } from "node:crypto";
+import { createHash, randomInt, randomUUID } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import { canonical, layerSha256, privateStateOf, storedOf, threadsOf, writesBetween } from "../game-player-same-world-1/world.mjs";
 import { companionRecords, seat } from "../game-party-1/world.mjs";
-import { ARMS, ARM_CAMPAIGNS, DESIGN_SHA256, DM_COMPANY_LINE, LAYER_ARMS, OWNER_OPENING_ANSWER, STAGE, companyFiles } from "./frozen.mjs";
+import { ARMS, ARM_CAMPAIGNS, DESIGN_SHA256, LAYER_ARMS, STAGE, companyCampaign, companyFiles, dmCompanyLine, ownerOpeningAnswer, seatsFrom } from "./frozen.mjs";
 import { CHARACTERS, REVIEWS } from "./sheets.mjs";
 
 export const SNAPSHOT = "world-base.tar.gz";
@@ -22,16 +22,19 @@ const readJson = (path) => JSON.parse(readFileSync(path, "utf8"));
 async function writeAtomic(path, data) { await writeFile(`${path}.tmp`, data); await rename(`${path}.tmp`, path); }
 
 /** The DM settings of a company table: the owner's, with the companions' rolls as their players' cards, English
- * instructions, the option `company`, and (P-SAND) pure simulation. */
-export const companyOptions = (arm) => ({ ...OWNER_SETTINGS.options, companionRolls: "player", instructions: "en", company: true,
+ * instructions, the option `company` with the table's coin (`companyStart`, fix A2), and (P-SAND) pure simulation. */
+export const companyOptions = (arm, start = 0) => ({ ...OWNER_SETTINGS.options, companionRolls: "player", instructions: "en", company: true, companyStart: start,
   ...(ARM_CAMPAIGNS[arm].pureSimulation ? { pureSimulation: true } : {}) });
 
-/** One arm's campaign as a company table: { cid, heroId, companions, worldId, adventureId, steps }. */
-export async function createCompanyCampaign(app, arm, { log = () => {}, closed = () => false } = {}) {
+/** One arm's campaign as a company table: { cid, heroId, companions, worldId, adventureId, coin, seats, steps }. Fix A2:
+ * the table's coin is drawn first (`coin`, 0–2: the seat that comes first); the adventure's texts list the three in that
+ * order (the opening reads them there, alike), and the DM option `companyStart` keeps it for the app's lists. */
+export async function createCompanyCampaign(app, arm, { log = () => {}, closed = () => false, coin = randomInt(3) } = {}) {
   const { server, lib } = app;
   const files = companyFiles();
-  const campaign = ARM_CAMPAIGNS[arm];
-  const steps = [];
+  const seats = seatsFrom(coin);
+  const campaign = companyCampaign(arm, seats);
+  const steps = [{ step: "coin", coin, seats }];
   const fence = (cid) => app.f.fence(cid);
   const worlds = await server.adventures.adventureService(null);
   const world = (await worlds.performWorld(lib.client.createWorldAttempt(await worlds.worlds(), { title: files.worldName, premise: files.setting, packVersionIds: [] }))).world;
@@ -55,14 +58,14 @@ export async function createCompanyCampaign(app, arm, { log = () => {}, closed =
   if (campaign.wishes.trim()) await server.secrets.saveDmSecrets(cid, { scope: "wishes", body: campaign.wishes.trim(), rebuild: false });
   const adventures = await server.adventures.adventureService(cid);
   const catalog = await adventures.read(cid, await fence(cid));
-  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title: campaign.title, premise: lib.wizardText.wizardAdventurePremise(`${campaign.premise}\n\n${DM_COMPANY_LINE}`, "", "en"), pacing: { kind: "evening", custom: null } }));
+  const prepared = await adventures.perform(lib.client.prepareAdventureAttempt(catalog, { title: campaign.title, premise: lib.wizardText.wizardAdventurePremise(`${campaign.premise}\n\n${dmCompanyLine(seats)}`, "", "en"), pacing: { kind: "evening", custom: null } }));
   const adventure = prepared.snapshot.adventures.find((a) => a.status === "prepared");
   steps.push({ step: "adventure", title: campaign.title, wishesChars: campaign.wishes.length });
   // The DM: the owner's settings with the option `company` — saved before the opening, so it is asked as a company's.
   const current = await server.dmSettings.readDmSettings(cid);
-  await server.dmSettings.saveDmSettings(cid, { expectedRevision: current.revision, ...OWNER_SETTINGS, options: { ...current.options, ...companyOptions(arm) } });
+  await server.dmSettings.saveDmSettings(cid, { expectedRevision: current.revision, ...OWNER_SETTINGS, options: { ...current.options, ...companyOptions(arm, coin) } });
   const saved = await server.dmSettings.readDmSettings(cid);
-  if (saved.options.company !== true) throw new Error(`${arm}: the option «company» did not read back`);
+  if (saved.options.company !== true || saved.options.companyStart !== coin) throw new Error(`${arm}: the option «company» or its coin did not read back`);
   steps.push({ step: "dm", split: saved.split ? `${saved.split.writer.modelId} writes, ${saved.split.bookkeeper.modelId} records` : "single", depth: saved.depth, options: saved.options });
   steps.push({ step: "craft", ...(await activateCraft(server)) });
   steps.push({ step: "media", ...(await mediaOff(app, cid)) });
@@ -92,14 +95,15 @@ export async function createCompanyCampaign(app, arm, { log = () => {}, closed =
   const pcWords = CHARACTERS.flatMap((c) => [c.name.toLowerCase(), c.short.toLowerCase()]);
   const isPc = (actor) => pcWords.some((w) => String(actor.name ?? "").toLowerCase().includes(w));
   const dropped = opening.proposal.actors.filter(isPc).map((a) => a.name);
-  const answers = opening.proposal.questions.map((q) => (q.consequential ? OWNER_OPENING_ANSWER : null));
+  const answers = opening.proposal.questions.map((q) => (q.consequential ? ownerOpeningAnswer(seats) : null));
   const openingReview = lib.openingAnswers.applyOpeningAnswers({ ...lib.validation.initialOpeningReview(opening.proposal), actors: opening.proposal.actors.filter((a) => !isPc(a)), answers, publicOpeningConfirmed: true }, opening.proposal.questions, "en");
   const startMinutes = lib.wizardText.startMinutesFromText(`${opening.proposal.narration ?? ""} ${opening.proposal.situation ?? ""}`, "en");
   await server.bootstrap.performBootstrap({ action: "opening.commit", input: { requestId: randomUUID(), campaignId: cid, draftId: opening.draftId, review: openingReview, startMinutes } });
   steps.push({ step: "opening", proposals, ...(incomplete.length ? { incomplete } : {}), location: opening.proposal.location?.name ?? null, actors: opening.proposal.actors.length, droppedPcActors: dropped,
     narration: opening.proposal.narration ?? null, questions: opening.proposal.questions.map((q, i) => ({ question: q.question, consequential: q.consequential, answer: answers[i] })), startMinutes });
   log(`  ${arm}: opening committed${dropped.length ? ` (the review left out ${dropped.join(", ")}: already at the table)` : ""}`);
-  // Sefa and Pell: records like Bram's (sheet, things, coin, counters with Heroic Inspiration), kept as party members.
+  // Sefa and Pell: records like Bram's (sheet, things, coin, counters with Heroic Inspiration), kept as party members,
+  // after the opening (the app opens a campaign on its one record); seated as the coin turned them in the app's order.
   const first = (await server.publicCampaign.readPublicCampaign(cid)).entities.find((e) => e.id === heroId);
   const companions = {};
   for (const id of ["sefa", "pell"]) {
@@ -115,7 +119,7 @@ export async function createCompanyCampaign(app, arm, { log = () => {}, closed =
   }
   steps.push({ step: "records", companions: Object.fromEntries(Object.entries(companions).map(([k, v]) => [k, { id: v.id, items: v.items }])) });
   steps.push({ step: "seating", ...(await seat(app, cid, heroId, companions)) });
-  return { cid, heroId, companions: Object.fromEntries(Object.entries(companions).map(([k, v]) => [k, v.id])), worldId: world.id, adventureId: adventure.id, steps };
+  return { cid, heroId, companions: Object.fromEntries(Object.entries(companions).map(([k, v]) => [k, v.id])), worldId: world.id, adventureId: adventure.id, coin, seats, steps };
 }
 
 async function activateCraft(server) {
@@ -149,11 +153,11 @@ async function mediaOff(app, cid) {
 // ---- the freeze ----------------------------------------------------------------------------------------------------------
 
 /** The three arms' company campaigns on one database, kept as the snapshot (no prep in it). Returns the manifest. */
-export async function buildWorld({ app, meter, dir, log = () => {}, by = null, settle = async () => 0 }) {
+export async function buildWorld({ app, meter, dir, log = () => {}, by = null, settle = async () => 0, coin = undefined }) {
   await mkdir(dir, { recursive: true });
   if (existsSync(join(dir, MANIFEST))) throw new Error(`${dir} already holds a frozen world: it is built once`);
   const made = {};
-  for (const arm of ARMS) made[arm] = await meter.within({ session: `freeze ${arm}`, purpose: "wizard" }, () => createCompanyCampaign(app, arm, { log, closed: () => Boolean(meter.stopped) }));
+  for (const arm of ARMS) made[arm] = await meter.within({ session: `freeze ${arm}`, purpose: "wizard" }, () => createCompanyCampaign(app, arm, { log, closed: () => Boolean(meter.stopped), coin }));
   if (await settle()) throw new Error("the wizard's background jobs did not finish: nothing frozen");
   for (const arm of ARMS) if (app.lib.privateNotes.hiddenLayerOf({ privateState: await privateStateOf(app, made[arm].cid) })) throw new Error(`${arm}: a layer exists before the prep`);
   const blob = await app.f.db.dumpDataDir("gzip");
@@ -161,7 +165,8 @@ export async function buildWorld({ app, meter, dir, log = () => {}, by = null, s
   await writeAtomic(join(dir, SNAPSHOT), bytes);
   const manifest = { stage: STAGE, design: DESIGN_SHA256, builtAt: new Date().toISOString(), by, owner: app.owner,
     snapshot: { file: SNAPSHOT, bytes: bytes.length, sha256: sha256(bytes), note: "The local database after the wizard, the opening and the seating of the three arms' company campaigns, before any prep (PGlite data directory, gzip)." },
-    arms: Object.fromEntries(ARMS.map((arm) => [arm, { campaignId: made[arm].cid, heroId: made[arm].heroId, companions: made[arm].companions, worldId: made[arm].worldId, adventureId: made[arm].adventureId, steps: made[arm].steps }])),
+    arms: Object.fromEntries(ARMS.map((arm) => [arm, { campaignId: made[arm].cid, heroId: made[arm].heroId, companions: made[arm].companions, worldId: made[arm].worldId, adventureId: made[arm].adventureId,
+      coin: made[arm].coin, seats: made[arm].seats, steps: made[arm].steps }])),
     layers: {} };
   await writeAtomic(join(dir, MANIFEST), `${JSON.stringify(manifest, null, 2)}\n`);
   return manifest;
@@ -251,7 +256,7 @@ export function tableStarter(dir) {
       const state = await privateStateOf(app, cid);
       if (canonical(storedOf(state, file.writes)) !== canonical(file.stored)) throw new Error(`${arm}: the DM's notes do not hold the frozen file after writing it`);
     }
-    return { cid, heroId: a.heroId, companions: a.companions, steps: a.steps,
+    return { cid, heroId: a.heroId, companions: a.companions, coin: a.coin ?? 0, seats: a.seats ?? seatsFrom(0), steps: a.steps,
       prep: { frozen: Boolean(file), pureSimulation: !file, layerSha256: file?.sha256 ?? null, snapshotSha256: manifest.snapshot.sha256, threads: file?.threads?.length ?? 0, layerText: file?.layer ?? "" } };
   };
 }

@@ -63,8 +63,8 @@ export const oocFor = (character, text, wait = "") => `(${character.short}'s pla
  * `systemOf(characterId)`: the player's system prompt; `private`: { layerText } (the DM-only text, for the leak check —
  * never written to the record). Returns the table record.
  */
-export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, onProgress = async () => {} }) {
-  const record = { key, arm, triad, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
+export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {} }) {
+  const record = { key, arm, triad, coin, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
     seats: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
   const view = () => dm.readView();
   const names = () => seats.filter((s) => s.active).map((s) => s.character.name);
@@ -170,12 +170,13 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     if (!seats.some((s) => s.active)) { end("empty", "every player has left the table"); break; }
     const round = { n: r, scenes: [] };
     record.rounds.push(round);
+    onRound(r);
     groups = mergeGroups(groups, [], names());
     // Who is with whom after this round: every scene's relay says (a character may join another scene's group).
     const relayedThisRound = [];
     for (const members of groups.map((g) => [...g])) {
       if (record.ended) break;
-      const sceneSeats = orderOf(members.map(byName).filter((s) => s?.active), play, r);
+      const sceneSeats = orderOf(members.map(byName).filter((s) => s?.active), play, r, coin);
       if (!sceneSeats.length) continue;
       const scene = { members: sceneSeats.map((s) => s.character.name), order: sceneSeats.map((s) => s.character.short), messages: [], questions: [], strays: [], cards: [], status: null,
         waiting: sceneSeats.filter((s) => s.waiting).map((s) => ({ name: s.character.name, why: s.waiting.why, rounds: s.waiting.rounds })) };
@@ -221,6 +222,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
         record.counts.relayCopied += relayed.copied?.length ?? 0;
         record.counts.relayCopiedAfter += relayed.copiedAfter?.length ?? 0;
         if (relayed.retold) record.counts.relayRetold++;
+        record.counts.relayResent = (record.counts.relayResent ?? 0) + (relayed.resent?.length ?? 0);
+        record.counts.relayDefects = (record.counts.relayDefects ?? 0) + (relayed.defects?.length ?? 0);
         // Who waits after this scene (the relay's marks; a mark not given again ends the wait).
         for (const n of readers) {
           const s = byName(n);
@@ -485,13 +488,13 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
 
 /** The relay's part of the record (its request is kept: it is what the DM was asked, public text only). */
 const relayRecord = (r) => ({ screens: r.screens ?? null, together: r.together ?? null, places: r.places ?? null, waiting: r.waiting ?? {}, missing: r.missing ?? [], extra: r.extra ?? [], attempts: r.attempts ?? 0,
-  fallback: Boolean(r.fallback), copied: r.copied ?? [], copiedAfter: r.copiedAfter ?? [], retold: Boolean(r.retold), error: r.error ?? null, refusal: Boolean(r.refusal), notSent: Boolean(r.notSent), request: r.request?.user ?? null });
+  fallback: Boolean(r.fallback), copied: r.copied ?? [], copiedAfter: r.copiedAfter ?? [], resent: r.resent ?? [], defects: r.defects ?? [], retold: Boolean(r.retold), error: r.error ?? null, refusal: Boolean(r.refusal), notSent: Boolean(r.notSent), request: r.request?.user ?? null });
 
-/** The scene's seats in order: the seat order turned round by the round's number (rotation); in a fight, the fight's own
- * order (its participants' turn order). */
-export function orderOf(sceneSeats, play, round = 1) {
+/** The scene's seats in order: the seat order turned round by the round's number from the table's coin (rotation; fix
+ * A2); in a fight, the fight's own order (its participants' turn order). */
+export function orderOf(sceneSeats, play, round = 1, coin = 0) {
   const active = (play?.encounters ?? []).find((e) => e.status === "active");
-  if (!active) { const bySeat = [...sceneSeats].sort((a, b) => a.seat - b.seat); return rotation(round, bySeat.length).map((i) => bySeat[i]); }
+  if (!active) { const bySeat = [...sceneSeats].sort((a, b) => a.seat - b.seat); return rotation(round, bySeat.length, coin).map((i) => bySeat[i]); }
   const order = new Map((play.participants ?? []).filter((p) => p.encounter_id === active.id && p.entity_id).map((p) => [p.entity_id, p.turn_order]));
   return [...sceneSeats].sort((a, b) => (order.get(a.entityId) ?? 99) - (order.get(b.entityId) ?? 99) || a.seat - b.seat);
 }

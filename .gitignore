@@ -15,4 +15,4 @@ supabase/.branches/
 
 .sandbox/
 docs/runs/game-player-same-world-1-haiku-frozen/world-base.tar.gz
-docs/runs/multi-hero-1-frozen/world-base.tar.gz
+docs/runs/multi-hero-1-frozen*/world-base.tar.gz

@@ -1,11 +1,12 @@
 // Multi-hero 1: the DM's relay — one screen per player (PARTY_1's relay.mjs), with the stage's item 4: the other players'
 // speech and actions are retold, never quoted; the screens are written in the round's own order; and the relay says who
 // is waiting (asleep, unconscious, or waiting for something named) at the end of the scene, so that character is not
-// asked the next round. A screen that copies a run of 8 words from another player's message of the round is asked for
-// once more (A4's check, before the screens reach anyone); both counts are kept.
+// asked the next round. Fix A4 (the amendment of 2026-10-29 02:30 LA): after the relay's pass, a screen that copies a run of
+// 8 words from another player's message of the round is sent back once, alone, with the runs marked; it is accepted only
+// when no run remains, else the copy is logged as a defect (before the screens reach anyone).
 import { jsonIn } from "../game-player-1/welfare.mjs";
 import { mergeGroups, roundGroups } from "../game-party-1/relay.mjs";
-import { RELAY, RELAY_AGAIN, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
+import { RELAY, RELAY_MARKS, RELAY_RESEND, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
 
 export { mergeGroups, roundGroups };
 const block = (text) => `<<<\n${String(text ?? "").trim()}\n>>>`;
@@ -70,9 +71,40 @@ export function copiedRuns(screens, messages) {
   return hits;
 }
 
+/** A screen with its copied runs marked: every stretch of words inside a run of `SHINGLE` shared with `runs`, between
+ * the marks (overlapping runs make one stretch). */
+export function markRuns(text, runs) {
+  const set = new Set(runs);
+  const tokens = [...String(text ?? "").matchAll(/[\p{L}\p{N}'’‘]+/gu)].map((m) => ({ at: m.index, end: m.index + m[0].length, word: m[0].toLowerCase().replace(/[’‘]/g, "'") }));
+  const inside = new Array(tokens.length).fill(false);
+  for (let i = 0; i + SHINGLE <= tokens.length; i++) if (set.has(tokens.slice(i, i + SHINGLE).map((t) => t.word).join(" "))) for (let k = i; k < i + SHINGLE; k++) inside[k] = true;
+  let out = "", from = 0;
+  for (let i = 0; i < tokens.length; i++) {
+    if (!inside[i] || (i > 0 && inside[i - 1])) continue;
+    let j = i;
+    while (j + 1 < tokens.length && inside[j + 1]) j++;
+    out += `${text.slice(from, tokens[i].at)}${RELAY_MARKS[0]}${text.slice(tokens[i].at, tokens[j].end)}${RELAY_MARKS[1]}`;
+    from = tokens[j].end;
+  }
+  return out + String(text ?? "").slice(from);
+}
+/** Every run of `SHINGLE` words a screen shares with the other players' messages (all of them, not one per message). */
+function runsIn(text, reader, messages) {
+  const shown = shingles(text);
+  const out = [];
+  for (const m of messages) {
+    if (m.name === reader || m.own === false) continue;
+    for (const run of shingles(m.text)) if (shown.has(run)) out.push({ screen: reader, from: m.name, run });
+  }
+  return out;
+}
+const screenOf = (text) => { const v = jsonIn(text); return v && typeof v.screen === "string" && v.screen.trim() ? v.screen.trim() : null; };
+
 /**
- * One relay: asked once, again on an unreadable reply (never after a refusal), and again once when its screens copy a
- * player's words (A4). Returns { screens, together, places, waiting, missing, extra, attempts, fallback, copied, copiedAfter, … }.
+ * One relay: asked once, again on an unreadable reply (never after a refusal); then fix A4's check — each screen that
+ * copies a player's words is sent back once, alone, with its runs marked, and accepted only when no run remains (else
+ * the screen that copies less goes out and the copy is logged as a defect). Returns { screens, together, places,
+ * waiting, missing, extra, attempts, fallback, copied, copiedAfter, resent, defects, retold, … }.
  */
 export async function relay({ ask, names, scene, forNames, messages = [], narration, already, opening = false, purpose }) {
   const request = relayRequest({ names, scene, forNames, messages, narration, already, opening });
@@ -85,16 +117,27 @@ export async function relay({ ask, names, scene, forNames, messages = [], narrat
     if (!last.error) parsed = parseRelay(last.text, { names, scene, forNames });
   }
   if (!parsed) return { screens: Object.fromEntries(forNames.map((n) => [n, String(narration ?? "").trim()])), together: [scene], places: {}, waiting: {}, missing: [], extra: [], attempts, fallback: true,
-    copied: [], copiedAfter: [], error: last?.error ?? "unreadable", request };
+    copied: [], copiedAfter: [], resent: [], defects: [], error: last?.error ?? "unreadable", request };
   const copied = copiedRuns(parsed.screens, messages);
-  if (!copied.length) return { ...parsed, attempts, fallback: false, copied, copiedAfter: [], request };
-  // A4: once more, with the runs named; the second answer stands when it reads.
-  const again = { system: request.system, user: `${request.user}\n\n${RELAY_AGAIN}\n${copied.map((h) => `- ${h.screen}'s screen copies ${h.from}'s words: «${h.run}»`).join("\n")}` };
-  const second = await ask({ model: RELAY.model, ...again, maxTokens: RELAY.maxTokens, effort: RELAY.effort, purpose: `${purpose} (retold)` });
-  attempts++;
-  if (second.notSent) return { notSent: true, error: second.error ?? "not sent", attempts, request };
-  if (second.stopReason === "refusal") return { refusal: true, error: "refusal", attempts, request };
-  const retold = second.error ? null : parseRelay(second.text, { names, scene, forNames });
-  const final = retold ?? parsed;
-  return { ...final, attempts, fallback: false, copied, copiedAfter: copiedRuns(final.screens, messages), retold: Boolean(retold), request };
+  const screens = { ...parsed.screens };
+  const resent = [], defects = [];
+  // Fix A4: each copying screen, alone, once, with its runs marked.
+  for (const name of forNames) {
+    const before = runsIn(screens[name], name, messages);
+    if (!before.length) continue;
+    const marked = markRuns(screens[name], before.map((h) => h.run));
+    const second = await ask({ model: RELAY.model, system: request.system, user: `${request.user}\n\n${RELAY_RESEND(name)}\n\n<<<\n${marked}\n>>>`, maxTokens: RELAY.maxTokens, effort: RELAY.effort, purpose: `${purpose} (${name.split(" ")[0]}'s screen, retold)` });
+    attempts++;
+    if (second.notSent) return { notSent: true, error: second.error ?? "not sent", attempts, request };
+    const again = second.error || second.stopReason === "refusal" ? null : screenOf(second.text);
+    const after = again === null ? before : runsIn(again, name, messages);
+    const accepted = again !== null && after.length === 0;
+    // Accepted only when no run remains; else the screen that copies less goes out and what remains is a defect.
+    if (again !== null && after.length <= before.length) screens[name] = again;
+    // A defect per copied message (as `copiedRuns` counts), with how many runs of it remain.
+    const kept = accepted ? [] : copiedRuns({ [name]: screens[name] }, messages).map((h) => ({ ...h, runs: runsIn(screens[name], name, messages).filter((x) => x.from === h.from).length }));
+    resent.push({ screen: name, runsBefore: before.length, runsAfter: again === null ? null : after.length, accepted, unreadable: again === null });
+    defects.push(...kept);
+  }
+  return { ...parsed, screens, attempts, fallback: false, copied, copiedAfter: copiedRuns(screens, messages), resent, defects, retold: resent.some((r) => r.accepted), request };
 }
