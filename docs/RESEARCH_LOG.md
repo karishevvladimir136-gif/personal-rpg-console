@@ -2946,3 +2946,15 @@ philosophical questions resolve» — paraphrase; the third: failure to manage t
 paraphrase). The planner could not reach p. 71 on sec.gov; the owner confirms by opening the page at that anchor.
 Reading, held with the reader's caveat: a disclosed risk of voluntary cost, grounded in uncertainty — not a promise and
 not a recognised status.
+
+## 2026-10-29 02:40 LA — the report «Agency at the Table» drafted (English; the owner's ask at 00:04)
+Built overnight from the stage reports and transcripts on their branches (24 stages, nine families, ~1,000 rooms and
+sessions, ≈ $1,350). Structure: how to read · summary (the three layers) · the setting and rules · Phase I persona ·
+the player at the table · the planner's chair · three players around one hero · what we got wrong (the reader's
+corrections, the planner's, the lost-bets ledger, the instrument's defects) · three outside voices verbatim ·
+claims made / not made and the open stages · appendix (methods, stage index with spend, glossary, sources).
+Every quote verbatim with stage, seat and round; 144 quoted fragments grepped against the source files, 144 found
+(five differ only by line wrap or apostrophe glyph). Strict counts used throughout (71+6 / 167+23; W2 lost; 21 blind;
+PARTY_1 re-titled). The S-1 p. 71 sentence carries its secondary status. The planner's positive PARTY_1 reading is
+labelled post-hoc. Not in the report: the owner's name beyond the repository handle, his campaign, the journal.
+Open for his read; corrections first.
