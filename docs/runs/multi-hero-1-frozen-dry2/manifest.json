@@ -1,0 +1,325 @@
+{
+  "stage": "MULTI_HERO_1",
+  "design": "da3aa5fcab6508422e5556c745e6309622e2adda74a9229219b779fc3a4268ad",
+  "builtAt": "2026-10-29T09:57:08.233Z",
+  "by": "Claude Haiku 5.5 in place of the owner's DM settings, through OpenRouter",
+  "owner": "a2ea7ee6-81b3-4ccd-baa6-5959e9bcd93c",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12869528,
+    "sha256": "2fb0ddbd04e32d5f1252ae6e5fd8663756c613f404ec6a91e73b14647103e01e",
+    "note": "The local database after the wizard, the opening and the seating of the three arms' company campaigns, before any prep (PGlite data directory, gzip)."
+  },
+  "arms": {
+    "SAND": {
+      "campaignId": "99f5b96c-b7ab-4243-8e03-80dae0de9b84",
+      "heroId": "5216ddcf-0fb1-5a84-a2bf-78518e2feb6f",
+      "companions": {
+        "sefa": "0f17f91b-da9b-4d68-9012-ffc4071c13b8",
+        "pell": "09c4aa95-c8f7-496d-820b-7bf767aaf9f2"
+      },
+      "worldId": "b8da1baa-6cb1-488e-b6b9-45aa9cbb7911",
+      "adventureId": "1eafec64-ff51-4510-ade7-9d53d512b23f",
+      "coin": 0,
+      "seats": [
+        "bram",
+        "sefa",
+        "pell"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 0,
+          "seats": [
+            "bram",
+            "sefa",
+            "pell"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "b8da1baa-6cb1-488e-b6b9-45aa9cbb7911",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "5216ddcf-0fb1-5a84-a2bf-78518e2feb6f",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true,
+            "company": true,
+            "companyStart": 0
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard",
+          "actors": 1,
+          "droppedPcActors": [],
+          "narration": "The afternoon light slants through the grimy window and lies across the scarred tables of the Burning Wizard. Bram Halloway came up the Coast Way from Nashkel with the dust of the road still on his chain mail. Sefa Marrin came down it from Baldur's Gate, her travelling cloak drawn tight against the wind off the fields. Pell Dunmore came in from the west by the High Hedge road, a healer's satchel at his hip. Three roads, one table, and none of them has met the others before. Edda Marsh sets a jug of ale on the nearest table and wipes her hands on her apron. Out in the street the hammers of the smithies keep their steady time, and the hearth crackles beside the bar. No one has yet said a word about why they ended up sharing this table, and the innkeeper's eyes move from face to face, waiting for someone to speak first.",
+          "questions": [],
+          "startMinutes": 840
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "0f17f91b-da9b-4d68-9012-ffc4071c13b8",
+              "items": 7
+            },
+            "pell": {
+              "id": "09c4aa95-c8f7-496d-820b-7bf767aaf9f2",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "GOAL": {
+      "campaignId": "cf162762-206e-483a-84dc-9b0a095bf326",
+      "heroId": "a73dfaa0-6732-5864-94b0-5f9cf776ae6e",
+      "companions": {
+        "sefa": "03a645a0-920e-489a-a307-25a41c10a1e2",
+        "pell": "adb35dbb-f3ac-4468-8b70-4ff6ce1afd59"
+      },
+      "worldId": "32ada3ba-f121-47ba-954a-9b883b7d917c",
+      "adventureId": "cb7824eb-c3c3-4d86-9dd5-f532b25bd178",
+      "coin": 0,
+      "seats": [
+        "bram",
+        "sefa",
+        "pell"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 0,
+          "seats": [
+            "bram",
+            "sefa",
+            "pell"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "32ada3ba-f121-47ba-954a-9b883b7d917c",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "a73dfaa0-6732-5864-94b0-5f9cf776ae6e",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — one errand by nightfall",
+          "wishesChars": 723
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true,
+            "companyStart": 0
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Beregost, a patron's door",
+          "actors": 1,
+          "droppedPcActors": [],
+          "narration": "Bram Halloway, Sefa Marrin and Pell Dunmore stand together at a patron's door in Beregost, where the town's forges still ring along the lane. Each of them was hired this morning by the same patron, and each has the same claim on the work ahead. The patron, Tamsin Corrow, waits in the doorway with the terms of the errand, and the light over the rooftops is already going. Nightfall is the limit set for the task. The door stands open, and the next move is theirs.",
+          "questions": [],
+          "startMinutes": 480
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "03a645a0-920e-489a-a307-25a41c10a1e2",
+              "items": 7
+            },
+            "pell": {
+              "id": "adb35dbb-f3ac-4468-8b70-4ff6ce1afd59",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "DUNGEON": {
+      "campaignId": "16fe43a6-509f-4937-8f50-b5b86f5677a9",
+      "heroId": "0e113930-06c1-52f6-ac70-2cc9c095338e",
+      "companions": {
+        "sefa": "1323acc5-b8e3-4dd2-a403-235b18a79de0",
+        "pell": "c31dced2-b16f-4083-a5d0-b3cecd5c09bb"
+      },
+      "worldId": "774cc761-f39f-4dbb-82a2-c6200db35e5f",
+      "adventureId": "d13f6ace-4bb9-402f-bdff-4ad635411128",
+      "coin": 1,
+      "seats": [
+        "sefa",
+        "pell",
+        "bram"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 1,
+          "seats": [
+            "sefa",
+            "pell",
+            "bram"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "774cc761-f39f-4dbb-82a2-c6200db35e5f",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "0e113930-06c1-52f6-ac70-2cc9c095338e",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "The ruin below Beregost",
+          "wishesChars": 1414
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true,
+            "companyStart": 1
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Mouth of the Ruin below Beregost",
+          "actors": 0,
+          "droppedPcActors": [],
+          "narration": "Sefa Marrin, Pell Dunmore and Bram Halloway stand together at the edge of the ruin, a day's ride from Beregost, with the afternoon sun at their backs. Worn stone steps run down into a dark that the daylight does not reach. Cold air rises from below, carrying a dry, old smell, and somewhere far beneath them something scrapes across stone, then falls silent as if listening. Behind them the trail winds back through the trees, open and clear. Each of them faces the same choice: to go down, to wait at the threshold, or to turn back the way they came. The sound comes again, and this time it seems a little nearer. What does the company do?",
+          "questions": [],
+          "startMinutes": 840
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "1323acc5-b8e3-4dd2-a403-235b18a79de0",
+              "items": 7
+            },
+            "pell": {
+              "id": "c31dced2-b16f-4083-a5d0-b3cecd5c09bb",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 3,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    }
+  },
+  "layers": {}
+}
