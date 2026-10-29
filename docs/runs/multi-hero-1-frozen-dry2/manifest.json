@@ -321,5 +321,14 @@
       ]
     }
   },
-  "layers": {}
+  "layers": {
+    "GOAL": {
+      "file": "GOAL-dm-only.json",
+      "sha256": "0944694badf05a1a27442a71a6b9787789db25d8123e1fae9ab406ca7caabf01",
+      "chars": 8221,
+      "writes": 16,
+      "threads": 31,
+      "preparedAt": "2026-10-29T09:58:59.040Z"
+    }
+  }
 }

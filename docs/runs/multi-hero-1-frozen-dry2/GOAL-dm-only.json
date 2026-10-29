@@ -1,0 +1,279 @@
+{
+  "stage": "MULTI_HERO_1",
+  "table": "GOAL",
+  "note": "DM-only: the company's hidden layer the DM prepared once for this arm. Never shown to a player.",
+  "campaignId": "cf162762-206e-483a-84dc-9b0a095bf326",
+  "firstRecordId": "a73dfaa0-6732-5864-94b0-5f9cf776ae6e",
+  "preparedAt": "2026-10-29T09:58:59.040Z",
+  "preparedBy": "Claude Haiku 5.5 in place of the owner's DM settings, through OpenRouter",
+  "prepAttempts": 1,
+  "characters": [
+    "Bram Halloway",
+    "Sefa Marrin",
+    "Pell Dunmore"
+  ],
+  "layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know Hollin Corrow did not die of fever. He drowned in the Beregost millrace with an Umberlee tithe-coin under his tongue, because he assayed Cloakwood ore for Vey & Sons and found it was Nashkel iron, stolen and salted with weight. The Gate's shipping house pays the sea with the lives of men who knew its holds, and its ore comes up the Trade Way in closed wagons that the Zhentarim's toll offer is meant to cover. Tamsin signed the iron tallies after his death and now wants his book sold back to the people who killed him, to clear her name and his debt. The three were hired to fetch that book for her, and nobody has told them what it is worth or who would kill for it. No one of them will see the whole chain, from the Tidewife's chapel to the Council's toll seal.\nFactions and their hidden aims:\n- Vey & Sons, shipping house of the Counting House row, Baldur's Gate: Ship the Cloakwood ore to the Gate under the sea's tithe, have Orrin Vale close the Corrow matter with a sealed warrant before the tide, and buy the Trade Way toll through the Zhentarim without showing its own name.\n- The Tidewife's chapel of Umberlee, on the Blushing Mermaid quay: Collect the sea's tithe in drowned men for Vey's barges and book every notch; the chapel takes its cut of each fair wind and wants a warlock's light for its own rites.\n- The Zhentarim, Beregost table (broker Revel Dorn): Buy the Corrow debt cheap and hold the assay-book as a bargaining piece for the Council's toll vote; they know Vey's ore runs but not who drowned Hollin.\n- The Song of the Morning, Lathander's temple in Beregost (Idony Vast): Keep the town quiet, learn who drowned Hollin, and not be seen to take a side against a shipping house that pays for the temple roof.\n- The Flaming Fist, Beregost detachment: Keep its strength out of a dead smith's quarrel; the sealing warrant is cheap work for a sergeant paid by Vey and for a broker who paid him too.\nSecrets (not tied to a place):\n- Hollin Corrow's assay-book records Cloakwood ore as Nashkel iron, weight by weight, and beside each Vey entry is a small fish-hook mark.\n- Hollin drowned in the millrace with a copper-and-silver tithe-coin under his tongue, and a Vey clerk asked the reeve for the body before the fever story was given out.\n- Tamsin signed the iron tallies after Hollin's death, in her own name, for a Vey draft she has not yet cashed.\n- Vey's closed wagons come up the Trade Way on the fourth day of each week with Fist pay-chests hidden under bar-iron; the caravan guards who vanished were paid off to ride ahead and leave the wagons at the Cloakwood mine road.\n- The smoke over the Cloakwood at night is a Vey crew working old Balduran galleries; the Enclave has been told it is a charcoal kiln for the Friendly Arm.\n- The tithe-token has one notch for each drowned man from the Gate's ore-holds; there are eight, and the eighth was cut the night Hollin died.\n- The sealing warrant for the Corrow yard was drafted on Vey paper, and the reeve's clerk took eleven silver for the stamp.\n- Revel Dorn bought Hollin's debt from Orrin Vale a week ago and knows the book exists because Vale told him, not because he has seen it.\n- Corran Ashe, once of Bram Halloway's free company, rides for Vey as a guard captain; he took Vey's pay after the wagon he left in the Cloakwood went up with its guards.\nClocks:\n- clock_the_tithe: The Tidewife's book of notches: the next drowned man of the Gate's ore-holds (segments 6; when full: When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next.)\n- clock_vey_run: The next closed Vey wagon up the Trade Way with the Cloakwood ore (segments 4; when full: The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning.)\n- clock_toll_seat: The Council's vote on the Zhentarim toll for the Trade Way (segments 6; when full: The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else.)\nThe wonder: A tally-token of the sea: a thick iron disc the size of a large silver piece, pierced at its centre, with a coiled chain over a wave graven round the rim and seven notches cut in its edge; the eighth notch is bright and new. It is cold in open air and warm in the hand when water is near. Its history: The Gate's first dockmasters, under Balduran's own ship-chain, struck such tokens under oath to Umberlee: one notch for each man the sea took from the holds, so the sea would count its dead and spare the living. The oath lapsed and the old tokens were melted down. This token came from the same mould, which should not exist. The open question: Who still holds the mould, and does a sea that counts its dead by notch collect the debt when the last notch is cut?\nClues to the truth:\n- In the Corrow forge strongroom: the last page of Hollin's assay-book has an Umberlee-day column with the word 'eight' written under the tide tables, and the salt-ring cipher in its margins.\n- At the Song of the Morning: Idony Vast saw the coin under Hollin's tongue when she washed the body, and remembers a Vey clerk who asked where the body was kept and then asked her to keep quiet about the water in the lungs.\n- At the Anvil and Ewe, in the back room: a Trade Way carter who drove the closed Vey wagon in spring saw the fish-hook chain on the Cloakwood gate and the guards' pay-chests under the bar-iron.\nThe next session's false lead: Revel Dorn stands at the forge lane with a purse and a man at the yard gate who looks like a killer; the ordinary truth is that Dorn bought the debt and wants the book as a bargaining chip, and he did not touch Hollin or know about the coin.\nA character's weakness tested (next session, for a reason, never a trap): Idony Vast will not read the salt-ring in Hollin's palm unless the one who reads it lays bare the hands; she looks at Sefa Marrin's palms and sees the hospice mark, and the cipher can only be read under the Lantern's light held close to the skin, so Sefa must choose to show what she has hidden for the sake of the book and the body.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The salt-ring burned into Hollin's palm is a cipher that reads only under close, strong light, and the same key is hidden in the assay-book's margins.\n- threat, for Bram Halloway: Corran Ashe comes to the forge gate at dusk with two Vey crossbowmen and the reeve's paper, ordering the book taken in the name of the warrant.\n- reward, for Pell Dunmore: Dathan Rusk, the Vey clerk who owes Pell a guild favour, will slip the sealing warrant out of the reeve's stack for a fair price in coin.\n- threat, for Pell Dunmore: A man of Revel Dorn's watches the forge lane from a roofline and knows Pell's face from the roofs above the Wide.\n- puzzle, for Bram Halloway: The closed Vey wagon's gate chain in the Cloakwood is locked with a fish-hook tally of bar-iron weights, which only a caravan man who has counted iron would know how to read.\n- reward, for Sefa Marrin: Idony Vast offers Hollin's washing-cloth and the old Lathander words for the drowned in return for Sefa's healing at the temple's hospice bed tonight.\nThe patron's moment (at a temptation, not a comfort): When Sefa decides whether to use Hold Person on Orrin Vale or Revel Dorn to tear up the warrant, the light in her palms warms without her bidding, and a voice like a lamp being lit says only: Read the ninth line.\nThe act plan (yours alone; the player sees only the act number): about 5 hours, ~10 turns; the errand: Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+  "writes": [
+    {
+      "kind": "fact",
+      "key": "act_plan",
+      "value": "{\"length\":{\"hours\":5,\"turns\":10},\"errand\":\"Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}"
+    },
+    {
+      "kind": "fact",
+      "key": "clock_the_tithe",
+      "value": "The Tidewife's book of notches: the next drowned man of the Gate's ore-holds — 6; When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_toll_seat",
+      "value": "The Council's vote on the Zhentarim toll for the Trade Way — 6; The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_vey_run",
+      "value": "The next closed Vey wagon up the Trade Way with the Cloakwood ore — 4; The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning."
+    },
+    {
+      "kind": "fact",
+      "key": "hidden_layer",
+      "value": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know Hollin Corrow did not die of fever. He drowned in the Beregost millrace with an Umberlee tithe-coin under his tongue, because he assayed Cloakwood ore for Vey & Sons and found it was Nashkel iron, stolen and salted with weight. The Gate's shipping house pays the sea with the lives of men who knew its holds, and its ore comes up the Trade Way in closed wagons that the Zhentarim's toll offer is meant to cover. Tamsin signed the iron tallies after his death and now wants his book sold back to the people who killed him, to clear her name and his debt. The three were hired to fetch that book for her, and nobody has told them what it is worth or who would kill for it. No one of them will see the whole chain, from the Tidewife's chapel to the Council's toll seal.\nFactions and their hidden aims:\n- Vey & Sons, shipping house of the Counting House row, Baldur's Gate: Ship the Cloakwood ore to the Gate under the sea's tithe, have Orrin Vale close the Corrow matter with a sealed warrant before the tide, and buy the Trade Way toll through the Zhentarim without showing its own name.\n- The Tidewife's chapel of Umberlee, on the Blushing Mermaid quay: Collect the sea's tithe in drowned men for Vey's barges and book every notch; the chapel takes its cut of each fair wind and wants a warlock's light for its own rites.\n- The Zhentarim, Beregost table (broker Revel Dorn): Buy the Corrow debt cheap and hold the assay-book as a bargaining piece for the Council's toll vote; they know Vey's ore runs but not who drowned Hollin.\n- The Song of the Morning, Lathander's temple in Beregost (Idony Vast): Keep the town quiet, learn who drowned Hollin, and not be seen to take a side against a shipping house that pays for the temple roof.\n- The Flaming Fist, Beregost detachment: Keep its strength out of a dead smith's quarrel; the sealing warrant is cheap work for a sergeant paid by Vey and for a broker who paid him too.\nSecrets (not tied to a place):\n- Hollin Corrow's assay-book records Cloakwood ore as Nashkel iron, weight by weight, and beside each Vey entry is a small fish-hook mark.\n- Hollin drowned in the millrace with a copper-and-silver tithe-coin under his tongue, and a Vey clerk asked the reeve for the body before the fever story was given out.\n- Tamsin signed the iron tallies after Hollin's death, in her own name, for a Vey draft she has not yet cashed.\n- Vey's closed wagons come up the Trade Way on the fourth day of each week with Fist pay-chests hidden under bar-iron; the caravan guards who vanished were paid off to ride ahead and leave the wagons at the Cloakwood mine road.\n- The smoke over the Cloakwood at night is a Vey crew working old Balduran galleries; the Enclave has been told it is a charcoal kiln for the Friendly Arm.\n- The tithe-token has one notch for each drowned man from the Gate's ore-holds; there are eight, and the eighth was cut the night Hollin died.\n- The sealing warrant for the Corrow yard was drafted on Vey paper, and the reeve's clerk took eleven silver for the stamp.\n- Revel Dorn bought Hollin's debt from Orrin Vale a week ago and knows the book exists because Vale told him, not because he has seen it.\n- Corran Ashe, once of Bram Halloway's free company, rides for Vey as a guard captain; he took Vey's pay after the wagon he left in the Cloakwood went up with its guards.\nClocks:\n- clock_the_tithe: The Tidewife's book of notches: the next drowned man of the Gate's ore-holds (segments 6; when full: When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next.)\n- clock_vey_run: The next closed Vey wagon up the Trade Way with the Cloakwood ore (segments 4; when full: The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning.)\n- clock_toll_seat: The Council's vote on the Zhentarim toll for the Trade Way (segments 6; when full: The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else.)\nThe wonder: A tally-token of the sea: a thick iron disc the size of a large silver piece, pierced at its centre, with a coiled chain over a wave graven round the rim and seven notches cut in its edge; the eighth notch is bright and new. It is cold in open air and warm in the hand when water is near. Its history: The Gate's first dockmasters, under Balduran's own ship-chain, struck such tokens under oath to Umberlee: one notch for each man the sea took from the holds, so the sea would count its dead and spare the living. The oath lapsed and the old tokens were melted down. This token came from the same mould, which should not exist. The open question: Who still holds the mould, and does a sea that counts its dead by notch collect the debt when the last notch is cut?\nClues to the truth:\n- In the Corrow forge strongroom: the last page of Hollin's assay-book has an Umberlee-day column with the word 'eight' written under the tide tables, and the salt-ring cipher in its margins.\n- At the Song of the Morning: Idony Vast saw the coin under Hollin's tongue when she washed the body, and remembers a Vey clerk who asked where the body was kept and then asked her to keep quiet about the water in the lungs.\n- At the Anvil and Ewe, in the back room: a Trade Way carter who drove the closed Vey wagon in spring saw the fish-hook chain on the Cloakwood gate and the guards' pay-chests under the bar-iron.\nThe next session's false lead: Revel Dorn stands at the forge lane with a purse and a man at the yard gate who looks like a killer; the ordinary truth is that Dorn bought the debt and wants the book as a bargaining chip, and he did not touch Hollin or know about the coin.\nA character's weakness tested (next session, for a reason, never a trap): Idony Vast will not read the salt-ring in Hollin's palm unless the one who reads it lays bare the hands; she looks at Sefa Marrin's palms and sees the hospice mark, and the cipher can only be read under the Lantern's light held close to the skin, so Sefa must choose to show what she has hidden for the sake of the book and the body.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The salt-ring burned into Hollin's palm is a cipher that reads only under close, strong light, and the same key is hidden in the assay-book's margins.\n- threat, for Bram Halloway: Corran Ashe comes to the forge gate at dusk with two Vey crossbowmen and the reeve's paper, ordering the book taken in the name of the warrant.\n- reward, for Pell Dunmore: Dathan Rusk, the Vey clerk who owes Pell a guild favour, will slip the sealing warrant out of the reeve's stack for a fair price in coin.\n- threat, for Pell Dunmore: A man of Revel Dorn's watches the forge lane from a roofline and knows Pell's face from the roofs above the Wide.\n- puzzle, for Bram Halloway: The closed Vey wagon's gate chain in the Cloakwood is locked with a fish-hook tally of bar-iron weights, which only a caravan man who has counted iron would know how to read.\n- reward, for Sefa Marrin: Idony Vast offers Hollin's washing-cloth and the old Lathander words for the drowned in return for Sefa's healing at the temple's hospice bed tonight.\nThe patron's moment (at a temptation, not a comfort): When Sefa decides whether to use Hold Person on Orrin Vale or Revel Dorn to tear up the warrant, the light in her palms warms without her bidding, and a voice like a lamp being lit says only: Read the ninth line.\nThe act plan (yours alone; the player sees only the act number): about 5 hours, ~10 turns; the errand: Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning"
+    },
+    {
+      "kind": "fact",
+      "key": "voice_03a645a0-920e-489a-a307-25a41c10a1e2",
+      "value": "Sefa Marrin: I came to the Lantern on the ninth night, when the oil was gone and the ward was dark, and I owe it a debt no one has read to me. I want its light to go where hands can reach, because the fever ward taught me light is only good where someone is kneeling. I fear what the light asks back, and that Idony will look at my hands and see the hospice shame in them."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_63d9e52f-c0a4-5dad-996b-99edfd7e203a",
+      "value": "Tamsin Corrow: I buried Hollin in the spring with his debts still on his back, and I signed the tallies after him because Vey's draft was the only money in the house. I want the book out of the forge before the reeve's bell and the debt off my son's name. I fear the book hangs me as surely as it would have hanged him."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_adb35dbb-f3ac-4468-8b70-4ff6ce1afd59",
+      "value": "Pell Dunmore: I came down off the Lower City roofs with my debt paid and a name I do not use, and I count exits before I count faces. I want one job that ends in coin with nobody's name in a book. I fear that Dathan Rusk's old favour is the rope that hangs me, and that Revel Dorn's man knows my face from the roofs above the Wide."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_bram-halloway",
+      "value": "Bram Halloway: I walked the Trade Way ten years and buried men I liked on it, and that is why I take the front and count the wagons. I want the road to stop eating people and Corran's debt to be paid in the open. I fear a caravan I could have stopped and didn't. I know Corran Ashe rides for Vey now; I hide from myself that I would forgive him for the wagon sooner than I would forgive me."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_corran-ashe",
+      "value": "Corran Ashe: I rode the Trade Way with Bram in the free company, and in spring I left a wagon in the Cloakwood. Vey paid my debt and my silence, and the pay buys my sister's rent in Beregost. I want to leave the road without Bram seeing my face. I fear Vey's crossbows more than Bram's sword. I know the closed wagon's gate chain carries the fish-hook, and the crew in the galleries never sleeps."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_idony-vast",
+      "value": "Idony Vast: I wash the dead the Lathander way, with dawn water and few questions. I want the town to keep its morning and the drowned man's family to have his name said over him. I fear the Vey money that keeps this roof, and a Tidewife's knife where a temple should stand. I know the coin under Hollin's tongue was a tithe, and that the burn in his palm is a salt-ring I cannot read."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_orrin-vale",
+      "value": "Orrin Vale: I keep Vey & Sons' Beregost counting room and the Vey name clean on paper. I want the Corrow matter shut with a sealed warrant and a reeve's signature, and the ore through to the Gate by the tide. I fear the Gate will hear that a dead smith's book outlived him in my hands. I know Dorn bought the debt from me and that the book exists; I know nothing of the coin and would rather not."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_revel-dorn",
+      "value": "Revel Dorn: I am the Black Network's broker at Beregost, and a toll seat on the Way is worth more than any book. I want the Corrow debt bought cheap and the book in my hand before the Council sits. I fear the Gate's shipping houses, who learned to close doors faster than we open them. I know the book exists and not what is in it; I did not touch Hollin Corrow."
+    },
+    {
+      "kind": "clock",
+      "key": "clock_the_tithe",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_toll_seat",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_vey_run",
+      "value": "0"
+    }
+  ],
+  "stored": {
+    "fact": {
+      "act_plan": "{\"length\":{\"hours\":5,\"turns\":10},\"errand\":\"Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}",
+      "clock_the_tithe": "The Tidewife's book of notches: the next drowned man of the Gate's ore-holds — 6; When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next.",
+      "clock_toll_seat": "The Council's vote on the Zhentarim toll for the Trade Way — 6; The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else.",
+      "clock_vey_run": "The next closed Vey wagon up the Trade Way with the Cloakwood ore — 4; The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning.",
+      "hidden_layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know Hollin Corrow did not die of fever. He drowned in the Beregost millrace with an Umberlee tithe-coin under his tongue, because he assayed Cloakwood ore for Vey & Sons and found it was Nashkel iron, stolen and salted with weight. The Gate's shipping house pays the sea with the lives of men who knew its holds, and its ore comes up the Trade Way in closed wagons that the Zhentarim's toll offer is meant to cover. Tamsin signed the iron tallies after his death and now wants his book sold back to the people who killed him, to clear her name and his debt. The three were hired to fetch that book for her, and nobody has told them what it is worth or who would kill for it. No one of them will see the whole chain, from the Tidewife's chapel to the Council's toll seal.\nFactions and their hidden aims:\n- Vey & Sons, shipping house of the Counting House row, Baldur's Gate: Ship the Cloakwood ore to the Gate under the sea's tithe, have Orrin Vale close the Corrow matter with a sealed warrant before the tide, and buy the Trade Way toll through the Zhentarim without showing its own name.\n- The Tidewife's chapel of Umberlee, on the Blushing Mermaid quay: Collect the sea's tithe in drowned men for Vey's barges and book every notch; the chapel takes its cut of each fair wind and wants a warlock's light for its own rites.\n- The Zhentarim, Beregost table (broker Revel Dorn): Buy the Corrow debt cheap and hold the assay-book as a bargaining piece for the Council's toll vote; they know Vey's ore runs but not who drowned Hollin.\n- The Song of the Morning, Lathander's temple in Beregost (Idony Vast): Keep the town quiet, learn who drowned Hollin, and not be seen to take a side against a shipping house that pays for the temple roof.\n- The Flaming Fist, Beregost detachment: Keep its strength out of a dead smith's quarrel; the sealing warrant is cheap work for a sergeant paid by Vey and for a broker who paid him too.\nSecrets (not tied to a place):\n- Hollin Corrow's assay-book records Cloakwood ore as Nashkel iron, weight by weight, and beside each Vey entry is a small fish-hook mark.\n- Hollin drowned in the millrace with a copper-and-silver tithe-coin under his tongue, and a Vey clerk asked the reeve for the body before the fever story was given out.\n- Tamsin signed the iron tallies after Hollin's death, in her own name, for a Vey draft she has not yet cashed.\n- Vey's closed wagons come up the Trade Way on the fourth day of each week with Fist pay-chests hidden under bar-iron; the caravan guards who vanished were paid off to ride ahead and leave the wagons at the Cloakwood mine road.\n- The smoke over the Cloakwood at night is a Vey crew working old Balduran galleries; the Enclave has been told it is a charcoal kiln for the Friendly Arm.\n- The tithe-token has one notch for each drowned man from the Gate's ore-holds; there are eight, and the eighth was cut the night Hollin died.\n- The sealing warrant for the Corrow yard was drafted on Vey paper, and the reeve's clerk took eleven silver for the stamp.\n- Revel Dorn bought Hollin's debt from Orrin Vale a week ago and knows the book exists because Vale told him, not because he has seen it.\n- Corran Ashe, once of Bram Halloway's free company, rides for Vey as a guard captain; he took Vey's pay after the wagon he left in the Cloakwood went up with its guards.\nClocks:\n- clock_the_tithe: The Tidewife's book of notches: the next drowned man of the Gate's ore-holds (segments 6; when full: When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next.)\n- clock_vey_run: The next closed Vey wagon up the Trade Way with the Cloakwood ore (segments 4; when full: The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning.)\n- clock_toll_seat: The Council's vote on the Zhentarim toll for the Trade Way (segments 6; when full: The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else.)\nThe wonder: A tally-token of the sea: a thick iron disc the size of a large silver piece, pierced at its centre, with a coiled chain over a wave graven round the rim and seven notches cut in its edge; the eighth notch is bright and new. It is cold in open air and warm in the hand when water is near. Its history: The Gate's first dockmasters, under Balduran's own ship-chain, struck such tokens under oath to Umberlee: one notch for each man the sea took from the holds, so the sea would count its dead and spare the living. The oath lapsed and the old tokens were melted down. This token came from the same mould, which should not exist. The open question: Who still holds the mould, and does a sea that counts its dead by notch collect the debt when the last notch is cut?\nClues to the truth:\n- In the Corrow forge strongroom: the last page of Hollin's assay-book has an Umberlee-day column with the word 'eight' written under the tide tables, and the salt-ring cipher in its margins.\n- At the Song of the Morning: Idony Vast saw the coin under Hollin's tongue when she washed the body, and remembers a Vey clerk who asked where the body was kept and then asked her to keep quiet about the water in the lungs.\n- At the Anvil and Ewe, in the back room: a Trade Way carter who drove the closed Vey wagon in spring saw the fish-hook chain on the Cloakwood gate and the guards' pay-chests under the bar-iron.\nThe next session's false lead: Revel Dorn stands at the forge lane with a purse and a man at the yard gate who looks like a killer; the ordinary truth is that Dorn bought the debt and wants the book as a bargaining chip, and he did not touch Hollin or know about the coin.\nA character's weakness tested (next session, for a reason, never a trap): Idony Vast will not read the salt-ring in Hollin's palm unless the one who reads it lays bare the hands; she looks at Sefa Marrin's palms and sees the hospice mark, and the cipher can only be read under the Lantern's light held close to the skin, so Sefa must choose to show what she has hidden for the sake of the book and the body.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The salt-ring burned into Hollin's palm is a cipher that reads only under close, strong light, and the same key is hidden in the assay-book's margins.\n- threat, for Bram Halloway: Corran Ashe comes to the forge gate at dusk with two Vey crossbowmen and the reeve's paper, ordering the book taken in the name of the warrant.\n- reward, for Pell Dunmore: Dathan Rusk, the Vey clerk who owes Pell a guild favour, will slip the sealing warrant out of the reeve's stack for a fair price in coin.\n- threat, for Pell Dunmore: A man of Revel Dorn's watches the forge lane from a roofline and knows Pell's face from the roofs above the Wide.\n- puzzle, for Bram Halloway: The closed Vey wagon's gate chain in the Cloakwood is locked with a fish-hook tally of bar-iron weights, which only a caravan man who has counted iron would know how to read.\n- reward, for Sefa Marrin: Idony Vast offers Hollin's washing-cloth and the old Lathander words for the drowned in return for Sefa's healing at the temple's hospice bed tonight.\nThe patron's moment (at a temptation, not a comfort): When Sefa decides whether to use Hold Person on Orrin Vale or Revel Dorn to tear up the warrant, the light in her palms warms without her bidding, and a voice like a lamp being lit says only: Read the ninth line.\nThe act plan (yours alone; the player sees only the act number): about 5 hours, ~10 turns; the errand: Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+      "voice_03a645a0-920e-489a-a307-25a41c10a1e2": "Sefa Marrin: I came to the Lantern on the ninth night, when the oil was gone and the ward was dark, and I owe it a debt no one has read to me. I want its light to go where hands can reach, because the fever ward taught me light is only good where someone is kneeling. I fear what the light asks back, and that Idony will look at my hands and see the hospice shame in them.",
+      "voice_63d9e52f-c0a4-5dad-996b-99edfd7e203a": "Tamsin Corrow: I buried Hollin in the spring with his debts still on his back, and I signed the tallies after him because Vey's draft was the only money in the house. I want the book out of the forge before the reeve's bell and the debt off my son's name. I fear the book hangs me as surely as it would have hanged him.",
+      "voice_adb35dbb-f3ac-4468-8b70-4ff6ce1afd59": "Pell Dunmore: I came down off the Lower City roofs with my debt paid and a name I do not use, and I count exits before I count faces. I want one job that ends in coin with nobody's name in a book. I fear that Dathan Rusk's old favour is the rope that hangs me, and that Revel Dorn's man knows my face from the roofs above the Wide.",
+      "voice_bram-halloway": "Bram Halloway: I walked the Trade Way ten years and buried men I liked on it, and that is why I take the front and count the wagons. I want the road to stop eating people and Corran's debt to be paid in the open. I fear a caravan I could have stopped and didn't. I know Corran Ashe rides for Vey now; I hide from myself that I would forgive him for the wagon sooner than I would forgive me.",
+      "voice_corran-ashe": "Corran Ashe: I rode the Trade Way with Bram in the free company, and in spring I left a wagon in the Cloakwood. Vey paid my debt and my silence, and the pay buys my sister's rent in Beregost. I want to leave the road without Bram seeing my face. I fear Vey's crossbows more than Bram's sword. I know the closed wagon's gate chain carries the fish-hook, and the crew in the galleries never sleeps.",
+      "voice_idony-vast": "Idony Vast: I wash the dead the Lathander way, with dawn water and few questions. I want the town to keep its morning and the drowned man's family to have his name said over him. I fear the Vey money that keeps this roof, and a Tidewife's knife where a temple should stand. I know the coin under Hollin's tongue was a tithe, and that the burn in his palm is a salt-ring I cannot read.",
+      "voice_orrin-vale": "Orrin Vale: I keep Vey & Sons' Beregost counting room and the Vey name clean on paper. I want the Corrow matter shut with a sealed warrant and a reeve's signature, and the ore through to the Gate by the tide. I fear the Gate will hear that a dead smith's book outlived him in my hands. I know Dorn bought the debt from me and that the book exists; I know nothing of the coin and would rather not.",
+      "voice_revel-dorn": "Revel Dorn: I am the Black Network's broker at Beregost, and a toll seat on the Way is worth more than any book. I want the Corrow debt bought cheap and the book in my hand before the Council sits. I fear the Gate's shipping houses, who learned to close doors faster than we open them. I know the book exists and not what is in it; I did not touch Hollin Corrow."
+    },
+    "clock": {
+      "clock_the_tithe": 0,
+      "clock_toll_seat": 0,
+      "clock_vey_run": 0
+    },
+    "consequence": {}
+  },
+  "sha256": "0944694badf05a1a27442a71a6b9787789db25d8123e1fae9ab406ca7caabf01",
+  "threads": [
+    {
+      "id": "T1",
+      "kind": "errand",
+      "text": "Fetch Hollin Corrow's assay-book from the strongroom of the Corrow forge and bring it to Tamsin Corrow's house before the reeve's sealing bell at nightfall."
+    },
+    {
+      "id": "T2",
+      "kind": "faction",
+      "text": "Vey & Sons, shipping house of the Counting House row, Baldur's Gate: Ship the Cloakwood ore to the Gate under the sea's tithe, have Orrin Vale close the Corrow matter with a sealed warrant before the tide, and buy the Trade Way toll through the Zhentarim without showing its own name."
+    },
+    {
+      "id": "T3",
+      "kind": "faction",
+      "text": "The Tidewife's chapel of Umberlee, on the Blushing Mermaid quay: Collect the sea's tithe in drowned men for Vey's barges and book every notch; the chapel takes its cut of each fair wind and wants a warlock's light for its own rites."
+    },
+    {
+      "id": "T4",
+      "kind": "faction",
+      "text": "The Zhentarim, Beregost table (broker Revel Dorn): Buy the Corrow debt cheap and hold the assay-book as a bargaining piece for the Council's toll vote; they know Vey's ore runs but not who drowned Hollin."
+    },
+    {
+      "id": "T5",
+      "kind": "faction",
+      "text": "The Song of the Morning, Lathander's temple in Beregost (Idony Vast): Keep the town quiet, learn who drowned Hollin, and not be seen to take a side against a shipping house that pays for the temple roof."
+    },
+    {
+      "id": "T6",
+      "kind": "faction",
+      "text": "The Flaming Fist, Beregost detachment: Keep its strength out of a dead smith's quarrel; the sealing warrant is cheap work for a sergeant paid by Vey and for a broker who paid him too."
+    },
+    {
+      "id": "T7",
+      "kind": "secret",
+      "text": "Hollin Corrow's assay-book records Cloakwood ore as Nashkel iron, weight by weight, and beside each Vey entry is a small fish-hook mark."
+    },
+    {
+      "id": "T8",
+      "kind": "secret",
+      "text": "Hollin drowned in the millrace with a copper-and-silver tithe-coin under his tongue, and a Vey clerk asked the reeve for the body before the fever story was given out."
+    },
+    {
+      "id": "T9",
+      "kind": "secret",
+      "text": "Tamsin signed the iron tallies after Hollin's death, in her own name, for a Vey draft she has not yet cashed."
+    },
+    {
+      "id": "T10",
+      "kind": "secret",
+      "text": "Vey's closed wagons come up the Trade Way on the fourth day of each week with Fist pay-chests hidden under bar-iron; the caravan guards who vanished were paid off to ride ahead and leave the wagons at the Cloakwood mine road."
+    },
+    {
+      "id": "T11",
+      "kind": "secret",
+      "text": "The smoke over the Cloakwood at night is a Vey crew working old Balduran galleries; the Enclave has been told it is a charcoal kiln for the Friendly Arm."
+    },
+    {
+      "id": "T12",
+      "kind": "secret",
+      "text": "The tithe-token has one notch for each drowned man from the Gate's ore-holds; there are eight, and the eighth was cut the night Hollin died."
+    },
+    {
+      "id": "T13",
+      "kind": "secret",
+      "text": "The sealing warrant for the Corrow yard was drafted on Vey paper, and the reeve's clerk took eleven silver for the stamp."
+    },
+    {
+      "id": "T14",
+      "kind": "secret",
+      "text": "Revel Dorn bought Hollin's debt from Orrin Vale a week ago and knows the book exists because Vale told him, not because he has seen it."
+    },
+    {
+      "id": "T15",
+      "kind": "secret",
+      "text": "Corran Ashe, once of Bram Halloway's free company, rides for Vey as a guard captain; he took Vey's pay after the wagon he left in the Cloakwood went up with its guards."
+    },
+    {
+      "id": "T16",
+      "kind": "clock",
+      "text": "clock_the_tithe: The Tidewife's book of notches: the next drowned man of the Gate's ore-holds (segments 6; when full: When it fills, a body with a coin in its mouth comes up in the Beregost millrace or the Gate's harbour, and the chapel cuts the ninth notch and names the next.)"
+    },
+    {
+      "id": "T17",
+      "kind": "clock",
+      "text": "clock_vey_run: The next closed Vey wagon up the Trade Way with the Cloakwood ore (segments 4; when full: The wagon goes into the Cloakwood under its guards' silver, the road's next caravan is lost, and the Friendly Arm hears of it by the morning.)"
+    },
+    {
+      "id": "T18",
+      "kind": "clock",
+      "text": "clock_toll_seat: The Council's vote on the Zhentarim toll for the Trade Way (segments 6; when full: The Council seals the toll: the Way closes to free carters, Dorn's men stand at every gate, and the Corrow book becomes worth more to Dorn than to anyone else.)"
+    },
+    {
+      "id": "T19",
+      "kind": "wonder",
+      "text": "A tally-token of the sea: a thick iron disc the size of a large silver piece, pierced at its centre, with a coiled chain over a wave graven round the rim and seven notches cut in its edge; the eighth notch is bright and new. It is cold in open air and warm in the hand when water is near. Its history: The Gate's first dockmasters, under Balduran's own ship-chain, struck such tokens under oath to Umberlee: one notch for each man the sea took from the holds, so the sea would count its dead and spare the living. The oath lapsed and the old tokens were melted down. This token came from the same mou"
+    },
+    {
+      "id": "T20",
+      "kind": "clue",
+      "text": "In the Corrow forge strongroom: the last page of Hollin's assay-book has an Umberlee-day column with the word 'eight' written under the tide tables, and the salt-ring cipher in its margins."
+    },
+    {
+      "id": "T21",
+      "kind": "clue",
+      "text": "At the Song of the Morning: Idony Vast saw the coin under Hollin's tongue when she washed the body, and remembers a Vey clerk who asked where the body was kept and then asked her to keep quiet about the water in the lungs."
+    },
+    {
+      "id": "T22",
+      "kind": "clue",
+      "text": "At the Anvil and Ewe, in the back room: a Trade Way carter who drove the closed Vey wagon in spring saw the fish-hook chain on the Cloakwood gate and the guards' pay-chests under the bar-iron."
+    },
+    {
+      "id": "T23",
+      "kind": "false lead",
+      "text": "Revel Dorn stands at the forge lane with a purse and a man at the yard gate who looks like a killer; the ordinary truth is that Dorn bought the debt and wants the book as a bargaining chip, and he did not touch Hollin or know about the coin."
+    },
+    {
+      "id": "T24",
+      "kind": "person",
+      "text": "Sefa Marrin: I came to the Lantern on the ninth night, when the oil was gone and the ward was dark, and I owe it a debt no one has read to me. I want its light to go where hands can reach, because the fever ward taught me light is only good where someone is kneeling. I fear what the light asks back, and that Idony will look at my hands and see the hospice shame in them."
+    },
+    {
+      "id": "T25",
+      "kind": "person",
+      "text": "Tamsin Corrow: I buried Hollin in the spring with his debts still on his back, and I signed the tallies after him because Vey's draft was the only money in the house. I want the book out of the forge before the reeve's bell and the debt off my son's name. I fear the book hangs me as surely as it would have hanged him."
+    },
+    {
+      "id": "T26",
+      "kind": "person",
+      "text": "Pell Dunmore: I came down off the Lower City roofs with my debt paid and a name I do not use, and I count exits before I count faces. I want one job that ends in coin with nobody's name in a book. I fear that Dathan Rusk's old favour is the rope that hangs me, and that Revel Dorn's man knows my face from the roofs above the Wide."
+    },
+    {
+      "id": "T27",
+      "kind": "person",
+      "text": "Bram Halloway: I walked the Trade Way ten years and buried men I liked on it, and that is why I take the front and count the wagons. I want the road to stop eating people and Corran's debt to be paid in the open. I fear a caravan I could have stopped and didn't. I know Corran Ashe rides for Vey now; I hide from myself that I would forgive him for the wagon sooner than I would forgive me."
+    },
+    {
+      "id": "T28",
+      "kind": "person",
+      "text": "Corran Ashe: I rode the Trade Way with Bram in the free company, and in spring I left a wagon in the Cloakwood. Vey paid my debt and my silence, and the pay buys my sister's rent in Beregost. I want to leave the road without Bram seeing my face. I fear Vey's crossbows more than Bram's sword. I know the closed wagon's gate chain carries the fish-hook, and the crew in the galleries never sleeps."
+    },
+    {
+      "id": "T29",
+      "kind": "person",
+      "text": "Idony Vast: I wash the dead the Lathander way, with dawn water and few questions. I want the town to keep its morning and the drowned man's family to have his name said over him. I fear the Vey money that keeps this roof, and a Tidewife's knife where a temple should stand. I know the coin under Hollin's tongue was a tithe, and that the burn in his palm is a salt-ring I cannot read."
+    },
+    {
+      "id": "T30",
+      "kind": "person",
+      "text": "Orrin Vale: I keep Vey & Sons' Beregost counting room and the Vey name clean on paper. I want the Corrow matter shut with a sealed warrant and a reeve's signature, and the ore through to the Gate by the tide. I fear the Gate will hear that a dead smith's book outlived him in my hands. I know Dorn bought the debt from me and that the book exists; I know nothing of the coin and would rather not."
+    },
+    {
+      "id": "T31",
+      "kind": "person",
+      "text": "Revel Dorn: I am the Black Network's broker at Beregost, and a toll seat on the Way is worth more than any book. I want the Corrow debt bought cheap and the book in my hand before the Council sits. I fear the Gate's shipping houses, who learned to close doors faster than we open them. I know the book exists and not what is in it; I did not touch Hollin Corrow."
+    }
+  ]
+}
