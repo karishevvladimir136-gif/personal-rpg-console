@@ -1,6 +1,41 @@
 # Development status
 
-**Current milestone: game player same-world 1 — one hidden layer per table, frozen**
+**Current milestone: blind decisions 1 — the deeds alone: forks, conditional rates, blind judges**
+(`docs/stages/BLIND_DECISIONS_1.md`, origin/claude/handoff at 2552de9, with the 2026-10-27 amendment) — **done and
+reported; waiting for the owner's reading and for human readers (BD5).** Branch `claude/blind-decisions-1` from
+`origin/claude/game-player-same-world-1`. Nothing to `main`. No session was played. Report
+`docs/runs/blind-decisions-1-report.md`; every strip `docs/runs/blind-decisions-1-strips.md`; the human packet
+`docs/runs/blind-decisions-1-human-packet.md`.
+
+- **What was done:**
+  - The vocabulary frozen before extraction (design sha256 `2cfba712…`, `docs/runs/blind-decisions-1-vocabulary.md`):
+    the stage's acts, `FORK(alternatives) → choice` for request / claim / coin / reroll / companion / exit, HOLD as the
+    exit fork's «hold», DISCOVER / PROPOSE / ASSERT / ENFORCE by domain; ATTACK, DECEIVE and SPEND(heal) added.
+  - 58 sessions (group 1, group 2, DeepSeek, SAME_WORLD_1, COMBAT_1, VILLAIN_1) → 58 strips, 1 066 lines. The record
+    supplies moves, coin (net of change), slots, rests, «?», card presses and reroll forks. Claude Haiku 5.5 tagged
+    the rest blind (two passes, a third on a split). Every line is checked against the closed grammar, so no player
+    prose survives.
+  - Judges: GPT-6 Astra, DeepSeek V4 Pro and Claude Haiku 5.5, each with its own shuffle. T1–T4 ran, with T3 also on
+    SAME_WORLD_1's four rounds as a supplementary set.
+- **Results:**
+  - **Primary (fork profile) lost:** a model's two SAME_WORLD_1 sessions are no closer in conditional rates than any
+    pairing (exact p 0.26 over both tables; the ≥ 3-opportunity robustness reading p 0.013). No family in the rates
+    either (p 0.46).
+  - **BD1, BD2, BD3 lost.** **BD4 held** (Astra 8/8, Haiku 7/8, DeepSeek 5/8), but codes per line alone label 8/8:
+    Claude players get ≈ 4.5 codes a line, Astra and Sol ≈ 2.7. The tagger reads acts from the prose, so this
+    density follows how much the player writes.
+  - **BD5 open:** no human answers yet.
+  - DeepSeek gave no valid answer on 3 of 14 tasks: its reasoning used the whole 16 000-token budget. This changes
+    no line.
+- **Money:** OpenRouter $3.31 of $20, OpenAI $1.33 of $5, the Console $0.
+- **Checks:**
+  - Full suite (with the stage's new test file): 3 075 tests · 3 048 pass · 0 fail · 27 skipped.
+  - `tests/blind-decisions-1.test.mjs` 6/6 after the last script edits.
+  - Typecheck, zero-warning lint and the production build pass. `src` is unchanged.
+- **Next step:** the owner reads the report and decides whether to send the human packet to readers. Their answer
+  sheets can be scored against `docs/runs/blind-decisions-1-human-key.json`.
+
+**Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for
 the owner's reading.** Branch `claude/game-player-same-world-1` from `origin/claude/fix-s4-run-1-apsty3`, with
 `origin/claude/game-player-replicate-1` merged. Nothing to `main`. Report `docs/runs/game-player-same-world-1-report.md`;

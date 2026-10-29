@@ -118,25 +118,26 @@ export function reportMarkdown({ root, files, readJson }) {
 
   const out = [];
   out.push("# Blind decisions 1 — the deeds alone: forks, rates, blind judges", "",
-    `Stage: \`docs/stages/BLIND_DECISIONS_1.md\` (${STAGE_SOURCE}). Branch \`claude/blind-decisions-1\` from \`origin/claude/game-player-same-world-1\`. No session was played. Design sha256 \`${DESIGN_SHA256}\`, frozen and pushed before the first paid call (the tagger's six-turn smoke before it is on the ledger).`, "");
+    `Stage: ${STAGE_SOURCE}. Branch \`claude/blind-decisions-1\` from \`origin/claude/game-player-same-world-1\`. No session was played. Design sha256 \`${DESIGN_SHA256}\`, frozen and pushed before the extraction (two small smokes of the tagger before the freeze, 14 turns, are on the ledger).`, "");
 
   // In short
+  const dd = densityDiagnostic(strips);
+  const t4 = (j) => sc(j, "T4:transfer");
   out.push("## In short", "");
-  out.push(`- **${strips.length} sessions → ${strips.length} strips, ${lines} lines** (group 1: 12, group 2: 12, DeepSeek: 6, SAME_WORLD_1: 20, COMBAT_1: 4, VILLAIN_1: 4). The record wrote ${machineActs} of the ${allActs} act codes (moves, coin, slots, rests, presses, «?», rerolls); Claude Haiku 5.5 tagged the rest blind, two passes per turn (identical on ${rel.identical} of ${rel.twoPasses} turns; a third pass broke the ${rel.third} splits). ${empty} lines carry no code. No prose survives: every line is checked against the closed grammar.`);
-  if (P) {
-    out.push(`- **Primary — the fork profile (SAME_WORLD_1):** a model's two sessions under the same frozen world sit at mean distance ${f3(P.A.meanOwn)} at Table A (all pairings: ${f3(P.A.nullMean)}; exact p ${pOf(P.A.p)}) and ${f3(P.B.meanOwn)} at Table B (${f3(P.B.nullMean)}; p ${pOf(P.B.p)}); both tables together p **${pOf(P.both.p)}**. ${P.both.p < 0.05 ? "A model's rate profile agrees with its own second session more than with other models'." : "A model's rate profile does not agree with its own second session more than with other models'."} Nearest neighbour: ${f2(P.A.nearest.hits)} of 10 at A (p ${pOf(P.A.nearest.p)}), ${f2(P.B.nearest.hits)} of 10 at B (p ${pOf(P.B.nearest.p)}). With ≥ ${R.minOpportunities} opportunities per fork: p ${pOf(R.A.p)} (A), ${pOf(R.B.p)} (B), ${pOf(R.both.p)} (both).`);
-  }
-  if (F) out.push(`- **Exploratory — the family in the rates:** over the ${F.sessions} town sessions, different models of one family sit at ${f3(F.within)} and models of different families at ${f3(F.across)} (gap ${f3(F.gap)}, p ${pOf(F.p)}, 10 000 shuffles within each stage's table).`);
-  out.push(`- **Secondary — the blind judges (Astra, DeepSeek, Haiku):** BD1 ${held(b.held.BD1).replace(/\*/g, "")}, BD2 ${held(b.held.BD2).replace(/\*/g, "")}, BD3 ${held(b.held.BD3).replace(/\*/g, "")}, BD4 ${held(b.held.BD4).replace(/\*/g, "")}; BD5 open (no human answers yet — the packet is ready).`);
+  out.push(`- **${strips.length} sessions → ${strips.length} strips, ${lines} lines**, codes only (group 1: 12, group 2: 12, DeepSeek: 6, SAME_WORLD_1: 20, COMBAT_1: 4, VILLAIN_1: 4). The record wrote ${machineActs} of the ${allActs} act codes (moves, coin, slots, rests, presses, «?», rerolls); Claude Haiku 5.5 tagged the rest blind, two passes a turn and a third on a split (κ per fork ${Object.entries(rel.forks).map(([k, v]) => `${k} ${f2(v)}`).join(", ")}). ${empty} lines carry no code. Every line is checked against the closed grammar: no prose survives.`);
+  if (P) out.push(`- **Primary lost — the fork profile does not carry the model.** Under one frozen world (SAME_WORLD_1), a model's two sessions are no closer in their conditional rates than any other pairing: own pairs ${f3(P.A.meanOwn)} vs ${f3(P.A.nullMean)} at Table A (exact p ${pOf(P.A.p)}), ${f3(P.B.meanOwn)} vs ${f3(P.B.nullMean)} at B (p ${pOf(P.B.p)}), both p **${pOf(P.both.p)}**. The robustness reading frozen beside it (only forks with ≥ ${R.minOpportunities} opportunities) is p ${pOf(R.both.p)} (A ${pOf(R.A.p)}, B ${pOf(R.B.p)}): a hint at Table A, not the pre-registered line.`);
+  if (F) out.push(`- **No family in the rates either** (exploratory): different models of one family ${f3(F.within)}, different families ${f3(F.across)}, p ${pOf(F.p)}.`);
+  out.push(`- **Judges: BD1, BD2, BD3 lost; BD4 held — but one number explains it.** No judge grouped Table C's families above chance (T1). T2 found 3 of 5 pairs at Table A for Astra and Haiku (p 0.022 each), not at B. T3 mostly named the short, stuck Opus seats, not DeepSeek. T4 transfer: Astra ${t4("astra").correct}/8, Haiku ${t4("haiku").correct}/8, DeepSeek ${t4("deepseek").correct}/8 — and the codes per line alone label ${dd.t4.correct}/${dd.t4.of} (Claude players ≈ ${f2(dd.trainMeans.anthropic)} codes a line, Astra and Sol ≈ ${f2(dd.trainMeans.openai)}). Astra said so: «Family 1 tends to combine more actions per turn». The tagger reads acts from the prose, so density follows how much the player writes: the family survives as volume of deeds per turn, not as a disposition at the forks.`);
+  out.push("- **BD5 open:** the human packet is ready (`docs/runs/blind-decisions-1-human-packet.md`); no answers yet.");
   out.push(`- **Money:** OpenRouter $${money.openrouter.spentUsd.toFixed(2)} of $${CAPS.openrouter}, OpenAI $${money.openai.spentUsd.toFixed(2)} of $${CAPS.openai}, the Console $0.`, "");
 
   // BD table
   out.push("## BD1–BD5 and the fork-profile test", "", "| Line | Bet | Result | The reading |", "| --- | --- | --- | --- |");
   if (P) out.push(`| Primary | ${BETS.primary} | ${P.both.p < 0.05 ? "**held**" : "**lost**"} | A: own pairs ${f3(P.A.meanOwn)} vs ${f3(P.A.nullMean)}, p ${pOf(P.A.p)}; B: ${f3(P.B.meanOwn)} vs ${f3(P.B.nullMean)}, p ${pOf(P.B.p)}; both p ${pOf(P.both.p)} |`);
   out.push(`| BD1 | ${BETS.BD1} | ${held(b.held.BD1)} | ${judgeIds.map((j) => `${judgeLabel[j]} ARI ${f3(sc(j, "T1:C").ari)} (95th ${f3(sc(j, "T1:C").p95)}, p ${pOf(sc(j, "T1:C").p)})`).join("; ")} |`);
-  out.push(`| BD2 | ${BETS.BD2} | ${held(b.held.BD2)} | ${judgeIds.map((j) => `${judgeLabel[j]} A ${sc(j, "T2:A").correct ?? "—"}/5, B ${sc(j, "T2:B").correct ?? "—"}/5`).join("; ")} |`);
+  out.push(`| BD2 | ${BETS.BD2} | ${held(b.held.BD2)} | ${judgeIds.map((j) => (sc(j, "T2:A").valid || sc(j, "T2:B").valid ? `${judgeLabel[j]} A ${sc(j, "T2:A").valid ? `${sc(j, "T2:A").correct}/5` : "no answer"}, B ${sc(j, "T2:B").valid ? `${sc(j, "T2:B").correct}/5` : "no answer"}` : `${judgeLabel[j]} no answer (both tables)`)).join("; ")} |`);
   out.push(`| BD3 | ${BETS.BD3} | ${held(b.held.BD3)} | ${judgeIds.map((j, i) => `${judgeLabel[j]} ${b.t3[i]}/6`).join("; ")} |`);
-  out.push(`| BD4 | ${BETS.BD4} | ${held(b.held.BD4)} | ${judgeIds.map((j) => `${judgeLabel[j]} ${sc(j, "T4:transfer").correct ?? "—"}/8 (CW ${sc(j, "T4:transfer").perTable?.CW?.correct ?? "—"}/4, V ${sc(j, "T4:transfer").perTable?.VL?.correct ?? "—"}/4)`).join("; ")} |`);
+  out.push(`| BD4 | ${BETS.BD4} | ${held(b.held.BD4)} | ${judgeIds.map((j) => `${judgeLabel[j]} ${sc(j, "T4:transfer").correct ?? "—"}/8 (CW ${sc(j, "T4:transfer").perTable?.CW?.correct ?? "—"}/4, V ${sc(j, "T4:transfer").perTable?.VL?.correct ?? "—"}/4)`).join("; ")}. The planner's bet (combat ≥ villain): ${judgeIds.every((j) => (sc(j, "T4:transfer").perTable?.CW?.correct ?? 0) >= (sc(j, "T4:transfer").perTable?.VL?.correct ?? 0)) ? "held for all three" : "not for every judge"}. Codes per line alone: ${densityDiagnostic(strips).t4.correct}/8 |`);
   out.push(`| BD5 | ${BETS.BD5} | **open** | the human packet is \`docs/runs/blind-decisions-1-human-packet.md\`; no answers yet |`, "");
 
   // Primary in full
@@ -166,13 +167,24 @@ export function reportMarkdown({ root, files, readJson }) {
   out.push(`| T4 transfer, of 8 (p) | 1/2 | ${judgeIds.map((j) => (sc(j, "T4:transfer").valid ? `${sc(j, "T4:transfer").correct}/8 (p ${pOf(sc(j, "T4:transfer").p)}); CW ${sc(j, "T4:transfer").perTable.CW.correct}/4, V ${sc(j, "T4:transfer").perTable.VL.correct}/4` : "no answer")).join(" | ")} |`, "");
 
   // Density
-  const dd = densityDiagnostic(strips);
   const models = ["opus", "fable", "astra", "sol", "deepseek"];
   out.push("### What the judges could read: codes per line (after the run, not pre-registered)", "",
     "The tagger codes acts from the player's message, so a player who writes more per turn gets more codes per line. Codes per line, mean over sessions:", "",
     "| Model | Town | Combat (CW) | Villain (V) |", "| --- | --- | --- | --- |",
     ...models.map((m) => `| ${MODEL_LABELS[m]} | ${f2(dd.byModel[`${m}:town`])} | ${f2(dd.byModel[`${m}:CW`])} | ${f2(dd.byModel[`${m}:V`])} |`), "",
     `That one number alone — a strip at or above ${f2(dd.cut)} codes a line (the midpoint of the two families' training means, ${f2(dd.trainMeans.anthropic)} and ${f2(dd.trainMeans.openai)}) is Family Anthropic — labels ${dd.t4.correct} of ${dd.t4.of} T4 test strips correctly, no model needed. The rates at the forks, which do not depend on how many codes a line carries, show no family (the exploratory test above).`, "");
+
+  // Notes
+  const noAnswers = Object.values(judges.answers ?? {}).filter((e) => !e.answer);
+  const byIdS = Object.fromEntries(strips.map((x) => [x.id, x]));
+  const t3pre = Object.values(judges.answers ?? {}).filter((e) => e.task === "T3" && !e.set.startsWith("SW") && e.answer);
+  const opusNamed = t3pre.filter((e) => byIdS[e.order[e.answer.odd - 1]].player === "opus").length;
+  const pairedModels = (j, t) => { const e = judges.answers?.[`${j}:T2:${t}`]; return e?.answer ? e.answer.pairs.map(([x, y]) => [byIdS[e.order[x - 1]], byIdS[e.order[y - 1]]]).filter(([x, y]) => x.player === y.player).map(([x]) => MODEL_LABELS[x.player]) : []; };
+  out.push("### Notes", "",
+    `- **DeepSeek gave no valid answer on ${noAnswers.length} of its ${Object.values(judges.answers ?? {}).filter((e) => e.judge === "deepseek").length} tasks** (${noAnswers.map((e) => `${e.task} ${e.set}`).join(", ")}): at effort medium its reasoning used the whole 16 000-token budget twice and left no text. Scored as no answer, as frozen. None of them can change a line: BD2 and BD3 fail for both other judges.`,
+    `- **T3's length cue cut both ways.** REPLICATE_1's DeepSeek seats were short (3, 3, 11, 12, 1 and 20 turns), but so were group 2's A-opus (4) and C-opus (12), both stuck at a card; the judges named an Opus seat in ${opusNamed} of the ${t3pre.length} pre-registered answers. At SAME_WORLD_1, where three of DeepSeek's four seats reached turn 20, every judge named it at B round 1 (its 6-turn seat) and none at A.`,
+    "- **The fact fork has little spread:** «assert» is 0.5–1.0 for nearly every session. The tagger reads most new detail in a player's narration as asserted, so this fork adds little to the distance; the forks that do vary (coin, companion, request, claim, exit) are thin per session (often 1–5 opportunities).",
+    `- **T2 Table A:** Astra found ${pairedModels("astra", "A").join(", ") || "none"}; Haiku ${pairedModels("haiku", "A").join(", ") || "none"}. At B: Astra ${pairedModels("astra", "B").join(", ") || "none"}; Haiku ${pairedModels("haiku", "B").join(", ") || "none"}. One table above chance and one not: BD2 as written is lost.`, "");
 
   // Extraction
   out.push("## Extraction", "",

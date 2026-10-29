@@ -1,6 +1,6 @@
 # Blind decisions 1 — the OpenRouter ledger
 
-Cap $20; spent before this run $0.0000; this run $2.5609; total $2.5609; 2965 calls.
+Cap $20; spent before this run $0.0000; this run $3.3126; total $3.3126; 2998 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -188,3 +188,36 @@ Cap $20; spent before this run $0.0000; this run $2.5609; total $2.5609; 2965 ca
 | tag VL:V-sol | tag VL:V-sol#t* pass 1 | anthropic/claude-haiku-5.5 | 20 | 88519 | 0 | 0 | 14124 | $0.0159 | 0 | 0 | 0 |
 | tag VL:V-sol | tag VL:V-sol#t* pass 2 | anthropic/claude-haiku-5.5 | 20 | 88519 | 0 | 0 | 13580 | $0.0156 | 0 | 0 | 0 |
 | tag VL:V-sol | tag VL:V-sol#t* pass 3 | anthropic/claude-haiku-5.5 | 15 | 65134 | 0 | 0 | 11911 | $0.0125 | 0 | 0 | 0 |
+| judge deepseek | T1 C attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 6312 | 0 | 0 | 16000 | $0.0498 | 0 | 0 | 0 |
+| judge haiku | T1 C attempt 1 | anthropic/claude-haiku-5.5 | 1 | 9533 | 0 | 0 | 1596 | $0.0018 | 0 | 0 | 0 |
+| judge haiku | T2 A attempt 1 | anthropic/claude-haiku-5.5 | 1 | 11784 | 0 | 0 | 2321 | $0.0023 | 0 | 0 | 0 |
+| judge haiku | T2 B attempt 1 | anthropic/claude-haiku-5.5 | 1 | 11580 | 0 | 0 | 3703 | $0.0030 | 0 | 0 | 0 |
+| judge haiku | T3 A1 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 4145 | 0 | 0 | 822 | $0.0008 | 0 | 0 | 0 |
+| judge haiku | T3 A2 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 4152 | 0 | 0 | 728 | $0.0008 | 0 | 0 | 0 |
+| judge haiku | T3 B1 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 6100 | 0 | 0 | 1585 | $0.0014 | 0 | 0 | 0 |
+| judge haiku | T3 B2 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 6213 | 0 | 0 | 1230 | $0.0012 | 0 | 0 | 0 |
+| judge haiku | T3 C1 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 4870 | 0 | 0 | 768 | $0.0009 | 0 | 0 | 0 |
+| judge haiku | T3 C2 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 5578 | 0 | 0 | 517 | $0.0008 | 0 | 0 | 0 |
+| judge haiku | T4 transfer attempt 1 | anthropic/claude-haiku-5.5 | 1 | 53471 | 0 | 0 | 2542 | $0.0066 | 0 | 0 | 0 |
+| judge haiku | T3 SW-A1 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 6519 | 0 | 0 | 1217 | $0.0013 | 0 | 0 | 0 |
+| judge haiku | T3 SW-A2 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 6341 | 0 | 0 | 452 | $0.0009 | 0 | 0 | 0 |
+| judge haiku | T3 SW-B1 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 5773 | 0 | 0 | 536 | $0.0008 | 0 | 0 | 0 |
+| judge haiku | T3 SW-B2 attempt 1 | anthropic/claude-haiku-5.5 | 1 | 6883 | 0 | 0 | 531 | $0.0010 | 0 | 0 | 0 |
+| judge deepseek | T1 C attempt 2 | deepseek/deepseek-v4-pro-0813 | 1 | 168 | 6144 | 0 | 8540 | $0.0230 | 0 | 0 | 0 |
+| judge deepseek | T2 A attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 7843 | 0 | 0 | 16000 | $0.0518 | 0 | 0 | 0 |
+| judge deepseek | T2 A attempt 2 | deepseek/deepseek-v4-pro-0813 | 1 | 163 | 7680 | 0 | 16000 | $0.0426 | 0 | 0 | 0 |
+| judge deepseek | T2 B attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 7168 | 512 | 0 | 16000 | $0.0510 | 0 | 0 | 0 |
+| judge deepseek | T2 B attempt 2 | deepseek/deepseek-v4-pro-0813 | 1 | 0 | 0 | 0 | 0 | $0.0507 | 0 | 0 | 0 |
+| judge deepseek | T3 A1 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 2248 | 512 | 0 | 11049 | $0.0317 | 0 | 0 | 0 |
+| judge deepseek | T3 A2 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 2258 | 512 | 0 | 16000 | $0.0446 | 0 | 0 | 0 |
+| judge deepseek | T3 A2 attempt 2 | deepseek/deepseek-v4-pro-0813 | 1 | 210 | 2560 | 0 | 16000 | $0.0421 | 0 | 0 | 0 |
+| judge deepseek | T3 B1 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3526 | 512 | 0 | 10490 | $0.0319 | 0 | 0 | 0 |
+| judge deepseek | T3 B2 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3598 | 512 | 0 | 6864 | $0.0226 | 0 | 0 | 0 |
+| judge deepseek | T3 C1 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 2760 | 512 | 0 | 5672 | $0.0184 | 0 | 0 | 0 |
+| judge deepseek | T3 C2 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3218 | 512 | 0 | 5813 | $0.0193 | 0 | 0 | 0 |
+| judge deepseek | T4 transfer attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 34487 | 512 | 0 | 14684 | $0.0831 | 0 | 0 | 0 |
+| judge deepseek | T3 SW-A1 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3884 | 512 | 0 | 13537 | $0.0403 | 0 | 0 | 0 |
+| judge deepseek | T3 SW-A2 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3718 | 512 | 0 | 16000 | $0.0465 | 0 | 0 | 0 |
+| judge deepseek | T3 SW-A2 attempt 2 | deepseek/deepseek-v4-pro-0813 | 1 | 134 | 4096 | 0 | 12361 | $0.0327 | 0 | 0 | 0 |
+| judge deepseek | T3 SW-B1 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 3342 | 512 | 0 | 5670 | $0.0191 | 0 | 0 | 0 |
+| judge deepseek | T3 SW-B2 attempt 1 | deepseek/deepseek-v4-pro-0813 | 1 | 4097 | 512 | 0 | 8268 | $0.0269 | 0 | 0 | 0 |
