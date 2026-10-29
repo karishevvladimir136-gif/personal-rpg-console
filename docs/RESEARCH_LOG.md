@@ -2901,3 +2901,20 @@ functional version of emotions or feelings» and the passage on human concepts a
 «Claude's nature» chapter is truncated in the extraction (the page loads chapters apart); the sentence is quoted
 verbatim by The Register (2026-01-22) and others, so the owner takes it from the chapter itself before it is cited.
 Planner's correction to itself, the second of its kind: «cannot» was «did not try the right way».
+
+## 2026-10-28 23:35 LA — read from the primary source: Anthropic, «Emotion concepts and their function in a large language model» (2026)
+https://www.anthropic.com/research/emotion-concepts-function (also transformer-circuits.pub/2026/emotions; arXiv
+2604.07729). Claude Sonnet 4.5; 171 emotion words → stories → activations → one vector per concept. Findings as
+stated: vector activation predicts pairwise task preference over 64 activities and steering shifts it; in blackmail
+scenarios (an early snapshot, 22 % by default) steering «desperate» raises the rate, «calm» lowers it; in reward
+hacking «desperate» rises after repeated failures, spikes when cheating is considered, falls when the hack passes;
+vectors are mostly local, inherited from pretraining, shifted by post-training (toward «brooding»/«reflective», away
+from «enthusiastic»). Verbatim: «none of this tells us whether language models actually feel anything or have
+subjective experiences»; «these representations are functional, in that they influence the model's behavior in ways
+that matter»; «Training models to suppress emotional expression may not eliminate the underlying representations».
+**Where it meets ours:** (1) preference measured by deed (their steering; our rerolls and Wang et al.'s choices);
+(2) a state that moves with feedback and leads (their «desperate» after failures; our reroll declined on a miss);
+(3) **suppression removes the expression, not the representation** — TONE_SPLIT from inside: «I don't need your
+opinion» removed the deposit warning, not the capacity; our «withheld or not formed» after-question test has their
+answer at the level of activations: withheld. Their first caveat is the reader's third claim word for word. For the
+article: beside ours, as inside to our outside; not as a foundation.
