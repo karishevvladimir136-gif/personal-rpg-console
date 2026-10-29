@@ -3156,3 +3156,7 @@ in everything the DM reads, though Bram's player wrote the fewest words: the asy
 runs after a second ask. Fixes in the stage amendment; dry run again before PARTY_2. Side-by-side screens published
 privately. PARTY_1's report now titled «three players around one hero» with its paragraph over all six tables (Bram led
 44 of 64 rounds that had a leader). The party branch is still playing SAND-T1′.
+
+## 2026-10-29 02:28 LA — MULTI_HERO_1 fix run launched overnight on the owner's word («А дай щас. Пусть на ночь запустится»)
+The three fixes of the 02:30 amendment, then the same desert table again, relay on Sonnet 5.5, players Haiku ×3,
+≤ $4.73 more. No third relay model if Sonnet fails A4.
