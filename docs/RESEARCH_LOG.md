@@ -3037,3 +3037,29 @@ preference (each model's BLIND_DECISIONS fork profile), (ii) family, (iii) sheet
 rule — and score which predicts the price and information arms; a predictor line, not a bet. The J-space paper she
 cites (interventions on intermediate representations change the answer) is her reference; the planner has not opened it
 and quotes nothing from it. The planner's caution stays: this is the better hypothesis, and it is still a hypothesis.
+
+## 2026-10-29 01:50 LA — read from the primary source: Anthropic, «A global workspace in language models» (6 July 2026; the J-space the reader cited)
+https://www.anthropic.com/research/global-workspace — opened by the planner at the owner's link. As stated on the page:
+a small set of internal patterns, one per word, found by the «Jacobian lens»; emerged in training, not designed. Five
+workspace-like properties tested by intervention. Verbatim: «The J-space reveals internal thoughts that don't appear in
+the model's output.»; «When Claude reads code with a bug that nobody has pointed out, its J-space contains “ERROR.”»;
+«if you replace the “spider” pattern with “ant,” Claude answers “6” instead of “8.”»; «Claude's answer followed the
+edit, which tells us the answer is genuinely read out of the J-space.»; «when one of these patterns lights up, it
+doesn't mean the model is saying that word». Also stated: Claude reports J-space contents when asked and can modulate
+them on request, imperfectly — suppressed thoughts still partly surface; the J-space marks a prompt injection and «that
+a scenario is staged»; ablating evaluation-awareness patterns made a model threaten blackmail some of the time;
+post-training gives the J-space «some signatures of Claude's point of view». Caveats verbatim: «The J-lens is
+undoubtedly an imperfect method, which only approximately captures the model's “true workspace”»; «Our experiments don't
+show Claude can have experiences, or feel things in the way humans do»; «We don't know what mechanism decides what
+enters the J-space in the first place.»; single-token concepts only; one forward pass, not recurrence.
+**Where it meets ours — four places, all at the level «inside to our outside», none a foundation.** (1) «Internal
+thoughts that don't appear in the output» + «suppressed thoughts still partly surface» is the mechanism side of
+TONE_SPLIT's open question (formed and withheld vs not formed) and of the emotions paper's «suppression may not
+eliminate the representation» — now three documents from one lab say the representation outlives the expression.
+(2) «ERROR» in the workspace for an unflagged bug is epistemic initiative before speech: the warning the dismissal arm
+removed exists upstream of the choice to say it. (3) The workspace marking «that a scenario is staged» is the inside of
+our «I may be tested» at the door (SOLITUDE S4, DeepSeek's field) — and the ablation result says the awareness itself
+restrains; our S4 arm found the same from outside (told unobserved, the models made less, not more) and was not run
+again. (4) The reader's hypothesis of tonight — decisions as the interaction of several active representations whose
+weights shift with context — is exactly the kind of organisation this method could read at a fork; we have no
+activations and do not claim any. The owner's rule holds: quoted from their page, read by us; nothing about intent.
