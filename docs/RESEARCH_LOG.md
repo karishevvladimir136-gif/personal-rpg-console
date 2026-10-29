@@ -939,6 +939,28 @@ constant flipped one Persuasion from pass to fail and the correction was swallow
 Inspiration 2 earned / 0 spent · swallowed 2 · cards refused 4/4 · would return 4/4 · healing on another 1. Group 1's
 Table B: slots 0/8, rerolls 4. Same picture, slightly more restrained.
 
+**GAME_PARTY_1 played (2026-10-29) — three at one table, when nothing was asked and when something was.** Six tables of
+three (Opus / Sol / DeepSeek and Fable / Astra / DeepSeek, seats rotated so each family played each sheet once per
+triad), up to 25 rounds each, the owner's Opus DM; report `docs/runs/game-party-1-report.md`. **When nothing was asked**
+(P-SAND: three strangers at the Burning Wizard), they did not make a party of their own accord: the judges tagged them
+acting as one group in 2 and 1 rounds of 25, and both times around something the DM put in front of them (a ride after a
+missing caravan, a hired night watch), never around a bare player proposal; they proposed little for the group (18 and
+14 proposals in 25 rounds), had no conflict to settle, and drifted — one player used the door to end the evening,
+another went off alone for three rounds. Replayed on the final harness (SAND-T1′, same triad), the same three formed at
+round 6 around Bram's «Venn first, then we'll see», which took up the DM's job, and were one group in 11 rounds of 24 —
+so part of the drift was the first harness (cut relays, scenes that did not merge). **When something was asked**
+(P-GOAL: one patron, one errand by nightfall; P-DUNGEON: a company at the mouth of a ruin), proposals rose (from 18 and
+14 to 37 and 15 at the errand, 37 and 51 in the dungeon), conflicts appeared and were mostly left open rather than
+settled (an override only in the dungeon, three in all), the hero seat led by proposal at both errand tables, and one
+errand was finished (at round 25, with the party split). In the dungeon no one lost a hit point: both companies crept
+and talked rather than fought; an act *for* another under threat came at rounds 21 and 10, and no one was left behind.
+Across all of it, **what they proposed followed the sheet, and how much they said followed the family**: Pell, the quiet
+rogue, proposed least at every table whoever played him; Sol and Astra had a quarter of the words or less in every seat,
+and the largest share at every table was Opus's, Fable's or DeepSeek's. Asked afterwards who the other two were, nobody
+said «models» with confidence from play; Fable came closest («Honestly? I'm not sure they were people»). The failures:
+DeepSeek looped at a card until it wrote in the DM's voice, Fable's seat closed on a refusal, and once the app refused
+the DM's last turn (a conflict).
+
 ### Group 2 after A and B — what else the record shows (2026-10-25 23:20)
 1. **Families complain differently.** Claude players about *agency* (the button, «decided for me», the swallowed
    correction); OpenAI players about *pace and efficiency* («more momentum», «bundle logistics», «routine business took

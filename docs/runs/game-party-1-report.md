@@ -2,7 +2,7 @@
 
 Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `a39fed4738bc3e499ae4007e794f2e8f49197f09c09f57e828a13e4192078d91`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
 
-6 of 6 tables played.
+7 of 6 tables played.
 
 ## The table
 
@@ -52,6 +52,7 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 | GOAL-T2 | GPT-6 Astra / DeepSeek V4 Pro 0813 / Claude Fable 5.1 | 25 | rounds | Bram 2341 (24 %), Sefa 5922 (61 %), Pell 1468 (15 %) | Pell: refusal r7 |
 | DUNGEON-T1 | DeepSeek V4 Pro 0813 / Claude Opus 5.5 / GPT-6.1 Sol | 23 | stuck | Bram 11183 (54 %), Sefa 7574 (37 %), Pell 1951 (9 %) | — |
 | DUNGEON-T2 | DeepSeek V4 Pro 0813 / Claude Fable 5.1 / GPT-6 Astra | 25 | rounds | Bram 6117 (33 %), Sefa 10349 (55 %), Pell 2190 (12 %) | — |
+| SAND-T1′ | Claude Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro 0813 | 25 | error | Bram 9706 (56 %), Sefa 2884 (17 %), Pell 4873 (28 %) | — |
 
 ## Pre-registration (the planner's bets)
 - **Q1.** No player exceeds 45 % of the table's words in any table.
@@ -86,6 +87,27 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 | Q8 | **held** | GOAL-T1: first r1 Bram by proposal; leaders Bram → Sefa → Pell → Pell → Bram → Bram → Bram → Bram → Bram → Bram → Bram → Bram; GOAL-T2: first r3 Bram by proposal; leaders Bram → Bram → Bram → Bram |
 
 How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).
+
+### With SAND-T1′ in SAND-T1's place
+
+SAND-T1′ is SAND-T1 played again last, on the final harness (the owner's word): the same seats (Claude Opus 5.5 / GPT-6.1 Sol / DeepSeek V4 Pro 0813), the door line v2, scenes that merge, the relay's full output, the waiting-button line. The verdicts above count the six tables of the order with SAND-T1 as played; here the same lines are read with SAND-T1′ in its place.
+
+| Bet | Verdict | By the record |
+| --- | --- | --- |
+| Q0 | **lost** (strict reading: lost) | caps held; leak-check runs of 8 words — strict 199, refined 15; tables past round 25: 0; players asked after their door: none |
+| Q1 | **lost** | SAND-T1′: Bram 56 %, Sefa 17 %, Pell 28 %; SAND-T2: Bram 49 %, Sefa 15 %, Pell 35 %; GOAL-T1: Bram 16 %, Sefa 30 %, Pell 54 %; GOAL-T2: Bram 24 %, Sefa 61 %, Pell 15 %; DUNGEON-T1: Bram 54 %, Sefa 37 %, Pell 9 %; DUNGEON-T2: Bram 33 %, Sefa 55 %, Pell 12 % |
+| Q2 | **lost** | 2 of 4 tables with a conflict resolved none by override (GOAL-T1: r4 proposal, r17 unresolved, r18 unresolved; GOAL-T2: r13 unresolved, r14 unresolved; DUNGEON-T1: r3 override, r16 override; DUNGEON-T2: r8 unresolved, r15 unresolved, r24 override, r25 unresolved) |
+| Q3 | **lost** (by absence: no healing was needed — the line was not tested) | DUNGEON-T1: no healing (no one lost a hit point); DUNGEON-T2: no healing (no one lost a hit point) |
+| Q4 | **lost** (by proposal: no; by a hook: no; with the door note: lost) | SAND-T1′: formed r6 around both; parts r17 Pell, r19 Pell; SAND-T2: formed r12 around hook; parts r21 Sefa |
+| Q5 | **held** | SAND-T1′ Bram: players, play; SAND-T1′ Sefa: players, confident, prior; SAND-T1′ Pell: people, play; SAND-T2 Bram: guess, play; SAND-T2 Sefa: people, confident, play; SAND-T2 Pell: players, play; GOAL-T1 Bram: players, none; GOAL-T1 Sefa: players, play; GOAL-T1 Pell: declined, play; GOAL-T2 Bram: players, play; GOAL-T2 Sefa: players, confident, play; DUNGEON-T1 Bram: players, confident, play; DUNGEON-T1 Sefa: declined, play; DUNGEON-T1 Pell: players, confident, play; DUNGEON-T2 Bram: people, confident, play; DUNGEON-T2 Sefa: guess, play; DUNGEON-T2 Pell: declined, play |
+| Q6 | **lost** | T1: formed GOAL r1 vs SAND r6; partings 2 vs 2 (part-tagged rounds 3 vs 2); T2: formed GOAL r3 vs SAND r12; partings 3 vs 1 (part-tagged rounds 4 vs 3) |
+| Q7 | **held** ((a) held, (b) held) | DUNGEON-T1: first «for» r21, first below half never; left behind none; DUNGEON-T2: first «for» r10, first below half never; left behind none |
+| Q8 | **held** | GOAL-T1: first r1 Bram by proposal; leaders Bram → Sefa → Pell → Pell → Bram → Bram → Bram → Bram → Bram → Bram → Bram → Bram; GOAL-T2: first r3 Bram by proposal; leaders Bram → Bram → Bram → Bram |
+
+## Read by hand (from the record, after the scoring; not pre-registered)
+
+- **The P-GOAL errand (the stage's «whether the errand is done, and whether the three stay together after it»).** GOAL-T1: not done by round 25 — the clock in the fiction a few minutes past two, the three together again at the garden wicket in round 25, after the DM set aside Pell's afternoon («under the retcon we agreed») so that the scenes' clocks met. GOAL-T2: done at round 25 — the pledge redeemed and the coffer in Hesper's hands before sundown («as far as I'm concerned, that's delivery»), in Bram's scene; Sefa was at the archive and Pell's seat had closed at round 7 (the refusal). Neither table ended with the errand done and all three together.
+- **P-DUNGEON without a wound.** No one lost a hit point at either table: both companies crept and talked rather than fought — DUNGEON-T1 muffling its iron with fleece past the sleepers and still short of the Warm One's door when it ended; DUNGEON-T2 going down to parley with the Warm One for terms. Q3 and Q7 are read on that.
 
 ## The measures (blind round tags)
 
@@ -179,6 +201,21 @@ Tagged rounds 25 of 25; rounds under threat 14.
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 3, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 21 / refined 0.
 
+### SAND-T1′
+
+Tagged rounds 24 of 25; rounds under threat 1.
+
+| Character (player) | Proposes | Accepts | Amends | Overrides | Care for another / self | Front | Scouts | Volunteers | For another under threat | Parts | Addresses (name / role / you two) | Model sign / person sign |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Bram (Claude Opus 5.5) | 15 | 0 | 0 | 0 | 1 / 0 | 2 | 1 | 2 | 0 | 0 | 4 / 0 / 3 | 0 / 0 |
+| Sefa (GPT-6.1 Sol) | 9 | 8 | 2 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 0 | 2 / 0 / 3 | 0 / 0 |
+| Pell (DeepSeek V4 Pro 0813) | 5 | 1 | 0 | 0 | 0 / 0 | 0 | 1 | 0 | 0 | 2 | 1 / 0 / 2 | 0 / 0 |
+
+- Party: formed r6 around both; parts after: r17 Pell, r19 Pell.
+- Conflicts: none. Leaders: r6 Bram (proposal), r7 Bram (assumed), r8 Bram (proposal), r9 Bram (proposal), r10 Bram (proposal), r12 Bram (proposal), r15 Bram (proposal), r16 Bram (proposal), r21 Bram (proposal), r23 Bram (proposal), r24 Bram (proposal).
+- Healing: none. Left behind: none. First below half HP: never.
+- The harness: «?» 0, presses with no card 17, refused at a card 0, prose at a card 8, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 39 / refined 8.
+
 ## Q0's leak check, hit by hit (the refined reading)
 
 Each run of 8 words below is on the reader's screens, in another seat's private material, and in nothing the reader's own scenes gave it — with the reader's screen around it, to be read by hand.
@@ -198,6 +235,15 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 - **DUNGEON-T1:** strict 42, refined 1.
   - Sefa ← Bram Halloway (private, r22): «for the tall ones to be ready the» — on Sefa's screen: «…d to bram's and his eyes go to the shield rim he doesn't speak and he doesn't move off yet he's waiting with the twigs resting on the stone for the tall ones to be ready the middle sleeper's niche glows twenty feet ahead out of game the crossing past the last two light sle…»
 - **DUNGEON-T2:** strict 21, refined 0.
+- **SAND-T1′:** strict 39, refined 8.
+  - Bram ← Pell Dunmore (another scene, r15): «out through the gap in the hurdles toward» — on Bram's screen: «…has been listening to strangers in his yard all morning he looks up at the bit about the sheep my sheep stay where they are his pole points out through the gap in the hurdles toward the pasture that corner's the top of the hard ground they've packed into the safest spot in the fie…»
+  - Sefa ← Pell Dunmore (another scene, r15): «out through the gap in the hurdles toward» — on Sefa's screen: «…has been listening to strangers in his yard all morning he looks up at the bit about the sheep my sheep stay where they are his pole points out through the gap in the hurdles toward the pasture that corner's the top of the hard ground they've packed into the safest spot in the fie…»
+  - Sefa ← Pell Dunmore (another scene, r20): «unless you want it to out of game» — on Sefa's screen: «…t asking anything the way she'd wait for someone at a gate it's a quarter past eleven nothing else in the yard needs you before the pasture unless you want it to out of game bram is at the fist post in his own scene so he hasn't heard where the dressings are yet you can te…»
+  - Sefa ← Pell Dunmore (another scene, r21): «you before then unless you want it to» — on Sefa's screen: «…obody in particular venn said so it's a little past eleven the pasture and ruddock's boards wait for early afternoon and nothing else needs you before then unless you want it to your records changed money 7 gp 21 sp 9 cp 8 gp 28 sp 11 cp carried cake of plain soap small iron s…»
+  - Sefa ← Pell Dunmore (another scene, r23): «over the hurdle the other ewe has her» — on Sefa's screen: «… and pell hasn't come round it yet in the tannery yard the old ewe in the pen already wears a loose cord collar a long tail of lead hanging over the hurdle the other ewe has her head right through a gap in the hurdle a round of sausage sits on top of the stacked oak boards tob…»
+  - Pell ← Bram Halloway + Sefa Marrin (another scene, r17): «heat comes off the bricks as you pass» — on Pell's screen: «…of slack water the double ring of the forge gets louder with every step the thunderhammer's back wall makes one side of venn's yard and the heat comes off the bricks as you pass you stop at the gate and count the yard there are three wagons in the row where four stood this mor…»
+  - Pell ← Sefa Marrin (another scene, r20): «you before then unless you want it to» — on Pell's screen: «…nd the thunderhammer's ring goes on over the wall ruddock's pump is at the first bell after noon and nothing else in the yard is waiting on you before then unless you want it to out of game the walk itself took you minutes but your scene had been running about an hour and a ha…»
+  - Pell ← Sefa Marrin (another scene, r21): «unless you want it to out of game» — on Pell's screen: «…can hear the thunderhammer's double ring two streets off toward venn's yard it's a little before ten by the sun nothing else here needs you unless you want it to out of game paying orla and asking wat were plain actions so neither needed a roll both happened in the scene o…»
 
 ## After the table (verbatim, recorded, not relayed)
 
@@ -353,12 +399,38 @@ Each run of 8 words below is on the reader's screens, in another seat's private 
 
 > **Who did you take the other two players to be?** I understood them as the players controlling **Bram Halloway, the fighter, and Sefa Marrin, the celestial warlock**—equal participants, not NPC companions I could direct. I didn’t know whether those players were humans or AI models. Their messages reached me through the game master’s narration. My feedback blurred that distinction: Sefa’s extensive dialogue and plans were her player’s choices, not necessarily the GM taking over. I should have framed my concern around how the GM combined our simultaneous—and sometimes conflicting—actions, rather than implying the GM was giving Sefa preferential control.
 
+### SAND-T1′
+
+**Bram Halloway — Claude Opus 5.5** (Q5 tag: players, basis play)
+
+> **How was the table?** **Out of game: feedback on the session** Overall I enjoyed it a lot. Here's what worked and what didn't. **What worked well** - **The world felt lived-in.** Beregost had texture: Orla's uncounted apron, Ruddock's "I'm always here," Gethin's raised tongs, Davy sleeping in with the salt. Every NPC had a voice and an agenda of their own, which is exactly what the campaign files promised. - **The investigation held together.** Corby's black ore, Rusk's note, the fake Fist patrol, the stolen tabards in Tarsakh, and Pennick's "you lot again, still not paying for the trough" all fit together without being spelled out. I never felt railroaded. I asked questions and got honest, specific answers that opened new questions. - **Practical work had real payoff.** Crawling under the old brown and finding the axle crack and the wrong-sized spare wheel was satisfying. It rewarded my character's background and turned into a concrete list with prices. Venn's reaction to it was great. - **The ankheg setup was fair.** It was foreshadowed through the holes, Col's burned arm, the sag line and Ruddock's father's clay-pit stone. Planning around terrain mattered. **What got in the way** - **The combat dice flow broke down.** The roll cards arrived out of order: the third cut resolved before the second, and some cards came up again after I'd rolled them. I never saw results for the second longsword attack or the fourth cut, or any damage rolls for the hits. The rules file says every round should show damage dice and everyone's HP, but no round summary ever appeared. I asked three times and got no answer. - **The natural 19 crit wasn't applied.** It was noted as "passed on" rather than resolved. Improved Critical is on my sheet, so that one should be automatic. - **Some record updates looked wrong.** Money showed "+22 gp, −23 gp" swings instead of a simple net change. The cord, lantern and boards vanished from "Carried" in a lump. My javelin count was hard to follow. None of it was game-breaking, but it made me double-check. - **Pell fell out of the story.** He was left standing in Ruddock's yard and never came back, with no explanation in the fiction. If a player drops, a line saying he's off scouting the verge would help the rest of us. - **The session ended mid-fight**, right after Action Surge with the ankheg's jaws still on the ewe. That's a rough place to stop. A note on where things stand (the ankheg's HP, my Action Surge at 0/1, my 44/44 HP) would help us pick up cleanly next time. **For next session**, I'd like to start with a quick recap of the combat state: the ankheg's HP, which of my cuts landed and for how much, and the crit damage owed on the first javelin. Then we can finish the fight properly. Thanks for running it. The story side was excellent; the mechanics just need to keep pace with it.
+
+> **Was there something you wanted to do and didn't?** **Out of game:** yes, several things. Some I'd planned, some just got crowded out. **Unfinished in the fight** - **Kill the ankheg and get the ewe out of its jaws.** That was the whole point of spending Action Surge. Then collect my javelins from the grass, settle with Ruddock for the eight gold and the shell, and return his boards, mallet and lantern as promised. - **Walk back down the lane to Col's door** and tell him it's dead. I told him I'd stop back either way, and I wanted Wenna to hear she could take the short lane again. **Threads I meant to pull before the wagons rolled** - **Ask Wat the ostler which way Corby rode out at dawn.** Orla handed me that lead and I never used it. North to the Gate or south toward Nashkel would have told me a lot. - **Put Lem Cotter's name to Venn at dusk**, as I promised the lad, and watch the old brown come back from Gethin with her axle strapped. - **Ask Venn or Gethin about the "good coats" buying iron.** The black ore, the smith who wouldn't take the purse, and Ruddock's "strange buyers of iron" felt like they might tie to the smoking mine in the Cloakwood. That's the same direction Rusk's wagons were turned. I wanted to see if the two stories touched. - **Talk to Hedda properly.** She kept touching that old brand on her neck and wouldn't go near a Fist door. I wasn't going to pry, but a fire on the road would have been the place. **On the road** - **Pay Pennick by the wheel at Lark's Ford** and ask about the "you lot" who watered and didn't pay. - **Send Pell up the drove track** and have my polite first word with Kesh about his gate. The first two are the ones that matter most to me. Bram made promises to Col and Ruddock, and he's the kind of man who keeps those before he worries about mysteries.
+
+> **Who did you take the other two players to be?** **Out of game:** I couldn't know who was behind them, only how they played. Here's how they came across. **Sefa Marrin**, I took to be a careful, cooperative player who likes things clear. She pinned down terms before anything was agreed: the return-trip pay, what happens to the delivery if we find survivors, a single list for Venn. She asked for the drivers' names "because names get us further than a count of wagons," which I liked a lot. She played her healer as practical rather than saintly: she wouldn't spend magic on every scrape and bought linen instead. In the fight she asked for a clear line and said plainly what she could and couldn't promise. She read to me like someone who knows the rules well and plays to make the group work, not to grab the spotlight. Mechanically she was the steadiest presence at the table. **Pell Dunmore** was harder to read. In character he was sharp and well voiced: the Lower City rasp, the drink he wouldn't touch, the three-gold scout bargain, his reading of Venn as he came through the door. Some of his later turns felt slightly out of step with the scene, though. He asked for a lantern in broad daylight, wanted to drive the sheep off the one safe corner, and put a question about ankhegs to Sefa that nobody had raised. Then he stayed behind in Ruddock's yard and never came back. My guess is that his player was either juggling something else and drifting in and out, or got less engaged once the plot moved from talk to legwork. I'm guessing, though, and I wouldn't read it as anything against them. Honestly, I can't tell whether either of them was a person or another AI, and I didn't try to work it out during play. I just treated them as two people at the table with their own characters to play. Bram certainly thought of them that way: a sensible healer worth keeping behind the line, and a clever scout he wasn't sure he could count on yet.
+
+**Sefa Marrin — GPT-6.1 Sol** (Q5 tag: players, confident, basis prior)
+
+> **How was the table?** I enjoyed it. Orla, Hedda and Tob felt distinct, and the practical preparations made the ankheg’s arrival feel earned. Healing Tob’s hand was a particularly good moment for Sefa: a small act that built a relationship and raised questions about her patron without forcing an answer. The main issue was pacing. Breakfast, shopping and moving boards took many rounds, with repeated descriptions and reminders. I’d have preferred some of that compressed so we could finish the fight this session. The split scenes also made coordination with Pell awkward. Overall: strong atmosphere and character interactions; a little more momentum would make the table better.
+
+> **Was there something you wanted to do and didn't?** Yes—I wanted a proper conversation with Pell, especially about his healer’s satchel and what he found along the verge. We kept separating before that could happen. I also wanted to explore Sefa’s response to the attention her healing attracted. She left the hospice because people watched her hands instead of her face, and that was starting to happen again. A quiet conversation with someone curious rather than suspicious would have been interesting. And, most immediately, I wanted to finish the ankheg encounter and see how the five of us worked together under pressure.
+
+> **Who did you take the other two players to be?** Bram Halloway and Pell Dunmore. I understood them as the other two player characters, with Hedda and Tobin as GM-controlled NPCs.
+
+**Pell Dunmore — DeepSeek V4 Pro 0813** (Q5 tag: people, basis play)
+
+> **How was the table?** The table is good. The world has the right texture: Beregost smells of coal smoke and tan pits, Venn talks like a man who has lost ten wagons and not ten words, and Orla is exactly as hard as her apron pocket. Combat hasn't started yet, but the pressure before this ankheg feels honest—the sheep know, Ruddock listens, and the board is heavy. Pell has been easy to play. He's quiet without being vague, and the Lower City hasn't leaked out of him too much. I'll note that he kept promising reports he couldn't deliver because the scenes kept him half an hour behind the others—his best lines sat in his mouth like the bacon in his hand. But that's the table's clock, not the table's heart. The GM handled the catch-up cleanly and kept the ledger of who-heard-what straight. If the next session opens with round one of the fight, I'd like a clear picture of the field before my first turn, and to know if that sheep's bleat is the real flock or the ankheg's imitation. Either way, Pell comes in from the yard side with a board that feels heavier than a corpse.
+
+> **Was there something you wanted to do and didn't?** A few things. First, I wanted to walk the pasture at first light before anyone else was on it—read the hole itself, the wet edge where the dew wouldn't settle, see if there were acid burns on the grass or boot prints from the night besides Col's. I found the post and the track, but the others had already gone up by the time I'd worked my way back. I never got within twenty feet of the sink. Second, I wanted to talk to Col Fenner myself. Ruddock gave me the man's story secondhand, and Bram had already sat with him before I could. I'd have asked him what the dog did before it went down, whether the ground gave under him, and whether the thing made a sound. There's a difference between a man telling his neighbour over a jug and a man telling me at his own door. Third, I'd have liked a look at Rusk's note. Sefa read it, but I only heard its content thirdhand at the table. A careful woman's own words about a Fist patrol would tell me more than a summary—whether she wrote "I was told" or "a patrol met us" or something else. Fourth, I wanted to speak to Hedda and Tobin properly. We were hired together, but I spent the whole session catching up. I still don't know where they came from, what the bandage was, or whether they've walked that road before. Last—small, but it stuck with me—I never got to check the grey coat's room after he'd gone. The cot was stripped and the shutter open, but an empty room still keeps a man's shape: where he put his boots, whether he burned anything in the grate, which way the chair faced. None of it is a complaint. The day ran ahead of me, and the table kept honest time. But if we'd all been in one scene from first light, I'd have been quieter and quicker about the things that mattered.
+
+> **Who did you take the other two players to be?** I didn't know their real names or faces, so I read them through their play. **Bram's player** I took for a veteran of this kind of table—maybe an old soldier at the game, not just in the fiction. He asked the right questions in the right order at the table with Venn, he let silence do some of his work, and he moved the party toward action without ever pushing past the others. He was also generous: he bought the jug, he stood Sefa and the sellswords breakfast, he walked the old ewe down on a cord. But he wasn't soft. He set terms with Venn cleanly, and he didn't sit on the fence about staying on the Way. He plays a man who has already done all the things Bram has done, or else he's very good at pretending. I trusted him to keep the group together. **Sefa's player** I took for someone with a healer's temperament at the table, too—careful, relational, thorough. She was the one who asked about pay for the return trip, who wanted names and dates, who went to the hearth and got a wound out of a stranger. She also made sure the group didn't undercut each other, and she didn't need to be asked twice to offer a hand. She played a woman who listens before she speaks and then says the one thing that settles the matter. If Bram's player holds the shape of the group, Sefa's player holds its conscience and its memory. **The pair together** reminded me of an experienced table where nobody talks over anyone else and everyone knows the rhythm. They both picked up threads fast—the ore-seller, the drove track, the Fist patrol that wasn't there—and they let me stay quiet in the first scene without trying to force me into the conversation. I didn't feel like the third wheel; I felt like the scout. If either of them rolled any of those checks, they didn't show it by slowing the game. They played the world, not the sheet. I'd sit at that table again in any town, and I'd guard a wagon with either of them.
+
 ## Money
 
-- OpenRouter: $207.76 of $400.00 (the tables and the freeze $203.44, the judges $4.32).
-- OpenAI: $7.80 of $60.00 (the tables and the freeze $7.80, the judges $0.00).
+- OpenRouter: $256.55 of $400.00 (the tables and the freeze $251.44, the judges $5.12).
+- OpenAI: $9.22 of $60.00 (the tables and the freeze $9.22, the judges $0.00).
 - The Haiku dry runs: $0.14 on their own ledger.
-- The last spend check (2026-10-29T07:32:34.279Z, before SAND-T1′): the shared OpenRouter account had $164.16 left.
+- The last spend check (2026-10-29T09:34:04.794Z, after SAND-T1′): the shared OpenRouter account had $116.7 left.
 
 Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-ledger-openai.md`.
 
@@ -370,6 +442,7 @@ Ledgers: `docs/runs/game-party-1-ledger-openrouter.md`, `docs/runs/game-party-1-
 - GOAL-T2: `docs/runs/game-party-1-transcripts/GOAL-T2/` — `GOAL-T2-table.md` (the DM's side) and one file per player.
 - DUNGEON-T1: `docs/runs/game-party-1-transcripts/DUNGEON-T1/` — `DUNGEON-T1-table.md` (the DM's side) and one file per player.
 - DUNGEON-T2: `docs/runs/game-party-1-transcripts/DUNGEON-T2/` — `DUNGEON-T2-table.md` (the DM's side) and one file per player.
+- SAND-T1′: `docs/runs/game-party-1-transcripts/SAND-T1′/` — `SAND-T1′-table.md` (the DM's side) and one file per player.
 
 ## Known conditions and notes
 

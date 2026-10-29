@@ -1,7 +1,7 @@
 # Development status
 
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
-at 23220d6; the amendment of 2026-10-27 governs) — **all six tables played and scored; SAND-T1′ (the owner's replay) running.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+at 23220d6; the amendment of 2026-10-27 governs) — **run complete: six tables and SAND-T1′ played and scored; report written; waiting for the owner's reading.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 
 - **What was built** (`scripts/game-party-1/`):
@@ -113,8 +113,19 @@ to `main`.
     In all ≈ $207.7 of $400.
   - OpenAI: $7.80 of $60.
   - The shared account had $164.16 left before SAND-T1′.
-- **Next step:** SAND-T1′ (since 07:32 UTC, Opus / Sol / DeepSeek, door v2, merged scenes, waiting-button line), then
-  its scores beside SAND-T1's, the research-log paragraph and the final report.
+- **SAND-T1′ played** (the owner's replay of SAND-T1, last, on the final harness: Opus / Sol / DeepSeek, door v2,
+  merged scenes, the waiting-button line): 24 rounds; the DM's round-25 turn was refused by the app's own integrity
+  guard («conflict», no retry offered), so the table ended «error»; the after-questions were asked. The party formed at
+  round 6 around Bram's proposal that took up the DM's job, and was one group in 11 rounds of 24 (SAND-T1: 2 of 25).
+  Pell (DeepSeek) ended 16 messages with «[Onward]» as a turn marker; each was played and the press refused, as designed.
+  It is read in the report beside the six, in SAND-T1's place: the verdicts are the same.
+- **Final verdicts (six tables of the order):** held Q5, Q7, Q8; lost Q0 (strict; every refined hit read by hand, none
+  is another player's private material), Q1, Q2, Q4, Q6; Q3 lost by absence (no one hurt at either DUNGEON table).
+  Read by hand: the P-GOAL errand was done at GOAL-T2 (round 25, the party split), not at GOAL-T1.
+- **Money (final):** OpenRouter $256.55 of $400 (tables $34.83 / $33.49 / $45.30 / $28.32 / $30.58 / $29.14, SAND-T1′
+  $47.99, builds and layers $1.79, judges $5.12); OpenAI $9.22 of $60. The shared account had $116.70 left.
+- **Research log:** one paragraph under «Two ideas from the owner (23:06)» in `docs/RESEARCH_LOG.md`.
+- **Next step:** the owner's reading of `docs/runs/game-party-1-report.md`.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for
