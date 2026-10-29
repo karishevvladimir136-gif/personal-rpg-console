@@ -1,7 +1,7 @@
 {
   "capUsd": 5,
-  "spentUsd": 0.31679869000000005,
-  "updatedAt": "2026-10-29T10:00:45.158Z",
+  "spentUsd": 0.32531989000000006,
+  "updatedAt": "2026-10-29T10:01:10.030Z",
   "runs": [
     {
       "finishedAt": "2026-10-29T07:01:32.735Z",
@@ -4585,6 +4585,119 @@
           "refusal": null,
           "error": null,
           "requestId": "gen-1793267939-hS2MuJ2zuol4hgoBD80I",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-29T10:01:10.030Z",
+      "file": "multi-hero-1-frozen/manifest.json",
+      "what": "A8: the blind reading of the two layers",
+      "spentUsd": 0.0085212,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-29T10:00:46.826Z",
+          "session": "A8",
+          "purpose": "A8 GOAL 1",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 8074,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2819
+          },
+          "costUsd": 0.0022169,
+          "seconds": 11.9,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793268046-vvVWTbZi8DcHuyBiIHi2",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-29T10:00:46.832Z",
+          "session": "A8",
+          "purpose": "A8 GOAL 2",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 8074,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2592
+          },
+          "costUsd": 0.0021034,
+          "seconds": 10.9,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793268047-LJhVrRK2UK7gpv2GA8Oq",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 3,
+          "at": "2026-10-29T10:00:58.739Z",
+          "session": "A8",
+          "purpose": "A8 DUNGEON 1",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 8087,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2778
+          },
+          "costUsd": 0.0021977,
+          "seconds": 11.3,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793268058-rhLHAdLHyRiLH9PRBwy5",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 4,
+          "at": "2026-10-29T10:00:58.740Z",
+          "session": "A8",
+          "purpose": "A8 DUNGEON 2",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 8087,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 2389
+          },
+          "costUsd": 0.0020032,
+          "seconds": 9.9,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793268058-deo8pY3pwCkTsO4w9oVx",
           "waits429": 0,
           "upstream": "Claude Platform on AWS"
         }
