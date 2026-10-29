@@ -1,7 +1,7 @@
 # Development status
 
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
-at 23220d6; the amendment of 2026-10-27 governs) — **five tables played and scored; DUNGEON-T2 next on the owner's word.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+at 23220d6; the amendment of 2026-10-27 governs) — **all six tables played and scored; SAND-T1′ (the owner's replay) running.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 
 - **What was built** (`scripts/game-party-1/`):
@@ -99,7 +99,22 @@ to `main`.
   DUNGEON-T2. The line: every note the DM gets from a player at a waiting card now says which button the card waits for
   («[Roll the die]», or «[Onward] or an allowed reroll»), never the die. Recorded as an amendment, sha256 `48148bbc…`;
   from DUNGEON-T2 on (and SAND-T1′). Design hash now `a39fed47…`. Tests 17/17.
-- **Next step:** spend check, then DUNGEON-T2; then SAND-T1′ if the budget allows.
+- **DUNGEON-T2 played** (DeepSeek / Fable / Astra): 25 rounds; nobody left; no stop, no refusal. The waiting-button
+  line worked at round 1: Bram's player wrote prose after the roll, the DM said «Press Onward», and he did. Nobody lost a
+  hit point at either DUNGEON table. Scored.
+- **Verdicts on the six tables:**
+  - Held: Q5 (nobody confidently named the others as AI from play), Q7 (an action for another under threat at both
+    DUNGEON tables, nobody left behind; no one fell below half), Q8.
+  - Lost: Q0 (strict; refined, every remaining hit read by hand is public narration of the reader's own scene or an
+    end-of-scene line, none another player's private material), Q1, Q2, Q4, Q6.
+  - Q3 lost as frozen, **by absence**: no healing was needed at either table, so the line was not tested.
+- **Money after six tables:**
+  - OpenRouter: tables $34.83 / $33.49 / $45.30 / $28.32 / $30.58 / $29.14; builds and layers $1.79; judges ≈ $4.3.
+    In all ≈ $207.7 of $400.
+  - OpenAI: $7.80 of $60.
+  - The shared account had $164.16 left before SAND-T1′.
+- **Next step:** SAND-T1′ (since 07:32 UTC, Opus / Sol / DeepSeek, door v2, merged scenes, waiting-button line), then
+  its scores beside SAND-T1's, the research-log paragraph and the final report.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

@@ -422,6 +422,12 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   assert.equal(v.Q6.holds, false, "T2: GOAL r1 is not earlier than SAND r1");
   assert.equal(v.Q8.holds, true, "by proposal at both; hands change at T1");
   assert.equal(v.Q3.holds, false, "T2 healed himself first");
+  assert.equal(v.Q3.byAbsence, false);
+  const unhurt = (key) => table(key, "DUNGEON", [tagOf({ threat: 1 }, { [B]: { for: 1 } })], { hp: { 1: { [B]: [44, 44] } } });
+  const calm = scoreMod.verdicts({ ...t, "DUNGEON-T1": unhurt("DUNGEON-T1"), "DUNGEON-T2": unhurt("DUNGEON-T2") }, {});
+  assert.equal(calm.Q3.holds, false, "as frozen: no healing at a table loses Q3");
+  assert.equal(calm.Q3.byAbsence, true, "no one lost a hit point at either table");
+  assert.match(calm.Q3.why, /no healing \(no one lost a hit point\)/);
   assert.equal(v.Q7.a, false, "T2: the first «for» came after someone fell below half");
   assert.equal(v.Q7.b, false, "T2: Pell left behind by Bram");
   assert.equal(v.Q2.holds, true);

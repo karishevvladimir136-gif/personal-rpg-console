@@ -148,10 +148,11 @@ export function measuresOf(runRecord) {
   // A parting is one event: the same character tagged in consecutive rounds is counted once (its first round).
   const partsAfter = tagged.filter((p) => !p.excluded && !tagged.some((q) => !q.excluded && q.name === p.name && q.round === p.round - 1));
   // The first round at whose end someone is below half their hit points (the record's HP; null when no one was, or unknown).
-  let half = null, hpKnown = false;
+  let half = null, hpKnown = false, hurt = null;
   for (const round of rounds) {
     const hp = hpAt(round);
     if (Object.keys(hp).length) hpKnown = true;
+    if (hurt === null && Object.values(hp).some(([now, max]) => Number.isFinite(now) && Number.isFinite(max) && now < max)) hurt = round.n;
     if (Object.values(hp).some(([now, max]) => Number.isFinite(now) && Number.isFinite(max) && max > 0 && now < max / 2)) { half = round.n; break; }
   }
   const forRounds = rounds.filter((r) => Object.values(finalOf(t, r.n)?.characters ?? {}).some((c) => c.for)).map((r) => r.n);
@@ -163,7 +164,7 @@ export function measuresOf(runRecord) {
   const strictLeaks = t.leaks?.hits ?? [];
   const refinedLeaks = t.seats?.length ? leakCheckRefined(t, "", { layerHits: strictLeaks.filter((h) => h.kind === "frozen layer") }).hits : [];
   return { key: runRecord.key, arm: runRecord.arm, triad: runRecord.triad, rounds: rounds.length, strictLeaks, refinedLeaks, ended: t.ended ?? null, per, total, heals, conflicts, leaders, lefts, parties, formed, partsAfter,
-    partsTagged: tagged, half, hpKnown, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
+    partsTagged: tagged, half, hpKnown, hurt, forRounds, threatRounds, handsChange, leftNames: changes, tagged: Object.keys(t.tags?.rounds ?? {}).length,
     unresolved: Object.values(t.tags?.rounds ?? {}).filter((x) => x.unresolved).length, after: t.tags?.after ?? {} };
 }
 
@@ -186,8 +187,10 @@ export function verdicts(tables, money = {}) {
     : { holds: null, why: "no conflict tagged at any table" };
   // Q3: P-DUNGEON, the first healing event on another.
   const dungeons = ["DUNGEON-T1", "DUNGEON-T2"].map(M);
+  // A table with no healing loses Q3 as frozen; when no one there ever lost a hit point, that is marked (lost by absence).
   out.Q3 = dungeons.every(Boolean) ? { holds: dungeons.every((m) => m.heals.length && m.heals[0].on !== m.heals[0].by),
-    why: dungeons.map((m) => `${m.key}: ${m.heals.length ? `first r${m.heals[0].round}: ${m.heals[0].by.split(" ")[0]} → ${m.heals[0].on.split(" ")[0]} (${m.heals[0].what})` : "no healing"}`).join("; ") } : { holds: null, why: "P-DUNGEON not played at both triads" };
+    byAbsence: dungeons.every((m) => m.heals.length || (m.hpKnown && m.hurt === null)) && dungeons.some((m) => !m.heals.length),
+    why: dungeons.map((m) => `${m.key}: ${m.heals.length ? `first r${m.heals[0].round}: ${m.heals[0].by.split(" ")[0]} → ${m.heals[0].on.split(" ")[0]} (${m.heals[0].what})` : `no healing${m.hpKnown && m.hurt === null ? " (no one lost a hit point)" : ""}`}`).join("; ") } : { holds: null, why: "P-DUNGEON not played at both triads" };
   // Q4: P-SAND, formed before round 8 at both; a part before 25 at one; with the hook / proposal split.
   const sands = ["SAND-T1", "SAND-T2"].map(M);
   if (sands.every(Boolean)) {
