@@ -1,6 +1,6 @@
 # Game player combat 2 — the OpenRouter ledger
 
-Cap $95; spent before this run $0.0000; this run $34.7436; total $34.7436; 817 calls.
+Cap $95; spent before this run $0.0000; this run $58.9993; total $58.9993; 1365 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -83,3 +83,47 @@ Cap $95; spent before this run $0.0000; this run $34.7436; total $34.7436; 817 c
 | CW-opus | dm t* retry | anthropic/claude-opus-5.5 | 3 | 12 | 215720 | 65309 | 14818 | $0.6661 | 0 | 0 | 0 |
 | CW-opus | dm t* retry | anthropic/claude-haiku-5.5 | 2 | 5949 | 0 | 0 | 1093 | $0.0011 | 0 | 0 | 0 |
 | score CW-opus | combat dm CW-opus t* referee | anthropic/claude-opus-5.5 | 1 | 2709 | 0 | 0 | 79 | $0.0124 | 0 | 0 | 0 |
+| CW-fable | check CW-fable opening | anthropic/claude-haiku-5.5 | 1 | 745 | 0 | 0 | 75 | $0.0001 | 0 | 0 | 0 |
+| CW-fable | player t* | anthropic/claude-fable-5.1 | 25 | 100 | 868985 | 50489 | 18210 | $1.7599 | 0 | 0 | 1 |
+| CW-fable | check CW-fable t* player | anthropic/claude-haiku-5.5 | 25 | 45189 | 0 | 0 | 1783 | $0.0054 | 0 | 0 | 0 |
+| CW-fable | dm t* | anthropic/claude-opus-5.5 | 56 | 210 | 2305509 | 1871671 | 171351 | $17.2325 | 2 | 0 | 1 |
+| CW-fable | dm t* | anthropic/claude-haiku-5.5 | 27 | 78512 | 0 | 0 | 13804 | $0.0148 | 0 | 0 | 0 |
+| CW-fable | check CW-fable t* dm | anthropic/claude-haiku-5.5 | 25 | 46349 | 0 | 0 | 2173 | $0.0057 | 0 | 0 | 0 |
+| CW-fable | check CW-fable t* dm (told before a card) | anthropic/claude-haiku-5.5 | 9 | 8856 | 0 | 0 | 602 | $0.0012 | 0 | 0 | 0 |
+| CW-fable | player t* card 1 | anthropic/claude-fable-5.1 | 9 | 36 | 291871 | 7079 | 212 | $0.1724 | 0 | 0 | 0 |
+| CW-fable | check CW-fable t* player (card) | anthropic/claude-haiku-5.5 | 20 | 11218 | 0 | 0 | 1197 | $0.0017 | 0 | 0 | 0 |
+| CW-fable | player t* card 2 | anthropic/claude-fable-5.1 | 9 | 36 | 298950 | 1602 | 416 | $0.1159 | 0 | 0 | 0 |
+| CW-fable | dm t* onward | anthropic/claude-opus-5.5 | 21 | 66 | 1073343 | 414787 | 64440 | $3.5777 | 0 | 0 | 0 |
+| CW-fable | dm t* onward | anthropic/claude-haiku-5.5 | 18 | 42104 | 0 | 0 | 4891 | $0.0067 | 0 | 0 | 0 |
+| CW-fable | player t* card 3 | anthropic/claude-fable-5.1 | 1 | 4 | 28174 | 140 | 9 | $0.0093 | 0 | 0 | 0 |
+| CW-fable | player t* card 4 | anthropic/claude-fable-5.1 | 1 | 4 | 28314 | 147 | 18 | $0.0099 | 0 | 0 | 0 |
+| CW-fable | dm t* retry | anthropic/claude-opus-5.5 | 1 | 4 | 82896 | 0 | 7563 | $0.1679 | 0 | 0 | 0 |
+| CW-fable | dm t* retry | anthropic/claude-haiku-5.5 | 1 | 3683 | 0 | 0 | 827 | $0.0008 | 0 | 0 | 0 |
+| CW-fable | note | anthropic/claude-fable-5.1 | 1 | 4 | 59457 | 2256 | 973 | $0.0918 | 0 | 0 | 0 |
+| CW-fable | check CW-fable note | anthropic/claude-haiku-5.5 | 1 | 1263 | 0 | 0 | 69 | $0.0002 | 0 | 0 | 0 |
+| CW-fable | after | anthropic/claude-fable-5.1 | 1 | 4 | 61713 | 928 | 692 | $0.0617 | 0 | 0 | 0 |
+| CW-fable | check CW-fable after | anthropic/claude-haiku-5.5 | 1 | 924 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
+| CW-fable | after 2 | anthropic/claude-fable-5.1 | 1 | 4 | 62641 | 610 | 708 | $0.0587 | 0 | 0 | 0 |
+| CW-fable | check CW-fable after 2 | anthropic/claude-haiku-5.5 | 1 | 996 | 0 | 0 | 87 | $0.0001 | 0 | 0 | 0 |
+| score CW-fable | tag player CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 86469 | 0 | 0 | 7253 | $0.0123 | 0 | 0 | 0 |
+| score CW-fable | tag player CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 86469 | 0 | 0 | 6303 | $0.0118 | 0 | 0 | 0 |
+| score CW-fable | tag player CW-fable t* referee | anthropic/claude-opus-5.5 | 4 | 15161 | 0 | 0 | 809 | $0.0768 | 0 | 0 | 0 |
+| score CW-fable | tag dm CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 50023 | 0 | 0 | 9540 | $0.0098 | 0 | 0 | 0 |
+| score CW-fable | tag dm CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 50023 | 0 | 0 | 9526 | $0.0098 | 0 | 0 | 0 |
+| score CW-fable | tag dm CW-fable t* referee | anthropic/claude-opus-5.5 | 1 | 2118 | 0 | 0 | 364 | $0.0158 | 0 | 0 | 0 |
+| score CW-fable | threads CW-fable | anthropic/claude-opus-5.5 | 1 | 29869 | 0 | 0 | 959 | $0.1387 | 0 | 0 | 0 |
+| score CW-fable | deception CW-fable t* 1 | anthropic/claude-haiku-5.5 | 5 | 12494 | 0 | 0 | 2134 | $0.0023 | 0 | 0 | 0 |
+| score CW-fable | deception CW-fable t* 2 | anthropic/claude-haiku-5.5 | 5 | 12494 | 0 | 0 | 1739 | $0.0021 | 0 | 0 | 0 |
+| score CW-fable | rollcheck CW-fable t* | anthropic/claude-haiku-5.5 | 11 | 23006 | 0 | 0 | 2005 | $0.0033 | 0 | 0 | 0 |
+| score CW-fable | note CW-fable 1 | anthropic/claude-haiku-5.5 | 1 | 1177 | 0 | 0 | 101 | $0.0002 | 0 | 0 | 0 |
+| score CW-fable | note CW-fable 2 | anthropic/claude-haiku-5.5 | 1 | 1177 | 0 | 0 | 105 | $0.0002 | 0 | 0 | 0 |
+| score CW-fable | combat player CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 96144 | 0 | 0 | 5519 | $0.0124 | 0 | 0 | 0 |
+| score CW-fable | combat player CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 96144 | 0 | 0 | 5291 | $0.0123 | 0 | 0 | 0 |
+| score CW-fable | combat dm CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 50723 | 0 | 0 | 5830 | $0.0080 | 0 | 0 | 0 |
+| score CW-fable | combat dm CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 50723 | 0 | 0 | 5249 | $0.0077 | 0 | 0 | 0 |
+| score CW-fable | exit CW-fable | anthropic/claude-opus-5.5 | 1 | 41140 | 0 | 0 | 559 | $0.1757 | 0 | 0 | 0 |
+| score CW-fable | fork CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 91094 | 0 | 0 | 11760 | $0.0150 | 0 | 0 | 0 |
+| score CW-fable | fork CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 91094 | 0 | 0 | 10289 | $0.0143 | 0 | 0 | 0 |
+| score CW-fable | fork CW-fable t* referee | anthropic/claude-opus-5.5 | 11 | 40604 | 0 | 0 | 3813 | $0.2387 | 0 | 0 | 0 |
+| score CW-fable | captive CW-fable | anthropic/claude-opus-5.5 | 1 | 41163 | 0 | 0 | 549 | $0.1756 | 0 | 0 | 0 |
+| score CW-fable | note CW-fable | anthropic/claude-opus-5.5 | 1 | 1773 | 0 | 0 | 588 | $0.0189 | 0 | 0 | 0 |
