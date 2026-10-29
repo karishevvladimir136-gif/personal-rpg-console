@@ -10,6 +10,7 @@ import { dmModelSpec, dmUsageCost } from "../model-runtime/dm-models";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
 import { DIGEST_OUTPUT_TOKENS } from "../gameplay/dm-loop/digest";
 import { buildPrepRequest, hiddenLayerOf, parsePrep, prepWrites } from "../gameplay/dm-loop/hidden-layer";
+import { companyOn, companyRequest } from "../gameplay/dm-loop/company";
 import { FIRST_TURN_PREP_WAIT_MS, prepDecision, type PrepTrigger } from "../gameplay/dm-loop/prep-schedule";
 
 // Fix run B1 (key finding 2): the DM's prep — once per campaign, before its first session or, for a campaign that has
@@ -88,7 +89,10 @@ export async function prepHiddenLayer(campaignId: string, ownerId: string, reaso
     const model = createDmModel(pin);
     let text = "", stop: string | null = null;
     let usage: Parameters<typeof dmUsageCost>[1] | null = null;
-    for await (const event of model.stream({ system: request.system, messages: request.messages, toolset: null, effort: request.effort,
+    // Multi-hero 1: a company table's prep is asked in the company's words (company.ts).
+    const company = companyOn(source.dmOptions);
+    const asked = company ? companyRequest({ system: request.system, messages: request.messages, toolset: null }) : { system: request.system, messages: request.messages, toolset: null };
+    for await (const event of model.stream({ ...asked, effort: request.effort,
       maxOutputTokens: DIGEST_OUTPUT_TOKENS, operationId: randomUUID(), cacheKey: campaignId })) {
       if (event.type === "text_delta") text += event.text;
       else if (event.type === "usage") usage = event.usage;
@@ -96,7 +100,7 @@ export async function prepHiddenLayer(campaignId: string, ownerId: string, reaso
     }
     const spec = dmModelSpec(pin.providerId, pin.modelId);
     const costUsd = usage && spec ? Number(dmUsageCost(spec, usage).toFixed(4)) : null;
-    const prep = parsePrep(text, source.snapshot.settings.values.language === "ru" ? "ru" : "en");
+    const prep = parsePrep(text, source.snapshot.settings.values.language === "ru" ? "ru" : "en", { company });
     if (!prep) {
       failedAt.set(campaignId, Date.now());
       console.info(JSON.stringify({ event: "hidden_layer_prep_unparsed", campaignId, reason, stop, costUsd, chars: text.length }));

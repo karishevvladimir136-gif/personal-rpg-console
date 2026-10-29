@@ -10,7 +10,7 @@
 // session's finding was three turns narrated around declared attacks with nothing rolled.
 import type { DmLoopDiagnostic, DmLoopReceipt } from "./contracts.ts";
 import type { RecordedCheck } from "../server-contracts.ts";
-import { rerollHistory, standingSummary } from "./standing-roll.ts";
+import { ownsRoll, rerollHistory, standingSummary, type OwnRollIds } from "./standing-roll.ts";
 import { QUOTABLE_MODEL, QUOTABLE_PRICE_PER_MILLION } from "./quotable.ts";
 import { anthropicEndpoint } from "../../server/anthropic-endpoint.ts";
 
@@ -26,12 +26,12 @@ const isAttackCard = (receipt: DmLoopReceipt) => receipt.call.name === "combat" 
 /** The rolls the player saw this turn (a roll card, a hit on the party, an attack card of the fight): one line each;
  * `hero` marks the hero's own roll. Fix S4 11k: a rerolled check's line is the roll that stands (the checker read the
  * first roll's verdict against a story that told the reroll). */
-export function visibleRolls(receipts: DmLoopReceipt[], heroId: string | null = null, checks: readonly RecordedCheck[] = [],
+export function visibleRolls(receipts: DmLoopReceipt[], heroId: OwnRollIds = null, checks: readonly RecordedCheck[] = [],
   diagnostics: readonly DmLoopDiagnostic[] = []): { position: number; line: string; hero: boolean }[] {
   return receipts.filter((receipt) => (receipt.call.name === "roll" || isAttackCard(receipt)) && receipt.result.ok && !!receipt.result.player)
     .map((receipt) => {
       const result = receipt.result.ok ? receipt.result : null;
-      const hero = !!heroId && (result?.check?.actorId === heroId || receipt.call.arguments.actorRef === heroId);
+      const hero = ownsRoll(heroId, result?.check?.actorId) || ownsRoll(heroId, receipt.call.arguments.actorRef);
       const standing = result?.check ? checks.find((row) => row.id === result.check!.id) ?? null : null;
       const summary = result && standing ? standingSummary(result.summary, standing, rerollHistory(standing.id, standing, diagnostics, result.check)) : result?.summary ?? "";
       return { position: receipt.position, line: summary.slice(0, 300), hero };

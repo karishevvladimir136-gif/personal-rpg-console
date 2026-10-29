@@ -14,6 +14,7 @@ import type { DmEffort } from "../../model-runtime/dm-models.ts";
 import { parseFeedback } from "../dm-schema.ts";
 import { buildDmLoopContext } from "./context.ts";
 import { waitingCardsOf } from "./check-corrections.ts";
+import { companyOn, companyRequest } from "./company.ts";
 
 const FEEDBACK_INSTRUCTIONS = `This is an out-of-game question or feedback from the player, not a turn: no time passes, no state changes, no dice. Answer in the campaign language as the game master talking to the player about the game: narration, tone, pacing, rules, what the hero may try, companions. Never reveal secrets, private notes, hidden rolls or anything the hero does not know. Reply with one JSON object and nothing else:
 {
@@ -85,7 +86,9 @@ export function loopFeedbackProvider(model: DmModel, effort: DmEffort, base: DmP
       const started = performance.now();
       let text = "";
       let usage = { inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: null as number | null };
-      for await (const event of model.stream({ system, messages, toolset: null, effort, maxOutputTokens: 4000, operationId: input.operationId, cacheKey: input.campaignId })) {
+      // Multi-hero 1: a company table's answer is asked in the company's words (company.ts).
+      const asked = companyOn(source.dmOptions) ? companyRequest({ system, messages, toolset: null }) : { system, messages, toolset: null };
+      for await (const event of model.stream({ ...asked, effort, maxOutputTokens: 4000, operationId: input.operationId, cacheKey: input.campaignId })) {
         if (event.type === "text_delta") text += event.text;
         else if (event.type === "usage") usage = event.usage;
       }

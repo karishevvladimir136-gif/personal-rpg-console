@@ -53,6 +53,7 @@ const json = (value: unknown) => JSON.stringify(value);
 import { estimateTokens } from "./tokens.ts";
 import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
 import { innerVoiceFor, innerVoiceLine, innerVoices, isInnerVoiceKey } from "./inner-voice.ts";
+import { companyOn } from "./company.ts";
 import { campaignDay, longRestEnds } from "../world-day.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
@@ -144,16 +145,19 @@ function partyInShort(source: RuntimeSource): Budgeted {
   const { snapshot, runtime } = source;
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
   const party = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
+  const company = companyOn(source.dmOptions);
   const entries = party.map((row) => {
     const profile = profileOf(row);
     // Fix S3-accept В1: the spells as one short line each (the prose of «Умения» read as converted), not the cards' texts.
     const sheet = row.character_sheet ? clipChars(json(dmSheetView(row.character_sheet as AnySheet, snapshot.settings.values.language)), 1500) : null;
-    const line = { id: row.id, name: row.name, role: row.kind === "player" ? "hero" : "companion", details: clipChars(row.details, 600),
-      stats: row.stats, ...(sheet ? { sheet } : {}), ...(profile.attitude ? { attitudeToHero: profile.attitude.text } : {}),
+    // Multi-hero 1: at a company table the three are alike — each a player character, none the hero.
+    const line = { id: row.id, name: row.name, role: company ? "player character" : row.kind === "player" ? "hero" : "companion", details: clipChars(row.details, 600),
+      stats: row.stats, ...(sheet ? { sheet } : {}), ...(profile.attitude && !company ? { attitudeToHero: profile.attitude.text } : {}),
       ...(profile.relation ? { relation: profile.relation } : {}), ...(profile.homePlaceId ? { home: profile.homePlaceId } : {}) };
     return { label: row.name, text: `- ${json(line)}` };
   });
-  return withinBudget(entries, DOSSIER_BUDGETS.layer3.party, "Party (identity and sheets; the companions' Character Models are in the session tail; HP, money, items and presence are in the current state):");
+  return withinBudget(entries, DOSSIER_BUDGETS.layer3.party, company ? "Party — the player characters (identity and sheets; HP, money, items and presence are in the current state):"
+    : "Party (identity and sheets; the companions' Character Models are in the session tail; HP, money, items and presence are in the current state):");
 }
 
 /** Relationship distance of each person to the party through the models. */
@@ -583,11 +587,15 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
     return { counted: { ...(derived.ac ? { armourClass: derived.ac.value, how: derived.ac.text } : {}),
       ...(derived.saves.length ? { saves: Object.fromEntries(derived.saves.map((save) => [save.label, save.value])) } : {}) } };
   };
+  // Multi-hero 1: at a company table every controlled party member reads as the player record does — kind player, role
+  // player character — so no record stands out as the hero.
+  const company = companyOn(source.dmOptions);
+  const pc = (row: Entity) => company && (row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
   const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => {
     const wallet = walletOfEntity(row);
     const labels = row.public_profile?.counterLabels;
-    return { id: row.id, name: row.name, kind: row.kind,
-      role: row.kind === "player" ? "hero" : controlled.has(row.id) ? "party" : undefined,
+    return { id: row.id, name: row.name, kind: pc(row) ? "player" : row.kind,
+      role: pc(row) ? "player character" : row.kind === "player" ? "hero" : controlled.has(row.id) ? "party" : undefined,
       present: present.has(row.id), hp: row.hp, maxHp: row.max_hp, stats: row.stats, resources: counters(row.resources),
       ...(Object.keys(wallet).length ? { wallet } : {}), ...(labels && Object.keys(labels).length ? { counterLabels: labels } : {}),
       conditions: row.conditions, slots: row.equipment_slots.map((slot) => slot.id), details: clipChars(row.details, 300),
@@ -785,7 +793,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const system: DmSystemBlock[] = [
     { text: howToDm, cache: true, ttl: "1h" },
     { text: world, cache: true, ttl: "1h" },
-    ...history.blocks.map((text, index) => ({ text, cache: true, ttl: "1h" as const, breakpoint: index === history.blocks.length - 1 })),
+    ...history.blocks.map((text, index) => ({ text, cache: true, ttl: "1h" as const, breakpoint: index === history.blocks.length - 1, story: true })),
     // The living dossier follows the history: rewritten each turn (the prefix before it grew). Fix run A2:
     // on Anthropic it carries no breakpoint of its own any more — the turn's request caches its whole
     // conversation (`cacheTurn`: the end of the messages and the end of the previous request), which

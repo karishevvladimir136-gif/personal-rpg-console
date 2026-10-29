@@ -15,7 +15,9 @@ export type { DmEffort, DmProviderId, DmUsage } from "../../../model-runtime/dm-
  * on Anthropic a cached block carries a breakpoint unless `breakpoint` is false — polish 2 §4: the
  * conversation's history is many cached blocks with one breakpoint on the last, so the prefix up to
  * the previous turn is found at the earlier block boundaries and only the new turn is written. */
-export type DmSystemBlock = { text: string; cache: boolean; ttl?: "5m" | "1h"; breakpoint?: boolean };
+/** `story`: the block carries the story's own words (the conversation's history) — multi-hero 1's company rewrite
+ * leaves it as it is; the adapters never send the flag. */
+export type DmSystemBlock = { text: string; cache: boolean; ttl?: "5m" | "1h"; breakpoint?: boolean; story?: boolean };
 
 export type DmToolCall = { id: string; name: string; arguments: string };
 

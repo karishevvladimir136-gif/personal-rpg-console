@@ -552,7 +552,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   // Fix S3-pre B-4: the player spends Heroic Inspiration — this roll is the reroll of the hero's die; the server spends it.
   let inspired = false;
   if (args.heroicInspiration === true) {
-    reject(actor && actor.kind === "player", "Heroic Inspiration rerolls the hero's own die: actorRef is the hero.");
+    // Multi-hero 1: at a company table every player character holds and spends their own.
+    reject(actor && shadow.isPlayerCharacter(actor), shadow.company ? "Heroic Inspiration rerolls a player character's own die: actorRef is that character."
+      : "Heroic Inspiration rerolls the hero's own die: actorRef is the hero.");
     const left = Number(actor.resources[HEROIC_INSPIRATION] ?? 0);
     reject(left >= 1, `${actor.name} has no Heroic Inspiration to spend.`, "Without it the die stands; narrate its result.");
     setResources(shadow, actor, { ...actor.resources, [HEROIC_INSPIRATION]: 0, [`${HEROIC_INSPIRATION}_max`]: 1 });
@@ -622,7 +624,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
       difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept), ...(damage ? { damage: damage.value } : {}),
       ...ammunitionValue(ammunition), ...(award ? { inspirationAward: award.value } : {}) };
     const rolledChip = visibility === "player"
-      ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
+      ? chip.roll(ctx.language, actor.name, actor.kind === "player" && !shadow.company, reason, check.total, dc, ctx.showDc, check.success, natural) : null;
     const shown = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : null;
     const player = shown && award ? `${shown} · ${award.player}` : shown;
     return withInspiration(ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}${award ? `; ${award.summary}` : ""}`, check, player), inspired, ctx.language);
@@ -641,7 +643,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     dice, kept, modifier, modifierSource: sourceText, ...(sheetBasis ? { modifierBasis: sheetBasis } : {}), bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
     ...(damage ? { damage: damage.value } : {}), ...ammunitionValue(ammunition), ...rangedHint(shadow, actor, kindText, reason, ammunition) };
   const rolledChip = visibility === "player" && actor
-    ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, success, natural) : null;
+    ? chip.roll(ctx.language, actor.name, actor.kind === "player" && !shadow.company, reason, total, dc, ctx.showDc, success, natural) : null;
   // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
   const player = rolledChip ? withAmmunition(withDamageChip(ctx.language, rolledChip, damage), ammunition) : damage?.player ?? null;
   return withInspiration(ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player), inspired, ctx.language);
@@ -658,16 +660,16 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
  * resource tool with its named trigger in the reason (TABLE_RULES). */
 function inspirationAward(shadow: ShadowState, actor: Entity, kind: RecordedCheck["kind"], named: string, language: ChipLanguage):
   { value: JsonObject; summary: string; player: string } | null {
-  if (actor.kind !== "player" || kind === "attack" || shadow.snapshot.settings.values.dicePresentation === "hidden") return null;
+  if (!shadow.isPlayerCharacter(actor) || kind === "attack" || shadow.snapshot.settings.values.dicePresentation === "hidden") return null;
   const hero = shadow.entity(actor.id) ?? actor;
   const what = named.split(":")[0].trim().slice(0, 60) || (language === "ru" ? (kind === "save" ? "спасбросок" : "проверка") : (kind === "save" ? "a saving throw" : "a check"));
   const why = `natural 20 on ${what}`;
   const label = counterLabel(hero, HEROIC_INSPIRATION, language);
   if (Number(hero.resources[HEROIC_INSPIRATION] ?? 0) >= 1)
-    return { value: { granted: false, reason: "already held", why, note: "The hero already holds Heroic Inspiration (one at a time): this natural 20 grants none, and the record says so." },
+    return { value: { granted: false, reason: "already held", why, note: `${shadow.company ? hero.name : "The hero"} already holds Heroic Inspiration (one at a time): this natural 20 grants none, and the record says so.` },
       summary: `Heroic Inspiration withheld: already held (${why})`, player: chip.inspirationWithheld(language, label, what) };
   setResources(shadow, hero, { ...hero.resources, [HEROIC_INSPIRATION]: 1, [`${HEROIC_INSPIRATION}_max`]: 1 });
-  return { value: { granted: true, before: 0, after: 1, max: 1, why, note: "The server granted the hero Heroic Inspiration for this natural 20 (the table's rule): never grant it again with resource." },
+  return { value: { granted: true, before: 0, after: 1, max: 1, why, note: `The server granted ${shadow.company ? hero.name : "the hero"} Heroic Inspiration for this natural 20 (the table's rule): never grant it again with resource.` },
     summary: `Heroic Inspiration granted by the server (${why}): 0 → 1`, player: chip.inspirationGranted(language, label, what) };
 }
 

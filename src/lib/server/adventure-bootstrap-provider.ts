@@ -15,6 +15,7 @@ import { DmError } from "../gameplay/dm-errors.ts";
 import { matchesCompilerModel } from "../world-library/assisted-parser.ts";
 import { requestAnthropicStructured } from "./dm/anthropic-structured.ts";
 import { dmModelSpec } from "../model-runtime/dm-models.ts";
+import { companyOpening } from "../gameplay/dm-loop/company.ts";
 const obj = (properties: Record<string, unknown>) => ({
   type: "object",
   properties,
@@ -131,7 +132,9 @@ For opening, use only the supplied setting, established protagonist and advisory
 /** Fix run A5 (item 16): the bootstrap's provider attempt and the reason it was refused reach the log
  * (session 2's three failed hero drafts left only «503» behind). The reason is the error's code and its
  * message — a validation message names the field, never the owner's text. */
-export function createBootstrapProvider(options: ProviderOptions & { providerId?: "openai" | "anthropic" }) {
+/** `company` (multi-hero 1): the campaign is a company table — the opening is asked in the company's words
+ * (company.ts `companyOpening`). */
+export function createBootstrapProvider(options: ProviderOptions & { providerId?: "openai" | "anthropic"; company?: boolean }) {
   const provide = createBootstrapProviderUnlogged(options);
   return async (ticket: BootstrapTicket) => {
     const started = Date.now();
@@ -149,7 +152,7 @@ export function createBootstrapProvider(options: ProviderOptions & { providerId?
     }
   };
 }
-function createBootstrapProviderUnlogged(options: ProviderOptions & { providerId?: "openai" | "anthropic" }) {
+function createBootstrapProviderUnlogged(options: ProviderOptions & { providerId?: "openai" | "anthropic"; company?: boolean }) {
   return async (ticket: BootstrapTicket) => {
     if (
       options.model !== ticket.profile.modelId ||
@@ -160,17 +163,19 @@ function createBootstrapProviderUnlogged(options: ProviderOptions & { providerId
       ticket.kind === "creation"
         ? creationProposalSchema
         : openingProposalSchema;
-    const input = JSON.stringify({ kind: ticket.kind, ...ticket.context });
+    const company = options.company && ticket.kind === "opening" ? companyOpening(bootstrapInstructions, ticket.context) : null;
+    const input = JSON.stringify({ kind: ticket.kind, ...(company ? company.context : ticket.context) });
+    const instructions = company ? company.instructions : bootstrapInstructions;
     // Polish 2 §5: the campaign's DM on Anthropic writes the proposal through the Messages API
     // with the same instructions, input and schema; the same model check closes the contract.
     if (options.providerId === "anthropic" || ticket.profile.providerId === "anthropic") {
       if (options.providerId !== "anthropic" || ticket.profile.providerId !== "anthropic") throw new DmError("configuration");
       const spec = dmModelSpec("anthropic", options.model);
       if (!spec) throw new DmError("configuration");
-      const estimated = Buffer.byteLength(bootstrapInstructions + input, "utf8") / 2 + 2048;
+      const estimated = Buffer.byteLength(instructions + input, "utf8") / 2 + 2048;
       if (estimated > spec.contextLimit) throw new DmError("context");
       const result = await requestAnthropicStructured({
-        apiKey: options.apiKey, model: options.model, effort: options.reasoning ?? spec.defaultReasoning, system: bootstrapInstructions, input, schema,
+        apiKey: options.apiKey, model: options.model, effort: options.reasoning ?? spec.defaultReasoning, system: instructions, input, schema,
         fetcher: options.fetcher, timeoutMs: Math.min(options.timeoutMs ?? 180_000, 180_000),
       });
       if (!matchesCompilerModel(result.usage.model, options.model)) throw new DmError("configuration");
@@ -188,7 +193,7 @@ function createBootstrapProviderUnlogged(options: ProviderOptions & { providerId
       Buffer.byteLength(
         JSON.stringify({
           model: options.model,
-          instructions: bootstrapInstructions,
+          instructions,
           input,
           text: {
             format: {
@@ -225,7 +230,7 @@ function createBootstrapProviderUnlogged(options: ProviderOptions & { providerId
     const result = await request(
       {
         input,
-        instructions: bootstrapInstructions,
+        instructions,
         budget,
         estimatedTokens,
         sourceCount: 1,

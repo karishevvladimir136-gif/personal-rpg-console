@@ -50,6 +50,8 @@ import { combatEnded, combatStarted, continuation, declaredLine, dmOutputCap, ex
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message ran into the output limit and was cut off. Pick up exactly where it stopped — the text so far has already reached the player, so nothing needs repeating — bring the narration to its end, then close with the ledger. The limit is still close: spend little of it on thinking.";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
+import { companyOn, companyRequest } from "../company.ts";
+import type { OwnRollIds } from "../standing-roll.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 import { CardPressRefused, checkMarks, correctedOutput, correctionsNote, rerollTarget, resolvedAtContinue, standingReceipts } from "../check-corrections.ts";
 
@@ -100,12 +102,12 @@ function parseArguments(call: DmToolCall): Record<string, unknown> {
 
 /** Fix S4 11k: the model reads the roll that stands, the replaced rolls as history (standing-roll.ts, one rule with the single loop).
  * Fix S4 run 1 (items 3, 11r): a card withdrawn or voided at the table reads so from then on (the receipt is unchanged). */
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: string | null }): string {
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: OwnRollIds }): string {
   const corrected = receipt.result.ok ? correctedOutput(checkMarks(history.diagnostics), receipt.result.check?.id) : null;
   return corrected ?? rollToolOutput(receipt, checks, history.diagnostics, history.heroId);
 }
 
-function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: string | null }): DmMessage[] {
+function rendered(messages: DmMessage[], receipts: DmLoopReceipt[], checks: RecordedCheck[], history: { diagnostics: DmLoopCheckpoint["diagnostics"]; heroId: OwnRollIds }): DmMessage[] {
   return messages.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
@@ -311,8 +313,10 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       const effort = phase === "writer" ? (writerCut ? lowerEffort(writerEffort) : writerEffort) : pin.bookkeeper!.effort;
       writerCut = false;
       const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName, bookkeeperText());
-      const body: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
+      const built: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
         maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
+      // Multi-hero 1: a company table's request speaks of the company (company.ts); any other goes as it is built.
+      const body = companyOn(source.dmOptions) ? companyRequest(built) : built;
       const requestBytes = new TextEncoder().encode(JSON.stringify(body.system) + JSON.stringify(body.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes,
         cachedPrefixBytes: system.filter((block) => block.cache).reduce((sum, block) => sum + new TextEncoder().encode(block.text).length, 0),

@@ -17,7 +17,8 @@ import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../serv
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
 import { withUnifiedMemory } from "../../memory/unified-context.ts";
 import { isDisplayedCheck, recordServerRoll, stableGameplayId, withNatural } from "../dice.ts";
-import { heroicInspiration, rerollsLeft, rollPauseAvailable } from "../reroll-allowance.ts";
+import { heroicInspiration, rerollsLeft, rerollsLeftFor, rollPauseAvailable } from "../reroll-allowance.ts";
+import { companyOn, companyRequest, isPlayerCharacter, playerCharacterIds } from "./company.ts";
 import { requireClaimTimeline, requireTurnTimeline } from "../timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "../turn-errors.ts";
 import { DmError } from "../dm-errors.ts";
@@ -35,7 +36,7 @@ import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, EFFORT_ORDER, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool, recordOrder, storyMinuteOf } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
-import { recordRerolled, rollToolOutput } from "./standing-roll.ts";
+import { recordRerolled, rollToolOutput, type OwnRollIds } from "./standing-roll.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS, turnCallCap } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
@@ -133,14 +134,24 @@ export function leaseHeartbeat(store: TurnStore, lease: TurnClaim["lease"], ever
 export function pausesForPlayer(source: RuntimeSource, check: RecordedCheck): boolean {
   const values = source.snapshot.settings.values;
   if (!isDisplayedCheck(source, check)) return false;
+  // Multi-hero 1: at a company table each player character's roll is their own player's card, and it waits while
+  // that player has an allowed reroll left or that character holds Heroic Inspiration.
+  if (companyOn(source.dmOptions)) {
+    const actor = source.snapshot.entities.find((row) => row.id === check.actorId);
+    if (!isPlayerCharacter(actor, source.runtime.configuration?.controlledEntityIds ?? [], true)) return false;
+    return rollPauseAvailable(rerollsLeftFor(values, source.runtime.turns, source.snapshot.publicState.current_session_id ?? null, check.actorId), heroicInspiration(actor), true);
+  }
   const hero = source.snapshot.entities.find((row) => row.kind === "player");
   const heroRoll = check.actorId === hero?.id;
   if (!heroRoll && parseDmOptions(source.dmOptions).companionRolls !== "player") return false;
   // Fix S3-pre A-37 (the owner, 18:15): the pause holds only while a reroll or Heroic Inspiration is available.
   return rollPauseAvailable(rerollsLeft(values, source.runtime.turns, source.snapshot.publicState.current_session_id ?? null), heroicInspiration(hero), heroRoll);
 }
-/** Fix S3-pre 2: the hero of the turn's campaign (the «every roll told» check marks the hero's own rolls). */
-export function heroIdOf(source: RuntimeSource): string | null {
+/** Fix S3-pre 2: the hero of the turn's campaign (the «every roll told» check marks the hero's own rolls). Multi-hero 1:
+ * at a company table, every player character's. */
+export function heroIdOf(source: RuntimeSource): OwnRollIds {
+  if (companyOn(source.dmOptions)) return playerCharacterIds(source.snapshot.entities.filter((row) => row.campaign_id === source.snapshot.campaign.id),
+    source.runtime.configuration?.controlledEntityIds ?? []);
   return source.snapshot.entities.find((row) => row.kind === "player" && row.campaign_id === source.snapshot.campaign.id)?.id ?? null;
 }
 /** Fix S3-pre 2: the player's line when it declares an action a roll may decide (a game turn; a council line never). */
@@ -288,13 +299,13 @@ export function rollTextOffsets(transcript: { role: string; text?: string; toolC
 /** A reroll (the player's allowed one) replaces the check after the receipt was recorded; the model always reads the
  * roll that stands — its dice, verdict, natural label and hint — with the replaced rolls as history (fix S4 11k).
  * Fix S4 run 1 (items 3, 11r): a card withdrawn or voided at the table reads so from then on (the receipt is unchanged). */
-function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], loop: DmLoopCheckpoint, heroId: string | null): string {
+function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[], loop: DmLoopCheckpoint, heroId: OwnRollIds): string {
   const corrected = receipt.result.ok ? correctedOutput(checkMarks(loop.diagnostics), receipt.result.check?.id) : null;
   return corrected ?? rollToolOutput(receipt, checks, loop.diagnostics, heroId);
 }
 
 /** Tool results are re-rendered from receipts for every request. */
-function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[], heroId: string | null): DmMessage[] {
+function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[], heroId: OwnRollIds): DmMessage[] {
   return loop.transcript.map((message) => {
     if (message.role !== "tool_results") return message;
     return { role: "tool_results", results: message.results.map((entry) => {
@@ -608,9 +619,11 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
         // campaign's configured level and the chosen one travels as an update item.
         const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
-        const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks, heroIdOf(source)),
+        const built: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks, heroIdOf(source)),
           toolset: council ? dmCouncilToolset : dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
           maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
+        // Multi-hero 1: a company table's request speaks of the company (company.ts); any other goes as it is built.
+        const request = companyOn(source.dmOptions) ? companyRequest(built) : built;
         const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
         observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
           layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,

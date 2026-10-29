@@ -9,6 +9,7 @@ import { stableGameplayId } from "../dice.ts";
 import { isUuid } from "../../persistence/validation.ts";
 import { possessionsLabel } from "./receipt-text.ts";
 import type { DmLoopShadowDelta, DmLoopTurnCounters } from "./contracts.ts";
+import { companyOn, isPlayerCharacter } from "./company.ts";
 
 /** A rejected tool call: the reason goes back to the model, the turn continues. */
 export class ToolReject extends Error {
@@ -201,6 +202,15 @@ export class ShadowState {
       ?? this.snapshot.entities.find((row) => row.kind === "player" && row.campaign_id === this.campaignId);
     reject(hero, "This campaign has no player character yet.");
     return hero;
+  }
+
+  /** Multi-hero 1: a company table (the DM option «company»). */
+  get company(): boolean {
+    return companyOn(this.source.dmOptions);
+  }
+  /** A player character: the hero; at a company table also every controlled party member (company.ts). */
+  isPlayerCharacter(entity: Entity | null | undefined): boolean {
+    return isPlayerCharacter(entity, this.runtime.configuration?.controlledEntityIds ?? [], this.company);
   }
 
   /** Party: the hero plus companions marked controlled. */

@@ -18,6 +18,14 @@ export function rerollsLeft(settings: RerollSettings, turns: readonly CountedTur
   return Math.max(0, allowed - used);
 }
 
+/** Multi-hero 1 (a company table): each player's own allowed rerolls — the session's allowance counted for one
+ * character's cards (each reroll raised that check's rollNumber by one; the SQL counts the same, migration 202610290801). */
+type ActorTurn = { session_id: string | null; checks?: readonly { rollNumber?: number; actorId?: string | null }[] | null };
+export function rerollsLeftFor(settings: RerollSettings, turns: readonly ActorTurn[], sessionId: string | null, actorId: string): number | null {
+  const own = turns.map((turn) => ({ ...turn, checks: (turn.checks ?? []).filter((check) => check.actorId === actorId) }));
+  return rerollsLeft(settings, own, sessionId);
+}
+
 /** Whether a shown roll waits for the player: a reroll left, or (the hero's own roll) Heroic Inspiration in hand. */
 export function rollPauseAvailable(rerolls: number | null, inspiration: number, heroRoll: boolean): boolean {
   return rerolls === null || rerolls > 0 || (heroRoll && inspiration >= 1);

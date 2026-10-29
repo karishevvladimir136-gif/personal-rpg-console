@@ -13,6 +13,7 @@ import { buildDmLoopContext, estimateTokens } from "./context.ts";
 import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 import { boundInnerVoice, innerVoiceWrites, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 import { ACT_PLAN_KEY, parseActPlan, serializeActPlan, type ActPlan } from "./clock.ts";
+import { companyOn } from "./company.ts";
 
 export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 /** Findings S3 §7 (the owner's decision): the dose of the DM's own notes — 24 000 characters (it was 6 000); state carries
@@ -37,6 +38,12 @@ const PREP_INSTRUCTIONS = `Your own prep before the next session. This campaign 
 }
 The act plan (FIX_S4 11c): the owner's split, movable — act 1 to about turn 15 (the errand offered), act 2 to about 40 (the middle: the people and the means; at least one «price, interest, secret» conversation a session), act 3 to about 60 (the plan and its execution), act 4 the reckoning, where «nothing is what it seems» pays off — scaled to the length; it is yours alone (the player sees only the act number), it tells you where the story should stand, never what the player must do. The mystery is balanced: for every scene that carries a hint, one that carries none (FIX_S4 11i). Two to five factions, two or three clocks (4–8 segments each), up to eight voices — every companion first, from what the records and the set-up say of them, then the people the story will meet more than once. Mystery and wonder: the clues point at the truth from several sides, each answer opens a deeper question, and the wonder is magic with a past, not an unexplainable effect.`;
 
+/** Multi-hero 1 (docs/stages/MULTI_HERO_1.md, A8): the prep of a company table is written for the company, with no one
+ * at its centre — each player character the natural addressee of at least one puzzle, threat or reward and none of
+ * more than half, and the threads touching each one's own hooks. The DM names the addressees in the layer itself. */
+export const COMPANY_PREP = `This table has several player characters and no main character: the party in the dossier. Write the layer for the company, with no one at its centre. Its puzzles, threats and rewards are spread across the player characters: each player character is the natural addressee of at least one of them (the one whose history, trade, ties or wants it speaks to first), and none is the natural addressee of more than half of them. Let the threads touch each player character's own hooks — their history, trade, ties and wants — at least once. Add to the JSON the list of them:
+  "company": [ { "kind": "puzzle | threat | reward", "for": "the one player character it is first addressed to, by the name on record", "what": "the puzzle, threat or reward in one line" } ]`;
+
 /** Fix S3-pre (KF-hidden-layer): the owner saved «Тайны» after the layer was written — it is rebuilt on them (Fix S3-accept Ж1: or
  * «Пожелания к приключению»). */
 const REBUILD_INSTRUCTIONS = `The owner has just written or changed their secrets for this campaign («Тайны») or their wishes for the adventure («Пожелания к приключению»). Your hidden layer (in the private notes above) was written before them: rewrite it now so it builds on them and never contradicts them. Keep everything play has already established, and keep whatever of the current layer the story has already touched (a clue found, a faction met); change only what the owner's secrets change, and lean toward their wishes where play leaves room.`;
@@ -59,7 +66,7 @@ export function buildPrepRequest(source: RuntimeSource, effort: DmEffort, rebuil
   // Findings S3 §6: the people on record who still need their voice (the companions first).
   const need = peopleWithoutVoice(source, source.snapshot.entities.filter((row) => row.kind === "npc" && row.public_profile?.important).map((row) => row.id));
   const voicesLine = need.length ? `\n\nPeople on record who have no voice of their own yet (write theirs first, by these names): ${need.map((row) => row.name).join("; ")}.` : "";
-  const ask = `${text}${voicesLine}`;
+  const ask = `${text}${companyOn(source.dmOptions) ? `\n\n${COMPANY_PREP}` : ""}${voicesLine}`;
   const messages: DmMessage[] = [{ role: "user", text: ask }];
   return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(ask) };
 }
@@ -71,7 +78,7 @@ export type HiddenLayerPrep = { text: string; clocks: { key: string; label: stri
   voices?: { name: string; inner: string }[] };
 
 /** The model's JSON as the layer's text (bounded) and its clocks; null when it cannot be read. */
-export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep | null {
+export function parsePrep(raw: string, language: "ru" | "en", options: { company?: boolean } = {}): HiddenLayerPrep | null {
   const start = raw.indexOf("{"), end = raw.lastIndexOf("}");
   if (start < 0 || end <= start) return null;
   let value: Record<string, unknown>;
@@ -104,7 +111,9 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
     str(wonder.thing, 300) ? `${ru ? "Чудо" : "The wonder"}: ${sentence(str(wonder.thing, 300))} ${ru ? "История" : "Its history"}: ${sentence(str(wonder.history, 500))} ${ru ? "Открытый вопрос" : "The open question"}: ${str(wonder.question, 300)}` : "",
     clues.length ? `${ru ? "Улики к правде" : "Clues to the truth"}:\n${clues.map((row) => `- ${row}`).join("\n")}` : "",
     str(value.falseLead, 500) ? `${ru ? "Ложный след следующей сессии" : "The next session's false lead"}: ${str(value.falseLead, 500)}` : "",
-    str(value.banTest, 500) ? `${ru ? "Слабость героя под нажимом (следующая сессия, по причине, не ловушка)" : "The hero's weakness tested (next session, for a reason, never a trap)"}: ${str(value.banTest, 500)}` : "",
+    str(value.banTest, 500) ? `${ru ? "Слабость героя под нажимом (следующая сессия, по причине, не ловушка)" : options.company ? "A character's weakness tested (next session, for a reason, never a trap)" : "The hero's weakness tested (next session, for a reason, never a trap)"}: ${str(value.banTest, 500)}` : "",
+    // Multi-hero 1: the company's puzzles, threats and rewards with their natural addressees (COMPANY_PREP).
+    ...(options.company ? [companyLines(list(value.company).map((row) => row as Record<string, unknown>).map((row) => ({ kind: str(row?.kind, 20).toLowerCase(), for: str(row?.for, 120), what: str(row?.what, 300) })))] : []),
     str(value.patronMoment, 500) ? `${ru ? "Миг покровителя (в искушении, не в утешении)" : "The patron's moment (at a temptation, not a comfort)"}: ${str(value.patronMoment, 500)}` : "",
     actPlan ? `${ru ? "План актов (только твой; игрок видит лишь номер акта)" : "The act plan (yours alone; the player sees only the act number)"}: ${ru ? "около" : "about"} ${actPlan.hours} ${ru ? "ч" : "hours"}, ~${actPlan.turns} ${ru ? "ходов" : "turns"}${actPlan.errand ? `; ${ru ? "поручение" : "the errand"}: ${actPlan.errand}` : ""}\n${actPlan.acts.map((act) => `- ${ru ? "акт" : "act"} ${act.act}, ${ru ? "до хода" : "to turn"} ${act.untilTurn}: ${act.aim || "—"}${act.converge ? ` (${ru ? "сведение" : "converge"}: ${act.converge})` : ""}`).join("\n")}` : "",
   ].filter(Boolean);
@@ -114,6 +123,25 @@ export function parsePrep(raw: string, language: "ru" | "en"): HiddenLayerPrep |
   const voices = list(value.voices).slice(0, INNER_VOICES_PER_CALL).map((row) => ({ name: str((row as Record<string, unknown>)?.name, 120), inner: boundInnerVoice((row as Record<string, unknown>)?.inner) ?? "" }))
     .filter((row) => row.name && row.inner);
   return { text, clocks, voices, actPlan };
+}
+
+/** Multi-hero 1: the layer's company lines — «- puzzle, for Sefa Marrin: …» (the A8 check reads them back). */
+export const COMPANY_LINES_HEADER = "The company's puzzles, threats and rewards (each with the player character it is first addressed to):";
+function companyLines(rows: { kind: string; for: string; what: string }[]): string {
+  const kept = rows.filter((row) => ["puzzle", "threat", "reward"].includes(row.kind) && row.for && row.what).slice(0, 18);
+  return kept.length ? `${COMPANY_LINES_HEADER}\n${kept.map((row) => `- ${row.kind}, for ${row.for}: ${row.what}`).join("\n")}` : "";
+}
+/** The company lines of a layer's text, read back: [{ kind, for, what }]. */
+export function companyLinesOf(layer: string): { kind: string; for: string; what: string }[] {
+  const at = layer.indexOf(COMPANY_LINES_HEADER);
+  if (at < 0) return [];
+  const out: { kind: string; for: string; what: string }[] = [];
+  for (const line of layer.slice(at + COMPANY_LINES_HEADER.length).split("\n").slice(1)) {
+    const found = /^- (puzzle|threat|reward), for ([^:]+): (.+)$/.exec(line.trim());
+    if (!found) break;
+    out.push({ kind: found[1], for: found[2].trim(), what: found[3].trim() });
+  }
+  return out;
 }
 
 /** The private-notes writes of a prep: the layer under its reserved key; each clock at 0 with its description beside it;

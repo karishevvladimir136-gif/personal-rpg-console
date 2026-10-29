@@ -14,6 +14,7 @@ import { cardState, voidable, waitingCards } from "../card-state.ts";
 import { requireRule } from "../turn-errors.ts";
 import { parseDmOptions } from "./options.ts";
 import type { DmLoopDiagnostic, DmLoopReceipt } from "./contracts.ts";
+import { companyOn, isPlayerCharacter } from "./company.ts";
 
 export type CheckMarks = {
   resolved: Set<string>;
@@ -45,11 +46,14 @@ export function closedCheck(marks: CheckMarks, id: string): boolean {
   return marks.resolved.has(id) || marks.withdrawn.has(id) || marks.voided.has(id);
 }
 
-/** A card the player rolls (the hero's; a companion's while the player rolls for the companions). */
+/** A card the player rolls (the hero's; a companion's while the player rolls for the companions; multi-hero 1: at a
+ * company table, any player character's — each is its own player's). */
 export function playerCard(source: RuntimeSource, check: RecordedCheck): boolean {
   if (!isDisplayedCheck(source, check)) return false;
   const hero = source.snapshot.entities.find((row) => row.kind === "player" && row.campaign_id === source.snapshot.campaign.id);
-  return check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player";
+  if (check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player") return true;
+  const actor = source.snapshot.entities.find((row) => row.id === check.actorId);
+  return companyOn(source.dmOptions) && isPlayerCharacter(actor, source.runtime.configuration?.controlledEntityIds ?? [], true);
 }
 
 /** A card press refused inside a claimed turn: the turn is released as it was (never a failed turn). */

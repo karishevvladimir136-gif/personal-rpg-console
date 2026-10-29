@@ -48,13 +48,19 @@ export function rerollHistory(checkId: string, standing: RecordedCheck, diagnost
 /** A roll's receipt value as the model reads it on every request: the standing dice, total, verdict and natural label,
  * the hint of the standing die, and the replaced rolls as history marked rerolled. A check never rerolled reads as
  * recorded (with the check's current dice, as before). */
-export function standingRollValue(value: JsonObject, standing: RecordedCheck, history: ReplacedRoll[], heroId: string | null = null): JsonObject {
+/** The player characters whose own rolls these are: the hero's ID, or (multi-hero 1, a company table) every player
+ * character's. */
+export type OwnRollIds = string | readonly string[] | null;
+export const ownsRoll = (ids: OwnRollIds, actorId: unknown): boolean =>
+  ids !== null && typeof actorId === "string" && (typeof ids === "string" ? actorId === ids : ids.includes(actorId));
+
+export function standingRollValue(value: JsonObject, standing: RecordedCheck, history: ReplacedRoll[], heroId: OwnRollIds = null): JsonObject {
   const current = { dice: [...standing.dice], kept: standing.kept, total: standing.total, success: standing.success };
   if (!history.length) return { ...value, ...current };
   const rest: JsonObject = { ...value };
   delete rest.hint;
   const hint = naturalHint(standing.kept);
-  const heroCheck = heroId !== null && standing.actorId === heroId && standing.kind !== "attack";
+  const heroCheck = ownsRoll(heroId, standing.actorId) && standing.kind !== "attack";
   return { ...rest, ...current, natural: standing.natural ?? null, ...(hint ? { hint } : {}),
     rerolled: { stands: `Roll ${standing.rollNumber} stands: narrate and record this result (${standing.total}${standing.success ? ", success" : ", failure"}); the earlier roll${history.length > 1 ? "s" : ""} below no longer count${history.length > 1 ? "" : "s"}.`,
       history: history.map((row) => ({ ...row, rerolled: true })) as unknown as JsonObject[],
@@ -75,7 +81,7 @@ export function standingSummary(summary: string, standing: RecordedCheck, histor
 }
 
 /** The tool result the model reads for a receipt (re-rendered from the receipts for every request). */
-export function rollToolOutput(receipt: DmLoopReceipt, checks: readonly RecordedCheck[], diagnostics: readonly DmLoopDiagnostic[] = [], heroId: string | null = null): string {
+export function rollToolOutput(receipt: DmLoopReceipt, checks: readonly RecordedCheck[], diagnostics: readonly DmLoopDiagnostic[] = [], heroId: OwnRollIds = null): string {
   const result = receipt.result;
   if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
   const check = result.check ? checks.find((row) => row.id === result.check!.id) ?? result.check : null;

@@ -68,15 +68,21 @@ export async function performBootstrap(command: BootstrapCommand) {
     if ((replay as { approved?: unknown })?.approved !== true)
       throw new PersistenceError("validation");
   }
+  // Multi-hero 1: a company table's opening is asked in the company's words (company.ts).
+  let company = false;
+  if (campaignId && command.action === "opening.propose") {
+    try { company = (await readDmSettings(campaignId)).options.company === true; } catch { company = false; }
+  }
   return await createBootstrapService(
     rpc,
     // Fix run F (item 20): the hero is built by the campaign's DM in one pass (schema 3); the opening keeps its path.
     (ticket) =>
       ticket.kind === "creation"
         ? createHeroDraftProvider()(ticket)
-        : createBootstrapProvider(
-            executionProviderOptions(ticket.profile, "world.compose"),
-          )(ticket),
+        : createBootstrapProvider({
+            ...executionProviderOptions(ticket.profile, "world.compose"),
+            ...(company ? { company } : {}),
+          })(ticket),
     async (cid) => {
       const policy = cid
         ? (

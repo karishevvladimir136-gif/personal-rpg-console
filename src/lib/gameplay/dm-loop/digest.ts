@@ -18,6 +18,7 @@ import { boundInnerVoice, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./in
 import type { SessionEnding } from "../../persistence/contracts.ts";
 import { nameStems } from "../../visual-frame/shot.ts";
 import { tableNotesForNotebook, tableNotesOf } from "./table-notes.ts";
+import { companyOn, companyRequest } from "./company.ts";
 
 export type SessionDigest = {
   recap: string;
@@ -267,7 +268,10 @@ export async function runDigest(model: DmModel, request: ReturnType<typeof build
   let stop: string | null = null;
   // Fix run A4 (items 17, 81): 6 000 output tokens included the thinking, so an «unparsed» digest was
   // most likely a cut one; it gets the loop's own ceiling.
-  for await (const event of model.stream({ system: request.system, messages: request.messages, toolset: null, effort: request.effort,
+  // Multi-hero 1: a company table's digest is asked in the company's words (company.ts).
+  const asked = companyOn(source.dmOptions) ? companyRequest({ system: request.system, messages: request.messages, toolset: null })
+    : { system: request.system, messages: request.messages, toolset: null };
+  for await (const event of model.stream({ ...asked, effort: request.effort,
     maxOutputTokens: options.maxOutputTokens ?? DIGEST_OUTPUT_TOKENS, operationId: options.operationId, cacheKey: options.cacheKey })) {
     if (event.type === "text_delta") text += event.text;
     else if (event.type === "usage") usage = event.usage;
