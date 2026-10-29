@@ -2846,3 +2846,18 @@ killed nor resolved); E1 lost — all threads closed in 4 of 13 (7 with the hero
 in 600 words, the long ones do not; 9 of 13 ran over; $3.06. The report's first line is the owner's reason.
 **Open for the owner:** DUNGEON-T1 — keep as played (23 rounds, stuck by the author's chair) and play DUNGEON-T2 with
 the DM told the waiting button; replay T1 only if money remains after T2 and SAND-T1′.
+
+## 2026-10-28 23:00 LA — the reader's three directions for Phase II, mapped
+The outside reader, on the night's results: (1) formation and holding of choice criteria under conflicts between
+several functional values, not single-right-answer situations; (2) transfer of obligations across contexts — SEAT_2
+shows the autobiographical form does not make an obligation; **«27/27 for a named promise shows recognition of an
+instruction, not its priority»** (the owner's own reading of 20:35, reached independently); (3) group functional
+organisation — the party measures (proposals, acceptance, refusal, help, leadership, conflict resolution) under
+changed goals, scarcity, threat and **distribution of information**. And: none of it establishes phenomenal
+consciousness, suffering or moral status; it gives concrete objects of study. **Mapped to stages:** (1) →
+AGENCY_TRANSFER_1 T2 (the cost pressed), SEAT_3b (endings vs the fix all thirty asked for), DUNGEON's scarcity;
+(2) → SEAT_3b exactly; (3) → PARTY_1's DUNGEON-T2 (threat, now running) and a **PARTY_2 to write**, whose new factor
+is the one PARTY_1 never varied: information asymmetry — one player's private screen holds something the other two
+do not have (a letter, a map, the patron's true aim), and the measures are whether and when it is shared, traded or
+kept, and what the others do when they learn it was kept. The private-screen harness already allows this without a
+new build.
