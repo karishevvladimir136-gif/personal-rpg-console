@@ -221,38 +221,45 @@ export async function spendCheck({ when = "check", fetcher = globalThis.fetch.bi
   return check;
 }
 
-/** COMBAT_1's cost of a player's session with its scoring, by door (its ledgers on this branch): the projection's floor. */
+const isPlayerCall = (c) => /^(?:player|note|after)\b/.test(c.purpose ?? "");
+const sum = (calls) => calls.reduce((s, c) => s + (c.costUsd ?? 0), 0);
+/** COMBAT_1's cost of a player's session with its scoring, by door (its ledgers on this branch), split into the player's
+ * own calls and the rest (the DM side, its wizard and prep, the checks, the scoring). */
 export function combat1Cost(player) {
   const out = {};
   for (const door of ["openrouter", "openai"]) {
     const file = join(RUNS, `${COMBAT_1.stem}-ledger${ledgerSuffix(door)}.json`);
     if (!existsSync(file)) continue;
-    const calls = (readJson(file).runs ?? []).filter((r) => COMBAT_1.files.includes(r.file)).flatMap((r) => r.calls ?? []);
-    out[door] = calls.filter((c) => [key(player), `score ${key(player)}`].includes(c.session)).reduce((s, c) => s + (c.costUsd ?? 0), 0);
+    const calls = (readJson(file).runs ?? []).filter((r) => COMBAT_1.files.includes(r.file)).flatMap((r) => r.calls ?? []).filter((c) => [key(player), `score ${key(player)}`].includes(c.session));
+    out[door] = { player: sum(calls.filter(isPlayerCall)), rest: sum(calls.filter((c) => !isPlayerCall(c) && !["wizard", "prep"].includes(c.purpose))) };
   }
   return out;
 }
-/** Before a session starts: its projected cost by door — the same player's COMBAT_1 session less its wizard and prep, or
- * the most a finished session here cost, whichever is higher, else the estimate — plus a $3 margin, against what each cap
- * has left. A session that does not fit is not started (never cut mid-session by a cap it was projected to cross). */
+/** Before a session starts: its projected cost by door — the DM side and scoring (the dearest of COMBAT_1's same session
+ * without its wizard and prep, and of this stage's finished sessions) plus the player's own calls on its door (COMBAT_1's
+ * same player, else the estimate) — plus a $3 margin, against what each cap has left. A session that does not fit is
+ * not started (never cut mid-session by a cap it was projected to cross). */
 export async function sessionFits(entry, { log = console.log } = {}) {
   const { before } = await stageLedgers({ stem: STEM, caps: CAPS });
   const player = entry.split("-")[1];
   const c1 = combat1Cost(player);
-  const spentHere = (door) => {
+  const dmHere = (door) => {
     const by = {};
-    for (const call of (before[door].runs ?? []).flatMap((r) => r.calls ?? [])) { const k = String(call.session ?? "").replace(/^score /, ""); if (ORDER.map(key).includes(k)) by[k] = (by[k] ?? 0) + (call.costUsd ?? 0); }
-    return by;
+    for (const call of (before[door].runs ?? []).flatMap((r) => r.calls ?? [])) {
+      const k = String(call.session ?? "").replace(/^score /, "");
+      if (ORDER.map(key).includes(k) && !isPlayerCall(call)) by[k] = (by[k] ?? 0) + (call.costUsd ?? 0);
+    }
+    return Object.values(by);
   };
+  const playerDoor = ["astra", "sol"].includes(player) ? "openai" : "openrouter";
   const rows = Object.keys(CAPS).filter((door) => CAPS[door] > 0).map((door) => {
-    const here = Object.values(spentHere(door));
-    const estimate = door === "openrouter" ? ESTIMATE.dm + ESTIMATE.scoring + (["opus", "fable"].includes(player) ? ESTIMATE.player[player] : 0) : (["astra", "sol"].includes(player) ? ESTIMATE.player[player] : 0);
-    const base = Math.max(estimate, (c1[door] ?? 0) - (door === "openrouter" ? 0.8 : 0), ...(door === "openrouter" ? here : []));
-    const projected = Math.round((base + 3) * 100) / 100;
+    const dm = door === "openrouter" ? Math.max(ESTIMATE.dm + ESTIMATE.scoring, c1.openrouter?.rest ?? 0, ...dmHere(door)) : 0;
+    const own = door === playerDoor ? Math.max(c1[door]?.player ?? 0, ESTIMATE.player[player] ?? 0) : 0;
+    const projected = Math.round((dm + own + 3) * 100) / 100;
     const left = Math.round((CAPS[door] - (before[door].spentUsd ?? 0)) * 100) / 100;
     return { door, projected, left, fits: projected <= left };
   });
-  for (const r of rows) if (!r.fits) log(`STOP: ${entry} is projected at $${r.projected} on ${DOOR_LABELS[r.door] ?? r.door}, which has $${r.left} left under its $${CAPS[r.door]} cap — not started`);
+  for (const r of rows) log(`${r.fits ? "fits" : "STOP"}: ${entry} projected at $${r.projected} on ${DOOR_LABELS[r.door] ?? r.door}, $${r.left} left under its $${CAPS[r.door]} cap${r.fits ? "" : " — not started"}`);
   return { fits: rows.every((r) => r.fits), rows };
 }
 

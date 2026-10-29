@@ -121,7 +121,8 @@ Caps: OpenRouter $70, OpenAI $15, the Claude Console $0 (a call that would reach
 | Run | Door | USD | Calls |
 | --- | --- | --- | --- |
 | the freeze (the wizard, the opening, Tamsin, the prep once, the layer's reading) | OpenRouter | $0.69 | 4 |
-| **The stage** | | **OpenRouter $0.69** of $70 · **OpenAI $0.00** of $15 | |
+| the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $1.87 | 75 |
+| **The stage** | | **OpenRouter $2.57** of $70 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -131,6 +132,8 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 | --- | --- | --- | --- |
 | 2026-10-29 06:40:19 | before the freeze (the first paid call) | $1015.122454675 of $1200 (left $184.88) | OpenRouter $0.00/$70 · OpenAI $0.00/$15 |
 | 2026-10-29 06:44:27 | after the freeze | $1016.639340925 of $1200 (left $183.36) | OpenRouter $0.69/$70 · OpenAI $0.00/$15 |
+| 2026-10-29 06:45:05 | before CW-haiku | $1017.014147625 of $1200 (left $182.99) | OpenRouter $0.69/$70 · OpenAI $0.00/$15 |
+| 2026-10-29 06:53:02 | after CW-haiku | $1022.345103245 of $1200 (left $177.65) | OpenRouter $2.57/$70 · OpenAI $0.00/$15 |
 
 ## Harness notes
 

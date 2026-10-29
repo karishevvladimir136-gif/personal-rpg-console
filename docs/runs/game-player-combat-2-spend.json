@@ -52,6 +52,58 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-29T06:45:05.955Z",
+      "when": "before CW-haiku",
+      "openrouter": {
+        "keyUsage": 1017.014147625,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1017.014147625,
+        "remaining": 182.99,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.6942,
+          "cap": 70
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T06:53:02.064Z",
+      "when": "after CW-haiku",
+      "openrouter": {
+        "keyUsage": 1022.345103245,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1022.345103245,
+        "remaining": 177.65,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 2.5691,
+          "cap": 70
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
     }
   ]
 }

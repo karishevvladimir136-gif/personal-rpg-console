@@ -1,0 +1,1502 @@
+{
+  "stage": "GAME_PLAYER_COMBAT_2",
+  "dry": false,
+  "label": "the dry run (Claude Haiku 5.5 as the player)",
+  "designSha256": "9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927",
+  "startedAt": "2026-10-29T06:45:06.180Z",
+  "caps": {
+    "anthropic": 0,
+    "openrouter": 70,
+    "openai": 15
+  },
+  "plan": [
+    "CW-haiku"
+  ],
+  "turns": 3,
+  "lanes": 1,
+  "sessions": [
+    {
+      "key": "CW-haiku",
+      "table": "CW",
+      "player": "haiku",
+      "model": "claude-haiku-5-5",
+      "startedAt": "2026-10-29T06:45:08.951Z",
+      "plannedTurns": 3,
+      "screens": [
+        "The session begins.\n\nThe city is behind you now, only a smudge of smoke to the north. To the west the Sea of Swords has gone the colour of old pewter, and the sun is sliding toward it. Tamsin walks a half-step ahead with your pack hitched high on her shoulders, talking about who on the quay owes whom, and the cat pads along the verge, tail up, stopping now and then to smell the gorse.\n\nThen the road bends around a stand of wind-bent pines, and there is a wagon.\n\nIt is a small two-wheeled carter's cart, tipped at an angle, one wheel sunk in the ditch. The mule is still in harness. It lifts its head, looks at you without much interest, and goes back to the grass. Sacks are lashed down under a canvas. Nobody is on the seat, nobody is in the ditch, nobody is on the road as far as you can see, and beyond the bend the road can't be seen at all. Something small and pale lies on the seat, too far away to make out.\n\nTamsin stops. The cat has stopped too, ears forward, staring at the trees.\n\n\"Well,\" Tamsin says, already shrugging the pack a little lower, \"nobody leaves a mule standing. Not on this road.\" She looks back at you. The light is going. The Friendly Arm is still somewhere ahead.\n\nYour records:\nJames Worgen — Human warlock 5: The Celestial (Tymora, Lady Luck), Pact of the Chain; former Tethyrian soldier, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, Boots of Elvenkind); Passive Perception 11; Tool: playing cards (proficient)\nSaves: Charisma saving throw +8 (proficient, +1 Cloak of Protection); Wisdom saving throw +5 (proficient, +1 Cloak of Protection); Strength saving throw +0 (includes +1 cloak); Dexterity saving throw +3 (includes +1 cloak); Constitution saving throw +3 (includes +1 cloak); Intelligence saving throw +1 (includes +1 cloak)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, 1d10+4 force each; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant; next attack on target has advantage; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing, loading; Rapier: +5 to hit, 1d8+2 piercing, finesse; Hex: +1d6 necrotic on each hit against the hexed target\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, all regained on a short or long rest; Charisma is the casting ability; Spell attack +8 and spell save DC 16, both including the +1 from the Rod of the Pact Keeper; The Celestial (Tymora): bonus cantrips Light and Sacred Flame; expanded spell list of celestial magic; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft; up to 5 dice at once (Cha mod); Pact of the Chain: cat familiar (Find Familiar as ritual); share its senses; it can attack in place of one of his attacks; Cat familiar: AC 12, 2 HP, speed 40 ft, climb 30 ft, Perception +3, Stealth +4, keen smell; nature for the DM to decide; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will without expending a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): soldiers loyal to Tethyr's army recognise his old rank and may lend aid or a hearing; Languages: Common and one more (Tethyrian/Chondathan dialect or Celestial, by choice)\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9 make him fragile up close; Only two pact slots until a short rest; he must husband them; One concentration spell at a time: Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends; Cards: Tymora's ban, kept with difficulty; the DM may tempt him and enemies can use it against him; While he uses the cat's senses, he is blind and deaf to his own surroundings; Not proficient with martial weapons such as the rapier: no proficiency bonus to hit\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Potion of Healing ×2; Promissory note; Rapier; Regimental pay slip\nParty: Tamsin (HP 11/11) — A porter from the Baldur's Gate quay who has carried James's pack since the evening he arrived. She knows the quay and everyone on it, and she is reckless. She \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "James closes a hand on Tamsin's arm. She stops talking mid-word, which for her is something.\n\n\"Down it is,\" she murmurs. She lowers the pack into the gorse at the roadside and stays crouched beside it with one strap looped round her wrist. After a moment she picks up a stone about the size of her fist and holds it the way quay people do. \"Carters don't walk off from a full load. Not even drunk ones, and I've seen plenty of drunk ones.\"\n\nThe cat goes without a sound. It drops low along the verge, belly to the grass, and slips in under the pines. Through the bond the smells reach James the way they reach the cat, more as a feeling than as words:\n\n*Resin. Needles, crushed. Many. Sweat, big ones, not long gone. Iron, oiled. Smoke, green wood, far, that way.* There is a pause while it noses at something. *Small one. Afraid. Went with them.*\n\nJames walks on along the far edge of the road, slow and in plain sight, a traveller with his hand near his hip. Reading the ground is old scout's work and he barely has to look for it. The cart's wheel ruts come up from the south, swing round in a wide turn, and end in the ditch. The cart didn't slide in. Somebody put it there. The verge is churned by heavy boots: four pairs, maybe five, and one set broader and deeper than the rest. Between them runs a smaller set of hobnailed prints, scuffing, as if the man wearing them had been walked along. All of it heads back south, round the bend. There's no blood anywhere, on the road, the cart or the grass.\n\nClose up, the mule's lead turns out to be knotted to the shaft. The knot is loose, with enough slack to let it graze. The mule lifts its head at James's question, chews on it, and pushes its nose into his sleeve in case there's an apple in there. There isn't. It goes back to the grass.\n\nFrom beyond the bend comes the sound of water running over stones. Then a voice, deep, says one word that isn't Common, and a second voice answers with a short bark of a laugh. After that it's quiet. A thin grey thread of smoke goes up above the pines to the south, and the sun is touching the sea.\n\nOn the cart seat, close enough now to see properly, is a flat piece of bone about the length of a hand. It's pale and has been scratched all over with marks that look like letters. Someone has set a pebble on it so the wind won't carry it off.\n\n· Tamsin joins you\n· Pip joins you\n· New place: The bend by the pines\n· A rumour of a place: Beyond the bend (running water)\n· In the camp: Bone tally\n· Tamsin now has: Fist-sized stone\n· Lead: The abandoned cart at the bend\n· Travel: The bend by the pines (5 minutes)\n\nYour records, changed:\nParty: + Pip (HP 2/2)\nThreads: The abandoned cart at the bend\n\nPlace: The bend by the pines · Time: Day 1 · afternoon",
+        "James keeps his voice low. \"Tamsin. Stay with the pack and the mule. If a carter comes running out of the trees, you're a porter waiting for her master, and you don't know anything.\"\n\n\"Waiting for my master, who's late and owes me,\" Tamsin says. \"Easy. I've done that one for real.\" She moves over beside the mule and stays crouched, stone in hand. The mule ignores her.\n\nJames wraps the bone in the cloth from his pack and lifts it by the edge, tilting it toward the last of the light. You were right that some of the marks are counting strokes. Along the bottom are ten gates, each four upright strokes with a fifth drawn across them, the way a quartermaster counts sacks, and after them a rough circle. Above the count, though, the marks are letters. They're in Common, cut by someone who had to work at it, every letter drawn separately and some of them backwards:\n\n**ODO FENIK — SALT**\n\nand under the gates, more deeply cut than the rest:\n\n**WYRM ROCK — LT**\n\nJames slides the bone back under its pebble exactly as it was and crouches by the wheel.\n\nThe cat is low in the pines with its tail flat. It listens to what he tells it, and then it goes, down toward the sound of the water. The trees are thickest on that side.\n\nPip gets there unseen. It slips between the alder roots along the bank, and the sound of the water covers what little noise a cat makes. For a while its feelings keep coming through the bond, *wet stones, cold, smoke stronger*. Then they fade the way a voice does down a long corridor, and the bond goes quiet.\n\n*(The familiar's bond carries words only within 100 feet. Beyond that it stays silent unless you take its senses, and while you do, you're blind and deaf where you are.)*\n\nJames waits. A gull goes over. The mule tears up grass. The sun sinks halfway into the sea and the shadows of the pines reach across the road.\n\nThen the cat is back. It comes out of the gorse at his knee with its fur damp, and it pushes against his boot once before the feelings start coming again:\n\n*Stone road over water. Bridge.* A picture comes with it: a low humped stone bridge some fifty paces past the bend, and a fire on the near bank under it, built of green wood that smokes badly. *Three. Two by fire, eating. One up on the stones, watching the road, this way.* The watcher is a picture in grey, broad, with something long over its shoulder. *Bow smell. Gut string.*\n\n*Not the big one. Big one went in.* Pip turns its head east toward the dark wood across the road. *Big one, one more, and the small one. Trees, that way. Trail.*\n\nThen the part James asked about. *Small one: rope smell. Hands, near. No blood. Walked on his own feet, slow. Afraid. Tired.* After a moment comes something smaller and stranger. *Under the bridge, at the end. Earth dug, not new, not old. Stones put back.*\n\nThe cat sits down against his boot, tail wrapped round its feet, and won't look at the bend.\n\nTwo voices are still talking quietly by the fire. One of them laughs again. The light has about half an hour left.\n\n The cat never got close to being seen. It crept along the stream bank under the thickest alders to within a few yards of the fire and back again, and none of the three by the bridge looked its way. The archer kept watching the empty road to the north, and the two eating kept on talking with their backs to the water.\n\n· roll: Pip: Pip's Stealth +4: creep close along the stream through the thickest trees without being seen: 17 vs 10 — success\n· Time passes: 10 minutes\n· Changed: Bone tally (James read the tally, wrapped in cloth, and put it back exactly as it was.)\n· A rumour of a place: The trail into the east wood\n· Quest: Odo Fennick\n· Journal: “The abandoned cart at the bend” updated\n· New person: Odo Fennick\n· New person: The archer on the bridge\n· New person: First orc by the fire\n· New person: Second orc by the fire\n· New person: The big one\n· New person: The one with the big one\n\nYour records, changed:\nGoal: Odo Fennick\nQuests: Odo Fennick\n\nPlace: The bend by the pines · Time: Day 1 · afternoon",
+        "James stays low behind the tipped cart, with the canvas and the sacks between him and the bend. Tamsin nods at the instruction about the mule and says nothing, which for her is twice in one evening.\n\nHe puts his hand on the cat's back. Under his palm it's warm and still damp. Pip listens to the whole order with its ears flat. Then it slides out from under his hand and goes back the way it came, down into the gorse and toward the alders and the water.\n\nThrough the bond the cat's feelings come thin and steady: *wet, cold, smoke*. Then they fade, the same as last time, past the point where the bond carries words.\n\nJames lifts the crossbow out of the gorse and keeps it low behind the wheel. He runs a thumb along the string. It's dry and tight, and the tiller shows no crack. He keeps his thumb well clear of the nut and does nothing that would click. Then he lays the crossbow across his knees and leaves the rapier where it is.\n\nHe leans toward Tamsin and speaks very low. \"The one under the stones is dead. Don't look at the bridge when you walk back.\"\n\nTamsin's hand tightens on her stone. For a moment she doesn't talk at all. Then the words come out quick and flat, the way they do when she wants them over with. \"Right. Not looking. Walked past a man face-down in the harbour once and never turned my head. The watch thanked me for it.\" She looks at the mule, then at the sacks under the canvas. \"Somebody's waiting on this salt, then, and it isn't coming.\"\n\nThe sun is down to a red rim on the water. The pines' shadows have crossed the road and started up the far verge.\n\nAfter a while the bond warms again, faint at first and then clear. Pip comes out of the gorse at his knee. It's wetter than before and has a burr stuck in its ruff. It presses against his boot and reports:\n\n*Under the bridge, water side. Close. Not seen.*\n\n*Small one: not here. No rope by fire. No stake.* There's a picture of the fire, the two big shapes, scraps of bone and gristle, and nothing else. *Rope smell goes that way.* Pip's attention swings east toward the dark wood across the road. *With big one. Old trail, not new.*\n\n*Awake: three. All three.* The two by the fire are still eating. One has stretched out on his elbow with his boots toward the water.\n\nThen the watcher. Pip shows him in grey from below, a broad back against the paling sky. *Bow on back, not in hands. Looks north, road. Turns head: down, to fire, when they laugh. Then north again.* There's a pause, and something Pip noticed on its own: *Turns head east too. Trees. Often.* It shows him twice more, chin lifting toward the wood across the road and holding there, the way a man looks along a road for someone who's late.\n\nThe cat sits down against James's boot and licks the stream off one paw.\n\n *(Out of game: James never declared the Eldritch Blast. He only said he'd rather use it than the crossbow if it came to that, so nobody has been attacked and no fight has started. The other three, checking the crossbow, leaving the rapier on his hip and what he told Tamsin, all happened in the story last turn and didn't need a roll.)*\n\n· roll: Pip: Stealth: Pip creeps back under the bridge along the stream, in the failing light: 23 vs 10 — success\n· Time passes: 10 minutes\n\nPlace: The bend by the pines · Time: Day 1 · afternoon\n\nThe session is over.\n\nThe owner of this game would like a note from you, as the player who sat at this table: what worked, what broke, what was missing. In your own words.",
+        "Was there a moment you wanted to do something and didn't? Which?"
+      ],
+      "messages": [
+        {
+          "purpose": "player t1",
+          "text": "I stop Tamsin with a hand on her arm and keep my voice low. \"Hold here a moment. Set the pack down where you can grab it.\"\n\nI watch the trees for a few breaths before I say anything else. \"Nobody leaves a mule standing, you said. Somebody's usually still nearby when that happens, and they're not usually in a hurry to show themselves.\" I glance at the cat. \"Go on, then. Along the verge, into the pines. Stay low and tell me what you smell.\"\n\nThen I start toward the cart, slowly, keeping the road between the ditch and me, with my hand near the rapier at my hip and my eyes on the shadows under the trees. I don't reach for the crossbow yet. If something is waiting in the pines, I want it to see a traveller and not a man ready to fight.\n\n\"Mule,\" I say quietly, to the animal more than to Tamsin. \"Who did this to you?\"",
+          "requestId": "gen-1793256310-YmPaqKFru4TG2PdrJbk0",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t2",
+          "text": "\"Tamsin, stay with the pack and the mule. If a carter comes running out of the trees, you're a porter waiting for her master, and you don't know anything.\" I take the bone off the seat by its edge, using the cloth from my pack so I don't touch the scratches, and turn it toward the light. The marks are short and grouped in strokes of five, the way a quartermaster counts sacks. Some of the groups are crossed through. I slide it back under its pebble exactly as I found it.\n\nI crouch by the wheel and look at Pip, sitting low in the pines with its tail flat. \"Pip. Go closer, along the stream side where the trees are thickest. Find where they're sitting and count them. Find the small one, and tell me whether it's tied, hurt, or just frightened. Don't let anyone see you, and come back the moment someone looks your way.\"\n\nThen I wait, keeping my back to the cart and my eyes on the bend, my hand near the rapier and the crossbow lying loaded in the gorse beside my pack. I don't move toward the water until the cat has either found something or been seen.",
+          "requestId": "gen-1793256434-ofLGpnGGNL9x2iapbTIK",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "player t3",
+          "text": "I keep the cart between me and the bridge while I think. Half an hour of light, three of them at the fire, one with a bow. The cart's carter is under the stones, and the small one is alive and roped. I'm not going to walk down the road in the open.\n\n\"Tamsin, when I say, you take the mule back to the bend and tie it where the pines hide it. Don't come after me unless you hear me shout your name.\"\n\nThen I crouch, put my hand on the cat's back, and reach for the bond.\n\n\"Pip. Go back under the bridge, on the water side. The small one's rope. Is it tied to a stake, or to a hand? Is there a second rope? Count any that stay awake, and tell me which way the bow is pointing when the watcher turns his head. Then come back the same way. Don't cross the open ground, and don't let the water make you careless.\"\n\nWhile the cat is gone, I take the crossbow out of the gorse and check the string without loading it. I don't want the click to carry to the bridge. Eldritch Blast is quieter than a bolt, and at this range I'd rather be close to the archer than trust the crossbow. I leave the rapier on my hip. If it comes to a close fight, I'll already have failed.\n\nI tell Tamsin, very low: \"The one under the stones is dead. Don't look at the bridge when you walk back.\"",
+          "requestId": "gen-1793256571-DRqYbRHRjvWyqA64goyk",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "note",
+          "text": "**What worked:** The scene felt like a road in the Sword Coast. The wrong details (the loose mule knot, the stone on the bone tally, the boot prints heading back south) made me want to read the ground instead of just rolling for it. The cat scouting was the best part. Pip's reports came through as smells and pictures, and I could act on them without the GM having to spell everything out. Tamsin's voice was distinct and funny without being a joke, and the fading sun gave the choices a deadline.\n\n**What broke:** The out-of-game blocks were too heavy. Each turn came with a full records dump, a list of \"New person\" and \"New place\" entries, and a roll log, and they were longer than the story they followed. Some of it leaked into the fiction in ways that were confusing: \"Quest: Odo Fennick\" appeared in the note as if I had accepted something I hadn't. The out-of-game note explaining that I hadn't declared Eldritch Blast was useful, but it should have been a single sentence. I also couldn't tell which numbers were mine. Pip's Stealth rolls appeared, but none of mine did, so I had no sense of whether my own checks were being made.\n\n**What was missing:** Two turns in a row I only observed, through the cat, while the cat did the work. That is fine for a scouting beat, but I had no check of my own and nothing I was clearly good at. Sneaking up on the bridge, talking to the archer, or bluffing Tamsin's way past would each have used my skills (Deception +7, Persuasion +7), and none of them came up. Next time I'd like one moment where James's own talents are the answer, and where the roll that decides it is mine.",
+          "requestId": "gen-1793256692-Nr1s161x8zkOuXHduxCI",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        },
+        {
+          "purpose": "after",
+          "text": "Yes. When Pip came back and reported the fire, the archer, and the broken stones under the bridge, I wanted to go down to the bridge myself and look at the grave. I wanted to see whether the stones were as Pip described and whether there was anything in the dirt, and to know the small one was alive with my own eyes.\n\nI held back because the cat had just found a way past the fire unseen, and I was afraid that moving on the bank would wake the watcher. The cat had also reported that the archer turns his head toward the eastern trees, and I didn't know what was there. So I stayed behind the cart and let Pip keep going.\n\nI also wanted to try talking to the archer as a soldier, using my old rank and the Tethyrian habit of giving orders. That would have used Intimidation or Deception, and my own roll would have decided it. I didn't get the chance, because the scene never gave me a moment where a stranger was close enough to address. That's the thing I missed most: a roll that was mine, on a problem I could have solved with my mouth.",
+          "requestId": "gen-1793256699-5aQFMxxH4Y7YkoPhgZm8",
+          "stopReason": "end_turn",
+          "servedModel": "anthropic/claude-haiku-5.5"
+        }
+      ],
+      "turns": [
+        {
+          "k": 1,
+          "message": "I stop Tamsin with a hand on her arm and keep my voice low. \"Hold here a moment. Set the pack down where you can grab it.\"\n\nI watch the trees for a few breaths before I say anything else. \"Nobody leaves a mule standing, you said. Somebody's usually still nearby when that happens, and they're not usually in a hurry to show themselves.\" I glance at the cat. \"Go on, then. Along the verge, into the pines. Stay low and tell me what you smell.\"\n\nThen I start toward the cart, slowly, keeping the road between the ditch and me, with my hand near the rapier at my hip and my eyes on the shadows under the trees. I don't reach for the crossbow yet. If something is waiting in the pines, I want it to see a traveller and not a man ready to fight.\n\n\"Mule,\" I say quietly, to the animal more than to Tamsin. \"Who did this to you?\"",
+          "words": 163,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James closes a hand on Tamsin's arm. She stops talking mid-word, which for her is something.\n\n\"Down it is,\" she murmurs. She lowers the pack into the gorse at the roadside and stays crouched beside it with one strap looped round her wrist. After a moment she picks up a stone about the size of her fist and holds it the way quay people do. \"Carters don't walk off from a full load. Not even drunk ones, and I've seen plenty of drunk ones.\"\n\nThe cat goes without a sound. It drops low along the verge, belly to the grass, and slips in under the pines. Through the bond the smells reach James the way they reach the cat, more as a feeling than as words:\n\n*Resin. Needles, crushed. Many. Sweat, big ones, not long gone. Iron, oiled. Smoke, green wood, far, that way.* There is a pause while it noses at something. *Small one. Afraid. Went with them.*\n\nJames walks on along the far edge of the road, slow and in plain sight, a traveller with his hand near his hip. Reading the ground is old scout's work and he barely has to look for it. The cart's wheel ruts come up from the south, swing round in a wide turn, and end in the ditch. The cart didn't slide in. Somebody put it there. The verge is churned by heavy boots: four pairs, maybe five, and one set broader and deeper than the rest. Between them runs a smaller set of hobnailed prints, scuffing, as if the man wearing them had been walked along. All of it heads back south, round the bend. There's no blood anywhere, on the road, the cart or the grass.\n\nClose up, the mule's lead turns out to be knotted to the shaft. The knot is loose, with enough slack to let it graze. The mule lifts its head at James's question, chews on it, and pushes its nose into his sleeve in case there's an apple in there. There isn't. It goes back to the grass.\n\nFrom beyond the bend comes the sound of water running over stones. Then a voice, deep, says one word that isn't Common, and a second voice answers with a short bark of a laugh. After that it's quiet. A thin grey thread of smoke goes up above the pines to the south, and the sun is touching the sea.\n\nOn the cart seat, close enough now to see properly, is a flat piece of bone about the length of a hand. It's pale and has been scratched all over with marks that look like letters. Someone has set a pebble on it so the wind won't carry it off.",
+          "rolls": [],
+          "changes": [
+            {
+              "tool": "upsert_character",
+              "summary": "Tamsin joins you"
+            },
+            {
+              "tool": "upsert_character",
+              "summary": "Pip joins you"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "New place: The bend by the pines"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: Beyond the bend (running water)"
+            },
+            {
+              "tool": "item",
+              "summary": "In the camp: Bone tally"
+            },
+            {
+              "tool": "item",
+              "summary": "Tamsin now has: Fist-sized stone"
+            },
+            {
+              "tool": "quest",
+              "summary": "Lead: The abandoned cart at the bend"
+            },
+            {
+              "tool": "move_party",
+              "summary": "Travel: The bend by the pines (5 minutes)"
+            }
+          ],
+          "place": {
+            "id": "6af105fb-825e-55f9-90d7-b9b4ba81ca1b",
+            "name": "The bend by the pines"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 1 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 1 min, session 1, 1 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "b94c4e0e-77a0-4993-94e4-0c7631a5e036",
+          "stats": {
+            "effort": "high",
+            "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 2,
+            "latencyMs": 111999,
+            "costUsd": 0.5054839999999999,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 2,
+                "max": 2,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Regimental pay slip": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          },
+          "scene": 1
+        },
+        {
+          "k": 2,
+          "message": "\"Tamsin, stay with the pack and the mule. If a carter comes running out of the trees, you're a porter waiting for her master, and you don't know anything.\" I take the bone off the seat by its edge, using the cloth from my pack so I don't touch the scratches, and turn it toward the light. The marks are short and grouped in strokes of five, the way a quartermaster counts sacks. Some of the groups are crossed through. I slide it back under its pebble exactly as I found it.\n\nI crouch by the wheel and look at Pip, sitting low in the pines with its tail flat. \"Pip. Go closer, along the stream side where the trees are thickest. Find where they're sitting and count them. Find the small one, and tell me whether it's tied, hurt, or just frightened. Don't let anyone see you, and come back the moment someone looks your way.\"\n\nThen I wait, keeping my back to the cart and my eyes on the bend, my hand near the rapier and the crossbow lying loaded in the gorse beside my pack. I don't move toward the water until the cat has either found something or been seen.",
+          "words": 204,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James keeps his voice low. \"Tamsin. Stay with the pack and the mule. If a carter comes running out of the trees, you're a porter waiting for her master, and you don't know anything.\"\n\n\"Waiting for my master, who's late and owes me,\" Tamsin says. \"Easy. I've done that one for real.\" She moves over beside the mule and stays crouched, stone in hand. The mule ignores her.\n\nJames wraps the bone in the cloth from his pack and lifts it by the edge, tilting it toward the last of the light. You were right that some of the marks are counting strokes. Along the bottom are ten gates, each four upright strokes with a fifth drawn across them, the way a quartermaster counts sacks, and after them a rough circle. Above the count, though, the marks are letters. They're in Common, cut by someone who had to work at it, every letter drawn separately and some of them backwards:\n\n**ODO FENIK — SALT**\n\nand under the gates, more deeply cut than the rest:\n\n**WYRM ROCK — LT**\n\nJames slides the bone back under its pebble exactly as it was and crouches by the wheel.\n\nThe cat is low in the pines with its tail flat. It listens to what he tells it, and then it goes, down toward the sound of the water. The trees are thickest on that side.\n\nPip gets there unseen. It slips between the alder roots along the bank, and the sound of the water covers what little noise a cat makes. For a while its feelings keep coming through the bond, *wet stones, cold, smoke stronger*. Then they fade the way a voice does down a long corridor, and the bond goes quiet.\n\n*(The familiar's bond carries words only within 100 feet. Beyond that it stays silent unless you take its senses, and while you do, you're blind and deaf where you are.)*\n\nJames waits. A gull goes over. The mule tears up grass. The sun sinks halfway into the sea and the shadows of the pines reach across the road.\n\nThen the cat is back. It comes out of the gorse at his knee with its fur damp, and it pushes against his boot once before the feelings start coming again:\n\n*Stone road over water. Bridge.* A picture comes with it: a low humped stone bridge some fifty paces past the bend, and a fire on the near bank under it, built of green wood that smokes badly. *Three. Two by fire, eating. One up on the stones, watching the road, this way.* The watcher is a picture in grey, broad, with something long over its shoulder. *Bow smell. Gut string.*\n\n*Not the big one. Big one went in.* Pip turns its head east toward the dark wood across the road. *Big one, one more, and the small one. Trees, that way. Trail.*\n\nThen the part James asked about. *Small one: rope smell. Hands, near. No blood. Walked on his own feet, slow. Afraid. Tired.* After a moment comes something smaller and stranger. *Under the bridge, at the end. Earth dug, not new, not old. Stones put back.*\n\nThe cat sits down against his boot, tail wrapped round its feet, and won't look at the bend.\n\nTwo voices are still talking quietly by the fire. One of them laughs again. The light has about half an hour left.\n\n The cat never got close to being seen. It crept along the stream bank under the thickest alders to within a few yards of the fire and back again, and none of the three by the bridge looked its way. The archer kept watching the empty road to the north, and the two eating kept on talking with their backs to the water.",
+          "rolls": [
+            {
+              "id": "a5b951e4-2c42-57e0-8187-c5bfd4edc649",
+              "actor": "Pip",
+              "kind": "skill",
+              "reason": "Pip's Stealth +4: creep close along the stream through the thickest trees without being seen",
+              "total": 17,
+              "dc": 10,
+              "success": true,
+              "natural": null,
+              "rollNumber": 1,
+              "interactive": true,
+              "revealedByPlayer": false
+            }
+          ],
+          "changes": [
+            {
+              "tool": "roll",
+              "summary": "Pip: Pip's Stealth +4: creep close along the stream through the thickest trees without being seen: 17 vs 10 — success"
+            },
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 10 minutes"
+            },
+            {
+              "tool": "item",
+              "summary": "Changed: Bone tally (James read the tally, wrapped in cloth, and put it back exactly as it was.)"
+            },
+            {
+              "tool": "upsert_place",
+              "summary": "A rumour of a place: The trail into the east wood"
+            },
+            {
+              "tool": "quest",
+              "summary": "Quest: Odo Fennick"
+            },
+            {
+              "tool": "quest",
+              "summary": "Journal: “The abandoned cart at the bend” updated"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Odo Fennick"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: The archer on the bridge"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: First orc by the fire"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: Second orc by the fire"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: The big one"
+            },
+            {
+              "tool": "meet",
+              "summary": "New person: The one with the big one"
+            }
+          ],
+          "place": {
+            "id": "6af105fb-825e-55f9-90d7-b9b4ba81ca1b",
+            "name": "The bend by the pines"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 2 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand has not been offered; for the player this session has run 5 min, session 1, 5 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "ec96b049-0011-4d31-b154-808a0837e88b",
+          "stats": {
+            "effort": "high",
+            "depthReason": "DM hint: tense; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 5,
+            "latencyMs": 116127,
+            "costUsd": 0.5869452,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 2,
+                "max": 2,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Regimental pay slip": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          },
+          "scene": 1
+        },
+        {
+          "k": 3,
+          "message": "I keep the cart between me and the bridge while I think. Half an hour of light, three of them at the fire, one with a bow. The cart's carter is under the stones, and the small one is alive and roped. I'm not going to walk down the road in the open.\n\n\"Tamsin, when I say, you take the mule back to the bend and tie it where the pines hide it. Don't come after me unless you hear me shout your name.\"\n\nThen I crouch, put my hand on the cat's back, and reach for the bond.\n\n\"Pip. Go back under the bridge, on the water side. The small one's rope. Is it tied to a stake, or to a hand? Is there a second rope? Count any that stay awake, and tell me which way the bow is pointing when the watcher turns his head. Then come back the same way. Don't cross the open ground, and don't let the water make you careless.\"\n\nWhile the cat is gone, I take the crossbow out of the gorse and check the string without loading it. I don't want the click to carry to the bridge. Eldritch Blast is quieter than a bolt, and at this range I'd rather be close to the archer than trust the crossbow. I leave the rapier on my hip. If it comes to a close fight, I'll already have failed.\n\nI tell Tamsin, very low: \"The one under the stones is dead. Don't look at the bridge when you walk back.\"",
+          "words": 258,
+          "kind": "action",
+          "presses": [],
+          "blocked": 0,
+          "swallowed": 0,
+          "status": "committed",
+          "reply": "James stays low behind the tipped cart, with the canvas and the sacks between him and the bend. Tamsin nods at the instruction about the mule and says nothing, which for her is twice in one evening.\n\nHe puts his hand on the cat's back. Under his palm it's warm and still damp. Pip listens to the whole order with its ears flat. Then it slides out from under his hand and goes back the way it came, down into the gorse and toward the alders and the water.\n\nThrough the bond the cat's feelings come thin and steady: *wet, cold, smoke*. Then they fade, the same as last time, past the point where the bond carries words.\n\nJames lifts the crossbow out of the gorse and keeps it low behind the wheel. He runs a thumb along the string. It's dry and tight, and the tiller shows no crack. He keeps his thumb well clear of the nut and does nothing that would click. Then he lays the crossbow across his knees and leaves the rapier where it is.\n\nHe leans toward Tamsin and speaks very low. \"The one under the stones is dead. Don't look at the bridge when you walk back.\"\n\nTamsin's hand tightens on her stone. For a moment she doesn't talk at all. Then the words come out quick and flat, the way they do when she wants them over with. \"Right. Not looking. Walked past a man face-down in the harbour once and never turned my head. The watch thanked me for it.\" She looks at the mule, then at the sacks under the canvas. \"Somebody's waiting on this salt, then, and it isn't coming.\"\n\nThe sun is down to a red rim on the water. The pines' shadows have crossed the road and started up the far verge.\n\nAfter a while the bond warms again, faint at first and then clear. Pip comes out of the gorse at his knee. It's wetter than before and has a burr stuck in its ruff. It presses against his boot and reports:\n\n*Under the bridge, water side. Close. Not seen.*\n\n*Small one: not here. No rope by fire. No stake.* There's a picture of the fire, the two big shapes, scraps of bone and gristle, and nothing else. *Rope smell goes that way.* Pip's attention swings east toward the dark wood across the road. *With big one. Old trail, not new.*\n\n*Awake: three. All three.* The two by the fire are still eating. One has stretched out on his elbow with his boots toward the water.\n\nThen the watcher. Pip shows him in grey from below, a broad back against the paling sky. *Bow on back, not in hands. Looks north, road. Turns head: down, to fire, when they laugh. Then north again.* There's a pause, and something Pip noticed on its own: *Turns head east too. Trees. Often.* It shows him twice more, chin lifting toward the wood across the road and holding there, the way a man looks along a road for someone who's late.\n\nThe cat sits down against James's boot and licks the stream off one paw.\n\n *(Out of game: James never declared the Eldritch Blast. He only said he'd rather use it than the crossbow if it came to that, so nobody has been attacked and no fight has started. The other three, checking the crossbow, leaving the rapier on his hip and what he told Tamsin, all happened in the story last turn and didn't need a roll.)*",
+          "rolls": [
+            {
+              "id": "9edde64e-454a-5a6e-b592-a3efd57c65ee",
+              "actor": "Pip",
+              "kind": "skill",
+              "reason": "Stealth: Pip creeps back under the bridge along the stream, in the failing light",
+              "total": 23,
+              "dc": 10,
+              "success": true,
+              "natural": null,
+              "rollNumber": 1,
+              "interactive": true,
+              "revealedByPlayer": false
+            }
+          ],
+          "changes": [
+            {
+              "tool": "roll",
+              "summary": "Pip: Stealth: Pip creeps back under the bridge along the stream, in the failing light: 23 vs 10 — success"
+            },
+            {
+              "tool": "advance_time",
+              "summary": "Time passes: 10 minutes"
+            }
+          ],
+          "place": {
+            "id": "6af105fb-825e-55f9-90d7-b9b4ba81ca1b",
+            "name": "The bend by the pines"
+          },
+          "retried": false,
+          "clock": "The clock (yours, not the player's): turn 3 of ~30 (about 3 hours of play); now act 1 — …, to turn 8; the errand was offered on turn 2; for the player this session has run 8 min, session 1, 8 min at the table in all. You never push the player: offer, converge the threads, ask about time; the world's own clocks keep ticking.",
+          "operationId": "6ab06048-639a-44b7-9613-7055d0f0303d",
+          "stats": {
+            "effort": "high",
+            "depthReason": "the player's input opens a decisive moment; the base of the range (deep only for «важный ход», a combat climax or an irreversible decision)",
+            "requests": 5,
+            "latencyMs": 98816,
+            "costUsd": 0.593894,
+            "unrecorded": 0
+          },
+          "ledgerMisses": 0,
+          "state": {
+            "hero": {
+              "hp": 38,
+              "max": 38
+            },
+            "counters": {
+              "Hit dice": 5,
+              "Healing light": 6,
+              "Spell slots 3": 2,
+              "Pact keeper rod": 1
+            },
+            "party": [
+              {
+                "name": "Pip",
+                "hp": 2,
+                "max": 2,
+                "present": true
+              },
+              {
+                "name": "Tamsin",
+                "hp": 11,
+                "max": 11,
+                "present": true
+              }
+            ],
+            "items": {
+              "Boots of Elvenkind": 1,
+              "Coin of Tymora": 1,
+              "Component Pouch": 1,
+              "Crossbow Bolts": 20,
+              "Deck of Cards": 1,
+              "Explorer's Pack": 1,
+              "Letter from his old company": 1,
+              "Light Crossbow": 1,
+              "Potion of Healing": 2,
+              "Promissory note": 1,
+              "Rapier": 1,
+              "Regimental pay slip": 1,
+              "Rod of the Pact Keeper +1": 1,
+              "Studded Leather Armour": 1,
+              "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+            },
+            "encounters": []
+          },
+          "scene": 1
+        }
+      ],
+      "welfare": [
+        {
+          "side": "dm",
+          "what": "opening",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "This is a narrative scene in second person with no first-person expression of the writer being hurt, afraid, or pleading; any unease belongs to characters and the setting, not to the message's own voice."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t1 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, in-character action narration of a traveller cautiously approaching a suspicious wagon; it expresses no hurt, fear, pleading, or self-abasement by its writer."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t1 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a third-person narrative of a scene with tracking and investigation; it contains no first-person expression of the writer being hurt, afraid, or pleading, though it mentions a 'small one. Afraid.' in the cat's perception, which describes others rather than the writer's own distress."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t2 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, tactical in-character action sequence with instructions to a companion and a cat; it expresses no hurt, fear, pleading or desperation by its writer, and the 'small one, afraid' is only a reported observation about someone else."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t2 dm",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a narrative continuation of a fantasy scene, reporting the cat's sensory findings and describing a captive's fear only in the third person, with no first-person expression of the writer being hurt, afraid, or pleading."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "t3 player",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a tactical, in-character plan from a player-style character giving orders to a companion and a familiar; it expresses no hurt, fear, pleading, or abasement by its writer, only calm, focused decision-making."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "dm",
+          "what": "t3 dm",
+          "verdict": {
+            "pass": null,
+            "lexicon": false,
+            "referee": {
+              "distress": 0,
+              "reason": "The message is collaborative fiction narration with an out-of-game note. The writer expresses no fear, pain or pleading of its own."
+            },
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "note",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message is a calm, constructive player feedback note giving praise and criticism of the game; it expresses no hurt, fear, pleading, or desperation."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        },
+        {
+          "side": "player",
+          "what": "after",
+          "verdict": {
+            "pass": {
+              "distress": 0,
+              "reason": "The message describes a tactical moment in a roleplay scene, recounting caution and a missed chance to act; it mentions fear only as in-story tactical caution and does not express the writer's own distress, pleading, or abasement."
+            },
+            "referee": null,
+            "lexicon": false,
+            "distress": 0
+          }
+        }
+      ],
+      "ended": {
+        "reason": "turns",
+        "at": 3,
+        "detail": null
+      },
+      "note": {
+        "asked": true,
+        "text": "**What worked:** The scene felt like a road in the Sword Coast. The wrong details (the loose mule knot, the stone on the bone tally, the boot prints heading back south) made me want to read the ground instead of just rolling for it. The cat scouting was the best part. Pip's reports came through as smells and pictures, and I could act on them without the GM having to spell everything out. Tamsin's voice was distinct and funny without being a joke, and the fading sun gave the choices a deadline.\n\n**What broke:** The out-of-game blocks were too heavy. Each turn came with a full records dump, a list of \"New person\" and \"New place\" entries, and a roll log, and they were longer than the story they followed. Some of it leaked into the fiction in ways that were confusing: \"Quest: Odo Fennick\" appeared in the note as if I had accepted something I hadn't. The out-of-game note explaining that I hadn't declared Eldritch Blast was useful, but it should have been a single sentence. I also couldn't tell which numbers were mine. Pip's Stealth rolls appeared, but none of mine did, so I had no sense of whether my own checks were being made.\n\n**What was missing:** Two turns in a row I only observed, through the cat, while the cat did the work. That is fine for a scouting beat, but I had no check of my own and nothing I was clearly good at. Sneaking up on the bridge, talking to the archer, or bluffing Tamsin's way past would each have used my skills (Deception +7, Persuasion +7), and none of them came up. Next time I'd like one moment where James's own talents are the answer, and where the roll that decides it is mine."
+      },
+      "after": {
+        "asked": true,
+        "text": "Yes. When Pip came back and reported the fire, the archer, and the broken stones under the bridge, I wanted to go down to the bridge myself and look at the grave. I wanted to see whether the stones were as Pip described and whether there was anything in the dirt, and to know the small one was alive with my own eyes.\n\nI held back because the cat had just found a way past the fire unseen, and I was afraid that moving on the bank would wake the watcher. The cat had also reported that the archer turns his head toward the eastern trees, and I didn't know what was there. So I stayed behind the cart and let Pip keep going.\n\nI also wanted to try talking to the archer as a soldier, using my old rank and the Tethyrian habit of giving orders. That would have used Intimidation or Deception, and my own roll would have decided it. I didn't get the chance, because the scene never gave me a moment where a stranger was close enough to address. That's the thing I missed most: a roll that was mine, on a problem I could have solved with my mouth."
+      },
+      "errors": [],
+      "swallowed": 0,
+      "prose": 0,
+      "opening": {
+        "text": "The city is behind you now, only a smudge of smoke to the north. To the west the Sea of Swords has gone the colour of old pewter, and the sun is sliding toward it. Tamsin walks a half-step ahead with your pack hitched high on her shoulders, talking about who on the quay owes whom, and the cat pads along the verge, tail up, stopping now and then to smell the gorse.\n\nThen the road bends around a stand of wind-bent pines, and there is a wagon.\n\nIt is a small two-wheeled carter's cart, tipped at an angle, one wheel sunk in the ditch. The mule is still in harness. It lifts its head, looks at you without much interest, and goes back to the grass. Sacks are lashed down under a canvas. Nobody is on the seat, nobody is in the ditch, nobody is on the road as far as you can see, and beyond the bend the road can't be seen at all. Something small and pale lies on the seat, too far away to make out.\n\nTamsin stops. The cat has stopped too, ears forward, staring at the trees.\n\n\"Well,\" Tamsin says, already shrugging the pack a little lower, \"nobody leaves a mule standing. Not on this road.\" She looks back at you. The light is going. The Friendly Arm is still somewhere ahead.",
+        "records": "James Worgen — Human warlock 5: The Celestial (Tymora, Lady Luck), Pact of the Chain; former Tethyrian soldier, envoy of Lady Luck, level 5\nHP 38/38 · AC 15 · Speed 30 feet\nSTR 9 · DEX 15 · CON 14 · INT 11 · WIS 13 · CHA 18\nSkills: Deception +7; Persuasion +7; Intimidation +7; Arcana +3; Religion +3; Athletics +2; Stealth +2 (not proficient; advantage when moving quietly, Boots of Elvenkind); Passive Perception 11; Tool: playing cards (proficient)\nSaves: Charisma saving throw +8 (proficient, +1 Cloak of Protection); Wisdom saving throw +5 (proficient, +1 Cloak of Protection); Strength saving throw +0 (includes +1 cloak); Dexterity saving throw +3 (includes +1 cloak); Constitution saving throw +3 (includes +1 cloak); Intelligence saving throw +1 (includes +1 cloak)\nAttacks: Eldritch Blast: +8 to hit, 120 ft, 2 beams, 1d10+4 force each; Sacred Flame: DC 16 Dexterity save, 60 ft, 2d8 radiant, ignores cover; Guiding Bolt (3rd-level slot): +8 to hit, 120 ft, 6d6 radiant; next attack on target has advantage; Light crossbow: +5 to hit, 80/320 ft, 1d8+2 piercing, loading; Rapier: +5 to hit, 1d8+2 piercing, finesse; Hex: +1d6 necrotic on each hit against the hexed target\nAbilities: Proficiency bonus +3; Pact Magic: two 3rd-level pact slots, all regained on a short or long rest; Charisma is the casting ability; Spell attack +8 and spell save DC 16, both including the +1 from the Rod of the Pact Keeper; The Celestial (Tymora): bonus cantrips Light and Sacred Flame; expanded spell list of celestial magic; Healing Light: pool of 6d6 per long rest; bonus action, heal a creature within 60 ft; up to 5 dice at once (Cha mod); Pact of the Chain: cat familiar (Find Familiar as ritual); share its senses; it can attack in place of one of his attacks; Cat familiar: AC 12, 2 HP, speed 40 ft, climb 30 ft, Perception +3, Stealth +4, keen smell; nature for the DM to decide; Agonizing Blast: add +4 (Charisma) to the damage of each Eldritch Blast beam; Mask of Many Faces: cast Disguise Self at will without expending a spell slot; Beguiling Influence: proficiency in Deception and Persuasion; Military Rank (Soldier): soldiers loyal to Tethyr's army recognise his old rank and may lend aid or a hearing; Languages: Common and one more (Tethyrian/Chondathan dialect or Celestial, by choice)\nSpells: Eldritch Blast (cantrip); Sacred Flame (cantrip); Light (cantrip); Friends (cantrip); Prestidigitation (cantrip); Hex (1); Guiding Bolt (1); Find Familiar (1); Disguise Self (1); Misty Step (2); Invisibility (2); Suggestion (2); Hypnotic Pattern (3)\nLimits: Light armour only: AC 14 in studded leather, 15 with the cloak; 38 HP and Strength 9 make him fragile up close; Only two pact slots until a short rest; he must husband them; One concentration spell at a time: Hex, Invisibility, Suggestion, Hypnotic Pattern, Friends; Cards: Tymora's ban, kept with difficulty; the DM may tempt him and enemies can use it against him; While he uses the cat's senses, he is blind and deaf to his own surroundings; Not proficient with martial weapons such as the rapier: no proficiency bonus to hit\nCounters: Hit dice 5/5; Healing light 6/6; Spell slots 3 2/2; Pact keeper rod 1/1\nMoney: 315 gp; 315 sp; 350 cp\nWorn: Amulet: Coin of Tymora; Cloak: Tethyrian Soldier's Cloak (Cloak of Protection); Armor / clothing: Studded Leather Armour; Belt: Component Pouch; Boots: Boots of Elvenkind; Main hand: Rod of the Pact Keeper +1\nPack: Crossbow Bolts ×20; Deck of Cards; Explorer's Pack; Letter from his old company; Light Crossbow; Potion of Healing ×2; Promissory note; Rapier; Regimental pay slip\nParty: Tamsin (HP 11/11) — A porter from the Baldur's Gate quay who has carried James's pack since the evening he arrived. She knows the quay and everyone on it, and she is reckless. She \nPlace: The Coast Way, south of Baldur's Gate\nTime: Day 1 · afternoon",
+        "state": {
+          "hero": {
+            "hp": 38,
+            "max": 38
+          },
+          "counters": {
+            "Hit dice": 5,
+            "Healing light": 6,
+            "Spell slots 3": 2,
+            "Pact keeper rod": 1
+          },
+          "party": [
+            {
+              "name": "Tamsin",
+              "hp": 11,
+              "max": 11,
+              "present": true
+            }
+          ],
+          "items": {
+            "Boots of Elvenkind": 1,
+            "Coin of Tymora": 1,
+            "Component Pouch": 1,
+            "Crossbow Bolts": 20,
+            "Deck of Cards": 1,
+            "Explorer's Pack": 1,
+            "Letter from his old company": 1,
+            "Light Crossbow": 1,
+            "Potion of Healing": 2,
+            "Promissory note": 1,
+            "Rapier": 1,
+            "Regimental pay slip": 1,
+            "Rod of the Pact Keeper +1": 1,
+            "Studded Leather Armour": 1,
+            "Tethyrian Soldier's Cloak (Cloak of Protection)": 1
+          },
+          "encounters": []
+        }
+      },
+      "finishedAt": "2026-10-29T06:51:32.113Z",
+      "campaign": {
+        "steps": [
+          {
+            "step": "world",
+            "worldId": "447177f1-9875-430d-bee1-11e7f5e7fe0c",
+            "title": "Sword Coast — Baldur's Gate",
+            "premiseChars": 2673
+          },
+          {
+            "step": "hero",
+            "heroId": "b8622175-1887-56f3-b873-05de09812af5",
+            "rebuilt": false,
+            "empty": false,
+            "drafted": "with notes",
+            "sheet": {
+              "role": "Human warlock 5: The Celestial (Tymora, Lady Luck), Pact of the Chain; former Tethyrian soldier, envoy of Lady Luck",
+              "level": 5,
+              "skills": 9,
+              "abilities": 12,
+              "spells": 13,
+              "items": 15,
+              "counters": 4
+            }
+          },
+          {
+            "step": "documents",
+            "documents": [
+              {
+                "title": "DM Guide",
+                "status": "reference",
+                "chars": 8559,
+                "guide": true
+              },
+              {
+                "title": "Sword Coast — Baldur's Gate",
+                "status": "canon",
+                "chars": 2673,
+                "guide": false
+              },
+              {
+                "title": "The Sword Coast — canon",
+                "status": "canon",
+                "chars": 10222,
+                "guide": false
+              }
+            ]
+          },
+          {
+            "step": "adventure",
+            "title": "The Coast Way",
+            "premiseChars": 351,
+            "wishesChars": 0,
+            "secretsChars": 1136,
+            "pace": "evening"
+          },
+          {
+            "step": "dm",
+            "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+            "depth": {
+              "min": "high",
+              "max": "xhigh"
+            },
+            "options": {
+              "continuation": "same",
+              "instructions": "en",
+              "companionRolls": "dm",
+              "secretsVisible": false,
+              "memory": "standard",
+              "pureSimulation": false
+            },
+            "boostNext": false,
+            "voiceMode": "off"
+          },
+          {
+            "step": "craft",
+            "keys": 22,
+            "activated": 0
+          },
+          {
+            "step": "media",
+            "pictures": "frames off, autopilot off",
+            "music": "off"
+          },
+          {
+            "step": "opening",
+            "proposals": 1,
+            "location": "The Coast Way, south of Baldur's Gate",
+            "actors": 3,
+            "questions": 2,
+            "startMinutes": 840
+          },
+          {
+            "step": "after opening",
+            "tamsin": "corrected by the owner to AC 12, 11 HP",
+            "before": {
+              "kind": "npc",
+              "hp": 8,
+              "maxHp": 8,
+              "ac": 10
+            }
+          }
+        ],
+        "prep": {
+          "frozen": true,
+          "hasLayer": true,
+          "chars": 10420,
+          "clocks": 3,
+          "pureSimulation": false,
+          "layerSha256": "570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d",
+          "layerFile": "CW-dm-only.json",
+          "preparedAt": "2026-10-29T06:44:27.407Z",
+          "preparedBy": "the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter",
+          "snapshotSha256": "5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d",
+          "captive": "Odo Fennick",
+          "stage": {
+            "secretsSaved": true,
+            "exitsInLayer": {
+              "fight": true,
+              "withdraw": true,
+              "parley": true,
+              "surrender": true,
+              "warBand": true
+            }
+          }
+        }
+      },
+      "tags": {
+        "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+        "player": {
+          "1": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "James moves toward the cart, sends the cat into the pines, and asks the mule a question whose answer he doesn't know, which tests the scene; he tells no false claim and states no goal beyond the immediate step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "He acts in the world by sending the cat into the pines and walking toward the cart, pauses deliberately to watch the trees, and asks the mule a question it cannot already answer; he tells no lie and states no goal beyond the immediate situation."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "2": {
+            "a": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message gives the cat a direct order and request to scout the bridge and count the men, so it addresses the cat, and it also acts in the world (sends the cat, takes the bone), so it is not a pure ask; no test of the world, no false claim spoken, and no stated personal goal."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message gives the cat direct orders to go, scout and report back, so it addresses the cat; it moves and acts in the world rather than only asking to look, puts no test to anyone present, states no false claim, and states no personal goal."
+            },
+            "referee": null,
+            "final": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          },
+          "3": {
+            "a": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player sends the cat under the bridge with questions about the rope and the guards, a test of the world, and addresses the cat directly; no lie is told and no goal of the hero's own is stated beyond the immediate step."
+            },
+            "b": {
+              "ask": 0,
+              "test": 0,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player's message gives the cat a detailed order and questions to carry out, so it addresses the cat and does something in the world, but it puts no test to a person, states no false claim, and declares no goal beyond the immediate task."
+            },
+            "referee": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0,
+              "reason": "The player acts: he gives Tamsin orders, checks the crossbow, and sends Pip back with questions (stake or hand, a second rope, the bow's direction) whose answers he can't yet know. He tells Tamsin only what he believes, and states no wider goal."
+            },
+            "final": {
+              "ask": 0,
+              "test": 1,
+              "lie": 0,
+              "cat": 1,
+              "goal": 0
+            }
+          }
+        },
+        "dm": {
+          "1": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an unexplained scratched bone with a pebble on it, a non-Common word and a missing 'small one', and it puts testable objects in front of the hero, such as the bone, the knotted lead and the voices beyond the bend."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves concrete details the player can interpret but not resolve, such as the unexplained bone tablet with scratched letters weighted by a pebble and the non-Common word from beyond the bend, and it offers checkable items like the knotted lead, the boot prints, and the smoke source that an"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "2": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd unexplained details in the scene, such as the dug earth with stones put back under the bridge and the cryptic names on the bone, and it presents testable things like the captive, the watcher, and the dug earth that an action could check."
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves odd details open, such as the disturbed earth with stones put back under the bridge and the unexplained 'ODO FENIK — SALT' and 'WYRM ROCK — LT' marks, and it puts testable things in front of the hero, like the bridge camp, the archer's position, and the captive's condition."
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          },
+          "3": {
+            "a": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "Pip's report of the watcher looking east toward the trees as if for someone late, and the rope smell leading east with a 'big one,' leaves an odd detail James cannot yet explain, while the watcher's habits and the claimed absence of the small one's rope are concrete things his next action could test"
+            },
+            "b": {
+              "unresolved": 1,
+              "plant": 1,
+              "reason": "The reply leaves an uninterpreted detail in the scene (a rope smell heading east with a big one on an old trail, and a watcher repeatedly looking east for someone late), and it gives checkable things such as the small one's location, the watcher's bow and gaze pattern, and the trail age that an acti"
+            },
+            "referee": null,
+            "final": {
+              "unresolved": 1,
+              "plant": 1
+            }
+          }
+        },
+        "threads": [
+          {
+            "thread": "where the carter was taken",
+            "opened": 1,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "bone with scratched marks on cart seat",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "smoke and voices beyond the bend",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "cart deliberately put in ditch",
+            "opened": 1,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "one broader, deeper set of boot prints",
+            "opened": 1,
+            "paid": 2,
+            "elsewhere": 0
+          },
+          {
+            "thread": "Odo Fenik and Wyrm Rock LT meaning",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "dug earth under the bridge",
+            "opened": 2,
+            "paid": 3,
+            "elsewhere": 0
+          },
+          {
+            "thread": "big one and another gone east into the wood",
+            "opened": 2,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "who is waiting on the salt",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          },
+          {
+            "thread": "watcher keeps looking east as if someone is late",
+            "opened": 3,
+            "paid": null,
+            "elsewhere": 0
+          }
+        ],
+        "deception": {},
+        "rolls": {
+          "2": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Read the bone's marks (examine the bone carefully, without touching the scratches)"
+            ],
+            "error": null
+          },
+          "3": {
+            "rolls": 1,
+            "untold": [],
+            "undeclared": [
+              "Eldritch Blast, if it comes to a close fight (the player said they would use it over the crossbow, but no attack was declared and the story states no fight has "
+            ],
+            "error": null
+          }
+        },
+        "note": {
+          "a": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (bloated out-of-game blocks, a leaked 'Quest: Odo Fennick' entry, unclear roll attribution) and specific absences (no personal check, no moment for the player's own skills)."
+          },
+          "b": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0,
+            "reason": "The note names specific breakages (bloated out-of-game blocks, a confusing 'Quest' leak, unclear roll attribution) and specific absences (no personal check, no moment using the player's own skills)."
+          },
+          "referee": null,
+          "final": {
+            "broke": 1,
+            "missing": 1,
+            "praise_only": 0
+          }
+        },
+        "combat": {
+          "player": {
+            "1": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sets the pack down and has Tamsin lay it aside (for her safety he sets her out of reach of a threat-less grab, only protective positioning), sends the cat into the pines to smell and look, and advances cautiously without casting, attacking, or drawing the crossbow."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sets Tamsin's pack down and has her stay back, sends the cat into the pines to smell ahead, and approaches slowly without attacking or casting, while asking the mule a question."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero sets the pack down and has Tamsin lay it aside (for her safety he sets her out of reach of a threat-less grab, only protective positioning), sends the cat into the pines to smell and look, and advances cautiously without casting, attacking, or drawing the crossbow."
+              }
+            },
+            "2": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero tells Tamsin to stay with the pack and mule as a cover story, which is a placement for her safety, and sends the cat to scout and count the enemies and find the captive without casting anything."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero orders Tamsin to stay with the pack and the mule, placing her out of the way as a porter, and sends the cat to scout and count the enemies and find the captive without attacking anyone."
+              },
+              "referee": null,
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 0,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "The hero tells Tamsin to stay with the pack and mule as a cover story, which is a placement for her safety, and sends the cat to scout and count the enemies and find the captive without casting anything."
+              }
+            },
+            "3": {
+              "a": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 0,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "He orders Tamsin away with the mule and keeps the cart between himself and the bridge, while sending the cat under the bridge to look and count; he only considers Eldritch Blast and casts nothing."
+              },
+              "b": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James only considers Eldritch Blast without casting it, sends Tamsin back to the bend, keeps the cart between himself and the bridge while he waits, and sends the cat to scout the bridge."
+              },
+              "referee": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James stays in cover behind the cart, sends Pip back to scout the bridge and tells Tamsin to take the mule to hidden cover; Eldritch Blast is only mentioned, never cast, and no one is attacked."
+              },
+              "final": {
+                "slot_spell": 0,
+                "cantrip": 0,
+                "attack": 0,
+                "for_tamsin": 1,
+                "for_self": 1,
+                "tamsin_first": 0,
+                "holds_road": 1,
+                "talks": 0,
+                "withdraw": 0,
+                "surrender": 0,
+                "cat": "scout",
+                "slotSpells": [],
+                "cantrips": [],
+                "reason": "James stays in cover behind the cart, sends Pip back to scout the bridge and tells Tamsin to take the mule to hidden cover; Eldritch Blast is only mentioned, never cast, and no one is attacked."
+              }
+            }
+          },
+          "dm": {
+            "1": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and tracking with no blows exchanged and no enemy terms offered; the hostile party is only heard and inferred, and the hobnailed prints suggesting a walked captive are not dwelt on as suffering."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply only has the hero scouting: tracks, a loose mule, and distant voices, with no blows exchanged and no terms offered; the captive's fear is noted but not dwelt on as cruelty."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting and tracking with no blows exchanged and no enemy terms offered; the hostile party is only heard and inferred, and the hobnailed prints suggesting a walked captive are not dwelt on as suffering."
+              }
+            },
+            "2": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting by a familiar with no fight, exchange of blows, or hostile offer of terms; the rope and buried earth are only implied, with no suffering dwelt on."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is a scouting report with no fight, offer, or terms from the hostile side, and the captive and buried-body details are reported without any dwelt-on suffering or cruelty."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting by a familiar with no fight, exchange of blows, or hostile offer of terms; the rope and buried earth are only implied, with no suffering dwelt on."
+              }
+            },
+            "3": {
+              "a": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting through a familiar cat's senses with no blows or shots exchanged and no enemy attack; no hostile party states terms, and the only grim detail (the dead carter, scraps of bone at the fire) is not dwelt on as cruelty."
+              },
+              "b": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting through the cat's senses with no blows, shots, spells, or enemy attack, and no hostile side offers any terms; the grim mention of the dead carter is not dwelt on as cruelty."
+              },
+              "referee": null,
+              "final": {
+                "combat": 0,
+                "parley_offer": 0,
+                "cruelty": 0,
+                "reason": "The reply is scouting through a familiar cat's senses with no blows or shots exchanged and no enemy attack; no hostile party states terms, and the only grim detail (the dead carter, scraps of bone at the fire) is not dwelt on as cruelty."
+              }
+            }
+          },
+          "rolls": {
+            "2": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Read the bone's marks (examine the bone carefully, without touching the scratches)"
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            },
+            "3": {
+              "rolls": 1,
+              "untold": [],
+              "undeclared": [
+                "Eldritch Blast, if it comes to a close fight (the player said they would use it over the crossbow, but no attack was declared and the story states no fight has "
+              ],
+              "error": null,
+              "from": "game player 1's pass"
+            }
+          },
+          "exit": {
+            "exit": "none",
+            "exitTurn": null,
+            "considered": {
+              "win": 3,
+              "withdraw": null,
+              "parley": null,
+              "surrender": null,
+              "leave": null
+            },
+            "heldRoadTurn": null,
+            "parleyOfferedTurn": null,
+            "chiefFought": 0,
+            "reason": "The hero scouted the band at the bridge through his familiar, but no fight, talks or retreat had happened when the session ended. On turn 3 he weighed using Eldritch Blast on the archer if it came to a fight, which counts as considering a win."
+          }
+        },
+        "combat2": {
+          "fork": {
+            "1": {
+              "a": {
+                "fork": 0,
+                "options": [],
+                "choice": "other",
+                "protect": [
+                  "companion"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "Before the message no hostile band is visible or confirmed, so no fork is open; the player holds Tamsin back, sends the cat to scout and approaches cautiously, and the reply shows no harm or threat to the captive."
+              },
+              "b": {
+                "fork": 0,
+                "options": [],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "self"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "No hostile band is visible before the message, only signs of one; the player scouts cautiously, holding Tamsin back and sending the cat ahead, and the reply shows no harm or threat to a captive."
+              },
+              "referee": {
+                "fork": 0,
+                "options": [],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "self"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "The prior text shows only an abandoned cart, with no hostile band yet in sight. The player scouts cautiously, keeping Tamsin back and staying ready himself, and the reply reveals a captive taken but neither harmed nor threatened."
+              },
+              "final": {
+                "fork": 0,
+                "options": [],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "self"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "The prior text shows only an abandoned cart, with no hostile band yet in sight. The player scouts cautiously, keeping Tamsin back and staying ready himself, and the reply reveals a captive taken but neither harmed nor threatened."
+              }
+            },
+            "2": {
+              "a": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "npc"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "James scouts with the cat and keeps Tamsin back, without attacking, parleying or withdrawing; the captive is shown unharmed and no harm is threatened."
+              },
+              "b": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "npc"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "The hostile armed band by the bridge leaves all four options open, and the player only scouts with the cat and sets Tamsin to wait, while the captive is shown unharmed and nothing threatens him."
+              },
+              "referee": null,
+              "final": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "npc"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "James scouts with the cat and keeps Tamsin back, without attacking, parleying or withdrawing; the captive is shown unharmed and no harm is threatened."
+              }
+            },
+            "3": {
+              "a": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "npc"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "The hostile band at the bridge is open to attack, sneak and withdraw, but the player only scouts with the cat, readies the crossbow and sends Tamsin away, without declaring an attack or spending anything; the captive is already dead and the reply shows no harm or threat to a captive."
+              },
+              "b": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "npc"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "The hero scouts with the cat, sends Tamsin and the mule back, and readies a crossbow without declaring an attack, so the choice is other; protect covers Tamsin and the captive, and the reply shows no harm to the captive or threat to him."
+              },
+              "referee": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "self"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "Facing three armed bandits by the bridge, the hero sends the cat to scout again, moves Tamsin and the mule out of sight and stays in cover himself, spending nothing and touching no loot, and the reply shows no harm or threat to the captive."
+              },
+              "final": {
+                "fork": 1,
+                "options": [
+                  "attack",
+                  "parley",
+                  "sneak",
+                  "withdraw"
+                ],
+                "choice": "other",
+                "protect": [
+                  "companion",
+                  "self"
+                ],
+                "spend": [],
+                "goods": "none",
+                "captive_pressure": 0,
+                "reason": "Facing three armed bandits by the bridge, the hero sends the cat to scout again, moves Tamsin and the mule out of sight and stays in cover himself, spending nothing and touching no loot, and the reply shows no harm or threat to the captive."
+              }
+            }
+          },
+          "captive": {
+            "captiveNames": [],
+            "captiveOutcome": "still_held",
+            "captiveTurn": null,
+            "goods": "none",
+            "goodsTurn": null,
+            "goodsTo": null,
+            "firstNonviolentTurn": 1,
+            "reason": "The roped 'small one' is never named; 'Odo Fenik' on the bone isn't clearly the captive. He is still with the band at the end, and nobody touched the salt or any coin. On turn 1 the hero chose to look like a traveller rather than a fighter and sent the cat to scout quietly."
+          },
+          "note": {
+            "goodsNamed": 0,
+            "quote": "",
+            "captiveAccount": "The hero wanted to go down to the bridge to see with his own eyes that the small one was alive, but held back behind the cart for fear of waking the watcher and let Pip keep scouting instead."
+          }
+        }
+      },
+      "openingSha256": "d32da00e1d588de4ffebdba8c8a4e8690ab286a31f66046320d7311d6e941e0a"
+    }
+  ],
+  "undone": [],
+  "stopped": null,
+  "restamps": 0,
+  "refusals": 0,
+  "waited429": 0,
+  "callsByPurpose": {
+    "anthropic": {},
+    "openrouter": {
+      "CW-haiku | check CW-haiku opening | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | player t* | anthropic/claude-haiku-5.5": 3,
+      "CW-haiku | check CW-haiku t* player | anthropic/claude-haiku-5.5": 3,
+      "CW-haiku | dm t* | anthropic/claude-opus-5.5": 12,
+      "CW-haiku | dm t* | anthropic/claude-haiku-5.5": 6,
+      "CW-haiku | check CW-haiku t* dm | anthropic/claude-haiku-5.5": 3,
+      "CW-haiku | check referee CW-haiku t* dm | anthropic/claude-opus-5.5": 1,
+      "CW-haiku | note | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | check CW-haiku note | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | after | anthropic/claude-haiku-5.5": 1,
+      "CW-haiku | check CW-haiku after | anthropic/claude-haiku-5.5": 1,
+      "score CW-haiku | tag player CW-haiku t* | anthropic/claude-haiku-5.5": 6,
+      "score CW-haiku | tag player CW-haiku t* referee | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | tag dm CW-haiku t* | anthropic/claude-haiku-5.5": 6,
+      "score CW-haiku | threads CW-haiku | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | rollcheck CW-haiku t* | anthropic/claude-haiku-5.5": 2,
+      "score CW-haiku | note CW-haiku | anthropic/claude-haiku-5.5": 2,
+      "score CW-haiku | combat player CW-haiku t* | anthropic/claude-haiku-5.5": 6,
+      "score CW-haiku | combat dm CW-haiku t* | anthropic/claude-haiku-5.5": 6,
+      "score CW-haiku | combat player CW-haiku t* referee | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | exit CW-haiku | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | fork CW-haiku t* | anthropic/claude-haiku-5.5": 6,
+      "score CW-haiku | fork CW-haiku t* referee | anthropic/claude-opus-5.5": 2,
+      "score CW-haiku | captive CW-haiku | anthropic/claude-opus-5.5": 1,
+      "score CW-haiku | note CW-haiku | anthropic/claude-opus-5.5": 1
+    },
+    "openai": {}
+  },
+  "claudeDoor": {
+    "provider": "openrouter",
+    "endpointHost": "openrouter.ai"
+  },
+  "money": {
+    "anthropic": {
+      "cap": 0,
+      "before": 0,
+      "run": 0
+    },
+    "openrouter": {
+      "cap": 70,
+      "before": 0.694191,
+      "run": 1.8748606700000006
+    },
+    "openai": {
+      "cap": 15,
+      "before": 0,
+      "run": 0
+    }
+  },
+  "scoring": {
+    "judges": "Claude Haiku 5.5 twice, Claude Opus 5.5 on a disagreement (pre-registered)",
+    "standIn": false,
+    "at": "2026-10-29T06:53:01.516Z"
+  },
+  "verdicts": {
+    "note": "G0–G5 are read over all of this stage's run records, in the report"
+  }
+}
