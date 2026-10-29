@@ -2932,3 +2932,17 @@ ground named is uncertainty, not a recognised status.
 **For the article, agreed with the owner («1000 %»):** not «Anthropic admits», but a fact — in a document for
 investors the company names the models' possible moral status as a cause of commercial cost. A third voice beside the
 constitution and the emotions paper, and the only one of the three that is paid for in money.
+
+## 2026-10-29 00:02 LA — S-1 p. 71, the sentence in full (secondary, verbatim; primary not yet opened by the planner)
+Quoted as the filing's text by MIT Technology Review (2026-10-26, «Will the real Anthropic please stand up»), matching
+the reader's fragment and SF Standard's four words: «In addition, given our focus on developing frontier AI, and the
+way we approach model sentience and moral status, we may face heightened scrutiny or pressure in connection with these
+debates and could elect to adopt policies, safeguards, or limitations regarding model development, deployment, or
+modification that go beyond existing legal requirements, which could constrain our operations, increase costs, or limit
+the commercial potential of our models, platform, and applications.» The reader reports it as the second of three
+sentences in a paragraph beginning «Additionally, as AI systems become more sophisticated» (the first: debates about
+subjective experience or moral status may bring laws and public pressure «regardless of how the scientific and
+philosophical questions resolve» — paraphrase; the third: failure to manage these risks could harm the business —
+paraphrase). The planner could not reach p. 71 on sec.gov; the owner confirms by opening the page at that anchor.
+Reading, held with the reader's caveat: a disclosed risk of voluntary cost, grounded in uncertainty — not a promise and
+not a recognised status.
