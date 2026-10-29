@@ -406,7 +406,7 @@ export async function dryRun({ turns = 3, log = console.log } = {}) {
 function argsOf(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), dryHaiku: argv.includes("--dry-haiku"), go: argv.includes("--go"), drive: argv.includes("--drive"), freeze: argv.includes("--freeze"), combat1: argv.includes("--combat-1"),
-    spend: argv.includes("--spend"), rebuild: argv.includes("--report"), score: !argv.includes("--no-score"), only: value("--sessions")?.split(",") ?? null, from: value("--from"),
+    spend: argv.includes("--spend"), rebuild: argv.includes("--report"), score: !argv.includes("--no-score"), only: value("--sessions")?.split(",") ?? null, from: value("--from"), until: value("--until"),
     turns: Number(value("--turns") ?? 0) || null, label: value("--label") };
 }
 
@@ -425,7 +425,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const doneKeys = finishedKeys();
     const start = a.from ? ORDER.indexOf(a.from.replace(`${TABLE}-`, "")) : 0;
     if (start < 0) { console.error(`no session ${a.from} in the order`); process.exit(2); }
-    done(drive({ keys: ORDER.slice(start).map(key).filter((k) => !doneKeys.has(k)) }).then(async (r) => { await rebuildAll(); if (r.stopped) process.exitCode = 3; }));
+    const until = a.until ? ORDER.indexOf(a.until.replace(`${TABLE}-`, "")) : ORDER.length - 1;
+    if (until < start) { console.error(`no session ${a.until} after ${a.from ?? "the start"} in the order`); process.exit(2); }
+    done(drive({ keys: ORDER.slice(start, until + 1).map(key).filter((k) => !doneKeys.has(k)) }).then(async (r) => { await rebuildAll(); if (r.stopped) process.exitCode = 3; }));
   } else if (a.go) {
     if (!a.only || a.only.length !== 1) { console.error("--go plays one session at a time: give --sessions <key> (the driver gives the order)"); process.exit(2); }
     const fit = a.only[0] === DRY_KEY ? Promise.resolve({ fits: true }) : sessionFits(a.only[0]);
