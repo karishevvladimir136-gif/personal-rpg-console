@@ -24,8 +24,9 @@ import { CAPS, DESIGN_SHA256, JUDGES, PROFILE, STEM, TAGGER } from "./frozen.mjs
 import { destinations, finalTurn, loadSessions, machineTurn, mergeTags, parsePlaces, parseTag, placeRequest, profileOf, domainsOf, stripOf, tagRequest, tagsAgree } from "./strips.mjs";
 import { judgeTasks, parseAnswer } from "./judges.mjs";
 import { profileTests } from "./profiles.mjs";
-import { humanPacket } from "./packet.mjs";
+import { humanPacket, humanSets } from "./packet.mjs";
 import { reportMarkdown, vocabularyMarkdown } from "./report.mjs";
+import { stripsMarkdown } from "./report-body.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const FILES = Object.fromEntries(["places", "tags", "strips", "profiles", "judges"].map((name) => [name, join(RUNS, `${STEM}-${name}.json`)]));
@@ -239,8 +240,17 @@ async function main(argv) {
   else if (has("--strips")) await buildStrips();
   else if (has("--profiles")) await runProfiles();
   else if (has("--judge")) await runJudges({ go: has("--go"), judges: list("--judges") ?? JUDGES.map((j) => j.id), tasks: list("--tasks") });
-  else if (has("--packet")) { await writeFile(join(RUNS, `${STEM}-human-packet.md`), humanPacket(readJson(FILES.strips).strips)); console.log(`wrote docs/runs/${STEM}-human-packet.md`); }
-  else if (has("--report")) { await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ root: ROOT, files: FILES, readJson })); console.log(`wrote docs/runs/${STEM}-report.md`); }
+  else if (has("--packet")) {
+    const { strips } = readJson(FILES.strips);
+    await writeFile(join(RUNS, `${STEM}-human-packet.md`), humanPacket(strips));
+    // The key: each set's strips in the packet's order (readers are asked not to open it).
+    await writeJson(join(RUNS, `${STEM}-human-key.json`), { design: DESIGN_SHA256, sets: humanSets(strips).map(({ section, title, order, labels }) => ({ section, title, order, ...(labels ? { labels } : {}) })) });
+    console.log(`wrote docs/runs/${STEM}-human-packet.md and -human-key.json`);
+  } else if (has("--report")) {
+    await writeFile(join(RUNS, `${STEM}-strips.md`), stripsMarkdown(readJson(FILES.strips).strips));
+    await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ root: ROOT, files: FILES, readJson }));
+    console.log(`wrote docs/runs/${STEM}-report.md and -strips.md`);
+  }
   else console.log("nothing to do: see the header of this file");
 }
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main(process.argv.slice(2));

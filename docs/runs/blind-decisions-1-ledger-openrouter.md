@@ -1,6 +1,6 @@
 # Blind decisions 1 — the OpenRouter ledger
 
-Cap $20; spent before this run $0.0000; this run $0.0112; total $0.0112; 14 calls.
+Cap $20; spent before this run $0.0000; this run $0.0193; total $0.0193; 25 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -12,3 +12,6 @@ Cap $20; spent before this run $0.0000; this run $0.0112; total $0.0112; 14 call
 | smoke | smoke VL:V-sol#t* | anthropic/claude-haiku-5.5 | 2 | 7790 | 0 | 0 | 1303 | $0.0014 | 0 | 0 | 0 |
 | smoke | smoke SW:B-sol-2#t* | anthropic/claude-haiku-5.5 | 1 | 4516 | 0 | 0 | 649 | $0.0008 | 0 | 0 | 0 |
 | smoke | smoke G1:C-fable#t* | anthropic/claude-haiku-5.5 | 1 | 5281 | 0 | 0 | 469 | $0.0008 | 0 | 0 | 0 |
+| places | places pass 1 | anthropic/claude-haiku-5.5 | 5 | 4765 | 0 | 0 | 6803 | $0.0039 | 0 | 0 | 0 |
+| places | places pass 2 | anthropic/claude-haiku-5.5 | 5 | 4765 | 0 | 0 | 6892 | $0.0039 | 0 | 0 | 0 |
+| places | places pass 3 | anthropic/claude-haiku-5.5 | 1 | 359 | 0 | 0 | 590 | $0.0003 | 0 | 0 | 0 |
