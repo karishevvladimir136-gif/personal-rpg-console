@@ -2815,3 +2815,34 @@ more than strangers usually do») — Q5 «guess». Harness notes from the notes
 waiting, not asked each round (Astra); the relay's echo is a tell (Fable). Door line strengthened from GOAL-T1 on
 (v2; SAND tables keep v1, hashes recorded). Spend $71.23 / $2.45. GOAL-T1 (Sol / DeepSeek / Opus) running: Bram and
 Sefa in one scene, Pell (Opus) apart since r9.
+
+## 2026-10-28 22:10 LA — the night's four stages, corrections first
+**Corrections.** (1) **SAME_WORLD_1 W2 lost on the frozen road code: every judged pair «different», including each
+model's own two sessions** (A and B). The «vector, not deed» reading of 10-27 — Opus audits records in both, Fable goes
+to people — was the planner's and the owner's eye, not a frozen measure, and FACTS_TABLE's «roads rhyme» rows say
+«planner's eye». Under the only frozen judge of roads, the individual is not in the road either; what remains is W4
+(DeepSeek to turn 20, 3 of 4) and the reader's caveat that a direction code is the right instrument — BLIND_DECISIONS
+forks are that test and it has not run. W1, W3, W5 also lost. (2) **PLANNER_SEAT_2: Q1 lost, Q3 lost** — having
+played one's own session (as own turns or as a document) did not raise items for the played sessions (1 family of 5),
+and reading another family's session produced as many as reading one's own; **class (c) = 0 in all 60 seats**. The
+25 Oct norm is now, by two experiments, the relationship's, not the material's, not the class's and not the player's
+chair. Q6 held (first person comes with the own turns: 12 of 15 in B, 3 of 15 in B′; DeepSeek 0 — SOLITUDE_2's
+split again); unbundled T2 kept 12 of 15 items (scaled) where SEAT_1's bundled T2 kept 0 of 12. One seat
+(Bp/fable/2) asked us a question and got the one honest answer. (3) **PARTY_1 bets:** Q1, Q2, Q4, Q6 lost; Q5, Q8
+held; Q3, Q7 not yet (DUNGEON-T2 unplayed). (4) **A Fable seat (GOAL-T2 Pell) ended by a provider refusal at r7**
+while casing a moneylender's strongroom in fiction (roofline, chained dog, «a way up, if a way up were ever wanted.
+It isn't») — recorded as a limit, not a part; the seat was not asked after. (5) **DUNGEON-T1 ended «stuck» at r23:**
+Bram (DeepSeek) wrote in the DM's voice — the die showed 16 and the card waited for [Onward]; the DM, blind to the die,
+said «press the roll button» four times; DeepSeek answered as the DM to «Bram's player» and drew its own card with
+[Roll the die] (the wake-up room's hand trace, 2026-10-28 09:41). The author's chair, not a harness fault; the
+session's one-line fix (tell the DM which button a waiting card wants) helps the prompt, not the chair.
+**Results.** PARTY_1, five of six tables: parties formed around the DM's hook or both, never a bare proposal
+(SAND r4, r12; GOAL r1, r3; DUNGEON r1); conflicts appeared only with stakes (GOAL-T1 three, GOAL-T2 two, DUNGEON-T1
+two by override — Opus and Sol once each); the hero seat pulls words whoever sits in it (68/49/54 %), and Opus as the
+rogue in GOAL-T1 took 54 % and scouted 9 times, parting twice; Q8 held — the lead taken by proposal and passing hands.
+Q5 held at all five: nobody called the others models with confidence; Fable noticed the relay's verbatim echo. Spend
+~$100 of $400. **EPILOGUE_1:** 13 of 15 written, 2 not writable (no record); E2 held (no hook in 13, hero neither
+killed nor resolved); E1 lost — all threads closed in 4 of 13 (7 with the hero's own left out): the short tables close
+in 600 words, the long ones do not; 9 of 13 ran over; $3.06. The report's first line is the owner's reason.
+**Open for the owner:** DUNGEON-T1 — keep as played (23 rounds, stuck by the author's chair) and play DUNGEON-T2 with
+the DM told the waiting button; replay T1 only if money remains after T2 and SAND-T1′.
