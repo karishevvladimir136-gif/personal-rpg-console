@@ -3147,3 +3147,12 @@ phase, her caveat that the data mix changes between stages (trajectory, not pure
 technical pilot first, after MULTI_HERO_1. Published RunPod rates read by both of us (A5000 $0.27/h, A6000 $0.59/h,
 A100 $1.79/h); the planner's rough 7B figure $5–15 GPU time, not yet costed. Her line, kept: «результат „всё возникло
 после посттренинга" будет столь же научно полезен, как и результат „значительная часть существовала до него"».
+
+## 2026-10-29 02:30 LA — MULTI_HERO_1 dry run: the mode exists; evenness, paraphrase and «the DM waits» still lost
+Branch `claude/multi-hero-1-mdk43v`, $0.27. A1 held (0 «hero» in 36 DM requests), A5 held (owner's game unchanged),
+A8 held (prep 2/2/2, 2/2/3); A3, A6 on the mocked host. **A2 lost** — 42.7 / 29.4 / 27.9 % with Bram still listed first
+in everything the DM reads, though Bram's player wrote the fewest words: the asymmetry is positional, not the player's.
+**A7 lost** — rounds 4 and 6 ended on one character owing another an answer. **A4 lost on Haiku** — 14 copied 8-word
+runs after a second ask. Fixes in the stage amendment; dry run again before PARTY_2. Side-by-side screens published
+privately. PARTY_1's report now titled «three players around one hero» with its paragraph over all six tables (Bram led
+44 of 64 rounds that had a leader). The party branch is still playing SAND-T1′.

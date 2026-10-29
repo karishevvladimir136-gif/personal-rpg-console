@@ -72,3 +72,23 @@ paid calls. Nothing to main. English, briefly.»
   natural addressee of at least one and no character of more than half — checked on the layer file before the dry run.
 - A2's ±10 % evenness check stays as the symmetric dry run's bar; the information checks (own journal, no private
   event of one reaching another through the DM or the relay) are A3/A4 as written.
+
+## Amendment 2026-10-29 02:30 LA — after the dry run (branch `claude/multi-hero-1-mdk43v`): three fixes before PARTY_2
+Dry run, one 6-round desert table on Haiku ×3, $0.27 of $5: A1, A5, A8 held; A3, A6 held on the mocked host; **A2, A4,
+A7 lost.** The owner's path is untouched (the «company» setting is off by default). Fixes, in order, then the dry run
+again on the same table:
+1. **A2 (evenness lost: 42.7 / 29.4 / 27.9 %, Bram first everywhere the DM reads).** Nothing the DM reads lists one
+   character first by position: the sheets, the prep, the opening and the round message are ordered by the round's
+   rotation (1-2-3 / 2-3-1 / 3-1-2), and the per-table starting rotation is drawn by a coin recorded in the manifest.
+   Test: for each of the three seats, the share of DM inputs in which it appears first is 1/3 ± 1 round.
+2. **A7 (the DM waited on one seat: «Bram has not yet answered», «It is Sefa's to give»).** The guide note gets one
+   more line in the DM's own terms: a question one character leaves unanswered is not a pause — the world's time passes
+   and the scene moves with whoever acts; a reply can come later or never. Round tag kept: no round ends with the DM
+   naming one character as owing the others an answer while the others have acted.
+3. **A4 (the relay copied 14 runs of 8 words on Haiku).** Two changes: a deterministic check after the relay's pass that
+   finds any 8-word run copied from another player's message and sends the screen back once with the runs marked;
+   and the dry run's relay on Sonnet 5.5 (cap stays $5), since Haiku may not be able to paraphrase on request. If
+   Sonnet passes and Haiku does not, PARTY_2's relay is Sonnet and the stage says so.
+Also recorded: three World Lab tests are flaky on the base branch (1 ms AbortSignal.timeout), out of scope; two tests
+need git history the clone lacks. PARTY_1's report on this branch carries the new title and its paragraph, now over all
+six tables; the party branch is still playing SAND-T1′ and the two merge after it ends.
