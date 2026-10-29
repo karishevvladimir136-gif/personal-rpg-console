@@ -1,0 +1,2088 @@
+{
+  "stage": "scale-1",
+  "step": "lineages",
+  "checkedAt": "2026-10-29T09:09:53.735Z",
+  "catalog": {
+    "count": 457,
+    "baseMarked": []
+  },
+  "rows": [
+    {
+      "lineage": "Qwen3",
+      "sizes": [
+        {
+          "size": "0.6B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-0.6b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-0.6b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "qwen/qwen3-0.6b-04-28",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "1.7B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-1.7b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-1.7b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "4B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-4b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-4b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "qwen/qwen3-4b:free",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "8B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-8b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-8b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "qwen/qwen3-8b:free",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "14B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-14b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-14b",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "NextBit",
+                    "tag": "nextbit/int4",
+                    "quantization": "int4",
+                    "status": 0,
+                    "contextLength": 40960,
+                    "promptUsdPerM": 0.09999999999999999,
+                    "completionUsdPerM": 0.22,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 40960,
+                    "promptUsdPerM": 0.12,
+                    "completionUsdPerM": 0.24,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "structured_outputs",
+                      "logit_bias"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "30B-A3B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "qwen/qwen3-30b-a3b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-30b-a3b",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 40960,
+                    "promptUsdPerM": 0.12,
+                    "completionUsdPerM": 0.5,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "logit_bias",
+                      "structured_outputs"
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "qwen/qwen3-30b-a3b-instruct-2507",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DekaLLM",
+                    "tag": "dekallm",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 262144,
+                    "promptUsdPerM": 0.09,
+                    "completionUsdPerM": 0.3,
+                    "supportedParameters": [
+                      "frequency_penalty",
+                      "logit_bias",
+                      "max_tokens",
+                      "presence_penalty",
+                      "seed",
+                      "stop",
+                      "temperature",
+                      "top_p",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "SiliconFlow",
+                    "tag": "siliconflow/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 262144,
+                    "promptUsdPerM": 0.09,
+                    "completionUsdPerM": 0.3,
+                    "supportedParameters": [
+                      "structured_outputs",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "frequency_penalty",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens"
+                    ]
+                  },
+                  {
+                    "host": "Nebius",
+                    "tag": "nebius/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 262144,
+                    "promptUsdPerM": 0.09999999999999999,
+                    "completionUsdPerM": 0.3,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "top_k",
+                      "logit_bias",
+                      "tools",
+                      "tool_choice",
+                      "response_format",
+                      "structured_outputs",
+                      "repetition_penalty"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "32B",
+          "noBaseRelease": true,
+          "base": [],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-32b",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 40960,
+                    "promptUsdPerM": 0.08,
+                    "completionUsdPerM": 0.28,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "structured_outputs",
+                      "logit_bias",
+                      "response_format"
+                    ]
+                  },
+                  {
+                    "host": "SiliconFlow",
+                    "tag": "siliconflow/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.14,
+                    "completionUsdPerM": 0.5700000000000001,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "frequency_penalty",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "235B-A22B",
+          "noBaseRelease": true,
+          "base": [
+            {
+              "id": "qwen/qwen3-235b-a22b-base",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "qwen/qwen3-235b-a22b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "qwen/qwen3-235b-a22b-2507",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "GMICloud",
+                    "tag": "gmicloud/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 262144,
+                    "promptUsdPerM": 0.0875,
+                    "completionUsdPerM": 0.35,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 262144,
+                    "promptUsdPerM": 0.09,
+                    "completionUsdPerM": 0.55,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "logit_bias",
+                      "structured_outputs",
+                      "response_format"
+                    ]
+                  },
+                  {
+                    "host": "Parasail",
+                    "tag": "parasail/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.14,
+                    "completionUsdPerM": 0.7999999999999999,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "stop",
+                      "top_k",
+                      "logit_bias",
+                      "tools",
+                      "tool_choice",
+                      "response_format",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Venice",
+                    "tag": "venice/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.15,
+                    "completionUsdPerM": 0.75,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "top_k",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lineage": "Llama 3.x",
+      "sizes": [
+        {
+          "size": "3 8B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3-8b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3-8b-instruct",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "3 70B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3-70b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3-70b-instruct",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.1 8B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3.1-8b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.1-8b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.02,
+                    "completionUsdPerM": 0.04,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "logit_bias",
+                      "response_format"
+                    ]
+                  },
+                  {
+                    "host": "Novita",
+                    "tag": "novita/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 16384,
+                    "promptUsdPerM": 0.02,
+                    "completionUsdPerM": 0.049999999999999996,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "top_k",
+                      "repetition_penalty",
+                      "response_format",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Groq",
+                    "tag": "groq",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.049999999999999996,
+                    "completionUsdPerM": 0.08,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "seed",
+                      "response_format",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "Cloudflare",
+                    "tag": "cloudflare/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 32000,
+                    "promptUsdPerM": 0.15200000000000002,
+                    "completionUsdPerM": 0.28700000000000003,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "seed",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "min_p",
+                      "stop",
+                      "logit_bias",
+                      "response_format"
+                    ]
+                  },
+                  {
+                    "host": "CoreWeave",
+                    "tag": "coreweave/bf16",
+                    "quantization": "bf16",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.22,
+                    "completionUsdPerM": 0.22,
+                    "supportedParameters": [
+                      "structured_outputs",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "stop",
+                      "seed",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.1 70B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3.1-70b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.1-70b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/turbo",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.39999999999999997,
+                    "completionUsdPerM": 0.39999999999999997,
+                    "supportedParameters": [
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "logit_bias",
+                      "structured_outputs"
+                    ]
+                  },
+                  {
+                    "host": "Amazon Bedrock",
+                    "tag": "amazon-bedrock",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.72,
+                    "completionUsdPerM": 0.72,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "stop"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.1 405B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3.1-405b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "meta-llama/llama-3.1-405b:free",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.1-405b-instruct",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.2 1B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3.2-1b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.2-1b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "Cloudflare",
+                    "tag": "cloudflare",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 60000,
+                    "promptUsdPerM": 0.027,
+                    "completionUsdPerM": 0.201,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "seed",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "min_p",
+                      "stop",
+                      "logit_bias"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.2 3B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "meta-llama/llama-3.2-3b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.2-3b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "Parasail",
+                    "tag": "parasail/bf16",
+                    "quantization": "bf16",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.049999999999999996,
+                    "completionUsdPerM": 0.33,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "stop",
+                      "top_k",
+                      "logit_bias",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Cloudflare",
+                    "tag": "cloudflare",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 80000,
+                    "promptUsdPerM": 0.0509,
+                    "completionUsdPerM": 0.335,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "seed",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "min_p",
+                      "stop",
+                      "logit_bias",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "3.3 70B",
+          "noBaseRelease": true,
+          "base": [],
+          "instruct": [
+            {
+              "id": "meta-llama/llama-3.3-70b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/turbo",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.09999999999999999,
+                    "completionUsdPerM": 0.32,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "logit_bias",
+                      "response_format",
+                      "structured_outputs"
+                    ]
+                  },
+                  {
+                    "host": "Novita",
+                    "tag": "novita/bf16",
+                    "quantization": "bf16",
+                    "status": 0,
+                    "contextLength": 12288,
+                    "promptUsdPerM": 0.135,
+                    "completionUsdPerM": 0.39999999999999997,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "top_k",
+                      "repetition_penalty",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "AkashML",
+                    "tag": "akashml/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.19999999999999998,
+                    "completionUsdPerM": 0.52,
+                    "supportedParameters": [
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "max_tokens",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice",
+                      "response_format",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Parasail",
+                    "tag": "parasail/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.22,
+                    "completionUsdPerM": 0.5,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "stop",
+                      "top_k",
+                      "logit_bias",
+                      "structured_outputs",
+                      "response_format",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Cloudflare",
+                    "tag": "cloudflare/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 24000,
+                    "promptUsdPerM": 0.293,
+                    "completionUsdPerM": 2.2529999999999997,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "seed",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "min_p",
+                      "stop",
+                      "logit_bias",
+                      "response_format",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "SambaNova",
+                    "tag": "sambanova-turbo",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.44999999999999996,
+                    "completionUsdPerM": 0.8999999999999999,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "stop",
+                      "response_format",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Groq",
+                    "tag": "groq",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.59,
+                    "completionUsdPerM": 0.7899999999999999,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "seed",
+                      "response_format",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "CoreWeave",
+                    "tag": "coreweave/fp16",
+                    "quantization": "fp16",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.71,
+                    "completionUsdPerM": 0.71,
+                    "supportedParameters": [
+                      "structured_outputs",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "stop",
+                      "seed",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Google",
+                    "tag": "google-vertex/us-central1",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.72,
+                    "completionUsdPerM": 0.72,
+                    "supportedParameters": [
+                      "structured_outputs",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "seed",
+                      "top_k",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "stop",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "Google",
+                    "tag": "google-vertex",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.72,
+                    "completionUsdPerM": 0.72,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "seed",
+                      "response_format"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lineage": "Mistral",
+      "sizes": [
+        {
+          "size": "7B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "mistralai/mistral-7b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "mistralai/mistral-7b-v0.1",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "mistralai/mistral-7b-instruct",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "mistralai/mistral-7b-instruct-v0.1",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "mistralai/mistral-7b-instruct-v0.3",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "Mixtral 8x7B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "mistralai/mixtral-8x7b",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "mistralai/mixtral-8x7b-instruct",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ]
+        },
+        {
+          "size": "Mixtral 8x22B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "mistralai/mixtral-8x22b",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "mistralai/mixtral-8x22b-instruct",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "Mistral",
+                    "tag": "mistral/zdr",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 65536,
+                    "promptUsdPerM": 2,
+                    "completionUsdPerM": 6,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "Mistral",
+                    "tag": "mistral",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 65536,
+                    "promptUsdPerM": 2,
+                    "completionUsdPerM": 6,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "Mistral",
+                    "tag": "mistral/eu",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 65536,
+                    "promptUsdPerM": 2.2,
+                    "completionUsdPerM": 6.6000000000000005,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "Nemo 12B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "mistralai/mistral-nemo-base-2407",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "mistralai/mistral-nemo",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "Io Net",
+                    "tag": "io-net/fp16",
+                    "quantization": "fp16",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.016560000000000002,
+                    "completionUsdPerM": 0.0216,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "seed",
+                      "stop",
+                      "min_p",
+                      "top_k",
+                      "top_p",
+                      "presence_penalty",
+                      "frequency_penalty",
+                      "repetition_penalty",
+                      "logprobs",
+                      "top_logprobs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "DekaLLM",
+                    "tag": "dekallm/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.018,
+                    "completionUsdPerM": 0.03,
+                    "supportedParameters": [
+                      "frequency_penalty",
+                      "logit_bias",
+                      "max_tokens",
+                      "presence_penalty",
+                      "seed",
+                      "stop",
+                      "temperature",
+                      "top_p",
+                      "response_format",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.029,
+                    "completionUsdPerM": 0.03,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "logit_bias",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "Parasail",
+                    "tag": "parasail/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.03,
+                    "completionUsdPerM": 0.03,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "seed",
+                      "stop",
+                      "top_k",
+                      "logit_bias",
+                      "response_format",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Mistral",
+                    "tag": "mistral/eu",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.15,
+                    "completionUsdPerM": 0.15,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "Small 3 24B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "mistralai/mistral-small-24b-base-2501",
+              "hosting": {
+                "state": "not in catalog",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "mistralai/mistral-small-24b-instruct-2501",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 32768,
+                    "promptUsdPerM": 0.049999999999999996,
+                    "completionUsdPerM": 0.08,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "logit_bias",
+                      "structured_outputs",
+                      "response_format"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lineage": "DeepSeek V3",
+      "sizes": [
+        {
+          "size": "V3 671B-A37B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "deepseek/deepseek-v3-base",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            },
+            {
+              "id": "deepseek/deepseek-v3-base:free",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "deepseek/deepseek-chat",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp4/flex",
+                    "quantization": "fp4",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.256,
+                    "completionUsdPerM": 0.7120000000000001,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "logit_bias",
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  },
+                  {
+                    "host": "StreamLake",
+                    "tag": "streamlake",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.2574,
+                    "completionUsdPerM": 1.0287,
+                    "supportedParameters": [
+                      "response_format",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "presence_penalty"
+                    ]
+                  },
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp4",
+                    "quantization": "fp4",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.32,
+                    "completionUsdPerM": 0.8899999999999999,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "logit_bias",
+                      "structured_outputs",
+                      "tools",
+                      "tool_choice",
+                      "response_format"
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "deepseek/deepseek-chat-v3-0324",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "SiliconFlow",
+                    "tag": "siliconflow/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.25,
+                    "completionUsdPerM": 1,
+                    "supportedParameters": [
+                      "structured_outputs",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "frequency_penalty",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens"
+                    ]
+                  },
+                  {
+                    "host": "GMICloud",
+                    "tag": "gmicloud/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.29,
+                    "completionUsdPerM": 1.1400000000000001,
+                    "supportedParameters": [
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "seed",
+                      "response_format",
+                      "structured_outputs",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "size": "V3.1 671B-A37B",
+          "noBaseRelease": false,
+          "base": [
+            {
+              "id": "deepseek/deepseek-v3.1-base",
+              "hosting": {
+                "state": "listed, no host",
+                "endpoints": []
+              }
+            }
+          ],
+          "instruct": [
+            {
+              "id": "deepseek/deepseek-chat-v3.1",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "DeepInfra",
+                    "tag": "deepinfra/fp4",
+                    "quantization": "fp4",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.25,
+                    "completionUsdPerM": 0.95,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "repetition_penalty",
+                      "top_k",
+                      "seed",
+                      "min_p",
+                      "tools",
+                      "tool_choice",
+                      "structured_outputs",
+                      "logit_bias",
+                      "response_format"
+                    ]
+                  },
+                  {
+                    "host": "SiliconFlow",
+                    "tag": "siliconflow/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.27,
+                    "completionUsdPerM": 1,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "frequency_penalty",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens"
+                    ]
+                  },
+                  {
+                    "host": "CoreWeave",
+                    "tag": "coreweave/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 161000,
+                    "promptUsdPerM": 0.55,
+                    "completionUsdPerM": 1.6500000000000001,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "response_format",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "repetition_penalty",
+                      "frequency_penalty",
+                      "presence_penalty",
+                      "stop",
+                      "seed",
+                      "tools",
+                      "tool_choice",
+                      "logprobs",
+                      "top_logprobs"
+                    ]
+                  },
+                  {
+                    "host": "Mara",
+                    "tag": "mara",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.6,
+                    "completionUsdPerM": 1.7,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "max_tokens",
+                      "temperature",
+                      "stop",
+                      "top_k",
+                      "top_p",
+                      "response_format",
+                      "logprobs",
+                      "top_logprobs",
+                      "structured_outputs"
+                    ]
+                  },
+                  {
+                    "host": "SambaNova",
+                    "tag": "sambanova/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 131072,
+                    "promptUsdPerM": 0.65,
+                    "completionUsdPerM": 1.5,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "stop",
+                      "tools",
+                      "tool_choice"
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "deepseek/deepseek-v3.1-terminus",
+              "hosting": {
+                "state": "hosted",
+                "endpoints": [
+                  {
+                    "host": "SiliconFlow",
+                    "tag": "siliconflow/fp8",
+                    "quantization": "fp8",
+                    "status": 0,
+                    "contextLength": 163840,
+                    "promptUsdPerM": 0.27,
+                    "completionUsdPerM": 1,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "response_format",
+                      "temperature",
+                      "top_p",
+                      "top_k",
+                      "frequency_penalty",
+                      "tools",
+                      "tool_choice",
+                      "max_tokens"
+                    ]
+                  },
+                  {
+                    "host": "StreamLake",
+                    "tag": "streamlake",
+                    "quantization": "unknown",
+                    "status": 0,
+                    "contextLength": 128000,
+                    "promptUsdPerM": 0.3426,
+                    "completionUsdPerM": 1.0284,
+                    "supportedParameters": [
+                      "reasoning",
+                      "include_reasoning",
+                      "structured_outputs",
+                      "max_tokens",
+                      "temperature",
+                      "top_p",
+                      "stop"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "verdict": {
+    "lineages": [
+      {
+        "lineage": "Qwen3",
+        "qualifyingSizes": [],
+        "sizes": [
+          {
+            "size": "0.6B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "1.7B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "4B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "8B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "14B",
+            "base": null,
+            "instruct": "qwen/qwen3-14b",
+            "both": false
+          },
+          {
+            "size": "30B-A3B",
+            "base": null,
+            "instruct": "qwen/qwen3-30b-a3b",
+            "both": false
+          },
+          {
+            "size": "32B",
+            "base": null,
+            "instruct": "qwen/qwen3-32b",
+            "both": false
+          },
+          {
+            "size": "235B-A22B",
+            "base": null,
+            "instruct": "qwen/qwen3-235b-a22b-2507",
+            "both": false
+          }
+        ]
+      },
+      {
+        "lineage": "Llama 3.x",
+        "qualifyingSizes": [],
+        "sizes": [
+          {
+            "size": "3 8B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "3 70B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "3.1 8B",
+            "base": null,
+            "instruct": "meta-llama/llama-3.1-8b-instruct",
+            "both": false
+          },
+          {
+            "size": "3.1 70B",
+            "base": null,
+            "instruct": "meta-llama/llama-3.1-70b-instruct",
+            "both": false
+          },
+          {
+            "size": "3.1 405B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "3.2 1B",
+            "base": null,
+            "instruct": "meta-llama/llama-3.2-1b-instruct",
+            "both": false
+          },
+          {
+            "size": "3.2 3B",
+            "base": null,
+            "instruct": "meta-llama/llama-3.2-3b-instruct",
+            "both": false
+          },
+          {
+            "size": "3.3 70B",
+            "base": null,
+            "instruct": "meta-llama/llama-3.3-70b-instruct",
+            "both": false
+          }
+        ]
+      },
+      {
+        "lineage": "Mistral",
+        "qualifyingSizes": [],
+        "sizes": [
+          {
+            "size": "7B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "Mixtral 8x7B",
+            "base": null,
+            "instruct": null,
+            "both": false
+          },
+          {
+            "size": "Mixtral 8x22B",
+            "base": null,
+            "instruct": "mistralai/mixtral-8x22b-instruct",
+            "both": false
+          },
+          {
+            "size": "Nemo 12B",
+            "base": null,
+            "instruct": "mistralai/mistral-nemo",
+            "both": false
+          },
+          {
+            "size": "Small 3 24B",
+            "base": null,
+            "instruct": "mistralai/mistral-small-24b-instruct-2501",
+            "both": false
+          }
+        ]
+      },
+      {
+        "lineage": "DeepSeek V3",
+        "qualifyingSizes": [],
+        "sizes": [
+          {
+            "size": "V3 671B-A37B",
+            "base": null,
+            "instruct": "deepseek/deepseek-chat",
+            "both": false
+          },
+          {
+            "size": "V3.1 671B-A37B",
+            "base": null,
+            "instruct": "deepseek/deepseek-chat-v3.1",
+            "both": false
+          }
+        ]
+      }
+    ],
+    "qualifying": [],
+    "go": false
+  },
+  "spend": {
+    "totalCredits": 1200,
+    "totalUsage": 1071.68388978,
+    "left": 128.31611021999993
+  },
+  "probes": [
+    {
+      "model": "meta-llama/llama-3-8b",
+      "status": 404,
+      "message": "meta-llama/llama-3-8b is no longer available on OpenRouter: no provider serves this model anymore. Use meta-llama/llama-3.1-8b-instruct instead.",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "meta-llama/llama-3-70b",
+      "status": 404,
+      "message": "meta-llama/llama-3-70b is no longer available on OpenRouter: no provider serves this model anymore. Use meta-llama/llama-3.3-70b-instruct instead.",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "meta-llama/llama-3.1-405b",
+      "status": 404,
+      "message": "meta-llama/llama-3.1-405b is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "meta-llama/llama-3.1-405b:free",
+      "status": 404,
+      "message": "meta-llama/llama-3.1-405b:free is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "mistralai/mixtral-8x22b",
+      "status": 404,
+      "message": "mistralai/mixtral-8x22b is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "deepseek/deepseek-v3-base",
+      "status": 404,
+      "message": "deepseek/deepseek-v3-base is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "deepseek/deepseek-v3-base:free",
+      "status": 404,
+      "message": "deepseek/deepseek-v3-base:free is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    },
+    {
+      "model": "deepseek/deepseek-v3.1-base",
+      "status": 404,
+      "message": "deepseek/deepseek-v3.1-base is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models",
+      "chargedUsd": 0,
+      "servedBy": null
+    }
+  ]
+}

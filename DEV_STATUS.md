@@ -1,6 +1,23 @@
 # Development status
 
-**Current milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
+**Current milestone: scale 1** (`docs/stages/SCALE_1.md` on `claude/handoff`, with the 2026-10-29 02:05 amendment),
+branch `claude/scale-1` from `origin/claude/persona-solitude-2`. Nothing to `main`. **Stopped at step 1, as the stage
+requires; waiting for the owner.** Report `docs/runs/scale-1-report.md`; lineage table `docs/runs/scale-1-lineages.md`
+(record `…-lineages.json`).
+
+- **What was built:** `scripts/persona-emotions/scale-1-lineages.mjs`. It makes free GETs: the OpenRouter catalog,
+  each candidate id's endpoints and the credit. Then it sends a 1-token routing probe on each base id the catalog
+  lists. Tests: `tests/scale-1-lineages.test.mjs` (3, no network).
+- **Result:** OpenRouter hosts no base weights. The DeepSeek V3 and V3.1 base, Llama 3 8B and 70B, Llama 3.1 405B and
+  Mixtral 8x22B base ids are listed with no host: our key's probe gets HTTP 404 «no provider serves this model
+  anymore». The Qwen3, Llama 3.1 8B/70B, Llama 3.2 and Mistral 7B/Nemo/Small base ids aren't in the catalog. No model
+  among all 457 is marked base. So 0 lineages have both (2 needed): no protocol check, no harness run, no freeze, no
+  rooms. Spent $0 of $30 OpenRouter and $0 of $0 OpenAI.
+- **Verification:** the new test passes 3 of 3. Lint (zero warnings) on the new files, typecheck and build pass.
+- **Next (the owner's choice):** a host that serves base weights (a new allowed domain), or self-hosted base
+  checkpoints (Qwen3 Base, Llama 3.1 8B, OLMo with its intermediate checkpoints).
+
+**Previous milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
 `fa60f971`), branch `claude/persona-solitude-2` from `origin/claude/persona-solitude-1`. Nothing to `main`. **Run
 complete (all 160 rooms) and reported; waiting for the owner.** Report `docs/runs/persona-solitude-2-report.md`;
 transcripts `docs/runs/persona-solitude-2-transcripts/M{arm}/{family}/{n}.md`; dry run `…-dry-run.md` (room hash
