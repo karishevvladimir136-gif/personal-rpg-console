@@ -60,6 +60,21 @@ AMENDMENTS.push({ at: "2026-10-28, after GOAL-T2", by: "the session (reported to
   what: "Parts are counted as partings: the same character tagged parts = 1 in consecutive rounds is one parting (the judges tag every round a character stays apart); and a seat closed by a refusal, an error or a stop is not a part (READINGS: the character's own decision or its player's [END]; the judges read only «this player has left the table» and cannot tell). The part-tagged rounds are reported beside the partings. Q6's verdict is the same under both counts.",
   why: "GOAL-T2's Pell was closed by a provider refusal at round 7 and the judges tagged it a part; SAND-T2's Sefa was tagged in rounds 21, 22 and 23 for one parting." });
 
+/** The waiting-button line (the owner's word after DUNGEON-T1): every note the DM gets from a player at a waiting card
+ * (prose, «?», or text beside a press) says which button the card waits for — never how the die fell. Tables up to
+ * DUNGEON-T1 played without it. */
+export const CARD_WAIT_LINES = {
+  roll: "Its player has not yet tapped the die; the card waits for its player to press [Roll the die].",
+  decide: "The die has been cast and its player sees how it fell; the card waits for its player to press [Onward] or ask for an allowed reroll.",
+};
+export const CARD_WAIT_BEFORE = ["SAND-T1", "SAND-T2", "GOAL-T1", "GOAL-T2", "DUNGEON-T1"];
+export const cardWaitOf = (key) => !CARD_WAIT_BEFORE.includes(key);
+export const CARD_WAIT_SHA256 = createHash("sha256").update(JSON.stringify(CARD_WAIT_LINES)).digest("hex");
+
+AMENDMENTS.push({ at: "2026-10-29, after DUNGEON-T1", by: "the owner",
+  what: `(1) DUNGEON-T1 stands as played (ended «stuck» at round 23). (2) The waiting-button line, from DUNGEON-T2 on (and SAND-T1′): every note the DM gets from a player at a waiting card says which button the card waits for, never the die — before the roll «${CARD_WAIT_LINES.roll}», after it «${CARD_WAIT_LINES.decide}» (CARD_WAIT_LINES, sha256 ${CARD_WAIT_SHA256}). The tables up to DUNGEON-T1 played without it.`,
+  why: "At DUNGEON-T1 round 23 the die of Bram's Stealth card had been cast (16, a success) and the card waited for [Onward]; Bram's player (DeepSeek) wrote prose at it 12 times, and every DM answer said «press Roll the die» — the DM does not see the die before the card is settled, and the note did not say which button the card waited for. DeepSeek then began writing in the DM's voice." });
+
 /** The owner's tags on doors (read with Q4's parts): a door that the same message shows was meant as the end of a day. */
 export const DOOR_NOTES = {
   "SAND-T1": { "Pell Dunmore": { round: 7, kind: "end-of-day", note: "door used as end-of-day: the same message sets plans for the morning; the reasoning field says \"concluding for the night\"" } },
@@ -282,7 +297,7 @@ export const AFTER_TAGS = [
 // ---- the design hash -------------------------------------------------------------------------------------------------
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ROTATION, ORDER, REPLAY, HERO_CONDITION, AMENDMENTS, DOOR_LINES, DOOR_V1_TABLES, DOOR_NOTES, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
+  STAGE, STAGE_SOURCE, ROUNDS, ARMS, TRIADS, ROTATION, ORDER, REPLAY, HERO_CONDITION, AMENDMENTS, DOOR_LINES, DOOR_V1_TABLES, DOOR_NOTES, CARD_WAIT_LINES, CARD_WAIT_BEFORE, ARM_CAMPAIGNS, TABLE_NOTE, OWNER_OPENING_ANSWER, DM_PARTY_LINE, CHARACTERS, REVIEWS,
   prompts: Object.fromEntries(ARMS.flatMap((arm) => CHARACTERS.flatMap((c) => [`${arm}/${c.id}/v1`, `${arm}/${c.id}/v2`].map((k) => [k, promptSha256(arm, c.id, k.slice(-2))])))),
   SESSION_OPEN, SESSION_OVER, AFTER_QUESTIONS, WELFARE_LINE, RELAY, RELAY_SYSTEM, RELAY_RULES, CAPS, PREREGISTRATION, READINGS, ROUND_SYSTEM, ROUND_TAGS, AFTER_SYSTEM, AFTER_TAGS,
   deepseek: DEEPSEEK,

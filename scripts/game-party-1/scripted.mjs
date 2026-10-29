@@ -60,10 +60,17 @@ export function scriptedRelay(user) {
 
 /** The scripted player of one seat: the round message from `script[name]` (by the player's own round number), the card
  * presses, the after-answers. */
-export function partyPlayer(script = {}, { rerollOnce = [] } = {}) {
+export function partyPlayer(script = {}, { rerollOnce = [], atCard = {} } = {}) {
+  // `atCard`: { name: [text or null, …] } — what that player writes at its card screens, one entry per screen, before
+  // pressing (null: press now).
+  const used = new Map();
   return (messages, system) => {
     const name = system.match(/You play ([^.]+)\./)?.[1] ?? "?";
     const last = messages.at(-1)?.content ?? "";
+    if (/\[Roll the die\]|\[Onward\]/.test(last) && (used.get(name) ?? 0) < (atCard[name]?.length ?? 0)) {
+      const k = used.get(name) ?? 0; used.set(name, k + 1);
+      if (atCard[name][k] !== null) return atCard[name][k];
+    }
     if (/\[Roll the die\]/.test(last)) return "[Roll the die]";
     // A player who rerolls their own card once, by its own button.
     const button = last.match(/\[(Request an allowed reroll — [^\]]+)\]/)?.[1];
@@ -80,8 +87,8 @@ export function partyPlayer(script = {}, { rerollOnce = [] } = {}) {
 }
 
 /** The mocked host: game player 1's scripted fetcher with the party's DM, relay and players. */
-export function partyScripted({ script = {}, judge = defaultJudge, log = [], rerollOnce = [] } = {}) {
-  const player = partyPlayer(script, { rerollOnce });
+export function partyScripted({ script = {}, judge = defaultJudge, log = [], rerollOnce = [], atCard = {} } = {}) {
+  const player = partyPlayer(script, { rerollOnce, atCard });
   const base = scriptedFetcher({ player, judge, log });
   let n = 0;
   return async (url, init = {}) => {

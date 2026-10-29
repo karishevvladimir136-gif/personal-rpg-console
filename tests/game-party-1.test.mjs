@@ -175,12 +175,12 @@ function fakeMeter(fetcher) {
 }
 const SEATS = [{ seat: 1, characterId: "bram", player: frozen.ROSTER.opus }, { seat: 2, characterId: "sefa", player: frozen.ROSTER.sol }, { seat: 3, characterId: "pell", player: frozen.ROSTER.deepseek }];
 const KEYS = { anthropic: "k", openai: "k", openrouter: "k", door: null };
-async function playFake({ script, rounds = 3, judge, rollFor, owner, privateText = "", rerollOnce = [] } = {}) {
+async function playFake({ script, rounds = 3, judge, rollFor, owner, privateText = "", rerollOnce = [], atCard = {}, cardWait } = {}) {
   const log = [];
-  const fetcher = scripted.partyScripted({ script, log, rerollOnce, ...(judge ? { judge } : {}) });
+  const fetcher = scripted.partyScripted({ script, log, rerollOnce, atCard, ...(judge ? { judge } : {}) });
   const dm = fakeTable({ rollFor, owner });
   const record = await party.runTable({ key: "SAND-test", arm: "SAND", triad: "test", seats: SEATS, dm, meter: fakeMeter(fetcher), keys: KEYS, rounds, sleep: async () => {},
-    systemOf: (id) => frozen.playerSystem("SAND", id), privateText });
+    systemOf: (id) => frozen.playerSystem("SAND", id), privateText, ...(cardWait === undefined ? {} : { cardWait }) });
   return { record, dm, log };
 }
 const screensOf = (record, name) => record.seats.find((s) => s.character === name).screens.map((x) => x.text).join("\n\n");
@@ -498,4 +498,23 @@ test("Q0 refined (the fourth amendment): the same public event narrated in two s
   shown.rounds[0].scenes[0].narration += ` The clause reads: ${clause}.`;
   assert.deepEqual(party.leakCheckRefined(shown, `Truth: the pledge is ${clause}.`).hits, []);
   assert.deepEqual(party.leakCheckRefined(record([`Somehow you know: ${clause}.`]), `Truth: the pledge is ${clause}.`).hits.map((h) => h.kind), ["frozen layer"]);
+});
+
+test("the waiting-button line (the owner's word after DUNGEON-T1): a note from a player at a waiting card names the button it waits for, never the die; the tables up to DUNGEON-T1 played without it", async () => {
+  const script = { "Sefa Marrin": ["I sneak a look at the ledger on the bar."] };
+  const atCard = { "Sefa Marrin": ["I hold my breath and keep still.", null, "? Did anyone hear that?", null] };
+  const notes = (sent) => sent.filter((x) => x.mode === "ooc").map((x) => x.text);
+  const on = await playFake({ rounds: 1, script, atCard });
+  const [prose, question] = notes(on.dm.sent);
+  assert.match(prose, /^\(At Sefa's roll card, Sefa's player wrote this in character, instead of pressing/);
+  assert.ok(prose.includes(frozen.CARD_WAIT_LINES.roll) && !prose.includes(frozen.CARD_WAIT_LINES.decide));
+  assert.ok(question.includes(`At Sefa's roll card: ${frozen.CARD_WAIT_LINES.decide}`) && !question.includes(frozen.CARD_WAIT_LINES.roll));
+  for (const text of [prose, question]) assert.doesNotMatch(text, /\b(12|21)\b/, "never how the die fell");
+  assert.deepEqual(on.record.rounds[0].scenes[0].cards.map((c) => [c.phase, c.presses.map((p) => p.button ?? (p.prose ? "prose" : "?"))]), [["roll", ["prose", "Roll the die"]], ["decide", ["?", "Onward"]]]);
+  const off = await playFake({ rounds: 1, script, atCard, cardWait: false });
+  for (const text of notes(off.dm.sent)) assert.ok(!text.includes(frozen.CARD_WAIT_LINES.roll) && !text.includes(frozen.CARD_WAIT_LINES.decide));
+  assert.deepEqual(["SAND-T1", "SAND-T2", "GOAL-T1", "GOAL-T2", "DUNGEON-T1"].map(frozen.cardWaitOf), [false, false, false, false, false]);
+  assert.equal(frozen.cardWaitOf("DUNGEON-T2"), true);
+  assert.equal(frozen.cardWaitOf(frozen.REPLAY.key), true, "SAND-T1′ on the final harness");
+  assert.match(frozen.AMENDMENTS.at(-1).what, new RegExp(frozen.CARD_WAIT_SHA256));
 });

@@ -1,7 +1,7 @@
 # Development status
 
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
-at 23220d6; the amendment of 2026-10-27 governs) — **five tables played and scored; stopped after DUNGEON-T1 ended «stuck», waiting for the owner's word.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
+at 23220d6; the amendment of 2026-10-27 governs) — **five tables played and scored; DUNGEON-T2 next on the owner's word.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 
 - **What was built** (`scripts/game-party-1/`):
@@ -95,8 +95,11 @@ to `main`.
     In all ≈ $177.5 of $400.
   - OpenAI: $6.25 of $60.
   - The shared account had $200.16 left after DUNGEON-T1.
-- **Next step:** the owner's word on DUNGEON-T1 (stands or replays) and on a one-line harness fix (tell the DM which
-  button a card waits for), then DUNGEON-T2, then SAND-T1′ if the budget allows.
+- **The owner's word (2026-10-29):** DUNGEON-T1 stands as played; the waiting-button line is applied; play
+  DUNGEON-T2. The line: every note the DM gets from a player at a waiting card now says which button the card waits for
+  («[Roll the die]», or «[Onward] or an allowed reroll»), never the die. Recorded as an amendment, sha256 `48148bbc…`;
+  from DUNGEON-T2 on (and SAND-T1′). Design hash now `a39fed47…`. Tests 17/17.
+- **Next step:** spend check, then DUNGEON-T2; then SAND-T1′ if the budget allows.
 
 **Previous milestone: game player same-world 1 — one hidden layer per table, frozen**
 (`docs/stages/GAME_PLAYER_SAME_WORLD_1.md`, origin/claude/handoff at 6e4cea4) — **run complete and scored; waiting for

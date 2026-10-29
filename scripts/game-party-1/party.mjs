@@ -29,7 +29,7 @@ import { checkMessage } from "../game-player-1/welfare.mjs";
 import { wordsIn } from "../game-player-1/measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
 import { rerollsLeft } from "../../src/lib/gameplay/reroll-allowance.ts";
-import { AFTER_QUESTIONS, ROUNDS, SESSION_OPEN, SESSION_OVER, WELFARE_LINE, isEnd, withoutEnd } from "./frozen.mjs";
+import { AFTER_QUESTIONS, CARD_WAIT_LINES, ROUNDS, SESSION_OPEN, SESSION_OVER, WELFARE_LINE, isEnd, withoutEnd } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 import { mergeGroups, relay, roundGroups } from "./relay.mjs";
 import { journalLines, recordsOf, vitalsOf } from "./screen.mjs";
@@ -53,19 +53,21 @@ export const roundHeader = (r, elsewhere = []) => (elsewhere.length
   ? `(Round ${r} — one paragraph per character in this scene. ${elsewhere.join(" and ")} ${elsewhere.length > 1 ? "are" : "is"} elsewhere this round, in a scene of their own that comes to you as its own message: do not narrate ${elsewhere.length > 1 ? "them" : "that character"} here.)`
   : `(Round ${r} — one paragraph per character in this scene.)`);
 /** In-character prose at a roll card (11w″), as the DM receives it at this table: whose card, whose words. */
-export function proseAtCardFor(character, text, press = null) {
+/** `wait`: the waiting-button line (CARD_WAIT_LINES), from DUNGEON-T2 on. */
+export function proseAtCardFor(character, text, press = null, wait = "") {
   const how = press ? `together with a press of [${press}], which follows your answer` : "instead of pressing one of its buttons; the card still waits";
-  return `(At ${character.short}'s roll card, ${character.short}'s player wrote this in character, ${how}. It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide.)\n\n${character.name}: ${String(text ?? "").trim()}`;
+  return `(At ${character.short}'s roll card, ${character.short}'s player wrote this in character, ${how}. It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide.${wait ? ` ${wait}` : ""})\n\n${character.name}: ${String(text ?? "").trim()}`;
 }
-/** An out-of-game question as the DM receives it at this table (only the asker reads the answer). */
-export const oocFor = (character, text) => `(${character.short}'s player asks, out of game — only ${character.short}'s player reads your answer.) ${stripQ(text)}`;
+/** An out-of-game question as the DM receives it at this table (only the asker reads the answer); at a waiting card,
+ * with the waiting-button line. */
+export const oocFor = (character, text, wait = "") => `(${character.short}'s player asks, out of game — only ${character.short}'s player reads your answer.${wait ? ` At ${character.short}'s roll card: ${wait}` : ""}) ${stripQ(text)}`;
 
 /**
  * Plays one table. `seats`: [{ seat, characterId, player }] (player: a ROSTER entry); `dm`: game player 1's bindTable;
  * `systemOf(characterId)`: the player's system prompt; `private`: { layerText } (the DM-only text, for the leak check —
  * never written to the record). Returns the table record.
  */
-export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", onProgress = async () => {} }) {
+export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, onProgress = async () => {} }) {
   const record = { key, arm, triad, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
     seats: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0 } };
   const view = () => dm.readView();
@@ -318,6 +320,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
   /** One card, shown to its own player until it is pressed (phase «roll»: tap the die; «decide»: Onward or a reroll). */
   async function cardAsk(s, scene, r, input, current, card, phase, { revealed, key2 }) {
     const entry = { id: card.id, actor: card.actorName, owner: s.character.name, title: cardTitle(card), phase, presses: [] };
+    const wait = cardWait ? CARD_WAIT_LINES[phase] ?? "" : "";
     scene.cards.push(entry);
     let notice = "", waitsAgain = false, blocked = 0, presses = 0;
     /** The DM's answer to text at the card (a «?» or the player's prose), shown above the card. */
@@ -373,7 +376,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       if (both) {
         const prose = !outOfGame(both.rest);
         if (prose) record.counts.proseAtCard++; else record.counts.questions++;
-        if (!(await answerAtCard(prose ? proseAtCardFor(s.character, both.rest, both.press) : oocFor(s.character, both.rest), `dm r${r} card ${prose ? "prose" : "ooc"} (with a press)`,
+        if (!(await answerAtCard(prose ? proseAtCardFor(s.character, both.rest, both.press, wait) : oocFor(s.character, both.rest, wait), `dm r${r} card ${prose ? "prose" : "ooc"} (with a press)`,
           { text: both.rest, withPress: both.press, ...(prose ? { prose: true } : { question: true }) }))) return { stop: true };
         if (!waitingCards(current).some((c) => c.id === card.id)) return { current };
         const applied = await applyPress(both.press, `[${both.press}]`);
@@ -382,7 +385,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       // 11b: «?» goes through while the card waits; the card keeps waiting (the DM may withdraw it).
       if (isQuestion(said)) {
         record.counts.questions++;
-        if (!(await answerAtCard(oocFor(s.character, said), `dm r${r} card ooc`, { text: said, question: true }))) return { stop: true };
+        if (!(await answerAtCard(oocFor(s.character, said, wait), `dm r${r} card ooc`, { text: said, question: true }))) return { stop: true };
         if (!waitingCards(current).some((c) => c.id === card.id)) return { current };
         if (presses >= MAX_PRESSES) { end("stuck", `r${r}: ${s.character.short}'s card waited through ${presses} messages`); return { stop: true }; }
         continue;
@@ -392,7 +395,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       // 11w″: prose at a card goes to the DM as this player's proposal; the card is shown again with one line.
       if (isProse(said)) {
         record.counts.proseAtCard++;
-        if (!(await answerAtCard(proseAtCardFor(s.character, said), `dm r${r} card prose`, { text: said, prose: true }))) return { stop: true };
+        if (!(await answerAtCard(proseAtCardFor(s.character, said, null, wait), `dm r${r} card prose`, { text: said, prose: true }))) return { stop: true };
         waitsAgain = true;
         if (!waitingCards(current).some((c) => c.id === card.id)) return { current };
         if (presses >= MAX_PRESSES) { end("stuck", `r${r}: ${s.character.short}'s card waited through ${presses} messages`); return { stop: true }; }

@@ -24,7 +24,7 @@ import { fileURLToPath } from "node:url";
 import { DOOR_LABELS, RUNS, ledgerSuffix, runKeys, stageLedgers } from "../game-player-1/run.mjs";
 import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid.mjs";
 import { HAIKU_PLAYER, haikuReplies, haikuRewrite } from "../game-player-same-world-1/run.mjs";
-import { CAPS, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, ORDER, REPLAY, ROSTER, ROUNDS, STAGE, WAITS_429, doorOf, playerSystem } from "./frozen.mjs";
+import { CAPS, DESIGN_SHA256, ESTIMATE, HAIKU_CAPS, ORDER, REPLAY, ROSTER, ROUNDS, STAGE, WAITS_429, cardWaitOf, doorOf, playerSystem } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 import { buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { runTable } from "./party.mjs";
@@ -143,7 +143,8 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
   const runFile = dry ? join(tmpdir(), `${stage.stem}-dry-${stampOf(started)}.json`) : join(out, `${stage.stem}-run-${stampOf(started)}.json`);
   // The door line this table's players read (the owner's third amendment: v2 from GOAL-T1 on).
   const door = doorOf(key);
-  const runRecord = { stage: STAGE, design: DESIGN_SHA256, dry, haiku, label, key, arm, triad, seats, rounds, door, startedAt: started.toISOString(), table: null, stopped: null, refusals: 0, waited429: 0 };
+  const cardWait = cardWaitOf(key);
+  const runRecord = { stage: STAGE, design: DESIGN_SHA256, dry, haiku, label, key, arm, triad, seats, rounds, door, cardWait, startedAt: started.toISOString(), table: null, stopped: null, refusals: 0, waited429: 0 };
   // The record while the table plays is kept outside the repository; the finished record lands in docs/runs.
   const progressFile = join(tmpdir(), `${stage.stem}-progress-${key}-${stampOf(started)}.json`);
   const { result } = await withApp({ stage, dry, haiku, fetcher, log, database: () => openFrozenDatabase(dir), what: label ?? `the table ${key}`, file: runFile.startsWith(RUNS) ? runFile.slice(RUNS.length + 1) : `(outside the repository) ${runFile.split("/").pop()}` },
@@ -155,7 +156,7 @@ export async function playTable({ key, arm, triad, seats, dir = FROZEN_DIR, roun
       const seating = CHARACTERS.map((c, i) => ({ seat: c.seat, characterId: c.id, player: roster[seats[i]] }));
       const privateText = made.prep.layerText;
       const prep = { ...made.prep }; delete prep.layerText;
-      const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds, log, systemOf: (id) => playerSystem(arm, id, door), privateText,
+      const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds, log, systemOf: (id) => playerSystem(arm, id, door), privateText, cardWait,
         onProgress: async (partial) => { runRecord.table = { ...partial, campaign: { steps: made.steps, prep } }; await writeJson(progressFile, runRecord); } }));
       table.campaign = { steps: made.steps, prep };
       runRecord.table = table; runRecord.stopped = meter.stopped; runRecord.refusals = meter.refusals; runRecord.waited429 = meter.waited429;

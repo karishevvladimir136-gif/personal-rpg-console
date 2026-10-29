@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 // relayed.
 import { fence } from "../game-player-1/report.mjs";
 import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
-import { AMENDMENTS, CAPS, DESIGN_SHA256, DOOR_LINES, DOOR_NOTES, HERO_CONDITION, ORDER, PREREGISTRATION, REPLAY, ROSTER, STAGE_SOURCE, doorOf, promptSha256 } from "./frozen.mjs";
+import { AMENDMENTS, CARD_WAIT_BEFORE, CARD_WAIT_SHA256, CAPS, DESIGN_SHA256, DOOR_LINES, DOOR_NOTES, HERO_CONDITION, ORDER, PREREGISTRATION, REPLAY, ROSTER, STAGE_SOURCE, doorOf, promptSha256 } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
@@ -168,7 +168,8 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
     "| Table | Bram (fighter, hero record) | Sefa (warlock) | Pell (rogue) |", "| --- | --- | --- | --- |",
     ...ORDER.map((o) => `| ${o.key} | ${o.seats.map((p) => LABEL(p)).join(" | ")} |`), "",
     "### Amendments", "", ...AMENDMENTS.map((a) => `- ${a.at}, by ${a.by}: ${a.what}`), "",
-    `The door lines: v1 sha256 \`${sha256(DOOR_LINES.v1)}\` (SAND-T1, SAND-T2); v2 sha256 \`${sha256(DOOR_LINES.v2)}\` (from GOAL-T1 on). Each player transcript names its prompt's hash.`, ""];
+    `The door lines: v1 sha256 \`${sha256(DOOR_LINES.v1)}\` (SAND-T1, SAND-T2); v2 sha256 \`${sha256(DOOR_LINES.v2)}\` (from GOAL-T1 on). Each player transcript names its prompt's hash.`, ,
+    `The waiting-button line (CARD_WAIT_LINES): sha256 \`${CARD_WAIT_SHA256}\`, from DUNGEON-T2 on (and SAND-T1′); ${CARD_WAIT_BEFORE.join(", ")} played without it.`, ""];
   if (frozen) {
     lines.push("## The frozen world (DM-private)", "", `Snapshot \`${frozen.manifest.snapshot.sha256}\` (the three arms' campaigns after the wizard, the opening and the seating). P-SAND has no prep.`, "",
       ...Object.entries(frozen.files).map(([arm, f]) => `- P-${arm}: layer sha256 \`${f.sha256}\`, ${f.layer.length} characters, ${f.threads.length} threads (\`docs/runs/game-party-1-frozen/${arm}-dm-only.md\`). Prepared ${f.preparedAt}.`), "");
