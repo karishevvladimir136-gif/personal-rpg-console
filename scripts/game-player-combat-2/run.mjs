@@ -101,7 +101,7 @@ export function loadStage({ dir = FROZEN_DIR } = {}) {
   combined.sessions = all.filter((s) => played(s) && ORDER.includes(s.player));
   combined.dry = all.filter((s) => s.player === DRY_PLAYER.name);
   combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !played(s))
-    .map((s) => ({ key: s.key, turns: s.turns.length, why: s.ended?.detail ?? s.ended?.reason ?? "—", file: r.file })));
+    .map((s) => ({ key: s.key, turns: s.turns.length, why: misreadEnd(s) ? `the end rule misread the player's out-of-game aside at t${s.ended?.at} («${String(s.turns.at(-1)?.message ?? "").match(/\(Out of game[^.)]{0,60}/i)?.[0] ?? "…"}…») as the player leaving` : s.ended?.detail ?? s.ended?.reason ?? "—", file: r.file })));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {
     const file = join(RUNS, `${STEM}-ledger${ledgerSuffix(door)}.json`);
