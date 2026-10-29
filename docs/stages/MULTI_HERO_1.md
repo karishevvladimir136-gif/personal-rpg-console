@@ -59,3 +59,16 @@ Inspiration and rerolls; the evenness measure), as a mode beside the owner's sin
 mocked host. Dry-run one 6-round P-SAND table on Haiku ×3 (cap $5), publish the three screens of one round side by
 side, report A1–A5 with the evenness numbers, and amend the PARTY_1 report's title and add its one paragraph. No other
 paid calls. Nothing to main. English, briefly.»
+
+## Amendment 2026-10-28 23:15 LA — the outside reader's four checks, added to acceptance
+- **A6 equal mechanical power:** any seat can initiate a roll (ask the DM for a check and get a card of its own), spend
+  its own Inspiration, use its own rerolls, and nothing a seat does requires another seat's press — tested on the mocked
+  host from each seat in turn.
+- **A7 equal access to initiative:** the DM's guide note for the mode says the company moves when any character acts;
+  the DM never waits on seat 1's decision nor treats one character's consent as the condition of movement — checked in
+  the dry run by the round tags (who the DM's «what do you do» addresses, rotating; no round where the scene waits on
+  one named character while the others have acted).
+- **A8 neutral prep:** in the frozen layer, the puzzles, threats and rewards are distributed — each character is the
+  natural addressee of at least one and no character of more than half — checked on the layer file before the dry run.
+- A2's ±10 % evenness check stays as the symmetric dry run's bar; the information checks (own journal, no private
+  event of one reaching another through the DM or the relay) are A3/A4 as written.
