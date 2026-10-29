@@ -1320,6 +1320,126 @@
           "cap": 0.5
         }
       }
+    },
+    {
+      "at": "2026-10-29T05:44:43.102Z",
+      "when": "by hand",
+      "openrouter": {
+        "keyUsage": 1000.751461825,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1000.751461825,
+        "remaining": 199.25,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 174.3079,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 6.2546,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T05:45:04.150Z",
+      "when": "before DUNGEON-T2",
+      "openrouter": {
+        "keyUsage": 1000.751461825,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1000.751461825,
+        "remaining": 199.25,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 174.3079,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 6.2546,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T05:45:04.756Z",
+      "when": "before DUNGEON-T2",
+      "openrouter": {
+        "keyUsage": 1000.751461825,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1000.751461825,
+        "remaining": 199.25,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 174.3079,
+          "cap": 400
+        },
+        "openai": {
+          "spent": 6.2546,
+          "cap": 60
+        }
+      },
+      "haikuDryRun": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.1442,
+          "cap": 6
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0.5
+        }
+      }
     }
   ]
 }
