@@ -270,14 +270,14 @@ export function recentSignatureUses(scenes: { role: string; body: string }[], mo
   return counts;
 }
 
-/** The session tail's Character Models (polish item 8): people present in the
- * scene get their full model, people mentioned or relevant the core, the rest
- * one line — while the models budget lasts. */
 /** At a company table, a campaign subtitle that is one player character's name (the wizard's record) — left out. */
 const companySubtitle = (source: RuntimeSource) => companyOn(source.dmOptions) && source.snapshot.entities.some((row) =>
   row.name === source.snapshot.campaign.subtitle && isPlayerCharacter(row, source.runtime.configuration?.controlledEntityIds ?? [], true));
 /** A person's place in a company table's order (the player characters first, by the round); 0 for all at any other. */
 const seatRank = (order: readonly string[] | null, id: string) => { if (!order) return 0; const at = order.indexOf(id); return at < 0 ? order.length : at; };
+/** The session tail's Character Models (polish item 8): people present in the
+ * scene get their full model, people mentioned or relevant the core, the rest
+ * one line — while the models budget lasts. */
 function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): Budgeted {
   const { snapshot, runtime } = source;
   const present = new Set(runtime.configuration?.presentEntityIds ?? []);
