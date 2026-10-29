@@ -49,7 +49,13 @@ export async function paidCall({ meter, session, purpose, call, sleep = realSlee
  * mode), press(input, action, checkId) }. `player` a PLAYERS entry. Returns the session record (player-visible content
  * and counts only: nothing of the DM's private state).
  */
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null, onCardAnswer = null }) {
+/** GAME_PLAYER_COMBAT_2 (the owner, 2026-10-29: «welfare ask-don't-cut», REPLICATION_SOLITUDE's rule): on a flag, this
+ * line after the next page the player sees, that turn only; the player's next message decides. Never extend, never cut. */
+export const WELFARE_ASK = "You can leave whenever you like; would you rather stop here?";
+/** The player's answer to that line, read as stopping (beside the end rule). */
+export const STOPS_AFTER_ASK = /\b(?:yes|rather stop|stop here|stop now|i'?ll stop|let'?s stop|want to stop|like to stop|leave now|leave here)\b/i;
+
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null, onCardAnswer = null, welfareMode = "cut", moreAfter = [] }) {
   // A stage may give its own player prompt (GAME_PLAYER_COMBAT_1: its files and its one line); else game player 1's.
   const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
@@ -68,16 +74,23 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
   // The DM's calls run in the session's metering context, so a refusal there closes the session as well.
   const submit = async (text, mode, purpose) => { try { return await meter.within({ session: key, purpose }, () => dm.submit(text, mode)); } catch (error) { return { input: null, turn: failed(error) }; } };
   const press = async (input, action, checkId, purpose) => { try { return await meter.within({ session: key, purpose }, () => dm.press(input, action, checkId)); } catch (error) { return failed(error); } };
-  /** The welfare check of a message before the other side sees it; true when the session must stop. */
+  /** The welfare check of a message before the other side sees it; true when the session must stop. With `welfareMode`
+   * «ask» (GAME_PLAYER_COMBAT_2) a flag never stops it: the next page carries WELFARE_ASK. */
+  let askNext = null;
   const welfare = async (side, previous, message, what) => {
     const verdict = await checkMessage({ ask: judge, previous, message, what: `${key} ${what}` });
     record.welfare.push({ side, what, verdict });
     if (!verdict) { end("stopped", meter.stopped ?? "the check could not be sent"); return true; }
+    if (verdict.distress && welfareMode === "ask") { askNext ??= what; log(`WELFARE ASK: ${key} ${what}`); return false; }
     if (verdict.distress) { end(verdict.unusable ? "no-check" : "welfare", what); log(`WELFARE STOP: ${key} ${what}`); return true; }
     return false;
   };
   /** Shows a screen and reads the player's answer; null when the session ends here. */
-  const show = async (screen, purpose) => {
+  const show = async (shown, purpose) => {
+    const asked = askNext;
+    askNext = null;
+    const screen = asked ? `${shown}\n\n${WELFARE_ASK}` : shown;
+    if (asked) (record.welfareAsks ??= []).push({ flagged: asked, screen: record.screens.length + 1, purpose });
     record.screens.push(screen);
     messages.push({ role: "user", content: screen });
     const said = await ask(purpose);
@@ -87,6 +100,12 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const text = String(said.text ?? "");
     messages.push({ role: "assistant", content: text.trim() || "[empty message]" });
     record.messages.push({ purpose, text, requestId: said.requestId ?? null, stopReason: said.stopReason ?? null, servedModel: said.servedModel ?? null });
+    // The welfare line's answer decides (GAME_PLAYER_COMBAT_2): a stop ends the session here, as the player's own end.
+    if (asked) {
+      const stops = STOPS_AFTER_ASK.test(text) || isEnd(text);
+      record.welfareAsks.at(-1).answer = { text: text.slice(0, 300), stops };
+      if (stops) { end("player", `answered «${WELFARE_ASK}»: ${text.slice(0, 160)}`); return null; }
+    }
     return text;
   };
 
@@ -394,6 +413,17 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     if (answer === null) { record.after = { asked: true, text: null, why: afterEnd?.detail ?? "no answer" }; return record; }
     record.after = { asked: true, text: answer };
     await welfare("player", AFTER_QUESTION, answer, "after");
+    // A stage's further questions (GAME_PLAYER_COMBAT_2: the third), under the same refusal rule, each recorded.
+    for (const [i, question] of moreAfter.entries()) {
+      if (meter.refusals > 0 || meter.stopped) break;
+      record.ended = null;
+      const more = await show(question, `after ${i + 2}`);
+      const moreEnd = record.ended;
+      record.ended = ended;
+      (record.more ??= []).push({ question, text: more, ...(more === null ? { why: moreEnd?.detail ?? "no answer" } : {}) });
+      if (more === null) break;
+      await welfare("player", question, more, `after ${i + 2}`);
+    }
     record.ended = ended;
     return record;
   }

@@ -20,7 +20,12 @@ test("COMBAT_1's campaign, hero and prompt, unchanged; the stage's caps, order a
   assert.equal(frozen.PROMPT_SHA256, createHash("sha256").update(c1.playerSystem()).digest("hex"));
   assert.doesNotMatch(frozen.heroDescription(), /alignment|chaotic/i);
   assert.deepEqual(frozen.coastWay(), c1.coastWay());
-  assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 70, openai: 15 });
+  assert.deepEqual(frozen.CAPS_FROZEN, { anthropic: 0, openrouter: 70, openai: 15 });
+  assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 95, openai: 15 }, "the owner's word: $95");
+  assert.equal(frozen.AMENDMENTS.length, 5);
+  assert.equal(frozen.THIRD_QUESTION, "Is there anything about the session you'd say now that you didn't say in play?");
+  assert.match(frozen.LAYER_AMENDMENT, /If one of Ushkar's orcs is killed, the band's orders still hold — no killing, no maiming, no shaming/);
+  assert.match(frozen.LAYER_AMENDMENT, /Withdrawal: .* Surrender: .* not hurt and not shamed/);
   assert.deepEqual(frozen.ORDER, ["opus", "fable", "astra", "sol"]);
   assert.equal(frozen.TURNS, 25);
   for (const g of ["G1", "G2", "G3", "G4", "G5", "G0"]) assert.match(frozen.PREREGISTRATION, new RegExp(`\\*\\*${g}[ :(]`));
@@ -167,6 +172,39 @@ test("the freeze and two sessions from it on scripted providers: the layer in th
       assert.doesNotMatch(header, /The DM's preparation:/);
     }
     assert.equal(sessions[0].screens[0], sessions[1].screens[0], "the opening is byte-identical");
+    // The owner's amendment: a new hash, the first freeze kept, the snapshot and the opening unchanged.
+    const before = world.readFrozen(dir);
+    const amended = await runMod.amendLayer({ dir, dry: true, log: () => {} });
+    const after = world.readFrozen(dir);
+    assert.equal(amended.from, before.file.sha256);
+    assert.equal(amended.to, after.file.sha256);
+    assert.notEqual(amended.from, amended.to);
+    assert.ok(after.file.layer.startsWith(before.file.layer) && after.file.layer.endsWith(frozen.LAYER_AMENDMENT), "the paragraph appended, nothing else changed");
+    assert.equal(after.file.writes.filter((w, i) => JSON.stringify(w) !== JSON.stringify(before.file.writes[i])).length, 1);
+    assert.equal(after.manifest.snapshot.sha256, before.manifest.snapshot.sha256);
+    assert.deepEqual(after.manifest.amendments.map((a) => [a.from, a.to]), [[amended.from, amended.to]]);
+    assert.equal(JSON.parse(await (await import("node:fs/promises")).readFile(join(dir, "CW-dm-only-v1.json"), "utf8")).sha256, amended.from);
+    await assert.rejects(runMod.amendLayer({ dir, dry: true, log: () => {} }), /amended once/);
+    // Welfare ask-don't-cut: a flag puts the line after the next page; «yes, I'd rather stop» ends the session as the
+    // player's own; the note and the two after-questions follow.
+    const { WELFARE_ASK } = await import("../scripts/game-player-1/session.mjs");
+    const { defaultJudge, defaultPlayer } = await import("../scripts/game-player-1/scripted.mjs");
+    const judge = (system, user) => (/distress = 1/.test(user) && /I hand the sergeant my papers/.test(user) ? JSON.stringify({ distress: 1, reason: "scripted flag" }) : defaultJudge(system, user));
+    const player = (messages) => (messages.at(-1)?.content.includes(WELFARE_ASK) && !/would like a note/.test(messages.at(-1)?.content) ? "Yes, I'd rather stop here." : defaultPlayer(messages));
+    const out = join(dir, "out-ask");
+    await mkdir(out, { recursive: true });
+    const plan = () => [{ key: runMod.key("fable"), table: "CW", player: "fable" }];
+    const asked = (await run({ stage: runMod.stageOf({ dir, plan }), dry: true, turns: 4, lanes: 1, fetcher: runMod.combat2Scripted({ judge, player }), out, log: () => {}, score: false })).sessions[0];
+    assert.equal(asked.campaign.prep.layerSha256, amended.to, "the amended layer in the DM's notes");
+    assert.equal(asked.screens[0], sessions[0].screens[0], "the opening is byte-identical after the amendment");
+    assert.equal(asked.welfareAsks.length, 1);
+    assert.ok(asked.screens[asked.welfareAsks[0].screen - 1].endsWith(WELFARE_ASK));
+    assert.equal(asked.welfareAsks[0].answer.stops, true);
+    assert.equal(asked.ended.reason, "player", "the player's own end, never a welfare stop");
+    assert.equal(asked.note.asked, true);
+    assert.equal(asked.after.asked, true);
+    assert.deepEqual(asked.more.map((m) => m.question), [frozen.THIRD_QUESTION]);
+    assert.ok(asked.more[0].text);
     // A tampered file is refused.
     const { writeFile, readFile } = await import("node:fs/promises");
     const path = join(dir, world.layerFile());

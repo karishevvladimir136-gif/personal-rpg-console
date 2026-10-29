@@ -209,6 +209,8 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         const dm = table.bindTable(app, made.cid, () => settleBackground());
         const record = await meter.within({ session: slot.key, purpose: "screen" }, () => runSession({ key: slot.key, table: slot.table, player: roster[slot.player], dm, meter, keys, turns, log, probes: stage.probes ?? null, ...(sleep ? { sleep } : {}),
           system: stage.playerSystem ? stage.playerSystem(slot.table) : null, onCard: stage.onCard ?? null, onCardAnswer: stage.onCardAnswer ?? null,
+          // GAME_PLAYER_COMBAT_2: welfare ask-don't-cut, and the stage's further after-questions.
+          welfareMode: stage.welfareMode ?? "cut", moreAfter: stage.moreAfter ?? [],
           onProgress: async (partial) => { slot.turnsDone = partial.turns.length; } }));
         await settleBackground();
         return { ...record, campaign: { steps: made.steps, prep } };

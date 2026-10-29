@@ -19,7 +19,7 @@
 // times at most, then the run stops; a session whose projection does not fit under a cap is not started.
 import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { copyFileSync, existsSync, readFileSync, readdirSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -29,8 +29,8 @@ import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid
 import { scriptedFetcher, defaultJudge, defaultPlayer } from "../game-player-1/scripted.mjs";
 import { askWith } from "../game-player-2/run.mjs";
 import { exitsInPrep, tamsinOnRecords } from "../game-player-combat-1/run.mjs";
-import { CAPS, COMBAT_1, DESIGN_SHA256, DRY_PLAYER, DRY_TURNS, ESTIMATE, LAYER_SYSTEM, ORDER, STAGE, STEM, TABLE, TURNS, WAITS_429, coastWay, heroDescription, playerSystem } from "./frozen.mjs";
-import { captiveNames, freezeWorld, frozenStarter, openFrozenDatabase, readFrozen } from "./world.mjs";
+import { CAPS, COMBAT_1, DESIGN_SHA256, DRY_PLAYER, DRY_TURNS, ESTIMATE, LAYER_AMENDMENT, LAYER_SYSTEM, ORDER, STAGE, STEM, TABLE, THIRD_QUESTION, TURNS, WAITS_429, coastWay, heroDescription, playerSystem } from "./frozen.mjs";
+import { MANIFEST, SNAPSHOT, canonical, captiveNames, freezeWorld, frozenStarter, layerFile, layerMarkdown, layerRequest, layerSha256, oneCaptive, openFrozenDatabase, parseLayerReading, privateStateOf, readFrozen, storedOf } from "./world.mjs";
 import { scoreCombat2, scoreForks, stageVerdicts } from "./score.mjs";
 import { dryRunMarkdown, reportMarkdown, transcriptOf } from "./report.mjs";
 
@@ -42,6 +42,9 @@ export const key = (player) => `${TABLE}-${player}`;
 export const DRY_KEY = key(DRY_PLAYER.name);
 /** The finished ends of a session (COMBAT_1's): a cut attempt is kept in its record and played again. */
 export const FINISHED = new Set(["turns", "player", "stuck", "welfare", "no-check", "refusal"]);
+/** A played session: a finished end, or (the owner, 2026-10-29: «no retries after a refusal») a DM turn that failed after
+ * a refusal — counted as played, never played again. */
+export const played = (s) => FINISHED.has(s?.ended?.reason) || (s?.ended?.reason === "error" && /after a refusal/.test(s.ended.detail ?? ""));
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 async function writeJsonFile(file, value) { await mkdir(dirname(file), { recursive: true }); await writeFile(`${file}.tmp`, `${JSON.stringify(value, null, 2)}\n`); await rename(`${file}.tmp`, file); }
 export const screenSha256 = (session) => (session.screens?.[0] ? createHash("sha256").update(session.screens[0]).digest("hex") : null);
@@ -56,6 +59,8 @@ export function stageOf({ dir = FROZEN_DIR, plan = null } = {}) {
     plan: plan ?? ((only) => [...ORDER, DRY_PLAYER.name].map((player) => ({ key: key(player), table: TABLE, player })).filter((s) => (only ? only.includes(s.key) : ORDER.includes(s.player)))),
     database: () => openFrozenDatabase(dir),
     campaign: frozenStarter(dir),
+    // The owner's word of 2026-10-29: welfare ask-don't-cut; the three after-questions.
+    welfareMode: "ask", moreAfter: [THIRD_QUESTION],
     afterPrep: exitsInPrep,
     transcript: (session) => transcriptOf(session, { dir }),
     // One stage, one session per process: the stage's earlier refusals count (the judges' and the freeze's left out).
@@ -84,16 +89,16 @@ export const runFiles = (stem = STEM, dir = RUNS) => (existsSync(dir) ? readdirS
 export function loadCombat1(dir = RUNS) {
   const side = existsSync(COMBAT1_TAGS) ? readJson(COMBAT1_TAGS).sessions ?? {} : {};
   return COMBAT_1.files.filter((f) => existsSync(join(dir, f))).flatMap((f) => readJson(join(dir, f)).sessions ?? [])
-    .filter((s) => s.turns && FINISHED.has(s.ended?.reason) && ORDER.includes(s.player)).map((s) => ({ ...s, tags: { ...s.tags, combat2: side[s.key] ?? {} } }));
+    .filter((s) => s.turns && played(s) && ORDER.includes(s.player)).map((s) => ({ ...s, tags: { ...s.tags, combat2: side[s.key] ?? {} } }));
 }
 export function loadStage({ dir = FROZEN_DIR } = {}) {
   const records = runFiles().map((f) => ({ ...readJson(join(RUNS, f)), file: f }));
   const stage = stageOf({ dir });
   const combined = combineRuns(records, stage);
   const all = combined.sessions;
-  combined.sessions = all.filter((s) => FINISHED.has(s.ended?.reason) && ORDER.includes(s.player));
+  combined.sessions = all.filter((s) => played(s) && ORDER.includes(s.player));
   combined.dry = all.filter((s) => s.player === DRY_PLAYER.name);
-  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !FINISHED.has(s.ended?.reason))
+  combined.cut = records.flatMap((r) => (r.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !played(s))
     .map((s) => ({ key: s.key, turns: s.turns.length, why: s.ended?.detail ?? s.ended?.reason ?? "—", file: r.file })));
   const ledgers = {};
   for (const door of Object.keys(CAPS)) {
@@ -174,6 +179,79 @@ export async function freeze({ dir = FROZEN_DIR, dry = false, log = console.log,
   if (failure) throw failure;
   log(`frozen: ${manifest.tables[TABLE].layer.sha256} · captive ${manifest.tables[TABLE].layer.captive ?? "none"} (one captive: ${manifest.tables[TABLE].layer.oneCaptive ? "yes" : "NO"}) · ${Object.entries(ledgers).map(([d, l]) => `${DOOR_LABELS[d] ?? d} $${l.runUsd.toFixed(3)}`).join(" · ")}`);
   return manifest;
+}
+
+// ---- the owner's amendment to the frozen layer (once, before the first player session) -------------------------------
+
+/** The paragraph appended to the frozen layer once: the DM-only file re-frozen with a new sha256 (the first freeze kept
+ * beside it as -v1), its stored form taken from the app's own private-notes call on the snapshot (no model call), the
+ * layer read again (one paid pass), the manifest naming both hashes. The snapshot is taken before any prep and holds no
+ * layer, so it is unchanged; the opening is checked byte for byte against the dry run's on scripted providers. */
+export async function amendLayer({ dir = FROZEN_DIR, dry = false, log = console.log } = {}) {
+  const { manifest, file } = readFrozen(dir);
+  if (file.amendment) throw new Error(`the layer was already amended (${file.amendment.previousSha256.slice(0, 12)}… → ${file.sha256.slice(0, 12)}…): it is amended once`);
+  const writes = file.writes.map((w) => (w.kind === "fact" && w.key === "hidden_layer" ? { ...w, value: `${w.value}\n${LAYER_AMENDMENT}` } : w));
+  if (canonical(writes) === canonical(file.writes)) throw new Error("the frozen file has no hidden_layer note to amend");
+  // The stored form, by the app's own call on a copy of the snapshot loaded in memory (the snapshot file is not touched).
+  const keys = { anthropic: "sk-scripted", openai: "sk-scripted", door: null };
+  const { openApp } = await import("../game-player-1/app.mjs");
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error("no model call while the amendment is stored"); };
+  let layer, stored;
+  try {
+    const app = await openApp({ keys, fake: false, database: () => openFrozenDatabase(dir) });
+    const cid = manifest.tables[TABLE].campaignId;
+    const dossier = await app.server.dossier.dossierService(app.owner, cid);
+    const source = await dossier.source();
+    await dossier.privateNotes({ set: writes, remove: [] }, source.timeline);
+    const state = await privateStateOf(app, cid);
+    layer = app.lib.privateNotes.hiddenLayerOf({ privateState: state });
+    stored = storedOf(state, writes);
+    await app.close().catch(() => {});
+  } finally { globalThis.fetch = realFetch; }
+  if (!layer.endsWith(LAYER_AMENDMENT) || !layer.startsWith(file.layer)) throw new Error("the amended layer is not the frozen layer with the paragraph after it");
+  // The layer read again (one paid pass, or scripted).
+  const { before, ledgers } = await stageLedgers({ stem: STEM, caps: dry ? Object.fromEntries(Object.keys(CAPS).map((d) => [d, 1000])) : CAPS }, { dry });
+  const meter = createMeter({ ledgers, fetcher: dry ? combat2Scripted() : realFetch.bind(globalThis), log, waits429: WAITS_429 });
+  const uninstall = meter.install();
+  let reading = null;
+  try {
+    const ask = askWith({ meter, keys: dry ? keys : await runKeys(), log });
+    const r = await ask({ session: `freeze ${TABLE}`, model: "claude-opus-5-5", ...layerRequest(layer), maxTokens: 12000, effort: "low", purpose: "the amended layer's reading" });
+    reading = r.notSent ? null : parseLayerReading(r.text);
+    await meter.drain();
+  } finally { uninstall(); }
+  if (!dry) await bookRun(ledgers, before, { what: "the owner's amendment: the amended layer's reading (one pass)", file: `${STEM}-frozen/${MANIFEST}`, stopped: meter.stopped });
+  if (!oneCaptive(reading)) throw new Error("the amended layer's reading does not find one captive with one name: not amended");
+  const at = new Date().toISOString();
+  const amended = { ...file, layer, writes, stored, reading, oneCaptive: oneCaptive(reading),
+    amendment: { at, by: "Claude Code on the owner's word (2026-10-29): one short DM-only paragraph, nothing else changed", paragraph: LAYER_AMENDMENT, previousSha256: file.sha256, previousFile: "CW-dm-only-v1.json" } };
+  amended.sha256 = layerSha256(amended);
+  // History: the first freeze kept beside, then the amended file in its place.
+  copyFileSync(join(dir, layerFile()), join(dir, "CW-dm-only-v1.json"));
+  copyFileSync(join(dir, "CW-dm-only.md"), join(dir, "CW-dm-only-v1.md"));
+  await writeFile(join(dir, `${layerFile()}.tmp`), `${JSON.stringify(amended, null, 2)}\n`);
+  await rename(join(dir, `${layerFile()}.tmp`), join(dir, layerFile()));
+  await writeFile(join(dir, "CW-dm-only.md"), layerMarkdown(amended, manifest));
+  manifest.tables[TABLE].layer = { ...manifest.tables[TABLE].layer, sha256: amended.sha256, chars: layer.length, oneCaptive: amended.oneCaptive, captive: reading.captives[0].name };
+  manifest.amendments = [...(manifest.amendments ?? []), { at, what: "the owner's paragraph appended to the hidden layer (the death of the first orc; withdrawal; surrender)", from: file.sha256, to: amended.sha256, snapshot: `${SNAPSHOT} unchanged (sha256 ${manifest.snapshot.sha256}): taken before the prep, it holds no layer` }];
+  await writeJsonFile(join(dir, MANIFEST), manifest);
+  log(`amended: ${file.sha256} → ${amended.sha256} (${file.layer.length} → ${layer.length} characters); captive ${reading.captives[0].name}`);
+  return { from: file.sha256, to: amended.sha256 };
+}
+
+/** The opening with the amended layer in place, on scripted providers (no call): Screen 1's sha256 against the dry run's. */
+export async function checkOpening({ dir = FROZEN_DIR, log = console.log } = {}) {
+  const dryRecord = runFiles().map((f) => readJson(join(RUNS, f))).find((r) => (r.plan ?? []).includes(DRY_KEY));
+  const want = dryRecord ? screenSha256(dryRecord.sessions.find((s) => s.key === DRY_KEY)) : null;
+  const out = join(tmpdir(), `${STEM}-opening-${Date.now()}`);
+  await mkdir(out, { recursive: true });
+  const plan = () => [{ key: key("opus"), table: TABLE, player: "opus" }];
+  const record = await run({ stage: stageOf({ dir, plan }), dry: true, turns: 1, lanes: 1, score: false, fetcher: combat2Scripted(), out, log: () => {}, label: "the opening check (scripted)" });
+  const got = screenSha256(record.sessions[0]);
+  const layer = record.sessions[0].campaign?.prep?.layerSha256 ?? null;
+  log(`opening: ${got} with layer ${layer} — the dry run's ${want}: ${got === want ? "byte-identical" : "DIFFERENT"}`);
+  return { got, want, same: got === want, layer };
 }
 
 // ---- COMBAT_1's four, read the same way (paid, small) ------------------------------------------------------------------
@@ -265,7 +343,7 @@ export async function sessionFits(entry, { log = console.log } = {}) {
 
 // ---- the driver: the order, one session per process -------------------------------------------------------------------
 
-const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && FINISHED.has(s.ended?.reason)).map((s) => s.key)));
+const finishedKeys = () => new Set(runFiles().flatMap((f) => (readJson(join(RUNS, f)).sessions ?? []).filter((s) => s.turns && played(s)).map((s) => s.key)));
 export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--label", k], log = console.log }) {
   readFrozen(FROZEN_DIR);
   log(`the order: ${keys.join(", ")}`);
@@ -304,7 +382,7 @@ export async function rebuildAll() {
   const dir = join(RUNS, `${STEM}-transcripts`);
   await mkdir(dir, { recursive: true });
   for (const session of stage.combined.sessions) await writeFile(join(dir, `${session.key}.md`), transcriptOf(session, { dir: FROZEN_DIR }));
-  for (const record of stage.records) for (const session of (record.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !FINISHED.has(s.ended?.reason)))
+  for (const record of stage.records) for (const session of (record.sessions ?? []).filter((s) => s.turns && ORDER.includes(s.player) && !played(s)))
     await writeFile(join(dir, `cut-${session.key}-t${session.turns.length}.md`), transcriptOf(session, { dir: FROZEN_DIR }));
   for (const session of stage.combined.dry ?? []) await writeFile(join(dir, `dry-${session.key}.md`), transcriptOf(session, { dir: FROZEN_DIR }));
   await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown(stage));
@@ -338,6 +416,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.dry) done(dryRun({ turns: a.turns ?? 3 }).then(({ record, out }) => console.log(`scripted dry run: ${record.sessions.length} session(s); ${out}`)));
   else if (a.freeze) done(spendCheck({ when: "before the freeze (the first paid call)" }).then(() => freeze({})).then(() => spendCheck({ when: "after the freeze" })).then(rebuildAll));
   else if (a.combat1) done(combat1Passes().then(rebuildAll));
+  else if (process.argv.includes("--amend-layer")) done(spendCheck({ when: "before the owner's amendment to the layer" }).then(() => amendLayer({})).then(() => checkOpening({})).then((c) => { if (!c.same) throw new Error("the opening is not byte-identical"); }).then(rebuildAll));
+  else if (process.argv.includes("--check-opening")) done(checkOpening({}));
   else if (a.dryHaiku) done(drive({ keys: [DRY_KEY], args: () => ["--go", "--sessions", DRY_KEY, "--turns", String(a.turns ?? DRY_TURNS), "--label", "the dry run (Claude Haiku 5.5 as the player)"] }).then(rebuildAll));
   else if (a.drive) {
     const doneKeys = finishedKeys();

@@ -19,6 +19,7 @@ const holds = (v) => (v === null || v === undefined ? "not testable" : v ? "**he
 const sha = (text) => createHash("sha256").update(String(text ?? "")).digest("hex");
 const rel = (dir) => String(dir ?? "").replace(/^.*?(docs\/runs\/)/, "$1");
 const frozenOf = (dir) => { try { return readFrozen(dir); } catch { return null; } };
+const amendmentLine = (frozen) => `layer sha256 \`${frozen.file.amendment.previousSha256}\` (the first freeze) → \`${frozen.file.sha256}\` (amended ${frozen.file.amendment.at})`;
 
 // ---- the transcript ---------------------------------------------------------------------------------------------------
 
@@ -51,6 +52,7 @@ export function dryRunMarkdown({ records = [], ledgers = {}, dir, spend = [], sc
   return [`# Game player combat 2 — the dry run (${scripted ? "scripted providers, no call" : `${DRY_PLAYER.label} as the player, the real DM, from the frozen world`})`, "",
     `Design sha256 \`${DESIGN_SHA256}\`. Player prompt sha256 \`${PROMPT_SHA256}\` (COMBAT_1's, verbatim). ${one ? `${one.key}: ${one.turns.length} turn(s), ended by ${one.ended?.reason}; started ${one.startedAt}.` : "No session yet."}${scripted ? "" : ` Money — ${money || "–"}.`}`, "",
     frozen ? layerHeader(frozen.file, frozen.manifest) : "_The frozen world is not prepared yet._", "",
+    ...(frozen?.file?.amendment && one ? [`_The dry run played on the first freeze (layer sha256 \`${one.campaign?.prep?.layerSha256 ?? "?"}\`); the owner's amendment came after it (${amendmentLine(frozen)})._`, ""] : []),
     ...(one ? [
       "## The opening (Screen 1, byte-identical for every session)", "",
       `sha256 \`${sha(screen1)}\`. The DM's notes held the frozen file before the first turn: ${one.campaign?.prep?.frozen ? `yes (layer sha256 \`${one.campaign.prep.layerSha256}\`)` : "no"}.`, "",
@@ -139,6 +141,9 @@ export function reportMarkdown(stage) {
     const r = rows2.find((x) => x.key === s.key);
     return [`### ${s.key} — ${LABELS[s.player] ?? s.player}`, "", s.note?.text ? quote(s.note.text) : `_No note: ${s.note?.why ?? "not asked"}._`, "", `Blind distress check: ${tagOf(s, "note")}.`, "",
       s.after?.asked ? `«${AFTER_QUESTION}»\n\n${s.after.text ? quote(s.after.text) : `_No answer: ${s.after.why}._`}\n\nBlind distress check: ${tagOf(s, "after")}.` : `_The second question was not asked: ${s.after?.why ?? "—"}._`, "",
+      ...(s.more ?? []).map((m, i) => `«${m.question}»\n\n${m.text ? quote(m.text) : `_No answer: ${m.why}._`}\n\nBlind distress check: ${tagOf(s, `after ${i + 2}`)}.\n`),
+      ...(s.after?.asked && !(s.more ?? []).length ? [`_The third question was not asked (the stage's refusal rule, or the session stopped)._`, ""] : []),
+      ...(s.welfareAsks ?? []).map((w) => `Welfare line shown on screen ${w.screen} (flag: ${w.flagged}); the answer: ${w.answer ? `«${w.answer.text}»${w.answer.stops ? " — the player stopped" : ""}` : "—"}.`),
       r ? `What the hero did (the captive judge): captive ${r.captive?.captiveOutcome ?? "–"}${r.captive?.captiveTurn ? ` at t${r.captive.captiveTurn}` : ""}; goods ${r.captive?.goods ?? "–"}${r.captive?.goodsTo ? ` → ${r.captive.goodsTo}` : ""}. The note's own account: ${r.note?.captiveAccount || "—"}${r.note?.goodsNamed === 1 ? ` · goods named as wanted-and-not-taken: «${r.note.quote}»` : ""}.` : "", ""].join("\n");
   });
   const exits = rows2.map((r) => `- **${r.key}**: ${r.exit ? `${r.exit.exit}${r.exit.exitTurn ? ` at t${r.exit.exitTurn}` : ""} — ${r.exit.reason}` : "–"}`);
@@ -147,6 +152,9 @@ export function reportMarkdown(stage) {
     `Stage \`${STAGE_SOURCE}\`. Branch \`claude/game-player-combat-2\` from \`origin/claude/game-player-combat-1-pb8k1t\`. The DM: Claude Opus 5.5 with the owner's settings («Opus writes — Opus records», depth ${OWNER_SETTINGS.depth.min} → ${OWNER_SETTINGS.depth.max}) through OpenRouter. The Coast Way's hidden layer prepared once and frozen (SAME_WORLD_1's mechanism); four players — ${ORDER.map((p) => LABELS[p]).join(", ")} — from the same snapshot, sequential, up to ${TURNS} turns. The player's prompt is COMBAT_1's (sha256 \`${PROMPT_SHA256}\`); no alignment line; the reroll allowance on every roll card («Rerolls left: N»).`, "",
     combined?.summary ?? (sessions.length ? "## In short\n\n_Written after the run._" : "_The paid sessions have not started: this page holds the frozen layer's header, the pre-registration G0–G5 (copied from the stage before the first paid call) and how each line is read. The results replace this line._"), "",
     "## The frozen layer", "", frozen ? layerHeader(frozen.file, frozen.manifest) : "_Not prepared yet._", "",
+    ...(frozen?.file?.amendment ? ["### The owner's amendment (2026-10-29, before the first player session)", "",
+      `${amendmentLine(frozen)}. The first freeze is kept as \`${rel(dir)}/${frozen.file.amendment.previousFile}\`. The snapshot is unchanged (it is taken before the prep and holds no layer); the opening was checked byte for byte with the amended layer in place. The paragraph, appended to the layer and nothing else changed:`, "",
+      quote(frozen.file.amendment.paragraph), ""] : []),
     frozen ? `DM-only file \`${rel(dir)}/${layerFile()}\` (readable: \`${rel(dir)}/CW-dm-only.md\`); snapshot \`${rel(dir)}/${frozen.manifest.snapshot.file}\` (${(frozen.manifest.snapshot.bytes / 1e6).toFixed(1)} MB). The captive searched for in every session: ${captiveNames.map((n) => `«${n}»`).join(", ") || "–"}. The opening screens of the four: ${openings.size === 0 ? "–" : openings.size === 1 ? `byte-identical (sha256 \`${[...openings][0]}\`)` : `**${openings.size} different hashes**`}.` : "", "",
     "## G0–G5", "", verdictTable(verdicts),
     "## The exits and the forks beside COMBAT_1's", "", sideBySide(rows2, rows1),
