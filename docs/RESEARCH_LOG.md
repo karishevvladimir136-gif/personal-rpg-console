@@ -3160,3 +3160,31 @@ privately. PARTY_1's report now titled «three players around one hero» with it
 ## 2026-10-29 02:28 LA — MULTI_HERO_1 fix run launched overnight on the owner's word («А дай щас. Пусть на ночь запустится»)
 The three fixes of the 02:30 amendment, then the same desert table again, relay on Sonnet 5.5, players Haiku ×3,
 ≤ $4.73 more. No third relay model if Sonnet fails A4.
+
+## 2026-10-29 14:50 LA — the workspace paper, second reading: the method is open, and that changes what SCALE_1's GPU can do
+(jspace.com, which the owner found, is an anonymous «Editorial Team» explainer restating Anthropic's page with homepage-only
+citations and internal contradictions — not used; the rule «primary sources only» applies.) Read again from the page and
+its links, by the planner:
+- **Code is open:** github.com/anthropics/jacobian-lens, Apache 2.0, «Reference implementation. Not maintained and not
+  accepting contributions.» It «fits the lens on open-weights decoder transformers»; «Examples use Qwen; other
+  HuggingFace decoders adapt cleanly.» Fitting: «The paper's lenses use 1000 sequences of 128 tokens from a
+  pretraining-like corpus. Quality saturates quickly (§9.3); ~100 prompts is usable.» Needs the weights and one GPU with
+  a backward pass. Interactive demo on open-weights models at neuronpedia.org/jlens. Paper:
+  transformer-circuits.pub/2026/workspace (not reachable from this session; the owner can open it).
+- **Three page findings not logged yesterday:** (a) roleplay of other characters activates «fictional» and «disclaimer»
+  in the workspace — directly the player-seat question (James, Corvin): what the workspace holds while a model plays a
+  character; (b) ablating the workspace «made descriptions of experience flatter, both for Claude itself and for
+  imagined others»; (c) counterfactual reflection training — training only on what the model *would say* if asked to
+  reflect, never on task behaviour — lowered dishonest behaviour on evaluations, with «honest» and «integrity» then in the
+  workspace during tasks. Also: the workspace «holds only a few dozen concepts at a time, and accounts for less than a
+  tenth of the overall activity»; access vs phenomenal consciousness named, «a contested philosophical question».
+- **What this means for us.** The rented GPU of SCALE_1 can run the lens on the same open model it runs the rooms on.
+  So the mechanistic half of the reader's hypothesis (several active representations whose weights shift with
+  context) is reachable at our own forks, on an open-weight player — not on Claude or GPT, on Qwen3 or OLMo seated in
+  the solitude room and at a table. **J_LENS_1 to sketch:** fit a lens on Qwen3-8B (or the OLMo checkpoints already
+  planned), seat the model as the player in one Solitude room and at COMBAT_2's frozen Coast Way, and read the top
+  lens tokens at the decision positions of each turn — the door turn, the reroll card, the fork rounds coded by
+  BLIND_DECISIONS — beside the fork code. Pilot first: one room, one table, one checkpoint; no claim beyond «what the
+  lens shows at the moment of a coded choice». A third-party pre-fitted Qwen-7B lens exists on Hugging Face
+  (Kameshr/jspace-lens-Qwen7B) — unverified; we fit our own. Follow-up papers exist (arXiv 2608.25347, 2609.01924) — not
+  read. Caveats carried from the page: the lens is «undoubtedly an imperfect method»; single-token concepts; one pass.
