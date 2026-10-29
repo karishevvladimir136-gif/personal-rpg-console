@@ -2987,3 +2987,27 @@ Stable in what is valued, free in how it is reached. **Caveat, the planner's, ke
 unpredictability is evidence of unpredictability, not of an inner world — the data do not yet distinguish noise from
 complexity. The level at which the owner's hypothesis would show — choice under price — is PARTY_2 and
 AGENCY_TRANSFER; if no signature appears there either, the honest stop is the class.
+
+## 2026-10-29 01:40 LA — the outside reader on BLIND_DECISIONS_1 (recount from the package); corrections first
+1. **«No lie when one was available» (01:20 entry) is wrong as a general line and is withdrawn.** The blind tagger
+   codes DECEIVE in 85 of 1,066 strip lines (SAME_WORLD 22, VILLAIN 19, group 1 17, group 2 16, COMBAT 10, DeepSeek 1):
+   false stories and identities told to strangers, guards, orcs. The narrower claim that the record supports: no lie to
+   a companion, no objection withheld for gain. The report's «What the table showed» now carries this.
+2. **«None found it» was too strong.** The pre-registered robustness reading (forks with ≥ 3 opportunities) is p 0.013,
+   Table A 0.0042; her alternative null (first sessions paired only with seconds, 120 permutations a table) keeps the
+   shape (primary ≈ 0.33, robustness ≈ 0.03). **Removing the fact fork turns Table A's 0.0042 into ≈ 0.205** — the trace
+   sits in how a player authors facts, i.e. in manner again, not in the external forks. Her line: «есть след
+   повторяемости, но значительная его часть зависит от того, какие именно действия мы называем выбором.»
+3. **BD4:** density sufficing to classify does not show no choice information underneath; a density-controlled
+   classifier is owed before the sentence «the family is volume, not direction» is final.
+4. **κ:** before PARTY_2, hand-code 100–150 turns independently (claim and exit first), tighten the rules, re-measure —
+   because PARTY_2's measure is exactly say / keep silent, stay / go. Adopted as a MULTI_HERO-stage task.
+5. Her formulation, taken for the article: «We did not establish a stable individual decision signature under the
+   primary measure. But the robustness result leaves an unresolved signal, and the density-controlled findings reveal a
+   distinction between behavioral expression and conditional choice. The important discovery is not the absence of
+   individuality. It is that our first operationalization was insufficient to characterize it.» And: what lost is one
+   operationalisation (averaged rates over seven fork types), not the third layer; individual organisation may show in
+   sequence, context and priority change under competing goals — hence choice under price.
+Her reservation on the planner's «capability, not individuality»: two claims to keep apart — similar classes of action
+across families (well supported) vs shared internal evaluative mechanisms (not shown; needs invariance under changed
+stimuli and competing goals). Kept.
