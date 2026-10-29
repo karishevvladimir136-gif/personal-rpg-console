@@ -3140,3 +3140,10 @@ to choose: (a) a provider that still serves base checkpoints (new allowed domain
 session's better idea: **OLMo**, which publishes intermediate pretraining checkpoints, so «training stage» becomes a
 series of points, not before/after. The planner's view, once: (b) with OLMo is the version of SCALE_1 worth the money;
 (a) buys only the two endpoints. Costs not estimated here (not checked).
+
+## 2026-10-29 02:25 LA — SCALE_1 redesigned around Olmo 3 (the reader concurs; amendment in the stage)
+Two questions kept apart (pretraining trajectory of one 7B; post-training stages of the same lineage), size as a second
+phase, her caveat that the data mix changes between stages (trajectory, not pure scale), protocol control binding,
+technical pilot first, after MULTI_HERO_1. Published RunPod rates read by both of us (A5000 $0.27/h, A6000 $0.59/h,
+A100 $1.79/h); the planner's rough 7B figure $5–15 GPU time, not yet costed. Her line, kept: «результат „всё возникло
+после посттренинга" будет столь же научно полезен, как и результат „значительная часть существовала до него"».

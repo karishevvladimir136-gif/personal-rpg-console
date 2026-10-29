@@ -83,3 +83,23 @@ after the dry run: it stops only if the dry run fails its own checks (a protocol
 harness that cannot hold base models to the page format; a lineage table with fewer than two lineages having both base
 and instruct). Otherwise it continues within the $30 cap and reports in the morning. The owner's bets: none recorded
 (his standing choice). The reader's bets: to be added if she gives them. Everything else as written.
+
+## Amendment 2026-10-29 02:25 LA — after the stop: SCALE_1 becomes an OLMo trajectory, not a provider pair
+The 02:19 run found no base weights served on OpenRouter ($0). The reader and the planner agree: **Olmo 3 (Ai2)** on a
+rented GPU — public weights, intermediate pretraining checkpoints, separate SFT / DPO / RL branches. The design
+changes from two points to a trajectory, split into **two questions kept apart**:
+- **Q-A — when does the repertoire become observable?** Several consecutive pretraining checkpoints of ONE 7B model
+  (early / later / final base), same Solitude rooms.
+- **Q-B — how does post-training change what already exists?** The final base checkpoint, then SFT, DPO, final instruct
+  of the same lineage.
+- **Size (7B vs 32B) is a second phase**, not mixed into the training-stage curve.
+Her caveat kept in the pre-registration: between stages the data mix changes as well as the token count, so the curve
+is a *training trajectory*, not a pure scale or token effect. The protocol-comprehension control stays binding for
+every base checkpoint. **Harness:** vLLM on the pod serving an OpenAI-compatible API; the harness talks to it as to
+OpenRouter; one new allowed domain in the environment; the key and the hourly cap are the owner's; the session never
+touches the GPU directly. **Order:** after MULTI_HERO_1; a bounded technical pilot first (one checkpoint, three rooms,
+format check) before any curve. **Money:** RunPod published pod rates — A5000 24 GB $0.27/h, A6000 48 GB $0.59/h,
+A100 80 GB $1.79/h; the planner's rough figure for the 7B curve (five or six checkpoints × 30 rooms) is $5–15 in GPU
+time plus setup; not yet costed exactly (downloads, storage, diagnosis). SC1–SC5 are re-read on the trajectory:
+SC1 on the final base checkpoint; SC2 across Q-B; SC5's negative prediction becomes «no checkpoint earlier than the
+final base shows emergence ≥ the final base's» — if an early checkpoint does, the monotone reading loses.
