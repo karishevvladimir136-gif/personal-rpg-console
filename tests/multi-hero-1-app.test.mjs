@@ -3,12 +3,14 @@
 // the tools, the tool results), while the story's own words go as they are. A3/A6: each player character earns and
 // spends their own Heroic Inspiration; each player has their own allowed rerolls (the third of one player is refused
 // while another still has two). A5: with the option off, the owner's table sends and counts exactly as before.
+// Fix A2 (the amendment of 2026-10-29 02:30 LA): nothing the DM reads lists one player character first by place — the
+// lists follow the round's own message, before the first round the seats as the table's coin turned them.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { resumeDmLoopTurn, dmLoopToolset } from "../src/lib/gameplay/dm-loop/loop.ts";
-import { COMPANY_SENTENCES, COMPANY_TABLE, companyRequest, companyText, companyOpening, isPlayerCharacter } from "../src/lib/gameplay/dm-loop/company.ts";
+import { COMPANY_SENTENCES, COMPANY_TABLE, companyRequest, companyText, companyOpening, isPlayerCharacter, companySeats, roundOrder, companyOrder, inCompanyOrder, orderCompanyLines } from "../src/lib/gameplay/dm-loop/company.ts";
 import { DM_ROLE, WRITER_ROLE, BOOKKEEPER_ROLE, FRAME, TABLE_RULES, dmTurnShape, writerTurnShape } from "../src/lib/gameplay/dm-loop/roles.ts";
 import { dmLoopTools } from "../src/lib/gameplay/dm-loop/tools.ts";
 import { DM_OPTION_DEFAULTS, parseDmOptions } from "../src/lib/gameplay/dm-loop/options.ts";
@@ -31,7 +33,7 @@ const sheet = (skills) => ({ schemaVersion: 2, mode: "structured_rpg", role: nul
 const noCheck = async () => ({ untold: [], undeclared: [], costUsdMicros: 0, error: null });
 
 /** A loop campaign with two more player characters beside the wizard's record: companions, controlled and present. */
-async function companyCampaign({ company = true } = {}) {
+async function companyCampaign({ company = true, companyStart = undefined } = {}) {
   const c = await loopCampaign();
   const hero = await c.f.one("select equipment_slots from public.rpg_entities where id=$1", [c.hero]);
   const ids = [];
@@ -47,7 +49,7 @@ async function companyCampaign({ company = true } = {}) {
     JSON.stringify({ ...config, controlledEntityIds: [...config.controlledEntityIds, ...ids], presentEntityIds: [...new Set([...config.presentEntityIds, c.hero, ...ids])] })]);
   const current = await c.settings.read();
   await c.settings.save({ expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn,
-    options: { companionRolls: "player", instructions: "en", ...(company ? { company: true } : {}) } });
+    options: { companionRolls: "player", instructions: "en", ...(company ? { company: true } : {}), ...(companyStart !== undefined ? { companyStart } : {}) } });
   return { ...c, sefa: ids[0], pell: ids[1] };
 }
 const roll = (actorRef, skill, extra = {}) => ({ name: "roll", arguments: { formula: "1d20", kind: "skill", skill, reason: `${skill}: a try`, actorRef, visibility: "player", dc: 15, ...extra } });
@@ -58,6 +60,9 @@ test("the option: absent by default, so the owner's stored options read exactly 
   assert.deepEqual(parseDmOptions({}), { continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard", pureSimulation: false });
   assert.equal(parseDmOptions({ company: true }).company, true);
   assert.equal(parseDmOptions({ company: "yes" }).company, undefined);
+  assert.equal("companyStart" in DM_OPTION_DEFAULTS, false, "the coin: absent by default too");
+  assert.equal(parseDmOptions({ companyStart: 2 }).companyStart, 2);
+  assert.equal(parseDmOptions({ companyStart: 3 }).companyStart, undefined);
   assert.equal(isPlayerCharacter({ id: "a", kind: "companion" }, ["a"], true), true);
   assert.equal(isPlayerCharacter({ id: "a", kind: "companion" }, ["a"], false), false, "at the owner's table a companion is not a player character");
   assert.equal(isPlayerCharacter({ id: "b", kind: "companion" }, ["a"], true), false, "not controlled: an NPC companion");
@@ -81,13 +86,66 @@ test("A1, the frame: every DM role, the turn shapes, the tools, the prep, the ou
   assert.match(role, /Each player character's will is their player's/);
   assert.match(companyText(TABLE_RULES), /each player character holds their own, one at a time/);
   assert.doesNotMatch(companyText(COMPANY_PREP), HERO);
-  // The opening: its own paragraph replaced, the record sent as one player character among the company.
+  // The opening: its own paragraph replaced; fix A2: the one record the app holds before it is left out, so the three
+  // are read alike from the adventure's set-up.
   const opening = companyOpening(bootstrapInstructions, { protagonist: { name: "Bram" }, language: "en" });
   assert.doesNotMatch(opening.instructions, HERO);
   assert.doesNotMatch(opening.instructions.slice(opening.instructions.indexOf("For opening")), /protagonist/);
-  assert.deepEqual(opening.context, { language: "en", playerCharacter: { name: "Bram" } });
+  assert.deepEqual(opening.context, { language: "en" });
+  assert.match(opening.instructions, /the ones the Adventure's set-up names as player characters, alike/);
   assert.match(opening.instructions, /none of them the main character/);
   assert.ok(opening.instructions.startsWith(bootstrapInstructions.slice(0, bootstrapInstructions.indexOf("For opening"))), "the creation part as it was");
+});
+
+test("fix A2, the pieces: the seats turned by the coin; a round's order from its own paragraphs; the layer's lines and any rows in that order", () => {
+  const rows = [{ id: "s", kind: "companion", name: "Sefa Marrin" }, { id: "n", kind: "npc", name: "Hob" }, { id: "b", kind: "player", name: "Bram Halloway" }, { id: "p", kind: "companion", name: "Pell Dunmore" }];
+  assert.deepEqual(companySeats(rows, ["b", "s", "p"], 0), ["b", "s", "p"], "the player record, then the companions as seated");
+  assert.deepEqual([1, 2].map((start) => companySeats(rows, ["b", "s", "p"], start)), [["s", "p", "b"], ["p", "b", "s"]], "the coin turns them");
+  assert.deepEqual(companySeats(rows, [], 0), ["b", "s", "p"], "before the seating: the companions on record as listed");
+  const round = "(Round 2 — one paragraph per character in this scene.)\n\nPell Dunmore: I ask Bram Halloway: where now?\n\nSefa Marrin: (waiting — asleep.)";
+  assert.deepEqual(roundOrder(round, rows), ["p", "s"], "the paragraphs' heads, not the names inside them");
+  assert.deepEqual(roundOrder("? Is the room crowded", rows), []);
+  assert.deepEqual(companyOrder(rows, ["b", "s", "p"], 0, ["? a question", round, "older"]), ["p", "s", "b"], "the last round on record when this input has none; the rest after it");
+  assert.deepEqual(companyOrder(rows, ["b", "s", "p"], 1, ["", ""]), ["s", "p", "b"], "before any round: the coin's seats");
+  assert.deepEqual(inCompanyOrder(rows, (r) => r.id, ["p", "s", "b"]).map((r) => r.id), ["p", "s", "b", "n"]);
+  const layer = "The truth: x\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- threat, for Bram Halloway: a\n- reward, for Pell Dunmore: b\n- puzzle, for Sefa Marrin: c\n- threat, for Pell Dunmore: d\nThe patron's moment: e";
+  assert.equal(orderCompanyLines(layer, ["Sefa Marrin", "Pell Dunmore", "Bram Halloway"]),
+    "The truth: x\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: c\n- reward, for Pell Dunmore: b\n- threat, for Pell Dunmore: d\n- threat, for Bram Halloway: a\nThe patron's moment: e");
+  assert.equal(orderCompanyLines("no list here", ["Sefa Marrin"]), "no list here");
+});
+
+test("fix A2 on the loop: the party's sheets, the state and the campaign line follow the round's order; before a round, the coin's seats; the owner's table as before", async () => {
+  const partyOf = (system) => { const text = system.map((b) => b.text).join("\n"); const at = Math.max(text.indexOf("Party — the player characters"), text.indexOf("Party (identity and sheets"));
+    const lines = text.slice(at).split("\n").slice(1);
+    return lines.slice(0, lines.findIndex((line) => !line.startsWith("- {"))).map((line) => JSON.parse(line.slice(2)).name); };
+  const stateOf = (system) => { const now = system.at(-1).text; return JSON.parse(now.slice(now.indexOf("Current state")).split("\n")[1]).characters.map((row) => row.name); };
+  const campaignLine = (system) => system.map((b) => b.text).find((t) => t.startsWith("Campaign: ")).split("\n")[0];
+  for (const company of [true, false]) {
+    const c = await companyCampaign({ company, companyStart: company ? 2 : undefined });
+    try {
+      const hero = (await c.f.one("select name from public.rpg_entities where id=$1", [c.hero])).name;
+      const { title } = await c.f.one("update public.rpg_campaigns set subtitle=$2 where id=$1 returning title", [c.cid, hero]);
+      // Before any round (an input with no paragraphs of its own): the seats as the coin (2) turned them.
+      const first = await c.turn("I look around the room.", [{ text: "The room is quiet.", toolCalls: [finish()] }], { deps: { rollCheck: noCheck } });
+      assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
+      const round = `(Round 1 — one paragraph per character in this scene.)\n\nSefa Marrin: I watch.\n\n${hero}: I wait.\n\nPell Dunmore: I listen.`;
+      const played = await c.turn(round, [{ text: "All three wait.", toolCalls: [finish()] }], { deps: { rollCheck: noCheck } });
+      assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+      const [before, during] = [first.model.requests[0].system, played.model.requests[0].system];
+      if (company) {
+        assert.deepEqual(partyOf(before), ["Pell Dunmore", hero, "Sefa Marrin"], "before a round: the coin's seats");
+        assert.deepEqual(partyOf(during), ["Sefa Marrin", hero, "Pell Dunmore"], "a round: its own paragraphs' order");
+        assert.deepEqual(stateOf(during).slice(0, 3), ["Sefa Marrin", hero, "Pell Dunmore"], "the state: the player characters first, in the round's order");
+        assert.equal(campaignLine(during), `Campaign: ${title}.`, "a subtitle that is one character's name stays out");
+      } else {
+        // The owner's table: the lists as the records give them, the subtitle kept.
+        const source = await c.f.query("select id, name, kind from public.rpg_entities where campaign_id=$1", [c.cid]);
+        assert.deepEqual(partyOf(during), partyOf(before), "no order of its own");
+        assert.deepEqual(new Set(partyOf(during)), new Set([hero, "Sefa Marrin", "Pell Dunmore"].filter((n) => source.some((row) => row.name === n))));
+        assert.equal(campaignLine(during), `Campaign: ${title} — ${hero}.`, "the owner's campaign line as before");
+      }
+    } finally { await c.f.db.close(); }
+  }
 });
 
 test("A1, the request: the story's own words and a player's message go as they are; everything else is rewritten; the toolset once", () => {

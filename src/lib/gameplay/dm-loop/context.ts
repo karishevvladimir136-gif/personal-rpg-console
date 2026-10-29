@@ -53,7 +53,7 @@ const json = (value: unknown) => JSON.stringify(value);
 import { estimateTokens } from "./tokens.ts";
 import { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, privateNotes, rankNotes, type PrivateNote } from "./private-notes.ts";
 import { innerVoiceFor, innerVoiceLine, innerVoices, isInnerVoiceKey } from "./inner-voice.ts";
-import { companyOn } from "./company.ts";
+import { companyOn, companyOrder, inCompanyOrder, isPlayerCharacter, orderCompanyLines } from "./company.ts";
 import { campaignDay, longRestEnds } from "../world-day.ts";
 export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
@@ -141,10 +141,21 @@ function modelText(snapshot: RuntimeSource["snapshot"], model: CharacterModel): 
   return json({ ...body, relationships: body.relationships.map((r) => ({ ...r, actorId: snapshot.entities.find((e) => e.id === r.actorId)?.name ?? r.actorId })),
     ...(body.speech ? { speech: speechText(snapshot, body.speech) } : {}) });
 }
-function partyInShort(source: RuntimeSource): Budgeted {
+/** Multi-hero 1, fix A2: the order of the player characters for this request at a company table — the round's own
+ * message (this turn's input, else the last round on record), else the seats as the table's coin turned them
+ * (company.ts `companyOrder`); null at any other table, whose lists stay as they were. */
+export function companyOrderOf(source: RuntimeSource, input: Pick<TurnInput, "input"> | null): string[] | null {
+  if (!companyOn(source.dmOptions)) return null;
+  const rounds = [input?.input ?? "", ...[...source.snapshot.scenes].reverse().filter((row) => row.role === "player").map((row) => row.body)];
+  return companyOrder(source.snapshot.entities, source.runtime.configuration?.controlledEntityIds ?? [], parseDmOptions(source.dmOptions).companyStart ?? 0, rounds);
+}
+
+function partyInShort(source: RuntimeSource, input: Pick<TurnInput, "input"> | null = null): Budgeted {
   const { snapshot, runtime } = source;
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
-  const party = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
+  const order = companyOrderOf(source, input);
+  const listed = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
+  const party = order ? inCompanyOrder(listed, (row) => row.id, order) : listed;
   const company = companyOn(source.dmOptions);
   const entries = party.map((row) => {
     const profile = profileOf(row);
@@ -208,8 +219,10 @@ export function speechProfilesBlock(source: RuntimeSource, input: TurnInput, mod
   const { snapshot, runtime } = source;
   const present = new Set(runtime.configuration?.presentEntityIds ?? []);
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
-  const people = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") &&
+  const order = companyOrderOf(source, input);
+  const listed = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") &&
     (present.has(row.id) || controlled.has(row.id) || row.id === input.companionId));
+  const people = order ? inCompanyOrder(listed, (row) => row.id, order) : listed;
   const name = (id: string) => snapshot.entities.find((e) => e.id === id)?.name ?? id;
   const lines: string[] = [];
   for (const row of people) {
@@ -260,11 +273,17 @@ export function recentSignatureUses(scenes: { role: string; body: string }[], mo
 /** The session tail's Character Models (polish item 8): people present in the
  * scene get their full model, people mentioned or relevant the core, the rest
  * one line — while the models budget lasts. */
+/** At a company table, a campaign subtitle that is one player character's name (the wizard's record) — left out. */
+const companySubtitle = (source: RuntimeSource) => companyOn(source.dmOptions) && source.snapshot.entities.some((row) =>
+  row.name === source.snapshot.campaign.subtitle && isPlayerCharacter(row, source.runtime.configuration?.controlledEntityIds ?? [], true));
+/** A person's place in a company table's order (the player characters first, by the round); 0 for all at any other. */
+const seatRank = (order: readonly string[] | null, id: string) => { if (!order) return 0; const at = order.indexOf(id); return at < 0 ? order.length : at; };
 function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): Budgeted {
   const { snapshot, runtime } = source;
   const present = new Set(runtime.configuration?.presentEntityIds ?? []);
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
   const distance = distances(source, models);
+  const order = companyOrderOf(source, input);
   const lower = input.input.toLocaleLowerCase();
   const rows = [...models.values()].map((model) => {
     const row = snapshot.entities.find((e) => e.id === model.actorId);
@@ -276,13 +295,13 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
       : mentioned || !!profileOf(row).important || distance(row.id) === 1 ? "relevant" : "other";
     return { row, model, tier, rank: tier === "present" ? 0 : tier === "relevant" ? 1 : 2 };
   }).filter((entry): entry is NonNullable<typeof entry> => entry !== null)
-    .sort((a, b) => a.rank - b.rank || a.row.name.localeCompare(b.row.name));
+    .sort((a, b) => a.rank - b.rank || seatRank(order, a.row.id) - seatRank(order, b.row.id) || a.row.name.localeCompare(b.row.name));
   const signatureLine = (model: CharacterModel) => { const uses = recentSignatureUses(snapshot.scenes, model); return Object.keys(uses).length
     ? ` — sounded in the last scenes: ${Object.entries(uses).map(([phrase, n]) => `«${phrase}» ×${n}`).join(", ")} (vary; a tic once a scene at most)` : ""; };
   // Findings S3 §6: a person in the scene brings their voice block, in their card (and a present person without a model, the block alone).
   const voices = innerVoices(source.privateState);
   const voiceOf = (row: Entity) => { const text = innerVoiceFor(row, voices); return text ? `\n  ${innerVoiceLine(text)}` : ""; };
-  const unmodelled = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") && !models.has(row.id) &&
+  const unmodelled = (order ? inCompanyOrder(snapshot.entities, (row) => row.id, order) : snapshot.entities).filter((row) => (row.kind === "npc" || row.kind === "companion") && !models.has(row.id) &&
     (present.has(row.id) || controlled.has(row.id) || row.id === input.companionId) && innerVoiceFor(row, voices))
     .map((row) => ({ label: row.name, text: `- ${row.name} (${row.id}, in the scene)${voiceOf(row)}` }));
   const entries = [...rows.map(({ row, model, tier }) => tier === "present"
@@ -395,11 +414,14 @@ const serverKept = (_kind: string, key: string) => key.startsWith("act_") || key
 /** Fix run B1/B2: the owner's secrets and the hidden layer head the private notes and are never budget-dropped; the
  * notes follow in priority order (open clocks and consequences, open facts newest first, closed ones last) with their
  * validity, so a budget drops the closed notes first. */
-function privateSecrets(source: RuntimeSource): Budgeted {
+function privateSecrets(source: RuntimeSource, input: Pick<TurnInput, "input"> | null = null): Budgeted {
   // Game player 2: a pure-simulation campaign has no secrets and no hidden layer — none reach the DM even if stored.
   const pure = parseDmOptions(source.dmOptions).pureSimulation;
   const owner = pure ? "" : ownerSecretsText(source);
-  const layer = pure ? "" : hiddenLayerOf(source);
+  // Multi-hero 1, fix A2: a company layer's own list of puzzles, threats and rewards follows the round's order.
+  const order = companyOrderOf(source, input);
+  const stored = pure ? "" : hiddenLayerOf(source);
+  const layer = order ? orderCompanyLines(stored, order.map((id) => source.snapshot.entities.find((row) => row.id === id)?.name ?? "")) : stored;
   const head = [owner ? `The owner's own secrets (DM-only; build on them, never contradict them):\n${owner}` : "", layer].filter(Boolean).join("\n\n");
   const validity = (note: PrivateNote) => note.until !== null ? ` (closed — was true${note.since !== null ? ` from ${worldDay(note.since)}` : ""} until ${worldDay(note.until)})`
     : note.since !== null ? ` (since ${worldDay(note.since)})` : "";
@@ -467,7 +489,12 @@ function playerLikes(source: RuntimeSource): Budgeted {
 function attentionLedger(source: RuntimeSource, ledger: AttentionLedger): Budgeted {
   const { snapshot } = source;
   const lines: string[] = [];
-  const companions = Object.entries(ledger.companions).map(([id, since]) => ({ name: snapshot.entities.find((e) => e.id === id)?.name ?? null, since }))
+  // Multi-hero 1, fix A2: at a company table the party's members are player characters, not companions the DM keeps in
+  // focus — the line would name two of the three, by place.
+  const company = companyOn(source.dmOptions);
+  const controlled = source.runtime.configuration?.controlledEntityIds ?? [];
+  const companions = Object.entries(ledger.companions).filter(([id]) => !company || !isPlayerCharacter(snapshot.entities.find((e) => e.id === id), controlled, true))
+    .map(([id, since]) => ({ name: snapshot.entities.find((e) => e.id === id)?.name ?? null, since }))
     .filter((row): row is { name: string; since: number } => row.name !== null).sort((a, b) => b.since - a.since);
   if (companions.length) lines.push(`companions, sessions since last in focus: ${companions.map((row) => `${row.name} ${row.since}`).join("; ")}`);
   const threads = Object.entries(ledger.threads).map(([id, since]) => ({ title: snapshot.quests.find((q) => q.id === id && q.status === "open")?.title ?? null, since }))
@@ -591,7 +618,10 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   // player character — so no record stands out as the hero.
   const company = companyOn(source.dmOptions);
   const pc = (row: Entity) => company && (row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
-  const entities = snapshot.entities.filter((row) => row.kind !== "faction").map((row) => {
+  // Fix A2: the player characters first, in the round's order (at any other table, the records as they are).
+  const order = companyOrderOf(source, input);
+  const rows = order ? inCompanyOrder(snapshot.entities, (row) => row.id, order) : snapshot.entities;
+  const entities = rows.filter((row) => row.kind !== "faction").map((row) => {
     const wallet = walletOfEntity(row);
     const labels = row.public_profile?.counterLabels;
     return { id: row.id, name: row.name, kind: pc(row) ? "player" : row.kind,
@@ -730,7 +760,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const packet = source.worldTakeover ? clipTokens(json({ actors: source.worldTakeover.actors, policy: source.worldTakeover.policy, threads: source.worldTakeover.unresolvedThreads, recentEvents: source.worldTakeover.recentWorldEvents }), DOSSIER_BUDGETS.layer2.packet) : "";
   const likesText = ownerLikes(source);
   const world = [
-    `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle ? ` — ${snapshot.campaign.subtitle}` : ""}.`,
+    `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle && !companySubtitle(source) ? ` — ${snapshot.campaign.subtitle}` : ""}.`,
     likesText,
     guideText ? `DM guide (owner's standing guidance for this campaign):\n${guideText}` : "",
     canonText.text, referenceText.text,
@@ -747,9 +777,9 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   // ledger change most turns, so they sit after the last breakpoint).
   const models = storedModels(source);
   const ledger = parseLedger(source.privateState);
-  const stableParts = [partyInShort(source), codexOfPeople(source, input, models), factions(source), journal(source, "stable"), pinnedFacts(source),
+  const stableParts = [partyInShort(source, input), codexOfPeople(source, input, models), factions(source), journal(source, "stable"), pinnedFacts(source),
     notebook(source), adventureGuidance(source), sessionRecaps(source)];
-  const tailParts = [peopleModels(source, input, models), journal(source, "open"), tableNotes(source), privateSecrets(source), offScreenPlans(source),
+  const tailParts = [peopleModels(source, input, models), journal(source, "open"), tableNotes(source), privateSecrets(source, input), offScreenPlans(source),
     playerLikes(source), attentionLedger(source, ledger), battlefield(source)];
   const living = stableParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "No dossier yet. Start it as the story needs: note_character for people who matter, note_world for secrets and plans, quest for the journal.";
@@ -841,7 +871,7 @@ export function buildCouncilContext(source: RuntimeSource, input: TurnInput): Dm
   const listeners = input.listenerIds.map((id) => snapshot.entities.find((row) => row.id === id)).filter((row): row is Entity => !!row && row.kind !== "player");
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id);
   const present = new Set(runtime.configuration?.presentEntityIds ?? []);
-  const party = partyInShort(source);
+  const party = partyInShort(source, input);
   const people = [speaker, ...listeners].filter((row): row is Entity => !!row).map((row) => {
     const model = models.get(row.id);
     const voice = innerVoiceFor(row, innerVoices(source.privateState));

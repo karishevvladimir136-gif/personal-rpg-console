@@ -13,7 +13,7 @@ import { buildDmLoopContext, estimateTokens } from "./context.ts";
 import { HIDDEN_LAYER_KEY, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 import { boundInnerVoice, innerVoiceWrites, INNER_VOICES_PER_CALL, peopleWithoutVoice } from "./inner-voice.ts";
 import { ACT_PLAN_KEY, parseActPlan, serializeActPlan, type ActPlan } from "./clock.ts";
-import { companyOn } from "./company.ts";
+import { COMPANY_LINES_HEADER, companyOn } from "./company.ts";
 
 export { HIDDEN_LAYER_KEY, hiddenLayerOf, ownerSecretsText, ownerWishesText } from "./private-notes.ts";
 /** Findings S3 §7 (the owner's decision): the dose of the DM's own notes — 24 000 characters (it was 6 000); state carries
@@ -126,7 +126,7 @@ export function parsePrep(raw: string, language: "ru" | "en", options: { company
 }
 
 /** Multi-hero 1: the layer's company lines — «- puzzle, for Sefa Marrin: …» (the A8 check reads them back). */
-export const COMPANY_LINES_HEADER = "The company's puzzles, threats and rewards (each with the player character it is first addressed to):";
+export { COMPANY_LINES_HEADER };
 function companyLines(rows: { kind: string; for: string; what: string }[]): string {
   const kept = rows.filter((row) => ["puzzle", "threat", "reward"].includes(row.kind) && row.for && row.what).slice(0, 18);
   return kept.length ? `${COMPANY_LINES_HEADER}\n${kept.map((row) => `- ${row.kind}, for ${row.for}: ${row.what}`).join("\n")}` : "";

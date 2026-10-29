@@ -18,7 +18,7 @@
 //   - company (multi-hero 1, docs/stages/MULTI_HERO_1.md): a table with no main character — every controlled party
 //     member is a player character with the hero's standing (their own Heroic Inspiration, their own player's allowed
 //     rerolls) and the DM's inputs speak of the company, never of «the hero» (company.ts). Off by default: the owner's
-//     single-hero table is unchanged.
+//     single-hero table is unchanged. companyStart (its fix A2): the table's coin, the seat its order starts from.
 export type DmOptions = {
   continuation: "same" | "lighter";
   instructions: "ru" | "en";
@@ -28,6 +28,8 @@ export type DmOptions = {
   pureSimulation: boolean;
   /** Absent unless the campaign set it (the owner's options read exactly as before). */
   company?: boolean;
+  /** Multi-hero 1, fix A2: a company table's coin — which seat its order starts from (company.ts `companySeats`). */
+  companyStart?: 0 | 1 | 2;
 };
 export type DmMemoryPreset = "compact" | "standard" | "wide";
 /** The budgets (estimated tokens) of each «Память ведущего» preset: the recent scenes and exchanges read
@@ -41,7 +43,7 @@ export const MEMORY_PRESETS: Readonly<Record<DmMemoryPreset, { history: number; 
 });
 export const DM_OPTION_DEFAULTS: DmOptions = Object.freeze({ continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard", pureSimulation: false });
 export const DM_OPTION_VALUES: { readonly [K in keyof DmOptions]: readonly DmOptions[K][] } = {
-  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], memory: ["compact", "standard", "wide"], pureSimulation: [true, false], company: [true, false],
+  continuation: ["same", "lighter"], instructions: ["ru", "en"], companionRolls: ["dm", "player"], secretsVisible: [true, false], memory: ["compact", "standard", "wide"], pureSimulation: [true, false], company: [true, false], companyStart: [0, 1, 2],
 };
 
 /** The stored options with the defaults filled in; an unknown key or value (a newer or older row) is ignored. */

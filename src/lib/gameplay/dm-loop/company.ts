@@ -30,6 +30,64 @@ export function playerCharacterIds(entities: readonly Pick<Entity, "id" | "kind"
   return entities.filter((row) => isPlayerCharacter(row, controlled, true)).map((row) => row.id);
 }
 
+// ---- the order (fix A2, the amendment of 2026-10-29 02:30 LA): nothing the DM reads lists one character first by place --
+
+/** The seats of a company table: the player record, then the party's companions as the table seated them (the
+ * configuration's order; before the seating, the companions on record as listed), turned by the table's coin — the DM
+ * option `companyStart` (0–2), drawn once per table. */
+export function companySeats(entities: readonly Pick<Entity, "id" | "kind">[], controlled: readonly string[], start = 0): string[] {
+  const player = entities.filter((row) => row.kind === "player").map((row) => row.id);
+  const seated = controlled.filter((id) => entities.some((row) => row.id === id && row.kind === "companion"));
+  const companions = seated.length ? seated : entities.filter((row) => row.kind === "companion").map((row) => row.id);
+  const base = [...player, ...companions];
+  const shift = base.length ? ((start % base.length) + base.length) % base.length : 0;
+  return [...base.slice(shift), ...base.slice(0, shift)];
+}
+
+const escapeName = (name: string) => name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+/** The order of a round's own message: the player characters whose names open its paragraphs («Sefa Marrin: …»), as
+ * they come (the table turns it round each round, and follows initiative in a fight). Empty for any other text. */
+export function roundOrder(text: string, members: readonly Pick<Entity, "id" | "name">[]): string[] {
+  const found = members.map((row) => ({ id: row.id, at: text.search(new RegExp(`(?:^|\\n)${escapeName(row.name)}:`)) })).filter((row) => row.at >= 0);
+  return found.sort((a, b) => a.at - b.at).map((row) => row.id);
+}
+
+/** The order of the player characters in everything the DM reads at a company table: the round's own message (the
+ * turn's input, else the last round on record), the characters it leaves out after it in the seats' order; before the
+ * first round, the seats. */
+export function companyOrder(entities: readonly Pick<Entity, "id" | "kind" | "name">[], controlled: readonly string[], start: number,
+  rounds: readonly string[]): string[] {
+  const seats = companySeats(entities, controlled, start);
+  const members = seats.map((id) => entities.find((row) => row.id === id)!).filter(Boolean);
+  for (const text of rounds) {
+    const order = roundOrder(text, members);
+    if (order.length) return [...order, ...seats.filter((id) => !order.includes(id))];
+  }
+  return seats;
+}
+
+/** The header of a company layer's own list (hidden-layer.ts writes it; the A8 check reads it back). */
+export const COMPANY_LINES_HEADER = "The company's puzzles, threats and rewards (each with the player character it is first addressed to):";
+/** A layer's text with its company lines in the given order of names (each line kept as written; a line for no one of
+ * them after, as it stood). */
+export function orderCompanyLines(layer: string, names: readonly string[]): string {
+  const at = layer.indexOf(COMPANY_LINES_HEADER);
+  if (at < 0) return layer;
+  const start = at + COMPANY_LINES_HEADER.length + 1;
+  const tail = layer.slice(start);
+  const end = tail.search(/\n(?!- )/);
+  const block = end < 0 ? tail : tail.slice(0, end);
+  const rank = (line: string) => { const who = /^- (?:puzzle|threat|reward), for ([^:]+):/.exec(line)?.[1]?.trim() ?? ""; const i = names.indexOf(who); return i < 0 ? names.length : i; };
+  const lines = block.split("\n").map((line, index) => ({ line, index })).sort((a, b) => rank(a.line) - rank(b.line) || a.index - b.index).map((x) => x.line);
+  return `${layer.slice(0, start)}${lines.join("\n")}${end < 0 ? "" : tail.slice(end)}`;
+}
+
+/** Rows sorted with the player characters first, in `order`, the rest after them as they were. */
+export function inCompanyOrder<T>(rows: readonly T[], idOf: (row: T) => string, order: readonly string[]): T[] {
+  const rank = (row: T) => { const at = order.indexOf(idOf(row)); return at < 0 ? order.length : at; };
+  return rows.map((row, index) => ({ row, index })).sort((a, b) => rank(a.row) - rank(b.row) || a.index - b.index).map((x) => x.row);
+}
+
 /** The frame's company paragraph: who sits at the table, that no one is the main character, and that the company moves
  * when any of them acts (the stage's A7). It closes the frame of every DM role of the mode. */
 export const COMPANY_TABLE = "At this table several players sit together, each playing one character of their own: the player characters, on record as the party. None of them is the main character and you play none of them. Each round brings what every character in a scene does, one paragraph each; resolve them all and narrate what happens to every character there. The company moves when any of them acts: you never wait on one character's decision before the others may move, and one character's consent is never the condition of the others' movement. When you end on a question, put it to the characters it concerns — over the rounds to each of them in turn, never to the same one by habit. Each player character earns and spends their own Heroic Inspiration, and each player has their own allowed rerolls.";
@@ -37,6 +95,10 @@ export const COMPANY_TABLE = "At this table several players sit together, each p
 /** Whole sentences of the roles and the tools that need more than a word changed (the subject's pronouns, a rule that
  * meant one person). Each `from` is copied from its source; a test checks that every one still occurs there. */
 export const COMPANY_SENTENCES: readonly (readonly [string, string])[] = [
+  // Fix A2: the turn shapes' combat example names its archer «Bram» (roles.ts) — at a company table a real character may
+  // bear the name, so the example's archer is someone no table seats.
+  ["Text: \"Bram levels his crossbow at the brute; Toby draws on the sentry.\"", "Text: \"Ulf levels his crossbow at the brute; Toby draws on the sentry.\""],
+  ["reason \"Bram: crossbow at the brute\")", "reason \"Ulf: crossbow at the brute\")"],
   // The frame (roles.ts FRAME).
   ["played at home by one person — the owner of this table.", "played at home by a company of players around one table — the owner's table."],
   ["the dice, the hidden layer, the records, the hero's will —", "the dice, the hidden layer, the records, each player's will over their own character —"],
@@ -188,13 +250,14 @@ export function companyRequest<T extends Pick<DmModelRequest, "system" | "messag
 
 /** The opening's own paragraph at a company table (adventure-bootstrap-provider.ts `bootstrapInstructions`, its
  * «For opening» paragraph): the campaign's first scene addresses the company, no protagonist at its centre. */
-export const COMPANY_OPENING = "For opening, use only the supplied setting, the established player characters and the advisory Adventure guidance to propose the minimum present PUBLIC location, observable situation and necessary visible people/creatures. The player characters already exist and are automatically present at the approved starting location: the one on record in the context (playerCharacter) and every other one the Adventure's set-up names as a player character — each played by their own player, none of them the main character. The actors array contains ONLY additional NEW visible non-player people/creatures. Never list a player character or recreate any established Entity/Actor. Consequential opening questions are only for facts genuinely required to establish this minimum playable public opening, never optional future story choices. Paid work, rumors, motives and causes may remain unknown and be discovered through play; do not force setup clarification when they can safely remain unknown. All proposed facts are campaign-authored setup, never external/source fact. NPC capabilities/limitations are ordinary descriptive public facts, not powers or evidence of hidden motives. Establish presence without relocating from an existing continuity; no elapsed time, knowledge grants, new quests, rewards or completed investigation. Do not choose any player character's speech, actions, beliefs, emotions or commitments. Narration presents the situation and open choices, never a predetermined route. Every person in the opening has a proper name (the owner reviews and may change it): never ask the owner what someone is called or how strong they are — decide it. People and places the Adventure's text states (who gave the job, who is where) appear as they are written there, with their names. The narration and every proposed text are written in the campaign language given in the context (Russian when it says ru); the narration gives every player character the same footing — each by name, none at the centre — and ends on the situation the company faces now — an open moment, a question in the air, something that asks for their next move — never on a summary or a farewell. A space station is not a medieval settlement. Missing consequential basis pauses for clarification, never a generic fantasy fallback.";
+export const COMPANY_OPENING = "For opening, use only the supplied setting, the player characters and the advisory Adventure guidance to propose the minimum present PUBLIC location, observable situation and necessary visible people/creatures. The player characters are the ones the Adventure's set-up names as player characters, alike — each played by their own player, none of them the main character; they already exist and are automatically present at the approved starting location. The actors array contains ONLY additional NEW visible non-player people/creatures. Never list a player character or recreate any established Entity/Actor. Consequential opening questions are only for facts genuinely required to establish this minimum playable public opening, never optional future story choices. Paid work, rumors, motives and causes may remain unknown and be discovered through play; do not force setup clarification when they can safely remain unknown. All proposed facts are campaign-authored setup, never external/source fact. NPC capabilities/limitations are ordinary descriptive public facts, not powers or evidence of hidden motives. Establish presence without relocating from an existing continuity; no elapsed time, knowledge grants, new quests, rewards or completed investigation. Do not choose any player character's speech, actions, beliefs, emotions or commitments. Narration presents the situation and open choices, never a predetermined route. Every person in the opening has a proper name (the owner reviews and may change it): never ask the owner what someone is called or how strong they are — decide it. People and places the Adventure's text states (who gave the job, who is where) appear as they are written there, with their names. The narration and every proposed text are written in the campaign language given in the context (Russian when it says ru); the narration gives every player character the same footing — each by name, none at the centre — and ends on the situation the company faces now — an open moment, a question in the air, something that asks for their next move — never on a summary or a farewell. A space station is not a medieval settlement. Missing consequential basis pauses for clarification, never a generic fantasy fallback.";
 
-/** The opening's instructions and input at a company table: the «For opening» paragraph replaced, and the one
- * player character on record sent as `playerCharacter` (the server's own check still reads its ticket as it was). */
+/** The opening's instructions and input at a company table: the «For opening» paragraph replaced, and the one record
+ * the app keeps before the opening (the wizard's) left out of the input — fix A2: the opening reads the player
+ * characters alike, as the Adventure's set-up names them, in the table's seat order (the app holds a single record until
+ * the opening is committed). The server's own check reads its ticket as it was. */
 export function companyOpening(instructions: string, context: Record<string, unknown>): { instructions: string; context: Record<string, unknown> } {
   const at = instructions.indexOf("For opening, use only");
-  const { protagonist, ...rest } = context;
-  return { instructions: at >= 0 ? `${instructions.slice(0, at)}${COMPANY_OPENING}` : companyText(instructions),
-    context: { ...rest, ...(protagonist !== undefined ? { playerCharacter: protagonist } : {}) } };
+  const rest = Object.fromEntries(Object.entries(context).filter(([key]) => key !== "protagonist"));
+  return { instructions: at >= 0 ? `${instructions.slice(0, at)}${COMPANY_OPENING}` : companyText(instructions), context: rest };
 }
