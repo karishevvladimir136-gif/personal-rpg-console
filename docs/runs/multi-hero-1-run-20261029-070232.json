@@ -4038,7 +4038,7 @@
   ],
   "a5": {
     "holds": true,
-    "line": "the full suite on this branch: 3 103 tests, 3 074 pass, 27 skipped, 2 fail — the two mega-dm fixture tests that read old commits this shallow clone does not have (they fail the same on the base commit, 47f1e08); the owner-path smoke (tests/multi-hero-1-app.test.mjs «A5»): without the option the DM is sent the same frame and the same toolset object, and the table keeps its two shared rerolls. Typecheck, zero-warning lint and the production build pass."
+    "line": "the full suite on this branch: 3 103 tests, 3 071 pass, 27 skipped, 2 fail, 3 cancelled — the two mega-dm fixture tests that read old commits this shallow clone does not have, and three World Lab tests in tests/d2a-composition.test.mjs that wait on a 1 ms AbortSignal.timeout Node does not keep alive (all five fail the same on the base commit, 03b0991; before the rebase the three passed); the owner-path smoke (tests/multi-hero-1-app.test.mjs «A5»): without the option the DM is sent the same frame and the same toolset object, and the table keeps its two shared rerolls. Typecheck, zero-warning lint and the production build pass."
   },
   "a6": {
     "holds": true,

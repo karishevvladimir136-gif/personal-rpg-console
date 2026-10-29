@@ -22,8 +22,10 @@ waiting for the owner's reading.** Branch `claude/multi-hero-1-mdk43v` (the stag
   tags and the A8 layer reading (Haiku judges).
 - **Checks:** `tests/multi-hero-1-app.test.mjs` 8/8 and `tests/multi-hero-1.test.mjs` 9/9 (A1–A8 on the mocked host,
   A6 from each seat in turn). Existing tests touched: `tests/integration-saves.test.mjs` (the new migration appended
-  to its list, as every migration stage does). Full suite: 3 103 tests, 3 074 pass, 27 skipped, 2 fail — the two
-  mega-dm fixture tests that `git show` old commits this shallow clone lacks (they fail the same on the base commit).
+  to its list, as every migration stage does). Full suite after the rebase: 3 103 tests, 3 071 pass, 27 skipped, 2 fail,
+  3 cancelled — the two mega-dm fixture tests that `git show` old commits this shallow clone lacks, and three World
+  Lab tests (`tests/d2a-composition.test.mjs`) that wait on a 1 ms timer Node does not keep alive; all five fail the
+  same on the base commit 03b0991 (the three passed before the rebase — a timing-sensitive test, not this stage's).
   Typecheck pass; lint with zero warnings; production build pass.
 - **The dry run on Haiku ×3** (one P-SAND table, 6 rounds; the world and both company layers built on Haiku first):
   A1 held, A2 lost (the DM wrote 42.7 % about Bram though his player wrote the fewest words; spread 14.8 points),
