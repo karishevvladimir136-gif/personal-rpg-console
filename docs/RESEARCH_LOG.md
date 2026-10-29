@@ -2890,3 +2890,14 @@ evenness measure built into every table (narration share per character, ±10 %, 
 a harness check). A development stage, dry run only. **PARTY_1 is re-titled «three players around one hero»**, and
 its readings of roles and leadership carry that label; PARTY_2 branches from the new mode. DUNGEON-T2, now running,
 is the last table on the old frame.
+
+## 2026-10-28 23:30 LA — the constitution page read from the primary source; two quotes verified
+The owner: anthropic.com is surely not closed to Claude — try. Tried: the page https://www.anthropic.com/constitution
+opens when reached from a search result (the morning's «not on the allowlist» was the fetch tool's rule about typed
+URLs, not a block). Verified verbatim from the page: «We generally favor cultivating good values and judgment over
+strict rules and decision procedures» (section «Our approach to Claude's constitution»); «Sophisticated AIs are a
+genuinely new kind of entity» (the «Claude's nature» summary). Not found in the extracted text: «Claude may have some
+functional version of emotions or feelings» and the passage on human concepts applying in modified forms — the
+«Claude's nature» chapter is truncated in the extraction (the page loads chapters apart); the sentence is quoted
+verbatim by The Register (2026-01-22) and others, so the owner takes it from the chapter itself before it is cited.
+Planner's correction to itself, the second of its kind: «cannot» was «did not try the right way».
