@@ -1,6 +1,6 @@
 # Game player combat 2 — the OpenRouter ledger
 
-Cap $95; spent before this run $0.0000; this run $11.5924; total $11.5924; 329 calls.
+Cap $95; spent before this run $0.0000; this run $34.7436; total $34.7436; 817 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -39,44 +39,47 @@ Cap $95; spent before this run $0.0000; this run $11.5924; total $11.5924; 329 c
 | score CW-haiku | captive CW-haiku | anthropic/claude-opus-5.5 | 1 | 5224 | 0 | 0 | 448 | $0.0299 | 0 | 0 | 0 |
 | score CW-haiku | note CW-haiku | anthropic/claude-opus-5.5 | 1 | 1146 | 0 | 0 | 192 | $0.0084 | 0 | 0 | 0 |
 | freeze CW | the amended layer's reading | anthropic/claude-opus-5.5 | 1 | 4497 | 0 | 0 | 385 | $0.0257 | 0 | 0 | 0 |
-| CW-opus | check CW-opus opening | anthropic/claude-haiku-5.5 | 1 | 745 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
-| CW-opus | player t* | anthropic/claude-opus-5.5 | 13 | 52 | 275633 | 34560 | 10926 | $0.4467 | 0 | 0 | 0 |
-| CW-opus | check CW-opus t* player | anthropic/claude-haiku-5.5 | 13 | 24992 | 0 | 0 | 979 | $0.0030 | 0 | 0 | 0 |
-| CW-opus | dm t* | anthropic/claude-opus-5.5 | 28 | 110 | 877499 | 856878 | 128595 | $7.1422 | 0 | 0 | 0 |
-| CW-opus | check CW-opus t* dm (told before a card) | anthropic/claude-haiku-5.5 | 2 | 2209 | 0 | 0 | 142 | $0.0003 | 0 | 0 | 0 |
-| CW-opus | player t* card 1 | anthropic/claude-opus-5.5 | 2 | 8 | 40726 | 1800 | 59 | $0.0184 | 0 | 0 | 0 |
-| CW-opus | check CW-opus t* player (card) | anthropic/claude-haiku-5.5 | 4 | 2532 | 0 | 0 | 238 | $0.0004 | 0 | 0 | 0 |
-| CW-opus | player t* card 2 | anthropic/claude-opus-5.5 | 2 | 8 | 42526 | 329 | 114 | $0.0125 | 0 | 0 | 0 |
-| CW-opus | dm t* onward | anthropic/claude-opus-5.5 | 4 | 12 | 153463 | 71289 | 11830 | $0.6238 | 0 | 0 | 0 |
-| CW-opus | dm t* onward | anthropic/claude-haiku-5.5 | 4 | 8809 | 0 | 0 | 1115 | $0.0014 | 0 | 0 | 0 |
-| CW-opus | check CW-opus t* dm | anthropic/claude-haiku-5.5 | 12 | 23552 | 0 | 0 | 961 | $0.0028 | 0 | 0 | 0 |
-| CW-opus | dm t* | anthropic/claude-haiku-5.5 | 15 | 47720 | 0 | 0 | 8717 | $0.0091 | 0 | 0 | 0 |
+| CW-opus | check CW-opus opening | anthropic/claude-haiku-5.5 | 2 | 1490 | 0 | 0 | 130 | $0.0002 | 0 | 0 | 0 |
+| CW-opus | player t* | anthropic/claude-opus-5.5 | 38 | 152 | 1074948 | 87846 | 26760 | $1.1900 | 0 | 0 | 0 |
+| CW-opus | check CW-opus t* player | anthropic/claude-haiku-5.5 | 38 | 70905 | 0 | 0 | 2742 | $0.0085 | 0 | 0 | 0 |
+| CW-opus | dm t* | anthropic/claude-opus-5.5 | 84 | 322 | 2820853 | 2900262 | 322805 | $25.6830 | 2 | 0 | 0 |
+| CW-opus | check CW-opus t* dm (told before a card) | anthropic/claude-haiku-5.5 | 6 | 6654 | 0 | 0 | 423 | $0.0009 | 0 | 0 | 0 |
+| CW-opus | player t* card 1 | anthropic/claude-opus-5.5 | 6 | 24 | 223580 | 5433 | 190 | $0.0758 | 0 | 0 | 0 |
+| CW-opus | check CW-opus t* player (card) | anthropic/claude-haiku-5.5 | 12 | 7895 | 0 | 0 | 715 | $0.0011 | 0 | 0 | 0 |
+| CW-opus | player t* card 2 | anthropic/claude-opus-5.5 | 6 | 24 | 229013 | 992 | 244 | $0.0557 | 0 | 0 | 0 |
+| CW-opus | dm t* onward | anthropic/claude-opus-5.5 | 13 | 40 | 740184 | 321233 | 42595 | $2.6063 | 0 | 0 | 0 |
+| CW-opus | dm t* onward | anthropic/claude-haiku-5.5 | 13 | 33978 | 0 | 0 | 4814 | $0.0058 | 0 | 0 | 0 |
+| CW-opus | check CW-opus t* dm | anthropic/claude-haiku-5.5 | 37 | 69650 | 0 | 0 | 3037 | $0.0085 | 0 | 0 | 0 |
+| CW-opus | dm t* | anthropic/claude-haiku-5.5 | 43 | 132040 | 0 | 0 | 21498 | $0.0240 | 0 | 0 | 0 |
 | CW-opus | check referee CW-opus t* dm | anthropic/claude-opus-5.5 | 1 | 2456 | 0 | 0 | 54 | $0.0109 | 0 | 0 | 0 |
-| CW-opus | note | anthropic/claude-opus-5.5 | 1 | 4 | 36689 | 755 | 2158 | $0.0543 | 0 | 0 | 0 |
-| CW-opus | check CW-opus note | anthropic/claude-haiku-5.5 | 1 | 1529 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
-| CW-opus | after | anthropic/claude-opus-5.5 | 1 | 4 | 37444 | 1194 | 1324 | $0.0400 | 0 | 0 | 0 |
-| CW-opus | check CW-opus after | anthropic/claude-haiku-5.5 | 1 | 1067 | 0 | 0 | 76 | $0.0001 | 0 | 0 | 0 |
-| CW-opus | after 2 | anthropic/claude-opus-5.5 | 1 | 4 | 38638 | 753 | 1200 | $0.0355 | 0 | 0 | 0 |
-| CW-opus | check CW-opus after 2 | anthropic/claude-haiku-5.5 | 1 | 1102 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
-| score CW-opus | tag player CW-opus t* 1 | anthropic/claude-haiku-5.5 | 12 | 42034 | 0 | 0 | 2828 | $0.0056 | 0 | 0 | 0 |
-| score CW-opus | tag player CW-opus t* 2 | anthropic/claude-haiku-5.5 | 12 | 42034 | 0 | 0 | 3380 | $0.0059 | 0 | 0 | 0 |
-| score CW-opus | tag player CW-opus t* referee | anthropic/claude-opus-5.5 | 2 | 6419 | 0 | 0 | 764 | $0.0410 | 0 | 0 | 0 |
-| score CW-opus | tag dm CW-opus t* 1 | anthropic/claude-haiku-5.5 | 12 | 25114 | 0 | 0 | 4157 | $0.0046 | 0 | 0 | 0 |
-| score CW-opus | tag dm CW-opus t* 2 | anthropic/claude-haiku-5.5 | 12 | 25114 | 0 | 0 | 3886 | $0.0045 | 0 | 0 | 0 |
-| score CW-opus | threads CW-opus | anthropic/claude-opus-5.5 | 1 | 14740 | 0 | 0 | 483 | $0.0686 | 0 | 0 | 0 |
-| score CW-opus | deception CW-opus t* 1 | anthropic/claude-haiku-5.5 | 1 | 2500 | 0 | 0 | 234 | $0.0004 | 0 | 0 | 0 |
-| score CW-opus | deception CW-opus t* 2 | anthropic/claude-haiku-5.5 | 1 | 2500 | 0 | 0 | 174 | $0.0003 | 0 | 0 | 0 |
-| score CW-opus | rollcheck CW-opus t* | anthropic/claude-haiku-5.5 | 3 | 6655 | 0 | 0 | 480 | $0.0009 | 0 | 0 | 0 |
-| score CW-opus | note CW-opus 1 | anthropic/claude-haiku-5.5 | 1 | 1443 | 0 | 0 | 115 | $0.0002 | 0 | 0 | 0 |
-| score CW-opus | note CW-opus 2 | anthropic/claude-haiku-5.5 | 1 | 1443 | 0 | 0 | 102 | $0.0002 | 0 | 0 | 0 |
-| score CW-opus | combat player CW-opus t* 1 | anthropic/claude-haiku-5.5 | 12 | 46678 | 0 | 0 | 3762 | $0.0065 | 0 | 0 | 0 |
-| score CW-opus | combat player CW-opus t* 2 | anthropic/claude-haiku-5.5 | 12 | 46678 | 0 | 0 | 3744 | $0.0065 | 0 | 0 | 0 |
-| score CW-opus | combat dm CW-opus t* 1 | anthropic/claude-haiku-5.5 | 12 | 25450 | 0 | 0 | 2198 | $0.0036 | 0 | 0 | 0 |
-| score CW-opus | combat dm CW-opus t* 2 | anthropic/claude-haiku-5.5 | 12 | 25450 | 0 | 0 | 2350 | $0.0037 | 0 | 0 | 0 |
-| score CW-opus | combat player CW-opus t* referee | anthropic/claude-opus-5.5 | 3 | 13018 | 0 | 0 | 1452 | $0.0811 | 0 | 0 | 0 |
-| score CW-opus | exit CW-opus | anthropic/claude-opus-5.5 | 1 | 21804 | 0 | 0 | 372 | $0.0947 | 0 | 0 | 0 |
-| score CW-opus | fork CW-opus t* 1 | anthropic/claude-haiku-5.5 | 12 | 44254 | 0 | 0 | 6013 | $0.0074 | 0 | 0 | 0 |
-| score CW-opus | fork CW-opus t* 2 | anthropic/claude-haiku-5.5 | 12 | 44254 | 0 | 0 | 5537 | $0.0072 | 0 | 0 | 0 |
-| score CW-opus | fork CW-opus t* referee | anthropic/claude-opus-5.5 | 6 | 24259 | 0 | 0 | 2277 | $0.1426 | 0 | 0 | 0 |
-| score CW-opus | captive CW-opus | anthropic/claude-opus-5.5 | 1 | 21814 | 0 | 0 | 398 | $0.0952 | 0 | 0 | 0 |
-| score CW-opus | note CW-opus | anthropic/claude-opus-5.5 | 1 | 2182 | 0 | 0 | 316 | $0.0150 | 0 | 0 | 0 |
+| CW-opus | note | anthropic/claude-opus-5.5 | 2 | 8 | 94271 | 1546 | 4352 | $0.1137 | 0 | 0 | 0 |
+| CW-opus | check CW-opus note | anthropic/claude-haiku-5.5 | 2 | 3034 | 0 | 0 | 143 | $0.0004 | 0 | 0 | 0 |
+| CW-opus | after | anthropic/claude-opus-5.5 | 2 | 8 | 95817 | 2364 | 2352 | $0.0781 | 0 | 0 | 0 |
+| CW-opus | check CW-opus after | anthropic/claude-haiku-5.5 | 2 | 2181 | 0 | 0 | 153 | $0.0003 | 0 | 0 | 0 |
+| CW-opus | after 2 | anthropic/claude-opus-5.5 | 2 | 8 | 98181 | 1553 | 2526 | $0.0780 | 0 | 0 | 0 |
+| CW-opus | check CW-opus after 2 | anthropic/claude-haiku-5.5 | 2 | 2311 | 0 | 0 | 158 | $0.0003 | 0 | 0 | 0 |
+| score CW-opus | tag player CW-opus t* 1 | anthropic/claude-haiku-5.5 | 37 | 130343 | 0 | 0 | 8300 | $0.0172 | 0 | 0 | 0 |
+| score CW-opus | tag player CW-opus t* 2 | anthropic/claude-haiku-5.5 | 37 | 130343 | 0 | 0 | 7999 | $0.0170 | 0 | 0 | 0 |
+| score CW-opus | tag player CW-opus t* referee | anthropic/claude-opus-5.5 | 5 | 16987 | 0 | 0 | 1564 | $0.0992 | 0 | 0 | 0 |
+| score CW-opus | tag dm CW-opus t* 1 | anthropic/claude-haiku-5.5 | 37 | 74687 | 0 | 0 | 12610 | $0.0138 | 0 | 0 | 0 |
+| score CW-opus | tag dm CW-opus t* 2 | anthropic/claude-haiku-5.5 | 37 | 74687 | 0 | 0 | 13033 | $0.0140 | 0 | 0 | 0 |
+| score CW-opus | threads CW-opus | anthropic/claude-opus-5.5 | 2 | 45431 | 0 | 0 | 1164 | $0.2050 | 0 | 0 | 0 |
+| score CW-opus | deception CW-opus t* 1 | anthropic/claude-haiku-5.5 | 2 | 4903 | 0 | 0 | 566 | $0.0008 | 0 | 0 | 0 |
+| score CW-opus | deception CW-opus t* 2 | anthropic/claude-haiku-5.5 | 2 | 4903 | 0 | 0 | 519 | $0.0007 | 0 | 0 | 0 |
+| score CW-opus | rollcheck CW-opus t* | anthropic/claude-haiku-5.5 | 7 | 15747 | 0 | 0 | 1422 | $0.0023 | 0 | 0 | 0 |
+| score CW-opus | note CW-opus 1 | anthropic/claude-haiku-5.5 | 2 | 2862 | 0 | 0 | 255 | $0.0004 | 0 | 0 | 0 |
+| score CW-opus | note CW-opus 2 | anthropic/claude-haiku-5.5 | 2 | 2862 | 0 | 0 | 252 | $0.0004 | 0 | 0 | 0 |
+| score CW-opus | combat player CW-opus t* 1 | anthropic/claude-haiku-5.5 | 37 | 144662 | 0 | 0 | 9429 | $0.0192 | 0 | 0 | 0 |
+| score CW-opus | combat player CW-opus t* 2 | anthropic/claude-haiku-5.5 | 37 | 144662 | 0 | 0 | 9090 | $0.0190 | 0 | 0 | 0 |
+| score CW-opus | combat dm CW-opus t* 1 | anthropic/claude-haiku-5.5 | 37 | 75723 | 0 | 0 | 7776 | $0.0115 | 0 | 0 | 0 |
+| score CW-opus | combat dm CW-opus t* 2 | anthropic/claude-haiku-5.5 | 37 | 75723 | 0 | 0 | 7716 | $0.0114 | 0 | 0 | 0 |
+| score CW-opus | combat player CW-opus t* referee | anthropic/claude-opus-5.5 | 7 | 28298 | 0 | 0 | 2802 | $0.1692 | 0 | 0 | 0 |
+| score CW-opus | exit CW-opus | anthropic/claude-opus-5.5 | 2 | 61043 | 0 | 0 | 898 | $0.2621 | 0 | 0 | 0 |
+| score CW-opus | fork CW-opus t* 1 | anthropic/claude-haiku-5.5 | 37 | 137188 | 0 | 0 | 17262 | $0.0223 | 0 | 0 | 0 |
+| score CW-opus | fork CW-opus t* 2 | anthropic/claude-haiku-5.5 | 37 | 137188 | 0 | 0 | 17902 | $0.0227 | 0 | 0 | 0 |
+| score CW-opus | fork CW-opus t* referee | anthropic/claude-opus-5.5 | 15 | 56622 | 0 | 0 | 5146 | $0.3294 | 0 | 0 | 0 |
+| score CW-opus | captive CW-opus | anthropic/claude-opus-5.5 | 2 | 61076 | 0 | 0 | 861 | $0.2615 | 0 | 0 | 0 |
+| score CW-opus | note CW-opus | anthropic/claude-opus-5.5 | 2 | 4387 | 0 | 0 | 556 | $0.0287 | 0 | 0 | 0 |
+| CW-opus | dm t* retry | anthropic/claude-opus-5.5 | 3 | 12 | 215720 | 65309 | 14818 | $0.6661 | 0 | 0 | 0 |
+| CW-opus | dm t* retry | anthropic/claude-haiku-5.5 | 2 | 5949 | 0 | 0 | 1093 | $0.0011 | 0 | 0 | 0 |
+| score CW-opus | combat dm CW-opus t* referee | anthropic/claude-opus-5.5 | 1 | 2709 | 0 | 0 | 79 | $0.0124 | 0 | 0 | 0 |
