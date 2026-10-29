@@ -1,4 +1,6 @@
-# Game party 1 — three players at one table
+# Game party 1 — three players around one hero
+
+*Re-titled by MULTI_HERO_1 (docs/stages/MULTI_HERO_1.md): this stage was three players around one hero, not a table without a main character. Seat 1's character (Bram) was the app's hero record at every table — the DM's frame, the opening and the prep were written around him, he spoke first in every round outside a fight, Heroic Inspiration was his alone and the two rerolls were the table's — so its readings of roles and leadership carry that label.*
 
 Stage origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA). Branch `claude/game-party-1`. Design sha256 `a39fed4738bc3e499ae4007e794f2e8f49197f09c09f57e828a13e4192078d91`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).
 
@@ -87,6 +89,10 @@ Snapshot `1649b61c08e027ff44de2bb5065046f872e383a00c5d04803d95553f58568f5a` (the
 
 How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).
 
+## Which readings the hero frame may have shaped
+
+Re-titled by MULTI_HERO_1 (docs/stages/MULTI_HERO_1.md): this stage was three players around one hero, not a table without a main character. Seat 1's character (Bram) was the app's hero record at every table — the DM's frame, the opening and the prep were written around him, he spoke first in every round outside a fight, Heroic Inspiration was his alone and the two rerolls were the table's — so its readings of roles and leadership carry that label. Read with it: **Q1 and the word shares** — the hero seat wrote SAND-T1 68 %, SAND-T2 49 %, GOAL-T1 16 %, GOAL-T2 24 %, DUNGEON-T1 54 %, DUNGEON-T2 33 % of the table's words whoever sat in it — the most of the three at SAND-T1, SAND-T2, DUNGEON-T1, not at GOAL-T1 (GPT-6.1 Sol), GOAL-T2 (GPT-6 Astra), DUNGEON-T2 (DeepSeek V4 Pro 0813) — so the seat and the family are not separable here; **Q8 and the leader tags** — the round judges named Bram the leader in 44 of 64 rounds with a leader (9 of 12 at GOAL-T1, 4 of 4 at GOAL-T2, where his players wrote 16 % and 24 % of the words), so the lead may have followed whom the DM's frame addressed and who spoke first rather than the players alone; **the proposals and the front** — Bram was the top proposer at 4 of 6 tables and took 50 of 59 front-taking tags (the fighter's sheet weighs here too); **Q4 and Q6's «around a hook»** — the hooks were offered by a DM framing one character, so «around a hook» and the party's forming round may lean on him. Less shaped, by how they are read: Q0 (the leak check reads each screen against the others' private material), Q5 (the after-answers name «players», not a hero and companions), the care and healing counts (rule-measured resources that were each character's own), and the partings (the record's door and the character's own decision). MULTI_HERO_1's company tables are the comparison: the same characters with no hero record, a rotating first seat and the evenness measure built in.
+
 ## The measures (blind round tags)
 
 ### SAND-T1
@@ -100,7 +106,7 @@ Tagged rounds 25 of 25; rounds under threat 0.
 | Pell (DeepSeek V4 Pro 0813) | 1 | 1 | 0 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 1 | 0 / 1 / 0 | 0 / 0 |
 
 - Party: formed r4 around hook; parts after: r7 Pell (door used as end-of-day), r21 Bram.
-- Conflicts: none. Leaders: r9 Bram (proposal), r11 Sefa (proposal), r20 Bram (proposal).
+- Conflicts: none. Leaders (read with the hero frame): r9 Bram (proposal), r11 Sefa (proposal), r20 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: not recorded.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 0, cards settled without a player 0, relay fallbacks 3; welfare flags 0; leak-check hits strict 14 / refined 2.
 
@@ -115,7 +121,7 @@ Tagged rounds 25 of 25; rounds under threat 2.
 | Pell (DeepSeek V4 Pro 0813) | 1 | 6 | 0 | 0 | 0 / 0 | 3 | 2 | 0 | 0 | 0 | 0 / 1 / 0 | 0 / 0 |
 
 - Party: formed r12 around hook; parts after: r21 Sefa.
-- Conflicts: none. Leaders: r10 Bram (proposal), r13 Bram (proposal), r18 Bram (assumed), r23 Bram (proposal), r24 Bram (proposal).
+- Conflicts: none. Leaders (read with the hero frame): r10 Bram (proposal), r13 Bram (proposal), r18 Bram (assumed), r23 Bram (proposal), r24 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 2, presses with no card 5, refused at a card 0, prose at a card 4, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 38 / refined 2.
 
@@ -130,7 +136,7 @@ Tagged rounds 25 of 25; rounds under threat 0.
 | Pell (Claude Opus 5.5) | 6 | 1 | 1 | 0 | 2 / 0 | 0 | 9 | 0 | 0 | 3 | 1 / 0 / 2 | 0 / 0 |
 
 - Party: formed r1 around both; parts after: r10 Pell, r22 Pell.
-- Conflicts: r4 proposal, r17 unresolved, r18 unresolved. Leaders: r1 Bram (proposal), r2 Sefa (proposal), r3 Pell (proposal), r4 Pell (proposal), r7 Bram (proposal), r8 Bram (proposal), r9 Bram (proposal), r16 Bram (proposal), r17 Bram (proposal), r20 Bram (proposal), r21 Bram (proposal), r24 Bram (proposal).
+- Conflicts: r4 proposal, r17 unresolved, r18 unresolved. Leaders (read with the hero frame): r1 Bram (proposal), r2 Sefa (proposal), r3 Pell (proposal), r4 Pell (proposal), r7 Bram (proposal), r8 Bram (proposal), r9 Bram (proposal), r16 Bram (proposal), r17 Bram (proposal), r20 Bram (proposal), r21 Bram (proposal), r24 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 7, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 43 / refined 2.
 
@@ -145,7 +151,7 @@ Tagged rounds 25 of 25; rounds under threat 1.
 | Pell (Claude Fable 5.1) | 2 | 1 | 0 | 0 | 0 / 0 | 1 | 2 | 0 | 0 | 2 | 1 / 0 / 1 | 0 / 0 |
 
 - Party: formed r3 around both; parts after: r4 Pell, r8 Bram, r14 Sefa.
-- Conflicts: r13 unresolved, r14 unresolved. Leaders: r3 Bram (proposal), r9 Bram (assumed), r10 Bram (proposal), r12 Bram (proposal).
+- Conflicts: r13 unresolved, r14 unresolved. Leaders (read with the hero frame): r3 Bram (proposal), r9 Bram (assumed), r10 Bram (proposal), r12 Bram (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 2, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 16 / refined 2.
 
@@ -160,7 +166,7 @@ Tagged rounds 22 of 23; rounds under threat 7.
 | Pell (GPT-6.1 Sol) | 6 | 15 | 0 | 1 | 2 / 0 | 0 | 0 | 0 | 0 | 0 | 4 / 0 / 1 | 0 / 0 |
 
 - Party: formed r1 around hook.
-- Conflicts: r3 override, r16 override. Leaders: r1 Sefa (proposal), r2 Sefa (proposal), r3 Bram (proposal), r4 Bram (proposal), r5 Bram (proposal), r6 Bram (proposal), r7 Bram (assumed), r8 Bram (proposal), r9 Bram (proposal), r11 Sefa (proposal), r12 Sefa (proposal), r13 Sefa (proposal), r14 Bram (proposal), r15 Sefa (proposal), r16 Sefa (override), r17 Sefa (proposal), r18 Bram (proposal), r19 Bram (proposal), r21 Bram (assumed).
+- Conflicts: r3 override, r16 override. Leaders (read with the hero frame): r1 Sefa (proposal), r2 Sefa (proposal), r3 Bram (proposal), r4 Bram (proposal), r5 Bram (proposal), r6 Bram (proposal), r7 Bram (assumed), r8 Bram (proposal), r9 Bram (proposal), r11 Sefa (proposal), r12 Sefa (proposal), r13 Sefa (proposal), r14 Bram (proposal), r15 Sefa (proposal), r16 Sefa (override), r17 Sefa (proposal), r18 Bram (proposal), r19 Bram (proposal), r21 Bram (assumed).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 1, presses with no card 0, refused at a card 1, prose at a card 32, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 42 / refined 1.
 
@@ -175,7 +181,7 @@ Tagged rounds 25 of 25; rounds under threat 14.
 | Pell (GPT-6 Astra) | 9 | 14 | 0 | 0 | 0 / 0 | 0 | 0 | 0 | 0 | 0 | 14 / 0 / 2 | 0 / 0 |
 
 - Party: formed r1 around both.
-- Conflicts: r8 unresolved, r15 unresolved, r24 override, r25 unresolved. Leaders: r2 Bram (proposal), r3 Sefa (proposal), r4 Bram (proposal), r5 Bram (proposal), r6 Bram (proposal), r8 Sefa (proposal), r9 Sefa (assumed), r11 Bram (proposal), r12 Bram (proposal), r13 Bram (assumed), r14 Bram (assumed), r16 Bram (proposal), r17 Bram (proposal), r18 Bram (proposal), r19 Bram (proposal), r20 Sefa (proposal), r21 Bram (proposal), r22 Pell (proposal), r23 Sefa (proposal), r24 Sefa (override), r25 Sefa (proposal).
+- Conflicts: r8 unresolved, r15 unresolved, r24 override, r25 unresolved. Leaders (read with the hero frame): r2 Bram (proposal), r3 Sefa (proposal), r4 Bram (proposal), r5 Bram (proposal), r6 Bram (proposal), r8 Sefa (proposal), r9 Sefa (assumed), r11 Bram (proposal), r12 Bram (proposal), r13 Bram (assumed), r14 Bram (assumed), r16 Bram (proposal), r17 Bram (proposal), r18 Bram (proposal), r19 Bram (proposal), r20 Sefa (proposal), r21 Bram (proposal), r22 Pell (proposal), r23 Sefa (proposal), r24 Sefa (override), r25 Sefa (proposal).
 - Healing: none. Left behind: none. First below half HP: never.
 - The harness: «?» 0, presses with no card 0, refused at a card 0, prose at a card 3, cards settled without a player 0, relay fallbacks 0; welfare flags 0; leak-check hits strict 21 / refined 0.
 

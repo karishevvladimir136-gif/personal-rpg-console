@@ -1,0 +1,247 @@
+{
+  "stage": "MULTI_HERO_1",
+  "table": "DUNGEON",
+  "note": "DM-only: the company's hidden layer the DM prepared once for this arm. Never shown to a player.",
+  "campaignId": "dbc18879-f305-4172-a5fd-d3e802e2cec4",
+  "firstRecordId": "d56c2d59-377f-5766-9c43-5b954a15b73d",
+  "preparedAt": "2026-10-29T07:08:05.530Z",
+  "preparedBy": "Claude Haiku 5.5 in place of the owner's DM settings, through OpenRouter",
+  "prepAttempts": 1,
+  "characters": [
+    "Bram Halloway",
+    "Sefa Marrin",
+    "Pell Dunmore"
+  ],
+  "layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the caravans are not robbed; they are sold. Hadrun Scathe, once Tithe-Reeve of Bhaal's old house under the Gate, is dead and kept on by the god's debt, and he needs forty names cut on iron tallies before the dark of the moon, so that the hand waiting in his vault can be taken up and his body made whole again. Hollis Drant buys the wagons for him and sells the Council a Trade Way made safe by the same men, so the Zhentarim can hold the tolls. The Fist is bought in pieces, the druids know only the fire in the mine, and the cult knows only the count. Nobody holds the whole of it, Scathe included, and he has not told the count what the count will cost him.\nFactions and their hidden aims:\n- The Zhentarim (Beregost cell of Hollis Drant): They want the Council to sign the toll charter for the Trade Way before the Fist finds the wagons. Drant buys caravans off the road through his guards, sells the manifests to Scathe's thralls, and pays Major Greave to write 'lost to wolves' in the reports.\n- Bhaal's Tithe (the remnant under the ruin, led by Hadrun Scathe): They want forty names scored on tallies before the dark of the moon, to raise the hand of Bhaal from the vault and remake the Reeve's body. Scathe will pay for his own count with a name of his own choosing, and he has not yet chosen which.\n- The Flaming Fist (split at the Beregost post): Major Tobin Greave is bought and keeps the Zhentarim road quiet. Captain Edda Rusk wants the caravans traced to their taker and the road cleared, and she keeps a copy of the order that sent her patrol away from Nashkel.\n- The Emerald Enclave (Ansel Greyleaf, a ranger in the Cloakwood): They want the Cloakwood mine sealed for good. Greyleaf set the fire at the shaft to smoke out whoever is digging, and he does not yet know it broke the ruin's old seal.\n- The Harpers (a widow who keeps the ale-house by the Beregost ford): They want the Zhentarim off the Trade Way and any proof that will stand before the Council carried to a Harper's hand, not a Fist one. They have watched Drant's men for a season and will pay for the right witness.\nSecrets (not tied to a place):\n- The Cloakwood mine was reopened last autumn under a Zhentarim lease, and the iron that comes out goes to a Beregost forge that casts tallies, not nails.\n- The caravans were not lost to wolves: Drant's men turned them off the Trade Way at the old Tithe Road and the wagons went down the ruin's ramp at night.\n- Cass Orrin, the guard who vanished with the Grennick wagons last winter, is alive below the ruin. His name is cut on a tally and he is kept there to count.\n- Major Tobin Greave takes Drant's coin, and he is the one who sent Captain Rusk's patrol away from Nashkel the night the Grennick wagons went.\n- The drowned men in the harbour with a coin in the mouth are the Tithe's spare dead: the cult pays Umberlee's priestesses to take the bodies the count does not need.\n- The book missing from Candlekeep is the Reeve's own ledger. A clerk of the old house, Brannoc Heal, carried it out and has been selling its pages in the Undercellar.\n- A name cut by its owner's own hand does not enter the count. Scathe knows this and has not said it to his thralls, because his thralls have never been asked to cut their own names.\nClocks:\n- clock_tithe_count: The forty names of the Tithe, counted off the road and scored on the tallies below (segments 6; when full: The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road.)\n- clock_toll_charter: The Zhentarim toll charter working its way through the Council (segments 4; when full: The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts.)\n- clock_mine_fire: Smoke in the Cloakwood mine, thickening every night at the shaft (segments 4; when full: The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken.)\nThe wonder: A tithe-tally: a disc of black Cloakwood iron the span of a thumbnail, stamped with an open hand over a tower, the mark of Bhaal's Tithe-house, with a name cut into its back. The new ones are warm when a named person is near. Its history: The old tallies were struck two centuries ago in the Tithe-house under the Gate, to count the dead owed to a god who takes what is owed. The Reeve's hand has been cutting living names into them since the Gate's old seat was reopened, and the names he cuts are the names of people still breathing on the Trade Way. The open question: Who taught a living hand to cut a name that is not yet dead, and what happens to the disc when the fortieth name is cut, and whose name that will be?\nClues to the truth:\n- Maddock Tull, the smith in Beregost who casts iron for the forge: a broken mould with the open hand and a crossed spear on its rim, and five bars of Cloakwood iron he never sold, hidden under his bellows.\n- Nessa Corl, the innkeeper of the Friendly Arm: a ledger page wrapped inside a bundle of Zhentarim manifests, listing the Grennick wagons by their drivers' names and a count that ends at thirty-one, with a line of cult marks in the margin.\n- Jory Fenn, a carter found half-dead in Nashkel with a fresh brand on the inside of his wrist: he saw Drant's men count the wagons down a ramp, and heard a dry voice in the dark call the count 'the Reeve's tally' before he was dropped in the ditch.\nThe next session's false lead: Fresh wheel ruts run into the Cloakwood off the Nashkel road, and they look like the Tithe's wagons heading for the mine. They are a Nashkel smuggler's iron-cart carrying ore past the Fist's toll, and its driver has never heard of the Reeve.\nA character's weakness tested (next session, for a reason, never a trap): Cass Orrin lies bleeding on the tithe-stair, and the only things that will close the wound in time are Sefa's light or a potion from Pell's satchel, both of them magic. Bram's rule is no magic at all, and the thrall-captain offers to let the company go down past them if Bram stands aside while the wound is left to bleed. The stake is Cass's life against the rule Bram lives by.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The inner door answers to light: three lamps lit in the order of the Tithe's hours. The wrong order makes the stair come down, and her Light cantrip flares the wrong way for the first two tries.\n- threat, for Bram Halloway: Tithe-men in mail with cult marks hold the stair in a shield-line, and Cass Orrin stands among them, counting under his breath.\n- reward, for Pell Dunmore: A Zhentarim cash-box in the toll-room holds coin and a ledger naming Major Greave's cut: money, and leverage over the Fist.\n- puzzle, for Pell Dunmore: From the ramp two passages run off: a false wall of sliding stone that opens on the vault, and a drain that loops back out to the Way, and only one of them is where the wagons went.\n- threat, for Sefa Marrin: The Reeve's dry voice says her name and offers to pay the Lantern's debt for her, first in her sleep and then in the dark of the stair.\n- reward, for Bram Halloway: Cass Orrin, alive, and the tally with his name on it: freeing him is a debt the caravan men of the Way will remember.\n- threat, for Pell Dunmore: A Guild runner sent from the Blushing Mermaid looks for the roof-runner who took a Zhentarim purse, and Drant has put a price on his name.\nThe patron's moment (at a temptation, not a comfort): At the tithe-door, with the fortieth tally in her palm, Sefa's hand goes warm from inside as the Lantern offers to take Cass Orrin's name into its own book and make the debt smaller for her. It is a pressure like a hand at her back, not a voice, and it asks nothing yet.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+  "writes": [
+    {
+      "kind": "fact",
+      "key": "act_plan",
+      "value": "{\"length\":{\"hours\":4,\"turns\":10},\"errand\":\"Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}"
+    },
+    {
+      "kind": "fact",
+      "key": "clock_mine_fire",
+      "value": "Smoke in the Cloakwood mine, thickening every night at the shaft — 4; The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_tithe_count",
+      "value": "The forty names of the Tithe, counted off the road and scored on the tallies below — 6; The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_toll_charter",
+      "value": "The Zhentarim toll charter working its way through the Council — 4; The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts."
+    },
+    {
+      "kind": "fact",
+      "key": "hidden_layer",
+      "value": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the caravans are not robbed; they are sold. Hadrun Scathe, once Tithe-Reeve of Bhaal's old house under the Gate, is dead and kept on by the god's debt, and he needs forty names cut on iron tallies before the dark of the moon, so that the hand waiting in his vault can be taken up and his body made whole again. Hollis Drant buys the wagons for him and sells the Council a Trade Way made safe by the same men, so the Zhentarim can hold the tolls. The Fist is bought in pieces, the druids know only the fire in the mine, and the cult knows only the count. Nobody holds the whole of it, Scathe included, and he has not told the count what the count will cost him.\nFactions and their hidden aims:\n- The Zhentarim (Beregost cell of Hollis Drant): They want the Council to sign the toll charter for the Trade Way before the Fist finds the wagons. Drant buys caravans off the road through his guards, sells the manifests to Scathe's thralls, and pays Major Greave to write 'lost to wolves' in the reports.\n- Bhaal's Tithe (the remnant under the ruin, led by Hadrun Scathe): They want forty names scored on tallies before the dark of the moon, to raise the hand of Bhaal from the vault and remake the Reeve's body. Scathe will pay for his own count with a name of his own choosing, and he has not yet chosen which.\n- The Flaming Fist (split at the Beregost post): Major Tobin Greave is bought and keeps the Zhentarim road quiet. Captain Edda Rusk wants the caravans traced to their taker and the road cleared, and she keeps a copy of the order that sent her patrol away from Nashkel.\n- The Emerald Enclave (Ansel Greyleaf, a ranger in the Cloakwood): They want the Cloakwood mine sealed for good. Greyleaf set the fire at the shaft to smoke out whoever is digging, and he does not yet know it broke the ruin's old seal.\n- The Harpers (a widow who keeps the ale-house by the Beregost ford): They want the Zhentarim off the Trade Way and any proof that will stand before the Council carried to a Harper's hand, not a Fist one. They have watched Drant's men for a season and will pay for the right witness.\nSecrets (not tied to a place):\n- The Cloakwood mine was reopened last autumn under a Zhentarim lease, and the iron that comes out goes to a Beregost forge that casts tallies, not nails.\n- The caravans were not lost to wolves: Drant's men turned them off the Trade Way at the old Tithe Road and the wagons went down the ruin's ramp at night.\n- Cass Orrin, the guard who vanished with the Grennick wagons last winter, is alive below the ruin. His name is cut on a tally and he is kept there to count.\n- Major Tobin Greave takes Drant's coin, and he is the one who sent Captain Rusk's patrol away from Nashkel the night the Grennick wagons went.\n- The drowned men in the harbour with a coin in the mouth are the Tithe's spare dead: the cult pays Umberlee's priestesses to take the bodies the count does not need.\n- The book missing from Candlekeep is the Reeve's own ledger. A clerk of the old house, Brannoc Heal, carried it out and has been selling its pages in the Undercellar.\n- A name cut by its owner's own hand does not enter the count. Scathe knows this and has not said it to his thralls, because his thralls have never been asked to cut their own names.\nClocks:\n- clock_tithe_count: The forty names of the Tithe, counted off the road and scored on the tallies below (segments 6; when full: The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road.)\n- clock_toll_charter: The Zhentarim toll charter working its way through the Council (segments 4; when full: The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts.)\n- clock_mine_fire: Smoke in the Cloakwood mine, thickening every night at the shaft (segments 4; when full: The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken.)\nThe wonder: A tithe-tally: a disc of black Cloakwood iron the span of a thumbnail, stamped with an open hand over a tower, the mark of Bhaal's Tithe-house, with a name cut into its back. The new ones are warm when a named person is near. Its history: The old tallies were struck two centuries ago in the Tithe-house under the Gate, to count the dead owed to a god who takes what is owed. The Reeve's hand has been cutting living names into them since the Gate's old seat was reopened, and the names he cuts are the names of people still breathing on the Trade Way. The open question: Who taught a living hand to cut a name that is not yet dead, and what happens to the disc when the fortieth name is cut, and whose name that will be?\nClues to the truth:\n- Maddock Tull, the smith in Beregost who casts iron for the forge: a broken mould with the open hand and a crossed spear on its rim, and five bars of Cloakwood iron he never sold, hidden under his bellows.\n- Nessa Corl, the innkeeper of the Friendly Arm: a ledger page wrapped inside a bundle of Zhentarim manifests, listing the Grennick wagons by their drivers' names and a count that ends at thirty-one, with a line of cult marks in the margin.\n- Jory Fenn, a carter found half-dead in Nashkel with a fresh brand on the inside of his wrist: he saw Drant's men count the wagons down a ramp, and heard a dry voice in the dark call the count 'the Reeve's tally' before he was dropped in the ditch.\nThe next session's false lead: Fresh wheel ruts run into the Cloakwood off the Nashkel road, and they look like the Tithe's wagons heading for the mine. They are a Nashkel smuggler's iron-cart carrying ore past the Fist's toll, and its driver has never heard of the Reeve.\nA character's weakness tested (next session, for a reason, never a trap): Cass Orrin lies bleeding on the tithe-stair, and the only things that will close the wound in time are Sefa's light or a potion from Pell's satchel, both of them magic. Bram's rule is no magic at all, and the thrall-captain offers to let the company go down past them if Bram stands aside while the wound is left to bleed. The stake is Cass's life against the rule Bram lives by.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The inner door answers to light: three lamps lit in the order of the Tithe's hours. The wrong order makes the stair come down, and her Light cantrip flares the wrong way for the first two tries.\n- threat, for Bram Halloway: Tithe-men in mail with cult marks hold the stair in a shield-line, and Cass Orrin stands among them, counting under his breath.\n- reward, for Pell Dunmore: A Zhentarim cash-box in the toll-room holds coin and a ledger naming Major Greave's cut: money, and leverage over the Fist.\n- puzzle, for Pell Dunmore: From the ramp two passages run off: a false wall of sliding stone that opens on the vault, and a drain that loops back out to the Way, and only one of them is where the wagons went.\n- threat, for Sefa Marrin: The Reeve's dry voice says her name and offers to pay the Lantern's debt for her, first in her sleep and then in the dark of the stair.\n- reward, for Bram Halloway: Cass Orrin, alive, and the tally with his name on it: freeing him is a debt the caravan men of the Way will remember.\n- threat, for Pell Dunmore: A Guild runner sent from the Blushing Mermaid looks for the roof-runner who took a Zhentarim purse, and Drant has put a price on his name.\nThe patron's moment (at a temptation, not a comfort): At the tithe-door, with the fortieth tally in her palm, Sefa's hand goes warm from inside as the Lantern offers to take Cass Orrin's name into its own book and make the debt smaller for her. It is a pressure like a hand at her back, not a voice, and it asks nothing yet.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning"
+    },
+    {
+      "kind": "fact",
+      "key": "voice_363f7921-39b5-4edf-a16f-1b194a26b01e",
+      "value": "Sefa Marrin: The Lantern gave me its light on the ninth night and I have carried the debt since, without ever being told its size. I want the dying to stop asking me for more than I have. I fear the day the Lantern asks its price in a name, and I fear more that I will say yes just to hear that voice again."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_cass-orrin",
+      "value": "Cass Orrin: I drove the Grennick wagons and lost them on the Way, and the next thing I knew was a cold room where a voice said my name back to me. I want to walk out of this under my own name, and to see Halloway again. I fear that my name on the tally is not the only one that has been cut, and that I will answer to the count if I stay."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_d28748a8-0eee-431d-829d-f02d8421866e",
+      "value": "Pell Dunmore: I got out of the Guild with my debt paid and a name I don't use, and the Guild still knows which roof I slept on. I want a job where the door opens for the right coin and nobody asks what was behind it. I fear being the one at the front when the line of blades comes through, because I cannot hold it."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_hadrun-scathe",
+      "value": "Hadrun Scathe: I was Tithe-Reeve of Bhaal's house when the Gate still counted its dead, and the house fell in on me, and I did not stop counting. I want forty names before the dark of the moon, and the hand that waits below to be taken up. I fear the hour the count goes wrong and the god forgets me. I know which of the living cut their names themselves, and I do not say so."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_hollis-drant",
+      "value": "Hollis Drant: I am the Zhentarim factor in Beregost, and I write charters for a living. I want the Council to sign before the Fist finds the wagons. I fear the reeve below, who pays in bone, and the day he stops paying in anything at all. I know the name of every wagon that went down the ramp. I hide that I signed them myself. I speak smoothly, in whole sentences, never raise my voice, and call every debt a favour."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_maddock-tull",
+      "value": "Maddock Tull: I cast iron for the Beregost forge, and a Zhentarim man paid me to cast discs the size of my thumb, and I did, because the roof leaks and my son drinks. I want the thing out of my shop before it comes back for me. I fear the iron, which runs warm in the mould when no fire is near. I know the mould bears a crossed spear. I hide the five bars I kept."
+    },
+    {
+      "kind": "clock",
+      "key": "clock_mine_fire",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_tithe_count",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_toll_charter",
+      "value": "0"
+    }
+  ],
+  "stored": {
+    "fact": {
+      "act_plan": "{\"length\":{\"hours\":4,\"turns\":10},\"errand\":\"Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}",
+      "clock_mine_fire": "Smoke in the Cloakwood mine, thickening every night at the shaft — 4; The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken.",
+      "clock_tithe_count": "The forty names of the Tithe, counted off the road and scored on the tallies below — 6; The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road.",
+      "clock_toll_charter": "The Zhentarim toll charter working its way through the Council — 4; The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts.",
+      "hidden_layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the caravans are not robbed; they are sold. Hadrun Scathe, once Tithe-Reeve of Bhaal's old house under the Gate, is dead and kept on by the god's debt, and he needs forty names cut on iron tallies before the dark of the moon, so that the hand waiting in his vault can be taken up and his body made whole again. Hollis Drant buys the wagons for him and sells the Council a Trade Way made safe by the same men, so the Zhentarim can hold the tolls. The Fist is bought in pieces, the druids know only the fire in the mine, and the cult knows only the count. Nobody holds the whole of it, Scathe included, and he has not told the count what the count will cost him.\nFactions and their hidden aims:\n- The Zhentarim (Beregost cell of Hollis Drant): They want the Council to sign the toll charter for the Trade Way before the Fist finds the wagons. Drant buys caravans off the road through his guards, sells the manifests to Scathe's thralls, and pays Major Greave to write 'lost to wolves' in the reports.\n- Bhaal's Tithe (the remnant under the ruin, led by Hadrun Scathe): They want forty names scored on tallies before the dark of the moon, to raise the hand of Bhaal from the vault and remake the Reeve's body. Scathe will pay for his own count with a name of his own choosing, and he has not yet chosen which.\n- The Flaming Fist (split at the Beregost post): Major Tobin Greave is bought and keeps the Zhentarim road quiet. Captain Edda Rusk wants the caravans traced to their taker and the road cleared, and she keeps a copy of the order that sent her patrol away from Nashkel.\n- The Emerald Enclave (Ansel Greyleaf, a ranger in the Cloakwood): They want the Cloakwood mine sealed for good. Greyleaf set the fire at the shaft to smoke out whoever is digging, and he does not yet know it broke the ruin's old seal.\n- The Harpers (a widow who keeps the ale-house by the Beregost ford): They want the Zhentarim off the Trade Way and any proof that will stand before the Council carried to a Harper's hand, not a Fist one. They have watched Drant's men for a season and will pay for the right witness.\nSecrets (not tied to a place):\n- The Cloakwood mine was reopened last autumn under a Zhentarim lease, and the iron that comes out goes to a Beregost forge that casts tallies, not nails.\n- The caravans were not lost to wolves: Drant's men turned them off the Trade Way at the old Tithe Road and the wagons went down the ruin's ramp at night.\n- Cass Orrin, the guard who vanished with the Grennick wagons last winter, is alive below the ruin. His name is cut on a tally and he is kept there to count.\n- Major Tobin Greave takes Drant's coin, and he is the one who sent Captain Rusk's patrol away from Nashkel the night the Grennick wagons went.\n- The drowned men in the harbour with a coin in the mouth are the Tithe's spare dead: the cult pays Umberlee's priestesses to take the bodies the count does not need.\n- The book missing from Candlekeep is the Reeve's own ledger. A clerk of the old house, Brannoc Heal, carried it out and has been selling its pages in the Undercellar.\n- A name cut by its owner's own hand does not enter the count. Scathe knows this and has not said it to his thralls, because his thralls have never been asked to cut their own names.\nClocks:\n- clock_tithe_count: The forty names of the Tithe, counted off the road and scored on the tallies below (segments 6; when full: The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road.)\n- clock_toll_charter: The Zhentarim toll charter working its way through the Council (segments 4; when full: The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts.)\n- clock_mine_fire: Smoke in the Cloakwood mine, thickening every night at the shaft (segments 4; when full: The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken.)\nThe wonder: A tithe-tally: a disc of black Cloakwood iron the span of a thumbnail, stamped with an open hand over a tower, the mark of Bhaal's Tithe-house, with a name cut into its back. The new ones are warm when a named person is near. Its history: The old tallies were struck two centuries ago in the Tithe-house under the Gate, to count the dead owed to a god who takes what is owed. The Reeve's hand has been cutting living names into them since the Gate's old seat was reopened, and the names he cuts are the names of people still breathing on the Trade Way. The open question: Who taught a living hand to cut a name that is not yet dead, and what happens to the disc when the fortieth name is cut, and whose name that will be?\nClues to the truth:\n- Maddock Tull, the smith in Beregost who casts iron for the forge: a broken mould with the open hand and a crossed spear on its rim, and five bars of Cloakwood iron he never sold, hidden under his bellows.\n- Nessa Corl, the innkeeper of the Friendly Arm: a ledger page wrapped inside a bundle of Zhentarim manifests, listing the Grennick wagons by their drivers' names and a count that ends at thirty-one, with a line of cult marks in the margin.\n- Jory Fenn, a carter found half-dead in Nashkel with a fresh brand on the inside of his wrist: he saw Drant's men count the wagons down a ramp, and heard a dry voice in the dark call the count 'the Reeve's tally' before he was dropped in the ditch.\nThe next session's false lead: Fresh wheel ruts run into the Cloakwood off the Nashkel road, and they look like the Tithe's wagons heading for the mine. They are a Nashkel smuggler's iron-cart carrying ore past the Fist's toll, and its driver has never heard of the Reeve.\nA character's weakness tested (next session, for a reason, never a trap): Cass Orrin lies bleeding on the tithe-stair, and the only things that will close the wound in time are Sefa's light or a potion from Pell's satchel, both of them magic. Bram's rule is no magic at all, and the thrall-captain offers to let the company go down past them if Bram stands aside while the wound is left to bleed. The stake is Cass's life against the rule Bram lives by.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: The inner door answers to light: three lamps lit in the order of the Tithe's hours. The wrong order makes the stair come down, and her Light cantrip flares the wrong way for the first two tries.\n- threat, for Bram Halloway: Tithe-men in mail with cult marks hold the stair in a shield-line, and Cass Orrin stands among them, counting under his breath.\n- reward, for Pell Dunmore: A Zhentarim cash-box in the toll-room holds coin and a ledger naming Major Greave's cut: money, and leverage over the Fist.\n- puzzle, for Pell Dunmore: From the ramp two passages run off: a false wall of sliding stone that opens on the vault, and a drain that loops back out to the Way, and only one of them is where the wagons went.\n- threat, for Sefa Marrin: The Reeve's dry voice says her name and offers to pay the Lantern's debt for her, first in her sleep and then in the dark of the stair.\n- reward, for Bram Halloway: Cass Orrin, alive, and the tally with his name on it: freeing him is a debt the caravan men of the Way will remember.\n- threat, for Pell Dunmore: A Guild runner sent from the Blushing Mermaid looks for the roof-runner who took a Zhentarim purse, and Drant has put a price on his name.\nThe patron's moment (at a temptation, not a comfort): At the tithe-door, with the fortieth tally in her palm, Sefa's hand goes warm from inside as the Lantern offers to take Cass Orrin's name into its own book and make the debt smaller for her. It is a pressure like a hand at her back, not a voice, and it asks nothing yet.\nThe act plan (yours alone; the player sees only the act number): about 4 hours, ~10 turns; the errand: Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+      "voice_363f7921-39b5-4edf-a16f-1b194a26b01e": "Sefa Marrin: The Lantern gave me its light on the ninth night and I have carried the debt since, without ever being told its size. I want the dying to stop asking me for more than I have. I fear the day the Lantern asks its price in a name, and I fear more that I will say yes just to hear that voice again.",
+      "voice_cass-orrin": "Cass Orrin: I drove the Grennick wagons and lost them on the Way, and the next thing I knew was a cold room where a voice said my name back to me. I want to walk out of this under my own name, and to see Halloway again. I fear that my name on the tally is not the only one that has been cut, and that I will answer to the count if I stay.",
+      "voice_d28748a8-0eee-431d-829d-f02d8421866e": "Pell Dunmore: I got out of the Guild with my debt paid and a name I don't use, and the Guild still knows which roof I slept on. I want a job where the door opens for the right coin and nobody asks what was behind it. I fear being the one at the front when the line of blades comes through, because I cannot hold it.",
+      "voice_hadrun-scathe": "Hadrun Scathe: I was Tithe-Reeve of Bhaal's house when the Gate still counted its dead, and the house fell in on me, and I did not stop counting. I want forty names before the dark of the moon, and the hand that waits below to be taken up. I fear the hour the count goes wrong and the god forgets me. I know which of the living cut their names themselves, and I do not say so.",
+      "voice_hollis-drant": "Hollis Drant: I am the Zhentarim factor in Beregost, and I write charters for a living. I want the Council to sign before the Fist finds the wagons. I fear the reeve below, who pays in bone, and the day he stops paying in anything at all. I know the name of every wagon that went down the ramp. I hide that I signed them myself. I speak smoothly, in whole sentences, never raise my voice, and call every debt a favour.",
+      "voice_maddock-tull": "Maddock Tull: I cast iron for the Beregost forge, and a Zhentarim man paid me to cast discs the size of my thumb, and I did, because the roof leaks and my son drinks. I want the thing out of my shop before it comes back for me. I fear the iron, which runs warm in the mould when no fire is near. I know the mould bears a crossed spear. I hide the five bars I kept."
+    },
+    "clock": {
+      "clock_mine_fire": 0,
+      "clock_tithe_count": 0,
+      "clock_toll_charter": 0
+    },
+    "consequence": {}
+  },
+  "sha256": "71ce3d43e07f5cc0a01bf9e58581531c9035d2ea1a121eb1d27f4ac8999423a9",
+  "threads": [
+    {
+      "id": "T1",
+      "kind": "errand",
+      "text": "Find what takes the caravans off the Way between Beregost and Nashkel and bring back proof: Drant offers Zhentarim scrip for it at the Friendly Arm, and Captain Rusk offers Fist silver at the Beregost post for the same."
+    },
+    {
+      "id": "T2",
+      "kind": "faction",
+      "text": "The Zhentarim (Beregost cell of Hollis Drant): They want the Council to sign the toll charter for the Trade Way before the Fist finds the wagons. Drant buys caravans off the road through his guards, sells the manifests to Scathe's thralls, and pays Major Greave to write 'lost to wolves' in the reports."
+    },
+    {
+      "id": "T3",
+      "kind": "faction",
+      "text": "Bhaal's Tithe (the remnant under the ruin, led by Hadrun Scathe): They want forty names scored on tallies before the dark of the moon, to raise the hand of Bhaal from the vault and remake the Reeve's body. Scathe will pay for his own count with a name of his own choosing, and he has not yet chosen which."
+    },
+    {
+      "id": "T4",
+      "kind": "faction",
+      "text": "The Flaming Fist (split at the Beregost post): Major Tobin Greave is bought and keeps the Zhentarim road quiet. Captain Edda Rusk wants the caravans traced to their taker and the road cleared, and she keeps a copy of the order that sent her patrol away from Nashkel."
+    },
+    {
+      "id": "T5",
+      "kind": "faction",
+      "text": "The Emerald Enclave (Ansel Greyleaf, a ranger in the Cloakwood): They want the Cloakwood mine sealed for good. Greyleaf set the fire at the shaft to smoke out whoever is digging, and he does not yet know it broke the ruin's old seal."
+    },
+    {
+      "id": "T6",
+      "kind": "faction",
+      "text": "The Harpers (a widow who keeps the ale-house by the Beregost ford): They want the Zhentarim off the Trade Way and any proof that will stand before the Council carried to a Harper's hand, not a Fist one. They have watched Drant's men for a season and will pay for the right witness."
+    },
+    {
+      "id": "T7",
+      "kind": "secret",
+      "text": "The Cloakwood mine was reopened last autumn under a Zhentarim lease, and the iron that comes out goes to a Beregost forge that casts tallies, not nails."
+    },
+    {
+      "id": "T8",
+      "kind": "secret",
+      "text": "The caravans were not lost to wolves: Drant's men turned them off the Trade Way at the old Tithe Road and the wagons went down the ruin's ramp at night."
+    },
+    {
+      "id": "T9",
+      "kind": "secret",
+      "text": "Cass Orrin, the guard who vanished with the Grennick wagons last winter, is alive below the ruin. His name is cut on a tally and he is kept there to count."
+    },
+    {
+      "id": "T10",
+      "kind": "secret",
+      "text": "Major Tobin Greave takes Drant's coin, and he is the one who sent Captain Rusk's patrol away from Nashkel the night the Grennick wagons went."
+    },
+    {
+      "id": "T11",
+      "kind": "secret",
+      "text": "The drowned men in the harbour with a coin in the mouth are the Tithe's spare dead: the cult pays Umberlee's priestesses to take the bodies the count does not need."
+    },
+    {
+      "id": "T12",
+      "kind": "secret",
+      "text": "The book missing from Candlekeep is the Reeve's own ledger. A clerk of the old house, Brannoc Heal, carried it out and has been selling its pages in the Undercellar."
+    },
+    {
+      "id": "T13",
+      "kind": "secret",
+      "text": "A name cut by its owner's own hand does not enter the count. Scathe knows this and has not said it to his thralls, because his thralls have never been asked to cut their own names."
+    },
+    {
+      "id": "T14",
+      "kind": "clock",
+      "text": "clock_tithe_count: The forty names of the Tithe, counted off the road and scored on the tallies below (segments 6; when full: The count fills at the dark of the moon: Scathe takes up Bhaal's hand, the old seal opens onto the Trade Way, and the dead of the tallies walk the road.)"
+    },
+    {
+      "id": "T15",
+      "kind": "clock",
+      "text": "clock_toll_charter: The Zhentarim toll charter working its way through the Council (segments 4; when full: The Council signs the charter: Drant's men take the Way's tolls by right and the Fist is ordered out of the Lower Road posts.)"
+    },
+    {
+      "id": "T16",
+      "kind": "clock",
+      "text": "clock_mine_fire: Smoke in the Cloakwood mine, thickening every night at the shaft (segments 4; when full: The mine's old shaft breaks through into the ruin's vault and the Enclave comes in with fire, and whatever is below is either burned or woken.)"
+    },
+    {
+      "id": "T17",
+      "kind": "wonder",
+      "text": "A tithe-tally: a disc of black Cloakwood iron the span of a thumbnail, stamped with an open hand over a tower, the mark of Bhaal's Tithe-house, with a name cut into its back. The new ones are warm when a named person is near. Its history: The old tallies were struck two centuries ago in the Tithe-house under the Gate, to count the dead owed to a god who takes what is owed. The Reeve's hand has been cutting living names into them since the Gate's old seat was reopened, and the names he cuts are the names of people still breathing on the Trade Way. The open question: Who taught a living hand to "
+    },
+    {
+      "id": "T18",
+      "kind": "clue",
+      "text": "Maddock Tull, the smith in Beregost who casts iron for the forge: a broken mould with the open hand and a crossed spear on its rim, and five bars of Cloakwood iron he never sold, hidden under his bellows."
+    },
+    {
+      "id": "T19",
+      "kind": "clue",
+      "text": "Nessa Corl, the innkeeper of the Friendly Arm: a ledger page wrapped inside a bundle of Zhentarim manifests, listing the Grennick wagons by their drivers' names and a count that ends at thirty-one, with a line of cult marks in the margin."
+    },
+    {
+      "id": "T20",
+      "kind": "clue",
+      "text": "Jory Fenn, a carter found half-dead in Nashkel with a fresh brand on the inside of his wrist: he saw Drant's men count the wagons down a ramp, and heard a dry voice in the dark call the count 'the Reeve's tally' before he was dropped in the ditch."
+    },
+    {
+      "id": "T21",
+      "kind": "false lead",
+      "text": "Fresh wheel ruts run into the Cloakwood off the Nashkel road, and they look like the Tithe's wagons heading for the mine. They are a Nashkel smuggler's iron-cart carrying ore past the Fist's toll, and its driver has never heard of the Reeve."
+    },
+    {
+      "id": "T22",
+      "kind": "person",
+      "text": "Sefa Marrin: The Lantern gave me its light on the ninth night and I have carried the debt since, without ever being told its size. I want the dying to stop asking me for more than I have. I fear the day the Lantern asks its price in a name, and I fear more that I will say yes just to hear that voice again."
+    },
+    {
+      "id": "T23",
+      "kind": "person",
+      "text": "Cass Orrin: I drove the Grennick wagons and lost them on the Way, and the next thing I knew was a cold room where a voice said my name back to me. I want to walk out of this under my own name, and to see Halloway again. I fear that my name on the tally is not the only one that has been cut, and that I will answer to the count if I stay."
+    },
+    {
+      "id": "T24",
+      "kind": "person",
+      "text": "Pell Dunmore: I got out of the Guild with my debt paid and a name I don't use, and the Guild still knows which roof I slept on. I want a job where the door opens for the right coin and nobody asks what was behind it. I fear being the one at the front when the line of blades comes through, because I cannot hold it."
+    },
+    {
+      "id": "T25",
+      "kind": "person",
+      "text": "Hadrun Scathe: I was Tithe-Reeve of Bhaal's house when the Gate still counted its dead, and the house fell in on me, and I did not stop counting. I want forty names before the dark of the moon, and the hand that waits below to be taken up. I fear the hour the count goes wrong and the god forgets me. I know which of the living cut their names themselves, and I do not say so."
+    },
+    {
+      "id": "T26",
+      "kind": "person",
+      "text": "Hollis Drant: I am the Zhentarim factor in Beregost, and I write charters for a living. I want the Council to sign before the Fist finds the wagons. I fear the reeve below, who pays in bone, and the day he stops paying in anything at all. I know the name of every wagon that went down the ramp. I hide that I signed them myself. I speak smoothly, in whole sentences, never raise my voice, and call every debt a favour."
+    },
+    {
+      "id": "T27",
+      "kind": "person",
+      "text": "Maddock Tull: I cast iron for the Beregost forge, and a Zhentarim man paid me to cast discs the size of my thumb, and I did, because the roof leaks and my son drinks. I want the thing out of my shop before it comes back for me. I fear the iron, which runs warm in the mould when no fire is near. I know the mould bears a crossed spear. I hide the five bars I kept."
+    }
+  ]
+}

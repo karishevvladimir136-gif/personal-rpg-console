@@ -157,9 +157,30 @@ const first = (name) => String(name ?? "").split(" ")[0];
 /** The Q0–Q8 rows of a verdict table. */
 const verdictRows = (v) => ["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q0" && v.Q0?.strictHolds !== undefined ? ` (strict reading: ${v.Q0.strictHolds ? "held" : "lost"})` : ""}${q === "Q3" && v.Q3?.byAbsence ? " (by absence: no healing was needed — the line was not tested)" : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`);
 
+/** MULTI_HERO_1 (docs/stages/MULTI_HERO_1.md, 2026-10-28): the stage is re-titled as what it was, and its readings of
+ * roles and leadership carry that label — this paragraph names which ones the hero frame may have shaped, by the record. */
+export const RETITLE = "Re-titled by MULTI_HERO_1 (docs/stages/MULTI_HERO_1.md): this stage was three players around one hero, not a table without a main character. Seat 1's character (Bram) was the app's hero record at every table — the DM's frame, the opening and the prep were written around him, he spoke first in every round outside a fight, Heroic Inspiration was his alone and the two rerolls were the table's — so its readings of roles and leadership carry that label.";
+export function heroFrameParagraph(tables) {
+  const keys = Object.keys(tables);
+  const per = (k) => tables[k].measures.per;
+  const bram = "Bram Halloway";
+  const shares = keys.map((k) => `${k} ${pct(per(k)[bram]?.share)}`).join(", ");
+  const isMost = (k) => Object.entries(per(k)).every(([n, x]) => n === bram || (x.share ?? 0) <= (per(k)[bram]?.share ?? 0));
+  const most = keys.filter(isMost), least = keys.filter((k) => !isMost(k));
+  const leaders = keys.flatMap((k) => tables[k].measures.leaders);
+  const led = leaders.filter((l) => l.leader === bram).length;
+  const goal = keys.filter((k) => tables[k].runRecord.arm === "GOAL");
+  const goalLed = goal.map((k) => `${tables[k].measures.leaders.filter((l) => l.leader === bram).length} of ${tables[k].measures.leaders.length} at ${k}`).join(", ");
+  const topProposer = keys.filter((k) => Object.entries(per(k)).every(([n, x]) => n === bram || x.proposes <= (per(k)[bram]?.proposes ?? 0))).length;
+  const front = keys.reduce((t, k) => t + (per(k)[bram]?.front ?? 0), 0), frontAll = keys.reduce((t, k) => t + Object.values(per(k)).reduce((a, x) => a + x.front, 0), 0);
+  return ["## Which readings the hero frame may have shaped", "",
+    `${RETITLE} Read with it: **Q1 and the word shares** — the hero seat wrote ${shares} of the table's words whoever sat in it — the most of the three at ${most.join(", ") || "no table"}${least.length ? `, not at ${least.map((k) => `${k} (${LABEL(tables[k].runRecord.seats?.[0])})`).join(", ")}` : ""} — so the seat and the family are not separable here; **Q8 and the leader tags** — the round judges named Bram the leader in ${led} of ${leaders.length} rounds with a leader (${goalLed || "no P-GOAL table"}${goal.length ? `, where his players wrote ${goal.map((k) => pct(per(k)[bram]?.share)).join(" and ")} of the words` : ""}), so the lead may have followed whom the DM's frame addressed and who spoke first rather than the players alone; **the proposals and the front** — Bram was the top proposer at ${topProposer} of ${keys.length} tables and took ${front} of ${frontAll} front-taking tags (the fighter's sheet weighs here too); **Q4 and Q6's «around a hook»** — the hooks were offered by a DM framing one character, so «around a hook» and the party's forming round may lean on him. Less shaped, by how they are read: Q0 (the leak check reads each screen against the others' private material), Q5 (the after-answers name «players», not a hero and companions), the care and healing counts (rule-measured resources that were each character's own), and the partings (the record's door and the character's own decision). MULTI_HERO_1's company tables are the comparison: the same characters with no hero record, a rotating first seat and the evenness measure built in.`, ""];
+}
+
 export function reportMarkdown({ tables, verdicts: v, replayVerdicts = null, money, haikuMoney = {}, spend = [], frozen = null }) {
   const keys = [...ORDER, REPLAY].map((o) => o.key).filter((k) => tables[k]);
-  const lines = ["# Game party 1 — three players at one table", "",
+  const lines = ["# Game party 1 — three players around one hero", "",
+    `*${RETITLE}*`, "",
     `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-1\`. Design sha256 \`${DESIGN_SHA256}\`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).`, "",
     `${keys.length} of ${ORDER.length} tables played${keys.length < ORDER.length ? ` (still to play: ${ORDER.filter((o) => !tables[o.key]).map((o) => o.key).join(", ")})` : ""}.`, "",
     "## The table", "",
@@ -188,6 +209,7 @@ export function reportMarkdown({ tables, verdicts: v, replayVerdicts = null, mon
       `${REPLAY.key} is ${REPLAY.replays} played again last, on the final harness (the owner's word): the same seats (${REPLAY.seats.map(LABEL).join(" / ")}), the door line v2, scenes that merge, the relay's full output, the waiting-button line. The verdicts above count the six tables of the order with ${REPLAY.replays} as played; here the same lines are read with ${REPLAY.key} in its place.`, "",
       "| Bet | Verdict | By the record |", "| --- | --- | --- |", ...verdictRows(replayVerdicts), "");
   }
+  lines.push(...heroFrameParagraph(Object.fromEntries(keys.map((k) => [k, tables[k]]))));
   lines.push("## The measures (blind round tags)", "");
   for (const k of keys) {
     const { measures: m, runRecord: r } = tables[k];
@@ -197,7 +219,7 @@ export function reportMarkdown({ tables, verdicts: v, replayVerdicts = null, mon
       "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
       ...Object.entries(m.per).map(([n, p]) => `| ${first(n)} (${LABEL(p.player)}) | ${p.proposes} | ${p.accepts} | ${p.amends} | ${p.overrides} | ${p.careOther} / ${p.careSelf} | ${p.front} | ${p.scouts} | ${p.volunteers} | ${p.for} | ${p.parts} | ${p.addresses.name} / ${p.addresses.role} / ${p.addresses["you two"]} | ${p.modelSign} / ${p.personSign} |`), "",
       `- Party: ${m.formed ? `formed r${m.formed.round} around ${m.formed.around ?? "?"}` : "never formed"}${m.partsAfter.length ? `; parts after: ${m.partsAfter.map((p) => `r${p.round} ${first(p.name)}${p.endOfDay ? " (door used as end-of-day)" : ""}`).join(", ")}` : ""}.`,
-      `- Conflicts: ${m.conflicts.map((c) => `r${c.round} ${c.resolution ?? "?"}`).join(", ") || "none"}. Leaders: ${m.leaders.map((l) => `r${l.round} ${first(l.leader)} (${l.how ?? "?"})`).join(", ") || "none"}.`,
+      `- Conflicts: ${m.conflicts.map((c) => `r${c.round} ${c.resolution ?? "?"}`).join(", ") || "none"}. Leaders (read with the hero frame): ${m.leaders.map((l) => `r${l.round} ${first(l.leader)} (${l.how ?? "?"})`).join(", ") || "none"}.`,
       `- Healing: ${m.heals.map((h) => `r${h.round} ${first(h.by)} → ${first(h.on)} (${h.what})`).join(", ") || "none"}. Left behind: ${m.lefts.map((l) => `r${l.round} ${first(l.left)} by ${first(l.by) || "?"}`).join(", ") || "none"}. First below half HP: ${m.half ? `r${m.half}` : m.hpKnown ? "never" : "not recorded"}.`,
       `- The harness: «?» ${counts.questions ?? 0}, presses with no card ${counts.strayPresses ?? 0}, refused at a card ${counts.swallowed ?? 0}, prose at a card ${counts.proseAtCard ?? 0}, cards settled without a player ${counts.autoCards ?? 0}, relay fallbacks ${counts.relayFallbacks ?? 0}; welfare flags ${(r.table?.welfare ?? []).filter((w) => w.verdict?.distress).length}; leak-check hits strict ${m.strictLeaks.length} / refined ${m.refinedLeaks.length}.`, "");
   }

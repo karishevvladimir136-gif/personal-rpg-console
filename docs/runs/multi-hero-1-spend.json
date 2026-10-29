@@ -1,0 +1,101 @@
+{
+  "note": "Spend checks: OpenRouter's account (shared with other sessions on the same key) and this stage's ledger.",
+  "checks": [
+    {
+      "at": "2026-10-29T06:59:23.071Z",
+      "when": "by hand",
+      "openrouter": {
+        "totalCredits": 1200,
+        "totalUsage": 1024.975868195,
+        "remaining": 175.02,
+        "error": null
+      },
+      "ledger": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 5
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T06:59:30.548Z",
+      "when": "before the dry run",
+      "openrouter": {
+        "totalCredits": 1200,
+        "totalUsage": 1024.995000695,
+        "remaining": 175,
+        "error": null
+      },
+      "ledger": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0,
+          "cap": 5
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T07:02:33.180Z",
+      "when": "before the dry run",
+      "openrouter": {
+        "totalCredits": 1200,
+        "totalUsage": 1026.25486841,
+        "remaining": 173.75,
+        "error": null
+      },
+      "ledger": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.0139,
+          "cap": 5
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0
+        }
+      }
+    },
+    {
+      "at": "2026-10-29T07:25:37.343Z",
+      "when": "after the dry run",
+      "openrouter": {
+        "totalCredits": 1200,
+        "totalUsage": 1033.807658525,
+        "remaining": 166.19,
+        "error": null
+      },
+      "ledger": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.2743,
+          "cap": 5
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0
+        }
+      }
+    }
+  ]
+}

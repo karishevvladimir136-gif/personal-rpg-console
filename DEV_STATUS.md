@@ -1,5 +1,49 @@
 # Development status
 
+**Current milestone: multi-hero 1 — a table with no main character** (`docs/stages/MULTI_HERO_1.md` on
+origin/claude/handoff at 2552de9, with its amendment A1–A8) — **built, tested on the mocked host, dry-run on Haiku;
+waiting for the owner's reading.** Branch `claude/multi-hero-1-mdk43v` (the stage's `claude/multi-hero-1`) from
+`origin/claude/game-party-1`. Nothing to `main`.
+
+- **What changed in the app — only behind the DM option «company»** (off unless a campaign sets it; the owner's
+  campaigns do not):
+  - **No «hero» in anything the DM reads for the mode.** `src/lib/gameplay/dm-loop/company.ts` rewrites every DM
+    request of a company table: roles, turn shapes, tool descriptions, dossier, current state, tool results, the
+    app's notes. The story's own words (players' messages, the history) go as they are. The same applies to the
+    out-of-game answers, the digest and the prep. The opening gets its own company paragraph.
+  - **The three records alike:** every controlled party member reads to the DM as a player character.
+  - **Heroic Inspiration per character** (earned on a natural 20, spent on that character's own roll).
+  - **Rerolls per player:** two each per session, in TypeScript and in SQL (migration
+    `202610290801_multi_hero_company_rerolls.sql`, additive; per character only for a company campaign).
+  - **The company's prep:** no one at its centre; the DM lists each puzzle, threat and reward with its addressee.
+- **The harness** (`scripts/multi-hero-1/`): PARTY_1's table with no fixed first seat (the order turns each round;
+  initiative in a fight), a relay that retells the others' words (a copied run of 8 words is asked for again),
+  waiting marks (a sleeping character is not asked; a «waiting» line instead), the evenness measure, the A7 round
+  tags and the A8 layer reading (Haiku judges).
+- **Checks:** `tests/multi-hero-1-app.test.mjs` 8/8 and `tests/multi-hero-1.test.mjs` 9/9 (A1–A8 on the mocked host,
+  A6 from each seat in turn). Existing tests touched: `tests/integration-saves.test.mjs` (the new migration appended
+  to its list, as every migration stage does). Full suite: 3 103 tests, 3 074 pass, 27 skipped, 2 fail — the two
+  mega-dm fixture tests that `git show` old commits this shallow clone lacks (they fail the same on the base commit).
+  Typecheck pass; lint with zero warnings; production build pass.
+- **The dry run on Haiku ×3** (one P-SAND table, 6 rounds; the world and both company layers built on Haiku first):
+  A1 held, A2 lost (the DM wrote 42.7 % about Bram though his player wrote the fewest words; spread 14.8 points),
+  A4 lost on Haiku (14 copied runs survived the second ask; none from the DM's narration), A7 lost by the frozen
+  reading (rounds 4 and 6 closed on one character's pending answer to another's question), A8 held (2/2/2 and
+  2/2/3). Report: `docs/runs/multi-hero-1-report.md`; the screens side by side: `docs/runs/multi-hero-1-rounds.html`
+  and the published page https://claude.ai/artifact/8tXRyEH15bmvC7pWCnHbqb (private to the owner).
+- **Money:** OpenRouter $0.27 of $5 (a first attempt stopped at an incomplete Haiku opening: $0.014, counted);
+  nothing on any other door.
+- **PARTY_1's report** is re-titled «three players around one hero», with one paragraph on which readings the hero
+  frame may have shaped (computed from the records, in `scripts/game-party-1/report.mjs`), over the six scored
+  tables (this branch is rebased onto `claude/game-party-1` at 03b0991). SAND-T1′ is still being played there; when
+  that session regenerates its report, the re-title lives only on this branch until the two are merged.
+- **Known residues:** the app's first record still comes first in every list the DM reads (the likely source of A2's
+  lean); fight zones are still measured from it; a reward with no named recipient goes to it; the company rewrite
+  covers the English instructions only.
+- **Next:** the owner reads the report and the screens; PARTY_2 branches from here.
+
+---
+
 **Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
 at 23220d6; the amendment of 2026-10-27 governs) — **all six tables played and scored; SAND-T1′ (the owner's replay) running.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.

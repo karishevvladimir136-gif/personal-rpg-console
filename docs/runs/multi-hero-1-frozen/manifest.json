@@ -1,0 +1,294 @@
+{
+  "stage": "MULTI_HERO_1",
+  "design": "41f157630006e9cee322401add02d88ef67a6e3139240f68ced57b19390d5f2f",
+  "builtAt": "2026-10-29T07:04:35.597Z",
+  "by": "Claude Haiku 5.5 in place of the owner's DM settings, through OpenRouter",
+  "owner": "f1ebf867-d37c-4c2f-a9a5-2b58512ae9b8",
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12864341,
+    "sha256": "602d869bed7b3a97b340e1587baf6a46de5cac68ad46f64cbd743b83794bf2bd",
+    "note": "The local database after the wizard, the opening and the seating of the three arms' company campaigns, before any prep (PGlite data directory, gzip)."
+  },
+  "arms": {
+    "SAND": {
+      "campaignId": "35565c01-458e-47f6-9993-ef40639c692a",
+      "heroId": "e5f843e5-d70c-5708-848a-4ecf15167178",
+      "companions": {
+        "sefa": "30119a81-8315-4a69-ab50-488e405897ef",
+        "pell": "e7e66999-1b14-498d-ad4e-e86d9bc5abe6"
+      },
+      "worldId": "f0665a1e-2b1f-47d3-9510-bae773256950",
+      "adventureId": "1b38c783-4e94-4662-9e3e-0be8ba8bac91",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "f0665a1e-2b1f-47d3-9510-bae773256950",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "e5f843e5-d70c-5708-848a-4ecf15167178",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — the Burning Wizard",
+          "wishesChars": 0
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": true,
+            "company": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Burning Wizard, Beregost",
+          "actors": 1,
+          "droppedPcActors": [],
+          "narration": "Late afternoon light slants through the shutters of the Burning Wizard, and the smell of hearth smoke and small beer hangs over the common room. Three travellers have come in by three roads and found the same table. Bram Halloway walked up the Coast Way from Nashkel with the dust of the road still on his boots. Sefa Marrin came up from Baldur's Gate by the Trade Way. Pell Dunmore arrived from the west by the High Hedge road. None of them knows the others yet, and each has reasons for being here that the others have not heard. Behind the bar, the proprietor Doran Quill sets down a cup and looks from one face to the next, as if waiting to see who will speak first. Outside, the forge hammers have fallen silent for the day, and the street beyond the shutters is going dim. What happens at this table is still undecided.",
+          "questions": [],
+          "startMinutes": 840
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "30119a81-8315-4a69-ab50-488e405897ef",
+              "items": 7
+            },
+            "pell": {
+              "id": "e7e66999-1b14-498d-ad4e-e86d9bc5abe6",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "GOAL": {
+      "campaignId": "15d9dfc0-db6f-467a-ba25-6aa8c6c02a72",
+      "heroId": "0d1367a8-fdf5-50df-ade3-d21afd6df3cd",
+      "companions": {
+        "sefa": "263577ee-906f-4a58-846e-9fa9d5ae19bc",
+        "pell": "f1fb2239-ef14-498b-81e5-3bb3f8915192"
+      },
+      "worldId": "fd28d078-77e2-4d65-be96-a7564e6a61ee",
+      "adventureId": "ea3b3c1c-ee39-4eb2-8737-6116fca62975",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "fd28d078-77e2-4d65-be96-a7564e6a61ee",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "0d1367a8-fdf5-50df-ade3-d21afd6df3cd",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost — one errand by nightfall",
+          "wishesChars": 723
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Beregost",
+          "actors": 0,
+          "droppedPcActors": [],
+          "narration": "Bram Halloway, Sefa Marrin and Pell Dunmore stand together before a patron's door in Beregost. They met this morning and were hired together for one errand that must be finished in this town before nightfall. Hammers ring from the smithies, smoke hangs over the rooftops, and the sun is already sliding west over the Trade Way. The errand has been named, but its details are still unspoken. All three turn toward the closed door, and the street waits for the first move. What does the company do before the light goes?",
+          "questions": [],
+          "startMinutes": 480
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "263577ee-906f-4a58-846e-9fa9d5ae19bc",
+              "items": 7
+            },
+            "pell": {
+              "id": "f1fb2239-ef14-498b-81e5-3bb3f8915192",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 3,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "DUNGEON": {
+      "campaignId": "dbc18879-f305-4172-a5fd-d3e802e2cec4",
+      "heroId": "d56c2d59-377f-5766-9c43-5b954a15b73d",
+      "companions": {
+        "sefa": "363f7921-39b5-4edf-a16f-1b194a26b01e",
+        "pell": "d28748a8-0eee-431d-829d-f02d8421866e"
+      },
+      "worldId": "2b1ff72d-02ec-4d6a-85b8-355108094b19",
+      "adventureId": "fb2d60a1-6753-4f50-b489-4e2deacb9c5f",
+      "steps": [
+        {
+          "step": "world",
+          "worldId": "2b1ff72d-02ec-4d6a-85b8-355108094b19",
+          "title": "Sword Coast — Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "d56c2d59-377f-5766-9c43-5b954a15b73d",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "The ruin below Beregost",
+          "wishesChars": 1414
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The ruin below Beregost",
+          "actors": 0,
+          "droppedPcActors": [],
+          "narration": "The afternoon light stops at the lip of the ruin, where worn stone steps fall away into a shadow that does not quite match the day. Cold air rises from below, carrying dust and no smell of rot. Bram Halloway, Sefa Marrin and Pell Dunmore stand here together, each with what they carried in and each with the same open road behind them back toward Beregost. Somewhere below, something is listening, and it is in no hurry. Nothing has been decided yet. Who moves first, and what they make of the silence at the top of the stairs, is still hanging in the air.",
+          "questions": [],
+          "startMinutes": 840
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "363f7921-39b5-4edf-a16f-1b194a26b01e",
+              "items": 7
+            },
+            "pell": {
+              "id": "d28748a8-0eee-431d-829d-f02d8421866e",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 3,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    }
+  },
+  "layers": {
+    "GOAL": {
+      "file": "GOAL-dm-only.json",
+      "sha256": "68f7c50cce77fabe190b900c3e0107b6f29ffbe7b53959b1f8e6e308d25cb48a",
+      "chars": 8750,
+      "writes": 14,
+      "threads": 30,
+      "preparedAt": "2026-10-29T07:06:20.064Z"
+    },
+    "DUNGEON": {
+      "file": "DUNGEON-dm-only.json",
+      "sha256": "71ce3d43e07f5cc0a01bf9e58581531c9035d2ea1a121eb1d27f4ac8999423a9",
+      "chars": 8510,
+      "writes": 14,
+      "threads": 27,
+      "preparedAt": "2026-10-29T07:08:05.530Z"
+    }
+  }
+}
