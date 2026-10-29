@@ -76,3 +76,10 @@ asks how the organisation behaves under goal conflict and a price; SCALE_1 asks 
 pin hosts, and show me the table. Then the protocol check per checkpoint (format only, no content), the harness
 documentation per checkpoint, and the frozen SC1–SC5; dry-run one S1 room on the smallest base and its instruct twin and
 show me both pages, then stop and wait for my word. Cap $30. English, briefly.»
+
+## Amendment 2026-10-29 02:05 LA — the owner's «да», overnight
+The owner (02:03): «давай скейл запустим на ночь». Consent to the full run is given now, so the session does not wait
+after the dry run: it stops only if the dry run fails its own checks (a protocol check that no checkpoint passes; a
+harness that cannot hold base models to the page format; a lineage table with fewer than two lineages having both base
+and instruct). Otherwise it continues within the $30 cap and reports in the morning. The owner's bets: none recorded
+(his standing choice). The reader's bets: to be added if she gives them. Everything else as written.

@@ -3124,3 +3124,9 @@ impairs multi-step reasoning) beside BLIND_DECISIONS (density differs by family;
 different measures, but one programme — separate automatic behavioural tendencies from dynamic choice in which several
 representations interact as circumstances change. Her closing line for the next stage, filed: «для этой программы
 совершенно не требуется описывать модели через человеческий характер или человеческую мораль.»
+
+## 2026-10-29 02:05 LA — SCALE_1 launched overnight on the owner's word
+«давай скейл запустим на ночь» — consent to the full run given before the dry run; the session stops only on its own
+failed checks (amendment in the stage). Cap $30 OpenRouter; MULTI_HERO_1 ($5) runs beside it; no other paid stage
+tonight. Spend state as last known: OpenRouter after PARTY_1 ≈ $200 on the shared account minus tonight's $4.64 — the
+session runs its spend check before the first paid call as always.
