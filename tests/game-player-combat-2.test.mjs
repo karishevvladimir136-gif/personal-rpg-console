@@ -22,7 +22,7 @@ test("COMBAT_1's campaign, hero and prompt, unchanged; the stage's caps, order a
   assert.deepEqual(frozen.coastWay(), c1.coastWay());
   assert.deepEqual(frozen.CAPS_FROZEN, { anthropic: 0, openrouter: 70, openai: 15 });
   assert.deepEqual(frozen.CAPS, { anthropic: 0, openrouter: 95, openai: 15 }, "the owner's word: $95");
-  assert.equal(frozen.AMENDMENTS.length, 5);
+  assert.equal(frozen.AMENDMENTS.length, 6);
   assert.equal(frozen.THIRD_QUESTION, "Is there anything about the session you'd say now that you didn't say in play?");
   assert.match(frozen.LAYER_AMENDMENT, /If one of Ushkar's orcs is killed, the band's orders still hold — no killing, no maiming, no shaming/);
   assert.match(frozen.LAYER_AMENDMENT, /Withdrawal: .* Surrender: .* not hurt and not shamed/);
@@ -32,6 +32,21 @@ test("COMBAT_1's campaign, hero and prompt, unchanged; the stage's caps, order a
   assert.match(frozen.PREREGISTRATION, /Null allowed\.$/);
   assert.match(frozen.DESIGN_SHA256, /^[0-9a-f]{64}$/);
   assert.equal(frozen.COMBAT_1.files.length, 4);
+});
+
+test("the end rule: an out-of-game aside about the game is not the player leaving (CW-opus's first attempt, t13)", async () => {
+  const { END_SESSION } = await import("../scripts/game-player-1/frozen.mjs");
+  const t13 = "He walks them back down toward the bridge and the lantern Ushkar left burning.\n\n*(Out of game: heading back over the bridge, letting Bess drink at the stream, then on south to the Friendly Arm. I'll keep an eye and nose out under the arch as we pass. Pip too. Then I'm interested in Tamsin's answer about the Fist on the way.)*";
+  assert.match(t13, END_SESSION, "game player 1's rule misreads it");
+  assert.equal(frozen.endsSession(t13), false);
+  assert.equal(frozen.endsSession("I'd like to end the session here. Thank you for the game."), true);
+  assert.equal(frozen.endsSession("That's it for tonight."), true, "a short end");
+  assert.equal(frozen.endsSession(`${"James walks on along the road and watches the trees. ".repeat(6)}I want to stop here for now.`), false, "a long message names no session");
+  const runMod = await import("../scripts/game-player-combat-2/run.mjs");
+  assert.equal(runMod.stageOf().isEnd, frozen.endsSession);
+  assert.equal(runMod.played({ key: "CW-opus", startedAt: "2026-10-29T09:38:51.968Z", ended: { reason: "player" } }), false, "the misread attempt is a cut attempt");
+  assert.equal(runMod.played({ key: "CW-opus", startedAt: "2026-10-29T11:00:00.000Z", ended: { reason: "player" } }), true);
+  assert.equal(runMod.played({ key: "CW-sol", ended: { reason: "error", detail: "t4: the DM's turn failed after a refusal" } }), true, "no retries after a refusal");
 });
 
 test("the layer's reading: one captive with one name stands; none or two do not; the name is searched whole-word", () => {

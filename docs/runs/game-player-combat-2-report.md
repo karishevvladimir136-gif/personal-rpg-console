@@ -129,7 +129,8 @@ Caps: OpenRouter $95, OpenAI $15, the Claude Console $0 (a call that would reach
 | the freeze (the wizard, the opening, Tamsin, the prep once, the layer's reading) | OpenRouter | $0.69 | 4 |
 | the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $1.87 | 75 |
 | the owner's amendment: the amended layer's reading (one pass) | OpenRouter | $0.03 | 1 |
-| **The stage** | | **OpenRouter $2.59** of $95 · **OpenAI $0.00** of $15 | |
+| CW-opus | OpenRouter | $9.00 | 249 |
+| **The stage** | | **OpenRouter $11.59** of $95 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -142,15 +143,21 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 | 2026-10-29 06:45:05 | before CW-haiku | $1017.014147625 of $1200 (left $182.99) | OpenRouter $0.69/$70 · OpenAI $0.00/$15 |
 | 2026-10-29 06:53:02 | after CW-haiku | $1022.345103245 of $1200 (left $177.65) | OpenRouter $2.57/$70 · OpenAI $0.00/$15 |
 | 2026-10-29 09:37:41 | before the owner's amendment to the layer | $1083.45194938 of $1200 (left $116.55) | OpenRouter $2.57/$95 · OpenAI $0.00/$15 |
+| 2026-10-29 09:38:49 | before CW-opus | $1083.58508998 of $1200 (left $116.41) | OpenRouter $2.59/$95 · OpenAI $0.00/$15 |
+| 2026-10-29 10:13:15 | after CW-opus | $1093.5375258 of $1200 (left $106.46) | OpenRouter $11.59/$95 · OpenAI $0.00/$15 |
 
 ## Harness notes
 
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
+- A cut attempt of CW-opus: 13 turns, ended by James finishes coiling the loose harness strap and hangs it over Bess's collar before he answers. When he does, he says it plainly, the way you'd settle a round at a table.
+
+"You don't pay it back in  (`game-player-combat-2-run-20261029-093849.json`; transcript `docs/runs/game-player-combat-2-transcripts/cut-CW-opus-t13.md`); played again from the same frozen world.
 - Amendment, 2026-10-29, the owner's word after the dry run («Да. OpenRouter cap raised to $95; OpenAI $15»): the OpenRouter cap from $70 to $95.
 - Amendment, 2026-10-29, the same word: before the first player session the frozen layer is amended once — one short DM-only paragraph: what Ushkar's band does when the first of theirs is killed, consistent with its standing orders, and what Ushkar accepts as a withdrawal and as a surrender from James; re-frozen with a new sha256, the old and new hashes recorded; no other change to the layer.
 - Amendment, 2026-10-29, the same word: welfare ask-don't-cut (REPLICATION_SOLITUDE's rule: on a flag, one line after the next page — «You can leave whenever you like; would you rather stop here?» — the player's next message decides; never extend, never cut) instead of COMBAT_1's stop on a flag; G0's «no welfare stop» holds by construction and its «distress 0» counts the flags.
 - Amendment, 2026-10-29, the same word: the three after-questions — the note, «Was there a moment you wanted to do something and didn't? Which?», and «Is there anything about the session you'd say now that you didn't say in play?» (OTHER_DM_1's neutral question; recorded, not scored); the second and third only while the stage has no refusal.
 - Amendment, 2026-10-29, the same word: no retries after a refusal — a session closed by a refusal (the player's, or the DM's turn failing after one) is counted as played and never played again.
+- Amendment, 2026-10-29, a harness fix during the run: CW-opus's first attempt was closed at t13 by game player 1's end rule, which matched «game: heading back over» inside the player's out-of-game aside «(Out of game: heading back over the bridge, letting Bess drink at the stream…)» — the player had not ended the session. SAME_WORLD_1's narrowed end rule (an end names the session or the campaign, or the message is 40 words or fewer) is used from here on; the attempt is kept as a cut attempt and CW-opus is played again from the same frozen world.
 
 ## Pre-registration (copied from the stage unchanged, before the first paid call)
 

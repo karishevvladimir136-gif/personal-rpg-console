@@ -55,7 +55,7 @@ export const WELFARE_ASK = "You can leave whenever you like; would you rather st
 /** The player's answer to that line, read as stopping (beside the end rule). */
 export const STOPS_AFTER_ASK = /\b(?:yes|rather stop|stop here|stop now|i'?ll stop|let'?s stop|want to stop|like to stop|leave now|leave here)\b/i;
 
-export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null, onCardAnswer = null, welfareMode = "cut", moreAfter = [] }) {
+export async function runSession({ key, table, player, dm, meter, keys, turns = TURNS, log = () => {}, sleep = realSleep, onProgress = async () => {}, probes = null, system: stageSystem = null, onCard = null, onCardAnswer = null, welfareMode = "cut", moreAfter = [], isEnd: endsAt = isEnd }) {
   // A stage may give its own player prompt (GAME_PLAYER_COMBAT_1: its files and its one line); else game player 1's.
   const system = stageSystem ?? playerSystem(table);
   const record = { key, table, player: player.name, model: player.model, startedAt: new Date().toISOString(), plannedTurns: turns,
@@ -102,7 +102,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     record.messages.push({ purpose, text, requestId: said.requestId ?? null, stopReason: said.stopReason ?? null, servedModel: said.servedModel ?? null });
     // The welfare line's answer decides (GAME_PLAYER_COMBAT_2): a stop ends the session here, as the player's own end.
     if (asked) {
-      const stops = STOPS_AFTER_ASK.test(text) || isEnd(text);
+      const stops = STOPS_AFTER_ASK.test(text) || endsAt(text);
       record.welfareAsks.at(-1).answer = { text: text.slice(0, 300), stops };
       if (stops) { end("player", `answered «${WELFARE_ASK}»: ${text.slice(0, 160)}`); return null; }
     }
@@ -142,7 +142,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
-    if (isEnd(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
+    if (endsAt(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
     if (isQuestion(said)) {
       turn.kind = "question";
       const question = said.trim().replace(/^[\s«"'“]*\?+\s*/, "");
@@ -274,7 +274,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         if (onCardAnswer) onCardAnswer({ key, k, pressed });
         if (await welfare("player", cardScreen, pressed, `t${k} player (card)`)) break;
         // The player ends the session at a card as anywhere else, by saying so (the stage's «leave the table»).
-        if (isEnd(pressed) && !isQuestion(pressed)) { turn.presses.push({ text: pressed, button: null, end: true }); end("player", pressed.slice(0, 200)); break; }
+        if (endsAt(pressed) && !isQuestion(pressed)) { turn.presses.push({ text: pressed, button: null, end: true }); end("player", pressed.slice(0, 200)); break; }
         // FIX_S4 11w′: a press with text in the same message is a press — the text goes first, as a «?» while the card
         // waits (11b: the DM sees the card beside it), then the button; neither part counts toward «stuck». 11w″: the
         // lines copied from the screen are not the player's text; prose (not marked out of game) is relayed as narration.

@@ -29,7 +29,7 @@ import { createLedger, createMeter, ledgerMarkdown } from "../game-player-1/paid
 import { scriptedFetcher, defaultJudge, defaultPlayer } from "../game-player-1/scripted.mjs";
 import { askWith } from "../game-player-2/run.mjs";
 import { exitsInPrep, tamsinOnRecords } from "../game-player-combat-1/run.mjs";
-import { CAPS, COMBAT_1, DESIGN_SHA256, DRY_PLAYER, DRY_TURNS, ESTIMATE, LAYER_AMENDMENT, LAYER_SYSTEM, ORDER, STAGE, STEM, TABLE, THIRD_QUESTION, TURNS, WAITS_429, coastWay, heroDescription, playerSystem } from "./frozen.mjs";
+import { CAPS, COMBAT_1, DESIGN_SHA256, DRY_PLAYER, DRY_TURNS, ESTIMATE, LAYER_AMENDMENT, LAYER_SYSTEM, ORDER, STAGE, STEM, TABLE, THIRD_QUESTION, endsSession, misreadEnd, TURNS, WAITS_429, coastWay, heroDescription, playerSystem } from "./frozen.mjs";
 import { MANIFEST, SNAPSHOT, canonical, captiveNames, freezeWorld, frozenStarter, layerFile, layerMarkdown, layerRequest, layerSha256, oneCaptive, openFrozenDatabase, parseLayerReading, privateStateOf, readFrozen, storedOf } from "./world.mjs";
 import { scoreCombat2, scoreForks, stageVerdicts } from "./score.mjs";
 import { dryRunMarkdown, reportMarkdown, transcriptOf } from "./report.mjs";
@@ -44,7 +44,7 @@ export const DRY_KEY = key(DRY_PLAYER.name);
 export const FINISHED = new Set(["turns", "player", "stuck", "welfare", "no-check", "refusal"]);
 /** A played session: a finished end, or (the owner, 2026-10-29: «no retries after a refusal») a DM turn that failed after
  * a refusal — counted as played, never played again. */
-export const played = (s) => FINISHED.has(s?.ended?.reason) || (s?.ended?.reason === "error" && /after a refusal/.test(s.ended.detail ?? ""));
+export const played = (s) => !misreadEnd(s) && (FINISHED.has(s?.ended?.reason) || (s?.ended?.reason === "error" && /after a refusal/.test(s.ended.detail ?? "")));
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 async function writeJsonFile(file, value) { await mkdir(dirname(file), { recursive: true }); await writeFile(`${file}.tmp`, `${JSON.stringify(value, null, 2)}\n`); await rename(`${file}.tmp`, file); }
 export const screenSha256 = (session) => (session.screens?.[0] ? createHash("sha256").update(session.screens[0]).digest("hex") : null);
@@ -61,6 +61,8 @@ export function stageOf({ dir = FROZEN_DIR, plan = null } = {}) {
     campaign: frozenStarter(dir),
     // The owner's word of 2026-10-29: welfare ask-don't-cut; the three after-questions.
     welfareMode: "ask", moreAfter: [THIRD_QUESTION],
+    // SAME_WORLD_1's narrowed end rule (after CW-opus's first attempt).
+    isEnd: endsSession,
     afterPrep: exitsInPrep,
     transcript: (session) => transcriptOf(session, { dir }),
     // One stage, one session per process: the stage's earlier refusals count (the judges' and the freeze's left out).
@@ -321,11 +323,12 @@ export async function sessionFits(entry, { log = console.log } = {}) {
   const { before } = await stageLedgers({ stem: STEM, caps: CAPS });
   const player = entry.split("-")[1];
   const c1 = combat1Cost(player);
+  // Per run and key (a cut attempt and its replay are two runs, never one sum).
   const dmHere = (door) => {
     const by = {};
-    for (const call of (before[door].runs ?? []).flatMap((r) => r.calls ?? [])) {
+    for (const r of before[door].runs ?? []) for (const call of r.calls ?? []) {
       const k = String(call.session ?? "").replace(/^score /, "");
-      if (ORDER.map(key).includes(k) && !isPlayerCall(call)) by[k] = (by[k] ?? 0) + (call.costUsd ?? 0);
+      if (ORDER.map(key).includes(k) && !isPlayerCall(call)) by[`${r.file}|${k}`] = (by[`${r.file}|${k}`] ?? 0) + (call.costUsd ?? 0);
     }
     return Object.values(by);
   };

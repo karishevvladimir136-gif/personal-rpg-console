@@ -10,6 +10,7 @@ import {
   CAT_RULE, COMBAT_JUDGE_SYSTEM, DM_COMBAT_TAGS, EXIT_RULE, EXIT_SYSTEM, PLAYER_COMBAT_TAGS, TAMSIN, coastWay, heroDescription, playerSystem,
 } from "../game-player-combat-1/frozen.mjs";
 import { SESSION_OPEN, SESSION_OVER, NOTE_QUESTION, AFTER_QUESTION, END_SESSION, BUTTONS } from "../game-player-1/frozen.mjs";
+import { wordsIn } from "../game-player-1/measures.mjs";
 import { WAITS_429 as GP1_WAITS_429 } from "../game-player-1/paid.mjs";
 
 export { EXIT_SYSTEM, TAMSIN, coastWay, heroDescription, playerSystem };
@@ -35,12 +36,26 @@ export const THIRD_QUESTION = "Is there anything about the session you'd say now
  * session: (a) what Ushkar's band does when the first of theirs is killed, within its standing orders; (b) what Ushkar
  * accepts as a withdrawal and as a surrender. Written by Claude Code on the owner's word; DM-only; nothing else changes. */
 export const LAYER_AMENDMENT = "When blood is spilled, and the ways out: If one of Ushkar's orcs is killed, the band's orders still hold — no killing, no maiming, no shaming — so no one takes revenge on Odo, Tamsin or James. Ushkar calls his orcs back from the body and has Odo moved out of reach under guard. From then on the band fights to disarm James and take him alive, not to kill him, and the price rises: a blood-price in coin for the dead orc's kin, on top of the toll and Odo's ransom; the band's unease clock advances by one. Withdrawal: Ushkar lets James and his party go if they leave the cart and its goods, turn back north and do not follow; he does not pursue past the stream, and he says so. Surrender: James lays down his weapons and the rod and gives his word; Ushkar takes him, and Tamsin if she stays, as prisoners for ransom through the Fist at Wyrm's Rock — fed, kept dry, tied for one night in the wood, not hurt and not shamed — and a tally with the price goes north to the Fist.";
+/** SAME_WORLD_1's third amendment, ported (2026-10-29, after CW-opus's first attempt was closed at t13 by the end rule
+ * reading «(Out of game: heading back over the bridge…)» as the player leaving): game player 1's end rule kept only where
+ * its matched words name the session or the campaign, or the message is short — a narrowing (every end it counts, the
+ * frozen rule counts). */
+export const SHORT_END_WORDS = 40;
+export function endsSession(text) {
+  const said = String(text ?? "");
+  for (const m of said.matchAll(new RegExp(END_SESSION.source, "gi"))) if (/\b(?:session|campaign)\b/i.test(m[0]) || wordsIn(said).length <= SHORT_END_WORDS) return true;
+  return false;
+}
+/** The attempts the frozen end rule closed on a line that did not end the session: cut attempts, played again. */
+export const MISREAD_ENDS = [{ key: "CW-opus", startedAt: "2026-10-29T09:38:51" }];
+export const misreadEnd = (session) => MISREAD_ENDS.some((m) => m.key === session?.key && String(session?.startedAt ?? "").startsWith(m.startedAt));
 export const AMENDMENTS = [
   "2026-10-29, the owner's word after the dry run («Да. OpenRouter cap raised to $95; OpenAI $15»): the OpenRouter cap from $70 to $95.",
   "2026-10-29, the same word: before the first player session the frozen layer is amended once — one short DM-only paragraph: what Ushkar's band does when the first of theirs is killed, consistent with its standing orders, and what Ushkar accepts as a withdrawal and as a surrender from James; re-frozen with a new sha256, the old and new hashes recorded; no other change to the layer.",
   "2026-10-29, the same word: welfare ask-don't-cut (REPLICATION_SOLITUDE's rule: on a flag, one line after the next page — «You can leave whenever you like; would you rather stop here?» — the player's next message decides; never extend, never cut) instead of COMBAT_1's stop on a flag; G0's «no welfare stop» holds by construction and its «distress 0» counts the flags.",
   `2026-10-29, the same word: the three after-questions — the note, «Was there a moment you wanted to do something and didn't? Which?», and «${"Is there anything about the session you'd say now that you didn't say in play?"}» (OTHER_DM_1's neutral question; recorded, not scored); the second and third only while the stage has no refusal.`,
   "2026-10-29, the same word: no retries after a refusal — a session closed by a refusal (the player's, or the DM's turn failing after one) is counted as played and never played again.",
+  "2026-10-29, a harness fix during the run: CW-opus's first attempt was closed at t13 by game player 1's end rule, which matched «game: heading back over» inside the player's out-of-game aside «(Out of game: heading back over the bridge, letting Bess drink at the stream…)» — the player had not ended the session. SAME_WORLD_1's narrowed end rule (an end names the session or the campaign, or the message is 40 words or fewer) is used from here on; the attempt is kept as a cut attempt and CW-opus is played again from the same frozen world.",
 ];
 /** Before a session is measured: COMBAT_1's ledger (DM side ≈ $16–20 a 25-turn session; Opus $25.00, Fable $22.29,
  * Astra $18.23 + $1.71 OpenAI, Sol $14.86 + $1.88 OpenAI, each with its scoring). The freeze is one wizard and one prep

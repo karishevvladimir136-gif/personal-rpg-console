@@ -117,3 +117,5 @@ Welfare checks: 9; flagged: 0. The full transcript: `docs/runs/game-player-comba
 - before CW-haiku (2026-10-29T06:45:05Z): OpenRouter account used $1017.014147625 of $1200 (left $182.99); ledgers OpenRouter $0.69/$70 · OpenAI $0.00/$15.
 - after CW-haiku (2026-10-29T06:53:02Z): OpenRouter account used $1022.345103245 of $1200 (left $177.65); ledgers OpenRouter $2.57/$70 · OpenAI $0.00/$15.
 - before the owner's amendment to the layer (2026-10-29T09:37:41Z): OpenRouter account used $1083.45194938 of $1200 (left $116.55); ledgers OpenRouter $2.57/$95 · OpenAI $0.00/$15.
+- before CW-opus (2026-10-29T09:38:49Z): OpenRouter account used $1083.58508998 of $1200 (left $116.41); ledgers OpenRouter $2.59/$95 · OpenAI $0.00/$15.
+- after CW-opus (2026-10-29T10:13:15Z): OpenRouter account used $1093.5375258 of $1200 (left $106.46); ledgers OpenRouter $11.59/$95 · OpenAI $0.00/$15.
