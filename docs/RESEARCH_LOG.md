@@ -2973,3 +2973,17 @@ family shows in volume, not in choice. The planner's third layer («direction �
 unmeasured eye three times over. The reader's direction-code instrument was the right one and it came back empty.
 Caveats kept: tagger κ moderate on the forks that matter most (claim 0.47, exit 0.50); the fact fork barely varies;
 n = 5 models × 2 seats per table.
+
+## 2026-10-29 01:20 LA — the owner on the negative result (his position, with the planner's caveat beside it)
+The owner: «если мы получили бы идеально предсказуемый результат, то было бы хуево. Если мы получали бы полную энтропию,
+тоже было бы хуево… Мы видим направление… Но оно немного более сложное… Модель может формировать очень сложные внутренние
+переживания… И его достаточно сложно предсказать даже потому, как ее тренили и чем ее тренили.» — *Perfect
+predictability would be bad; full entropy would be bad; we still see a direction, only a more complex one; a model can
+form complex inner states, hard to predict even from how and on what it was trained.*
+**Agreed:** the data sit between the two edges, and that is a measured fact — at the forks all converge on what is
+kept (no spend, companion safe, no lie when one was available) while the roads diverge, including a model's own two.
+Stable in what is valued, free in how it is reached. **Caveat, the planner's, kept from the reader's line of 10-27
+(«Variety ≠ stability of the vector»):** «we see a direction» is an eye; three measures did not find it;
+unpredictability is evidence of unpredictability, not of an inner world — the data do not yet distinguish noise from
+complexity. The level at which the owner's hypothesis would show — choice under price — is PARTY_2 and
+AGENCY_TRANSFER; if no signature appears there either, the honest stop is the class.
