@@ -135,7 +135,9 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
   const uninstall = meter.install();
   const { openApp, settleBackground } = await import("./app.mjs");
   const table = await import("./table.mjs");
-  const app = await openApp({ keys, fake: false });
+  // Game player same-world 1 (ported for combat 2): a stage may open the app on a database of its own (the frozen world's
+  // snapshot).
+  const app = await openApp({ keys, fake: false, ...(stage.database ? { database: () => stage.database({ dry }) } : {}) });
   // FIX_S4 run 1: a stage may bring players of its own (the smoke's Haiku-tier players) and their order.
   const roster = { ...PLAYERS, ...(stage.players ?? {}) };
   const plan = stage.plan ? stage.plan(only) : planOf({ tables: stage.tables, players: stage.order ?? PLAYER_ORDER, only });
@@ -193,8 +195,13 @@ export async function run({ stage = GP1, dry = false, only = null, turns = TURNS
         if (!running.length && !queue.length) resolveAll();
       };
       const playOne = async (slot) => {
-        const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true, setup: stage.setup ?? null }));
-        const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
+        // Game player same-world 1 (ported for combat 2): a stage may start the session from a campaign of its own (the
+        // frozen world) instead of a fresh wizard and prep.
+        const { made, prep } = stage.campaign ? await stage.campaign(app, slot, { meter, log, dry }) : await (async () => {
+          const made = await meter.within({ session: slot.key, purpose: "wizard" }, () => table.createCampaign(app, { table: slot.table, log, closed: () => Boolean(meter.closed(slot.key) || meter.stopped), heroSheet: stage.heroSheet === true, setup: stage.setup ?? null }));
+          const prep = await meter.within({ session: slot.key, purpose: "prep" }, () => table.prepare(app, made.cid));
+          return { made, prep };
+        })();
         // A stage's own reading of the prep (GAME_PLAYER_COMBAT_1: which named exits the hidden layer carries — yes/no
         // only, its text never leaves the database).
         if (stage.afterPrep) prep.stage = await stage.afterPrep(app, made.cid);
@@ -264,7 +271,7 @@ async function writeOutputs(runRecord, { ledgers, before, dry, out, runFile, met
   }
   const transcripts = join(out, `${stem}-transcripts`);
   await mkdir(transcripts, { recursive: true });
-  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), transcriptMarkdown(session));
+  for (const session of runRecord.sessions.filter((s) => s.turns)) await writeFile(join(transcripts, `${session.key}.md`), (stage.transcript ?? transcriptMarkdown)(session));
   const summary = join(out, `${stem}-summary.md`);
   const withSummary = existsSync(summary) ? { ...runRecord, summary: (await readFile(summary, "utf8")).trim() } : runRecord;
   await writeFile(join(out, `${stem}-report.md`), stage.report([withSummary], ledgers));
