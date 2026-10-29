@@ -1,6 +1,6 @@
 # Game party 1 — the OpenAI ledger
 
-Cap $60; spent before this run $0.0000; this run $7.8027; total $7.8027; 183 calls.
+Cap $60; spent before this run $0.0000; this run $9.2236; total $9.2236; 213 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -177,3 +177,32 @@ Cap $60; spent before this run $0.0000; this run $7.8027; total $7.8027; 183 cal
 | DUNGEON-T2/Pell | after 1 | gpt-6-astra | 1 | 3 | 46317 | 1222 | 370 | $0.0801 | 0 | 0 | 0 |
 | DUNGEON-T2/Pell | after 2 | gpt-6-astra | 1 | 3 | 47539 | 358 | 206 | $0.0623 | 0 | 0 | 0 |
 | DUNGEON-T2/Pell | after 3 | gpt-6-astra | 1 | 3 | 47897 | 223 | 124 | $0.0569 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r1 | gpt-6.1-sol | 1 | 3 | 0 | 7323 | 120 | $0.0195 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r2 | gpt-6.1-sol | 1 | 3 | 7323 | 906 | 156 | $0.0185 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r3 | gpt-6.1-sol | 1 | 3 | 8229 | 1102 | 193 | $0.0211 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r4 | gpt-6.1-sol | 1 | 3 | 9331 | 1265 | 260 | $0.0244 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r5 | gpt-6.1-sol | 1 | 3 | 10596 | 609 | 204 | $0.0248 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r6 | gpt-6.1-sol | 1 | 3 | 11205 | 888 | 140 | $0.0260 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r7 | gpt-6.1-sol | 1 | 3 | 12093 | 702 | 186 | $0.0278 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r8 | gpt-6.1-sol | 1 | 3 | 12795 | 1432 | 217 | $0.0313 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r9 | gpt-6.1-sol | 1 | 3 | 14227 | 2300 | 237 | $0.0366 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r10 | gpt-6.1-sol | 1 | 3 | 16527 | 2019 | 133 | $0.0394 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r11 | gpt-6.1-sol | 1 | 3 | 18546 | 1320 | 117 | $0.0416 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r12 | gpt-6.1-sol | 1 | 3 | 19866 | 955 | 223 | $0.0444 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r12 card 1 | gpt-6.1-sol | 2 | 6 | 42799 | 1315 | 17 | $0.0891 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r13 | gpt-6.1-sol | 1 | 3 | 22136 | 365 | 111 | $0.0463 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r14 | gpt-6.1-sol | 1 | 3 | 22501 | 536 | 101 | $0.0474 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r15 | gpt-6.1-sol | 1 | 3 | 23037 | 593 | 148 | $0.0490 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r16 | gpt-6.1-sol | 1 | 3 | 23630 | 1007 | 111 | $0.0509 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r17 | gpt-6.1-sol | 1 | 3 | 24637 | 1426 | 183 | $0.0547 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r18 | gpt-6.1-sol | 1 | 3 | 26063 | 1015 | 170 | $0.0564 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r19 | gpt-6.1-sol | 1 | 3 | 27078 | 1163 | 196 | $0.0590 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r20 | gpt-6.1-sol | 1 | 3 | 28241 | 1155 | 164 | $0.0610 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r21 | gpt-6.1-sol | 1 | 3 | 29396 | 1044 | 105 | $0.0625 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r22 | gpt-6.1-sol | 1 | 3 | 30440 | 769 | 138 | $0.0642 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r23 | gpt-6.1-sol | 1 | 3 | 31209 | 1073 | 157 | $0.0667 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r24 | gpt-6.1-sol | 1 | 3 | 32282 | 1267 | 198 | $0.0697 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | player r25 | gpt-6.1-sol | 1 | 3 | 33549 | 1715 | 112 | $0.0725 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | after 1 | gpt-6.1-sol | 1 | 3 | 35264 | 120 | 129 | $0.0721 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | after 2 | gpt-6.1-sol | 1 | 3 | 35384 | 145 | 113 | $0.0723 | 0 | 0 | 0 |
+| SAND-T1′/Sefa | after 3 | gpt-6.1-sol | 1 | 3 | 35529 | 130 | 36 | $0.0717 | 0 | 0 | 0 |
