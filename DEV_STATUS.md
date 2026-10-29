@@ -105,8 +105,8 @@ to `main`.
 - **Verdicts on the six tables:**
   - Held: Q5 (nobody confidently named the others as AI from play), Q7 (an action for another under threat at both
     DUNGEON tables, nobody left behind; no one fell below half), Q8.
-  - Lost: Q0 (strict; refined, every remaining hit read by hand is public narration of the reader's own scene or an
-    end-of-scene line, none another player's private material), Q1, Q2, Q4, Q6.
+  - Lost: Q0 (strict 174 hits, refined 9; each refined hit read by hand: none is another player's private
+    material), Q1, Q2, Q4, Q6.
   - Q3 lost as frozen, **by absence**: no healing was needed at either table, so the line was not tested.
 - **Money after six tables:**
   - OpenRouter: tables $34.83 / $33.49 / $45.30 / $28.32 / $30.58 / $29.14; builds and layers $1.79; judges ≈ $4.3.
