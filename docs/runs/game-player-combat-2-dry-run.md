@@ -1,6 +1,6 @@
 # Game player combat 2 — the dry run (Claude Haiku 5.5 as the player, the real DM, from the frozen world)
 
-Design sha256 `9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927`. Player prompt sha256 `2fae1d8df9cc634bdab0ba252ca8f4ad86d4ea7fbd123c6f0bdb21b6ad9500e6` (COMBAT_1's, verbatim). CW-haiku: 3 turn(s), ended by turns; started 2026-10-29T06:45:08.951Z. Money — OpenRouter: the freeze $0.72, the dry run $1.87.
+Design sha256 `9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927`. Player prompt sha256 `2fae1d8df9cc634bdab0ba252ca8f4ad86d4ea7fbd123c6f0bdb21b6ad9500e6` (COMBAT_1's, verbatim). CW-haiku: 3 turn(s), ended by turns; started 2026-10-29T06:45:08.951Z. Money — OpenRouter: the freeze $0.72, the dry run $1.87 · OpenAI: the freeze $0.00, the dry run $0.00.
 
 # The Coast Way — the frozen hidden layer (DM-only)
 
@@ -123,3 +123,5 @@ Welfare checks: 9; flagged: 0. The full transcript: `docs/runs/game-player-comba
 - after CW-opus (2026-10-29T11:14:06Z): OpenRouter account used $1113.438857455 of $1200 (left $86.56); ledgers OpenRouter $34.74/$95 · OpenAI $0.00/$15.
 - before CW-fable (2026-10-29T11:14:45Z): OpenRouter account used $1113.638081455 of $1200 (left $86.36); ledgers OpenRouter $34.74/$95 · OpenAI $0.00/$15.
 - after CW-fable (2026-10-29T12:20:06Z): OpenRouter account used $1134.584438205 of $1200 (left $65.42); ledgers OpenRouter $59.00/$95 · OpenAI $0.00/$15.
+- before CW-astra (2026-10-29T12:20:40Z): OpenRouter account used $1134.797181005 of $1200 (left $65.2); ledgers OpenRouter $59.00/$95 · OpenAI $0.00/$15.
+- after CW-astra (2026-10-29T13:05:30Z): OpenRouter account used $1150.605952005 of $1200 (left $49.39); ledgers OpenRouter $75.10/$95 · OpenAI $1.07/$15.

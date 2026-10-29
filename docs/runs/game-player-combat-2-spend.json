@@ -312,6 +312,32 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-29T13:05:30.464Z",
+      "when": "after CW-astra",
+      "openrouter": {
+        "keyUsage": 1150.605952005,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1150.605952005,
+        "remaining": 49.39,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 75.1003,
+          "cap": 95
+        },
+        "openai": {
+          "spent": 1.0687,
+          "cap": 15
+        }
+      }
     }
   ]
 }

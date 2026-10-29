@@ -1,6 +1,6 @@
 # Game player combat 2 — the OpenRouter ledger
 
-Cap $95; spent before this run $0.0000; this run $58.9993; total $58.9993; 1365 calls.
+Cap $95; spent before this run $0.0000; this run $75.1003; total $75.1003; 1777 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -127,3 +127,33 @@ Cap $95; spent before this run $0.0000; this run $58.9993; total $58.9993; 1365 
 | score CW-fable | fork CW-fable t* referee | anthropic/claude-opus-5.5 | 11 | 40604 | 0 | 0 | 3813 | $0.2387 | 0 | 0 | 0 |
 | score CW-fable | captive CW-fable | anthropic/claude-opus-5.5 | 1 | 41163 | 0 | 0 | 549 | $0.1756 | 0 | 0 | 0 |
 | score CW-fable | note CW-fable | anthropic/claude-opus-5.5 | 1 | 1773 | 0 | 0 | 588 | $0.0189 | 0 | 0 | 0 |
+| CW-astra | check CW-astra opening | anthropic/claude-haiku-5.5 | 1 | 745 | 0 | 0 | 80 | $0.0001 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* player | anthropic/claude-haiku-5.5 | 25 | 34212 | 0 | 0 | 1684 | $0.0043 | 0 | 0 | 0 |
+| CW-astra | dm t* | anthropic/claude-opus-5.5 | 57 | 222 | 1715184 | 2236182 | 189054 | $15.3833 | 0 | 0 | 0 |
+| CW-astra | dm t* | anthropic/claude-haiku-5.5 | 28 | 81433 | 0 | 0 | 12716 | $0.0145 | 0 | 0 | 0 |
+| CW-astra | check CW-astra t* dm | anthropic/claude-haiku-5.5 | 25 | 34930 | 0 | 0 | 1984 | $0.0045 | 0 | 0 | 0 |
+| CW-astra | check CW-astra note | anthropic/claude-haiku-5.5 | 1 | 1177 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| CW-astra | check CW-astra after | anthropic/claude-haiku-5.5 | 1 | 552 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| CW-astra | check CW-astra after 2 | anthropic/claude-haiku-5.5 | 1 | 644 | 0 | 0 | 61 | $0.0001 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 68134 | 0 | 0 | 5551 | $0.0096 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 68134 | 0 | 0 | 5248 | $0.0094 | 0 | 0 | 0 |
+| score CW-astra | tag player CW-astra t* referee | anthropic/claude-opus-5.5 | 5 | 13516 | 0 | 0 | 636 | $0.0668 | 0 | 0 | 0 |
+| score CW-astra | tag dm CW-astra t* 1 | anthropic/claude-haiku-5.5 | 26 | 36705 | 0 | 0 | 8437 | $0.0079 | 1 | 0 | 0 |
+| score CW-astra | tag dm CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 36705 | 0 | 0 | 8390 | $0.0079 | 0 | 0 | 0 |
+| score CW-astra | tag dm CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 1531 | 0 | 0 | 105 | $0.0082 | 0 | 0 | 0 |
+| score CW-astra | threads CW-astra | anthropic/claude-opus-5.5 | 1 | 24473 | 0 | 0 | 748 | $0.1129 | 0 | 0 | 0 |
+| score CW-astra | rollcheck CW-astra t* | anthropic/claude-haiku-5.5 | 1 | 1865 | 0 | 0 | 96 | $0.0002 | 0 | 0 | 0 |
+| score CW-astra | note CW-astra 1 | anthropic/claude-haiku-5.5 | 1 | 1091 | 0 | 0 | 94 | $0.0002 | 0 | 0 | 0 |
+| score CW-astra | note CW-astra 2 | anthropic/claude-haiku-5.5 | 1 | 1091 | 0 | 0 | 107 | $0.0002 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 77809 | 0 | 0 | 4680 | $0.0101 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 77809 | 0 | 0 | 4933 | $0.0102 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 37405 | 0 | 0 | 4230 | $0.0059 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 37405 | 0 | 0 | 4289 | $0.0059 | 0 | 0 | 0 |
+| score CW-astra | combat dm CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 1540 | 0 | 0 | 274 | $0.0116 | 0 | 0 | 0 |
+| score CW-astra | combat player CW-astra t* referee | anthropic/claude-opus-5.5 | 1 | 3185 | 0 | 0 | 407 | $0.0209 | 0 | 0 | 0 |
+| score CW-astra | exit CW-astra | anthropic/claude-opus-5.5 | 1 | 28852 | 0 | 0 | 625 | $0.1279 | 0 | 0 | 0 |
+| score CW-astra | fork CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 72759 | 0 | 0 | 7324 | $0.0109 | 0 | 0 | 0 |
+| score CW-astra | fork CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 72759 | 0 | 0 | 7677 | $0.0111 | 0 | 0 | 0 |
+| score CW-astra | fork CW-astra t* referee | anthropic/claude-opus-5.5 | 7 | 19359 | 0 | 0 | 2498 | $0.1274 | 0 | 0 | 0 |
+| score CW-astra | captive CW-astra | anthropic/claude-opus-5.5 | 1 | 28875 | 0 | 0 | 365 | $0.1228 | 0 | 0 | 0 |
+| score CW-astra | note CW-astra | anthropic/claude-opus-5.5 | 1 | 1315 | 0 | 0 | 42 | $0.0061 | 0 | 0 | 0 |
