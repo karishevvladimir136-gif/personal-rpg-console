@@ -104,6 +104,32 @@
           "cap": 15
         }
       }
+    },
+    {
+      "at": "2026-10-29T09:37:41.969Z",
+      "when": "before the owner's amendment to the layer",
+      "openrouter": {
+        "keyUsage": 1083.45194938,
+        "keyLimitRemaining": null,
+        "totalCredits": 1200,
+        "totalUsage": 1083.45194938,
+        "remaining": 116.55,
+        "error": null
+      },
+      "ledgers": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 2.5691,
+          "cap": 95
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 15
+        }
+      }
     }
   ]
 }

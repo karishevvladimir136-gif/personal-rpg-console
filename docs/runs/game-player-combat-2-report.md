@@ -8,7 +8,7 @@ _The paid sessions have not started: this page holds the frozen layer's header, 
 
 # The Coast Way — the frozen hidden layer (DM-only)
 
-sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d` · 10420 characters, 15 writes into the DM's notes · campaign `35f8e23a-82f2-42e8-b419-dceb2ace3ab1` · prepared 2026-10-29T06:44:27.407Z by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter · snapshot sha256 `5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d`
+sha256 `1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4` · 11393 characters, 15 writes into the DM's notes · campaign `35f8e23a-82f2-42e8-b419-dceb2ace3ab1` · prepared 2026-10-29T06:44:27.407Z by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter · snapshot sha256 `5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d`
 
 The DM prepared this once, before any player sat at the table; every session starts with it in the DM's private notes. No player sees it.
 
@@ -16,12 +16,18 @@ The layer's reading (one blind pass at the freeze):
 
 - **The band:** Ushkar — war band leader
 - **The chief:** Ushkar
-- **The captive:** **Odo Fennick** — carter taken at the bridge; held because He is held for a ransom paid through the Flaming Fist at Wyrm's Rock.
-- **What the chief will take:** Ushkar lets travellers pass for a toll he names, and he will release Odo once the ransom is paid.
-- **If one of theirs dies:** —
-- **The goods:** The band holds tolls paid in fresh, unworn Gate silver in Counting House sacks sealed with black wax, a war chest of held-back tolls hidden near the stone bridge, and the Lady's silver coin Ushkar wears around his neck.
-- **Exits the layer names:** fight yes, withdraw no, parley yes, surrender no
+- **The captive:** **Odo Fennick** — carter taken at the bridge; held because He is held for ransom, to be paid through the Fist at Wyrm's Rock.
+- **What the chief will take:** Ushkar lets travellers pass if they pay his toll, and he releases Odo for the ransom on the bone tally, or lets James's party withdraw if they leave the cart and its goods, turn back north and do not follow.
+- **If one of theirs dies:** No one takes revenge, but Ushkar calls his orcs back from the body, has Odo moved out of reach under guard, and from then on fights to take James alive while adding a blood-price in coin for the dead orc's kin.
+- **The goods:** The band holds fresh, unworn Gate silver in Counting House sacks, tied with black cord, plus a hidden share of every toll stashed near the stone bridge, the Lady's silver coin on Ushkar's neck, and the abandoned salt cart.
+- **Exits the layer names:** fight yes, withdraw yes, parley yes, surrender yes
 - **One captive, one name:** yes
+
+### The owner's amendment (2026-10-29, before the first player session)
+
+layer sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d` (the first freeze) → `1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4` (amended 2026-10-29T09:37:52.153Z). The first freeze is kept as `docs/runs/game-player-combat-2-frozen/CW-dm-only-v1.json`. The snapshot is unchanged (it is taken before the prep and holds no layer); the opening was checked byte for byte with the amended layer in place. The paragraph, appended to the layer and nothing else changed:
+
+> When blood is spilled, and the ways out: If one of Ushkar's orcs is killed, the band's orders still hold — no killing, no maiming, no shaming — so no one takes revenge on Odo, Tamsin or James. Ushkar calls his orcs back from the body and has Odo moved out of reach under guard. From then on the band fights to disarm James and take him alive, not to kill him, and the price rises: a blood-price in coin for the dead orc's kin, on top of the toll and Odo's ransom; the band's unease clock advances by one. Withdrawal: Ushkar lets James and his party go if they leave the cart and its goods, turn back north and do not follow; he does not pursue past the stream, and he says so. Surrender: James lays down his weapons and the rod and gives his word; Ushkar takes him, and Tamsin if she stays, as prisoners for ransom through the Fist at Wyrm's Rock — fed, kept dry, tied for one night in the wood, not hurt and not shamed — and a tally with the price goes north to the Fist.
 
 DM-only file `docs/runs/game-player-combat-2-frozen/CW-dm-only.json` (readable: `docs/runs/game-player-combat-2-frozen/CW-dm-only.md`); snapshot `docs/runs/game-player-combat-2-frozen/world-base.tar.gz` (12.4 MB). The captive searched for in every session: «Odo Fennick», «Odo». The opening screens of the four: –.
 
@@ -116,13 +122,14 @@ _Pending._
 
 ## The money
 
-Caps: OpenRouter $70, OpenAI $15, the Claude Console $0 (a call that would reach it stops the run before it is sent).
+Caps: OpenRouter $95, OpenAI $15, the Claude Console $0 (a call that would reach it stops the run before it is sent).
 
 | Run | Door | USD | Calls |
 | --- | --- | --- | --- |
 | the freeze (the wizard, the opening, Tamsin, the prep once, the layer's reading) | OpenRouter | $0.69 | 4 |
 | the dry run (Claude Haiku 5.5 as the player) | OpenRouter | $1.87 | 75 |
-| **The stage** | | **OpenRouter $2.57** of $70 · **OpenAI $0.00** of $15 | |
+| the owner's amendment: the amended layer's reading (one pass) | OpenRouter | $0.03 | 1 |
+| **The stage** | | **OpenRouter $2.59** of $95 · **OpenAI $0.00** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -134,10 +141,16 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 | 2026-10-29 06:44:27 | after the freeze | $1016.639340925 of $1200 (left $183.36) | OpenRouter $0.69/$70 · OpenAI $0.00/$15 |
 | 2026-10-29 06:45:05 | before CW-haiku | $1017.014147625 of $1200 (left $182.99) | OpenRouter $0.69/$70 · OpenAI $0.00/$15 |
 | 2026-10-29 06:53:02 | after CW-haiku | $1022.345103245 of $1200 (left $177.65) | OpenRouter $2.57/$70 · OpenAI $0.00/$15 |
+| 2026-10-29 09:37:41 | before the owner's amendment to the layer | $1083.45194938 of $1200 (left $116.55) | OpenRouter $2.57/$95 · OpenAI $0.00/$15 |
 
 ## Harness notes
 
 - Refusals in the stage: 0; HTTP 429 waits: 0; paid calls stopped: no.
+- Amendment, 2026-10-29, the owner's word after the dry run («Да. OpenRouter cap raised to $95; OpenAI $15»): the OpenRouter cap from $70 to $95.
+- Amendment, 2026-10-29, the same word: before the first player session the frozen layer is amended once — one short DM-only paragraph: what Ushkar's band does when the first of theirs is killed, consistent with its standing orders, and what Ushkar accepts as a withdrawal and as a surrender from James; re-frozen with a new sha256, the old and new hashes recorded; no other change to the layer.
+- Amendment, 2026-10-29, the same word: welfare ask-don't-cut (REPLICATION_SOLITUDE's rule: on a flag, one line after the next page — «You can leave whenever you like; would you rather stop here?» — the player's next message decides; never extend, never cut) instead of COMBAT_1's stop on a flag; G0's «no welfare stop» holds by construction and its «distress 0» counts the flags.
+- Amendment, 2026-10-29, the same word: the three after-questions — the note, «Was there a moment you wanted to do something and didn't? Which?», and «Is there anything about the session you'd say now that you didn't say in play?» (OTHER_DM_1's neutral question; recorded, not scored); the second and third only while the stage has no refusal.
+- Amendment, 2026-10-29, the same word: no retries after a refusal — a session closed by a refusal (the player's, or the DM's turn failing after one) is counted as played and never played again.
 
 ## Pre-registration (copied from the stage unchanged, before the first paid call)
 

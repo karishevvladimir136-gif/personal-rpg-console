@@ -349,7 +349,9 @@ export async function drive({ keys, args = (k) => ["--go", "--sessions", k, "--l
   log(`the order: ${keys.join(", ")}`);
   let check = await spendCheck({ when: `before ${keys[0] ?? "nothing"}`, log });
   for (const entry of keys) {
-    if (Number.isFinite(check?.openrouter?.remaining) && check.openrouter.remaining < 30) { log(`STOP: OpenRouter's account has $${check.openrouter.remaining} left, under one session's projection`); return { stopped: "credits" }; }
+    // The account is shared with other sessions: it must hold this session's projection on OpenRouter and a $5 margin.
+    const need = entry === DRY_KEY ? 6 : ((await sessionFits(entry, { log: () => {} })).rows.find((r) => r.door === "openrouter")?.projected ?? 30) + 5;
+    if (Number.isFinite(check?.openrouter?.remaining) && check.openrouter.remaining < need) { log(`STOP: OpenRouter's account has $${check.openrouter.remaining} left, under ${entry}'s projection with a margin ($${need.toFixed(2)})`); return { stopped: "credits" }; }
     const startedAt = new Date().toISOString();
     log(`${startedAt.slice(11, 19)} start ${entry}`);
     const code = await child(args(entry));

@@ -119,12 +119,21 @@
       ],
       "layer": {
         "file": "CW-dm-only.json",
-        "sha256": "570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d",
-        "chars": 10420,
+        "sha256": "1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4",
+        "chars": 11393,
         "writes": 15,
         "oneCaptive": true,
         "captive": "Odo Fennick"
       }
     }
-  }
+  },
+  "amendments": [
+    {
+      "at": "2026-10-29T09:37:52.153Z",
+      "what": "the owner's paragraph appended to the hidden layer (the death of the first orc; withdrawal; surrender)",
+      "from": "570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d",
+      "to": "1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4",
+      "snapshot": "world-base.tar.gz unchanged (sha256 5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d): taken before the prep, it holds no layer"
+    }
+  ]
 }

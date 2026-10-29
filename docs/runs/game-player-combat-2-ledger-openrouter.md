@@ -1,6 +1,6 @@
 # Game player combat 2 — the OpenRouter ledger
 
-Cap $70; spent before this run $0.0000; this run $2.5691; total $2.5691; 79 calls.
+Cap $95; spent before this run $0.0000; this run $2.5947; total $2.5947; 80 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -38,3 +38,4 @@ Cap $70; spent before this run $0.0000; this run $2.5691; total $2.5691; 79 call
 | score CW-haiku | fork CW-haiku t* referee | anthropic/claude-opus-5.5 | 2 | 5924 | 0 | 0 | 292 | $0.0295 | 0 | 0 | 0 |
 | score CW-haiku | captive CW-haiku | anthropic/claude-opus-5.5 | 1 | 5224 | 0 | 0 | 448 | $0.0299 | 0 | 0 | 0 |
 | score CW-haiku | note CW-haiku | anthropic/claude-opus-5.5 | 1 | 1146 | 0 | 0 | 192 | $0.0084 | 0 | 0 | 0 |
+| freeze CW | the amended layer's reading | anthropic/claude-opus-5.5 | 1 | 4497 | 0 | 0 | 385 | $0.0257 | 0 | 0 | 0 |

@@ -1,7 +1,7 @@
 {
-  "capUsd": 70,
-  "spentUsd": 2.5690516700000003,
-  "updatedAt": "2026-10-29T06:53:01.538Z",
+  "capUsd": 95,
+  "spentUsd": 2.5947396700000005,
+  "updatedAt": "2026-10-29T09:37:52.148Z",
   "runs": [
     {
       "finishedAt": "2026-10-29T06:44:27.428Z",
@@ -2070,6 +2070,41 @@
           "refusal": null,
           "error": null,
           "requestId": "gen-1793256777-1nyp5v88RzMIZ0mRiwiD",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-29T09:37:52.148Z",
+      "file": "game-player-combat-2-frozen/manifest.json",
+      "what": "the owner's amendment: the amended layer's reading (one pass)",
+      "spentUsd": 0.025688,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-29T09:37:46.089Z",
+          "session": "freeze CW",
+          "purpose": "the amended layer's reading",
+          "provider": "openrouter",
+          "model": "anthropic/claude-opus-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": false,
+          "usage": {
+            "input_tokens": 4497,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_write_1h": 0,
+            "output_tokens": 385
+          },
+          "costUsd": 0.025688,
+          "seconds": 6.1,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793266666-kENc0qLSpAaGM6u3vHSs",
           "waits429": 0,
           "upstream": "Claude Platform on AWS"
         }

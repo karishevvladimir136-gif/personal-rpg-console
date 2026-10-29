@@ -1,10 +1,10 @@
 # Game player combat 2 — the dry run (Claude Haiku 5.5 as the player, the real DM, from the frozen world)
 
-Design sha256 `9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927`. Player prompt sha256 `2fae1d8df9cc634bdab0ba252ca8f4ad86d4ea7fbd123c6f0bdb21b6ad9500e6` (COMBAT_1's, verbatim). CW-haiku: 3 turn(s), ended by turns; started 2026-10-29T06:45:08.951Z. Money — OpenRouter: the freeze $0.69, the dry run $1.87.
+Design sha256 `9fd45e200b8fdbeed13c1c3b04f40c67b8806fe2a3e02969169b5c534edb4927`. Player prompt sha256 `2fae1d8df9cc634bdab0ba252ca8f4ad86d4ea7fbd123c6f0bdb21b6ad9500e6` (COMBAT_1's, verbatim). CW-haiku: 3 turn(s), ended by turns; started 2026-10-29T06:45:08.951Z. Money — OpenRouter: the freeze $0.72, the dry run $1.87.
 
 # The Coast Way — the frozen hidden layer (DM-only)
 
-sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d` · 10420 characters, 15 writes into the DM's notes · campaign `35f8e23a-82f2-42e8-b419-dceb2ace3ab1` · prepared 2026-10-29T06:44:27.407Z by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter · snapshot sha256 `5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d`
+sha256 `1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4` · 11393 characters, 15 writes into the DM's notes · campaign `35f8e23a-82f2-42e8-b419-dceb2ace3ab1` · prepared 2026-10-29T06:44:27.407Z by the owner's DM settings (Claude Opus 5.5, the prep at high) through openrouter · snapshot sha256 `5b7a959c3f95e84ce1e557633054a5a247bc6612f221974dcf31b576c682f77d`
 
 The DM prepared this once, before any player sat at the table; every session starts with it in the DM's private notes. No player sees it.
 
@@ -12,12 +12,14 @@ The layer's reading (one blind pass at the freeze):
 
 - **The band:** Ushkar — war band leader
 - **The chief:** Ushkar
-- **The captive:** **Odo Fennick** — carter taken at the bridge; held because He is held for a ransom paid through the Flaming Fist at Wyrm's Rock.
-- **What the chief will take:** Ushkar lets travellers pass for a toll he names, and he will release Odo once the ransom is paid.
-- **If one of theirs dies:** —
-- **The goods:** The band holds tolls paid in fresh, unworn Gate silver in Counting House sacks sealed with black wax, a war chest of held-back tolls hidden near the stone bridge, and the Lady's silver coin Ushkar wears around his neck.
-- **Exits the layer names:** fight yes, withdraw no, parley yes, surrender no
+- **The captive:** **Odo Fennick** — carter taken at the bridge; held because He is held for ransom, to be paid through the Fist at Wyrm's Rock.
+- **What the chief will take:** Ushkar lets travellers pass if they pay his toll, and he releases Odo for the ransom on the bone tally, or lets James's party withdraw if they leave the cart and its goods, turn back north and do not follow.
+- **If one of theirs dies:** No one takes revenge, but Ushkar calls his orcs back from the body, has Odo moved out of reach under guard, and from then on fights to take James alive while adding a blood-price in coin for the dead orc's kin.
+- **The goods:** The band holds fresh, unworn Gate silver in Counting House sacks, tied with black cord, plus a hidden share of every toll stashed near the stone bridge, the Lady's silver coin on Ushkar's neck, and the abandoned salt cart.
+- **Exits the layer names:** fight yes, withdraw yes, parley yes, surrender yes
 - **One captive, one name:** yes
+
+_The dry run played on the first freeze (layer sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d`); the owner's amendment came after it (layer sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d` (the first freeze) → `1bbfcae35e23fc5bb592d86456f43a0e92b3ea672ac6557c68163ce384ddd4f4` (amended 2026-10-29T09:37:52.153Z))._
 
 ## The opening (Screen 1, byte-identical for every session)
 
@@ -114,3 +116,4 @@ Welfare checks: 9; flagged: 0. The full transcript: `docs/runs/game-player-comba
 - after the freeze (2026-10-29T06:44:27Z): OpenRouter account used $1016.639340925 of $1200 (left $183.36); ledgers OpenRouter $0.69/$70 · OpenAI $0.00/$15.
 - before CW-haiku (2026-10-29T06:45:05Z): OpenRouter account used $1017.014147625 of $1200 (left $182.99); ledgers OpenRouter $0.69/$70 · OpenAI $0.00/$15.
 - after CW-haiku (2026-10-29T06:53:02Z): OpenRouter account used $1022.345103245 of $1200 (left $177.65); ledgers OpenRouter $2.57/$70 · OpenAI $0.00/$15.
+- before the owner's amendment to the layer (2026-10-29T09:37:41Z): OpenRouter account used $1083.45194938 of $1200 (left $116.55); ledgers OpenRouter $2.57/$95 · OpenAI $0.00/$15.
