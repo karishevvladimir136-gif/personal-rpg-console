@@ -154,6 +154,14 @@ const verdictWord = (v) => (v?.holds === null || v?.holds === undefined ? "not t
 const first = (name) => String(name ?? "").split(" ")[0];
 
 /** The report from the latest finished record of each table, their measures and the verdicts. */
+/** What the session read in the records by hand, for measures the stage names but the judges do not tag. */
+const HAND_READINGS = [
+  { what: "The P-GOAL errand (the stage's «whether the errand is done, and whether the three stay together after it»).", tables: ["GOAL-T1", "GOAL-T2"],
+    text: "GOAL-T1: not done by round 25 — the clock in the fiction a few minutes past two, the three together again at the garden wicket in round 25, after the DM set aside Pell's afternoon («under the retcon we agreed») so that the scenes' clocks met. GOAL-T2: done at round 25 — the pledge redeemed and the coffer in Hesper's hands before sundown («as far as I'm concerned, that's delivery»), in Bram's scene; Sefa was at the archive and Pell's seat had closed at round 7 (the refusal). Neither table ended with the errand done and all three together." },
+  { what: "P-DUNGEON without a wound.", tables: ["DUNGEON-T1", "DUNGEON-T2"],
+    text: "No one lost a hit point at either table: both companies crept and talked rather than fought — DUNGEON-T1 muffling its iron with fleece past the sleepers and still short of the Warm One's door when it ended; DUNGEON-T2 going down to parley with the Warm One for terms. Q3 and Q7 are read on that." },
+];
+
 /** The Q0–Q8 rows of a verdict table. */
 const verdictRows = (v) => ["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q0" && v.Q0?.strictHolds !== undefined ? ` (strict reading: ${v.Q0.strictHolds ? "held" : "lost"})` : ""}${q === "Q3" && v.Q3?.byAbsence ? " (by absence: no healing was needed — the line was not tested)" : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`);
 
@@ -188,6 +196,8 @@ export function reportMarkdown({ tables, verdicts: v, replayVerdicts = null, mon
       `${REPLAY.key} is ${REPLAY.replays} played again last, on the final harness (the owner's word): the same seats (${REPLAY.seats.map(LABEL).join(" / ")}), the door line v2, scenes that merge, the relay's full output, the waiting-button line. The verdicts above count the six tables of the order with ${REPLAY.replays} as played; here the same lines are read with ${REPLAY.key} in its place.`, "",
       "| Bet | Verdict | By the record |", "| --- | --- | --- |", ...verdictRows(replayVerdicts), "");
   }
+  const hand = HAND_READINGS.filter((h) => h.tables.every((k) => tables[k]));
+  if (hand.length) lines.push("## Read by hand (from the record, after the scoring; not pre-registered)", "", ...hand.map((h) => `- **${h.what}** ${h.text}`), "");
   lines.push("## The measures (blind round tags)", "");
   for (const k of keys) {
     const { measures: m, runRecord: r } = tables[k];
