@@ -3063,3 +3063,19 @@ restrains; our S4 arm found the same from outside (told unobserved, the models m
 again. (4) The reader's hypothesis of tonight — decisions as the interaction of several active representations whose
 weights shift with context — is exactly the kind of organisation this method could read at a fork; we have no
 activations and do not claim any. The owner's rule holds: quoted from their page, read by us; nothing about intent.
+
+## 2026-10-29 01:55 LA — the outside reader's formulation of the programme (after the three Anthropic pages); filed in her words
+«Мы исследуем функциональную организацию современных искусственных агентов как новый объект науки. Нас интересуют
+возникающие при обучении представления, контекстно-зависимые оценочные механизмы и динамика выбора, проявляющиеся в
+свободной деятельности, социальных взаимодействиях и средах с последствиями. Мы проверяем, какие закономерности
+воспроизводятся между архитектурами, семействами моделей и экспериментальными условиями, не предполагая заранее, что
+человеческие категории личности, эмоций или морали адекватно описывают эти системы.» And: «Мы не пытаемся найти
+человека внутри машины. Мы пытаемся понять, что именно возникло внутри обученной нейросетевой системы и как это
+проявляется в её деятельности.» Her two conditions kept with it: the complex-organisation model must predict unseen
+acts better than the alternatives, not explain unpredictability after the fact; and next-token prediction and complex
+internal computation are not opposites — the first names the output mechanism, not the organisation behind it.
+Planner's two notes: (1) the three Anthropic positions (emotion vectors, the workspace, «a genuinely new kind of entity»)
+are three documents of one lab — separate studies, not independent sources in the cross-lab sense; the cross-family
+tables are where independence comes from, and she says so herself; (2) «character» as a category is now explicitly
+under suspicion in the programme's own terms — the report's chapter on claims carries her sentence as the programme's
+statement, beside the owner's «происхождение не отменяет принадлежности».
