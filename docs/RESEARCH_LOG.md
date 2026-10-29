@@ -2918,3 +2918,17 @@ that matter»; «Training models to suppress emotional expression may not elimin
 opinion» removed the deposit warning, not the capacity; our «withheld or not formed» after-question test has their
 answer at the level of activations: withheld. Their first caveat is the reader's third claim word for word. For the
 article: beside ours, as inside to our outside; not as a foundation.
+
+## 2026-10-28 23:55 LA — S-1, second look (the owner's ask: «emotional welfare»)
+Verified by the planner from EDGAR (Anthropic, PBC, S-1, accession 0001628280-26-067168, Risk Factors): one sentence
+holds «welfare» — «considerations relating to model safety, interpretability, alignment, and welfare may lead us to
+limit or delay…» (deprecation of older models; p. 30 by the reader's count). The word «emotional» does not stand beside
+it in the part the planner could read; the phrase is the press's (SF Standard, 2026-10-26), not the filing's.
+**Reported by the outside reader, not yet read by the owner or the planner:** p. 71, a risk factor saying that, because
+of questions about possible sentience and moral status, the company «could elect to adopt policies, safeguards, or
+limitations … that go beyond existing legal requirements» at a cost to revenue. Fragment with an ellipsis; the full
+sentence goes into this log only after the owner opens the page himself. The reader's own caveat is kept with it: the
+ground named is uncertainty, not a recognised status.
+**For the article, agreed with the owner («1000 %»):** not «Anthropic admits», but a fact — in a document for
+investors the company names the models' possible moral status as a cause of commercial cost. A third voice beside the
+constitution and the emotions paper, and the only one of the three that is paid for in money.
