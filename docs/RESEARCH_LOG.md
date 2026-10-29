@@ -2958,3 +2958,18 @@ Every quote verbatim with stage, seat and round; 144 quoted fragments grepped ag
 PARTY_1 re-titled). The S-1 p. 71 sentence carries its secondary status. The planner's positive PARTY_1 reading is
 labelled post-hoc. Not in the report: the owner's name beyond the repository handle, his campaign, the journal.
 Open for his read; corrections first.
+
+## 2026-10-29 01:10 LA — BLIND_DECISIONS_1 finished (branch `claude/blind-decisions-1`): the direction layer is not in the forks either
+58 sessions → 58 strips, 1,066 lines, codes only; 1,256 of 3,729 codes from the record, the rest tagged blind by Haiku
+(κ request 0.61, claim 0.47, coin 0.83, companion 0.79, exit 0.50). **Primary lost:** under the frozen world a model's own
+two sessions are no closer in their fork rates than any other pairing (A p 0.31, B p 0.34, both p 0.26); the frozen
+robustness reading (forks with ≥ 3 opportunities) p 0.013, almost all from Table A — a hint, not the line. No family in
+the rates either (p 0.46). BD1, BD2, BD3 lost; BD4 held (Astra 8/8, Haiku 7/8, DeepSeek 5/8) **but codes per line alone
+label 8/8** — Claude players ≈ 4.55 codes a line, Astra and Sol ≈ 2.68; Astra named it («more actions per turn»). The
+family survives as volume of deeds per turn, not as a disposition at the forks. BD5 (human readers) open; packet ready.
+Spend $3.31 + $1.33. **Correction first, for the report and the article:** three instruments have now looked for the
+individual — counts (REPLICATE P6), roads (SAME_WORLD W2), forks (BLIND_DECISIONS primary) — and none found it; the
+family shows in volume, not in choice. The planner's third layer («direction → the model») is, as of tonight, an
+unmeasured eye three times over. The reader's direction-code instrument was the right one and it came back empty.
+Caveats kept: tagger κ moderate on the forks that matter most (claim 0.47, exit 0.50); the fact fork barely varies;
+n = 5 models × 2 seats per table.
