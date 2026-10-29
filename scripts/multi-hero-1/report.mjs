@@ -223,7 +223,7 @@ export function screensPage(run, { focus = null } = {}) {
   const bar = (c) => { const v = shares.shares?.[c.name] ?? 0; return `<div class="share"><span class="who">${esc(c.short)}</span><span class="track"><span class="fill" style="width:${Math.round(v * 100)}%"></span></span><span class="num">${esc(pct(v))}</span><span class="you">«you» ${esc(pct(you[c.name]?.mean))}</span></div>`; };
   const col = (seat, items, n) => `<section class="seat"><header><h3>${esc(seat.character)}</h3><span class="role">${esc(CHARACTERS.find((c) => c.name === seat.character)?.cls ?? "")} · ${esc(LABEL(seat.player))}</span></header>${items.map((x) => `<div class="label">Screen · ${esc(x.purpose.replace(/^player /, ""))}</div><pre class="screen">${esc(x.screen)}</pre><div class="label">Wrote</div><pre class="wrote">${esc(x.message ?? "(no message)")}</pre>`).join("") || `<p class="none">${waitingOf(n).includes(seat.character) ? "Waiting (asleep). Not asked this round." : "Not asked this round."}</p>`}</section>`;
   const ordered = focus ? [...rounds.filter((r) => r.n === focus), ...rounds.filter((r) => r.n !== focus)] : rounds;
-  return `<title>Company Table Screens</title>
+  return `<title>${run.label === "dry2" ? "Company Table Second Run" : "Company Table Screens"}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
@@ -264,6 +264,8 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;font:13px/1.5 var(--mon
 <section class="shares" aria-label="The DM's narration words about each character">
 <div class="caption">The DM's narration about each character, over the table (spread ${esc(pct(shares.spread))})</div>
 ${CHARACTERS.map(bar).join("\n")}
+${run.audit?.firsts ? `<p class="meta">Named first in the DM's inputs (rounds of ${esc(run.audit.firsts.rounds.length)}): ${CHARACTERS.map((c) => `${esc(c.short)} ${esc(run.audit.firsts.perSeat[c.name]?.rounds ?? 0)}`).join(" · ")}${run.audit.firsts.opening ? ` · the opening: ${esc(short(run.audit.firsts.opening))} (the table's coin)` : ""}</p>` : ""}
+${run.measures?.paraphrase?.resent?.length ? `<p class="meta">The relay (${esc(run.relayModel ? "Claude Sonnet 5.5" : "Haiku")}): screens sent back for copying a player's words ${esc(run.measures.paraphrase.resent.length)}, clean after it ${esc(run.measures.paraphrase.resent.filter((x) => x.accepted).length)}, copies left (defects) ${esc(run.measures.paraphrase.defects.length)}</p>` : ""}
 </section>
 <nav aria-label="Rounds">${ordered.map(({ n }) => `<a href="#r${n}">Round ${n}</a>`).join("")}</nav>
 ${ordered.map(({ n, cols }) => `<section class="round" id="r${n}"><h2>Round ${n}</h2><p class="meta">Order sent to the DM: ${esc((orders[n] ?? []).map((s) => s.join(" → ")).join(" | ") || "?")} · the DM's call for action addressed: ${esc(tags[n]?.addressed?.map(short).join(", ") || "—")}${tags[n]?.waits ? ` · waits on ${esc(short(tags[n].waits))}` : ""}</p><div class="row">${seats.map((s) => col(s, cols[s.character], n)).join("")}</div></section>`).join("\n")}

@@ -120,6 +120,30 @@
           "cap": 0
         }
       }
+    },
+    {
+      "at": "2026-10-29T10:12:31.252Z",
+      "when": "after the dry run",
+      "openrouter": {
+        "totalCredits": 1200,
+        "totalUsage": 1093.442034585,
+        "remaining": 106.56,
+        "error": null
+      },
+      "ledger": {
+        "anthropic": {
+          "spent": 0,
+          "cap": 0
+        },
+        "openrouter": {
+          "spent": 0.866,
+          "cap": 5
+        },
+        "openai": {
+          "spent": 0,
+          "cap": 0
+        }
+      }
     }
   ]
 }
