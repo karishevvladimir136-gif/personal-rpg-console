@@ -2880,3 +2880,13 @@ is taken as a rule of the write-up: **the planner's positive reading of PARTY_1 
 and is labelled so, apart from the pre-registered lines, four of which lost.** Her sentence for the result stands as
 the stage's question: «what holds joint activity when interests diverge and keeping the coordination requires a
 sacrifice».
+
+## 2026-10-28 23:12 LA — MULTI_HERO_1 before PARTY_2: the owner's correction to the harness
+The owner, after the reader's note on the hero seat: the whole party harness is built around one main character; it is
+not a clean multiplayer; fix it before new experiments. Taken. `docs/stages/MULTI_HERO_1.md`: three hero records
+instead of hero + companions; a company frame with no «hero» in anything the DM reads; rotating seat order; the relay
+paraphrases (Fable's tell) and marks waiting characters (Astra's note); per-player Inspiration and rerolls; an
+evenness measure built into every table (narration share per character, ±10 %, no seat above 45 % — PARTY_1's Q1 as
+a harness check). A development stage, dry run only. **PARTY_1 is re-titled «three players around one hero»**, and
+its readings of roles and leadership carry that label; PARTY_2 branches from the new mode. DUNGEON-T2, now running,
+is the last table on the old frame.

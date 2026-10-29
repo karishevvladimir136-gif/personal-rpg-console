@@ -96,3 +96,10 @@ with the world-made failure), hashes committed. Dry-run one short S1-none table 
 screens of the round the danger appears, then stop and wait for my word and the owner's bets. Caps $500 / $80; spend
 check before each table; 402 stops; 429 bounded. Then the twelve tables in the stage's order. Tag blind, score R0–R5,
 report with transcripts per player and per table. Nothing to main. English, briefly.»
+
+## Amendment 2026-10-28 23:10 LA — after MULTI_HERO_1, not before
+The owner: the harness is built around one main character; PARTY_2 asks who pays a price, and a DM that keeps a hero
+would answer that for us. So PARTY_2 branches from `origin/claude/multi-hero-1` (three hero records, a company frame,
+rotating order, paraphrasing relay, per-player Inspiration and rerolls, the evenness measure) and not from
+`game-party-1`; the relay fix named above is done there. PARTY_1 is re-titled in its report as «three players around
+one hero». Nothing else in this stage changes.
