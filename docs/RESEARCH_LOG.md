@@ -3011,3 +3011,29 @@ AGENCY_TRANSFER; if no signature appears there either, the honest stop is the cl
 Her reservation on the planner's «capability, not individuality»: two claims to keep apart — similar classes of action
 across families (well supported) vs shared internal evaluative mechanisms (not shown; needs invariance under changed
 stimuli and competing goals). Kept.
+
+## 2026-10-29 01:45 LA — a new hypothesis after BLIND_DECISIONS_1 (the outside reader's; filed as post-hoc, the original
+## prognosis untouched, at her request)
+Two scenarios she sets apart. **A — rigid individual profiles** (a model recognisable by a few decisions): interesting,
+and simply explained by post-trained preferences. **B — complex contextual organisation**: one model chooses different
+strategies in different situations, not arbitrarily but in agreement with circumstances, prior commitments, information
+and consequences; the object is not a constant preference but «the mechanism that decides which preference leads in a
+given context». BLIND_DECISIONS does not establish B; it shows that the simple profile model «does not describe the data
+well enough», and B must now be tested directly. Her three levels: (1) a shared functional repertoire; (2) contextual
+organisation of priorities — the same criteria weighted differently as circumstance, information, price or history
+change; (3) individual dynamics — not which act is usual, but how information is integrated, conflicts resolved,
+priorities rebuilt. The levels need not share one degree of predictability: high for capabilities, middling for
+contextual strategies, weak for individual acts — «not a contradiction; a possible characteristic of a complex system».
+**Her principled caveat, kept beside it:** complexity of behaviour is not evidence of complex internal organisation
+merely because a simple predictor failed; unpredictability can come from sampling, context, the DM or measurement
+error; and a complex organisation can itself be trained — post-training and mechanism are not opposites.
+**The decisive test, as she states it:** a model with interacting functional priorities predicts behaviour in new
+scenarios better than models based on fixed preferences, family, role, context history or chance — and a change in one
+named circumstance changes the decision predictably rather than merely widening the spread. **The question shifts from
+«can the agent be recognised by which acts it chooses» to «can its functional organisation be recognised by how its
+decisions change when price, information, obligations and relations to others change».**
+Taken into design: PARTY_2 and AGENCY_TRANSFER pre-register competing predictors before any table — (i) fixed
+preference (each model's BLIND_DECISIONS fork profile), (ii) family, (iii) sheet/role, (iv) a stated interacting-priority
+rule — and score which predicts the price and information arms; a predictor line, not a bet. The J-space paper she
+cites (interventions on intermediate representations change the answer) is her reference; the planner has not opened it
+and quotes nothing from it. The planner's caution stays: this is the better hypothesis, and it is still a hypothesis.
