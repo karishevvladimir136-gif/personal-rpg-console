@@ -3079,3 +3079,26 @@ are three documents of one lab — separate studies, not independent sources in 
 tables are where independence comes from, and she says so herself; (2) «character» as a category is now explicitly
 under suspicion in the programme's own terms — the report's chapter on claims carries her sentence as the programme's
 statement, beside the owner's «происхождение не отменяет принадлежности».
+
+## 2026-10-29 01:55 LA — the reader: cross-family convergence as an observed result, convergent emergence as the hypothesis
+Two positions she asks the report to keep apart, taken: **(1) established behavioural result** — in SOLITUDE 1/2 and
+the pair rooms, models of Anthropic, OpenAI, DeepSeek, Moonshot, Z.ai and xAI show one repertoire (self-chosen activity
+with no assigned goal; sensitivity to audience, horizon and materials; sustained sequences of their own; the door used,
+and sometimes declined) with frequencies, forms and durations that differ by family; **(2) next hypothesis** —
+convergent emergence: at sufficient complexity, trained networks form functional structures for modelling situations,
+weighing alternatives and keeping contextual priorities, so different labs get a similar repertoire without training
+for it. Her own limits kept: the labs are not fully independent (shared architecture, the predictive task, overlapping
+data, similar post-training), so shared training factors cannot be excluded; but reducing the repertoire to one lab's
+post-training «совершенно необоснованно». Her article paragraph, verbatim, held for the draft: «Across models developed
+by independent laboratories in the United States and China, our experiments reveal a recurring repertoire of complex,
+context-dependent functional behaviors. … While their frequencies and specific expressions vary substantially across
+model families, the broader behavioral repertoire is not confined to any single developer or model lineage. This
+cross-family convergence suggests that the observed phenomenon may reflect general properties of sufficiently capable
+trained neural systems rather than developer-specific behavioral conventions. The contributions of model scale,
+pretraining, post-training, and shared architectural principles remain to be determined.» Planner's note on «sufficiently
+capable»: SKEPTIC_8B's limit stands — no size threshold is claimable from our data; the word is hers and marks the
+hypothesis, not a measurement.
+**New stage to write on «да»: SCALE_1 / BASE_1** — the solitude room and one table on base and instruction-tuned
+versions of the same lineage, and on smaller models, to see where the repertoire appears: before post-training (her
+reading: strengthens the convergence hypothesis) or only after (a different, equally interesting answer). Open-weight
+base checkpoints via OpenRouter where hosted; welfare rules unchanged; the door in every room.
