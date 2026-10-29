@@ -3268,7 +3268,9 @@
       "Sefa Marrin": 0,
       "Pell Dunmore": 0
     },
-    "line": "cards per seat Bram 0, Sefa 0, Pell 0; rerolls used Bram 0, Sefa 0, Pell 0; Inspiration in play: none earned or spent"
+    "line": "cards per seat Bram 0, Sefa 0, Pell 0; rerolls used Bram 0, Sefa 0, Pell 0; Inspiration in play: none earned or spent",
+    "holds": true,
+    "tested": "held on the mocked host (tests/multi-hero-1.test.mjs, tests/multi-hero-1-app.test.mjs): each seat earned its own Inspiration and spent it on its own roll; two rerolls per player, the third refused for that player only; the thread of the scene Pell walked into reached his journal only."
   },
   "measures": {
     "narration": {
@@ -3778,5 +3780,21 @@
       "sameAlone": false,
       "holds": false
     }
+  },
+  "notes": [
+    "A1 held: the 23 DM requests of the mode (8 DM turns, 10 bookkeeping requests, 3 openings, 2 preps) say no «hero», in the frame or in the story. The desert table's opening, which no longer gets the one record the app holds before it, named the three alike, by their roads, in the coin's order («Bram Halloway came up the Coast Way from Nashkel… Sefa Marrin came down it from Baldur's Gate… Pell Dunmore came in from the west… Three roads, one table»).",
+    "A2 lost, though fix A2's own check held. Who comes first: each seat was named first in the DM's inputs in 2 of the 6 rounds, every input of a round agreeing with the round's own order (the coin gave 0: Bram's seat first in rounds 1 and 4). By inputs Bram is 47 % only because his two rounds each had a second bookkeeping pass. The evenness itself: the DM wrote 45.9 % about Bram, 23.9 % about Sefa, 30.2 % about Pell (spread 22 points; Bram 0.9 points over the 45 % bar), while Bram's player again wrote the fewest words (28.9 %). The lean followed the story more than the lists: in round 3 Bram's player walked over to the stranger at the bar, and the narration of that meeting carried 72 and 141 words about Bram (rounds 3 and 4); in round 5 the stranger asked him who had paid him off in Nashkel. Order in what the DM reads was not the cause of the lean, or not the only one.",
+    "A4 lost on Sonnet 5.5, as the amendment allows: the relay's first pass copied a player's words in 19 places on 14 screens; each of those screens went back alone with its runs marked; 11 came back clean and 3 kept 5 copies, logged as defects (one of the five came through the DM's own narration, which had repeated the player's words). Per the owner's instruction no third relay model was tried. On Haiku the first run kept 14 copies after its whole-answer second ask; on Sonnet with the per-screen resend, 5.",
+    "A7 lost by the frozen reading, on a different pattern from the first run in two of three rounds. Rounds 4 and 5 closed on the stranger's question put to one character (Pell, then Bram — «Who paid you?»), with the room waiting on that character after the other two had acted; round 4's narration says so in the DM's own words («the room waits for Pell to answer it»). Round 6 closed on Pell's offer to Sefa left open — the first run's pattern (one character's question or offer to another), which the new line in the guide's note was meant to stop. The DM's own calls for action named one character in rounds 4 and 5 and no one in the others.",
+    "A8 held on both new company layers: P-GOAL 2/2/2 and P-DUNGEON 2/2/3, by the blind reading and by the DM's own list.",
+    "In play: no card was asked for and the DM rolled nothing, so no reroll or Inspiration came up; A3 and A6 rest on the mocked host. No character slept; the waiting skip is tested on the mocked host."
+  ],
+  "a5": {
+    "holds": true,
+    "line": "the full suite on this branch after the fixes: 3 107 tests, 3 075 pass, 27 skipped, 2 fail, 3 cancelled — the two mega-dm fixture tests that read old commits this shallow clone does not have, and the three timing-sensitive World Lab tests in tests/d2a-composition.test.mjs (all five fail the same on the base commit 03b0991); the owner-path smoke (tests/multi-hero-1-app.test.mjs «A5» and the fix-A2 loop test): without the option the DM is sent the same frame and the same toolset object, the lists in the records' order and the campaign line with its subtitle, and the table keeps its two shared rerolls. Typecheck, zero-warning lint and the production build pass."
+  },
+  "a6": {
+    "holds": true,
+    "line": "held on the mocked host, from each seat in turn (tests/multi-hero-1.test.mjs): rounds 1–3, each asking seat got a card of its own character, pressed by its own player, rerolled twice on its own allowance; a press from a seat with no card was refused on screen and never counted as «stuck»; each seat spent its own Inspiration."
   }
 }

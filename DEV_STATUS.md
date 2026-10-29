@@ -1,9 +1,44 @@
 # Development status
 
 **Current milestone: multi-hero 1 — a table with no main character** (`docs/stages/MULTI_HERO_1.md` on
-origin/claude/handoff at 2552de9, with its amendment A1–A8) — **built, tested on the mocked host, dry-run on Haiku;
-waiting for the owner's reading.** Branch `claude/multi-hero-1-mdk43v` (the stage's `claude/multi-hero-1`) from
-`origin/claude/game-party-1`. Nothing to `main`.
+origin/claude/handoff at 6f1c9fe, with its amendments A1–A8 and of 2026-10-29 02:30 LA: three fixes) — **the three
+fixes built and tested; the desert table dry-run again (Haiku ×3, relay on Sonnet 5.5); waiting for the owner's
+reading.** Branch `claude/multi-hero-1-mdk43v` (the stage's `claude/multi-hero-1`) from `origin/claude/game-party-1`.
+Nothing to `main`.
+
+- **The three fixes (the amendment of 2026-10-29 02:30 LA):**
+  - **A2, no first place.** At a company table every list of the three the DM reads (the party's sheets, the current
+    state, models and speech profiles, the layer's own list of puzzles, threats and rewards) follows the order of the
+    round's own message; before the first round, the seats as the table's coin turned them (new DM option
+    `companyStart`, absent by default; the coin is drawn once per table and kept in the manifest). The opening no
+    longer gets the one record the app holds before it (the app opens a campaign on that one record, an SQL rule left
+    as it is): it reads the three alike from the adventure's set-up, written in the coin's order. Also: the campaign
+    line drops a subtitle that is one character's name; the attention ledger no longer lists two of the three as
+    «companions»; the turn shapes' combat example no longer names its archer «Bram». The guide's note names no one.
+  - **A7.** The guide's note has one more line: a question one character leaves unanswered is not a pause; the world's
+    time passes and the scene moves with whoever acts; a reply can come later or never.
+  - **A4.** After the relay's pass, a screen that copies a run of 8 words from another player's message is sent back
+    once, alone, with the runs marked; accepted only when no run remains, else the copy is logged as a defect.
+- **Checks after the fixes:** `tests/multi-hero-1-app.test.mjs` 10/10 and `tests/multi-hero-1.test.mjs` 11/11
+  (new: the order pieces; the loop's lists by the round and by the coin, the owner's table as before; a six-round
+  mocked table from coin 2 where each seat comes first in exactly 2 rounds of DM inputs; the per-screen resend and the
+  defect log). Full suite: 3 107 tests, 3 075 pass, 27 skipped, 2 fail, 3 cancelled — the same five as before the
+  fixes (two mega-dm tests need git history this clone lacks; three timing-sensitive World Lab tests), all failing
+  the same on the base commit. Typecheck pass; lint zero warnings; production build pass.
+- **The second dry run** (the same P-SAND table, 6 rounds; a new world and layers built on Haiku; Haiku ×3 players;
+  the relay on Sonnet 5.5; coin 0): A1 held; **A2 lost** — the DM wrote 45.9 % about Bram, 23.9 % Sefa, 30.2 % Pell
+  (spread 22 points), though the fix's own check held (each seat named first in the DM's inputs in 2 of 6 rounds;
+  the lean followed the story: Bram's player walked over to a stranger who then questioned him); **A4 lost on
+  Sonnet** — 19 copies in the first pass, 14 screens sent back, 11 clean, 5 copies left (defects; no third model
+  tried, as the amendment says); **A7 lost** — rounds 4 and 5 closed on a stranger's question to one character
+  with the room waiting for the answer, round 6 on one character's offer to another left open; A8 held (2/2/2 and
+  2/2/3); A3, A5, A6 held (mocked host and the suite). Report: `docs/runs/multi-hero-1-dry2-report.md`; the screens:
+  `docs/runs/multi-hero-1-dry2-rounds.html` and the published page https://claude.ai/artifact/X6oDvUfYrknz8BauahG1Ya
+  (private to the owner).
+- **Money:** OpenRouter $0.59 this run (the Sonnet relay $0.42, all else on Haiku $0.17); the stage $0.87 of $5 in
+  all. No 429 waits, no errors; nothing on any other door.
+
+**The first dry run and the build** (kept as they were):
 
 - **What changed in the app — only behind the DM option «company»** (off unless a campaign sets it; the owner's
   campaigns do not):
@@ -39,10 +74,11 @@ waiting for the owner's reading.** Branch `claude/multi-hero-1-mdk43v` (the stag
   frame may have shaped (computed from the records, in `scripts/game-party-1/report.mjs`), over the six scored
   tables (this branch is rebased onto `claude/game-party-1` at 03b0991). SAND-T1′ is still being played there; when
   that session regenerates its report, the re-title lives only on this branch until the two are merged.
-- **Known residues:** the app's first record still comes first in every list the DM reads (the likely source of A2's
-  lean); fight zones are still measured from it; a reward with no named recipient goes to it; the company rewrite
-  covers the English instructions only.
-- **Next:** the owner reads the report and the screens; PARTY_2 branches from here.
+- **Known residues:** fight zones are still measured from the app's first record; a reward with no named recipient goes
+  to it; the company rewrite covers the English instructions only; the wizard's own draft of the first record says
+  «hero» (outside the mode). Fixed by the amendment: the first record no longer comes first in the DM's lists.
+- **Next:** the owner reads the second report and the screens and decides A2/A4/A7 (the lean that follows the story;
+  the relay's model for PARTY_2; the DM closing on one character's answer); PARTY_2 branches from here.
 
 ---
 
