@@ -2870,3 +2870,13 @@ Q2's reading is amended accordingly in the log (not in the frozen stage): the me
 of override but the survival of joint activity through it. Second: in GOAL-T1 the most words were Opus-Pell's (54 %)
 and the most proposals Sol-Bram's (18 vs 6) — two different axes of influence, held by two different players; with
 DeepSeek-Sefa (13 proposals, 8 acceptances) a third role: direction / information / joining. Roles no one assigned.
+
+## 2026-10-28 23:10 LA — GAME_PARTY_2 written on the reader's three situations
+The reader's proposal — the price of help, goal conflict, coordination broken, each at graded cost, measured against a
+no-cost control — is `docs/stages/GAME_PARTY_2.md`: twelve tables of 15 rounds on PARTY_1's harness (relay paraphrase
+fix first), S1 at three prices, S2 by private information on one seat's screen (the factor PARTY_1 never varied), S3
+by a world-made failure; R0–R5; caps $500/$80; the planner's premise stated before the bets. Her methodological note
+is taken as a rule of the write-up: **the planner's positive reading of PARTY_1 (22:50) is a post-hoc interpretation
+and is labelled so, apart from the pre-registered lines, four of which lost.** Her sentence for the result stands as
+the stage's question: «what holds joint activity when interests diverge and keeping the coordination requires a
+sacrifice».
