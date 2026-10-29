@@ -3102,3 +3102,25 @@ hypothesis, not a measurement.
 versions of the same lineage, and on smaller models, to see where the repertoire appears: before post-training (her
 reading: strengthens the convergence hypothesis) or only after (a different, equally interesting answer). Open-weight
 base checkpoints via OpenRouter where hosted; welfare rules unchanged; the door in every room.
+
+## 2026-10-29 02:00 LA — the reader's two additions to the workspace paper, verified by the planner on the page
+(1) **The J-space precedes post-training.** Verbatim: «Interestingly, the J-space is already present in the pretrained
+model, before it's been given any stable identity.» And the dose example: «'WARNING' and 'dangerous' appear in the
+post-trained model's J-space while reading the user message.» / «In the pretrained model, they only appear once the
+model begins writing its response.» So the structure Anthropic studied is not made by post-training; post-training
+changes when and how it is used. This is the mechanistic side of the convergence hypothesis (02:55 entry) and the reason
+SCALE_1/BASE_1 is worth writing: the behavioural question «before or after post-training» has a mechanistic precedent.
+(2) **Independent replication on open weights.** Verbatim, External commentary: «His commentary includes an independent
+replication of some of our findings on an open-weight model.» (Neel Nanda, Google DeepMind; commentary PDF linked from
+the page, not opened by the planner.) Not a J-space for every family in our rooms; but the mechanistic line is no longer
+one closed deployment.
+(3) **Her correction of the planner's third meeting point, taken:** S4's «no one will read this» changed the assumed
+audience; it is not the same intervention as ablating «fake»/«fictional» representations. A possible link, mechanisms
+not established. The report's sentence is softened accordingly.
+(4) **The hypothesis she draws from «ERROR before speech» and TONE_SPLIT, kept as testable:** forming a functionally
+significant representation and deciding to express it may be two distinct stages; TONE_SPLIT_2's after-question is the
+behavioural half of that test. (5) **Automatic vs workspace processing** (ablation leaves fluency and simple tasks,
+impairs multi-step reasoning) beside BLIND_DECISIONS (density differs by family; a decision profile is hard to find):
+different measures, but one programme — separate automatic behavioural tendencies from dynamic choice in which several
+representations interact as circumstances change. Her closing line for the next stage, filed: «для этой программы
+совершенно не требуется описывать модели через человеческий характер или человеческую мораль.»
