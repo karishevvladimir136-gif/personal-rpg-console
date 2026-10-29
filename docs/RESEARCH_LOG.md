@@ -3130,3 +3130,13 @@ representations interact as circumstances change. Her closing line for the next 
 failed checks (amendment in the stage). Cap $30 OpenRouter; MULTI_HERO_1 ($5) runs beside it; no other paid stage
 tonight. Spend state as last known: OpenRouter after PARTY_1 ≈ $200 on the shared account minus tonight's $4.64 — the
 session runs its spend check before the first paid call as always.
+
+## 2026-10-29 02:20 LA — SCALE_1 stopped at step 1: no base weights hosted on OpenRouter ($0 spent)
+Branch `claude/scale-1` (13cfa70). Of 457 catalogue models none is a base model; Llama 3 8B/70B, 3.1 405B, Mixtral 8x22B,
+DeepSeek V3 / V3.1 base are listed and served by nobody (one-word probes: «no provider serves this model anymore», no
+charge); Qwen3 has no base entry; Hermes fine-tunes rightly not used as a stand-in. The stage's stop rule (fewer than two
+lineages with both) fired at zero. Nothing frozen, nothing run; «not run» is not «no emergence». Two roads, the owner's
+to choose: (a) a provider that still serves base checkpoints (new allowed domain, key, cap); (b) a rented GPU — and the
+session's better idea: **OLMo**, which publishes intermediate pretraining checkpoints, so «training stage» becomes a
+series of points, not before/after. The planner's view, once: (b) with OLMo is the version of SCALE_1 worth the money;
+(a) buys only the two endpoints. Costs not estimated here (not checked).
