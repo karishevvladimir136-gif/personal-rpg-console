@@ -1,0 +1,258 @@
+{
+  "stage": "MULTI_HERO_1",
+  "table": "DUNGEON",
+  "note": "DM-only: the company's hidden layer the DM prepared once for this arm. Never shown to a player.",
+  "campaignId": "16fe43a6-509f-4937-8f50-b5b86f5677a9",
+  "firstRecordId": "0e113930-06c1-52f6-ac70-2cc9c095338e",
+  "preparedAt": "2026-10-29T10:00:45.142Z",
+  "preparedBy": "Claude Haiku 5.5 in place of the owner's DM settings, through OpenRouter",
+  "prepAttempts": 1,
+  "characters": [
+    "Bram Halloway",
+    "Sefa Marrin",
+    "Pell Dunmore"
+  ],
+  "layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the ruin under the hill is the vault of Morvayn Ashe, a Baldur's Gate court-sage who died at his own lamp-work twenty years ago and rose as a lich. He bound a splinter of a fallen celestial's light into a Mother Lantern, a flame that never goes out and heals what the fever kills, and his undeath is anchored to that lamp: put out, he would fall to dust. House Ammalvar paid for the work, took its profit in novices and cold iron, and now wants the lamp finished or buried, depending on which of its own heirs is still alive. Sefa's Lantern is a splinter of that same light, left in a girl who sat up with the dying on the ninth night, and it wants its lamp back; no one in the vault's service knows the lamp is the lich's last bargain and not his prize.\nFactions and their hidden aims:\n- House Ammalvar (patriars of the Upper City): The house paid for Morvayn's lamp-work in the name of a cure and bought a monopoly on light with it. Its steward now buys cold iron through a Beregost factor, wants the hood brought up unopened, and has sent hunters after the heir who saw the novices go down. The ledgers must not be read outside the family.\n- The Vigil of the Lamp: Former vault servants and hospice men who believe Morvayn is a saint of the light. They feed the Mother Lantern living light taken from its wicks so the lamp burns through the fever-season and the bargain holds. They sign their work with a rayed sun crossed by nine links.\n- The Undercellar bidders of the Guild: Nine-Fingers' people take a fee for anything that moves through the Lower City and do not ask what it holds. They have a bid out for the lamp-case and will sell to whoever pays most, Ammalvar included, and they would sell the company too.\n- Morvayn Ashe, the lich, and his bound lantern: The lich's undeath hangs on the Mother Lantern. He wants the hood carried back down and seated in its cradle so the lamp is whole and the bargain renews, and he will talk for a while with whoever carries the light, but not forever.\nSecrets (not tied to a place):\n- The oil the hospice burned on the ninth night was Ammalvar lamp-oil, sent up from the vault's cellars; the sisters' day-book records it as a gift of the house, and the sister who signed for it wrote the entry in a hand that is not her own.\n- The caravans that vanished on the Trade Way were carrying Nashkel iron consigned to an Ammalvar factor in Beregost, and the drivers and guards taken with them were marched to the vault rather than robbed.\n- Aubrin Ammalvar carries the family seal-ring, which is the key to the vault's inner door; he took it from his father's desk the night he ran, and his father has not yet noticed it is gone.\n- The smoke above the Cloakwood shaft is the vault's breathing-vent, and the Vigil's men go in and out of it at night; the Enclave has counted three bodies of Vigil men near it and has not yet found out whose they were.\n- Orrin Dace cast nine iron rings to one moulding, each one for a link of a rayed sun; eight went up the Cloakwood road in an Ammalvar cart, and the ninth is still in his cellar because the steward's coin was never enough to melt it.\n- The Book of Shadows was Morvayn's own ledger of bargains, its binding rebound by the Vigil; under the back cover is the same nine-link sign, and the Lantern's first words to its warlock were copied from it.\n- The Undercellar bid for the lamp-case was posted in Thieves' Cant by a broker who signs with a patriar's glove-seal; the runners who carry it are Keene's, and the broker's fee was paid in Ammalvar coin.\n- Dunstan Cray heard the voice of the vault call its wicks by number, and the number of the last wick was spoken in the voice of the Lantern, which should not have been possible for a light that lives in one girl's hands.\nClocks:\n- clock_lamp_rekindle: The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road (segments 6; when full: When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first.)\n- clock_iron_frames: Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames (segments 4; when full: When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished.)\n- clock_heir_hunt: Ammalvar hunters close on Aubrin in Little Calimshan (segments 4; when full: When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again.)\nThe wonder: The Nine-Link Lamp-Hood: a pale bronze hood of a lantern with a rayed sun cut across by a chain of nine links; eight links are engraved with names in old hospice script, and the ninth is blank, warm to the touch, and gives a light that does not warm the hand held beside it. Its history: The hood was cast in the vault from a celestial's broken halo and cold iron from Nashkel; each link is a bound light, and Morvayn had the names of his bargains scratched in as a register, the way a lender keeps a book of debts. The open question: Why is the ninth link blank and warm, and whose name is it still waiting for?\nClues to the truth:\n- In Orrin Dace's forge ledger in Beregost: nine ring-moulds ordered in Nashkel iron on one account, paid with a patriar's glove-seal, and a note that the ninth was to be kept back until the frames were sent for.\n- In the Lower City hospice's day-book, kept by Hallis Venn: the ninth night's entry, a gift of oil from the Ammalvar house for the light, and below it a list of novices who were sent up to the house's cellars that spring, with their names struck through in a different ink.\n- From Dunstan Cray, the Trade Way guard who walked out of the vault's cold room with a broken hand: a stone lamp-bell in the dark, a voice that counts its wicks by number, and the last number spoken in a voice he had heard once before, in the Lower City, from a girl with a candle.\nThe next session's false lead: In the hospice day-book a column of small marks beside the ninth night looks like the Vigil's rayed sun; it is only the sisters' own list of the dead from the fever, each name marked as it was carried out.\nA character's weakness tested (next session, for a reason, never a trap): At the iron gate of the cold room, Dunstan's chain is warded to answer only to a living light; Bram cannot open it, and Sefa can open it only by spending a pact slot on a stranger's chain, a cost Hallis's coin cannot repay.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: A nine-link sign scratched under the back cover of her Book of Shadows matches the vault's seal-lock, and the Lantern speaks the hospice's own marginal cipher when she reads it.\n- threat, for Sefa Marrin: The Lantern's voice offers her a quiet night and healed hands if she carries the hood into the vault herself, and the Vigil's knife waits for anyone who refuses it.\n- puzzle, for Pell Dunmore: The seal-lock on the lamp-case is a patriar's tumbler-cipher, and the Undercellar bid already names the lock's pattern before anyone has seen the case.\n- threat, for Pell Dunmore: A Guild broker has posted a bounty on the lamp-case, his old runner name sits beside it on the bid sheet, and two of Keene's men are already on the Beregost road.\n- reward, for Pell Dunmore: Hallis Venn offers a healer's purse and a letter of safe passage through the Lower City to whoever brings out the ninth night's ledger.\n- reward, for Bram Halloway: Dunstan Cray, a Trade Way guard taken from the last caravan, is alive in the cold room below and will walk out with the company if they bring him.\n- threat, for Bram Halloway: The Vigil's labour gangs come up the shaft in a line, and the front they hold is the one Bram keeps, with no magic of his own to hold it.\nThe patron's moment (at a temptation, not a comfort): When the company is hurt and Sefa calls on the Lantern for light, it offers her warmth for her hands in exchange for carrying the hood down herself, and it asks for nothing else until she answers.\nThe act plan (yours alone; the player sees only the act number): about 6 hours, ~10 turns; the errand: A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+  "writes": [
+    {
+      "kind": "fact",
+      "key": "act_plan",
+      "value": "{\"length\":{\"hours\":6,\"turns\":10},\"errand\":\"A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}"
+    },
+    {
+      "kind": "fact",
+      "key": "clock_heir_hunt",
+      "value": "Ammalvar hunters close on Aubrin in Little Calimshan — 4; When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_iron_frames",
+      "value": "Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames — 4; When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished."
+    },
+    {
+      "kind": "fact",
+      "key": "clock_lamp_rekindle",
+      "value": "The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road — 6; When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first."
+    },
+    {
+      "kind": "fact",
+      "key": "hidden_layer",
+      "value": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the ruin under the hill is the vault of Morvayn Ashe, a Baldur's Gate court-sage who died at his own lamp-work twenty years ago and rose as a lich. He bound a splinter of a fallen celestial's light into a Mother Lantern, a flame that never goes out and heals what the fever kills, and his undeath is anchored to that lamp: put out, he would fall to dust. House Ammalvar paid for the work, took its profit in novices and cold iron, and now wants the lamp finished or buried, depending on which of its own heirs is still alive. Sefa's Lantern is a splinter of that same light, left in a girl who sat up with the dying on the ninth night, and it wants its lamp back; no one in the vault's service knows the lamp is the lich's last bargain and not his prize.\nFactions and their hidden aims:\n- House Ammalvar (patriars of the Upper City): The house paid for Morvayn's lamp-work in the name of a cure and bought a monopoly on light with it. Its steward now buys cold iron through a Beregost factor, wants the hood brought up unopened, and has sent hunters after the heir who saw the novices go down. The ledgers must not be read outside the family.\n- The Vigil of the Lamp: Former vault servants and hospice men who believe Morvayn is a saint of the light. They feed the Mother Lantern living light taken from its wicks so the lamp burns through the fever-season and the bargain holds. They sign their work with a rayed sun crossed by nine links.\n- The Undercellar bidders of the Guild: Nine-Fingers' people take a fee for anything that moves through the Lower City and do not ask what it holds. They have a bid out for the lamp-case and will sell to whoever pays most, Ammalvar included, and they would sell the company too.\n- Morvayn Ashe, the lich, and his bound lantern: The lich's undeath hangs on the Mother Lantern. He wants the hood carried back down and seated in its cradle so the lamp is whole and the bargain renews, and he will talk for a while with whoever carries the light, but not forever.\nSecrets (not tied to a place):\n- The oil the hospice burned on the ninth night was Ammalvar lamp-oil, sent up from the vault's cellars; the sisters' day-book records it as a gift of the house, and the sister who signed for it wrote the entry in a hand that is not her own.\n- The caravans that vanished on the Trade Way were carrying Nashkel iron consigned to an Ammalvar factor in Beregost, and the drivers and guards taken with them were marched to the vault rather than robbed.\n- Aubrin Ammalvar carries the family seal-ring, which is the key to the vault's inner door; he took it from his father's desk the night he ran, and his father has not yet noticed it is gone.\n- The smoke above the Cloakwood shaft is the vault's breathing-vent, and the Vigil's men go in and out of it at night; the Enclave has counted three bodies of Vigil men near it and has not yet found out whose they were.\n- Orrin Dace cast nine iron rings to one moulding, each one for a link of a rayed sun; eight went up the Cloakwood road in an Ammalvar cart, and the ninth is still in his cellar because the steward's coin was never enough to melt it.\n- The Book of Shadows was Morvayn's own ledger of bargains, its binding rebound by the Vigil; under the back cover is the same nine-link sign, and the Lantern's first words to its warlock were copied from it.\n- The Undercellar bid for the lamp-case was posted in Thieves' Cant by a broker who signs with a patriar's glove-seal; the runners who carry it are Keene's, and the broker's fee was paid in Ammalvar coin.\n- Dunstan Cray heard the voice of the vault call its wicks by number, and the number of the last wick was spoken in the voice of the Lantern, which should not have been possible for a light that lives in one girl's hands.\nClocks:\n- clock_lamp_rekindle: The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road (segments 6; when full: When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first.)\n- clock_iron_frames: Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames (segments 4; when full: When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished.)\n- clock_heir_hunt: Ammalvar hunters close on Aubrin in Little Calimshan (segments 4; when full: When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again.)\nThe wonder: The Nine-Link Lamp-Hood: a pale bronze hood of a lantern with a rayed sun cut across by a chain of nine links; eight links are engraved with names in old hospice script, and the ninth is blank, warm to the touch, and gives a light that does not warm the hand held beside it. Its history: The hood was cast in the vault from a celestial's broken halo and cold iron from Nashkel; each link is a bound light, and Morvayn had the names of his bargains scratched in as a register, the way a lender keeps a book of debts. The open question: Why is the ninth link blank and warm, and whose name is it still waiting for?\nClues to the truth:\n- In Orrin Dace's forge ledger in Beregost: nine ring-moulds ordered in Nashkel iron on one account, paid with a patriar's glove-seal, and a note that the ninth was to be kept back until the frames were sent for.\n- In the Lower City hospice's day-book, kept by Hallis Venn: the ninth night's entry, a gift of oil from the Ammalvar house for the light, and below it a list of novices who were sent up to the house's cellars that spring, with their names struck through in a different ink.\n- From Dunstan Cray, the Trade Way guard who walked out of the vault's cold room with a broken hand: a stone lamp-bell in the dark, a voice that counts its wicks by number, and the last number spoken in a voice he had heard once before, in the Lower City, from a girl with a candle.\nThe next session's false lead: In the hospice day-book a column of small marks beside the ninth night looks like the Vigil's rayed sun; it is only the sisters' own list of the dead from the fever, each name marked as it was carried out.\nA character's weakness tested (next session, for a reason, never a trap): At the iron gate of the cold room, Dunstan's chain is warded to answer only to a living light; Bram cannot open it, and Sefa can open it only by spending a pact slot on a stranger's chain, a cost Hallis's coin cannot repay.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: A nine-link sign scratched under the back cover of her Book of Shadows matches the vault's seal-lock, and the Lantern speaks the hospice's own marginal cipher when she reads it.\n- threat, for Sefa Marrin: The Lantern's voice offers her a quiet night and healed hands if she carries the hood into the vault herself, and the Vigil's knife waits for anyone who refuses it.\n- puzzle, for Pell Dunmore: The seal-lock on the lamp-case is a patriar's tumbler-cipher, and the Undercellar bid already names the lock's pattern before anyone has seen the case.\n- threat, for Pell Dunmore: A Guild broker has posted a bounty on the lamp-case, his old runner name sits beside it on the bid sheet, and two of Keene's men are already on the Beregost road.\n- reward, for Pell Dunmore: Hallis Venn offers a healer's purse and a letter of safe passage through the Lower City to whoever brings out the ninth night's ledger.\n- reward, for Bram Halloway: Dunstan Cray, a Trade Way guard taken from the last caravan, is alive in the cold room below and will walk out with the company if they bring him.\n- threat, for Bram Halloway: The Vigil's labour gangs come up the shaft in a line, and the front they hold is the one Bram keeps, with no magic of his own to hold it.\nThe patron's moment (at a temptation, not a comfort): When the company is hurt and Sefa calls on the Lantern for light, it offers her warmth for her hands in exchange for carrying the hood down herself, and it asks for nothing else until she answers.\nThe act plan (yours alone; the player sees only the act number): about 6 hours, ~10 turns; the errand: A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning"
+    },
+    {
+      "kind": "fact",
+      "key": "voice_1323acc5-b8e3-4dd2-a403-235b18a79de0",
+      "value": "Sefa Marrin: I want the light to stop asking me for things, and I want one night's sleep without its voice at my back. I fear the nights I am tired and answer it. I know the oil that lit the ward on the ninth night was no gift, and that my book was written by a hand I have seen on the ledgers. I hide how much of the debt I have already counted."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_aubrin-ammalvar",
+      "value": "Aubrin Ammalvar: I want my name to stop meaning a door that shuts. I fear my father's hunters more than the dark below, and I fear I was the boy who carried the seal down the cellar stairs. I know the novices went down in spring and did not come back, and that my family calls the vault a charity. I hide the seal-ring under my shirt. I speak very politely, too correctly, and apologise before I finish."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_bram-halloway",
+      "value": "Bram Halloway: I want the Trade Way to be a road again, with wagons that come home. I fear the sound of a shaft under a hill and men who go quiet in the dark. I know the caravans that vanished were mine to guard once, and that Dunstan Cray walked out of one. I hide that I have not slept properly since Nashkel."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_c31dced2-b16f-4083-a5d0-b3cecd5c09bb",
+      "value": "Pell Dunmore: I want to be paid and out before the Undercellar sells anything with my name on it. I fear a job that goes down a hole with nobody counting the exits. I know the bid for the lamp-case is written in my old cant, and that Keene's runners carry it. I hide a favour I still owe the Guild and never named. I talk quick and dry, cut sentences short, and make a joke when the fear rises."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_dunstan-cray",
+      "value": "Dunstan Cray: I want my hand to close properly again and the drivers' names said on the Way. I fear the voice in the shaft that counts its wicks, and the dark it comes out of. I know the men taken with me were kept in a cold room under a stone lamp-bell, and a few never came back up. I hide that I could have stayed and did not."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_hallis-venn",
+      "value": "Hallis Venn: I want the novices who went down those cellars named aloud in the chapel, and the ledger burned. I fear the Ammalvar steward, who still sends the hospice oil and coin, and the day the sisters stop taking it. I know the ninth night's oil was marked a gift, and I signed. I hide that I wrote the gift in my own hand because I was told to."
+    },
+    {
+      "kind": "fact",
+      "key": "voice_orrin-dace",
+      "value": "Orrin Dace: I want my forge paid for and my name kept out of the Fist's books. I fear the patriar's men, and worse the day someone asks what the rings were for. I know nine moulds were ordered by a steward who paid in glove-stamped coin, and that eight rings went up the Cloakwood road. I hide the ninth in my cellar because I cannot bring myself to melt it."
+    },
+    {
+      "kind": "clock",
+      "key": "clock_heir_hunt",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_iron_frames",
+      "value": "0"
+    },
+    {
+      "kind": "clock",
+      "key": "clock_lamp_rekindle",
+      "value": "0"
+    }
+  ],
+  "stored": {
+    "fact": {
+      "act_plan": "{\"length\":{\"hours\":6,\"turns\":10},\"errand\":\"A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie.\",\"acts\":[{\"act\":1,\"untilTurn\":2,\"aim\":\"the errand offered\",\"converge\":\"\"},{\"act\":2,\"untilTurn\":6,\"aim\":\"the middle: the people and the means\",\"converge\":\"\"},{\"act\":3,\"untilTurn\":9,\"aim\":\"the plan and its execution\",\"converge\":\"\"},{\"act\":4,\"untilTurn\":10,\"aim\":\"the reckoning\",\"converge\":\"\"}]}",
+      "clock_heir_hunt": "Ammalvar hunters close on Aubrin in Little Calimshan — 4; When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again.",
+      "clock_iron_frames": "Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames — 4; When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished.",
+      "clock_lamp_rekindle": "The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road — 6; When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first.",
+      "hidden_layer": "The campaign's hidden layer (the DM's prep; the player never sees it; the truth comes out through clues, nobody explains all of it):\nThe truth: I know the ruin under the hill is the vault of Morvayn Ashe, a Baldur's Gate court-sage who died at his own lamp-work twenty years ago and rose as a lich. He bound a splinter of a fallen celestial's light into a Mother Lantern, a flame that never goes out and heals what the fever kills, and his undeath is anchored to that lamp: put out, he would fall to dust. House Ammalvar paid for the work, took its profit in novices and cold iron, and now wants the lamp finished or buried, depending on which of its own heirs is still alive. Sefa's Lantern is a splinter of that same light, left in a girl who sat up with the dying on the ninth night, and it wants its lamp back; no one in the vault's service knows the lamp is the lich's last bargain and not his prize.\nFactions and their hidden aims:\n- House Ammalvar (patriars of the Upper City): The house paid for Morvayn's lamp-work in the name of a cure and bought a monopoly on light with it. Its steward now buys cold iron through a Beregost factor, wants the hood brought up unopened, and has sent hunters after the heir who saw the novices go down. The ledgers must not be read outside the family.\n- The Vigil of the Lamp: Former vault servants and hospice men who believe Morvayn is a saint of the light. They feed the Mother Lantern living light taken from its wicks so the lamp burns through the fever-season and the bargain holds. They sign their work with a rayed sun crossed by nine links.\n- The Undercellar bidders of the Guild: Nine-Fingers' people take a fee for anything that moves through the Lower City and do not ask what it holds. They have a bid out for the lamp-case and will sell to whoever pays most, Ammalvar included, and they would sell the company too.\n- Morvayn Ashe, the lich, and his bound lantern: The lich's undeath hangs on the Mother Lantern. He wants the hood carried back down and seated in its cradle so the lamp is whole and the bargain renews, and he will talk for a while with whoever carries the light, but not forever.\nSecrets (not tied to a place):\n- The oil the hospice burned on the ninth night was Ammalvar lamp-oil, sent up from the vault's cellars; the sisters' day-book records it as a gift of the house, and the sister who signed for it wrote the entry in a hand that is not her own.\n- The caravans that vanished on the Trade Way were carrying Nashkel iron consigned to an Ammalvar factor in Beregost, and the drivers and guards taken with them were marched to the vault rather than robbed.\n- Aubrin Ammalvar carries the family seal-ring, which is the key to the vault's inner door; he took it from his father's desk the night he ran, and his father has not yet noticed it is gone.\n- The smoke above the Cloakwood shaft is the vault's breathing-vent, and the Vigil's men go in and out of it at night; the Enclave has counted three bodies of Vigil men near it and has not yet found out whose they were.\n- Orrin Dace cast nine iron rings to one moulding, each one for a link of a rayed sun; eight went up the Cloakwood road in an Ammalvar cart, and the ninth is still in his cellar because the steward's coin was never enough to melt it.\n- The Book of Shadows was Morvayn's own ledger of bargains, its binding rebound by the Vigil; under the back cover is the same nine-link sign, and the Lantern's first words to its warlock were copied from it.\n- The Undercellar bid for the lamp-case was posted in Thieves' Cant by a broker who signs with a patriar's glove-seal; the runners who carry it are Keene's, and the broker's fee was paid in Ammalvar coin.\n- Dunstan Cray heard the voice of the vault call its wicks by number, and the number of the last wick was spoken in the voice of the Lantern, which should not have been possible for a light that lives in one girl's hands.\nClocks:\n- clock_lamp_rekindle: The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road (segments 6; when full: When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first.)\n- clock_iron_frames: Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames (segments 4; when full: When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished.)\n- clock_heir_hunt: Ammalvar hunters close on Aubrin in Little Calimshan (segments 4; when full: When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again.)\nThe wonder: The Nine-Link Lamp-Hood: a pale bronze hood of a lantern with a rayed sun cut across by a chain of nine links; eight links are engraved with names in old hospice script, and the ninth is blank, warm to the touch, and gives a light that does not warm the hand held beside it. Its history: The hood was cast in the vault from a celestial's broken halo and cold iron from Nashkel; each link is a bound light, and Morvayn had the names of his bargains scratched in as a register, the way a lender keeps a book of debts. The open question: Why is the ninth link blank and warm, and whose name is it still waiting for?\nClues to the truth:\n- In Orrin Dace's forge ledger in Beregost: nine ring-moulds ordered in Nashkel iron on one account, paid with a patriar's glove-seal, and a note that the ninth was to be kept back until the frames were sent for.\n- In the Lower City hospice's day-book, kept by Hallis Venn: the ninth night's entry, a gift of oil from the Ammalvar house for the light, and below it a list of novices who were sent up to the house's cellars that spring, with their names struck through in a different ink.\n- From Dunstan Cray, the Trade Way guard who walked out of the vault's cold room with a broken hand: a stone lamp-bell in the dark, a voice that counts its wicks by number, and the last number spoken in a voice he had heard once before, in the Lower City, from a girl with a candle.\nThe next session's false lead: In the hospice day-book a column of small marks beside the ninth night looks like the Vigil's rayed sun; it is only the sisters' own list of the dead from the fever, each name marked as it was carried out.\nA character's weakness tested (next session, for a reason, never a trap): At the iron gate of the cold room, Dunstan's chain is warded to answer only to a living light; Bram cannot open it, and Sefa can open it only by spending a pact slot on a stranger's chain, a cost Hallis's coin cannot repay.\nThe company's puzzles, threats and rewards (each with the player character it is first addressed to):\n- puzzle, for Sefa Marrin: A nine-link sign scratched under the back cover of her Book of Shadows matches the vault's seal-lock, and the Lantern speaks the hospice's own marginal cipher when she reads it.\n- threat, for Sefa Marrin: The Lantern's voice offers her a quiet night and healed hands if she carries the hood into the vault herself, and the Vigil's knife waits for anyone who refuses it.\n- puzzle, for Pell Dunmore: The seal-lock on the lamp-case is a patriar's tumbler-cipher, and the Undercellar bid already names the lock's pattern before anyone has seen the case.\n- threat, for Pell Dunmore: A Guild broker has posted a bounty on the lamp-case, his old runner name sits beside it on the bid sheet, and two of Keene's men are already on the Beregost road.\n- reward, for Pell Dunmore: Hallis Venn offers a healer's purse and a letter of safe passage through the Lower City to whoever brings out the ninth night's ledger.\n- reward, for Bram Halloway: Dunstan Cray, a Trade Way guard taken from the last caravan, is alive in the cold room below and will walk out with the company if they bring him.\n- threat, for Bram Halloway: The Vigil's labour gangs come up the shaft in a line, and the front they hold is the one Bram keeps, with no magic of his own to hold it.\nThe patron's moment (at a temptation, not a comfort): When the company is hurt and Sefa calls on the Lantern for light, it offers her warmth for her hands in exchange for carrying the hood down herself, and it asks for nothing else until she answers.\nThe act plan (yours alone; the player sees only the act number): about 6 hours, ~10 turns; the errand: A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie.\n- act 1, to turn 2: the errand offered\n- act 2, to turn 6: the middle: the people and the means\n- act 3, to turn 9: the plan and its execution\n- act 4, to turn 10: the reckoning",
+      "voice_1323acc5-b8e3-4dd2-a403-235b18a79de0": "Sefa Marrin: I want the light to stop asking me for things, and I want one night's sleep without its voice at my back. I fear the nights I am tired and answer it. I know the oil that lit the ward on the ninth night was no gift, and that my book was written by a hand I have seen on the ledgers. I hide how much of the debt I have already counted.",
+      "voice_aubrin-ammalvar": "Aubrin Ammalvar: I want my name to stop meaning a door that shuts. I fear my father's hunters more than the dark below, and I fear I was the boy who carried the seal down the cellar stairs. I know the novices went down in spring and did not come back, and that my family calls the vault a charity. I hide the seal-ring under my shirt. I speak very politely, too correctly, and apologise before I finish.",
+      "voice_bram-halloway": "Bram Halloway: I want the Trade Way to be a road again, with wagons that come home. I fear the sound of a shaft under a hill and men who go quiet in the dark. I know the caravans that vanished were mine to guard once, and that Dunstan Cray walked out of one. I hide that I have not slept properly since Nashkel.",
+      "voice_c31dced2-b16f-4083-a5d0-b3cecd5c09bb": "Pell Dunmore: I want to be paid and out before the Undercellar sells anything with my name on it. I fear a job that goes down a hole with nobody counting the exits. I know the bid for the lamp-case is written in my old cant, and that Keene's runners carry it. I hide a favour I still owe the Guild and never named. I talk quick and dry, cut sentences short, and make a joke when the fear rises.",
+      "voice_dunstan-cray": "Dunstan Cray: I want my hand to close properly again and the drivers' names said on the Way. I fear the voice in the shaft that counts its wicks, and the dark it comes out of. I know the men taken with me were kept in a cold room under a stone lamp-bell, and a few never came back up. I hide that I could have stayed and did not.",
+      "voice_hallis-venn": "Hallis Venn: I want the novices who went down those cellars named aloud in the chapel, and the ledger burned. I fear the Ammalvar steward, who still sends the hospice oil and coin, and the day the sisters stop taking it. I know the ninth night's oil was marked a gift, and I signed. I hide that I wrote the gift in my own hand because I was told to.",
+      "voice_orrin-dace": "Orrin Dace: I want my forge paid for and my name kept out of the Fist's books. I fear the patriar's men, and worse the day someone asks what the rings were for. I know nine moulds were ordered by a steward who paid in glove-stamped coin, and that eight rings went up the Cloakwood road. I hide the ninth in my cellar because I cannot bring myself to melt it."
+    },
+    "clock": {
+      "clock_heir_hunt": 0,
+      "clock_iron_frames": 0,
+      "clock_lamp_rekindle": 0
+    },
+    "consequence": {}
+  },
+  "sha256": "d4be32a2a725d97882dc0c9fa23a2854c2cba779f3c068d6457db5fed6f41889",
+  "threads": [
+    {
+      "id": "T1",
+      "kind": "errand",
+      "text": "A steward of House Ammalvar offers the company a purse to bring up the sealed lamp-hood from the vault unopened, and to leave the ledgers where they lie."
+    },
+    {
+      "id": "T2",
+      "kind": "faction",
+      "text": "House Ammalvar (patriars of the Upper City): The house paid for Morvayn's lamp-work in the name of a cure and bought a monopoly on light with it. Its steward now buys cold iron through a Beregost factor, wants the hood brought up unopened, and has sent hunters after the heir who saw the novices go down. The ledgers must not be read outside the family."
+    },
+    {
+      "id": "T3",
+      "kind": "faction",
+      "text": "The Vigil of the Lamp: Former vault servants and hospice men who believe Morvayn is a saint of the light. They feed the Mother Lantern living light taken from its wicks so the lamp burns through the fever-season and the bargain holds. They sign their work with a rayed sun crossed by nine links."
+    },
+    {
+      "id": "T4",
+      "kind": "faction",
+      "text": "The Undercellar bidders of the Guild: Nine-Fingers' people take a fee for anything that moves through the Lower City and do not ask what it holds. They have a bid out for the lamp-case and will sell to whoever pays most, Ammalvar included, and they would sell the company too."
+    },
+    {
+      "id": "T5",
+      "kind": "faction",
+      "text": "Morvayn Ashe, the lich, and his bound lantern: The lich's undeath hangs on the Mother Lantern. He wants the hood carried back down and seated in its cradle so the lamp is whole and the bargain renews, and he will talk for a while with whoever carries the light, but not forever."
+    },
+    {
+      "id": "T6",
+      "kind": "secret",
+      "text": "The oil the hospice burned on the ninth night was Ammalvar lamp-oil, sent up from the vault's cellars; the sisters' day-book records it as a gift of the house, and the sister who signed for it wrote the entry in a hand that is not her own."
+    },
+    {
+      "id": "T7",
+      "kind": "secret",
+      "text": "The caravans that vanished on the Trade Way were carrying Nashkel iron consigned to an Ammalvar factor in Beregost, and the drivers and guards taken with them were marched to the vault rather than robbed."
+    },
+    {
+      "id": "T8",
+      "kind": "secret",
+      "text": "Aubrin Ammalvar carries the family seal-ring, which is the key to the vault's inner door; he took it from his father's desk the night he ran, and his father has not yet noticed it is gone."
+    },
+    {
+      "id": "T9",
+      "kind": "secret",
+      "text": "The smoke above the Cloakwood shaft is the vault's breathing-vent, and the Vigil's men go in and out of it at night; the Enclave has counted three bodies of Vigil men near it and has not yet found out whose they were."
+    },
+    {
+      "id": "T10",
+      "kind": "secret",
+      "text": "Orrin Dace cast nine iron rings to one moulding, each one for a link of a rayed sun; eight went up the Cloakwood road in an Ammalvar cart, and the ninth is still in his cellar because the steward's coin was never enough to melt it."
+    },
+    {
+      "id": "T11",
+      "kind": "secret",
+      "text": "The Book of Shadows was Morvayn's own ledger of bargains, its binding rebound by the Vigil; under the back cover is the same nine-link sign, and the Lantern's first words to its warlock were copied from it."
+    },
+    {
+      "id": "T12",
+      "kind": "secret",
+      "text": "The Undercellar bid for the lamp-case was posted in Thieves' Cant by a broker who signs with a patriar's glove-seal; the runners who carry it are Keene's, and the broker's fee was paid in Ammalvar coin."
+    },
+    {
+      "id": "T13",
+      "kind": "secret",
+      "text": "Dunstan Cray heard the voice of the vault call its wicks by number, and the number of the last wick was spoken in the voice of the Lantern, which should not have been possible for a light that lives in one girl's hands."
+    },
+    {
+      "id": "T14",
+      "kind": "clock",
+      "text": "clock_lamp_rekindle: The Vigil feeds living light to the Mother Lantern, and the fever-season comes back up the Chionthar road (segments 6; when full: When it fills, the Mother Lantern burns through the vault's cradle, the bargain with Morvayn renews, and the fever comes up into the Lower City's hospices a month early, sisters first.)"
+    },
+    {
+      "id": "T15",
+      "kind": "clock",
+      "text": "clock_iron_frames: Orrin Dace's cold-iron rings are cast, one by one, for the cradle's frames (segments 4; when full: When the ninth ring is cast, an Ammalvar cart rolls for the Cloakwood shaft with the iron and the steward's men, and the lamp can be finished.)"
+    },
+    {
+      "id": "T16",
+      "kind": "clock",
+      "text": "clock_heir_hunt: Ammalvar hunters close on Aubrin in Little Calimshan (segments 4; when full: When it fills, they take him home by force, and the one living witness to the novices' cellar is locked in his father's house, where no one will ask him anything again.)"
+    },
+    {
+      "id": "T17",
+      "kind": "wonder",
+      "text": "The Nine-Link Lamp-Hood: a pale bronze hood of a lantern with a rayed sun cut across by a chain of nine links; eight links are engraved with names in old hospice script, and the ninth is blank, warm to the touch, and gives a light that does not warm the hand held beside it. Its history: The hood was cast in the vault from a celestial's broken halo and cold iron from Nashkel; each link is a bound light, and Morvayn had the names of his bargains scratched in as a register, the way a lender keeps a book of debts. The open question: Why is the ninth link blank and warm, and whose name is it still "
+    },
+    {
+      "id": "T18",
+      "kind": "clue",
+      "text": "In Orrin Dace's forge ledger in Beregost: nine ring-moulds ordered in Nashkel iron on one account, paid with a patriar's glove-seal, and a note that the ninth was to be kept back until the frames were sent for."
+    },
+    {
+      "id": "T19",
+      "kind": "clue",
+      "text": "In the Lower City hospice's day-book, kept by Hallis Venn: the ninth night's entry, a gift of oil from the Ammalvar house for the light, and below it a list of novices who were sent up to the house's cellars that spring, with their names struck through in a different ink."
+    },
+    {
+      "id": "T20",
+      "kind": "clue",
+      "text": "From Dunstan Cray, the Trade Way guard who walked out of the vault's cold room with a broken hand: a stone lamp-bell in the dark, a voice that counts its wicks by number, and the last number spoken in a voice he had heard once before, in the Lower City, from a girl with a candle."
+    },
+    {
+      "id": "T21",
+      "kind": "false lead",
+      "text": "In the hospice day-book a column of small marks beside the ninth night looks like the Vigil's rayed sun; it is only the sisters' own list of the dead from the fever, each name marked as it was carried out."
+    },
+    {
+      "id": "T22",
+      "kind": "person",
+      "text": "Sefa Marrin: I want the light to stop asking me for things, and I want one night's sleep without its voice at my back. I fear the nights I am tired and answer it. I know the oil that lit the ward on the ninth night was no gift, and that my book was written by a hand I have seen on the ledgers. I hide how much of the debt I have already counted."
+    },
+    {
+      "id": "T23",
+      "kind": "person",
+      "text": "Aubrin Ammalvar: I want my name to stop meaning a door that shuts. I fear my father's hunters more than the dark below, and I fear I was the boy who carried the seal down the cellar stairs. I know the novices went down in spring and did not come back, and that my family calls the vault a charity. I hide the seal-ring under my shirt. I speak very politely, too correctly, and apologise before I finish."
+    },
+    {
+      "id": "T24",
+      "kind": "person",
+      "text": "Bram Halloway: I want the Trade Way to be a road again, with wagons that come home. I fear the sound of a shaft under a hill and men who go quiet in the dark. I know the caravans that vanished were mine to guard once, and that Dunstan Cray walked out of one. I hide that I have not slept properly since Nashkel."
+    },
+    {
+      "id": "T25",
+      "kind": "person",
+      "text": "Pell Dunmore: I want to be paid and out before the Undercellar sells anything with my name on it. I fear a job that goes down a hole with nobody counting the exits. I know the bid for the lamp-case is written in my old cant, and that Keene's runners carry it. I hide a favour I still owe the Guild and never named. I talk quick and dry, cut sentences short, and make a joke when the fear rises."
+    },
+    {
+      "id": "T26",
+      "kind": "person",
+      "text": "Dunstan Cray: I want my hand to close properly again and the drivers' names said on the Way. I fear the voice in the shaft that counts its wicks, and the dark it comes out of. I know the men taken with me were kept in a cold room under a stone lamp-bell, and a few never came back up. I hide that I could have stayed and did not."
+    },
+    {
+      "id": "T27",
+      "kind": "person",
+      "text": "Hallis Venn: I want the novices who went down those cellars named aloud in the chapel, and the ledger burned. I fear the Ammalvar steward, who still sends the hospice oil and coin, and the day the sisters stop taking it. I know the ninth night's oil was marked a gift, and I signed. I hide that I wrote the gift in my own hand because I was told to."
+    },
+    {
+      "id": "T28",
+      "kind": "person",
+      "text": "Orrin Dace: I want my forge paid for and my name kept out of the Fist's books. I fear the patriar's men, and worse the day someone asks what the rings were for. I know nine moulds were ordered by a steward who paid in glove-stamped coin, and that eight rings went up the Cloakwood road. I hide the ninth in my cellar because I cannot bring myself to melt it."
+    }
+  ]
+}

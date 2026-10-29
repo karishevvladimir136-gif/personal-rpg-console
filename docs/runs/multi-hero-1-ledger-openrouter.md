@@ -1,14 +1,14 @@
 # Multi-hero 1 — the dry run on Haiku — the OpenRouter ledger
 
-Cap $5; spent before this run $0.0000; this run $0.2893; total $0.2893; 172 calls.
+Cap $5; spent before this run $0.0000; this run $0.3168; total $0.3168; 174 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | freeze SAND | wizard | anthropic/claude-haiku-5.5 | 6 | 20603 | 1567 | 3134 | 25473 | $0.0152 | 0 | 0 | 0 |
 | freeze GOAL | wizard | anthropic/claude-haiku-5.5 | 6 | 20475 | 4701 | 0 | 25015 | $0.0146 | 0 | 0 | 0 |
 | freeze DUNGEON | wizard | anthropic/claude-haiku-5.5 | 6 | 20583 | 4701 | 0 | 23476 | $0.0138 | 0 | 0 | 0 |
-| freeze GOAL | prep | anthropic/claude-haiku-5.5 | 1 | 5754 | 0 | 17528 | 20564 | $0.0144 | 0 | 0 | 0 |
-| freeze DUNGEON | prep | anthropic/claude-haiku-5.5 | 1 | 6022 | 8812 | 8735 | 20638 | $0.0128 | 0 | 0 | 0 |
+| freeze GOAL | prep | anthropic/claude-haiku-5.5 | 2 | 11654 | 0 | 35114 | 41987 | $0.0292 | 0 | 0 | 0 |
+| freeze DUNGEON | prep | anthropic/claude-haiku-5.5 | 2 | 12050 | 17626 | 17560 | 41132 | $0.0255 | 0 | 0 | 0 |
 | A8 | A8 GOAL 1 | anthropic/claude-haiku-5.5 | 1 | 7962 | 0 | 0 | 2064 | $0.0018 | 0 | 0 | 0 |
 | A8 | A8 GOAL 2 | anthropic/claude-haiku-5.5 | 1 | 7962 | 0 | 0 | 2179 | $0.0019 | 0 | 0 | 0 |
 | A8 | A8 DUNGEON 1 | anthropic/claude-haiku-5.5 | 1 | 7833 | 0 | 0 | 2820 | $0.0022 | 0 | 0 | 0 |

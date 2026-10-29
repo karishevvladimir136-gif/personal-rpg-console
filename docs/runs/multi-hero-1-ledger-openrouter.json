@@ -1,7 +1,7 @@
 {
   "capUsd": 5,
-  "spentUsd": 0.28927705000000004,
-  "updatedAt": "2026-10-29T09:57:08.263Z",
+  "spentUsd": 0.31679869000000005,
+  "updatedAt": "2026-10-29T10:00:45.158Z",
   "runs": [
     {
       "finishedAt": "2026-10-29T07:01:32.735Z",
@@ -4526,6 +4526,67 @@
           "requestId": "gen-1793267813-l8kmZRH250wi6gC7lTXF",
           "waits429": 0,
           "upstream": "Azure"
+        }
+      ]
+    },
+    {
+      "finishedAt": "2026-10-29T10:00:45.158Z",
+      "file": "multi-hero-1-frozen/manifest.json",
+      "what": "the company layers (the prep, once for P-GOAL and once for P-DUNGEON)",
+      "spentUsd": 0.02752164,
+      "stopped": null,
+      "calls": [
+        {
+          "n": 1,
+          "at": "2026-10-29T09:57:10.009Z",
+          "session": "freeze GOAL",
+          "purpose": "prep",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 5900,
+            "cache_read_input_tokens": 0,
+            "cache_creation_input_tokens": 17586,
+            "cache_write_1h": 17586,
+            "output_tokens": 21423
+          },
+          "costUsd": 0.0148187,
+          "seconds": 109,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793267830-6MaPedrqaE8BA34DKoBa",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
+        },
+        {
+          "n": 2,
+          "at": "2026-10-29T09:58:59.103Z",
+          "session": "freeze DUNGEON",
+          "purpose": "prep",
+          "provider": "openrouter",
+          "model": "anthropic/claude-haiku-5.5",
+          "endpoint": "/api/v1/messages",
+          "status": 200,
+          "stream": true,
+          "usage": {
+            "input_tokens": 6028,
+            "cache_read_input_tokens": 8814,
+            "cache_creation_input_tokens": 8825,
+            "cache_write_1h": 8825,
+            "output_tokens": 20494
+          },
+          "costUsd": 0.012702940000000001,
+          "seconds": 106,
+          "stopReason": "end_turn",
+          "refusal": null,
+          "error": null,
+          "requestId": "gen-1793267939-hS2MuJ2zuol4hgoBD80I",
+          "waits429": 0,
+          "upstream": "Claude Platform on AWS"
         }
       ]
     }

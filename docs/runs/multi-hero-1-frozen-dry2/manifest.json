@@ -329,6 +329,14 @@
       "writes": 16,
       "threads": 31,
       "preparedAt": "2026-10-29T09:58:59.040Z"
+    },
+    "DUNGEON": {
+      "file": "DUNGEON-dm-only.json",
+      "sha256": "d4be32a2a725d97882dc0c9fa23a2854c2cba779f3c068d6457db5fed6f41889",
+      "chars": 8803,
+      "writes": 15,
+      "threads": 28,
+      "preparedAt": "2026-10-29T10:00:45.142Z"
     }
   }
 }
