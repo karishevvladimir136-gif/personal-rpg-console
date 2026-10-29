@@ -154,7 +154,10 @@ const verdictWord = (v) => (v?.holds === null || v?.holds === undefined ? "not t
 const first = (name) => String(name ?? "").split(" ")[0];
 
 /** The report from the latest finished record of each table, their measures and the verdicts. */
-export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, spend = [], frozen = null }) {
+/** The Q0–Q8 rows of a verdict table. */
+const verdictRows = (v) => ["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q0" && v.Q0?.strictHolds !== undefined ? ` (strict reading: ${v.Q0.strictHolds ? "held" : "lost"})` : ""}${q === "Q3" && v.Q3?.byAbsence ? " (by absence: no healing was needed — the line was not tested)" : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`);
+
+export function reportMarkdown({ tables, verdicts: v, replayVerdicts = null, money, haikuMoney = {}, spend = [], frozen = null }) {
   const keys = [...ORDER, REPLAY].map((o) => o.key).filter((k) => tables[k]);
   const lines = ["# Game party 1 — three players at one table", "",
     `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-1\`. Design sha256 \`${DESIGN_SHA256}\`. Synthetic content: invented characters in an invented campaign (Table C's Beregost files).`, "",
@@ -178,8 +181,13 @@ export function reportMarkdown({ tables, verdicts: v, money, haikuMoney = {}, sp
     ...keys.map((k) => { const { runRecord: r, measures: m } = tables[k];
       return `| ${k} | ${r.seats.map(LABEL).join(" / ")} | ${m.rounds} | ${m.ended?.reason ?? "?"} | ${Object.entries(m.per).map(([n, p]) => `${first(n)} ${p.words} (${pct(p.share)})`).join(", ")} | ${Object.entries(m.per).filter(([, p]) => p.left).map(([n, p]) => `${first(n)}: ${p.left.why} r${p.left.round}${DOOR_NOTES[k]?.[n] ? ` (${DOOR_NOTES[k][n].note})` : ""}`).join(", ") || "—"} |`; }), "");
   lines.push(PREREGISTRATION, "", "## Q0–Q8", "", "| Bet | Verdict | By the record |", "| --- | --- | --- |",
-    ...["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8"].map((q) => `| ${q} | ${verdictWord(v[q])}${q === "Q4" && v.Q4?.holds !== null && v.Q4?.holds !== undefined ? ` (by proposal: ${v.Q4.byProposal ? "yes" : "no"}; by a hook: ${v.Q4.byHook ? "yes" : "no"}; with the door note: ${v.Q4.withNote ? "held" : "lost"})` : ""}${q === "Q0" && v.Q0?.strictHolds !== undefined ? ` (strict reading: ${v.Q0.strictHolds ? "held" : "lost"})` : ""}${q === "Q3" && v.Q3?.byAbsence ? " (by absence: no healing was needed — the line was not tested)" : ""}${q === "Q7" && v.Q7?.holds !== null && v.Q7?.holds !== undefined ? ` ((a) ${v.Q7.a ? "held" : "lost"}, (b) ${v.Q7.b ? "held" : "lost"})` : ""} | ${String(v[q]?.why ?? "").replace(/\|/g, "/")} |`), "",
+    ...verdictRows(v), "",
     "How each line is read: `READINGS` in `scripts/game-party-1/frozen.mjs` (frozen before the first paid call; the owner's amendment adds the hook/proposal split to Q4).", "");
+  if (replayVerdicts && tables[REPLAY.key]) {
+    lines.push(`### With ${REPLAY.key} in ${REPLAY.replays}'s place`, "",
+      `${REPLAY.key} is ${REPLAY.replays} played again last, on the final harness (the owner's word): the same seats (${REPLAY.seats.map(LABEL).join(" / ")}), the door line v2, scenes that merge, the relay's full output, the waiting-button line. The verdicts above count the six tables of the order with ${REPLAY.replays} as played; here the same lines are read with ${REPLAY.key} in its place.`, "",
+      "| Bet | Verdict | By the record |", "| --- | --- | --- |", ...verdictRows(replayVerdicts), "");
+  }
   lines.push("## The measures (blind round tags)", "");
   for (const k of keys) {
     const { measures: m, runRecord: r } = tables[k];

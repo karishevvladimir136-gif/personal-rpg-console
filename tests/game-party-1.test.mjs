@@ -443,6 +443,14 @@ test("the measures and Q0–Q8 from the tags and the record (synthetic tables): 
   assert.match(md, /Known condition/);
   assert.match(md, /by proposal: no; by a hook: no/);
   assert.match(md, /\| Q7 \| \*\*lost\*\* \(\(a\) lost, \(b\) lost\)/);
+  assert.doesNotMatch(md, /With SAND-T1′ in SAND-T1's place/, "no replay played, no replay reading");
+  // SAND-T1′: read beside the six, in SAND-T1's place (its own key in the record's lines); the six's verdicts unchanged.
+  const replay = table("SAND-T1′", "SAND", [tagOf({ party: 1, around: "proposal" })]);
+  const rv = scoreMod.verdicts({ ...t, "SAND-T1": replay }, {});
+  assert.match(rv.Q4.why, /^SAND-T1′: formed r1 around proposal/);
+  assert.equal(rv.Q4.byProposal, true);
+  const md2 = reportMod.reportMarkdown({ tables: { ...t, "SAND-T1′": replay }, verdicts: v, replayVerdicts: rv, money: {}, frozen: null });
+  assert.match(md2, /### With SAND-T1′ in SAND-T1's place[\s\S]*\| Q4 \| \*\*lost\*\* \(by proposal: yes/);
 });
 
 test("scenes that meet merge (SAND-T1's defect, fixed): any relay of the round that groups two characters puts them together; the DM is told who is elsewhere", () => {

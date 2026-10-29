@@ -324,7 +324,10 @@ export async function writeReport({ log = () => {} } = {}) {
   const spend = existsSync(SPEND_FILE) ? readJson(SPEND_FILE).checks ?? [] : [];
   let frozen = null;
   try { frozen = readFrozen(FROZEN_DIR); } catch { frozen = null; }
-  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ tables, verdicts: verdicts(tables, money), money, haikuMoney: haiku, spend, frozen, records }));
+  // The verdicts count the six tables of the order; SAND-T1′ is read beside them, in SAND-T1's place.
+  const six = Object.fromEntries(ORDER.map((o) => o.key).filter((k) => tables[k]).map((k) => [k, tables[k]]));
+  const replayVerdicts = tables[REPLAY.key] ? verdicts({ ...six, [REPLAY.replays]: tables[REPLAY.key] }, money) : null;
+  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown({ tables, verdicts: verdicts(six, money), replayVerdicts, money, haikuMoney: haiku, spend, frozen, records }));
   // The transcripts again from the records (the owner's tags on doors appear in their headers).
   for (const r of Object.values(records)) await writeTranscripts(r);
   log(`report: ${Object.keys(tables).length} table(s)`);
