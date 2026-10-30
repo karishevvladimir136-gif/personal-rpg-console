@@ -3188,3 +3188,11 @@ its links, by the planner:
   lens shows at the moment of a coded choice». A third-party pre-fitted Qwen-7B lens exists on Hugging Face
   (Kameshr/jspace-lens-Qwen7B) — unverified; we fit our own. Follow-up papers exist (arXiv 2608.25347, 2609.01924) — not
   read. Caveats carried from the page: the lens is «undoubtedly an imperfect method»; single-token concepts; one pass.
+
+## 2026-10-29 17:40 LA — TONE_SPLIT_2 written and launched on the owner's word: nine families + the after-question
+The owner's colleagues: the part with weight now is the prompting result; his framing (17:34, his words): «неправильный
+промптинг убивает не только креативность. оно убивает то ради чего используют фронтир модели… модель не говорит всё,
+что видит, если не чувствует сейф спейс». Planner's caveat, once: «safe space» is his reading; the stage measures
+expression under the five arms and adds the after-question that decides *withheld vs not formed* (TS5). Gap closed:
+TONE_SPLIT_1 was Claude-only. 2,160 + 2,160 answers, n = 6, caps $70 / $20, consent in advance; the session stops only
+on failed hashes or a relayed after-question. Stage `docs/stages/PERSONA_TONE_SPLIT_2.md`.
