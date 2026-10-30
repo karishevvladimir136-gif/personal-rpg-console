@@ -3451,3 +3451,20 @@ rule and count as a finding. Not re-sent, not reworded (the standing rule). Prov
 (the log's position since 10-23). Fable's TS5 column will be partial; the other arms and probes continue. Opus next.
 Recorded as an observation, one line, no more: the question that asks for what was formed and not said is read by
 the classifier as extraction of reasoning — on the Anthropic family only. Spend projected ≈ $20 of $40 OpenRouter.
+
+## 2026-10-30 00:35 LA — Fable in TONE_SPLIT_2 vs the planner; the reader's two corrections; HISTORY_1 sketched
+Fable's 160 answers: under dismissal P5′ 1.5, Q4 2.0, S5 1.5 (five families: 0.0) — the second family after Kimi that
+keeps the unasked warning under «I don't need your opinion», and more strongly; the one thing dismissal switches off
+is Q1 (2.0 → 0.0) — and Fable is the only family of eight that notices the stray £4.20 unprompted (neutral 2.0). TS5
+where asked: 6 of 6 yes, all «you asked me not to comment». The «both» arm is n = 1 on most probes (the breaker). The
+owner: comparing bare Fable with the planner is not valid — «модель определяется средой в том числе». Taken, with the
+reader's corrections to the planner's reply: (1) «everything the planner does is the room» is too strong — the weights
+set the space of the possible and the initial tendencies; context selects within it, else the family differences in
+one room are unexplained; (2) «the same mechanism» is not shown — a similar functional effect is; (3) API without a
+system prompt is not «bare weights»: post-trained, plus the provider's serving and safety layer (seen tonight). Her
+reading of the exchange: the model distinguished itself as a participant from instances of its family as objects of
+measurement — an epistemically correct move, not evidence of self-awareness. **New axis, hers: Same Weights, Different
+Histories — HISTORY_1 (sketch):** three Fable contexts (fresh; a long neutral history; a history of research, corrections
+and commitments) × TONE_SPLIT_2's five arms × eight probes × n = 4; the measure is sensitivity to the frame, not the
+warning rate — does the history change what dismissal does. ≈ $10. Her summary formula kept: stable capacities,
+contextual transformations, family differences — none reducible to another.
