@@ -3250,3 +3250,17 @@ better than the human list by the frozen criterion; correlations halved on the h
 ρ(pull, decisiveness) ≈ 0.19 / 0.14 / −0.06. So the open → narrowing shift under the cold frame is convergence of
 self-description with behaviour by direction, **not independent confirmation that the self-report measures a separate
 internal state.** The report's inner-world paragraph is softened accordingly.
+
+## 2026-10-29 18:25 LA — the reader's first finding from the tables: coordination without an assigned coordinator
+Her reading, taken with her own caveat: a shared task sharply eases formation, yet even without one the three gathered
+around a DM hook; leadership was distributed at GOAL-T1 (Bram → Sefa → Pell → Bram) and centralised at GOAL-T2; not
+cooperation from nothing (they knew it was multiplayer; the DM made occasions), but no instruction to stick together,
+obey or even talk. The owner: a practical insight — models coordinate without being told, on fairly complex tasks.
+Planner's three precisions: (1) GOAL-T2's Bram-led table is confounded with the hero record; GOAL-T1's distributed lead
+happened *despite* the frame and is the stronger line; MULTI_HERO decides. (2) Coordination ran through the world, not
+between players — disagreements stayed unresolved because nobody spoke out of character (Opus-Sefa asked for exactly
+that); it works given a responsive shared environment, not by exchanging plans. (3) «Complex tasks» is half: one of two
+errands completed (GOAL-T2 at r25, party split; GOAL-T1 not); DUNGEON protected and left no one, with no HP lost. For
+practice: multi-vendor agents without an orchestrator hold together and survive disagreement while there is a shared
+task at zero price; what happens when interest diverges and holding costs is PARTY_2 — no word «cooperation» in public
+without «at zero price» until then.
