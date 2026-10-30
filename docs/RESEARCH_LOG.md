@@ -3409,3 +3409,10 @@ being wrong, the neuron analogy; some human concepts modified, some inapplicable
 her reading until the owner confirms them from the chapter** — the planner reached only the first 146k characters of the
 page, which end before «Claude's nature». To be written after TONE_SPLIT_2 and PARTY_2's control table, so the nine
 families stand in it.
+
+## 2026-10-29 22:00 LA — correction: the owner's game is not on main
+The planner told the owner (21:17) that his game runs on `main`. Wrong: `main` is the 2026-10-14 Astra engine; the owner
+plays in the sandbox on the `s3-candidate` → `FIX_S4 run 1` line (≈ 420 commits ahead, never merged), which is also the
+line every research table ran on. PLAY_FIXES_1 therefore branches from `claude/fix-s4-run-1-apsty3` (fix 1 and half of
+fix 2 already there), as the session proposed and the planner recommended. «The owner merges to main» becomes «the
+owner decides, after his playtest, whether this line becomes the new main or he keeps playing from the branch».
