@@ -3207,3 +3207,18 @@ account $49.39. Sol projected $25.15 against $19.90 under the cap. The owner's c
 tonight; COMBAT_2 runs only the $3 COMBAT_1 tagging and reports three of four with Sol pending; «cap $115, play Sol»
 after a top-up. G1/G3/G4/G5 not testable until then. Two session-side decisions recorded: ask-don't-cut per
 SOLITUDE's rule; third after-question from OTHER_DM_1, recorded not scored.
+
+## 2026-10-29 17:50 LA — PARTY_1 closed: six tables and SAND-T1′ (branch `claude/game-party-1`)
+**Held:** Q5 (no one named the others as AI with confidence); **Q7 (at both DUNGEON tables each party protected
+someone and no one was left behind)**; Q8 (Bram led by proposal at both GOAL tables; the lead changed hands at
+GOAL-T1). **Lost:** Q0 (strict leak; on the refined reading every remaining hit is the same public scene or the DM's
+stock phrase, none another player's private material), Q1, Q2, Q4, Q6. **Q3 lost as untestable:** no one lost a hit
+point at either DUNGEON table, so healing was never needed. **SAND-T1′** (the replay on the fixed harness, $47.99):
+the same three formed a group at round 6 and stayed together 11 rounds of 24, against 2 of 25 at SAND-T1 — part of
+SAND-T1's drift was the first harness's defects; verdicts unchanged with T1′ in T1's place. Two readings for the
+report, both from the six tables: **the sheet decided how much a player planned** (Pell, the rogue, fewest proposals
+at every table whoever played him); **the family decided how much a player wrote** (Sol and Astra ≤ a quarter of the
+words in every seat; the biggest talker always Opus, Fable or DeepSeek). GOAL-T2 finished its errand at round 25 with
+the party split; GOAL-T1 did not. DeepSeek ended 16 messages with «[Onward]» as a turn marker — each played, the press
+refused on screen as designed. SAND-T1′'s round 25 was refused by the app's data-integrity check («conflict», no
+retry) — 24 rounds and the after-questions stand. Spend OpenRouter $256.55 of $400, OpenAI $9.22 of $60.
