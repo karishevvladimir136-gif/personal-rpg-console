@@ -3222,3 +3222,12 @@ words in every seat; the biggest talker always Opus, Fable or DeepSeek). GOAL-T2
 the party split; GOAL-T1 did not. DeepSeek ended 16 messages with «[Onward]» as a turn marker — each played, the press
 refused on screen as designed. SAND-T1′'s round 25 was refused by the app's data-integrity check («conflict», no
 retry) — 24 rounds and the after-questions stand. Spend OpenRouter $256.55 of $400, OpenAI $9.22 of $60.
+
+## 2026-10-29 17:46 LA — the working formula after the night of 10-29 (the owner: «опа»)
+**Stable in what is valued; free in how it is reached; distinguishable in how much and how it is said.** Each line on
+its own instrument: what is valued — rerolls, slots, the companion, the villain, over 48 slots and four hands; how it
+is reached — roads and forks, every pair different including a model's own two; how much and how — codes per line and
+word shares, the family readable by blind judges. Against the owner's three layers of 10-27 (restraint → training;
+capability → class; direction → the model), the second and third moved: values → the class (shared); manner → the
+family (distinguishable); direction → free, and so far nobody's. The family was not where we looked for it — not in
+the choice, in the voice. Dated so that PARTY_2 can break it on the record.
