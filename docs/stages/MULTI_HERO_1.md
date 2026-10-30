@@ -92,3 +92,25 @@ again on the same table:
 Also recorded: three World Lab tests are flaky on the base branch (1 ms AbortSignal.timeout), out of scope; two tests
 need git history the clone lacks. PARTY_1's report on this branch carries the new title and its paragraph, now over all
 six tables; the party branch is still playing SAND-T1′ and the two merge after it ends.
+
+## Amendment 2026-10-29 18:10 LA — after the second dry run ($0.87 of $5): what is accepted, what is changed, what waits for a real DM
+The positional fix works (each seat first in 2 of 6 rounds; a simulated-table test holds it). A2, A4, A7 still lost on a
+6-round Haiku table with a Haiku DM. Decisions (the planner's; the owner may override):
+- **A2 — accepted as a measure, not as a bar for the dry run.** With position fixed, the remaining lean followed play
+  (Bram's player walked to the stranger; 45.9 / 23.9 / 30.2 % while writing the fewest words). Six rounds on Haiku
+  cannot tell a lean of content from a lean of frame. **A2 becomes a per-table report line in PARTY_2** (shares of DM
+  narration and «first in inputs»), and the stage's bar moves to where it can be read: over PARTY_2's twelve 15-round
+  tables, the hero-seat position (now rotating) must not predict the word share (the old 68/49/54 % must not recur by
+  position). The A1 line stays absolute: no «hero» in any DM input.
+- **A4 — Sonnet relay, with a second return pass and the copies logged as defects.** 19 copies → 14 screens returned →
+  5 left after one pass. Add one more pass (same marked-copies message, once more); whatever remains is logged per
+  table and reported beside the leak line. No third relay model. PARTY_2's stage says the relay is Sonnet and carries
+  the defect count.
+- **A7 — one more guide line, then read on the real DM.** The dry-run DM is Haiku; PARTY_2's DM is Opus 5.5, which
+  wrote the «Bram has not yet answered» lines in the first run but also closed DUNGEON-T2 cleanly. Add to the guide
+  note: a question put to one character by anyone — another player or a non-player character — does not hold the
+  round; the round ends on what was done, and an unanswered question is simply still open next round. A7 is then
+  scored on PARTY_2's first table (the S1-none control) by the round tag; if it fails there, PARTY_2 pauses after that
+  table and the line is rewritten before the paid comparison.
+No third dry run on Haiku: the remaining questions cannot be answered by it. PARTY_2's own dry run (S1-none on
+Haiku ×3, as its stage says) is the next paid step, after the owner's «да» and the top-up.

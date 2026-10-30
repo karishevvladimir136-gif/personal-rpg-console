@@ -3231,3 +3231,10 @@ word shares, the family readable by blind judges. Against the owner's three laye
 capability → class; direction → the model), the second and third moved: values → the class (shared); manner → the
 family (distinguishable); direction → free, and so far nobody's. The family was not where we looked for it — not in
 the choice, in the voice. Dated so that PARTY_2 can break it on the record.
+
+## 2026-10-29 18:10 LA — MULTI_HERO_1 second dry run: order fixed, three lines still lost; decided in the stage amendment
+Positional order verified (each seat first in 2 of 6; test). A2 lean now follows play (45.9 / 23.9 / 30.2 %, Bram's
+player fewest words) — becomes a per-table report line, bar read over PARTY_2's tables by position. A4: Sonnet relay,
+second return pass, copies logged (19 → 5 after one pass). A7: one more guide line (a question to one character, from
+a player or an NPC, does not hold the round), read on the real DM at PARTY_2's control table; pause there if it fails.
+No third Haiku dry run. $0.87 of $5.
