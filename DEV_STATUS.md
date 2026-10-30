@@ -1,10 +1,27 @@
 # Development status
 
 **Current milestone: multi-hero 1 — a table with no main character** (`docs/stages/MULTI_HERO_1.md` on
-origin/claude/handoff at 6f1c9fe, with its amendments A1–A8 and of 2026-10-29 02:30 LA: three fixes) — **the three
-fixes built and tested; the desert table dry-run again (Haiku ×3, relay on Sonnet 5.5); waiting for the owner's
-reading.** Branch `claude/multi-hero-1-mdk43v` (the stage's `claude/multi-hero-1`) from `origin/claude/game-party-1`.
-Nothing to `main`.
+origin/claude/handoff at ce2be81, with its amendments A1–A8, of 2026-10-29 02:30 LA: three fixes, and of 18:10 LA:
+the decisions) — **done; ready for PARTY_2 to branch from.** Branch `claude/multi-hero-1-mdk43v` (the stage's
+`claude/multi-hero-1`; PARTY_2's stage names `origin/claude/multi-hero-1`, which does not exist — branch from this one,
+or the owner asks for a copy under that name). From `origin/claude/game-party-1`. Nothing to `main`.
+
+- **The decisions of 2026-10-29 18:10 LA, applied (no third dry run, no paid call):**
+  - **A2 is a per-table measure.** `scripts/multi-hero-1/report.mjs` exports `perTableMeasures(run)`: the evenness of the
+    DM's narration (shares, «you» per screen, per round, the old bar shown), who comes first in the DM's inputs, and the
+    relay's copies left as defects. The stage's report prints it; PARTY_2 prints it per table. A2's row now reads
+    «measured».
+  - **A4: the Sonnet relay with a second return.** A screen that still copies after it was sent back goes back once
+    more (the same marked-copies message, the runs that remain marked); what remains after that is logged per table as
+    defects and printed (`relayReturns`: sent back, clean after one return, after the second, defects). No third model.
+  - **A7: the guide's line.** The company's guide note now also says: a question put to one character by anyone —
+    another player or a non-player character — does not hold the round; the round ends on what was done, and an
+    unanswered question is simply still open next round. The round tag is kept. (The bookkeeper never reads the guide,
+    by the app's design; every request of the narrating DM carries the line.)
+  - **Tests:** `tests/multi-hero-1.test.mjs` 11/11 and `tests/multi-hero-1-app.test.mjs` 10/10 — new: the second return
+    (accepted when clean, the same message again, never a third), the guide line in the note and in every narrating DM
+    request of a six-round mocked table, one seat clean on the second return and one logged as defects, the per-table
+    block in the report.
 
 - **The three fixes (the amendment of 2026-10-29 02:30 LA):**
   - **A2, no first place.** At a company table every list of the three the DM reads (the party's sheets, the current
@@ -77,8 +94,9 @@ Nothing to `main`.
 - **Known residues:** fight zones are still measured from the app's first record; a reward with no named recipient goes
   to it; the company rewrite covers the English instructions only; the wizard's own draft of the first record says
   «hero» (outside the mode). Fixed by the amendment: the first record no longer comes first in the DM's lists.
-- **Next:** the owner reads the second report and the screens and decides A2/A4/A7 (the lean that follows the story;
-  the relay's model for PARTY_2; the DM closing on one character's answer); PARTY_2 branches from here.
+- **Next:** PARTY_2 branches from here (the relay Sonnet 5.5 with its defect count; A2 printed per table; A7 read on
+  its first table, S1-none, on the real DM). Its own dry run is the next paid step, after the owner's «да» and the
+  top-up.
 
 ---
 

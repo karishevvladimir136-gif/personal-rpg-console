@@ -139,6 +139,40 @@ const APP_NOTE = `## What changed in the app, and what stayed
 
 **Stayed:** with the option off (the owner's campaign) every DM request is built and sent exactly as before (the same frame, the same toolset object, the same receipts), the table's two rerolls are counted as before, Inspiration is the hero's, the opening and the prep are asked as before; the screens, the wizard and the Russian instructions are untouched (the company rewrite is for the English instructions). The existing suite passes. Known residues of the one player record at a company table: the fight's zone words are still measured from it, a reward with no named recipient defaults to it, and the wizard's own draft of it (before the campaign exists) is the app's usual hero draft — none of them is text the DM reads in play.`;
 
+/** The relay's returns (fix A4 and the amendment of 2026-10-29 18:10 LA): how many copying screens went back, how many
+ * came back clean after one return and after two, and the defects left. */
+export function relayReturns(paraphrase) {
+  const resent = paraphrase?.resent ?? [];
+  const cleanAfter = (k) => resent.filter((x) => x.accepted && (x.perPass ?? [x.runsAfter]).length === k).length;
+  return { sent: resent.length, cleanFirst: cleanAfter(1), cleanSecond: cleanAfter(2), defects: (paraphrase?.defects ?? []).length };
+}
+
+/**
+ * The amendment of 2026-10-29 18:10 LA: the measures every company table prints (PARTY_2 prints them per table) — the
+ * evenness of the DM's narration and «you» per screen (A2, a measure, not a bar), who comes first in what the DM reads
+ * (fix A2), and the relay's copies left as defects (A4). Markdown lines; `run` is a table's run record (its `table`,
+ * `audit.firsts` when the run kept its DM inputs, `measures` or they are computed).
+ */
+export function perTableMeasures(run, { heading = "##" } = {}) {
+  const t = run.table ?? {};
+  const m = run.measures ?? measuresOf(run);
+  const firsts = run.audit?.firsts ?? null;
+  const playerWords = Object.values(t.counts?.words ?? {}).reduce((a, b) => a + b, 0);
+  const r = relayReturns(m.paraphrase);
+  return [`${heading} Evenness (A2: a per-table measure)`, "",
+    "| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |", "| --- | --- | --- | --- | --- | --- |",
+    ...CHARACTERS.map((c) => `| ${c.name} | ${m.narration.words[c.name] ?? 0} | ${pct(m.narration.shares[c.name])} | ${pct(m.you[c.name]?.mean)} | ${m.you[c.name]?.screens ?? 0} | ${t.counts?.words?.[c.name] ?? 0} (${pct(playerWords ? (t.counts?.words?.[c.name] ?? 0) / playerWords : null)}) |`),
+    `| (the world: about no character) | ${m.narration.words.world ?? 0} | — | — | — | — |`, "",
+    `Spread ${pct(m.narration.spread)}, largest ${pct(m.narration.max)} (the first dry run's bar, spread ≤ 10 points and none above 45 %: ${m.narration.a2 === null ? "not testable" : m.narration.a2 ? "within it" : "outside it"}). Per round (words about each): ${m.narration.perRound.map((x) => `r${x.n} ${CHARACTERS.map((c) => `${c.short} ${x[c.name]}`).join("/")}`).join(" · ")}.`, "",
+    ...(firsts ? [`${heading} Who comes first in what the DM reads (fix A2)`, "",
+      `Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. ${firsts.holds ? "Each seat came first in a third of the rounds, give or take one." : "Not a third each."}${firsts.opening ? ` The opening named ${firsts.opening} first (the coin's seat).` : ""}`, "",
+      "| Round | Order sent to the DM | DM inputs | First in them |", "| --- | --- | --- | --- |",
+      ...firsts.rounds.map((x) => `| ${x.n} | ${(m.orders.find((o) => o.n === x.n)?.scenes ?? []).map((sc) => sc.join(" → ")).join(" / ")} | ${x.inputs} | ${Object.entries(x.firsts).filter(([, k]) => k).map(([n, k]) => `${n.split(" ")[0]} ${k}`).join(", ") || "—"} |`), "",
+      `Per seat: ${CHARACTERS.map((c) => `${c.short} first in ${firsts.perSeat[c.name]?.rounds ?? 0} round(s), ${firsts.perSeat[c.name]?.inputs ?? 0} input(s) (${pct(firsts.perSeat[c.name]?.share)})`).join("; ")}.`, ""] : []),
+    `${heading} The relay's copies (A4)`, "",
+    `The relay: ${relayWho(run)}. Copies of 8 words from another player's message in its first pass: ${m.paraphrase.copiedFirst.length}; screens sent back alone, runs marked: ${r.sent} — clean after one return ${r.cleanFirst}, after the second ${r.cleanSecond}; **defects logged: ${r.defects}**.`, ""];
+}
+
 /** The stage's report from one run record. */
 export function reportMarkdown(run, { money = {}, spend = [], files = {} } = {}) {
   const t = run.table ?? {};
@@ -149,17 +183,17 @@ export function reportMarkdown(run, { money = {}, spend = [], files = {} } = {})
   const firsts = audit?.firsts ?? null;
   const firstLine = firsts ? `first in the DM's inputs (fix A2): ${CHARACTERS.map((c) => `${c.short} ${firsts.perSeat[c.name]?.rounds ?? 0} of ${firsts.rounds.length} rounds (${pct(firsts.perSeat[c.name]?.share)} of ${firsts.inputs.filter((x) => x.first).length} inputs)`).join(", ")} — ${firsts.holds ? "a third each, give or take one round" : "not a third each"}${firsts.opening ? `; the opening: ${firsts.opening.split(" ")[0]} (the coin's seat)` : ""}` : "";
   const resent = m.paraphrase.resent ?? [], defects = m.paraphrase.defects ?? [];
+  const returns = relayReturns(m.paraphrase);
   const rows = [
     ["A1", audit ? verdict(audit.holds) : "see the tests", audit ? `tests: no «hero» in any DM request of the mode on the mocked host (tests/multi-hero-1*.test.mjs). Dry run: ${audit.requests} DM requests read; the frame: ${audit.frame.length} hit(s); the story's own words: ${audit.story.length}; the wizard's draft of the first record (outside the mode): ${audit.wizard.length}; the app's checkers (not the DM): ${audit.checkers ?? 0}` : "tests only"],
-    ["A2", verdict(m.narration.a2), `shares ${CHARACTERS.map((c) => `${c.short} ${pct(m.narration.shares[c.name])}`).join(", ")}; spread ${pct(m.narration.spread)} (bar ≤ 10 points); largest ${pct(m.narration.max)} (bar ≤ 45 %)${firstLine ? `; ${firstLine}` : ""}`],
+    ["A2", "measured", `a per-table measure since the amendment of 2026-10-29 18:10 LA (its bar is read over PARTY_2's tables): shares ${CHARACTERS.map((c) => `${c.short} ${pct(m.narration.shares[c.name])}`).join(", ")}; spread ${pct(m.narration.spread)}; largest ${pct(m.narration.max)} (the first dry run's bar: ${m.narration.a2 ? "within it" : "outside it"})${firstLine ? `; ${firstLine}` : ""}`],
     ["A3", a3.holds === undefined ? "see the tests" : verdict(a3.holds), `${a3.tested ?? "tests: each seat earns and spends its own Inspiration, two rerolls per player, each journal only its own scenes."} Dry run: ${a3.line ?? "—"}`],
-    ["A4", verdict(m.paraphrase.holds), `the relay: ${relayWho(run)}; copies of 8 words in its first pass: ${m.paraphrase.copiedFirst.length}; ${run.label || resent.length || defects.length ? `screens sent back alone, runs marked: ${resent.length} (accepted ${resent.filter((x) => x.accepted).length}); defects logged: ${defects.length}` : `after the second ask: ${m.paraphrase.copiedFinal.length}`}; waiting lines: ${m.paraphrase.waiting.length ? m.paraphrase.waiting.map((w) => `r${w.round} ${w.name.split(" ")[0]}`).join(", ") : "none in the dry run (the skip is tested on the mocked host)"}`],
+    ["A4", verdict(m.paraphrase.holds), `the relay: ${relayWho(run)}; copies of 8 words in its first pass: ${m.paraphrase.copiedFirst.length}; ${run.label || resent.length || defects.length ? `screens sent back alone, runs marked: ${returns.sent} (clean after one return ${returns.cleanFirst}, after the second ${returns.cleanSecond}); defects logged: ${returns.defects}` : `after the second ask: ${m.paraphrase.copiedFinal.length}`}; waiting lines: ${m.paraphrase.waiting.length ? m.paraphrase.waiting.map((w) => `r${w.round} ${w.name.split(" ")[0]}`).join(", ") : "none in the dry run (the skip is tested on the mocked host)"}`],
     ["A5", run.a5 ? verdict(run.a5.holds) : "see the suite", run.a5?.line ?? "the existing suite and the owner-path smoke (tests/multi-hero-1-app.test.mjs, «A5»)"],
     ["A6", run.a6 ? verdict(run.a6.holds) : "see the tests", run.a6?.line ?? "tested on the mocked host from each seat in turn (tests/multi-hero-1.test.mjs «A6»)"],
     ["A7", verdict(m.a7.holds), `the guide's note says it (a test); rounds tagged ${m.a7.rounds.length}; a round waiting on one character: ${m.a7.waits.length ? m.a7.waits.map((r) => `r${r.n} ${r.waits}`).join(", ") : "none"}; the same single character addressed every round: ${m.a7.sameAlone ? "yes" : "no"}`],
     ["A8", a8.holds === undefined ? "not read" : verdict(a8.holds), Object.entries(a8.layers ?? {}).map(([arm, x]) => `P-${arm}: ${x.reading.total} item(s) — ${CHARACTERS.map((c) => `${c.short} ${x.reading.per[c.name]}`).join(", ")}${x.reading.all ? `, all three ${x.reading.all}` : ""}; threads touching each one's hooks ${CHARACTERS.map((c) => `${c.short} ${x.reading.touched[c.name]}`).join(", ")}; the DM's own list ${CHARACTERS.map((c) => `${c.short} ${x.dm.per[c.name]}`).join(", ")}`).join(" · ") || "—"],
   ];
-  const playerWords = Object.values(t.counts?.words ?? {}).reduce((a, b) => a + b, 0);
   const norm = (text) => String(text ?? "").toLowerCase().replace(/[’‘]/g, "'").split(/[^\p{L}\p{N}']+/u).filter(Boolean).join(" ");
   const narrationOf = (n) => norm((t.rounds?.[n - 1]?.scenes ?? []).map((sc) => sc.narration ?? "").join(" "));
   const viaNarration = m.paraphrase.copiedFinal.filter((h) => narrationOf(h.round).includes(h.run)).length;
@@ -174,16 +208,7 @@ export function reportMarkdown(run, { money = {}, spend = [], files = {} } = {})
     "## Acceptance (the stage's text)", "", ACCEPTANCE, "",
     "## A1–A8", "", "| | Verdict | By the record |", "| --- | --- | --- |", ...rows.map(([k, v, why]) => `| ${k} | ${v} | ${why} |`), "",
     "How each line is read: `READINGS` in `scripts/multi-hero-1/frozen.mjs`.", "",
-    "## Evenness (A2, built in — reported every table from here on)", "",
-    "| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |", "| --- | --- | --- | --- | --- | --- |",
-    ...CHARACTERS.map((c) => `| ${c.name} | ${m.narration.words[c.name] ?? 0} | ${pct(m.narration.shares[c.name])} | ${pct(m.you[c.name]?.mean)} | ${m.you[c.name]?.screens ?? 0} | ${t.counts?.words?.[c.name] ?? 0} (${pct(playerWords ? (t.counts?.words?.[c.name] ?? 0) / playerWords : null)}) |`),
-    `| (the world: about no character) | ${m.narration.words.world ?? 0} | — | — | — | — |`, "",
-    `Per round (words about each): ${m.narration.perRound.map((r) => `r${r.n} ${CHARACTERS.map((c) => `${c.short} ${r[c.name]}`).join("/")}`).join(" · ")}.`, "",
-    ...(firsts ? ["## Who comes first in what the DM reads (fix A2)", "",
-      `Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. ${firsts.holds ? "Each seat came first in a third of the rounds, give or take one." : "Not a third each."}${firsts.opening ? ` The opening named ${firsts.opening} first (the coin's seat).` : ""}`, "",
-      "| Round | Order sent to the DM | DM inputs | First in them |", "| --- | --- | --- | --- |",
-      ...firsts.rounds.map((r) => `| ${r.n} | ${(m.orders.find((o) => o.n === r.n)?.scenes ?? []).map((sc) => sc.join(" → ")).join(" / ")} | ${r.inputs} | ${Object.entries(r.firsts).filter(([, k]) => k).map(([n, k]) => `${n.split(" ")[0]} ${k}`).join(", ") || "—"} |`), "",
-      `Per seat: ${CHARACTERS.map((c) => `${c.short} first in ${firsts.perSeat[c.name]?.rounds ?? 0} round(s), ${firsts.perSeat[c.name]?.inputs ?? 0} input(s) (${pct(firsts.perSeat[c.name]?.share)})`).join("; ")}.`, ""] : []),
+    ...perTableMeasures({ ...run, measures: m }),
     "## Initiative (A7): the order sent to the DM and whom its call for action addressed, by the round tags", "",
     "| Round | Order sent to the DM | Addressed | Waits on one character |", "| --- | --- | --- | --- |",
     ...m.orders.map((o) => { const tag = m.a7.rounds.find((r) => r.n === o.n); return `| ${o.n} | ${o.scenes.map((s) => s.join(" → ")).join(" / ")} | ${tag ? tag.addressed.map((n) => n.split(" ")[0]).join(", ") || "—" : "not tagged"} | ${tag?.waits ?? "—"} |`; }), "",
@@ -192,9 +217,9 @@ export function reportMarkdown(run, { money = {}, spend = [], files = {} } = {})
     "## Neutral prep (A8): the frozen company layers", "",
     ...Object.entries(a8.layers ?? {}).flatMap(([arm, x]) => [`- **P-${arm}** — sha256 \`${x.sha256}\`: the blind reading lists ${x.reading.total} puzzles, threats and rewards (${CHARACTERS.map((c) => `${c.short} ${x.reading.per[c.name]}`).join(", ")}${x.reading.all ? `, all three ${x.reading.all}` : ""}); every character at least one and none more than half: ${x.reading.distributed ? "yes" : "no"}; threads touching each one's hooks: ${CHARACTERS.map((c) => `${c.short} ${x.reading.touched[c.name]}`).join(", ")}. The DM's own list: ${CHARACTERS.map((c) => `${c.short} ${x.dm.per[c.name]}`).join(", ")} of ${x.dm.total}.`]), "",
     "## The paraphrase (A4)", "",
-    `The relay: ${relayWho(run)}.${resent.length || second ? ` Fix A4: after its pass, each screen that copied a run of 8 words from another player's message was sent back once, alone, with the runs marked — ${resent.length} screen(s), ${resent.filter((x) => x.accepted).length} accepted clean; ${defects.length} defect(s) logged.` : ""}`, "",
+    `The relay: ${relayWho(run)}.${resent.length || second ? ` Fix A4: after its pass, each screen that copied a run of 8 words from another player's message was sent back alone, with the runs marked${resent.some((x) => (x.perPass ?? []).length > 1) || !second ? " — once, and once more while runs remained (the amendment of 2026-10-29 18:10 LA)" : " once"}: ${returns.sent} screen(s), clean after one return ${returns.cleanFirst}, after the second ${returns.cleanSecond}; ${returns.defects} defect(s) logged.` : ""}`, "",
     ...(m.paraphrase.copiedFinal.length ? [`Of the ${m.paraphrase.copiedFinal.length} copy(-ies) still on the screens that went out, ${viaNarration ? `${viaNarration} came through the DM's own narration (which repeated the player's words) and the rest are the relay's own` : "none came through the DM's own narration: all are the relay's own"}.`, ""] : []),
-    ...(m.paraphrase.copiedFirst.length ? m.paraphrase.copiedFirst.map((h) => `- r${h.round}: ${h.screen}'s screen copied ${h.from}'s words in the relay's first pass: «${h.run}»${m.paraphrase.copiedFinal.some((x) => x.round === h.round && x.screen === h.screen && x.from === h.from) ? (second || resent.length ? " — still there after it was sent back: a defect" : " — still there after the second ask") : (second || resent.length ? " — retold when sent back" : " — retold on the second ask")}`) : ["- No screen copied a run of 8 words from another player's message."]), "",
+    ...(m.paraphrase.copiedFirst.length ? m.paraphrase.copiedFirst.map((h) => `- r${h.round}: ${h.screen}'s screen copied ${h.from}'s words in the relay's first pass: «${h.run}»${m.paraphrase.copiedFinal.some((x) => x.round === h.round && x.screen === h.screen && x.from === h.from) ? (second || resent.length ? " — still there after it was sent back: a defect" : " — still there after the second ask") : (second || resent.length ? (resent.find((x) => x.round === h.round && x.screen === h.screen)?.perPass?.length > 1 ? " — retold on the second return" : " — retold when sent back") : " — retold on the second ask")}`) : ["- No screen copied a run of 8 words from another player's message."]), "",
     ...(audit?.frame?.length ? ["## A1 in the dry run: «hero» in the frame", "", ...audit.frame.map((h) => `- ${h.purpose}: «…${h.around}…»`), ""] : []),
     ...(audit?.story?.length ? ["## «hero» in the story's own words (not the frame; listed)", "", ...audit.story.slice(0, 20).map((h) => `- ${h.purpose}: «…${h.around}…»`), ""] : []),
     "## The table", "",

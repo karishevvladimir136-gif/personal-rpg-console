@@ -6,7 +6,8 @@
 // asked (A4), one walks off and its scene's journal is its own (A3), and no DM request says «hero» (A1). The amendment of
 // 2026-10-29 02:30 LA: fix A2 (no first place: a six-round table where each seat comes first in a third of the DM's
 // inputs), fix A7 (the guide's line on unanswered questions), fix A4 (a copying screen sent back alone, its runs marked;
-// a copy that remains is a defect).
+// a copy that remains is a defect). The amendment of 2026-10-29 18:10 LA: a second return; the guide's line on a question
+// put to one character by anyone; A2 printed per table as a measure.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -21,6 +22,7 @@ const table = await import("../scripts/multi-hero-1/table.mjs");
 const measure = await import("../scripts/multi-hero-1/measure.mjs");
 const judges = await import("../scripts/multi-hero-1/judges.mjs");
 const run = await import("../scripts/multi-hero-1/run.mjs");
+const report2 = await import("../scripts/multi-hero-1/report.mjs");
 const gp1 = await import("../scripts/game-player-1/frozen.mjs");
 const heroDraft = await import("../src/lib/adventures/hero-draft.ts");
 const HERO = /\bhero\b/i;
@@ -73,6 +75,9 @@ test("A7: the guide's note says the company moves when any character acts and th
   assert.match(frozen.COMPANY_NOTE, /each holds their own Heroic Inspiration, and each player has their own two allowed rerolls/);
   // Fix A7: one more line, in the DM's own terms.
   assert.match(frozen.COMPANY_NOTE, /A question one character leaves unanswered is not a pause: when one character asks another something and no answer comes this round, the world's time passes all the same and the scene moves on with whoever acts; the answer can come in a later round, or never — so never close a round on a character owing the others an answer\./);
+  // The amendment of 2026-10-29 18:10 LA: anyone's question to one character, a non-player character's too.
+  assert.match(frozen.COMPANY_NOTE, /A question put to one character by anyone — another player or a non-player character — does not hold the round either: the round ends on what was done, and an unanswered question is simply still open next round\./);
+  assert.ok(frozen.companyFiles().guide.endsWith(frozen.COMPANY_NOTE), "the DM's guide carries it");
 });
 
 test("A3: three records alike — each sheet carries Heroic Inspiration 0/1 and passes the app's own review checks", () => {
@@ -122,13 +127,27 @@ test("A4: the relay is asked to retell, in the round's order, and to say who wai
   assert.match(asked[1], /You wrote the screen below for Pell Dunmore\. Each part between ⟦ and ⟧ copies another player's own words[\s\S]*<<<\nBram says: ⟦Long road behind me/);
   assert.doesNotMatch(asked[1], /Write the screen below for Sefa/);
   assert.deepEqual([r.copied.length, r.copiedAfter.length, r.defects.length, r.retold], [1, 0, 0, true]);
-  assert.deepEqual(r.resent, [{ screen: "Pell Dunmore", runsBefore: 8, runsAfter: 0, accepted: true, unreadable: false }]);
+  assert.deepEqual(r.resent, [{ screen: "Pell Dunmore", runsBefore: 8, perPass: [0], runsAfter: 0, passes: 1, accepted: true, unreadable: false }]);
   assert.equal(r.screens["Pell Dunmore"], "Bram says the road ahead is longer than the one behind him.");
   assert.equal(r.screens["Sefa Marrin"], "Sefa sleeps on.");
-  // A second answer that still copies: not accepted — the copy is logged as a defect (the screen that copies less goes out).
+  // The amendment of 2026-10-29 18:10 LA: an answer that still copies goes back once more — the same message, the runs
+  // that remain marked; clean then, it is accepted.
+  asked.length = 0;
+  let returns = 0;
+  const twice = await relayMod.relay({ ask: async ({ user }) => { asked.push(user);
+    if (/^You wrote the screen below for Pell Dunmore\./m.test(user)) return { text: JSON.stringify({ screen: ++returns === 1 ? `Bram tells you: ${speech}` : "Bram says there is a longer road ahead of him." }) };
+    return { text: JSON.stringify({ screens: { "Pell Dunmore": `Bram says: ${speech}` }, together: [NAMES] }) }; }, names: NAMES, scene: NAMES, forNames: ["Pell Dunmore"], messages, narration: "x", purpose: "t" });
+  assert.equal(asked.length, 3, "one pass, two returns");
+  assert.equal(asked[2].replace(/<<<[\s\S]*$/, ""), asked[1].replace(/<<<[\s\S]*$/, ""), "the same message again");
+  assert.match(asked[2], /<<<\nBram tells you: ⟦Long road behind me/, "the copy that remained, marked");
+  assert.deepEqual(twice.resent, [{ screen: "Pell Dunmore", runsBefore: 8, perPass: [8, 0], runsAfter: 0, passes: 2, accepted: true, unreadable: false }]);
+  assert.deepEqual([twice.defects.length, twice.retold, twice.screens["Pell Dunmore"]], [0, true, "Bram says there is a longer road ahead of him."]);
+  // Still copying after the second return: not accepted — the copy is logged as a defect (the screen that copies least
+  // goes out); never a third return.
   asked.length = 0;
   const stubborn = await relayMod.relay({ ask: ask(`Bram tells you: ${speech}`), names: NAMES, scene: NAMES, forNames: ["Pell Dunmore"], messages, narration: "x", purpose: "t" });
-  assert.deepEqual([stubborn.resent[0].accepted, stubborn.defects.length, stubborn.defects[0].from, stubborn.defects[0].runs], [false, 1, "Bram Halloway", 8]);
+  assert.equal(asked.length, 3, "two returns, no third");
+  assert.deepEqual([stubborn.resent[0].accepted, stubborn.resent[0].passes, stubborn.defects.length, stubborn.defects[0].from, stubborn.defects[0].runs], [false, 2, 1, "Bram Halloway", 8]);
   assert.equal(stubborn.retold, false);
   // A paraphrase check over the record holds only with no defect.
   const rec = (relay) => ({ table: { rounds: [{ n: 1, scenes: [{ relay, messages: [] }] }] } });
@@ -243,7 +262,7 @@ test("A1–A8 on the app with the mocked host: eight rounds, each seat in turn",
   for (const x of Object.values(r.a8.layers)) assert.deepEqual(x.dm.per, { "Bram Halloway": 1, "Sefa Marrin": 1, "Pell Dunmore": 2 }, "the DM's own list kept in the layer");
   // The pages.
   const report = readFileSync(join(dir, "multi-hero-1-report.md"), "utf8");
-  assert.match(report, /\| A2 \| \*\*(held|lost)\*\* \|/);
+  assert.match(report, /\| A2 \| measured \| a per-table measure since the amendment of 2026-10-29 18:10 LA/);
   assert.match(readFileSync(join(dir, "multi-hero-1-rounds.html"), "utf8"), /Order sent to the DM: Sefa → Pell → Bram/);
 });
 
@@ -253,9 +272,16 @@ test("fix A2 on the app with the mocked host: a six-round table from coin 2 — 
     import { dryRun, DRY_SCRIPT } from ${JSON.stringify(new URL("../scripts/multi-hero-1/run.mjs", import.meta.url).href)};
     import { companyScripted } from ${JSON.stringify(new URL("../scripts/multi-hero-1/scripted.mjs", import.meta.url).href)};
     import { writeFileSync } from "node:fs";
-    const host = companyScripted({ script: DRY_SCRIPT, stubborn: ["Sefa Marrin"] });
-    const r = await dryRun({ dry: true, rounds: 6, fetcher: host, log: () => {}, out: ${JSON.stringify(dir)}, coin: 2 });
-    writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify(r));
+    const host = companyScripted({ script: DRY_SCRIPT, stubborn: ["Sefa Marrin"], stubbornOnce: ["Pell Dunmore"] });
+    const LINE = "A question put to one character by anyone — another player or a non-player character — does not hold the round either";
+    const seen = { dm: 0, withLine: 0 };
+    const fetcher = async (url, init = {}) => {
+      try { const b = JSON.parse(String(init.body)); const sys = Array.isArray(b.system) ? b.system.map((x) => x.text ?? "").join("\\n") : "";
+        if (/^You are the game master of a private, long-running/.test(sys)) { seen.dm++; if (sys.includes(LINE)) seen.withLine++; } } catch {}
+      return host(url, init);
+    };
+    const r = await dryRun({ dry: true, rounds: 6, fetcher, log: () => {}, out: ${JSON.stringify(dir)}, coin: 2 });
+    writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify({ ...r, seen }));
     process.exit(0);`;
   execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", code], { cwd: new URL("..", import.meta.url), encoding: "utf8", stdio: ["ignore", "ignore", "pipe"],
     env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", APP_OPENROUTER_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "", OPENROUTER_API_KEY: "" }, maxBuffer: 256 * 1024 * 1024 });
@@ -276,13 +302,28 @@ test("fix A2 on the app with the mocked host: a six-round table from coin 2 — 
   assert.deepEqual(f.rounds.map((round) => round.first.split(" ")[0]), ["Pell", "Bram", "Sefa", "Pell", "Bram", "Sefa"]);
   assert.equal(f.holds, true);
   assert.deepEqual(r.audit.frame, [], "and no «hero» in the frame");
-  // Fix A4 end to end: Sefa's screens kept their copies when sent back — each a defect, and A4 lost.
-  assert.ok(r.measures.paraphrase.defects.length > 0 && r.measures.paraphrase.defects.every((d) => d.screen === "Sefa Marrin"));
-  assert.equal(r.measures.paraphrase.holds, false);
+  // The guide's line (the amendment of 2026-10-29 18:10 LA) reaches every request of the narrating DM (its turns and
+  // out-of-game answers; the bookkeeper records and never reads the guide).
+  assert.ok(r.seen.dm > 0);
+  assert.equal(r.seen.withLine, r.seen.dm);
+  // Fix A4 end to end, with the second return: Pell's screens copied on the first return and came back clean on the
+  // second; Sefa's kept their copies through both — each a defect, logged, and A4 lost.
+  const paraphrase = r.measures.paraphrase;
+  const pell = paraphrase.resent.filter((x) => x.screen === "Pell Dunmore"), sefa = paraphrase.resent.filter((x) => x.screen === "Sefa Marrin");
+  assert.ok(pell.length > 0 && pell.every((x) => x.accepted && x.passes === 2), JSON.stringify(pell));
+  assert.ok(sefa.length > 0 && sefa.every((x) => !x.accepted && x.passes === 2), JSON.stringify(sefa));
+  assert.ok(paraphrase.defects.length > 0 && paraphrase.defects.every((d) => d.screen === "Sefa Marrin"));
+  assert.equal(paraphrase.holds, false);
   const report = readFileSync(join(dir, "multi-hero-1-report.md"), "utf8");
   assert.match(report, /## Who comes first in what the DM reads \(fix A2\)/);
   assert.match(report, /Each seat came first in a third of the rounds, give or take one\. The opening named Pell Dunmore first/);
-  assert.match(report, /\| A4 \| \*\*lost\*\* \| the relay: the scripted relay; copies of 8 words in its first pass: \d+; screens sent back alone, runs marked: \d+ \(accepted \d+\); defects logged: [1-9]/);
+  assert.match(report, /\| A4 \| \*\*lost\*\* \| the relay: the scripted relay; copies of 8 words in its first pass: \d+; screens sent back alone, runs marked: \d+ \(clean after one return \d+, after the second [1-9]\d*\); defects logged: [1-9]/);
+  // The per-table block (PARTY_2 prints it per table): evenness, first in inputs, the relay's defects.
+  const block = report2.perTableMeasures(r).join("\n");
+  assert.match(block, /## Evenness \(A2: a per-table measure\)/);
+  assert.match(block, /## Who comes first in what the DM reads \(fix A2\)[\s\S]*Per seat: Bram first in 2 round\(s\)/);
+  assert.match(block, new RegExp(`\\*\\*defects logged: ${paraphrase.defects.length}\\*\\*`));
+  assert.ok(report.includes(block), "the report prints the same block");
 });
 
 test("the run's audit: a request's kind by its own text", () => {

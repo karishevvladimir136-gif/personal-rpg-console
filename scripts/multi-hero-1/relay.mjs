@@ -3,10 +3,11 @@
 // is waiting (asleep, unconscious, or waiting for something named) at the end of the scene, so that character is not
 // asked the next round. Fix A4 (the amendment of 2026-10-29 02:30 LA): after the relay's pass, a screen that copies a run of
 // 8 words from another player's message of the round is sent back once, alone, with the runs marked; it is accepted only
-// when no run remains, else the copy is logged as a defect (before the screens reach anyone).
+// when no run remains; the amendment of 2026-10-29 18:10 LA: a screen that still copies goes back once more, and what
+// remains after that second pass is logged as a defect (before the screens reach anyone).
 import { jsonIn } from "../game-player-1/welfare.mjs";
 import { mergeGroups, roundGroups } from "../game-party-1/relay.mjs";
-import { RELAY, RELAY_MARKS, RELAY_RESEND, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
+import { RELAY, RELAY_MARKS, RELAY_PASSES, RELAY_RESEND, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
 
 export { mergeGroups, roundGroups };
 const block = (text) => `<<<\n${String(text ?? "").trim()}\n>>>`;
@@ -102,9 +103,11 @@ const screenOf = (text) => { const v = jsonIn(text); return v && typeof v.screen
 
 /**
  * One relay: asked once, again on an unreadable reply (never after a refusal); then fix A4's check — each screen that
- * copies a player's words is sent back once, alone, with its runs marked, and accepted only when no run remains (else
- * the screen that copies less goes out and the copy is logged as a defect). Returns { screens, together, places,
- * waiting, missing, extra, attempts, fallback, copied, copiedAfter, resent, defects, retold, … }.
+ * copies a player's words is sent back alone, with its runs marked, up to `RELAY_PASSES` times (the same message each
+ * time, the runs that remain marked), and accepted only when no run remains (else the screen that copies least goes out
+ * and the copy is logged as a defect). Returns { screens, together, places, waiting, missing, extra, attempts, fallback,
+ * copied, copiedAfter, resent: [{ screen, runsBefore, perPass, runsAfter, passes, accepted, unreadable }], defects,
+ * retold, … }.
  */
 export async function relay({ ask, names, scene, forNames, messages = [], narration, already, opening = false, purpose }) {
   const request = relayRequest({ names, scene, forNames, messages, narration, already, opening });
@@ -121,22 +124,29 @@ export async function relay({ ask, names, scene, forNames, messages = [], narrat
   const copied = copiedRuns(parsed.screens, messages);
   const screens = { ...parsed.screens };
   const resent = [], defects = [];
-  // Fix A4: each copying screen, alone, once, with its runs marked.
+  // Fix A4: each copying screen, alone, with its runs marked — once, and once more while runs remain (18:10).
   for (const name of forNames) {
     const before = runsIn(screens[name], name, messages);
     if (!before.length) continue;
-    const marked = markRuns(screens[name], before.map((h) => h.run));
-    const second = await ask({ model: RELAY.model, system: request.system, user: `${request.user}\n\n${RELAY_RESEND(name)}\n\n<<<\n${marked}\n>>>`, maxTokens: RELAY.maxTokens, effort: RELAY.effort, purpose: `${purpose} (${name.split(" ")[0]}'s screen, retold)` });
-    attempts++;
-    if (second.notSent) return { notSent: true, error: second.error ?? "not sent", attempts, request };
-    const again = second.error || second.stopReason === "refusal" ? null : screenOf(second.text);
-    const after = again === null ? before : runsIn(again, name, messages);
-    const accepted = again !== null && after.length === 0;
-    // Accepted only when no run remains; else the screen that copies less goes out and what remains is a defect.
-    if (again !== null && after.length <= before.length) screens[name] = again;
+    let current = before, unreadable = false;
+    const perPass = [];
+    while (current.length && perPass.length < RELAY_PASSES) {
+      const marked = markRuns(screens[name], current.map((h) => h.run));
+      const answer = await ask({ model: RELAY.model, system: request.system, user: `${request.user}\n\n${RELAY_RESEND(name)}\n\n<<<\n${marked}\n>>>`, maxTokens: RELAY.maxTokens, effort: RELAY.effort,
+        purpose: `${purpose} (${name.split(" ")[0]}'s screen, retold${perPass.length ? `, pass ${perPass.length + 1}` : ""})` });
+      attempts++;
+      if (answer.notSent) return { notSent: true, error: answer.error ?? "not sent", attempts, request };
+      const again = answer.error || answer.stopReason === "refusal" ? null : screenOf(answer.text);
+      if (again === null) { unreadable = true; perPass.push(null); continue; }
+      const runs = runsIn(again, name, messages);
+      perPass.push(runs.length);
+      // The screen that copies least goes out.
+      if (runs.length <= current.length) { screens[name] = again; current = runs; }
+    }
+    const accepted = current.length === 0;
     // A defect per copied message (as `copiedRuns` counts), with how many runs of it remain.
-    const kept = accepted ? [] : copiedRuns({ [name]: screens[name] }, messages).map((h) => ({ ...h, runs: runsIn(screens[name], name, messages).filter((x) => x.from === h.from).length }));
-    resent.push({ screen: name, runsBefore: before.length, runsAfter: again === null ? null : after.length, accepted, unreadable: again === null });
+    const kept = accepted ? [] : copiedRuns({ [name]: screens[name] }, messages).map((h) => ({ ...h, runs: current.filter((x) => x.from === h.from).length }));
+    resent.push({ screen: name, runsBefore: before.length, perPass, runsAfter: current.length, passes: perPass.length, accepted, unreadable });
     defects.push(...kept);
   }
   return { ...parsed, screens, attempts, fallback: false, copied, copiedAfter: copiedRuns(screens, messages), resent, defects, retold: resent.some((r) => r.accepted), request };
