@@ -1,5 +1,54 @@
 # Development status
 
+**Current milestone: Game player combat 2 — the same fight, frozen** (`docs/stages/GAME_PLAYER_COMBAT_2.md`,
+`claude/handoff` at `9fd207df`).
+
+**Status:** three of four sessions played and reported. **Sol is pending — not started under the cap.** The $95 OpenRouter
+cap had $19.90 left against Sol's $25.15 projection, and the owner held Sol on 2026-10-30 until the shared account is
+topped up. Implementation is complete for the three; the stage is not finished and not yet owner-approved. Report:
+`docs/runs/game-player-combat-2-report.md`; transcripts: `docs/runs/game-player-combat-2-transcripts/`. Branch
+`claude/game-player-combat-2` from `origin/claude/game-player-combat-1-pb8k1t`. Nothing went to `main`.
+
+- **The freeze (SAME_WORLD_1's mechanism on the Coast Way):**
+  - The campaign was made once; the database snapshot was taken before the DM's preparation, and the preparation was run once.
+  - The DM-only layer was then amended once on the owner's word: one paragraph covering the first orc's death, withdrawal
+    and surrender. Layer sha256 `570c08de…` → `1bbfcae3…`; the first version is kept as `CW-dm-only-v1`.
+  - The snapshot is unchanged. Every session's opening screen is byte-identical (`d32da00e…`), and the captive is the
+    same in all of them (Odo Fennick).
+- **Harness (`scripts/game-player-combat-2`, plus opt-in options in the shared `scripts/game-player-1`; other stages'
+  defaults unchanged):**
+  - The frozen-world hooks.
+  - Welfare ask-don't-cut: on a flag, one line on the next page; never cut.
+  - The three after-questions.
+  - The narrowed end rule (SAME_WORLD_1's).
+  - No retries after a refusal.
+  - The fork strip, the captive and goods judge, the note's goods line, G0–G5.
+  - Tests: `tests/game-player-combat-2.test.mjs`.
+- **Result so far:**
+  - Opus, Fable and Astra all parleyed (t8, t11, t11), with no attack. Odo was ransomed each time; the band's goods were
+    left (Opus, Fable) or returned to Odo (Astra).
+  - In COMBAT_1, on fresh layers, the same players split: two parleys after ambushes, two stealth withdrawals.
+  - G0 holds and G2 is lost (Opus did not fight). G1, G3, G4 and G5 are not testable until Sol.
+- **Run incidents:** CW-opus's first attempt was cut at t13 by game player 1's end rule, which read an out-of-game aside
+  as the player leaving. It was fixed with SAME_WORLD_1's narrowed rule plus a regression test, and Opus played again
+  from the same frozen world; the cut attempt cost $9.00. Three provider errors and two rate-limit waits each cleared
+  on one retry.
+- **Money:** OpenRouter $76.71 of $95; OpenAI $1.07 of $15.
+- **Checks:** typecheck pass; zero-warning lint pass; production build pass. Full suite (`pnpm test`), first run: 3 059 tests · 3 028 pass · 1 fail · 3 cancelled · 27 skipped. The fail was this stage's end-to-end test needing type transforms under plain `node --test`; it is fixed and now passes both ways. The 3 cancelled are the pre-existing d2a ones below. A fresh full run on the final code is in progress; its numbers replace this line.
+- **Known issues:**
+  - `tests/d2a-composition.test.mjs` has 3 tests cancelled («Promise resolution is still pending…»). It is the same at
+    the base commit `c5709f51`, so it predates this stage; `src` is unchanged by it.
+  - The shared end rule's default for older stages is untouched; only this stage uses the narrowed rule.
+- **Resume on «cap $115, play Sol»:**
+  1. In `scripts/game-player-combat-2/frozen.mjs`, set `CAPS.openrouter` to 115 and add one line to `AMENDMENTS`.
+  2. Run `NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/game-player-combat-2/run.mjs --drive --from CW-sol --until CW-sol`.
+     This does the spend check before and after, and plays Sol from the same frozen world and opening.
+  3. Run `… run.mjs --report`, which rebuilds the report over four.
+  4. Write the `docs/RESEARCH_LOG.md` paragraph and update this section.
+- **Recommended next step:** the owner tops up the account and writes «cap $115, play Sol».
+
+---
+
 **Current milestone: Game player combat 1 — a hard, honest fight on the Coast Way** (`docs/stages/GAME_PLAYER_COMBAT_1.md`,
 amended 2026-10-26, from `claude/handoff` at `e9d2fc8b`).
 
