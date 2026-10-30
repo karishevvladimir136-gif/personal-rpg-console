@@ -672,7 +672,7 @@ test("a reroll the server refuses (CW-fable t7: the companion's Stealth card) is
 // card is not a press and not «stuck» — the text goes to the DM as the player's proposal, never the world's fact (11h),
 // and the card is shown once more with one line saying what it waits for. On group 2's own messages, verbatim.
 const DEEPSEEK = JSON.parse(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), "../test-fixtures/fix-s4-11w2/deepseek-at-card.json"), "utf8"));
-const PROPOSAL = /^\(At the roll card the player wrote this in character, [^)]*It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide\.\)\n\n/;
+const PROPOSAL = /^\(At the roll card the player wrote this in character, [^)]*It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide\.(?: [^)\n]*)?\)\n\n/;
 const kindOf = (p) => p.button ?? (p.prose ? "prose" : p.question ? "?" : p.swallowed ? "swallowed" : "moot");
 
 test("11w″ in the harness: B-deepseek-1's turn-11 messages at the Religion card — relayed to the DM as the player's proposal, the card shown again, never «stuck»", async () => {

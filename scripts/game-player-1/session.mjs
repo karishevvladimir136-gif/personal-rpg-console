@@ -15,7 +15,7 @@ import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
-import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, cardWaitsLine, changesText, isProse, openingText, outOfGame, pressedButton, pressWithText, proseAtCard, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
+import { BUTTONS, CARD_WAIT_LINES, afterShown, atCardQuestion, buttonsLine, cardText, cardTitle, cardWaitsLine, changesText, isProse, openingText, outOfGame, pressedButton, pressWithText, proseAtCard, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
 import { endsSession } from "./ending.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
@@ -172,6 +172,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const waiting = live.find((check) => check.interactive && !revealed.has(shownKey(check)));
       const rerollable = waiting ? [] : rerollableCards(current);
       const offered = waiting ? [BUTTONS.roll] : [BUTTONS.onward];
+      // Play fixes 1, item 7: what the card waits for, on every note the DM gets from the player at it (never the die).
+      const wait = CARD_WAIT_LINES[waiting ? "roll" : "decide"];
       const buttons = [...offered, ...rerollable.map(rerollButton)];
       const rerolls = rerollsNow(current);
       const withdrawn = (current.checks ?? []).filter((check) => check.withdrawn && !seenWithdrawn.has(check.id));
@@ -240,7 +242,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         if (both) {
           // FIX_S4 11w″: text beside the press that is not marked out of game is in-character — the player's proposal.
           const inCharacter = !outOfGame(both.rest);
-          const question = inCharacter ? proseAtCard(both.rest, both.press) : both.rest.replace(/^[\s«"'“]*\?+\s*/, "");
+          const question = inCharacter ? proseAtCard(both.rest, both.press, wait) : atCardQuestion(both.rest.replace(/^[\s«"'“]*\?+\s*/, ""), wait);
           const { input: asked, turn: answer } = await submit(question, "ooc", `dm t${k} card ${inCharacter ? "prose" : "ooc"} (with a press)`);
           const entry = { text: both.rest, button: null, ...(inCharacter ? { prose: true } : { question: true }), withPress: both.press, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
           if (inCharacter) { turn.prose = (turn.prose ?? 0) + 1; record.proseAtCard++; }
@@ -260,7 +262,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       // Fix S4 run 1 (item 11b): «?» goes through while the card waits — an out-of-game turn; the card keeps waiting
       // (the DM may withdraw it), and the screen shows the DM's answer above the card.
       if (isQuestion(pressed)) {
-        const question = pressed.trim().replace(/^[\s«"'“]*\?+\s*/, "");
+        const question = atCardQuestion(pressed.trim().replace(/^[\s«"'“]*\?+\s*/, ""), wait);
         const { input: asked, turn: answer } = await submit(question, "ooc", `dm t${k} card ooc`);
         const entry = { text: pressed, button: null, question: true, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
         turn.presses.push(entry);
@@ -303,7 +305,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       // shows the answer and the card once more with one line saying what it waits for. Only the ceiling of
       // MAX_PRESSES messages at one card (as for «?») ends the turn.
       if (!reroll && isProse(pressed)) {
-        const { input: asked, turn: answer } = await submit(proseAtCard(pressed), "ooc", `dm t${k} card prose`);
+        const { input: asked, turn: answer } = await submit(proseAtCard(pressed, null, wait), "ooc", `dm t${k} card prose`);
         const entry = { text: pressed, button: null, prose: true, operationId: asked?.operationId ?? null, status: answer.status, reply: null };
         turn.presses.push(entry);
         turn.prose = (turn.prose ?? 0) + 1; record.proseAtCard++;

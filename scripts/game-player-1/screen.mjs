@@ -135,10 +135,20 @@ export const outOfGame = (text) => /^[\s«"'“([*_]*(?:\?|out[ -]of[ -]game\b|o
 /** What the DM receives for in-character text written at a card (11w″, and the text beside a press of 11w′ when it is not
  * marked out of game): the player's narration as a proposal, never the world's fact (11h) — the DM decides what of it
  * happens. `press`: the button that came with the text and follows the answer; without it the card still waits. */
-export function proseAtCard(text, press = null) {
+export function proseAtCard(text, press = null, wait = "") {
   const how = press ? `together with a press of [${press}], which follows your answer` : "instead of pressing one of its buttons; the card still waits";
-  return `(At the roll card the player wrote this in character, ${how}. It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide.)\n\n${String(text ?? "").trim()}`;
+  return `(At the roll card the player wrote this in character, ${how}. It is the player's narration — a proposal, not the world's fact: what it says of the die, of what is found, or of what other people say or do is the player's suggestion and yours to decide.${wait ? ` ${wait}` : ""})\n\n${String(text ?? "").trim()}`;
 }
+/** Play fixes 1, item 7 (GAME_PARTY_1's waiting-button line, the owner's amendment after DUNGEON-T1): every note the DM
+ * gets from the player at a waiting card — a «?», prose, or text beside a press — says which button the card waits for,
+ * never how the die fell. The DM does not see the die before the card is settled; without the line it kept answering
+ * «press Roll the die» at a card whose die was already cast. `roll`: before the tap; `decide`: after it. */
+export const CARD_WAIT_LINES = {
+  roll: "Its player has not yet tapped the die; the card waits for its player to press [Roll the die].",
+  decide: "The die has been cast and its player sees how it fell; the card waits for its player to press [Onward] or ask for an allowed reroll.",
+};
+/** An out-of-game question asked at a waiting card, as the DM receives it: the waiting-button line, then the question. */
+export const atCardQuestion = (question, wait) => `(At the roll card: ${wait}) ${String(question ?? "").trim()}`;
 /** The one line under a card shown again after prose (11w″): what the card waits for. */
 export function cardWaitsLine(buttons) {
   if (buttons.includes(BUTTONS.roll)) return `(The card waits for [${BUTTONS.roll}].)`;

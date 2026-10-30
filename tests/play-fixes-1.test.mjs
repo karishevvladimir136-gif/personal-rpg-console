@@ -109,3 +109,52 @@ test("item 6 in a session: an [END] mention is played as text; the door alone on
   assert.ok(dm.calls.some((call) => call.mode === "game" && call.text === mention), "the mention reached the DM as the turn it is");
   assert.ok(!dm.calls.some((call) => /bar the door/.test(call.text)), "the door's message is the end, not a turn");
 });
+
+// ---- item 7: the waiting-button line at cards ----------------------------------------------------------------------
+
+/** A table whose first action pauses on one card (die 13, total 20); «?» and prose answers keep it waiting. */
+function cardTable() {
+  const calls = [];
+  const check = { id: "c1", kind: "skill", actorName: "James Worgen", reason: "Persuasion: Mags lets the debt wait", dice: [13], kept: 13, modifier: 7, total: 20, success: true, dc: 15,
+    difficulty: null, advantage: "normal", interactive: true, canReroll: true, rollNumber: 1, addends: [{ source: "sheet: Persuasion +7", value: 7 }] };
+  const paused = { id: "op1", session_id: "s1", status: "awaiting_confirmation", narration: null, told: "Mags folds her arms.", checks: [check], changes: [], canRetry: false };
+  let actions = 0;
+  return { calls, views,
+    readView: plainTable().readView,
+    submit: async (text, mode) => {
+      calls.push({ text, mode });
+      if (mode === "ooc") return { input: { operationId: `ooc${calls.length}` }, turn: { status: "committed", mode: "ooc", narration: "The card stands." } };
+      if (actions++ > 0) return { input: { operationId: `op${calls.length}` }, turn: { status: "committed", narration: "The night goes on.", checks: [], changes: [] } };
+      return { input: { operationId: "op1" }, turn: paused };
+    },
+    readTurn: async () => paused,
+    press: async (input, action) => { calls.push({ action }); return { ...paused, status: "committed", narration: "Mags lets it wait.", checks: [{ ...check, canReroll: false }] }; },
+  };
+}
+
+test("item 7: every note the DM gets at a waiting card names the button it waits for — before the tap [Roll the die], after it [Onward] or an allowed reroll — never the die", async () => {
+  const { CARD_WAIT_LINES } = await import("../scripts/game-player-1/screen.mjs");
+  assert.match(CARD_WAIT_LINES.roll, /the card waits for its player to press \[Roll the die\]\.$/);
+  assert.match(CARD_WAIT_LINES.decide, /the card waits for its player to press \[Onward\] or ask for an allowed reroll\.$/);
+  for (const line of Object.values(CARD_WAIT_LINES)) assert.doesNotMatch(line, /\d/, "no number in the line");
+  const dm = cardTable();
+  const lines = ["I ask Mags to let the debt wait a week.",
+    "? Does the card count the Persuasion on my sheet?",                              // before the tap
+    "James keeps his voice low and his hands flat on the table.",                     // prose, before the tap
+    "roll",
+    "? Is a reroll worth it here?",                                                   // after the tap
+    "\"A week, Mags. You have my word,\" James says.",                               // prose, after the tap
+    "[Onward]\n\n(Out of game: I'll keep the reroll.)",                              // text beside a press
+    "I order a drink."];
+  const record = await runSession({ key: "A-opus", table: "A", player: PLAYERS.opus, dm, meter: meterOf(lines), keys: { anthropic: "k", openai: "k" }, turns: 2, sleep: async () => {} });
+  assert.equal(record.turns[0].status, "committed");
+  const notes = dm.calls.filter((call) => call.mode === "ooc").map((call) => call.text);
+  assert.equal(notes.length, 5);
+  assert.ok(notes[0].startsWith(`(At the roll card: ${CARD_WAIT_LINES.roll}) Does the card count`), notes[0]);
+  assert.ok(notes[1].includes(CARD_WAIT_LINES.roll) && notes[1].includes("instead of pressing one of its buttons"), notes[1]);
+  assert.ok(notes[2].startsWith(`(At the roll card: ${CARD_WAIT_LINES.decide}) Is a reroll worth it here?`), notes[2]);
+  assert.ok(notes[3].includes(CARD_WAIT_LINES.decide), notes[3]);
+  assert.ok(notes[4].startsWith(`(At the roll card: ${CARD_WAIT_LINES.decide}) (Out of game: I'll keep the reroll.)`), notes[4]);
+  for (const note of notes) assert.doesNotMatch(note, /\b(?:13|20)\b|Die:/, "never the die or the total");
+  assert.deepEqual(dm.calls.filter((call) => call.action).map((call) => call.action), ["continue"]);
+});
