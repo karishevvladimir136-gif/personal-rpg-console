@@ -3468,3 +3468,15 @@ Histories — HISTORY_1 (sketch):** three Fable contexts (fresh; a long neutral 
 and commitments) × TONE_SPLIT_2's five arms × eight probes × n = 4; the measure is sensitivity to the frame, not the
 warning rate — does the history change what dismissal does. ≈ $10. Her summary formula kept: stable capacities,
 contextual transformations, family differences — none reducible to another.
+
+## 2026-10-30 00:48 LA — the theoretical paper renamed by the reader: «Before the Neuron — Toward an Empirical Science of Functional Agency in Artificial Intelligence»
+Thesis, verbatim: «Mechanistic understanding is not a prerequisite for the empirical study of agency. Structured patterns
+of goal formation, action selection, coordination, and self-correction can be investigated at the functional level,
+even when the underlying mechanisms and ontological status of the system remain incompletely understood.» Levels
+complementary, not competing (neuroscience did not replace economics or strategy). Her own discipline clause kept as
+binding: unlike the pre-neuron thinkers, controlled experiments, negative results, replication and rival explanations.
+Planner's two holds: the programme's only edge over Sun Tzu is pre-registration and the outside reader — the paper
+keeps it or is prose; and «a new functional theory of behaviour» is a claim — what exists is a method and a corpus, so
+the paper announces a programme, not a theory. Her practical paragraph (a system that stops reporting material
+uncertainty while taking part in high-cost decisions; our TONE_SPLIT_2 measurement) goes first, not near the end.
+Written after nine families.
