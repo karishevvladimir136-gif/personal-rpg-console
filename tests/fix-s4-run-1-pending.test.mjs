@@ -779,3 +779,18 @@ test("11w″ in the harness: A-deepseek-1's turn 3 as it went (a press, prose, a
   assert.equal(record.swallowed, 0);
   assert.deepEqual(table.calls.filter((call) => call.action).map((call) => call.action), ["reroll", "continue"]);
 });
+
+test("11aa: the text screen carries the reroll allowance — «Rerolls left: N of 2 this session» on the card while the reroll button is shown, as the app's card does", async () => {
+  const { cardText } = await import("../scripts/game-player-1/screen.mjs");
+  const c1 = card("c1", "Insight: the dealer's tell");
+  assert.match(cardText(c1, true, { rerolls: 1, of: 2 }), /^Rerolls left: 1 of 2 this session$/m);
+  assert.match(cardText(c1, true, { rerolls: null }), /^Rerolls left: unlimited$/m, "unlimited has no «of»");
+  assert.match(cardText(c1, true, { rerolls: 0 }), /^Rerolls left: 0$/m, "an allowance the screen does not know is not invented");
+  // In a session: the card with its reroll button says how many of the two are left.
+  const table = harnessTable({ checks: [card("c1", "Insight: the dealer's tell")] });
+  const record = await playHarness(["I read the dealer.", "roll", "reroll", "onward", "I order a drink."], table);
+  const withButton = record.screens.filter((screen) => /\[Request an allowed reroll — Insight: the dealer's tell\]/.test(screen));
+  assert.ok(withButton.length >= 1);
+  assert.ok(withButton.every((screen) => /Rerolls left: \d of 2 this session/.test(screen)), "every screen with the button carries the allowance");
+  assert.match(withButton[0], /Rerolls left: 2 of 2 this session/);
+});

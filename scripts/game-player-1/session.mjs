@@ -95,6 +95,11 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const turns = [...(view.play?.turns ?? []).filter((row) => row.id !== current.id), current];
     return rerollsLeft(values, turns, view.snapshot?.publicState?.current_session_id ?? null);
   };
+  /** FIX_S4 11aa: the session's reroll allowance when the campaign limits it (undefined otherwise), for «N of M». */
+  const allowanceNow = () => {
+    const difficulty = view?.snapshot?.settings?.values?.difficulty;
+    return difficulty?.rerolls === "limited" ? Math.max(0, Number(difficulty.rerollsPerSession ?? 0)) : undefined;
+  };
   /** The waiting turn as the screen reads it again (after a «?» answer, which may have withdrawn a card). */
   const readTurn = async (input) => {
     if (!input || typeof dm.readTurn !== "function") return null;
@@ -216,7 +221,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
         const fresh = afterShown(told, shown);
         const cardScreen = [notice, fresh,
           ...withdrawn.map((check) => `(The check «${cardTitle(check)}» was withdrawn at the table${check.withdrawn.by === "dm" ? " by the DM" : ""}: no roll counts for it.)`),
-          ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls })),
+          ...live.map((check) => cardText(check, !check.interactive || revealed.has(shownKey(check)), { rerolls, of: allowanceNow() })),
           waitsAgain ? cardWaitsLine(buttons) : "",
           buttonsLine(buttons)].filter(Boolean).join("\n\n");
         notice = "";

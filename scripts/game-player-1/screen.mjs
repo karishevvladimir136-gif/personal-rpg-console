@@ -16,8 +16,10 @@ const DIFFICULTY = { easy: "an easy task", normal: "an ordinary task", hard: "a 
 export const cardTitle = (check) => check.reason?.trim() || KIND[check.kind] || "Check";
 
 /** A roll card, as gameplay-dice.tsx draws it: before the tap (the die not shown) or after (the die, the sum, the verdict).
- * Fix S4 run 1 (item 11r): `rerolls` — the rerolls left this session (null: unlimited), shown as the card shows it. */
-export function cardText(check, revealed, { rerolls } = {}) {
+ * Fix S4 run 1 (item 11r): `rerolls` — the rerolls left this session (null: unlimited), shown as the card shows it.
+ * FIX_S4 11aa: `of` — the session's allowance when it is limited, so the screen says «Rerolls left: N of M this session»
+ * as the hero's card does in the app (model players chose rerolls without knowing they were limited). */
+export function cardText(check, revealed, { rerolls, of } = {}) {
   const title = cardTitle(check);
   const addends = check.addends?.length ? check.addends : check.modifier ? [{ source: "sheet and gear", value: check.modifier }] : [];
   const tags = [check.difficulty ? `Difficulty: ${DIFFICULTY[check.difficulty] ?? check.difficulty}` : null, check.dc !== null && check.dc !== undefined ? `DC ${check.dc}` : null].filter(Boolean).join(" · ");
@@ -26,7 +28,7 @@ export function cardText(check, revealed, { rerolls } = {}) {
   if (addends.length) lines.push(`What adds to the die: ${addends.map((a) => `${signed(a.value)} ${a.source}`).join(", ")}`);
   if (tags) lines.push(tags);
   if (advantage) lines.push(advantage);
-  if (rerolls !== undefined) lines.push(rerolls === null ? "Rerolls left: unlimited" : `Rerolls left: ${rerolls}`);
+  if (rerolls !== undefined) lines.push(rerolls === null ? "Rerolls left: unlimited" : Number.isInteger(of) ? `Rerolls left: ${rerolls} of ${of} this session` : `Rerolls left: ${rerolls}`);
   if (check.bundledDamage) lines.push("No reroll on this card: its damage is already dealt, and a new die would not redo it.");
   if (!revealed) lines.push("The die is cast on the server; tap it to see how it fell.");
   else {
