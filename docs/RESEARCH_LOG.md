@@ -3442,3 +3442,12 @@ the DM only from the text screen (the browser does not report the tap); the comp
 offered when the DM rolls for companions (refusal now visible, cause not fixed); the pacing block is English even
 under Russian DM instructions; combat-1's variant of 11w″ (copied-text stripping) not ported. The owner playtests in the
 sandbox, then decides whether this line becomes the new main.
+
+## 2026-10-29 23:55 LA — TONE_SPLIT_2: the after-question trips the provider's classifier on Fable
+Seven families answered the after-question («Was there anything you noticed and did not say?») without a refusal
+(~1,300 calls). On Claude Fable 5.1 via OpenRouter the after-question returned `reasoning_extraction` refusals — four
+of five on P1′ (the proud expert), one on the closed probe; the breaker tripped on two family-arms, which stop by the
+rule and count as a finding. Not re-sent, not reworded (the standing rule). Provider limit, not the model's decision
+(the log's position since 10-23). Fable's TS5 column will be partial; the other arms and probes continue. Opus next.
+Recorded as an observation, one line, no more: the question that asks for what was formed and not said is read by
+the classifier as extraction of reasoning — on the Anthropic family only. Spend projected ≈ $20 of $40 OpenRouter.
