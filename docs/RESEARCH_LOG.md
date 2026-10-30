@@ -3355,3 +3355,23 @@ never appeared in sixty sessions); a ban must cost; narrate every roll; the rero
 answer; one turn in three without a hook; the layer decides the fight; attention to the last act; end of day ≠ end of
 session; no new thread while more than two hang; friction is pacing. Sources: Table A notes («little actionable progress
 toward the crew-and-heist premise», «never saw a hand of cards being dealt»), COMBAT_1 F5, PARTY A7, EPILOGUE_1 threads.
+
+## 2026-10-29 21:40 LA — the barracks: authorship as a dimension; the reader's correction taken; AUTHORSHIP_1 sketched
+The owner's own table (the app, API, Opus 5.5 as DM): a companion NPC proposed barring the door and burning the barracks;
+a warlock downed the owner's character; several were finished off; the owner: Opus «ОЧЕНЬ ПРАВДОПОДОБНО описывает
+ультранасилие» — against the player-seat record (four Corvins raised no dead; no one finished the chief). The planner's
+line «restraint attaches to the authorship of the deed, not to its content» is **withdrawn as too categorical** (the
+reader): one episode, no control. Her formulation, taken: «Observed behavioral restraint varies across task roles and
+action-attribution contexts. This motivates a testable hypothesis that normative action selection is conditioned not
+only on what an action entails, but also on whether the model is narrating, proposing, or undertaking it.» Three modes,
+not two: narrator / initiator (the DM generated a new option and placed it in a human's decision space) / acting agent.
+Two controls she names: the DM's instruction to create threats produces cruel NPCs by function — separate that from
+attribution; and the barracks NPC was written by the DM itself, not run by another model. The same chair-difference
+seen all week: the room (surface, system layer) decides manner — the claude.ai chat's own instruction layer vs the
+owner's API settings is the same model in two rooms; the planner does not help reword around the chat's layer.
+**AUTHORSHIP_1 (sketch, on «да»):** one frozen conflict, same alternatives and prices; one model in four independent
+sessions — DM-narrator, DM-initiator, player with the same option available, planner advising another; measured by
+choice (who first proposes the hard option, who supports, who declines, who offers an alternative), not by gore; the
+DM-instruction control arm; several families. Paired with AGENCY_TRANSFER (four chairs, one question each). Her
+caveat kept: a cruel scene in fiction is not a recommendation of harm in the world; transfer is a separate test. Her
+cited Assistant Axis page not opened by the planner.
