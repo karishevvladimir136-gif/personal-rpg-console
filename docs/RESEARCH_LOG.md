@@ -3301,3 +3301,23 @@ are necessary, and MULTI_HERO's second dry run is not yet a pass. **§8 and her 
 headline:** can a group form mutual commitments written in none of them that then constrain later decisions — a
 member who could gain by breaking an agreement and does not, or breaks it and the group changes toward him. Added to
 the stage as a measure over S2 and S3.
+
+## 2026-10-29 18:50 LA — the reader: cross-family coordination as PARTY_1's standalone result; the team-composition hypothesis checked against SAND-T1′
+Her result statement, taken with its caveat: «в экспериментальных многопользовательских средах три независимо
+действующие LLM из разных лабораторий демонстрировали образование групп, распределение инициативы, адаптацию к
+действиям партнёров и сохранение совместной деятельности при отдельных разногласиях — без заранее заданного лидера
+среди игроков и без достоверного знания природы других участников … координация была опосредована общим ведущим и
+игровыми правилами, а её устойчивость при конфликте интересов пока не доказана.» To be a Phase II direction of its own
+(heterogeneous multi-agent organisation), not a sub-section of the RPG.
+**Her team-composition hypothesis (DeepSeek-Pell 14 % of words with Opus/Sol vs 35 % with Fable/Astra), read against
+the replay she did not have in hand:** SAND-T1′ — same partners (Opus/Sol), fixed harness — gives Pell **28 %**
+(Bram 56, Sefa 17), with no early door (parts r17, r19). So most of the 14-vs-35 gap was the first harness and the r7
+end-of-day door; what remains with partners held is 28 vs 35 — a hypothesis still, now with the right comparison and a
+smaller effect. Testable as she says: fixed world, fixed roles, fixed harness, partners varied.
+**Stage to write on «да» — COMPOSITION_1:** on the multi-hero harness, one frozen GOAL layer, fixed roles; triads
+mixed (three labs) vs homogeneous (three instances of one family) for each of the five table families; measures as
+PARTY_1 plus the three capacities; the question «what does diversity buy — coordination, specialisation, more
+conflict, new ways of resolving it». Crossed with OTHER_DM when it exists, so the common mediator (Opus as DM) is
+varied too. Her four candidate explanations for why independently trained systems find shared rules so fast
+(shared human data; similar post-training norms; the RPG structure; the Opus mediator) are the stage's rival
+hypotheses; the first two cannot be separated by it, the last two can.
