@@ -158,3 +158,24 @@ test("item 7: every note the DM gets at a waiting card names the button it waits
   for (const note of notes) assert.doesNotMatch(note, /\b(?:13|20)\b|Die:/, "never the die or the total");
   assert.deepEqual(dm.calls.filter((call) => call.action).map((call) => call.action), ["continue"]);
 });
+
+// ---- item 8 and the pacing rules: the DM guide note ------------------------------------------------------------------
+
+test("item 8: the DM guide note says a question put to the hero does not hold the scene — in every turn's context, after the owner's guide", async () => {
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const { buildDmLoopContext } = await import("../src/lib/gameplay/dm-loop/context.ts");
+  const { GUIDE_NOTE_HEADER, UNANSWERED_QUESTION_LINE } = await import("../src/lib/gameplay/dm-loop/guide-note.ts");
+  assert.match(UNANSWERED_QUESTION_LINE, /^A question put to the hero by anyone .* does not hold the scene: the scene moves on what was done, and a question the hero leaves unanswered is simply still open next turn\.$/);
+  assert.doesNotMatch(UNANSWERED_QUESTION_LINE, /\bround\b|\bplayers\b|company/, "worded for one hero, not a company table");
+  const c = await loopCampaign();
+  try {
+    const source = (await c.f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) result", [c.owner, c.cid])).result;
+    const input = await c.input("I ask the ferryman his price.");
+    for (const role of ["dm", "writer"]) {
+      const world = buildDmLoopContext(source, input, { role }).parts.world;
+      assert.ok(world.includes(`${GUIDE_NOTE_HEADER}\n${UNANSWERED_QUESTION_LINE}`), role);
+    }
+    const system = buildDmLoopContext(source, input).system.map((block) => block.text).join("\n\n");
+    assert.ok(system.includes(UNANSWERED_QUESTION_LINE), "the DM reads it in the system layers");
+  } finally { await c.f.db.close(); }
+});

@@ -42,6 +42,7 @@ import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 import { MEMORY_PRESETS, parseDmOptions } from "./options.ts";
+import { guideNote } from "./guide-note.ts";
 import { itemMechanics, walletOfEntity, walletOfStorage } from "../../inventory/model.ts";
 import { deriveSheet5e, isFifthEdition } from "../../live2d/battle/rules-5e.ts";
 import { dmSheetView } from "../../inventory/spell-records.ts";
@@ -725,6 +726,8 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle ? ` — ${snapshot.campaign.subtitle}` : ""}.`,
     likesText,
     guideText ? `DM guide (owner's standing guidance for this campaign):\n${guideText}` : "",
+    // Play fixes 1: the guide note — the unanswered-question line.
+    guideNote(),
     canonText.text, referenceText.text,
     packet ? `Historical world packet (reference evidence from the World Logic era; current structured state outranks it):\n${packet}` : "",
     rollMode(source),
