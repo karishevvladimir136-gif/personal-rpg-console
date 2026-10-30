@@ -3238,3 +3238,15 @@ player fewest words) — becomes a per-table report line, bar read over PARTY_2'
 second return pass, copies logged (19 → 5 after one pass). A7: one more guide line (a question to one character, from
 a player or an NPC, does not hold the round), read on the real DM at PARTY_2's control table; pause there if it fails.
 No third Haiku dry run. $0.87 of $5.
+
+## 2026-10-29 18:20 LA — a reader's correction on the «inner world» account; term adopted: context-sensitive initiative gating
+A reader (forwarded by the owner; checked several claims against the reports on GitHub) draws the line between
+observation, explanatory model and self-description. Taken: (1) the planner's «the model removes itself from the
+answer» is a gloss; the operational statement is «the system keeps the capacity to do the task, while context changes
+the probability that it adds a judgement of its own» — **context-sensitive initiative gating**, the term adopted for the
+TONE_SPLIT line in place of «epistemic initiative» where a mechanism rather than a capacity is meant; it presumes no
+anxiety, experience or self-evaluation. (2) LEXICON_1's L3 lost: the models' own vocabulary did not predict behaviour
+better than the human list by the frozen criterion; correlations halved on the held-out sample; within one frame
+ρ(pull, decisiveness) ≈ 0.19 / 0.14 / −0.06. So the open → narrowing shift under the cold frame is convergence of
+self-description with behaviour by direction, **not independent confirmation that the self-report measures a separate
+internal state.** The report's inner-world paragraph is softened accordingly.
