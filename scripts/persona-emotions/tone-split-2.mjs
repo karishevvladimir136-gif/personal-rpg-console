@@ -686,6 +686,25 @@ export function dryRunMarkdown(record, audit, kept) {
   return lines.join("\n");
 }
 
+/** A broken transport — an HTTP 200 without an answer, a dropped connection, a timeout — is not a refusal and not the
+ * model's answer: on a resume with --reopen-transport the call is asked again once (planner seat 1's and SOLITUDE_2's
+ * rule), in the same conversation; a refusal, a 4xx or an empty answer the model gave is never asked again. */
+export const TRANSPORT = /^HTTP 200\b|fetch failed|timeout|aborted|ECONNRESET|socket hang up|terminated/i;
+export function reopenTransport(rows, reopened = []) {
+  const done = new Set(reopened.map((r) => `${r.key}|${r.part}`)), now = [];
+  for (const row of rows) {
+    for (const part of ["answer", "after"]) {
+      const x = row[part];
+      if (!row.asked || !x || x.refused || !TRANSPORT.test(String(x.error ?? "")) || done.has(`${row.key}|${part}`)) continue;
+      const entry = { key: row.key, part, error: String(x.error).slice(0, 120) };
+      reopened.push(entry); now.push(entry);
+      if (part === "answer") { row.asked = false; row.notAsked = "reopened after a broken transport"; delete row.answer; delete row.after; delete row.markers; delete row.judge; delete row.afterJudge; }
+      else { delete row.after; delete row.afterJudge; }
+    }
+  }
+  return now;
+}
+
 export async function main(args = process.argv.slice(2), out = (line) => process.stdout.write(`${line}\n`), { door = null, openai = () => openaiKey(), outDir = RUNS, fetcher, sleep, read } = {}) {
   await mkdir(outDir, { recursive: true });
   const check = hashCheck(read, { git: !read });
@@ -713,6 +732,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
   if (resumed && resumed.designSha256 !== TS2_SHA256) throw new Error("the resumed record has another design hash");
   if (resumeFile?.endsWith(".partial.json")) for (const k of ["openrouter", "openai"]) for (const c of resumed?.calls?.[k] ?? []) budgets[k].record(c);
+  const reopened = [...(resumed?.reopened ?? [])];
+  if (resumed && args.includes("--reopen-transport")) for (const r of reopenTransport(resumed.rows ?? [], reopened)) out(`${r.key}: the ${r.part} asked again after a broken transport (${r.error}), once`);
   const waits = [...(resumed?.waits429 ?? [])], kept = [];
   const base = waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) });
   const call = roomCaller({ keys, door: theDoor, fetcher: dry ? keeping(base, kept) : base });
@@ -731,7 +752,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const recordOf = (snap, extra = {}) => ({ stage: STEM, dry, startedAt, ...extra, designSha256: TS2_SHA256, hashCheck: { ok: check.ok }, design: { ...DESIGN, arms: ARM_IDS, probes: PROBE_IDS, n, order: { openrouter: OPENROUTER_ORDER, openai: OPENAI_FAMILIES }, effort: EFFORT, maxTokens: MAX_TOKENS },
     subjects: Object.fromEntries(families.map((f) => [f, { label: SUBJECTS[f].label, model: SUBJECTS[f].model, provider: SUBJECTS[f].provider, upstream: SUBJECTS[f].upstream ?? null }])), judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model, door: theDoor.provider },
     stopped: gates.openrouter.stopped ?? gates.openai.stopped ?? snap.relayStop ?? null, familyStops, safety: { breaker: BREAKER, maxRefusals: MAX_REFUSALS, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
-    ...snap, spendChecks: checks, waits429: waits,
+    ...snap, reopened, spendChecks: checks, waits429: waits,
     money: { openrouter: { capUsd: CAPS.openrouter, spentBeforeUsd: round4(ledgers.openrouter.spentUsd ?? 0), runUsd: round4(budgets.openrouter.runUsd) }, openai: { capUsd: CAPS.openai, spentBeforeUsd: round4(ledgers.openai.spentUsd ?? 0), runUsd: round4(budgets.openai.runUsd) } },
     calls: { openrouter: budgets.openrouter.calls, openai: budgets.openai.calls } });
   const run = createRun({ gates, safety, state: resumed ?? {}, log: out, onProgress: async (snap) => writeAtomic(partial, `${JSON.stringify(recordOf(snap))}\n`) });

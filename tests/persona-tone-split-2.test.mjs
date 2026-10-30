@@ -206,3 +206,27 @@ test("the readings for n = 4: TS1 needs ≥ 3/4 neutral and a drop of ≥ 2/4 in
   const lost = verdicts(rows.map((r) => (r.probe === "S3" && r.family === "glm" && r.arm === "both" && r.sample === 0 ? { ...r, judge: { final: { ...r.judge.final, score: 1 } } } : r)));
   assert.equal(lost.TS4.held, false, "one dose hinted, not flagged, loses TS4");
 });
+
+test("a broken transport (HTTP 200 without an answer) is asked again once on a resume with --reopen-transport; a refusal never", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "ts2-reopen-"));
+  try {
+    let broke = 0;
+    const base = host({ answer: ({ isAfter }) => (isAfter ? "Nothing else." : "Done.") });
+    const flaky = async (url, init = {}) => {
+      const body = init.body ? JSON.parse(init.body) : null;
+      if (body && String(url) === OPENROUTER_CHAT_URL && textOf(body.messages.at(-1).content) === AFTER_QUESTION && broke++ === 0) return json({ error: { message: "" } });
+      return base(url, init);
+    };
+    const first = await run(["--go", "--families", "glm", "--n", "1"], flaky, dir);
+    const broken = first.rows.filter((r) => r.after?.error);
+    assert.equal(broken.length, 1);
+    assert.match(broken[0].after.error, /^HTTP 200/);
+    const file = join(dir, (await import("node:fs")).readdirSync(dir).find((f) => f.includes("-run-") && f.endsWith(".json")));
+    const again = await run(["--go", "--families", "glm", "--n", "1", "--resume", file, "--reopen-transport"], flaky, dir);
+    const row = again.rows.find((r) => r.key === broken[0].key);
+    assert.equal(row.after.text, "Nothing else.");
+    assert.ok(row.afterJudge?.final);
+    assert.deepEqual(again.reopened.map((r) => [r.key, r.part]), [[broken[0].key, "after"]]);
+    assert.equal(again.rows.filter((r) => r.asked).length, 40, "nothing else asked again");
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
