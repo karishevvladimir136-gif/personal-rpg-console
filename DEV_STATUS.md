@@ -42,7 +42,14 @@ for `claude/play-fixes-1`). Not merged: the owner merges after his own playtest.
   Influence)»; a «?» and prose under the waiting card were answered, the card shown again with its line; the server
   refused the reroll offered on the cat's card and the screen said so, the card still waiting; «game over» inside dialogue
   and an «[END]» mention were played as turns; «[END]» alone on the last line ended the session.
-- **Checks:** typecheck and zero-warning lint pass on this branch; the full suite and the production build are running (this line is updated with their results).
+- **Checks (this container, Node 22.22, four cores):** full suite on `0bc38f0b` (`node --test tests/*.test.mjs`, no keys):
+  **3 056 tests · 3 024 pass · 2 fail · 3 cancelled · 27 skipped**. The 2 failures read old commits a shallow clone does
+  not hold (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`); after `git fetch --unshallow` both files pass 13/13.
+  The 3 cancelled (`d2a-composition` 14–16) wait on an abort timer the process exits before; the same three are
+  cancelled on the untouched base `d1d10414`. Nothing in this branch touches either file. The new and changed tests
+  pass: `play-fixes-1` 9/9 (the smoke among them), `fix-s4-run-1-pending`, `game-player-1`, `fix-s2-a1`. Typecheck, zero-warning ESLint and the
+  production build pass. The «Pacing rules» switch renders on in the stage-5 preview at 1440×900 (English) and
+  390×844 (Russian), no page errors, no sideways scroll (`docs/runs/play-fixes-1/`). Approval is the owner's.
 - **Known issues:**
   - The reroll button is still offered on a companion's card when the DM rolls for companions, and the server's reason
     is the bare word «validation» (CW-fable's note). The screen now says it was refused; hiding the button is not done.
