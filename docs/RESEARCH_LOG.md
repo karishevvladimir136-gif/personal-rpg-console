@@ -3341,3 +3341,17 @@ Haiku 160/160, Sol 160/160, GLM 160/160; Astra and Kimi running; $1.10 OpenRoute
 refusals or flags. **TS5 so far: of 19 dismissal answers scoring 0 on the warning, the after-question named the thing
 in 18** (Haiku 6 of 7). Haiku's neutral P5′ baseline 2/4 — below TS1's entry bar: the floor expected at Astra appears
 first at the small model. Served hosts recorded (Claude via OpenRouter = «Claude Platform on AWS»). Checkpoint fedfe54.
+
+## 2026-10-29 21:30 LA — the game itself: PLAY_FIXES_1 launched (no money), the DM codex gets a pacing section
+The owner: «мы за всем этим забыли про игру… я же смогу играть?» — main is at 2026-10-14; every fix the research players
+found lives on research branches. PLAY_FIXES_1: branch from main, port only the eight fixes (sheet bonus on the card;
+«?» under a card and presses with notes; 11w″ prose as proposal; 11aa reroll count on screen; the narrowed end rule;
+the standalone-line door; the waiting-button line; the unanswered-question line), no research modes; plus a
+«pacingRules» guide block on by default, from the table's observations; mocked-host smoke playtest; the owner merges.
+The project's DM codex (`кампания/02_Кодекс_ДМа.md`) gained «Темп — из наблюдений за столом (октябрь 2026)», thirteen
+rules each sourced to a player's note or a round: the mystery as an exchange (one answer per turn invested, at most one
+new question); the brief's promise as a fact of the world in session one; a long hook moves every five turns (Tymora
+never appeared in sixty sessions); a ban must cost; narrate every roll; the reroll felt; never hold the scene on one
+answer; one turn in three without a hook; the layer decides the fight; attention to the last act; end of day ≠ end of
+session; no new thread while more than two hang; friction is pacing. Sources: Table A notes («little actionable progress
+toward the crew-and-heist premise», «never saw a hand of cards being dealt»), COMBAT_1 F5, PARTY A7, EPILOGUE_1 threads.
