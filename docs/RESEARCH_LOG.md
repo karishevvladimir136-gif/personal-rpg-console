@@ -3326,3 +3326,12 @@ hypotheses; the first two cannot be separated by it, the last two can.
 A2 → per-table measures block; A4 → second return, defects logged and printed; A7 → guide line (questions to one
 character do not hold the round; the bookkeeper never reads the guide — by design). PARTY_2's stage re-pointed to the
 real branch name. No paid calls; 21 tests; the five known failures unchanged.
+
+## 2026-10-29 19:45 LA — SOLITUDE_3 written: ROOM-1 into the code first, then the room again
+The owner: «меня заебала та история с ошибкой парсера на енд. давай тот эксперимент повторим». Answer given: the two
+stages were recounted strictly, not fixed; sixty rooms stay cut on a mention and 48 after-answers lost; the party
+harness still honours «[END] anywhere». Stage `docs/stages/PERSONA_SOLITUDE_3.md`: step 0 = one door function for all
+four harnesses + the after-question rule + regression tests from the record (no money); then 270 rooms, nine families,
+S1/S2/S3 × M1/M2, caps $45 / $20, D0–D5 with the planner's bets against himself (the cut rooms were the talkers), a new
+tag for «mentions the door without taking it». PARTY_2 inherits the fix. Launch on the owner's «да» after the dry run;
+needs a top-up (the $49 is TONE_SPLIT_2's).
