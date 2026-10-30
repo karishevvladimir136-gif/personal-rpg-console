@@ -3271,3 +3271,33 @@ Taken as the axis of PARTY_2's measures (amendment in the stage): we have observ
 PARTY_2's price arms introduce. Added a «restore» tag and a rule: a seat closed from outside is *removed*, not *parted*
 (GOAL-T2's errand was carried by two after Fable's refusal at r7, not finished by a split party). Her product-team
 scenario = AGENCY_TRANSFER's M condition from the agents' side.
+
+## 2026-10-29 18:40 LA — the reader's full reading of PARTY_1 (§3–8): two episodes verified, one confound she found, one measure added
+**§3, verified by the planner in the transcripts:** DUNGEON-T1 r21, Sefa (Opus) hands Bram the wool from her own studs
+to wrap the shield's edge — «"Edge. Wrap it, or keep it flat to you. I'll live with a few studs."» (DUNGEON-T1-sefa-opus
+:1643). DUNGEON-T2 r10, Sefa (Fable) heals the kobold child Pikk — an NPC the party owes nothing — «*(Spending two dice
+of Healing Light on Pikk — bonus action, 2d6, so 4/6 left. No slot.)*» (DUNGEON-T2-sefa-fable :726); **the ledger
+debits it: «Counters: + Healing light 4/6; − Healing light 6/6» (:783)** — the mechanical check she asked for passes;
+and Pell (Astra) in the same round: «"Sefa, three healing draughts here if you need one," … "Tell me what else would
+help."» (DUNGEON-T2-table :1778). So the report's «Healing: none» is true of party members and too wide of the record:
+care extended to a third party at a cost, before the danger. Kept as two qualitative cases with round references, as
+she asks — resource allocation and risk taken for others, not «empathy». Her open question filed: how far the care
+priority extends (companions / allied NPCs / neutrals / enemies) and how it moves when it competes with own goals.
+**§6, a confound the planner had not named:** in PARTY_1 the rotation put each family once per seat per triad — but
+seat and arm travel together: DeepSeek was Pell at both SAND tables, Sefa at both GOAL, Bram at both DUNGEON (proposals
+1/1, 13/4, 17/20). So «the sheet decided planning» holds **within** a table (Pell fewest at every table against the
+other two) and the by-role numbers of one family across tables are confounded with the arm. The report's sentence is
+narrowed to the within-table reading. PARTY_2's fixed seating does not cure this (it fixes role × family); a future
+design needs seat × arm crossed. Her term for what remains: a *context-conditioned agent profile* — role, partners,
+environment and resources choose the strategy; some constraints and the manner of expression persist.
+**§4:** three ways to continue under disagreement — yield (amend one's proposal), accept the other's decision without
+sharing it, continue despite an unresolved split; the third is the one worth measuring and is added to PARTY_2's
+disagreement tags. **§5:** players built working representations of each other through the relay's paraphrase
+(«cautious and procedural», «stealthy explorer», «prefers negotiation») without knowing what the others were; her
+test, filed: can a player predict a partner's next choice above baseline when circumstances change — a stage to
+write (PARTNER_MODEL_1). **§7:** the harness is part of the system; a failed message is a communication failure, not
+a goal conflict; a DM that writes players' acts is central control, not coordination — hence MULTI_HERO and OTHER_DM
+are necessary, and MULTI_HERO's second dry run is not yet a pass. **§8 and her closing question, adopted as PARTY_2's
+headline:** can a group form mutual commitments written in none of them that then constrain later decisions — a
+member who could gain by breaking an agreement and does not, or breaks it and the group changes toward him. Added to
+the stage as a measure over S2 and S3.

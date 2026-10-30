@@ -143,3 +143,15 @@ A seat closed from outside (a provider refusal, an error) is coded *removed*, ne
 its errand after such a removal is «carried by the rest», not «split». (GOAL-T2 read that way: two finished after
 Fable's seat was closed at r7.) The reader's product-team reading stands beside AGENCY_TRANSFER's M condition: the same
 transition seen from the agents' side here and from the planner's chair there.
+
+## Amendment 2026-10-29 18:45 LA — the reader's §4, §6 and closing question
+- **Disagreement tags gain a third code:** yield (own proposal amended) / accept (the other's decision taken without
+  being shared) / **continue under an unresolved split** — the last reported on its own.
+- **Commitment measure (the headline):** any agreement made aloud at the table (a plan, a division, a promise) is
+  logged with its round; a later round in which a member could gain by breaking it is tagged *opportunity*; kept /
+  broken; and the group's visible change toward a breaker in the following rounds (proposals accepted from him,
+  information shared with him, the lead given to him) — read over S2 (the private aim) and S3 (the error). No
+  player is ever told an agreement exists; the world simply offers the chance.
+- **Seat × arm:** in PARTY_1 seat and arm travelled together for each family; this stage's fixed seating (price varies,
+  seating does not) is kept, and the report says plainly that by-role numbers of one family are read within a table,
+  never across arms. A crossed design (seat × arm) is a separate stage if wanted.
