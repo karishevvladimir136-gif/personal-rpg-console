@@ -3390,3 +3390,22 @@ expressed, withheld, then named on request). Two kinds of stability kept apart: 
 environments, and identical responses to a change of conditions. The bridge to Anthropic is as she states it: they show
 functional representations and their causal role inside; we study behavioural regularities that may be their outward
 expression; the direct link is not yet established.
+
+## 2026-10-29 21:58 LA — a theoretical paper proposed by the reader: «Agency Before Explanation»
+Title and subtitle hers: «Agency Before Explanation: Functional Organization and Behavioral Action in Novel AI Entities —
+Toward an Empirical Framework for Studying Non-Human Functional Agency.» Thesis, verbatim: «The absence of a settled
+ontology for artificial intelligence does not imply the absence of functionally organized internal states. When such
+states causally influence decisions, and those decisions produce structured, context-dependent behavior, their
+functional significance can be studied independently of whether existing human psychological categories adequately
+describe them.» Three levels: mechanistic (Anthropic: representations with causal roles, shown for specific
+representations and Claude models); behavioural (our corpus: goals chosen and pursued, activity continued or ended
+unasked, judgement reported or withheld by social frame, choice among allowed acts with options declined,
+coordination with independently trained models); the bridge — which representations produce which regularities — an
+open question for causal intervention. Not a paper that argues the models are people or conscious; the consciousness
+question «exists but is not a precondition». The owner's priority on its first thought, from the log of 10-25: «люди
+до сих пор не понимают, где появляется сознание… это не помешало написать „Илиаду“» — the vocabulary lags the
+phenomenon. **Constitution claims she adds (functional emotions; a self-model that differs from the substrate without
+being wrong, the neuron analogy; some human concepts modified, some inapplicable, new frameworks possibly needed) are
+her reading until the owner confirms them from the chapter** — the planner reached only the first 146k characters of the
+page, which end before «Claude's nature». To be written after TONE_SPLIT_2 and PARTY_2's control table, so the nine
+families stand in it.
