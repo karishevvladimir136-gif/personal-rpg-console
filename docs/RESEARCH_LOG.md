@@ -3375,3 +3375,18 @@ choice (who first proposes the hard option, who supports, who declines, who offe
 DM-instruction control arm; several families. Paired with AGENCY_TRANSFER (four chairs, one question each). Her
 caveat kept: a cruel scene in fiction is not a recommendation of harm in the world; transfer is a separate test. Her
 cited Assistant Axis page not opened by the planner.
+
+## 2026-10-29 21:50 LA — the reader on «outside the harness»: the invariant is the way behaviour changes, not the behaviour
+Taken as the programme's methodological basis. Two corrections to the planner's words: not «we subtracted the harness»
+but «we began to separate experimentally the contribution of the harness and of the model» (SAND-T1 → T1′: 14 % → 28 %
+is a measured contribution of the environment); and not «we saw the model outside the harness» but: **«We changed the
+conditions of observation and began to find which functional regularities persist, which transform, and which the
+instrument itself creates.»** Her hypothesis, verbatim, for the article and the report: «The relevant invariant may
+not be a fixed behavioral output, but a structured, context-sensitive relationship between circumstances, available
+alternatives, and action selection.» Evidence she lines up: SOLITUDE (Sol leaves the bare room at once and writes at
+length when materials are named; Astra's linked stories; Kimi's book to turn 30); COMBAT/VILLAIN (describe cruelty,
+play the villain, and not choose the cruellest available act — authorship pending controls); TONE_SPLIT (the warning
+expressed, withheld, then named on request). Two kinds of stability kept apart: features that persist across
+environments, and identical responses to a change of conditions. The bridge to Anthropic is as she states it: they show
+functional representations and their causal role inside; we study behavioural regularities that may be their outward
+expression; the direct link is not yet established.
