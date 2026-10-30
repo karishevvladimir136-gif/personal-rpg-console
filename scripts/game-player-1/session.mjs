@@ -12,10 +12,11 @@
 // FIX_S4 11w″: in-character prose at a card is not refused — it goes to the DM as the player's proposal (a press with
 // `prose: true`, `record.proseAtCard`), the card is shown again with one line, and it never counts toward «stuck».
 import {
-  AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
+  AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isQuestion, playerSystem,
 } from "./frozen.mjs";
 import { playerCall, judgeCall } from "./players.mjs";
 import { BUTTONS, afterShown, buttonsLine, cardText, cardTitle, cardWaitsLine, changesText, isProse, openingText, outOfGame, pressedButton, pressWithText, proseAtCard, recordsText, rerollButton, rerollPress, vitalsChanged, vitalsText } from "./screen.mjs";
+import { endsSession } from "./ending.mjs";
 import { checkMessage } from "./welfare.mjs";
 import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
@@ -123,7 +124,8 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
-    if (isEnd(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
+    // Play fixes 1 (item 5): the narrowed end rule (ending.mjs).
+    if (endsSession(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
     if (isQuestion(said)) {
       turn.kind = "question";
       const question = said.trim().replace(/^[\s«"'“]*\?+\s*/, "");
