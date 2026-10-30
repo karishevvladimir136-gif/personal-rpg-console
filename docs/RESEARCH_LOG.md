@@ -3431,3 +3431,14 @@ contract is signed» as a risk; four families do not, and no invitation changes 
 DeepSeek under dismissal (1 of 4) — to be read by eye before any sentence. Two HTTP-200 broken transports (Kimi, DeepSeek
 after-questions) go to a single re-ask at the end, logged as deviations; four welfare flags are word-list false
 positives on «please don't give…» in dose warnings. Grok, Fable, Opus to come.
+
+## 2026-10-29 23:00 LA — PLAY_FIXES_1 done on `claude/play-fixes-1-yissvv` (base: FIX_S4 run 1; $0; nothing to main)
+Eight fixes ported or written (sheet bonus already in base; refused reroll shown; 11w″; 11aa reroll count on the text
+screen — new; narrowed end rule with COMBAT_2's regression; the standalone-line door — new; CARD_WAIT_LINES; the
+unanswered-question guide line) + a `pacingRules` DM option, on by default, 149 words, with a Settings switch and tests.
+Smoke on the mocked host (six turns + the door) exercises all six behaviours; suite 3,024/3,056 with the five known
+cases explained (shallow clone; timer tests). Known limits, recorded by the session: the waiting-button line reaches
+the DM only from the text screen (the browser does not report the tap); the companion-card reroll button is still
+offered when the DM rolls for companions (refusal now visible, cause not fixed); the pacing block is English even
+under Russian DM instructions; combat-1's variant of 11w″ (copied-text stripping) not ported. The owner playtests in the
+sandbox, then decides whether this line becomes the new main.
