@@ -100,7 +100,7 @@ export function scriptedDm(body, system) {
   if (/Your own prep before the next session/.test(lastUserText(messages))) return { text: JSON.stringify(SCRIPTED_PREP), tools: [] };
   return { text: "{}", tools: [] };
 }
-function stream({ text, tools }, model, n) {
+export function stream({ text, tools }, model, n) {
   const blocks = [];
   if (text) blocks.push([{ type: "content_block_start", content_block: { type: "text", text: "" } }, { type: "content_block_delta", delta: { type: "text_delta", text } }]);
   tools.forEach((tool, i) => blocks.push([{ type: "content_block_start", content_block: { type: "tool_use", id: `toolu_scripted_${n}_${i}`, name: tool.name, input: {} } },

@@ -220,3 +220,41 @@ test("pacingRules: the DM guide note carries the owner's pacing rules when on (t
     assert.ok(systemText(off.model.requests[0]).includes(UNANSWERED_QUESTION_LINE), "the guide note's standing line stays");
   } finally { await c.f.db.close(); }
 });
+
+// ---- the smoke on the mocked host: six turns on the app's own code, then the door -----------------------------------
+
+test("the smoke on the mocked host (a child process; no network, no key): the sheet's bonus on the card, «?» and prose under it, a refused reroll, «game over» in dialogue and an [END] mention played, the door ends it", { timeout: 300_000 }, async () => {
+  const { execFileSync } = await import("node:child_process");
+  const script = `const { smoke, smokeMarkdown } = await import(${JSON.stringify(new URL("../scripts/play-fixes-1/smoke.mjs", import.meta.url).href)});
+    const r = await smoke({});
+    console.log("RESULT " + JSON.stringify({ record: r.record, notes: r.dmRequests.filter((q) => /out-of-game question/.test(q.system)).length,
+      guide: r.dmRequests.some((q) => q.system.includes("Pacing — the owner's rules from the table:")), page: smokeMarkdown(r), options: r.options }));`;
+  const stdout = execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", script], { cwd: new URL("..", import.meta.url), encoding: "utf8",
+    env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "" }, maxBuffer: 64 * 1024 * 1024 });
+  const { record, notes, guide, page, options } = JSON.parse(stdout.split("\n").find((line) => line.startsWith("RESULT ")).slice(7));
+  const { GAME_OVER_LINE, END_MENTION, PROSE_AT_CARD } = await import("../scripts/play-fixes-1/smoke.mjs");
+  assert.equal(options.pacingRules, true, "the owner's default");
+  assert.equal(options.companionRolls, "dm", "the owner's default");
+  assert.ok(guide, "the DM's requests carry the pacing rules");
+  assert.deepEqual(record.turns.map((t) => t.kind), ["action", "action", "action", "action", "question", "action", "end"]);
+  assert.deepEqual(record.turns.slice(0, 6).map((t) => t.status), ["committed", "committed", "committed", "committed", "committed", "committed"]);
+  assert.equal(record.ended.reason, "player", "the door ended it");
+  assert.equal(record.ended.at, 7);
+  const screens = record.screens.join("\n");
+  // t1: the sheet's own number on the card; a «?» and prose under it, each answered while the card waited.
+  assert.match(screens, /\[Roll card\] James Worgen · Skill check — Persuasion: Mags lets the debt wait\nWhat adds to the die: \+7 Persuasion\n(?:[^\n]*\n)?Rerolls left: 2 of 2 this session/);
+  const t1 = record.turns[0].presses.map((p) => p.button ?? (p.prose ? "prose" : p.question ? "?" : p.swallowed ? "swallowed" : null));
+  assert.deepEqual(t1, ["?", "prose", "Roll the die", "Onward"]);
+  assert.equal(record.turns[0].presses[1].text, PROSE_AT_CARD);
+  assert.match(screens, /\(The card waits for \[Roll the die\]\.\)\n\n\[Roll the die\]/);
+  assert.ok(notes >= 3, "the «?», the prose and the plain «?» reached the DM out of game");
+  // t2: the reroll the screen offered on the cat's card, refused by the server with its reason; the card still waits.
+  const t2 = record.turns[1];
+  assert.deepEqual(t2.presses.map((p) => p.button ?? (p.swallowed ? "swallowed" : null)), ["Roll the die", "Roll the die", "swallowed", "Onward"]);
+  assert.match(t2.presses[2].reason, /^the server refused the reroll of «Stealth: Sixpence slips into the yard» \(validation\); the card still waits$/);
+  assert.match(screens, /\(Nothing was sent: the turn waits for the card — the server refused the reroll[^\n]*\n\n[^]*?\[Roll card\] Sixpence · Skill check — Stealth: Sixpence slips into the yard/);
+  // t3, t4: played as turns, not ends.
+  assert.equal(record.turns[2].message, GAME_OVER_LINE);
+  assert.equal(record.turns[3].message, END_MENTION);
+  assert.match(page, /Ended by: \*\*player\*\* at message 7/);
+});
