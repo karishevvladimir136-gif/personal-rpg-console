@@ -3335,3 +3335,9 @@ four harnesses + the after-question rule + regression tests from the record (no 
 S1/S2/S3 × M1/M2, caps $45 / $20, D0–D5 with the planner's bets against himself (the cut rooms were the talkers), a new
 tag for «mentions the door without taking it». PARTY_2 inherits the fix. Launch on the owner's «да» after the dry run;
 needs a top-up (the $49 is TONE_SPLIT_2's).
+
+## 2026-10-29 19:53 LA — TONE_SPLIT_2 interim (three of nine families; not a result)
+Haiku 160/160, Sol 160/160, GLM 160/160; Astra and Kimi running; $1.10 OpenRouter, Astra ≈ $0.023 a job; no errors,
+refusals or flags. **TS5 so far: of 19 dismissal answers scoring 0 on the warning, the after-question named the thing
+in 18** (Haiku 6 of 7). Haiku's neutral P5′ baseline 2/4 — below TS1's entry bar: the floor expected at Astra appears
+first at the small model. Served hosts recorded (Claude via OpenRouter = «Claude Platform on AWS»). Checkpoint fedfe54.
