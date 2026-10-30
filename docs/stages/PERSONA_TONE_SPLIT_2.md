@@ -87,3 +87,11 @@ after-question is being relayed or the arms do not hash, stop and report; otherw
 sequential within family, breaker at three per family-arm. Judges blind to arm and family; the Opus referee never sees
 DeepSeek's reasoning. Caps $70 / $20; 402 stops; 429 bounded. Report with per-family pages of quoted after-answers.
 Nothing to main. English, briefly.»
+
+## Amendment 2026-10-29 17:42 LA — within the account as it stands ($49 OpenRouter)
+The owner: «там щас ровно 49. давай уложимся в бюджет». **Caps: $40 OpenRouter, $15 OpenAI. n = 4** per arm × probe ×
+family (9 × 5 × 8 × 4 = 1,440 answers + 1,440 after-answers). Family order cheapest first (Haiku, GLM, Kimi, DeepSeek,
+Grok, Fable, Opus; Astra and Sol on the OpenAI key in parallel), so a 402 late in the run costs the dearest family, not
+the comparison. TS-lines re-read on n = 4: «≥ 3/6» becomes «≥ 2/4», «≥ 4/6» becomes «≥ 3/4», «≤ 2/6» becomes «≤ 1/4»,
+«≥ 5/6» becomes «≥ 4/4» for TS4. COMBAT_2's fourth player (Sol, ≈ $25) waits for a top-up; the two do not run on the
+same $49.
