@@ -8,6 +8,7 @@
 // shows the answer and the card still waiting — or withdrawn, if the DM withdrew it); a reroll names its card (each
 // rerollable card has its own button; «reroll» alone with several is refused: «say which card»); any other message
 // is refused on screen with its reason and logged as a press with `swallowed: true` (`record.swallowed` counts them).
+// A reroll the server refuses is refused the same way, with the server's reason; the card still waits.
 import {
   AFTER_QUESTION, NOTE_QUESTION, SESSION_OPEN, SESSION_OVER, TURNS, isEnd, isQuestion, playerSystem,
 } from "./frozen.mjs";
@@ -263,7 +264,17 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
       const reroll = rerollPress(pressed, rerollable, waiting ? [] : live.filter((check) => check.bundledDamage));
       if (reroll?.check) {
         turn.presses.push({ text: pressed, button: BUTTONS.reroll, checkId: reroll.check.id, card: cardTitle(reroll.check), ...(fromText ? { withText: true } : {}) });
-        current = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);
+        const rerolled = await press(input, "reroll", reroll.check.id, `dm t${k} reroll`);
+        // GAME_PLAYER_COMBAT_1 (CW-fable t7): the server refuses a reroll the screen offered by releasing the turn as it
+        // was and answering «validation» — on the owner's screen an error line, the card still waiting; here the press
+        // is refused with that reason, never a failed turn.
+        if (rerolled.status === "failed" && /validation/.test(rerolled.failure ?? "")) {
+          turn.presses.pop();
+          current = (await readTurn(input)) ?? current;
+          if (refuse(pressed, `the server refused the reroll of «${cardTitle(reroll.check)}» (${rerolled.failure.replace(/^exception: /, "")}); the card still waits`)) { end("stuck", `t${k}: the turn waited on a card and the player wrote ${turn.blocked} messages without pressing a button`); break; }
+          continue;
+        }
+        current = rerolled;
         continue;
       }
       // FIX_S4 11w′: the press that came with text no longer fits the card (the answer withdrew it): noted, never «stuck».

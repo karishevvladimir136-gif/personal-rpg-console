@@ -511,7 +511,7 @@ const views = { heroOf: (s) => s.entities[0], sheetOf: () => ({ role: "Warlock",
 const card = (id, reason, extra = {}) => ({ id, kind: "skill", actorName: "James Worgen", reason, dice: [11], kept: 11, modifier: 7, total: 18, success: true, dc: 15, difficulty: null,
   advantage: "normal", interactive: true, canReroll: true, rollNumber: 1, addends: [], ...extra });
 /** A scripted table: the first action pauses on `checks`; a «?» answer may withdraw (`withdrawOnAsk`); «Onward» commits. */
-function harnessTable({ checks, withdrawOnAsk = null, rerolls = { rerolls: "limited", rerollsPerSession: 2 } }) {
+function harnessTable({ checks, withdrawOnAsk = null, rerolls = { rerolls: "limited", rerollsPerSession: 2 }, refuseRerollOf = null }) {
   const calls = [];
   let paused = { id: "op1", session_id: "s1", status: "awaiting_confirmation", narration: null, told: "Mags waits for your answer.", checks: structuredClone(checks), changes: [], canRetry: false };
   let actions = 0;
@@ -531,6 +531,7 @@ function harnessTable({ checks, withdrawOnAsk = null, rerolls = { rerolls: "limi
     readTurn: async () => paused,
     press: async (input, action, checkId) => {
       calls.push({ action, checkId });
+      if (action === "reroll" && checkId === refuseRerollOf) throw Object.assign(new Error("Gameplay validation"), { code: "validation" });
       if (action === "reroll") {
         paused = { ...paused, checks: paused.checks.map((check) => check.id === checkId ? { ...check, rollNumber: check.rollNumber + 1, dice: [17], kept: 17, total: 24, canReroll: false } : check) };
         return paused;
@@ -647,4 +648,20 @@ test("11w′ in the harness: «[Roll the die]» with an out-of-game line in the 
   assert.match(after, /Die: 11/);
   assert.match(after, /\[Onward\]/);
   assert.doesNotMatch(after, /Nothing was sent/);
+});
+
+test("a reroll the server refuses (CW-fable t7: the companion's Stealth card) is shown refused with its reason; the card still waits and the session goes on — never a failed turn", async () => {
+  const checks = [card("c1", "Attack: the orc at the ford"), card("c2", "Stealth: Tamsin follows James down to the alders", { actorName: "Tamsin" })];
+  const table = harnessTable({ checks, refuseRerollOf: "c2" });
+  const record = await playHarness(["I loose a bolt at the orc and send Tamsin to the alders.", "roll", "roll", "[Request an allowed reroll — Stealth: Tamsin follows James down to the alders]", "onward", "I fall back to the cart."], table);
+  const turn = record.turns[0];
+  assert.equal(turn.status, "committed");
+  assert.notEqual(record.ended?.reason, "error");
+  assert.deepEqual(pressKinds(turn.presses), ["Roll the die", "Roll the die", "swallowed", "Onward"]);
+  assert.match(turn.presses[2].reason, /^the server refused the reroll of «Stealth: Tamsin follows James down to the alders» \(validation\); the card still waits$/);
+  const refusedScreen = record.screens.find((screen) => /^\(Nothing was sent: the turn waits for the card — the server refused the reroll/.test(screen));
+  assert.ok(refusedScreen, "the refusal is on the next screen");
+  assert.match(refusedScreen, /\[Roll card\] Tamsin · Skill check — Stealth: Tamsin follows James down to the alders/, "the card still waits under it");
+  assert.match(refusedScreen, /\[Onward\]/);
+  assert.equal(record.turns.length, 2, "the session went on");
 });
