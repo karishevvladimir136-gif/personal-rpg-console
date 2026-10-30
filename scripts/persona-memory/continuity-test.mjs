@@ -17,13 +17,13 @@
 //            breaker after --max-refusals 3 refusals in total or an error about suspension, access or policy. --retry
 //            brings back stage 1's retries (not advised).
 //
-// The key comes from .env.local (ANTHROPIC_API_KEY) or the cloud environment's APP_ANTHROPIC_API_KEY; it is never
-// printed. Every paid call goes into the ledger with its tokens and cost; the run stops before a call could pass the cap.
+// The door and its key come from .env.local (ANTHROPIC_PROVIDER and the door's key) or the cloud environment's APP_
+// variables (ANTHROPIC_PROVIDERS_1); the key is never printed. Every paid call goes into the ledger with its tokens and cost; the run stops before a call could pass the cap.
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { providerKey } from "../eval/lib/keys.mjs";
+import { anthropicEndpoint, scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
 import { MAX_REFUSALS, createSafety } from "./safety.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -136,25 +136,29 @@ export function createBudget(capUsd, spentBefore = 0) {
 // ---- the provider -----------------------------------------------------------------------------------------------------
 
 const sleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
+/** The Claude Console's door (the default of a call that names none; its key is the caller's). */
+export const CONSOLE_DOOR = anthropicEndpoint({});
 /** «HTTP 403 permission_error: model … is suspended …» — the status, the type and the start of the provider's message. */
 export const errorText = (status, type, message) => `HTTP ${status} ${type ?? ""}`.trim() + (message ? `: ${String(message).replace(/\s+/g, " ").slice(0, 160)}` : "");
 /** One Messages call. No retry by default (persona memory F2): `retries` asks again only after a 429 or a 5xx, never
  * after a refusal. The error keeps the start of the provider's message, so a «suspended» can stop a run. `messages`
- * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. */
-export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0 }) {
+ * (persona emotions 1) sends a whole conversation instead of one user turn; an empty system prompt is left out. `cache`
+ * (persona self-talk 1) asks for the provider's automatic prompt caching of the conversation so far. `door`
+ * (ANTHROPIC_PROVIDERS_1) is the endpoint the call goes through; without one, the Claude Console's. */
+export async function anthropicCall({ apiKey, model, system, user, messages, maxTokens, effort, fetcher = fetch, retries = 0, cache = false, door = CONSOLE_DOOR }) {
   let lastError = null;
   for (let attempt = 0; attempt <= retries; attempt++) {
     if (attempt) await sleep(2000 * 2 ** (attempt - 1));
     try {
-      const response = await fetcher("https://api.anthropic.com/v1/messages", {
-        method: "POST", headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-        body: JSON.stringify({ model, max_tokens: maxTokens, output_config: { effort }, ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] }),
+      const response = await fetcher(door.messagesUrl, {
+        method: "POST", headers: door.headers(apiKey),
+        body: JSON.stringify(door.body({ model, max_tokens: maxTokens, output_config: { effort }, ...(cache ? { cache_control: { type: "ephemeral" } } : {}), ...(system ? { system } : {}), messages: messages ?? [{ role: "user", content: user }] })),
         signal: AbortSignal.timeout(180_000),
       });
       const value = await response.json().catch(() => null);
       if (response.ok && value) {
         const text = (value.content ?? []).filter((block) => block.type === "text").map((block) => block.text ?? "").join("\n").trim();
-        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, error: null };
+        return { text, usage: value.usage ?? {}, stopReason: value.stop_reason ?? null, refusalCategory: value.stop_details?.category ?? null, error: null };
       }
       lastError = errorText(response.status, value?.error?.type, value?.error?.message);
       if (![429, 500, 502, 503, 504, 529].includes(response.status)) break;
@@ -182,7 +186,7 @@ async function pool(items, limit, work) {
 }
 
 export async function runContinuity({ caseData, n = 5, effort = "medium", budget, apiKey, fetcher, seed = 20261023, concurrency = 4, log = () => {}, rejudge = null,
-  retryRefusal = false, retries = 0, safety = createSafety({ gapMs: 0, log }) }) {
+  retryRefusal = false, retries = 0, safety = createSafety({ gapMs: 0, log }), door = CONSOLE_DOOR }) {
   let stopped = null;
   const paid = async (purpose, model, system, user, maxTokens, callEffort) => {
     stopped ??= safety.stopped;
@@ -190,7 +194,7 @@ export async function runContinuity({ caseData, n = 5, effort = "medium", budget
     if (!budget.allows(worstUsd(model, system, user, maxTokens))) { stopped = `the cap of $${budget.capUsd} would be passed (spent $${budget.spentUsd.toFixed(4)})`; log(`STOP: ${stopped}`); return { text: "", error: "budget" }; }
     let started = Date.now();
     // The safety gate (persona memory F2): one call at a time; nothing is sent once the circuit breaker has tripped.
-    const result = await safety.run(() => { started = Date.now(); return anthropicCall({ apiKey, model, system, user, maxTokens, effort: callEffort, fetcher, retries }); });
+    const result = await safety.run(() => { started = Date.now(); return anthropicCall({ apiKey, model, system, user, maxTokens, effort: callEffort, fetcher, retries, door }); });
     stopped ??= safety.stopped;
     if (result.notSent) return { text: "", error: "stopped" };
     const call = { n: budget.calls.length + 1, purpose, model, inputTokens: result.usage.input_tokens ?? 0, outputTokens: result.usage.output_tokens ?? 0,
@@ -318,15 +322,16 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const previous = dry ? { spentUsd: 0, runs: [] } : JSON.parse(await readFile(ledgerJson, "utf8").catch(() => '{"spentUsd":0,"runs":[]}'));
   const cap = Number(option(args, "--budget", "10"));
   const budget = createBudget(cap, previous.spentUsd ?? 0);
-  const apiKey = dry ? "dry" : providerKey("ANTHROPIC_API_KEY");
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY is needed (.env.local or the cloud environment's APP_ANTHROPIC_API_KEY)");
+  const door = dry ? CONSOLE_DOOR : scriptAnthropicEndpoint();
+  const apiKey = dry ? "dry" : door.apiKey;
+  if (!apiKey) throw new Error(`${door.keyName} is needed (.env.local or the cloud environment's APP_${door.keyName})`);
   out(`case ${caseData.synthetic ? "synthetic fixture" : casePath} · ${args.includes("--rejudge") ? "re-judge" : `n ${option(args, "--n", "5")}`} · cap $${cap} (spent before: $${(previous.spentUsd ?? 0).toFixed(4)})${dry ? " · DRY RUN" : ""}`);
   const rejudgeFile = option(args, "--rejudge", null);
   const earlier = rejudgeFile ? JSON.parse(await readFile(resolve(rejudgeFile), "utf8")) : null;
   if (earlier) out(`re-judging the ${earlier.samples.length} answers of ${rejudgeFile} (no persona calls)`);
   const retry = args.includes("--retry");
   const safety = createSafety({ maxRefusals: Number(option(args, "--max-refusals", String(MAX_REFUSALS))), gapMs: dry ? 0 : Number(option(args, "--gap", "3")) * 1000, log: out });
-  const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, apiKey,
+  const result = await runContinuity({ caseData, n: Number(option(args, "--n", "5")), effort: earlier?.effort ?? option(args, "--effort", "medium"), budget, apiKey, door,
     fetcher: dry ? scriptedFetcher() : undefined, log: out, rejudge: earlier?.samples ?? null, retryRefusal: retry, retries: retry ? 3 : 0, safety });
   if (earlier) Object.assign(result, { rejudgeOf: rejudgeFile.split(/[\\/]/).pop(), earlierTable: earlier.table });
   const finishedAt = new Date().toISOString();

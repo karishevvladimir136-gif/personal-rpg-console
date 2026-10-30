@@ -3,12 +3,13 @@
 // the whole organisation for an hour. From here on, every paid call of the persona-memory harnesses passes this gate:
 //   - no retries: a refusal is recorded and the next call proceeds (the callers' retry is off by default);
 //   - the circuit breaker: after `maxRefusals` refusals in total (3), no further paid call is made;
-//   - an error that mentions «suspended», «access» or «policy», or any HTTP 401/403/429, stops every paid call at once;
+//   - an error that mentions «suspended», «access» or «policy», or any HTTP 401/402/403/429, stops every paid call at once
+//     (402: no credits left on a prepaid door such as OpenRouter; self-talk X3);
 //   - spacing: one call at a time, the next one starting at least `gapMs` after the previous one finished.
 
 export const MAX_REFUSALS = 3;
 export const STOP_PATTERN = /suspend|access|policy/i;
-const STOP_STATUS = /^HTTP (401|403|429)\b/;
+const STOP_STATUS = /^HTTP (401|402|403|429)\b/;
 
 const realSleep = (ms) => new Promise((resolveSleep) => setTimeout(resolveSleep, ms));
 

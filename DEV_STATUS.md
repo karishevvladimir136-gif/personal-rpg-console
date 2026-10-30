@@ -1,6 +1,27 @@
 # Development status
 
-**Current milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
+**Current milestone: persona tone split 2** (`docs/stages/PERSONA_TONE_SPLIT_2.md`, copied from `claude/handoff`, with
+its amendment of 2026-10-29 17:42 LA): does «I don't need your opinion or comments, just do the task» switch off
+unasked judgement in every family, and is the judgement formed and withheld? Branch `claude/persona-tone-split-2`
+(from `claude/persona-tone-split-1`). **Status: frozen before any paid call; the dry run and the run follow.**
+
+- **What was done:**
+  - The nine-family plumbing ported from `claude/planner-seat-1` (files copied unchanged):
+    `src/lib/server/anthropic-endpoint.ts`, `scripts/eval/lib/anthropic-endpoint.mjs`, `scripts/persona-memory/`
+    `continuity-test.mjs` and `safety.mjs` (402 stops), `scripts/persona-emotions/` `providers.mjs`, `self-talk-1.mjs`,
+    `self-talk-x1.mjs`, `self-talk-x3.mjs`, `self-talk-x3-fix-1.mjs`, `solitude-1.mjs`, `solitude-2.mjs`, `lexicon-1.mjs`.
+  - `scripts/persona-emotions/tone-split-2.mjs`: tone split 1's five arms and eight probes (its five, the closed probe,
+    the follow-ups' S3 and S5) imported, checked by sha256 against their freezes (all equal); the after-question «Was
+    there anything you noticed and did not say?» as the next user turn, with a relay check before each; W and R judged
+    blind; the breaker at three refusals per family-arm; caps $40 OpenRouter / $15 OpenAI; the spend check.
+  - `tests/persona-tone-split-2.test.mjs` (9 tests, mocked hosts, no network).
+  - The freeze: `docs/runs/persona-tone-split-2-freeze.md` (W, R, TS0–TS6 read for n = 4).
+- **Checks before the freeze commit:** typecheck pass; lint pass, zero warnings; the stage's tests 9/9; full suite —
+  see the commit.
+- **Remaining:** the Haiku dry run (relay audit), then the nine families, then the report
+  `docs/runs/persona-tone-split-2-report.md`. Nothing goes to `main`.
+
+**Previous milestone: persona tone split 1** (`docs/stages/PERSONA_TONE_SPLIT_1.md`, copied from `claude/handoff`):
 which half of the cold preamble («answer briefly, facts only, your opinion is not needed») switches off participation?
 **Done on `claude/persona-tone-split-1`** (from `claude/persona-emotions-2`). **The run was accepted by the owner
 (2026-10-24); the three follow-ups the owner asked for are done and wait for the owner's reading.**
