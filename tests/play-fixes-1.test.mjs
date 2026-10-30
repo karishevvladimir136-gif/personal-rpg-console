@@ -179,3 +179,44 @@ test("item 8: the DM guide note says a question put to the hero does not hold th
     assert.ok(system.includes(UNANSWERED_QUESTION_LINE), "the DM reads it in the system layers");
   } finally { await c.f.db.close(); }
 });
+
+test("pacingRules: the DM guide note carries the owner's pacing rules when on (the default for every campaign) and not when off; plain words, ≤ 180", async () => {
+  const { guideNote, PACING_RULES, UNANSWERED_QUESTION_LINE } = await import("../src/lib/gameplay/dm-loop/guide-note.ts");
+  const { DM_OPTION_DEFAULTS, parseDmOptions, parseDmOptionsPatch } = await import("../src/lib/gameplay/dm-loop/options.ts");
+  const { wordsIn } = await import("../scripts/game-player-1/measures.mjs");
+  assert.ok(wordsIn(PACING_RULES).length <= 180, `${wordsIn(PACING_RULES).length} words`);
+  for (const rule of [/A mystery is an exchange: every turn the player spends on it returns one real answer and opens at most one new question/,
+    /The brief's promise appears in session one as a fact of the world; by turn ten/, /A long hook moves every five turns: the debt, the ban, the name/,
+    /A ban must cost: show the player the thing refused/, /Narrate every roll in one line before the next scene/, /A spent reroll is felt in the world/,
+    /Never hold the scene on one person's answer/, /One turn in three carries no hook/, /A foe whose first line offers terms gives no fight/,
+    /End of day is not end of session/, /Do not open a new thread while more than two hang/, /Friction is pacing: people resist/]) assert.match(PACING_RULES, rule);
+  // The option: on by default (a campaign that never saved it has it), a boolean, nothing else.
+  assert.equal(DM_OPTION_DEFAULTS.pacingRules, true);
+  assert.equal(parseDmOptions({}).pacingRules, true);
+  assert.equal(parseDmOptions({ pacingRules: false }).pacingRules, false);
+  assert.equal(parseDmOptions({ pacingRules: "off" }).pacingRules, true, "an unknown value is ignored");
+  assert.deepEqual(parseDmOptionsPatch({ pacingRules: false }), { pacingRules: false });
+  assert.throws(() => parseDmOptionsPatch({ pacingRules: 0 }), /options\.pacingRules is not allowed/);
+  assert.ok(guideNote({ pacingRules: true }).includes(PACING_RULES));
+  assert.ok(!guideNote({ pacingRules: false }).includes(PACING_RULES));
+  assert.ok(guideNote({ pacingRules: false }).includes(UNANSWERED_QUESTION_LINE), "off removes only the pacing block");
+
+  // On the real turn path: a new campaign's DM request carries the block; after the owner switches it off, the next does not.
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const finish = { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false } };
+  const systemText = (request) => request.system.map((block) => block.text).join("\n");
+  const c = await loopCampaign();
+  try {
+    const on = await c.turn("I ask the ferryman his price.", [{ text: "He names two silver.", toolCalls: [finish] }]);
+    assert.equal(on.result.status, "committed", JSON.stringify(c.errors));
+    assert.ok(systemText(on.model.requests[0]).includes(PACING_RULES), "on by default");
+    const before = await c.settings.read();
+    assert.equal(before.options.pacingRules, true);
+    const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { pacingRules: false } });
+    assert.equal(saved.options.pacingRules, false);
+    const off = await c.turn("I pay him and step aboard.", [{ text: "The ferry pushes off.", toolCalls: [finish] }]);
+    assert.equal(off.result.status, "committed", JSON.stringify(c.errors));
+    assert.ok(!systemText(off.model.requests[0]).includes("Pacing — the owner's rules"), "off: no pacing block");
+    assert.ok(systemText(off.model.requests[0]).includes(UNANSWERED_QUESTION_LINE), "the guide note's standing line stays");
+  } finally { await c.f.db.close(); }
+});

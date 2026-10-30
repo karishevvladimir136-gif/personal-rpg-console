@@ -726,8 +726,8 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle ? ` — ${snapshot.campaign.subtitle}` : ""}.`,
     likesText,
     guideText ? `DM guide (owner's standing guidance for this campaign):\n${guideText}` : "",
-    // Play fixes 1: the guide note — the unanswered-question line.
-    guideNote(),
+    // Play fixes 1: the guide note — the unanswered-question line, and the owner's pacing rules unless switched off.
+    guideNote({ pacingRules: parseDmOptions(source.dmOptions).pacingRules }),
     canonText.text, referenceText.text,
     packet ? `Historical world packet (reference evidence from the World Logic era; current structured state outranks it):\n${packet}` : "",
     rollMode(source),

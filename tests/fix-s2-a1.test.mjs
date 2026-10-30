@@ -319,12 +319,12 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
   const c = await loopCampaign();
   try {
     const before = await c.settings.read();
-    assert.deepEqual(before.options, { continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard", pureSimulation: false });
+    assert.deepEqual(before.options, { continuation: "same", instructions: "ru", companionRolls: "dm", secretsVisible: false, memory: "standard", pureSimulation: false, pacingRules: true });
     const saved = await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter", memory: "wide" } });
     assert.equal(saved.options.continuation, "lighter");
     assert.equal(saved.options.memory, "wide");
     const again = await c.settings.save({ expectedRevision: saved.revision, runtime: "dm-loop-v1", dmTurn: saved.dmTurn, options: { instructions: "en" } });
-    assert.deepEqual(again.options, { continuation: "lighter", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "wide", pureSimulation: false }, "merged");
+    assert.deepEqual(again.options, { continuation: "lighter", instructions: "en", companionRolls: "dm", secretsVisible: false, memory: "wide", pureSimulation: false, pacingRules: true }, "merged");
     await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { continuation: "never" } }), /validation/);
     await assert.rejects(c.settings.save({ expectedRevision: again.revision, runtime: "dm-loop-v1", dmTurn: again.dmTurn, options: { memory: "huge" } }), /validation/);
     // The source of the next turn carries them; a lighter continuation runs one notch below the turn.

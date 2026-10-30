@@ -404,6 +404,10 @@ export function RegistrySettings({ data, more, preview }: {
                 </div>
                 <Switch title={c("Показывать мне тайны ведущего", "Show me the DM's secrets")} hint={c("Открывает тайный слой в «Для владельца → Что видит ведущий»: досье, заметки, планы. Это спойлеры. По умолчанию выключено.", "Opens the private layers in «For the owner → What the DM sees»: the dossier, notes, plans. These are spoilers. Off by default.")}
                   checked={!!current?.options.secretsVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ options: { secretsVisible: value } })} />
+                {/* Play fixes 1: the owner's pacing rules in the DM guide note, read every turn; on by default. */}
+                <Switch title={c("Правила темпа", "Pacing rules")} hint={c("Короткий блок, который ведущий читает каждый ход: тайна — это обмен (каждый ход — один настоящий ответ), обещание завязки — в первой же сессии, долгий крючок движется каждые пять ходов, каждый бросок — одной строкой в рассказе, новая нить не открывается, пока висят больше двух, люди сопротивляются. По умолчанию включено.",
+                  "A short block the DM reads every turn: a mystery is an exchange (one real answer a turn), the brief's promise in session one, a long hook moves every five turns, every roll told in one line, no new thread while more than two hang, people resist. On by default.")}
+                  checked={current?.options.pacingRules ?? true} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ options: { pacingRules: value } })} />
               </div>
             </div>
           </Panel>
