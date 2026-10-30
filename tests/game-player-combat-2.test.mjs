@@ -166,7 +166,23 @@ test("G0–G5 by rule over four synthetic sessions; three with Sol pending", asy
   assert.match(page, /COMBAT_2 \(frozen layer\):\n\n````text\n\(pending — not started under the cap\)/);
 });
 
-test("the freeze and two sessions from it on scripted providers: the layer in the DM's notes, the opening byte-identical, the headers", { timeout: 300_000 }, async () => {
+/** `pnpm test` runs node --test without type transforms, and the app's TypeScript needs them: there the test runs itself
+ * again in a child that has them (as game player 1's pipeline tests do). */
+const TRANSFORMS = process.execArgv.includes("--experimental-transform-types");
+const E2E = "the freeze and two sessions from it on scripted providers: the layer in the DM's notes, the opening byte-identical, the headers";
+test(E2E, { timeout: 600_000 }, async () => {
+  if (!TRANSFORMS) {
+    const { spawnSync } = await import("node:child_process");
+    const { fileURLToPath } = await import("node:url");
+    const env = { ...process.env };
+    delete env.NODE_TEST_CONTEXT;
+    const child = spawnSync(process.execPath, ["--experimental-transform-types", "--test", "--test-name-pattern", `^${E2E.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, fileURLToPath(import.meta.url)],
+      { cwd: fileURLToPath(new URL("..", import.meta.url)), env, encoding: "utf8", timeout: 590_000, maxBuffer: 64 * 1024 * 1024 });
+    const tap = String(child.stdout ?? "");
+    assert.equal(child.status, 0, `${tap.split("\n").filter((l) => !/^\s*#\s*\{"event"/.test(l)).slice(-60).join("\n")}\n${String(child.stderr ?? "").slice(-2000)}`);
+    assert.match(tap, /^# pass 1$/m, "the child ran the test");
+    return;
+  }
   const runMod = await import("../scripts/game-player-combat-2/run.mjs");
   const { run } = await import("../scripts/game-player-1/run.mjs");
   const { transcriptOf } = await import("../scripts/game-player-combat-2/report.mjs");
