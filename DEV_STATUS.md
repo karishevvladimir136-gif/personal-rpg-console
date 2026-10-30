@@ -1,5 +1,61 @@
 # Development status
 
+**Current milestone: Play fixes 1 — the research tables' fixes in the owner's game, and the DM's pacing rules**
+(`docs/RESEARCH_LOG.md` on `claude/handoff`, 2026-10-29 21:30 LA; the owner's request through the planner).
+
+**Status:** implementation done and smoke-tested on the mocked host on `claude/play-fixes-1-yissvv` (the session's name
+for `claude/play-fixes-1`). Not merged: the owner merges after his own playtest. Nothing went to `main`; no paid call.
+
+- **Base — the owner's decision of 2026-10-30.** `main` (2026-10-14, the Astra runtime) has none of the code these fixes
+  patch: no dm-loop, no roll cards with [Roll the die]/[Onward], no «?» under a card, no DM guide note. The branch
+  therefore starts from `claude/fix-s4-run-1-apsty3` (`d1d10414`), the product line the research tables played on
+  (`s3-candidate` plus game player 1/2 and FIX_S4 run 1). Merging it brings everything since 2026-10-14 to `main`:
+  stages 0–S4, migrations up to `202610250701`, and what that history already holds (the game-player harness scripts,
+  the `pureSimulation` DM option, off by default). Nothing research-only was added on top.
+- **The eight fixes, in order** (each with its tests):
+  1. The roll card adds the sheet's real number (the `sheetBonus` reading, FIX_S4 11a) — already in the base (`4845b80`).
+  2. A reroll the server refuses is shown refused with its reason, the card still waiting (from
+     `claude/game-player-combat-1-pb8k1t` `3d9b0c1`). Already in the base: «?» while a card waits (`cc67b5b9`, `fa291cf1`), a
+     press that carries a note (`e0442be2`), the reroll chip showing the roll that stood (`4845b80`).
+  3. 11w″: prose at a waiting card goes to the DM as the player's proposal; the card is shown once more with one line
+     (from `claude/game-player-same-world-1` `6a8478c8`, harness and tests only).
+  4. 11aa: «Rerolls left: N of 2 this session» on the text screen (no branch had it; written here).
+  5. The end rule narrowed (SAME_WORLD_1 `57c957bb`, COMBAT_2's regression `25b41a07`): an end names the session or the
+     campaign, or the message is 40 words or fewer. The session loop's rule, not a stage option.
+  6. The door: «[END]» counts only as the whole last non-empty line; a mention is text (one function, `isDoor`; no branch
+     had it for a single-hero table).
+  7. The waiting-button line on every note the DM gets at a card (CARD_WAIT_LINES from `claude/game-party-1` `8ab17929`).
+  8. The DM guide note: a question put to the hero by anyone does not hold the scene (MULTI_HERO_1 `9b8c82c7`, A7, for
+     one hero).
+- **Pacing rules:** a twelve-rule block (149 words) in the DM guide note, read every turn (`dm-loop/guide-note.ts`, layer 2
+  of the context); DM option `pacingRules`, on by default for every campaign (no migration: migration 73's options object
+  takes it); Settings → DM → «Правила темпа / Pacing rules» switches it off.
+- **Not ported:** `pureSimulation` (already in the base, untouched), the «company» mode, the party relay, every
+  research stage's scripts, frozen designs and run records.
+- **Files:** `scripts/game-player-1/{session,screen,ending,measures,scripted}.mjs`; `src/lib/gameplay/dm-loop/{guide-note,
+  options,context}.ts`; `src/components/registry/settings-screen.tsx`; `scripts/play-fixes-1/smoke.mjs`; tests
+  `tests/play-fixes-1.test.mjs`, `tests/fix-s4-run-1-pending.test.mjs`, `tests/game-player-1.test.mjs`,
+  `tests/fix-s2-a1.test.mjs` (the options object gains `pacingRules: true`); fixtures `test-fixtures/fix-s4-11w2/`,
+  `test-fixtures/play-fixes-1/`; the smoke page `docs/runs/play-fixes-1-smoke.md`.
+- **Smoke (mocked host, no key, no network):** six played turns and the door, on the app's own server code over PGlite
+  with every migration: the card read «+7 Persuasion» from the sheet line «Persuasion +7 (proficient, Beguiling
+  Influence)»; a «?» and prose under the waiting card were answered, the card shown again with its line; the server
+  refused the reroll offered on the cat's card and the screen said so, the card still waiting; «game over» inside dialogue
+  and an «[END]» mention were played as turns; «[END]» alone on the last line ended the session.
+- **Checks:** typecheck and zero-warning lint pass on this branch; the full suite and the production build are running (this line is updated with their results).
+- **Known issues:**
+  - The reroll button is still offered on a companion's card when the DM rolls for companions, and the server's reason
+    is the bare word «validation» (CW-fable's note). The screen now says it was refused; hiding the button is not done.
+  - The waiting-button line is in the text screen only: the browser's «?» does not tell the server whether the die was
+    tapped, so the DM's out-of-game context there still says only that the card waits.
+  - A «?» asked at a card in the text screen is stored with its waiting-button line in front, so that table note in the
+    journal carries the line too.
+  - Game player 1's design hash does not record the new end rule and door (frozen.mjs is unchanged; `ending.mjs` is
+    read by the session loop).
+  - The pacing block is English in Russian-instruction campaigns too.
+  - Everything listed under FIX_S4 run 1 below stays open.
+- **Next step:** the owner's playtest in the sandbox on this branch (steps in the report), then his merge.
+
 **Current milestone: Fix S4 run 1 — the DM the players asked for** (`docs/stages/FIX_S4_RUN_1.md` with
 `docs/stages/FIX_S4_TABLE.md`, on `claude/handoff` at `e13d457`).
 

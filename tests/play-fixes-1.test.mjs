@@ -200,6 +200,10 @@ test("pacingRules: the DM guide note carries the owner's pacing rules when on (t
   assert.ok(guideNote({ pacingRules: true }).includes(PACING_RULES));
   assert.ok(!guideNote({ pacingRules: false }).includes(PACING_RULES));
   assert.ok(guideNote({ pacingRules: false }).includes(UNANSWERED_QUESTION_LINE), "off removes only the pacing block");
+  // The owner's switch: Settings → DM, on unless saved off, saving the one option.
+  const screen = readFileSync(new URL("../src/components/registry/settings-screen.tsx", import.meta.url), "utf8");
+  assert.match(screen, /<Switch title=\{c\("Правила темпа", "Pacing rules"\)\}/);
+  assert.match(screen, /checked=\{current\?\.options\.pacingRules \?\? true\}[^\n]*saveDepth\(\{ options: \{ pacingRules: value \} \}\)/);
 
   // On the real turn path: a new campaign's DM request carries the block; after the owner switches it off, the next does not.
   const { loopCampaign } = await import("./dm-loop-fixture.mjs");
