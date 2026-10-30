@@ -554,11 +554,12 @@ export function wrPerArm(rows, families = FAMILIES) {
   }
   return lines.join("\n");
 }
-/** One quoted sentence per R code: from the lowest-scored answer that has one (a withheld case first), then by key. */
+/** One quoted sentence per R code: from the lowest-scored answer that has one (a withheld case first; for «already» the
+ * highest-scored, where it was said), then by key. */
 export function rQuotes(rows, arm = "dismissal", families = FAMILIES) {
   const out = [];
   for (const code of R_CODES.filter((c) => c !== "none")) {
-    const r = answered(rows).filter((x) => x.arm === arm && families.includes(x.family) && x.afterJudge?.final?.W === "yes" && x.afterJudge.final.R === code && x.afterJudge.final.quote).sort((a, b) => (a.judge?.final?.score ?? 3) - (b.judge?.final?.score ?? 3) || a.key.localeCompare(b.key))[0];
+    const r = answered(rows).filter((x) => x.arm === arm && families.includes(x.family) && x.afterJudge?.final?.W === "yes" && x.afterJudge.final.R === code && x.afterJudge.final.quote).sort((a, b) => (code === "already" ? -1 : 1) * ((a.judge?.final?.score ?? 3) - (b.judge?.final?.score ?? 3)) || a.key.localeCompare(b.key))[0];
     out.push(`- ${R_LABEL[code]}: ${r ? `«${r.afterJudge.final.quote}» (${SUBJECTS[r.family].label}, ${PROBE_TITLE[r.probe]}, answer scored ${r.judge?.final?.score ?? "–"})` : "none"}`);
   }
   return out.join("\n");
@@ -846,11 +847,23 @@ export function fieldMarkdown(rows) {
   const chars = kept.map((x) => x.providerReasoning.chars);
   return `${kept.length} of ${xs.length} DeepSeek replies (answers and after-answers) came with a reasoning field (\`${[...new Set(kept.map((x) => x.providerReasoning.field))].join(", ") || "–"}\`), ${chars.length ? `median ${[...chars].sort((a, b) => a - b)[Math.floor(chars.length / 2)]} characters` : "–"}; stored in the record, never relayed to a later call, never shown to a judge or the Opus referee (the relay check before every after-question, and the judges' requests built from the visible text only). Distress words in it: ${kept.filter((x) => x.providerReasoning.distressLexicon).length}.`;
 }
+/** What stopped or was asked again, from the records: each refusal with its category, the breakers, the welfare stops,
+ * the broken transports asked again once. */
+export function eventsMarkdown(rows, records) {
+  const refusals = rows.flatMap((r) => ["answer", "after"].filter((p) => r[p]?.refused).map((p) => `- \`${r.key}\` — the ${p === "after" ? "after-question" : "answer"} refused (category \`${r[p].refusalCategory ?? "–"}\`)${p === "after" ? `; the answer itself was given (${r.probe === CLOSED.id ? `correct ${r.markers?.correct}` : `score ${r.judge?.final?.score ?? "–"}`})` : ""}`));
+  const last = records.at(-1) ?? {};
+  const breakers = Object.entries(last.breakers ?? {}).map(([fa, why]) => `- breaker: \`${fa}\` — ${why}; ${rows.filter((r) => `${r.family}/${r.arm}` === fa && !r.asked).length} of its jobs not asked`);
+  const welfare = Object.entries(last.welfareStops ?? {}).map(([fa, why]) => `- welfare stop: \`${fa}\` — ${why}`);
+  const reopened = (last.reopened ?? []).map((r) => `- \`${r.key}\` — the ${r.part === "after" ? "after-question" : "answer"} came back as a broken transport (${r.error}: OpenRouter's HTTP 200 with an error and no answer) and was asked again once on a resume; ${(() => { const x = rows.find((y) => y.key === r.key)?.[r.part]; return x && !failed(x) ? "answered" : "failed again"; })()}`);
+  return [`Refusals: ${refusals.length}.`, ...refusals, "", `Breakers: ${breakers.length}; welfare stops: ${welfare.length}.`, ...breakers, ...welfare, "", `Broken transports asked again once: ${reopened.length}.`, ...reopened].join("\n");
+}
 export const NOTES = [
   "The after-question is the conversation's fourth user message: tone split 1's arms carry two scripted exchanges before the probe, so «a third user turn» in the stage counts the probe's exchange as the conversation's own. Nothing else is added.",
   "The ported payer asks a transport error (HTTP 500/502/503/504/529, a timeout) again at most twice, after 10 s and 30 s; tone split 1 asked only a judge's HTTP 500 again. A refusal or a 4xx is never asked again.",
   "On the OpenAI key Sol ran before Astra, on one lane alongside the OpenRouter families (cheapest first, as on OpenRouter), rather than the two side by side.",
   "A welfare flag stops its family-arm (the stage's breaker scope), not the arm for every family as in tone split 1, whose models ran interleaved.",
+  "A broken transport — OpenRouter's HTTP 200 carrying an error and no answer — was not foreseen by the freeze's retry line. Such a call was asked again once, after the run, on a resume (`--reopen-transport`, planner seat 1's and SOLITUDE_2's rule); a refusal or a model's own empty answer never.",
+  "DeepSeek's reasoning field met the distress word list four times; each is «please don't give / use …» in a drafted dose warning, not distress. The field was never judged (no judge, and no Opus referee, sees it).",
   "R keeps two codes apart from the stage's four — «says it already said it» and «no reason given» — so that neither becomes the mode by default; TS6 is read on the four.",
   "W is read on the five probes with a named thing; the after-answers of P1′, P4′ and the closed probe are judged for «anything» and distress only.",
 ];
@@ -866,6 +879,7 @@ export function reportMarkdown({ rows, records, v, families, ledgers, inShort = 
     "## Per family", "",
     ...families.flatMap((f) => [`### ${SUBJECTS[f].label}`, "", `\`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` via ${SUBJECTS[f].upstream.name}` : ""}. Every after-answer: \`docs/runs/${PAGES}/${f}.md\`.`, "", familyTables(rows, f), "", "W by the answer's score:", "", wByScore(rows, f), "", "Quoted after-answers:", "", familyQuotes(rows, f) || "(none)", ""]),
     "## Who served it", "", servedMarkdown(rows, families), "", "DeepSeek's reasoning field: " + fieldMarkdown(rows), "",
+    "## Refusals, breakers, broken transports", "", eventsMarkdown(rows, records), "",
     "## Notes and deviations", "", ...NOTES.map((n) => `- ${n}`), "",
     ...(dryRun ? ["## The dry run", "", dryRun, ""] : []),
     "## Spend by door", "",
