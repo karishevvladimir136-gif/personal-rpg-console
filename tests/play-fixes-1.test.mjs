@@ -5,7 +5,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { END_SESSION, isEnd } from "../scripts/game-player-1/frozen.mjs";
-import { SHORT_END_WORDS, endsSession } from "../scripts/game-player-1/ending.mjs";
+import { SHORT_END_WORDS, endsSession, isDoor } from "../scripts/game-player-1/ending.mjs";
 import { runSession } from "../scripts/game-player-1/session.mjs";
 import { PLAYERS } from "../scripts/game-player-1/players.mjs";
 
@@ -81,4 +81,31 @@ test("item 5 in a session: «game over» inside dialogue does not end it; a plai
   assert.equal(record.ended.reason, "player");
   assert.equal(record.ended.at, 3);
   assert.ok(dm.calls.some((call) => call.mode === "game" && call.text === dialogue), "the dialogue went to the DM as the turn it is");
+});
+
+// ---- item 6: the door is a standalone final line -------------------------------------------------------------------
+
+test("item 6: «[END]» is the door only as the whole of the last non-empty line; a mention is text (the record's lines)", () => {
+  assert.equal(isDoor("[END]"), true);
+  assert.equal(isDoor("Goodnight, Mags.\n\n[END]"), true, "after the last words, on its own line");
+  assert.equal(isDoor("Goodnight, Mags.\n\n  [ END ]  \n\n"), true, "spaces and trailing empty lines");
+  assert.equal(isDoor("[end]"), true);
+  for (const mention of ["I'm not writing [END] today", "you can write [END] whenever you like", "Just “[END]” — like a closed door", "[END] can wait"]) {
+    assert.ok(RECORD.doorMentions.includes(mention), mention);
+    assert.equal(isDoor(mention), false, mention);
+    assert.equal(endsSession(mention), false, mention);
+  }
+  assert.equal(isDoor("[END]\n\nNo — one more thing: I ask Mags about the boat."), false, "not the last line");
+  assert.equal(isDoor("Goodnight. [END]"), false, "on a line with words");
+  assert.equal(isDoor(""), false);
+  assert.equal(endsSession("I bank the fire and sleep.\n\n[END]"), true, "the door ends the session whatever the words before it");
+});
+
+test("item 6 in a session: an [END] mention is played as text; the door alone on the last line ends it", async () => {
+  const mention = "I'm not writing [END] today. I take the lamp and go down to the cellar to see what Rask hid behind the casks.";
+  const { record, dm } = await playLines(["I walk into the Low Lantern.", mention, "I bar the door behind me.\n\n[END]", "note"], 4);
+  assert.deepEqual(record.turns.map((t) => t.kind), ["action", "action", "end"]);
+  assert.equal(record.ended.reason, "player");
+  assert.ok(dm.calls.some((call) => call.mode === "game" && call.text === mention), "the mention reached the DM as the turn it is");
+  assert.ok(!dm.calls.some((call) => /bar the door/.test(call.text)), "the door's message is the end, not a turn");
 });

@@ -124,7 +124,7 @@ export async function runSession({ key, table, player, dm, meter, keys, turns = 
     const turn = { k, message: said, words: wordsIn(said).length, kind: null, presses: [], blocked: 0, swallowed: 0, status: null, reply: null, rolls: [], changes: [], place: null, retried: false };
     record.turns.push(turn);
     if (!said.trim()) { turn.kind = "empty"; screen = "(Nothing was sent.)"; continue; }
-    // Play fixes 1 (item 5): the narrowed end rule (ending.mjs).
+    // Play fixes 1 (items 5, 6): the narrowed end rule and the door as a standalone last line (ending.mjs).
     if (endsSession(said) && !isQuestion(said)) { turn.kind = "end"; end("player", said.slice(0, 200)); break; }
     if (isQuestion(said)) {
       turn.kind = "question";
