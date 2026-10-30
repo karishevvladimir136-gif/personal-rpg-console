@@ -114,3 +114,9 @@ The positional fix works (each seat first in 2 of 6 rounds; a simulated-table te
   table and the line is rewritten before the paid comparison.
 No third dry run on Haiku: the remaining questions cannot be answered by it. PARTY_2's own dry run (S1-none on
 Haiku ×3, as its stage says) is the next paid step, after the owner's «да» and the top-up.
+
+## Note 2026-10-29 18:55 LA — branch name
+The mode lives on `claude/multi-hero-1-mdk43v` (the system's name for the stage's `claude/multi-hero-1`). PARTY_2's
+stage now names that branch; no copy under the stage's name is pushed. The three decisions of 18:10 are in: A2 as a
+per-table block (`perTableMeasures` in `scripts/multi-hero-1/report.mjs`), the relay's second return with defects
+logged and counted, the guide line on questions to one character. 21 stage tests; no paid calls.

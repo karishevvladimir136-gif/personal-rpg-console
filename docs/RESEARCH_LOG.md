@@ -3321,3 +3321,8 @@ conflict, new ways of resolving it». Crossed with OTHER_DM when it exists, so t
 varied too. Her four candidate explanations for why independently trained systems find shared rules so fast
 (shared human data; similar post-training norms; the RPG structure; the Opus mediator) are the stage's rival
 hypotheses; the first two cannot be separated by it, the last two can.
+
+## 2026-10-29 18:55 LA — MULTI_HERO_1: the three decisions landed; branch `claude/multi-hero-1-mdk43v` ready for PARTY_2
+A2 → per-table measures block; A4 → second return, defects logged and printed; A7 → guide line (questions to one
+character do not hold the round; the bookkeeper never reads the guide — by design). PARTY_2's stage re-pointed to the
+real branch name. No paid calls; 21 tests; the five known failures unchanged.
