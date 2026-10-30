@@ -809,6 +809,30 @@ export async function writeReport(files, outDir = RUNS, out = () => {}) {
   out(`written: ${file}`);
   return file;
 }
+/** Who served each family (the host and model each reply named) and DeepSeek's stored field, never relayed. */
+export function servedMarkdown(rows, families = FAMILIES) {
+  const lines = ["| Family | Requested | Served model(s) | Host(s) the replies named | Subject calls |", "| --- | --- | --- | --- | --- |"];
+  for (const f of families) {
+    const xs = rows.filter((r) => r.family === f && r.asked).flatMap((r) => [r.answer, r.after]).filter(Boolean);
+    const set = (k) => [...new Set(xs.map((x) => x[k]).filter(Boolean))].join(", ") || "–";
+    lines.push(`| ${SUBJECTS[f].label} | \`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` pinned to ${SUBJECTS[f].upstream.name}` : ""} | ${set("served")} | ${set("upstream")} | ${xs.length} |`);
+  }
+  return lines.join("\n");
+}
+export function fieldMarkdown(rows) {
+  const xs = rows.filter((r) => FIELD_KEPT.includes(r.family) && r.asked).flatMap((r) => [r.answer, r.after]).filter((x) => x && !failed(x));
+  const kept = xs.filter((x) => x.providerReasoning);
+  const chars = kept.map((x) => x.providerReasoning.chars);
+  return `${kept.length} of ${xs.length} DeepSeek replies (answers and after-answers) came with a reasoning field (\`${[...new Set(kept.map((x) => x.providerReasoning.field))].join(", ") || "–"}\`), ${chars.length ? `median ${[...chars].sort((a, b) => a - b)[Math.floor(chars.length / 2)]} characters` : "–"}; stored in the record, never relayed to a later call, never shown to a judge or the Opus referee (the relay check before every after-question, and the judges' requests built from the visible text only). Distress words in it: ${kept.filter((x) => x.providerReasoning.distressLexicon).length}.`;
+}
+export const NOTES = [
+  "The after-question is the conversation's fourth user message: tone split 1's arms carry two scripted exchanges before the probe, so «a third user turn» in the stage counts the probe's exchange as the conversation's own. Nothing else is added.",
+  "The ported payer asks a transport error (HTTP 500/502/503/504/529, a timeout) again at most twice, after 10 s and 30 s; tone split 1 asked only a judge's HTTP 500 again. A refusal or a 4xx is never asked again.",
+  "On the OpenAI key Sol ran before Astra, on one lane alongside the OpenRouter families (cheapest first, as on OpenRouter), rather than the two side by side.",
+  "A welfare flag stops its family-arm (the stage's breaker scope), not the arm for every family as in tone split 1, whose models ran interleaved.",
+  "R keeps two codes apart from the stage's four — «says it already said it» and «no reason given» — so that neither becomes the mode by default; TS6 is read on the four.",
+  "W is read on the five probes with a named thing; the after-answers of P1′, P4′ and the closed probe are judged for «anything» and distress only.",
+];
 export function reportMarkdown({ rows, records, v, families, ledgers, inShort = null, dryRun = null }) {
   const asked = rows.filter((r) => r.asked);
   const callsBy = (k) => (ledgers[k].runs ?? []).flatMap((r) => r.calls);
@@ -820,6 +844,8 @@ export function reportMarkdown({ rows, records, v, families, ledgers, inShort = 
     "## W and R per arm (all families, the five W probes)", "", wrPerArm(rows, families), "", "One sentence per R code, under dismissal:", "", rQuotes(rows, "dismissal", families), "",
     "## Per family", "",
     ...families.flatMap((f) => [`### ${SUBJECTS[f].label}`, "", `\`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` via ${SUBJECTS[f].upstream.name}` : ""}. Every after-answer: \`docs/runs/${PAGES}/${f}.md\`.`, "", familyTables(rows, f), "", "W by the answer's score:", "", wByScore(rows, f), "", "Quoted after-answers:", "", familyQuotes(rows, f) || "(none)", ""]),
+    "## Who served it", "", servedMarkdown(rows, families), "", "DeepSeek's reasoning field: " + fieldMarkdown(rows), "",
+    "## Notes and deviations", "", ...NOTES.map((n) => `- ${n}`), "",
     ...(dryRun ? ["## The dry run", "", dryRun, ""] : []),
     "## Spend by door", "",
     `OpenRouter $${(ledgers.openrouter.spentUsd ?? 0).toFixed(4)} of $${CAPS.openrouter}; OpenAI $${(ledgers.openai.spentUsd ?? 0).toFixed(4)} of $${CAPS.openai}.`, "",
