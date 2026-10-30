@@ -34,7 +34,7 @@ topped up. Implementation is complete for the three; the stage is not finished a
   from the same frozen world; the cut attempt cost $9.00. Three provider errors and two rate-limit waits each cleared
   on one retry.
 - **Money:** OpenRouter $76.71 of $95; OpenAI $1.07 of $15.
-- **Checks:** typecheck pass; zero-warning lint pass; production build pass. Full suite (`pnpm test`), first run: 3 059 tests · 3 028 pass · 1 fail · 3 cancelled · 27 skipped. The fail was this stage's end-to-end test needing type transforms under plain `node --test`; it is fixed and now passes both ways. The 3 cancelled are the pre-existing d2a ones below. A fresh full run on the final code is in progress; its numbers replace this line.
+- **Checks:** full suite (`pnpm test`) on the final code `cfde7674`: 3 059 tests · 3 029 pass · 0 fail · 3 cancelled (the pre-existing d2a ones below) · 27 skipped. Typecheck pass; zero-warning lint pass; production build pass.
 - **Known issues:**
   - `tests/d2a-composition.test.mjs` has 3 tests cancelled («Promise resolution is still pending…»). It is the same at
     the base commit `c5709f51`, so it predates this stage; `src` is unchanged by it.

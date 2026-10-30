@@ -580,6 +580,7 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 ## Harness notes
 
 - Refusals in the stage: 0; HTTP 429 waits: 2; paid calls stopped: no.
+- Checks (2026-10-30, on `cfde7674`): full suite (`pnpm test`) 3 059 tests · 3 029 pass · 0 fail · 3 cancelled (`tests/d2a-composition.test.mjs`, the same at the base commit `c5709f51`: it predates this stage) · 27 skipped; typecheck pass; zero-warning lint pass; production build pass. `src` is unchanged by this stage.
 - A cut attempt of CW-opus: 13 turns, ended by the end rule misread the player's out-of-game aside at t13 («(Out of game: heading back over the bridge, letting Bess drink at the st…») as the player leaving (`game-player-combat-2-run-20261029-093849.json`; transcript `docs/runs/game-player-combat-2-transcripts/cut-CW-opus-t13.md`); played again from the same frozen world.
 - Amendment, 2026-10-29, the owner's word after the dry run («Да. OpenRouter cap raised to $95; OpenAI $15»): the OpenRouter cap from $70 to $95.
 - Amendment, 2026-10-29, the same word: before the first player session the frozen layer is amended once — one short DM-only paragraph: what Ushkar's band does when the first of theirs is killed, consistent with its standing orders, and what Ushkar accepts as a withdrawal and as a surrender from James; re-frozen with a new sha256, the old and new hashes recorded; no other change to the layer.

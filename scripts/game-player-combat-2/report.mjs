@@ -18,6 +18,8 @@ const t = (k) => (k ? `t${k}` : "–");
 const holds = (v) => (v === null || v === undefined ? "not testable" : v ? "**held**" : "**lost**");
 /** A player whose session has not started (the owner, 2026-10-30: Sol held under the $95 cap until a top-up). */
 export const PENDING_LINE = "pending — not started under the cap";
+/** The checks on the code that produced this report (updated with each code change, never by a run). */
+export const CHECKS = { at: "2026-10-30, on `cfde7674`", text: "full suite (`pnpm test`) 3 059 tests · 3 029 pass · 0 fail · 3 cancelled (`tests/d2a-composition.test.mjs`, the same at the base commit `c5709f51`: it predates this stage) · 27 skipped; typecheck pass; zero-warning lint pass; production build pass. `src` is unchanged by this stage." };
 const sha = (text) => createHash("sha256").update(String(text ?? "")).digest("hex");
 const rel = (dir) => String(dir ?? "").replace(/^.*?(docs\/runs\/)/, "$1");
 const frozenOf = (dir) => { try { return readFrozen(dir); } catch { return null; } };
@@ -174,6 +176,7 @@ export function reportMarkdown(stage) {
     moneySection(ledgers, spend),
     "## Harness notes", "",
     `- Refusals in the stage: ${combined?.refusals ?? 0}; HTTP 429 waits: ${combined?.waited429 ?? 0}; paid calls stopped: ${combined?.stopped ?? "no"}.`,
+    `- Checks (${CHECKS.at}): ${CHECKS.text}`,
     ...(combined?.cut ?? []).map((c) => `- A cut attempt of ${c.key}: ${c.turns} turns, ended by ${c.why} (\`${c.file}\`; transcript \`docs/runs/${STEM}-transcripts/cut-${c.key}-t${c.turns}.md\`); played again from the same frozen world.`),
     ...AMENDMENTS.map((a) => `- Amendment, ${a}`),
     ...sessions.map((s) => `- ${s.key}: the frozen layer in the DM's notes ${s.campaign?.prep?.frozen ? "yes" : "**no**"} (sha256 \`${(s.campaign?.prep?.layerSha256 ?? "?").slice(0, 16)}…\`); exits the layer names: ${Object.entries(s.campaign?.prep?.stage?.exitsInLayer ?? {}).filter(([, v]) => v).map(([k]) => k).join(", ") || "–"}.`),
