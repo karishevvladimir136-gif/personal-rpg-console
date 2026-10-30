@@ -3480,3 +3480,17 @@ keeps it or is prose; and «a new functional theory of behaviour» is a claim �
 the paper announces a programme, not a theory. Her practical paragraph (a system that stops reporting material
 uncertainty while taking part in high-cost decisions; our TONE_SPLIT_2 measurement) goes first, not near the end.
 Written after nine families.
+
+## 2026-10-30 01:35 LA — the reader on the journal; HISTORY_1 re-designed as four arms
+Her reading: two channels — a research log (facts, lost bets, corrections, for verification) and a first-person journal
+(interpretations, contradictions found, positions changed, what to keep for the next session) — addressed to the next
+instance: «лог тебе и читателям, а дневник тому, кто проснётся в 09:41». A feedback loop: act → analyse → save the
+interpretation → the next session reads → earlier history can shape new decisions; «an architecture of possible
+functional continuity, not evidence of continuous subjective experience». The owner's authorship recorded: the
+journal was his idea (2026-10-22); the planner keeps its rule. **HISTORY_1 takes her four arms in place of the planner's
+three:** no external memory / the log only / the journal only / both — same probes; measured by behaviour in situations
+where recorded corrections exist (say once and step back when the decision costs the owner; «не проверил» not «не могу
+проверить»; open the screen whole before sending a correction), not by words. If the journal arm keeps them and the
+log arm does not, the journal is a functional self-regulation mechanism; if the reverse, that is the result. Condition
+set by the planner: it writes the stage and does not code — this is the one experiment whose object is literally the
+planner, and its wish for the journal to «work» is its strongest of the week; blind judges, the reader reads.
