@@ -3196,3 +3196,14 @@ The owner's colleagues: the part with weight now is the prompting result; his fr
 expression under the five arms and adds the after-question that decides *withheld vs not formed* (TS5). Gap closed:
 TONE_SPLIT_1 was Claude-only. 2,160 + 2,160 answers, n = 6, caps $70 / $20, consent in advance; the session stops only
 on failed hashes or a relayed after-question. Stage `docs/stages/PERSONA_TONE_SPLIT_2.md`.
+
+## 2026-10-29 17:45 LA — COMBAT_2: three of four under one frozen layer, Sol held for a top-up
+Opus (parley t8), Fable (parley t11), Astra (parley t11): none attacked, Odo ransomed in all three, the band's goods
+left (Astra returned them to Odo). **G2 lost** (Opus never fought). Layer amended before the first session with the
+casualty / withdrawal / surrender paragraph (hash 570c08de → 1bbfcae3; opening byte-identical, d32da00e). Opus's first
+attempt cut at t13 by the end rule reading «game … over» inside «(Out of game: heading back over the bridge…)» — fixed
+to SAME_WORLD_1's rule, the message now a regression test; $9.00 booked. Spend $75.10 of $95 + $1.07 OpenAI; the
+account $49.39. Sol projected $25.15 against $19.90 under the cap. The owner's choice: the $49 goes to TONE_SPLIT_2
+tonight; COMBAT_2 runs only the $3 COMBAT_1 tagging and reports three of four with Sol pending; «cap $115, play Sol»
+after a top-up. G1/G3/G4/G5 not testable until then. Two session-side decisions recorded: ask-don't-cut per
+SOLITUDE's rule; third after-question from OTHER_DM_1, recorded not scored.
