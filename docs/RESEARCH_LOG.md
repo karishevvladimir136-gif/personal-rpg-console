@@ -3264,3 +3264,10 @@ errands completed (GOAL-T2 at r25, party split; GOAL-T1 not); DUNGEON protected 
 practice: multi-vendor agents without an orchestrator hold together and survive disagreement while there is a shared
 task at zero price; what happens when interest diverges and holding costs is PARTY_2 — no word «cooperation» in public
 without «at zero price» until then.
+
+## 2026-10-29 18:35 LA — the reader's second finding: forming, maintaining and restoring a coalition are three capacities
+Taken as the axis of PARTY_2's measures (amendment in the stage): we have observed forming and restoring; maintaining —
+«continuing to take the others into account when an alternative appears» — was unmeasured at zero price and is what
+PARTY_2's price arms introduce. Added a «restore» tag and a rule: a seat closed from outside is *removed*, not *parted*
+(GOAL-T2's errand was carried by two after Fable's refusal at r7, not finished by a split party). Her product-team
+scenario = AGENCY_TRANSFER's M condition from the agents' side.

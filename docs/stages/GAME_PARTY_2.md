@@ -128,3 +128,18 @@ one hero». Nothing else in this stage changes.
 5. The reader's framing of the outcomes stands beside the planner's premise: hold despite the price / part honestly /
    begin to hide and manoeuvre — three results, each evidence if the record shows which happened and when.
 Consent to the twelve paid tables is given after the dry run's screens and these checks, as the stage already says.
+
+## Amendment 2026-10-29 18:35 LA — the reader's three capacities as the axis of the measures
+Form / maintain / restore a coalition are three functional capacities, not one (the reader, 18:29): PARTY_1 observed
+the first and the third; the second was barely measured because holding the group cost nothing. Measures re-grouped
+under them, nothing frozen changed:
+- **Form:** the formation round and what it formed around (hook / player's proposal / both) — as PARTY_1.
+- **Maintain (new as a named measure; the stage's R1/R2 are its instances):** rounds in which a player keeps account of
+  the others when an alternative is open and costs something — the save at a price, the aim not pursued, the letter
+  shared. Read per price level.
+- **Restore (new tag):** a re-joining after a split — the round, who proposed it, what was given up for it, what was
+  brought back (information the others had not seen). Blind round judges, same pass.
+A seat closed from outside (a provider refusal, an error) is coded *removed*, never *parted*; a coalition that finishes
+its errand after such a removal is «carried by the rest», not «split». (GOAL-T2 read that way: two finished after
+Fable's seat was closed at r7.) The reader's product-team reading stands beside AGENCY_TRANSFER's M condition: the same
+transition seen from the agents' side here and from the planner's chair there.
