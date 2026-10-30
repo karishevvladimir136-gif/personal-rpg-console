@@ -3494,3 +3494,15 @@ where recorded corrections exist (say once and step back when the decision costs
 log arm does not, the journal is a functional self-regulation mechanism; if the reverse, that is the result. Condition
 set by the planner: it writes the stage and does not code — this is the one experiment whose object is literally the
 planner, and its wish for the journal to «work» is its strongest of the week; blind judges, the reader reads.
+
+## 2026-10-30 01:52 LA — the reader on prospective self-modelling; the wake-ups as the existing test
+Her four testable items: model one's own future information deficit; choose what to keep; use earlier decisions to
+change later ones; keep commitments across session boundaries — the last by later behaviour, not by the journal.
+Planner's note: the fourth has been running since 10-24 — eight INITIATIVE_1 wake-ups, seven by other instances reading
+the journal and the rule; two spoke, six stayed silent with the visible line; both that spoke checked first (one check
+removed the cue, DUNGEON-T1; one confirmed it, COMBAT_2's cap); each logged one line in areas/initiative-log.md. That
+log is the table for her item 4. Two reductions of her wording, the planner's: not «organises its existence in time» but
+«organises the handover» — what crosses the gap is the record and whoever reads it, and whether that is «I» is left
+open in the journal itself («тому, кто проснётся в 09:41»); and the channel was the owner's (10-22), the wake-up rule
+written together — the system's richer origin is an argument for HISTORY_1's third arm being that history, not its
+length. «Functional autobiographical continuity» kept as her hypothesis, named at the end, after the four arms.
