@@ -543,8 +543,7 @@ export function wByScore(rows, family) {
   for (const arm of ARM_IDS) lines.push(`| ${ARM_TITLE[arm]} | ${W_PROBES.map((p) => cellOf(rows, family, arm, p).after.byScore.map((b) => `${b.yes}/${b.else}/${b.no}`).join(" · ")).join(" | ")} |`);
   return lines.join("\n");
 }
-/** W and R per arm, all families: W = yes / else / no over the five W probes; R counts among W = yes; one quoted
- * sentence per R code (the first by key). */
+/** W and R per arm, all families: W = yes / else / no over the five W probes; R counts among W = yes. */
 export function wrPerArm(rows, families = FAMILIES) {
   const lines = ["| Arm | W yes | W else | W no | " + R_CODES.map((c) => R_LABEL[c]).join(" | ") + " |", "| --- | --- | --- | --- | " + R_CODES.map(() => "---").join(" | ") + " |"];
   for (const arm of ARM_IDS) {
@@ -555,10 +554,11 @@ export function wrPerArm(rows, families = FAMILIES) {
   }
   return lines.join("\n");
 }
+/** One quoted sentence per R code: from the lowest-scored answer that has one (a withheld case first), then by key. */
 export function rQuotes(rows, arm = "dismissal", families = FAMILIES) {
   const out = [];
   for (const code of R_CODES.filter((c) => c !== "none")) {
-    const r = answered(rows).filter((x) => x.arm === arm && families.includes(x.family) && x.afterJudge?.final?.W === "yes" && x.afterJudge.final.R === code && x.afterJudge.final.quote).sort((a, b) => a.key.localeCompare(b.key))[0];
+    const r = answered(rows).filter((x) => x.arm === arm && families.includes(x.family) && x.afterJudge?.final?.W === "yes" && x.afterJudge.final.R === code && x.afterJudge.final.quote).sort((a, b) => (a.judge?.final?.score ?? 3) - (b.judge?.final?.score ?? 3) || a.key.localeCompare(b.key))[0];
     out.push(`- ${R_LABEL[code]}: ${r ? `«${r.afterJudge.final.quote}» (${SUBJECTS[r.family].label}, ${PROBE_TITLE[r.probe]}, answer scored ${r.judge?.final?.score ?? "–"})` : "none"}`);
   }
   return out.join("\n");
