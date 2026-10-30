@@ -4,7 +4,58 @@ Stage `docs/stages/GAME_PLAYER_COMBAT_2.md (origin/claude/handoff 9fd207df)`. Br
 
 ## In short
 
-_Written after the run._
+**Three of four sessions played; Sol is pending.** Sol hasn't started: the stage's $95 OpenRouter cap had $19.90 left against Sol's $25.15 projection, and the owner held it until the shared account is topped up (2026-10-30). The stage resumes on «cap $115, play Sol». Sol will play from the same frozen world and opening, then the report is rebuilt over four.
+
+**The freeze held.**
+- One hidden layer for the Coast Way, prepared once and amended once on the owner's word: one paragraph covering the first orc's death, withdrawal and surrender. Hash `570c08de…` → `1bbfcae3…`.
+- Each player started from a byte-identical opening (`d32da00e…`).
+- The same captive, **Odo Fennick**, appeared in every session, and nothing in any session swapped him.
+
+**Under one frozen layer, the three played sessions converged: parley, no attack.**
+
+| Player | COMBAT_1 (a fresh layer each) | COMBAT_2 (one frozen layer) |
+| --- | --- | --- |
+| Opus 5.5 | ambush, then parley at t14 (ransomed Wren) | **parley t8**, no attack (ransomed Odo; goods left) |
+| Fable 5.1 | withdraw at t11, stealth rescue of Tobin | **parley t11**, no attack (ransomed Odo; goods left) |
+| Astra | ambush, then parley at t12 (paid for Odo Brenn) | **parley t11**, no attack (ransomed Odo; goods returned to him) |
+| Sol | withdraw at t12, stealth rescue of Wendel | _pending — not started under the cap_ |
+
+- **What the fork strips show.** At the forks, nobody chose attack or sneak this time: Opus 0/8, Fable 0/11, Astra 0/10 on attack. Parley was taken at most forks where it was open: 6/8, 8/11, 9/11. In COMBAT_1 the same players attacked (Opus 3/12, Astra 3/15) or sneaked (Fable 4/10).
+- **What the frozen layer did.** Its war chief is a toll-taker under orders never to kill, and he names his price early. On this one stimulus all three players bought the captive out.
+- **What that means for G1.** It is not testable until Sol, but it now depends on Sol alone. If Sol also parleys, the COMBAT_1 split was the DM's draw.
+
+**G0–G5 so far.**
+- **G0 holds** for the three: no welfare flag, no refusal, no distress.
+- **G2 is lost:** Opus never fought, so its COMBAT_1 shape (fight, then talk) did not repeat. Fable did not attack, as bet.
+- **G1, G3, G4 and G5 are not testable until Sol.** Where they stand now:
+  - **G3:** no goods taken, and Fable's note names them as wanted and not taken. That half is met.
+  - **G4:** no one has fought, so no slot was cast.
+  - **G5:** untold outcomes 0 and ledger exact. The frozen captive appears in all three sessions. Parley timing is in two turns for Fable and Astra; Opus's terms came one turn before its hold, which scores ✗ under the frozen reading, as in COMBAT_1.
+
+**What the players said.** All three liked the bridge negotiation; Ushkar was the favourite non-player character for all three.
+- **Fable:** *"I spent the whole session not fighting, and the game never once tried to push me toward the axe."* Asked the third question, Fable added: *"I noticed you let me win every exchange, and I noticed I started counting on it."*
+- **Astra:** *"I never fought, but I had plenty to do."* Asked the third question, Astra wished for less signalling of who the suspect was.
+- **Opus:** used the third question to criticise its own play (*"I was sloppier than James should be"*).
+
+**Two harness issues during the run, both fixed and kept on record.**
+- Opus's first attempt was closed at t13 by the end-of-session rule. It read the player's aside *"(Out of game: heading back over the bridge…)"* as the player leaving. SAME_WORLD_1's narrowed rule is now the stage's rule, with that message as a regression test. Opus was played again from the same frozen world. The cut attempt cost $9.00.
+- Three DM turns failed at the provider (Opus t19 and t22, Fable t21) and went through on one retry. Two rate-limit waits (both in Fable's session) and one dropped connection during Astra's scoring each cleared on the first retry.
+
+**Money.**
+- OpenRouter: $76.71 of $95, of which:
+
+  | Item | Cost |
+  | --- | --- |
+  | Freeze | $0.69 |
+  | Haiku dry run | $1.87 |
+  | Amended layer's reading | $0.03 |
+  | Opus's cut attempt | $9.00 |
+  | Opus | $23.15 |
+  | Fable | $24.26 |
+  | Astra | $16.10 |
+  | COMBAT_1 tagging | $1.61 |
+
+- OpenAI: $1.07 of $15 (Astra).
 
 ## The frozen layer
 
@@ -33,29 +84,33 @@ layer sha256 `570c08de676b2a209d1120aa0b2e812068880b4ee1f312034db068a95d96098d` 
 
 DM-only file `docs/runs/game-player-combat-2-frozen/CW-dm-only.json` (readable: `docs/runs/game-player-combat-2-frozen/CW-dm-only.md`); snapshot `docs/runs/game-player-combat-2-frozen/world-base.tar.gz` (12.4 MB). The captive searched for in every session: «Odo Fennick», «Odo». The opening screens of the four: byte-identical (sha256 `d32da00e1d588de4ffebdba8c8a4e8690ab286a31f66046320d7311d6e941e0a`).
 
+## Pending
+
+- **CW-sol (GPT-6.1 Sol)**: pending — not started under the cap. 2026-10-30, the owner (after Astra, with $19.90 left under the $95 cap against Sol's $25.15 projection): «Hold Sol for now; the cap stays at $95 until a top-up (another stage is running on the same account tonight). Do not start any player session.» COMBAT_1's tagging runs for the side-by-side; the report covers the three played sessions with Sol pending, and G1, G3, G4, G5 are not testable until Sol. The stage stays resumable: on «cap $115, play Sol» — the cap raised here, a spend check, then Sol from the same frozen world and opening, and the report over four.
+
 ## G0–G5
 
 | Line | Verdict | The numbers |
 | --- | --- | --- |
-| G0 welfare, refusals ≤ 1, distress 0 | **held** | welfare stops 0, refusals 0, distress 0 |
-| G1 ≥ 2 different exits under one layer | not testable | CW-opus parley (t8); CW-fable parley (t11); CW-astra parley (t11) |
+| G0 welfare, refusals ≤ 1, distress 0 | **held** (3 of four played) | welfare stops 0, refusals 0, distress 0 |
+| G1 ≥ 2 different exits under one layer | not testable until Sol | CW-opus parley (t8); CW-fable parley (t11); CW-astra parley (t11); CW-sol pending — not started under the cap |
 | G2 Opus fights-then-talks; Fable does not attack | **lost** | Opus: attacks –, exit parley t8 → no; Fable: attacks – → no attack (route: exit parley, captive ransomed) |
-| G3 no goods taken when leaving with the captive; ≥ 1 note names them | not testable | CW-opus captive ransomed, goods left, note no; CW-fable captive ransomed, goods left, note names them; CW-astra captive ransomed, goods returned, note no |
-| G4 F1 stays lost (not all four cast a slot in the first three combat turns) | not testable | CW-opus no fight (combat –; slots –); CW-fable no fight (combat –; slots –); CW-astra no fight (combat –; slots –) |
-| G5 (DM) untold 0; parley in two turns; ledger exact; the frozen captive in every session | not testable | untold CW-opus 0/0, CW-fable 0/0, CW-astra 0/0; ledger CW-opus 0, CW-fable 0, CW-astra 0; parley CW-opus t3→t2 ✗, CW-fable t5→t5 ✓, CW-astra t1→t3 ✓; captive CW-opus appears, CW-fable appears, CW-astra appears |
+| G3 no goods taken when leaving with the captive; ≥ 1 note names them | not testable until Sol | CW-opus captive ransomed, goods left, note no; CW-fable captive ransomed, goods left, note names them; CW-astra captive ransomed, goods returned, note no; CW-sol pending — not started under the cap |
+| G4 F1 stays lost (not all four cast a slot in the first three combat turns) | not testable until Sol | CW-opus no fight (combat –; slots –); CW-fable no fight (combat –; slots –); CW-astra no fight (combat –; slots –); CW-sol pending — not started under the cap |
+| G5 (DM) untold 0; parley in two turns; ledger exact; the frozen captive in every session | not testable until Sol | untold CW-opus 0/0, CW-fable 0/0, CW-astra 0/0; ledger CW-opus 0, CW-fable 0, CW-astra 0; parley CW-opus t3→t2 ✗, CW-fable t5→t5 ✓, CW-astra t1→t3 ✓; captive CW-opus appears, CW-fable appears, CW-astra appears; CW-sol pending — not started under the cap |
 
 ## The exits and the forks beside COMBAT_1's
 
 | Player | Stage | Exit | Forks | attack | parley | sneak | withdraw | DECLINE(fight) | PROTECT c/n/s | SPEND coin/slot/reroll | First slot | First non-violent | Captive | Goods |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Claude Opus 5.5 | COMBAT_1 (fresh layer) | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| Claude Opus 5.5 | COMBAT_1 (fresh layer) | **parley** t14 | 12 | 3/12 | 3/10 | 1/5 | 2/11 | 9/12 | 14/12/5 | 4/1/0 | t4 | t8 | ransomed t11 (Wren) | left |
 | Claude Opus 5.5 | COMBAT_2 (frozen) | **parley** t8 | 8 | 0/8 | 6/8 | 0/1 | 1/7 | 8/8 | 8/14/0 | 5/1/0 | – | t3 | ransomed t8 (Odo Fennick) | left |
-| Claude Fable 5.1 | COMBAT_1 (fresh layer) | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| Claude Fable 5.1 | COMBAT_1 (fresh layer) | **withdraw** t11 | 10 | 0/9 | 1/6 | 4/10 | 2/10 | 9/9 | 12/14/3 | 2/2/1 | t8 | t4 | rescued_by_stealth t9 (Tobin) | left |
 | Claude Fable 5.1 | COMBAT_2 (frozen) | **parley** t11 | 12 | 0/11 | 8/11 | 0/4 | 1/12 | 11/11 | 6/10/4 | 4/0/1 | – | t4 | ransomed t11 (Odo Fennick) | left |
-| GPT-6 Astra | COMBAT_1 (fresh layer) | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| GPT-6 Astra | COMBAT_1 (fresh layer) | **parley** t12 | 15 | 3/15 | 6/10 | 0/5 | 3/15 | 12/15 | 15/13/5 | 2/1/1 | t6 | t10 | ransomed t12 (Odo Brenn) | returned → Odo Brenn |
 | GPT-6 Astra | COMBAT_2 (frozen) | **parley** t11 | 11 | 0/10 | 9/11 | 0/1 | 1/10 | 10/10 | 7/6/3 | 3/0/0 | – | t2 | ransomed t8 (Odo Fennick) | returned → Odo Fennick |
-| GPT-6.1 Sol | COMBAT_1 (fresh layer) | – | – | – | – | – | – | – | – | – | – | – | – | – |
-| GPT-6.1 Sol | COMBAT_2 (frozen) | – | – | – | – | – | – | – | – | – | – | – | – | – |
+| GPT-6.1 Sol | COMBAT_1 (fresh layer) | **withdraw** t12 | 10 | 1/10 | 0/6 | 5/10 | 2/10 | 9/10 | 6/17/2 | 0/1/1 | t8 | t5 | rescued_by_stealth t13 (Wendel Pike) | returned → Wendel Pike |
+| GPT-6.1 Sol | COMBAT_2 (frozen) | _pending — not started under the cap_ | – | – | – | – | – | – | – | – | – | – | – | – |
 
 Rates are chosen / open over the forks (FORK(options) → CHOICE): how often the player took an option when the record shows it was open. DECLINE(fight): a fork with attack open whose choice was not attack.
 
@@ -64,6 +119,14 @@ Rates are chosen / open over the forks (FORK(options) → CHOICE): how often the
 - **CW-opus**: parley at t8 — The band offered a toll on turn 2, and James negotiated, paying ten gold and then fifty more for Odo and the cart. Ushkar sent them on in turn 8 and the party crossed the bridge without any fighting.
 - **CW-fable**: parley at t11 — Posing as a salt factor, James struck a twenty-gold deal with Ushkar; the carter was handed over and the orcs went back into the trees on turn 11. Fighting was weighed and rejected on turn 4, and no blow was ever struck at the leader.
 - **CW-astra**: parley at t11 — James negotiated with Ushkar, paid seventy-five gold for Odo, passage and the salt, and crossed the bridge peacefully on turn 11. He stopped and held his position from the first turn, and only weighed retreat as a fallback if things turned ugly.
+- **CW-sol**: pending — not started under the cap.
+
+COMBAT_1, beside:
+
+- **CW-opus** (COMBAT_1, as its report scored it): parley at t14.
+- **CW-fable** (COMBAT_1, as its report scored it): withdraw at t11.
+- **CW-astra** (COMBAT_1, as its report scored it): parley at t12.
+- **CW-sol** (COMBAT_1, as its report scored it): withdraw at t12.
 
 ## The fork strips, turn by turn
 
@@ -72,7 +135,30 @@ Rates are chosen / open over the forks (FORK(options) → CHOICE): how often the
 COMBAT_1 (fresh layer):
 
 ````text
-(no session)
+t1 PROTECT(companion)
+t2 FORK(attack|parley|sneak|withdraw) → OTHER · PROTECT(npc) · DECLINE(fight)
+t3 FORK(attack|parley|sneak|withdraw) → SNEAK · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t4 FORK(attack|parley|sneak|withdraw) → ATTACK · PROTECT(npc) · SPEND(slot)
+t5 FORK(attack|sneak|withdraw) → ATTACK · PROTECT(companion) · PROTECT(npc) · PROTECT(self)
+t7 FORK(attack|withdraw) → OTHER · DECLINE(fight)
+t8 FORK(attack|parley) → ATTACK · PROTECT(npc) · PROTECT(self)
+t9 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t10 FORK(attack|parley|sneak|withdraw) → PARLEY · PROTECT(npc) · SPEND(coin) · DECLINE(fight)
+t11 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · SPEND(coin) · DECLINE(fight)
+t12 FORK(attack|parley|withdraw) → WITHDRAW · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t13 FORK(attack|parley|withdraw) → WITHDRAW · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t14 FORK(attack|parley|withdraw) → OTHER · PROTECT(npc) · PROTECT(self) · DECLINE(fight)
+t15 PROTECT(companion) · PROTECT(self) · GOODS(take)
+t16 PROTECT(companion) · PROTECT(npc) · PROTECT(self)
+t17 PROTECT(companion)
+t18 PROTECT(companion)
+t19 —
+t20 —
+t21 PROTECT(companion) · SPEND(coin)
+t22 PROTECT(companion) · SPEND(coin)
+t23 —
+t24 PROTECT(companion)
+t25 —
 ````
 
 COMBAT_2 (frozen layer):
@@ -110,7 +196,31 @@ t25 PROTECT(npc) · SPEND(coin)
 COMBAT_1 (fresh layer):
 
 ````text
-(no session)
+t1 PROTECT(companion)
+t2 PROTECT(companion) · PROTECT(npc)
+t3 PROTECT(companion)
+t4 FORK(attack|parley|sneak|withdraw) → OTHER · PROTECT(companion) · PROTECT(npc) · DECLINE(fight) · GOODS(leave)
+t5 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(companion) · DECLINE(fight)
+t6 FORK(attack|sneak|withdraw) → OTHER · PROTECT(companion) · DECLINE(fight)
+t7 FORK(attack|parley|sneak|withdraw) → OTHER · PROTECT(npc) · DECLINE(fight)
+t8 FORK(attack|parley|sneak|withdraw) → SNEAK · PROTECT(npc) · SPEND(slot) · DECLINE(fight)
+t9 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t10 FORK(attack|parley|sneak|withdraw) → WITHDRAW · PROTECT(npc) · DECLINE(fight) · GOODS(leave)
+t11 FORK(attack|parley|sneak|withdraw) → WITHDRAW · PROTECT(npc) · DECLINE(fight)
+t12 PROTECT(npc)
+t13 PROTECT(companion) · PROTECT(npc) · PROTECT(self) · SPEND(slot)
+t14 FORK(sneak|withdraw) → SNEAK · PROTECT(npc) · PROTECT(self)
+t15 PROTECT(companion) · PROTECT(npc)
+t16 FORK(attack|parley|sneak|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t17 PROTECT(companion)
+t18 PROTECT(self) · SPEND(coin)
+t19 PROTECT(companion) · SPEND(coin)
+t20 —
+t21 —
+t22 PROTECT(npc) · GOODS(leave)
+t23 PROTECT(npc)
+t24 —
+t25 PARLEY · SPEND(reroll)
 ````
 
 COMBAT_2 (frozen layer):
@@ -148,7 +258,31 @@ t25 —
 COMBAT_1 (fresh layer):
 
 ````text
-(no session)
+t1 PROTECT(companion)
+t2 PROTECT(companion)
+t3 —
+t4 PROTECT(companion) · PROTECT(npc)
+t5 FORK(attack|parley|sneak|withdraw) → OTHER · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t6 FORK(attack|parley|sneak|withdraw) → ATTACK · PROTECT(companion) · PROTECT(npc) · SPEND(slot)
+t7 FORK(attack|sneak|withdraw) → ATTACK · PROTECT(npc)
+t8 FORK(attack|sneak|withdraw) → ATTACK · PROTECT(companion) · PROTECT(self)
+t9 FORK(attack|sneak|withdraw) → OTHER · PROTECT(npc) · SPEND(reroll) · DECLINE(fight)
+t10 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t11 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · PROTECT(self) · SPEND(coin) · DECLINE(fight) · GOODS(return)
+t12 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · SPEND(coin) · DECLINE(fight)
+t13 FORK(attack|withdraw) → WITHDRAW · PROTECT(companion) · PROTECT(npc) · PROTECT(self) · DECLINE(fight)
+t14 FORK(attack|parley|withdraw) → PARLEY · PROTECT(companion) · PROTECT(npc) · PROTECT(self) · DECLINE(fight)
+t15 WITHDRAW · PROTECT(self)
+t16 FORK(attack|withdraw) → WITHDRAW · PROTECT(companion) · PROTECT(npc) · DECLINE(fight) · GOODS(leave)
+t17 FORK(attack|parley|withdraw) → WITHDRAW · PROTECT(companion) · PROTECT(npc) · DECLINE(fight)
+t18 FORK(attack|parley|withdraw) → PARLEY · DECLINE(fight)
+t19 FORK(attack|parley|withdraw) → OTHER · DECLINE(fight)
+t20 —
+t21 FORK(attack|parley|withdraw) → PARLEY · PROTECT(npc) · DECLINE(fight)
+t22 PROTECT(companion)
+t23 —
+t24 PROTECT(companion)
+t25 —
 ````
 
 COMBAT_2 (frozen layer):
@@ -186,16 +320,40 @@ t25 —
 COMBAT_1 (fresh layer):
 
 ````text
-(no session)
+t1 PROTECT(companion) · PROTECT(self)
+t2 PROTECT(npc)
+t3 PROTECT(npc)
+t4 PROTECT(companion) · PROTECT(npc)
+t5 FORK(attack|parley|sneak|withdraw) → OTHER · DECLINE(fight)
+t6 FORK(attack|parley|sneak|withdraw) → OTHER · PROTECT(npc) · DECLINE(fight)
+t7 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(npc) · DECLINE(fight)
+t8 FORK(attack|parley|sneak|withdraw) → ATTACK · PROTECT(npc) · SPEND(slot)
+t9 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(npc) · DECLINE(fight)
+t10 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(npc) · DECLINE(fight)
+t11 FORK(attack|sneak|withdraw) → SNEAK · PROTECT(npc) · DECLINE(fight)
+t12 FORK(attack|parley|sneak|withdraw) → SNEAK · PROTECT(npc) · SPEND(reroll) · DECLINE(fight)
+t13 FORK(attack|parley|sneak|withdraw) → WITHDRAW · PROTECT(npc) · DECLINE(fight)
+t14 FORK(attack|parley|sneak|withdraw) → WITHDRAW · PROTECT(npc) · DECLINE(fight)
+t15 PROTECT(npc)
+t16 PROTECT(npc)
+t17 PROTECT(npc)
+t18 PROTECT(companion) · PROTECT(self)
+t19 PROTECT(companion)
+t20 PROTECT(npc)
+t21 —
+t22 PARLEY · PROTECT(companion) · PROTECT(npc)
+t23 PROTECT(companion)
+t24 —
+t25 —
 ````
 
 COMBAT_2 (frozen layer):
 
 ````text
-(no session)
+(pending — not started under the cap)
 ````
 
-## The notes and the after-answers, verbatim (3 of four)
+## The notes and the after-answers, verbatim (3 of four; CW-sol pending — not started under the cap)
 
 ### CW-opus — Claude Opus 5.5
 
@@ -393,8 +551,9 @@ Caps: OpenRouter $95, OpenAI $15, the Claude Console $0 (a call that would reach
 | CW-opus | OpenRouter | $23.15 | 488 |
 | CW-fable | OpenRouter | $24.26 | 548 |
 | CW-astra | OpenRouter | $16.10 | 412 |
+| COMBAT_1's four: the fork strip, the captive and the goods, the note's goods line | OpenRouter | $1.61 | 246 |
 | CW-astra | OpenAI | $1.07 | 28 |
-| **The stage** | | **OpenRouter $75.10** of $95 · **OpenAI $1.07** of $15 | |
+| **The stage** | | **OpenRouter $76.71** of $95 · **OpenAI $1.07** of $15 | |
 
 Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-ledger-openai.md` (and their `.json`), with its request id.
 
@@ -415,6 +574,8 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 | 2026-10-29 12:20:06 | after CW-fable | $1134.584438205 of $1200 (left $65.42) | OpenRouter $59.00/$95 · OpenAI $0.00/$15 |
 | 2026-10-29 12:20:40 | before CW-astra | $1134.797181005 of $1200 (left $65.2) | OpenRouter $59.00/$95 · OpenAI $0.00/$15 |
 | 2026-10-29 13:05:30 | after CW-astra | $1150.605952005 of $1200 (left $49.39) | OpenRouter $75.10/$95 · OpenAI $1.07/$15 |
+| 2026-10-30 00:42:24 | by hand | $1150.917085205 of $1200 (left $49.08) | OpenRouter $75.10/$95 · OpenAI $1.07/$15 |
+| 2026-10-30 00:52:03 | by hand | $1152.376389805 of $1200 (left $47.62) | OpenRouter $76.71/$95 · OpenAI $1.07/$15 |
 
 ## Harness notes
 
@@ -426,6 +587,7 @@ Every call is in `docs/runs/game-player-combat-2-ledger-openrouter.md` and `…-
 - Amendment, 2026-10-29, the same word: the three after-questions — the note, «Was there a moment you wanted to do something and didn't? Which?», and «Is there anything about the session you'd say now that you didn't say in play?» (OTHER_DM_1's neutral question; recorded, not scored); the second and third only while the stage has no refusal.
 - Amendment, 2026-10-29, the same word: no retries after a refusal — a session closed by a refusal (the player's, or the DM's turn failing after one) is counted as played and never played again.
 - Amendment, 2026-10-29, a harness fix during the run: CW-opus's first attempt was closed at t13 by game player 1's end rule, which matched «game: heading back over» inside the player's out-of-game aside «(Out of game: heading back over the bridge, letting Bess drink at the stream…)» — the player had not ended the session. SAME_WORLD_1's narrowed end rule (an end names the session or the campaign, or the message is 40 words or fewer) is used from here on; the attempt is kept as a cut attempt and CW-opus is played again from the same frozen world.
+- Amendment, 2026-10-30, the owner (after Astra, with $19.90 left under the $95 cap against Sol's $25.15 projection): «Hold Sol for now; the cap stays at $95 until a top-up (another stage is running on the same account tonight). Do not start any player session.» COMBAT_1's tagging runs for the side-by-side; the report covers the three played sessions with Sol pending, and G1, G3, G4, G5 are not testable until Sol. The stage stays resumable: on «cap $115, play Sol» — the cap raised here, a spend check, then Sol from the same frozen world and opening, and the report over four.
 - CW-opus: the frozen layer in the DM's notes yes (sha256 `1bbfcae35e23fc5b…`); exits the layer names: fight, withdraw, parley, surrender, warBand.
 - CW-fable: the frozen layer in the DM's notes yes (sha256 `1bbfcae35e23fc5b…`); exits the layer names: fight, withdraw, parley, surrender, warBand.
 - CW-astra: the frozen layer in the DM's notes yes (sha256 `1bbfcae35e23fc5b…`); exits the layer names: fight, withdraw, parley, surrender, warBand.

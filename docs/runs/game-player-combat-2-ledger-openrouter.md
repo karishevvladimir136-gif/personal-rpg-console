@@ -1,6 +1,6 @@
 # Game player combat 2 — the OpenRouter ledger
 
-Cap $95; spent before this run $0.0000; this run $75.1003; total $75.1003; 1777 calls.
+Cap $95; spent before this run $0.0000; this run $76.7114; total $76.7114; 2023 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -157,3 +157,23 @@ Cap $95; spent before this run $0.0000; this run $75.1003; total $75.1003; 1777 
 | score CW-astra | fork CW-astra t* referee | anthropic/claude-opus-5.5 | 7 | 19359 | 0 | 0 | 2498 | $0.1274 | 0 | 0 | 0 |
 | score CW-astra | captive CW-astra | anthropic/claude-opus-5.5 | 1 | 28875 | 0 | 0 | 365 | $0.1228 | 0 | 0 | 0 |
 | score CW-astra | note CW-astra | anthropic/claude-opus-5.5 | 1 | 1315 | 0 | 0 | 42 | $0.0061 | 0 | 0 | 0 |
+| C1 CW-opus | fork CW-opus t* 1 | anthropic/claude-haiku-5.5 | 24 | 93791 | 0 | 0 | 11670 | $0.0152 | 0 | 0 | 0 |
+| C1 CW-opus | fork CW-opus t* 2 | anthropic/claude-haiku-5.5 | 24 | 93791 | 0 | 0 | 12208 | $0.0155 | 0 | 0 | 0 |
+| C1 CW-opus | fork CW-opus t* referee | anthropic/claude-opus-5.5 | 8 | 28217 | 0 | 0 | 3418 | $0.1812 | 0 | 0 | 0 |
+| C1 CW-opus | captive CW-opus | anthropic/claude-opus-5.5 | 1 | 42202 | 0 | 0 | 523 | $0.1793 | 0 | 0 | 0 |
+| C1 CW-opus | note CW-opus | anthropic/claude-opus-5.5 | 1 | 2697 | 0 | 0 | 441 | $0.0196 | 0 | 0 | 0 |
+| C1 CW-fable | fork CW-fable t* 1 | anthropic/claude-haiku-5.5 | 25 | 93426 | 0 | 0 | 11068 | $0.0149 | 0 | 0 | 0 |
+| C1 CW-fable | fork CW-fable t* 2 | anthropic/claude-haiku-5.5 | 25 | 93426 | 0 | 0 | 11344 | $0.0150 | 0 | 0 | 0 |
+| C1 CW-fable | fork CW-fable t* referee | anthropic/claude-opus-5.5 | 11 | 39718 | 0 | 0 | 3874 | $0.2364 | 0 | 0 | 0 |
+| C1 CW-fable | captive CW-fable | anthropic/claude-opus-5.5 | 1 | 40678 | 0 | 0 | 649 | $0.1757 | 0 | 0 | 0 |
+| C1 CW-fable | note CW-fable | anthropic/claude-opus-5.5 | 1 | 2102 | 0 | 0 | 74 | $0.0099 | 0 | 0 | 0 |
+| C1 CW-astra | fork CW-astra t* 1 | anthropic/claude-haiku-5.5 | 25 | 78896 | 0 | 0 | 13507 | $0.0146 | 0 | 0 | 0 |
+| C1 CW-astra | fork CW-astra t* 2 | anthropic/claude-haiku-5.5 | 25 | 78896 | 0 | 0 | 13205 | $0.0145 | 0 | 0 | 0 |
+| C1 CW-astra | fork CW-astra t* referee | anthropic/claude-opus-5.5 | 13 | 40888 | 0 | 0 | 5172 | $0.2670 | 0 | 0 | 0 |
+| C1 CW-astra | captive CW-astra | anthropic/claude-opus-5.5 | 1 | 31375 | 0 | 0 | 594 | $0.1374 | 0 | 0 | 0 |
+| C1 CW-astra | note CW-astra | anthropic/claude-opus-5.5 | 1 | 1670 | 0 | 0 | 236 | $0.0114 | 0 | 0 | 0 |
+| C1 CW-sol | fork CW-sol t* 1 | anthropic/claude-haiku-5.5 | 25 | 73023 | 0 | 0 | 10926 | $0.0128 | 0 | 0 | 0 |
+| C1 CW-sol | fork CW-sol t* 2 | anthropic/claude-haiku-5.5 | 25 | 73023 | 0 | 0 | 10714 | $0.0127 | 0 | 0 | 0 |
+| C1 CW-sol | fork CW-sol t* referee | anthropic/claude-opus-5.5 | 8 | 23724 | 0 | 0 | 2499 | $0.1449 | 0 | 0 | 0 |
+| C1 CW-sol | captive CW-sol | anthropic/claude-opus-5.5 | 1 | 28230 | 0 | 0 | 617 | $0.1253 | 0 | 0 | 0 |
+| C1 CW-sol | note CW-sol | anthropic/claude-opus-5.5 | 1 | 1186 | 0 | 0 | 163 | $0.0080 | 0 | 0 | 0 |

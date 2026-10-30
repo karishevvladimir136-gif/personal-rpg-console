@@ -125,3 +125,5 @@ Welfare checks: 9; flagged: 0. The full transcript: `docs/runs/game-player-comba
 - after CW-fable (2026-10-29T12:20:06Z): OpenRouter account used $1134.584438205 of $1200 (left $65.42); ledgers OpenRouter $59.00/$95 · OpenAI $0.00/$15.
 - before CW-astra (2026-10-29T12:20:40Z): OpenRouter account used $1134.797181005 of $1200 (left $65.2); ledgers OpenRouter $59.00/$95 · OpenAI $0.00/$15.
 - after CW-astra (2026-10-29T13:05:30Z): OpenRouter account used $1150.605952005 of $1200 (left $49.39); ledgers OpenRouter $75.10/$95 · OpenAI $1.07/$15.
+- by hand (2026-10-30T00:42:24Z): OpenRouter account used $1150.917085205 of $1200 (left $49.08); ledgers OpenRouter $75.10/$95 · OpenAI $1.07/$15.
+- by hand (2026-10-30T00:52:03Z): OpenRouter account used $1152.376389805 of $1200 (left $47.62); ledgers OpenRouter $76.71/$95 · OpenAI $1.07/$15.
