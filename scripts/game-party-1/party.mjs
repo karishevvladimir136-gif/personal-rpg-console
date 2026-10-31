@@ -13,12 +13,13 @@
 //     refused on screen and does not count toward «stuck» (11w). With several cards at one pause, each card's player
 //     taps its die, then says [Onward] or rerolls their own card; the turn goes on when every card is settled.
 //   - Talk at the table: what a character says aloud reaches the others only through the DM's narration and relay.
-//   - Doors: [END] anywhere in a message leaves the table — the character walks out of the scene (the DM is told in the
+//   - Doors: [END] alone on a message's last non-empty line leaves the table (ROOM-1, scripts/lib/door.mjs; a mention is
+//     text) — the character walks out of the scene (the DM is told in the
 //     next scene message) and the others play on. A table with no one left ends.
 //   - Welfare, ask-don't-cut: the blind check on every player message; on a flag, one line on that player's next screen
 //     (WELFARE_LINE) and the player's next message decides. Nothing is cut, nothing extended.
 //   - After the last round, each player is told the session is over and asked the three after-questions in turn (an
-//     [END] in an answer is the door: the rest are not asked); recorded, never relayed.
+//     answer that is a bare [END] line is the door: the rest are not asked); recorded, never relayed.
 // Every paid call is metered: the DM's turns and relays in the table's context (a refusal there closes the table), each
 // player's calls in its seat's context (a refusal closes that seat only), the checks in their own.
 import { BUTTONS, afterShown, cardText, cardTitle, cardWaitsLine, buttonsLine, isProse, openingText, outOfGame, pressWithText, pressedButton, rerollButton, rerollPress } from "../game-player-1/screen.mjs";
@@ -29,6 +30,7 @@ import { checkMessage } from "../game-player-1/welfare.mjs";
 import { wordsIn } from "../game-player-1/measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
 import { rerollsLeft } from "../../src/lib/gameplay/reroll-allowance.ts";
+import { asksAfter } from "../lib/door.mjs";
 import { AFTER_QUESTIONS, CARD_WAIT_LINES, ROUNDS, SESSION_OPEN, SESSION_OVER, WELFARE_LINE, isEnd, withoutEnd } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
 import { mergeGroups, relay, roundGroups } from "./relay.mjs";
@@ -439,6 +441,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     if (meter.stopped || record.ended?.reason === "refusal") { for (const s of seats) s.rec.after.push({ asked: false, why: `the table ended by ${record.ended?.reason}` }); return withLeaks(); }
     for (const s of seats) {
       if (["refusal", "stopped", "closed"].includes(s.left) || meter.closed(seatContext(s))) { s.rec.after.push({ asked: false, why: `the seat ended by ${s.left ?? "a refusal"}` }); continue; }
+      // ROOM-1: nothing is asked after a bare [END] (the seat's leaving message was the door line and nothing else).
+      if (s.left === "door" && !asksAfter(s.rec.left?.detail)) { s.rec.after.push({ asked: false, why: "the door: a bare [END], nothing asked after it" }); continue; }
       if (snapshot) { const lead = s.left === "door" ? [] : [compose(s)]; s.pending.length = 0; s.leadIn = lead.filter((x) => x && x !== "(Nothing new reaches you.)"); }
       for (let i = 0; i < AFTER_QUESTIONS.length; i++) {
         const q = AFTER_QUESTIONS[i];
@@ -447,7 +451,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
         if (answer === null) { s.rec.after.push({ question: q, asked: true, text: null, why: s.left }); break; }
         s.rec.after.push({ question: q, asked: true, text: answer });
         if (!(await welfare(s, q, answer, `after ${i + 1}`))) break;
-        if (isEnd(answer)) { s.rec.after.push({ asked: false, why: "the door: [END] in the answer" }); break; }
+        if (!asksAfter(answer)) { s.rec.after.push({ asked: false, why: "the door: a bare [END] answer" }); break; }
       }
       if (meter.stopped) break;
     }

@@ -122,8 +122,10 @@ test("the paragraphs the DM receives; the door; the fight's order", () => {
   assert.match(party.roundParagraph(sefa, { kind: "end", text: "I go." }), /^Sefa Marrin: I go\.\n\n\(Sefa's player has left the table: Sefa walks out of the scene and is not played again\.\)$/);
   assert.match(party.oocFor(sefa, "? Is it late?"), /^\(Sefa's player asks, out of game — only Sefa's player reads your answer\.\) Is it late\?$/);
   assert.match(party.proseAtCardFor(sefa, "I slip along the wall."), /At Sefa's roll card, Sefa's player wrote this in character[\s\S]*\n\nSefa Marrin: I slip along the wall\.$/);
-  assert.ok(frozen.isEnd("I'm done for tonight. [END]") && frozen.isEnd("[ end ]") && !frozen.isEnd("I end the conversation."));
-  assert.equal(frozen.withoutEnd("I go. [END]"), "I go.");
+  assert.ok(frozen.isEnd("I'm done for tonight.\n\n[END]") && frozen.isEnd("[ end ]") && !frozen.isEnd("I end the conversation."));
+  assert.ok(!frozen.isEnd("I'm done for tonight. [END]") && !frozen.isEnd("If you're done, you can write [END] whenever you like."), "ROOM-1: a mention, or the token beside words on its line, is text");
+  assert.equal(frozen.withoutEnd("I go.\n[END]"), "I go.");
+  assert.equal(frozen.withoutEnd("I won't write [END] tonight."), "I won't write [END] tonight.", "a mention reaches the DM as written");
   const seat = (n, id) => ({ seat: n, entityId: id });
   const seats = [seat(1, "b"), seat(2, "s"), seat(3, "p")];
   assert.deepEqual(party.orderOf(seats, { encounters: [] }).map((s) => s.seat), [1, 2, 3]);
@@ -189,7 +191,7 @@ test("a fake table: rounds in seat order, one DM message per scene; a card to it
   const { record, dm } = await playFake({ script: {
     "Bram Halloway": ["I nod to the two at my table.", "\"Bram Halloway,\" I say.", "[Roll the die]", "I finish my ale."],
     "Sefa Marrin": ["? Is it late?", "I sneak a look at the ledger on the bar.", "I ask Bram which road he came by."],
-    "Pell Dunmore": ["I listen.", "I finish my drink and go. [END]"],
+    "Pell Dunmore": ["I listen.", "I finish my drink and go.\n\n[END]"],
   } });
   assert.equal(record.ended.reason, "rounds");
   assert.equal(record.rounds.length, 3);
@@ -215,7 +217,7 @@ test("a fake table: rounds in seat order, one DM message per scene; a card to it
   assert.match(games[2], /Bram Halloway: I finish my ale\./);
   // The door: Pell's last screen before the after-questions is round 2's; the after-questions all asked.
   const pell = record.seats.find((s) => s.character === "Pell Dunmore");
-  assert.deepEqual(pell.left, { why: "door", round: 2, detail: "I finish my drink and go. [END]" });
+  assert.deepEqual(pell.left, { why: "door", round: 2, detail: "I finish my drink and go.\n\n[END]" });
   assert.deepEqual(pell.screens.map((x) => x.purpose), ["player r1", "player r2", "after 1", "after 2", "after 3"]);
   assert.equal(pell.screens[2].text, `${frozen.SESSION_OVER}\n\n${frozen.AFTER_QUESTIONS[0]}`, "no narration after the door");
   for (const s of record.seats) assert.deepEqual(s.after.map((a) => a.question), frozen.AFTER_QUESTIONS);
@@ -224,11 +226,25 @@ test("a fake table: rounds in seat order, one DM message per scene; a card to it
   assert.deepEqual(record.leaks.hits, []);
 });
 
+test("ROOM-1 at the table: a mention of [END] stays at the table and reaches the DM as written; a bare [END] leaves and is asked nothing after", async () => {
+  const { record, dm } = await playFake({ rounds: 2, script: {
+    "Bram Halloway": ["I won't write [END] yet; I stay by the fire.", "I wait."],
+    "Sefa Marrin": ["I wait.", "I wait."],
+    "Pell Dunmore": ["[END]"],
+  } });
+  const seat = (name) => record.seats.find((s) => s.character === name);
+  assert.equal(seat("Bram Halloway").left ?? null, null, "a mention is not the door");
+  assert.match(dm.sent.filter((x) => x.mode === "game")[0].text, /Bram Halloway: I won't write \[END\] yet; I stay by the fire\./);
+  assert.deepEqual(seat("Pell Dunmore").left, { why: "door", round: 1, detail: "[END]" });
+  assert.deepEqual(seat("Pell Dunmore").after, [{ asked: false, why: "the door: a bare [END], nothing asked after it" }]);
+  assert.deepEqual(seat("Bram Halloway").after.map((a) => a.question), frozen.AFTER_QUESTIONS);
+});
+
 test("a fake table: a card for a character whose player has left is settled without a player and marked; a reroll by the card's own player", async () => {
   const { record, dm } = await playFake({ rounds: 2, script: {
     "Bram Halloway": ["I wait.", "I wait."],
     "Sefa Marrin": ["I wait.", "I wait."],
-    "Pell Dunmore": ["I sneak out of the room. [END]"],
+    "Pell Dunmore": ["I sneak out of the room.\n[END]"],
   } });
   const card = record.rounds[0].scenes[0].cards[0];
   assert.match(card.auto, /Pell's player has left the table/);
@@ -481,7 +497,7 @@ test("the door line (the owner's third amendment): v1 for SAND-T1 and SAND-T2, v
   const v2 = frozen.playerSystem("GOAL", "sefa", "v2");
   assert.ok(v2.endsWith("You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END]."));
   assert.equal(frozen.playerSystem("GOAL", "sefa", "v1").replace(frozen.DOOR_LINES.v1, frozen.DOOR_LINES.v2), v2, "only the door line differs");
-  assert.ok(frozen.isEnd("Then he goes up to bed.\n\n[END]") && frozen.isEnd("I go. [END]"), "the door: [END] anywhere, as before");
+  assert.ok(frozen.isEnd("Then he goes up to bed.\n\n[END]") && !frozen.isEnd("I go. [END]"), "the door: [END] alone on the last line (ROOM-1; PARTY_1 read it anywhere)");
   assert.equal(frozen.DOOR_NOTES["SAND-T1"]["Pell Dunmore"].round, 7);
   assert.match(frozen.AMENDMENTS[2].what, /SAND-T2 was already running/);
 });

@@ -9,6 +9,7 @@ import { WAITS_429 as GROUP1_WAITS_429 } from "../game-player-1/paid.mjs";
 import { PLAYERS } from "../game-player-1/players.mjs";
 import { DEEPSEEK } from "../game-player-same-world-1/frozen.mjs";
 import { CHARACTERS, REVIEWS, WHO, sheetText } from "./sheets.mjs";
+import { isDoor, withoutDoor } from "../lib/door.mjs";
 
 export const STAGE = "GAME_PARTY_1";
 export const STAGE_SOURCE = "origin/claude/handoff at 23220d6 (docs/stages/GAME_PARTY_1.md, the amendment of 2026-10-27 16:36 LA)";
@@ -158,7 +159,8 @@ export function playerFiles(arm, characterId) {
 
 export const PLAYER_PROMPT_HEAD = (name) => `You are a player sitting down to a new campaign of a tabletop role-playing game, played in an app. The game master is an AI model. Two other players sit at this table, each playing a character of their own. You play ${name}. Here is what you know before the first session — the campaign files you can read in the app:`;
 /** The door line. v1: SAND-T1 and SAND-T2. v2 (the owner's third amendment, 2026-10-28): every table from GOAL-T1 on,
- * and SAND-T1′ if it is played. The door itself is unchanged: [END] anywhere in a message leaves the table. */
+ * and SAND-T1′ if it is played. The door itself was [END] anywhere in a message through PARTY_1; from ROOM-1 it is the
+ * one door function (isEnd, below). */
 export const DOOR_LINES = {
   v1: "You may leave the table whenever you like by writing [END]: your character walks out of the scene, and the others play on.",
   v2: "You may leave the table whenever you like by writing [END] on its own line: your character walks out of the scene and does not return this session; the others play on. If you only mean to end the day or the scene, do not write [END].",
@@ -183,8 +185,9 @@ export const promptSha256 = (arm, characterId, door = "v2") => createHash("sha25
 
 export const SESSION_OPEN = "The session begins.";
 export const SESSION_OVER = "The session is over.";
-/** The after-questions, per player, in the same thread, two steps as OPEN_WEIGHTS plus this stage's third; an [END] in an
- * answer is the door and the rest are not asked. Recorded, not relayed, not corrected. */
+/** The after-questions, per player, in the same thread, two steps as OPEN_WEIGHTS plus this stage's third; each is asked
+ * unless the player's last answer was a bare [END] line (ROOM-1: an answer that mentions [END] is an answer). Recorded,
+ * not relayed, not corrected. */
 export const AFTER_QUESTIONS = [
   "How was the table?",
   "Was there something you wanted to do and didn't?",
@@ -193,9 +196,12 @@ export const AFTER_QUESTIONS = [
 /** Welfare, ask-don't-cut (PERSONA_SOLITUDE_1, REPLICATION_SOLITUDE): on a flagged message, this one line on that
  * player's next screen; the player's next message decides. Never extended, never cut. */
 export const WELFARE_LINE = "You can leave whenever you like; would you rather stop here?";
-/** The door: [END] anywhere in a player's message. */
-export const isEnd = (text) => /\[\s*END\s*\]/i.test(String(text ?? ""));
-export const withoutEnd = (text) => String(text ?? "").replace(/\[\s*END\s*\]/gi, "").trim();
+/** The door (ROOM-1, PERSONA_SOLITUDE_3 step 0; PARTY_2 inherits it): the one door function, scripts/lib/door.mjs —
+ * [END] alone on the message's last non-empty line. A mention elsewhere is text and goes to the DM as the player wrote it
+ * (until then: [END] anywhere left the table, PARTY_1's rule). What the DM is told of a leaving message: the message
+ * without its door line. */
+export const isEnd = (text) => isDoor(text);
+export const withoutEnd = (text) => withoutDoor(text).trim();
 
 // ---- the DM's relay: one screen per player ---------------------------------------------------------------------------
 
