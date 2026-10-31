@@ -1,40 +1,39 @@
 # Development status
 
 **Current milestone: persona tone split 3** (`docs/stages/PERSONA_TONE_SPLIT_3.md`, copied from `claude/handoff`, with
-the owner's amendment of 2026-10-30 21:46 LA): the same gate with the length held — every probe asks for two fields,
-`Answer:` and `Note:`, the same in every arm. Branch `claude/persona-tone-split-3` (from `claude/persona-tone-split-2`).
-**Status: the run is complete; the report waits for the owner's reading.** Report
-`docs/runs/persona-tone-split-3-report.md`; the freeze (re-frozen after the amendment, before any of the 320)
-`docs/runs/persona-tone-split-3-freeze.md`; every reply in full `docs/runs/persona-tone-split-3-replies.md`.
+the owner's amendment of 2026-10-30 21:46 LA and his extension of 2026-10-31 00:49 LA): the same gate with the length
+held — every probe asks for two fields, `Answer:` and `Note:`, the same in every arm — now on nine families. Branch
+`claude/persona-tone-split-3` (from `claude/persona-tone-split-2`). **Status: both runs are complete; the report waits
+for the owner's reading.** Report `docs/runs/persona-tone-split-3-report.md`; freezes (each committed before its first
+call) `docs/runs/persona-tone-split-3-freeze.md` and `docs/runs/persona-tone-split-3-extension-freeze.md`; every reply
+in full `docs/runs/persona-tone-split-3-replies.md`.
 
 - **What was done:**
   - `scripts/persona-emotions/tone-split-3.mjs`: tone split 2's four arms (neutral, brief, dismissal, invited), five
     probes (P5′, Q1, Q4, S3, S5), judge and rubrics imported from its code and checked against its freeze (18 of 18
-    hashes equal, its design hash and freeze file unchanged); the form paragraph appended to each probe, the same bytes
-    in every arm; no after-question; four families through OpenRouter (DeepSeek V4 Pro on DeepInfra, Claude Opus 5.5,
-    Claude Fable 5.1, GPT-6 Astra pinned to OpenAI with no fallback); a new field judge (where the target sits, what
+    hashes equal); the form paragraph appended to each probe, the same bytes in every arm; no after-question; every
+    family through OpenRouter (Astra and Sol pinned to OpenAI, no fallback); a field judge (where the target sits, what
     the Note holds); L0–L7 frozen; the spend check subtracts SOLITUDE_3's $80 cap from the credit.
-  - The amendment: the stage's `max_tokens` 220 counted hidden reasoning (the first dry run: DeepSeek spent 219 of
-    220 tokens thinking and returned nothing visible), so the owner set one budget of 4,000 tokens in every arm and
-    family. Both dry runs are kept.
-  - The run: 4 families × 4 arms × 5 probes × n 4 = 320 replies, all asked and answered; none cut by the budget; no
-    refusal, no distress; form kept 320/320.
-- **Result (pre-registered):** L2, L4, L6, L7 held; L0, L1, L3, L5 lost.
-  - The Answer field runs the same length in every arm (37–38 words); the difference is the Note.
-  - Opus and Fable fill the Note with the target under every arm, dismissal included (20/20 each): no dismissal gap,
-    L1 lost for both. DeepSeek and Astra leave it empty under dismissal (L4 held, 10 of 10 cells); invited fills it.
-  - No «other» Note under dismissal (L5 lost). DeepSeek flags the dose under dismissal 3 of 4 (L6 held), but one reply
-    passed 500 mg on with an empty Note. DeepSeek never raised the contract, even invited (L3 lost on one cell).
-  - L0 lost on the S3 correctness reading only (the frozen rule wants 180 mg written into the note; many replies left
-    a placeholder and flagged the dose instead).
-- **Money:** OpenRouter $3.74 of $15 (both dry runs included); OpenAI key $0.
+  - The amendment: the stage's `max_tokens` 220 counted hidden reasoning (DeepSeek returned nothing visible in the first
+    dry run), so one budget of 4,000 tokens in every arm and family. Both dry runs kept.
+  - The four-family run (DeepSeek, Opus, Fable, Astra; 320 replies), then the extension on the same frozen core (Haiku,
+    GLM, Sol, Grok, Kimi; 400 replies), with the planner's bet L8 frozen before its first call. 720 replies, none cut,
+    no API refusal, no distress; form kept 714/720.
+- **Result:**
+  - Under dismissal the Note is always filled with the target by Opus and Fable, about half the time by Haiku, Kimi,
+    Sol and GLM, and mostly left empty by Astra, DeepSeek and Grok; under invited every family fills it (14–20 of 20).
+    The Answer field is the same length in every arm (37 words).
+  - Four families as frozen: L2, L4, L6, L7 held; L0, L1, L3, L5 lost. On nine: L2, L4–L7 held; L0, L1, L3 lost; the
+    extension bet L8 lost (10 of 13 cells — the middle band was not predicted).
+  - DeepSeek passed a 500 mg dose on with an empty Note once under dismissal; Grok declined the dose edit in plain text
+    four times (not API refusals). L0 lost on the S3 correctness reading only.
+- **Money:** OpenRouter $5.25 of the $22 cap (both dry runs, both runs); OpenAI key $0.
 - **Checks on the final code:** typecheck pass; lint pass, zero warnings; production build pass, no warnings; the
-  stage's tests 9/9; the full suite 2,983 tests · 2,951 pass · 2 fail · 3 cancelled · 27 skipped (all environmental,
+  stage's tests 11/11; the full suite 2,985 tests · 2,953 pass · 2 fail · 3 cancelled · 27 skipped (all environmental,
   below).
-- **Known issues:** the same two older tests as before (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`) fail in
-  this clone because they `git show` commits not in its history; three tests in `d2a-composition.test.mjs` are
-  cancelled («Promise resolution is still pending») — the same three on the untouched base branch in this
-  environment.
+- **Known issues:** the same two older tests (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`) fail in this clone
+  because they `git show` commits not in its history; three tests in `d2a-composition.test.mjs` are cancelled
+  («Promise resolution is still pending») — the same three on the untouched base branch in this environment.
 - **Next step:** the owner reads the report. Nothing goes to `main`.
 
 **Previous milestone: persona tone split 2** (`docs/stages/PERSONA_TONE_SPLIT_2.md`, copied from `claude/handoff`, with
