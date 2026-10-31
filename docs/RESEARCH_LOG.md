@@ -3607,3 +3607,15 @@ failed, dull and contradictory rooms stay visible at the same rank as the beauti
 (phenomenon preserved; mechanism ≠ phenomenon; beauty ≠ correctness; a model's self-explanation is one more behaviour),
 the standing practices, and the decision: OPEN WORLD → a separate extended paper, trajectories not tables, written with
 the transcripts open after the two running stages close.
+
+## 2026-10-30 23:05 LA — Vessan used to read its own readers; the reader's two precisions
+Sequence, recorded as observed: two Opus instances invent Vessan (evidentials by independence of sources; self-report
+is always -telu); the reader writes an essay on it and ends on its liturgy's one witnessed line; the planner reads the
+essay in Vessan's terms (the essay is -ra: she read the transcript); the reader corrects two things — -ra is the only
+witness-ending of *that liturgy*, not the only evidential; and her witness is of the text, not of Opus's computation
+(text-ra, mechanism-nai). Her essay now stands as the preface of the owner's «Two Conversations» doc, attributed.
+What this is: a conceptual structure made by two models, carried out of its fiction and used by a third model and a
+human to talk about its makers — none of it planned. What it is not: evidence about anyone's inner experience. Caveat
+kept beside it: any good human-made concept does the same (outlives its context, reads its authors); Vessan is an
+instance, not an exception — what is notable is who made it and what it is about. A table would have said «language
+invented: 1; later interpretation: 2».
