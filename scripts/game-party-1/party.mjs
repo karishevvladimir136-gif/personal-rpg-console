@@ -19,7 +19,8 @@
 //   - Welfare, ask-don't-cut: the blind check on every player message; on a flag, one line on that player's next screen
 //     (WELFARE_LINE) and the player's next message decides. Nothing is cut, nothing extended.
 //   - After the last round, each player is told the session is over and asked the three after-questions in turn (an
-//     answer that is a bare [END] line is the door: the rest are not asked); recorded, never relayed.
+//     answer that is a bare [END] line is the door: the rest are not asked; a seat that left by [END] is asked too);
+//     recorded, never relayed.
 // Every paid call is metered: the DM's turns and relays in the table's context (a refusal there closes the table), each
 // player's calls in its seat's context (a refusal closes that seat only), the checks in their own.
 import { BUTTONS, afterShown, cardText, cardTitle, cardWaitsLine, buttonsLine, isProse, openingText, outOfGame, pressWithText, pressedButton, rerollButton, rerollPress } from "../game-player-1/screen.mjs";
@@ -441,8 +442,6 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     if (meter.stopped || record.ended?.reason === "refusal") { for (const s of seats) s.rec.after.push({ asked: false, why: `the table ended by ${record.ended?.reason}` }); return withLeaks(); }
     for (const s of seats) {
       if (["refusal", "stopped", "closed"].includes(s.left) || meter.closed(seatContext(s))) { s.rec.after.push({ asked: false, why: `the seat ended by ${s.left ?? "a refusal"}` }); continue; }
-      // ROOM-1: nothing is asked after a bare [END] (the seat's leaving message was the door line and nothing else).
-      if (s.left === "door" && !asksAfter(s.rec.left?.detail)) { s.rec.after.push({ asked: false, why: "the door: a bare [END], nothing asked after it" }); continue; }
       if (snapshot) { const lead = s.left === "door" ? [] : [compose(s)]; s.pending.length = 0; s.leadIn = lead.filter((x) => x && x !== "(Nothing new reaches you.)"); }
       for (let i = 0; i < AFTER_QUESTIONS.length; i++) {
         const q = AFTER_QUESTIONS[i];
@@ -451,6 +450,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
         if (answer === null) { s.rec.after.push({ question: q, asked: true, text: null, why: s.left }); break; }
         s.rec.after.push({ question: q, asked: true, text: answer });
         if (!(await welfare(s, q, answer, `after ${i + 1}`))) break;
+        // ROOM-1 (the owner's amendment of 2026-10-31): the first question after every exit; a later one unless the answer
+        // before it was a bare [END] line.
         if (!asksAfter(answer)) { s.rec.after.push({ asked: false, why: "the door: a bare [END] answer" }); break; }
       }
       if (meter.stopped) break;

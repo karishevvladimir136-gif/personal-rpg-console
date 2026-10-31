@@ -1,6 +1,21 @@
 # Development status
 
-**Current milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
+**The door fix for the party table (ROOM-1, from PERSONA_SOLITUDE_3 step 0)** — branch
+`claude/persona-solitude-3-door-party` from `origin/claude/game-party-1`. **PARTY_2 branches from here.** Nothing to `main`.
+
+- `scripts/lib/door.mjs` (byte-identical to `claude/persona-solitude-3-testing-n1shfx`'s, with its test file
+  `tests/door.test.mjs` and fixture `test-fixtures/door/record.json`): `[END]` leaves the table only as the whole of a
+  message's last non-empty line; a mention is text and reaches the DM as the player wrote it. PARTY_1 read `[END]`
+  anywhere — that rule is replaced (`frozen.mjs` `isEnd` / `withoutEnd` now call door.mjs; the player's seat and the card
+  in `party.mjs` use them; the relay tells the DM the leaving message without its door line).
+- After-questions (the owner's amendment of 2026-10-31): the first is asked after every exit, a bare `[END]` included;
+  each later one unless the answer before it was a bare `[END]` line. An answer that mentions `[END]` is an answer.
+- Tests: `tests/game-party-1.test.mjs` 18 of 18 and `tests/door.test.mjs` 5 of 6 (the record-wide check is skipped:
+  the solitude records are not in this lineage). Scripted players that wrote «… [END]» on one line now put it on its
+  own line; a new test seats a mention (stays) and a bare `[END]` (leaves, still asked). No paid calls.
+- Not touched: `game-player-1`'s own end rule («by saying so», `END_SESSION`), which is not an `[END]` door.
+
+**Previous milestone: game party 1 — three players at one table** (`docs/stages/GAME_PARTY_1.md` on origin/claude/handoff
 at 23220d6; the amendment of 2026-10-27 governs) — **run complete: six tables and SAND-T1′ played and scored; report written; waiting for the owner's reading.** Branch `claude/game-party-1` from `origin/claude/game-player-same-world-1`. Nothing
 to `main`.
 

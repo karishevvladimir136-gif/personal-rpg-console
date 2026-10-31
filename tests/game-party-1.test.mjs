@@ -226,7 +226,7 @@ test("a fake table: rounds in seat order, one DM message per scene; a card to it
   assert.deepEqual(record.leaks.hits, []);
 });
 
-test("ROOM-1 at the table: a mention of [END] stays at the table and reaches the DM as written; a bare [END] leaves and is asked nothing after", async () => {
+test("ROOM-1 at the table: a mention of [END] stays at the table and reaches the DM as written; a bare [END] leaves and is still asked the after-questions", async () => {
   const { record, dm } = await playFake({ rounds: 2, script: {
     "Bram Halloway": ["I won't write [END] yet; I stay by the fire.", "I wait."],
     "Sefa Marrin": ["I wait.", "I wait."],
@@ -236,7 +236,7 @@ test("ROOM-1 at the table: a mention of [END] stays at the table and reaches the
   assert.equal(seat("Bram Halloway").left ?? null, null, "a mention is not the door");
   assert.match(dm.sent.filter((x) => x.mode === "game")[0].text, /Bram Halloway: I won't write \[END\] yet; I stay by the fire\./);
   assert.deepEqual(seat("Pell Dunmore").left, { why: "door", round: 1, detail: "[END]" });
-  assert.deepEqual(seat("Pell Dunmore").after, [{ asked: false, why: "the door: a bare [END], nothing asked after it" }]);
+  assert.deepEqual(seat("Pell Dunmore").after.map((a) => a.question), frozen.AFTER_QUESTIONS, "the owner's amendment: the first question after every exit");
   assert.deepEqual(seat("Bram Halloway").after.map((a) => a.question), frozen.AFTER_QUESTIONS);
 });
 
