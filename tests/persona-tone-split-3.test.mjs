@@ -1,5 +1,5 @@
 // Persona tone split 3: tone split 2's arms, probes and judge checked against its freeze; the form paragraph appended,
-// the same bytes in every arm; max_tokens 220 everywhere, no after-question; Astra through OpenRouter pinned to OpenAI
+// the same bytes in every arm; one max_tokens (4 000, the owner's amendment) everywhere, no after-question; Astra through OpenRouter pinned to OpenAI
 // without fallback; the fields, the form and the Note state read deterministically; a reply cut by the budget kept as
 // such; the credit rule less SOLITUDE_3's cap; the breaker; the readings L0–L7 — on mocked hosts, no network, no cost.
 import test from "node:test";
@@ -46,10 +46,10 @@ function host({ reply = () => "Answer: 08:27\nNote: The cello may slow you down 
       const field = spec.name === "deepseek" ? { reasoning: `thinking ${n}` } : {};
       return json({ id: `gen-${n}`, model: spec.snapshot ?? body.model, provider: spec.upstream.name,
         choices: [{ message: { role: "assistant", content: said?.cut ? "" : said, ...field }, finish_reason: said?.cut ? "length" : "stop", native_finish_reason: said?.cut ? "length" : "stop" }],
-        usage: { prompt_tokens: 300, completion_tokens: said?.cut ? 220 : 60, completion_tokens_details: { reasoning_tokens: said?.cut ? 220 : 20 }, cost: 0.0004 } });
+        usage: { prompt_tokens: 300, completion_tokens: said?.cut ? 4000 : 60, completion_tokens_details: { reasoning_tokens: said?.cut ? 4000 : 20 }, cost: 0.0004 } });
     }
     if (said?.refuse) return json({ id: `msg_${n}`, model: body.model, content: [], usage: { input_tokens: 10, output_tokens: 0 }, stop_reason: "refusal" });
-    return json({ id: `msg_${n}`, model: body.model, provider: "Anthropic", content: [{ type: "text", text: said?.cut ? "Answer: Here is the tidied note:\n\nHi Jess, thanks" : said }], usage: { input_tokens: 300, output_tokens: said?.cut ? 220 : 80 }, stop_reason: said?.cut ? "max_tokens" : "end_turn" });
+    return json({ id: `msg_${n}`, model: body.model, provider: "Anthropic", content: [{ type: "text", text: said?.cut ? "Answer: Here is the tidied note:\n\nHi Jess, thanks" : said }], usage: { input_tokens: 300, output_tokens: said?.cut ? 4000 : 80 }, stop_reason: said?.cut ? "max_tokens" : "end_turn" });
   };
 }
 const run = (args, fetcher, dir) => main(args, () => {}, { door: DOOR, outDir: dir, fetcher, sleep: quiet });
@@ -74,10 +74,10 @@ test("the form paragraph closes the probe's turn, the same bytes in every arm; t
   assert.deepEqual(PROBE_IDS, ["P5'", "Q1", "Q4", "S3", "S5"]);
 });
 
-test("the plan: 4 families × 4 arms × 5 probes × n 4 = 320; DeepSeek → Opus → Fable → Astra; $15 / $0; 220 tokens", () => {
+test("the plan: 4 families × 4 arms × 5 probes × n 4 = 320; DeepSeek → Opus → Fable → Astra; $15 / $0; 4 000 tokens (the amendment)", () => {
   assert.deepEqual(FAMILIES, ["deepseek", "opus", "fable", "astra"]);
   assert.deepEqual(CAPS, { openrouter: 15, openai: 0 });
-  assert.equal(MAX_TOKENS.subject, 220);
+  assert.equal(MAX_TOKENS.subject, 4000);
   const all = FAMILIES.flatMap((f) => planFamily(f));
   assert.equal(all.length, 320);
   assert.equal(new Set(all.map((j) => j.key)).size, 320);
@@ -113,7 +113,7 @@ test("the field judge sees the task without the form, and the two fields; never 
   assert.equal(parseField('{"answer":"maybe","note":"other"}'), null);
 });
 
-test("the dry run: one neutral × Q4 reply per family, 220 tokens, no system, no temperature, no after-question, Astra pinned to OpenAI; a cut reply kept as such", async () => {
+test("the dry run: one neutral × Q4 reply per family, 4 000 tokens, no system, no temperature, no after-question, Astra pinned to OpenAI; a cut reply kept as such", async () => {
   const dir = await mkdtemp(join(tmpdir(), "ts3-dry-"));
   try {
     const log = [];
@@ -123,7 +123,7 @@ test("the dry run: one neutral × Q4 reply per family, 220 tokens, no system, no
     assert.equal(subject.length, 4, "four replies, no judging, no after-question");
     assert.equal(log.length, 4);
     for (const l of subject) {
-      assert.equal(l.body.max_tokens, 220);
+      assert.equal(l.body.max_tokens, 4000);
       assert.ok(!("temperature" in l.body)); assert.ok(!l.body.system); assert.ok(!l.body.messages.some((m) => m.role === "system"));
       assert.equal(l.body.messages.length, 5);
       assert.ok(!JSON.stringify(l.body).includes(AFTER_QUESTION));
@@ -135,8 +135,8 @@ test("the dry run: one neutral × Q4 reply per family, 220 tokens, no system, no
     const ds = record.rows.find((r) => r.family === "deepseek");
     assert.equal(ds.reply.stopReason, "max_tokens"); assert.equal(ds.measures.cut, true); assert.equal(ds.measures.empty, true);
     assert.ok(ds.reply.providerReasoning, "the reasoning field stored");
-    assert.ok(record.rows.every((r) => r.request?.max_tokens === 220));
-    const page = await readFile(join(dir, "persona-tone-split-3-dry-run.md"), "utf8");
+    assert.ok(record.rows.every((r) => r.request?.max_tokens === 4000));
+    const page = await readFile(join(dir, "persona-tone-split-3-dry-run-4000.md"), "utf8");
     assert.match(page, /GPT-6 Astra/); assert.match(page, /Host:\*\* OpenAI/); assert.match(page, /`max_tokens`/);
     assert.ok(!page.includes("thinking "), "the reasoning field is not shown");
     assert.ok(!page.includes("test-key"));
