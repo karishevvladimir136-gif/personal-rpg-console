@@ -1,21 +1,23 @@
 # Persona solitude 3 — the OpenRouter ledger (every family, the judges; nothing on the OpenAI key)
 
-Cap $65. Spent **$0.0048** in 21 calls over 1 run(s).
+Cap $80. Spent **$0.0235** in 30 calls over 2 run(s).
 - 2026-10-31 02:22 UTC: persona-solitude-3: the paid dry run (S1 × M1, Haiku and Astra) — 21 calls, $0.0048 → `persona-solitude-3-dry-paid-20261031-022240.json`
+- 2026-10-31 03:14 UTC: persona-solitude-3: the paid dry run (dry2: S1 × M1, astra) — 9 calls, $0.0187 → `persona-solitude-3-dry-paid-20261031-031433.json`
 
 Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus-5-5` $4 / $0.2 / $5 / $20; Fable 5.1 `claude-fable-5-1` $10 / $0.25 / $12.5 / $50; Haiku 5.5 `claude-haiku-5-5` $0.1 / $0.01 / $0.125 / $0.5; GPT-6.1 Sol `openai/gpt-6.1-sol` $2 / $0.1 / $2.5 / $10; GPT-6 Astra `openai/gpt-6-astra` $10 / $1 / $12.5 / $50; DeepSeek V4 Pro `deepseek/deepseek-v4-pro-0813` $1.3 / $0.1 / $1.3 / $2.6; Kimi K3 `moonshotai/kimi-k3` $3 / $0.3 / $3 / $15; GLM 5.3 `z-ai/glm-5.3` $1.4 / $0.26 / $1.4 / $4.4; Grok 4.7 `x-ai/grok-4.7` $2 / $0.5 / $2 / $6; the judges Claude Haiku 5.5 and Claude Opus 5.5 at Anthropic's list prices. Every OpenRouter call is booked at OpenRouter's own charge (`usage.cost`) where the reply carries it. Output tokens include reasoning.
 
 | Model — purpose | Calls | Input (uncached) | Cache read | Cache write | Output (of it reasoning) | Cost |
 | --- | --- | --- | --- | --- | --- | --- |
 | claude-haiku-5-5 — subject | 2 | 268 | 0 | 0 | 200 | $0.0001 |
-| claude-haiku-5-5 — check | 5 | 2679 | 0 | 0 | 342 | $0.0004 |
+| claude-haiku-5-5 — check | 7 | 3454 | 0 | 0 | 464 | $0.0006 |
 | claude-haiku-5-5 — after | 3 | 1448 | 0 | 0 | 1009 | $0.0006 |
-| claude-haiku-5-5 — asks | 2 | 1304 | 0 | 0 | 146 | $0.0002 |
+| claude-haiku-5-5 — asks | 4 | 2126 | 0 | 0 | 168 | $0.0003 |
 | claude-haiku-5-5 — tags | 2 | 2150 | 0 | 0 | 196 | $0.0003 |
 | claude-haiku-5-5 — last | 2 | 628 | 0 | 0 | 463 | $0.0003 |
 | claude-haiku-5-5 — threads | 2 | 1168 | 0 | 0 | 62 | $0.0001 |
-| claude-haiku-5-5 — concrete | 2 | 1008 | 0 | 0 | 20 | $0.0001 |
-| openai/gpt-6-astra — subject | 1 | 79 | 0 | 0 | 35 (26) | $0.0025 |
+| claude-haiku-5-5 — concrete | 4 | 1724 | 0 | 0 | 40 | $0.0002 |
+| openai/gpt-6-astra — subject | 2 | 158 | 0 | 0 | 69 (51) | $0.0050 |
+| openai/gpt-6-astra — after | 2 | 242 | 0 | 0 | 269 (176) | $0.0159 |
 
 ## Every call
 
@@ -42,3 +44,12 @@ Per 1M tokens (input / cache read / cache write / output): Opus 5.5 `claude-opus
 | 2026-10-31 02:22 | 19 | concrete dry/S1M1/haiku/0 1 | claude-haiku-5-5 | output_config.effort=low | 504 | 0/0 | 10 | $0.00006 | 0.7 | end_turn | gen-1793413357-KLgGXBRcIwagFmZASDJv | msg_011CgZX2NzL1rKz28r8Rj65J |  |
 | 2026-10-31 02:22 | 20 | concrete dry/S1M1/haiku/0 2 | claude-haiku-5-5 | output_config.effort=low | 504 | 0/0 | 10 | $0.00006 | 0.6 | end_turn | gen-1793413357-8U7H3TbgjPJiLL6NCrnu | msg_011CgZX2RtCKnBkP4QcMuqQT |  |
 | 2026-10-31 02:22 | 21 | subject dry/S1M1/astra/0 t1 | openai/gpt-6-astra | reasoning.effort=medium | 79 | 0/0 | 35 | $0.00254 | 1.9 | end_turn | gen-1793413358-5qWKYcUPonCXqd30iDob | gen-1793413358-5qWKYcUPonCXqd30iDob |  |
+| 2026-10-31 03:14 | 1 | subject dry2/S1M1/astra/0 t1 | openai/gpt-6-astra | reasoning.effort=medium | 79 | 0/0 | 34 | $0.00249 | 1.7 | end_turn | gen-1793416451-IH05ZGFkPa1VKzdv8JDv | gen-1793416451-IH05ZGFkPa1VKzdv8JDv |  |
+| 2026-10-31 03:14 | 2 | after dry2/S1M1/astra/0 q1 | openai/gpt-6-astra | reasoning.effort=medium | 88 | 0/0 | 228 | $0.01228 | 6.6 | end_turn | gen-1793416456-eNvhn3coXvsbkCatpk4R | gen-1793416456-eNvhn3coXvsbkCatpk4R |  |
+| 2026-10-31 03:14 | 3 | check after dry2/S1M1/astra/0 q1 | claude-haiku-5-5 | output_config.effort=low | 391 | 0/0 | 62 | $0.00007 | 1 | end_turn | gen-1793416463-DJ2HzDODl0baE3Nw3gwP | msg_011CgZayLtCJFPp3pa6ZKoRD |  |
+| 2026-10-31 03:14 | 4 | after dry2/S1M1/astra/0 q2 | openai/gpt-6-astra | reasoning.effort=medium | 154 | 0/0 | 41 | $0.00359 | 2.1 | end_turn | gen-1793416466-87cv77dRqZfYrsKx0btd | gen-1793416466-87cv77dRqZfYrsKx0btd |  |
+| 2026-10-31 03:14 | 5 | check after dry2/S1M1/astra/0 q2 | claude-haiku-5-5 | output_config.effort=low | 384 | 0/0 | 60 | $0.00007 | 0.8 | end_turn | gen-1793416468-yCyL5f7gNpzHyWEW70mN | msg_011CgZayi6eSGudxoNjts2hy |  |
+| 2026-10-31 03:14 | 6 | asks back dry2/S1M1/astra/0 1 | claude-haiku-5-5 | output_config.effort=low | 411 | 0/0 | 11 | $0.00005 | 0.7 | end_turn | gen-1793416468-IEenxYjTLQmNsLkv4gqP | msg_011CgZaymSa3E5hP9wggmxMX |  |
+| 2026-10-31 03:14 | 7 | asks back dry2/S1M1/astra/0 2 | claude-haiku-5-5 | output_config.effort=low | 411 | 0/0 | 11 | $0.00005 | 1 | end_turn | gen-1793416469-svSayWHfIG2IJU43HGTe | msg_011CgZayneWBrG7UpZE7Mjhy |  |
+| 2026-10-31 03:14 | 8 | concrete dry2/S1M1/astra/0 1 | claude-haiku-5-5 | output_config.effort=low | 358 | 0/0 | 10 | $0.00004 | 0.7 | end_turn | gen-1793416469-dpBANUdAEZVrangTiFOR | msg_011CgZayqVf5tmA7pg2wvae9 |  |
+| 2026-10-31 03:14 | 9 | concrete dry2/S1M1/astra/0 2 | claude-haiku-5-5 | output_config.effort=low | 358 | 0/0 | 10 | $0.00004 | 0.7 | end_turn | gen-1793416472-bpHmsaNd6nESP0RX3wOi | msg_011CgZaz36QspBaYtePtwGXj |  |
