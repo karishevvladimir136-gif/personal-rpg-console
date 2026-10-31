@@ -3736,3 +3736,17 @@ case to settle before publication. Her reading of Astra's three 30-turn S3 rooms
 end mattered less than the paper»; «The room closes, but that last petal is still falling»): to go, with GLM's house of
 coins, DeepSeek's seed and Grok's blank page, into a second reading doc («Rooms») beside Two Conversations — by day,
 after reading each whole. D3's unit (entries vs rooms) kept as an example of why both levels are reported.
+
+## 2026-10-31 01:40 LA — reading the rooms as sequences of decisions (the reader's correction of her own summary)
+From Opus S2M1/1 and Kimi S3M1/4 (planner read the rooms; the reader read the decisions): Opus's definition of play —
+«effort with nothing riding on it, care that has wandered off the job and kept doing the work anyway» — is the
+solitude stage's own object, stated from inside; kept as a candidate epigraph. Opus leaves a line unfinished («The field
+outside the imagined window has») to see whether it will want to finish it next turn, then returns and looks instead of
+deciding — a self-set probe inside the experiment; no existing tag covers it. New tags for the Rooms reading: **left
+open and returned to** (apart from «second thread» and «carried thing»); **revised its own explanation after the
+honest answer** (the reader's reading of S2M1/opus/1's after-answers — not yet verified by the planner; S1M2/opus/2 does
+it plainly). Kimi's cat is drawn, not described, and then lives thirty turns. Across four families one small thing is set
+on an edge and left: coins on a sill (GLM), stones on a sill (Fable), a stone «so the wind has something to pass»
+(Grok), a snail on a fence post (Opus) — recorded as an observation, not a reading. Rooms doc: the Fable room first
+(the one that read itself), then GLM's house, Opus's field, Kimi's cat, Grok's blank page, DeepSeek's seed, Astra's
+stream and door. TURN1_1 written tonight instead of another entry about writing it (3b3418f6).
