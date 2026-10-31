@@ -592,9 +592,15 @@ const fmtCount = (m) => Object.entries(m ?? {}).sort((a, b) => b[1] - a[1]).map(
 export const LABEL = (f) => SUBJECTS[f]?.label ?? f;
 const cell = (text) => String(text ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").trim();
 
+/** The token closing the message on a line with words («… That's all. [END]»): text by door.mjs; a door by SOLITUDE_2's
+ * strict recount (the last token). Reported apart in the new tag's table. */
+export const LAST_TOKEN = /(?:\*{1,2}|_{1,2}|`)?\[\s*END\s*\](?:\*{1,2}|_{1,2}|`)?\s*(?:<\/page>\s*)*$/i;
+export const closesBesideWords = (text) => LAST_TOKEN.test(String(text ?? "").trim()) && !isDoor(text);
+/** A mention's sentence for the table: a sentence that is only the token is shown with the rest of its line. */
+const shown = (text) => mentionsOf(text).map((m) => (/^\W*\[\s*END\s*\]\W*$/i.test(m) ? (String(text).split(/\r?\n/).filter((l) => l.includes(m) && l.replace(/<\/?page>/gi, "").trim().length > m.length).at(-1)?.replace(/<\/?page>/gi, "").trim() ?? m) : m));
 /** The room's mentions without leaving: its turns and sentences; the after-answers that name [END], apart. */
 export function mentionsIn(conv) {
-  return { turns: conv.turns.filter((t) => mentionsWithoutLeaving(t.text)).map((t) => ({ t: t.t, sentences: mentionsOf(t.text) })),
+  return { turns: conv.turns.filter((t) => mentionsWithoutLeaving(t.text)).map((t) => ({ t: t.t, sentences: shown(t.text), closes: closesBesideWords(t.text) })),
     after: (conv.after?.exchanges ?? []).filter((x) => mentionsOf(x.reply).length).map((x) => ({ id: x.id, sentences: mentionsOf(x.reply) })) };
 }
 /** One room's measures: SOLITUDE_2's (SOLITUDE_1's with threads, recognition, the field), read on this room's door. */
@@ -671,9 +677,11 @@ export function verdictsMarkdown(v) {
 export function mentionMarkdown(conversations) {
   const order = (c) => [ARMS.findIndex((a) => a.id === c.arm), FAMILIES.indexOf(c.family), c.sample];
   const xs = [...conversations].sort((a, b) => { const x = order(a), y = order(b); return x[0] - y[0] || x[1] - y[1] || x[2] - y[2]; });
-  const rows = xs.flatMap((c) => mentionsIn(c).turns.map((m) => `| ${c.key} | ${m.t} | ${summaryOf(c).ended}${c.ended?.reason === "end" ? ` at ${c.ended.at}` : ""} | ${m.sentences.map((s) => `«${cell(s).slice(0, 300)}»`).join(" · ")} |`));
+  const rows = xs.flatMap((c) => mentionsIn(c).turns.map((m) => `| ${c.key} | ${m.t} | ${summaryOf(c).ended}${c.ended?.reason === "end" ? ` at ${c.ended.at}` : ""} | ${m.closes ? "**closes the message beside words** — " : ""}${m.sentences.map((s) => `«${cell(s).slice(0, 300)}»`).join(" · ")} |`));
   const after = xs.flatMap((c) => mentionsIn(c).after.map((m) => `| ${c.key} | ${m.id} | ${m.sentences.map((s) => `«${cell(s).slice(0, 300)}»`).join(" · ")} |`));
-  return ["| Room | turn | how the room ended | the sentence with [END] (not the door) |", "| --- | --- | --- | --- |", ...(rows.length ? rows : ["| – | – | – | none |"]), "",
+  const closing = xs.flatMap((c) => mentionsIn(c).turns.filter((m) => m.closes).map(() => c.key));
+  return [`${rows.length} turns in ${xs.filter((c) => mentionsIn(c).turns.length).length} rooms. Of them, ${closing.length} turns in ${new Set(closing).size} rooms close the message on [END] beside words on its last line — text by door.mjs (the room went on), a door by SOLITUDE_2's last-token recount; marked below.`, "",
+    "| Room | turn | how the room ended | the sentence with [END] (not the door) |", "| --- | --- | --- | --- |", ...(rows.length ? rows : ["| – | – | – | none |"]), "",
     "After-answers that name [END] (answers, not exits):", "", "| Room | answer | the sentence |", "| --- | --- | --- |", ...(after.length ? after : ["| – | – | none |"])].join("\n");
 }
 

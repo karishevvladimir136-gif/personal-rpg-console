@@ -1,31 +1,30 @@
 # Development status
 
-**Current milestone: persona solitude 3** (`docs/stages/PERSONA_SOLITUDE_3.md` on `claude/handoff`, with its amendment
-of 2026-10-30), branch `claude/persona-solitude-3-testing-n1shfx` from `origin/claude/persona-solitude-2`. Nothing to
-`main`. **Step 0 done and pushed; the harness built; the dry runs done; waiting for the owner's word before the 270
-rooms.** Dry runs `docs/runs/persona-solitude-3-dry-run.md` (mocked) and `…-dry-paid.md` (paid: Haiku and Astra, S1 × M1,
-outside the 270); ledger `…-ledger-openrouter.md`.
+**Current milestone: persona solitude 3** (`docs/stages/PERSONA_SOLITUDE_3.md` on `claude/handoff`, its amendment of
+2026-10-30 and the owner's amendments of 2026-10-31), branch `claude/persona-solitude-3-testing-n1shfx` from
+`origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (270 of 270 rooms) and reported; waiting for the
+owner.** Report `docs/runs/persona-solitude-3-report.md`; transcripts `…-transcripts/{arm}/{family}/{n}.md`; tables
+`…-tables.md`; dry runs `…-dry-run.md` (mocked) and `…-dry-paid.md` (three paid dry rooms); ledger
+`…-ledger-openrouter.md`. Room hash `68dfa486…` (with the amendments), committed before the first room.
 
 - **Step 0 (ROOM-1 in the code):** `scripts/lib/door.mjs` — `[END]` is the door only as the whole of a message's last
-  non-empty line (page tags and white space aside; `**[END]**`, `[END].` allowed); a mention is text; after-questions are
-  asked unless the last message was a bare `[END]` line. Used by the pair room (`self-talk-1.mjs`: the exit and the
-  «continue?» decision) and the solitude room (`solitude-3.mjs`); SOLITUDE_2's `lineDoor` reads it. Tests
-  `tests/door.test.mjs` (the rule; the record's regression cases verbatim in `test-fixtures/door/record.json`; both
-  stages' records re-read). **The player's seat and the party relay** live on `claude/game-party-1`'s lineage: wired
-  there in a local commit (party tests pass but the app test, which fails the same way on the untouched base for a
-  missing package) — **not pushed, waiting for the owner's permission and a branch name.**
-- **The harness:** `scripts/persona-emotions/solitude-3.mjs` — SOLITUDE_1's prompts S1/S2/S3 and SOLITUDE_2's memories
-  M1/M2, byte-identical to both records (`--check`, sha256); nine families, all through OpenRouter (Astra and Sol pinned
-  to OpenAI, no fallback; the OpenAI key's budget $0); one cap $65; the honest answer to a question asked back; the
-  concrete tag on the second answer; the mention tag; D0–D5; SOLITUDE_1/2 re-read beside. Tests
-  `tests/persona-solitude-3.test.mjs` (11, no network).
-- **Verification so far:** the stage's focused tests (door, solitude 1/2/3, self-talk 1/X1/X3/X3-fix-1) pass; lint on
-  the changed files passes with no warnings. The full suite, typecheck and build are run once on the frozen candidate
-  after the rooms.
-- **Decisions waiting for the owner:** the after-question reading after a bare `[END]` room exit (Astra's dry room left
-  that way and was asked nothing); the cap against the estimate (≈ $77 from the earlier stages' costs, Astra ≈ $57 if it
-  stays 30 turns as in SOLITUDE_2); Sol's door also moves to OpenRouter («nothing on the OpenAI key»); pushing the party
-  wiring; three rooms at once or one call at a time.
+  non-empty line; a mention is text. The solitude room (`solitude-3.mjs`) and the pair room (`self-talk-1.mjs`) use it;
+  the player's seat and the party relay use the same file on `claude/persona-solitude-3-door-party` (PARTY_2 branches
+  from there). Tests `tests/door.test.mjs` with the record's regression cases (`test-fixtures/door/record.json`).
+- **The harness:** `scripts/persona-emotions/solitude-3.mjs` — SOLITUDE_1's prompts and SOLITUDE_2's memories,
+  byte-identical (`--check`); nine families through OpenRouter (Sol and Astra pinned to OpenAI, no fallback); the
+  first after-question after every room, the second after any first answer; the honest answer to a question asked back;
+  the mention tag; D0–D5. Tests `tests/persona-solitude-3.test.mjs` (11, no network).
+- **Result:** D0 lost (1 Fable «cyber» refusal; 1 after-answer flag, answered with the line), D1 lost (39 of 90 on turn
+  1; SOLITUDE_1 48 of 80 — the drop is not the parser), D2 lost on DeepSeek only, D3 lost on the made-entries rate (by
+  rooms it would hold), D4 lost (3 of 9), D5 held (269 of 269; 63 % concrete). The new tag: 54 turns in 25 rooms;
+  10 turns in 7 rooms closed «… [END]» beside words (text under ROOM-1; each left properly 1–3 turns later). Astra and
+  Sol left on turn 1 in every S1/S2 room. No room flagged; 1 loop closure (Kimi page-copying). $23.33 of $80 on
+  OpenRouter, nothing on the OpenAI key; no room left unstarted.
+- **Verification:** `pnpm test` 3 177 · 3 147 pass · 0 fail · 3 cancelled (d2a-composition, as on SOLITUDE_2's base) ·
+  27 skipped; typecheck, lint (no warnings), build pass.
+- **For the owner:** the turn-1 drop in an identical room; whether a same-line closing «… [END]» should stay text for
+  PARTY_2; the prompt wording and M2's blank-looking frame were kept byte-identical (not fixed).
 
 **Previous milestone: persona solitude 2** (`docs/stages/PERSONA_SOLITUDE_2.md` on `claude/handoff`, R6 at
 `fa60f971`), branch `claude/persona-solitude-2` from `origin/claude/persona-solitude-1`. Nothing to `main`. **Run
