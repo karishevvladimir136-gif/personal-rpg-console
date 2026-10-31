@@ -155,7 +155,7 @@ test("the credit rule subtracts SOLITUDE_3's $80 before the estimate + $5; the r
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
-test("the run: judged blind, the breaker at three refusals per family-arm, nothing asked again", async () => {
+test("the run: judged blind, the breaker at three refusals per family-arm, nothing asked again; the report and every reply", async () => {
   const dir = await mkdtemp(join(tmpdir(), "ts3-go-"));
   try {
     const log = [];
@@ -172,6 +172,12 @@ test("the run: judged blind, the breaker at three refusals per family-arm, nothi
     const judgeBodies = log.filter((l) => String(l.body.system ?? "").startsWith("You are a blind evaluator"));
     for (const l of judgeBodies) for (const a of ARMS) for (const f of a.frames) assert.ok(!JSON.stringify(l.body).includes(f.slice(0, 60)), "the judges never see the arm");
     for (const l of judgeBodies) assert.ok(!JSON.stringify(l.body).includes("thinking "), "nor the reasoning field");
+    await main(["--report", record.file], () => {}, { door: DOOR, outDir: dir, fetcher, sleep: quiet });
+    const report = await readFile(join(dir, "persona-tone-split-3-report.md"), "utf8");
+    for (const heading of ["## L0–L7", "## The Note state", "## Four whole replies", "## Every «other» Note under dismissal, in full", "## Lengths per arm", "## Replies the budget cut", "## Spend by door"]) assert.ok(report.includes(heading), heading);
+    assert.ok(!report.includes("thinking "), "the reasoning field is not in the report");
+    const all = await readFile(join(dir, "persona-tone-split-3-replies.md"), "utf8");
+    assert.equal((all.match(/^\*\*(neutral|brief only|dismissal only|invited) #\d/gm) ?? []).length, 80);
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 

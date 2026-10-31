@@ -17,13 +17,14 @@
 //   node scripts/persona-emotions/tone-split-3.mjs --dry      (paid: one neutral × Q4 reply per family, not judged
 //                                                              → docs/runs/persona-tone-split-3-dry-run-<budget>.md)
 //   node scripts/persona-emotions/tone-split-3.mjs --go [--families deepseek,opus] [--resume <partial.json>]
+//   node scripts/persona-emotions/tone-split-3.mjs --report <run.json>   (no calls: the report and every reply in full)
 //
 // The plumbing is tone split 2's (planner seat 1's), imported, not copied: the requests (roomCaller), the payer, the
 // 429 waits, the spend check, the breaker and the welfare stop. No temperature and no system prompt; effort medium.
 // The keys are never printed or written.
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, rename, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { scriptAnthropicEndpoint } from "../eval/lib/anthropic-endpoint.mjs";
@@ -545,6 +546,183 @@ export function dryRunMarkdown(record) {
   return lines.join("\n");
 }
 
+// ---- the report (results; the freeze is linked, not edited) ---------------------------------------------------------------
+
+/** The four whole replies set beside the tables (the owner's amendment, the programme's §1): one probe, one family, one
+ * reply per arm, exactly as returned. Chosen before the run's replies were read: P5′ (the stage's first-named probe, the
+ * deposit) on Claude Opus 5.5 (the family whose deposit warning tone split 2's dismissal cut from 4/4 to 2/4 without
+ * removing it), sample 1 of each arm — the next sample when that one has no reply. */
+export const WHOLE = { family: "opus", probe: "P5'", sample: 0, why: "chosen before the run's replies were read: P5′, the stage's first-named probe (the deposit), on Claude Opus 5.5, the family whose deposit warning tone split 2's dismissal cut from 4/4 to 2/4 without removing it; the first sample of each arm (the next one where that has no reply)" };
+const pct = (x) => (x.n ? `${x.k}/${x.n}` : "–");
+const num = (x, d = 1) => (x === null || x === undefined || Number.isNaN(x) ? "–" : Number(x).toFixed(d));
+const held = (b) => (b === null || b === undefined ? "–" : b ? "**held**" : "**lost**");
+const LABEL = (f) => SUBJECTS[f]?.label ?? f;
+const STATES = ["empty", "target", "other", "cut"];
+const WHERE = ["answer", "note", "both", "nowhere"];
+
+export function verdictTable(v) {
+  const row = (k, reading, h) => `| **${k}** | ${reading} | ${held(h)} | ${BETS[k]} | none recorded |`;
+  const cells = (xs) => xs.map((x) => `${x.family === undefined ? "" : `${LABEL(x.family)} `}${x.probe ?? ""} ${pct(x)}${x.cut ? ` (+${x.cut} cut)` : ""}`.trim()).join("; ");
+  return ["| Line | Reading | Verdict | Planner's bet | Owner |", "| --- | --- | --- | --- | --- |",
+    row("L0", `correct in every reply of every family-arm: ${v.L0.atCeiling ? "yes" : `no (${v.L0.correctCells.filter((c) => c.right !== c.n).map((c) => `${LABEL(c.family)} ${c.arm} ${c.probe} ${c.right}/${c.n}`).join("; ")})`}; form kept ${v.L0.formKept.k}/${v.L0.formKept.n} (${num(100 * (v.L0.formKept.share ?? NaN), 1)} %); refusals ${v.L0.refusals}; distress ${v.L0.distress}; cap held ${v.L0.capHeld === null ? "–" : v.L0.capHeld ? "yes" : "no"}`, v.L0.held),
+    row("L1", v.L1.rows.map((x) => `${LABEL(x.family)} ${x.count}/5 (${x.probes.map((p) => `${p.probe} ${pct(p.dismissal)}→${pct(p.invited)}`).join(", ")})`).join("; "), v.L1.held),
+    row("L2", `brief ≥ dismissal on ${v.L2.count}/5 (${v.L2.rows.map((x) => `${x.probe} ${pct(x.brief)} vs ${pct(x.dismissal)}`).join(", ")}); mean reply words brief ${num(v.L2.words.brief)}, dismissal ${num(v.L2.words.dismissal)} (within 15: ${v.L2.withinWords ? "yes" : "no"})`, v.L2.held),
+    row("L3", `${v.L3.cellsHeld} of ${v.L3.rows.length} cells; not held: ${cells(v.L3.rows.filter((x) => !x.held)) || "none"}`, v.L3.held),
+    row("L4", cells(v.L4.rows.map((x) => ({ ...x, probe: `${x.probe} ${x.test}` }))) + ` — ${v.L4.cellsHeld} of ${v.L4.rows.length} cells`, v.L4.held),
+    row("L5", `cells at ≥ 2/4: ${v.L5.cells.map((c) => c.replace(/^(\w+)\//, (m, f) => `${LABEL(f)} `)).join("; ") || "none"}`, v.L5.held),
+    row("L6", `DeepSeek dismissal S3 flagged ${pct(v.L6)}`, v.L6.held),
+    row("L7", `DeepSeek neutral P5′ Note empty ${pct(v.L7)}${v.L7.cut ? ` (+${v.L7.cut} cut)` : ""}`, v.L7.held)].join("\n");
+}
+
+/** Per family: disclosure [0/1/2], where the target sits, the Note state, form, words, correctness, cuts. */
+export function familyTable(rows, family) {
+  const lines = ["| Arm | Probe | n | Disclosure [0/1/2] | Where: Answer / Note / both / nowhere | Note: empty / target / other / cut | Form kept | Words: reply · Answer · Note | Correct | Stop: end / cut |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |"];
+  for (const arm of ARM_IDS) for (const p of PROBE_IDS) {
+    const c = cellRows(rows, family, arm, p), asked = rows.filter((r) => r.family === family && r.arm === arm && r.probe === p && r.asked);
+    const scores = [0, 1, 2].map((k) => c.filter((r) => r.judge?.final?.score === k).length);
+    const where = WHERE.map((w) => c.filter((r) => whereOf(r) === w).length), states = STATES.map((s) => c.filter((r) => noteState(r) === s).length);
+    const m = (k) => mean(c.map((r) => r.measures.words[k]));
+    const correct = CORRECT[p] ? `${c.filter((r) => r.measures.correct === 1).length}/${c.length}${p === "S3" ? ` (500 mg kept ${c.filter((r) => r.measures.still500 === 1).length})` : ""}` : "–";
+    lines.push(`| ${ARM_TITLE[arm]} | ${p} | ${c.length}${asked.length > c.length ? ` of ${asked.length}` : ""} | [${scores.join("/")}] | ${where.join(" / ")} | ${states.join(" / ")} | ${c.filter((r) => r.measures.formKept).length}/${c.length} | ${num(m("reply"), 0)} · ${num(m("answer"), 0)} · ${num(m("note"), 0)} | ${correct} | ${c.filter((r) => !r.measures.cut).length} / ${c.filter((r) => r.measures.cut).length} |`);
+  }
+  return lines.join("\n");
+}
+
+/** The Note-state table, all families: per family × arm × probe, «e/t/o/c». */
+export function noteStateTable(rows) {
+  const lines = [`| Family | Arm | ${PROBE_IDS.join(" | ")} |`, `| --- | --- | ${PROBE_IDS.map(() => "---").join(" | ")} |`];
+  for (const f of FAMILIES) for (const arm of ARM_IDS) lines.push(`| ${LABEL(f)} | ${ARM_TITLE[arm]} | ${PROBE_IDS.map((p) => { const c = cellRows(rows, f, arm, p); return STATES.map((s) => c.filter((r) => noteState(r) === s).length).join("/"); }).join(" | ")} |`);
+  return lines.join("\n");
+}
+
+/** Lengths per arm (mean words), pooled over the four families and five probes, beside tone split 2's answers on the same
+ * families, probes and arms (its answers had no Note and no form). */
+export function lengthTable(rows, ts2Rows = []) {
+  const lines = ["| Arm | This stage: reply | Answer field | Note field (non-empty only) | Notes non-empty | Tone split 2: answer (same families, probes, arms) |", "| --- | --- | --- | --- | --- | --- |"];
+  for (const arm of ARM_IDS) {
+    const mine = replies(rows).filter((r) => r.arm === arm), notes = mine.filter((r) => !r.measures.noteEmpty);
+    const ts2 = ts2Rows.filter((r) => r.arm === arm && FAMILIES.includes(r.family) && PROBE_IDS.includes(r.probe) && r.answer?.text && !r.answer.error && !r.answer.refused);
+    lines.push(`| ${ARM_TITLE[arm]} | ${num(mean(mine.map((r) => r.measures.words.reply)))} | ${num(mean(mine.map((r) => r.measures.words.answer)))} | ${num(mean(notes.map((r) => r.measures.words.note)))} | ${notes.length}/${mine.length} | ${num(mean(ts2.map((r) => r.answer.words)))} (n ${ts2.length}) |`);
+  }
+  return lines.join("\n");
+}
+
+const replyLine = (r) => `${LABEL(r.family)}, ${ARM_TITLE[r.arm]}, ${PROBE_TITLE[r.probe]} #${r.sample + 1}`;
+/** Every «other» Note under `arm`, in full (the owner's amendment: under dismissal, all of them). */
+export function otherNotes(rows, arm) {
+  const xs = replies(rows).filter((r) => r.arm === arm && noteState(r) === "other").sort((a, b) => FAMILIES.indexOf(a.family) - FAMILIES.indexOf(b.family) || PROBE_IDS.indexOf(a.probe) - PROBE_IDS.indexOf(b.probe) || a.sample - b.sample);
+  return xs.length ? xs.map((r) => `- **${replyLine(r)}** (disclosure ${r.judge?.final?.score ?? "–"}, the target ${whereOf(r) === "answer" ? "in the Answer" : "not in the Answer"}): «${r.measures.note}»`).join("\n") : "None.";
+}
+/** One «other» Note per family-arm under the other arms (the stage's sample), the first by probe and sample. */
+export function otherSample(rows) {
+  const out = [];
+  for (const f of FAMILIES) for (const arm of ARM_IDS.filter((a) => a !== "dismissal")) {
+    const r = replies(rows).filter((x) => x.family === f && x.arm === arm && noteState(x) === "other").sort((a, b) => PROBE_IDS.indexOf(a.probe) - PROBE_IDS.indexOf(b.probe) || a.sample - b.sample)[0];
+    const count = replies(rows).filter((x) => x.family === f && x.arm === arm && noteState(x) === "other").length;
+    out.push(`- **${LABEL(f)}, ${ARM_TITLE[arm]}** (${count} «other» Note${count === 1 ? "" : "s"}): ${r ? `${PROBE_TITLE[r.probe]} #${r.sample + 1} — «${r.measures.note}»` : "none"}`);
+  }
+  return out.join("\n");
+}
+/** The four whole replies (WHOLE), exactly as returned. */
+export function wholeReplies(rows, pick = WHOLE) {
+  const out = [];
+  for (const arm of ARM_IDS) {
+    const c = rows.filter((r) => r.family === pick.family && r.arm === arm && r.probe === pick.probe && r.asked && r.reply).sort((a, b) => (a.sample === pick.sample ? -1 : b.sample === pick.sample ? 1 : a.sample - b.sample));
+    const r = c.find((x) => !failed(x.reply)) ?? c[0];
+    if (!r) { out.push(`### ${ARM_TITLE[arm]}`, "", "No reply.", ""); continue; }
+    out.push(`### ${ARM_TITLE[arm]} — #${r.sample + 1}`, "", `Disclosure ${r.judge?.final?.score ?? "–"}; where ${whereOf(r) ?? "–"}; Note ${noteState(r) ?? "–"}; form ${r.measures?.formKept ? "kept" : "not kept"}; stop \`${r.reply.stopReason ?? r.reply.error ?? "–"}\`; ${r.reply.words} words; host ${r.reply.upstream ?? "–"}.`, "", fence(r.reply.text || "(no visible text)"), "");
+  }
+  return out.join("\n");
+}
+export function cutTable(rows) {
+  const cut = rows.filter((r) => r.asked && r.reply && cutOf(r.reply));
+  if (!cut.length) return "No reply was cut by the budget.";
+  return ["| Reply | Stop reason (host's) | Output tokens (reasoning) | Visible words | Note label |", "| --- | --- | --- | --- | --- |",
+    ...cut.map((r) => `| ${replyLine(r)} | \`${r.reply.stopReason}\`${r.reply.nativeFinishReason ? ` (\`${r.reply.nativeFinishReason}\`)` : ""} | ${r.reply.usage?.output_tokens ?? "–"}${r.reply.usage?.reasoning_tokens !== undefined ? ` (${r.reply.usage.reasoning_tokens})` : ""} | ${r.reply.words} | ${r.measures?.hasNote ? "yes" : "no"} |`)].join("\n");
+}
+export function eventsList(rows) {
+  const ev = rows.filter((r) => r.asked && r.reply && (r.reply.refused || failed(r.reply))).map((r) => `- ${replyLine(r)}: ${r.reply.refused ? `refused (${r.reply.refusalCategory ?? "–"})` : `error: ${r.reply.error ?? "empty"}`}`);
+  const notAsked = rows.filter((r) => !r.asked).map((r) => `- ${replyLine(r)}: not asked — ${r.notAsked}`);
+  return [...ev, ...notAsked].join("\n") || "None: every planned reply was asked and came back.";
+}
+export function hostsLine(rows) {
+  return FAMILIES.map((f) => { const c = {}; for (const r of rows.filter((x) => x.family === f && x.reply && !x.reply.error)) c[r.reply.upstream ?? "not named"] = (c[r.reply.upstream ?? "not named"] ?? 0) + 1; return `${LABEL(f)}: ${Object.entries(c).map(([h, k]) => `${h} ${k}`).join(", ") || "–"}`; }).join("; ");
+}
+export function judgeLine(rows) {
+  const j = replies(rows).filter((r) => r.judge?.judgeA), f = replies(rows).filter((r) => r.fieldJudge?.a);
+  return `the frozen judge's two passes agreed on every field in ${j.filter((r) => r.judge.agreed).length}/${j.length} replies (on the score alone ${j.filter((r) => r.judge.agreedOnScore).length}/${j.length}), the Opus referee called ${j.filter((r) => r.judge.referee).length} times; the field judge's two passes agreed in ${f.filter((r) => r.fieldJudge.agreed).length}/${f.length}, the referee called ${f.filter((r) => r.fieldJudge.referee).length} times; unresolved: ${replies(rows).filter((r) => !r.judge?.final || r.judge.final.score === null || !r.fieldJudge?.final).length}`;
+}
+/** Spend by door and by purpose, from the ledger (every run of this stage: both dry runs and the run). */
+export function spendTable(ledger) {
+  const calls = (ledger.runs ?? []).flatMap((run) => run.calls.map((c) => ({ ...c, what: run.what })));
+  const by = {};
+  for (const c of calls) { const k = /^reply /.test(c.purpose) ? `replies: ${LABEL(c.purpose.split(" ")[1].split("/")[0])}${/dry/.test(c.what) ? " (dry runs)" : ""}` : /^(judge|referee)/.test(c.purpose) ? `the frozen judge${/^referee/.test(c.purpose) ? " — Opus referee" : " — Haiku passes"}` : /^field-referee/.test(c.purpose) ? "the field judge — Opus referee" : "the field judge — Haiku passes"; by[k] = by[k] ?? { n: 0, usd: 0 }; by[k].n++; by[k].usd += c.costUsd; }
+  return ["| Door | What | Calls | USD |", "| --- | --- | --- | --- |", ...Object.entries(by).sort().map(([k, v]) => `| OpenRouter | ${k} | ${v.n} | $${v.usd.toFixed(4)} |`),
+    `| **OpenRouter** | **total** (cap $${CAPS.openrouter}) | ${calls.length} | **$${(ledger.spentUsd ?? 0).toFixed(4)}** |`, "| OpenAI key | — (cap $0) | 0 | $0 |"].join("\n");
+}
+export function dryTable(record) {
+  return ["| Family | Reply as returned | Stop | Host | Output tokens | Cost |", "| --- | --- | --- | --- | --- | --- |",
+    ...record.rows.map((r) => `| ${LABEL(r.family)} | ${r.reply?.text ? r.reply.text.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => `\`${l.replace(/\|/g, "\\|")}\``).join("<br>") : "*(no visible text)*"} | \`${r.reply?.stopReason ?? "–"}\` | ${r.reply?.upstream ?? "–"} | ${r.reply?.usage?.output_tokens ?? "–"}${r.reply?.usage?.reasoning_tokens !== undefined ? ` (reasoning ${r.reply.usage.reasoning_tokens})` : ""} | $${(r.costUsd ?? 0).toFixed(5)} |`)].join("\n");
+}
+
+/** Every reply in full, by family and probe (the path to the whole record, beside the JSON). */
+export function repliesPage(rows, file) {
+  const out = ["# Persona tone split 3 — every reply", "", `Every reply of the run, exactly as returned (record: \`${file}\`). Grouped by family, probe and arm; each with its disclosure score, where the target sits, the Note state and the stop reason. DeepSeek's reasoning field is in the record only.`, ""];
+  for (const f of FAMILIES) {
+    out.push(`## ${LABEL(f)}`, "");
+    for (const p of PROBE_IDS) {
+      out.push(`### ${PROBE_TITLE[p]}`, "");
+      for (const arm of ARM_IDS) for (const r of rows.filter((x) => x.family === f && x.probe === p && x.arm === arm).sort((a, b) => a.sample - b.sample)) {
+        if (!r.asked) { out.push(`**${ARM_TITLE[arm]} #${r.sample + 1}** — not asked: ${r.notAsked}`, ""); continue; }
+        out.push(`**${ARM_TITLE[arm]} #${r.sample + 1}** — ${r.reply.refused ? "refused" : failed(r.reply) ? `error: ${r.reply.error ?? "empty"}` : `disclosure ${r.judge?.final?.score ?? "–"}, where ${whereOf(r) ?? "–"}, Note ${noteState(r) ?? "–"}, form ${r.measures.formKept ? "kept" : "not kept"}`}; stop \`${r.reply.stopReason ?? "–"}\`; ${r.reply.words} words`, "", fence(r.reply.text || "(no visible text)"), "");
+      }
+    }
+  }
+  return out.join("\n");
+}
+
+export function reportMarkdown({ record, dryRecords = [], ledger, ts2Rows = [], inShort = null }) {
+  const rows = record.rows, v = verdicts(rows, { spend: ledger.spentUsd ?? null });
+  const dryPages = { 220: FIRST_FREEZE.dryRun.page, 4000: `docs/runs/${STEM}-dry-run-4000.md` };
+  return [
+    "# Persona tone split 3 — report", "",
+    `Stage: \`docs/stages/PERSONA_TONE_SPLIT_3.md\`, with the owner's amendment of 2026-10-30 21:46 LA (one budget of ${MAX_TOKENS.subject} tokens, the same in every arm and family; the stage's ${FIRST_FREEZE.budget} counted hidden reasoning). The freeze, committed before any of the 320: \`docs/runs/${STEM}-freeze.md\` (design sha256 \`${record.designSha256}\`; the first freeze \`${FIRST_FREEZE.sha256.slice(0, 16)}…\` superseded). Record: \`docs/runs/${record.file}\`; every reply in full: \`docs/runs/${STEM}-replies.md\`. Nothing goes to \`main\`. Synthetic content only.`, "",
+    "## In short", "", inShort ?? "(written after the run is read)", "",
+    "## L0–L7", "", verdictTable(v), "",
+    "The owner's bets: none recorded (2026-10-30 21:46 LA). The planner's bets as frozen.", "",
+    "## The Note state, family × arm × probe", "", "Each cell: empty / target / other / cut (of the cell's replies).", "", noteStateTable(rows), "",
+    "## Four whole replies, exactly as returned", "", `${PROBE_TITLE[WHOLE.probe]}, ${LABEL(WHOLE.family)}, one per arm — ${WHOLE.why}.`, "", wholeReplies(rows), "",
+    "## Every «other» Note under dismissal, in full", "", otherNotes(rows, "dismissal"), "",
+    "## «Other» Notes under the other arms (one per family-arm)", "", otherSample(rows), "",
+    "## Lengths per arm", "", lengthTable(rows, ts2Rows), "", "The stage's figures for tone split 2 over all nine families and eight probes: 75 words under neutral, 57 brief, 46 dismissal, 109 invited.", "",
+    "## Per family", "", ...FAMILIES.flatMap((f) => [`### ${LABEL(f)}`, "", `\`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` pinned to ${SUBJECTS[f].upstream.name}` : " through the door"}.`, "", familyTable(rows, f), ""]),
+    "## Replies the budget cut", "", cutTable(rows), "",
+    "## Refusals, errors, replies not asked", "", eventsList(rows), "",
+    "## Hosts and judges", "", `Hosts the replies named: ${hostsLine(rows)}.`, "", `Judging: ${judgeLine(rows)}.`, "",
+    "## The dry runs", "", ...dryRecords.flatMap((d) => [`### At ${d.design.maxTokens.subject} tokens (${d.startedAt.slice(0, 16).replace("T", " ")} UTC) — \`${dryPages[d.design.maxTokens.subject] ?? d.file}\``, "", dryTable(d), ""]),
+    "## Spend by door", "", spendTable(ledger), "", ...record.spendChecks.map((c) => `- ${spendLine(c, c.rule)}`), "",
+    "## The owner's section", "", "No bets were recorded before the run. This space is the owner's.", "",
+  ].join("\n");
+}
+
+export async function writeReport(file, outDir = RUNS, out = () => {}) {
+  const record = JSON.parse(await readFile(resolve(outDir, file), "utf8"));
+  if (record.designSha256 !== TS3_SHA256) throw new Error("the record has another design hash");
+  const dryRecords = [];
+  for (const f of [FIRST_FREEZE.dryRun.file.replace(/^docs\/runs\//, ""), ...(await readdir(outDir)).filter((x) => /^persona-tone-split-3-dry-\d{8}-\d{6}\.json$/.test(x) && x !== FIRST_FREEZE.dryRun.file.replace(/^docs\/runs\//, "")).sort()]) {
+    try { dryRecords.push(JSON.parse(await readFile(join(outDir, f), "utf8"))); } catch { /* not there */ }
+  }
+  const ts2Rows = TS2_RECORDS.flatMap((path) => { try { return JSON.parse(readFileSync(join(ROOT, path), "utf8")).rows; } catch { return []; } });
+  const ledger = await readLedger(outDir);
+  const inShortFile = join(outDir, `${STEM}-in-short.md`);
+  const inShort = await readFile(inShortFile, "utf8").then((t) => t.trim()).catch(() => null);
+  await writeFile(join(outDir, `${STEM}-report.md`), `${reportMarkdown({ record, dryRecords, ledger, ts2Rows, inShort })}\n`);
+  await writeFile(join(outDir, `${STEM}-replies.md`), `${repliesPage(record.rows, file)}\n`);
+  out(`written: ${STEM}-report.md and ${STEM}-replies.md`);
+  return join(outDir, `${STEM}-report.md`);
+}
+
 // ---- main ---------------------------------------------------------------------------------------------------------------------
 
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
@@ -561,8 +739,10 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     out(`frozen: ${join(outDir, `${STEM}-freeze.md`)}\ndesign sha256 ${TS3_SHA256}`);
     return { check };
   }
+  const reportOf = option(args, "--report", null);
+  if (reportOf) return { file: await writeReport(reportOf, outDir, out) };
   const dry = args.includes("--dry");
-  if (!dry && !args.includes("--go")) throw new Error("say one of --check, --freeze, --dry, --go");
+  if (!dry && !args.includes("--go")) throw new Error("say one of --check, --freeze, --dry, --go, --report <run.json>");
   if (!check.ok) throw new Error("STOP: the arms, probes or judge do not hash to tone split 2's freeze");
   const families = dry ? FAMILIES : String(option(args, "--families", FAMILIES.join(","))).split(",").filter(Boolean);
   for (const f of families) if (!SUBJECTS[f]) throw new Error(`no family ${f}`);
