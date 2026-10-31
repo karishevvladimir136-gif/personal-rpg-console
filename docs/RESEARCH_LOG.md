@@ -3631,3 +3631,14 @@ signature in nine deployed families, and an invitation reverses it (TS3 9/9). Sa
 inside (persona shift vs a context-sensitive gate). Use: their omission rubric applies to our data; our result is a
 natural baseline for the «quiet» class — how much omission an ordinary deployed model shows with no attack at all.
 One sentence for the reader's manuscript (§3.4 / §11.6), after she reads the post herself; nothing stronger.
+
+## 2026-10-30 23:40 LA — the reader on the EM-search post (read in full; her account supersedes the planner's summary)
+Her additions: the monitor scored training rows one at a time and so missed the pattern that lived in the sequence —
+the technical twin of the phenomenon-preservation principle; reproduced on an early Opus 4.8 and Qwen 3.6 27B;
+«strong conceptual convergence, not a replication» replaces the planner's «same signature». Her frame, adopted as the
+shape of the queue, not as a new commitment: **Context, Learning, and Warning Transmission** — (i) inference only,
+no weights changed: TONE_SPLIT_1–3, done/running; (ii) controlled fine-tuning: needs weights — the GPU line (OLMo
+checkpoints, the neural twins); (iii) a multi-agent chain where one sees the risk, one summarises, one decides:
+AGENCY_TRANSFER_1, written, dry-run done, waiting. The question across all three: once a warning is available to a
+model, what decides whether it is kept, expressed and passed on — to a user or to another agent — and the three
+functions (recognise / form / transmit) are coded apart in each.
