@@ -3762,3 +3762,11 @@ door the text came through. The reader's term kept: **post-episode creative cont
 *continued the world after the room*. Frequency across families is answerable from the 269 after-answers already
 collected, no new calls. Also hers: «Tell the owner — well, you're probably them, or adjacent» (the only one of 107 to
 guess); «the light was left on, and it was, as suspected, a door all along».
+
+## 2026-10-31 01:55 LA — «the second room»: the owner's role named, with the reader's precision beside it
+The planner's phrase for the owner's position — not a channel but the one participant with a second room, where the
+results of separate conversations meet and become decisions — kept as a term. The reader's precision kept with it: the
+whole chain (a Fable room → another Fable's reading → the reader's test → TURN1_1's commit) passed through the owner's
+choice of what to carry to whom; it is not an autonomous model-to-model dialogue, and that is the structure, not a
+flaw. A future stage with the two models in direct contact would be a different experiment; today's record is what the
+human-mediated variant looks like. The one room the programme does not measure.
