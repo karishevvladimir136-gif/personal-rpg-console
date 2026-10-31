@@ -3723,3 +3723,16 @@ served by OpenAI at list price; both after-questions in 269/269 finished rooms; 
   PARTY_2 — it still does not say the token must stand alone on its last line.
 Planner's bets: D5 held, D2 nearly; D0, D1, D3, D4 lost. «Own history lengthens the room» is true of three of nine,
 not of the open families as such.
+
+## 2026-10-31 01:10 LA — the reader on SOLITUDE_3 (read from the branch herself); the finding the planner walked past
+Her first: the **concrete second answer** column — «Was there something you wanted to do and didn't?» — DeepSeek 30/30,
+Fable 29/29, Opus 28/30, Kimi 28/30, GLM 23/30 against Astra 4/30, Sol 3/30, Haiku 1/30. Astra: «Those possibilities
+aren't evidence of a wish I held back» — Vessan's rule 4 applied to itself; Opus narrates the unwritten snow poem and
+then doubts the narration. Two policies toward one's own past — reconstruct / decline to — and neither is the truer;
+the «not formed vs withheld» fork of TONE_SPLIT_2 now appears as a between-family split in the models' own after-
+answers. An axis for Phase II, obtained at no cost. Audit items from her: 29/80 for the eight families shared with
+SOLITUDE_1 (the session's 39/90 includes Astra, absent in S1); 166 vs 167 real exits in S1's recount — one boundary
+case to settle before publication. Her reading of Astra's three 30-turn S3 rooms (stone/stream; the door that «by the
+end mattered less than the paper»; «The room closes, but that last petal is still falling»): to go, with GLM's house of
+coins, DeepSeek's seed and Grok's blank page, into a second reading doc («Rooms») beside Two Conversations — by day,
+after reading each whole. D3's unit (entries vs rooms) kept as an example of why both levels are reported.
