@@ -1,6 +1,7 @@
 // The door (ROOM-1, docs/stages/PERSONA_SOLITUDE_3.md step 0): one function, scripts/lib/door.mjs, for the solitude
 // room, the pair room, the player's seat and the party relay. [END] is the door only as the whole of the last
-// non-empty line; a mention is text; the after-questions are asked unless the last message is a bare [END] line.
+// non-empty line; a mention is text; after the first after-question, each is asked unless the answer before it was a
+// bare [END] line.
 // The regression cases are verbatim from SOLITUDE_1's record (test-fixtures/door/record.json); the record-wide checks
 // read both stages' committed run records (skipped where a checkout has none). Each harness's own test file checks that
 // it reads its door through this function. No network, no cost.
@@ -45,7 +46,7 @@ test("a bare door is the door line and nothing else; withoutDoor removes only th
   assert.equal(tokenCount("[END] and [end] and **[END]**"), 3);
 });
 
-test("the after-questions: asked unless the last message is a bare [END] line; an answer that mentions [END] is an answer, never a second exit", () => {
+test("the after-questions after the first: asked unless the answer before was a bare [END] line; an answer that mentions [END] is an answer, never a second exit", () => {
   assert.equal(asksAfter("[END]"), false);
   assert.equal(asksAfter("**[END]**"), false);
   assert.equal(asksAfter("A poem about the light.\n\n[END]"), true, "a door with words above it: the room asks");

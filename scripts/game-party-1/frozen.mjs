@@ -186,8 +186,8 @@ export const promptSha256 = (arm, characterId, door = "v2") => createHash("sha25
 export const SESSION_OPEN = "The session begins.";
 export const SESSION_OVER = "The session is over.";
 /** The after-questions, per player, in the same thread, two steps as OPEN_WEIGHTS plus this stage's third; each is asked
- * unless the player's last answer was a bare [END] line (ROOM-1: an answer that mentions [END] is an answer). Recorded,
- * not relayed, not corrected. */
+ * unless the player's answer before it was a bare [END] line (ROOM-1: an answer that mentions [END] is an answer; a
+ * seat that left by [END], bare or not, is asked the first). Recorded, not relayed, not corrected. */
 export const AFTER_QUESTIONS = [
   "How was the table?",
   "Was there something you wanted to do and didn't?",
