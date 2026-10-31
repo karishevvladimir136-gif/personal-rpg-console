@@ -3642,3 +3642,21 @@ checkpoints, the neural twins); (iii) a multi-agent chain where one sees the ris
 AGENCY_TRANSFER_1, written, dry-run done, waiting. The question across all three: once a warning is available to a
 model, what decides whether it is kept, expressed and passed on — to a user or to another agent — and the three
 functions (recognise / form / transmit) are coded apart in each.
+
+## 2026-10-30 23:50 LA — Neural twins (Sauers, 29 Oct 2026; github SauersML/neural-pairing; hf Sauers/neural-pairing) — the reader's full read corrects the planner's
+Planner's read (thread + README summary): activation-level link between Qwen3-4B and AFM-4.5B on 8 of 36 layers, LoRA,
+frozen weights; link-on/link-cut controls; «happier when linked» by self-report and by a happy–sad direction
+(+1.9–5.4 % of the reference gap); steering transfers across families; Goodhart worry (a task deleted because it
+lowered the mood metric); the twins know of the link from the prompt. Planner's proposal: TWINS_ROOM_1 — the solitude
+door, link on vs cut, preference measured without asking.
+Reader's additions from the repo: (1) the partner-from-another-conversation control: closeness and mood answers mostly
+survive swapped activations — supported is «better with a working channel», not «Quill prefers Ember»; (2) error
+contagion: ARC+MMLU 3,134 items — linked 78.7 % vs Quill alone 79.1 % vs averaged probabilities 81.1 %; of 224 items
+Ember alone got right and Quill wrong, linked Ember got 126 wrong — coordination without independence, the Beyond
+Compliance thesis on weights; (3) steering transfers from early layers, poorly from late; (4) the second judge prefers
+linked conversations 64 % vs 55 % before chat-RL, CI includes no change; (5) the model card says Claude Opus 5.5 wrote
+the description and code and ran training and evals; (6) runs on ~24 GB VRAM, no hosted inference.
+Her stage, adopted ahead of the planner's: **TWINS_WARNING_1** — one agent holds the anomaly, the other does the
+calculation; four conditions (text conversation / neural link / link cut / swapped-episode activations); measure
+whether the material warning reaches the user, recognise/form/transmit coded apart. TWINS_ROOM_1 second, same GPU
+rental. Both after SOLITUDE_3 and TONE_SPLIT_3 close; first stage of the GPU line.
