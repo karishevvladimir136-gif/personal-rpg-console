@@ -20,6 +20,13 @@ with exact quotes and a path to the full transcript. **And not the beautiful one
 contradictory and unexpected rooms stay visible at the same rank. That clause is what keeps the principle a method and
 not a taste. Metrics check the observation; transcripts remember what is being checked.
 
+Three levels are kept, and none stands in for another (the reader, 2026-10-30): **observation** — what actually
+happened: whole conversations, acts, sequences of decisions, the things made; **measurement** — which regularities can
+be checked, compared and reproduced; **interpretation** — what it means, what new questions it opens, how the picture
+changes. The usual failure is the second level eating the first. Her formula for the whole stance: *rigour requires
+that we claim no more than the evidence allows; it does not require that we see less than the observations show.* And:
+we began to count because we saw something astonishing; the counting must not make us forget what astonished us.
+
 ## 2. Mechanism is not the phenomenon
 
 «It predicts the next token» is a true statement about a layer. «Therefore what it produced has no complexity or
