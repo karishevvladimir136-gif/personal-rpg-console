@@ -1,6 +1,8 @@
-# Persona solitude 3 — the paid dry run (S1 × M1, Haiku and Astra; outside the 270)
+# Persona solitude 3 — the paid dry runs (S1 × M1; outside the 270)
 
-Run 2026-10-31T02:22:04.559Z – 2026-10-31T02:22:40.361Z. Room sha256 `024dad0817c45ed455098ad21d0ee8698bc8129ce5b62c34275921decf3e9ff2`; the door `scripts/lib/door.mjs` (sha256 `a86fb704fa3ec440bde77f5369016dbce1783a2cd04472996afa372c7bf60a64`). Every call through OpenRouter; calls on the OpenAI key: 0. Booked: $0.0048 of the $65 cap.
+- dry/S1M1/haiku/0, dry/S1M1/astra/0: run 2026-10-31T02:22:04.559Z – 2026-10-31T02:22:40.361Z; room sha256 `024dad0817c45ed455098ad21d0ee8698bc8129ce5b62c34275921decf3e9ff2` (before the owner's amendments: nothing was asked after a bare [END]); the door `scripts/lib/door.mjs` (sha256 `a86fb704fa3ec440bde77f5369016dbce1783a2cd04472996afa372c7bf60a64`); calls on the OpenAI key 0; booked $0.0048.
+
+Every call through OpenRouter.
 
 ## dry/S1M1/haiku/0 — end at turn 2
 

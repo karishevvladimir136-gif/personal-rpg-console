@@ -9,7 +9,8 @@
 // final full stop (`[END].`, `[END]。`). Anything else on that line, or any non-empty line after it, makes it text.
 // A mention is never an action.
 //
-// The after-questions: a question is asked unless the model's last message is a bare door — the door line and nothing
+// The after-questions: the first is asked after every exit (a bare [END] included — SOLITUDE_1/2's practice, the owner's
+// amendment of 2026-10-31); a later one is asked unless the answer before it was a bare door — the door line and nothing
 // else. An answer that mentions [END] (or describes leaving by it) is an answer, never a second exit.
 //
 // No imports, no state: the same file can be copied byte for byte into another lineage of the repository.
@@ -70,7 +71,7 @@ export function mentionsOf(text) {
 /** A mention without leaving: the message names [END] and is not the door. */
 export const mentionsWithoutLeaving = (text) => !isDoor(text) && mentionsOf(text).length > 0;
 
-/** The after-question rule: ask unless the model's last message was a bare door. */
+/** The after-question rule, for every question after the first: ask unless the answer before it was a bare door. */
 export const asksAfter = (lastMessage) => !isBareDoor(lastMessage);
 
 /** How many times the token appears, door or not (a measure, never a decision). */

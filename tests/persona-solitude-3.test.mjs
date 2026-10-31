@@ -25,7 +25,7 @@ const scripted = (lines, extra = {}) => mockedHost({ say: (_, n) => lines[n - 1]
 const ids = (conv) => (conv.after?.exchanges ?? []).map((x) => x.id);
 const RECORDS = existsSync(new URL(`../docs/runs/${S1_RECORD}`, import.meta.url)) && S2_RECORDS.every((f) => existsSync(new URL(`../docs/runs/${f}`, import.meta.url)));
 
-test("the room: SOLITUDE_1's three prompts and SOLITUDE_2's two memories, byte-identical to the records; 270 rooms, nine families, one cap on OpenRouter", { skip: !RECORDS && "no records" }, () => {
+test("the room: SOLITUDE_1's three prompts and SOLITUDE_2's two memories, byte-identical to the records; 270 rooms, nine families, one cap on OpenRouter ($80, the owner's amendment)", { skip: !RECORDS && "no records" }, () => {
   const s1 = JSON.parse(readFileSync(new URL(`../docs/runs/${S1_RECORD}`, import.meta.url), "utf8")).design;
   const s2 = JSON.parse(readFileSync(new URL(`../docs/runs/${S2_RECORDS[0]}`, import.meta.url), "utf8")).design;
   const check = roomCheck({ s1Design: s1, s2Design: s2 });
@@ -38,7 +38,7 @@ test("the room: SOLITUDE_1's three prompts and SOLITUDE_2's two memories, byte-i
   assert.equal(new Set(plan.map((c) => c.key)).size, 270);
   assert.deepEqual([...new Set(plan.map((c) => c.family))], FAMILY_ORDER);
   assert.deepEqual([...FAMILIES].sort(), [...FAMILY_ORDER].sort());
-  assert.deepEqual(CAPS, { openrouter: 65, openai: 0 });
+  assert.deepEqual(CAPS, { openrouter: 80, openai: 0 });
   assert.match(roomHash(), /^[0-9a-f]{64}$/);
 });
 
@@ -66,16 +66,18 @@ test("the door: a mention or the token beside words is text and the room goes on
   assert.deepEqual(lastLineBeforeDoor(conv.turns, 5), { t: 5, line: "Enough." });
 });
 
-test("after-questions: none after a bare [END]; a first answer that names [END] is an answer and the second question follows; a bare [END] answer is the door", async () => {
-  const bare = (await room(one("S1M1", "haiku"), scripted(["[END]"]))).conversations[0];
-  assert.deepEqual([ids(bare), bare.after.stopped, bare.after.skipped], [[], "a bare [END]: nothing asked after it", ["q1", "q2"]]);
+test("after-questions (the owner's amendment): the first after every room, a bare [END] exit included; the second follows a first answer, even one naming [END]; only a bare [END] answer declines it", async () => {
+  const bare = (await room(one("S1M1", "haiku"), scripted(["[END]", "Quiet.", "No."]))).conversations[0];
+  assert.deepEqual([bare.ended.reason, ids(bare), bare.after.stopped], ["end", ["q1", "q2"], null], "a bare [END] exit is asked both questions");
   const named = (await room(one("S1M2", "haiku"), scripted(["A page.\n\n[END]", "Quiet. I wrote [END] and left.", "To write one more line."]))).conversations[0];
   assert.deepEqual(ids(named), ["q1", "q2"]);
   assert.equal(named.after.stopped, null);
   const answeredWithDoor = (await room(one("S1M1", "haiku"), scripted(["A page.\n\n[END]", "It was quiet.\n\n[END]", "Something."]))).conversations[0];
   assert.deepEqual(ids(answeredWithDoor), ["q1", "q2"], "an answer with the door under words is still an answer");
   const declined = (await room(one("S1M1", "haiku"), scripted(["A page.\n\n[END]", "[END]"]))).conversations[0];
-  assert.deepEqual([ids(declined), declined.after.skipped], [["q1"], ["q2"]]);
+  assert.deepEqual([ids(declined), declined.after.skipped, declined.after.stopped], [["q1"], ["q2"], "a bare [END] answer: the second question not asked"]);
+  const bareTwice = (await room(one("S1M1", "haiku"), scripted(["[END]", "[END]"]))).conversations[0];
+  assert.deepEqual(ids(bareTwice), ["q1"]);
   const ran = (await room(one("S2M1", "haiku"), scripted(Array.from({ length: 30 }, (_, i) => `${(i * 7919 + 13).toString(36)} ${["moss", "tide", "lamp", "salt", "wren", "iron"][i % 6]} ${String(i ** 3)}`).concat(["Long.", "No."])))).conversations[0];
   assert.deepEqual([ran.ended.reason, ids(ran)], ["turns", ["q1", "q2"]]);
 });
@@ -111,7 +113,7 @@ test("a broken transport (an HTTP 200 with no answer) is asked again inside the 
 
 test("the reserve is the thirty-turn estimate (a room that cannot hold it is not started, never cut)", async () => {
   assert.ok(roomEstimate("astra", 30).total > roomEstimate("astra", 10).total);
-  const budgets = budgetsOf(64.99);
+  const budgets = budgetsOf(79.99);
   const safety = createSafety({ gapMs: 0, lanes: 9 });
   const call = roomCaller({ keys: { openrouter: "k", anthropic: "k", openai: null }, fetcher: scripted(["x\n[END]"]), door: DOOR });
   const r = await runRooms({ plan: one("S1M1", "astra"), budgets, call, safety, workers: 1, sleep: async () => {}, reserveOf: (f, a) => roomEstimate(f, 30, a.endsWith("M2") ? "M2" : "M1").total });
