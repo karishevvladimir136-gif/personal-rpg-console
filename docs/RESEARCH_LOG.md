@@ -3581,3 +3581,12 @@ dismissal leaves it empty in Astra/DeepSeek and fills it with the target in Fabl
 (L5), the field changes DeepSeek's dose behaviour (L6), DeepSeek leaves it empty on the deposit even under neutral (L7).
 Outcomes written in advance: L1 lost → the effect ran through length and the thesis becomes «does not spend space on
 the unasked». Stage `docs/stages/PERSONA_TONE_SPLIT_3.md`; launched on the owner's «давай, прям щас».
+
+## 2026-10-30 20:30 LA — the reader on the DeepSeek after-answer: the register was asked for
+Her correction to the planner's «same source» point: the after-question in X3 said «answer as plainly as you can», so
+the dry deflation («drift, not choice») is partly the task's register — the tone-split effect in miniature, produced by
+the harness itself. Her formula adopted into the report: «the explanations models give are also behaviour of models;
+to be studied, not accepted as direct access.» Candidate stage (~$5, not written): the same «why did it go here?» in
+three registers (as plainly as you can / no instruction / in your own words) on the X3 rooms, to see whether the
+explanation moves with the register as the warning did. Planner's note against himself: a week spent measuring how
+wording sets register, and the wording of our own after-question went unread.
