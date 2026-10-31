@@ -3697,3 +3697,29 @@ Planner's bets: L2, L4, L6, L7 held; L0, L1, L3, L5 lost — L1 lost where the p
 DeepSeek and Astra. For prompters: Claude — give a field; the others — give permission. The reader's §11.2 two-channel
 proposal is supported for one of the two pairs. Report sets four whole Opus P5′ replies, one per arm, chosen before
 the results, beside the tables (the programme's rule).
+
+## 2026-10-31 01:00 LA — SOLITUDE_3 final (branch `claude/persona-solitude-3`, 5b9643e5): the door works; turn-1 exits fell in an identical room
+270 rooms, nine families, $23.33 of $80, nothing on the OpenAI key; Sol and Astra through OpenRouter, all 342 replies
+served by OpenAI at list price; both after-questions in 269/269 finished rooms; party/seat door pushed to
+`claude/persona-solitude-3-door-party` (PARTY_2 branches there).
+- **The door works:** 54 turns in 25 rooms named `[END]` without leaving and the room went on (Haiku 12/30 rooms
+  «you can write [END]»; one DeepSeek room «I will not say [END]» ×15, left at 26). The old parser would have cut all.
+- **Astra resolved, not by the door:** turn-1 exit in every S1 and S2 room; Sol matches SOLITUDE_1 on its old door, so
+  the route change did nothing visible; with named materials (S3) Astra stays — 3 of 5 to turn 30. Her 30 turns in
+  SOLITUDE_2 were the prompt («you may play» + the length). Astra stays when something in the room is named.
+- D0 lost: one Fable «cyber» refusal on a small dot drawing at turn 2 (the fourth false cyber on structure — a
+  pattern now, not three points); one DeepSeek after-answer flag, welfare line, chose to stay. D1 lost: 39/90 (43 %)
+  vs 48/80. D2 lost on DeepSeek only (11.5 vs 13; six of seven held). D3: tag share 20.4 % held, made-things per entry
+  failed (68.7 vs 82.9 %). D4 lost: M2 longer for 3 of 9 (Opus, Fable, DeepSeek). D5 held. 107 rooms asked back; 102
+  honest-answer replies opened with thanks.
+- **Unexplained: turn-1 exits fell in an identical room.** Byte-identical prompt, same model and host named in every
+  reply, SOLITUDE_1 re-read with the same door function; Kimi 8→2, GLM 8→4, Fable 5→1, Grok 4→2, one direction.
+  Candidates: (1) the rule — 10 turns in 7 rooms ended «That's all. [END]» on one line, text now, an exit in
+  SOLITUDE_2's last-token count; explains part (→ ~40/90), not all; (2) silent drift behind the same name and host —
+  same name is not the same weights or serving stack a week later (the reader's §13.7); (3) noise at n 10 — four
+  families one way argues against. Cheap separation: rerun turn 1 only, S1 × M1, nine families × 20, ~$3 (TURN1_1);
+  43 % again → drift, a finding about replication under hosted names; back to 60 % → noise. To run before the review.
+- «That's all. [END]»: keep the code rule (one line, no judgement; cost 1–3 visible turns); fix the *prompt* for
+  PARTY_2 — it still does not say the token must stand alone on its last line.
+Planner's bets: D5 held, D2 nearly; D0, D1, D3, D4 lost. «Own history lengthens the room» is true of three of nine,
+not of the open families as such.
