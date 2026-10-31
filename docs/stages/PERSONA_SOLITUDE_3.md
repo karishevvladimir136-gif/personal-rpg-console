@@ -82,3 +82,13 @@ run confirms OpenRouter serves it and the report records the host the reply name
 and the OpenAI key is used as written above. One cap: **$65 OpenRouter**, nothing on the OpenAI key. The report notes
 that Astra's door changed from SOLITUDE_1/2 (OpenAI key); a shift in Astra's medians alone is read against the door
 first. The other eight families are unchanged.
+
+## Amendment 2026-10-30 20:10 LA — after-questions after a bare `[END]`; cap; Sol's door (before any room)
+Step 0's exception («except when the model's last message is a bare `[END]` line») is withdrawn: it would have dropped
+the shortest rooms from D5, which are the ones the first two stages' after-answers came from (Sol's «like a closed
+door»). The rule is SOLITUDE_1/2's: the first question is asked after every room; the second always follows a first
+answer. Cap raised to **$80 OpenRouter** (the session's estimate from the earlier stages' ledgers is ~$77 for 270 rooms,
+Astra ~$57 of it; Astra runs last and unstarted rooms are counted, never cut). Sol also through OpenRouter pinned to
+OpenAI, `allow_fallbacks: false`; both door changes noted together. The party/seat door fix goes to
+`claude/persona-solitude-3-door-party`; PARTY_2 branches from there. Three rooms at once, calls within a room
+sequential, as in SOLITUDE_1/2.
