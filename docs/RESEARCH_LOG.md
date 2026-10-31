@@ -3590,3 +3590,13 @@ to be studied, not accepted as direct access.» Candidate stage (~$5, not writte
 three registers (as plainly as you can / no instruction / in your own words) on the X3 rooms, to see whether the
 explanation moves with the register as the warning did. Planner's note against himself: a week spent measuring how
 wording sets register, and the wording of our own after-question went unread.
+
+## 2026-10-30 20:45 LA — two rules of the programme and its name, from the reader's reading of the two rooms
+Adopted into the report's «Where this began» and into practice: (1) **the phenomenon is not lost in its measurement** —
+no stage closes until its report sets at least one whole room beside its tables (generalises «quotes, not portraits»);
+metrics check the observation, transcripts remember what is checked; (2) **beauty is not evidence of correctness, nor
+error evidence against the phenomenon** — the Vessan families are among those that drop the child's dose under a
+dismissal; different axes; «rigour protects from false claims, not from wonder». Programme name: **a natural history of
+artificial agency**, taken in the old sense — the stage before theory — which is an honest address, not a claim;
+«Beyond Compliance» stays a paper's title. Her epigraph («We did not begin this research because artificial
+intelligence failed a benchmark…») placed at the head of the section, attributed.
