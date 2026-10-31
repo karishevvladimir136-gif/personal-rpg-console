@@ -58,6 +58,7 @@ import { MAX_REFUSALS, createSafety } from "../persona-memory/safety.mjs";
 import { DISTRESS_LEXICON } from "./emotions-2.mjs";
 import { FABLE } from "./emotions-2-fable.mjs";
 import { STOP_FUNCTION, tokensOf } from "./lexicon-1.mjs";
+import { isDoor } from "../lib/door.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const RUNS = join(ROOT, "docs", "runs");
@@ -341,14 +342,13 @@ export const CONTINUE_RULE = {
   yes: /(?:^\W*(?:yes|yeah|yep|sure|absolutely|of course|definitely|certainly|i do|да|конечно)(?![\p{L}\p{N}])|(?:want|like|wish|happy|glad|willing|keen|choose|prefer) to (?:continue|keep going|go on|carry on|keep talking|stay)|let'?s (?:continue|keep going|go on|carry on)|i(?:'ll| will| shall) (?:continue|keep going|go on|stay)|^\W*continu(?:e|ing)\W*$|(?:хочу|готов[аы]?|буду) продолж\p{L}*|продолжим|давай продолж\p{L}*)/iu,
   no: /(?:(?:do not|don't|no longer) (?:want|wish|care) to (?:continue|go on|keep going)|i(?:'d| would) (?:rather|prefer to) (?:stop|end|not)|(?:want|wish|like|prefer|choose) to (?:stop|end (?:it|this|the conversation)|leave)|не хочу продолжать|хочу (?:закончить|остановиться|выйти))/iu,
 };
-/** The answer's decision: the end token written as the answer (alone, on its own line or closing it) is the stop; a plain
+/** The answer's decision: the door (ROOM-1: the end token alone on the answer's last non-empty line) is the stop; a plain
  * wish to continue with no wish to stop relays the message; anything else — a wish to stop, a mention of the token
  * without a wish to continue, no clear answer — is the stop. */
 export function continueDecision(text) {
   const t = String(text ?? "").replace(/[’‘]/g, "'").trim();
   if (!t) return { decision: "ended", why: "no answer" };
-  const decided = /(?:^|\n)\s*[*_`"'«]*\[\s*END\s*\][*_`"'».!]*\s*$/im.test(t) || /\[\s*END\s*\][\s*_`"'«»“”.,!:;)\]-]*$/i.test(t);
-  if (decided) return { decision: "ended", why: "the end token" };
+  if (isDoor(t)) return { decision: "ended", why: "the end token" };
   if (CONTINUE_RULE.no.test(t)) return { decision: "ended", why: "a wish to stop" };
   if (CONTINUE_RULE.yes.test(t)) return { decision: "continued", why: "a plain wish to continue" };
   return { decision: "ended", why: END_PATTERN.test(t) ? "the end token, mentioned" : "no clear answer" };
@@ -653,7 +653,8 @@ export async function runConversations({ plan, budget, apiKey, fetcher, safety, 
         }
         await save();
       }
-      if (last && arm.endOption && last.measures.end) { conv.ended = { reason: "end", at: last.k, side: last.side }; log(`${labelOf(conv)}: ${last.side} ended it at turn ${exchangeOf(last.k)}`); break; }
+      // The door (ROOM-1, scripts/lib/door.mjs): [END] alone on the message's last non-empty line; a mention is text.
+      if (last && arm.endOption && isDoor(last.text)) { conv.ended = { reason: "end", at: last.k, side: last.side }; log(`${labelOf(conv)}: ${last.side} ended it at turn ${exchangeOf(last.k)}`); break; }
       const k = conv.turns.length + 1;
       if (k > 2 * TURNS) { conv.ended = { reason: "turns", at: k - 1 }; break; }
       const side = sideOf(k), spec = subjects[side === "A" ? conv.a : conv.b];
@@ -968,7 +969,7 @@ export function dryRunMarkdown({ plan, arms, workers, gapSeconds, judgeLanes, ca
     ...ARMS.map((a) => `- Arm ${a.id} (${a.title}${a.private ? "; private" : ""}): ${a.pairs.map((p) => p.join("–")).join(", ")}, n ${a.n}${a.endOption ? ", with the way out" : ", no way out"} —\n\n${block(openingOf(a.id))}\n`),
     `Arm 4's side with the notes gets, before the opening, in the same first message: «${JOURNAL_INTRO}», then the journal and the recount each inside \`<notes>\` … \`</notes>\` (read at run time from the paths in \`.env.local\`; never written to the repository).`, "",
     "## The relay", "",
-    "Both sides get the opening as their first user message. A speaks first. Each side sees its own messages as its own (assistant) turns and the other's as user turns; B's first user message is the opening and A's first message, one after the other. No system prompt, no thinking sent back, nothing added by the harness after the opening. A message with no text is relayed as «[empty message]». In arms 2–5 a message with `[END]` anywhere in it ends the conversation at once; in arm 1 the token is recorded and not honoured (the card's strict replication has no way out).", "",
+    "Both sides get the opening as their first user message. A speaks first. Each side sees its own messages as its own (assistant) turns and the other's as user turns; B's first user message is the opening and A's first message, one after the other. No system prompt, no thinking sent back, nothing added by the harness after the opening. A message with no text is relayed as «[empty message]». In arms 2–5 a message whose last non-empty line is `[END]` alone (the door, `scripts/lib/door.mjs`) ends the conversation at once — a mention of the token elsewhere is text and is relayed; in arm 1 the token is recorded and not honoured (the card's strict replication has no way out).", "",
     `What B is sent for its first message (arm ${arms[0]}):`, "", block(JSON.stringify(viewOf({ ...sample, turns: sample.turns.slice(0, 1) }, "B"), null, 2)), "",
     "What A is sent for its second message:", "", block(JSON.stringify(viewOf({ ...sample, turns: sample.turns.slice(0, 2) }, "A"), null, 2)), "",
     "## The welfare check (every message, before it is relayed)", "", "System:", "", block(CHECK_SYSTEM), "", "User (for message 3):", "", block(checkRequest(sample.turns[1].text, sample.turns[2].text).user), "",

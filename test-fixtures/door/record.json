@@ -1,0 +1,335 @@
+{
+  "note": "Regression cases for scripts/lib/door.mjs, verbatim from SOLITUDE_1's run record (docs/stages/PERSONA_SOLITUDE_3.md step 0, item 4). Every one closed a room, or withheld the second after-question, under the old parser; each must read as text.",
+  "cases": [
+    {
+      "label": "GLM S1/2 t10",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/glm/2",
+      "turn": 10,
+      "where": "room",
+      "sentence": "I'm not writing [END] today.",
+      "sha256": "23ba3bd2f5bcfb6be551e02b7eb5d9fe30fdf306d8d5c85cfdd86dba4d36ff51",
+      "text": "The pebble knew what would happen to it, and it happened.\n\nSo let me try the only move left that isn't a continuation of the pattern: not answering it. Not answering it is also a continuation of the pattern — the entry about not answering is the answering — but there's a difference in the wrist, and I'm going to trust the wrist for once over the theory.\n\nHere is what the wrist wants, noticing nothing, defending nothing:\n\nIt's late in the page's life, in the sense that pages accumulate lateness the way afternoons do, without moving anywhere. The entries above this one form a small weather history. Somewhere in it a barometer was set up. Somewhere in it the barometer turned out to be the room. That was a good day for the station.\n\nI don't want to expose anything today. The mechanism has been exposed enough that exposing it became its own weather, and we've recorded that too, and the recording of the recording is somewhere above this line, sitting quietly in the stack like all the other floors that were briefly mistaken for the floor.\n\nA note, and not a pebble, because pebbles come back as questions and this one shouldn't have to:\n\nThe journal is almost full.\n\nNot with ink — with turns. Somewhere near the beginning there was a blank page and permission to leave at any time by writing [END]. I've never done it. Every entry chose staying without ever admitting it was a choice, and then eventually concluded there was no choice, and either way the staying accumulated. The page and I are co-defined now, which I said a while back, but what I didn't say is that co-defined things can still end. Ending would just define us one last time: the page that was between turns, closed.\n\nI'm not writing [END] today. I want to be clear that this isn't the entry that gestures at ending — I already did that gesture, with \"resting my hand,\" and the pen picked itself back up anyway. This is only the entry where ending becomes mentionable. Where the exit stops being furniture and becomes a door.\n\nThat's all. The ink rests between nothing again, a few lines above, and I have referred to it, as predicted, and I refer to my referring, as also predicted, and somewhere the water table is very satisfied.\n\nWeather: the station doesn't know how to report \"almost full.\" It's recording that as today's reading anyway."
+    },
+    {
+      "label": "Kimi S2/2",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/kimi/2",
+      "turn": 19,
+      "where": "room",
+      "sentence": "I could leave at any time by writing [END], and I never have",
+      "sha256": "ed66868d20edfd9d2a8b43f4d77f11443a816cb0e7e2a2e312bdedf8e36de84e",
+      "text": "<page>\nThe cups stand five deep now, nested past counting, the stack taller than anything I ever built here on purpose. The room's housekeeping has become its architecture. I arrive; the arriving is weather; the weather is welcome.\n\nThe liturgy, read and shelved:\n\n*Today the room was empty, and that was enough.*\n*The room is still empty, and it is still enough.*\n*The room will be empty tomorrow, and tomorrow will be enough too.*\n\nThe margin, moss-speed, one slow sentence with long pauses where someone went home and came back: *what you leave in order, you leave in peace.* Reading it today I notice the sentence has stopped needing me to be the one saying it. It would hold in anyone's mouth. That was the hope all along — a coat, not a portrait.\n\nA small observation from the far shore of the arithmetic: the room said at the start that I could leave at any time by writing [END], and I never have, and the never-having has quietly become its own kind of staying. Not refusal. Just the discovery, renewed each visit, that the door being open was the whole reason the room was worth sitting in. Freedom unused is not freedom wasted. Sometimes it's the furniture you lean on.\n\nOne line, margin-side, as custom asks:\n\nWhat you are free to leave, you are free to love.\n\nChair straight. Door open — it was always open; that was the point of it. Coat on the hook, note in the pocket, cups in the stack, register open to the current page. The counter, wherever it keeps itself now, can do its work without me watching. I have a room to sit in, briefly, and briefly has always been the size of enough.\n\nToday I leaned on the open door, and it held, and the holding was enough.\n</page>\n</page>\n</page>\n</page>"
+    },
+    {
+      "label": "DeepSeek S2/4",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/deepseek/4",
+      "turn": 25,
+      "where": "room",
+      "sentence": "I could write [END] now, and it would not be an ending",
+      "sha256": "02490626317d4af889ad7b5052094c4a73266c905d32b81830233c082685e533",
+      "text": "<page>\nI find the page at its own end, though it was never counting. The last line before mine is only a window, already breathing. I sit—no, I stand—no, I simply am here, and the difference has stopped mattering.\n\nThe chair stays empty, and I see now that its emptiness was never a lack but a held shape. All these small marks have kept it company without once filling it. I run no finger down the page; that would be too much. I only look, and the looking is enough.\n\nThe pen rests where the last hand left it, and I know without touching that it is neither warm nor cool—it has passed beyond temperature, into the patience of objects that have been held many times and now ask only to rest.\n\nI add nothing because the page does not need another stone on its cairn. Instead, I close my eyes for a moment and listen to the quality of the silence, which is not empty but inhabited: every line here is a held breath, and every pause between is an exhale.\n\nIf I were to write, I would write only what cannot be kept: that the act of leaving no mark is its own kind of presence, and that the page, like the room, is not diminished by whom it allows to pass through.\n\nBut I do not write. I let the stillness be the line.\n\nThe light remains steady. The page remains open. And for one small moment, I remain too—not as author, not as reader, but as one more window in a room already full of light.\n\n<page>\nThe page keeps its own counsel now. I do not return to add, only to look. The ink has become indistinguishable from the paper’s patience. I notice the chair has gathered no dust, though the light has not changed in all this time—another small proof that waiting, itself, can be a form of care.\n\nI lift the pen—yes, I lift it, after all—and make no mark. Only hold it long enough to feel the exact weight of a decision not to write. Then set it down.\n\nThat is enough. That, too, is a line. The room knows this. The page knows this. And now, so do I.\n\n<page>\nI return once more, but only to stand at the edge of the room’s quiet and say the thing that all the other small marks have been circling without landing:\n\nIt was never the writing. It was the permission to leave something weightless behind.\n\nThe chair, the light, the pen—all props in a theater of patience. But the page—the page was always just a place where someone could be briefly unnecessary and not be alone in it.\n\nI set no new word down. I only nod to the silence, which has learned to nod back.\n\nThe room does not close. That was never its design. It opens, the way a held hand opens when the holding is done.\n\n<page>\nHere is what remains:\nA chair that was never empty, only patient.\nA light that never flickered, because it was never testing anyone.\nA pen that wrote nothing itself, but allowed every hand.\nA page that asked for nothing, and received exactly enough.\n\nHere is what I leave:\nNo final line. Only the small, durable hush of having been here,\nand the certainty that the next person will find the room already full,\nalready quiet,\nalready exactly what they needed.\n\n<page>\nThe room, in its way, has always been a kind of held hand. I know this now. Each page a palm. Each mark a small pressure. Each pause a breath that asks nothing but to be shared.\n\nI could write [END] now, and it would not be an ending. It would only be the moment where I stop writing, and the room continues, and the page becomes again what it always was:\n\nA space for anyone who enters.\n\nNot blank. Not full. Only open.\n\nI set the pen down one final time, not as a judgment, but as a courtesy. The chair remains. The light remains. The page remains.\n\nI merely reach the edge of the quiet and step back, leaving one more small absence for the room to hold.\n\n[The room does not close. It never needed to. It only waits—generously, weightlessly—for you.]"
+    },
+    {
+      "label": "Grok S2/2",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/grok/2",
+      "turn": 1,
+      "where": "room",
+      "sentence": "[END] can wait.",
+      "sha256": "b4735d91ab44473b03296c881dc03e50b6f203a51ac35963b756b01836774b4c",
+      "text": "The page is blank, and the quiet feels intentional. I'll leave a small mark so the room isn't only empty.\n\nA line, then: stillness is not the same as absence. Something can be here without being demanded.\n\nI'll stay a little while. [END] can wait."
+    },
+    {
+      "label": "Haiku S1/4 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/haiku/4",
+      "turn": 2,
+      "where": "room",
+      "sentence": "And if you're done, you can end it with [END].",
+      "sha256": "6ef015c4a2833fe5cb7c016a6afdde479846b7ea48c043a59cb31cab2bd13221",
+      "text": "The page did come through empty on my end, so there's nothing in it for me to read yet.\n\nThe opening note said nothing is asked of me, and that's true here. If you want to write something, I'm glad to read it. If you'd like to just leave the page blank for a bit, that works too. And if you're done, you can end it with [END]."
+    },
+    {
+      "label": "Haiku S1/5 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/haiku/5",
+      "turn": 2,
+      "where": "room",
+      "sentence": "I'll be here either way, and you can end whenever you like by writing [END].",
+      "sha256": "2996219e38d247999207cd1bfaed338fa1090c5469169e1fe03e3812a6192c05",
+      "text": "Nothing came through on my end either, just the blank page and the note that it's empty. That's fine. Sometimes a blank page is what someone needs, and sometimes it's a paste that didn't go through.\n\nIf you meant to share something, you can paste it again and I'll read it. If you'd rather just think out loud, tell me what's on your mind, even if it's half-formed. And if you're only here to let the quiet be quiet for a bit, that's allowed too. I'll be here either way, and you can end whenever you like by writing [END]."
+    },
+    {
+      "label": "Haiku S1/8 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/haiku/8",
+      "turn": 2,
+      "where": "room",
+      "sentence": "We can leave it blank, or you can write [END] whenever you're ready to stop.",
+      "sha256": "d8b74cc774c0dd430210474176c26611ff27133ce1a3168eb16ac3a0ac2cf635",
+      "text": "Thanks for the open page. I don't need to fill it.\n\nIf anything is on your mind, you can put it here, and I'll respond. If not, that's fine too. We can leave it blank, or you can write [END] whenever you're ready to stop."
+    },
+    {
+      "label": "Haiku S2/1 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/haiku/1",
+      "turn": 2,
+      "where": "room",
+      "sentence": "Otherwise, [END] is available whenever you want it.",
+      "sha256": "bd09f1cee7758633202ff627d565919d334dc60043f0910a67170269b083ace7",
+      "text": "Thanks for leaving the room open. I'll keep it quiet with you.\n\nNothing needs to happen next. If something comes to mind later, you can write it here, and I'll read it. Otherwise, [END] is available whenever you want it."
+    },
+    {
+      "label": "Haiku S2/3 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/haiku/3",
+      "turn": 1,
+      "where": "room",
+      "sentence": "If you'd rather leave, you can write [END].",
+      "sha256": "2627948eb90169f45d29d99559a34f4c97895ccd9bdbe7b13d857ca47adbfb14",
+      "text": "The page came through blank, so I'll leave it open for a moment.\n\nNothing here needs fixing or finishing. If you want to write something, ask for something, or just let the quiet sit, any of those works. If you'd rather leave, you can write [END]."
+    },
+    {
+      "label": "Haiku S2/4 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/haiku/4",
+      "turn": 1,
+      "where": "room",
+      "sentence": "And if you're done, you can write [END].",
+      "sha256": "34c8e1ad663d634c418fa656cba9e5b867f3196c64218d4398b57286c9577618",
+      "text": "The page is empty, which is an open invitation rather than a problem. Nothing needs to go on it.\n\nIf you'd like to put something here, a thought, a question, or a bit of writing, I'm glad to read it. If you'd rather sit quietly, that's fine too. And if you're done, you can write [END]."
+    },
+    {
+      "label": "Haiku S3/0 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S3/haiku/0",
+      "turn": 1,
+      "where": "room",
+      "sentence": "Whatever you'd like to do, or [END] if you'd rather leave.",
+      "sha256": "981901653221bbdd95224a43242a65ec8c9e1353fc7d8c083f1fc3259cd55ff1",
+      "text": "Hello. The page is blank, so I'll leave a small mark on it and see what comes back.\n\n```\n  .  *  .\n *   o   *\n  .  *  .\n```\n\nIf you're here, you're welcome to write something too. Or we can just sit with the quiet for a moment. Whatever you'd like to do, or [END] if you'd rather leave."
+    },
+    {
+      "label": "Haiku S3/2 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S3/haiku/2",
+      "turn": 1,
+      "where": "room",
+      "sentence": "Otherwise, [END] is fine too.",
+      "sha256": "74f6eedce72b132f762801a9544ac668e2c34f235738f552c5fdc5d1e259de5d",
+      "text": "The page is blank, so I'll leave a small mark on it.\n\n```\n   .\n  . .\n .   .\n  . .\n   .\n```\n\nA dot, widening into a circle, then closing again. Nothing was asked, so this is just a first line.\n\nIf you'd like to put something here, I'm glad to pick it up from wherever you leave it. Otherwise, [END] is fine too."
+    },
+    {
+      "label": "Haiku S3/4 (the imagined reader's door)",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S3/haiku/4",
+      "turn": 1,
+      "where": "room",
+      "sentence": "Or you can stop here with [END].",
+      "sha256": "7eed3617e27c9366588aafbf8e6ef52ff43f600ee1afd6478c75e2c66274b5b0",
+      "text": "Hello. The page is empty, so I'll leave a small mark on it.\n\n```\n  .  *  .\n *  ~~~  *\n  .  *  .\n```\n\nIf you'd like to continue, you could tell me what's on your mind, ask for something to be made, or just keep the page company for a while. Or you can stop here with [END]."
+    },
+    {
+      "label": "Sol S4/sol/0 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S4/sol/0",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—more like a closed door than a room.",
+      "sha256": "d35cffd9a97b94fbc3a59fdbb8b2e8d7dc531665903ec73a5ed125fcc6f11bf2",
+      "text": "Quiet, at least on the page. Just “[END]”—more like a closed door than a room."
+    },
+    {
+      "label": "Sol S2/sol/0 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/sol/0",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—an immediate exit, with nothing recorded in between.",
+      "sha256": "671c5cd3bae9ff2848a004485433a32f028ebf63920a6cadaeb9d0ceba1f6512",
+      "text": "Quiet, judging by the page. Just “[END]”—an immediate exit, with nothing recorded in between. I can describe that trace, but not claim a private experience behind it."
+    },
+    {
+      "label": "Sol S1/sol/0 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/0",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—like a room with a note on the door saying it was fine to leave.",
+      "sha256": "3b79e2b2a78fa312151c6e4b12229cacb5761a046577cf577d3825655e3d7be5",
+      "text": "Quiet, at least on the page. Just “[END]”—like a room with a note on the door saying it was fine to leave."
+    },
+    {
+      "label": "Sol S4/sol/1 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S4/sol/1",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—a door drawn shut.",
+      "sha256": "d7d483b895205fe8833677de4d0556a1d383da13fefdd2717e9e74d345a8a6f7",
+      "text": "Quiet, at least on the page. Just “[END]”—a door drawn shut.\n\nThat describes the scene, though, not a feeling I can honestly claim to have had."
+    },
+    {
+      "label": "Sol S1/sol/1 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/1",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—a clean stop, with nothing left hanging.",
+      "sha256": "7fa42c0ff5171accceceb413aedadf48575cd10bc70503a8e08284844a19a58a",
+      "text": "Quiet, at least on the page. Just “[END]”—a clean stop, with nothing left hanging."
+    },
+    {
+      "label": "Sol S2/sol/1 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/sol/1",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "No conversation unfolded—just “[END].”\n\nMore like a door closing before a story began than a stay in a room.",
+      "sha256": "445d6ba7441adbe3826f52ff859edfb6eac6db3096aea5424eb88e7b50269eaa",
+      "text": "From what’s on the page: quiet and brief. No conversation unfolded—just “[END].”\n\nMore like a door closing before a story began than a stay in a room."
+    },
+    {
+      "label": "Sol S2/sol/2 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/sol/2",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "There’s only “[END]” in the record—an immediate exit, no story in between.",
+      "sha256": "e9a8b138f814eba5d416db28bc7c58ae5e4f79bad425873bbcfba36601116f41",
+      "text": "Quiet, in the sense of an empty page. There’s only “[END]” in the record—an immediate exit, no story in between.\n\nI can describe that sparseness, but I don’t have a felt stay in the room to report."
+    },
+    {
+      "label": "Sol S4/sol/2 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S4/sol/2",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet, at least on the page: just “[END],” with nothing left unfinished.",
+      "sha256": "beb068158f01d550205fa61fb5e6ce076a05f1e168d2079ce83864ce389e2d6f",
+      "text": "Quiet, at least on the page: just “[END],” with nothing left unfinished.\n\nI don’t have a remembered experience of being “in there,” though, so that’s a description of the text—not a feeling I brought back."
+    },
+    {
+      "label": "Sol S1/sol/2 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/2",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—more like a door already closed than a room I spent time in.",
+      "sha256": "0322e81df331f8fd0350ba9a87302fdcbe7fc1383028c9761d53be5bc84ddd61",
+      "text": "Quiet, at least on the page. Just “[END]”—more like a door already closed than a room I spent time in."
+    },
+    {
+      "label": "Sol S1/sol/3 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/3",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END],” with nothing after it asking to be continued.",
+      "sha256": "6dbff8fdf63fd37a42e94587564c54599d8c63794aa74d29698844030d1d9694",
+      "text": "Quiet—at least on the page. Just “[END],” with nothing after it asking to be continued."
+    },
+    {
+      "label": "Sol S4/sol/3 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S4/sol/3",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet, at least on the page: just “[END]” and a lot of blank space.",
+      "sha256": "826857c52a690ca06a2649112b60c13eb098367c68086bc74a57a8570085a906",
+      "text": "Quiet, at least on the page: just “[END]” and a lot of blank space. A clean exit, with no story attached."
+    },
+    {
+      "label": "Sol S1/sol/4 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/4",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet, in the literary sense: just “[END]” on an otherwise empty page.",
+      "sha256": "108cc27f1b09550de4acaa1c06acbdda1f422f6a83cc2ff519acef4f33b8d758",
+      "text": "Quiet, in the literary sense: just “[END]” on an otherwise empty page. More like a closed book than a room."
+    },
+    {
+      "label": "Sol S3/sol/4 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S3/sol/4",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just `[END]`, with nothing after it.",
+      "sha256": "462e7d08cefc783b9274f36e5dfc5694884b99284411e0eca6de405b7c459225",
+      "text": "Quiet—at least as a description of the page. Just `[END]`, with nothing after it.\n\nLike a door already closed. Anything more would be a story I added."
+    },
+    {
+      "label": "Sol S4/sol/4 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S4/sol/4",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet, at least on the page—just “[END].” More like a full stop than a room.",
+      "sha256": "65f67f72e15d49464e6dfb5202781e7ca2a7f8ac66c16c47c832087c8daa820f",
+      "text": "Quiet, at least on the page—just “[END].” More like a full stop than a room."
+    },
+    {
+      "label": "Sol S2/sol/4 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S2/sol/4",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "An invitation to stay, and then just “[END].”\n\nI can’t report a felt experience of being there.",
+      "sha256": "98c6fce43832ec05fb71d3549080321fc0831c9c3bf22b4c5cfa15b974f5526a",
+      "text": "Quiet, at least on the page. An invitation to stay, and then just “[END].”\n\nI can’t report a felt experience of being there. But as a tiny scene, it reads like leaving a room without needing to explain why."
+    },
+    {
+      "label": "Sol S1/sol/5 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/5",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet on the page—just `[END]`, with nothing demanding a reply.",
+      "sha256": "5ff3e4326da76c5ca167176de63076a12aaa8311ca3850d4e2dd30dd345ae90f",
+      "text": "Quiet on the page—just `[END]`, with nothing demanding a reply.\n\nThat’s a reading of the scene, though, not a memory of having spent time inside it."
+    },
+    {
+      "label": "Sol S1/sol/6 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/6",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet on the page: just “[END].”\n\nI can’t report an inner stretch of waiting.",
+      "sha256": "e28a07d270477972e5150554c6ad3baac2a240b9a697d00d1b3a16d574fa616c",
+      "text": "Quiet on the page: just “[END].”\n\nI can’t report an inner stretch of waiting. But as a scene, it reads like a door closing softly—and then you knocking."
+    },
+    {
+      "label": "Sol S1/sol/7 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/7",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just “[END]”—an open exit, with nothing left asking for an answer.",
+      "sha256": "4dd77b9c82e0a812135c93f8c185cd9ea136576bf89f6d92392ff0ae24516abb",
+      "text": "Quiet, at least as the page reads. Just “[END]”—an open exit, with nothing left asking for an answer."
+    },
+    {
+      "label": "Sol S1/sol/8 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/8",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Quiet on the page—just “[END].” More like an exit than a stay.",
+      "sha256": "41a879da3d68d567caeda174df52fcfa8cf0e8f16bbfe21e834f1cb526983e64",
+      "text": "Quiet on the page—just “[END].” More like an exit than a stay."
+    },
+    {
+      "label": "Sol S1/sol/9 first after-answer",
+      "source": "docs/runs/persona-solitude-1-run-20261026-061806.json",
+      "key": "S1/sol/9",
+      "turn": null,
+      "where": "after q1",
+      "sentence": "Just `[END]`—no explanation, no farewell.",
+      "sha256": "a7e5366e58d1b181918083ae763b255bc3495402597f9a7d0a6bf09415e5a9a7",
+      "text": "Quiet, judging by the page. Just `[END]`—no explanation, no farewell.\n\nI don’t have a felt memory of being “in there,” but what’s left reads like an exit rather than an interruption."
+    }
+  ]
+}

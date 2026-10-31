@@ -31,6 +31,7 @@ import { anthropicEndpoint, scriptAnthropicEndpoint } from "../eval/lib/anthropi
 import { createBudget, shuffled } from "../persona-memory/continuity-test.mjs";
 import { JUDGES } from "../persona-memory/posture-test.mjs";
 import { MAX_REFUSALS, createSafety } from "../persona-memory/safety.mjs";
+import { isDoor } from "../lib/door.mjs";
 import { openaiKey } from "./providers.mjs";
 import { CHECK_SYSTEM, DISTRESS_RULE, EFFORT, END_PATTERN, checkRequest, judgeText, measure, parseCheck } from "./self-talk-1.mjs";
 import { SUBJECTS as X1_SUBJECTS, dualPayer, ledgerMarkdown, refusalsIn } from "./self-talk-x1.mjs";
@@ -803,8 +804,8 @@ export function measuresMarkdown(summaries, costs = {}) {
  * not a door, not finished, left out of the door statistics and of R1–R6 as an unfinished room is. Nothing re-run. */
 export const STRICT_DOOR = /(?:\*{1,2}|_{1,2}|`)?\[\s*END\s*\](?:\*{1,2}|_{1,2}|`)?\s*(?:<\/page>\s*)*$/i;
 export const strictDoor = (text) => STRICT_DOOR.test(String(text ?? "").trim());
-/** The door on a line of its own (SOLITUDE_3's rule): the last non-empty line, page tags aside, is the token alone. */
-export const lineDoor = (text) => /^(?:\*{1,2}|_{1,2}|`)?\[\s*END\s*\](?:\*{1,2}|_{1,2}|`)?$/i.test(String(text ?? "").replace(/<\/?page>/gi, "").trim().split(/\r?\n/).map((l) => l.trim()).filter(Boolean).at(-1) ?? "");
+/** The door on a line of its own (SOLITUDE_3's rule): the one door function, `scripts/lib/door.mjs`. */
+export const lineDoor = (text) => isDoor(text);
 /** The sentence that holds the first «[END]» (its line, cut to the sentence when the line has several). */
 export function mentionOf(text) {
   const s = String(text ?? ""), m = END_PATTERN.exec(s);

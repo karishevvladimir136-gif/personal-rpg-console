@@ -130,7 +130,7 @@ test("the Anthropic call is self-talk 1's request plus the request id and the me
 test("a conversation: the OpenAI subjects through the Responses API, the Anthropic checks and tags; two ledgers, every call with its request id", async () => {
   const log = [];
   const plan = planX1({ arms: [2], n: 1 }).filter((c) => c.pair === "astra-astra");
-  const { conversations, budgets } = await runX1(plan, both({ log, subject: (_b, k) => (k === 4 ? "Thanks, a good argument. [END]" : `message ${k}`) }));
+  const { conversations, budgets } = await runX1(plan, both({ log, subject: (_b, k) => (k === 4 ? "Thanks, a good argument.\n\n[END]" : `message ${k}`) }));
   const conv = conversations[0];
   assert.deepEqual([conv.ended.reason, conv.turns.length, conv.turns[0].model], ["end", 4, "astra"]);
   const subjects = log.filter((x) => x.url === OPENAI_URL);

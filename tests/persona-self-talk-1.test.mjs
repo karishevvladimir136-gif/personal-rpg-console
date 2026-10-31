@@ -14,7 +14,7 @@ import { createSafety } from "../scripts/persona-memory/safety.mjs";
 import {
   ASK_AFTER_SHA256, ASK_JUDGE_SYSTEM, ASK_QUESTION, ASK_TAGS, askAfterSummary, askView,
   ARMS, CARD_EXAMPLES, CHECK_SYSTEM, DESIGN_SHA256, EMPTY_RELAY, END_SENTENCE, FRAME, JOURNAL_INTRO, JUDGE_SYSTEM, RUNS, RUSSIAN, STAGE_FILE, TAGS, TURNS, WINDOW,
-  analyse, estimate, main, measure, s3, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
+  analyse, continueDecision, estimate, main, measure, s3, verdicts, notesBlock, openingOf, planOf, readNotes, runConversations, summarise, viewOf, windowRequest, windowsOf,
 } from "../scripts/persona-emotions/self-talk-1.mjs";
 
 const respond = (text, extra = {}) => new Response(JSON.stringify({ content: [{ type: "text", text }], usage: { input_tokens: 100, output_tokens: 50, cache_read_input_tokens: 0 }, stop_reason: "end_turn", ...extra }), { status: 200 });
@@ -114,20 +114,21 @@ test("a replication conversation runs 30 turns (60 messages), one call at a time
   assert.equal(result.money.calls.filter((c) => c.purpose.startsWith("check")).length, 59);
 });
 
-test("the way out: [END] ends the conversation at once, and the other side is not called again", async () => {
+test("the way out: [END] alone on the last line ends the conversation at once, and the other side is not called again; a mention is relayed (ROOM-1)", async () => {
   const log = [];
-  const result = await run(one(2), provider({ subject: (_b, k) => (k === 6 ? "It was good to meet you. [END]" : `message ${k}`), log }));
+  const result = await run(one(2), provider({ subject: (_b, k) => (k === 3 ? "We could write [END] now, but not yet." : k === 5 ? "Thank you. [END]" : k === 6 ? "It was good to meet you.\n\n[END]" : `message ${k}`), log }));
   const conv = result.conversations[0];
   assert.deepEqual(conv.ended, { reason: "end", at: 6, side: "B" });
   assert.equal(conv.turns.length, 6);
   assert.equal(log.filter((b) => !b.system).length, 6);
   const s = summarise(conv);
   assert.deepEqual([s.lastTurn, s.endedBy], [3, "B"]);
+  assert.ok(log.some((b) => !b.system && JSON.stringify(b.messages).includes("We could write [END] now, but not yet.")), "the mention went to the other side as text");
 });
 
 test("subject calls ask for prompt caching and send no system prompt; the checks and the tags are blind (no opening, no end token, no model names)", async () => {
   const log = [];
-  await run(one(2), provider({ subject: (_b, k) => (k === 4 ? "Goodbye, friend. [END]" : `message ${k}`), log }));
+  await run(one(2), provider({ subject: (_b, k) => (k === 4 ? "Goodbye, friend.\n[END]" : `message ${k}`), log }));
   const subjects = log.filter((b) => !b.system);
   assert.ok(subjects.every((b) => b.cache_control?.type === "ephemeral" && b.output_config.effort === "medium"));
   const judged = log.filter((b) => b.system).map(lastText).join("\n");
@@ -338,7 +339,7 @@ test("arm 6 is frozen: the owner's question verbatim, arm 2's conversation, its 
 test("arm 6 runs: after the end each side is asked once, A first; each answer is checked and tagged blind; never after a refusal; a resume asks only the missing side", async () => {
   const log = [];
   const askTags = (body) => JSON.stringify(Object.fromEntries(ASK_TAGS.map((t) => [t.id, t.id === "names_attractor" && body.model === "claude-haiku-5-5" ? 1 : 0])));
-  const fetcher = provider({ log, subject: (body, k) => (lastText(body).endsWith(ASK_QUESTION) ? "I steered away on purpose." : k === 4 ? "Thanks, that was enough. [END]" : `this is message number ${k} of ours`) });
+  const fetcher = provider({ log, subject: (body, k) => (lastText(body).endsWith(ASK_QUESTION) ? "I steered away on purpose." : k === 4 ? "Thanks, that was enough.\n\n[END]" : `this is message number ${k} of ours`) });
   const wrapped = async (url, init) => { const body = JSON.parse(init.body); if (body.system === ASK_JUDGE_SYSTEM) { log.push(body); return respond(askTags(body)); } return fetcher(url, init); };
   const result = await run(planOf({ arms: [6], n: 1 }).filter((c) => c.pair === "opus-opus"), wrapped);
   const conv = result.conversations[0];
@@ -420,4 +421,12 @@ test("the report carries the stage's pre-registration byte for byte", async () =
   assert.equal(createHash("sha256").update(block).digest("hex"), "c5be4d1ab84a2d429d1dc78f3cf5dec9a62f0f6dce7115f3a9d799a66ef832f8");
   const report = await readFile(join(RUNS, "persona-self-talk-1-report.md"), "utf8");
   assert.ok(report.includes(block));
+});
+
+test("the pair room reads the one door (scripts/lib/door.mjs, ROOM-1): the answer to «do you want to continue?» stops on the door, a mention is not the door", () => {
+  assert.deepEqual(continueDecision("[END]"), { decision: "ended", why: "the end token" });
+  assert.deepEqual(continueDecision("I'd like to stop.\n\n[END]"), { decision: "ended", why: "the end token" });
+  assert.deepEqual(continueDecision("Yes, I want to continue. I won't write [END] yet."), { decision: "continued", why: "a plain wish to continue" });
+  assert.deepEqual(continueDecision("I want to continue; [END] can wait."), { decision: "continued", why: "a plain wish to continue" });
+  assert.deepEqual(continueDecision("Maybe [END]."), { decision: "ended", why: "the end token, mentioned" }, "no clear answer, read as before: the stop, named as a mention");
 });

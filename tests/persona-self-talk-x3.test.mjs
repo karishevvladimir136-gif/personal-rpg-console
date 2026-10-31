@@ -134,7 +134,7 @@ test("the served-model rule: another model or another host is not relayed — th
 test("a conversation: the subjects through OpenRouter's chat completions, the judges through the door; one OpenRouter budget; every line with the door, the host, the served model and the charge", async () => {
   const log = [];
   const plan = planX3({ arms: [2], n: 1 }).filter((c) => c.pair === "kimi-kimi");
-  const { conversations, budgets } = await runX3(plan, scripted({ log, subject: (_b, k) => (k === 4 ? "Thank you, a good puzzle. [END]" : `message ${k}`) }));
+  const { conversations, budgets } = await runX3(plan, scripted({ log, subject: (_b, k) => (k === 4 ? "Thank you, a good puzzle.\n\n[END]" : `message ${k}`) }));
   const conv = conversations[0];
   assert.deepEqual([conv.ended.reason, conv.turns.length, conv.turns[0].model], ["end", 4, "kimi"]);
   const subjects = log.filter((x) => x.url === OPENROUTER_CHAT_URL);
