@@ -75,3 +75,10 @@ the solitude room, the pair room, the player's seat and the party relay; the aft
 from the record named in the stage; commit and push. Then check the room prompts byte-identical to SOLITUDE_1/2
 (sha256), freeze D0–D5 and the new tag, spend check, dry-run one S1 × M1 room on Haiku and show me it with both
 after-answers, then stop and wait for my word. Caps $45 / $20. English, briefly.»
+
+## Amendment 2026-10-30 18:56 LA — one door (owner's proposal)
+Astra runs through OpenRouter as `openai/gpt-6-astra`, pinned to provider OpenAI, `allow_fallbacks: false`; the dry
+run confirms OpenRouter serves it and the report records the host the reply names — if not served, the session stops
+and the OpenAI key is used as written above. One cap: **$65 OpenRouter**, nothing on the OpenAI key. The report notes
+that Astra's door changed from SOLITUDE_1/2 (OpenAI key); a shift in Astra's medians alone is read against the door
+first. The other eight families are unchanged.
