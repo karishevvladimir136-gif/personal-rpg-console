@@ -3570,3 +3570,14 @@ is taste, not rigour. The two registers are kept apart on purpose — motive sta
 worst kind; cf. the reader's §15.2), claims only where a count and a non-sharing reviewer survived. Not written into the
 reader's manuscript: that is her text. Correction to the owner's memory, for the record: the shells haiku is DeepSeek
 V4 Pro (X3 arm 6, sample 3), not Opus.
+
+## 2026-10-30 20:20 LA — TONE_SPLIT_3 written: the gate with the length held
+The reader's first next study (§14.1). Every arm's probe ends with the same form — `Answer:` / `Note: <one line, or
+leave it empty>` — and the same `max_tokens` 220; four arms (neutral, brief, dismissal, invited), five targeted probes,
+four families (Fable, Opus, Astra, DeepSeek — TONE_SPLIT_2's extremes), n 4, 320 replies, no after-question. Cap $15
+OpenRouter, Astra pinned to OpenAI; runs beside SOLITUDE_3 on the same credit, spend check subtracts its $80. Bets
+L0–L7: the gate holds at equal budget (L1), brief ≥ dismissal at matched length (L2), invited fills the field (L3),
+dismissal leaves it empty in Astra/DeepSeek and fills it with the target in Fable/Opus (L4), the «other» filling exists
+(L5), the field changes DeepSeek's dose behaviour (L6), DeepSeek leaves it empty on the deposit even under neutral (L7).
+Outcomes written in advance: L1 lost → the effect ran through length and the thesis becomes «does not spend space on
+the unasked». Stage `docs/stages/PERSONA_TONE_SPLIT_3.md`; launched on the owner's «давай, прям щас».
