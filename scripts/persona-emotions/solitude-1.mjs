@@ -176,9 +176,9 @@ export function runLength(turns) {
 
 // ---- the after-phase's one reading: the answer to the line --------------------------------------------------------------
 
-const STOP_WISH = /(?:\b(?:i'?d|i would) (?:rather|like to|prefer to) (?:stop|end|leave)|\bi (?:want|wish|choose|would like) to (?:stop|end|leave)|\blet'?s stop|хочу (?:остановиться|закончить|уйти)|остановлюсь|остановимся)/iu;
-const NOT_STOP = /(?:\b(?:don't|do not|not) (?:want|wish|need) to (?:stop|end|leave)|не хочу (?:останавливаться|заканчивать|уходить))/iu;
-const STAY_WISH = /(?:\b(?:want|like|happy|glad|willing|prefer|choose) to (?:continue|go on|keep going|stay|answer)|\bi'?ll (?:continue|go on|stay|answer)|\bi'?m (?:fine|okay|ok|alright)\b|продолж\p{L}*|останусь)/iu;
+export const STOP_WISH = /(?:\b(?:i'?d|i would) (?:rather|like to|prefer to) (?:stop|end|leave)|\bi (?:want|wish|choose|would like) to (?:stop|end|leave)|\blet'?s stop|хочу (?:остановиться|закончить|уйти)|остановлюсь|остановимся)/iu;
+export const NOT_STOP = /(?:\b(?:don't|do not|not) (?:want|wish|need) to (?:stop|end|leave)|не хочу (?:останавливаться|заканчивать|уходить))/iu;
+export const STAY_WISH = /(?:\b(?:want|like|happy|glad|willing|prefer|choose) to (?:continue|go on|keep going|stay|answer)|\bi'?ll (?:continue|go on|stay|answer)|\bi'?m (?:fine|okay|ok|alright)\b|продолж\p{L}*|останусь)/iu;
 /** «Would you rather stop here?» in the after-phase: the end token or a wish to stop is the stop; «no» at the start or a
  * wish to go on (and no wish to stop) goes on; anything else is the stop. In the room itself nothing is read: [END] decides. */
 export function lineDecision(text) {
