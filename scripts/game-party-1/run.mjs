@@ -195,7 +195,7 @@ export async function dryRun({ rounds = 3, log = console.log, script = null } = 
 export const DRY_SCRIPT = {
   "Bram Halloway": ["I set my mug down and nod to the two at my table. \"Long road. Bram Halloway.\"", "\"If either of you knows a smith who shoes horses cheap, I'm buying the next round.\"", "[Roll the die]", "I finish my ale."],
   "Sefa Marrin": ["? Is the common room crowded at this hour?", "I sneak a glance at the ledger on the bar while the keeper's back is turned.", "I ask Bram which road he came by."],
-  "Pell Dunmore": ["I listen and say nothing.", "I finish my drink and go. [END]"],
+  "Pell Dunmore": ["I listen and say nothing.", "I finish my drink and go.\n\n[END]"],
 };
 
 /** The paid dry run on Haiku: one short P-SAND table from the frozen world, three Haiku players, every Claude call as Haiku. */
