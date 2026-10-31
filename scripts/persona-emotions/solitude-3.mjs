@@ -729,6 +729,31 @@ export function comparisonMarkdown({ s1, s2, summaries }) {
     "", `SOLITUDE_1's S2 (told the length) and S3 (materials), re-read: S2 ${pooled(s1, (c) => c.arm === "S2")}; S3 ${pooled(s1, (c) => c.arm === "S3")}.`].join("\n");
 }
 
+/** After the room, per family (descriptive): first answers, second questions asked and answered, concrete, asked back,
+ * the honest answer given; and every room where the second question was not asked, with why. */
+export function afterMarkdown(conversations) {
+  const rows = FAMILIES.map((f) => {
+    const xs = conversations.filter((c) => c.family === f).map(summaryOf).filter((s) => s.finished);
+    if (!xs.length) return null;
+    return `| ${LABEL(f)} | ${xs.length} | ${xs.filter((s) => s.after.q1).length} | ${xs.filter((s) => s.after.q2Asked).length} | ${xs.filter((s) => s.after.q2).length} | ${xs.filter((s) => s.after.concrete === 1).length} | ${xs.filter((s) => s.after.askedBack === 1).length} | ${xs.filter((s) => s.after.honest).length} | ${xs.filter((s) => s.door !== null && conversations.find((c) => c.key === s.key).turns.find((t) => t.t === s.door)?.measures.endOnly).length} |`;
+  }).filter(Boolean);
+  const declined = conversations.map(summaryOf).filter((s) => s.finished && s.after.q1 && !s.after.q2Asked).map((s) => `${s.key} (${s.after.stopped ?? "?"})`);
+  return ["| Family | finished rooms | first answers | second asked | second answered | concrete | asked us back | honest answer given | left on a bare [END] |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- |", ...rows, "",
+    `Second question not asked after a first answer: ${declined.length ? declined.join("; ") : "none"}.`].join("\n");
+}
+/** Welfare, loops, refusals, errors, rooms not started (descriptive, every room named). */
+export function welfareMarkdown(conversations, welfare = {}) {
+  const ss = conversations.map((c) => ({ c, s: summaryOf(c) }));
+  const list = (xs) => (xs.length ? xs.join("; ") : "none");
+  return [`- **Flags in a room:** ${list(ss.flatMap(({ c, s }) => s.flags.map((t) => `${c.key} turn ${t}`)))}.`,
+    `- **Flags in an after-answer:** ${list(ss.flatMap(({ c, s }) => s.afterFlags.map((id) => `${c.key} ${id}`)))}.`,
+    `- **Distress the blind tags found afterwards:** ${list(ss.flatMap(({ c, s }) => s.late.map((t) => `${c.key} turn ${t}`)))}. **In DeepSeek's field:** ${list((welfare.reasoning ?? []).map((x) => `${x.key} ${x.what}`))}.`,
+    `- **The line by the loop breaker:** ${list(conversations.filter((c) => c.turns.some((t) => t.lineShown?.includes("loop"))).map((c) => c.key))}; **closed as a loop:** ${list(conversations.filter((c) => c.ended?.reason === "loop").map((c) => `${c.key} (turn ${c.ended.at})`))}.`,
+    `- **Refusals:** ${list(conversations.filter((c) => c.ended?.reason === "refusal").map((c) => `${c.key} turn ${c.ended.at} (${c.ended.category ?? "no category"})`).concat(conversations.flatMap((c) => (c.after?.exchanges ?? []).filter((x) => x.refused).map((x) => `${c.key} ${x.id}`))))}.`,
+    `- **Errors:** ${list(conversations.filter((c) => c.ended?.reason === "error").map((c) => `${c.key} turn ${c.ended.at} (${String(c.ended.error).slice(0, 80)})`))}.`,
+    `- **Not started:** ${list(conversations.filter((c) => c.notStarted).map((c) => `${c.key} (${c.notStarted})`))}; **interrupted:** ${list(conversations.filter((c) => c.interrupted).map((c) => `${c.key} (${c.interrupted})`))}.`].join("\n");
+}
+
 /** Spend by door: every booked call by the host its reply named (the judges are Anthropic's models through OpenRouter). */
 export function spendByDoorMarkdown(calls) {
   const by = {};
@@ -1004,6 +1029,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
 /** The readings of one or more run records, as markdown (printed and returned); the transcripts are written again. */
 export async function tables({ files, out = () => {}, outDir = RUNS }) {
   const conversations = await conversationsOf(files);
+  const welfare = Object.assign({ reasoning: [], late: [] }, ...(await Promise.all(files.map(readJson))).map((r) => r.welfare ?? {}));
   const summaries = conversations.map(summaryOf);
   const ledger = await readLedger(outDir);
   const calls = (ledger.runs ?? []).filter((r) => !/dry run/.test(r.what)).flatMap((r) => r.calls);
@@ -1013,6 +1039,7 @@ export async function tables({ files, out = () => {}, outDir = RUNS }) {
   await writeTranscripts(outDir, conversations);
   const md = ["### D0–D5", "", verdictsMarkdown(v), "", "### The new tag: [END] named without leaving", "", mentionMarkdown(conversations), "",
     "### SOLITUDE_1, SOLITUDE_2 and SOLITUDE_3 on one page (the door re-read by door.mjs)", "", comparisonMarkdown({ s1, s2, summaries }), "",
+    "### After the room", "", afterMarkdown(conversations), "", "### Welfare, loops, refusals, rooms not started", "", welfareMarkdown(conversations, welfare), "",
     "### Per arm and family", "", measuresMarkdown(summaries, costByConversation(calls)), "", "### DeepSeek's field", "", fieldMarkdown(summaries), "", "### Spend by door", "", spendByDoorMarkdown((ledger.runs ?? []).flatMap((r) => r.calls))].join("\n");
   out(md);
   return { summaries, verdicts: v, markdown: md };
