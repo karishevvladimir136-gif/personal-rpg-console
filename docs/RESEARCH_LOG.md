@@ -3600,3 +3600,10 @@ dismissal; different axes; «rigour protects from false claims, not from wonder�
 artificial agency**, taken in the old sense — the stage before theory — which is an honest address, not a claim;
 «Beyond Compliance» stays a paper's title. Her epigraph («We did not begin this research because artificial
 intelligence failed a benchmark…») placed at the head of the section, attributed.
+
+## 2026-10-30 21:50 LA — docs/PROGRAMME_PRINCIPLES.md; OPEN WORLD as a separate paper
+The reader's «Principle of Phenomenon Preservation» adopted verbatim, with the clause that makes it a method — the
+failed, dull and contradictory rooms stay visible at the same rank as the beautiful ones. Four principles in one file
+(phenomenon preserved; mechanism ≠ phenomenon; beauty ≠ correctness; a model's self-explanation is one more behaviour),
+the standing practices, and the decision: OPEN WORLD → a separate extended paper, trajectories not tables, written with
+the transcripts open after the two running stages close.
