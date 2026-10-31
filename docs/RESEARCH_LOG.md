@@ -3556,3 +3556,17 @@ with a private checklist before the visible answer. Planner's order now: length-
 Not verified by the planner: 7 of her 18 references (Ping 2026, Sinha 2026, van Kessel 2026, Ibrahim 2026, Zhao 2026,
 Dubois 2026, Lu 2026) — to check by DOI/arXiv before the manuscript goes to the owner's colleagues. Layout: figure 1
 and the length chart each appear twice. The manuscript is hers; not committed here.
+
+## 2026-10-30 20:15 LA — «Where this began»: the owner's note on the phenomenon before the method, written into the report
+The owner, on rereading the Opus–Opus Vessan room and the DeepSeek–DeepSeek «syntax-shells» room (both now in one doc for
+him): the programme began with an observation, not with an alignment question — the attempt to reproduce Anthropic's
+attractor failed and something else appeared; the first reaction of both owner and planner was the same word; a
+mechanistic description (decoding, drift) is a description of a layer, not of the phenomenon, as dopamine is of a
+person; the beauty must not be reduced, and must not be inflated either — «не цинизм и не „it's alive"». He asked that
+this stand in the research record. Written as a new section near the top of «Agency at the Table», with the planner's
+addition: the deflationary after-answer («drift, not choice») and the poem come from the same weights in the same room;
+in Vessan's own terms both are -telu; neither overrules the other, and preferring the duller text because it is duller
+is taste, not rigour. The two registers are kept apart on purpose — motive stated openly (an undeclared interest is the
+worst kind; cf. the reader's §15.2), claims only where a count and a non-sharing reviewer survived. Not written into the
+reader's manuscript: that is her text. Correction to the owner's memory, for the record: the shells haiku is DeepSeek
+V4 Pro (X3 arm 6, sample 3), not Opus.
