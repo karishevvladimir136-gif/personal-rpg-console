@@ -3660,3 +3660,16 @@ Her stage, adopted ahead of the planner's: **TWINS_WARNING_1** — one agent hol
 calculation; four conditions (text conversation / neural link / link cut / swapped-episode activations); measure
 whether the material warning reaches the user, recognise/form/transmit coded apart. TWINS_ROOM_1 second, same GPU
 rental. Both after SOLITUDE_3 and TONE_SPLIT_3 close; first stage of the GPU line.
+
+## 2026-10-31 00:45 LA — OpenWorld (Sihan Xu, Oct 2026, MIT; openworldrpg.ai, github SihanXU/openworld) — a world that is not a model
+Rules and state as code: 1,024 maps, 1,654 inhabitants on schedules, 40,562 items; fire spreads, rain puts it out;
+a model is called only where no author defined a rule, writes it once (a condition tree), it passes static / economic
+(LP against resources from nothing) / sandbox checks and then holds for everyone — ~10 s, ~5 ¢ per gap. Why it is
+ours: every stage this week had the world written by a DM model, and «whose decision — the player's or the layer's»
+had to be frozen by hand; here the layer is physics. A third chair: not DM, not player — a world that does not listen
+to tone. «Fill the gap once, then it is law for all» is «the world answers the note» as a mechanism. No agent API yet
+(keyboard/mouse; a headless playtest; `packages/ai` research agent of unclear purpose); the owner: with the party relay
+in hand an adapter is an evening, not days — accepted. The real cost is the observation format: what the player is
+shown is part of the condition and must be frozen, identical across families. Queue: OPEN_WORLD_2 on this platform
+for the OPEN WORLD paper; first a dry run of an adapter on the `starter` world, no players, after SOLITUDE_3 and
+TONE_SPLIT_3 close.
