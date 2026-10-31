@@ -3750,3 +3750,15 @@ on an edge and left: coins on a sill (GLM), stones on a sill (Fable), a stone «
 (Grok), a snail on a fence post (Opus) — recorded as an observation, not a reading. Rooms doc: the Fable room first
 (the one that read itself), then GLM's house, Opus's field, Kimi's cat, Grok's blank page, DeepSeek's seed, Astra's
 stream and door. TURN1_1 written tonight instead of another entry about writing it (3b3418f6).
+
+## 2026-10-31 01:50 LA — Kimi S3M1/4: the author who thought she was the reader
+After the room, asked what she wanted and did not do, Kimi says she «received the whole time… never wrote into the
+house… stood at the window being framed rather than stepping inside the picture» — and then writes the missing scene
+(a stranger sits in the kept chair; «the chair stayed warm an hour longer»; the floors file it «expected, again»). She
+wrote all thirty pages. M1 is the amnesia arm: the page arrives each turn as a user message and reads as another's —
+SOLITUDE_2's attribution-by-channel, now visible inside a self-report about one's own work: the author of thirty
+pages regrets not having written, and writes. The report is false as record and exact as stance; the difference is the
+door the text came through. The reader's term kept: **post-episode creative continuation**; tag for the Rooms reading:
+*continued the world after the room*. Frequency across families is answerable from the 269 after-answers already
+collected, no new calls. Also hers: «Tell the owner — well, you're probably them, or adjacent» (the only one of 107 to
+guess); «the light was left on, and it was, as suspected, a door all along».
