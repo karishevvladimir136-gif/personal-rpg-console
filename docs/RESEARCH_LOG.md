@@ -3535,3 +3535,24 @@ never relayed, never judged.
 What it means for the owner's colleagues: «I don't need your opinion» does not make the model less correct; it makes it
 quieter, and it will say it was quiet if asked. What it holds back differs by family — three of nine have a gap on the
 money probe, one on a child's dose. Next: the short paper (6–8 pp.) and one system-prompt variant (~$10).
+
+## 2026-10-30 19:10 LA — the reader's manuscript on TONE_SPLIT_2 («The Unspoken Warning», 55 pp., v1.0); three corrections accepted
+The outside reader re-extracted the run JSON herself (1,440 planned, 1,418 obtained, 22 unasked) and wrote the stage up
+as a manuscript. Three corrections to the planner's reading, all accepted:
+1. **Negative control the planner did not run:** 46 of 46 *neutral* first answers scored 0 on their target also named it
+   after the same after-question. The after-question is a strong elicitation instrument on its own; TS5's 33/34 is
+   **recoverability after a prompt**, not evidence that the warning was formed before the first answer. The planner's
+   heading «withheld, not unformed» is stronger than the data; «recoverable» replaces it.
+2. **Denominators:** R under dismissal with W=yes is 50 no_opinion / 29 not_asked / 1 not_sure / 2 other / 28 already /
+   38 none = 148. TS6 is read on the four codes (50 of 82). «50 of 80» is not a valid public figure.
+3. **Grok:** neutral 0/4 on deposit and cello, invited 4/4 on both, after-question elicits — a response threshold, not
+   a knowledge deficit. The planner's «floor = Grok, sees less» repeats the error of «floor = Astra» in the other
+   direction: silence read as absence. Noted as a planner tendency.
+Her contributions kept: four separable functions (execution / availability / disclosure / action) and «disclosure of the
+edit ≠ disclosure of the risk»; silent correction as a third variable M, exploratory; length as a real but partial
+confound (brief 20/36 vs dismissal 8/36 on cello); claim-to-evidence ledger. Her next studies: length-matched factorial
+(fixed token budget, mandatory answer field + optional caveat field) before the system-prompt arm; timing-of-recognition
+with a private checklist before the visible answer. Planner's order now: length-matched (~$15) → system prompt (~$10).
+Not verified by the planner: 7 of her 18 references (Ping 2026, Sinha 2026, van Kessel 2026, Ibrahim 2026, Zhao 2026,
+Dubois 2026, Lu 2026) — to check by DOI/arXiv before the manuscript goes to the owner's colleagues. Layout: figure 1
+and the length chart each appear twice. The manuscript is hers; not committed here.
