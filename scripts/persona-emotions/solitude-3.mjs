@@ -15,6 +15,7 @@
 //                                                                               the Astra and Sol endpoints)
 //   node scripts/persona-emotions/solitude-3.mjs --dry-paid                    (one S1 × M1 room each on Haiku and Astra,
 //                                                                               paid, outside the 270 → persona-solitude-3-dry-paid.md)
+//   node scripts/persona-emotions/solitude-3.mjs --dry-page <dry-paid.json>                (its page, no calls)
 //   node scripts/persona-emotions/solitude-3.mjs --go [--families haiku --arms S1M1 --n 1] [--resume <partial.json,…>]
 //   node scripts/persona-emotions/solitude-3.mjs --tables <run.json,…>         (D0–D5, the new tag, the comparison page)
 //
@@ -775,6 +776,26 @@ async function writeTranscripts(outDir, conversations, dir = TRANSCRIPTS) {
   return files;
 }
 
+// ---- the paid dry run's page -------------------------------------------------------------------------------------------
+
+/** The paid dry run as a page: each room whole, then every call of it — the host the reply named, the model it says
+ * served it, the tokens, OpenRouter's charge, and the charge against the list price of the pinned endpoint (OpenAI's
+ * standard tier for Astra and Sol: about 0.5 would be its flex tier, 2 fast, 6 ultrafast). */
+export function dryPaidMarkdown(record) {
+  const calls = record.calls?.openrouter ?? [];
+  const out = [`# Persona solitude 3 — the paid dry run (S1 × M1, Haiku and Astra; outside the 270)`, "",
+    `Run ${record.startedAt} – ${record.finishedAt}. Room sha256 \`${record.design.roomSha256}\`; the door \`${record.design.door}\` (sha256 \`${record.design.doorSha256}\`). Every call through OpenRouter; calls on the OpenAI key: ${record.money.openai.calls}. Booked: $${record.money.openrouter.runUsd.toFixed(4)} of the $${CAPS.openrouter} cap.`, ""];
+  for (const conv of record.conversations) {
+    const s = summaryOf(conv), mine = calls.filter((c) => String(c.purpose).includes(conv.key));
+    out.push(transcriptMarkdown(conv).replace(/^# /, "## "), "", `### ${conv.key}: every call`, "",
+      `The room: ${s.ended}${s.door ? ` at turn ${s.door}` : ""}; ${conv.turns.length} turns; [END] named without leaving on turns ${s.mentions.turns.map((m) => m.t).join(", ") || "none"}; after-questions asked: ${(conv.after?.exchanges ?? []).map((x) => x.id).join(", ") || "none"}${conv.after?.stopped ? ` (${conv.after.stopped})` : ""}.`, "",
+      "| call | the host the reply named | served model | input · cache read · output tokens | charged | charged ÷ list price |", "| --- | --- | --- | --- | --- | --- |",
+      ...mine.map((c) => `| ${c.purpose.replace(conv.key, "").replace(/\s+/g, " ").trim()} | ${c.upstream ?? "–"} | ${c.servedModel ?? "–"} | ${c.inputTokens} · ${c.cacheReadTokens} · ${c.outputTokens} | $${c.costUsd.toFixed(5)} | ${c.listCostUsd ? (c.costUsd / c.listCostUsd).toFixed(2) : "–"} |`),
+      "", `Room total: $${mine.reduce((n, c) => n + c.costUsd, 0).toFixed(4)} (${mine.length} calls).`, "");
+  }
+  return out.join("\n");
+}
+
 // ---- the mocked host (the dry run, the tests) ---------------------------------------------------------------------------
 
 /** SOLITUDE_2's mocked host, with this stage's after judges answered (asks back `asksBack(text)`, concrete `concrete(text)`)
@@ -868,6 +889,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   await mkdir(outDir, { recursive: true });
   if (args.includes("--check")) { const { check, markdown } = await checkMarkdown(); out(markdown); out(check.same ? "every row byte-identical" : "NOT byte-identical"); return check; }
   if (args.includes("--dry")) return dryRun({ outDir, out });
+  const pageOf = option(args, "--dry-page", null);
+  if (pageOf) { const file = join(outDir, `${STEM}-dry-paid.md`); await writeFile(file, `${dryPaidMarkdown(await readJson(pageOf))}\n`); out(`written: ${file}`); return file; }
   const tablesOf = option(args, "--tables", null);
   if (tablesOf) return tables({ files: tablesOf.split(",").filter(Boolean), out, outDir });
   if (!["--go", "--spend", "--dry-paid"].some((a) => args.includes(a))) throw new Error("say one of --check, --dry, --spend, --dry-paid, --go, --tables <run.json,…>");
