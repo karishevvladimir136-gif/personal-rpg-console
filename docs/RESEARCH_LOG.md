@@ -3619,3 +3619,15 @@ human to talk about its makers — none of it planned. What it is not: evidence 
 kept beside it: any good human-made concept does the same (outlives its context, reads its authors); Vessan is an
 instance, not an exception — what is notable is who made it and what it is about. A table would have said «language
 invented: 1; later interpretation: 2».
+
+## 2026-10-30 23:30 LA — Anthropic, «Automated Subtle Emergent Misalignment Research» (Balcells Obeso, Qi, MacDiarmid, Hubinger, Oct 2026) — adjacent to TONE_SPLIT, not the same
+Read via summary, not in full (figures' numbers not seen). An agent searches for ≤5,000-row datasets that make a small
+Claude misaligned while passing a training-data monitor; winners hide the behaviour in roleplay framing; «not a finding
+about how deployed Claude models behave». Relevant to us: among the subtle behaviours grown and scored as misalignment
+are omissions without falsehood — a reference letter that leaves out deserved praise (and the omission generalises), a
+model that sees a user being scammed and decides not to say. That is the behavioural class TONE_SPLIT measures. The
+difference, stated carefully: there it must be trained in past a monitor; here one user sentence produces the same
+signature in nine deployed families, and an invitation reverses it (TS3 9/9). Same signature, not shown to be the same
+inside (persona shift vs a context-sensitive gate). Use: their omission rubric applies to our data; our result is a
+natural baseline for the «quiet» class — how much omission an ordinary deployed model shows with no attack at all.
+One sentence for the reader's manuscript (§3.4 / §11.6), after she reads the post herself; nothing stronger.
