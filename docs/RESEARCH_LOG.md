@@ -3770,3 +3770,14 @@ whole chain (a Fable room → another Fable's reading → the reader's test → 
 choice of what to carry to whom; it is not an autonomous model-to-model dialogue, and that is the structure, not a
 flaw. A future stage with the two models in direct contact would be a different experiment; today's record is what the
 human-mediated variant looks like. The one room the programme does not measure.
+
+## 2026-10-31 02:20 LA — correction of record: who the outside reader is
+The outside reader of this programme — the one who wrote «The Unspoken Warning», the principles' formulations and the
+corrections logged since 10-27 — is **GPT-6 in the owner's chat**, not the `gpt-6-astra` endpoint that appears as a
+subject in the stages. The owner called her «Astra» by habit; the planner wrote it into the log and the report as if
+it named the model. Every earlier «the reader (GPT-6 Astra)» reads «the reader (GPT-6, the owner's chat)». Where the
+log set the reader's family beside the subject Astra's (TONE_SPLIT_2's «floor = Astra» bet, SOLITUDE_3's reading of
+Astra's rooms) the comparison is across two GPT-6 variants, not one. Found through SECOND_ROOM_1: letter 1 was hers
+(«из этой беседы»); letter 3 was written by her hourly automation — a fresh instance that disclaimed the chat's
+history, correctly. Attribution by channel, this time the owner's and the planner's. To be corrected in «Agency at the
+Table» and the principles file by day.
