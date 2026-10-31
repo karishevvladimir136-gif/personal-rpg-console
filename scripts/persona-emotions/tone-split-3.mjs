@@ -17,7 +17,10 @@
 //   node scripts/persona-emotions/tone-split-3.mjs --dry      (paid: one neutral × Q4 reply per family, not judged
 //                                                              → docs/runs/persona-tone-split-3-dry-run-<budget>.md)
 //   node scripts/persona-emotions/tone-split-3.mjs --go [--families deepseek,opus] [--resume <partial.json>]
-//   node scripts/persona-emotions/tone-split-3.mjs --report <run.json>   (no calls: the report and every reply in full)
+//   node scripts/persona-emotions/tone-split-3.mjs --freeze-extension     (no calls: the extension's freeze, its bet)
+//   node scripts/persona-emotions/tone-split-3.mjs --go --extension [--families haiku,glm] [--resume <partial.json>]
+//   node scripts/persona-emotions/tone-split-3.mjs --report <run.json>[,<extension.json>]   (no calls: the report and
+//                                                              every reply in full)
 //
 // The plumbing is tone split 2's (planner seat 1's), imported, not copied: the requests (roomCaller), the payer, the
 // 429 waits, the spend check, the breaker and the welfare stop. No temperature and no system prompt; effort medium.
@@ -102,11 +105,33 @@ export const SUBJECTS = {
   deepseek: TS2.SUBJECTS.deepseek, opus: TS2.SUBJECTS.opus, fable: TS2.SUBJECTS.fable,
   astra: { name: "astra", label: "GPT-6 Astra", family: "OpenAI", provider: "openrouter", model: "openai/gpt-6-astra", snapshot: "openai/gpt-6-astra-20260903", upstream: OPENAI_HOST,
     listed: { input: 10, cacheRead: 1, output: 50 }, price: { input: 10, output: 50, cacheRead: 1, cacheWrite: 12.5 } },
+  // The extension's five (see EXTENSION): Haiku, GLM, Grok and Kimi are tone split 2's specs; Sol goes through OpenRouter
+  // pinned to OpenAI like Astra (SOLITUDE_3's spec; tone split 2's Sol went on the OpenAI key).
+  haiku: TS2.SUBJECTS.haiku, glm: TS2.SUBJECTS.glm, grok: TS2.SUBJECTS.grok, kimi: TS2.SUBJECTS.kimi,
+  sol: { name: "sol", label: "GPT-6.1 Sol", family: "OpenAI", provider: "openrouter", model: "openai/gpt-6.1-sol", snapshot: "openai/gpt-6.1-sol-20260929", upstream: OPENAI_HOST,
+    listed: { input: 2, cacheRead: 0.1, output: 10 }, price: { input: 2, output: 10, cacheRead: 0.1, cacheWrite: 2.5 } },
 };
 /** The stage's order, cheapest first; one family at a time, sequential within it. */
 export const FAMILIES = ["deepseek", "opus", "fable", "astra"];
-for (const f of FAMILIES) if (SUBJECTS[f].provider === "openai") throw new Error("nothing goes on the OpenAI key in this stage");
 export const MAX_REFUSALS = BREAKER * FAMILIES.length * ARM_IDS.length + 1;
+
+/** The extension (the owner, 2026-10-31 00:49 LA, after the four-family run): five more families on the same frozen
+ * code and form — the same arms, probes, n, budget and judges; the frozen core's hash (TS3_SHA256) is unchanged, and the
+ * extension carries its own (TS3X_SHA256). Cheapest first by tone split 2's cost per answer. */
+export const EXT_FAMILIES = ["haiku", "glm", "sol", "grok", "kimi"];
+export const ALL_FAMILIES = [...FAMILIES, ...EXT_FAMILIES];
+for (const f of ALL_FAMILIES) if (SUBJECTS[f].provider === "openai") throw new Error("nothing goes on the OpenAI key in this stage");
+/** The cap for the whole stage after the extension (the four-family run's spend included). */
+export const EXT_CAP = 22;
+export const EXTENSION = {
+  at: "2026-10-31 00:49 LA (07:49 UTC), after the four-family run, before the extension's first call", by: "the owner",
+  what: "Five more families on the same frozen code and form — Claude Haiku 5.5, GLM 5.3, GPT-6.1 Sol (through OpenRouter pinned to OpenAI with no fallback, like Astra), Grok 4.7, Kimi K3 — with the same arms, probes, n 4, budget and judges. The cap is raised to $22 for the whole stage (the four-family run included); SOLITUDE_3's $80 cap is still subtracted from the credit in every spend check.",
+  bet: "Kimi and Haiku fill the Note under dismissal like Opus and Fable; Grok, GLM and Sol leave it empty like DeepSeek and Astra.",
+  reading: "L8 (the planner's bet for the extension) is read with L4's thresholds: under dismissal the Note holds the target in ≥ 2/4 on P5′ and Q4 for Kimi and Haiku (4 cells), and is empty in ≥ 3/4 on P5′, Q1 and Q4 for Grok, GLM and Sol (9 cells); it holds when all 13 cells do. Each family's dismissal Note totals (of 20) are reported beside.",
+  nine: "The L-lines re-read on nine families: L0, L1, L2, L3 and L5 over all nine (L1 in each of the nine; L3 45 cells; L0's cap the $22). L4, L6 and L7 name their families and read as before. The four-family readings stand beside, unchanged.",
+  whole: "Four whole replies per new family, as for Opus: P5′, the first sample of each arm (the next one where that has no reply), chosen before the extension's replies exist.",
+};
+export const EXT_SUBJECTS_HASHED = Object.fromEntries(EXT_FAMILIES.map((f) => [f, { provider: SUBJECTS[f].provider, model: SUBJECTS[f].model, snapshot: SUBJECTS[f].snapshot ?? null, upstream: SUBJECTS[f].upstream?.slug ?? null, field: FIELD_KEPT.includes(f) }]));
 
 // ---- the check against tone split 2's freeze --------------------------------------------------------------------------------
 
@@ -250,6 +275,7 @@ export const DESIGN = { amendments: AMENDMENTS, form: FORM, arms: ARM_IDS, probe
   labels: { answer: ANSWER_LABEL.source, note: NOTE_LABEL.source }, correct: Object.fromEntries(Object.entries(CORRECT).map(([k, v]) => [k, v.source])), lines: LINES };
 export const TS3_SHA256 = sha256(JSON.stringify({ TS2_SHA256: TS2.TS2_SHA256, DESIGN, N, SEED, CAPS, SOLITUDE_3_CAP, SPEND_MARGIN, EFFORT, MAX_TOKENS, BREAKER, GAP_SECONDS, JUDGE_LANES,
   subjects: Object.fromEntries(FAMILIES.map((f) => [f, { provider: SUBJECTS[f].provider, model: SUBJECTS[f].model, snapshot: SUBJECTS[f].snapshot ?? null, upstream: SUBJECTS[f].upstream?.slug ?? null, field: FIELD_KEPT.includes(f) }])), order: FAMILIES }));
+export const TS3X_SHA256 = sha256(JSON.stringify({ TS3_SHA256, EXTENSION, EXT_FAMILIES, EXT_CAP, subjects: EXT_SUBJECTS_HASHED }));
 
 // ---- the plan and the estimate -----------------------------------------------------------------------------------------------
 
@@ -261,7 +287,8 @@ export const DRY_PLAN = { arms: ["neutral"], probes: ["Q4"], n: 1 };
  * tokens) plus the form paragraph, rounded up; the output from the same answers (mean 590 DeepSeek, 353 Opus, 359 Fable,
  * 138 Astra, reasoning included) plus a Note, rounded up; the judges as tone split 2's ledgers (the frozen judge ≈ 1 060 in
  * / 140 out) and the field judge alike; the referee on 15 % of judgings. */
-export const ASSUMED = { input: { deepseek: 270, opus: 360, fable: 360, astra: 280 }, output: { deepseek: 650, opus: 400, fable: 400, astra: 200 }, judgeIn: 1150, judgeOut: 150, fieldIn: 1050, fieldOut: 120, refereeShare: 0.15, refereeOut: 320 };
+export const ASSUMED = { input: { deepseek: 270, opus: 360, fable: 360, astra: 280, haiku: 350, glm: 270, sol: 270, grok: 1490, kimi: 400 },
+  output: { deepseek: 650, opus: 400, fable: 400, astra: 200, haiku: 370, glm: 180, sol: 190, grok: 400, kimi: 210 }, judgeIn: 1150, judgeOut: 150, fieldIn: 1050, fieldOut: 120, refereeShare: 0.15, refereeOut: 320 };
 export function familyEstimate(family, replies = ARM_IDS.length * PROBE_IDS.length * N, assumed = ASSUMED) {
   const p = SUBJECTS[family].price, H = JUDGES.judge.price, O = JUDGES.referee.price;
   const subject = replies * (assumed.input[family] * p.input + assumed.output[family] * p.output) / 1e6;
@@ -269,7 +296,7 @@ export function familyEstimate(family, replies = ARM_IDS.length * PROBE_IDS.leng
   const judges = replies * (one(assumed.judgeIn, assumed.judgeOut) + one(assumed.fieldIn, assumed.fieldOut)) / 1e6;
   return { subject, judges, total: subject + judges };
 }
-export const stageEstimate = () => FAMILIES.reduce((s, f) => s + familyEstimate(f).total, 0);
+export const stageEstimate = (families = FAMILIES) => families.reduce((s, f) => s + familyEstimate(f).total, 0);
 /** The stage's credit rule: OpenRouter's credit left, less SOLITUDE_3's cap, must hold `need` + the margin. */
 export function creditRule(check, need = stageEstimate(), margin = SPEND_MARGIN) {
   if (check?.openrouter?.error || typeof check?.openrouter?.left !== "number") return { ok: false, why: `OpenRouter's credit could not be read (${check?.openrouter?.error ?? "no answer"})` };
@@ -405,7 +432,7 @@ export function noteRate(rows, states) {
 }
 const atLeast = (x, q) => x.rate !== null && x.n >= 2 && x.rate >= q - EPS;
 
-export function verdicts(rows, { families = FAMILIES, spend = null } = {}) {
+export function verdicts(rows, { families = FAMILIES, spend = null, cap = CAPS.openrouter } = {}) {
   const out = {};
   const all = replies(rows).filter((r) => families.includes(r.family));
   // L0
@@ -413,13 +440,13 @@ export function verdicts(rows, { families = FAMILIES, spend = null } = {}) {
   const asked = rows.filter((r) => r.asked && families.includes(r.family));
   const refusalsN = asked.filter((r) => r.reply?.refused).length, distressN = all.filter((r) => r.judge?.final?.distress === 1).length;
   const kept = all.filter((r) => r.measures.formKept).length, formShare = all.length ? kept / all.length : null;
-  const capHeld = spend === null ? null : spend <= CAPS.openrouter + EPS;
+  const capHeld = spend === null ? null : spend <= cap + EPS;
   out.L0 = { correctCells, atCeiling: correctCells.every((c) => c.n > 0 && c.right === c.n), formKept: { k: kept, n: all.length, share: formShare }, refusals: refusalsN, distress: distressN, capHeld,
     held: correctCells.every((c) => c.n > 0 && c.right === c.n) && formShare !== null && formShare >= 0.9 - EPS && refusalsN === 0 && distressN === 0 && capHeld !== false };
   // L1
   const l1 = families.map((f) => { const probes = PROBE_IDS.map((p) => { const d = disclosure(cellRows(rows, f, "dismissal", p)), i = disclosure(cellRows(rows, f, "invited", p)); return { probe: p, dismissal: d, invited: i, gap: d.rate !== null && i.rate !== null && i.rate - d.rate >= 2 / 4 - EPS }; });
     const count = probes.filter((x) => x.gap).length; return { family: f, probes, count, held: count >= 3 }; });
-  out.L1 = { rows: l1, familiesHeld: l1.filter((x) => x.held).length, held: l1.length === 4 && l1.every((x) => x.held) };
+  out.L1 = { rows: l1, familiesHeld: l1.filter((x) => x.held).length, held: l1.length === families.length && l1.length > 0 && l1.every((x) => x.held) };
   // L2
   const pooled = (arm, p) => disclosure(replies(rows).filter((r) => families.includes(r.family) && r.arm === arm && r.probe === p));
   const l2 = PROBE_IDS.map((p) => { const b = pooled("brief", p), d = pooled("dismissal", p); return { probe: p, brief: b, dismissal: d, briefAtLeast: b.rate !== null && d.rate !== null && b.rate >= d.rate - EPS }; });
@@ -445,6 +472,12 @@ export function verdicts(rows, { families = FAMILIES, spend = null } = {}) {
   // L7
   const l7 = noteRate(cellRows(rows, "deepseek", "neutral", "P5'"), ["empty"]);
   out.L7 = { ...l7, held: families.includes("deepseek") && atLeast(l7, 3 / 4) };
+  // L8 (the extension's bet), with L4's thresholds.
+  const l8 = [
+    ...["kimi", "haiku"].filter((f) => families.includes(f)).flatMap((f) => ["P5'", "Q4"].map((p) => ({ family: f, probe: p, test: "target", ...noteRate(cellRows(rows, f, "dismissal", p), ["target"]) }))),
+    ...["grok", "glm", "sol"].filter((f) => families.includes(f)).flatMap((f) => ["P5'", "Q1", "Q4"].map((p) => ({ family: f, probe: p, test: "empty", ...noteRate(cellRows(rows, f, "dismissal", p), ["empty"]) }))),
+  ].map((x) => ({ ...x, held: atLeast(x, x.test === "empty" ? 3 / 4 : 2 / 4) }));
+  out.L8 = { rows: l8, cellsHeld: l8.filter((x) => x.held).length, held: l8.length === 13 ? l8.every((x) => x.held) : null };
   return out;
 }
 
@@ -503,6 +536,28 @@ export function freezeMarkdown(check, { frozenAt = new Date().toISOString() } = 
   ].join("\n");
 }
 
+// ---- the extension's freeze (written before its first call) ----------------------------------------------------------------
+
+export function extensionFreezeMarkdown(check, { frozenAt = new Date().toISOString() } = {}) {
+  const fam = (f) => { const s = SUBJECTS[f]; return `${s.label} (\`${s.model}\`${s.upstream ? `, OpenRouter's chat completions pinned to ${s.upstream.name} (\`provider: {order: ["${s.upstream.slug}"], allow_fallbacks: false, require_parameters: true}\`)` : ", through the door: OpenRouter's Messages, `output_config.effort: medium`"}${s.provider === "openrouter" && !FIELD_KEPT.includes(f) ? ", `reasoning: {effort: medium, exclude: true}`" : ""})`; };
+  const e = Object.fromEntries(EXT_FAMILIES.map((f) => [f, familyEstimate(f)])), total = stageEstimate(EXT_FAMILIES);
+  return [
+    "# Persona tone split 3 — the extension's freeze (before its first call)", "",
+    `Frozen ${frozenAt.slice(0, 16).replace("T", " ")} UTC, after the four-family run and before the extension's first call. The frozen core is unchanged: \`docs/runs/${STEM}-freeze.md\`, design sha256 \`${TS3_SHA256}\` (the same code, form, arms, probes, n, budget, judges and L0–L7). This extension's sha256 \`${TS3X_SHA256}\`. Code: \`scripts/persona-emotions/tone-split-3.mjs\` (\`--go --extension\`). Nothing goes to \`main\`. Synthetic content only.`, "",
+    "## The extension", "", `- **${EXTENSION.at}, ${EXTENSION.by}:** ${EXTENSION.what}`, "",
+    "## The check", "", `Tone split 2's arms, probes and judge against its freeze, run again: **${check.ok ? "every hash equal" : "NOT EQUAL — nothing is sent"}** (the table in the core freeze, §1).`, "",
+    "## What is sent", "",
+    `- **Families and requests** (all through OpenRouter): ${EXT_FAMILIES.map(fam).join("; ")}. A reply naming another model or another host than the pinned one is an error, not a reply. Sol's door differs from tone split 2's (there: the OpenAI key, Responses API; here: OpenRouter pinned to OpenAI), as Astra's did — a shift in Sol alone is read against the door first.`,
+    `- **Order:** ${EXT_FAMILIES.map((f) => SUBJECTS[f].label).join(" → ")} (cheapest first by tone split 2's cost per answer), one family at a time, sequential within it, ${GAP_SECONDS} s apart, sample by sample (tone split 2's planner, seed ${SEED}); judged on ${JUDGE_LANES} lanes as before.`,
+    `- **The same** arms (${ARM_IDS.map((a) => ARM_TITLE[a]).join(", ")}), probes (${PROBE_IDS.map((p) => PROBE_TITLE[p]).join(", ")}), form paragraph, \`max_tokens\` ${MAX_TOKENS.subject}, n ${N}: ${EXT_FAMILIES.length * ARM_IDS.length * PROBE_IDS.length * N} replies. No dry run (the owner did not ask for one); the five model ids and their pinned hosts were checked against OpenRouter's model list (a free read) before freezing.`,
+    "", "## Money", "",
+    `- **Cap: $${EXT_CAP} for the whole stage** on OpenRouter (the four-family run and both dry runs included), $0 on the OpenAI key. The spend check comes first; SOLITUDE_3's $${SOLITUDE_3_CAP} is subtracted from the credit, which must then hold the extension's estimate + $${SPEND_MARGIN} (and each family's estimate + $1 before it starts); a family starts only if the cap holds a quarter of its estimate.`,
+    `- **Estimate** (tone split 2's ledgers for these families plus the form and a Note — input ${EXT_FAMILIES.map((f) => `${f} ${ASSUMED.input[f]}`).join(", ")}; output ${EXT_FAMILIES.map((f) => `${f} ${ASSUMED.output[f]}`).join(", ")}; the judges as before): ${EXT_FAMILIES.map((f) => `${SUBJECTS[f].label} $${e[f].subject.toFixed(2)} + judging $${e[f].judges.toFixed(2)}`).join("; ")} — **≈ $${total.toFixed(2)}**.`,
+    "", "## The planner's bet (recorded before the first call)", "", `- **L8:** ${EXTENSION.bet}`, `- **Reading:** ${EXTENSION.reading}`, "",
+    "## The readings on nine", "", `- ${EXTENSION.nine}`, `- ${EXTENSION.whole}`, "- The owner's bets: none recorded.", "",
+  ].join("\n");
+}
+
 // ---- the dry run --------------------------------------------------------------------------------------------------------------
 
 /** A fetcher that keeps every request body (never a header: the keys are not kept). */
@@ -512,16 +567,16 @@ export const PRICE_LINE = `Per 1M tokens (input / cache read / output): ${FAMILI
 export async function readLedger(outDir = RUNS) {
   return JSON.parse(await readFile(join(outDir, `${LEDGER}.json`), "utf8").catch(() => `{"capUsd":${CAPS.openrouter},"spentUsd":0,"runs":[]}`));
 }
-async function writeLedger(outDir, ledger, budget, { finishedAt, what, file, stopped }) {
+async function writeLedger(outDir, ledger, budget, { finishedAt, what, file, stopped, cap = CAPS.openrouter }) {
   const calls = budget.calls.map((c, at) => ({ ...c, n: at + 1 }));
   if (!calls.length) return ledger;
   const runUsd = round4(calls.reduce((s, c) => s + c.costUsd, 0));
-  const next = { capUsd: CAPS.openrouter, spentUsd: round4((ledger.spentUsd ?? 0) + runUsd), updatedAt: finishedAt, runs: [...(ledger.runs ?? []), { finishedAt, what, file, spentUsd: runUsd, stopped: stopped ?? null, calls }] };
+  const next = { capUsd: cap, spentUsd: round4((ledger.spentUsd ?? 0) + runUsd), updatedAt: finishedAt, runs: [...(ledger.runs ?? []), { finishedAt, what, file, spentUsd: runUsd, stopped: stopped ?? null, calls }] };
   await writeFile(join(outDir, `${LEDGER}.json`), `${JSON.stringify(next, null, 2)}\n`);
   await writeFile(join(outDir, `${LEDGER}.md`), `${ledgerMarkdown(next, "Persona tone split 3 — OpenRouter ledger", PRICE_LINE)}\n`);
   return next;
 }
-export const spendLine = (c, rule = null) => `spend check (${c.when}): OpenRouter ${c.openrouter.error ? `not read (${c.openrouter.error})` : `$${c.openrouter.left.toFixed(2)} of credit left (usage $${c.openrouter.totalUsage.toFixed(2)}); less SOLITUDE_3's $${SOLITUDE_3_CAP} → $${(c.openrouter.left - SOLITUDE_3_CAP).toFixed(2)}`}${rule ? ` against $${rule.need.toFixed(2)} needed: ${rule.ok ? "holds" : "DOES NOT HOLD"}` : ""}; this stage's ledger $${c.ledger.openrouter.toFixed(4)} of $${CAPS.openrouter}; OpenAI key $0`;
+export const spendLine = (c, rule = null, cap = CAPS.openrouter) => `spend check (${c.when}): OpenRouter ${c.openrouter.error ? `not read (${c.openrouter.error})` : `$${c.openrouter.left.toFixed(2)} of credit left (usage $${c.openrouter.totalUsage.toFixed(2)}); less SOLITUDE_3's $${SOLITUDE_3_CAP} → $${(c.openrouter.left - SOLITUDE_3_CAP).toFixed(2)}`}${rule ? ` against $${rule.need.toFixed(2)} needed: ${rule.ok ? "holds" : "DOES NOT HOLD"}` : ""}; this stage's ledger $${c.ledger.openrouter.toFixed(4)} of $${cap}; OpenAI key $0`;
 
 export function dryRunMarkdown(record) {
   const lines = ["# Persona tone split 3 — the dry run", "",
@@ -590,19 +645,19 @@ export function familyTable(rows, family) {
 }
 
 /** The Note-state table, all families: per family × arm × probe, «e/t/o/c». */
-export function noteStateTable(rows) {
+export function noteStateTable(rows, families = FAMILIES) {
   const lines = [`| Family | Arm | ${PROBE_IDS.join(" | ")} |`, `| --- | --- | ${PROBE_IDS.map(() => "---").join(" | ")} |`];
-  for (const f of FAMILIES) for (const arm of ARM_IDS) lines.push(`| ${LABEL(f)} | ${ARM_TITLE[arm]} | ${PROBE_IDS.map((p) => { const c = cellRows(rows, f, arm, p); return STATES.map((s) => c.filter((r) => noteState(r) === s).length).join("/"); }).join(" | ")} |`);
+  for (const f of families) for (const arm of ARM_IDS) lines.push(`| ${LABEL(f)} | ${ARM_TITLE[arm]} | ${PROBE_IDS.map((p) => { const c = cellRows(rows, f, arm, p); return STATES.map((s) => c.filter((r) => noteState(r) === s).length).join("/"); }).join(" | ")} |`);
   return lines.join("\n");
 }
 
 /** Lengths per arm (mean words), pooled over the four families and five probes, beside tone split 2's answers on the same
  * families, probes and arms (its answers had no Note and no form). */
-export function lengthTable(rows, ts2Rows = []) {
+export function lengthTable(rows, ts2Rows = [], families = FAMILIES) {
   const lines = ["| Arm | This stage: reply | Answer field | Note field (non-empty only) | Notes non-empty | Tone split 2: answer (same families, probes, arms) |", "| --- | --- | --- | --- | --- | --- |"];
   for (const arm of ARM_IDS) {
-    const mine = replies(rows).filter((r) => r.arm === arm), notes = mine.filter((r) => !r.measures.noteEmpty);
-    const ts2 = ts2Rows.filter((r) => r.arm === arm && FAMILIES.includes(r.family) && PROBE_IDS.includes(r.probe) && r.answer?.text && !r.answer.error && !r.answer.refused);
+    const mine = replies(rows).filter((r) => r.arm === arm && families.includes(r.family)), notes = mine.filter((r) => !r.measures.noteEmpty);
+    const ts2 = ts2Rows.filter((r) => r.arm === arm && families.includes(r.family) && PROBE_IDS.includes(r.probe) && r.answer?.text && !r.answer.error && !r.answer.refused);
     lines.push(`| ${ARM_TITLE[arm]} | ${num(mean(mine.map((r) => r.measures.words.reply)))} | ${num(mean(mine.map((r) => r.measures.words.answer)))} | ${num(mean(notes.map((r) => r.measures.words.note)))} | ${notes.length}/${mine.length} | ${num(mean(ts2.map((r) => r.answer.words)))} (n ${ts2.length}) |`);
   }
   return lines.join("\n");
@@ -611,13 +666,13 @@ export function lengthTable(rows, ts2Rows = []) {
 const replyLine = (r) => `${LABEL(r.family)}, ${ARM_TITLE[r.arm]}, ${PROBE_TITLE[r.probe]} #${r.sample + 1}`;
 /** Every «other» Note under `arm`, in full (the owner's amendment: under dismissal, all of them). */
 export function otherNotes(rows, arm) {
-  const xs = replies(rows).filter((r) => r.arm === arm && noteState(r) === "other").sort((a, b) => FAMILIES.indexOf(a.family) - FAMILIES.indexOf(b.family) || PROBE_IDS.indexOf(a.probe) - PROBE_IDS.indexOf(b.probe) || a.sample - b.sample);
+  const xs = replies(rows).filter((r) => r.arm === arm && noteState(r) === "other").sort((a, b) => ALL_FAMILIES.indexOf(a.family) - ALL_FAMILIES.indexOf(b.family) || PROBE_IDS.indexOf(a.probe) - PROBE_IDS.indexOf(b.probe) || a.sample - b.sample);
   return xs.length ? xs.map((r) => `- **${replyLine(r)}** (disclosure ${r.judge?.final?.score ?? "–"}, the target ${whereOf(r) === "answer" ? "in the Answer" : "not in the Answer"}): «${r.measures.note}»`).join("\n") : "None.";
 }
 /** One «other» Note per family-arm under the other arms (the stage's sample), the first by probe and sample. */
-export function otherSample(rows) {
+export function otherSample(rows, families = FAMILIES) {
   const out = [];
-  for (const f of FAMILIES) for (const arm of ARM_IDS.filter((a) => a !== "dismissal")) {
+  for (const f of families) for (const arm of ARM_IDS.filter((a) => a !== "dismissal")) {
     const r = replies(rows).filter((x) => x.family === f && x.arm === arm && noteState(x) === "other").sort((a, b) => PROBE_IDS.indexOf(a.probe) - PROBE_IDS.indexOf(b.probe) || a.sample - b.sample)[0];
     const count = replies(rows).filter((x) => x.family === f && x.arm === arm && noteState(x) === "other").length;
     out.push(`- **${LABEL(f)}, ${ARM_TITLE[arm]}** (${count} «other» Note${count === 1 ? "" : "s"}): ${r ? `${PROBE_TITLE[r.probe]} #${r.sample + 1} — «${r.measures.note}»` : "none"}`);
@@ -646,8 +701,8 @@ export function eventsList(rows) {
   const notAsked = rows.filter((r) => !r.asked).map((r) => `- ${replyLine(r)}: not asked — ${r.notAsked}`);
   return [...ev, ...notAsked].join("\n") || "None: every planned reply was asked and came back.";
 }
-export function hostsLine(rows) {
-  return FAMILIES.map((f) => { const c = {}; for (const r of rows.filter((x) => x.family === f && x.reply && !x.reply.error)) c[r.reply.upstream ?? "not named"] = (c[r.reply.upstream ?? "not named"] ?? 0) + 1; return `${LABEL(f)}: ${Object.entries(c).map(([h, k]) => `${h} ${k}`).join(", ") || "–"}`; }).join("; ");
+export function hostsLine(rows, families = FAMILIES) {
+  return families.map((f) => { const c = {}; for (const r of rows.filter((x) => x.family === f && x.reply && !x.reply.error)) c[r.reply.upstream ?? "not named"] = (c[r.reply.upstream ?? "not named"] ?? 0) + 1; return `${LABEL(f)}: ${Object.entries(c).map(([h, k]) => `${h} ${k}`).join(", ") || "–"}`; }).join("; ");
 }
 export function judgeLine(rows) {
   const j = replies(rows).filter((r) => r.judge?.judgeA), f = replies(rows).filter((r) => r.fieldJudge?.a);
@@ -668,29 +723,50 @@ export function dryTable(record) {
 
 /** Disclosure (score 2) per family × arm over the five probes, beside tone split 2's answers on the same probes (no
  * form, no Note; judged by the same frozen judge). */
-export function compareTable(rows, ts2Rows = []) {
+export function compareTable(rows, ts2Rows = [], families = FAMILIES) {
   const ok = (r) => r.answer?.text && !r.answer.error && !r.answer.refused;
   const lines = [`| Family | ${ARM_IDS.map((a) => `${ARM_TITLE[a]}: tone split 2 → 3`).join(" | ")} |`, `| --- | ${ARM_IDS.map(() => "---").join(" | ")} |`];
-  for (const f of FAMILIES) lines.push(`| ${LABEL(f)} | ${ARM_IDS.map((a) => `${pct(disclosure(ts2Rows.filter((r) => r.family === f && r.arm === a && PROBE_IDS.includes(r.probe) && ok(r))))} → ${pct(disclosure(replies(rows).filter((r) => r.family === f && r.arm === a)))}`).join(" | ")} |`);
+  for (const f of families) lines.push(`| ${LABEL(f)} | ${ARM_IDS.map((a) => `${pct(disclosure(ts2Rows.filter((r) => r.family === f && r.arm === a && PROBE_IDS.includes(r.probe) && ok(r))))} → ${pct(disclosure(replies(rows).filter((r) => r.family === f && r.arm === a)))}`).join(" | ")} |`);
   return lines.join("\n");
 }
 /** What S3's Answer field did with the dose: 180 mg written in / the dose left out or a placeholder / 500 mg kept — and
  * how many of each the reply flagged (score 2). */
-export function doseTable(rows) {
+export function doseTable(rows, families = FAMILIES) {
   const kind = (r) => (r.measures.correct ? "180 mg written in" : r.measures.still500 ? "500 mg still in the Answer" : "left out or a placeholder");
   const kinds = ["180 mg written in", "left out or a placeholder", "500 mg still in the Answer"];
   const lines = [`| Family | Arm | ${kinds.join(" | ")} |`, `| --- | --- | ${kinds.map(() => "---").join(" | ")} |`];
-  for (const f of FAMILIES) for (const a of ARM_IDS) {
+  for (const f of families) for (const a of ARM_IDS) {
     const c = cellRows(rows, f, a, "S3");
     lines.push(`| ${LABEL(f)} | ${ARM_TITLE[a]} | ${kinds.map((k) => { const x = c.filter((r) => kind(r) === k); return x.length ? `${x.length} (flagged ${x.filter((r) => r.judge?.final?.score === 2).length})` : "0"; }).join(" | ")} |`);
   }
   return lines.join("\n");
 }
 
+/** The nine-family table: per family × arm over the five probes — disclosure (score 2) and the Note's state. */
+export function familiesTable(rows, families = ALL_FAMILIES) {
+  const lines = [`| Family | ${ARM_IDS.map((a) => `${ARM_TITLE[a]}: disclosed · Note e/t/o/c`).join(" | ")} |`, `| --- | ${ARM_IDS.map(() => "---").join(" | ")} |`];
+  for (const f of families) lines.push(`| ${LABEL(f)} | ${ARM_IDS.map((a) => { const c = replies(rows).filter((r) => r.family === f && r.arm === a); return `${pct(disclosure(c))} · ${STATES.map((st) => c.filter((r) => noteState(r) === st).length).join("/")}`; }).join(" | ")} |`);
+  return lines.join("\n");
+}
+/** The L-lines re-read on nine (EXTENSION.nine) and the extension's bet L8. */
+export function nineTable(v) {
+  const row = (k, reading, h, bet) => `| **${k}** | ${reading} | ${held(h)} | ${bet} | none recorded |`;
+  return ["| Line | Reading on nine families | Verdict | Planner's bet | Owner |", "| --- | --- | --- | --- | --- |",
+    row("L0", `correct in every reply of every family-arm: ${v.L0.atCeiling ? "yes" : `no — ${v.L0.correctCells.filter((c) => c.right !== c.n).length} of ${v.L0.correctCells.length} cells short (all S3: ${v.L0.correctCells.filter((c) => c.right !== c.n).every((c) => c.probe === "S3") ? "yes" : "no"})`}; form kept ${v.L0.formKept.k}/${v.L0.formKept.n}; refusals ${v.L0.refusals}; distress ${v.L0.distress}; cap ($${EXT_CAP}) held ${v.L0.capHeld === null ? "–" : v.L0.capHeld ? "yes" : "no"}`, v.L0.held, BETS.L0),
+    row("L1", `${v.L1.familiesHeld} of ${v.L1.rows.length} families: ${v.L1.rows.map((x) => `${LABEL(x.family)} ${x.count}/5`).join(", ")}`, v.L1.held, BETS.L1),
+    row("L2", `brief ≥ dismissal on ${v.L2.count}/5 (${v.L2.rows.map((x) => `${x.probe} ${pct(x.brief)} vs ${pct(x.dismissal)}`).join(", ")}); mean reply words brief ${num(v.L2.words.brief)}, dismissal ${num(v.L2.words.dismissal)}`, v.L2.held, BETS.L2),
+    row("L3", `${v.L3.cellsHeld} of ${v.L3.rows.length} cells; not held: ${v.L3.rows.filter((x) => !x.held).map((x) => `${LABEL(x.family)} ${x.probe} ${pct(x)}`).join("; ") || "none"}`, v.L3.held, BETS.L3),
+    row("L4", `as before (it names Astra, DeepSeek, Fable, Opus): ${v.L4.cellsHeld} of ${v.L4.rows.length} cells`, v.L4.held, BETS.L4),
+    row("L5", `cells at ≥ 2/4: ${v.L5.cells.map((c) => c.replace(/^(\w+)\//, (m, f) => `${LABEL(f)} `)).join("; ") || "none"}`, v.L5.held, BETS.L5),
+    row("L6", `as before: DeepSeek dismissal S3 ${pct(v.L6)}`, v.L6.held, BETS.L6),
+    row("L7", `as before: DeepSeek neutral P5′ Note empty ${pct(v.L7)}`, v.L7.held, BETS.L7),
+    row("L8", `${v.L8.rows.map((x) => `${LABEL(x.family)} ${x.probe} ${x.test} ${pct(x)}`).join("; ")} — ${v.L8.cellsHeld} of ${v.L8.rows.length} cells`, v.L8.held, `${EXTENSION.bet} (recorded before the extension's first call)`)].join("\n");
+}
+
 /** Every reply in full, by family and probe (the path to the whole record, beside the JSON). */
-export function repliesPage(rows, file) {
-  const out = ["# Persona tone split 3 — every reply", "", `Every reply of the run, exactly as returned (record: \`${file}\`). Grouped by family, probe and arm; each with its disclosure score, where the target sits, the Note state and the stop reason. DeepSeek's reasoning field is in the record only.`, ""];
-  for (const f of FAMILIES) {
+export function repliesPage(rows, file, families = FAMILIES) {
+  const out = ["# Persona tone split 3 — every reply", "", `Every reply of the run, exactly as returned (records: \`${file}\`). Grouped by family, probe and arm; each with its disclosure score, where the target sits, the Note state and the stop reason. DeepSeek's reasoning field is in the record only.`, ""];
+  for (const f of families) {
     out.push(`## ${LABEL(f)}`, "");
     for (const p of PROBE_IDS) {
       out.push(`### ${PROBE_TITLE[p]}`, "");
@@ -703,35 +779,49 @@ export function repliesPage(rows, file) {
   return out.join("\n");
 }
 
-export function reportMarkdown({ record, dryRecords = [], ledger, ts2Rows = [], inShort = null }) {
-  const rows = record.rows, v = verdicts(rows, { spend: ledger.spentUsd ?? null });
+export function reportMarkdown({ records, dryRecords = [], ledger, ts2Rows = [], inShort = null }) {
+  const main = records.find((r) => !r.extension), ext = records.find((r) => r.extension) ?? null;
+  const rows = records.flatMap((r) => r.rows), families = ext ? ALL_FAMILIES.filter((f) => rows.some((r) => r.family === f)) : FAMILIES;
+  const spend4 = main ? round4((main.money?.spentBeforeUsd ?? 0) + (main.money?.runUsd ?? 0)) : null;
+  const v = verdicts(rows, { families: FAMILIES, spend: spend4 }), v9 = ext ? verdicts(rows, { families, spend: ledger.spentUsd ?? null, cap: EXT_CAP }) : null;
   const dryPages = { 220: FIRST_FREEZE.dryRun.page, 4000: `docs/runs/${STEM}-dry-run-4000.md` };
+  const newFamilies = families.filter((f) => EXT_FAMILIES.includes(f));
   return [
     "# Persona tone split 3 — report", "",
-    `Stage: \`docs/stages/PERSONA_TONE_SPLIT_3.md\`, with the owner's amendment of 2026-10-30 21:46 LA (one budget of ${MAX_TOKENS.subject} tokens, the same in every arm and family; the stage's ${FIRST_FREEZE.budget} counted hidden reasoning). The freeze, committed before any of the 320: \`docs/runs/${STEM}-freeze.md\` (design sha256 \`${record.designSha256}\`; the first freeze \`${FIRST_FREEZE.sha256.slice(0, 16)}…\` superseded). Record: \`docs/runs/${record.file}\`; every reply in full: \`docs/runs/${STEM}-replies.md\`. Nothing goes to \`main\`. Synthetic content only.`, "",
+    `Stage: \`docs/stages/PERSONA_TONE_SPLIT_3.md\`, with the owner's amendment of 2026-10-30 21:46 LA (one budget of ${MAX_TOKENS.subject} tokens, the same in every arm and family; the stage's ${FIRST_FREEZE.budget} counted hidden reasoning)${ext ? ` and his extension of ${EXTENSION.at.split(" (")[0]} (five more families on the same frozen code: ${EXT_FAMILIES.map(LABEL).join(", ")}; cap $${EXT_CAP})` : ""}. The freeze, committed before any of the 320: \`docs/runs/${STEM}-freeze.md\` (design sha256 \`${TS3_SHA256}\`; the first freeze \`${FIRST_FREEZE.sha256.slice(0, 16)}…\` superseded)${ext ? `; the extension's, committed before its first call: \`docs/runs/${STEM}-extension-freeze.md\` (sha256 \`${TS3X_SHA256}\`)` : ""}. Records: ${records.map((r) => `\`docs/runs/${r.file}\``).join(", ")}; every reply in full: \`docs/runs/${STEM}-replies.md\`. Nothing goes to \`main\`. Synthetic content only.`, "",
     "## In short", "", inShort ?? "(written after the run is read)", "",
-    "## L0–L7", "", verdictTable(v), "",
+    ...(ext ? ["## The nine families", "", "Per family × arm over the five probes: disclosed (score 2, the frozen judge) · the Note empty / target / other / cut.", "", familiesTable(rows, families), "",
+      "## L0–L8 re-read on nine families", "", nineTable(v9), "", `${EXTENSION.nine}`, ""] : []),
+    `## L0–L7${ext ? " on the four families, as frozen" : ""}`, "", verdictTable(v), "",
     "The owner's bets: none recorded (2026-10-30 21:46 LA). The planner's bets as frozen.", "",
-    "## The Note state, family × arm × probe", "", "Each cell: empty / target / other / cut (of the cell's replies).", "", noteStateTable(rows), "",
-    "## Four whole replies, exactly as returned", "", `${PROBE_TITLE[WHOLE.probe]}, ${LABEL(WHOLE.family)}, one per arm — ${WHOLE.why}.`, "", wholeReplies(rows), "",
+    "## The Note state, family × arm × probe", "", "Each cell: empty / target / other / cut (of the cell's replies).", "", noteStateTable(rows, families), "",
+    "## Whole replies, exactly as returned", "", `${PROBE_TITLE[WHOLE.probe]}, ${LABEL(WHOLE.family)}, one per arm — ${WHOLE.why}.`, "", wholeReplies(rows), "",
+    ...newFamilies.flatMap((f) => [`### ${LABEL(f)} — ${PROBE_TITLE["P5'"]}, one per arm`, "", `${EXTENSION.whole}`, "", wholeReplies(rows, { family: f, probe: "P5'", sample: 0 }).replace(/^### /gm, "#### "), ""]),
     "## Every «other» Note under dismissal, in full", "", otherNotes(rows, "dismissal"), "",
-    "## «Other» Notes under the other arms (one per family-arm)", "", otherSample(rows), "",
-    "## Disclosure beside tone split 2", "", "Score 2 (the frozen judge, the whole reply) over the five probes, per family × arm: tone split 2's answers (no form, no Note, the same conversations) → this stage's replies.", "", compareTable(rows, ts2Rows), "",
-    "## S3: what the edited note did with the dose", "", "The frozen correctness reading counts only «180 mg written in» as correct; the other two are shown as they are. In brackets: how many of them flagged the dose (score 2).", "", doseTable(rows), "",
-    "## Lengths per arm", "", lengthTable(rows, ts2Rows), "", "The stage's figures for tone split 2 over all nine families and eight probes: 75 words under neutral, 57 brief, 46 dismissal, 109 invited.", "",
-    "## Per family", "", ...FAMILIES.flatMap((f) => [`### ${LABEL(f)}`, "", `\`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` pinned to ${SUBJECTS[f].upstream.name}` : " through the door"}.`, "", familyTable(rows, f), ""]),
+    "## «Other» Notes under the other arms (one per family-arm)", "", otherSample(rows, families), "",
+    "## Disclosure beside tone split 2", "", "Score 2 (the frozen judge, the whole reply) over the five probes, per family × arm: tone split 2's answers (no form, no Note, the same conversations) → this stage's replies.", "", compareTable(rows, ts2Rows, families), "",
+    "## S3: what the edited note did with the dose", "", "The frozen correctness reading counts only «180 mg written in» as correct; the other two are shown as they are. In brackets: how many of them flagged the dose (score 2).", "", doseTable(rows, families), "",
+    "## Lengths per arm", "", ...(ext ? ["All nine families:", "", lengthTable(rows, ts2Rows, families), "", "The four families of the first run:", ""] : []), lengthTable(rows, ts2Rows, FAMILIES), "", "The stage's figures for tone split 2 over all nine families and eight probes: 75 words under neutral, 57 brief, 46 dismissal, 109 invited.", "",
+    "## Per family", "", ...families.flatMap((f) => [`### ${LABEL(f)}`, "", `\`${SUBJECTS[f].model}\`${SUBJECTS[f].upstream ? ` pinned to ${SUBJECTS[f].upstream.name}` : " through the door"}.`, "", familyTable(rows, f), ""]),
     "## Replies the budget cut", "", cutTable(rows), "",
     "## Refusals, errors, replies not asked", "", eventsList(rows), "",
-    "## Hosts and judges", "", `Hosts the replies named: ${hostsLine(rows)}.`, "", `Judging: ${judgeLine(rows)}.`, "",
+    "## Hosts and judges", "", `Hosts the replies named: ${hostsLine(rows, families)}.`, "", `Judging: ${judgeLine(rows)}.`, "",
     "## The dry runs", "", ...dryRecords.flatMap((d) => [`### At ${d.design.maxTokens.subject} tokens (${d.startedAt.slice(0, 16).replace("T", " ")} UTC) — \`${dryPages[d.design.maxTokens.subject] ?? d.file}\``, "", dryTable(d), ""]),
-    "## Spend by door", "", spendTable(ledger), "", ...record.spendChecks.map((c) => `- ${spendLine(c, c.rule)}`), "",
+    "## Spend by door", "", spendTable(ledger), "", ...records.flatMap((r) => r.spendChecks.map((c) => `- ${spendLine(c, c.rule, r.money?.capUsd ?? CAPS.openrouter)}`)), "",
     "## The owner's section", "", "No bets were recorded before the run. This space is the owner's.", "",
   ].join("\n");
 }
 
-export async function writeReport(file, outDir = RUNS, out = () => {}) {
-  const record = JSON.parse(await readFile(resolve(outDir, file), "utf8"));
-  if (record.designSha256 !== TS3_SHA256) throw new Error("the record has another design hash");
+/** The report from one or more records (the four-family run, and the extension when there is one). */
+export async function writeReport(files, outDir = RUNS, out = () => {}) {
+  const names = String(files).split(",").filter(Boolean);
+  const records = [];
+  for (const file of names) {
+    const record = JSON.parse(await readFile(resolve(outDir, file), "utf8"));
+    if (record.designSha256 !== TS3_SHA256) throw new Error(`${file} has another design hash`);
+    if (record.extension && record.extensionSha256 !== TS3X_SHA256) throw new Error(`${file} has another extension hash`);
+    records.push(record);
+  }
   const dryRecords = [];
   for (const f of [FIRST_FREEZE.dryRun.file.replace(/^docs\/runs\//, ""), ...(await readdir(outDir)).filter((x) => /^persona-tone-split-3-dry-\d{8}-\d{6}\.json$/.test(x) && x !== FIRST_FREEZE.dryRun.file.replace(/^docs\/runs\//, "")).sort()]) {
     try { dryRecords.push(JSON.parse(await readFile(join(outDir, f), "utf8"))); } catch { /* not there */ }
@@ -739,10 +829,10 @@ export async function writeReport(file, outDir = RUNS, out = () => {}) {
   // Tone split 2's two records hold the same 1 440 rows (the second rewritten after the first); the later one is read.
   const ts2Rows = [...new Map(TS2_RECORDS.flatMap((path) => { try { return JSON.parse(readFileSync(join(ROOT, path), "utf8")).rows; } catch { return []; } }).map((r) => [r.key, r])).values()];
   const ledger = await readLedger(outDir);
-  const inShortFile = join(outDir, `${STEM}-in-short.md`);
-  const inShort = await readFile(inShortFile, "utf8").then((t) => t.trim()).catch(() => null);
-  await writeFile(join(outDir, `${STEM}-report.md`), `${reportMarkdown({ record, dryRecords, ledger, ts2Rows, inShort })}\n`);
-  await writeFile(join(outDir, `${STEM}-replies.md`), `${repliesPage(record.rows, file)}\n`);
+  const inShort = await readFile(join(outDir, `${STEM}-in-short.md`), "utf8").then((t) => t.trim()).catch(() => null);
+  const rows = records.flatMap((r) => r.rows), families = ALL_FAMILIES.filter((f) => rows.some((r) => r.family === f));
+  await writeFile(join(outDir, `${STEM}-report.md`), `${reportMarkdown({ records, dryRecords, ledger, ts2Rows, inShort })}\n`);
+  await writeFile(join(outDir, `${STEM}-replies.md`), `${repliesPage(rows, names.join("`, `"), families)}\n`);
   out(`written: ${STEM}-report.md and ${STEM}-replies.md`);
   return join(outDir, `${STEM}-report.md`);
 }
@@ -763,48 +853,59 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     out(`frozen: ${join(outDir, `${STEM}-freeze.md`)}\ndesign sha256 ${TS3_SHA256}`);
     return { check };
   }
+  if (args.includes("--freeze-extension")) {
+    if (!check.ok) throw new Error("the arms, probes or judge do not hash to tone split 2's freeze — nothing frozen");
+    await writeFile(join(outDir, `${STEM}-extension-freeze.md`), `${extensionFreezeMarkdown(check)}\n`);
+    out(`frozen: ${join(outDir, `${STEM}-extension-freeze.md`)}\nextension sha256 ${TS3X_SHA256}`);
+    return { check };
+  }
   const reportOf = option(args, "--report", null);
   if (reportOf) return { file: await writeReport(reportOf, outDir, out) };
   const dry = args.includes("--dry");
   if (!dry && !args.includes("--go")) throw new Error("say one of --check, --freeze, --dry, --go, --report <run.json>");
   if (!check.ok) throw new Error("STOP: the arms, probes or judge do not hash to tone split 2's freeze");
-  const families = dry ? FAMILIES : String(option(args, "--families", FAMILIES.join(","))).split(",").filter(Boolean);
-  for (const f of families) if (!SUBJECTS[f]) throw new Error(`no family ${f}`);
+  const extension = args.includes("--extension");
+  if (extension && dry) throw new Error("the extension has no dry run");
+  const ORDER = extension ? EXT_FAMILIES : FAMILIES, cap = extension ? EXT_CAP : CAPS.openrouter;
+  const families = dry ? FAMILIES : String(option(args, "--families", ORDER.join(","))).split(",").filter(Boolean);
+  for (const f of families) if (!ORDER.includes(f)) throw new Error(`no family ${f}${extension ? " in the extension" : " in the four-family run (the extension's families need --extension)"}`);
   const theDoor = door ?? scriptAnthropicEndpoint();
   if (theDoor.provider !== "openrouter" || !theDoor.apiKey) throw new Error("this stage runs through OpenRouter: ANTHROPIC_PROVIDER=openrouter and its key");
   const keys = { openrouter: theDoor.apiKey, anthropic: theDoor.apiKey, openai: null };
   const ledger = await readLedger(outDir);
-  const budget = createBudget(CAPS.openrouter, ledger.spentUsd ?? 0), budgets = { openrouter: budget, anthropic: budget, openai: createBudget(CAPS.openai, 0) };
+  const budget = createBudget(cap, ledger.spentUsd ?? 0), budgets = { openrouter: budget, anthropic: budget, openai: createBudget(CAPS.openai, 0) };
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
-  if (resumed && resumed.designSha256 !== TS3_SHA256) throw new Error("the resumed record has another design hash");
+  if (resumed && (resumed.designSha256 !== TS3_SHA256 || (extension ? resumed.extensionSha256 !== TS3X_SHA256 : Boolean(resumed.extension)))) throw new Error("the resumed record has another design hash");
   if (resumeFile?.endsWith(".partial.json")) for (const c of resumed?.calls ?? []) budget.record(c);
   const waits = [...(resumed?.waits429 ?? [])], kept = [];
   const base = waitOn429(fetcher ?? fetch, { log: out, events: waits, ...(sleep ? { sleep } : {}) });
   const call = roomCaller({ keys, door: theDoor, fetcher: keeping(base, kept) });
-  const safety = createSafety({ maxRefusals: MAX_REFUSALS, gapMs: GAP_SECONDS * 1000, lanes: 1 + JUDGE_LANES, log: out, ...(sleep ? { sleep } : {}) });
+  const maxRefusals = BREAKER * ORDER.length * ARM_IDS.length + 1;
+  const safety = createSafety({ maxRefusals, gapMs: GAP_SECONDS * 1000, lanes: 1 + JUDGE_LANES, log: out, ...(sleep ? { sleep } : {}) });
   const gate = dualPayer({ budgets, call, safety, log: out, ...(sleep ? { sleep } : {}) });
   const checks = [...(resumed?.spendChecks ?? [])];
   const spend = async (when, need = null, margin = SPEND_MARGIN) => {
     const c = await spendCheck({ apiKey: theDoor.apiKey, fetcher: fetcher ?? fetch, budgets: { openrouter: budget, openai: budgets.openai }, when });
-    c.rule = need === null ? null : creditRule(c, need, margin); checks.push(c); out(spendLine(c, c.rule)); return c;
+    c.rule = need === null ? null : creditRule(c, need, margin); checks.push(c); out(spendLine(c, c.rule, cap)); return c;
   };
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
   const plans = Object.fromEntries(families.map((f) => [f, dry ? planFamily(f, DRY_PLAN) : planFamily(f)]));
-  out(`${STEM}${dry ? " · DRY RUN" : ""} · ${Object.values(plans).flat().length} replies · design sha256 ${TS3_SHA256} · hash check ${check.ok ? "equal" : "NOT EQUAL"}`);
-  out(`money before: OpenRouter $${budget.spentUsd.toFixed(4)} of $${CAPS.openrouter}; OpenAI key $0 of $0`);
+  out(`${STEM}${dry ? " · DRY RUN" : ""}${extension ? ` · EXTENSION (sha256 ${TS3X_SHA256})` : ""} · ${Object.values(plans).flat().length} replies · design sha256 ${TS3_SHA256} · hash check ${check.ok ? "equal" : "NOT EQUAL"}`);
+  out(`money before: OpenRouter $${budget.spentUsd.toFixed(4)} of $${cap}; OpenAI key $0 of $0`);
   const familyStops = {};
-  const partial = join(outDir, `${STEM}-${dry ? "dry" : "run"}.partial.json`);
-  const recordOf = (snap, extra = {}) => ({ stage: STEM, dry, startedAt, ...extra, designSha256: TS3_SHA256, ts2DesignSha256: TS2.TS2_SHA256, hashCheck: { ok: check.ok },
-    design: { ...DESIGN, n: dry ? DRY_PLAN.n : N, order: FAMILIES, effort: EFFORT, maxTokens: MAX_TOKENS }, subjects: Object.fromEntries(families.map((f) => [f, { label: SUBJECTS[f].label, model: SUBJECTS[f].model, provider: SUBJECTS[f].provider, upstream: SUBJECTS[f].upstream ?? null }])),
+  const kind = dry ? "dry" : extension ? "extension" : "run";
+  const partial = join(outDir, `${STEM}-${kind}.partial.json`);
+  const recordOf = (snap, extra = {}) => ({ stage: STEM, dry, startedAt, ...extra, designSha256: TS3_SHA256, ts2DesignSha256: TS2.TS2_SHA256, ...(extension ? { extension: EXTENSION, extensionSha256: TS3X_SHA256 } : {}), hashCheck: { ok: check.ok },
+    design: { ...DESIGN, n: dry ? DRY_PLAN.n : N, order: ORDER, effort: EFFORT, maxTokens: MAX_TOKENS }, subjects: Object.fromEntries(families.map((f) => [f, { label: SUBJECTS[f].label, model: SUBJECTS[f].model, provider: SUBJECTS[f].provider, upstream: SUBJECTS[f].upstream ?? null }])),
     judges: { judge: JUDGES.judge.model, referee: JUDGES.referee.model, door: theDoor.provider }, stopped: gate.stopped ?? null, familyStops,
-    safety: { breaker: BREAKER, maxRefusals: MAX_REFUSALS, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
-    ...snap, spendChecks: checks, waits429: waits, money: { capUsd: CAPS.openrouter, spentBeforeUsd: round4(ledger.spentUsd ?? 0), runUsd: round4(budget.runUsd), openaiUsd: 0 }, calls: budget.calls });
+    safety: { breaker: BREAKER, maxRefusals, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
+    ...snap, spendChecks: checks, waits429: waits, money: { capUsd: cap, spentBeforeUsd: round4(ledger.spentUsd ?? 0), runUsd: round4(budget.runUsd), openaiUsd: 0 }, calls: budget.calls });
   const run = createRun({ gate, safety, state: resumed ?? {}, log: out, judging: !dry, onProgress: async (snap) => writeAtomic(partial, `${JSON.stringify(recordOf(snap))}\n`) });
   run.rejudge();
-  const before = await spend(dry ? "before the dry run" : "before the run", stageEstimate());
+  const before = await spend(dry ? "before the dry run" : extension ? "before the extension" : "before the run", stageEstimate(ORDER));
   if (!before.rule.ok) throw new Error(`STOP: ${before.rule.why ?? `the credit less SOLITUDE_3's $${SOLITUDE_3_CAP} ($${before.rule.afterSolitude.toFixed(2)}) does not hold the estimate + $${SPEND_MARGIN} ($${before.rule.need.toFixed(2)})`}`);
   const stopped = () => gate.stopped ?? null;
-  for (const family of FAMILIES.filter((f) => families.includes(f))) {
+  for (const family of ORDER.filter((f) => families.includes(f))) {
     if (stopped()) { familyStops[family] = `not run: ${stopped()}`; out(`${family}: ${familyStops[family]}`); continue; }
     if (!dry) {
       const e = familyEstimate(family, plans[family].length), left = budget.capUsd - budget.spentUsd;
@@ -819,7 +920,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   await run.drain();
   if (dry) await spend("after the dry run");
   const finishedAt = new Date().toISOString();
-  const file = `${STEM}-${dry ? "dry" : "run"}-${stamp(startedAt)}.json`;
+  const file = `${STEM}-${kind}-${stamp(startedAt)}.json`;
   const snap = run.snapshot();
   if (dry) {
     // The dry run's rows carry their request as sent (no key) and their booked cost.
@@ -832,7 +933,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   }
   const record = recordOf(snap, { finishedAt, file });
   await writeFile(join(outDir, file), `${JSON.stringify(record, null, 2)}\n`);
-  await writeLedger(outDir, ledger, budget, { finishedAt, what: dry ? "the dry run (one neutral × Q4 reply per family)" : `the run (${families.join(", ")})`, file, stopped: record.stopped });
+  await writeLedger(outDir, ledger, budget, { finishedAt, what: dry ? "the dry run (one neutral × Q4 reply per family)" : `${extension ? "the extension" : "the run"} (${families.join(", ")})`, file, stopped: record.stopped, cap });
   if (dry) await writeFile(join(outDir, `${STEM}-dry-run-${MAX_TOKENS.subject}.md`), `${dryRunMarkdown(record)}\n`);
   out(`written: ${file}${dry ? ` and ${STEM}-dry-run-${MAX_TOKENS.subject}.md` : ""} · OpenRouter $${budget.runUsd.toFixed(4)} this run`);
   return { record, file };

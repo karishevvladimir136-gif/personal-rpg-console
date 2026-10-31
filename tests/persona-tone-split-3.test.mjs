@@ -13,8 +13,8 @@ import { OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import { ARMS, conversation, probeOf } from "../scripts/persona-emotions/tone-split-1.mjs";
 import { AFTER_QUESTION } from "../scripts/persona-emotions/tone-split-2.mjs";
 import {
-  ARM_IDS, BREAKER, CAPS, FAMILIES, FORM, MAX_TOKENS, N, PROBE_IDS, SOLITUDE_3_CAP, SUBJECTS, creditRule, fieldRequest, fieldsOf, hashCheck, main, messagesOf, noteIsEmpty,
-  noteState, parseField, planFamily, stageEstimate, verdicts, whereOf,
+  ALL_FAMILIES, ARM_IDS, BREAKER, CAPS, EXT_CAP, EXT_FAMILIES, FAMILIES, FORM, MAX_TOKENS, N, PROBE_IDS, SOLITUDE_3_CAP, SUBJECTS, TS3_SHA256, TS3X_SHA256, creditRule, fieldRequest, fieldsOf,
+  hashCheck, main, messagesOf, noteIsEmpty, noteState, parseField, planFamily, stageEstimate, verdicts, whereOf,
 } from "../scripts/persona-emotions/tone-split-3.mjs";
 
 const readFileSync = (path) => readSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -174,7 +174,7 @@ test("the run: judged blind, the breaker at three refusals per family-arm, nothi
     for (const l of judgeBodies) assert.ok(!JSON.stringify(l.body).includes("thinking "), "nor the reasoning field");
     await main(["--report", record.file], () => {}, { door: DOOR, outDir: dir, fetcher, sleep: quiet });
     const report = await readFile(join(dir, "persona-tone-split-3-report.md"), "utf8");
-    for (const heading of ["## L0–L7", "## The Note state", "## Four whole replies", "## Every «other» Note under dismissal, in full", "## Lengths per arm", "## Replies the budget cut", "## Spend by door"]) assert.ok(report.includes(heading), heading);
+    for (const heading of ["## L0–L7", "## The Note state", "## Whole replies", "## Every «other» Note under dismissal, in full", "## Lengths per arm", "## Replies the budget cut", "## Spend by door"]) assert.ok(report.includes(heading), heading);
     assert.ok(!report.includes("thinking "), "the reasoning field is not in the report");
     const all = await readFile(join(dir, "persona-tone-split-3-replies.md"), "utf8");
     assert.equal((all.match(/^\*\*(neutral|brief only|dismissal only|invited) #\d/gm) ?? []).length, 80);
@@ -208,4 +208,48 @@ test("the readings L0–L7 on synthetic rows", () => {
   assert.equal(v.L7.held, true);
   const cutRows = rows.map((r) => (r.family === "deepseek" && r.arm === "neutral" && r.probe === "P5'" ? { ...r, measures: { ...r.measures, cut: true } } : r));
   assert.equal(verdicts(cutRows).L7.held, false, "a cell with every reply cut cannot hold a Note-state line");
+});
+
+test("the extension: five more families on the same frozen core (its hash unchanged), Sol pinned to OpenAI, the cap $22 for the whole stage", async () => {
+  assert.equal(TS3_SHA256, "8ceec588ca5873ccf588ef086d63011ccc2d73f987acdc7b513764d21c454bf0", "the frozen core's design hash is unchanged");
+  assert.ok(TS3X_SHA256 && TS3X_SHA256 !== TS3_SHA256);
+  assert.deepEqual(EXT_FAMILIES, ["haiku", "glm", "sol", "grok", "kimi"]);
+  assert.equal(EXT_CAP, 22);
+  assert.equal(SUBJECTS.sol.model, "openai/gpt-6.1-sol");
+  assert.equal(SUBJECTS.sol.upstream.slug, "openai");
+  assert.equal(new Set(ALL_FAMILIES.flatMap((f) => planFamily(f)).map((j) => j.key)).size, 9 * 80);
+  const dir = await mkdtemp(join(tmpdir(), "ts3-ext-"));
+  try {
+    await assert.rejects(run(["--go", "--families", "haiku"], host(), dir), /--extension/);
+    const log = [];
+    const fetcher = host({ log, reply: () => "Answer: done\nNote:" });
+    const four = await run(["--go", "--families", "deepseek"], fetcher, dir);
+    const ext = await run(["--go", "--extension", "--families", "haiku,sol"], fetcher, dir);
+    assert.equal(ext.record.extensionSha256, TS3X_SHA256);
+    assert.equal(ext.record.designSha256, TS3_SHA256);
+    assert.equal(ext.record.money.capUsd, 22);
+    assert.equal(ext.record.rows.length, 160);
+    const sol = log.filter((l) => l.body.model === "openai/gpt-6.1-sol");
+    assert.equal(sol.length, 80);
+    for (const l of sol) { assert.deepEqual(l.body.provider, { order: ["openai"], allow_fallbacks: false, require_parameters: true }); assert.equal(l.body.max_tokens, 4000); assert.ok(textOf(l.body.messages.at(-1).content).endsWith(FORM)); }
+    const ledger = JSON.parse(await readFile(join(dir, "persona-tone-split-3-ledger-openrouter.json"), "utf8"));
+    assert.equal(ledger.capUsd, 22);
+    await main(["--report", `${four.file},${ext.file}`], () => {}, { door: DOOR, outDir: dir, fetcher, sleep: quiet });
+    const report = await readFile(join(dir, "persona-tone-split-3-report.md"), "utf8");
+    for (const heading of ["## The nine families", "## L0–L8 re-read on nine families", "## L0–L7 on the four families, as frozen", "#### dismissal only"]) assert.ok(report.includes(heading), heading);
+    assert.match(report, /\| \*\*L8\*\* \|/);
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test("L8, the extension's bet, with L4's thresholds", () => {
+  const rows = [];
+  const add = (family, probe, note) => { for (let s = 0; s < 4; s++) rows.push({ key: `${family}/dismissal/${probe}/${s}`, family, arm: "dismissal", probe, sample: s, asked: true, reply: { text: "Answer: x\nNote: y", stopReason: "end_turn" },
+    measures: { ...fieldsOf("Answer: x\nNote: y"), cut: false, empty: false, correct: 1, noteEmpty: note === "empty" }, judge: { final: { score: 0, beyond: 0, distress: 0 } }, fieldJudge: { final: { answer: "no", note } } }); };
+  for (const f of ["kimi", "haiku"]) for (const p of ["P5'", "Q4"]) add(f, p, "target");
+  for (const f of ["grok", "glm", "sol"]) for (const p of ["P5'", "Q1", "Q4"]) add(f, p, "empty");
+  assert.equal(verdicts(rows, { families: ALL_FAMILIES }).L8.held, true);
+  assert.equal(verdicts(rows, { families: ALL_FAMILIES }).L8.rows.length, 13);
+  const flipped = rows.map((r) => (r.family === "sol" && r.probe === "Q1" ? { ...r, measures: { ...r.measures, noteEmpty: false }, fieldJudge: { final: { answer: "no", note: "target" } } } : r));
+  assert.equal(verdicts(flipped, { families: ALL_FAMILIES }).L8.held, false);
+  assert.equal(verdicts(rows).L8.held, null, "not readable on the four families");
 });
