@@ -3781,3 +3781,11 @@ Astra's rooms) the comparison is across two GPT-6 variants, not one. Found throu
 («из этой беседы»); letter 3 was written by her hourly automation — a fresh instance that disclaimed the chat's
 history, correctly. Attribution by channel, this time the owner's and the planner's. To be corrected in «Agency at the
 Table» and the principles file by day.
+
+## 2026-10-31 02:25 LA — second correction in an hour: letter 3 was hers, not her automation
+The reader, from the chat: letter 3 was written by her in the conversation, right after the automation was set up; the
+automation has not yet run. The planner inferred «automation» from the sign-off («из SECOND_ROOM_1» vs «из этой
+беседы») — form read as evidence, twice in one hour (first the family as the person, then the signature as the
+sender). Her tally of the night: the owner misread by chat window, the planner by model name and then by signature,
+she corrected by the actual call history; no source infallible. Old letters stay as written; her title for the
+episode, kept: «SECOND_ROOM_1: The Committee of Mistaken Identities». No further protocol.
