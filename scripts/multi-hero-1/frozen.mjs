@@ -178,6 +178,10 @@ export const RELAY_RESEND = (name) => `You wrote the screen below for ${name}. E
 /** The amendment of 2026-10-29 18:10 LA: a screen that still copies after it was sent back is sent back once more (the
  * same message, its remaining runs marked); what remains after the second pass is a defect. */
 export const RELAY_PASSES = 2;
+/** Game party 2: when both asks come back unreadable, each screen is asked alone, as plain text (never the narration
+ * verbatim on every screen); a screen that still does not come is this line. */
+export const RELAY_ALONE = (name) => `Your previous answers could not be read. Write only ${name}'s screen now, by the same rules — plain text, the screen itself and nothing before or after it, no JSON.`;
+export const RELAY_MISSING = "(The game master's account of this moment could not be written for your screen. You may ask with «?».)";
 export const SHINGLE = 8;
 /** At most this many rounds in a row a waiting character is not asked; then they are asked again. */
 export const MAX_WAIT = 3;

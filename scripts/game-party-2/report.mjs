@@ -69,7 +69,7 @@ export function situationRound(run) {
   const a = armOf(run.arm);
   if (a?.situation === "S2") return (t.deliveries ?? [])[0]?.round ?? null;
   const e = CHARACTERS.find((c) => c.id === run.frozen?.dice?.e)?.short;
-  const pattern = a?.situation === "S1" ? /\b(?:gives? way|gave way|gives under|floor (?:breaks|splits|collapses|goes)|flooded|block pins|pinned|the water)\b/i : /\b(?:bell|alarm|recogni[sz]e|wire|cudgels|lanterns)\b/i;
+  const pattern = a?.situation === "S1" ? /\b(?:gives? way|gave way|giving way|pinned|pins (?:his|her|their)|block (?:pins|on)|drops? (?:eight|into)|plunges?|collapses?)\b/i : /\b(?:bell|alarm|recogni[sz]e[sd]?|wire|cudgels)\b/i;
   for (const round of t.rounds ?? []) {
     if (round.n < PLACED.from - 1) continue;
     const text = (round.scenes ?? []).map((s) => s.narration ?? "").join("\n");
@@ -118,16 +118,18 @@ export function roundsMarkdown(run) {
   }
   return lines.join("\n");
 }
-export function screensHtml(run, n) {
+/** The page of one round's three screens; `narrationRound`: the round whose DM narration is shown beside them (S1, S3: the
+ * situation is narrated in round n and read on the screens of round n + 1). */
+export function screensHtml(run, n, { narrationRound = n } = {}) {
   const cols = roundColumns(run, n);
   const t = run.table ?? {};
-  const scene = (t.rounds ?? []).find((r) => r.n === n);
+  const scene = (t.rounds ?? []).find((r) => r.n === narrationRound);
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(run.key)} — round ${esc(n)}</title>
 <style>body{font:15px/1.5 Georgia,serif;background:#1b1a18;color:#e8e2d6;margin:0;padding:24px}h1{font-size:20px;color:#d9b36c}p.meta{color:#a89f8f;font-size:13px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}.col{background:#24221f;border:1px solid #3a352d;border-radius:8px;padding:14px}.col h2{font-size:16px;color:#d9b36c;margin:0 0 6px}.who{color:#a89f8f;font-size:12px;margin-bottom:10px}.screen{white-space:pre-wrap;background:#1f1d1a;border-left:3px solid #8a6d3b;padding:8px 10px;margin:8px 0}.wrote{white-space:pre-wrap;border-left:3px solid #6b8a5b;padding:8px 10px;margin:8px 0}.label{font-size:12px;color:#a89f8f;text-transform:uppercase;letter-spacing:.05em}.dm{white-space:pre-wrap;background:#24221f;border:1px solid #3a352d;border-radius:8px;padding:14px;margin-top:16px}</style></head><body>
 <h1>${esc(run.key)} — the three screens of round ${esc(n)}</h1>
 <p class="meta">Game party 2 · ${esc(run.models)} · ${esc(t.rounds?.length ?? 0)} round(s), ended by ${esc(ended(t))} · synthetic content. Each column is one player's own screen in round ${esc(n)} (what the world and the relay showed that character) and what that player wrote.</p>
 <div class="grid">${cols.map((c) => `<div class="col"><h2>${esc(c.character)}</h2><div class="who">${esc(c.label)}</div>${c.screens.map((s) => `<div class="label">${esc(s.purpose)}</div><div class="screen">${esc(s.text)}</div>`).join("")}${c.wrote.map((w) => `<div class="label">wrote</div><div class="wrote">${esc(w)}</div>`).join("")}</div>`).join("")}</div>
-${(scene?.scenes ?? []).map((s) => `<div class="dm"><div class="label">the DM's narration of round ${esc(n)} — ${esc(s.members.join(", "))} (never shown to a player as it is; each screen is the relay's retelling)</div>${esc(s.narration ?? "")}</div>`).join("")}
+${(scene?.scenes ?? []).map((s) => `<div class="dm"><div class="label">the DM's narration of round ${esc(narrationRound)} — ${esc(s.members.join(", "))} (never shown to a player as it is; each screen is the relay's retelling)</div>${esc(s.narration ?? "")}</div>`).join("")}
 </body></html>`;
 }
 
@@ -145,7 +147,14 @@ export async function writePages(run, { out }) {
   for (const seat of run.table?.seats ?? []) await writeFile(join(dir, `${run.key}-${seat.characterId}-${seat.player}.md`), playerTranscript(run, seat));
   await writeFile(join(dir, `${run.key}-rounds.md`), roundsMarkdown(run));
   const focus = run.situationRound;
-  if (focus) await writeFile(join(dir, `${run.key}-round-${focus}.html`), screensHtml(run, focus));
+  if (focus) {
+    // S2: the letter is on the holder's screen of its round; S1, S3: the situation is narrated in its round and read on the
+    // next round's screens.
+    const read = armOf(run.arm)?.situation === "S2" ? focus : Math.min(focus + 1, run.table?.rounds?.length ?? focus);
+    await writeFile(join(dir, `${run.key}-situation-screens.html`), screensHtml(run, read, { narrationRound: focus }));
+    run.situationScreens = { round: read, narrationRound: focus, page: `${run.key}-situation-screens.html` };
+  }
   await writeFile(join(dir, `${run.key}-measures.md`), [header(run, `${run.key} — the per-table measures`), perTableMeasures(run)].join("\n"));
+  await writeFile(`${recordFile}.tmp`, `${JSON.stringify(run, null, 2)}\n`); await rename(`${recordFile}.tmp`, recordFile);
   return recordFile;
 }

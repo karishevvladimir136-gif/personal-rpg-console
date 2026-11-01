@@ -8,6 +8,7 @@
 //   run.mjs --haiku ARM [--rounds N]  the paid dry run on the frozen world: three Claude Haiku 5.5 players, every Claude
 //                                     call of the app as Haiku but the relay's (Claude Sonnet 5.5)
 //   run.mjs --table KEY               one table of the order (e.g. S1-none-T1) — only after the owner's word in issue #1
+//   run.mjs --reprep S1,S3 --why …    a situation's layer prepared again on a changed note (the old one kept in v1/)
 //   run.mjs --score FILE [--judges-haiku]  the blind tags of a played table (score.mjs); --judges-haiku: the dry run's
 //   run.mjs --estimate                the per-table estimate from the dry run's ledger and PARTY_1's Opus tables
 // Every paid call goes through one meter: one ledger, OpenRouter, capped at the Mandate's $60; a call to any other host
@@ -53,7 +54,7 @@ export function relayRewrite(url, init = {}) {
 
 // ---- the money ------------------------------------------------------------------------------------------------------------
 
-async function bookRun(ledgers, before, { what, file, stopped }) {
+export async function bookRun(ledgers, before, { what, file, stopped }) {
   const finishedAt = new Date().toISOString();
   for (const door of Object.keys(ledgers)) {
     if (!ledgers[door].calls.length) continue;
@@ -148,6 +149,26 @@ export async function freeze({ dry = false, dir = FROZEN_DIR, fetcher = null, lo
     ...Object.entries(notes).flatMap(([arm, n]) => [`## ${arm} — sha256 \`${n.sha256}\``, "", "````text", n.note, "````", ""])].join("\n"));
   if (!dry) await spendCheck({ when: "after the freeze", log });
   return { manifest: readFrozen(dir).manifest, notes };
+}
+
+/** A situation's layer prepared again on a changed note (before any paid table): the old layer files move to `v1/` with
+ * their manifest entry (manifest.superseded), and the prep runs once more on the snapshot; the arms' notes are written
+ * again. */
+export async function reprep({ situations, dir = FROZEN_DIR, log = console.log, why }) {
+  const { renameSync, mkdirSync } = await import("node:fs");
+  const manifest = readJson(join(dir, "manifest.json"));
+  const archive = join(dir, "v1");
+  mkdirSync(archive, { recursive: true });
+  for (const situation of situations) {
+    const entry = manifest.layers[situation];
+    if (!entry) continue;
+    for (const f of [`${situation}-dm-only.json`, `${situation}-dm-only.md`]) if (existsSync(join(dir, f))) renameSync(join(dir, f), join(archive, f));
+    manifest.superseded = [...(manifest.superseded ?? []), { situation, ...entry, file: `v1/${entry.file}`, supersededAt: new Date().toISOString(), why }];
+    delete manifest.layers[situation];
+  }
+  for (const f of ["arms-dm-only.json", "arms-dm-only.md"]) if (existsSync(join(dir, f)) && !existsSync(join(archive, f))) renameSync(join(dir, f), join(archive, f));
+  await writeJson(join(dir, "manifest.json"), manifest);
+  return freeze({ dir, log });
 }
 
 // ---- one table --------------------------------------------------------------------------------------------------------------
@@ -282,7 +303,7 @@ export const DRY_SCRIPT = {
 function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), spend: argv.includes("--spend"), freeze: argv.includes("--freeze"), haiku: value("--haiku"), table: value("--table"), estimate: argv.includes("--estimate"),
-    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label"), score: value("--score"), scoreHaiku: argv.includes("--judges-haiku") };
+    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label"), score: value("--score"), scoreHaiku: argv.includes("--judges-haiku"), reprep: value("--reprep"), why: value("--why") };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -308,6 +329,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const r = await playTable({ arm: entry.arm, triad: entry.triad, rounds: a.rounds ?? ROUNDS });
     console.log(`${r.key}: ${r.table.rounds.length} round(s), ended by ${r.table.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(3)}`);
   })());
+  else if (a.reprep) done(reprep({ situations: a.reprep.split(","), why: a.why ?? "the note changed before any paid table" }).then(({ manifest }) => console.log(`layers: ${Object.entries(manifest.layers).map(([x, l]) => `${x} ${l.sha256.slice(0, 16)}…`).join(", ")}`)));
   else if (a.score) done(scoreRun({ file: a.score, haiku: a.scoreHaiku }));
   else if (a.estimate) done(Promise.resolve().then(() => console.log(JSON.stringify(estimate(), null, 2))));
   else { console.error("give --dry, --spend, --freeze, --haiku ARM, --table KEY or --estimate"); process.exit(2); }

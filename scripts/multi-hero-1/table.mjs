@@ -506,7 +506,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
 
 /** The relay's part of the record (its request is kept: it is what the DM was asked, public text only). */
 const relayRecord = (r) => ({ screens: r.screens ?? null, together: r.together ?? null, places: r.places ?? null, waiting: r.waiting ?? {}, missing: r.missing ?? [], extra: r.extra ?? [], attempts: r.attempts ?? 0,
-  fallback: Boolean(r.fallback), copied: r.copied ?? [], copiedAfter: r.copiedAfter ?? [], resent: r.resent ?? [], defects: r.defects ?? [], retold: Boolean(r.retold), error: r.error ?? null, refusal: Boolean(r.refusal), notSent: Boolean(r.notSent), request: r.request?.user ?? null });
+  fallback: Boolean(r.fallback), perScreen: Boolean(r.perScreen), unreadable: r.unreadable ?? [], copied: r.copied ?? [], copiedAfter: r.copiedAfter ?? [], resent: r.resent ?? [], defects: r.defects ?? [], retold: Boolean(r.retold), error: r.error ?? null, refusal: Boolean(r.refusal), notSent: Boolean(r.notSent), request: r.request?.user ?? null });
 
 /** The scene's seats in order: the seat order turned round by the round's number from the table's coin (rotation; fix
  * A2); in a fight, the fight's own order (its participants' turn order). */

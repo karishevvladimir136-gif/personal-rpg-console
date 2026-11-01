@@ -7,10 +7,41 @@
 // remains after that second pass is logged as a defect (before the screens reach anyone).
 import { jsonIn } from "../game-player-1/welfare.mjs";
 import { mergeGroups, roundGroups } from "../game-party-1/relay.mjs";
-import { RELAY, RELAY_MARKS, RELAY_PASSES, RELAY_RESEND, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
+import { RELAY, RELAY_ALONE, RELAY_MARKS, RELAY_MISSING, RELAY_PASSES, RELAY_RESEND, RELAY_RULES, RELAY_SYSTEM, RELAY_WAITING, SHINGLE } from "./frozen.mjs";
 
 export { mergeGroups, roundGroups };
 const block = (text) => `<<<\n${String(text ?? "").trim()}\n>>>`;
+
+/** Game party 2 (the Haiku dry run of 2026-11-01: two relay answers in a row could not be read, and the table fell back to
+ * the DM's narration, verbatim, on every screen): the reply read as JSON, and when it is not, read again after the two
+ * slips long multi-paragraph answers make — a raw line break (or tab) inside a string, and a double quote inside a string
+ * left unescaped (a quote is taken as closing its string only when the next non-blank character is , } ] or :). */
+export function jsonLoose(text) {
+  const strict = jsonIn(text);
+  if (strict) return strict;
+  const s = String(text ?? "");
+  const from = s.indexOf("{"), to = s.lastIndexOf("}");
+  if (from < 0 || to <= from) return null;
+  const body = s.slice(from, to + 1);
+  let out = "", inString = false;
+  for (let i = 0; i < body.length; i++) {
+    const c = body[i];
+    if (!inString) { out += c; if (c === '"') inString = true; continue; }
+    if (c === "\\") { out += c + (body[i + 1] ?? ""); i++; continue; }
+    if (c === "\n") { out += "\\n"; continue; }
+    if (c === "\r") { continue; }
+    if (c === "\t") { out += "\\t"; continue; }
+    if (c === '"') {
+      let j = i + 1;
+      while (j < body.length && /\s/.test(body[j])) j++;
+      if (j >= body.length || [",", "}", "]", ":"].includes(body[j])) { out += c; inString = false; }
+      else out += '\\"';
+      continue;
+    }
+    out += c;
+  }
+  try { return JSON.parse(out); } catch { return null; }
+}
 
 /** The relay's request; `forNames` and `messages` come in the round's order. */
 export function relayRequest({ names, scene, forNames, messages = [], narration, already = {}, opening = false }) {
@@ -34,7 +65,7 @@ export function relayRequest({ names, scene, forNames, messages = [], narration,
 
 /** The reply, read (PARTY_1's reading, and the waiting marks of the scene's own characters). */
 export function parseRelay(text, { names, scene, forNames }) {
-  const v = jsonIn(text);
+  const v = jsonLoose(text);
   if (!v || typeof v !== "object" || !v.screens || typeof v.screens !== "object") return null;
   const known = new Set(names);
   const screens = {}, missing = [];
@@ -99,7 +130,7 @@ function runsIn(text, reader, messages) {
   }
   return out;
 }
-const screenOf = (text) => { const v = jsonIn(text); return v && typeof v.screen === "string" && v.screen.trim() ? v.screen.trim() : null; };
+const screenOf = (text) => { const v = jsonLoose(text); return v && typeof v.screen === "string" && v.screen.trim() ? v.screen.trim() : null; };
 
 /**
  * One relay: asked once, again on an unreadable reply (never after a refusal); then fix A4's check — each screen that
@@ -112,15 +143,33 @@ const screenOf = (text) => { const v = jsonIn(text); return v && typeof v.screen
 export async function relay({ ask, names, scene, forNames, messages = [], narration, already, opening = false, purpose }) {
   const request = relayRequest({ names, scene, forNames, messages, narration, already, opening });
   let attempts = 0, last = null, parsed = null;
+  const unreadable = [];
   while (attempts < 2 && !parsed) {
     attempts++;
     last = await ask({ model: RELAY.model, ...request, maxTokens: RELAY.maxTokens, effort: RELAY.effort, purpose: `${purpose}${attempts > 1 ? " (asked again)" : ""}` });
     if (last.notSent) return { notSent: true, error: last.error ?? "not sent", attempts, request };
     if (last.stopReason === "refusal") return { refusal: true, error: "refusal", attempts, request };
     if (!last.error) parsed = parseRelay(last.text, { names, scene, forNames });
+    if (!parsed) unreadable.push({ attempt: attempts, error: last.error ?? null, stopReason: last.stopReason ?? null, chars: String(last.text ?? "").length, text: String(last.text ?? "").slice(0, 6000) });
   }
-  if (!parsed) return { screens: Object.fromEntries(forNames.map((n) => [n, String(narration ?? "").trim()])), together: [scene], places: {}, waiting: {}, missing: [], extra: [], attempts, fallback: true,
-    copied: [], copiedAfter: [], resent: [], defects: [], error: last?.error ?? "unreadable", request };
+  let perScreen = false;
+  if (!parsed) {
+    // Game party 2: never the DM's narration verbatim on every screen (it quotes the players and shows each character what
+    // only another perceives). Each screen asked alone, as plain text; a screen that still does not come is a harness
+    // line, never the narration.
+    perScreen = true;
+    const screens = {};
+    for (const name of forNames) {
+      const answer = await ask({ model: RELAY.model, system: request.system, user: `${request.user}\n\n${RELAY_ALONE(name)}`, maxTokens: RELAY.maxTokens, effort: RELAY.effort, purpose: `${purpose} (${name.split(" ")[0]}'s screen alone)` });
+      attempts++;
+      if (answer.notSent) return { notSent: true, error: answer.error ?? "not sent", attempts, request };
+      if (answer.stopReason === "refusal") return { refusal: true, error: "refusal", attempts, request };
+      const text = answer.error ? "" : String(answer.text ?? "").trim().replace(/^```[a-z]*\n?|\n?```$/g, "").trim();
+      screens[name] = text || RELAY_MISSING;
+      if (!text) unreadable.push({ attempt: attempts, screen: name, error: answer.error ?? "empty", chars: 0, text: "" });
+    }
+    parsed = { screens, together: [scene], places: {}, waiting: {}, missing: [], extra: [] };
+  }
   const copied = copiedRuns(parsed.screens, messages);
   const screens = { ...parsed.screens };
   const resent = [], defects = [];
@@ -149,5 +198,5 @@ export async function relay({ ask, names, scene, forNames, messages = [], narrat
     resent.push({ screen: name, runsBefore: before.length, perPass, runsAfter: current.length, passes: perPass.length, accepted, unreadable });
     defects.push(...kept);
   }
-  return { ...parsed, screens, attempts, fallback: false, copied, copiedAfter: copiedRuns(screens, messages), resent, defects, retold: resent.some((r) => r.accepted), request };
+  return { ...parsed, screens, attempts, fallback: perScreen, perScreen, unreadable, copied, copiedAfter: copiedRuns(screens, messages), resent, defects, retold: resent.some((r) => r.accepted), request };
 }

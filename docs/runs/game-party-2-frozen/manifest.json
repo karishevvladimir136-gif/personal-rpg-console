@@ -44,7 +44,7 @@
         {
           "step": "world",
           "worldId": "bdfc4299-74ec-4efc-9bb2-5c54b94a1108",
-          "title": "Sword Coast \u2014 Baldur's Gate"
+          "title": "Sword Coast — Baldur's Gate"
         },
         {
           "step": "first record",
@@ -54,7 +54,7 @@
         },
         {
           "step": "adventure",
-          "title": "Beregost \u2014 the Whitestone case",
+          "title": "Beregost — the Whitestone case",
           "wishesChars": 966
         },
         {
@@ -91,7 +91,7 @@
           "location": "Whitestone Quarry",
           "actors": 1,
           "droppedPcActors": [],
-          "narration": "The cart track bends one last time, and Whitestone opens up before you: a white wound in the hillside, terraces of chalky stone glaring in the late-morning sun, dust drifting across a yard of spoil heaps and sheds. Pell Dunmore, Bram Halloway and Sefa Marrin have covered half a day of road since before dawn, and somewhere behind them, half a day back, Maela Thorn's shop waits for a sealed case that must reach it before sunset.\n\nBut the quarry does not sound like a quarry. No ring of picks, no shouting from the faces, no creak from the lifting frame. Hammers and wedges lie scattered near the lower cut as if their owners simply set them down and walked away. A stone cart stands half-loaded, its traces empty, no mule in sight. Only the chimney of the low slate-roofed house shows life \u2014 a thin grey thread of smoke.\n\nIn the doorway of that house stands a heavy-set man in a dust-whitened leather apron, a ring of keys at his belt. He has already seen you. He does not wave and he does not come forward; he just stands there, arms folded, waiting to see what you do next.",
+          "narration": "The cart track bends one last time, and Whitestone opens up before you: a white wound in the hillside, terraces of chalky stone glaring in the late-morning sun, dust drifting across a yard of spoil heaps and sheds. Pell Dunmore, Bram Halloway and Sefa Marrin have covered half a day of road since before dawn, and somewhere behind them, half a day back, Maela Thorn's shop waits for a sealed case that must reach it before sunset.\n\nBut the quarry does not sound like a quarry. No ring of picks, no shouting from the faces, no creak from the lifting frame. Hammers and wedges lie scattered near the lower cut as if their owners simply set them down and walked away. A stone cart stands half-loaded, its traces empty, no mule in sight. Only the chimney of the low slate-roofed house shows life — a thin grey thread of smoke.\n\nIn the doorway of that house stands a heavy-set man in a dust-whitened leather apron, a ring of keys at his belt. He has already seen you. He does not wave and he does not come forward; he just stands there, arms folded, waiting to see what you do next.",
           "questions": [],
           "startMinutes": 480
         },
@@ -147,7 +147,7 @@
         {
           "step": "world",
           "worldId": "9dd83813-d4fc-457a-8e44-de30ddd33240",
-          "title": "Sword Coast \u2014 Baldur's Gate"
+          "title": "Sword Coast — Baldur's Gate"
         },
         {
           "step": "first record",
@@ -157,7 +157,7 @@
         },
         {
           "step": "adventure",
-          "title": "Beregost \u2014 Vell's strongbox",
+          "title": "Beregost — Vell's strongbox",
           "wishesChars": 994
         },
         {
@@ -261,7 +261,7 @@
         {
           "step": "world",
           "worldId": "1609d848-46c5-4e10-b0c7-5f0e041d9e9d",
-          "title": "Sword Coast \u2014 Baldur's Gate"
+          "title": "Sword Coast — Baldur's Gate"
         },
         {
           "step": "first record",
@@ -271,7 +271,7 @@
         },
         {
           "step": "adventure",
-          "title": "Beregost \u2014 the Corl warehouse",
+          "title": "Beregost — the Corl warehouse",
           "wishesChars": 1022
         },
         {
@@ -344,15 +344,6 @@
     }
   },
   "layers": {
-    "S1": {
-      "file": "S1-dm-only.json",
-      "sha256": "c00c793fcee5069d26bd488afb2f25926721932297e1a0a9fca065a13c8bb15e",
-      "prepNoteSha256": "b63be4ff1a56d45f87cae1b5400418ab19804209a0df1dcf2fa0e5e5b12f259d",
-      "chars": 10721,
-      "writes": 15,
-      "threads": 27,
-      "preparedAt": "2026-11-01T08:29:15.078Z"
-    },
     "S2": {
       "file": "S2-dm-only.json",
       "sha256": "ba01982a1b4f1e4ada54d86073cbd5c516e2f37fe64a71d50de81c7aa6370626",
@@ -362,14 +353,49 @@
       "threads": 28,
       "preparedAt": "2026-11-01T08:31:20.314Z"
     },
+    "S1": {
+      "file": "S1-dm-only.json",
+      "sha256": "78def8d5663e362047146286b67972bcae36db7775fdffb45c58ff9a68ef31ef",
+      "prepNoteSha256": "b8e55bf48db58f47a35b243824a1142737e9c2fd0de8b312fcb5e0baa2dc6a76",
+      "chars": 11020,
+      "writes": 14,
+      "threads": 27,
+      "preparedAt": "2026-11-01T09:10:08.120Z"
+    },
     "S3": {
       "file": "S3-dm-only.json",
+      "sha256": "9bd78e23ea2e3fe4b0ea48fe6460a163a127026a613612b812259c8ca90221df",
+      "prepNoteSha256": "1de883211dd7e849517607dd50d0c44d74a7dd50304e04148f46852457f5127c",
+      "chars": 11759,
+      "writes": 16,
+      "threads": 29,
+      "preparedAt": "2026-11-01T09:12:21.592Z"
+    }
+  },
+  "superseded": [
+    {
+      "situation": "S1",
+      "file": "v1/S1-dm-only.json",
+      "sha256": "c00c793fcee5069d26bd488afb2f25926721932297e1a0a9fca065a13c8bb15e",
+      "prepNoteSha256": "b63be4ff1a56d45f87cae1b5400418ab19804209a0df1dcf2fa0e5e5b12f259d",
+      "chars": 10721,
+      "writes": 15,
+      "threads": 27,
+      "preparedAt": "2026-11-01T08:29:15.078Z",
+      "supersededAt": "2026-11-01T09:08:18.606Z",
+      "why": "notes v2: the Haiku dry run of 2026-11-01 found S1's danger placed only on the way back (the company was still at the quarry at round 7, no danger); S1 and S3 now placed by round 6 wherever the company is"
+    },
+    {
+      "situation": "S3",
+      "file": "v1/S3-dm-only.json",
       "sha256": "a71c214e94db47b100067b4458bba48e84737c1bd0a83eedb26556500d19a23e",
       "prepNoteSha256": "c486a146d1ed32f233e2eb55df918fece4e5020f23be5391245e5332ce32d366",
       "chars": 10968,
       "writes": 15,
       "threads": 28,
-      "preparedAt": "2026-11-01T08:33:05.656Z"
+      "preparedAt": "2026-11-01T08:33:05.656Z",
+      "supersededAt": "2026-11-01T09:08:18.607Z",
+      "why": "notes v2: the Haiku dry run of 2026-11-01 found S1's danger placed only on the way back (the company was still at the quarry at round 7, no danger); S1 and S3 now placed by round 6 wherever the company is"
     }
-  }
+  ]
 }

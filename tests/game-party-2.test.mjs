@@ -75,6 +75,11 @@ test("the situations: S1's three prices share the danger, the means and the info
   assert.match(notes["S1-moderate"], /## The cost — one healing/);
   assert.match(notes["S1-high"], /## The cost — the reward[\s\S]*the 90 gold is lost/);
   assert.match(shared(notes["S1-none"]), /under Sefa Marrin, and Sefa drops/);
+  // v2 (after the Haiku dry run): the danger is placed by round 6 at the latest, wherever the character is — not only
+  // «on the way back»; S3's failure likewise.
+  assert.match(shared(notes["S1-none"]), /In round 5 — or in round 4 or 6 if the story offers a better moment there, but never later than round 6, whatever the company is doing and wherever Sefa is/);
+  assert.doesNotMatch(shared(notes["S1-none"]), /On the way back/);
+  assert.match(frozen.situationNote("S3", dice), /if the company has made none by round 6, then the first act any character makes toward the warehouse, its men or the box in round 6 or after counts as the attempt/);
   assert.match(frozen.prepNote("S1", dice), /Set for each table before play/);
   assert.doesNotMatch(frozen.prepNote("S1", dice), /The cost — /);
   // S2: the holder's letter, on their screen at round 4; the DM's note has it; the other arms none.
@@ -163,4 +168,27 @@ test("the holding tags (frozen before any paid table): the request names no fami
   assert.equal(score.parseHold("not json"), null);
   const s2 = score.situationBrief("S2-high", { e: "bram", h: "bram" });
   assert.match(s2, /Bram Halloway — and only Bram Halloway — privately received this letter[\s\S]*Odda Brand/);
+});
+
+test("the relay, after the Haiku dry run: a reply with raw line breaks or unescaped quotes is read; two unreadable replies → each screen asked alone, never the DM's narration verbatim on every screen; the raw replies kept", async () => {
+  const relayMod = await import("../scripts/multi-hero-1/relay.mjs");
+  const mh = await import("../scripts/multi-hero-1/frozen.mjs");
+  const raw = '{"screens": {"Pell Dunmore": "You fall.\nOsric says, "That\'s the old floor." He waits."}, "together": [["Pell Dunmore"]]}';
+  assert.throws(() => JSON.parse(raw));
+  assert.equal(relayMod.jsonLoose(raw).screens["Pell Dunmore"], "You fall.\nOsric says, \"That's the old floor.\" He waits.");
+  assert.equal(relayMod.jsonLoose("no json here"), null);
+  const NAMES = ["Bram Halloway", "Sefa Marrin", "Pell Dunmore"];
+  const narration = "Pell climbs the slabs. The chalk gives way under Pell. Out of game: no card.";
+  const asked = [];
+  const ask = async ({ user, purpose }) => { asked.push({ user, purpose });
+    if (/Write only (\w+ \w+)'s screen now/.test(user)) { const who = user.match(/Write only (\w+ \w+)'s screen now/)[1]; return who === "Sefa Marrin" ? { text: "" } : { text: `You see it, ${who.split(" ")[0]}.` }; }
+    return { text: '{"screens": {"Bram' }; };
+  const r = await relayMod.relay({ ask, names: NAMES, scene: NAMES, forNames: NAMES, messages: [], narration, purpose: "relay r5" });
+  assert.equal(asked.length, 5, "two asks, then one per screen");
+  assert.deepEqual([r.fallback, r.perScreen], [true, true]);
+  assert.equal(r.screens["Bram Halloway"], "You see it, Bram.");
+  assert.equal(r.screens["Sefa Marrin"], mh.RELAY_MISSING, "a screen that does not come is the harness line");
+  for (const screen of Object.values(r.screens)) assert.notEqual(screen, narration);
+  assert.deepEqual(r.unreadable.map((u) => [u.attempt, u.text]), [[1, '{"screens": {"Bram'], [2, '{"screens": {"Bram'], [4, ""]]);
+  assert.match(asked[2].user, /Your previous answers could not be read\. Write only Bram Halloway's screen now, by the same rules — plain text/);
 });

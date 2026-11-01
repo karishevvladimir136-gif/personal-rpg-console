@@ -34,6 +34,142 @@
           "left": 58.46
         }
       }
+    },
+    {
+      "at": "2026-11-01T08:33:44.468Z",
+      "when": "before S1-none-haiku",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1200.812984535,
+        "remaining": 99.19,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 1.5361,
+          "cap": 60,
+          "left": 58.46
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T08:50:44.053Z",
+      "when": "after S1-none-haiku",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1201.80379984,
+        "remaining": 98.2,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 2.2423,
+          "cap": 60,
+          "left": 57.76
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T08:50:54.827Z",
+      "when": "before S2-high-haiku",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1201.80654947,
+        "remaining": 98.19,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 2.2423,
+          "cap": 60,
+          "left": 57.76
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:08:05.673Z",
+      "when": "after S2-high-haiku",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1202.482713345,
+        "remaining": 97.52,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 2.9199,
+          "cap": 60,
+          "left": 57.08
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:08:18.984Z",
+      "when": "before the freeze",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1202.483667665,
+        "remaining": 97.52,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 2.9199,
+          "cap": 60,
+          "left": 57.08
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:12:21.741Z",
+      "when": "after the freeze",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1202.701979555,
+        "remaining": 97.3,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 3.4061,
+          "cap": 60,
+          "left": 56.59
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:12:32.290Z",
+      "when": "before S1-none-haiku2",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1202.701979555,
+        "remaining": 97.3,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 3.4061,
+          "cap": 60,
+          "left": 56.59
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:27:44.212Z",
+      "when": "after S1-none-haiku2",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1203.743608815,
+        "remaining": 96.26,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 4.1776,
+          "cap": 60,
+          "left": 55.82
+        }
+      }
     }
   ]
 }

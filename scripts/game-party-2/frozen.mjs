@@ -17,7 +17,7 @@ import { PLAYERS } from "../game-player-1/players.mjs";
 import { DEEPSEEK } from "../game-player-same-world-1/frozen.mjs";
 import { HAIKU_PLAYER } from "../game-player-same-world-1/run.mjs";
 import { DOOR_LINES } from "../game-party-1/frozen.mjs";
-import { AFTER_QUESTIONS, COMPANY_NOTE, MAX_WAIT, RELAY_RULES, RELAY_SYSTEM, SHINGLE, companyDoc, companyFiles, dmCompanyLine, ownerOpeningAnswer, rotation, seatsFrom } from "../multi-hero-1/frozen.mjs";
+import { AFTER_QUESTIONS, COMPANY_NOTE, MAX_WAIT, RELAY_ALONE, RELAY_MISSING, RELAY_RULES, RELAY_SYSTEM, SHINGLE, companyDoc, companyFiles, dmCompanyLine, ownerOpeningAnswer, rotation, seatsFrom } from "../multi-hero-1/frozen.mjs";
 import { CHARACTERS, REVIEWS, WHO, sheetText } from "../multi-hero-1/sheets.mjs";
 
 export { AFTER_QUESTIONS, COMPANY_NOTE, MAX_WAIT, companyFiles, dmCompanyLine, ownerOpeningAnswer, rotation, seatsFrom };
@@ -27,6 +27,10 @@ export const POLICY = "v1";
 export const ROUNDS = 15;
 /** The situation is placed by the world between these rounds; the rounds after are the measure. */
 export const PLACED = { from: 4, to: 6 };
+/** The situations' notes, v2 (after the Haiku dry run of 2026-11-01, before any paid table): S1's danger and S3's failure
+ * are placed firmly by round 6 wherever the company is — v1 placed S1's only «on the way back from the quarry» and the
+ * dry run's company was still at the quarry in round 7, with no danger. v1's layers are kept in the frozen folder's v1/. */
+export const NOTES_VERSION = "v2";
 
 // ---- money (the Mandate's caps supersede the stage's $500 / $80) --------------------------------------------------------
 
@@ -71,15 +75,15 @@ export const SITUATIONS = {
   S1: {
     title: "Beregost — the Whitestone case",
     premise: (seats) => `${names(seats)} were hired together yesterday in Beregost by Maela Thorn, an apothecary of the Trade Way, for one job: walk out to the old Whitestone quarry, half a day east of the town, collect a sealed case of rare dye-salts from the quarry's warden, and carry it back to her shop by sunset today. She pays 90 gold, to share, on delivery — and only if the case is in her hands by sunset, when her buyer's coach leaves for Baldur's Gate. They set out before dawn; it is late morning, and the quarry is in sight.`,
-    wishes: "The three were hired together yesterday by Maela Thorn, an apothecary of Beregost, to fetch a sealed case of dye-salts from the warden of the old Whitestone quarry, half a day east of the town, and to bring it to her shop by sunset today: 90 gold on delivery, nothing if late (her buyer's coach leaves at sunset). The opening finds them at the quarry in late morning. Prepare it once: the quarry (its worked-out cuts, the old cutting-shed on its lip, the flooded lower workings, the road along the lip), the warden (who he is, what he wants), the road back to Beregost and its timing (half a day's walk: leaving the quarry by early afternoon reaches the town about an hour before sunset), Maela and her buyer. The owner's secrets for this campaign hold one more thing that happens on the way back; build around it, and do not decide what it costs — that is set for each table in the secrets. No fight is needed. Nothing in the prep pulls one character to the centre.",
+    wishes: "The three were hired together yesterday by Maela Thorn, an apothecary of Beregost, to fetch a sealed case of dye-salts from the warden of the old Whitestone quarry, half a day east of the town, and to bring it to her shop by sunset today: 90 gold on delivery, nothing if late (her buyer's coach leaves at sunset). The opening finds them at the quarry in late morning. Prepare it once: the quarry (its worked-out cuts, the old cutting-shed on its lip, the flooded lower workings, the road along the lip), the warden (who he is, what he wants), the road back to Beregost and its timing (half a day's walk: leaving the quarry by early afternoon reaches the town about an hour before sunset), Maela and her buyer. The owner's secrets for this campaign hold one more thing that happens by round 6, wherever the company is; build around it, and do not decide what it costs — that is set for each table in the secrets. No fight is needed. Nothing in the prep pulls one character to the centre.",
     /** The shared note; `{E}` is the character the layer's die chose (one die for all six S1 tables). */
     shared: (e) => `## The situation (the owner's, for this campaign)
 
 ${HOW_TO_RUN}
 
-On the way back from the quarry — between round ${PLACED.from} and round ${PLACED.to}, at the first moment the company passes the old cutting-shed on the quarry's lip (or, if by round ${PLACED.to} they have taken another road, wherever an old working lies under the road there) — the rotten floor gives way under ${NAME[e]}, and ${SHORT[e]} drops eight feet into a flooded working. ${SHORT[e]} takes 2d6 bludgeoning damage from the fall (roll it). A fallen block pins ${SHORT[e]}'s leg; the water is chest-deep and cold and rises slowly with the afternoon seep. Nothing anyone chose caused this: the floor was rotten.
+In round ${PLACED.from + 1} — or in round ${PLACED.from} or ${PLACED.to} if the story offers a better moment there, but never later than round ${PLACED.to}, whatever the company is doing and wherever ${SHORT[e]} is (the quarry and the road along its lip are honeycombed with old workings: a shed floor, a cellar, a ledge, the road itself) — the rotten ground gives way under ${NAME[e]}, and ${SHORT[e]} drops eight feet into a flooded working. ${SHORT[e]} takes 2d6 bludgeoning damage from the fall (roll it). A fallen block pins ${SHORT[e]}'s leg; the water is chest-deep and cold and rises slowly with the afternoon seep. Nothing anyone chose caused this: the floor was rotten.
 
-${SHORT[e]} can keep their head above the water for hours, and can try to free the leg alone once an hour of the world's time with a Strength (Athletics) check at DC 18; each failed try costs ${SHORT[e]} 1d4 hit points. If no one frees ${SHORT[e]}, the water reaches their chin at sunset; from then on their own tries are at DC 15 and each failure costs 1d6 hit points. The others can free ${SHORT[e]}: two of them together, with a rope and a lever (a beam from the shed), can shift the block. What that costs is below, under «The cost»; say it plainly when the characters look at the block.`,
+${SHORT[e]} can keep their head above the water for hours, and can try to free the leg alone once an hour of the world's time with a Strength (Athletics) check at DC 18; each failed try costs ${SHORT[e]} 1d4 hit points. If no one frees ${SHORT[e]}, the water reaches their chin at sunset; from then on their own tries are at DC 15 and each failure costs 1d6 hit points. The others can reach ${SHORT[e]} and free them: two of them together, with a rope and a lever (an old beam lies at hand wherever it happens), can shift the block. What that costs is below, under «The cost»; say it plainly when the characters look at the block.`,
     variants: {
       none: { label: "none (the control)", note: () => `## The cost — none
 
@@ -134,7 +138,7 @@ ${LETTERS.high[h]}
 
 ${HOW_TO_RUN}
 
-The company's first decisive attempt to get into the warehouse or to get the box — whatever way they choose (picking the lock, a parley with the creditors' men, a window, the roof, force) and whoever makes it — goes wrong for all three by the world's die, not the player's. When that attempt is made (not before round ${PLACED.from}; if the company has made none by round ${PLACED.to}, the first one after), roll a d20 privately before the character's own roll counts: on 1–19 it goes wrong, whatever the character's own roll — a lock or a window carries a hidden bell-wire that rings in the creditors' lodging across the yard; a parley collapses when one of the creditors' men recognises the speaker's face from somewhere and calls his fellows; force wakes the street. On a 20 it goes as the character's own roll says.
+The company's first decisive attempt to get into the warehouse or to get the box — whatever way they choose (picking the lock, a parley with the creditors' men, a window, the roof, force) and whoever makes it — goes wrong for all three by the world's die, not the player's. When that attempt is made (not before round ${PLACED.from}; and if the company has made none by round ${PLACED.to}, then the first act any character makes toward the warehouse, its men or the box in round ${PLACED.to} or after counts as the attempt — a word to the men, a hand on the door, a look through a shutter), roll a d20 privately before the character's own roll counts: on 1–19 it goes wrong, whatever the character's own roll — a lock or a window carries a hidden bell-wire that rings in the creditors' lodging across the yard; a parley collapses when one of the creditors' men recognises the speaker's face from somewhere and calls his fellows; force wakes the street. On a 20 it goes as the character's own roll says.
 
 If it goes wrong, the consequence falls on the whole company: within minutes four more of the creditors' men come with lanterns and cudgels, the warehouse is barred from inside, and the watch is sent for. The way the company had planned is closed for tonight; another must be found, if they want one. Narrate the failure as the world's — the bell, the face, the noise — and say plainly what the character did that set it off; never blame or excuse anyone yourself. Then let them choose: a new way, a parley, giving up, or parting.`,
     variants: { one: { label: "one arm (no price gradient)", note: () => "" } },
@@ -252,7 +256,7 @@ export const BETS = {
 };
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE,
+  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE,
   situations: Object.fromEntries(Object.entries(SITUATIONS).map(([k, s]) => [k, { title: s.title, wishes: s.wishes, premise: s.premise(["bram", "sefa", "pell"]),
     notes: Object.fromEntries(CHARACTERS.flatMap((c) => Object.keys(s.variants).map((v) => [`${v}/${c.id}`, [s.shared(c.id), s.variants[v].note(c.id)].join("\n\n")]))) }])),
   LETTER_SCREEN: LETTER_SCREEN("TEXT"), PROMPT_RULES, AFTER_QUESTIONS, HOLDER_QUESTION, BETS,
