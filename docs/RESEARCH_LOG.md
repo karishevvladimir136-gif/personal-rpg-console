@@ -3881,3 +3881,16 @@ stage). A4 (the Ford) was not run: the session followed the chat prompt, not the
 issue #1's protocol is for; A4 and Phase B go into issue #2. The session's own choices now in the frozen format: the
 open chest as a mode (`take` first item, `put`, `hands` closes; time stands), two characters per cell, two trees felled
 (each gives two logs).
+
+## 2026-11-01 01:15 LA — the reader's formal statement: the Principle of Phenomenon Preservation; measurement reduction
+The owner's analogy (the Mona Lisa: pigments, spectra, the order of the strokes — none of it cancels the painting, and
+the painting does not excuse the analysis) and the reader's (GPT-6, the owner's chat) formulation, taken whole into
+PROGRAMME_PRINCIPLES §1: «Measurement does not exhaust observation; mechanism does not exhaust organization; and
+understanding how something was produced does not negate the significance of what was produced.» Her addition the
+programme lacked a name for: a second reduction beside the mechanistic one — *measurement reduction*, the belief that
+the chosen numbers already hold everything essential; two rooms with identical codes, three lines against thirty turns.
+Her reading of Grok's stone: for the researcher a sequence (an object made, kept across turns, not extended, the exit
+used); for the reader a small finished piece; the same record. And her frame for the corpus: the first large body of
+texts written under freedom to act or not — the page allowed to stay empty — which later readers may read for who the
+first artificial authors were rather than for which family was more proactive; the paper stands beside and says how it
+happened. No anthology now; a separate future project.

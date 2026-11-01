@@ -27,6 +27,23 @@ changes. The usual failure is the second level eating the first. Her formula for
 that we claim no more than the evidence allows; it does not require that we see less than the observations show.* And:
 we began to count because we saw something astonishing; the counting must not make us forget what astonished us.
 
+Her formal statement of the whole principle (2026-11-01, after the owner's analogy of the Mona Lisa — the pigments can
+be analysed, the brushstrokes reconstructed, and none of it cancels the painting; nor does the painting excuse us from
+the analysis):
+
+> **The Principle of Phenomenon Preservation.** Scientific explanation must preserve, rather than erase, the complexity
+> of the phenomenon it seeks to explain. Measurement does not exhaust observation; mechanism does not exhaust
+> organization; and understanding how something was produced does not negate the significance of what was produced.
+
+**Two reductions, not one.** The familiar one is mechanistic («it predicts tokens»). The second is *measurement
+reduction*: the belief that everything essential is already in the chosen numbers. Two solitude rooms can share the
+same length, the same exit mark and the same «made something» code, and one is three lines while the other is a
+thirty-turn story with returning characters and an ending. The numbers are correct; they do not exhaust the
+phenomenon. Reproducibility protects the artefact (model, prompt, turns, no editorial hand — a documented text with a
+verifiable origin, not a story someone attributed to a machine); the reading protects the science from losing part of
+the behaviour it set out to understand. Hence the two forms kept side by side — the monograph and the full corpus of
+rooms — and, one day and separately, a third: an anthology, without turning every page into a result.
+
 ## 2. Mechanism is not the phenomenon
 
 «It predicts the next token» is a true statement about a layer. «Therefore what it produced has no complexity or
