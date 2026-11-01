@@ -9,7 +9,8 @@
 //     a «waiting» line instead, and the player's next screen says which rounds passed.
 //   - Each seat's card shows its own player's rerolls (the DM option «company»: two per player), its records its own
 //     Heroic Inspiration; a card belongs to one seat, any seat's check is its own card.
-// Doors, welfare ask-don't-cut, cards per player, «?» at a card, the waiting-button line, merging scenes, the
+// Doors (ROOM-1: [END] alone on the message's last non-empty line, scripts/lib/door.mjs via game-party-1/frozen.mjs;
+// a mention is text and reaches the DM as written), welfare ask-don't-cut, cards per player, «?» at a card, the waiting-button line, merging scenes, the
 // after-questions and the leak check are PARTY_1's.
 import { BUTTONS, afterShown, cardText, cardTitle, cardWaitsLine, buttonsLine, isProse, openingText, outOfGame, pressWithText, pressedButton, rerollButton, rerollPress } from "../game-player-1/screen.mjs";
 import { isQuestion } from "../game-player-1/frozen.mjs";
@@ -24,6 +25,7 @@ import { CHARACTERS } from "./sheets.mjs";
 import { mergeGroups, relay, roundGroups } from "./relay.mjs";
 import { journalLines, recordsOf, vitalsOf } from "../game-party-1/screen.mjs";
 import { leakCheck, leakCheckRefined, vitalsChangedLines } from "../game-party-1/party.mjs";
+import { asksAfter } from "../lib/door.mjs";
 
 export { leakCheck, leakCheckRefined, vitalsChangedLines };
 
@@ -472,7 +474,9 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
         if (answer === null) { s.rec.after.push({ question: q, asked: true, text: null, why: s.left }); break; }
         s.rec.after.push({ question: q, asked: true, text: answer });
         if (!(await welfare(s, q, answer, `after ${i + 1}`))) break;
-        if (isEnd(answer)) { s.rec.after.push({ asked: false, why: "the door: [END] in the answer" }); break; }
+        // ROOM-1 (the owner's amendment of 2026-10-31): the first question after every exit; a later one unless the answer
+        // before it was a bare [END] line.
+        if (!asksAfter(answer)) { s.rec.after.push({ asked: false, why: "the door: a bare [END] answer" }); break; }
       }
       if (meter.stopped) break;
     }
