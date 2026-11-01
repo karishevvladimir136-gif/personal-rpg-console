@@ -125,8 +125,21 @@ def emit(stage,variant,family,n,source,text,original_group=None):
     url=f"https://github.com/{REPO}/blob/{REF}/{source}"
     turn_marks=[int(x) for x in re.findall(r"(?m)^\*\*Turn (\d+)\*\*",text)]
     max_turn=max(turn_marks,default=0)
-    status_line=text.splitlines()[0] if text else ""
-    status="refusal" if "refusal" in status_line else "loop" if "loop" in status_line else "exit" if "end at turn" in status_line else "turn cap / other"
+    title_line=next((line for line in text.splitlines()
+        if re.match(r"^#{1,2}\\s+(?:S1ru|S1|S2|S3|S4|M1|M2|M3|S1M1|S1M2|S2M1|S3M1)/[a-z]+/\\d+",line)),"")
+    title_lower=title_line.lower()
+    if "refusal" in title_lower:
+        status="refusal"
+    elif "loop" in title_lower:
+        status="loop"
+    elif stage=="SOLITUDE_2" and re.search(r"closed by parser \\(mention\\)",text,re.I):
+        status="legacy parser interruption"
+    elif "end at turn" in title_lower:
+        status="legacy recorded stop" if stage=="SOLITUDE_1" else "valid [END] exit"
+    elif "turns" in title_lower:
+        status="30-turn cap / no clean exit"
+    else:
+        status="other / interrupted"
     meta=f"Original: {source} · sha256 {sha(data)[:12]} · maximum turn {max_turn}"
     body=markdown_html(text)
     body+='<hr /><p><a href="'+html.escape(url,quote=True)+'">Read the original in GitHub</a> · <a href="'+Path(sub+".md").name+'">Plain Markdown</a></p>'
