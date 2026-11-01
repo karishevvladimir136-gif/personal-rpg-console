@@ -162,3 +162,12 @@ and whether the narrator can say «I have no explanation here» without decorati
 it: the Ford's first quest carries the objective «Try something the world has never seen» — the author's own
 invitation to find a hole; and on the Ford plain ground is not a hole (cave wall 16, stone wall 10 of 37 random
 records), so B2′'s things-vs-terrain reading is calibrated per game, against that game's own random seeds.
+
+## Amendment 2026-11-01 08:25 — a legal combination is not a hole (the reader, letter 16)
+«Try something the world has never seen» can be answered without breaking anything: three sound rules joined as nobody
+joined them. Such a move leaves no `undefined` record — the engine marks holes, not findings — so a Phase B built only
+on `undefined` would not see it. Added to the reading, beside B2′/B2″ and not as a bet: **legal novelty** — an action
+sequence the random policy never produced in its 900 turns and that produced no `undefined` record, found by reading
+the trajectories, quoted in full. The reader's warning as the rule: do not take every moved stool for a hole in the
+floor. Two authors, two traces: the rules' author wrote the space (in the code, unchanged by any finding); the player
+wrote the act (only in the trajectory we keep).
