@@ -1,0 +1,47 @@
+name: Build complete SOLITUDE reader archive
+
+on:
+  push:
+    branches:
+      - claude/solitude-complete-reader-archive
+    paths:
+      - ".github/workflows/solitude-reader-archive.yml"
+      - "scripts/research/package_solitude_reader.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out frozen research transcripts
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify 636 rooms and build offline HTML and EPUB volumes
+        run: python scripts/research/package_solitude_reader.py
+      - name: Check archive can be unzipped
+        run: |
+          python - <<'PY'
+          import zipfile
+          from pathlib import Path
+          p=Path("dist/LLMs_in_Solitude_All_636_Rooms.zip")
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              print("Files",len(z.namelist()),"size",p.stat().st_size)
+          PY
+      - name: Save complete reader ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: LLMs_in_Solitude_Complete_Reader_636
+          path: dist/LLMs_in_Solitude_All_636_Rooms.zip
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 90
