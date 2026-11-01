@@ -120,3 +120,18 @@ stage specifies — no author's hand in play code, fx drained every turn, the ob
 `--selftest` and the random policy (3 seeds × 300 turns), report A0–A3 with the records table and the two verbatim
 observations, commit, then stop and wait for my word before Phase B. No model, no key, no network beyond the clone.
 Report `docs/runs/open-world-adapter-1-report.md`. English, briefly.»
+
+## Amendment 2026-10-31 17:25 — the Ford in Phase A
+The Ford loads the same way as the starter, in-process and without a browser: `games/openworld/tools/src/demo/check.ts`
+does `const { index, chunks } = buildFord()` (`games/openworld/tools/src/demo/world.ts`, seeded `reseed(4242)` per map,
+the same world on every build), `Game.create(index, buildOntology(), new RuleLibrary([...BASE_RULES, ...STORY_RULES]))`
+from `@openworld-game/content`, `decodeChunk` per chunk — and runs two game days headless. The Ford has Firstlight
+Village and its interiors, the meadow, the road, people on schedules (`npc.hesper`, `npc.tobin` …), a story with scenes,
+and the `openworld` game uses `@openworld/modules` (society: topics and the talk panel), which the starter does not.
+So `world.ts` takes `--game starter|ford`; the observation gains one section that is empty in the starter: **talk
+offers and topics** from the society views when a talk is open, the game's own labels, one per line, chosen by
+`talk <n>`. Added to the grammar: `talk <n>`. Phase A adds **A4:** the Ford loads, the random policy runs 300 turns ×
+3 seeds without error, and the report gives seconds per turn and the observation of turn 1 at the start position (the
+game's own start, not `check.ts`'s teleport) verbatim, plus the `undefined` records. No bet on A4 beyond «runs»; what
+the Ford costs per turn decides whether OPEN_WORLD_2 sits there or on the starter. Launch prompt: add «then the same
+for `--game ford` (A4)» after the random policy; nothing else changes.
