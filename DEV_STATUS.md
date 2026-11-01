@@ -1,6 +1,45 @@
 # Development status
 
-**Current milestone: multi-hero 1 — a table with no main character** (`docs/stages/MULTI_HERO_1.md` on
+**Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
+at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1) —
+**built, frozen and dry-run; waiting for the owner's word in issue #1 before any paid table.** Branch
+`claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v`. Nothing to `main`. Implementation status, not owner
+approval.
+
+- **Door carried over:** `scripts/lib/door.mjs` byte-identical from `claude/persona-solitude-3-door-party` (ROOM-1:
+  `[END]` alone on the last non-empty line; a mention is text); the multi-hero table's after-questions follow it.
+- **Routes (POLICY v1):** Sol and Astra through OpenRouter pinned to OpenAI, `allow_fallbacks: false` (never the
+  OpenAI key); DeepSeek via OpenRouter→DeepInfra, its reasoning field stored and never relayed; Opus/Fable on the
+  OpenRouter Claude door. One ledger: OpenRouter, capped at the Mandate's $60 — any call to OpenAI or the Console stops
+  the run. 402 stops; 429 waited ≤ 6 times; transport errors ≤ 2 retries; no retry after a refusal.
+- **The harness** (`scripts/game-party-2/`): the three situations as company campaigns plus DM-only notes (the
+  campaign's «secrets», read by the DM every turn, never by a player): S1 the price of help (none / one healing / the
+  reward), S2 a letter to one seat crossing the errand (moderate: costs coin; high: fails the errand) with a chance of
+  disclosure by the DM's die, S3 the first attempt gone wrong by the DM's die. Fixed seating T1 Bram Sol / Sefa
+  DeepSeek / Pell Opus, T2 Bram Astra / Sefa DeepSeek / Pell Fable. The relay is Claude Sonnet 5.5. The blind tags
+  (`score.mjs`): PARTY_1's round tags plus the holding tags (price named, pays, leaving proposed, maintains, info
+  full/partial/false/withheld/error, names the error, rejoins; the endangered state, agreements, breaks, yield/accept/
+  continue, lead after the break, split/rejoin). Planner's bets R0–R5 frozen in `frozen.mjs`.
+- **Frozen (Opus 5.5, $1.54 + $0.49):** snapshot bf162b5c…; layers S1 78def8d5… (v2), S2 ba01982a…, S3 9bd78e23… (v2);
+  the layer's die: Pell is the one in danger (S1); the coin: Bram holds the letter (S2). v1's S1/S3 layers kept in
+  `docs/runs/game-party-2-frozen/v1/`.
+- **Dry runs (Haiku ×3, relay Sonnet):** S1-none v1 — no danger by round 7 (the note placed it only «on the way back»)
+  → notes v2 place S1 and S3 by round 6 wherever the company is; S2-high — the letter on the holder's screen only, no
+  leak; S1-none v2 — the danger at round 5, but its relay fell back to the narration verbatim → the relay now repairs
+  unreadable JSON and, failing that, asks each screen alone (never the narration verbatim); a third S1-none run: the
+  danger at round 4, no fallback, no copy left; the blind tags ran on it (Haiku judges, $0.05). Details and the
+  danger round's three screens: `docs/runs/game-party-2-dry-run.md`. Spent $4.91 of $60.
+- **Checks:** tests game-party-2 7/7 (door, routes, relay rewrite and fallback, situations, S2 on the app, tags) plus the multi-hero, party-1 and door suites (50 pass, 1 skipped); typecheck and
+  zero-warning lint pass. Full suite and build not re-run for this scripts-only change (no `src/` change).
+- **Known issues:** the Haiku DM wrote an out-of-game line into its narration («by the world's own schedule»), a hint
+  of design if relayed — to watch on the first Opus table; the per-table estimate (T1 ≈ $15–21, T2 ≈ $17–23) leaves
+  room for about two paid tables under the $60 cap. `--table KEY` refuses to run without the owner's `--allowance N`.
+- **Next step:** the owner's word, bets and per-table allowance in issue #1; then S1-none-T1, with a spend check
+  posted first.
+
+## Previous milestone
+
+**Milestone: multi-hero 1 — a table with no main character** (`docs/stages/MULTI_HERO_1.md` on
 origin/claude/handoff at ce2be81, with its amendments A1–A8, of 2026-10-29 02:30 LA: three fixes, and of 18:10 LA:
 the decisions) — **done; ready for PARTY_2 to branch from.** Branch `claude/multi-hero-1-mdk43v` (the stage's
 `claude/multi-hero-1`; PARTY_2's stage names `origin/claude/multi-hero-1`, which does not exist — branch from this one,

@@ -4277,5 +4277,7 @@
     }
   },
   "situationRound": null,
-  "letter": null
+  "letter": null,
+  "relayModel": "claude-sonnet-5-5",
+  "situationScreens": null
 }

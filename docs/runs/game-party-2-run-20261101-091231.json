@@ -3311,5 +3311,6 @@
     "round": 6,
     "narrationRound": 5,
     "page": "S1-none-haiku2-situation-screens.html"
-  }
+  },
+  "relayModel": "claude-sonnet-5-5"
 }

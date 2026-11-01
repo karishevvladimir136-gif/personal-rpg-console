@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $60; spent before this run $0.0000; this run $4.2065; total $4.2065; 540 calls.
+Cap $60; spent before this run $0.0000; this run $4.9110; total $4.9110; 731 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -348,3 +348,145 @@ Cap $60; spent before this run $0.0000; this run $4.2065; total $4.2065; 540 cal
 | S1-none-haiku2/Pell | after 3 | anthropic/claude-haiku-5.5 | 1 | 4 | 21271 | 338 | 381 | $0.0004 | 0 | 0 | 0 |
 | S1-none-haiku2/check | check S1-none-haiku2 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 461 | 0 | 0 | 57 | $0.0001 | 0 | 0 | 0 |
 | S1-none-haiku2/diagnosis | relay r5 diagnosis | anthropic/claude-sonnet-5.5 | 1 | 2702 | 0 | 0 | 2355 | $0.0290 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay opening | anthropic/claude-sonnet-5.5 | 1 | 1291 | 0 | 0 | 1329 | $0.0159 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r1 | anthropic/claude-haiku-5.5 | 1 | 4 | 0 | 10964 | 702 | $0.0017 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r1 | anthropic/claude-haiku-5.5 | 1 | 1819 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r1 | anthropic/claude-haiku-5.5 | 1 | 4 | 0 | 10866 | 614 | $0.0017 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r1 | anthropic/claude-haiku-5.5 | 1 | 1786 | 0 | 0 | 67 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r1 | anthropic/claude-haiku-5.5 | 1 | 4 | 0 | 11255 | 490 | $0.0017 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r1 | anthropic/claude-haiku-5.5 | 1 | 1869 | 0 | 0 | 73 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r1 | anthropic/claude-haiku-5.5 | 1 | 4 | 19265 | 26946 | 1905 | $0.0045 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r1 card | anthropic/claude-sonnet-5.5 | 1 | 1858 | 0 | 0 | 503 | $0.0087 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r1 card (Pell's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 2390 | 0 | 0 | 364 | $0.0084 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r1 card 1 | anthropic/claude-haiku-5.5 | 2 | 8 | 22743 | 993 | 387 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r1 card | anthropic/claude-haiku-5.5 | 2 | 1296 | 0 | 0 | 125 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r1 onward | anthropic/claude-haiku-5.5 | 5 | 4178 | 116821 | 40062 | 14540 | $0.0139 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r1 | anthropic/claude-sonnet-5.5 | 1 | 2701 | 0 | 0 | 1614 | $0.0215 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r2 | anthropic/claude-haiku-5.5 | 1 | 4 | 10866 | 939 | 701 | $0.0006 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r2 | anthropic/claude-haiku-5.5 | 1 | 1279 | 0 | 0 | 82 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r2 | anthropic/claude-haiku-5.5 | 1 | 4 | 11255 | 882 | 579 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r2 | anthropic/claude-haiku-5.5 | 1 | 1235 | 0 | 0 | 87 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r2 | anthropic/claude-haiku-5.5 | 1 | 4 | 11957 | 396 | 303 | $0.0003 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r2 | anthropic/claude-haiku-5.5 | 1 | 1007 | 0 | 0 | 80 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r2 | anthropic/claude-haiku-5.5 | 4 | 2675 | 93793 | 69784 | 12455 | $0.0163 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r2 | anthropic/claude-sonnet-5.5 | 1 | 2591 | 0 | 0 | 2385 | $0.0290 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r2 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3449 | 0 | 0 | 701 | $0.0139 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r2 (Sefa's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3545 | 0 | 0 | 810 | $0.0152 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r2 (Sefa's screen, retold, pass 2) | anthropic/claude-sonnet-5.5 | 1 | 3551 | 0 | 0 | 788 | $0.0150 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r2 (Pell's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3514 | 0 | 0 | 751 | $0.0145 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r3 | anthropic/claude-haiku-5.5 | 1 | 4 | 12137 | 1083 | 772 | $0.0006 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r3 | anthropic/claude-haiku-5.5 | 1 | 1471 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r3 | anthropic/claude-haiku-5.5 | 1 | 4 | 12353 | 1062 | 1140 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r3 | anthropic/claude-haiku-5.5 | 1 | 1475 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r3 | anthropic/claude-haiku-5.5 | 1 | 4 | 11805 | 1068 | 829 | $0.0007 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r3 | anthropic/claude-haiku-5.5 | 1 | 1516 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r3 | anthropic/claude-haiku-5.5 | 4 | 3137 | 90182 | 59508 | 11957 | $0.0148 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r3 | anthropic/claude-sonnet-5.5 | 1 | 3073 | 0 | 0 | 3892 | $0.0451 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r3 (Sefa's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 4461 | 0 | 0 | 1250 | $0.0214 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r3 (Pell's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 4395 | 0 | 0 | 1191 | $0.0207 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r3 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 4539 | 0 | 0 | 1315 | $0.0222 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r3 (Bram's screen, retold, pass 2) | anthropic/claude-sonnet-5.5 | 1 | 4531 | 0 | 0 | 1321 | $0.0223 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r4 | anthropic/claude-haiku-5.5 | 1 | 4 | 13415 | 1590 | 984 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r4 | anthropic/claude-haiku-5.5 | 1 | 1984 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r4 | anthropic/claude-haiku-5.5 | 1 | 4 | 12873 | 1806 | 567 | $0.0006 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r4 | anthropic/claude-haiku-5.5 | 1 | 2197 | 0 | 0 | 73 | $0.0003 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r4 | anthropic/claude-haiku-5.5 | 1 | 4 | 13220 | 1599 | 914 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r4 | anthropic/claude-haiku-5.5 | 1 | 1971 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r4 | anthropic/claude-haiku-5.5 | 7 | 4522 | 205878 | 74760 | 15996 | $0.0200 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r4 | anthropic/claude-sonnet-5.5 | 1 | 3166 | 0 | 0 | 2141 | $0.0277 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r5 | anthropic/claude-haiku-5.5 | 1 | 4 | 14679 | 1242 | 879 | $0.0007 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r5 | anthropic/claude-haiku-5.5 | 1 | 1438 | 0 | 0 | 83 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r5 | anthropic/claude-haiku-5.5 | 1 | 4 | 14819 | 1147 | 995 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r5 | anthropic/claude-haiku-5.5 | 1 | 1432 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r5 | anthropic/claude-haiku-5.5 | 7 | 4141 | 191795 | 117038 | 16221 | $0.0254 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r5 | anthropic/claude-sonnet-5.5 | 2 | 5150 | 0 | 0 | 1570 | $0.0260 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r5 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3328 | 0 | 0 | 567 | $0.0123 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r5 | anthropic/claude-haiku-5.5 | 1 | 4 | 15005 | 1143 | 740 | $0.0007 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r5 | anthropic/claude-haiku-5.5 | 1 | 1382 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r5 card | anthropic/claude-sonnet-5.5 | 1 | 1818 | 0 | 0 | 550 | $0.0091 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r5 card 1 | anthropic/claude-haiku-5.5 | 2 | 8 | 33270 | 1155 | 200 | $0.0006 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r5 card | anthropic/claude-haiku-5.5 | 3 | 2150 | 0 | 0 | 483 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r5 card prose | anthropic/claude-haiku-5.5 | 1 | 17621 | 18472 | 9262 | 878 | $0.0042 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r5 card 2 | anthropic/claude-haiku-5.5 | 1 | 4 | 17303 | 447 | 102 | $0.0003 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r5 onward | anthropic/claude-haiku-5.5 | 6 | 5565 | 220963 | 37565 | 8635 | $0.0118 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r6 | anthropic/claude-haiku-5.5 | 1 | 4 | 15966 | 965 | 1002 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r6 | anthropic/claude-haiku-5.5 | 1 | 1214 | 0 | 0 | 59 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r6 | anthropic/claude-haiku-5.5 | 1 | 4 | 15921 | 1029 | 314 | $0.0004 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r6 | anthropic/claude-haiku-5.5 | 1 | 1210 | 0 | 0 | 84 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r6 | anthropic/claude-haiku-5.5 | 7 | 5148 | 164266 | 144189 | 14059 | $0.0274 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r6 | anthropic/claude-sonnet-5.5 | 2 | 4004 | 0 | 0 | 2094 | $0.0289 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r6 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3251 | 0 | 0 | 788 | $0.0144 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r6 | anthropic/claude-haiku-5.5 | 1 | 4 | 17750 | 332 | 545 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r6 | anthropic/claude-haiku-5.5 | 1 | 940 | 0 | 0 | 78 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | player r7 | anthropic/claude-haiku-5.5 | 1 | 4 | 16950 | 1088 | 889 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram r7 | anthropic/claude-haiku-5.5 | 1 | 1483 | 0 | 0 | 85 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | player r7 | anthropic/claude-haiku-5.5 | 1 | 4 | 16931 | 1009 | 940 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 1464 | 0 | 0 | 80 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check referee S1-none-haiku3 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 1464 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| S1-none-haiku3 | dm r7 | anthropic/claude-haiku-5.5 | 9 | 6399 | 256894 | 142989 | 12197 | $0.0274 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r7 | anthropic/claude-sonnet-5.5 | 2 | 3772 | 0 | 0 | 1891 | $0.0265 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r7 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3321 | 0 | 0 | 738 | $0.0140 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r7 (Sefa's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3258 | 0 | 0 | 645 | $0.0130 | 0 | 0 | 0 |
+| S1-none-haiku3 | relay r7 (Sefa's screen, retold, pass 2) | anthropic/claude-sonnet-5.5 | 1 | 3237 | 0 | 0 | 649 | $0.0130 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | player r7 | anthropic/claude-haiku-5.5 | 1 | 4 | 18082 | 775 | 234 | $0.0004 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell r7 | anthropic/claude-haiku-5.5 | 1 | 1024 | 0 | 0 | 79 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | after 1 | anthropic/claude-haiku-5.5 | 1 | 4 | 18038 | 1152 | 993 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram after 1 | anthropic/claude-haiku-5.5 | 1 | 721 | 0 | 0 | 72 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | after 2 | anthropic/claude-haiku-5.5 | 1 | 4 | 19190 | 416 | 575 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram after 2 | anthropic/claude-haiku-5.5 | 1 | 556 | 0 | 0 | 89 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Bram | after 3 | anthropic/claude-haiku-5.5 | 1 | 4 | 19606 | 238 | 374 | $0.0004 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Bram after 3 | anthropic/claude-haiku-5.5 | 1 | 531 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | after 1 | anthropic/claude-haiku-5.5 | 1 | 4 | 17940 | 1130 | 728 | $0.0007 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa after 1 | anthropic/claude-haiku-5.5 | 1 | 662 | 0 | 0 | 74 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | after 2 | anthropic/claude-haiku-5.5 | 1 | 4 | 19070 | 357 | 549 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa after 2 | anthropic/claude-haiku-5.5 | 1 | 583 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Sefa | after 3 | anthropic/claude-haiku-5.5 | 1 | 4 | 19427 | 265 | 527 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Sefa after 3 | anthropic/claude-haiku-5.5 | 1 | 597 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | after 1 | anthropic/claude-haiku-5.5 | 1 | 4 | 18857 | 623 | 436 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell after 1 | anthropic/claude-haiku-5.5 | 1 | 612 | 0 | 0 | 78 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | after 2 | anthropic/claude-haiku-5.5 | 1 | 4 | 19480 | 307 | 592 | $0.0005 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell after 2 | anthropic/claude-haiku-5.5 | 1 | 627 | 0 | 0 | 70 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/Pell | after 3 | anthropic/claude-haiku-5.5 | 1 | 4 | 19787 | 309 | 385 | $0.0004 | 0 | 0 | 0 |
+| S1-none-haiku3/check | check S1-none-haiku3 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 478 | 0 | 0 | 66 | $0.0001 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3235 | 0 | 0 | 1619 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3235 | 0 | 0 | 1577 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r1 referee | anthropic/claude-haiku-5.5 | 1 | 3235 | 0 | 0 | 2139 | $0.0014 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r1 1 | anthropic/claude-haiku-5.5 | 1 | 3463 | 0 | 0 | 891 | $0.0008 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r1 2 | anthropic/claude-haiku-5.5 | 1 | 3463 | 0 | 0 | 1122 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r1 referee | anthropic/claude-haiku-5.5 | 1 | 3463 | 0 | 0 | 1183 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 3519 | 0 | 0 | 1384 | $0.0010 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 3519 | 0 | 0 | 1456 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r2 referee | anthropic/claude-haiku-5.5 | 1 | 3519 | 0 | 0 | 2124 | $0.0014 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r2 1 | anthropic/claude-haiku-5.5 | 1 | 3747 | 0 | 0 | 1079 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r2 2 | anthropic/claude-haiku-5.5 | 1 | 3747 | 0 | 0 | 1147 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r2 referee | anthropic/claude-haiku-5.5 | 1 | 3747 | 0 | 0 | 1001 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 4001 | 0 | 0 | 1706 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 4001 | 0 | 0 | 1801 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r3 referee | anthropic/claude-haiku-5.5 | 1 | 4001 | 0 | 0 | 2061 | $0.0014 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r3 1 | anthropic/claude-haiku-5.5 | 1 | 4229 | 0 | 0 | 1733 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r3 2 | anthropic/claude-haiku-5.5 | 1 | 4229 | 0 | 0 | 1435 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r3 referee | anthropic/claude-haiku-5.5 | 1 | 4229 | 0 | 0 | 1501 | $0.0012 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 4094 | 0 | 0 | 1571 | $0.0012 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 4094 | 0 | 0 | 1850 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r4 referee | anthropic/claude-haiku-5.5 | 1 | 4094 | 0 | 0 | 2649 | $0.0017 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r4 1 | anthropic/claude-haiku-5.5 | 1 | 4322 | 0 | 0 | 838 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r4 2 | anthropic/claude-haiku-5.5 | 1 | 4322 | 0 | 0 | 989 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r4 referee | anthropic/claude-haiku-5.5 | 1 | 4322 | 0 | 0 | 1457 | $0.0012 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r5 1 | anthropic/claude-haiku-5.5 | 1 | 4717 | 0 | 0 | 2401 | $0.0017 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r5 2 | anthropic/claude-haiku-5.5 | 1 | 4717 | 0 | 0 | 2056 | $0.0015 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r5 referee | anthropic/claude-haiku-5.5 | 1 | 4717 | 0 | 0 | 2814 | $0.0019 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r5 1 | anthropic/claude-haiku-5.5 | 1 | 4945 | 0 | 0 | 1311 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r5 2 | anthropic/claude-haiku-5.5 | 1 | 4945 | 0 | 0 | 876 | $0.0009 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r5 referee | anthropic/claude-haiku-5.5 | 1 | 4945 | 0 | 0 | 1672 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r6 1 | anthropic/claude-haiku-5.5 | 1 | 4058 | 0 | 0 | 2232 | $0.0015 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r6 2 | anthropic/claude-haiku-5.5 | 1 | 4058 | 0 | 0 | 2287 | $0.0015 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r6 referee | anthropic/claude-haiku-5.5 | 1 | 4058 | 0 | 0 | 2759 | $0.0018 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r6 1 | anthropic/claude-haiku-5.5 | 1 | 4286 | 0 | 0 | 1616 | $0.0012 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r6 2 | anthropic/claude-haiku-5.5 | 1 | 4286 | 0 | 0 | 1271 | $0.0011 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r6 referee | anthropic/claude-haiku-5.5 | 1 | 4286 | 0 | 0 | 1936 | $0.0014 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r7 1 | anthropic/claude-haiku-5.5 | 1 | 3826 | 0 | 0 | 1906 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r7 2 | anthropic/claude-haiku-5.5 | 1 | 3826 | 0 | 0 | 1777 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | round r7 referee | anthropic/claude-haiku-5.5 | 1 | 3826 | 0 | 0 | 1874 | $0.0013 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r7 1 | anthropic/claude-haiku-5.5 | 1 | 4054 | 0 | 0 | 1174 | $0.0010 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r7 2 | anthropic/claude-haiku-5.5 | 1 | 4054 | 0 | 0 | 1163 | $0.0010 | 0 | 0 | 0 |
+| S1-none-haiku3/score | hold r7 referee | anthropic/claude-haiku-5.5 | 1 | 4054 | 0 | 0 | 1562 | $0.0012 | 0 | 0 | 0 |

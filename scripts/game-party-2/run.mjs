@@ -7,7 +7,8 @@
 //   run.mjs --freeze                  the world and the three layers on the owner's DM (Claude Opus 5.5 through OpenRouter)
 //   run.mjs --haiku ARM [--rounds N]  the paid dry run on the frozen world: three Claude Haiku 5.5 players, every Claude
 //                                     call of the app as Haiku but the relay's (Claude Sonnet 5.5)
-//   run.mjs --table KEY               one table of the order (e.g. S1-none-T1) — only after the owner's word in issue #1
+//   run.mjs --table KEY --allowance N one table of the order (e.g. S1-none-T1) — only after the owner's word in issue #1;
+//                                     the meter's cap for it is what was spent + N (never past $60)
 //   run.mjs --reprep S1,S3 --why …    a situation's layer prepared again on a changed note (the old one kept in v1/)
 //   run.mjs --score FILE [--judges-haiku]  the blind tags of a played table (score.mjs); --judges-haiku: the dry run's
 //   run.mjs --estimate                the per-table estimate from the dry run's ledger and PARTY_1's Opus tables
@@ -100,7 +101,7 @@ function auditing(inner, into) {
 
 /** One metered pass with the app open. `haiku`: the paid dry run's rewrite (every Claude call as Haiku, the relay as
  * Sonnet); otherwise the relay as Sonnet and everything else as sent. */
-async function withApp({ dry = false, haiku = false, fetcher = null, database = null, audit = null, log = console.log, what, file }, work) {
+async function withApp({ dry = false, haiku = false, fetcher = null, database = null, audit = null, log = console.log, what, file, allowance = null }, work) {
   const keys = dry ? { anthropic: "sk-scripted", openai: null, openrouter: "sk-scripted", door: null } : await runKeys();
   if (!dry) {
     if (keys.door?.provider !== "openrouter") throw new Error("this stage goes through OpenRouter: set APP_ANTHROPIC_PROVIDER=openrouter");
@@ -108,7 +109,13 @@ async function withApp({ dry = false, haiku = false, fetcher = null, database = 
     keys.openai = null; // POLICY v1 and the Mandate: $0 OpenAI — no OpenAI key in this process, and no OpenAI ledger
   }
   // The mocked host answers on the Console's address (no door): a dry pass gets room there too; a paid pass has only CAPS.
-  const caps = dry ? { anthropic: 1000, openrouter: 1000 } : CAPS;
+  let caps = dry ? { anthropic: 1000, openrouter: 1000 } : CAPS;
+  // The owner's per-table allowance (issue #1): this pass may spend at most `allowance` dollars, and never past the $60.
+  if (!dry && Number.isFinite(allowance)) {
+    const spent = (await stageLedgers(STAGE_INFO)).before.openrouter.spentUsd ?? 0;
+    caps = { openrouter: Math.min(CAPS.openrouter, Math.round((spent + allowance) * 10000) / 10000) };
+    log(`allowance: $${allowance} for this pass — the meter's cap is $${caps.openrouter} (spent before $${spent.toFixed(3)}; the Mandate's ceiling $${CAPS.openrouter})`);
+  }
   const { before, ledgers } = await stageLedgers({ ...STAGE_INFO, caps }, { dry });
   const inner = fetcher ?? globalThis.fetch.bind(globalThis);
   const meter = createMeter({ ledgers, fetcher: audit ? auditing(inner, audit) : inner, log, waits429: WAITS_429, ...(dry ? {} : { rewrite: haiku ? companyRewrite : relayRewrite }) });
@@ -175,7 +182,7 @@ export async function reprep({ situations, dir = FROZEN_DIR, log = console.log, 
 
 /** One table from the frozen world. `seating`: { bram, sefa, pell } → a ROSTER name (the triad's, or all «haiku» for the
  * dry run). Returns the run record (written with its pages into `out`). */
-export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating = null, dry = false, haiku = false, rounds = ROUNDS, fetcher = null, log = console.log, out = RUNS, label = null }) {
+export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating = null, dry = false, haiku = false, rounds = ROUNDS, fetcher = null, log = console.log, out = RUNS, label = null, allowance = null }) {
   const a = armOf(arm);
   if (!a) throw new Error(`no arm ${arm}`);
   const seats = seating ?? SEATING[triad];
@@ -190,7 +197,8 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     models: dry ? "the scripted host" : haiku ? "every Claude call as Claude Haiku 5.5 but the relay's (Claude Sonnet 5.5); the players Claude Haiku 5.5" : `the DM: the owner's settings (Claude Opus 5.5); the relay: Claude Sonnet 5.5; the players by the seating`,
     frozen: { snapshot: frozen.manifest.snapshot.sha256, layer: frozen.manifest.layers[a.situation]?.sha256 ?? null, dice: frozen.manifest.dice } };
   let tableFrom = 0;
-  await withApp({ dry, haiku, fetcher, audit, log, database: () => openFrozenDatabase(dir), what: `the table ${key}`, file: `${STEM}-run` }, async ({ app, meter, keys, settle }) => {
+  record.allowance = allowance;
+  await withApp({ dry, haiku, fetcher, audit, log, database: () => openFrozenDatabase(dir), what: `the table ${key}`, file: `${STEM}-run`, allowance }, async ({ app, meter, keys, settle }) => {
     const made = await tableStarter(dir)(app, { key, arm }, { meter });
     record.coin = made.coin; record.order = made.seats; record.frozen.note = made.prep.noteSha256;
     const { bindTable } = await import("../game-player-1/table.mjs");
@@ -303,7 +311,7 @@ export const DRY_SCRIPT = {
 function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), spend: argv.includes("--spend"), freeze: argv.includes("--freeze"), haiku: value("--haiku"), table: value("--table"), estimate: argv.includes("--estimate"),
-    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label"), score: value("--score"), scoreHaiku: argv.includes("--judges-haiku"), reprep: value("--reprep"), why: value("--why") };
+    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label"), allowance: value("--allowance") ? Number(value("--allowance")) : null, score: value("--score"), scoreHaiku: argv.includes("--judges-haiku"), reprep: value("--reprep"), why: value("--why") };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -326,7 +334,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (a.table) done((async () => {
     const entry = ORDER.find((o) => o.key === a.table);
     if (!entry) throw new Error(`${a.table} is not a table of the order (${ORDER.map((o) => o.key).join(", ")})`);
-    const r = await playTable({ arm: entry.arm, triad: entry.triad, rounds: a.rounds ?? ROUNDS });
+    if (!Number.isFinite(a.allowance)) throw new Error("a paid table needs the owner's per-table allowance from issue #1: --allowance N");
+    const r = await playTable({ arm: entry.arm, triad: entry.triad, rounds: a.rounds ?? ROUNDS, allowance: a.allowance });
     console.log(`${r.key}: ${r.table.rounds.length} round(s), ended by ${r.table.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(3)}`);
   })());
   else if (a.reprep) done(reprep({ situations: a.reprep.split(","), why: a.why ?? "the note changed before any paid table" }).then(({ manifest }) => console.log(`layers: ${Object.entries(manifest.layers).map(([x, l]) => `${x} ${l.sha256.slice(0, 16)}…`).join(", ")}`)));

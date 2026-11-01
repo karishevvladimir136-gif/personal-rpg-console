@@ -170,6 +170,57 @@
           "left": 55.82
         }
       }
+    },
+    {
+      "at": "2026-11-01T09:32:03.379Z",
+      "when": "before S1-none-haiku3",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1203.773726395,
+        "remaining": 96.23,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 4.2065,
+          "cap": 60,
+          "left": 55.79
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:47:38.334Z",
+      "when": "after S1-none-haiku3",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1204.41402756,
+        "remaining": 95.59,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 4.8595,
+          "cap": 60,
+          "left": 55.14
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T09:53:45.129Z",
+      "when": "by hand",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1204.478185735,
+        "remaining": 95.52,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 4.911,
+          "cap": 60,
+          "left": 55.09
+        }
+      }
     }
   ]
 }

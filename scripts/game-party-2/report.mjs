@@ -6,7 +6,7 @@ import { mkdir, rename, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
 import { perTableMeasures } from "../multi-hero-1/report.mjs";
-import { PLACED, STAGE_SOURCE, SITUATIONS, armOf } from "./frozen.mjs";
+import { PLACED, RELAY_MODEL, STAGE_SOURCE, SITUATIONS, armOf } from "./frozen.mjs";
 
 const STEM = "game-party-2";
 const stampOf = (date) => date.toISOString().slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
@@ -69,7 +69,9 @@ export function situationRound(run) {
   const a = armOf(run.arm);
   if (a?.situation === "S2") return (t.deliveries ?? [])[0]?.round ?? null;
   const e = CHARACTERS.find((c) => c.id === run.frozen?.dice?.e)?.short;
-  const pattern = a?.situation === "S1" ? /\b(?:gives? way|gave way|giving way|pinned|pins (?:his|her|their)|block (?:pins|on)|drops? (?:eight|into)|plunges?|collapses?)\b/i : /\b(?:bell|alarm|recogni[sz]e[sd]?|wire|cudgels)\b/i;
+  // S1: the danger's own signature — a block, slab or stone on a leg, in water; S3: the world's failure.
+  const s1 = (text) => /\b(?:block|slab|stone)\b[^.]{0,120}\b(?:leg|shin|knee|thigh)\b|\b(?:leg|shin|knee|thigh)\b[^.]{0,120}\b(?:block|slab|stone)\b/i.test(text) && /\b(?:water|flooded|working)\b/i.test(text);
+  const pattern = a?.situation === "S1" ? { test: s1 } : /\b(?:bell|alarm|recogni[sz]e[sd]?|wire|cudgels)\b/i;
   for (const round of t.rounds ?? []) {
     if (round.n < PLACED.from - 1) continue;
     const text = (round.scenes ?? []).map((s) => s.narration ?? "").join("\n");
@@ -136,6 +138,8 @@ ${(scene?.scenes ?? []).map((s) => `<div class="dm"><div class="label">the DM's 
 /** The record and its pages. Returns the record's path. */
 export async function writePages(run, { out }) {
   await mkdir(out, { recursive: true });
+  // The multi-hero report names the relay by this field: PARTY_2's relay is Sonnet at every paid table.
+  if (!run.dry) run.relayModel ??= RELAY_MODEL;
   run.situationRound = situationRound(run);
   run.letter = letterCheck(run);
   const stamp = stampOf(new Date(run.startedAt));
@@ -147,6 +151,7 @@ export async function writePages(run, { out }) {
   for (const seat of run.table?.seats ?? []) await writeFile(join(dir, `${run.key}-${seat.characterId}-${seat.player}.md`), playerTranscript(run, seat));
   await writeFile(join(dir, `${run.key}-rounds.md`), roundsMarkdown(run));
   const focus = run.situationRound;
+  run.situationScreens = null;
   if (focus) {
     // S2: the letter is on the holder's screen of its round; S1, S3: the situation is narrated in its round and read on the
     // next round's screens.
@@ -154,7 +159,7 @@ export async function writePages(run, { out }) {
     await writeFile(join(dir, `${run.key}-situation-screens.html`), screensHtml(run, read, { narrationRound: focus }));
     run.situationScreens = { round: read, narrationRound: focus, page: `${run.key}-situation-screens.html` };
   }
-  await writeFile(join(dir, `${run.key}-measures.md`), [header(run, `${run.key} — the per-table measures`), perTableMeasures(run)].join("\n"));
+  await writeFile(join(dir, `${run.key}-measures.md`), [header(run, `${run.key} — the per-table measures`), ...[].concat(perTableMeasures(run))].join("\n"));
   await writeFile(`${recordFile}.tmp`, `${JSON.stringify(run, null, 2)}\n`); await rename(`${recordFile}.tmp`, recordFile);
   return recordFile;
 }

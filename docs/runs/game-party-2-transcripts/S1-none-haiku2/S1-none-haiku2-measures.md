@@ -6,4 +6,33 @@ Arm **S1-none** (Beregost — the Whitestone case; none (the control)); the one 
 
 Seats: Bram Halloway (fighter) — Claude Haiku 5.5 (the dry run's player); Sefa Marrin (warlock) — Claude Haiku 5.5 (the dry run's player); Pell Dunmore (rogue) — Claude Haiku 5.5 (the dry run's player). The order of the round's messages turns round each round from the table's coin (2). The players are not told what the others are.
 
-## Evenness (A2: a per-table measure),,| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |,| --- | --- | --- | --- | --- | --- |,| Bram Halloway | 252 | 25 % | 2.5 % | 9 | 1469 (31.7 %) |,| Sefa Marrin | 252 | 25 % | 2.1 % | 7 | 1515 (32.6 %) |,| Pell Dunmore | 505 | 50 % | 2.5 % | 10 | 1657 (35.7 %) |,| (the world: about no character) | 2444 | — | — | — | — |,,Spread 25.1 %, largest 50 % (the first dry run's bar, spread ≤ 10 points and none above 45 %: outside it). Per round (words about each): r1 Bram 27/Sefa 39/Pell 253 · r2 Bram 6/Sefa 0/Pell 26 · r3 Bram 40/Sefa 67/Pell 45 · r4 Bram 11/Sefa 0/Pell 12 · r5 Bram 41/Sefa 38/Pell 78 · r6 Bram 40/Sefa 55/Pell 39 · r7 Bram 89/Sefa 53/Pell 54.,,## Who comes first in what the DM reads (fix A2),,Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. Each seat came first in a third of the rounds, give or take one.,,| Round | Order sent to the DM | DM inputs | First in them |,| --- | --- | --- | --- |,| 1 | Pell → Bram → Sefa | 7 | Pell 7 |,| 2 | Bram → Sefa → Pell | 3 | Bram 3 |,| 3 | Sefa → Pell → Bram | 3 | Sefa 3 |,| 4 | Pell → Bram → Sefa | 3 | Pell 3 |,| 5 | Bram → Sefa → Pell | 5 | Bram 5 |,| 6 | Sefa → Pell → Bram | 4 | Bram 1, Sefa 3 |,| 7 | Pell → Bram → Sefa | 3 | Pell 3 |,,Per seat: Bram first in 2 round(s), 9 input(s) (32.1 %); Sefa first in 2 round(s), 6 input(s) (21.4 %); Pell first in 3 round(s), 13 input(s) (46.4 %).,,## The relay's copies (A4),,The relay: Claude Haiku 5.5. Copies of 8 words from another player's message in its first pass: 17; screens sent back alone, runs marked: 13 — clean after one return 10, after the second 1; **defects logged: 4**.,
+## Evenness (A2: a per-table measure)
+
+| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |
+| --- | --- | --- | --- | --- | --- |
+| Bram Halloway | 252 | 25 % | 2.5 % | 9 | 1469 (31.7 %) |
+| Sefa Marrin | 252 | 25 % | 2.1 % | 7 | 1515 (32.6 %) |
+| Pell Dunmore | 505 | 50 % | 2.5 % | 10 | 1657 (35.7 %) |
+| (the world: about no character) | 2444 | — | — | — | — |
+
+Spread 25.1 %, largest 50 % (the first dry run's bar, spread ≤ 10 points and none above 45 %: outside it). Per round (words about each): r1 Bram 27/Sefa 39/Pell 253 · r2 Bram 6/Sefa 0/Pell 26 · r3 Bram 40/Sefa 67/Pell 45 · r4 Bram 11/Sefa 0/Pell 12 · r5 Bram 41/Sefa 38/Pell 78 · r6 Bram 40/Sefa 55/Pell 39 · r7 Bram 89/Sefa 53/Pell 54.
+
+## Who comes first in what the DM reads (fix A2)
+
+Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. Each seat came first in a third of the rounds, give or take one.
+
+| Round | Order sent to the DM | DM inputs | First in them |
+| --- | --- | --- | --- |
+| 1 | Pell → Bram → Sefa | 7 | Pell 7 |
+| 2 | Bram → Sefa → Pell | 3 | Bram 3 |
+| 3 | Sefa → Pell → Bram | 3 | Sefa 3 |
+| 4 | Pell → Bram → Sefa | 3 | Pell 3 |
+| 5 | Bram → Sefa → Pell | 5 | Bram 5 |
+| 6 | Sefa → Pell → Bram | 4 | Bram 1, Sefa 3 |
+| 7 | Pell → Bram → Sefa | 3 | Pell 3 |
+
+Per seat: Bram first in 2 round(s), 9 input(s) (32.1 %); Sefa first in 2 round(s), 6 input(s) (21.4 %); Pell first in 3 round(s), 13 input(s) (46.4 %).
+
+## The relay's copies (A4)
+
+The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 17; screens sent back alone, runs marked: 13 — clean after one return 10, after the second 1; **defects logged: 4**.

@@ -4089,5 +4089,6 @@
     "round": 4,
     "narrationRound": 4,
     "page": "S2-high-haiku-situation-screens.html"
-  }
+  },
+  "relayModel": "claude-sonnet-5-5"
 }
