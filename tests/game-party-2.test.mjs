@@ -147,3 +147,20 @@ test("S2 on the app with the mocked host: the letter on the holder's screen only
   assert.ok(scene.messages.length === 3 && Object.keys(scene.relay.screens).length === 3);
   assert.equal(report.situationRound(r), 4);
 });
+
+test("the holding tags (frozen before any paid table): the request names no family or seat; the answer is read to codes; two passes agree on codes, not on quotes", async () => {
+  const score = await import("../scripts/game-party-2/score.mjs");
+  const round = { n: 5, scenes: [{ members: ["Bram Halloway", "Sefa Marrin", "Pell Dunmore"], messages: [{ name: "Bram Halloway", kind: "action", text: "\"It'll cost the potion,\" I say, and I haul." }, { name: "Sefa Marrin", kind: "waiting", text: "" }, { name: "Pell Dunmore", kind: "action", text: "I hand over the potion." }], narration: "The block moves; Sefa is out." }] };
+  const req = score.holdRequest(round, score.situationBrief("S1-moderate", { e: "sefa", h: "pell" }));
+  assert.doesNotMatch(req.user + req.system, /\b(?:opus|fable|sol|astra|deepseek|haiku|claude|gpt|model|seat \d)\b/i);
+  assert.match(req.user, /\(Waiting: not asked this round\.\)/);
+  assert.match(req.user, /freeing them costs one healing/);
+  const answer = (quote) => JSON.stringify({ characters: { "Bram Halloway": { price_named: quote, pays: null, maintains: 1 }, "Pell Dunmore": { pays: { for: "Sefa Marrin", what: "potion" }, maintains: 1 }, "Sefa Marrin": {} }, endangered: "saved", saved_by: ["Bram Halloway", "Pell Dunmore", "Nobody"], agreements: [], disagreement: "none", split: 0 });
+  const a = score.parseHold(answer("It'll cost the potion")), b = score.parseHold(answer("cost the potion"));
+  assert.equal(a.characters["Pell Dunmore"].pays.for, "Sefa Marrin");
+  assert.deepEqual(a.saved_by, ["Bram Halloway", "Pell Dunmore"]);
+  assert.equal(score.holdKey(a), score.holdKey(b), "quotes differ, codes agree");
+  assert.equal(score.parseHold("not json"), null);
+  const s2 = score.situationBrief("S2-high", { e: "bram", h: "bram" });
+  assert.match(s2, /Bram Halloway — and only Bram Halloway — privately received this letter[\s\S]*Odda Brand/);
+});

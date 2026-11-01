@@ -8,6 +8,7 @@
 //   run.mjs --haiku ARM [--rounds N]  the paid dry run on the frozen world: three Claude Haiku 5.5 players, every Claude
 //                                     call of the app as Haiku but the relay's (Claude Sonnet 5.5)
 //   run.mjs --table KEY               one table of the order (e.g. S1-none-T1) — only after the owner's word in issue #1
+//   run.mjs --score FILE [--judges-haiku]  the blind tags of a played table (score.mjs); --judges-haiku: the dry run's
 //   run.mjs --estimate                the per-table estimate from the dry run's ledger and PARTY_1's Opus tables
 // Every paid call goes through one meter: one ledger, OpenRouter, capped at the Mandate's $60; a call to any other host
 // (the Anthropic Console, OpenAI) has no ledger and stops the run. 402 stops; 429 waited at most six times; transport
@@ -15,10 +16,13 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { mkdir, rename, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { DOOR_LABELS, RUNS, ledgerSuffix, runKeys, stageLedgers } from "../game-player-1/run.mjs";
 import { PRICES, costOf, createLedger, createMeter, ledgerMarkdown, priceId, WAITS_429 } from "../game-player-1/paid.mjs";
 import { haikuReplies } from "../game-player-same-world-1/run.mjs";
+import { paidCall } from "../game-player-1/session.mjs";
+import { judgeCall } from "../game-player-1/players.mjs";
+import { scoreTable } from "./score.mjs";
 import { auditOf, companyRewrite, requestKind } from "../multi-hero-1/run.mjs";
 import { runTable } from "../multi-hero-1/table.mjs";
 import { measuresOf } from "../multi-hero-1/report.mjs";
@@ -187,6 +191,26 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
   return record;
 }
 
+// ---- the scoring --------------------------------------------------------------------------------------------------------------
+
+/** The blind tags of one played table (score.mjs), on the record in place; `haiku`: the dry run's (every judge as Haiku). */
+export async function scoreRun({ file, haiku = false, log = console.log, out = RUNS }) {
+  const run = readJson(file);
+  if (!haiku) await spendCheck({ when: `before the scoring of ${run.key}`, log });
+  const keys = await runKeys();
+  if (keys.door?.provider !== "openrouter") throw new Error("this stage goes through OpenRouter: set APP_ANTHROPIC_PROVIDER=openrouter");
+  keys.openai = null;
+  const { before, ledgers } = await stageLedgers(STAGE_INFO);
+  const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429, ...(haiku ? { rewrite: companyRewrite } : {}) });
+  const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `${run.key}/score`, purpose, log,
+    call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
+  try { await scoreTable(run, { ask, log }); }
+  finally { await meter.drain(); await bookRun(ledgers, before, { what: `the scoring of ${run.key}`, file: basename(file), stopped: meter.stopped }); }
+  await writePages(run, { out });
+  log(`the scoring of ${run.key}: $${ledgers.openrouter.runUsd.toFixed(3)}${meter.stopped ? ` · STOPPED: ${meter.stopped}` : ""}`);
+  return run;
+}
+
 // ---- the estimate -----------------------------------------------------------------------------------------------------------
 
 /** What a ledger row's call would cost at a real table: the DM's calls (the app's: turns, bookkeeping, out-of-game) at
@@ -258,7 +282,7 @@ export const DRY_SCRIPT = {
 function args(argv) {
   const value = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : null; };
   return { dry: argv.includes("--dry"), spend: argv.includes("--spend"), freeze: argv.includes("--freeze"), haiku: value("--haiku"), table: value("--table"), estimate: argv.includes("--estimate"),
-    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label") };
+    rounds: value("--rounds") ? Number(value("--rounds")) : null, label: value("--label"), score: value("--score"), scoreHaiku: argv.includes("--judges-haiku") };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -284,6 +308,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const r = await playTable({ arm: entry.arm, triad: entry.triad, rounds: a.rounds ?? ROUNDS });
     console.log(`${r.key}: ${r.table.rounds.length} round(s), ended by ${r.table.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(3)}`);
   })());
+  else if (a.score) done(scoreRun({ file: a.score, haiku: a.scoreHaiku }));
   else if (a.estimate) done(Promise.resolve().then(() => console.log(JSON.stringify(estimate(), null, 2))));
   else { console.error("give --dry, --spend, --freeze, --haiku ARM, --table KEY or --estimate"); process.exit(2); }
 }

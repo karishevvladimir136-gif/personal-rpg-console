@@ -160,7 +160,7 @@ export async function buildWorld({ app, meter, dir, log = () => {}, by = null, s
   const bytes = Buffer.from(await blob.arrayBuffer());
   await writeAtomic(join(dir, SNAPSHOT), bytes);
   const manifest = { stage: STAGE, design: DESIGN_SHA256, builtAt: new Date().toISOString(), by, owner: app.owner, dice: dice ?? drawLayerDice(),
-    snapshot: { file: SNAPSHOT, bytes: bytes.length, sha256: sha256(bytes), note: "The local database after the wizard, the opening and the seating of the three situations' company campaigns, before any secret or prep (PGlite data directory, gzip). Not committed (size); named by its sha256." },
+    snapshot: { file: SNAPSHOT, bytes: bytes.length, sha256: sha256(bytes), note: "The local database after the wizard, the opening and the seating of the three situations' company campaigns, before any secret or prep (PGlite data directory, gzip), committed beside the layers so a later session plays from the same world (PARTY_1 did the same); named by its sha256." },
     situations: Object.fromEntries(SITUATION_IDS.map((x) => [x, { campaignId: made[x].cid, heroId: made[x].heroId, companions: made[x].companions, worldId: made[x].worldId, adventureId: made[x].adventureId, coin: made[x].coin, seats: made[x].seats, steps: made[x].steps }])),
     layers: {} };
   await writeAtomic(join(dir, MANIFEST), `${JSON.stringify(manifest, null, 2)}\n`);

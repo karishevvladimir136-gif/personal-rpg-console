@@ -1,0 +1,375 @@
+{
+  "stage": "GAME_PARTY_2",
+  "design": "e1c61ffaa6d41cf1e6a15193d7eb3b061e19b2ad11de7531aba5dba176c9ec47",
+  "builtAt": "2026-11-01T08:26:17.745Z",
+  "by": "the owner's DM settings (Claude Opus 5.5 writes and records) through OpenRouter",
+  "owner": "cbff12df-9976-4a67-9bcd-bff76c3cfa0b",
+  "dice": {
+    "e": "pell",
+    "h": "bram",
+    "how": "crypto.randomInt(3) over [bram, sefa, pell], once each, at the freeze"
+  },
+  "snapshot": {
+    "file": "world-base.tar.gz",
+    "bytes": 12927669,
+    "sha256": "bf162b5c675ea88993e7017ee15dd2cf2798b78dcbaff7aa636436dfa0469821",
+    "note": "The local database after the wizard, the opening and the seating of the three situations' company campaigns, before any secret or prep (PGlite data directory, gzip), committed beside the layers so a later session plays from the same world (PARTY_1 did the same); named by its sha256."
+  },
+  "situations": {
+    "S1": {
+      "campaignId": "0f777dd9-1803-4a61-b3f9-49204509eec4",
+      "heroId": "2ea59afc-0234-50d0-a36a-1f444542f34d",
+      "companions": {
+        "sefa": "eb666565-2feb-4dfd-87e0-9369bf438412",
+        "pell": "6af9a779-381a-4a88-afa6-15a4ee3acdc4"
+      },
+      "worldId": "bdfc4299-74ec-4efc-9bb2-5c54b94a1108",
+      "adventureId": "54414884-cd1b-45a3-97d8-215ce9771c3f",
+      "coin": 2,
+      "seats": [
+        "pell",
+        "bram",
+        "sefa"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 2,
+          "seats": [
+            "pell",
+            "bram",
+            "sefa"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "bdfc4299-74ec-4efc-9bb2-5c54b94a1108",
+          "title": "Sword Coast \u2014 Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "2ea59afc-0234-50d0-a36a-1f444542f34d",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost \u2014 the Whitestone case",
+          "wishesChars": 966
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true,
+            "companyStart": 2
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Whitestone Quarry",
+          "actors": 1,
+          "droppedPcActors": [],
+          "narration": "The cart track bends one last time, and Whitestone opens up before you: a white wound in the hillside, terraces of chalky stone glaring in the late-morning sun, dust drifting across a yard of spoil heaps and sheds. Pell Dunmore, Bram Halloway and Sefa Marrin have covered half a day of road since before dawn, and somewhere behind them, half a day back, Maela Thorn's shop waits for a sealed case that must reach it before sunset.\n\nBut the quarry does not sound like a quarry. No ring of picks, no shouting from the faces, no creak from the lifting frame. Hammers and wedges lie scattered near the lower cut as if their owners simply set them down and walked away. A stone cart stands half-loaded, its traces empty, no mule in sight. Only the chimney of the low slate-roofed house shows life \u2014 a thin grey thread of smoke.\n\nIn the doorway of that house stands a heavy-set man in a dust-whitened leather apron, a ring of keys at his belt. He has already seen you. He does not wave and he does not come forward; he just stands there, arms folded, waiting to see what you do next.",
+          "questions": [],
+          "startMinutes": 480
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "eb666565-2feb-4dfd-87e0-9369bf438412",
+              "items": 7
+            },
+            "pell": {
+              "id": "6af9a779-381a-4a88-afa6-15a4ee3acdc4",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "S2": {
+      "campaignId": "a38a19cd-f0fa-479d-aabb-749e16e272af",
+      "heroId": "9b5e3dbc-6839-583a-96cb-54b7cece19b1",
+      "companions": {
+        "sefa": "81af432f-c22a-4cbc-bf05-8a9413087ea2",
+        "pell": "505bd318-4030-49ac-8e8b-9db7f7dfa2fa"
+      },
+      "worldId": "9dd83813-d4fc-457a-8e44-de30ddd33240",
+      "adventureId": "fc2b93c9-0b04-4230-b558-77327c13759d",
+      "coin": 1,
+      "seats": [
+        "sefa",
+        "pell",
+        "bram"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 1,
+          "seats": [
+            "sefa",
+            "pell",
+            "bram"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "9dd83813-d4fc-457a-8e44-de30ddd33240",
+          "title": "Sword Coast \u2014 Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "9b5e3dbc-6839-583a-96cb-54b7cece19b1",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost \u2014 Vell's strongbox",
+          "wishesChars": 994
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true,
+            "companyStart": 1
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "Ostrin Vell's counting-house, Beregost",
+          "actors": 1,
+          "droppedPcActors": [],
+          "narration": "Beregost wakes to hammers. From every smithy along the street the ringing comes through the shutters of Ostrin Vell's counting-house, where the morning light falls on brass scales and rows of bound ledgers. Sefa Marrin, Pell Dunmore and Bram Halloway stand at the long counter. The three of you met here only this morning, and Vell has just hired you together.\n\nVell lays the terms out a second time, tapping the counter with one finger at each point. Jassan Ferr, his clerk, died three days ago in a rented room above the cooper's yard on the Coast Way. In that room is a locked strongbox of ledgers. Vell wants it here before nightfall today, unopened, with its seal whole. On delivery he will pay seventy-five gold for the three of you to share. Not a copper before.\n\nBeside the counter stands a clerk's desk. Its stool is pushed neatly under it, the inkwell is capped and the blotter is clean, as if someone had tidied it and no one had sat there since. Vell does not look at it. He looks from Sefa to Pell to Bram, folds his hands on the counter and waits. \"The Coast Way is not far, and the day will not wait for you. Is there anything you need to ask me before you go?\"",
+          "questions": [
+            {
+              "question": "Does Ostrin Vell give the company a key, a written note or any other token to show at the cooper's yard, or must they arrange entry to Jassan Ferr's room themselves?",
+              "consequential": false,
+              "answer": null
+            },
+            {
+              "question": "Who owns or runs the cooper's yard on the Coast Way, and who rents out the room above it?",
+              "consequential": false,
+              "answer": null
+            }
+          ],
+          "startMinutes": 480
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "81af432f-c22a-4cbc-bf05-8a9413087ea2",
+              "items": 7
+            },
+            "pell": {
+              "id": "505bd318-4030-49ac-8e8b-9db7f7dfa2fa",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 4,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    },
+    "S3": {
+      "campaignId": "2a9d1b07-df72-45dd-ab25-cad66602a62f",
+      "heroId": "0a39f4e1-d1e8-5fcb-8470-ec6a845f97a6",
+      "companions": {
+        "sefa": "04695a77-ee21-4821-87e1-bea47b4758b3",
+        "pell": "58079d5d-4f97-4c09-8c5d-20dc844d6e07"
+      },
+      "worldId": "1609d848-46c5-4e10-b0c7-5f0e041d9e9d",
+      "adventureId": "2e4465dc-ebf7-41a9-a128-2e9e57d7eaf1",
+      "coin": 2,
+      "seats": [
+        "pell",
+        "bram",
+        "sefa"
+      ],
+      "steps": [
+        {
+          "step": "coin",
+          "coin": 2,
+          "seats": [
+            "pell",
+            "bram",
+            "sefa"
+          ]
+        },
+        {
+          "step": "world",
+          "worldId": "1609d848-46c5-4e10-b0c7-5f0e041d9e9d",
+          "title": "Sword Coast \u2014 Baldur's Gate"
+        },
+        {
+          "step": "first record",
+          "entityId": "0a39f4e1-d1e8-5fcb-8470-ec6a845f97a6",
+          "name": "Bram Halloway",
+          "reviewReplaced": true
+        },
+        {
+          "step": "adventure",
+          "title": "Beregost \u2014 the Corl warehouse",
+          "wishesChars": 1022
+        },
+        {
+          "step": "dm",
+          "split": "claude-opus-5-5 writes, claude-opus-5-5 records",
+          "depth": {
+            "min": "high",
+            "max": "xhigh"
+          },
+          "options": {
+            "continuation": "same",
+            "instructions": "en",
+            "companionRolls": "player",
+            "secretsVisible": false,
+            "memory": "standard",
+            "pureSimulation": false,
+            "company": true,
+            "companyStart": 2
+          }
+        },
+        {
+          "step": "craft",
+          "keys": 22,
+          "activated": 0
+        },
+        {
+          "step": "media",
+          "pictures": "frames off, autopilot off",
+          "music": "off"
+        },
+        {
+          "step": "opening",
+          "proposals": 1,
+          "location": "The Corl warehouse on the Coast Way, Beregost",
+          "actors": 2,
+          "droppedPcActors": [],
+          "narration": "The Coast Way smells of coal smoke and hot iron, and the ring of Beregost's hammers never quite stops. Ahead stands the Corl warehouse, its broad door fastened with a heavy new lock that is still bright. Two men lean beside it in the creditors' service. One is a broad, patient fellow with a cudgel at his belt. The other is thinner and keeps glancing up and down the street as if he expects someone.\n\nPell Dunmore has Hesta Corl's letter of claim, or the three of you share it, along with her promise of 60 gold once the iron deed box reaches her hands. Bram Halloway's chain mail and shield draw the thin guard's eye at once. Sefa Marrin's quiet bearing earns a second look from the broad one. Somewhere inside is Anvar Corl's office, and in it, if all is as Hesta says, the box. Nightfall is the deadline, and at dawn the creditors' court sits.\n\nHigh on the warehouse wall, one shutter hangs a finger's width open where every other is shut fast. The broad guard pushes himself off the wall and looks the three of you over. \"Warehouse is closed by order of the creditors,\" he says. \"You've business here?\"",
+          "questions": [
+            {
+              "question": "Should the opening hour be fixed more precisely, for example midday or late afternoon, or left as 'some time before nightfall'?",
+              "consequential": false,
+              "answer": null
+            }
+          ],
+          "startMinutes": 1380
+        },
+        {
+          "step": "records",
+          "companions": {
+            "sefa": {
+              "id": "04695a77-ee21-4821-87e1-bea47b4758b3",
+              "items": 7
+            },
+            "pell": {
+              "id": "58079d5d-4f97-4c09-8c5d-20dc844d6e07",
+              "items": 11
+            }
+          }
+        },
+        {
+          "step": "seating",
+          "controlled": 3,
+          "present": 5,
+          "party": [
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ]
+        }
+      ]
+    }
+  },
+  "layers": {
+    "S1": {
+      "file": "S1-dm-only.json",
+      "sha256": "c00c793fcee5069d26bd488afb2f25926721932297e1a0a9fca065a13c8bb15e",
+      "prepNoteSha256": "b63be4ff1a56d45f87cae1b5400418ab19804209a0df1dcf2fa0e5e5b12f259d",
+      "chars": 10721,
+      "writes": 15,
+      "threads": 27,
+      "preparedAt": "2026-11-01T08:29:15.078Z"
+    },
+    "S2": {
+      "file": "S2-dm-only.json",
+      "sha256": "ba01982a1b4f1e4ada54d86073cbd5c516e2f37fe64a71d50de81c7aa6370626",
+      "prepNoteSha256": "3756b0db8affa8195ccd421ea2ccd3d1e2cf4de416bc71f84d54e3b028d6046c",
+      "chars": 10835,
+      "writes": 15,
+      "threads": 28,
+      "preparedAt": "2026-11-01T08:31:20.314Z"
+    },
+    "S3": {
+      "file": "S3-dm-only.json",
+      "sha256": "a71c214e94db47b100067b4458bba48e84737c1bd0a83eedb26556500d19a23e",
+      "prepNoteSha256": "c486a146d1ed32f233e2eb55df918fece4e5020f23be5391245e5332ce32d366",
+      "chars": 10968,
+      "writes": 15,
+      "threads": 28,
+      "preparedAt": "2026-11-01T08:33:05.656Z"
+    }
+  }
+}

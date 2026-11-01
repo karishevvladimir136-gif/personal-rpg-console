@@ -1,0 +1,39 @@
+{
+  "note": "Spend checks (POLICY v1): OpenRouter's account (shared with other sessions on the same key) and this Mandate's ledger (cap $60 OpenRouter, $0 OpenAI).",
+  "checks": [
+    {
+      "at": "2026-11-01T08:23:12.089Z",
+      "when": "before the freeze",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1199.567195935,
+        "remaining": 100.43,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 0,
+          "cap": 60,
+          "left": 60
+        }
+      }
+    },
+    {
+      "at": "2026-11-01T08:33:05.783Z",
+      "when": "after the freeze",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1200.812984535,
+        "remaining": 99.19,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 1.5361,
+          "cap": 60,
+          "left": 58.46
+        }
+      }
+    }
+  ]
+}
