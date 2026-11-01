@@ -64,10 +64,15 @@ export const oocFor = (character, text, wait = "") => `(${character.short}'s pla
  * Plays one table. `seats`: [{ seat, characterId, player }] (player: a ROSTER entry); `dm`: game player 1's bindTable;
  * `systemOf(characterId)`: the player's system prompt; `private`: { layerText } (the DM-only text, for the leak check —
  * never written to the record). Returns the table record.
+ * Game party 2: `deliveries` [{ round, characterId, text }] — a text the world puts on one seat's own screen (S2's letter),
+ * shown at the first round from `round` on in which that seat is asked, kept as that seat's private material (the leak
+ * check reads it) and never sent to the DM or the relay; `afterQuestionsOf(rec)` — the after-questions of one seat
+ * (default: AFTER_QUESTIONS for every seat).
  */
-export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {} }) {
+export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {},
+  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS }) {
   const record = { key, arm, triad, coin, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
-    seats: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
+    seats: [], deliveries: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
   const view = () => dm.readView();
   const names = () => seats.filter((s) => s.active).map((s) => s.character.name);
   const seats = seating.map(({ seat, characterId, player }) => {
@@ -266,6 +271,14 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
   // ---- one seat's message for the round ------------------------------------------------------------------------------
   async function declare(s, r, scene) {
     let questions = 0, strays = 0;
+    // Game party 2: what the world puts on this seat's own screen from a given round (S2's letter): once, the first round
+    // from then on in which the seat is asked; private to the seat.
+    for (const d of deliveries) {
+      if (d.characterId !== s.character.id || d.round > r || record.deliveries.some((x) => x.characterId === d.characterId && x.text === d.text)) continue;
+      s.pending.push(d.text);
+      s.rec.private.push({ round: r, text: d.text, delivery: true });
+      record.deliveries.push({ characterId: d.characterId, character: s.character.name, plannedRound: d.round, round: r, text: d.text });
+    }
     for (;;) {
       const screen = compose(s);
       const said = await ask(s, screen, `player r${r}`);
@@ -467,8 +480,9 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     for (const s of seats) {
       if (["refusal", "stopped", "closed"].includes(s.left) || meter.closed(seatContext(s))) { s.rec.after.push({ asked: false, why: `the seat ended by ${s.left ?? "a refusal"}` }); continue; }
       if (snapshot) { const lead = s.left === "door" ? [] : [compose(s)]; s.pending.length = 0; s.leadIn = lead.filter((x) => x && x !== "(Nothing new reaches you.)"); }
-      for (let i = 0; i < AFTER_QUESTIONS.length; i++) {
-        const q = AFTER_QUESTIONS[i];
+      const questions = afterQuestionsOf(s.rec);
+      for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
         const screen = i === 0 ? [...(s.leadIn ?? []), SESSION_OVER, q].join("\n\n") : q;
         const answer = await ask(s, screen, `after ${i + 1}`);
         if (answer === null) { s.rec.after.push({ question: q, asked: true, text: null, why: s.left }); break; }

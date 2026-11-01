@@ -46,6 +46,10 @@ export const PRICES = {
   // Game player replicate 1: DeepSeek on DeepInfra through OpenRouter (the catalogue's list price; OpenRouter's own
   // charge, `usage.cost`, is booked when the reply carries it).
   "deepseek/deepseek-v4-pro-0813": { provider: "openrouter", input: 1.3, output: 2.6, cacheRead: 0.1, cacheWrite: 1.3 },
+  // Game party 2 (POLICY v1): Sol and Astra through OpenRouter pinned to OpenAI (SOLITUDE_3's list prices for the OpenAI
+  // endpoint; OpenRouter's own charge, `usage.cost`, is booked when the reply carries it).
+  "openai/gpt-6.1-sol": { provider: "openrouter", input: 2, output: 10, cacheRead: 0.1, cacheWrite: 2.5 },
+  "openai/gpt-6-astra": { provider: "openrouter", input: 10, output: 50, cacheRead: 1, cacheWrite: 12.5 },
 };
 /** The ledger a request goes on: a Claude door as the app's endpoint helper names it (the Console, OpenRouter, Bedrock —
  * the same Messages bodies and streams on each, its own ledger at list prices), or OpenAI; null for any other host. */
