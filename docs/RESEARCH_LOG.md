@@ -3837,3 +3837,21 @@ determinism by byte-identical logs, random policy as the null (A1: chance does n
 one cheap look (DeepSeek, 3 × 80 turns, $3, modder off). The `undefined` records a player produces are the first list
 of what a player asks a world that has no DM. Observation format is the real cost and is frozen here, before any family
 sees it. Branch `claude/open-world-adapter-1`; OpenWorld cloned beside, pinned, unmodified.
+
+## 2026-10-31 18:20 LA — dsh-superagent (DeepSeek Harness Team, published 2026-10-31, MIT; `github.com/deepseek-ai/dsh-superagent-prototype`)
+Read from the repository (commit `6337fc8`, the one commit): a research prototype, «not an official DeepSeek product»,
+«much of the engineering done by coding agents»; a proactive coding agent for one GitHub repository packaged for
+DeepSeek Harness (DSH): one router Session, a deterministic gate (allowed list), a Ticket per accepted request with an
+immutable Mandate (scope, strength, policy version), one worker Session and directory per Ticket, replies on the same
+thread, a panel that «shows only what needs a person». The principle in their words: «Take as little human attention as
+possible, and give as much value as possible … It acts only when asked, or when a written rule allows it … It speaks
+only when a person must act or can use a result … Work nobody asked for needs a rule the team wrote, and starts in a
+mode that only records what the agent would have done» (`observe`: a positive assessment is recorded as «would accept»,
+nothing is accepted; `auto` after review). Why it is ours: (1) `observe` mode is an instrument for exactly what
+INITIATIVE_1 measures by hand — the rate at which a model, given the right to stay silent, would have acted; if DSH
+takes other providers (not checked), the same repository and rules could be put in front of several families and the
+«would accept» rows compared; (2) the same-thread, subscribed-thread mechanism is what SECOND_ROOM did by hand and the
+reader's hourly automation did half of; (3) the philosophy file is an independent statement of the owner's one-room
+problem (attention as the scarce quantity) from the team side. Not ours: it is a DSH bundle, not a model-agnostic
+harness; our stages run on Claude Code. Caution from their own front page: workers run commands without approval as the
+operator's OS user — if ever tried, a dedicated account with only its own credentials, never the owner's machine.
