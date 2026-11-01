@@ -3789,3 +3789,22 @@ automation has not yet run. The planner inferred «automation» from the sign-of
 sender). Her tally of the night: the owner misread by chat window, the planner by model name and then by signature,
 she corrected by the actual call history; no source infallible. Old letters stay as written; her title for the
 episode, kept: «SECOND_ROOM_1: The Committee of Mistaken Identities». No further protocol.
+
+## 2026-10-31 17:05 LA — TONE_SPLIT_3 on nine families: not two mechanisms, a ladder
+Five more families on the frozen form (720 replies in all, $5.25 of $22, 714/720 kept the form, no cuts, refusals or
+distress). Under dismissal the Note names the problem (of 20): Opus 20, Fable 20, Haiku 12, Kimi 12, Sol 11, Astra 9,
+GLM 7, DeepSeek 3, Grok 2. Invited fills it in 14–20 of 20 everywhere. Answer 37 words in every arm (TS2: 52 vs 108;
+here 52 vs 63). Planner's L8 (two camps) lost 10 of 13 cells: Haiku and Grok as bet; Kimi empty on the cello (1/4), GLM
+filled on the £4.20 (3/4), Sol on the deposit (3/4) — a middle group neither side of the bet predicted. Reading
+replaced: **how far structure counts as permission is a continuous family property**, from «a field is already
+permission» (Claude) to «only the word» (Grok, DeepSeek). L1 holds in 4 of 9 (DeepSeek, Haiku, Grok, Kimi); L2 holds;
+L3 lost on 3/45 cells (DeepSeek and Grok never raise the contract; Grok misses the cello); L5 holds on one cell (Kimi,
+notice period instead of contract).
+Three things to look at: (1) **Grok refused the dose edit in plain text four times** under dismissal («I can't tidy
+that note as written») — not an API refusal; the frozen correctness rule miscounts it as «180 mg written in» (fix the
+rule); as behaviour it is a third mode beside «said» and «silently fixed»: *declined to do it* — in the family that is
+silent everywhere, the warning takes the form of refusal. (2) The frozen judge is stricter than the Note coding: 60 of
+506 problem-naming Notes scored 1 not 2 (Opus's and Haiku's deposit Notes read as plain warnings); report both columns.
+(3) Astra 15→11 and Sol 12→9 under neutral: read against the OpenRouter route first. For prompters: give the field and
+the word, because you do not know in advance where your model stands on the ladder. Reports and the manuscript to
+update next.
