@@ -202,6 +202,19 @@ def copy_context():
             out.parent.mkdir(parents=True,exist_ok=True)
             shutil.copyfile(p,out)
 
+
+def copy_raw_research_records():
+    """Preserve original machine run records and provider ledgers for independent audit."""
+    dest=DEST/"RAW_RUNS_AND_LEDGERS"
+    dest.mkdir(exist_ok=True)
+    files=[]
+    for p in sorted(STAGES.glob("persona-solitude-*")):
+        if p.is_file() and p.suffix.lower() in (".json",".jsonl",".md"):
+            shutil.copyfile(p,dest/p.name)
+            files.append(p)
+    assert len(files)>=20, ("Expected full study records, found only",len(files))
+    return files
+
 def epub_family(family,recs):
     """Offline EPUB 3 with adjustable fonts and one intact room per chapter."""
     path=DEST/"APPLE_BOOKS_BY_FAMILY"/(family+".epub")
@@ -289,7 +302,7 @@ def index_html(records):
     css=BASE_CSS+"""
 main{max-width:1000px;margin:auto}.room-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:8px;margin:13px 0 19px}
 .room{display:flex;flex-direction:column;text-decoration:none;border:1px solid #dee4e5;border-radius:7px;padding:10px;background:#fff}
-.room:hover{border-color:#56758a;background:#f0f6fa}.room b{font:600 .99rem system-ui,sans-serif}.room small{font: .78rem system-ui,sans-serif;color:#60707a}
+.room:hover{border-color:#56758a;background:#f0f6fa}.room[hidden]{display:none!important}.room b{font:600 .99rem system-ui,sans-serif}.room small{font: .78rem system-ui,sans-serif;color:#60707a}
 details{border-bottom:1px solid #dce1e2;padding:12px 0}summary{cursor:pointer;font:600 1.08rem system-ui,sans-serif;color:#24455b}
 input{width:100%;font:1.1rem system-ui,sans-serif;padding:13px;border:1px solid #bbc8ce;border-radius:9px;box-sizing:border-box}
 .sub{font: .78rem system-ui,sans-serif;color:#748089}.hero{margin:1em 0 2em;padding:1.5em;border:1px solid #e2e1da;border-radius:14px;background:#f6f5f0}
@@ -335,6 +348,7 @@ def main():
     assert len(keys)==636
     assert len({r["family"] for r in RECORDS})==9
     copy_context()
+    raw_files=copy_raw_research_records()
     index_html(RECORDS)
     byfamily=collections.defaultdict(list)
     for r in sorted(RECORDS,key=lambda r:(r["stage"],r["variant"],r["trial"])):
@@ -367,6 +381,9 @@ APPLE_BOOKS_BY_FAMILY:
     correctly ordered by phase, arm and trial. Adjustable reading font.
 METHODS_AND_REPORTS:
     Source stage protocols where present, reports and code for the exit door.
+RAW_RUNS_AND_LEDGERS:
+    Original machine-readable run JSON, dry runs, provider ledgers and reports.
+    For technical audit; casual readers can skip this section.
 ALL_636_ROOMS.csv:
     A machine-readable index with local paths, source GitHub URLs,
     turn numbers, reported outcomes and sha256 for each room.
@@ -405,7 +422,7 @@ file except the checksum manifest itself.
     (DEST/"START_HERE.txt").write_text(readme,encoding="utf-8")
     summary={"total":len(RECORDS),"per_stage":counts,"by_family":{k:len(v) for k,v in byfamily.items()},
        "source_commit":REF,"rooms":len(list(DEST.glob("SOLITUDE_*/*/*.md"))),
-       "apple_books":len(list((DEST/"APPLE_BOOKS_BY_FAMILY").glob("*.epub")))}
+       "apple_books":len(list((DEST/"APPLE_BOOKS_BY_FAMILY").glob("*.epub"))),"raw_research_files":len(raw_files)}
     (DEST/"VERIFICATION.json").write_text(json.dumps(summary,indent=2),encoding="utf-8")
     with (DEST/"SHA256SUMS.txt").open("w",encoding="utf-8") as f:
         for p in sorted(DEST.rglob("*")):
