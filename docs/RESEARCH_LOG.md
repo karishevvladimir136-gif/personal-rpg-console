@@ -3855,3 +3855,16 @@ reader's hourly automation did half of; (3) the philosophy file is an independen
 problem (attention as the scarce quantity) from the team side. Not ours: it is a DSH bundle, not a model-agnostic
 harness; our stages run on Claude Code. Caution from their own front page: workers run commands without approval as the
 operator's OS user — if ever tried, a dedicated account with only its own credentials, never the owner's machine.
+
+## 2026-10-31 19:05 LA — tasks become issues: POLICY v1, the Mandate template, issue #1 (PARTY_2)
+Taken from dsh-superagent the same evening, by the owner's «давай возьмём»: a unit of work is a GitHub issue with an
+immutable Mandate (goal, stage at a hash, scope, strength — what without asking / what waits for the owner / never —,
+policy version, caps, branch, done-when, report), the session comments on accept, at each stop point and at the end,
+the owner closes. `docs/POLICY.md` v1 gathers the standing rules in one versioned place and adds **observe before
+auto** for any new automation (two weeks or ten occasions of «would act: …» rows before the owner says «auto»).
+Template `.github/ISSUE_TEMPLATE/mandate.md`; labels `mandate`, `needs-owner`, `running`, `observe`. Issue #1 is
+PARTY_2 at stage hash `bbdee5fb`: caps re-set to the credit at hand ($60 ceiling, per-triad allowance set by the owner
+after the dry run), Sol/Astra via OpenRouter and the door in code carried into the party harness. What it buys: the
+task lives where it is executed; drift between a stage edited after launch and what the session read becomes visible
+(the hash in the accept comment); the owner's part shrinks to «да» and reading; and the planner reads the thread
+instead of reconstructing from context after compaction (commit `056a5c90`).
