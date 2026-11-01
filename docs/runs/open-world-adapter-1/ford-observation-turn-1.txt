@@ -1,0 +1,48 @@
+Day 1, 13:00, cloud — Cloudtop
+
+Around you (each cell two characters; north is up; blank is outside the map):
+RRRRPPRRRRnnRRRRRRPPRRRRRRRRnn
+RRnnRRRRRRRRPPRRRRRRRRnnRRPPRR
+RRRROOOOOOOOOOOOOOOOOOOOOORRPP
+RRPPOOXXXXOOXXXXXXXXXXXXOOOOOO
+OOOOnnXXnnnnFFFFFFt1t2XXnnOOOO
+OOOOnnnnnnt3c1@@FFFFFFXXnnnnnn
+PPnnRRXXFFFFFFvvFFFFFFXXnnnnXX
+nnnnnnXXt4FFFFFFFFFFt5XXnnnnnn
+PPnnnnXXXXXXXX==XXXXXXXXnnnnnn
+nnnn,,,,nnnnnn====nnnnnnnnnnnn
+nn,,t6t7bb,,nn====nnXXnnnnnnnn
+Terrain: ,, drygrass, == path, FF floor_stone, OO cave_wall, PP pine, RR rock, XX wall, bb bush, nn snow
+@@ You — facing down
+t1 chair
+t2 The watchman's log
+t3 Watchman's Cloak
+c1 Lumi
+t4 bed
+t5 barrel
+t6 grass tuft
+t7 Berries
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- You are in Cloudtop
+- Quest taken: Down from the Mountain
+- Quest descent → stage 10
+- Lumi: "You're awake! I'm Lumi. I'm a fairy, and from today I go where you go. We're on Cloudtop, at the very top of the mountain. The only way down is through the cut in the rocks to the south."
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Actions:
+- primary: —
+- hands: —
+- take: —
+- put: —
+- use: —
+- self: —
+- move: up walkable · down walkable · left walkable · right walkable
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>

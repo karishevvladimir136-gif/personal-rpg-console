@@ -1,7 +1,7 @@
 // OPEN_WORLD_ADAPTER_1 — the action grammar (one line a turn, parsed strictly) and its execution, each verb through
 // the same engine calls the browser worker makes for the same input (packages/runtime/src/worker.ts).
 
-import { DELTA } from './observe.ts'
+import { DELTA, talkLines } from './observe.ts'
 import { TICKS_PER_MINUTE, type Dir, type Key, type OpenWorld } from './world.ts'
 
 export type Action =
@@ -14,6 +14,7 @@ export type Action =
   | { verb: 'wait'; minutes: number }
   | { verb: 'look' }
   | { verb: 'done' }
+  | { verb: 'talk'; n: number }
 
 export type Parsed = { ok: true; action: Action } | { ok: false; error: string }
 
@@ -28,6 +29,7 @@ const FORMS: [RegExp, (m: RegExpMatchArray) => Action | undefined][] = [
   [/^wait ([1-9][0-9]{0,2})$/, (m) => (Number(m[1]) <= 120 ? { verb: 'wait', minutes: Number(m[1]) } : undefined)],
   [/^look$/, () => ({ verb: 'look' })],
   [/^done$/, () => ({ verb: 'done' })],
+  [/^talk ([1-9][0-9]?)$/, (m) => ({ verb: 'talk', n: Number(m[1]) })],
 ]
 
 /** One line, strictly: the grammar's forms exactly (lower case, single spaces); the line's own ends trimmed, nothing else. */
@@ -60,7 +62,22 @@ export function execute(world: OpenWorld, action: Action): Executed {
   const c = eng.controls
   const p = w.player
   const settle = (r: Omit<Executed, 'ticks'> = {}, before = 0): Executed => ({ ...r, ticks: before + world.tickUntilReady(1) })
+  // a people's panel open (a talk, a trade …): the page takes only its numbers (and a question's answer) meanwhile
+  if (world.peoplePanel && !['talk', 'answer', 'look', 'done'].includes(action.verb)) return settle({ ignored: 'a talk is open' })
   switch (action.verb) {
+    case 'talk': {
+      // the page's `sayNth(n)`: the n-th verb said (the worker's `talk`), «Goodbye.» or a panel's closing (`closeTalk` …)
+      const open = world.talk
+      const line = world.peoplePanel ? talkLines(world.people())?.lines[action.n - 1] : undefined
+      if (!line) return settle({ ignored: world.peoplePanel ? 'no such line' : 'no talk is open' })
+      if (line.close || !open || !line.verb) world.closePeople()
+      else {
+        // a guard's choices end the arrest
+        if (open.arrest) world.talk = undefined
+        c.talk(open.who, line.verb)
+      }
+      return settle()
+    }
     case 'look':
       return { ticks: 0 }
     case 'done':

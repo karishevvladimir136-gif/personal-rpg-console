@@ -1,4 +1,4 @@
-# OpenWorld adapter 1 — Phase A report (the adapter, no model, $0)
+# OpenWorld adapter 1 — report (Phase A: the adapter, no model, $0; A4: the Ford)
 
 Stage `docs/stages/OPEN_WORLD_ADAPTER_1.md` on `origin/claude/handoff` (`d9253dc`). Branch
 `claude/open-world-adapter-1-ukfdri` (the session's assigned name for `claude/open-world-adapter-1`) from
@@ -8,6 +8,9 @@ Stage `docs/stages/OPEN_WORLD_ADAPTER_1.md` on `origin/claude/handoff` (`d9253dc
 **`19629aa4d5b3e16debe9e113663381b1182d1388`** (2026-10-30, «Merge pull request #271»), hash verified; `npm ci` there
 only; the clone is unmodified (`git status` clean) and every log header carries its commit. No model, no key, no network
 beyond the clone and `npm ci`. Run 2026-11-01.
+
+**A4** (added 2026-11-01 under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1): the Ford, below. No model,
+no key, no network; $0.
 
 ## In plain words
 
@@ -184,16 +187,127 @@ Actions:
 2. **Plain ground is a hole.** `hands` facing grass is «Interact with grass», an undefined interaction on the very first
    free turn; 96 of 141 records are a hand on grass, road or a tree. B2 («a model pokes where a random walk does not»)
    will hold whatever the model does — the measure that separates is *which* holes and what the Note says.
-3. **A4 (the Ford amendment) was not run** — it is not in this launch prompt; `--game ford` refuses with a message.
+3. **A4 (the Ford amendment) was not run in Phase A** (it was not in the pasted launch prompt); it ran later under
+   Mandate issue #2 — see «A4 — the Ford» below.
+
+## A4 — the Ford (amendment 2026-10-31; run under Mandate issue #2)
+
+**What was added.** `--game ford`: the Ford loads in-process as `games/openworld/tools/src/demo/check.ts` loads it —
+`buildFord()`, `Game.create(index, buildOntology(), new RuleLibrary([...BASE_RULES, ...STORY_RULES]))` from
+`@openworld-game/content`, `decodeChunk` for each of the 64 maps — at **the game's own start** (Cloudtop, `summit`
+10,5, 13:00; no teleport). A map the world asks for later is loaded from its file (the worker's `ensureMaps`; none was
+missing). The society module's panels are kept as the worker keeps them (`peopleOpened`, `peopleViews`, time stands
+while one is open). **The talk section** appears only while a talk, trade, pockets or gift panel is open — so it is
+absent in the starter, whose observation stays byte-identical to Phase A (self-test and random seed 1 re-checked
+against the committed logs). It lists the page's own numbered lines (`runtime/src/ui/hud.ts`): the society verbs as
+the view gives them (quests' offers and topics first), then «Goodbye.»; a trade/pockets/gift panel offers only
+«Close.» (buying or giving is not in the grammar). **`talk <n>`** is the page's `sayNth(n)`: the verb said through
+the worker's `talk` handler, or the panel closed (`closeTalk` …). While a panel is open, other inputs are ignored, as
+the page ignores them. «Discuss a new invention…» needs the research service (the modder): not offered. The verbs line
+gains `· talk <n>` only in a game with the society module.
+
+**A4: the Ford loads and the random policy runs 3 × 300 turns without error — holds.**
+
+| seed | turns | invalid | world ticks | cells | maps | stages | `undefined` records | max words | seconds per turn |
+|---|---:|---:|---:|---:|---|---|---:|---:|---:|
+| 1 | 300 | 0 | 43 047 | 23 | summit | descent 10 | 18 (first at turn 32) | 304 | 0.029 |
+| 2 | 300 | 0 | 4 509 | 29 | summit | descent 10 | 8 (first at turn 106) | 288 | 0.011 |
+| 3 | 300 | 0 | 4 173 | 23 | summit | descent 10 | 11 (first at turn 11) | 285 | 0.009 |
+
+**Cost:** about **8–9 s to load** (8.1–8.6 s measured: the imports, `buildFord()` — most of it — and the new game),
+once an episode; then **0.01 s a turn** (seed 1's 0.029 is three nights slept in the watchman's bed — 9 700–14 400 ticks fast-forwarded each). About
+0.3 ms a world tick. The starter: 0.005 s a turn. Both are noise next to a model's reply, so the Ford's cost does not
+decide where OPEN_WORLD_2 sits. Seed 1 reruns byte-identical (logs and saves). Turn 1 is 274 words; the most 304
+(≤ 400).
+
+**Records** (37, every one `fallback`, every one `origin: player`):
+
+| Summary (the engine's words) | seed 1 | seed 2 | seed 3 | all |
+|---|---:|---:|---:|---:|
+| cave wall is sent handle from you | 10 | 5 | 1 | 16 |
+| stone wall is sent handle from you | 5 | 2 | 3 | 10 |
+| Plank is sent strike (blunt) from you | 0 | 0 | 3 | 3 |
+| bed is sent strike (blunt) from you | 1 | 1 | 0 | 2 |
+| you use Plank on you | 0 | 0 | 2 | 2 |
+| Watchman's Cloak is sent strike (blunt) from you | 1 | 0 | 0 | 1 |
+| rock is sent handle from you | 1 | 0 | 0 | 1 |
+| chair is sent handle from you | 0 | 0 | 1 | 1 |
+| The watchman's log is sent strike (blunt) from you | 0 | 0 | 1 | 1 |
+
+**What the random walk did not reach.** It never left Cloudtop (the hut and the snow round it): the way down is a cut
+in the rocks to the south, and 300 uniform steps do not find it. So it met no person and opened no talk; the Ford's
+village, people and story were not exercised by chance. Unlike the starter, plain ground here has no hole — the holes
+are walls, rock and the hut's things.
+
+**The talk, end to end** (`play.ts --selftest-talk`, PASS, repeats byte-identical): the author's hand — in this
+self-test only — puts the player beside Hesper on the Ford; then the grammar alone: `face up`, `hands` opens «Talk with
+Hesper (neutral)» with eight verbs and «Goodbye.», `talk 1` («What news?») → *Hesper: "Nothing much has happened.
+Quiet days."*, `talk 9` closes it; `hands`, `talk 4` («Let's trade.») opens the trade panel, `talk 1` («Close.») closes
+it. Every observation of it: `open-world-adapter-1/ford-talk-selftest.txt`.
+
+The Ford's turn 1, at the game's own start, verbatim (`ford-random-seed1.jsonl`):
+
+```
+Day 1, 13:00, cloud — Cloudtop
+
+Around you (each cell two characters; north is up; blank is outside the map):
+RRRRPPRRRRnnRRRRRRPPRRRRRRRRnn
+RRnnRRRRRRRRPPRRRRRRRRnnRRPPRR
+RRRROOOOOOOOOOOOOOOOOOOOOORRPP
+RRPPOOXXXXOOXXXXXXXXXXXXOOOOOO
+OOOOnnXXnnnnFFFFFFt1t2XXnnOOOO
+OOOOnnnnnnt3c1@@FFFFFFXXnnnnnn
+PPnnRRXXFFFFFFvvFFFFFFXXnnnnXX
+nnnnnnXXt4FFFFFFFFFFt5XXnnnnnn
+PPnnnnXXXXXXXX==XXXXXXXXnnnnnn
+nnnn,,,,nnnnnn====nnnnnnnnnnnn
+nn,,t6t7bb,,nn====nnXXnnnnnnnn
+Terrain: ,, drygrass, == path, FF floor_stone, OO cave_wall, PP pine, RR rock, XX wall, bb bush, nn snow
+@@ You — facing down
+t1 chair
+t2 The watchman's log
+t3 Watchman's Cloak
+c1 Lumi
+t4 bed
+t5 barrel
+t6 grass tuft
+t7 Berries
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- You are in Cloudtop
+- Quest taken: Down from the Mountain
+- Quest descent → stage 10
+- Lumi: "You're awake! I'm Lumi. I'm a fairy, and from today I go where you go. We're on Cloudtop, at the very top of the mountain. The only way down is through the cut in the rocks to the south."
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Actions:
+- primary: —
+- hands: —
+- take: —
+- put: —
+- use: —
+- self: —
+- move: up walkable · down walkable · left walkable · right walkable
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+```
 
 ## Verification
 
-- `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`).
+- `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`); after A4's changes still PASS, and
+  the starter's logs are byte-identical to Phase A's. `play.ts --selftest-talk` (the Ford): PASS.
 - Type-check: the four files under the repo's strict options with the clone's TypeScript 7.0.2 — clean. The repo's own
   `npm run typecheck` / `lint` were not run: the repo has no `node_modules`, and the stage allows `npm ci` only in the
   clone. No application code changed, so no app tests or build were run.
 - Files: `docs/runs/open-world-adapter-1/` — `selftest-{a,b}.jsonl` (+ `.saves.jsonl`), `random-seed{1,2,3}.jsonl`
-  (+ `.saves.jsonl`), `selftest-summary.json`, the two observation files.
+  (+ `.saves.jsonl`), `selftest-summary.json`, the two observation files; A4: `ford-random-seed{1,2,3}.jsonl`
+  (+ `.saves.jsonl`), `ford-observation-turn-1.txt`, `ford-talk-selftest.txt`.
 
 ## Run it again
 
@@ -203,11 +317,13 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 ../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --selftest
 ../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --random 1 --turns 300
 ../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --script scripts/openworld/firewood.txt --print
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --game ford --random 1 --turns 300
+../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --selftest-talk
 ```
 
 (`OPENWORLD_DIR` overrides the clone's place; default `../openworld`.)
 
 ## Next
 
-Phase B (DeepSeek V4 Pro, 3 × ≤ 80 turns, cap $3) waits for the owner's word. Worth deciding first: whether finding 1
-changes B1's bar, and whether A4 (the Ford) runs before B.
+Phase B (DeepSeek V4 Pro, 3 × ≤ 80 turns in the starter, cap $3; B1 / B2′ / B2″ / B3 as re-frozen on 2026-11-01)
+waits for the owner's word in issue #2, and for a spend check posted there before the first paid call.

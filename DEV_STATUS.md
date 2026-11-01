@@ -1,9 +1,15 @@
 # Development status
 
 **Current milestone: OpenWorld adapter 1 — Phase A** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
-`d9253dc`), branch `claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`.
-Nothing to `main`. **Phase A complete and reported; Phase B waits for the owner's word.** Report
+`d9253dc`; A4 and Phase B under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1), branch
+`claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`. Nothing to `main`.
+**Phase A and A4 complete and reported; Phase B waits for the owner's word in issue #2.** Report
 `docs/runs/open-world-adapter-1-report.md`; logs `docs/runs/open-world-adapter-1/`.
+
+- **A4 (the Ford):** `--game ford` (loaded as `check.ts` loads it, at the game's own start), the talk section (only while
+  a people's panel is open; the starter's bytes unchanged), `talk <n>`, `--selftest-talk`. Holds: 3 × 300 random turns
+  without error, deterministic; ≈ 8–9 s load, ≈ 0.01 s a turn; 37 `undefined` records (walls, rock, the hut's things);
+  the random walk never left Cloudtop.
 
 - **What was built:** `scripts/openworld/{world,observe,act,play}.ts` — a text adapter for OpenWorld (SihanXU/openworld,
   MIT), cloned beside the repo at the pinned `19629aa4…` (verified, unmodified, `npm ci` there only) and imported by

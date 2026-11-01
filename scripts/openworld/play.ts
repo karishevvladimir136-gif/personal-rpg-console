@@ -1,8 +1,8 @@
 // OPEN_WORLD_ADAPTER_1 — the loop: observation → policy → action → execute → log.
 //
 //   OPENWORLD_DIR=../openworld ../openworld/node_modules/.bin/tsx scripts/openworld/play.ts --selftest
-//   … play.ts --random <seed> [--turns 300] [--out file.jsonl]
-//   … play.ts --script <file> [--turns n] [--out file.jsonl] [--print]
+//   … play.ts --random <seed> [--turns 300] [--game starter|ford] [--out file.jsonl]
+//   … play.ts --script <file> [--turns n] [--game starter|ford] [--out file.jsonl] [--print]
 //   … play.ts --model <id>                      (Phase B; refused in Phase A)
 //
 // No network, no model, no key. One JSONL line per turn; a game.save() checkpoint every 50 turns and at the end
@@ -14,14 +14,14 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execute, parse, type Executed } from './act.ts'
 import { observe, type Observation } from './observe.ts'
-import { OPENWORLD_DIR, OpenWorld, type Frame } from './world.ts'
+import { OPENWORLD_DIR, OpenWorld, type Dir, type Entity, type Frame, type Pos } from './world.ts'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const REPO = join(HERE, '..', '..')
 export const RUN_DIR = join(REPO, 'docs', 'runs', 'open-world-adapter-1')
 export const CHECKPOINT_EVERY = 50
 /** Fields that carry wall-clock time: stripped before two logs are compared. */
-export const TIME_FIELDS = ['started', 'elapsed_s', 'seconds_per_turn', 'savedAt']
+export const TIME_FIELDS = ['started', 'elapsed_s', 'seconds_per_turn', 'savedAt', 'load_s']
 
 export type Policy = (obs: Observation, turn: number) => string
 
@@ -67,6 +67,8 @@ export interface EpisodeSummary {
   records: { id: string; tick: number; status: string; origin: string; summary: string }[]
   cells: number
   elapsed_s: number
+  /** Seconds the load took (import, build, new game and its opening): apart from the turns. */
+  load_s: number
   /** Observations kept for the report: turn 1, and the one after the axe came into the bag. */
   firstObservation: string
   axeObservation?: { turn: number; text: string }
@@ -150,10 +152,12 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
     records,
     cells: cells.size,
     elapsed_s,
+    load_s: world.load_s,
     firstObservation,
     axeObservation,
   }
-  log({ type: 'end', turns, actions, invalid, ticks: summary.ticks, stages: summary.stages, first_reached: firstReached, records, cells: cells.size, max_words: maxWords, elapsed_s, seconds_per_turn: elapsed_s / Math.max(1, turns) })
+  const missing = [...world.missingMaps]
+  log({ type: 'end', turns, actions, invalid, ticks: summary.ticks, stages: summary.stages, first_reached: firstReached, records, cells: cells.size, max_words: maxWords, ...(missing.length && { missing_maps: missing }), elapsed_s, load_s: world.load_s, seconds_per_turn: (elapsed_s - world.load_s) / Math.max(1, turns) })
   return summary
 }
 
@@ -206,12 +210,75 @@ async function selftest(): Promise<number> {
   return ok ? 0 : 1
 }
 
+/**
+ * The Ford's talk, end to end (A4; the random walk never meets a person on Cloudtop): the author's hand — here only,
+ * a self-test's setting — puts the player beside Hesper, facing him; then the grammar alone: `hands` opens the talk,
+ * `talk 1` says its first verb, the last line («Goodbye.») closes it.
+ */
+async function selftestTalk(): Promise<number> {
+  const world = await OpenWorld.open({ game: 'ford' })
+  const eng = world.eng as typeof world.eng & { author<T>(f: () => T): T; teleport(e: Entity, to: Pos): void }
+  const w = world.w
+  const who = w.get('npc.hesper')
+  const at = who && w.posOf(who)
+  if (!who || !at) throw new Error('no npc.hesper in the Ford')
+  const sides: [Dir, number, number][] = [['up', 0, 1], ['down', 0, -1], ['left', 1, 0], ['right', -1, 0]]
+  const side = sides.find(([, dx, dy]) => w.walkable(at.map, at.x + dx, at.y + dy, w.player.id))
+  if (!side) throw new Error('nowhere to stand beside Hesper')
+  const [face, dx, dy] = side
+  eng.author(() => eng.teleport(w.player, { map: at.map, x: at.x + dx, y: at.y + dy }))
+  world.frame()
+  const steps = [`face ${face}`, 'hands', 'talk 1']
+  const seen: { action: string; observation: string }[] = []
+  let frame = world.frame()
+  for (const line of steps) {
+    const parsed = parse(line)
+    if (!parsed.ok) throw new Error(parsed.error)
+    execute(world, parsed.action)
+    frame = world.frame()
+    seen.push({ action: line, observation: observe(world, frame).text })
+  }
+  const opened = !!frame.talk
+  const verbs = frame.talk?.verbs.length ?? 0
+  const bye = `talk ${verbs + 1}`
+  const parsed = parse(bye)
+  if (parsed.ok) execute(world, parsed.action)
+  frame = world.frame()
+  seen.push({ action: bye, observation: observe(world, frame).text })
+  const closed = !frame.talk && !world.peoplePanel
+  // again, and «Let's trade.» when Hesper trades: the trade panel opens (time stands), its only line closes it
+  const say = (line: string) => {
+    const p = parse(line)
+    if (!p.ok) throw new Error(p.error)
+    execute(world, p.action)
+    frame = world.frame()
+    seen.push({ action: line, observation: observe(world, frame).text })
+  }
+  say('hands')
+  const tradeAt = (frame.talk?.verbs.findIndex((v) => v.id === 'trade') ?? -1) + 1
+  let traded = true
+  if (tradeAt > 0) {
+    say(`talk ${tradeAt}`)
+    const tradeOpen = !!frame.trade && world.peoplePanel
+    say('talk 1')
+    traded = tradeOpen && !frame.trade && !world.peoplePanel
+  } else say(`talk ${(frame.talk?.verbs.length ?? 0) + 1}`)
+  const ok = opened && verbs > 0 && closed && traded
+  writeFileSync(join(RUN_DIR, 'ford-talk-selftest.txt'), seen.map((s) => `> ${s.action}\n\n${s.observation}\n`).join('\n'))
+  console.log(JSON.stringify({ ok, with: 'npc.hesper', map: at.map, opened, verbs, closed_by: bye, trade_opened_and_closed: tradeAt > 0 ? traded : 'no trade verb', file: 'docs/runs/open-world-adapter-1/ford-talk-selftest.txt' }, null, 2))
+  console.log(ok ? 'TALK SELFTEST PASS' : 'TALK SELFTEST FAIL')
+  return ok ? 0 : 1
+}
+
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(name)
   return i >= 0 ? process.argv[i + 1] : undefined
 }
 
+const prefix0 = (game: string | undefined) => (game && game !== 'starter' ? `${game} ` : '')
+
 async function main(): Promise<number> {
+  if (process.argv.includes('--selftest-talk')) return selftestTalk()
   if (process.argv.includes('--selftest')) return selftest()
   if (arg('--model') !== undefined) {
     console.error('--model is Phase B: not run until the owner says so.')
@@ -227,17 +294,18 @@ async function main(): Promise<number> {
   if (seed !== undefined) {
     if (!/^\d+$/.test(seed)) throw new Error('--random takes a whole number seed')
     policy = randomPolicy(Number(seed))
-    label = `random seed ${seed}`
+    label = `${prefix0(game)}random seed ${seed}`
   } else if (scriptFile) {
     const lines = scriptLines(scriptFile)
     policy = scriptPolicy(lines)
     label = `script ${scriptFile}`
     if (arg('--turns') === undefined) turns = lines.length
   } else {
-    console.error('usage: play.ts --selftest | --random <seed> | --script <file> [--turns n] [--out file] [--print]')
+    console.error('usage: play.ts --selftest | --random <seed> | --script <file> [--game starter|ford] [--turns n] [--out file] [--print]')
     return 2
   }
-  const out = arg('--out') ?? join(RUN_DIR, seed !== undefined ? `random-seed${seed}.jsonl` : 'script.jsonl')
+  const prefix = game && game !== 'starter' ? `${game}-` : ''
+  const out = arg('--out') ?? join(RUN_DIR, `${prefix}${seed !== undefined ? `random-seed${seed}` : 'script'}.jsonl`)
   const s = await episode({ policy, turns, out, label, game, print })
   console.log(
     JSON.stringify(
@@ -254,7 +322,8 @@ async function main(): Promise<number> {
         max_words: s.maxWords,
         records: s.records.length,
         record_summaries: [...new Set(s.records.map((r) => r.summary))].map((m) => `${s.records.filter((r) => r.summary === m).length}× ${m}`),
-        seconds_per_turn: +(s.elapsed_s / Math.max(1, s.turns)).toFixed(4),
+        load_s: +s.load_s.toFixed(2),
+        seconds_per_turn: +((s.elapsed_s - s.load_s) / Math.max(1, s.turns)).toFixed(4),
       },
       null,
       2,

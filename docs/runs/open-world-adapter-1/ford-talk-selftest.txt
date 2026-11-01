@@ -1,0 +1,370 @@
+> face up
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- nothing
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Actions:
+- primary: Punch Hesper
+- hands: Talk to Hesper
+- take: —
+- put: —
+- use: Punch Hesper
+- self: —
+- move: up blocked · down walkable · left walkable · right blocked
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> hands
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- Hesper: "The storm took the ferry rope in the night. Nobody crosses till it's mended. … There's a spare in my chest. My hands won't splice it any more. Yours might."
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Talk with Hesper (neutral):
+1. What news?
+2. Let's talk a while.
+3. I have something for you.
+4. Let's trade.
+5. Come with me.
+6. Your money or your life.
+7. (Slip a hand into their pocket.)
+8. There are no gods watching, you know.
+9. Goodbye.
+
+Actions:
+- The panel is open (time stands): talk <1–9>
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> talk 1
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- Hesper: "Nothing much has happened. Quiet days."
+
+Journal:
+- Down from the Mountain (descent): active, stage 10 — Lumi says the way down is to the south, through a cut in the rocks.
+  · Find the shrine stone at Woundstone Foot (open)
+  · Try something the world has never seen (open)
+
+Talk with Hesper (neutral):
+1. What news?
+2. Let's talk a while.
+3. I have something for you.
+4. Let's trade.
+5. Come with me.
+6. Your money or your life.
+7. (Slip a hand into their pocket.)
+8. There are no gods watching, you know.
+9. Goodbye.
+
+Actions:
+- The panel is open (time stands): talk <1–9>
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> talk 9
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- Quest descent → stage 40
+- Lumi: "That's Vesper Ford! Someone down there looks like they need help."
+
+Journal:
+- Down from the Mountain (descent): active, stage 40 — I reached Vesper Ford. The bridge is broken and the ferry rope has snapped. Hesper, the ferrykeeper, sent me west to the village first.
+  · Find the shrine stone at Woundstone Foot (done)
+  · Try something the world has never seen (done)
+  · Take the cliff stair down to Vesper Ford (done)
+  · Go west to Firstlight Village (open)
+
+Actions:
+- primary: Punch Hesper
+- hands: Talk to Hesper
+- take: —
+- put: —
+- use: Punch Hesper
+- self: —
+- move: up blocked · down walkable · left walkable · right blocked
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> hands
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- Hesper: "Aldo and Joss built the footbridge, twenty years back. A rider in white took it apart in one night, and laid the nails on my pier."
+
+Journal:
+- Down from the Mountain (descent): active, stage 40 — I reached Vesper Ford. The bridge is broken and the ferry rope has snapped. Hesper, the ferrykeeper, sent me west to the village first.
+  · Find the shrine stone at Woundstone Foot (done)
+  · Try something the world has never seen (done)
+  · Take the cliff stair down to Vesper Ford (done)
+  · Go west to Firstlight Village (open)
+
+Talk with Hesper (neutral):
+1. What news?
+2. Let's talk a while.
+3. I have something for you.
+4. Let's trade.
+5. Come with me.
+6. Your money or your life.
+7. (Slip a hand into their pocket.)
+8. There are no gods watching, you know.
+9. Goodbye.
+
+Actions:
+- The panel is open (time stands): talk <1–9>
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> talk 4
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- Hesper: "Have a look."
+
+Journal:
+- Down from the Mountain (descent): active, stage 40 — I reached Vesper Ford. The bridge is broken and the ferry rope has snapped. Hesper, the ferrykeeper, sent me west to the village first.
+  · Find the shrine stone at Woundstone Foot (done)
+  · Try something the world has never seen (done)
+  · Take the cliff stair down to Vesper Ford (done)
+  · Go west to Firstlight Village (open)
+
+Trade with Hesper (open):
+1. Close.
+
+Actions:
+- The panel is open (time stands): talk <1–1>
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
+
+> talk 1
+
+Day 1, 13:01, cloud — Vesper Ford
+
+Around you (each cell two characters; north is up; blank is outside the map):
+........====....~~~~~~~~~~~~~~
+t1......======t2~~~~~~~~~~~~~~
+......==========BBBBt3~~~~~~~~
+::========....t4~~~~~~~~~~~~~~
+======::::....P1~~~~~~~~~~~~~~
+====..........@@~~~~~~~~~~~~~~
+==::..........t5t6~~~~~~~~~~~~
+~~~~~~........c1t7~~~~~~~~~~~~
+~~~~~~..~~~~~~~~====t8BBBB~~~~
+~~~~~~..~~~~~~~~....~~~~~~~~~~
+..........~~~~......~~~~~~~~~~
+Terrain: .. grass, :: dirt, == path, BB bridge, ~~ water
+@@ You — facing up (in front: P1)
+t1 grass tuft
+t2 ferry winch
+t3 ferry raft
+t4 Bucket
+P1 Hesper
+t5 reeds
+t6 pebbles
+c1 Lumi
+t7 chalk drawing of a bridge
+t8 Thorns driven into the stump
+
+You: hp 40/40 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- nothing
+
+Journal:
+- Down from the Mountain (descent): active, stage 40 — I reached Vesper Ford. The bridge is broken and the ferry rope has snapped. Hesper, the ferrykeeper, sent me west to the village first.
+  · Find the shrine stone at Woundstone Foot (done)
+  · Try something the world has never seen (done)
+  · Take the cliff stair down to Vesper Ford (done)
+  · Go west to Firstlight Village (open)
+
+Actions:
+- primary: Punch Hesper
+- hands: Talk to Hesper
+- take: —
+- put: —
+- use: Punch Hesper
+- self: —
+- move: up blocked · down walkable · left walkable · right blocked
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>

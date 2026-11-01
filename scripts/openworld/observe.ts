@@ -2,7 +2,7 @@
 // 1 time line · 2 window 15×11 + legend · 3 player sheet · 4 «since your last action» · 5 journal · 6 actions.
 // It reads the world (snapshot, cells, the keys' dry-run labels) and changes nothing in it.
 
-import { textOf, type Dir, type EntitySnap, type FxEvent, type Frame, type Key, type OpenWorld } from './world.ts'
+import { textOf, type Dir, type EntitySnap, type FxEvent, type Frame, type Key, type OpenWorld, type Text } from './world.ts'
 
 export const WINDOW_W = 15
 export const WINDOW_H = 11
@@ -10,6 +10,25 @@ export const KEYS: Key[] = ['primary', 'hands', 'take', 'put', 'use', 'self']
 export const DIRS: Dir[] = ['up', 'down', 'left', 'right']
 export const DELTA: Record<Dir, [number, number]> = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] }
 const FACING_MARK: Record<Dir, string> = { up: '^^', down: 'vv', left: '<<', right: '>>' }
+/** A numbered line of the open people's panel: a verb said (`talk <n>`), or the panel closed. */
+export interface TalkLine { label: Text; verb?: string; close?: true }
+/**
+ * The society module's open panel as numbered lines, the page's own (runtime/src/ui/hud.ts): a talk's verbs as its
+ * view gives them, quests' offers and topics first, then «Goodbye.» (none while a guard has stopped one); a trade, a
+ * person's pockets or a gift: only its closing (what is bought or given there is not in this grammar). The page's
+ * «Discuss a new invention…» needs the research service (the modder): not offered.
+ */
+export function talkLines(view: Pick<Frame, 'talk' | 'trade' | 'pockets' | 'gift'>): { title: string; lines: TalkLine[] } | undefined {
+  if (view.talk) {
+    const t = view.talk
+    const lines: TalkLine[] = t.verbs.map((v) => ({ label: v.label, verb: v.id }))
+    if (!t.arrest) lines.push({ label: 'Goodbye.', close: true })
+    return { title: `Talk with ${textOf(t.name)} (${textOf(t.regard)}${t.arrest ? '; stopped by the watch' : ''})`, lines }
+  }
+  const other = view.trade ? `Trade with ${textOf(view.trade.name)}` : view.pockets ? `${textOf(view.pockets.name)}'s pockets` : view.gift ? `A gift for ${textOf(view.gift.name)}` : undefined
+  return other ? { title: `${other} (open)`, lines: [{ label: 'Close.', close: true }] } : undefined
+}
+
 /** The one duration the random policy waits (the grammar takes any 1–120). */
 export const RANDOM_WAIT = 'wait 10'
 
@@ -167,6 +186,13 @@ export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: stri
     for (const o of q.objectives) out.push(`  · ${textOf(o.text)}${o.need !== undefined ? ` ${o.have ?? 0}/${o.need}` : ''} (${o.state})`)
   }
 
+  // 5½. the talk (the Ford's; only while a people's panel is open — never in the starter, whose bytes stay Phase A's)
+  const talk = world.peoplePanel ? talkLines(frame) : undefined
+  if (talk) {
+    out.push('', `${talk.title}:`)
+    talk.lines.forEach((l, i) => out.push(`${i + 1}. ${textOf(l.label)}`))
+  }
+
   // 6. the actions
   out.push('', 'Actions:')
   const question = w.state.question ? frame.question : undefined
@@ -185,6 +211,9 @@ export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: stri
     if (first) legal.push('take')
     if (pl.held) legal.push('put')
     legal.push('hands')
+  } else if (talk) {
+    out.push(`- The panel is open (time stands): talk <1–${talk.lines.length}>`)
+    talk.lines.forEach((_, i) => legal.push(`talk ${i + 1}`))
   } else if (waiting) {
     out.push('- The scene waits: advance')
     legal.push('advance')
@@ -212,7 +241,8 @@ export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: stri
     pl.slots.slice(0, 10).forEach((s, i) => s && i !== pl.selected && legal.push(`select ${i}`))
     legal.push(RANDOM_WAIT)
   }
-  out.push('- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done')
+  const talks = world.eng.modules.some((m) => m.id === 'society') ? ' · talk <n>' : ''
+  out.push(`- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done${talks}`)
 
   const text = out.join('\n')
   return { text, legal, words: text.split(/\s+/).filter(Boolean).length }
