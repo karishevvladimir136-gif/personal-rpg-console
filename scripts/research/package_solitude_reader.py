@@ -126,13 +126,13 @@ def emit(stage,variant,family,n,source,text,original_group=None):
     turn_marks=[int(x) for x in re.findall(r"(?m)^\*\*Turn (\d+)\*\*",text)]
     max_turn=max(turn_marks,default=0)
     title_line=next((line for line in text.splitlines()
-        if re.match(r"^#{1,2}\\s+(?:S1ru|S1|S2|S3|S4|M1|M2|M3|S1M1|S1M2|S2M1|S3M1)/[a-z]+/\\d+",line)),"")
+        if re.match(r"^#{1,2}\s+(?:S1ru|S1|S2|S3|S4|M1|M2|M3|S1M1|S1M2|S2M1|S3M1)/[a-z]+/\d+",line)),"")
     title_lower=title_line.lower()
     if "refusal" in title_lower:
         status="refusal"
     elif "loop" in title_lower:
         status="loop"
-    elif stage=="SOLITUDE_2" and re.search(r"closed by parser \\(mention\\)",text,re.I):
+    elif stage=="SOLITUDE_2" and re.search(r"closed by parser \(mention\)",text,re.I):
         status="legacy parser interruption"
     elif "end at turn" in title_lower:
         status="legacy recorded stop" if stage=="SOLITUDE_1" else "valid [END] exit"
