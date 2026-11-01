@@ -1,0 +1,36 @@
+Day 1, 08:03, sun — The Glade
+
+Around you (each cell two characters; north is up; blank is outside the map):
+
+
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+....**............XXXXXXXXXXXX
+....P1............XXXXXXXXXXXX
+..........**..@@..XXXXXXXXXXXX
+..............t1..XXXXDDXXXXXX
+..........==============......
+........t2==..................
+..........==..........TT......
+..........==..................
+Terrain: ** flowers, .. grass, == path, DD door, TT tree, XX wall
+@@ You — facing down (in front: t1)
+P1 Mira
+t1 chest — open
+t2 sign
+
+You: hp 30/30 · held: Axe · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): [0] Axe (selected)
+
+Since your last action:
+- You take Axe.
+
+Journal:
+- Firewood (firewood): active, stage 10 — Mira needs three logs. Her axe is in the chest by the path.
+  · Logs 0/3 (open)
+
+Actions:
+- Open: chest — empty (time stands while it is open)
+- take: —
+- put: Put Axe in chest
+- hands: Close chest
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done

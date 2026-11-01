@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "openworld_commit": "19629aa4d5b3e16debe9e113663381b1182d1388",
+  "script": "scripts/openworld/firewood.txt",
+  "actions": 30,
+  "invalid": 0,
+  "firewood_stage": 100,
+  "first_reached": {
+    "firewood@10": 7,
+    "firewood@20": 23,
+    "firewood@100": 29
+  },
+  "byte_identical_logs": true,
+  "byte_identical_saves": true,
+  "save_loads_back": true,
+  "max_words": 219,
+  "first_words": 146,
+  "records": [],
+  "logs": [
+    "docs/runs/open-world-adapter-1/selftest-a.jsonl",
+    "docs/runs/open-world-adapter-1/selftest-b.jsonl"
+  ]
+}

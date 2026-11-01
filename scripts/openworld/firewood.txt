@@ -1,0 +1,38 @@
+# OPEN_WORLD_ADAPTER_1 self-test: the starter's firewood quest, played through the adapter's grammar only.
+# One action a line. The world is the game's own (seed 7 from game.json); nothing here is the author's hand.
+# A tree fells into a stump and two logs (rules/glade.json, glade/fell), so two trees give the three logs.
+advance
+# Mira tends her garden in the morning, north-west of the start: speak to her (stage 10)
+move left
+move up 4
+move up
+move left
+face up
+hands
+# the chest by the path: open it, take the axe, close it, hold the axe
+move right 5
+face down
+hands
+take
+hands
+select 0
+# the tree south of the path's east end: two blows
+move right
+move down 3
+move right 3
+face down
+primary
+primary
+# the tree three cells further south: two blows (stage 20: three logs)
+move down 3
+face down
+primary
+primary
+# back to Mira in the garden (stage 100)
+move up 4
+move left 7
+move up 2
+move left 2
+face up
+hands
+done

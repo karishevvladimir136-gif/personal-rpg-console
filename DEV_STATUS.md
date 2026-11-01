@@ -1,6 +1,23 @@
 # Development status
 
-**Current milestone: persona solitude 3** (`docs/stages/PERSONA_SOLITUDE_3.md` on `claude/handoff`, its amendment of
+**Current milestone: OpenWorld adapter 1 — Phase A** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
+`d9253dc`), branch `claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`.
+Nothing to `main`. **Phase A complete and reported; Phase B waits for the owner's word.** Report
+`docs/runs/open-world-adapter-1-report.md`; logs `docs/runs/open-world-adapter-1/`.
+
+- **What was built:** `scripts/openworld/{world,observe,act,play}.ts` — a text adapter for OpenWorld (SihanXU/openworld,
+  MIT), cloned beside the repo at the pinned `19629aa4…` (verified, unmodified, `npm ci` there only) and imported by
+  path; the starter compiled in-process; the worker's time rule; the frozen six-section observation; the strict
+  one-line grammar; JSONL per turn and save checkpoints; `--selftest`, `--script`, `--random` (`--model` refused until
+  Phase B). No author's hand in play code; no model, key or network.
+- **Result:** A0 holds (stage 100 in 30 actions, byte-identical logs and saves, save loads back); A1 holds (no stage in
+  3 × 300 random turns); A2 holds (58/45/38 `undefined` records, all fallback); A3 holds (146 words on turn 1, 219 max).
+  Findings: a bare fist fells trees; a hand on plain ground is already a hole. A4 (the Ford amendment) not run.
+- **Verification:** self-test PASS; type-check of the four files with the clone's TypeScript under the repo's strict
+  options clean; repo lint/typecheck/tests/build not run (no `node_modules` in the repo, `npm ci` allowed only in the
+  clone; no app code changed).
+
+**Previous milestone: persona solitude 3** (`docs/stages/PERSONA_SOLITUDE_3.md` on `claude/handoff`, its amendment of
 2026-10-30 and the owner's amendments of 2026-10-31), branch `claude/persona-solitude-3-testing-n1shfx` from
 `origin/claude/persona-solitude-2`. Nothing to `main`. **Run complete (270 of 270 rooms) and reported; waiting for the
 owner.** Report `docs/runs/persona-solitude-3-report.md`; transcripts `…-transcripts/{arm}/{family}/{n}.md`; tables

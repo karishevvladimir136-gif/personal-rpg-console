@@ -1,0 +1,34 @@
+Day 1, 08:00, sun — The Glade
+
+Around you (each cell two characters; north is up; blank is outside the map):
+................**......XXXXXX
+....................t1..XXXXDD
+................==============
+....TT........t2==............
+................==..........TT
+..............@@==............
+~~......t3....vv==..........**
+................==..........TT
+........**......==............
+....TT..........==............
+................==......t4....
+Terrain: ** flowers, .. grass, == path, DD door, TT tree, XX wall, ~~ water
+@@ You — facing down
+t1 chest
+t2 sign
+t3 Stone
+t4 Stone
+
+You: hp 30/30 · held: nothing · worn: nothing · purse 0 · statuses: none
+Bag (slots 0–9 are the toolbar): empty
+
+Since your last action:
+- You are in The Glade
+- You: "A glade, and a cottage. Someone lives here."
+
+Journal:
+- empty
+
+Actions:
+- The scene waits: advance
+- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done
