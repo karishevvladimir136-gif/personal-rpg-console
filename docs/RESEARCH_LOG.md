@@ -3868,3 +3868,16 @@ after the dry run), Sol/Astra via OpenRouter and the door in code carried into t
 task lives where it is executed; drift between a stage edited after launch and what the session read becomes visible
 (the hash in the accept comment); the owner's part shrinks to «да» and reading; and the planner reads the thread
 instead of reconstructing from context after compaction (commit `056a5c90`).
+
+## 2026-11-01 01:10 LA — OPEN_WORLD_ADAPTER_1 Phase A done (`claude/open-world-adapter-1-ukfdri`, `99ebef06`, $0)
+The adapter exists: `scripts/openworld/{world,observe,act,play}.ts`, the firewood walkthrough, no author's hand
+anywhere. A0 held (stage 100 in 29 actions, two runs byte-identical, the end save loads back); A1 held (random, 3 × 300
+turns, no stage); A2 held (58/45/38 records, all `fallback`); A3 held (turn 1 is 146 words; longest 219). 0.005 s per
+turn without a model. Two things the world taught us that the stage had wrong: a fist fells a tree (so the axe never
+was the barrier — talking to Mira is), and a hand on grass is a hole from the first turn (78 of 141 random records are
+«grass is sent handle from you»), so «finds holes» cannot separate a model from chance; Phase B re-frozen on *which*
+holes — on things vs terrain, and summaries the random policy never produced — before any paid call (amendment in the
+stage). A4 (the Ford) was not run: the session followed the chat prompt, not the amended stage. That is exactly the drift
+issue #1's protocol is for; A4 and Phase B go into issue #2. The session's own choices now in the frozen format: the
+open chest as a mode (`take` first item, `put`, `hands` closes; time stands), two characters per cell, two trees felled
+(each gives two logs).

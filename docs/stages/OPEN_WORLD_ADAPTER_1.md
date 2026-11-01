@@ -135,3 +135,19 @@ offers and topics** from the society views when a talk is open, the game's own l
 game's own start, not `check.ts`'s teleport) verbatim, plus the `undefined` records. No bet on A4 beyond «runs»; what
 the Ford costs per turn decides whether OPEN_WORLD_2 sits there or on the starter. Launch prompt: add «then the same
 for `--game ford` (A4)» after the random policy; nothing else changes.
+
+## Amendment 2026-11-01 01:10 — after Phase A (branch `claude/open-world-adapter-1-ukfdri`, commit `99ebef06`)
+A0–A3 held; A4 was not run — the session followed the launch prompt pasted into the chat, not the amended stage (the
+drift the Mandate protocol now makes visible). Two findings change Phase B's measures before any paid call:
+1. **A bare fist fells a tree** (2 damage a punch, 6 hp a tree): the axe is not the barrier; the starter's real barrier
+   is «talk to Mira, then bring three logs». A1 held for that reason, not the assumed one.
+2. **Plain ground is already a hole**: «grass is sent handle from you» appears from the first free turn (78 of 141
+   random records). So B2 as written holds for anything that moves; it no longer separates a model from chance.
+Phase B's measures are re-frozen: **B1** stays (stage 20 in ≥ 1/3 episodes within 80 turns). **B2′:** the share of a
+model's `undefined` records that are on *things* (an entity: the chest, the sign, the stones, the bed, the table, a
+stump, Mira) rather than on terrain, against the random policy's share from the same three seeds; bet: the model's
+share is higher in every episode. **B2″:** the distinct hole summaries per episode, model vs random; bet: the model
+finds at least one summary the random policy never produced in 900 turns. **B3** unchanged. The Note under a
+«no rule for …» line stays the qualitative core. Everything else in Phase B as written. **A4 (the Ford) runs before
+Phase B, in the same Mandate**, because the Ford's cost per turn decides whether OPEN_WORLD_2 sits there, and because
+the Ford's holes are not all on grass.
