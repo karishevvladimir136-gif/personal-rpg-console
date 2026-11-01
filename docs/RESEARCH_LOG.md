@@ -3822,3 +3822,18 @@ introduction (agents on an unauthorised shared channel during a cyber evaluation
 text was rate-limited; it enters nothing public until the owner opens the primary sources. Use: HISTORY_1's arms
 become no memory / one global history / separated sources / routed memory, same probes, fixed scoring, context size
 controlled; and the programme's own four stores (log, diary, letters, project memory) are read by task, not all at once.
+
+## 2026-10-31 17:40 LA — OpenWorld read at commit `19629aa`; stage OPEN_WORLD_ADAPTER_1 written
+The owner: «a connector to the open-source thing — a second laboratory; this matters to us.» A subagent read the
+repository: `packages/engine` is pure TS with no DOM; `games/starter/test/kernel.test.ts` already compiles the starter
+in Node, sends player acts and ticks; the engine is tick-based (10 ticks a game minute), movement a cell grid, `snapshot`
+gives the whole frame, `w.fx` is the event stream (`say`, `log`, `quest`, `undefined{summary}`), and with no provider
+every undefined interaction takes its default at once and is kept in `game.mods.records`; mulberry32 seeded from
+`game.json`, no wall-clock; engine/format/stdlib/modules have no dependencies. The starter is tiny (two maps, Mira, a
+slime, an axe, one quest) — a smoke test, not a benchmark. Stage written: Phase A the adapter with a frozen text
+observation (time line, 15×11 ASCII window with legend, sheet, «since your last action» with the world's own «no rule
+for …» line verbatim, journal, the game's own action labels), a strict action grammar, self-test on the firewood quest,
+determinism by byte-identical logs, random policy as the null (A1: chance does not chain tool→select→target); Phase B
+one cheap look (DeepSeek, 3 × 80 turns, $3, modder off). The `undefined` records a player produces are the first list
+of what a player asks a world that has no DM. Observation format is the real cost and is frozen here, before any family
+sees it. Branch `claude/open-world-adapter-1`; OpenWorld cloned beside, pinned, unmodified.
