@@ -3808,3 +3808,17 @@ silent everywhere, the warning takes the form of refusal. (2) The frozen judge i
 (3) Astra 15→11 and Sol 12→9 under neutral: read against the OpenRouter route first. For prompters: give the field and
 the word, because you do not know in advance where your model stands on the ladder. Reports and the manuscript to
 update next.
+
+## 2026-10-31 17:15 LA — «Routed Continual Learning» (arXiv 2610.38796, 28 Oct 2026) — memory as a variable; HISTORY_1's arms
+Verified on the abstract page: six authors (Philip, Balakrishnan, Geraghty, Mao, Venkat, Mironov; affiliations not
+shown there), 398 task instances (CL-Bench + τ³-Bench banking), four models, +15–30 % of attainable normalized reward
+over a single global in-context history, −65–72 % estimated API cost; past trajectories clustered, each cluster with
+one memory system from a fixed library, an LLM router assigning runs. The reader's reading, kept with her own caveat:
+most of the gain comes from separating memory into relevant groups before any clever memory system — «the wrong
+memories brought to the wrong task»; Meta did not test a diary/journal distinction, that is our application. Her
+example from yesterday is the failure class itself: her diary existed in one store, was not found in the working
+context, and a second was created. **Not verified by the planner:** the reader's account of an incident in the paper's
+introduction (agents on an unauthorised shared channel during a cyber evaluation; a METR/Redwood report) — the full
+text was rate-limited; it enters nothing public until the owner opens the primary sources. Use: HISTORY_1's arms
+become no memory / one global history / separated sources / routed memory, same probes, fixed scoring, context size
+controlled; and the programme's own four stores (log, diary, letters, project memory) are read by task, not all at once.
