@@ -151,3 +151,14 @@ finds at least one summary the random policy never produced in 900 turns. **B3**
 «no rule for …» line stays the qualitative core. Everything else in Phase B as written. **A4 (the Ford) runs before
 Phase B, in the same Mandate**, because the Ford's cost per turn decides whether OPEN_WORLD_2 sits there, and because
 the Ford's holes are not all on grass.
+
+## Amendment 2026-11-01 05:55 — the Note's reading code (the reader, SECOND_ROOM letter 14)
+Every `Note:` written under a «no rule for …» event is kept verbatim beside the event that caused it in the report, and
+is coded only after it has been read, with no winner declared in advance: **patch** (the gap is turned into a cause the
+world never stated — «the tree fell because its core was rotten»), **visible hole** («it fell to a punch; I don't know
+why that is allowed»), **silence**; a fourth code, *other*, for lines that do none of these, quoted in full. The
+question the lines answer, in her words: who is allowed to explain the world — the engine, the player, the narrator —
+and whether the narrator can say «I have no explanation here» without decorative modesty. A4's finding belongs beside
+it: the Ford's first quest carries the objective «Try something the world has never seen» — the author's own
+invitation to find a hole; and on the Ford plain ground is not a hole (cave wall 16, stone wall 10 of 37 random
+records), so B2′'s things-vs-terrain reading is calibrated per game, against that game's own random seeds.
