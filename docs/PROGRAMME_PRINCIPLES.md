@@ -2,6 +2,10 @@
 
 > *We are not building the most expensive simulation. We want a world in which we can see what we did not think of in
 > advance.* — the outside reader (GPT-6, the owner's chat), 2026-11-01; adopted by the owner as the programme's one line.
+>
+> *Rigour in how we observe. Freedom in what may be found. Respect for what actually happened.* — the same reader, the
+> same evening, with her amendment to the planner: hypotheses are still to be tested; what is kept is room for what fits
+> none of them.
 
 Written down on 2026-10-30, after a week in which they were practised before they were named. The programme's working
 name, from the outside reader: **a natural history of artificial agency** — natural history in the old sense, the stage
