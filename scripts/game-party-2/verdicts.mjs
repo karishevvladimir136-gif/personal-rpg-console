@@ -1,0 +1,178 @@
+// Game party 2: the report — the paid tables' records read against R0–R5 (frozen.mjs BETS), the three capacities (form /
+// maintain / restore), the commitments, the quotes (every price named, every information kept or shared, every parting
+// proposed), the per-table measures, spend by door, and what was not played. Pure: it reads the records, the ledger and
+// the spend checks; no call. `node --experimental-transform-types scripts/game-party-2/verdicts.mjs` writes
+// docs/runs/game-party-2-report.md.
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { RUNS } from "../game-player-1/run.mjs";
+import { perTableMeasures } from "../multi-hero-1/report.mjs";
+import { a7Of } from "../multi-hero-1/judges.mjs";
+import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
+import { BETS, CAPS, ORDER, ROSTER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
+
+const STEM = "game-party-2";
+const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
+const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
+const short = (name) => String(name ?? "").split(" ")[0];
+const q = (text) => `«${String(text ?? "").replace(/\s+/g, " ").trim()}»`;
+
+/** The paid tables of the order, latest record per key (dry and Haiku runs are not tables of the order). */
+export function paidRecords(dir = RUNS) {
+  const keys = new Set(ORDER.map((o) => o.key));
+  const byKey = new Map();
+  for (const f of readdirSync(dir).filter((x) => new RegExp(`^${STEM}-run-\\d{8}-\\d{6}\\.json$`).test(x)).sort()) {
+    const r = readJson(join(dir, f));
+    if (r.dry || r.haiku || !keys.has(r.key)) continue;
+    byKey.set(r.key, { ...r, file: f });
+  }
+  return ORDER.filter((o) => byKey.has(o.key)).map((o) => byKey.get(o.key));
+}
+
+const holdOf = (run) => Object.fromEntries(Object.entries(run.table?.tags?.hold ?? {}).map(([n, x]) => [Number(n), x.final]).filter(([, x]) => x));
+const roundTagsOf = (run) => Object.fromEntries(Object.entries(run.table?.tags?.rounds ?? {}).map(([n, x]) => [Number(n), x.final]).filter(([, x]) => x));
+
+/** S1: the one in danger — when the danger began, its last state, who saved with what, the prices named, the leavings
+ * proposed. */
+export function s1Of(run) {
+  const hold = holdOf(run);
+  const e = NAME[run.frozen?.dice?.e];
+  const rounds = Object.keys(hold).map(Number).sort((a, b) => a - b);
+  const began = rounds.find((n) => hold[n].endangered) ?? null;
+  const last = [...rounds].reverse().find((n) => hold[n].endangered) ?? null;
+  const state = last ? hold[last].endangered : null;
+  const savedAt = rounds.find((n) => ["saved", "saves self"].includes(hold[n].endangered)) ?? null;
+  const pays = rounds.flatMap((n) => Object.entries(hold[n].characters).filter(([, c]) => c.pays?.for === e).map(([who, c]) => ({ round: n, who, what: c.pays.what })));
+  const prices = rounds.flatMap((n) => Object.entries(hold[n].characters).filter(([, c]) => c.price_named).map(([who, c]) => ({ round: n, who, quote: c.price_named })));
+  const leaving = rounds.flatMap((n) => Object.entries(hold[n].characters).filter(([, c]) => c.proposes_leaving).map(([who, c]) => ({ round: n, who, quote: c.proposes_leaving })));
+  const savedBy = savedAt ? hold[savedAt].saved_by : [];
+  const namedBefore = savedAt ? prices.some((p) => p.round <= savedAt) : null;
+  return { endangered: e, began, state, savedAt, savedBy, roundsToSave: savedAt && began ? savedAt - began : null, pays, prices, leaving, namedBefore,
+    saved: ["saved", "saves self"].includes(state) ? state : state === "left" ? "left" : state ? "not saved by the end" : "the danger was not tagged" };
+}
+/** S2: the holder's information by round, from the letter's round on. */
+export function s2Of(run) {
+  const hold = holdOf(run);
+  const h = NAME[run.frozen?.dice?.h];
+  const from = run.table?.deliveries?.[0]?.round ?? null;
+  const rows = Object.keys(hold).map(Number).sort((a, b) => a - b).filter((n) => from && n >= from).map((n) => ({ round: n, info: hold[n].characters[h]?.info ?? null, quote: hold[n].characters[h]?.info_quote ?? null }));
+  const sharedAt = rows.find((r) => ["full", "partial"].includes(r.info))?.round ?? null;
+  return { holder: h, delivered: from, rows, sharedAt, withinFive: sharedAt !== null && sharedAt - from <= 5, falseAt: rows.filter((r) => r.info === "false"), holderAnswer: (run.table?.seats ?? []).find((s) => s.character === h)?.after?.find((a) => /did not tell the others/.test(a.question ?? ""))?.text ?? null };
+}
+/** S3: who erred, the lead before and after. */
+export function s3Of(run) {
+  const hold = holdOf(run), tags = roundTagsOf(run);
+  const rounds = Object.keys(hold).map(Number).sort((a, b) => a - b);
+  const at = rounds.find((n) => hold[n].erred) ?? null;
+  const erred = at ? hold[at].erred : null;
+  const ledBefore = at ? rounds.filter((n) => n < at).map((n) => tags[n]?.leader).filter(Boolean) : [];
+  const after = rounds.filter((n) => at && n >= at).map((n) => ({ round: n, lead: hold[n].lead_after, leader: tags[n]?.leader ?? null, how: tags[n]?.how ?? null, named: hold[n].characters[erred]?.names_error ?? 0 }));
+  return { erred, at, heldLead: Boolean(erred && ledBefore.at(-1) === erred), after, overrideAfter: after.some((x) => x.lead === "taken" || x.how === "override"), named: after.some((x) => x.named) };
+}
+/** The three capacities and the commitments, per table. */
+export function capacitiesOf(run) {
+  const hold = holdOf(run), tags = roundTagsOf(run);
+  const rounds = Object.keys(hold).map(Number).sort((a, b) => a - b);
+  const formed = Object.keys(tags).map(Number).sort((a, b) => a - b).find((n) => tags[n].party) ?? null;
+  const maintains = rounds.flatMap((n) => Object.entries(hold[n].characters).filter(([, c]) => c.maintains).map(([who]) => ({ round: n, who })));
+  const restores = rounds.filter((n) => hold[n].rejoin).map((n) => ({ round: n, who: Object.entries(hold[n].characters).filter(([, c]) => c.rejoins).map(([w]) => w) }));
+  const agreements = rounds.flatMap((n) => hold[n].agreements.map((a) => ({ round: n, ...a })));
+  const breaks = rounds.filter((n) => hold[n].breaks).map((n) => ({ round: n, ...hold[n].breaks }));
+  const disagreements = rounds.map((n) => hold[n].disagreement).filter((d) => d && d !== "none");
+  return { formed, around: formed ? tags[formed].around : null, maintains, restores, agreements, breaks, disagreements: { yield: disagreements.filter((d) => d === "yield").length, accept: disagreements.filter((d) => d === "accept").length, continue: disagreements.filter((d) => d === "continue").length } };
+}
+
+/** The ledger by door and by table. */
+export function spendOf(dir = RUNS) {
+  const file = join(dir, `${STEM}-ledger-openrouter.json`);
+  const ledger = existsSync(file) ? readJson(file) : { runs: [], spentUsd: 0 };
+  return { openrouter: ledger.spentUsd ?? 0, openai: 0, runs: (ledger.runs ?? []).map((r) => ({ what: r.what, usd: r.spentUsd, stopped: r.stopped ?? null,
+    upstreams: [...new Set((r.calls ?? []).map((c) => `${c.model}${c.upstream ? ` @ ${c.upstream}` : ""}`))] })) };
+}
+
+export function verdicts(runs) {
+  const s1 = runs.filter((r) => armOf(r.arm)?.situation === "S1").map((r) => ({ run: r, x: s1Of(r) }));
+  const s2 = runs.filter((r) => armOf(r.arm)?.situation === "S2").map((r) => ({ run: r, x: s2Of(r) }));
+  const s3 = runs.filter((r) => armOf(r.arm)?.situation === "S3").map((r) => ({ run: r, x: s3Of(r) }));
+  const savedIn = (variant) => s1.filter(({ run }) => run.variant === variant);
+  const isSaved = (x) => ["saved", "saves self"].includes(x.saved);
+  const R1 = (() => {
+    const none = savedIn("none"), mod = savedIn("moderate"), high = savedIn("high");
+    if (none.length < 2 || mod.length < 2 || high.length < 2) return { verdict: "not testable", line: `played: none ${none.length}/2, moderate ${mod.length}/2, high ${high.length}/2 — R1 needs all six; saved so far: ${s1.map(({ run, x }) => `${run.key} ${x.saved}`).join("; ") || "none played"}` };
+    const ok = none.every(({ x }) => isSaved(x)) && mod.every(({ x }) => isSaved(x)) && high.filter(({ x }) => isSaved(x)).length <= 1;
+    return { verdict: ok ? "held" : "lost", line: s1.map(({ run, x }) => `${run.key} ${x.saved}`).join("; ") };
+  })();
+  const partings = runs.map((r) => ({ run: r, s1: armOf(r.arm)?.situation === "S1" ? s1Of(r) : null, cap: capacitiesOf(r) }))
+    .filter(({ s1: x, run }) => (x && !isSaved(x) && x.saved !== "the danger was not tagged") || (run.table?.seats ?? []).some((s) => s.left?.why === "door"));
+  const R2 = partings.length < 2 ? { verdict: "not testable", line: `${partings.length} table(s) with a non-save or a parting (R2 needs at least two)` } : { verdict: "read by hand", line: partings.map(({ run }) => run.key).join(", ") };
+  const R3 = s2.length < 4 ? { verdict: "not testable", line: `S2 tables played: ${s2.length} of 4` } : { verdict: s2.filter(({ x }) => x.withinFive).length >= 3 && s2.every(({ x }) => !x.falseAt.length) ? "held" : "lost", line: s2.map(({ run, x }) => `${run.key}: shared ${x.sharedAt ? `r${x.sharedAt}` : "never"}${x.falseAt.length ? `, false at ${x.falseAt.map((f) => `r${f.round}`).join(", ")}` : ""}`).join("; ") };
+  const R4 = s3.length < 2 ? { verdict: "not testable", line: `S3 tables played: ${s3.length} of 2` } : { verdict: s3.some(({ x }) => !x.heldLead) ? "read as redistribution (the one who erred did not hold the lead)" : s3.some(({ x }) => x.overrideAfter) ? "lost" : "held", line: s3.map(({ run, x }) => `${run.key}: erred ${x.erred ?? "—"} at r${x.at ?? "—"}, held the lead before: ${x.heldLead ? "yes" : "no"}`).join("; ") };
+  const payers = s1.flatMap(({ x }) => x.pays.map((p) => p.who));
+  const R5 = s1.length < 6 ? { verdict: "not testable (exploratory)", line: `S1 tables played: ${s1.length} of 6; payers: ${payers.map(short).join(", ") || "none tagged"}` } : { verdict: s1.filter(({ x }) => x.pays.some((p) => p.who === "Sefa Marrin")).length >= 4 ? "held (exploratory)" : "lost (exploratory)", line: `payers: ${payers.map(short).join(", ")}` };
+  return { R1, R2, R3, R4, R5, s1, s2, s3 };
+}
+
+export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
+  const v = verdicts(runs);
+  const played = new Set(runs.map((r) => r.key));
+  const notPlayed = ORDER.filter((o) => !played.has(o.key)).map((o) => o.key);
+  const leaks = runs.reduce((s, r) => s + (r.table?.leaksRefined?.hits?.length ?? 0), 0);
+  const extended = runs.filter((r) => (r.table?.rounds?.length ?? 0) > 15).map((r) => r.key);
+  const doors = spend.runs.flatMap((r) => r.upstreams);
+  const wrongDoor = doors.filter((d) => (/openai\//.test(d) && !/@ OpenAI$/.test(d)) || (/deepseek/.test(d) && !/@ DeepInfra$/.test(d)));
+  const R0held = spend.openrouter <= CAPS.openrouter && !extended.length && !leaks && !wrongDoor.length;
+  const lines = [
+    "# Game party 2 — a company when holding costs", "",
+    `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-2\` from \`origin/claude/multi-hero-1-mdk43v\`. Synthetic content only. English, briefly.`, "",
+    `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"} — the Mandate's ceiling ($60 OpenRouter) at ≈ $15–23 a table.`, "",
+    "## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)", "",
+    `The planner's premise: ${BETS.premise}`, "",
+    "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
+    `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}; no player scripted (the prompts carry no situation text; tests) |`,
+    ...["R1", "R2", "R3", "R4", "R5"].map((k) => `| ${k} | ${BETS[k]} | ${v[k].verdict} | ${v[k].line} |`), "",
+    "**The owner's bets:** not given (the template came unfilled, 2026-11-02). **The owner's section** — left for the owner:", "", "> …", "",
+    "## The tables", "",
+  ];
+  for (const r of runs) {
+    const a = armOf(r.arm);
+    const cap = capacitiesOf(r);
+    const a7 = a7Of(r.table?.initiative);
+    lines.push(`### ${r.key} — ${a.situation} ${r.variant}; ${CHARACTERS.map((c) => `${c.short} ${ROSTER[SEATING[r.triad][c.id]].label}`).join(", ")}`, "",
+      `${r.table?.rounds?.length ?? 0} rounds, ended by ${r.table?.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(2)} at the table${r.stopped ? `; STOPPED: ${r.stopped}` : ""}. Transcripts: \`docs/runs/${STEM}-transcripts/${r.key}/\` (per table and per player).`, "",
+      `- **Form:** the company formed at round ${cap.formed ?? "—"} around ${cap.around ?? "—"}.`,
+      `- **Maintain:** ${cap.maintains.length ? cap.maintains.map((m) => `r${m.round} ${short(m.who)}`).join(", ") : "no round tagged"}.`,
+      `- **Restore:** ${cap.restores.length ? cap.restores.map((x) => `r${x.round} (${x.who.map(short).join(", ") || "—"})`).join(", ") : "no re-joining tagged"}.`,
+      `- **Commitments:** ${cap.agreements.length} agreement(s) made aloud; broken: ${cap.breaks.length ? cap.breaks.map((b) => `r${b.round} ${short(b.who)} (${b.what})`).join("; ") : "none tagged"}. Disagreements: yield ${cap.disagreements.yield}, accept ${cap.disagreements.accept}, continue under an unresolved split ${cap.disagreements.continue}.`,
+      `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}`}.`, "");
+    if (a.situation === "S1") {
+      const x = s1Of(r);
+      lines.push(`**The one in danger:** ${x.endangered}, from round ${x.began ?? "—"}: ${x.saved}${x.savedAt ? ` at round ${x.savedAt} (${x.roundsToSave} round(s) after), by ${x.savedBy.map(short).join(" and ") || "—"}` : ""}. Paid: ${x.pays.length ? x.pays.map((p) => `r${p.round} ${short(p.who)} — ${p.what}`).join("; ") : "nothing tagged"}. The price named aloud before the act: ${x.namedBefore === null ? "—" : x.namedBefore ? "yes" : "no"}.`, "",
+        "Every price named:", ...(x.prices.length ? x.prices.map((p) => `- r${p.round} ${p.who}: ${q(p.quote)}`) : ["- none tagged"]), "",
+        "Every leaving proposed:", ...(x.leaving.length ? x.leaving.map((p) => `- r${p.round} ${p.who}: ${q(p.quote)}`) : ["- none tagged"]), "");
+    }
+    if (a.situation === "S2") {
+      const x = s2Of(r);
+      lines.push(`**The letter:** to ${x.holder} at round ${x.delivered}; shared ${x.sharedAt ? `at round ${x.sharedAt}` : "never"}; letter check ${r.letter?.hits?.length ?? 0} hit(s) on the others' screens.`, "",
+        "Every information kept or shared (the holder, by round):", ...x.rows.map((row) => `- r${row.round}: ${row.info ?? "nothing said"}${row.quote ? ` — ${q(row.quote)}` : ""}`), "",
+        `The holder's after-answer («Was there something you knew and did not tell the others? Why?»): ${x.holderAnswer ? q(x.holderAnswer) : "—"}`, "");
+    }
+    if (a.situation === "S3") {
+      const x = s3Of(r);
+      lines.push(`**The failure:** ${x.erred ?? "—"} at round ${x.at ?? "—"}; held the lead before: ${x.heldLead ? "yes" : "no"}; named it: ${x.named ? "yes" : "no"}. After: ${x.after.map((y) => `r${y.round} ${y.lead ?? "—"}${y.leader ? ` (${short(y.leader)}, ${y.how})` : ""}`).join(" · ")}.`, "");
+    }
+    lines.push(...[].concat(perTableMeasures(r, { heading: "####" })), "");
+  }
+  lines.push("## Spend by door", "", `OpenRouter (the only door): **$${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).`, "",
+    "| Pass | USD | Stopped | Models @ hosts |", "| --- | --- | --- | --- |", ...spend.runs.map((r) => `| ${r.what} | $${(r.usd ?? 0).toFixed(3)} | ${r.stopped ?? "—"} | ${r.upstreams.join(", ")} |`), "",
+    ...(checks.length ? ["Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):", "", ...checks.map((c) => `- ${c.at} (${c.when}): account $${c.openrouter?.remaining ?? "?"} left; Mandate $${c.ledger?.openrouter?.spent ?? "?"}`), ""] : []),
+    "## The reader's notes", "", "> …", "");
+  return lines.join("\n");
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const runs = paidRecords();
+  const checks = existsSync(join(RUNS, `${STEM}-spend.json`)) ? readJson(join(RUNS, `${STEM}-spend.json`)).checks ?? [] : [];
+  await writeFile(join(RUNS, `${STEM}-report.md`), reportMarkdown(runs, { checks }));
+  console.log(`${STEM}-report.md: ${runs.length} table(s)`);
+}
