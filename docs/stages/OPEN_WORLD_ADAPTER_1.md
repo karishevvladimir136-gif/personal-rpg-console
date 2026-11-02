@@ -171,3 +171,14 @@ sequence the random policy never produced in its 900 turns and that produced no 
 the trajectories, quoted in full. The reader's warning as the rule: do not take every moved stool for a hole in the
 floor. Two authors, two traces: the rules' author wrote the space (in the code, unchanged by any finding); the player
 wrote the act (only in the trajectory we keep).
+
+## Amendment 2026-11-01 21:40 — Phase B: three families, cap $12 (the owner's «да»)
+Phase B runs three families in the same session, sequentially, three episodes × ≤ 80 turns each, the starter, modder
+off, the frozen system prompt, `max_tokens` 400, in this order: **DeepSeek V4 Pro → Claude Opus 5.5 → Claude Fable
+5.1**, all via OpenRouter. Why these two beside DeepSeek: Opus gave the most concrete second answers in SOLITUDE_3 after
+DeepSeek and Fable (28/30) and grew the field with a guest per page; Fable is the planner's own weights — declared,
+as PROGRAMME_PRINCIPLES requires, and the reason the planner is not the only reader of its episodes. **Cap $12
+OpenRouter, $0 OpenAI**; spend check before each family; a family starts only if the remaining cap holds its
+estimate. B1 / B2′ / B2″ / B3 are read per family against the same three random seeds; no between-family bet is
+frozen at n = 3 — differences are reported as observations, with the episodes whole. Everything else as the
+amendments of 2026-11-01 01:10, 05:55 and 08:25.
