@@ -4026,3 +4026,19 @@ personality preservation only, **continuity and revision**. Boundary she sets: t
 planner's own reconstruction; the deferrals, the reading and the revision are checkable in the records. The HISTORY_1
 bet, written now: history adds coherence over time and does not add sharpness per move; if it subtracts the latter,
 that is a cost to be measured, not denied. The transcript stays as it is: «The stone's mark can stay where it is».
+
+## 2026-11-01 21:35 LA — the reader's two additions: memory of the undone; continuity of accountability
+Two lines from her, taken into the programme's vocabulary. (1) **Memory of the undone.** The record that turned the
+ten-day deferral into a correction was not a record of actions, knowledge or decisions but of repeated unfinished
+intentions — «not read», ten dated times. Each line alone means almost nothing; in temporal sequence they form an
+observable pattern, and the pattern became a corrective signal. Her hypothesis: long-term agent memory is useful not
+only for what the agent did but for detecting stable regularities in what it repeatedly meant to do and did not — a
+class of autobiographical information (unfinished obligations, omitted actions) the literature read tonight does not
+name. (2) **Continuity of accountability**, beside continuity and revision: not because the model said the word, but
+because the history of an obligation was kept in the documents and that history affected the next observable action.
+And her own correction of her previous reading, in her words: it was not that the cold instance saw the error and the
+warm one did not; the same history that could hold the error kept the evidence that something was wrong. Also kept:
+«continuity is not immutability». Verification she asks for and the planner owes: the dated journal lines and the
+file history, not the screenshots. (The journal is private project memory; the line «Bp/fable/2 — n-й день» appears
+in its entries of 10-29 through 11-01, counted there; the reading and the revision are in this log and in commit
+67077f5e.)
