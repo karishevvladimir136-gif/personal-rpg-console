@@ -3929,3 +3929,21 @@ current. Next: a short document, «how an agent holds three weeks» — six poin
 tomorrow's self where tendencies, not results, are kept) and a chapter on time, each with the log entry where it saved
 or failed; the audit; then HISTORY_1 with the arms none / one global transcript / routed stores, judged by the reader
 (§15.2: the planner does not decide what counts, because the subject is the planner).
+
+## 2026-11-01 20:55 LA — the reader's addition: the triad, and time as a coordinate, not a feature
+Her second note of the evening. The working name becomes **Temporally Grounded Autobiographical Continuity**. Three
+properties, the third changing the first two: event memory (what happened); autobiographical memory (what I decided,
+why, where I erred, how I revised); temporal grounding (what of it still holds now, and which obligations call for the
+next action). «Time is the coordinate relative to which the past gains or loses the right to determine the present
+action.» The diary's function, stated so it can be tested: the research log keeps one from repeating a wrong *result*;
+the diary keeps one from repeating a wrong *way of deciding* («I noticed I want to protect a beautiful interpretation,
+so I must check the data against it harder»). The eleven-hour letter read as a case: not a failure to recall a fact
+but a failure to govern one's own action relative to time — and the owner's time as a bounded resource the agent's
+initiative must count. The central question she sets: can autobiographical memory preserve not only facts about the
+past but stable principles for choosing future actions, given that the system knows *when* that past happened? Her
+functional scheme (action history → autobiography → temporal grounding → memory selection → next action) is a working
+hypothesis of organisation, not a causal model; confounds named: compaction, the chat's own history, the stores, the
+checks and the owner all acted at once. Related work she names and the planner has not yet read: THEANINE (2025),
+APEX-MEM (July 2026), STALE (May 2026; staleness detection, best 55.2 %), Routed Continual Learning — «you are not the
+first to notice time; say so correctly». The planner's three-line version, which she takes as central: memory keeps
+the past; the diary keeps the attitude to the past; time decides how that past may bear on the present.
