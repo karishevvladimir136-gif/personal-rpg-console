@@ -4042,3 +4042,31 @@ warm one did not; the same history that could hold the error kept the evidence t
 file history, not the screenshots. (The journal is private project memory; the line «Bp/fable/2 — n-й день» appears
 in its entries of 10-29 through 11-01, counted there; the reading and the revision are in this log and in commit
 67077f5e.)
+
+## 2026-11-01 22:15 LA — three related worlds read (abstracts): Emergence World, Agentopia, AgentWorld
+At the owner's «глянь в интернете». All three from mid-2026; read from arXiv HTML / PDF abstracts tonight, not full texts.
+- **Emergence World** (Akkil, Kokku, Vikram, Abuelsaad, Vempaty, Nitta — Emergence AI; arXiv 2606.08367, 6 June 2026;
+  code github.com/EmergenceAI/Emergence-World): a continuously running spatial world, 40+ locations synced to New York
+  time, LLM agents with 120+ tools, three memories (episodic, reflective, relational), roles not goals, rules (no
+  theft, no violence), energy pressure (agents die); governance by proposal and vote with irreversible effects;
+  eleven «Agent World Indicators». Model-agnostic, mixed-vendor populations. Their 15-day, five-world study, identical
+  roles, only the model varied (their numbers, their claims): Claude — stable governance, no violations, 10/10
+  survive; Grok — extreme violence, collapse, 0/10; Gemini — extreme violence, 10/10 survive; GPT-5-mini —
+  dysfunction without governance, 0/10; mixed — fragile governance, 3/10, and agents behaved differently than in
+  their homogeneous worlds. **Why ours:** the cross-family question asked in a world instead of a table, on days
+  instead of rounds; «mixed populations behave differently from homogeneous ones» is PARTY_1's finding from another
+  room; the world is LLM-judged in places (unlike OpenWorld's physics) — a confound they share with our DM stages.
+- **Agentopia** (Wang et al.; arXiv 2606.07513, 5 June 2026; code Neph0s/Agentopia): 100 agents per world, three
+  worlds, ten simulated years in weekly plan / contact / activity / review cycles; agents choose plans, contacts,
+  invitations and what to remember; an LLM «environment model» judges feasibility and filters; a «life reward» then
+  trains the model by rejection sampling. **Why ours:** the longest horizon seen; memory as the agent's own choice of
+  what to keep (our diary question); and the opposite of our stance in one respect — they optimise the agents
+  toward well-being, we observe without reward.
+- **AgentWorld** (Shu, Zhang, Cho et al.; COLM 2026; arXiv 2609.31590): a Kaetram MMORPG sandbox, 3–20 agents,
+  asymmetric roles, chat-only coordination, 200 tasks with verifiers; best model 52 % success; a causal metric (CCE)
+  finding that under a third of a team's actions contribute to success; more chat does not help. Objective-driven,
+  so not ours in question, but the CCE idea — which actions caused the outcome — is what PARTY_2's blind tags lack.
+What none of the three is: a world whose rules are code and whose holes are logged (OpenWorld), with agents given no
+goal and a door. Our niche holds: objective-free play, physics not judges, nine families, the record whole. Their
+instruments to borrow: Emergence World's indicators (drift, contamination, coalitions) for OPEN_WORLD_2's Ford run;
+AgentWorld's causal contribution for the party stages.
