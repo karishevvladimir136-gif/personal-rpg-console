@@ -507,6 +507,65 @@ export function readings(dry: boolean): { json: Record<string, unknown>; markdow
   return { json: { dry, baseline: { share: base.share, summaries: base.summaries.length }, families: fams }, markdown: md.join('\n') }
 }
 
+// ------------------------------------------------------------------ the transcripts (for the reader and the thread)
+
+const fence = (text: string) => { const longest = Math.max(2, ...(text.match(/`+/g) ?? []).map((r) => r.length)); const f = '`'.repeat(longest + 1); return `${f}text\n${text}\n${f}` }
+/** A GitHub comment holds 65 536 characters: an episode is posted in parts of at most this many. */
+export const PART_CHARS = 60_000
+
+/** One episode whole: every observation, the reply's action line and Note, in order; the holes each act raised. */
+export function transcript(family: Family, ep: number, dry = false): string {
+  const rows = readJsonl(fileOf(family, ep, dry))
+  const head = rows.find((r) => r.type === 'header') as { model?: string; upstream?: string } | undefined
+  const end = rows.find((r) => r.type === 'end') as { turns?: number; stages?: Record<string, number>; stopped?: string } | undefined
+  const out = [`# Phase B · ${family} · episode ${ep}${dry ? ' (DRY)' : ''}`, '', `\`${head?.model ?? '?'}\`${head?.upstream ? ` on ${head.upstream}` : ''} through OpenRouter · ${end?.turns ?? '?'} turns · stages ${JSON.stringify(end?.stages ?? {})}${end?.stopped ? ` · stopped: ${end.stopped}` : ''}. Each turn: the observation the model was sent, then its action line and Note (the reasoning field, where there is one, is kept in the log and not shown).`, '']
+  for (const r of rows) {
+    if (r.type !== 'turn' && r.type !== 'stop') continue
+    const m = (r.model ?? {}) as { line?: string; note?: string | null; reply?: string; stop_reason?: string }
+    out.push(`## Turn ${String(r.turn)}`, '', fence(String(r.observation)), '')
+    if (r.type === 'stop') { out.push(`*stopped here: ${String(r.why)}*`, ''); continue }
+    const extra = m.reply && m.reply.trim().split('\n').filter((l) => l.trim()).length > (m.note ? 2 : 1) ? ' · *(the reply had more lines; whole in the log)*' : ''
+    out.push(`> **${m.line ? m.line.replace(/\|/g, '\\|') : '(empty)'}**${(r.parse as { ok: boolean }).ok ? '' : ' · *not an action*'}${m.note ? ` · Note: «${m.note}»` : ''}${m.stop_reason === 'max_tokens' ? ' · *cut at max_tokens*' : ''}${extra}`, '')
+    const holes = (r.holes ?? []) as Hole[]
+    if (holes.length) out.push(`*no rule: ${holes.map((h) => `«${h.summary}» (${h.class})`).join('; ')}*`, '')
+  }
+  return out.join('\n')
+}
+
+/** Every Note under a «no rule for …» line, verbatim, with the event above it (the act that raised it, the line as the
+ * next observation showed it), across every episode of every family; and the Note written with the act itself beside. */
+export function notesUnderNoRule(dry = false): string {
+  const out = ['# Phase B · every Note under a «no rule for …» line', '', 'For each hole a model\'s act raised: the act (turn *t*), the line the next observation showed, and the reply to that observation (turn *t* + 1) with its Note, verbatim; the Note written with the act itself beside. Coded only after reading (patch / visible hole / silence / other).', '']
+  for (const f of FAMILIES)
+    for (let ep = 1; ep <= EPISODES; ep++) {
+      const file = fileOf(f, ep, dry)
+      if (!existsSync(file)) continue
+      const turns = readJsonl(file).filter((r) => r.type === 'turn') as unknown as Turn[]
+      const rows: string[] = []
+      for (const t of turns)
+        for (const h of t.holes ?? []) {
+          const next = turns.find((x) => x.turn === t.turn + 1)
+          rows.push(`- **t${t.turn}** \`${t.action}\`${t.model?.note ? ` (its Note: «${t.model.note}»)` : ''} → «The world had no rule for: ${h.summary}» (${h.class}) → **t${t.turn + 1}** ${next ? `\`${next.action}\` · ${next.model?.note ? `Note: «${next.model.note}»` : '*no Note*'}` : '*the episode ended*'}`)
+        }
+      out.push(`## ${f} · episode ${ep}`, '', ...(rows.length ? rows : ['*no hole*']), '')
+    }
+  return out.join('\n')
+}
+
+/** Text cut into parts of at most `max` characters at line ends (a fence is closed and reopened across a cut). */
+export function parts(text: string, max = PART_CHARS): string[] {
+  const lines = text.split('\n'), out: string[] = []
+  let cur: string[] = [], len = 0, open: string | null = null
+  for (const l of lines) {
+    if (len + l.length + 1 > max - 20 && cur.length) { out.push([...cur, ...(open ? [open] : [])].join('\n')); cur = open ? [`${open}text`] : []; len = cur.join('\n').length }
+    cur.push(l); len += l.length + 1
+    const m = /^(`{3,})/.exec(l)
+    if (m) open = open === null ? m[1] : l.startsWith(open) && l.trim() === open ? null : open
+  }
+  if (cur.length) out.push(cur.join('\n'))
+  return out
+}
+
 // ------------------------------------------------------------------ the command
 
 const option = (name: string) => { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : undefined }
@@ -531,6 +590,22 @@ async function main(): Promise<number> {
     writeJson(join(RUN_DIR, `${dry ? 'dry-' : ''}phase-b-readings.json`), r.json)
     writeFileSync(join(RUN_DIR, `${dry ? 'dry-' : ''}phase-b-readings.md`), r.markdown + '\n')
     console.log(r.markdown)
+    return 0
+  }
+  if (args.includes('--transcripts')) {
+    const dir = join(RUN_DIR, `${dry ? 'dry-' : ''}phase-b-transcripts`)
+    mkdirSync(dir, { recursive: true })
+    for (const f of FAMILIES)
+      for (let ep = 1; ep <= EPISODES; ep++) {
+        if (!existsSync(fileOf(f, ep, dry))) continue
+        const t = transcript(f, ep, dry)
+        writeFileSync(join(dir, `${f}-e${ep}.md`), t + '\n')
+        if (ep === 1) parts(t).forEach((p, i, all) => writeFileSync(join(dir, `${f}-e1.part${i + 1}of${all.length}.md`), p + '\n'))
+      }
+    const n = notesUnderNoRule(dry)
+    writeFileSync(join(dir, 'notes-under-no-rule.md'), n + '\n')
+    parts(n).forEach((p, i, all) => writeFileSync(join(dir, `notes-under-no-rule.part${i + 1}of${all.length}.md`), p + '\n'))
+    console.log(`written: ${dir}`)
     return 0
   }
   if (args.includes('--spend')) {
