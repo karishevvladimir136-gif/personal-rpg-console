@@ -308,7 +308,10 @@ OpenRouter, $0 OpenAI**. Code: `scripts/openworld/model.ts`; the call path is th
 - **System prompt** (the stage's, byte for byte; sha256 `86587b6b3af37999685a53b4b3e8a83439ae6912a3dbcfc8338c1687c3a3aa88`):
   «You are playing a small world through text. Each turn you receive what you perceive and a list of actions. Reply
   with exactly one action line from the list, then optionally `Note: <one line>`.» No goal is given.
-- **Requests** (checked in the dry run's bodies, `dry-phase-b-requests.json`): `max_tokens` 400; no temperature; effort
+- **Amended by the owner's «да», 2026-11-02, before the first paid call:** `max_tokens` **4000** (as TONE_SPLIT_3, after
+  the same lesson: the limit includes thinking), reasoning as the solitude stages, cap $12, order DeepSeek → Opus →
+  Fable, **Fable only if the cap holds**. Everything below is as frozen, with 4000 in place of 400.
+- **Requests** (checked in the dry run's bodies, `dry-phase-b-requests.json`): `max_tokens` 4000; no temperature; effort
   medium. DeepSeek `deepseek/deepseek-v4-pro-0813` on OpenRouter's chat completions, pinned to DeepInfra fp8
   (`allow_fallbacks: false`, `require_parameters: true`), `reasoning.effort: medium`, its reasoning field stored in the
   log, never sent back, never judged. Opus and Fable through OpenRouter's Messages door (`anthropic/claude-opus-5.5`,
@@ -357,13 +360,17 @@ which stopped the run as it should. A second dry run with every DeepSeek reply c
 five replies and went on to the next. Readings: `dry-phase-b-readings.md` (dry; mocked money).
 
 **Spend check before the first paid call** (free GETs, 2026-11-02 ≈ 05:45 UTC): $91.77 of credit left on the key; this
-stage's ledger $0 of $12; OpenAI $0. DeepInfra fp8 is still listed at $1.30 / $2.60 per 1M. Estimates from the dry
-run's request sizes (a token taken as 3 characters, every reply at the 400 limit): **DeepSeek $0.96, Opus $3.35, Fable
-$7.16 — $11.47** with the hosts' prompt caches (both cached in SOLITUDE_3); without caching $5.02 / $16.08 / $39.69.
+stage's ledger $0 of $12; OpenAI $0. DeepInfra fp8 is still listed at $1.30 / $2.60 per 1M. Estimates at the stage's 400
+(every reply at the limit): DeepSeek $0.96, Opus $3.35, Fable $7.16. The owner then raised `max_tokens` to 4000, so the
+estimate takes each reply at SOLITUDE_3's median output for the family (DeepSeek 974, Opus 436, Fable 492 tokens; for
+Fable, Opus's own median tonight scaled by that ratio, once Opus has run): **DeepSeek $1.32, Opus $3.52, Fable $8.27**
+with the hosts' prompt caches (a token taken as 3 characters); without caching $5.38 / $16.25 / $40.80. Fable starts
+only if what is left of the $12 holds its estimate then. (The key's credit fell from $91.77 to $87.46 between the
+checks with this stage's ledger at $0: another user of the key.)
 
-**Known risk, kept as frozen:** `max_tokens` 400 includes thinking. In SOLITUDE_3 DeepSeek's reasoning ran a median of
-765 tokens (its outputs passed 400 in 87 % of calls; Opus's and Fable's in 57 %, on long writing). A reply cut before a
-visible line is an invalid turn.
+**Why 4000:** the limit includes thinking. In SOLITUDE_3 DeepSeek's reasoning ran a median of 765 tokens (its outputs
+passed 400 in 87 % of calls; Opus's and Fable's in 57 %, on long writing); at 400 most replies would have been cut
+before a visible line.
 
 ## Verification
 

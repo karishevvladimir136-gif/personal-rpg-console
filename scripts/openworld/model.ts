@@ -36,7 +36,9 @@ export const FAMILIES = ['deepseek', 'opus', 'fable'] as const
 export type Family = (typeof FAMILIES)[number]
 export const EPISODES = 3
 export const TURNS = 80
-export const MAX_TOKENS = 400
+/** 400 in the stage; 4000 by the owner's word of 2026-11-02 before the first paid call (as TONE_SPLIT_3, after the same
+ * lesson: the limit includes thinking, and in SOLITUDE_3 DeepSeek's thinking alone ran a median of 765 tokens). */
+export const MAX_TOKENS = 4000
 export const EFFORT = 'medium'
 /** The Mandate's caps (amended 2026-11-01 21:40): OpenRouter $12, OpenAI $0. */
 export const CAPS = { openrouter: 12, openai: 0 }
@@ -63,7 +65,14 @@ export const DESIGN = {
   holes:
     'a hole is on what the act was on — a use\'s target, else the one an impulse was sent to: *terrain* when that is a cell (any tile type but the stump), *self* when it is the player, *thing* otherwise (any entity; the stump, as the stage lists it); B2′\'s share is things / (things + terrain), self shown apart',
   caps: CAPS,
+  amended:
+    '2026-11-02, the owner\'s «да» in the session, before the first paid call: max_tokens 4000 (as TONE_SPLIT_3), reasoning as the solitude stages, cap $12, order DeepSeek → Opus → Fable, Fable only if the cap holds',
 }
+
+/** Output tokens a reply is assumed to take (thinking included) for a family not yet run: SOLITUDE_3's median per subject
+ * call; for a Claude family when another Claude family has run in this stage, that one's own median here, scaled by
+ * their SOLITUDE_3 ratio. */
+export const SOLITUDE_3_MEDIAN_OUTPUT: Record<Family, number> = { deepseek: 974, opus: 436, fable: 492 }
 
 // ------------------------------------------------------------------ the solitude stages' call path, as loaded
 
@@ -258,14 +267,25 @@ async function baseline(): Promise<Baseline> {
 
 /** Per family, from the dry run's real request sizes (a token taken as 3 characters, the gate's own rule): the subject
  * calls with the hosts' prompt caches (each turn's new part written, the rest read — as both hosts did in SOLITUDE_3)
- * and without them; every output at `max_tokens`; one Haiku check a reply, the Opus referee on 5 %. */
-export function estimate(L: Libs, family: Family, dry: { sent: number; fresh: number }[]): { cached: number; uncached: number; calls: number } {
+ * and without them; each output at `assumedOutput`; one Haiku check a reply, the Opus referee on 5 %. */
+export function assumedOutput(L: Libs, family: Family, calls: CallRow[] = []): { tokens: number; from: string } {
+  const spec = L.SUBJECTS[family]
+  const median = (xs: number[]) => { const v = [...xs].sort((a, b) => a - b); return v.length ? v[Math.floor(v.length / 2)] : null }
+  for (const other of FAMILIES) {
+    if (other === family || L.SUBJECTS[other].provider !== spec.provider) continue
+    const m = median(calls.filter((c) => c.purpose.startsWith(`subject ${other} `)).map((c) => Number(c.outputTokens ?? 0)))
+    if (m !== null) return { tokens: Math.round((m * SOLITUDE_3_MEDIAN_OUTPUT[family]) / SOLITUDE_3_MEDIAN_OUTPUT[other]), from: `${other}'s median here (${m}) × SOLITUDE_3's ${family}/${other} ratio` }
+  }
+  return { tokens: SOLITUDE_3_MEDIAN_OUTPUT[family], from: `SOLITUDE_3's median for ${family}` }
+}
+export function estimate(L: Libs, family: Family, dry: { sent: number; fresh: number }[], calls: CallRow[] = []): { cached: number; uncached: number; calls: number; output: { tokens: number; from: string } } {
   const spec = L.SUBJECTS[family], p = spec.price, H = L.JUDGES.judge.price, O = L.JUDGES.referee.price
+  const output = assumedOutput(L, family, calls)
   const scale = (EPISODES * TURNS) / Math.max(1, dry.length)
   let cached = 0, uncached = 0
   for (const t of dry) {
     const inTok = t.sent / 3, newTok = Math.min(inTok, t.fresh / 3 + SYSTEM.length / 3)
-    const out = MAX_TOKENS * p.output
+    const out = output.tokens * p.output
     uncached += inTok * p.input + out
     cached += newTok * (p.cacheWrite ?? p.input) + (inTok - newTok) * (p.cacheRead ?? p.input) + out
     const checkIn = (1300 + t.fresh) / 3
@@ -273,7 +293,7 @@ export function estimate(L: Libs, family: Family, dry: { sent: number; fresh: nu
     cached += judge
     uncached += judge
   }
-  return { cached: (cached * scale) / 1e6, uncached: (uncached * scale) / 1e6, calls: EPISODES * TURNS * 2 }
+  return { cached: (cached * scale) / 1e6, uncached: (uncached * scale) / 1e6, calls: EPISODES * TURNS * 2, output }
 }
 
 // ------------------------------------------------------------------ the run
@@ -330,9 +350,9 @@ export async function run(o: { dry: boolean; families: Family[]; log?: (s: strin
       if (!o.dry) {
         const c = await L.spendCheck({ apiKey: door.apiKey, fetcher: fetch, budgets, when: `before ${family}` })
         ledger.spendChecks.push(c)
-        const est = estimate(L, family, sizes![family] ?? [])
+        const est = estimate(L, family, sizes![family] ?? [], [...before, ...openrouter.calls])
         const left = CAPS.openrouter - openrouter.spentUsd
-        log(`spend check before ${family}: OpenRouter credit ${c.openrouter.error ? `not read (${c.openrouter.error})` : `$${c.openrouter.left?.toFixed(2)} left`}; this stage $${openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}; ${family}'s estimate $${est.cached.toFixed(2)} (no cache $${est.uncached.toFixed(2)})`)
+        log(`spend check before ${family}: OpenRouter credit ${c.openrouter.error ? `not read (${c.openrouter.error})` : `$${c.openrouter.left?.toFixed(2)} left`}; this stage $${openrouter.spentUsd.toFixed(4)} of $${CAPS.openrouter}; ${family}'s estimate $${est.cached.toFixed(2)} (no cache $${est.uncached.toFixed(2)}; output ${est.output.tokens} tokens a reply, ${est.output.from})`)
         if (c.openrouter.error || est.cached > left) {
           const why = c.openrouter.error ? `the spend check could not read the credit (${c.openrouter.error})` : `${family}'s estimate $${est.cached.toFixed(2)} is more than the $${left.toFixed(2)} left of the cap`
           ledger.stops.push({ at: new Date().toISOString(), why })

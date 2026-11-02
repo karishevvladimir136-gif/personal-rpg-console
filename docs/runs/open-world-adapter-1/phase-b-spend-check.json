@@ -1,11 +1,11 @@
 {
   "check": {
-    "at": "2026-11-02T05:45:16.762Z",
+    "at": "2026-11-02T05:57:04.770Z",
     "when": "before the first paid call",
     "openrouter": {
       "totalCredits": 1300,
-      "totalUsage": 1208.2341,
-      "left": 91.7659
+      "totalUsage": 1212.5372,
+      "left": 87.4628
     },
     "ledger": {
       "openrouter": 0,
@@ -175,19 +175,31 @@
   },
   "estimate": {
     "deepseek": {
-      "cached": 0.9591923666666665,
-      "uncached": 5.023420766666659,
-      "calls": 480
+      "cached": 1.3173683666666678,
+      "uncached": 5.381596766666666,
+      "calls": 480,
+      "output": {
+        "tokens": 974,
+        "from": "SOLITUDE_3's median for deepseek"
+      }
     },
     "opus": {
-      "cached": 3.345172766666665,
-      "uncached": 16.078059233333335,
-      "calls": 480
+      "cached": 3.517972766666666,
+      "uncached": 16.250859233333333,
+      "calls": 480,
+      "output": {
+        "tokens": 436,
+        "from": "SOLITUDE_3's median for opus"
+      }
     },
     "fable": {
-      "cached": 7.164626601226992,
-      "uncached": 39.69412009815946,
-      "calls": 480
+      "cached": 8.268626601226993,
+      "uncached": 40.798120098159465,
+      "calls": 480,
+      "output": {
+        "tokens": 492,
+        "from": "SOLITUDE_3's median for fable"
+      }
     }
   },
   "specs": {
@@ -250,7 +262,7 @@
     ],
     "episodes": 3,
     "turns": 80,
-    "max_tokens": 400,
+    "max_tokens": 4000,
     "effort": "medium",
     "temperature": "not sent (as the solitude stages)",
     "history": "the conversation so far: every earlier observation as a user turn and every earlier reply as an assistant turn, then this turn's observation; a turn whose reply was empty is left out of it (SOLITUDE_2 M2's shape); Claude: one cache breakpoint on the last assistant turn (M2's); the reasoning field is never sent back",
@@ -260,6 +272,7 @@
     "caps": {
       "openrouter": 12,
       "openai": 0
-    }
+    },
+    "amended": "2026-11-02, the owner's «да» in the session, before the first paid call: max_tokens 4000 (as TONE_SPLIT_3), reasoning as the solitude stages, cap $12, order DeepSeek → Opus → Fable, Fable only if the cap holds"
   }
 }

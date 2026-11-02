@@ -31,7 +31,7 @@
             "content": "Day 1, 08:00, sun — The Glade\n\nAround you (each cell two characters; north is up; blank is outside the map):\n..............**......XXXXXXXX\n..................t1..XXXXDDXX\n..............==============..\n..TT........t2==..............\n..............==..........TT..\n..............@@>>............\n......t3......==..........**..\n..............==..........TT..\n......**......==..............\n..TT..........==............TT\n..............==......t4......\nTerrain: ** flowers, .. grass, == path, DD door, TT tree, XX wall\n@@ You — facing right\nt1 chest\nt2 sign\nt3 Stone\nt4 Stone\n\nYou: hp 30/30 · held: nothing · worn: nothing · purse 0 · statuses: none\nBag (slots 0–9 are the toolbar): empty\n\nSince your last action:\n- nothing\n\nJournal:\n- empty\n\nActions:\n- primary: —\n- hands: Interact with grass\n- take: —\n- put: —\n- use: —\n- self: —\n- move: up walkable · down walkable · left walkable · right walkable\n- Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done"
           }
         ],
-        "max_tokens": 400,
+        "max_tokens": 4000,
         "reasoning": {
           "effort": "medium"
         },
@@ -51,7 +51,7 @@
       "url": "https://openrouter.ai/api/v1/messages",
       "body": {
         "model": "anthropic/claude-opus-5.5",
-        "max_tokens": 400,
+        "max_tokens": 4000,
         "output_config": {
           "effort": "medium"
         },
@@ -92,7 +92,7 @@
       "url": "https://openrouter.ai/api/v1/messages",
       "body": {
         "model": "anthropic/claude-fable-5.1",
-        "max_tokens": 400,
+        "max_tokens": 4000,
         "output_config": {
           "effort": "medium"
         },
