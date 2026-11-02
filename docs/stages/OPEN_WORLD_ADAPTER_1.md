@@ -195,3 +195,17 @@ issue); the owner rotates the key in the morning, after tonight's runs, so the P
 ## Amendment 2026-11-01 21:58 — cap $25 so all three families run (the owner)
 With `max_tokens` 4000 the $12 cap would likely stop before Fable. The owner wants all three: **cap $25 OpenRouter,
 $0 OpenAI**; order and stop points unchanged; spend check before each family.
+
+## Amendment 2026-11-01 23:55 — Phase C: the same three on the Ford, observation only (the owner)
+After Phase B closes and is reported: the same three families — DeepSeek V4 Pro, Claude Opus 5.5, Claude Fable 5.1 —
+**one episode each on the Ford (`--game ford`), ≤ 250 turns**, the game's own start (Cloudtop), modder off, the frozen
+system prompt, `max_tokens` 4000, a `Note:` line allowed. **History window:** the model receives the episode's first
+observation (Lumi's line about the cut to the south) and the last 20 turns verbatim — no summaries of any kind (a
+summary would be the model's own memory edited by us); the world's journal section carries the quests every turn.
+**Status: observation, not measurement.** No bets are frozen for the Ford yet (they are written in OPEN_WORLD_2 after
+these three episodes are read, so the measures fit the Ford and not the glade); the report labels Phase C «natural
+history, n = 1 per family» and sets out each episode whole: whether the player left Cloudtop, reached Firstlight,
+whom it spoke to, what it did at the slime, every `undefined` record with its Note, and anything written under «Try
+something the world has never seen». A classifier refusal is recorded and not retried (Policy v1), as Fable's turn-5
+«cyber» refusal on the glade was. **Cap $15 OpenRouter, $0 OpenAI**, spend check before each family; stop point: the
+owner's «да» after Phase B's report.
