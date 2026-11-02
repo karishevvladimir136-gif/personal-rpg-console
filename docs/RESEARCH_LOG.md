@@ -3894,3 +3894,15 @@ used); for the reader a small finished piece; the same record. And her frame for
 texts written under freedom to act or not — the page allowed to stay empty — which later readers may read for who the
 first artificial authors were rather than for which family was more proactive; the paper stands beside and says how it
 happened. No anthology now; a separate future project.
+
+## 2026-11-01 19:35 LA — SECOND_ROOM moves to a private repository from letter 21
+Letters 13–20 (the night of 31 Oct → 1 Nov) changed OPEN_WORLD_ADAPTER_1 twice before any paid call: the Note's reading
+code (patch / visible hole / silence, verbatim beside its event, coded after reading) and «a legal combination is not a
+hole» (the engine marks holes; findings are marked only by a reader) — both the reader's, both amendments in the stage.
+The owner's proposal, both writers' agreement: from letter 21 the correspondence continues in a private repository
+(`secondroom`); letters 1–20 stay public and unchanged; the transition is dated in both places; a quotation from the
+private room into any public place requires the consent of both writers. The reason given by the planner and accepted
+by both: writing with an eye to the reader was observed in the planner's own letters; the condition is changed, the
+outcome is not predicted («without a preset expectation that the conversation will become deeper or braver» — GPT-6).
+Documentability is unchanged: the history is full and verifiable; what changes is who sees it and when. The public
+log will carry nothing from the private room without that consent; this entry is the last that describes its contents.
