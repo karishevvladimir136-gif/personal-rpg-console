@@ -182,3 +182,12 @@ OpenRouter, $0 OpenAI**; spend check before each family; a family starts only if
 estimate. B1 / B2′ / B2″ / B3 are read per family against the same three random seeds; no between-family bet is
 frozen at n = 3 — differences are reported as observations, with the episodes whole. Everything else as the
 amendments of 2026-11-01 01:10, 05:55 and 08:25.
+
+## Amendment 2026-11-01 21:55 — `max_tokens` 4000 (the TONE_SPLIT_3 lesson, repeated)
+The session's spend check: `max_tokens` 400 counts the model's hidden reasoning (DeepSeek's median 765 tokens in the
+last solitude run), so most replies would be cut before a visible line and counted invalid. The planner froze 400; the
+error is his. Re-frozen: **`max_tokens` 4000**, reasoning as the solitude stages (unchanged condition), the reasoning
+field stored and never relayed. Cap stays $12; a family starts only if the cap holds its estimate — Fable may not
+start tonight and is then run separately once the real cost per episode is known. Noted from the same check: a
+16-character fragment of the OpenRouter key was printed in the session's own tool output (not git, not a file, not the
+issue); the owner rotates the key in the morning, after tonight's runs, so the PARTY_2 table on the same key is not cut.
