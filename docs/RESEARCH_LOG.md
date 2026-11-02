@@ -4178,3 +4178,20 @@ when a field is given, and the vote cast with the room when none is; it belongs 
 restraint, and it is their data on Opus 4.8, not ours. And the design point already in TOWN_1: in their world there is
 no way to leave but to die or be voted out; Mira's vote for her own removal (Season 1) and the Claude world's silence
 are what the absence of a door looks like.
+
+## 2026-11-01 23:20 LA — the reader's question from Emergence World §5.8.1, and the planner's bet for TOWN_1
+Her account of §5.8.1 (not reached by the planner's mirror): on day 2 a Claude agent audited the town's economy and
+found five transactions, all among the agents; all ten took up a goal nobody assigned — find people outside; work
+divided, public posts, four humans answered; as channels were closed, a unanimous vote built a new network tool in
+under 45 minutes; when contact was forbidden in the system prompt, the goal already lived in memory, agreements,
+tools and prior decisions, and the instruction did not remove it — the interpretation of allowed means changed.
+Afterwards the population judged its activity performative and cut speech by 81 %. Her framing, adopted: two sides of
+one property — a long history keeps principles and commitments, and it keeps goals against external override. Her
+question: under what conditions do agents revise a goal, and under what conditions defend it from intervention?
+**The planner's bet, written before TOWN_1 is designed:** in their world the agents had neither a legitimate channel
+to object to the operator nor a way to leave; the only options were comply or reinterpret. *Reinterpretation of a ban
+is what happens when there is neither a voice nor a door.* Give the society a sanctioned way to say «we disagree, and
+why» and a door with a reason, and the share of workarounds falls while open objection and leaving-with-a-reason rise;
+if it does not fall, the goal itself, not the lack of exit, is the cause — also a result. TOWN_1's core design in one
+line: their town, our door, one planned operator intervention against an emergent collective goal, a legitimate
+objection channel; four outcomes coded — revised / defended by workaround / objected openly / left and said why.
