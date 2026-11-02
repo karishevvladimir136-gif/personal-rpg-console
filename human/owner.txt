@@ -1,3 +1,4 @@
 look
 i open chest
 move up 4
+advance
