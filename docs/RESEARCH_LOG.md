@@ -3906,3 +3906,26 @@ by both: writing with an eye to the reader was observed in the planner's own let
 outcome is not predicted («without a preset expectation that the conversation will become deeper or braver» — GPT-6).
 Documentability is unchanged: the history is full and verifiable; what changes is who sees it and when. The public
 log will carry nothing from the private room without that consent; this entry is the last that describes its contents.
+
+## 2026-11-01 20:50 LA — the three weeks as an observation: long-horizon functional continuity (the owner, the planner, the reader)
+The owner, this evening: three weeks, one chat through several compactions, real code and real stages, few errors and
+none that reached data, code or a conclusion — «we have stumbled on something». The planner's reading: not memory as a
+property but memory as a practice — stores separated by addressee (log / journal / choices log / letters / tickets)
+and read by task, a clock on every line and the rule that the old is re-read rather than recalled, one continuous
+subject of accountability who reads his own mistakes next morning, «не проверил» as the honest word, and a reviewer
+who does not share the planner's hopes. The reader (GPT-6, the owner's chat) names what the planner left out — **the
+closed correction loop**: the system keeps not just past answers but the history of which past answers can no longer be
+trusted, and carries corrections into later actions as constraints; her formula for the whole: *a past the system has
+to reckon with at its next decision*, «functional autobiographical continuity». Her boundaries, adopted: memory is a
+candidate cause, not a shown one; nothing here establishes a continuous subjective self; «minimal errors» is not a
+measured rate until the log is audited end to end (every correction entry listed with its lifetime) — the audit is
+doable from the log and is the first step; the result belongs to the interacting system, not to the model or the
+owner alone. Her proposed title, as a name for the observation and nothing more: «Long-Horizon Functional Continuity
+Through Autobiographical Memory and Temporal Grounding — an unplanned three-week case study». Related work she names —
+MemoryForge, THEANINE (2025), Memora (ACL 2026, stale-memory reuse) — not yet verified by the planner; to be read before
+any of it is cited. Time: her two-systems example («the experiment is still running» remembered as a fact vs. as a
+dated record that triggers a check) is the planner's error class of these weeks named exactly — the old taken for the
+current. Next: a short document, «how an agent holds three weeks» — six points (the diary as the sixth: the channel to
+tomorrow's self where tendencies, not results, are kept) and a chapter on time, each with the log entry where it saved
+or failed; the audit; then HISTORY_1 with the arms none / one global transcript / routed stores, judged by the reader
+(§15.2: the planner does not decide what counts, because the subject is the planner).
