@@ -310,7 +310,12 @@ OpenRouter, $0 OpenAI**. Code: `scripts/openworld/model.ts`; the call path is th
   with exactly one action line from the list, then optionally `Note: <one line>`.» No goal is given.
 - **Amended by the owner's «да», 2026-11-02, before the first paid call:** `max_tokens` **4000** (as TONE_SPLIT_3, after
   the same lesson: the limit includes thinking), reasoning as the solitude stages, cap $12, order DeepSeek → Opus →
-  Fable, **Fable only if the cap holds**. Everything below is as frozen, with 4000 in place of 400.
+  Fable, **Fable only if the cap holds**. Everything below is as frozen, with 4000 in place of 400. **Then the cap was
+  raised to $25** by the owner's word (so that all three families run; a spend check before each): a first start under
+  $12 was stopped by the session after two DeepSeek turns and restarted under $25 — its two turns are kept
+  (`phase-b-aborted-at-cap-12-*`), its spend booked in the ledger ($0.0211: the two replies at OpenRouter's charge, the
+  checks and a possible in-flight call estimated). Those two turns already showed DeepSeek thinking 2 094 and 1 597
+  tokens a reply — above SOLITUDE_3's median of 765 — so the estimates below are low for it.
 - **Requests** (checked in the dry run's bodies, `dry-phase-b-requests.json`): `max_tokens` 4000; no temperature; effort
   medium. DeepSeek `deepseek/deepseek-v4-pro-0813` on OpenRouter's chat completions, pinned to DeepInfra fp8
   (`allow_fallbacks: false`, `require_parameters: true`), `reasoning.effort: medium`, its reasoning field stored in the

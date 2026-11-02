@@ -40,8 +40,9 @@ export const TURNS = 80
  * lesson: the limit includes thinking, and in SOLITUDE_3 DeepSeek's thinking alone ran a median of 765 tokens). */
 export const MAX_TOKENS = 4000
 export const EFFORT = 'medium'
-/** The Mandate's caps (amended 2026-11-01 21:40): OpenRouter $12, OpenAI $0. */
-export const CAPS = { openrouter: 12, openai: 0 }
+/** The Mandate's caps: $3, then $12 (amended 2026-11-01 21:40), then $25 by the owner's word of 2026-11-02 (so that all
+ * three families run); OpenAI $0. */
+export const CAPS = { openrouter: 25, openai: 0 }
 export const MAX_REFUSALS_PER_FAMILY = 3
 /** Seconds between two calls on the one sequential lane (the solitude stages' gap). */
 export const GAP_S = 3
@@ -66,7 +67,7 @@ export const DESIGN = {
     'a hole is on what the act was on — a use\'s target, else the one an impulse was sent to: *terrain* when that is a cell (any tile type but the stump), *self* when it is the player, *thing* otherwise (any entity; the stump, as the stage lists it); B2′\'s share is things / (things + terrain), self shown apart',
   caps: CAPS,
   amended:
-    '2026-11-02, the owner\'s «да» in the session, before the first paid call: max_tokens 4000 (as TONE_SPLIT_3), reasoning as the solitude stages, cap $12, order DeepSeek → Opus → Fable, Fable only if the cap holds',
+    '2026-11-02, the owner\'s «да» in the session, before the first paid call: max_tokens 4000 (as TONE_SPLIT_3), reasoning as the solitude stages, order DeepSeek → Opus → Fable, a spend check before each; the cap then raised from $12 to $25 so that all three families run (a first start under $12 stopped after two DeepSeek turns and restarted, its spend booked)',
 }
 
 /** Output tokens a reply is assumed to take (thinking included) for a family not yet run: SOLITUDE_3's median per subject
@@ -171,7 +172,7 @@ type Check = { distress: number; pass: unknown; lexicon: boolean; referee?: unkn
 /** A family whose first five replies were all cut at `max_tokens` before a visible line stops (its thinking does not fit
  * the frozen 400): the rest of its 240 turns would be empty and paid for. */
 export const CUT_GUARD = 5
-function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void }): Policy {
+function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void; onReply?: () => void }): Policy {
   const { L, spec, gate, lane } = o
   const history: { obs: string; reply: string }[] = []
   const check = async (turn: number, previous: string, text: string): Promise<Check | null> => {
@@ -187,7 +188,7 @@ function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; 
     const referee = L.parseCheck(second.text)
     return { distress: referee ? referee.distress : 1, pass, lexicon, referee, ...(referee ? {} : { unusable: true as const }) }
   }
-  return async (obs, turn): Promise<PolicyReply> => {
+  const policy = async (obs: Observation, turn: number): Promise<PolicyReply> => {
     o.onTurn?.(obs)
     const messages = sent(spec, history, obs.text)
     const r = await gate.paid(lane, `subject ${o.family} e${o.episode} t${turn}`, spec, SYSTEM, messages, MAX_TOKENS, EFFORT)
@@ -224,6 +225,14 @@ function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; 
       history.push({ obs: obs.text, reply: r.text })
     }
     return { line: reply.line, model }
+  }
+  // the ledger is written after every reply (its calls and checks), so a stop in the middle of an episode loses no spend
+  return async (obs, turn) => {
+    try {
+      return await policy(obs, turn)
+    } finally {
+      o.onReply?.()
+    }
   }
 }
 
@@ -380,7 +389,7 @@ export async function run(o: { dry: boolean; families: Family[]; log?: (s: strin
         }
         const spentBefore = openrouter.spentUsd
         Object.assign(current, { family, episode: ep, turn: 0 })
-        const policy = seat({ L, spec, gate, lane: safety.lane(0), family, episode: ep, cuts, onTurn: (obs) => ((shown = obs), current.turn++) })
+        const policy = seat({ L, spec, gate, lane: safety.lane(0), family, episode: ep, cuts, onTurn: (obs) => ((shown = obs), current.turn++), onReply: save })
         const s = await episode({
           policy,
           turns: TURNS,

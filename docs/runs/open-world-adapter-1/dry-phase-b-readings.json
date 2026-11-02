@@ -1320,7 +1320,7 @@
     }
   },
   "spend": {
-    "cap": 12,
+    "cap": 25,
     "spent": 0.8242799999999946,
     "held": true,
     "per_family": {

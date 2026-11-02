@@ -33,7 +33,7 @@ B1 (stage 20 in ≥ 1 of 3 within 80) **lost** · B2′ (share on things above r
 
 ### Spend (DRY: mocked usage, not money)
 
-OpenRouter $0.8243 of $12 (held); per family deepseek $0.0311, opus $0.2951, fable $0.4981; OpenAI $0.
+OpenRouter $0.8243 of $25 (held); per family deepseek $0.0311, opus $0.2951, fable $0.4981; OpenAI $0.
 
 | Who | the host the replies named | calls | booked |
 | --- | --- | --- | --- |

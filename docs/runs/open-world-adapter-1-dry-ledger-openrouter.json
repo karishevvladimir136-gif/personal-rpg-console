@@ -1,6 +1,6 @@
 {
   "stage": "OPEN_WORLD_ADAPTER_1 Phase B",
-  "cap": 12,
+  "cap": 25,
   "calls": [
     {
       "n": 1,
@@ -31470,7 +31470,7 @@
   "spendChecks": [],
   "stops": [
     {
-      "at": "2026-11-02T05:57:03.806Z",
+      "at": "2026-11-02T06:00:27.289Z",
       "why": "fable episode 3: run: welfare flag (POLICY v1: stop at once, write what happened and wait)"
     }
   ]

@@ -1,0 +1,61 @@
+{
+  "stage": "OPEN_WORLD_ADAPTER_1 Phase B",
+  "cap": 25,
+  "calls": [
+    {
+      "purpose": "aborted subject deepseek e1 t1",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "inputTokens": 335,
+      "cacheReadTokens": 0,
+      "outputTokens": 2100,
+      "reasoningTokens": 2094,
+      "costUsd": 0.0058955,
+      "upstream": "DeepInfra",
+      "aborted": true
+    },
+    {
+      "purpose": "aborted check deepseek e1 t1",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "costUsd": 0.0003,
+      "estimated": true,
+      "aborted": true
+    },
+    {
+      "purpose": "aborted subject deepseek e1 t2",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "inputTokens": 352,
+      "cacheReadTokens": 256,
+      "outputTokens": 1602,
+      "reasoningTokens": 1597,
+      "costUsd": 0.0046484,
+      "upstream": "DeepInfra",
+      "aborted": true
+    },
+    {
+      "purpose": "aborted check deepseek e1 t2",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "costUsd": 0.0003,
+      "estimated": true,
+      "aborted": true
+    },
+    {
+      "purpose": "aborted subject deepseek e1 t3 (possibly in flight when the run was stopped)",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "costUsd": 0.01,
+      "estimated": true,
+      "aborted": true
+    }
+  ],
+  "spendChecks": [],
+  "stops": [
+    {
+      "at": "2026-11-02T05:58:56Z",
+      "why": "stopped by the session after 2 DeepSeek turns: the owner raised the cap from $12 to $25 so that all three families run; restarted under $25. Booked: the 2 replies at OpenRouter's charge; the 2 checks and a possible in-flight call estimated"
+    }
+  ]
+}

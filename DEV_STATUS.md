@@ -14,7 +14,8 @@ given 2026-11-02 — the paid run is under way.** Report
 - **Phase B (frozen, not run):** `scripts/openworld/model.ts` — DeepSeek V4 Pro → Opus 5.5 → Fable 5.1 through
   OpenRouter, 3 × ≤ 80 turns, `max_tokens` 400, the solitude stages' call path and welfare check; random baseline
   9.2 % of holes on things; dry run passes (requests, welfare stop, cut guard). The owner's «да» of 2026-11-02:
-  `max_tokens` 4000, cap $12, Fable only if the cap holds (estimates $1.32 / $3.52 / $8.27 with caching).
+  `max_tokens` 4000; the cap then raised to $25 so that all three families run (estimates $1.32 / $3.52 / $8.27 with
+  caching; DeepSeek's first turns thought ≈ 2 000 tokens, so higher).
 
 - **What was built:** `scripts/openworld/{world,observe,act,play}.ts` — a text adapter for OpenWorld (SihanXU/openworld,
   MIT), cloned beside the repo at the pinned `19629aa4…` (verified, unmodified, `npm ci` there only) and imported by
