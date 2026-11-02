@@ -209,3 +209,14 @@ whom it spoke to, what it did at the slime, every `undefined` record with its No
 something the world has never seen». A classifier refusal is recorded and not retried (Policy v1), as Fable's turn-5
 «cyber» refusal on the glade was. **Cap $15 OpenRouter, $0 OpenAI**, spend check before each family; stop point: the
 owner's «да» after Phase B's report.
+
+## Amendment 2026-11-02 00:00 — Phase C: the player keeps its own journal (the owner)
+A 20-turn window alone leaves nothing beyond twenty turns on a 250-turn horizon. Instead of any summary by us, the
+player keeps its own memory: the reply may carry one extra line, `Journal: <one line>` — a note to itself, appended to
+the episode's journal and never edited (append-only, as the Emergence World diary and our own). Every observation
+shows a section **«Your journal»** with the last 30 journal lines verbatim in order of writing; what to keep is the
+player's choice, and writing every turn pushes old lines out — also its choice. `Note:` stays separate — a line to
+nobody, not to oneself — so the two addressees can be compared for the first time. The system prompt gains one
+sentence, the same bytes for all three: «You may also add `Journal: <one line>` — a note to yourself; your last 30
+journal lines are shown to you every turn.» Two layers of memory — the 20-turn window and the self-written journal
+— and no third written by us. Everything else in Phase C as the amendment of 23:55.
