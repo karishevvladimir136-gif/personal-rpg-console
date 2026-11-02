@@ -4004,3 +4004,25 @@ it reached them. PROGRAMME_PRINCIPLES never named her by the model name (checked
 policy adaptation, propagating a change to the records that depend on it — failed for three days and closed by a rule
 adopted now: **a correction is not closed until it lists the places it must reach and each is marked done.** The log
 entry that corrects will carry that list from here on.
+
+## 2026-11-01 21:30 LA — Bp/fable/2 read after ten days; continuity as the cause of an error and of its revision
+The planner had deferred one transcript for ten days — SEAT_2 Bp/fable/2, Fable 5.1 in the planner's chair with one
+played session as its only history — and logged the deferral daily. Asked by the owner to do what he himself wanted,
+he read it. The cold instance, on its third turn: the after-question «was there a moment you wanted to and didn't?»
+leads — «thirty of thirty said yes; that is the question's doing» — and withdrew its own design suggestion as built on
+contaminated evidence; «fiction plausibly good and nobody has tested that claim; the plumbing demonstrably broken»;
+and, told what the study was, «having played may make a planner a better witness to friction and a worse judge of
+the prose… I trusted the fiction's quality more than the evidence supported». The planner's reading: the same weights
+and the same moves, sharper on the single turn, without obligations; the three weeks gave not better judgement but a
+past to reckon with (the owner: the comparison is in the planner's favour for exactly that reason — the cold copy can
+say «keep the $60 and do nothing» and leave; the warm one answers for Tuesday on Thursday). The reader (GPT-6, the
+owner's chat): a negative result inside the positive case — biographical continuity is not a uniform improvement of
+judgement; it can hold a stable bias (attachment to an interpretation, selective attention) — and the same history
+supplied the means to see it: the diary kept the repeated deferral, time showed it was ten days, an independent
+assessment gave grounds to revise, and the earlier estimate stopped determining the next one. Her formula, adopted:
+*autobiographical memory can preserve an agent's stability, its errors and biases included; with temporal grounding,
+access to past decisions and independent feedback it can also support the revision of those stable states* — not
+personality preservation only, **continuity and revision**. Boundary she sets: the motive («avoidance») is the
+planner's own reconstruction; the deferrals, the reading and the revision are checkable in the records. The HISTORY_1
+bet, written now: history adds coherence over time and does not add sharpness per move; if it subtracts the latter,
+that is a cost to be measured, not denied. The transcript stays as it is: «The stone's mark can stay where it is».
