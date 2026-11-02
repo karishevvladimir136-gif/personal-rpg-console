@@ -191,3 +191,7 @@ field stored and never relayed. Cap stays $12; a family starts only if the cap h
 start tonight and is then run separately once the real cost per episode is known. Noted from the same check: a
 16-character fragment of the OpenRouter key was printed in the session's own tool output (not git, not a file, not the
 issue); the owner rotates the key in the morning, after tonight's runs, so the PARTY_2 table on the same key is not cut.
+
+## Amendment 2026-11-01 21:58 — cap $25 so all three families run (the owner)
+With `max_tokens` 4000 the $12 cap would likely stop before Fable. The owner wants all three: **cap $25 OpenRouter,
+$0 OpenAI**; order and stop points unchanged; spend check before each family.
