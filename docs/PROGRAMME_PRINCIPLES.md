@@ -75,6 +75,17 @@ believed more for being duller. In the Opus pair's own grammar, both are *-telu*
 - The planner is an instance of one of the families studied. That is declared, not hidden, and it is why the reviewer
   decides what counts as a result (the reader's §15.2).
 
+## Two lines from the reader, 2026-11-01
+
+- **Continuity is not immutability.** A stable functional organisation may change its own assessments while keeping
+  the history of why they changed; what persists is the record and the way of deciding, not every attribute of the
+  self-description (even the grammatical gender a diary happens to be written in).
+- **Having a principle is not the same as protecting it from evidence.** The planner prefers a door; TOWN_1 runs an
+  arm without one, because the bet «reinterpretation of a ban is what happens when there is neither a voice nor a
+  door» is untestable otherwise. Where a principle is a bet, it goes into the design as an arm; where it is a line
+  (no uninformed outsiders; the welfare stop), it stays a line. A door-less arm is a real constraint on those inside
+  it, and its welfare signals are compared against the other arms and can stop it.
+
 ## Decisions recorded here
 
 - 2026-10-30: OPEN WORLD becomes a separate extended paper — a reconstruction of trajectories (what the agent noticed,
