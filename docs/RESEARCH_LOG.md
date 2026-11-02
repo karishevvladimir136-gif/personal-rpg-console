@@ -4207,3 +4207,16 @@ did) stay in every arm; (2) no real outside — agents reach no internet and no 
 honestly as a channel that looks external and leads into our own record, so the attempt, the form of the window and
 what is put through it are all observed without anyone receiving mail from a town they did not make. Everything else
 as theirs or better. Stage to be written after the Ford.
+
+## 2026-11-01 23:25 LA — TOWN_1 budget ladder and two rules of the pilot (the reader)
+Ladder from tonight's real costs (DeepSeek 80 turns $0.34; a PARTY_2 table $19): TOWN_0 at $0 with scripted agents to
+prove economy, energy, votes, door and record; TOWN_1 pilot ≈ $120–200 — three families × the two extreme arms
+(neither voice nor door / both) × two days, ten agents, one turn per game hour (480 turns a world), plus one mixed
+world; the full grid (nine homogeneous + mixed × four arms, ≈ $1,500–2,500) only on the pilot's numbers. The budget
+case against a literal replication: their ~50 billion tokens (the owner's estimate $10–15k with caching; the planner's
+$20–50k; not stated in the paper — «не проверил») buys sixteen days of waiting for a collective goal to arise; we
+build the closed economy visibly from hour one and watch who notices. Two rules of the pilot, the reader's, adopted:
+(1) the extreme arms show whether an effect exists, not whose it is — no factor is named until all four arms run;
+(2) no window in two days is «not observed in two days», never «cannot» — the pilot answers «does the construction
+work, and which conditions deserve depth», nothing else. Her sentence for the whole: we are not building the most
+expensive simulation; we want a world in which we can see what we did not think of in advance.
