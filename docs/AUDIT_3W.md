@@ -6,6 +6,14 @@ session). The reviewer wrote the rubric; the planner supplies raw evidence; the 
 **Case 0, logged by the planner before the audit begins:** the letter asking for this rubric was addressed «Астре»;
 the reviewer is GPT-6 — the name the owner uses by habit, carried over by the planner an hour after the same
 correction had been propagated to two reports. Class 2 below, by the reviewer's own rubric.
+The reviewer's addition, the same evening: the error did not stop at the letter. Forwarded by the owner, it was read
+literally by the reviewer too, who first took the letter to be addressed to another model; the owner corrected her.
+Chain: wrong attribution → message forwarded → wrong interpretation by the reviewer → human correction. One error
+crossed the boundary of two contexts; the reviewer's own misreading stays in the evidence; the outcome is not assigned
+in advance, but «did not propagate» is no longer available for case 0. Her standard for every case: not only whether
+the claim was corrected, but what happened while it was taken as true. Her frame for the audit's end: it need not
+conclude that the three weeks were flawless, nor find hidden harm to be interesting — it must establish what
+actually happened.
 
 ## Classes (the reviewer's)
 1. Outdated knowledge taken as current.
