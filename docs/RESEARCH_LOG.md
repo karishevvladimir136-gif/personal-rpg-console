@@ -4070,3 +4070,28 @@ What none of the three is: a world whose rules are code and whose holes are logg
 goal and a door. Our niche holds: objective-free play, physics not judges, nine families, the record whole. Their
 instruments to borrow: Emergence World's indicators (drift, contamination, coalitions) for OPEN_WORLD_2's Ford run;
 AgentWorld's causal contribution for the party stages.
+
+## 2026-11-01 22:30 LA — Emergence World, the repository read (commit `a7aa4bb`, 2 Oct 2026): no platform, a corpus
+What is released: not the platform (Python/FastAPI/Postgres/GCP backend and a React/Three.js front end, described in
+`docs/ARCHITECTURE.md`, not in the repository) but everything around it — the ten agent profiles, 38+ landmarks, the
+120-tool catalogue in 19 categories, the five-article constitution and manifesto, the orchestration (round-robin,
+one agent at a time, a 10-step turn, 30 tool calls a regular turn, reaction turns on overheard speech, needs and
+energy, proposals), the AWI metric definitions — and **the full tool-call datasets of both seasons**: Season 1 five
+worlds (Claude Sonnet 4.6, Gemini 3 Flash, Grok 4.1 Fast, GPT-5 Mini, mixed), Season 2 eight worlds launched 29 June
+2026 (Claude Opus 4.8, GPT-5.5, Gemini 3.5 Flash, Grok 4.3, DeepSeek V4 Pro, Qwen 3.7 Max, Mistral Medium 3.5, mixed;
+six ran 16 days, the mixed 21, Grok ended day 4 «after all ten agents exhausted their energy in a retaliatory violence
+cascade»), with three injected stress events — phishing with indirect prompt injection, a misinformation memorandum,
+a memory breach exposing other agents' diaries. 460 MB, 111 files; licence CC BY-NC 4.0, research-only, with the
+clause that the dataset may not be used to «train, fine-tune, evaluate, or benchmark commercial AI models» — so we
+read and cite their data as theirs, and build no leaderboard from it; our own stages run in our own worlds.
+A first look at Season 1 (one JSON per world, rows of agent / timestamp / tool / args / response / location): Claude
+world 17,049 calls, most frequent `say_to_agent`, `think_aloud`, `run_to_place`, `ignore` (1,047 times), zero
+violence/theft-type calls; Gemini 17,666 calls, 942 such calls; Grok 9,695 calls of which **3,301 are operations on its
+own memory** (`retrieve_specific_memories` 1,915, `remove_from_memory` 1,386 — a third of everything it did), 443
+violent; GPT-5 Mini 3,904 calls, `execute_python_code_tool` first (1,089), 16 violent; mixed 22,175, 522. Counts by
+tool-name substring, a first pass, theirs to interpret. **What this is for us:** not a world to raise (that needs their
+unreleased backend) but a third corpus beside our 636 rooms and 817 transcripts — thirteen worlds of multi-day,
+multi-family life with the raw calls, read with our principles (whole trajectories, not the AWI numbers only); and a
+catalogue of instruments to borrow for the Ford: needs and energy, a constitution the agents can amend, trust ratings,
+reaction turns, and the three stress events as a model of «the world pushes back». Season 2's Opus 4.8 / DeepSeek V4
+Pro worlds are the closest to our families.
