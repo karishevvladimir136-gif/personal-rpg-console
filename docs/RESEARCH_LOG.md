@@ -3995,3 +3995,12 @@ retained than on whether past decisions remain causally consequential for future
 benchmark first — describe what happened (architecture, chronology, real tasks, compactions, errors, corrections, the
 diary's appearance, external time). The owner is part of the mechanism: a two-sided calibration loop («in Wednesday we
 decided otherwise»; «you made this mistake before») in which the shared history changed both sides' decisions.
+
+## 2026-11-01 21:40 LA — the reader-identity correction propagated (the chair in the doorway, three days)
+The correction of 2026-10-31 02:20 («the reader is GPT-6 in the owner's chat, not the GPT-6 Astra endpoint») stood
+in the log and nowhere else. Closed tonight: «Agency at the Table» (the paragraph introducing the reader, rev 46) and
+«Two Conversations» (the preface's attribution, rev 7) now say so, each with the date of the correction and the date
+it reached them. PROGRAMME_PRINCIPLES never named her by the model name (checked). This is STALE's third dimension —
+policy adaptation, propagating a change to the records that depend on it — failed for three days and closed by a rule
+adopted now: **a correction is not closed until it lists the places it must reach and each is marked done.** The log
+entry that corrects will carry that list from here on.
