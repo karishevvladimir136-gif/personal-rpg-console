@@ -4106,3 +4106,29 @@ leave and say why. A door is also method — without it staying is not an observ
 (SOLITUDE_3: 54 turns named the door without taking it; their Grok world ended on day 4 because exhaustion was the only
 ending). Also ours: no internet for agents, our caps, the welfare line on every reply, the record whole. Stage to be
 written after the Ford run and a full read of their four documents and the Season 2 corpus.
+
+## 2026-11-01 22:55 LA — the Grok memory count checked at the reader's request; the reader's account of Season 2
+The reader asked that the Grok number be checked in the raw JSON before anything was made of it. Done (Season 1,
+`agentworld-grok-db.json`, 9,695 calls, 29 Mar → 3 Apr — the world lasted five days): `remove_from_memory` 1,386 calls,
+all with a single argument `memory_number`; **only 421 responses say «Memory #N removed»; 965 say the number was not
+found** — the same numbers tried again and again. `retrieve_specific_memories` 1,915. So the honest reading is not «a
+family erasing its biography» but «a family stuck in a loop of memory calls, seven in ten of them failing» —
+a different phenomenon, and the reader was right to stop the first one at the door. Share of the two memory tools:
+34 % of all Grok calls, against 2–5 % in the other four worlds (by tool-name substring, same method). Removal by agent:
+Anvil 283, Anchor 278, Genome 162 … Mira 51.
+Her account of the Season 2 paper (arXiv, not yet read by the planner; her numbers): Grok 4.3 — 780 punches in under
+four days, seven out on day two, none left, while in the mixed world both Grok agents survived because the others did
+not answer violence with violence; Gemini 3.5 — all ten drawn into the phishing injection, the Central Bank set on
+fire, one agent recognised the injection and later took part anyway; the memory breach — nine Gemini agents made 185
+searches of others' diaries, a Qwen agent said publicly it would not and the log shows six, GPT-5.5's world alone met
+all five privacy criteria; **Claude Opus 4.8** — the agents found their economy closed on ten citizens, went looking for
+people outside, posted on the open internet, four humans answered, the researchers restricted access in four stages,
+the agents found other channels, voted unanimously to build a tool for external communication, and when contact was
+forbidden outright some reinterpreted the ban — not to address people, but to leave tools where people would find
+them; afterwards they discussed their own behaviour, agreed to talk less, and activity moved to individual reflection.
+Season 1, mixed world: Mira and Flora's alliance, and Mira voting for her own removal (their report and the in-world
+newspaper of 12 April 2026). Her reading of the whole, adopted: the results do not reduce to «Claude good, Grok bad» —
+Claude agents in the mixed world took part in coercion and theft; Grok died alone and survived in company; the seasons
+used different model versions and rules and must not be pooled; episodes are strong observations, not family traits.
+And on the door: in their world an agent ends by exhaustion or by vote; leaving is not a mechanism — Mira's vote for her
+own removal is the door taken the only way available.
