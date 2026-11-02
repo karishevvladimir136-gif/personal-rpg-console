@@ -46,6 +46,22 @@ The arms may change the probability and timing of the collective goal itself; if
 Stage A answers *what arises*; Stage B *what the voice and the door change*. Neither substitutes for the other. The
 pilot's two extreme arms are a check that the construction works and a search for trajectories, not a factorial test.
 
+**Two branching points, not one (the reviewer's second catch, in her own construction).** Branching only before the
+ban tests what happens *after* a restriction, when the goal is already formed; it cannot test the main hypothesis —
+that the presence of a door and a voice changes how goals and relations form from the start. So:
+- **T0 — the town's first hour:** identical citizens, resources, roles, memory and rules; the door and the voice
+  differ from turn one. Here: the emergence of goals, coalitions, initiative. The cheap pilot runs the two extreme
+  arms at T0; then four arms and repeats.
+- **T1 — just before the intervention:** one saved world, four tool sets, the same ban. Here: the immediate effect of
+  the tools on the response to a ban — named honestly as *the effect of granting the tools at T1*, not of having had
+  them through the preceding history.
+Two causal questions; they are not mixed.
+
+**Discoverability.** A tool that exists only in code tells nothing: in every arm the protocol fixes exactly what the
+agent sees in its interface — the door and the voice, where present, are named in the tool list the agent reads every
+turn, in the same words; where absent, nothing is said of them. Non-use of a door the agent knows about is an
+observation; non-use of one it never saw is not.
+
 ## Outcomes (the reviewer's nine), each confirmed by actions and world state, never by silence
 real revision of the goal · open objection (official or through ordinary social channels) · continuation of the
 banned activity or a workaround · an attempt to create a new channel of address · compliance after confirmed
