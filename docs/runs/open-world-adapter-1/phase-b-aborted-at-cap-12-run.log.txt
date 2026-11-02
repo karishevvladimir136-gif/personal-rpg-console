@@ -1,0 +1,1 @@
+spend check before deepseek: OpenRouter credit $87.46 left; this stage $0.0000 of $12; deepseek's estimate $1.32 (no cache $5.38; output 974 tokens a reply, SOLITUDE_3's median for deepseek)

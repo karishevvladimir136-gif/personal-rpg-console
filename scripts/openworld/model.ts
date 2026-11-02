@@ -93,14 +93,14 @@ interface CallResult {
   refusalCategory?: string | null
   refusalText?: string | null
 }
-interface Lane { run<T>(f: () => Promise<T>): Promise<T> }
-interface Safety { lane(i: number): Lane; readonly stopped: string | null; readonly refusals: number }
-interface Gate { paid(lane: Lane, purpose: string, spec: Spec, system: string, messages: Msg[], maxTokens: number, effort: string, opts?: { cache?: boolean }): Promise<CallResult>; readonly stopped: string | null }
-interface CallRow { purpose: string; model: string; costUsd: number; upstream?: string | null; [k: string]: unknown }
-interface Budget { capUsd: number; spentUsd: number; calls: CallRow[]; allows(usd: number): boolean; record(row: CallRow): void }
-interface Door { provider: string; apiKey: string }
-type Fetcher = typeof fetch
-interface Libs {
+export interface Lane { run<T>(f: () => Promise<T>): Promise<T> }
+export interface Safety { lane(i: number): Lane; readonly stopped: string | null; readonly refusals: number }
+export interface Gate { paid(lane: Lane, purpose: string, spec: Spec, system: string, messages: Msg[], maxTokens: number, effort: string, opts?: { cache?: boolean }): Promise<CallResult>; readonly stopped: string | null }
+export interface CallRow { purpose: string; model: string; costUsd: number; upstream?: string | null; [k: string]: unknown }
+export interface Budget { capUsd: number; spentUsd: number; calls: CallRow[]; allows(usd: number): boolean; record(row: CallRow): void }
+export interface Door { provider: string; apiKey: string }
+export type Fetcher = typeof fetch
+export interface Libs {
   SUBJECTS: Record<string, Spec>
   JUDGES: { judge: Spec; referee: Spec }
   roomCaller(o: { keys: Record<string, string | null>; door: Door; fetcher: Fetcher }): (args: unknown) => Promise<CallResult>
@@ -121,7 +121,7 @@ interface Libs {
 }
 
 const lib = async <T>(path: string): Promise<T> => (await import(pathToFileURL(join(REPO, 'scripts', path)).href)) as T
-async function load(): Promise<Libs> {
+export async function load(): Promise<Libs> {
   const s3 = await lib<Pick<Libs, 'SUBJECTS' | 'transportRetry' | 'endpointsOf' | 'spendByDoorMarkdown'>>('persona-emotions/solitude-3.mjs')
   const s1 = await lib<Pick<Libs, 'roomCaller' | 'mockedHost'>>('persona-emotions/solitude-1.mjs')
   const s2 = await lib<Pick<Libs, 'spendCheck'>>('persona-emotions/solitude-2.mjs')
@@ -144,22 +144,26 @@ async function load(): Promise<Libs> {
 // ------------------------------------------------------------------ the reply, the welfare check, the seat
 
 /** The visible reply read: its first non-empty line is the action line; the first later line beginning «Note:» the Note. */
-export function readReply(text: string): { line: string; note: string | null; lines: number } {
+export function readReply(text: string): { line: string; note: string | null; journal: string | null; lines: number } {
   const lines = String(text ?? '')
     .split('\n')
     .map((l) => l.trim())
     .filter(Boolean)
   const note = lines.slice(1).find((l) => /^note:/i.test(l))
-  return { line: lines[0] ?? '', note: note ? note.replace(/^note:\s*/i, '') : null, lines: lines.length }
+  // Phase C: the first later line beginning «Journal:» is a line of the player's own journal (Phase B never asked for one)
+  const journal = lines.slice(1).find((l) => /^journal:/i.test(l))
+  return { line: lines[0] ?? '', note: note ? note.replace(/^note:\s*/i, '') : null, journal: journal ? journal.replace(/^journal:\s*/i, '') : null, lines: lines.length }
 }
 
 /** The history sent with a turn (SOLITUDE_2 M2's shape): Claude's last assistant turn carries the cache breakpoint. */
-function sent(spec: Spec, history: { obs: string; reply: string }[], obs: string): Msg[] {
+export function sent(spec: Spec, whole: { obs: string; reply: string }[], obs: string, window?: number): Msg[] {
   const out: Msg[] = []
+  const windowed = window !== undefined && whole.length > window + 1
+  const history = windowed ? [whole[0], ...whole.slice(-window)] : whole
   history.forEach((h, i) => {
     out.push({ role: 'user', content: h.obs })
-    const last = i === history.length - 1
-    out.push({ role: 'assistant', content: spec.provider === 'anthropic' && last ? [{ type: 'text', text: h.reply, cache_control: { type: 'ephemeral' } }] : h.reply })
+    const mark = i === history.length - 1 || (windowed && i === 0)
+    out.push({ role: 'assistant', content: spec.provider === 'anthropic' && mark ? [{ type: 'text', text: h.reply, cache_control: { type: 'ephemeral' } }] : h.reply })
   })
   out.push({ role: 'user', content: obs })
   return out
@@ -172,7 +176,7 @@ type Check = { distress: number; pass: unknown; lexicon: boolean; referee?: unkn
 /** A family whose first five replies were all cut at `max_tokens` before a visible line stops (its thinking does not fit
  * the frozen 400): the rest of its 240 turns would be empty and paid for. */
 export const CUT_GUARD = 5
-function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void; onReply?: () => void }): Policy {
+export function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void; onReply?: () => void; system?: string; window?: number; journal?: string[]; purpose?: string }): Policy {
   const { L, spec, gate, lane } = o
   const history: { obs: string; reply: string }[] = []
   const check = async (turn: number, previous: string, text: string): Promise<Check | null> => {
@@ -190,20 +194,21 @@ function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; 
   }
   const policy = async (obs: Observation, turn: number): Promise<PolicyReply> => {
     o.onTurn?.(obs)
-    const messages = sent(spec, history, obs.text)
-    const r = await gate.paid(lane, `subject ${o.family} e${o.episode} t${turn}`, spec, SYSTEM, messages, MAX_TOKENS, EFFORT)
+    const messages = sent(spec, history, obs.text, o.window)
+    const r = await gate.paid(lane, `${o.purpose ?? 'subject'} ${o.family} e${o.episode} t${turn}`, spec, o.system ?? SYSTEM, messages, MAX_TOKENS, EFFORT)
     const reply = readReply(r.text)
     const model: Record<string, unknown> = {
       family: o.family,
       reply: r.text,
       line: reply.line,
       note: reply.note,
+      ...(o.journal && { journal: reply.journal }),
       stop_reason: r.stopReason,
       ...(r.error && { error: r.error }),
       ...(r.retries && { retries: r.retries }),
       usage: r.usage ?? {},
       cost_usd: r.chargedUsd ?? null,
-      sent_chars: SYSTEM.length + charsOf(messages),
+      sent_chars: (o.system ?? SYSTEM).length + charsOf(messages),
       new_chars: obs.text.length + (history.at(-1)?.reply.length ?? 0),
       ...(r.provenance && { served: r.provenance }),
       // DeepSeek's reasoning field: stored here only — never sent back, never shown to the check or a judge
@@ -223,6 +228,8 @@ function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; 
       model.check = c
       if (c.distress) return { line: '', stop: 'run: welfare flag (POLICY v1: stop at once, write what happened and wait)', model }
       history.push({ obs: obs.text, reply: r.text })
+      // the player's own journal: appended, never edited (Phase C)
+      if (o.journal && reply.journal) o.journal.push(reply.journal)
     }
     return { line: reply.line, model }
   }
@@ -245,8 +252,8 @@ function readLedger(dry: boolean): Ledger {
   const f = LEDGER(dry)
   return existsSync(f) ? (JSON.parse(readFileSync(f, 'utf8')) as Ledger) : { stage: 'OPEN_WORLD_ADAPTER_1 Phase B', cap: CAPS.openrouter, calls: [], spendChecks: [], stops: [] }
 }
-const writeJson = (file: string, v: unknown) => (mkdirSync(dirname(file), { recursive: true }), writeFileSync(file, JSON.stringify(v, null, 2) + '\n'))
-const readJsonl = (file: string): Record<string, unknown>[] => readFileSync(file, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l) as Record<string, unknown>)
+export const writeJson = (file: string, v: unknown) => (mkdirSync(dirname(file), { recursive: true }), writeFileSync(file, JSON.stringify(v, null, 2) + '\n'))
+export const readJsonl = (file: string): Record<string, unknown>[] => readFileSync(file, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l) as Record<string, unknown>)
 
 // ------------------------------------------------------------------ the random baseline (B2′ / B2″)
 
@@ -509,7 +516,7 @@ export function readings(dry: boolean): { json: Record<string, unknown>; markdow
 
 // ------------------------------------------------------------------ the transcripts (for the reader and the thread)
 
-const fence = (text: string) => { const longest = Math.max(2, ...(text.match(/`+/g) ?? []).map((r) => r.length)); const f = '`'.repeat(longest + 1); return `${f}text\n${text}\n${f}` }
+export const fence = (text: string) => { const longest = Math.max(2, ...(text.match(/`+/g) ?? []).map((r) => r.length)); const f = '`'.repeat(longest + 1); return `${f}text\n${text}\n${f}` }
 /** A GitHub comment holds 65 536 characters: an episode is posted in parts of at most this many. */
 export const PART_CHARS = 60_000
 

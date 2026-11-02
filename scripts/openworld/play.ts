@@ -90,7 +90,7 @@ export interface EpisodeSummary {
 }
 
 /** One episode: a new game, `policy` for up to `turns` turns, logged to `out` (JSONL) and its saves beside it. */
-export async function episode(opts: { policy: Policy; turns: number; out: string; label: string; game?: string; print?: boolean; header?: Record<string, unknown> }): Promise<EpisodeSummary> {
+export async function episode(opts: { policy: Policy; turns: number; out: string; label: string; game?: string; print?: boolean; header?: Record<string, unknown>; journal?: string[] }): Promise<EpisodeSummary> {
   const t0 = performance.now()
   const world = await OpenWorld.open({ game: opts.game })
   const saves = opts.out.replace(/\.jsonl$/, '') + '.saves.jsonl'
@@ -102,7 +102,9 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
   log({ type: 'header', stage: 'OPEN_WORLD_ADAPTER_1', label: opts.label, openworld_dir: OPENWORLD_DIR, openworld_commit: world.commit, game: world.gameName, turns: opts.turns, ...opts.header, started: new Date().toISOString() })
 
   let frame = world.frame()
-  let obs = observe(world, frame)
+  // (Phase C: the player's own journal, kept by its seat, shown in every observation)
+  const extra = () => (opts.journal ? { journal: opts.journal } : {})
+  let obs = observe(world, frame, extra())
   const firstObservation = obs.text
   let axeObservation: EpisodeSummary['axeObservation']
   let maxWords = obs.words
@@ -159,7 +161,7 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
     })
     if (turn % CHECKPOINT_EVERY === 0) checkpoint(turn)
     if (res.done) break
-    obs = observe(world, frame, parsed.ok ? {} : { notAction: line })
+    obs = observe(world, frame, parsed.ok ? extra() : { ...extra(), notAction: line })
     maxWords = Math.max(maxWords, obs.words)
     if (!hadAxe && !axeObservation && frame.player.slots.some((s) => s?.item.type === 'item/tool/axe')) axeObservation = { turn: turn + 1, text: obs.text }
   }

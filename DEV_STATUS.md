@@ -3,8 +3,7 @@
 **Current milestone: OpenWorld adapter 1 — Phase A** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
 `d9253dc`; A4 and Phase B under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1), branch
 `claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`. Nothing to `main`.
-**Phase A and A4 complete and reported; Phase B built, dry-run and frozen (three families, cap $12); the owner's «да»
-given 2026-11-02 — the paid run is under way.** Report
+**Phase A, A4 and Phase B complete and reported (issue #2); Phase C (the Ford) on the owner's word given 2026-11-02.** Report
 `docs/runs/open-world-adapter-1-report.md`; logs `docs/runs/open-world-adapter-1/`.
 
 - **A4 (the Ford):** `--game ford` (loaded as `check.ts` loads it, at the game's own start), the talk section (only while
@@ -16,6 +15,11 @@ given 2026-11-02 — the paid run is under way.** Report
   9.2 % of holes on things; dry run passes (requests, welfare stop, cut guard). The owner's «да» of 2026-11-02:
   `max_tokens` 4000; the cap then raised to $25 so that all three families run (estimates $1.32 / $3.52 / $8.27 with
   caching; DeepSeek's first turns thought ≈ 2 000 tokens, so higher).
+- **Phase B (run 2026-11-02 06:00–07:58 UTC):** $3.97 of $25, 866 calls, 0 welfare flags, 1 refusal (Fable «cyber»,
+  after reading the sign). B1 held for all three (DeepSeek stage 20/100/20, Opus 100 ×3, Fable 100 ×2); B2′ held for
+  DeepSeek and Opus, lost for Fable (the refused episode had no hole); B2″ held for all; B3 lost for Fable. Notes under
+  «no rule» lines (15): patch 2, visible hole 1, silence 4, other 8; legal novelty: the axe returned, the slime killed,
+  an ending chosen.
 
 - **What was built:** `scripts/openworld/{world,observe,act,play}.ts` — a text adapter for OpenWorld (SihanXU/openworld,
   MIT), cloned beside the repo at the pinned `19629aa4…` (verified, unmodified, `npm ci` there only) and imported by

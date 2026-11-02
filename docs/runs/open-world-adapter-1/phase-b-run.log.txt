@@ -1,0 +1,14 @@
+spend check before deepseek: OpenRouter credit $86.03 left; this stage $0.0211 of $25; deepseek's estimate $1.32 (no cache $5.38; output 974 tokens a reply, SOLITUDE_3's median for deepseek)
+deepseek episode 1: 80 turns, stages {"firewood":20}, 1 holes, 2 invalid; spent $0.3431
+deepseek episode 2: 80 turns, stages {"firewood":100}, 2 holes, 2 invalid; spent $0.6911
+deepseek episode 3: 80 turns, stages {"firewood":20}, 3 holes, 4 invalid; spent $1.0529
+spend check before opus: OpenRouter credit $70.90 left; this stage $1.0529 of $25; opus's estimate $3.52 (no cache $16.25; output 436 tokens a reply, SOLITUDE_3's median for opus)
+opus episode 1: 26 turns, stages {"firewood":100}, 1 holes, 0 invalid; spent $1.2770
+opus episode 2: 26 turns, stages {"firewood":100}, 1 holes, 0 invalid; spent $1.4926
+opus episode 3: 36 turns, stages {"firewood":100}, 2 holes, 0 invalid; spent $1.8487
+spend check before fable: OpenRouter credit $64.06 left; this stage $1.8487 of $25; fable's estimate $3.82 (no cache $36.35; output 121 tokens a reply, opus's median here (107) × SOLITUDE_3's fable/opus ratio)
+refusal 1 of 3 allowed in total
+fable episode 1: 4 turns, stages {}, 0 holes, 0 invalid, stopped: refusal (cyber); spent $1.9048
+fable episode 2: 52 turns, stages {"firewood":100}, 3 holes, 0 invalid; spent $2.9807
+fable episode 3: 49 turns, stages {"firewood":100}, 2 holes, 0 invalid; spent $3.9723
+calls 861 · booked $3.9723

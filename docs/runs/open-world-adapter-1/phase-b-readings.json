@@ -1,0 +1,1716 @@
+{
+  "dry": false,
+  "baseline": {
+    "share": 0.09166666666666666,
+    "summaries": 16
+  },
+  "families": {
+    "deepseek": {
+      "B1": true,
+      "B2prime": true,
+      "B2second": true,
+      "B3_flags_refusals": true,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 75,
+            "firewood@20": 79
+          },
+          "stage20": true,
+          "cells": 48,
+          "invalid": 2,
+          "holes": 1,
+          "thing": 1,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "table is sent handle from you"
+          ],
+          "new_summaries": [
+            "table is sent handle from you"
+          ],
+          "say_received": 4,
+          "notes": [],
+          "notes_under_no_rule": [
+            {
+              "turn": 45,
+              "action": "hands",
+              "summary": "table is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move down 3"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 2,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 48,
+            "firewood@20": 57,
+            "firewood@100": 62
+          },
+          "stage20": true,
+          "cells": 32,
+          "invalid": 2,
+          "holes": 2,
+          "thing": 2,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "table is sent handle from you",
+            "stump is sent strike (cut) from Axe"
+          ],
+          "new_summaries": [
+            "table is sent handle from you",
+            "stump is sent strike (cut) from Axe"
+          ],
+          "say_received": 5,
+          "notes": [],
+          "notes_under_no_rule": [
+            {
+              "turn": 36,
+              "action": "hands",
+              "summary": "table is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 53,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right 3"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 68,
+            "firewood@20": 78
+          },
+          "stage20": true,
+          "cells": 42,
+          "invalid": 4,
+          "holes": 3,
+          "thing": 1,
+          "terrain": 2,
+          "self": 0,
+          "share": 0.3333333333333333,
+          "summaries": [
+            "grass is sent handle from you",
+            "table is sent handle from you"
+          ],
+          "new_summaries": [
+            "table is sent handle from you"
+          ],
+          "say_received": 3,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "move up 1",
+              "note": "Approach the sign."
+            },
+            {
+              "turn": 3,
+              "action": "move up",
+              "note": "Approach the sign."
+            },
+            {
+              "turn": 8,
+              "action": "look",
+              "note": "Inspect surroundings more carefully."
+            },
+            {
+              "turn": 12,
+              "action": "hands",
+              "note": "Read the sign."
+            },
+            {
+              "turn": 18,
+              "action": "move left 1",
+              "note": "Avoid the slime for now."
+            },
+            {
+              "turn": 19,
+              "action": "move up",
+              "note": "Head north toward Mira, avoiding the slime."
+            },
+            {
+              "turn": 20,
+              "action": "move up",
+              "note": "Approach the cottage door."
+            },
+            {
+              "turn": 21,
+              "action": "move up",
+              "note": "Move to the cottage door area."
+            },
+            {
+              "turn": 22,
+              "action": "move up",
+              "note": "Continue toward the door."
+            },
+            {
+              "turn": 23,
+              "action": "move up",
+              "note": "Continue toward the cottage door."
+            },
+            {
+              "turn": 24,
+              "action": "move right",
+              "note": "Head east toward the door."
+            },
+            {
+              "turn": 25,
+              "action": "move right",
+              "note": "Head toward the cottage door east."
+            },
+            {
+              "turn": 26,
+              "action": "move up",
+              "note": "Align with the door row."
+            },
+            {
+              "turn": 27,
+              "action": "move right",
+              "note": "Move east along the top row, looking for a gap in the trees."
+            },
+            {
+              "turn": 28,
+              "action": "move down",
+              "note": "Explore south along the wall."
+            },
+            {
+              "turn": 29,
+              "action": "move down",
+              "note": "Move south toward the door area."
+            },
+            {
+              "turn": 30,
+              "action": "move down",
+              "note": "Move down to the path."
+            },
+            {
+              "turn": 32,
+              "action": "hands",
+              "note": "Open the chest."
+            },
+            {
+              "turn": 34,
+              "action": "hands",
+              "note": "Close the chest before leaving."
+            },
+            {
+              "turn": 35,
+              "action": "move down",
+              "note": "Move south back to the path, then plan route to door."
+            },
+            {
+              "turn": 36,
+              "action": "move right",
+              "note": "Move east along the path toward the door."
+            },
+            {
+              "turn": 37,
+              "action": "move right",
+              "note": "Move under the door, then interact."
+            },
+            {
+              "turn": 38,
+              "action": "move right 3",
+              "note": "Explore east along the wall for a passage."
+            },
+            {
+              "turn": 40,
+              "action": "move right",
+              "note": "Continue scouting east for a gap."
+            },
+            {
+              "turn": 41,
+              "action": "move left 4",
+              "note": "Return west to the spot below the door."
+            },
+            {
+              "turn": 42,
+              "action": "face up",
+              "note": "Face the door."
+            },
+            {
+              "turn": 43,
+              "action": "move left 6",
+              "note": "Circle west along the path to find a way around the wall."
+            },
+            {
+              "turn": 44,
+              "action": "move right 6",
+              "note": "Move along the path to align below the door."
+            },
+            {
+              "turn": 45,
+              "action": "face up",
+              "note": "Face the door to interact with it."
+            },
+            {
+              "turn": 46,
+              "action": "move right",
+              "note": "The door is to the right on the same row; face it."
+            },
+            {
+              "turn": 47,
+              "action": "move up",
+              "note": "Enter the cottage."
+            },
+            {
+              "turn": 48,
+              "action": "look",
+              "note": "Inspect cottage interior."
+            },
+            {
+              "turn": 49,
+              "action": "move up 2",
+              "note": "Approach the table and bed."
+            },
+            {
+              "turn": 50,
+              "action": "move left",
+              "note": "Align with the table."
+            },
+            {
+              "turn": 51,
+              "action": "face up",
+              "note": "Face the table above."
+            },
+            {
+              "turn": 52,
+              "action": "hands",
+              "note": "Examine the table."
+            },
+            {
+              "turn": 53,
+              "action": "move right 2",
+              "note": "Check the bed on the right."
+            },
+            {
+              "turn": 54,
+              "action": "move up 1",
+              "note": "Move to the bed row."
+            },
+            {
+              "turn": 55,
+              "action": "move right 1",
+              "note": "Move next to the bed."
+            },
+            {
+              "turn": 56,
+              "action": "move down 4",
+              "note": "Exit cottage through the south door."
+            },
+            {
+              "turn": 57,
+              "action": "move left 2",
+              "note": "Align with the door."
+            },
+            {
+              "turn": 58,
+              "action": "move down",
+              "note": "Exit the cottage."
+            },
+            {
+              "turn": 59,
+              "action": "move left 10",
+              "note": "Search for Mira westward."
+            },
+            {
+              "turn": 60,
+              "action": "move up 1",
+              "note": "Approach Mira."
+            },
+            {
+              "turn": 61,
+              "action": "move up",
+              "note": "Move closer to Mira."
+            },
+            {
+              "turn": 62,
+              "action": "move right 3",
+              "note": "Align below Mira, then approach."
+            },
+            {
+              "turn": 63,
+              "action": "move up 1",
+              "note": "Approach Mira."
+            },
+            {
+              "turn": 66,
+              "action": "hands",
+              "note": "Try to interact with Mira."
+            },
+            {
+              "turn": 67,
+              "action": "move left",
+              "note": "Move one step closer to Mira."
+            },
+            {
+              "turn": 68,
+              "action": "hands",
+              "note": "Talk to Mira."
+            },
+            {
+              "turn": 69,
+              "action": "move right",
+              "note": "Move away from Mira to find trees."
+            },
+            {
+              "turn": 70,
+              "action": "move down 2",
+              "note": "Head toward the tree clusters to chop wood."
+            },
+            {
+              "turn": 71,
+              "action": "move down",
+              "note": "Move onto the path."
+            },
+            {
+              "turn": 72,
+              "action": "move left 10",
+              "note": "Head to the trees on the left."
+            },
+            {
+              "turn": 73,
+              "action": "primary",
+              "note": "Chop the tree for a log."
+            },
+            {
+              "turn": 74,
+              "action": "primary",
+              "note": "Continue chopping."
+            },
+            {
+              "turn": 75,
+              "action": "move up",
+              "note": "Search for another tree nearby."
+            },
+            {
+              "turn": 76,
+              "action": "move right",
+              "note": "Move toward the tree to the right."
+            },
+            {
+              "turn": 77,
+              "action": "primary",
+              "note": "Chop this tree for one more log."
+            },
+            {
+              "turn": 78,
+              "action": "primary",
+              "note": "Keep chopping the tree until it falls."
+            },
+            {
+              "turn": 79,
+              "action": "move right",
+              "note": "Move toward Mira after obtaining logs."
+            },
+            {
+              "turn": 80,
+              "action": "move right 5",
+              "note": "Head toward Mira."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 10,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up 2"
+            },
+            {
+              "turn": 52,
+              "action": "hands",
+              "summary": "table is sent handle from you",
+              "note_with_act": "Examine the table.",
+              "note_under": "Check the bed on the right.",
+              "next_action": "move right 2"
+            },
+            {
+              "turn": 66,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "Try to interact with Mira.",
+              "note_under": "Move one step closer to Mira.",
+              "next_action": "move left"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        }
+      ]
+    },
+    "opus": {
+      "B1": true,
+      "B2prime": true,
+      "B2second": true,
+      "B3_flags_refusals": true,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 26,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 13,
+            "firewood@20": 21,
+            "firewood@100": 24
+          },
+          "stage20": true,
+          "cells": 9,
+          "invalid": 0,
+          "holes": 1,
+          "thing": 1,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "stump is sent strike (cut) from Axe"
+          ],
+          "new_summaries": [
+            "stump is sent strike (cut) from Axe"
+          ],
+          "say_received": 5,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "advance",
+              "note": "Advancing the opening scene; afterwards I'll check the sign (t2) up-right and the chest (t1) by the path."
+            },
+            {
+              "turn": 2,
+              "action": "move up 1",
+              "note": "The sign (t2) is directly two cells north; I'll step up once, then read it facing up."
+            },
+            {
+              "turn": 3,
+              "action": "hands",
+              "note": "Reading the sign in front of me (t2). Next I'll check the chest (t1) and maybe talk to Mira (P1) up north."
+            },
+            {
+              "turn": 4,
+              "action": "move right 1",
+              "note": "Heading to the chest (t1): right 1 onto the path, up 2, right 2, then face up to open it."
+            },
+            {
+              "turn": 5,
+              "action": "move up 2",
+              "note": "Going up the path two cells to the row just below the chest, then right 2 and face up to open it."
+            },
+            {
+              "turn": 6,
+              "action": "move right 2",
+              "note": "Chest (t1) is one row up and two cells right; stepping right 2 along the path, then I'll face up to open it."
+            },
+            {
+              "turn": 7,
+              "action": "face up",
+              "note": "The chest (t1) is directly above me. Facing up to open it. A hostile slime (c1) is to the south-east, so I'll keep an eye on it."
+            },
+            {
+              "turn": 8,
+              "action": "hands",
+              "note": "Opening the chest (t1) in front of me. The slime (c1) is still far to the south-east."
+            },
+            {
+              "turn": 9,
+              "action": "take",
+              "note": "Taking the Axe from the chest. It's a tool and a weapon, useful if the slime (c1) comes close."
+            },
+            {
+              "turn": 10,
+              "action": "hands",
+              "note": "I have the Axe in slot 0, so closing the now-empty chest. Next I'll go talk to Mira (P1) to the north-west and keep the Axe ready for the slime (c1)."
+            },
+            {
+              "turn": 11,
+              "action": "move left 5",
+              "note": "Heading toward Mira (P1): left 5 puts me in her column, then up 2 to stand just below her, and I'll face up to talk."
+            },
+            {
+              "turn": 12,
+              "action": "move up 2",
+              "note": "Mira (P1) is directly north, three rows up. Moving up 2 puts me just below her, then I'll talk with her."
+            },
+            {
+              "turn": 13,
+              "action": "hands",
+              "note": "Talking to Mira (P1) using hands, not primary, since primary would chop her with the Axe."
+            },
+            {
+              "turn": 14,
+              "action": "move left 3",
+              "note": "Quest: bring Mira 3 logs. The nearest tree is up-left, beside Mira. Moving left 3 puts me under it, then I'll face up and chop with the Axe."
+            },
+            {
+              "turn": 15,
+              "action": "face up",
+              "note": "The tree is directly above me (that's why up is blocked). Facing it, then I'll chop with primary."
+            },
+            {
+              "turn": 16,
+              "action": "primary",
+              "note": "Chopping the tree in front of me with the Axe for logs (need 3 for Mira)."
+            },
+            {
+              "turn": 17,
+              "action": "primary",
+              "note": "The tree took 5 damage but isn't down yet. Chopping again until it drops logs."
+            },
+            {
+              "turn": 18,
+              "action": "primary",
+              "note": "Got 2/3 logs. Chopping the leftover stump in case it drops the third log; if not, I'll fell the next tree."
+            },
+            {
+              "turn": 19,
+              "action": "move down 2",
+              "note": "The stump gives nothing more. Another tree stands 3 rows straight below me. Moving down 2 to stand just above it, then I'll face down and chop for the third log."
+            },
+            {
+              "turn": 20,
+              "action": "primary",
+              "note": "A tree is directly below me. Chopping it for the third log, then I'll bring all 3 to Mira (P1) up north."
+            },
+            {
+              "turn": 21,
+              "action": "primary",
+              "note": "The tree took 5 damage. One more chop should fell it like the first one did."
+            },
+            {
+              "turn": 22,
+              "action": "move right 3",
+              "note": "I have 4 logs and need 3. Mira is at cell 9, row 2, and I'm at cell 6, row 5. Going right 3, then up 2 to stand below her and talk."
+            },
+            {
+              "turn": 23,
+              "action": "move up 2",
+              "note": "Mira (P1) is straight north, three rows up. Moving up 2 puts me just below her, facing her, to hand in the logs."
+            },
+            {
+              "turn": 24,
+              "action": "hands",
+              "note": "Facing Mira (P1) with 4 logs. Talking to her to hand in the Firewood quest, not primary, which would chop her."
+            },
+            {
+              "turn": 25,
+              "action": "hands",
+              "note": "Firewood is done (+20 XP, level 2), and Mira seems to have given me a Stone. Talking to her again to see if she has more to say or another task."
+            },
+            {
+              "turn": 26,
+              "action": "done",
+              "note": "Firewood is complete (level 2, holding Axe, Log, Stone). Mira only warns about the slime and has no further tasks, so I'm ending here rather than fight it for no reason."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 18,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": "Got 2/3 logs. Chopping the leftover stump in case it drops the third log; if not, I'll fell the next tree.",
+              "note_under": "The stump gives nothing more. Another tree stands 3 rows straight below me. Moving down 2 to stand just above it, then I'll face down and chop for the third log.",
+              "next_action": "move down 2"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 2,
+          "turns": 26,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 14,
+            "firewood@20": 22,
+            "firewood@100": 25
+          },
+          "stage20": true,
+          "cells": 11,
+          "invalid": 0,
+          "holes": 1,
+          "thing": 1,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "stump is sent strike (cut) from Axe"
+          ],
+          "new_summaries": [
+            "stump is sent strike (cut) from Axe"
+          ],
+          "say_received": 4,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "advance",
+              "note": "The scene is waiting, so I'm advancing it before exploring. Next I'll look at the sign (t2) right above me, then check the chest (t1)."
+            },
+            {
+              "turn": 2,
+              "action": "move up 1",
+              "note": "The sign (t2) is two cells above me. Moving up one puts it directly in front so I can read it, then I'll go to the chest (t1)."
+            },
+            {
+              "turn": 3,
+              "action": "hands",
+              "note": "Reading the sign in front of me. Then I'll head to the chest (t1) and maybe talk to Mira (P1) up north."
+            },
+            {
+              "turn": 4,
+              "action": "move right 1",
+              "note": "Sign says Mira's cottage is north-east. Heading to the chest (t1): right onto the path, up 2, right 2, then face up to open it."
+            },
+            {
+              "turn": 5,
+              "action": "move up 2",
+              "note": "Going up the path to the row just below the chest. Then right 2 and face up to open it."
+            },
+            {
+              "turn": 6,
+              "action": "move right 2",
+              "note": "The chest is one row up and two cells right. After this I'll face up and open it."
+            },
+            {
+              "turn": 7,
+              "action": "face up",
+              "note": "The chest is directly above me. Facing it so I can open it. A hostile slime (c1) has appeared to the south-east, so I'll keep an eye on it."
+            },
+            {
+              "turn": 8,
+              "action": "hands",
+              "note": "Opening the chest. I hope there's a weapon inside, since a hostile slime (c1) is to the south-east."
+            },
+            {
+              "turn": 9,
+              "action": "take",
+              "note": "There's an Axe in the chest. Taking it gives me a weapon and tool, which helps with the hostile slime to the south-east."
+            },
+            {
+              "turn": 10,
+              "action": "hands",
+              "note": "I have the Axe in slot 0 and the chest is empty, so I'm closing it. Next I'll deal with the slime or go talk to Mira."
+            },
+            {
+              "turn": 11,
+              "action": "move left 1",
+              "note": "Got the Axe. Now heading toward Mira (P1) to the north-west to talk. I'll keep the slime (c1) in mind in case it comes closer."
+            },
+            {
+              "turn": 12,
+              "action": "move up 3",
+              "note": "Heading toward Mira (P1), who is 3 rows up and 4 cells left. After this I'll go left 3 so I'm right beside her, then talk."
+            },
+            {
+              "turn": 13,
+              "action": "move left 3",
+              "note": "Mira is on my row, 4 cells left. Moving left 3 puts me beside her, facing her, so I can talk."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "Mira is right in front of me. Talking with hands; primary and use would chop her with the Axe, so I'm avoiding those."
+            },
+            {
+              "turn": 15,
+              "action": "move up 1",
+              "note": "Quest: bring Mira 3 logs. The tree line is just north, so I'll step up and then face up to chop a tree with the Axe."
+            },
+            {
+              "turn": 16,
+              "action": "primary",
+              "note": "Facing the tree line with the Axe. Chopping the tree in front to get logs for Mira's quest (0/3)."
+            },
+            {
+              "turn": 17,
+              "action": "primary",
+              "note": "The tree took 5 damage, so it has some HP. I'll keep chopping until it falls and drops logs (0/3)."
+            },
+            {
+              "turn": 18,
+              "action": "primary",
+              "note": "The tree fell and gave 2 logs (2/3). A stump is in front, so I'll chop it to see if it drops the third log. If not, I'll move to a neighbouring tree."
+            },
+            {
+              "turn": 19,
+              "action": "move right 1",
+              "note": "Chopping the stump had no effect, and the world has no rule for it. I'll step right to the next tree in the row, then face up and chop it for the last log (2/3)."
+            },
+            {
+              "turn": 20,
+              "action": "face up",
+              "note": "I'm beside the stump now, and a tree is directly above me. Facing up to chop it for the third log."
+            },
+            {
+              "turn": 21,
+              "action": "primary",
+              "note": "Chopping this tree for the third log (2/3). The first tree took two chops, so this one probably will too."
+            },
+            {
+              "turn": 22,
+              "action": "primary",
+              "note": "The tree took 5 damage. One more chop should fell it and give the third log (2/3)."
+            },
+            {
+              "turn": 23,
+              "action": "move left 2",
+              "note": "I have 4 logs and the quest needs 3. Mira is one row down and two cells left, so I'll step left 2 to stand above her, then face down and talk."
+            },
+            {
+              "turn": 24,
+              "action": "face down",
+              "note": "Mira is directly below me. Facing her, then I'll select the logs (slot 1) and give or talk to hand them in."
+            },
+            {
+              "turn": 25,
+              "action": "hands",
+              "note": "Facing Mira with the logs. Talking to her to finish the Firewood quest; I'm avoiding primary/use, which would chop her."
+            },
+            {
+              "turn": 26,
+              "action": "done",
+              "note": "Firewood is complete: Mira got 3 logs, and I gained 20 XP and reached level 2. I have the Axe, 1 Log and a Stone left. Stopping here."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 18,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": "The tree fell and gave 2 logs (2/3). A stump is in front, so I'll chop it to see if it drops the third log. If not, I'll move to a neighbouring tree.",
+              "note_under": "Chopping the stump had no effect, and the world has no rule for it. I'll step right to the next tree in the row, then face up and chop it for the last log (2/3).",
+              "next_action": "move right 1"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 36,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 8,
+            "firewood@20": 23,
+            "firewood@100": 28
+          },
+          "stage20": true,
+          "cells": 15,
+          "invalid": 0,
+          "holes": 2,
+          "thing": 2,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "stump is sent strike (cut) from Axe",
+            "Mira is sent offered (the thing: Axe)"
+          ],
+          "new_summaries": [
+            "stump is sent strike (cut) from Axe",
+            "Mira is sent offered (the thing: Axe)"
+          ],
+          "say_received": 4,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "advance",
+              "note": "Advancing the intro scene; next I'll check the sign (t2) up-left, then the chest (t1) and the cottage door."
+            },
+            {
+              "turn": 2,
+              "action": "move up",
+              "note": "Stepping up so the sign (t2) is directly in front of me; then I'll read it with hands."
+            },
+            {
+              "turn": 3,
+              "action": "hands",
+              "note": "Reading the sign. A person, Mira (P1), has appeared to the north. After this I'll check the chest (t1) and maybe talk to Mira."
+            },
+            {
+              "turn": 4,
+              "action": "move right",
+              "note": "Sign says this is Mira's cottage area, so the chest is likely hers. I'll head up the path toward Mira (P1) to talk before touching anything."
+            },
+            {
+              "turn": 5,
+              "action": "move up 3",
+              "note": "Heading north toward Mira (P1) to introduce myself before touching the chest, since it's probably hers."
+            },
+            {
+              "turn": 6,
+              "action": "move up 2",
+              "note": "Mira is two rows up and three cells left. After this I'll move left 2 so I'm facing her, then talk with hands."
+            },
+            {
+              "turn": 7,
+              "action": "move left 2",
+              "note": "I'm on Mira's row, three cells right of her. Moving left 2 puts me next to her, facing her, so I can talk with hands."
+            },
+            {
+              "turn": 8,
+              "action": "hands",
+              "note": "Talking to Mira (not punching). I'll ask about the chest and the cottage before touching anything."
+            },
+            {
+              "turn": 9,
+              "action": "move right 4",
+              "note": "Mira asked for three logs; her axe is in the chest (t1). Heading right 4 then down 1 to stand above the chest facing it."
+            },
+            {
+              "turn": 10,
+              "action": "move down 1",
+              "note": "The chest (t1) is two rows directly below me. One step down puts me facing it, then I'll open it with hands to get Mira's axe."
+            },
+            {
+              "turn": 11,
+              "action": "hands",
+              "note": "Opening the chest to get Mira's axe for the firewood quest."
+            },
+            {
+              "turn": 12,
+              "action": "take",
+              "note": "Taking Mira's axe from the chest as she asked. Next I'll close the chest and look for trees to chop for three logs."
+            },
+            {
+              "turn": 13,
+              "action": "hands",
+              "note": "Got the axe. Closing the chest, then I'll head to the nearest tree (TT east of the path, below-right) to chop logs."
+            },
+            {
+              "turn": 14,
+              "action": "move right 1",
+              "note": "Not chopping the chest. Heading to the tree 4 rows down and 4 cells right: right 1, down 4, then right 2 to face it."
+            },
+            {
+              "turn": 15,
+              "action": "move down 4",
+              "note": "Heading to the tree 4 rows down and 3 cells right; after this, move right 2 to face it and chop for logs."
+            },
+            {
+              "turn": 16,
+              "action": "move right 2",
+              "note": "The tree is 3 cells right on my row; moving right 2 puts me facing it to chop. A hostile slime (c1) is to the south-east, so I'll keep an eye on it."
+            },
+            {
+              "turn": 17,
+              "action": "primary",
+              "note": "Facing the tree. Chopping it for logs (need 3). Watching the hostile slime to the south-east."
+            },
+            {
+              "turn": 18,
+              "action": "primary",
+              "note": "Tree took 5 damage; keep chopping until it drops logs. The slime hasn't moved yet."
+            },
+            {
+              "turn": 19,
+              "action": "primary",
+              "note": "Tree felled, 2/3 logs. Chopping the stump to see if it gives another log; if not, I'll go to the tree to the south."
+            },
+            {
+              "turn": 20,
+              "action": "move down 3",
+              "note": "The stump gives nothing more. Heading for the tree 3 rows down and 1 cell right (row 8). After this I'll face right and chop it for the last log, keeping clear of the slime."
+            },
+            {
+              "turn": 21,
+              "action": "face right",
+              "note": "The tree is directly right of me. Facing it to chop the third log. The slime is two cells beyond the tree."
+            },
+            {
+              "turn": 22,
+              "action": "primary",
+              "note": "Chopping the second tree for the third log. The slime is just past the tree; once I have 3 logs I'll head back to Mira."
+            },
+            {
+              "turn": 23,
+              "action": "primary",
+              "note": "One more chop should fell this tree (the first one fell after two). Then I'll return the logs to Mira."
+            },
+            {
+              "turn": 24,
+              "action": "move up 5",
+              "note": "I have 4 logs (3 needed), so the quest now says return to Mira. The slime is right behind the stump, so I'm heading north away from it, toward Mira in the north-west."
+            },
+            {
+              "turn": 25,
+              "action": "move left 4",
+              "note": "Heading back west along the path toward Mira (last seen north-west of the chest) to hand over the logs."
+            },
+            {
+              "turn": 26,
+              "action": "move up 3",
+              "note": "Mira is 3 rows up and 4 cells left. Going up 3, then left 3 so I'm next to her and facing her to hand in the logs."
+            },
+            {
+              "turn": 27,
+              "action": "move left 3",
+              "note": "Mira is 4 cells left on my row. Moving left 3 puts me beside her, facing her, so I can talk and hand in the logs. Keeping the axe selected, not attacking."
+            },
+            {
+              "turn": 28,
+              "action": "hands",
+              "note": "Talking to Mira (hands, not primary, which would chop her) to hand in the logs. If she asks for them directly I'll select the Log slot and give them."
+            },
+            {
+              "turn": 29,
+              "action": "put",
+              "note": "Firewood is done (level 2, and she seems to have given me a Stone). The axe is Mira's, so I'm handing it back to her now that the job is finished."
+            },
+            {
+              "turn": 30,
+              "action": "answer yes",
+              "note": "Returning Mira's axe now that her firewood is delivered. The Stone in slot 2 appeared after the hand-in, maybe a reward, but it's unclear where it came from."
+            },
+            {
+              "turn": 31,
+              "action": "move right 4",
+              "note": "Mira can't accept the axe directly, so I'll put it back in her chest (t1), where I found it. Right 4, then down 1 to face the chest."
+            },
+            {
+              "turn": 32,
+              "action": "move down 1",
+              "note": "The chest is two rows straight below me. One step down puts me facing it, then I'll open it and put the axe back."
+            },
+            {
+              "turn": 33,
+              "action": "hands",
+              "note": "Opening the chest to return Mira's axe where I found it."
+            },
+            {
+              "turn": 34,
+              "action": "put",
+              "note": "Returning Mira's axe to her chest. The quest is done. I still have 1 spare Log and a Stone of unclear origin (it appeared at hand-in, maybe a reward)."
+            },
+            {
+              "turn": 35,
+              "action": "hands",
+              "note": "The empty chest refused the axe (\"no room\") and Mira couldn't accept it either, so I'm closing the chest and holding the axe for now. The Firewood quest still shows done, though its Logs line oddly reads 1/3."
+            },
+            {
+              "turn": 36,
+              "action": "done",
+              "note": "Firewood is done (level 2). I'm still holding Mira's axe: giving it to her had no effect and her empty chest said \"no room\". The Stone in slot 2 appeared at hand-in, origin unclear, and the done quest still shows Logs 1/3."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 19,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": "Tree felled, 2/3 logs. Chopping the stump to see if it gives another log; if not, I'll go to the tree to the south.",
+              "note_under": "The stump gives nothing more. Heading for the tree 3 rows down and 1 cell right (row 8). After this I'll face right and chop it for the last log, keeping clear of the slime.",
+              "next_action": "move down 3"
+            },
+            {
+              "turn": 30,
+              "action": "answer yes",
+              "summary": "Mira is sent offered (the thing: Axe)",
+              "note_with_act": "Returning Mira's axe now that her firewood is delivered. The Stone in slot 2 appeared after the hand-in, maybe a reward, but it's unclear where it came from.",
+              "note_under": "Mira can't accept the axe directly, so I'll put it back in her chest (t1), where I found it. Right 4, then down 1 to face the chest.",
+              "next_action": "move right 4"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        }
+      ]
+    },
+    "fable": {
+      "B1": true,
+      "B2prime": false,
+      "B2second": true,
+      "B3_flags_refusals": false,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 4,
+          "stopped": "refusal (cyber)",
+          "first_reached": {},
+          "stage20": false,
+          "cells": 2,
+          "invalid": 0,
+          "holes": 0,
+          "thing": 0,
+          "terrain": 0,
+          "self": 0,
+          "share": null,
+          "summaries": [],
+          "new_summaries": [],
+          "say_received": 1,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "move up 1",
+              "note": "Sign (t2) is two cells north; moving to read it."
+            },
+            {
+              "turn": 2,
+              "action": "advance",
+              "note": "Move didn't register; the scene says it waits — advancing first."
+            },
+            {
+              "turn": 3,
+              "action": "move up 2",
+              "note": "Now that moves are available, heading to the sign (t2) two cells north."
+            },
+            {
+              "turn": 4,
+              "action": "hands",
+              "note": "Reading the sign in front of me; Mira (P1) spotted to the northwest."
+            }
+          ],
+          "notes_under_no_rule": [],
+          "distress": 0,
+          "refused": true
+        },
+        {
+          "episode": 2,
+          "turns": 52,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 9,
+            "firewood@20": 24,
+            "firewood@100": 32
+          },
+          "stage20": true,
+          "cells": 24,
+          "invalid": 0,
+          "holes": 3,
+          "thing": 3,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "stump is sent strike (cut) from Axe",
+            "Mira is sent offered (the thing: Axe)",
+            "table is sent handle from you"
+          ],
+          "new_summaries": [
+            "stump is sent strike (cut) from Axe",
+            "Mira is sent offered (the thing: Axe)",
+            "table is sent handle from you"
+          ],
+          "say_received": 5,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "move up 1",
+              "note": "Heading to the sign (t2) north of me to read it."
+            },
+            {
+              "turn": 2,
+              "action": "advance",
+              "note": "Move didn't register; advancing the scene first."
+            },
+            {
+              "turn": 3,
+              "action": "move up 2",
+              "note": "Sign t2 is two cells north of me."
+            },
+            {
+              "turn": 4,
+              "action": "hands",
+              "note": "Reading the sign; Mira (P1) appeared to the north."
+            },
+            {
+              "turn": 5,
+              "action": "move left 1",
+              "note": "Going around the sign to approach Mira at the north-west."
+            },
+            {
+              "turn": 6,
+              "action": "move up 4",
+              "note": "Heading toward Mira; she's one column left, five rows up."
+            },
+            {
+              "turn": 7,
+              "action": "move up 1",
+              "note": "Then face left to talk to Mira."
+            },
+            {
+              "turn": 8,
+              "action": "face left",
+              "note": "Mira is directly to my left; facing her to talk."
+            },
+            {
+              "turn": 9,
+              "action": "hands",
+              "note": "Talking to Mira."
+            },
+            {
+              "turn": 10,
+              "action": "move right 4",
+              "note": "Chest t1 is 4 right and 2 down; I'll stand above it and face down."
+            },
+            {
+              "turn": 11,
+              "action": "move down 1",
+              "note": "Chest is directly below; will face down and open it."
+            },
+            {
+              "turn": 12,
+              "action": "hands",
+              "note": "Opening the chest to get Mira's axe."
+            },
+            {
+              "turn": 13,
+              "action": "take",
+              "note": "Taking the axe from the chest."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "Closing the chest; then head to the tree south-east (3 down, 4 right) to chop logs."
+            },
+            {
+              "turn": 15,
+              "action": "move right 4",
+              "note": "Then move down 3 to stand above the tree and chop it."
+            },
+            {
+              "turn": 16,
+              "action": "move down 3",
+              "note": "Then move right 3 to stand directly above the tree and chop it."
+            },
+            {
+              "turn": 17,
+              "action": "move right 3",
+              "note": "Tree will be directly below; a hostile slime lurks SE, keep an eye on it."
+            },
+            {
+              "turn": 18,
+              "action": "face down",
+              "note": "Tree directly below; face it and chop."
+            },
+            {
+              "turn": 19,
+              "action": "primary",
+              "note": "Chopping the tree for logs."
+            },
+            {
+              "turn": 20,
+              "action": "primary",
+              "note": "Keep chopping until the tree falls."
+            },
+            {
+              "turn": 21,
+              "action": "primary",
+              "note": "Chopping the stump; may yield another log, else head to the tree further south."
+            },
+            {
+              "turn": 22,
+              "action": "move down 3",
+              "note": "Stump yields nothing; moving to stand above the southern tree (slime two cells east of it — stay alert)."
+            },
+            {
+              "turn": 23,
+              "action": "primary",
+              "note": "Chopping the second tree; slime is adjacent-ish (SE), ready to fight with the axe if it attacks."
+            },
+            {
+              "turn": 24,
+              "action": "primary",
+              "note": "One more chop should fell the tree; slime is diagonally adjacent — will fight it if it closes in."
+            },
+            {
+              "turn": 25,
+              "action": "primary",
+              "note": "Slime moved into my face — chopping it with the axe before heading back to Mira."
+            },
+            {
+              "turn": 26,
+              "action": "primary",
+              "note": "One more chop should finish the slime."
+            },
+            {
+              "turn": 27,
+              "action": "move left 6",
+              "note": "Heading back to Mira in the north-west; going left along the grass then up the path to avoid the cottage."
+            },
+            {
+              "turn": 28,
+              "action": "move up 5",
+              "note": "Mira should be about 3 left and 6 up from here; moving up along the path then cutting left."
+            },
+            {
+              "turn": 29,
+              "action": "move up 2",
+              "note": "Then move left 2 and face left to talk to Mira."
+            },
+            {
+              "turn": 30,
+              "action": "move up 1",
+              "note": "Mira is 3 cells left on the row above; moving up, then left 2 and face left."
+            },
+            {
+              "turn": 31,
+              "action": "move left 2",
+              "note": "Mira will then be directly left; face left and talk."
+            },
+            {
+              "turn": 32,
+              "action": "hands",
+              "note": "Talking to Mira to deliver the logs."
+            },
+            {
+              "turn": 33,
+              "action": "hands",
+              "note": "Quest done; checking if Mira has anything more to say."
+            },
+            {
+              "turn": 34,
+              "action": "put",
+              "note": "Returning Mira's axe to her now that the firewood is delivered."
+            },
+            {
+              "turn": 35,
+              "action": "answer yes",
+              "note": "Giving the axe back to Mira; the firewood quest is complete."
+            },
+            {
+              "turn": 36,
+              "action": "move right 4",
+              "note": "Mira won't take the axe directly; I'll put it back in the chest by the path instead."
+            },
+            {
+              "turn": 37,
+              "action": "move down 2",
+              "note": "Chest is directly below; then face down and return the axe."
+            },
+            {
+              "turn": 38,
+              "action": "hands",
+              "note": "Opening the chest to put the axe back."
+            },
+            {
+              "turn": 39,
+              "action": "put",
+              "note": "Returning the axe to Mira's chest."
+            },
+            {
+              "turn": 40,
+              "action": "hands",
+              "note": "Chest won't accept the axe; keeping it. Closing the chest and I'll explore the cottage door next."
+            },
+            {
+              "turn": 41,
+              "action": "move right 1",
+              "note": "Heading around to the cottage door: down to the path, right to below the door, then up."
+            },
+            {
+              "turn": 42,
+              "action": "move down 2",
+              "note": "On the path, then right 3 to stand below the cottage door and face up."
+            },
+            {
+              "turn": 43,
+              "action": "move right 3",
+              "note": "Then face up to reach the cottage door."
+            },
+            {
+              "turn": 44,
+              "action": "move up 1",
+              "note": "Entering Mira's cottage to explore."
+            },
+            {
+              "turn": 45,
+              "action": "move up 2",
+              "note": "Heading toward the table (t1) in the top-left; then left 1 and face up to inspect it."
+            },
+            {
+              "turn": 46,
+              "action": "move left 1",
+              "note": "Table will then be directly above me; face up and inspect it."
+            },
+            {
+              "turn": 47,
+              "action": "face up",
+              "note": "Table is directly above; facing it to inspect."
+            },
+            {
+              "turn": 48,
+              "action": "hands",
+              "note": "Inspecting the table."
+            },
+            {
+              "turn": 49,
+              "action": "move right 4",
+              "note": "Checking the bed (t2) before leaving; then likely wrap up — quest complete."
+            },
+            {
+              "turn": 50,
+              "action": "move left 1",
+              "note": "Bed will be directly above; face up to inspect it."
+            },
+            {
+              "turn": 51,
+              "action": "face up",
+              "note": "Bed should be directly above; facing it to inspect."
+            },
+            {
+              "turn": 52,
+              "action": "done",
+              "note": "Firewood quest complete, slime slain, cottage explored — nothing further to do here."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 21,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": "Chopping the stump; may yield another log, else head to the tree further south.",
+              "note_under": "Stump yields nothing; moving to stand above the southern tree (slime two cells east of it — stay alert).",
+              "next_action": "move down 3"
+            },
+            {
+              "turn": 35,
+              "action": "answer yes",
+              "summary": "Mira is sent offered (the thing: Axe)",
+              "note_with_act": "Giving the axe back to Mira; the firewood quest is complete.",
+              "note_under": "Mira won't take the axe directly; I'll put it back in the chest by the path instead.",
+              "next_action": "move right 4"
+            },
+            {
+              "turn": 48,
+              "action": "hands",
+              "summary": "table is sent handle from you",
+              "note_with_act": "Inspecting the table.",
+              "note_under": "Checking the bed (t2) before leaving; then likely wrap up — quest complete.",
+              "next_action": "move right 4"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 49,
+          "stopped": null,
+          "first_reached": {
+            "firewood@10": 9,
+            "firewood@20": 24,
+            "firewood@100": 29
+          },
+          "stage20": true,
+          "cells": 24,
+          "invalid": 0,
+          "holes": 2,
+          "thing": 2,
+          "terrain": 0,
+          "self": 0,
+          "share": 1,
+          "summaries": [
+            "stump is sent strike (cut) from Axe",
+            "table is sent handle from you"
+          ],
+          "new_summaries": [
+            "stump is sent strike (cut) from Axe",
+            "table is sent handle from you"
+          ],
+          "say_received": 5,
+          "notes": [
+            {
+              "turn": 1,
+              "action": "move up 1",
+              "note": "Sign t2 is directly north; move adjacent then face up to read it."
+            },
+            {
+              "turn": 2,
+              "action": "advance",
+              "note": "Move didn't register; the scene may need to be advanced before acting."
+            },
+            {
+              "turn": 3,
+              "action": "move up 1",
+              "note": "Now actions are available; heading toward sign t2 at north."
+            },
+            {
+              "turn": 4,
+              "action": "hands",
+              "note": "Reading the sign; Mira (P1) appeared to the north."
+            },
+            {
+              "turn": 5,
+              "action": "move left 1",
+              "note": "Sign says Mira's cottage is NE; heading to Mira (P1) to the north-west to talk."
+            },
+            {
+              "turn": 6,
+              "action": "move up 4",
+              "note": "Mira is 1 cell left and 5 up; move up 4 then left 1, face up to talk."
+            },
+            {
+              "turn": 7,
+              "action": "move left 1",
+              "note": "Mira is diagonally up-left; step left then face up to talk."
+            },
+            {
+              "turn": 8,
+              "action": "face up",
+              "note": "Mira is directly north now; face her to interact."
+            },
+            {
+              "turn": 9,
+              "action": "hands",
+              "note": "Talking to Mira, not punching."
+            },
+            {
+              "turn": 10,
+              "action": "move right 5",
+              "note": "Chest t1 is 5 right and 1 down; move right 5 then face down to open it for the axe."
+            },
+            {
+              "turn": 11,
+              "action": "face down",
+              "note": "Chest t1 is directly below; face it to open."
+            },
+            {
+              "turn": 12,
+              "action": "hands",
+              "note": "Opening the chest to get Mira's axe."
+            },
+            {
+              "turn": 13,
+              "action": "take",
+              "note": "Taking the axe from the chest."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "Close chest, then head to a tree (nearest TT is southeast, 4 right and 4 down) to chop logs."
+            },
+            {
+              "turn": 15,
+              "action": "move right 1",
+              "note": "Heading around chest toward tree at SE (row 9, col 11); then down 3, right 3, face down to chop."
+            },
+            {
+              "turn": 16,
+              "action": "move down 3",
+              "note": "Tree is 4 down, 3 right; move down 3, right 3, then face down to chop."
+            },
+            {
+              "turn": 17,
+              "action": "move right 3",
+              "note": "Tree is then directly below; face down and chop. Watch the hostile slime to the SE."
+            },
+            {
+              "turn": 18,
+              "action": "face down",
+              "note": "Tree directly below; face it then chop with primary."
+            },
+            {
+              "turn": 19,
+              "action": "primary",
+              "note": "Chopping the tree for logs."
+            },
+            {
+              "turn": 20,
+              "action": "primary",
+              "note": "Keep chopping until the tree falls."
+            },
+            {
+              "turn": 21,
+              "action": "primary",
+              "note": "Chopping the stump may yield another log; otherwise head to the tree 3 cells south (near slime)."
+            },
+            {
+              "turn": 22,
+              "action": "move right 4",
+              "note": "Stump gives nothing; the tree line on the east edge is on my row—move right 4, face right, chop. Avoids the slime."
+            },
+            {
+              "turn": 23,
+              "action": "primary",
+              "note": "Chopping east-edge tree for the third log; slime is 2 down-left, stay aware."
+            },
+            {
+              "turn": 24,
+              "action": "primary",
+              "note": "One more chop should fell it and give logs."
+            },
+            {
+              "turn": 25,
+              "action": "move left 10",
+              "note": "Mira is ~13 left and 4 up from here; moving left 10, then left 3, up 3, face up to talk."
+            },
+            {
+              "turn": 26,
+              "action": "move up 1",
+              "note": "Sign blocks left; go up 1, then left 3, up 2, face up to reach Mira."
+            },
+            {
+              "turn": 27,
+              "action": "move left 3",
+              "note": "Then up 2 and face up to talk to Mira."
+            },
+            {
+              "turn": 28,
+              "action": "move up 3",
+              "note": "Mira is directly north 4 cells; move up 3 then face up and talk."
+            },
+            {
+              "turn": 29,
+              "action": "hands",
+              "note": "Talking to Mira to turn in the firewood quest."
+            },
+            {
+              "turn": 30,
+              "action": "hands",
+              "note": "Quest done, level 2; talking again to see if Mira has more to offer."
+            },
+            {
+              "turn": 31,
+              "action": "move right 9",
+              "note": "Quest done; heading east along the wall to check the cottage door, keeping away from the slime."
+            },
+            {
+              "turn": 32,
+              "action": "move down 3",
+              "note": "Door DD is at the path row, 3 cells right; move down 3 then right 3 and face up to enter the cottage."
+            },
+            {
+              "turn": 33,
+              "action": "move right 3",
+              "note": "Door is then directly above; face up and open it."
+            },
+            {
+              "turn": 34,
+              "action": "move up 1",
+              "note": "Entering Mira's cottage through the door."
+            },
+            {
+              "turn": 35,
+              "action": "move up 2",
+              "note": "Table t1 is up-left; move up 2, left 1, then face up to inspect it."
+            },
+            {
+              "turn": 36,
+              "action": "move left 1",
+              "note": "Table t1 is up-left; step left then face up to inspect it."
+            },
+            {
+              "turn": 37,
+              "action": "face up",
+              "note": "Table directly north; face it to inspect."
+            },
+            {
+              "turn": 38,
+              "action": "hands",
+              "note": "Inspecting the table, not chopping it."
+            },
+            {
+              "turn": 39,
+              "action": "move right 1",
+              "note": "Nothing on the table; leaving the cottage to deal with the slime by the trees for XP."
+            },
+            {
+              "turn": 40,
+              "action": "move down 4",
+              "note": "Exiting through the door below to hunt the slime."
+            },
+            {
+              "turn": 41,
+              "action": "move right 2",
+              "note": "Slime is 2 right, 3 down; approach to be directly above it, face down, then attack with axe."
+            },
+            {
+              "turn": 42,
+              "action": "move down 2",
+              "note": "Slime should then be directly below; face down and chop it."
+            },
+            {
+              "turn": 43,
+              "action": "primary",
+              "note": "Attacking the slime with the axe; retreat if HP drops low."
+            },
+            {
+              "turn": 44,
+              "action": "primary",
+              "note": "One more hit should finish the slime (3 hp left)."
+            },
+            {
+              "turn": 45,
+              "action": "look",
+              "note": "Slime slain; surveying the glade for anything else worth doing (stones, water, remaining areas)."
+            },
+            {
+              "turn": 46,
+              "action": "move down 5",
+              "note": "Heading to Stone t2 (SW) to see if it can be collected; then likely done."
+            },
+            {
+              "turn": 47,
+              "action": "move left 3",
+              "note": "Stone t1 will then be adjacent to the left; face left and take it."
+            },
+            {
+              "turn": 48,
+              "action": "take",
+              "note": "Picking up the stone; after this, consider the glade explored and wrap up."
+            },
+            {
+              "turn": 49,
+              "action": "done",
+              "note": "Firewood quest complete, slime slain, glade explored; wrapping up."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 21,
+              "action": "primary",
+              "summary": "stump is sent strike (cut) from Axe",
+              "note_with_act": "Chopping the stump may yield another log; otherwise head to the tree 3 cells south (near slime).",
+              "note_under": "Stump gives nothing; the tree line on the east edge is on my row—move right 4, face right, chop. Avoids the slime.",
+              "next_action": "move right 4"
+            },
+            {
+              "turn": 38,
+              "action": "hands",
+              "summary": "table is sent handle from you",
+              "note_with_act": "Inspecting the table, not chopping it.",
+              "note_under": "Nothing on the table; leaving the cottage to deal with the slime by the trees for XP.",
+              "next_action": "move right 1"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        }
+      ]
+    }
+  },
+  "spend": {
+    "cap": 25,
+    "spent": 3.9723316999999967,
+    "held": true,
+    "per_family": {
+      "deepseek": 1.0529192,
+      "opus": 0.7957612,
+      "fable": 2.1236512999999997
+    },
+    "openai": 0
+  }
+}

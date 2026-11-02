@@ -88,7 +88,7 @@ export function sentences(world: OpenWorld, frame: Frame, fx: FxEvent[]): string
  * The observation of the world now. `frame` is this turn's snapshot (it drained the fx shown in section 4).
  * `notAction`: the line of an invalid reply, said at the top of section 4. It records the keys' shown targets.
  */
-export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: string } = {}): Observation {
+export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: string; journal?: string[] } = {}): Observation {
   const w = world.w
   const eng = world.eng
   const p = w.player
@@ -184,6 +184,13 @@ export function observe(world: OpenWorld, frame: Frame, opts: { notAction?: stri
     const last = q.log[q.log.length - 1]
     out.push(`- ${textOf(q.title)} (${q.quest}): ${q.state}${last ? `, stage ${last.stage} — ${textOf(last.text)}` : ''}`)
     for (const o of q.objectives) out.push(`  · ${textOf(o.text)}${o.need !== undefined ? ` ${o.have ?? 0}/${o.need}` : ''} (${o.state})`)
+  }
+
+  // 5¼. the player's own journal (Phase C: the last 30 of its `Journal:` lines, verbatim; absent where none is kept)
+  if (opts.journal) {
+    out.push('', 'Your journal:')
+    if (!opts.journal.length) out.push('- empty')
+    for (const l of opts.journal.slice(-30)) out.push(`- ${l}`)
   }
 
   // 5½. the talk (the Ford's; only while a people's panel is open — never in the starter, whose bytes stay Phase A's)

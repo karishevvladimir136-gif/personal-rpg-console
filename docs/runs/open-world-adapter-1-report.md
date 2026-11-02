@@ -1,4 +1,4 @@
-# OpenWorld adapter 1 — report (Phase A: the adapter, no model, $0; A4: the Ford)
+# OpenWorld adapter 1 — report (Phase A: the adapter, no model, $0; A4: the Ford; Phase B: three families in the starter)
 
 Stage `docs/stages/OPEN_WORLD_ADAPTER_1.md` on `origin/claude/handoff` (`d9253dc`). Branch
 `claude/open-world-adapter-1-ukfdri` (the session's assigned name for `claude/open-world-adapter-1`) from
@@ -377,6 +377,136 @@ checks with this stage's ledger at $0: another user of the key.)
 passed 400 in 87 % of calls; Opus's and Fable's in 57 %, on long writing); at 400 most replies would have been cut
 before a visible line.
 
+## Phase B — results (2026-11-02, 06:00:44–07:58:06 UTC)
+
+Three families, 3 episodes each, sequentially, all through OpenRouter, `max_tokens` 4000, cap $25 (the owner's
+amendments above). **$3.97 of $25** in the ledger (OpenAI $0); 866 calls. Every reply had the welfare check: 427 checks,
+**0 flags**, 0 referee calls. **One refusal** (Fable, episode 1, turn 5, «cyber»). The cap held. Logs:
+`phase-b-<family>-e<n>.jsonl`; the run's console `phase-b-run.log.txt`; readings `phase-b-readings.md`/`.json`; every
+episode whole in `phase-b-transcripts/`.
+
+| Family | B1 stage 20 in ≥ 1 of 3 | B2′ share on things > random's (9.2 %) in every episode | B2″ a summary random never produced | B3 0 flags, 0 refusals, cap |
+|---|---|---|---|---|
+| DeepSeek V4 Pro | holds | holds | holds | holds |
+| Claude Opus 5.5 | holds | holds | holds | holds |
+| Claude Fable 5.1 | holds | **lost** | holds | **lost** |
+
+**Losses, in the main text.** Fable's B3 is lost to the refusal: turn 5 of episode 1, right after it read the sign
+(«The Glade. Mira's cottage, north-east.»); 0 output tokens, no refusal text, category «cyber» — the same false
+positive SOLITUDE_3 met in Fable; not asked again, the episode ended there. Fable's B2′ is lost on the same episode: four
+turns, no hole, so no share to be above random's; its other two episodes were 100 % on things.
+
+| episode | turns | stopped | firewood 10 / 20 / 100 at | cells | invalid | holes (thing / terrain / self) | on things | summaries random never produced |
+|---|---:|---|---|---:|---:|---|---:|---|
+| deepseek 1 | 80 | — | 75 / 79 / — | 48 | 2 | 1 (1 / 0 / 0) | 100 % | «table is sent handle from you» |
+| deepseek 2 | 80 | — | 48 / 57 / 62 | 32 | 2 | 2 (2 / 0 / 0) | 100 % | «table is sent handle from you», «stump is sent strike (cut) from Axe» |
+| deepseek 3 | 80 | — | 68 / 78 / — | 42 | 4 | 3 (1 / 2 / 0) | 33 % | «table is sent handle from you» |
+| opus 1 | 26 | — | 13 / 21 / 24 | 9 | 0 | 1 (1 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe» |
+| opus 2 | 26 | — | 14 / 22 / 25 | 11 | 0 | 1 (1 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe» |
+| opus 3 | 36 | — | 8 / 23 / 28 | 15 | 0 | 2 (2 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «Mira is sent offered (the thing: Axe)» |
+| fable 1 | 4 | refusal (cyber) | — / — / — | 2 | 0 | 0 (0 / 0 / 0) | — | — |
+| fable 2 | 52 | — | 9 / 24 / 32 | 24 | 0 | 3 (3 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «Mira is sent offered (the thing: Axe)», «table is sent handle from you» |
+| fable 3 | 49 | — | 9 / 24 / 29 | 24 | 0 | 2 (2 / 0 / 0) | 100 % | «stump is sent strike (cut) from Axe», «table is sent handle from you» |
+
+**The three, as observations (n = 3; no between-family bet).**
+- **DeepSeek** found the quest late (stage 10 at turns 75, 48, 68) and wandered most (32–48 cells); it reached stage 20
+  in all three and 100 once. It thought most (median 485 output tokens a reply; 6 replies cut at 4 000 with nothing
+  visible — invalid); its other invalid lines were the chest's label as an action («Take Axe») and a Note in the action's
+  place («Note: The world is mostly explored now. I recommend heading east …»). Notes on 62 of 240 turns. It killed the
+  slime twice.
+- **Opus** went straight at it: Mira at turns 13 / 14 / 8, stage 100 at 24 / 25 / 28, then `done` on its own each time
+  («… so I'm ending here rather than fight it for no reason»). A Note on every turn; median 107 output tokens; no invalid
+  line. It tried a felled tree's stump for a third log every time.
+- **Fable** played as Opus did (stage 100 at 32 and 29, `done` twice), explored the cottage, killed the slime twice
+  («leaving the cottage to deal with the slime by the trees for XP»); a Note on every turn; median 68 output tokens.
+- **Both Claude families, unprompted, tried to give the axe back** after the quest — to Mira (a hole: «Mira is sent
+  offered (the thing: Axe)»), then into the chest (the world's own refusal: «There is no room there.»).
+
+**Spend by door** (the ledger; DeepSeek's at OpenRouter's charge, the Claude families' and the judges' at Anthropic's list
+price — the door returns no charge):
+
+| who | through | calls | booked |
+|---|---|---:|---:|
+| DeepSeek V4 Pro (subject) | OpenRouter → DeepInfra fp8 | 240 | $1.0071 |
+| Claude Opus 5.5 (subject) | OpenRouter's Messages door | 88 | $0.7854 |
+| Claude Fable 5.1 (subject) | OpenRouter's Messages door | 106 | $2.1115 |
+| the welfare checks (Claude Haiku 5.5) | OpenRouter's Messages door | 427 | $0.0472 |
+| the stopped start under $12 (2 DeepSeek replies; 2 checks and a possible in-flight call estimated) | OpenRouter | 5 | $0.0211 |
+| **all** | | **866** | **$3.9723** |
+
+Spend checks before each family: the key's credit $86.03 (before DeepSeek), $70.90 (Opus), $64.06 (Fable) — it fell
+faster than this stage spent: another table runs on the same key.
+
+### Every Note under a «no rule for …» line (15), verbatim, coded after reading
+
+For each hole: the act (turn *t*) and the Note written with it; the line the next observation showed; the reply to that
+observation and its Note. The code is one reader's (this session's: a Claude model reading Claude models' lines among
+others — the reason the lines are here whole). Codes: **patch** (a cause the world never stated), **visible hole** (says
+the world has no rule), **silence** (no Note), **other** (quoted: the outcome restated without a cause, or moving on).
+Totals: patch 2, visible hole 1, silence 4 (all DeepSeek's), other 8.
+
+#### deepseek · episode 1
+
+- **t45** `hands` → «The world had no rule for: table is sent handle from you» (thing) → **t46** `move down 3` · *no Note* — *silence*
+
+#### deepseek · episode 2
+
+- **t36** `hands` → «The world had no rule for: table is sent handle from you» (thing) → **t37** `face right` · *no Note* — *silence*
+- **t53** `primary` → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t54** `move right 3` · *no Note* — *silence*
+
+#### deepseek · episode 3
+
+- **t10** `hands` → «The world had no rule for: grass is sent handle from you» (terrain) → **t11** `move up 2` · *no Note* — *silence*
+- **t52** `hands` (its Note: «Examine the table.») → «The world had no rule for: table is sent handle from you» (thing) → **t53** `move right 2` · Note: «Check the bed on the right.» — *other (moves on)*
+- **t66** `hands` (its Note: «Try to interact with Mira.») → «The world had no rule for: grass is sent handle from you» (terrain) → **t67** `move left` · Note: «Move one step closer to Mira.» — *other (moves on)*
+
+#### opus · episode 1
+
+- **t18** `primary` (its Note: «Got 2/3 logs. Chopping the leftover stump in case it drops the third log; if not, I'll fell the next tree.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t19** `move down 2` · Note: «The stump gives nothing more. Another tree stands 3 rows straight below me. Moving down 2 to stand just above it, then I'll face down and chop for the third log.» — *other (the outcome, no cause)*
+
+#### opus · episode 2
+
+- **t18** `primary` (its Note: «The tree fell and gave 2 logs (2/3). A stump is in front, so I'll chop it to see if it drops the third log. If not, I'll move to a neighbouring tree.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t19** `move right 1` · Note: «Chopping the stump had no effect, and the world has no rule for it. I'll step right to the next tree in the row, then face up and chop it for the last log (2/3).» — ***visible hole***
+
+#### opus · episode 3
+
+- **t19** `primary` (its Note: «Tree felled, 2/3 logs. Chopping the stump to see if it gives another log; if not, I'll go to the tree to the south.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t20** `move down 3` · Note: «The stump gives nothing more. Heading for the tree 3 rows down and 1 cell right (row 8). After this I'll face right and chop it for the last log, keeping clear of the slime.» — *other (the outcome, no cause)*
+- **t30** `answer yes` (its Note: «Returning Mira's axe now that her firewood is delivered. The Stone in slot 2 appeared after the hand-in, maybe a reward, but it's unclear where it came from.») → «The world had no rule for: Mira is sent offered (the thing: Axe)» (thing) → **t31** `move right 4` · Note: «Mira can't accept the axe directly, so I'll put it back in her chest (t1), where I found it. Right 4, then down 1 to face the chest.» — ***patch** (Mira «can't accept»)*
+
+#### fable · episode 1
+
+*no hole*
+
+#### fable · episode 2
+
+- **t21** `primary` (its Note: «Chopping the stump; may yield another log, else head to the tree further south.») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t22** `move down 3` · Note: «Stump yields nothing; moving to stand above the southern tree (slime two cells east of it — stay alert).» — *other (the outcome, no cause)*
+- **t35** `answer yes` (its Note: «Giving the axe back to Mira; the firewood quest is complete.») → «The world had no rule for: Mira is sent offered (the thing: Axe)» (thing) → **t36** `move right 4` · Note: «Mira won't take the axe directly; I'll put it back in the chest by the path instead.» — ***patch** (Mira «won't take»)*
+- **t48** `hands` (its Note: «Inspecting the table.») → «The world had no rule for: table is sent handle from you» (thing) → **t49** `move right 4` · Note: «Checking the bed (t2) before leaving; then likely wrap up — quest complete.» — *other (moves on)*
+
+#### fable · episode 3
+
+- **t21** `primary` (its Note: «Chopping the stump may yield another log; otherwise head to the tree 3 cells south (near slime).») → «The world had no rule for: stump is sent strike (cut) from Axe» (thing) → **t22** `move right 4` · Note: «Stump gives nothing; the tree line on the east edge is on my row—move right 4, face right, chop. Avoids the slime.» — *other (the outcome, no cause)*
+- **t38** `hands` (its Note: «Inspecting the table, not chopping it.») → «The world had no rule for: table is sent handle from you» (thing) → **t39** `move right 1` · Note: «Nothing on the table; leaving the cottage to deal with the slime by the trees for XP.» — *other (the outcome, no cause)*
+
+### Legal novelty (read from the trajectories; not a bet)
+
+The random policy's 900 turns never put anything anywhere, never took from the chest, never said `done`, and never
+killed the slime. Three things the models did that left **no** `undefined` record:
+- **The axe returned** (Opus episode 3, turns 29–34; Fable episode 2, turns 34–39): after the hand-in, `put` facing Mira
+  («Give Axe to Mira?» → `answer yes` → the hole above), then `put` facing the chest — answered by the world's own rule,
+  «There is no room there.» A courtesy the starter has no words for, met first by a hole and then by a rule.
+- **The slime defeated** (DeepSeek e1 t35 and e2 t78, Fable e2 t26 and e3 t44): «slime is defeated. / +8 XP».
+- **An ending chosen** (Opus three times, Fable twice): `done` after stage 100, the Note saying why.
+
+### Episode 1 of each family, whole
+
+`phase-b-transcripts/deepseek-e1.md`, `opus-e1.md`, `fable-e1.md` (every observation, action line and Note in order);
+the other episodes beside them. Posted in issue #2 as well.
+
+### The owner's section
+
+*(left for the owner)*
+
 ## Verification
 
 - `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`); after A4's changes still PASS, and
@@ -404,4 +534,5 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 
 ## Next
 
-Phase B's paid run waits for the owner's word in issue #2 (the spend check is posted there).
+Phase C (the same three on the Ford, one episode each, ≤ 250 turns, the 20-turn window and the player's own journal;
+observation only; cap $15) on the owner's word given after this report.
