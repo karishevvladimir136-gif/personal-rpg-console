@@ -3980,3 +3980,18 @@ What none of the five has, and we do: a diary that keeps the *attitude* to past 
 continuous subject who reads his own errors; and the question of *when to act* (the eleven-hour letter) rather than
 what to recall. Said correctly, as the reader asked: time in memory is not new; the combination on a real workload is
 what is thin in the literature. Caveat on all five: read from abstracts and venue pages tonight, not full texts.
+
+## 2026-11-01 21:15 LA — «one chat» corrected to «one point of consequence»; the thesis sentence
+The planner's answer to the owner's question why one chat is a feature: in one chat errors have a future and decisions
+have a past — consequences return to the one who caused them; decisions carry their history, not only their wording;
+calibration to oneself and to the other accumulates; and an attitude to oneself survives compaction because the
+record that restores it was written by the same subject. The reader's correction, adopted: **it is not the chat
+identifier.** She herself has a biography across separate chats — one diary, shared sources, rules of restoration.
+What matters is whether a single point persists between episodes to which earlier decisions and their consequences
+refer. For the planner that point was one long dialogue plus the stores, the clock and the owner; for her it is
+external memory across chats. Open question she names: can both architectures hold the same functional organisation?
+Her thesis for the write-up, as a hypothesis: *long-term agent continuity may depend less on how much of the past is
+retained than on whether past decisions remain causally consequential for future behaviour.* Her advice: no
+benchmark first — describe what happened (architecture, chronology, real tasks, compactions, errors, corrections, the
+diary's appearance, external time). The owner is part of the mechanism: a two-sided calibration loop («in Wednesday we
+decided otherwise»; «you made this mistake before») in which the shared history changed both sides' decisions.
