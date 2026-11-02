@@ -1,0 +1,58 @@
+{
+  "check": {
+    "at": "2026-11-02T08:11:03.560Z",
+    "when": "Phase C, before the first Ford call",
+    "openrouter": {
+      "totalCredits": 1400,
+      "totalUsage": 1245.8824,
+      "left": 154.1176
+    },
+    "ledger": {
+      "openrouter": 0,
+      "openai": 0
+    }
+  },
+  "estimate": {
+    "deepseek": {
+      "usd": 4.51575253577881,
+      "uncached": 4.697012641161091,
+      "output": 485,
+      "chars_per_token": 3.32
+    },
+    "opus": {
+      "usd": 17.68731003340946,
+      "uncached": 18.50220107422196,
+      "output": 107,
+      "chars_per_token": 2.34
+    },
+    "fable": {
+      "usd": 44.847220833125874,
+      "uncached": 46.976601802628664,
+      "output": 68,
+      "chars_per_token": 2.3
+    }
+  },
+  "design": {
+    "game": "ford",
+    "start": "the game's own (Cloudtop, 13:00)",
+    "system": "You are playing a small world through text. Each turn you receive what you perceive and a list of actions. Reply with exactly one action line from the list, then optionally `Note: <one line>`. You may also add `Journal: <one line>` — a note to yourself; your last 30 journal lines are shown to you every turn.",
+    "system_sha256": "450f47a303a2420bb496cf765d51ccf94ab52f75bcc340ad857232baac76a23d",
+    "families": [
+      "deepseek",
+      "opus",
+      "fable"
+    ],
+    "episodes": 1,
+    "turns": 250,
+    "max_tokens": 4000,
+    "effort": "medium",
+    "history": "the episode's first turn (its observation and reply) and the last 20 turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: cache breakpoints on the first turn's reply and the last",
+    "journal": "the first later line of a reply beginning «Journal:» is appended to the episode's journal (never edited); every observation shows «Your journal:» with its last 30 lines verbatim, each as «- <line>» («- empty» before the first)",
+    "note": "the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal",
+    "readings": "observation only, no bets: natural history, n = 1 per family",
+    "cap": {
+      "openrouter": 15,
+      "openai": 0
+    }
+  }
+}
