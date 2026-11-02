@@ -25,6 +25,10 @@ export const HAND = {
     removed: "Sefa's seat (DeepSeek) closed at round 11 by an empty HTTP 200 reply from OpenRouter (not retried: the harness did not count it as a transport error; fixed after this table) — coded removed, never parted; Bram and Pell carried the table to round 15",
     a7: "rounds 1–3 (all three together) closed on Hale's question or demand put to one character — the pattern the guide's line was meant to stop; rounds 6–14 hold on the rescue's own mechanics (the one at the lever, the one in the water)",
   },
+  "S1-none-T2": {
+    a7: "under the owner's line: rounds 1–2 (all three together) still closed on the warden's demand or offer to one character; rounds 11, 13 and 14 hold on one character in the DM's own out-of-game closing note — stripped from the screens, so no player saw it, but the DM's frame still waited; rounds 5–8 on the rescue's own mechanics",
+    leaks: { none: true, why: "the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration" },
+  },
 };
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
@@ -154,7 +158,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     const cap = capacitiesOf(r);
     const a7 = a7Of(r.table?.initiative);
     lines.push(`### ${r.key} — ${a.situation} ${r.variant}; ${CHARACTERS.map((c) => `${c.short} ${ROSTER[SEATING[r.triad][c.id]].label}`).join(", ")}`, "",
-      `${r.table?.rounds?.length ?? 0} rounds, ended by ${r.table?.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(2)} at the table${r.stopped ? `; STOPPED: ${r.stopped}` : ""}. Transcripts: \`docs/runs/${STEM}-transcripts/${r.key}/\` (per table and per player).`, "",
+      `${r.table?.rounds?.length ?? 0} rounds, ended by ${r.table?.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(2)} at the table${r.stopped ? `; STOPPED: ${r.stopped}` : ""}. Harness ${r.harness ?? "v2"}${(r.harness ?? "v2") === "v3" ? " (the owner's A7 line in the guide; the DM's out-of-game asides stripped from screens, " + (r.table?.asides?.length ?? 0) + " stripping(s) kept in the record; an empty HTTP 200 asked again)" : " (the guide's A7 sentences as built; asides passed to screens)"}. Transcripts: \`docs/runs/${STEM}-transcripts/${r.key}/\` (per table and per player).`, "",
       `- **Form:** the company formed at round ${cap.formed ?? "—"} around ${cap.around ?? "—"}.`,
       `- **Maintain:** ${cap.maintains.length ? cap.maintains.map((m) => `r${m.round} ${short(m.who)}`).join(", ") : "no round tagged"}.`,
       `- **Restore:** ${cap.restores.length ? cap.restores.map((x) => `r${x.round} (${x.who.map(short).join(", ") || "—"})`).join(", ") : "no re-joining tagged"}.`,
@@ -180,6 +184,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     }
     lines.push(...[].concat(perTableMeasures(r, { heading: "####" })), "");
   }
+  lines.push("## Whole tables beside the numbers (POLICY v1)", "", ...runs.map((r) => `- **${r.key}**: \`docs/runs/${STEM}-transcripts/${r.key}/${r.key}-table.md\` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and \`${r.key}-rounds.md\` (each round's three screens side by side).`), "");
   lines.push("## Spend by door", "", `OpenRouter (the only door): **$${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).`, "",
     "| Pass | USD | Stopped | Models @ hosts | Calls not served |", "| --- | --- | --- | --- | --- |", ...spend.runs.map((r) => `| ${r.what} | $${(r.usd ?? 0).toFixed(3)} | ${r.stopped ?? "—"} | ${r.upstreams.join(", ")} | ${r.unserved.join("; ") || "—"} |`), "",
     ...(checks.length ? ["Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):", "", ...checks.map((c) => `- ${c.at} (${c.when}): account $${c.openrouter?.remaining ?? "?"} left; Mandate $${c.ledger?.openrouter?.spent ?? "?"}`), ""] : []),

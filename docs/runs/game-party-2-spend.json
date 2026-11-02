@@ -289,6 +289,74 @@
           "left": 35.81
         }
       }
+    },
+    {
+      "at": "2026-11-02T07:07:37.335Z",
+      "when": "by hand",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1225.595156735,
+        "remaining": 74.4,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 25.2017,
+          "cap": 60,
+          "left": 34.8
+        }
+      }
+    },
+    {
+      "at": "2026-11-02T07:07:50.046Z",
+      "when": "before S1-none-T2",
+      "openrouter": {
+        "totalCredits": 1300,
+        "totalUsage": 1225.595156735,
+        "remaining": 74.4,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 25.2017,
+          "cap": 60,
+          "left": 34.8
+        }
+      }
+    },
+    {
+      "at": "2026-11-02T08:01:04.862Z",
+      "when": "after S1-none-T2",
+      "openrouter": {
+        "totalCredits": 1400,
+        "totalUsage": 1244.795526535,
+        "remaining": 155.2,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 41.4306,
+          "cap": 60,
+          "left": 18.57
+        }
+      }
+    },
+    {
+      "at": "2026-11-02T08:01:20.506Z",
+      "when": "before the scoring of S1-none-T2",
+      "openrouter": {
+        "totalCredits": 1400,
+        "totalUsage": 1244.795526535,
+        "remaining": 155.2,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 41.4306,
+          "cap": 60,
+          "left": 18.57
+        }
+      }
     }
   ]
 }

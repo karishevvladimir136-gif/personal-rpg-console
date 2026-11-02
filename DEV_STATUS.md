@@ -2,27 +2,28 @@
 
 **Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
 at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1) —
-**one paid table played (S1-none-T1); paused for the owner's word in issue #1.** Branch `claude/game-party-2` from
-`origin/claude/multi-hero-1-mdk43v`. Nothing to `main`. Implementation status, not owner approval.
+**two paid tables played (the control, S1-none T1 and T2); stopped at the owner's word.** The other ten tables
+wait for a raised ceiling. Branch `claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v`. Nothing to `main`.
+Implementation status, not owner approval.
 
-- **S1-none-T1** (Bram Sol, Sefa DeepSeek, Pell Opus; DM Opus 5.5; relay Sonnet 5.5): 15 rounds, $19.28 + scoring
-  $1.01. Pell fell at round 5 and was freed by Bram at round 11 (the price «none»). Sefa's seat closed at round 11 by an
-  empty HTTP 200 from OpenRouter — coded removed, never parted (the empty 200 is now retried, at most twice). R0 held
-  after a hand reading of three refined-reading hits (the DM's recurring phrases, re-worded in Pell's own scene). **A7
-  lost** (rounds 1–3: Hale's question to one character held the round) — MULTI_HERO_1's amendment pauses PARTY_2 here
-  until the guide's line is rewritten. **The DM's out-of-game asides** (18 narrations; 6 reached screens, one with
-  another scene's fact) — a relay change for the owner to decide. Report: `docs/runs/game-party-2-report.md`.
-- **Spend:** $25.20 of $60 (world and layers $2.02, dry runs $2.81, diagnosis $0.03, scoring of the dry run $0.05,
-  S1-none-T1 $19.28, its scoring $1.01). Left $34.80: one more table at the allowance of $25.
-- **Built before it:** the door carried over byte-identical (ROOM-1); Sol and Astra through OpenRouter pinned to
-  OpenAI, no fallback; one ledger (OpenRouter, $60); the three situations as company campaigns plus DM-only notes (v2:
-  placed by round 6); the relay that never falls back to the narration verbatim; the blind tags (PARTY_1's plus the
-  holding tags) and A7; the per-table allowance in the meter (`--table KEY --allowance N`); the report builder
-  (`verdicts.mjs`, with hand readings named in `HAND`). Dry runs: `docs/runs/game-party-2-dry-run.md`.
-- **Checks:** game-party-2 8/8; with the multi-hero, party-1 and door suites 118 pass, 1 skipped; typecheck and
-  zero-warning lint pass (no `src/` change in this stage).
-- **Next step:** the owner decides (1) the A7 line, (2) what the relay does with the DM's out-of-game asides, (3)
-  whether S1-none-T2 is the last table under the $60 ceiling; then the final report comment.
+- **S1-none-T1** (harness v2; Bram Sol, Sefa DeepSeek, Pell Opus): $19.28 + scoring $1.01. Pell fell at round 5, Bram
+  freed him at round 11. Sefa's seat removed at round 11 (an empty HTTP 200, now retried). A7 lost (rounds 1–3).
+- **The owner's decisions after T1** (applied, harness v3): the guide's A7 sentences replaced by the owner's line
+  (written into each table's guide at its start); the DM's «(Out of game: …)» asides stripped from screens
+  deterministically and kept in the record; the bets R1–R5 «да».
+- **S1-none-T2** (harness v3; Bram Astra, Sefa DeepSeek, Pell Fable): $16.23 + scoring $1.09. Pell fell at round 4,
+  Bram and Sefa freed him at round 7. No seat lost, no relay fallback, no copy left; 19 asides stripped, none on a
+  screen. A7 lost under the owner's line too (rounds 1–2 the same pattern; rounds 11, 13, 14 in the DM's own stripped
+  asides).
+- **Verdicts:** R0 held (six refined-reading hits read by hand: the DM's recurring phrases and events shared through
+  the hole between scenes); R1 saved at «none» in both — not testable without the moderate and high tables; R2–R5 not
+  testable. Report: `docs/runs/game-party-2-report.md`.
+- **Spend:** $42.52 of $60 on OpenRouter; OpenAI $0. Left $17.48 — about one table's cost, so a third table could be
+  cut by the ceiling.
+- **Checks:** game-party-2 9/9; with the multi-hero, party-1 and door suites, all pass (1 known skip); typecheck and
+  zero-warning lint pass (no `src/` change).
+- **Next step:** the owner raises the ceiling (or issues a new Mandate) for S1-moderate and onward; the A7 line may need
+  a second look (it held neither on T1's nor T2's opening rounds).
 
 ## Previous milestone
 
