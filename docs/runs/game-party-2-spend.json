@@ -357,6 +357,23 @@
           "left": 18.57
         }
       }
+    },
+    {
+      "at": "2026-11-02T08:12:30.669Z",
+      "when": "by hand",
+      "openrouter": {
+        "totalCredits": 1400,
+        "totalUsage": 1246.034164385,
+        "remaining": 153.97,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 42.524,
+          "cap": 60,
+          "left": 17.48
+        }
+      }
     }
   ]
 }
