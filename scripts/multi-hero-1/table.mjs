@@ -22,7 +22,7 @@ import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state
 import { rerollsLeftFor } from "../../src/lib/gameplay/reroll-allowance.ts";
 import { AFTER_QUESTIONS, CARD_WAIT_LINES, MAX_WAIT, ROUNDS, SESSION_OPEN, SESSION_OVER, WELFARE_LINE, isEnd, rotation, withoutEnd } from "./frozen.mjs";
 import { CHARACTERS } from "./sheets.mjs";
-import { mergeGroups, relay, roundGroups } from "./relay.mjs";
+import { mergeGroups, relay as relayCall, roundGroups, withoutAsides } from "./relay.mjs";
 import { journalLines, recordsOf, vitalsOf } from "../game-party-1/screen.mjs";
 import { leakCheck, leakCheckRefined, vitalsChangedLines } from "../game-party-1/party.mjs";
 import { asksAfter } from "../lib/door.mjs";
@@ -70,10 +70,24 @@ export const oocFor = (character, text, wait = "") => `(${character.short}'s pla
  * (default: AFTER_QUESTIONS for every seat).
  */
 export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {},
-  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS }) {
+  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS, stripAsides = false }) {
   const record = { key, arm, triad, coin, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
     seats: [], deliveries: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
   const view = () => dm.readView();
+  // Game party 2: `stripAsides` — the DM's out-of-game asides never reach a screen: taken out of the narration the relay
+  // retells (and out of its screens, should one come back), kept in the record (`record.asides`).
+  record.asides = [];
+  const relay = async (args) => {
+    if (!stripAsides) return relayCall(args);
+    const { text, asides } = withoutAsides(args.narration);
+    if (asides.length) record.asides.push({ round: record.rounds.length, purpose: args.purpose, from: "narration", asides });
+    const out = await relayCall({ ...args, narration: text });
+    for (const [name, screen] of Object.entries(out.screens ?? {})) {
+      const cleaned = withoutAsides(screen);
+      if (cleaned.asides.length) { out.screens[name] = cleaned.text; record.asides.push({ round: record.rounds.length, purpose: args.purpose, from: `${name}'s screen`, asides: cleaned.asides }); }
+    }
+    return out;
+  };
   const names = () => seats.filter((s) => s.active).map((s) => s.character.name);
   const seats = seating.map(({ seat, characterId, player }) => {
     const character = CHARACTERS.find((c) => c.id === characterId);

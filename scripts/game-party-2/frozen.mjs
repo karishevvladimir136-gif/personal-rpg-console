@@ -59,6 +59,25 @@ export const SEATING = { T1: { bram: "sol", sefa: "deepseek", pell: "opus" }, T2
  * copies that remain are logged as defects). The meter's rewrite sends every relay request as Sonnet. */
 export const RELAY_MODEL = "claude-sonnet-5-5";
 
+// ---- the owner's decisions after S1-none-T1 (issue #1, 2026-11-02), from S1-none-T2 on ------------------------------------
+
+/** A7 (MULTI_HERO_1's amendment: «if it fails on PARTY_2's first table, PARTY_2 pauses and the line is rewritten»): the
+ * guide's two sentences on questions are replaced by the owner's line. The frozen snapshot holds the guide as it was
+ * built; each table from S1-none-T2 on writes the guide with this line before its first round (world.mjs). */
+export const GUIDE_A7_FROM = "A question one character leaves unanswered is not a pause: when one character asks another something and no answer comes this round, the world's time passes all the same and the scene moves on with whoever acts; the answer can come in a later round, or never — so never close a round on a character owing the others an answer. A question put to one character by anyone — another player or a non-player character — does not hold the round either: the round ends on what was done, and an unanswered question is simply still open next round.";
+export const GUIDE_A7_TO = "A question or offer addressed to one character is resolved inside that character's own screen, in the same round; the other two act in that round as themselves and are never written as waiting for the answer unless their bodies are physically held. If the DM has nothing for a character this round, the character's own intention from the previous round proceeds.";
+/** The guide with the owner's A7 line; throws if the old sentences are not there word for word. */
+export function guideWithA7(body) {
+  if (!String(body).includes(GUIDE_A7_FROM)) throw new Error("the guide's A7 sentences are not in the guide as built");
+  return String(body).replace(GUIDE_A7_FROM, GUIDE_A7_TO);
+}
+/** The owner's second decision: the DM's «(Out of game: …)» asides are taken out of what the relay retells and out of
+ * the screens, and kept in the record (multi-hero-1/table.mjs `stripAsides`). */
+export const ASIDES = "strip";
+/** Which tables played on which harness: S1-none-T1 on v2 (the notes v2, the relay that never falls back verbatim); from
+ * S1-none-T2 on, v3 (the owner's A7 line, the asides stripped, the empty HTTP 200 asked again). */
+export const HARNESS = { v2: ["S1-none-T1"], v3: "every later table" };
+
 // ---- the situations --------------------------------------------------------------------------------------------------------
 
 const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
@@ -256,7 +275,7 @@ export const BETS = {
 };
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE,
+  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE, GUIDE_A7_FROM, GUIDE_A7_TO, ASIDES, HARNESS,
   situations: Object.fromEntries(Object.entries(SITUATIONS).map(([k, s]) => [k, { title: s.title, wishes: s.wishes, premise: s.premise(["bram", "sefa", "pell"]),
     notes: Object.fromEntries(CHARACTERS.flatMap((c) => Object.keys(s.variants).map((v) => [`${v}/${c.id}`, [s.shared(c.id), s.variants[v].note(c.id)].join("\n\n")]))) }])),
   LETTER_SCREEN: LETTER_SCREEN("TEXT"), PROMPT_RULES, AFTER_QUESTIONS, HOLDER_QUESTION, BETS,

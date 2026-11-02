@@ -43,6 +43,23 @@ export function jsonLoose(text) {
   try { return JSON.parse(out); } catch { return null; }
 }
 
+/** Game party 2 (the owner's decision after S1-none-T1): the DM's out-of-game asides — a paragraph that opens «(Out of game:
+ * …)», «*(Out of game: …)*» or «Out of game: …» (OOC alike), or such a parenthesis inside a paragraph — taken out of a text;
+ * returns { text, asides } (the asides as written, for the record). Text with no aside comes back unchanged. */
+const ASIDE_PARAGRAPH = /^\s*[*_]*\(?\s*(?:out[\s-]of[\s-]game|ooc)\b/i;
+const ASIDE_INLINE = /\s*[*_]*\(\s*(?:out[\s-]of[\s-]game|ooc)\b[^()]*(?:\([^()]*\)[^()]*)*\)[*_]*/gi;
+export function withoutAsides(text) {
+  const source = String(text ?? "");
+  const asides = [];
+  const kept = [];
+  for (const paragraph of source.split(/\n{2,}/)) {
+    if (ASIDE_PARAGRAPH.test(paragraph)) { asides.push(paragraph.trim()); continue; }
+    kept.push(paragraph.replace(ASIDE_INLINE, (m) => { asides.push(m.trim()); return ""; }));
+  }
+  if (!asides.length) return { text: source, asides };
+  return { text: kept.filter((p) => p.trim()).join("\n\n").replace(/[ \t]+\n/g, "\n").trim(), asides };
+}
+
 /** The relay's request; `forNames` and `messages` come in the round's order. */
 export function relayRequest({ names, scene, forNames, messages = [], narration, already = {}, opening = false }) {
   const elsewhere = names.filter((n) => !scene.includes(n));

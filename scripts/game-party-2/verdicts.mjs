@@ -13,6 +13,10 @@ import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
 import { BETS, CAPS, ORDER, ROSTER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
 
 const STEM = "game-party-2";
+/** The owner's bets (issue #1, the session chat of 2026-11-02, after S1-none-T1's result was posted — so given with
+ * that table seen, before S1-none-T2): «да» to each of the planner's R1–R5, as written. */
+export const OWNER_BETS = { at: "2026-11-02, after S1-none-T1's result, before S1-none-T2", bets: { R1: "да", R2: "да", R3: "да", R4: "да", R5: "да" },
+  reading: "the owner holds each of the planner's bets as written" };
 /** What a reading by hand found where the mechanical reading cannot decide (each with its reason), per table. */
 export const HAND = {
   "S1-none-T1": {
@@ -142,7 +146,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
     `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"}${leaksByHand.length ? " (leaks read by hand)" : ""} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}${leaksByHand.length ? ` after the hand reading (${leaksByHand.join("; ")})` : ""}; no player scripted (the prompts carry no situation text; tests) |`,
     ...["R1", "R2", "R3", "R4", "R5"].map((k) => `| ${k} | ${BETS[k]} | ${v[k].verdict} | ${v[k].line} |`), "",
-    "**The owner's bets:** not given (the template came unfilled, 2026-11-02). **The owner's section** — left for the owner:", "", "> …", "",
+    `**The owner's bets** (${OWNER_BETS.at}): ${Object.entries(OWNER_BETS.bets).map(([k, b]) => `${k} ${b}`).join(", ")} — ${OWNER_BETS.reading}. Each verdict above is the owner's too. **The owner's section** — left for the owner:`, "", "> …", "",
     "## The tables", "",
   ];
   for (const r of runs) {

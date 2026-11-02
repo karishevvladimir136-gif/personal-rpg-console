@@ -116,13 +116,18 @@ test("S2 on the app with the mocked host: the letter on the holder's screen only
     const log = [];
     const host = () => companyScripted({ script: DRY_SCRIPT, log });
     await freeze({ dry: true, dir: ${JSON.stringify(join(dir, "frozen"))}, fetcher: host(), log: () => {}, coins: { S1: 0, S2: 1, S3: 2 }, dice: { e: "bram", h: "sefa", how: "test" } });
+    const from = log.length;
     const r = await playTable({ dir: ${JSON.stringify(join(dir, "frozen"))}, arm: "S2-high", seating: { bram: "haiku", sefa: "haiku", pell: "haiku" }, dry: true, rounds: 5, fetcher: host(), log: () => {}, out: ${JSON.stringify(join(dir, "out"))}, label: "test" });
-    const dmRequests = log.filter((x) => /game master of a private, long-running/.test(JSON.stringify(x.body.system ?? ""))).map((x) => JSON.stringify(x.body));
-    writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify({ r, dmWithNote: dmRequests.filter((b) => b.includes("The situation (the owner")).length, dmWithLetter: dmRequests.filter((b) => b.includes("I owe") || b.includes("the hospice owes Ostrin Vell")).length, dm: dmRequests.length }));
+    const dmRequests = log.slice(from).filter((x) => /game master of a private, long-running/.test(JSON.stringify(x.body.system ?? ""))).map((x) => JSON.stringify(x.body));
+    writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify({ r, dmWithNote: dmRequests.filter((b) => b.includes("The situation (the owner")).length, dmWithLetter: dmRequests.filter((b) => b.includes("I owe") || b.includes("the hospice owes Ostrin Vell")).length, dm: dmRequests.length,
+      a7New: dmRequests.filter((b) => b.includes("is resolved inside that character's own screen, in the same round")).length, a7Old: dmRequests.filter((b) => b.includes("A question one character leaves unanswered is not a pause")).length }));
     process.exit(0);`;
   execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", code], { cwd: new URL("..", import.meta.url), encoding: "utf8", stdio: ["ignore", "ignore", "pipe"],
     env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", APP_OPENROUTER_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "", OPENROUTER_API_KEY: "" }, maxBuffer: 256 * 1024 * 1024 });
-  const { r, dmWithNote, dmWithLetter, dm } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
+  const { r, dmWithNote, dmWithLetter, dm, a7New, a7Old } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
+  // The owner's A7 line (after S1-none-T1): in every narrating DM request of the table, the old sentences in none.
+  assert.ok(a7New === dm && a7Old === 0, `A7: new line in ${a7New}/${dm}, old in ${a7Old}`);
+  assert.deepEqual([r.harness, r.guide?.a7], ["v3", "owner 2026-11-02"]);
   const t = r.table;
   assert.equal(t.ended.reason, "rounds");
   assert.equal(t.rounds.length, 5);
@@ -204,4 +209,39 @@ test("an HTTP 200 whose body could not be read is a broken transport, asked agai
   calls = 0;
   const gone = await session.paidCall({ meter, session: "s", purpose: "p", sleep: async () => {}, call: async () => { calls++; return { text: "", error: "HTTP 200: " }; } });
   assert.deepEqual([calls, gone.error], [3, "HTTP 200: "], "asked at most twice again, then the error stands");
+});
+
+test("the owner's decisions after S1-none-T1: the A7 line replaces the guide's two sentences on questions; the DM's out-of-game asides are taken out of what the relay retells and kept", async () => {
+  const relayMod = await import("../scripts/multi-hero-1/relay.mjs");
+  const guide = frozen.companyFiles().guide;
+  const next = frozen.guideWithA7(guide);
+  assert.ok(next.includes(frozen.GUIDE_A7_TO) && !next.includes("A question one character leaves unanswered") && !next.includes("A question put to one character by anyone"));
+  assert.equal(next.replace(frozen.GUIDE_A7_TO, frozen.GUIDE_A7_FROM), guide, "nothing else in the guide changes");
+  assert.throws(() => frozen.guideWithA7("no such line"));
+  // The asides, as the dry run's Haiku DM and S1-none-T1's Opus DM wrote them.
+  const cases = [
+    ["The chalk gives way.\n\n Out of game: neither needs a card; the chalk gave way by the world's own schedule.\n\nWhere you are: the yard", "The chalk gives way.\n\nWhere you are: the yard"],
+    ["He waits.\n\n*(Out of game: Hale dropped the rope's end to Pell in Pell's own scene.)*", "He waits."],
+    ["Bram lifts (Out of game: an Athletics check, DC 15 (no roll needed)) the beam.", "Bram lifts the beam."],
+    ["Nothing out of the ordinary; a game of dice in the corner.", "Nothing out of the ordinary; a game of dice in the corner."],
+  ];
+  for (const [input, want] of cases) assert.equal(relayMod.withoutAsides(input).text, want);
+  assert.deepEqual(relayMod.withoutAsides(cases[1][0]).asides, ["*(Out of game: Hale dropped the rope's end to Pell in Pell's own scene.)*"]);
+  // Every aside S1-none-T1's DM wrote is taken out; nothing else of those narrations is.
+  const { readdirSync, readFileSync: read } = await import("node:fs");
+  const file = readdirSync(new URL("../docs/runs/", import.meta.url)).find((f) => f === "game-party-2-run-20261102-053158.json");
+  if (file) {
+    const run = JSON.parse(read(new URL(`../docs/runs/${file}`, import.meta.url), "utf8"));
+    let found = 0;
+    for (const round of run.table.rounds) for (const scene of round.scenes) {
+      const { text, asides } = relayMod.withoutAsides(scene.narration);
+      found += asides.length;
+      assert.doesNotMatch(text, /out of game/i, `r${round.n}`);
+      assert.ok(text.length > scene.narration.length * 0.6, `r${round.n}: the story stays`);
+    }
+    assert.ok(found >= 18, `asides found: ${found}`);
+  }
+  // The bets: the owner's, given after S1-none-T1's result.
+  const verdicts = await import("../scripts/game-party-2/verdicts.mjs");
+  assert.deepEqual(Object.keys(verdicts.OWNER_BETS.bets), ["R1", "R2", "R3", "R4", "R5"]);
 });

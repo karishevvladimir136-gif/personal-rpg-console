@@ -16,7 +16,7 @@ import { OWNER_SETTINGS } from "../game-player-1/table.mjs";
 import { canonical, layerSha256, privateStateOf, storedOf, threadsOf, writesBetween } from "../game-player-same-world-1/world.mjs";
 import { companionRecords, seat } from "../game-party-1/world.mjs";
 import { CHARACTERS, REVIEWS } from "../multi-hero-1/sheets.mjs";
-import { DESIGN_SHA256, SITUATIONS, STAGE, armOf, companyFiles, dmCompanyLine, ownerOpeningAnswer, prepNote, seatsFrom, situationNote } from "./frozen.mjs";
+import { DESIGN_SHA256, SITUATIONS, STAGE, armOf, companyFiles, dmCompanyLine, guideWithA7, ownerOpeningAnswer, prepNote, seatsFrom, situationNote } from "./frozen.mjs";
 
 export const SNAPSHOT = "world-base.tar.gz";
 export const MANIFEST = "manifest.json";
@@ -241,7 +241,7 @@ export async function openFrozenDatabase(dir) {
 
 /** One table from the frozen world: its situation's campaign, the frozen layer in the DM's notes, and the arm's note
  * (shared + variant) as the campaign's DM-only secrets. */
-export function tableStarter(dir) {
+export function tableStarter(dir, { a7 = true } = {}) {
   let used = false;
   return async (app, { key, arm }, { meter }) => {
     if (used) throw new Error("a table was already played in this process");
@@ -262,7 +262,20 @@ export function tableStarter(dir) {
     await app.server.secrets.saveDmSecrets(cid, { scope: "campaign", body: note, rebuild: false });
     const read = await app.server.secrets.readDmSecrets(cid);
     if (String(read?.campaign?.body ?? "").trim() !== note.trim()) throw new Error(`${arm}: the situation's note did not read back from the DM's secrets`);
+    // The owner's A7 line (issue #1, after S1-none-T1): the guide as built, its two sentences on questions replaced.
+    let guide = null;
+    if (a7) {
+      const snap = await app.server.publicCampaign.readPublicCampaign(cid);
+      const doc = snap.documents.find((d) => d.id === snap.dmGuideDocumentId);
+      if (!doc) throw new Error(`${arm}: the campaign has no DM guide document`);
+      const body = guideWithA7(doc.body);
+      await meter.within({ session: key, purpose: "guide A7" }, async () => app.server.repository.applyMutation({ requestId: randomUUID(), operation: "document.save", campaignId: cid, expectedRevision: doc.revision,
+        payload: { id: doc.id, title: doc.title, status: doc.status, body }, timeline: await app.f.fence(cid) }));
+      const back = (await app.server.publicCampaign.readPublicCampaign(cid)).documents.find((d) => d.id === doc.id);
+      if (back?.body !== body) throw new Error(`${arm}: the guide with the owner's A7 line did not read back`);
+      guide = { a7: "owner 2026-11-02", sha256: sha256(body) };
+    }
     return { cid, heroId: a.heroId, companions: a.companions, coin: a.coin ?? 0, seats: a.seats ?? seatsFrom(0), steps: a.steps, dice: manifest.dice,
-      prep: { frozen: true, layerSha256: file.sha256, snapshotSha256: manifest.snapshot.sha256, noteSha256: sha256(note), threads: file.threads?.length ?? 0, layerText: `${file.layer}\n\n${note}` } };
+      guide, prep: { frozen: true, layerSha256: file.sha256, snapshotSha256: manifest.snapshot.sha256, noteSha256: sha256(note), threads: file.threads?.length ?? 0, layerText: `${file.layer}\n\n${note}` } };
   };
 }

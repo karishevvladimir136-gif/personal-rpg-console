@@ -30,7 +30,7 @@ import { auditOf, companyRewrite, requestKind } from "../multi-hero-1/run.mjs";
 import { runTable } from "../multi-hero-1/table.mjs";
 import { measuresOf } from "../multi-hero-1/report.mjs";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
-import { CAPS, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
+import { ASIDES, CAPS, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
 import { armNotes, buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { writePages } from "./report.mjs";
 
@@ -202,6 +202,8 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
   await withApp({ dry, haiku, fetcher, audit, log, database: () => openFrozenDatabase(dir), what: `the table ${key}`, file: `${STEM}-run`, allowance }, async ({ app, meter, keys, settle }) => {
     const made = await tableStarter(dir)(app, { key, arm }, { meter });
     record.coin = made.coin; record.order = made.seats; record.frozen.note = made.prep.noteSha256;
+    // v3 (the owner's decisions after S1-none-T1): the guide's A7 line, the asides stripped, the empty HTTP 200 asked again.
+    record.harness = "v3"; record.guide = made.guide;
     const { bindTable } = await import("../game-player-1/table.mjs");
     const dm = bindTable(app, made.cid, settle);
     tableFrom = audit.length;
@@ -209,7 +211,8 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     record.prompts = Object.fromEntries(CHARACTERS.map((c) => [c.name, promptSha256(a.situation, c.id, made.seats)]));
     const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad: record.triad, seats: seating2, dm, meter, keys, rounds, log,
       systemOf: (id) => playerSystem(a.situation, id, made.seats), privateText: made.prep.layerText, cardWait: true, coin: made.coin,
-      deliveries: deliveriesOf(arm, made.dice), afterQuestionsOf: (rec) => afterQuestionsFor(arm, rec.characterId, made.dice), onRound: (round) => marks.push({ round, at: audit.length }) }));
+      deliveries: deliveriesOf(arm, made.dice), afterQuestionsOf: (rec) => afterQuestionsFor(arm, rec.characterId, made.dice), onRound: (round) => marks.push({ round, at: audit.length }),
+      stripAsides: ASIDES === "strip" }));
     record.table = table; record.stopped = meter.stopped;
     record.spentUsd = meter.ledgers.openrouter?.runUsd ?? 0;
   });
