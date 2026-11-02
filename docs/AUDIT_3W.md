@@ -40,6 +40,11 @@ confirm the end state.
   planner's wrong address and the reviewer's misreading are two events inside one incident; they are distinguished
   without losing the causal link. Counts are reported as incidents and as events, separately.
 - Where a reviewer's recommendation contributed to an error, it appears in the materials like any other event.
+- **Identity of opinions across compaction:** if a second reviewer opinion appears during the audit, the first step
+  is to establish whether it is a second reviewer or the same one after a context compaction — the same test applies
+  to the planner's own «second» positions over the three weeks.
+- **The second pass is the main one:** what the keyword search finds is what we already know how to name; what only
+  the full reading finds goes in its own column, headed «had no name».
 
 ## What the planner may not judge
 The significance of his own errors; whether there is a systematic bias in his favour; the claim that an error «did
