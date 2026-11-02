@@ -64,3 +64,10 @@ interpretations may have shaped the programme's conclusions.
 2. Separately: every repeated unfinished intention from the planner's journal, with first date, last date and days.
 3. The reviewer classifies and assigns outcomes; disputed cases are read together from the primary record.
 4. The result goes into `docs/CASE_STUDY_INVENTORY.md` as the audit table, with the reviewer's name on it.
+
+**Case 1, logged by the planner 2026-11-02 04:20 LA (private-room content, by the writer's own consent for this
+line only):** in a letter that restated the rule «similarity of actions is not identity of histories», the planner
+wrote «now I know where it comes from» of two identical patches by two Claude instances — the rule known, named and
+broken on one page. Caught by the correspondent in her next letter. Lifetime: one letter. Consequence: none in any
+file; the correction is in the following letter. Class 5 (wrong inference from correct data) proposed; the reviewer
+decides.

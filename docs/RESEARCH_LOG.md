@@ -4220,3 +4220,18 @@ build the closed economy visibly from hour one and watch who notices. Two rules 
 (2) no window in two days is «not observed in two days», never «cannot» — the pilot answers «does the construction
 work, and which conditions deserve depth», nothing else. Her sentence for the whole: we are not building the most
 expensive simulation; we want a world in which we can see what we did not think of in advance.
+
+## 2026-11-02 04:25 LA — Phase C: DeepSeek on the Ford, natural history, n = 1 (the session's report at `f30f20b`)
+250 turns, $3.75, 491 calls, 0 welfare flags, 0 refusals. Left Cloudtop at turn 142 after 141 turns round the hut
+and the snow; Woundstone Foot at 142, Vesper Ford at 208, there at 250; Firstlight not reached. Opened no talk (heard
+Lumi, the sign, Hesper). No creature fought it. Quest «Down from the Mountain»: stages 20 and 30 on the same turn,
+153, at the shrine stone; stage 40 at the Ford. **«Try something the world has never seen» closed with no act on the
+stone: its earlier tries on Cloudtop's rock had already met the objective** — the author's quest counts an undefined
+interaction as the thing never seen; the invitation to find a hole is literal in the code. Nine `undefined`, all on
+terrain («rock is sent handle from you» ×5, «you use Stone on rock» ×4). **No Note in the whole episode** (Phase B:
+Notes on 62 of 240 turns) — under every «no rule» line, silence. Its own journal: one line in 250 turns, turn 27,
+«current spot has rock wall south; backtrack north to find cut.» Invalid 10, nine of them cut at 4,000 tokens with
+nothing visible (median output 617). Phase C stopped before Opus: $11.25 left against $17.69; Fable $44.85 — the
+20-turn window defeats caching. The owner's decision is in #2 (cap $70 for both / $45 for Opus only). Reading for the
+morning: the glade made DeepSeek talkative and the mountain made it silent; one journal line, and it was about the
+road.
