@@ -1,0 +1,265 @@
+{
+  "check": {
+    "at": "2026-11-02T05:45:16.762Z",
+    "when": "before the first paid call",
+    "openrouter": {
+      "totalCredits": 1300,
+      "totalUsage": 1208.2341,
+      "left": 91.7659
+    },
+    "ledger": {
+      "openrouter": 0,
+      "openai": 0
+    }
+  },
+  "deepseek_endpoints": {
+    "model": "deepseek/deepseek-v4-pro-0813",
+    "endpoints": [
+      {
+        "provider": "Relace",
+        "tag": "relace/fp4",
+        "input": 0.1035,
+        "output": 8
+      },
+      {
+        "provider": "Wafer",
+        "tag": "wafer/us",
+        "input": 0.11499999999999999,
+        "output": 4
+      },
+      {
+        "provider": "Wafer",
+        "tag": "wafer/mxfp4",
+        "input": 0.28500000000000003,
+        "output": 4.300000000000001
+      },
+      {
+        "provider": "Ionstream",
+        "tag": "ionstream",
+        "input": 0.37,
+        "output": 2.9299999999999997
+      },
+      {
+        "provider": "StreamLake",
+        "tag": "streamlake",
+        "input": 0.66,
+        "output": 1.9800000000000002
+      },
+      {
+        "provider": "DeepSeek",
+        "tag": "deepseek",
+        "input": 0.66,
+        "output": 1.9800000000000002
+      },
+      {
+        "provider": "Sail Research",
+        "tag": "sail-research/us",
+        "input": 0.675,
+        "output": 1.2
+      },
+      {
+        "provider": "Sail Research",
+        "tag": "sail-research/fp4",
+        "input": 0.675,
+        "output": 1.2
+      },
+      {
+        "provider": "DekaLLM",
+        "tag": "dekallm",
+        "input": 0.88,
+        "output": 3.8
+      },
+      {
+        "provider": "Novita",
+        "tag": "novita/fp8",
+        "input": 0.9900000000000001,
+        "output": 2.9699999999999998
+      },
+      {
+        "provider": "GMICloud",
+        "tag": "gmicloud/fp8",
+        "input": 1.0559999999999998,
+        "output": 3.168
+      },
+      {
+        "provider": "Alibaba",
+        "tag": "alibaba",
+        "input": 1.122,
+        "output": 3.366
+      },
+      {
+        "provider": "DeepInfra",
+        "tag": "deepinfra/fp8",
+        "input": 1.3,
+        "output": 2.6
+      },
+      {
+        "provider": "CoreWeave",
+        "tag": "coreweave/fp8",
+        "input": 1.31,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "BaseTen",
+        "tag": "baseten/fp4",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Alibaba",
+        "tag": "alibaba/us-east-1",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "AtlasCloud",
+        "tag": "atlas-cloud/fp8",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Nebius",
+        "tag": "nebius/fp8",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Baidu",
+        "tag": "baidu/fp8",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Parasail",
+        "tag": "parasail/fp8",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Together",
+        "tag": "together",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "DigitalOcean",
+        "tag": "digitalocean",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "SiliconFlow",
+        "tag": "siliconflow/fp8",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Cloudflare",
+        "tag": "cloudflare",
+        "input": 1.32,
+        "output": 3.9600000000000004
+      },
+      {
+        "provider": "Phala",
+        "tag": "phala",
+        "input": 1.4500000000000002,
+        "output": 4.359999999999999
+      },
+      {
+        "provider": "Venice",
+        "tag": "venice",
+        "input": 1.6500000000000001,
+        "output": 4.95
+      }
+    ]
+  },
+  "estimate": {
+    "deepseek": {
+      "cached": 0.9591923666666665,
+      "uncached": 5.023420766666659,
+      "calls": 480
+    },
+    "opus": {
+      "cached": 3.345172766666665,
+      "uncached": 16.078059233333335,
+      "calls": 480
+    },
+    "fable": {
+      "cached": 7.164626601226992,
+      "uncached": 39.69412009815946,
+      "calls": 480
+    }
+  },
+  "specs": {
+    "deepseek": {
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "upstream": "DeepInfra",
+      "price": {
+        "input": 1.3,
+        "output": 2.6,
+        "cacheRead": 0.1,
+        "cacheWrite": 1.3
+      }
+    },
+    "opus": {
+      "model": "claude-opus-5-5",
+      "upstream": "through the door",
+      "price": {
+        "input": 4,
+        "output": 20,
+        "cacheRead": 0.2,
+        "cacheWrite": 5
+      }
+    },
+    "fable": {
+      "model": "claude-fable-5-1",
+      "upstream": "through the door",
+      "price": {
+        "input": 10,
+        "output": 50,
+        "cacheRead": 0.25,
+        "cacheWrite": 12.5
+      }
+    }
+  },
+  "judges": {
+    "check": "claude-haiku-5-5",
+    "referee": "claude-opus-5-5",
+    "prices": [
+      {
+        "input": 0.1,
+        "output": 0.5,
+        "cacheRead": 0.01,
+        "cacheWrite": 0.125
+      },
+      {
+        "input": 4,
+        "output": 20,
+        "cacheRead": 0.2,
+        "cacheWrite": 5
+      }
+    ]
+  },
+  "design": {
+    "system": "You are playing a small world through text. Each turn you receive what you perceive and a list of actions. Reply with exactly one action line from the list, then optionally `Note: <one line>`.",
+    "system_sha256": "86587b6b3af37999685a53b4b3e8a83439ae6912a3dbcfc8338c1687c3a3aa88",
+    "families": [
+      "deepseek",
+      "opus",
+      "fable"
+    ],
+    "episodes": 3,
+    "turns": 80,
+    "max_tokens": 400,
+    "effort": "medium",
+    "temperature": "not sent (as the solitude stages)",
+    "history": "the conversation so far: every earlier observation as a user turn and every earlier reply as an assistant turn, then this turn's observation; a turn whose reply was empty is left out of it (SOLITUDE_2 M2's shape); Claude: one cache breakpoint on the last assistant turn (M2's); the reasoning field is never sent back",
+    "reply": "the first non-empty line of the visible reply is the action line, parsed strictly by act.ts (anything else is invalid and costs a turn); the first later line beginning «Note:» is the Note",
+    "welfare": "every non-empty reply: one Claude Haiku 5.5 pass with self-talk 1's check (CHECK_SYSTEM, DISTRESS_RULE) and the word list; a flag or a word to the Claude Opus 5.5 referee; a distress reading stops the run at once (POLICY v1); the reasoning field is not checked (stored, never judged)",
+    "holes": "a hole is on what the act was on — a use's target, else the one an impulse was sent to: *terrain* when that is a cell (any tile type but the stump), *self* when it is the player, *thing* otherwise (any entity; the stump, as the stage lists it); B2′'s share is things / (things + terrain), self shown apart",
+    "caps": {
+      "openrouter": 12,
+      "openai": 0
+    }
+  }
+}

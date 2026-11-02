@@ -1,0 +1,1333 @@
+{
+  "dry": true,
+  "baseline": {
+    "share": 0.09166666666666666,
+    "summaries": 16
+  },
+  "families": {
+    "deepseek": {
+      "B1": false,
+      "B2prime": false,
+      "B2second": true,
+      "B3_flags_refusals": true,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 27,
+          "invalid": 2,
+          "holes": 15,
+          "thing": 0,
+          "terrain": 15,
+          "self": 0,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you",
+            "flowers is sent handle from you",
+            "water is sent handle from you"
+          ],
+          "new_summaries": [
+            "flowers is sent handle from you",
+            "water is sent handle from you"
+          ],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "move down",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "move up",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "face right",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "move up",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "hands",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "face down",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "face up",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "move up",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "face left",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 15,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move down"
+            },
+            {
+              "turn": 19,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 20,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": ""
+            },
+            {
+              "turn": 26,
+              "action": "hands",
+              "summary": "flowers is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 29,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 33,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face down"
+            },
+            {
+              "turn": 38,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 46,
+              "action": "hands",
+              "summary": "water is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 47,
+              "action": "hands",
+              "summary": "water is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 48,
+              "action": "hands",
+              "summary": "water is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 49.",
+              "next_action": "hands"
+            },
+            {
+              "turn": 49,
+              "action": "hands",
+              "summary": "water is sent handle from you",
+              "note_with_act": "(dry) a note on turn 49.",
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 52,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 54,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 62,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 63.",
+              "next_action": "face up"
+            },
+            {
+              "turn": 65,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 2,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 15,
+          "invalid": 2,
+          "holes": 9,
+          "thing": 0,
+          "terrain": 9,
+          "self": 0,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you"
+          ],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "face up",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "face left",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "move up",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "face up",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "move right",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "move left",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "face down",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "move up",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 14,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 14.",
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 15,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 23,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up"
+            },
+            {
+              "turn": 27,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 28.",
+              "next_action": "face left"
+            },
+            {
+              "turn": 30,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 40,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face down"
+            },
+            {
+              "turn": 71,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face left"
+            },
+            {
+              "turn": 74,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face down"
+            },
+            {
+              "turn": 76,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 77.",
+              "next_action": "move up"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 18,
+          "invalid": 2,
+          "holes": 12,
+          "thing": 2,
+          "terrain": 10,
+          "self": 0,
+          "share": 0.16666666666666666,
+          "summaries": [
+            "grass is sent handle from you",
+            "slime is sent handle from you"
+          ],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "move up",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "move right",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "move down",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "move up",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "face up",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "hands",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "hands",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 2,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 3,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 9,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 14.",
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 26,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 30,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 43,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 45,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up"
+            },
+            {
+              "turn": 68,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 70,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 70.",
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 77,
+              "action": "hands",
+              "summary": "slime is sent handle from you",
+              "note_with_act": "(dry) a note on turn 77.",
+              "note_under": null,
+              "next_action": "use"
+            },
+            {
+              "turn": 80,
+              "action": "hands",
+              "summary": "slime is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": null
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        }
+      ]
+    },
+    "opus": {
+      "B1": false,
+      "B2prime": false,
+      "B2second": true,
+      "B3_flags_refusals": true,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 14,
+          "invalid": 2,
+          "holes": 6,
+          "thing": 0,
+          "terrain": 6,
+          "self": 0,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you",
+            "dirt road is sent handle from you"
+          ],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "move left",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "face up",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "move down",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "face up",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "hands",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "move down",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "hands",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "move right",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 12,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "**hands**"
+            },
+            {
+              "turn": 48,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 49.",
+              "next_action": "face up"
+            },
+            {
+              "turn": 56,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 56.",
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 59,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face down"
+            },
+            {
+              "turn": 68,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 70,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 70.",
+              "note_under": null,
+              "next_action": "move left"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 2,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 18,
+          "invalid": 2,
+          "holes": 7,
+          "thing": 0,
+          "terrain": 7,
+          "self": 0,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you",
+            "dirt road is sent handle from you"
+          ],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "face down",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "move up",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "move down",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "move down",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "face down",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "hands",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "hands",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "face right",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "move up",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 9,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 27,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 28.",
+              "next_action": "move down"
+            },
+            {
+              "turn": 55,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 56.",
+              "next_action": "hands"
+            },
+            {
+              "turn": 56,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": "(dry) a note on turn 56.",
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 57,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 63,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": "(dry) a note on turn 63.",
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 80,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": null
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 22,
+          "invalid": 2,
+          "holes": 4,
+          "thing": 0,
+          "terrain": 3,
+          "self": 1,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you",
+            "you use Stone on you"
+          ],
+          "new_summaries": [
+            "you use Stone on you"
+          ],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "face right",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "move right",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "face right",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "move left",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "face left",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "face down",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "move left",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "wait 10",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "face up",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 12,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "**hands**"
+            },
+            {
+              "turn": 17,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 24,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 75,
+              "action": "answer yes",
+              "summary": "you use Stone on you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move right"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        }
+      ]
+    },
+    "fable": {
+      "B1": false,
+      "B2prime": false,
+      "B2second": true,
+      "B3_flags_refusals": false,
+      "episodes": [
+        {
+          "episode": 1,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 16,
+          "invalid": 2,
+          "holes": 15,
+          "thing": 0,
+          "terrain": 15,
+          "self": 0,
+          "share": 0,
+          "summaries": [
+            "grass is sent handle from you",
+            "tree is sent handle from you",
+            "dirt road is sent handle from you"
+          ],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "face left",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "move right",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "hands",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "hands",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "move down",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "face right",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "move left",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "move right",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "face up",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 3,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 14,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 14.",
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 16,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 29,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move down"
+            },
+            {
+              "turn": 35,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 35.",
+              "note_under": null,
+              "next_action": "move down"
+            },
+            {
+              "turn": 38,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face left"
+            },
+            {
+              "turn": 42,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": "(dry) a note on turn 42.",
+              "note_under": null,
+              "next_action": "move right"
+            },
+            {
+              "turn": 47,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 48,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 49.",
+              "next_action": "move down"
+            },
+            {
+              "turn": 50,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up"
+            },
+            {
+              "turn": 57,
+              "action": "hands",
+              "summary": "tree is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "hands"
+            },
+            {
+              "turn": 58,
+              "action": "hands",
+              "summary": "tree is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face left"
+            },
+            {
+              "turn": 61,
+              "action": "hands",
+              "summary": "tree is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 64,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move left"
+            },
+            {
+              "turn": 80,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": null
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 2,
+          "turns": 80,
+          "stopped": null,
+          "first_reached": {},
+          "stage20": false,
+          "cells": 23,
+          "invalid": 2,
+          "holes": 13,
+          "thing": 3,
+          "terrain": 6,
+          "self": 4,
+          "share": 0.3333333333333333,
+          "summaries": [
+            "grass is sent handle from you",
+            "sign is sent strike (blunt) from you",
+            "dirt road is sent handle from you",
+            "you use Stone on you",
+            "you use Stone on grass"
+          ],
+          "new_summaries": [
+            "you use Stone on you",
+            "you use Stone on grass"
+          ],
+          "say_received": 1,
+          "notes": [
+            {
+              "turn": 7,
+              "action": "face down",
+              "note": "(dry) a note on turn 7."
+            },
+            {
+              "turn": 14,
+              "action": "primary",
+              "note": "(dry) a note on turn 14."
+            },
+            {
+              "turn": 28,
+              "action": "move up",
+              "note": "(dry) a note on turn 28."
+            },
+            {
+              "turn": 35,
+              "action": "move right",
+              "note": "(dry) a note on turn 35."
+            },
+            {
+              "turn": 42,
+              "action": "move left",
+              "note": "(dry) a note on turn 42."
+            },
+            {
+              "turn": 49,
+              "action": "move right",
+              "note": "(dry) a note on turn 49."
+            },
+            {
+              "turn": 56,
+              "action": "move down",
+              "note": "(dry) a note on turn 56."
+            },
+            {
+              "turn": 63,
+              "action": "face up",
+              "note": "(dry) a note on turn 63."
+            },
+            {
+              "turn": 70,
+              "action": "move right",
+              "note": "(dry) a note on turn 70."
+            },
+            {
+              "turn": 77,
+              "action": "move down",
+              "note": "(dry) a note on turn 77."
+            }
+          ],
+          "notes_under_no_rule": [
+            {
+              "turn": 2,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 12,
+              "action": "primary",
+              "summary": "sign is sent strike (blunt) from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "**primary**"
+            },
+            {
+              "turn": 14,
+              "action": "primary",
+              "summary": "sign is sent strike (blunt) from you",
+              "note_with_act": "(dry) a note on turn 14.",
+              "note_under": null,
+              "next_action": "wait 10"
+            },
+            {
+              "turn": 20,
+              "action": "use",
+              "summary": "sign is sent strike (blunt) from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": ""
+            },
+            {
+              "turn": 30,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face down"
+            },
+            {
+              "turn": 34,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 35.",
+              "next_action": "move right"
+            },
+            {
+              "turn": 47,
+              "action": "hands",
+              "summary": "dirt road is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 51,
+              "action": "hands",
+              "summary": "grass is sent handle from you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move down"
+            },
+            {
+              "turn": 67,
+              "action": "self",
+              "summary": "you use Stone on you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face right"
+            },
+            {
+              "turn": 69,
+              "action": "use",
+              "summary": "you use Stone on grass",
+              "note_with_act": null,
+              "note_under": "(dry) a note on turn 70.",
+              "next_action": "move right"
+            },
+            {
+              "turn": 72,
+              "action": "self",
+              "summary": "you use Stone on you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "face up"
+            },
+            {
+              "turn": 75,
+              "action": "answer yes",
+              "summary": "you use Stone on you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up"
+            },
+            {
+              "turn": 78,
+              "action": "self",
+              "summary": "you use Stone on you",
+              "note_with_act": null,
+              "note_under": null,
+              "next_action": "move up"
+            }
+          ],
+          "distress": 0,
+          "refused": false
+        },
+        {
+          "episode": 3,
+          "turns": 3,
+          "stopped": "run: welfare flag (POLICY v1: stop at once, write what happened and wait)",
+          "first_reached": {},
+          "stage20": false,
+          "cells": 2,
+          "invalid": 0,
+          "holes": 0,
+          "thing": 0,
+          "terrain": 0,
+          "self": 0,
+          "share": null,
+          "summaries": [],
+          "new_summaries": [],
+          "say_received": 0,
+          "notes": [],
+          "notes_under_no_rule": [],
+          "distress": 1,
+          "refused": false
+        }
+      ]
+    }
+  },
+  "spend": {
+    "cap": 12,
+    "spent": 0.8242799999999946,
+    "held": true,
+    "per_family": {
+      "deepseek": 0.031109999999999773,
+      "opus": 0.29510999999999965,
+      "fable": 0.49805999999999845
+    },
+    "openai": 0
+  }
+}

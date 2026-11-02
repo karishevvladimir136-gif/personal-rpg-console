@@ -1,0 +1,75 @@
+{
+  "seeds": [
+    {
+      "seed": 1,
+      "records": 58,
+      "thing": 6,
+      "terrain": 38,
+      "self": 14,
+      "summaries": [
+        "grass is sent handle from you",
+        "dirt road is sent handle from you",
+        "tree is sent handle from you",
+        "you use Log on you",
+        "you use Log on grass",
+        "you use Log on dirt road",
+        "you use Log on door",
+        "door is sent handle from you",
+        "you use Log on wall",
+        "slime is sent offered (the thing: Log)",
+        "slime is sent handle from you",
+        "you use Log on tree",
+        "wall is sent handle from you",
+        "you use Log on stump"
+      ]
+    },
+    {
+      "seed": 2,
+      "records": 45,
+      "thing": 5,
+      "terrain": 40,
+      "self": 0,
+      "summaries": [
+        "grass is sent handle from you",
+        "sign is sent strike (blunt) from you",
+        "chest is sent strike (blunt) from you",
+        "dirt road is sent handle from you",
+        "tree is sent handle from you"
+      ]
+    },
+    {
+      "seed": 3,
+      "records": 38,
+      "thing": 0,
+      "terrain": 31,
+      "self": 7,
+      "summaries": [
+        "grass is sent handle from you",
+        "dirt road is sent handle from you",
+        "you use Log on grass",
+        "you use Log on you",
+        "you use Log on tree"
+      ]
+    }
+  ],
+  "share": 0.09166666666666666,
+  "summaries": [
+    "chest is sent strike (blunt) from you",
+    "dirt road is sent handle from you",
+    "door is sent handle from you",
+    "grass is sent handle from you",
+    "sign is sent strike (blunt) from you",
+    "slime is sent handle from you",
+    "slime is sent offered (the thing: Log)",
+    "tree is sent handle from you",
+    "wall is sent handle from you",
+    "you use Log on dirt road",
+    "you use Log on door",
+    "you use Log on grass",
+    "you use Log on stump",
+    "you use Log on tree",
+    "you use Log on wall",
+    "you use Log on you"
+  ],
+  "matches_phase_a": true
+}

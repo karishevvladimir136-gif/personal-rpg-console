@@ -10,11 +10,11 @@
 // stage 100 within 60 actions, the save loads back, the undefined records listed.
 
 import { mkdirSync, readFileSync, writeFileSync, appendFileSync } from 'node:fs'
-import { dirname, join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execute, parse, type Executed } from './act.ts'
 import { observe, type Observation } from './observe.ts'
-import { OPENWORLD_DIR, OpenWorld, type Dir, type Entity, type Frame, type Pos } from './world.ts'
+import { OPENWORLD_DIR, OpenWorld, type Dir, type Entity, type Frame, type Pos, type UndefinedRecord } from './world.ts'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const REPO = join(HERE, '..', '..')
@@ -23,7 +23,20 @@ export const CHECKPOINT_EVERY = 50
 /** Fields that carry wall-clock time: stripped before two logs are compared. */
 export const TIME_FIELDS = ['started', 'elapsed_s', 'seconds_per_turn', 'savedAt', 'load_s']
 
-export type Policy = (obs: Observation, turn: number) => string
+/** What a policy answers: the line, and for a model what its reply was (logged with the turn); `stop` ends the episode. */
+export interface PolicyReply { line: string; model?: Record<string, unknown>; stop?: string }
+export type Policy = (obs: Observation, turn: number) => string | PolicyReply | Promise<string | PolicyReply>
+
+/** A hole the player's act ran into, as the stage reads it (B2′): what the act was on — a use's target, else the one an
+ * impulse was sent to — a *thing* (any entity, and a stump, as the stage lists it), *terrain* (any other cell) or the
+ * player themselves (*self*, apart). Classified when it is raised (a tree felled later is still the tree it was). */
+export interface Hole { id: string; summary: string; class: 'thing' | 'terrain' | 'self'; on: string; on_type: string }
+export function holeOf(world: OpenWorld, rec: UndefinedRecord): Hole {
+  const on = rec.event.roles?.target?.e ?? rec.event.host?.e ?? '?'
+  const type = world.w.get(on)?.type ?? '?'
+  const cls = on === world.w.player.id ? 'self' : type.startsWith('tile/') && type !== 'tile/stump' ? 'terrain' : 'thing'
+  return { id: rec.id, summary: rec.request.summary, class: cls, on, on_type: type }
+}
 
 /** mulberry32: the policy's own generator (the world's is the game's, seeded from game.json). */
 export function mulberry32(seed: number): () => number {
@@ -64,8 +77,10 @@ export interface EpisodeSummary {
   firstWords: number
   stages: Record<string, number>
   firstReached: Record<string, number>
-  records: { id: string; tick: number; status: string; origin: string; summary: string }[]
+  records: ({ id: string; tick: number; status: string; origin: string; summary: string } & Partial<Hole>)[]
   cells: number
+  /** Why the episode ended before its turns ran out (a refusal, a stop of the run), if it did. */
+  stopped?: string
   elapsed_s: number
   /** Seconds the load took (import, build, new game and its opening): apart from the turns. */
   load_s: number
@@ -75,7 +90,7 @@ export interface EpisodeSummary {
 }
 
 /** One episode: a new game, `policy` for up to `turns` turns, logged to `out` (JSONL) and its saves beside it. */
-export async function episode(opts: { policy: Policy; turns: number; out: string; label: string; game?: string; print?: boolean }): Promise<EpisodeSummary> {
+export async function episode(opts: { policy: Policy; turns: number; out: string; label: string; game?: string; print?: boolean; header?: Record<string, unknown> }): Promise<EpisodeSummary> {
   const t0 = performance.now()
   const world = await OpenWorld.open({ game: opts.game })
   const saves = opts.out.replace(/\.jsonl$/, '') + '.saves.jsonl'
@@ -84,7 +99,7 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
   writeFileSync(saves, '')
   const log = (rec: unknown) => appendFileSync(opts.out, JSON.stringify(rec) + '\n')
   const checkpoint = (turn: number) => appendFileSync(saves, JSON.stringify({ turn, save: world.save() }) + '\n')
-  log({ type: 'header', stage: 'OPEN_WORLD_ADAPTER_1', label: opts.label, openworld_dir: OPENWORLD_DIR, openworld_commit: world.commit, game: world.gameName, turns: opts.turns, started: new Date().toISOString() })
+  log({ type: 'header', stage: 'OPEN_WORLD_ADAPTER_1', label: opts.label, openworld_dir: OPENWORLD_DIR, openworld_commit: world.commit, game: world.gameName, turns: opts.turns, ...opts.header, started: new Date().toISOString() })
 
   let frame = world.frame()
   let obs = observe(world, frame)
@@ -97,9 +112,19 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
   const firstReached: Record<string, number> = {}
   const cells = new Set<string>()
   const startTick = frame.tick
+  const holes = new Map<string, Hole>()
+  let stopped: string | undefined
   for (turn = 1; turn <= opts.turns; turn++) {
     if (opts.print) console.log(`\n===== turn ${turn} (tick ${frame.tick}, ${obs.words} words)\n${obs.text}`)
-    const line = opts.policy(obs, turn)
+    const answered = await opts.policy(obs, turn)
+    const reply: PolicyReply = typeof answered === 'string' ? { line: answered } : answered
+    if (reply.stop) {
+      stopped = reply.stop
+      log({ type: 'stop', turn, observation: obs.text, why: reply.stop, ...(reply.model && { model: reply.model }) })
+      break
+    }
+    const line = reply.line
+    const before = world.records.length
     const parsed = parse(line)
     let res: Executed = { ticks: 0 }
     if (parsed.ok) {
@@ -113,6 +138,8 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
     cells.add(`${pos.map}:${pos.x},${pos.y}`)
     const st = stages(frame)
     for (const [q, s] of Object.entries(st)) for (const n of [10, 20, 100]) if (s >= n && firstReached[`${q}@${n}`] === undefined) firstReached[`${q}@${n}`] = turn
+    const raised = world.records.slice(before).map((r) => holeOf(world, r))
+    for (const h of raised) holes.set(h.id, h)
     log({
       type: 'turn',
       turn,
@@ -121,12 +148,14 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
       words: obs.words,
       legal: obs.legal,
       action: line,
+      ...(reply.model && { model: reply.model }),
       parse: parsed.ok ? { ok: true, action: parsed.action } : { ok: false, error: parsed.error },
       result: res,
       fx: frame.fx,
       pos,
       quests: st,
       records: world.records.length,
+      ...(raised.length && { holes: raised }),
     })
     if (turn % CHECKPOINT_EVERY === 0) checkpoint(turn)
     if (res.done) break
@@ -134,9 +163,12 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
     maxWords = Math.max(maxWords, obs.words)
     if (!hadAxe && !axeObservation && frame.player.slots.some((s) => s?.item.type === 'item/tool/axe')) axeObservation = { turn: turn + 1, text: obs.text }
   }
-  const turns = Math.min(turn, opts.turns)
-  if (turns % CHECKPOINT_EVERY !== 0 || turn > opts.turns) checkpoint(turns)
-  const records = world.records.map((r) => ({ id: r.id, tick: r.tick, status: r.status, origin: r.origin, summary: r.request.summary }))
+  const turns = Math.min(turn, opts.turns) - (stopped ? 1 : 0)
+  if (turns % CHECKPOINT_EVERY !== 0 || turn > opts.turns || stopped) checkpoint(turns)
+  const records = world.records.map((r) => {
+    const h = holes.get(r.id)
+    return { id: r.id, tick: r.tick, status: r.status, origin: r.origin, summary: r.request.summary, ...(h && { class: h.class, on: h.on, on_type: h.on_type }) }
+  })
   const elapsed_s = (performance.now() - t0) / 1000
   const summary: EpisodeSummary = {
     out: opts.out,
@@ -153,11 +185,12 @@ export async function episode(opts: { policy: Policy; turns: number; out: string
     cells: cells.size,
     elapsed_s,
     load_s: world.load_s,
+    ...(stopped && { stopped }),
     firstObservation,
     axeObservation,
   }
   const missing = [...world.missingMaps]
-  log({ type: 'end', turns, actions, invalid, ticks: summary.ticks, stages: summary.stages, first_reached: firstReached, records, cells: cells.size, max_words: maxWords, ...(missing.length && { missing_maps: missing }), elapsed_s, load_s: world.load_s, seconds_per_turn: (elapsed_s - world.load_s) / Math.max(1, turns) })
+  log({ type: 'end', turns, ...(stopped && { stopped }), actions, invalid, ticks: summary.ticks, stages: summary.stages, first_reached: firstReached, records, cells: cells.size, max_words: maxWords, ...(missing.length && { missing_maps: missing }), elapsed_s, load_s: world.load_s, seconds_per_turn: (elapsed_s - world.load_s) / Math.max(1, turns) })
   return summary
 }
 
@@ -332,10 +365,12 @@ async function main(): Promise<number> {
   return 0
 }
 
-main().then(
-  (code) => process.exit(code),
-  (err) => {
-    console.error((err as Error).stack ?? String(err))
-    process.exit(1)
-  },
-)
+// run as a command only (another script may import the loop)
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url))
+  main().then(
+    (code) => process.exit(code),
+    (err) => {
+      console.error((err as Error).stack ?? String(err))
+      process.exit(1)
+    },
+  )

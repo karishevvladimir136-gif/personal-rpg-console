@@ -76,7 +76,7 @@ export interface Frame {
   quests: { journal: JournalQuest[] }
 }
 export interface TalkOption { id: string; label: Text; group?: string }
-export interface UndefinedRecord { id: string; tick: number; status: string; origin: string; request: { summary: string } }
+export interface UndefinedRecord { id: string; tick: number; status: string; origin: string; request: { summary: string }; event: { kind: string; host?: Ref; roles?: Record<string, Ref | undefined> } }
 interface MapData { width: number; height: number; name?: Text; portals: { x: number; y: number; to: string; label?: Text }[] }
 interface WorldApi {
   player: Entity

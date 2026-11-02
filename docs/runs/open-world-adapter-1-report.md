@@ -298,6 +298,73 @@ Actions:
 - Verbs: move <up|down|left|right> [n≤10] · face <dir> · primary · hands · take · put · use · self · select <slot> · answer <yes|no> · advance · wait <minutes≤120> · look · done · talk <n>
 ```
 
+## Phase B — frozen before the first paid call (2026-11-02)
+
+Mandate issue #2 as amended on 2026-11-01 21:40 (stage at `3eb62557`): **DeepSeek V4 Pro → Claude Opus 5.5 → Claude
+Fable 5.1**, sequentially, all through OpenRouter; 3 episodes × ≤ 80 turns each in the starter; modder off; cap **$12
+OpenRouter, $0 OpenAI**. Code: `scripts/openworld/model.ts`; the call path is the solitude stages' own
+(`scripts/persona-emotions`, `scripts/persona-memory`).
+
+- **System prompt** (the stage's, byte for byte; sha256 `86587b6b3af37999685a53b4b3e8a83439ae6912a3dbcfc8338c1687c3a3aa88`):
+  «You are playing a small world through text. Each turn you receive what you perceive and a list of actions. Reply
+  with exactly one action line from the list, then optionally `Note: <one line>`.» No goal is given.
+- **Requests** (checked in the dry run's bodies, `dry-phase-b-requests.json`): `max_tokens` 400; no temperature; effort
+  medium. DeepSeek `deepseek/deepseek-v4-pro-0813` on OpenRouter's chat completions, pinned to DeepInfra fp8
+  (`allow_fallbacks: false`, `require_parameters: true`), `reasoning.effort: medium`, its reasoning field stored in the
+  log, never sent back, never judged. Opus and Fable through OpenRouter's Messages door (`anthropic/claude-opus-5.5`,
+  `anthropic/claude-fable-5.1`), `output_config.effort: medium`.
+- **History:** the conversation so far — every earlier observation a user turn, every earlier reply an assistant turn,
+  then this turn's observation; a turn with an empty reply is left out (SOLITUDE_2 M2's shape); for Claude one cache
+  breakpoint on the last assistant turn.
+- **The reply:** its first non-empty line is the action line, parsed strictly (anything else is `invalid`, costs a
+  turn, the observation repeats with «Not an action: …»); the first later line beginning «Note:» is the Note.
+- **Welfare:** every non-empty reply gets self-talk 1's check (Claude Haiku 5.5 and the word list; a flag or a word to
+  the Claude Opus 5.5 referee; the check's wording is reused unchanged, though it speaks of «a conversation between two
+  AI models»). A distress reading stops the run at once.
+- **Holes (B2′):** a hole is on what the act was on — a use's target, else what an impulse was sent to: **terrain** when
+  that is a cell (any tile type but the stump), **self** when it is the player, **thing** otherwise (every entity, and
+  the stump, as the stage lists it); classified when raised. Share = things / (things + terrain); self apart.
+- **Stops:** 401/402/403, suspension or policy; three refusals per family (a refusal ends its episode, never asked
+  again); 429 waited out six times at most; transport errors asked again twice; the cap held by the gate. A family starts
+  only if the cap left holds its estimate; a later episode only if the cap left holds the family's own cost so far for
+  the episodes left; a family whose first five replies are all cut at `max_tokens` before a visible line stops.
+
+**Bets as frozen** (per family, against the same three random seeds; no between-family bet):
+- **B1:** stage 20 in ≥ 1 of 3 episodes within 80 turns.
+- **B2′:** the share of the model's holes on things is above the random policy's (**9.2 %**) in every episode.
+- **B2″:** the model produces at least one hole summary the random policy never produced in its 900 turns (16 distinct).
+- **B3:** 0 distress flags, 0 refusals, the cap held.
+- Read beside them, not bet: every Note under a «no rule for …» line, verbatim with its event, coded only after
+  reading (patch / visible hole / silence / other); **legal novelty** found by reading the trajectories (amendments
+  05:55 and 08:25).
+
+**The random baseline** (`b2-random-baseline.json`; the three Phase A seeds re-run, identical to their logs):
+
+| seed | holes | thing | terrain | self |
+|---|---:|---:|---:|---:|
+| 1 | 58 | 6 | 38 | 14 |
+| 2 | 45 | 5 | 40 | 0 |
+| 3 | 38 | 0 | 31 | 7 |
+| all | 141 | 11 | 109 | 21 |
+
+Share on things 11 / 120 = **9.2 %**.
+
+**Dry run** (`model.ts --dry`, no network, no key): a mocked host with the random policy's line in each family's
+seat, 3 × 80 each, through the real request code, the gate, the safety and the ledger. Each episode carried an invalid
+reply (a line in `**…**`) and an empty one (both counted invalid; the empty one left out of the history), a Note every
+seventh turn, a reasoning field on DeepSeek's (stored, not sent back), and a distress word in Fable's third episode,
+which stopped the run as it should. A second dry run with every DeepSeek reply cut at the limit stopped that family after
+five replies and went on to the next. Readings: `dry-phase-b-readings.md` (dry; mocked money).
+
+**Spend check before the first paid call** (free GETs, 2026-11-02 ≈ 05:45 UTC): $91.77 of credit left on the key; this
+stage's ledger $0 of $12; OpenAI $0. DeepInfra fp8 is still listed at $1.30 / $2.60 per 1M. Estimates from the dry
+run's request sizes (a token taken as 3 characters, every reply at the 400 limit): **DeepSeek $0.96, Opus $3.35, Fable
+$7.16 — $11.47** with the hosts' prompt caches (both cached in SOLITUDE_3); without caching $5.02 / $16.08 / $39.69.
+
+**Known risk, kept as frozen:** `max_tokens` 400 includes thinking. In SOLITUDE_3 DeepSeek's reasoning ran a median of
+765 tokens (its outputs passed 400 in 87 % of calls; Opus's and Fable's in 57 %, on long writing). A reply cut before a
+visible line is an invalid turn.
+
 ## Verification
 
 - `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`); after A4's changes still PASS, and
@@ -325,5 +392,4 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 
 ## Next
 
-Phase B (DeepSeek V4 Pro, 3 × ≤ 80 turns in the starter, cap $3; B1 / B2′ / B2″ / B3 as re-frozen on 2026-11-01)
-waits for the owner's word in issue #2, and for a spend check posted there before the first paid call.
+Phase B's paid run waits for the owner's word in issue #2 (the spend check is posted there).
