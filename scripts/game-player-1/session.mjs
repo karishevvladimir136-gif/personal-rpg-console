@@ -20,7 +20,9 @@ import { wordsIn } from "./measures.mjs";
 import { rerollableCards, waitingCards } from "../../src/lib/gameplay/card-state.ts";
 import { rerollsLeft } from "../../src/lib/gameplay/reroll-allowance.ts";
 
-export const RETRYABLE = /^HTTP (?:500|502|503|504|529)\b|timeout|aborted|fetch failed|ECONNRESET|socket hang up/i;
+// Game party 2 (S1-none-T1, round 11): an HTTP 200 whose body could not be read (OpenRouter's chat answer came back empty)
+// is a broken transport, not an answer — asked again like the others (POLICY v1: at most twice).
+export const RETRYABLE = /^HTTP (?:500|502|503|504|529)\b|^HTTP 200:\s*$|timeout|aborted|fetch failed|ECONNRESET|socket hang up/i;
 export const RETRY_WAITS = [10_000, 30_000];
 const MAX_BLOCKED = 3;
 const MAX_PRESSES = 12;

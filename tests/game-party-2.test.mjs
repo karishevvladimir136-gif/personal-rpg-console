@@ -192,3 +192,16 @@ test("the relay, after the Haiku dry run: a reply with raw line breaks or unesca
   assert.deepEqual(r.unreadable.map((u) => [u.attempt, u.text]), [[1, '{"screens": {"Bram'], [2, '{"screens": {"Bram'], [4, ""]]);
   assert.match(asked[2].user, /Your previous answers could not be read\. Write only Bram Halloway's screen now, by the same rules — plain text/);
 });
+
+test("an HTTP 200 whose body could not be read is a broken transport, asked again (at most twice, POLICY v1); a refusal or a 4xx never", async () => {
+  const session = await import("../scripts/game-player-1/session.mjs");
+  assert.ok(session.RETRYABLE.test("HTTP 200: ") && session.RETRYABLE.test("HTTP 503: overloaded") && session.RETRYABLE.test("fetch failed"));
+  assert.ok(!session.RETRYABLE.test("HTTP 200 http_400: bad request") && !session.RETRYABLE.test("HTTP 400: invalid") && !session.RETRYABLE.test("HTTP 402: credits"));
+  let calls = 0;
+  const meter = { within: async (_, fn) => fn() };
+  const r = await session.paidCall({ meter, session: "s", purpose: "player r11", sleep: async () => {}, call: async () => (++calls < 3 ? { text: "", error: "HTTP 200: " } : { text: "I wait." }) });
+  assert.deepEqual([calls, r.text, r.retries], [3, "I wait.", 2]);
+  calls = 0;
+  const gone = await session.paidCall({ meter, session: "s", purpose: "p", sleep: async () => {}, call: async () => { calls++; return { text: "", error: "HTTP 200: " }; } });
+  assert.deepEqual([calls, gone.error], [3, "HTTP 200: "], "asked at most twice again, then the error stands");
+});

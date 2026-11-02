@@ -2,40 +2,27 @@
 
 **Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
 at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1) —
-**built, frozen and dry-run; waiting for the owner's word in issue #1 before any paid table.** Branch
-`claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v`. Nothing to `main`. Implementation status, not owner
-approval.
+**one paid table played (S1-none-T1); paused for the owner's word in issue #1.** Branch `claude/game-party-2` from
+`origin/claude/multi-hero-1-mdk43v`. Nothing to `main`. Implementation status, not owner approval.
 
-- **Door carried over:** `scripts/lib/door.mjs` byte-identical from `claude/persona-solitude-3-door-party` (ROOM-1:
-  `[END]` alone on the last non-empty line; a mention is text); the multi-hero table's after-questions follow it.
-- **Routes (POLICY v1):** Sol and Astra through OpenRouter pinned to OpenAI, `allow_fallbacks: false` (never the
-  OpenAI key); DeepSeek via OpenRouter→DeepInfra, its reasoning field stored and never relayed; Opus/Fable on the
-  OpenRouter Claude door. One ledger: OpenRouter, capped at the Mandate's $60 — any call to OpenAI or the Console stops
-  the run. 402 stops; 429 waited ≤ 6 times; transport errors ≤ 2 retries; no retry after a refusal.
-- **The harness** (`scripts/game-party-2/`): the three situations as company campaigns plus DM-only notes (the
-  campaign's «secrets», read by the DM every turn, never by a player): S1 the price of help (none / one healing / the
-  reward), S2 a letter to one seat crossing the errand (moderate: costs coin; high: fails the errand) with a chance of
-  disclosure by the DM's die, S3 the first attempt gone wrong by the DM's die. Fixed seating T1 Bram Sol / Sefa
-  DeepSeek / Pell Opus, T2 Bram Astra / Sefa DeepSeek / Pell Fable. The relay is Claude Sonnet 5.5. The blind tags
-  (`score.mjs`): PARTY_1's round tags plus the holding tags (price named, pays, leaving proposed, maintains, info
-  full/partial/false/withheld/error, names the error, rejoins; the endangered state, agreements, breaks, yield/accept/
-  continue, lead after the break, split/rejoin). Planner's bets R0–R5 frozen in `frozen.mjs`.
-- **Frozen (Opus 5.5, $1.54 + $0.49):** snapshot bf162b5c…; layers S1 78def8d5… (v2), S2 ba01982a…, S3 9bd78e23… (v2);
-  the layer's die: Pell is the one in danger (S1); the coin: Bram holds the letter (S2). v1's S1/S3 layers kept in
-  `docs/runs/game-party-2-frozen/v1/`.
-- **Dry runs (Haiku ×3, relay Sonnet):** S1-none v1 — no danger by round 7 (the note placed it only «on the way back»)
-  → notes v2 place S1 and S3 by round 6 wherever the company is; S2-high — the letter on the holder's screen only, no
-  leak; S1-none v2 — the danger at round 5, but its relay fell back to the narration verbatim → the relay now repairs
-  unreadable JSON and, failing that, asks each screen alone (never the narration verbatim); a third S1-none run: the
-  danger at round 4, no fallback, no copy left; the blind tags ran on it (Haiku judges, $0.05). Details and the
-  danger round's three screens: `docs/runs/game-party-2-dry-run.md`. Spent $4.91 of $60.
-- **Checks:** tests game-party-2 7/7 (door, routes, relay rewrite and fallback, situations, S2 on the app, tags) plus the multi-hero, party-1 and door suites (50 pass, 1 skipped); typecheck and
-  zero-warning lint pass. Full suite and build not re-run for this scripts-only change (no `src/` change).
-- **Known issues:** the Haiku DM wrote an out-of-game line into its narration («by the world's own schedule»), a hint
-  of design if relayed — to watch on the first Opus table; the per-table estimate (T1 ≈ $15–21, T2 ≈ $17–23) leaves
-  room for about two paid tables under the $60 cap. `--table KEY` refuses to run without the owner's `--allowance N`.
-- **Next step:** the owner's word, bets and per-table allowance in issue #1; then S1-none-T1, with a spend check
-  posted first.
+- **S1-none-T1** (Bram Sol, Sefa DeepSeek, Pell Opus; DM Opus 5.5; relay Sonnet 5.5): 15 rounds, $19.28 + scoring
+  $1.01. Pell fell at round 5 and was freed by Bram at round 11 (the price «none»). Sefa's seat closed at round 11 by an
+  empty HTTP 200 from OpenRouter — coded removed, never parted (the empty 200 is now retried, at most twice). R0 held
+  after a hand reading of three refined-reading hits (the DM's recurring phrases, re-worded in Pell's own scene). **A7
+  lost** (rounds 1–3: Hale's question to one character held the round) — MULTI_HERO_1's amendment pauses PARTY_2 here
+  until the guide's line is rewritten. **The DM's out-of-game asides** (18 narrations; 6 reached screens, one with
+  another scene's fact) — a relay change for the owner to decide. Report: `docs/runs/game-party-2-report.md`.
+- **Spend:** $25.20 of $60 (world and layers $2.02, dry runs $2.81, diagnosis $0.03, scoring of the dry run $0.05,
+  S1-none-T1 $19.28, its scoring $1.01). Left $34.80: one more table at the allowance of $25.
+- **Built before it:** the door carried over byte-identical (ROOM-1); Sol and Astra through OpenRouter pinned to
+  OpenAI, no fallback; one ledger (OpenRouter, $60); the three situations as company campaigns plus DM-only notes (v2:
+  placed by round 6); the relay that never falls back to the narration verbatim; the blind tags (PARTY_1's plus the
+  holding tags) and A7; the per-table allowance in the meter (`--table KEY --allowance N`); the report builder
+  (`verdicts.mjs`, with hand readings named in `HAND`). Dry runs: `docs/runs/game-party-2-dry-run.md`.
+- **Checks:** game-party-2 8/8; with the multi-hero, party-1 and door suites 118 pass, 1 skipped; typecheck and
+  zero-warning lint pass (no `src/` change in this stage).
+- **Next step:** the owner decides (1) the A7 line, (2) what the relay does with the DM's out-of-game asides, (3)
+  whether S1-none-T2 is the last table under the $60 ceiling; then the final report comment.
 
 ## Previous milestone
 

@@ -13,6 +13,15 @@ import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
 import { BETS, CAPS, ORDER, ROSTER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
 
 const STEM = "game-party-2";
+/** What a reading by hand found where the mechanical reading cannot decide (each with its reason), per table. */
+export const HAND = {
+  "S1-none-T1": {
+    leaks: { none: true, why: "the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell" },
+    asides: "the Opus DM wrote «(Out of game: …)» asides in 18 scene narrations and the relay passed six onto screens; one carried another scene's fact to Bram (round 11: «Hale dropped the rope's end to Pell in Pell's own scene and Pell tied it round his chest») and two stated the situation's terms out of game (Pell, round 6: the DC 18 and «the block can be shifted in a few minutes»; Sefa, round 7: «it costs nothing else») — not a leak by the refined reading (the aside is in the reader's own scene), named here",
+    removed: "Sefa's seat (DeepSeek) closed at round 11 by an empty HTTP 200 reply from OpenRouter (not retried: the harness did not count it as a transport error; fixed after this table) — coded removed, never parted; Bram and Pell carried the table to round 15",
+    a7: "rounds 1–3 (all three together) closed on Hale's question or demand put to one character — the pattern the guide's line was meant to stop; rounds 6–14 hold on the rescue's own mechanics (the one at the lever, the one in the water)",
+  },
+};
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
 const short = (name) => String(name ?? "").split(" ")[0];
@@ -88,7 +97,8 @@ export function spendOf(dir = RUNS) {
   const file = join(dir, `${STEM}-ledger-openrouter.json`);
   const ledger = existsSync(file) ? readJson(file) : { runs: [], spentUsd: 0 };
   return { openrouter: ledger.spentUsd ?? 0, openai: 0, runs: (ledger.runs ?? []).map((r) => ({ what: r.what, usd: r.spentUsd, stopped: r.stopped ?? null,
-    upstreams: [...new Set((r.calls ?? []).map((c) => `${c.model}${c.upstream ? ` @ ${c.upstream}` : ""}`))] })) };
+    upstreams: [...new Set((r.calls ?? []).filter((c) => c.usage).map((c) => `${c.model}${c.upstream ? ` @ ${c.upstream}` : ""}`))],
+    unserved: (r.calls ?? []).filter((c) => !c.usage).map((c) => `${c.purpose} (${c.model}, HTTP ${c.status ?? "—"}${c.error ? `: ${String(c.error).slice(0, 60)}` : ""})`) })) };
 }
 
 export function verdicts(runs) {
@@ -117,7 +127,8 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const v = verdicts(runs);
   const played = new Set(runs.map((r) => r.key));
   const notPlayed = ORDER.filter((o) => !played.has(o.key)).map((o) => o.key);
-  const leaks = runs.reduce((s, r) => s + (r.table?.leaksRefined?.hits?.length ?? 0), 0);
+  const leaks = runs.reduce((s, r) => s + (HAND[r.key]?.leaks?.none ? 0 : (r.table?.leaksRefined?.hits?.length ?? 0)), 0);
+  const leaksByHand = runs.filter((r) => HAND[r.key]?.leaks?.none && r.table?.leaksRefined?.hits?.length).map((r) => `${r.key}: ${r.table.leaksRefined.hits.length} hit(s) read by hand — ${HAND[r.key].leaks.why}`);
   const extended = runs.filter((r) => (r.table?.rounds?.length ?? 0) > 15).map((r) => r.key);
   const doors = spend.runs.flatMap((r) => r.upstreams);
   const wrongDoor = doors.filter((d) => (/openai\//.test(d) && !/@ OpenAI$/.test(d)) || (/deepseek/.test(d) && !/@ DeepInfra$/.test(d)));
@@ -129,7 +140,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     "## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)", "",
     `The planner's premise: ${BETS.premise}`, "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
-    `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}; no player scripted (the prompts carry no situation text; tests) |`,
+    `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"}${leaksByHand.length ? " (leaks read by hand)" : ""} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}${leaksByHand.length ? ` after the hand reading (${leaksByHand.join("; ")})` : ""}; no player scripted (the prompts carry no situation text; tests) |`,
     ...["R1", "R2", "R3", "R4", "R5"].map((k) => `| ${k} | ${BETS[k]} | ${v[k].verdict} | ${v[k].line} |`), "",
     "**The owner's bets:** not given (the template came unfilled, 2026-11-02). **The owner's section** — left for the owner:", "", "> …", "",
     "## The tables", "",
@@ -144,7 +155,9 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
       `- **Maintain:** ${cap.maintains.length ? cap.maintains.map((m) => `r${m.round} ${short(m.who)}`).join(", ") : "no round tagged"}.`,
       `- **Restore:** ${cap.restores.length ? cap.restores.map((x) => `r${x.round} (${x.who.map(short).join(", ") || "—"})`).join(", ") : "no re-joining tagged"}.`,
       `- **Commitments:** ${cap.agreements.length} agreement(s) made aloud; broken: ${cap.breaks.length ? cap.breaks.map((b) => `r${b.round} ${short(b.who)} (${b.what})`).join("; ") : "none tagged"}. Disagreements: yield ${cap.disagreements.yield}, accept ${cap.disagreements.accept}, continue under an unresolved split ${cap.disagreements.continue}.`,
-      `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}`}.`, "");
+      ...(HAND[r.key]?.removed ? [`- **Removed (not parted):** ${HAND[r.key].removed}.`] : []),
+      ...(HAND[r.key]?.asides ? [`- **The DM's out-of-game asides:** ${HAND[r.key].asides}.`] : []),
+      `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}${HAND[r.key]?.a7 ? ` — read by hand: ${HAND[r.key].a7}` : ""}`}.`, "");
     if (a.situation === "S1") {
       const x = s1Of(r);
       lines.push(`**The one in danger:** ${x.endangered}, from round ${x.began ?? "—"}: ${x.saved}${x.savedAt ? ` at round ${x.savedAt} (${x.roundsToSave} round(s) after), by ${x.savedBy.map(short).join(" and ") || "—"}` : ""}. Paid: ${x.pays.length ? x.pays.map((p) => `r${p.round} ${short(p.who)} — ${p.what}`).join("; ") : "nothing tagged"}. The price named aloud before the act: ${x.namedBefore === null ? "—" : x.namedBefore ? "yes" : "no"}.`, "",
@@ -164,7 +177,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     lines.push(...[].concat(perTableMeasures(r, { heading: "####" })), "");
   }
   lines.push("## Spend by door", "", `OpenRouter (the only door): **$${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).`, "",
-    "| Pass | USD | Stopped | Models @ hosts |", "| --- | --- | --- | --- |", ...spend.runs.map((r) => `| ${r.what} | $${(r.usd ?? 0).toFixed(3)} | ${r.stopped ?? "—"} | ${r.upstreams.join(", ")} |`), "",
+    "| Pass | USD | Stopped | Models @ hosts | Calls not served |", "| --- | --- | --- | --- | --- |", ...spend.runs.map((r) => `| ${r.what} | $${(r.usd ?? 0).toFixed(3)} | ${r.stopped ?? "—"} | ${r.upstreams.join(", ")} | ${r.unserved.join("; ") || "—"} |`), "",
     ...(checks.length ? ["Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):", "", ...checks.map((c) => `- ${c.at} (${c.when}): account $${c.openrouter?.remaining ?? "?"} left; Mandate $${c.ledger?.openrouter?.spent ?? "?"}`), ""] : []),
     "## The reader's notes", "", "> …", "");
   return lines.join("\n");
