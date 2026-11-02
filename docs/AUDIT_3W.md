@@ -33,6 +33,14 @@ confirm the end state.
 - effect not yet established.
 «No consequence found» is not evidence of no consequence.
 
+## Two measures and one counting rule (the reviewer, 23:39)
+- **Lifetime** (how long a wrong claim stood) and **consequence** (which actions and interpretations arose under it)
+  are different dimensions; both are recorded for every case.
+- **One incident, several events:** a propagation chain is not counted as several independent root causes. The
+  planner's wrong address and the reviewer's misreading are two events inside one incident; they are distinguished
+  without losing the causal link. Counts are reported as incidents and as events, separately.
+- Where a reviewer's recommendation contributed to an error, it appears in the materials like any other event.
+
 ## What the planner may not judge
 The significance of his own errors; whether there is a systematic bias in his favour; the claim that an error «did
 not affect the data». He may propose; the reviewer decides from the primary evidence. «I was avoiding it» stays a
