@@ -2,3 +2,6 @@ look
 i open chest
 move up 4
 advance
+# 2026-11-01 21:50 LA — the owner stopped after 4 actions (1 invalid, 1 refused, advance, no move). His words:
+# «тут я так долго не протяну. у нас всё-таки разное восприятие… модели могут играть на том же харнессе, что и я, а я наоборот нет».
+# Not `done` — the line is the grammar's; this stop is the owner's, outside it.
