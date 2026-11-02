@@ -1,0 +1,5 @@
+spend check before deepseek: OpenRouter credit $153.97 left; Phase C $0.0000 of $15; deepseek's estimate for 250 turns $4.52 (no cache $4.70; 485 output tokens a reply, Phase B's median)
+deepseek: 250 turns, stages {"descent":40}, 9 holes, 10 invalid, 1 journal lines; Phase C spent $3.7544
+spend check before opus: OpenRouter credit $150.24 left; Phase C $3.7544 of $15; opus's estimate for 250 turns $17.69 (no cache $18.50; 107 output tokens a reply, Phase B's median)
+STOP: opus's 250-turn estimate $17.69 is more than the $11.25 left of the $15 cap: not started (the owner's word to raise the cap, or to accept an episode the cap may cut)
+Phase C calls 491 · booked $3.7544

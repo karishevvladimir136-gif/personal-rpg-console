@@ -3,7 +3,8 @@
 **Current milestone: OpenWorld adapter 1 — Phase A** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
 `d9253dc`; A4 and Phase B under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1), branch
 `claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`. Nothing to `main`.
-**Phase A, A4 and Phase B complete and reported (issue #2); Phase C (the Ford) on the owner's word given 2026-11-02.** Report
+**Phase A, A4 and Phase B complete and reported (issue #2); Phase C: DeepSeek's Ford episode run and reported ($3.75);
+Opus and Fable not started — their 250-turn estimates ($17.69, $44.85) exceed the $15 cap; waiting for the owner's word.** Report
 `docs/runs/open-world-adapter-1-report.md`; logs `docs/runs/open-world-adapter-1/`.
 
 - **A4 (the Ford):** `--game ford` (loaded as `check.ts` loads it, at the game's own start), the talk section (only while

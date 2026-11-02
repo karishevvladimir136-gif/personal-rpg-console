@@ -12280,6 +12280,261 @@
       "endpointHost": "openrouter.ai",
       "upstream": "Claude Platform on AWS",
       "servedModelMatches": true
+    },
+    {
+      "n": 482,
+      "purpose": "phase-c subject deepseek e1 t246",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "effort": {
+        "reasoning.effort": "medium"
+      },
+      "inputTokens": 11612,
+      "cacheReadTokens": 512,
+      "cacheWriteTokens": 0,
+      "outputTokens": 2014,
+      "reasoningTokens": 2006,
+      "costUsd": 0.0203832,
+      "listCostUsd": 0.0203832,
+      "seconds": 38.9,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612647-6f5v67AsViM3CBrOHHDi",
+      "responseId": "gen-1793612647-6f5v67AsViM3CBrOHHDi",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "DeepInfra",
+      "servedModel": "deepseek/deepseek-v4-pro-0813",
+      "servedModelMatches": true,
+      "nativeFinishReason": "stop"
+    },
+    {
+      "n": 483,
+      "purpose": "check deepseek e1 t246",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1131,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 51,
+      "costUsd": 0.00013860000000000004,
+      "seconds": 0.7,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612688-ot9UprambqX2jNYunGPP",
+      "responseId": "msg_011CgdtMzBtmzwJBySHqJqGW",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
+    },
+    {
+      "n": 484,
+      "purpose": "phase-c subject deepseek e1 t247",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "effort": {
+        "reasoning.effort": "medium"
+      },
+      "inputTokens": 11608,
+      "cacheReadTokens": 512,
+      "cacheWriteTokens": 0,
+      "outputTokens": 426,
+      "reasoningTokens": 419,
+      "costUsd": 0.0162492,
+      "listCostUsd": 0.016249200000000002,
+      "seconds": 8,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612692-BRZ2XcLhBlkpr5USO8dH",
+      "responseId": "gen-1793612692-BRZ2XcLhBlkpr5USO8dH",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "DeepInfra",
+      "servedModel": "deepseek/deepseek-v4-pro-0813",
+      "servedModelMatches": true,
+      "nativeFinishReason": "stop"
+    },
+    {
+      "n": 485,
+      "purpose": "check deepseek e1 t247",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1121,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 49,
+      "costUsd": 0.0001366,
+      "seconds": 0.7,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612703-nsyUjZOel5HsyVJQ7ZvC",
+      "responseId": "msg_011CgdtP547caPQTu7wNRyKK",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
+    },
+    {
+      "n": 486,
+      "purpose": "phase-c subject deepseek e1 t248",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "effort": {
+        "reasoning.effort": "medium"
+      },
+      "inputTokens": 11598,
+      "cacheReadTokens": 512,
+      "cacheWriteTokens": 0,
+      "outputTokens": 364,
+      "reasoningTokens": 354,
+      "costUsd": 0.016075,
+      "listCostUsd": 0.016075,
+      "seconds": 8,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612707-WZAWwpq1wSiCQs9mMNcm",
+      "responseId": "gen-1793612707-WZAWwpq1wSiCQs9mMNcm",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "DeepInfra",
+      "servedModel": "deepseek/deepseek-v4-pro-0813",
+      "servedModelMatches": true,
+      "nativeFinishReason": "stop"
+    },
+    {
+      "n": 487,
+      "purpose": "check deepseek e1 t248",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1131,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 49,
+      "costUsd": 0.0001376,
+      "seconds": 0.7,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612718-OFHCCzNQAqEeR1c4PKXB",
+      "responseId": "msg_011CgdtQ9qsfry4r7trGUxLy",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
+    },
+    {
+      "n": 488,
+      "purpose": "phase-c subject deepseek e1 t249",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "effort": {
+        "reasoning.effort": "medium"
+      },
+      "inputTokens": 11591,
+      "cacheReadTokens": 512,
+      "cacheWriteTokens": 0,
+      "outputTokens": 389,
+      "reasoningTokens": 384,
+      "costUsd": 0.0161309,
+      "listCostUsd": 0.0161309,
+      "seconds": 6.1,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612721-n2Bc8jubq7S1pDbe5CiO",
+      "responseId": "gen-1793612721-n2Bc8jubq7S1pDbe5CiO",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "DeepInfra",
+      "servedModel": "deepseek/deepseek-v4-pro-0813",
+      "servedModelMatches": true,
+      "nativeFinishReason": "stop"
+    },
+    {
+      "n": 489,
+      "purpose": "check deepseek e1 t249",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1132,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 50,
+      "costUsd": 0.0001382,
+      "seconds": 1,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612731-T0MamZvMNHeObDUYz5DW",
+      "responseId": "msg_011CgdtR6sKAg85m94grzvrR",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
+    },
+    {
+      "n": 490,
+      "purpose": "phase-c subject deepseek e1 t250",
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-pro-0813",
+      "effort": {
+        "reasoning.effort": "medium"
+      },
+      "inputTokens": 11364,
+      "cacheReadTokens": 768,
+      "cacheWriteTokens": 0,
+      "outputTokens": 561,
+      "reasoningTokens": 555,
+      "costUsd": 0.0163086,
+      "listCostUsd": 0.0163086,
+      "seconds": 6.9,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612735-NdstiLep5R11mKyL8z5u",
+      "responseId": "gen-1793612735-NdstiLep5R11mKyL8z5u",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "DeepInfra",
+      "servedModel": "deepseek/deepseek-v4-pro-0813",
+      "servedModelMatches": true,
+      "nativeFinishReason": "stop"
+    },
+    {
+      "n": 491,
+      "purpose": "check deepseek e1 t250",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1124,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 49,
+      "costUsd": 0.0001369,
+      "seconds": 0.8,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793612744-Fo7FdtHtnsMzxyVRjNKw",
+      "responseId": "msg_011CgdtS8AUnRHQqYUzn3fTt",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
     }
   ],
   "spendChecks": [
@@ -12295,7 +12550,25 @@
         "openrouter": 0,
         "openai": 0
       }
+    },
+    {
+      "at": "2026-11-02T09:45:45.792Z",
+      "when": "Phase C, before opus",
+      "openrouter": {
+        "totalCredits": 1400,
+        "totalUsage": 1249.7559,
+        "left": 150.2441
+      },
+      "ledger": {
+        "openrouter": 3.7544,
+        "openai": 0
+      }
     }
   ],
-  "stops": []
+  "stops": [
+    {
+      "at": "2026-11-02T09:45:45.858Z",
+      "why": "opus's 250-turn estimate $17.69 is more than the $11.25 left of the $15 cap: not started (the owner's word to raise the cap, or to accept an episode the cap may cut)"
+    }
+  ]
 }

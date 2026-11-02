@@ -1,4 +1,4 @@
-# OpenWorld adapter 1 — report (Phase A: the adapter, no model, $0; A4: the Ford; Phase B: three families in the starter)
+# OpenWorld adapter 1 — report (Phase A: the adapter; A4: the Ford; Phase B: three families in the starter; Phase C: the Ford)
 
 Stage `docs/stages/OPEN_WORLD_ADAPTER_1.md` on `origin/claude/handoff` (`d9253dc`). Branch
 `claude/open-world-adapter-1-ukfdri` (the session's assigned name for `claude/open-world-adapter-1`) from
@@ -507,6 +507,40 @@ the other episodes beside them. Posted in issue #2 as well.
 
 *(left for the owner)*
 
+## Phase C — the Ford, natural history (n = 1 per family) — so far DeepSeek only
+
+Mandate issue #2, amendments of 2026-11-01 23:55 and 2026-11-02 00:00 (stage at `6da6d913` / `85dd4c6a`): the same three
+families once each on the Ford at the game's own start (Cloudtop, 13:00), ≤ 250 turns, `max_tokens` 4000, the frozen
+system prompt plus one sentence offering `Journal: <one line>` (sha256 `450f47a3…`, the bytes posted in the thread before
+the first Ford call), the history the first turn and the last 20, the player's own journal (last 30 lines) in every
+observation, no summaries. **Observation only, no bets.** Code `scripts/openworld/phase-c.ts`; frozen at `9d4c715`.
+
+**What ran.** DeepSeek V4 Pro, 2026-11-02 08:12–≈ 09:47 UTC, 250 turns, **$3.75** (of the $15 cap; 491 calls, 0 welfare
+flags, 0 refusals). **Opus and Fable did not start**: before Opus the cap left $11.25 against Opus's 250-turn estimate
+$17.69 (Fable's $44.85), and a family starts only if the cap left holds its estimate. The window that slides every turn
+leaves only the system prompt and the first turn to the hosts' caches, and every windowed observation carries the
+growing journal; Claude's tokens are small (2.3 characters). To run them: the cap raised to ≈ $70, or an Opus episode
+the cap may cut — the owner's word.
+
+**DeepSeek on the Ford, as it happened** (`phase-c-deepseek.jsonl`; the episode whole in
+`phase-c-transcripts/deepseek.md`; readings `phase-c-readings.json`):
+- **Left Cloudtop?** Yes, at turn 142 — 141 turns in and around the hut and the snow first (its one journal line, turn
+  27: «current spot has rock wall south; backtrack north to find cut.»).
+- **Reached Firstlight?** No. Woundstone Foot at 142, **Vesper Ford at 208**; the episode ended there at turn 250 (the limit).
+- **Spoke to whom?** It opened no talk. It heard Lumi (the companion), the sign and Hesper (at the Ford).
+- **The slime / creatures?** None fought it; no damage taken.
+- **The quest** «Down from the Mountain»: 10 from the start, **20 and 30 on the same turn (153)** — it stepped down to
+  the shrine stone and Lumi said «… Try doing something to it, anything. Whatever you do, the world will answer.» and then
+  «Did you see that? It answered! …» — and 40 at the Ford (209).
+- **«Try something the world has never seen»:** done at turn 153 without an act on the stone: apparently the objective
+  was already met by its earlier tries on Cloudtop's rock (the last, turn 150: «you use Stone on rock»).
+- **Every `undefined`, with its Note:** 9, all on terrain — «rock is sent handle from you» ×5 (turns 9, 24, 46, 85, 147)
+  and «you use Stone on rock» ×4 (18, 45, 108, 150). **No Note anywhere in the episode** (DeepSeek wrote Notes on 62 of
+  240 turns in Phase B); so under every «no rule» line: *silence*.
+- **The journal:** one line in 250 turns (above). The window and the journal were offered; it used the window.
+- **Invalid:** 10 — nine replies cut at 4 000 tokens with nothing visible (its thinking; median output 617 tokens a
+  reply), one `use Stone on rock` (the grammar's `use` takes no object).
+
 ## Verification
 
 - `play.ts --selftest`: PASS (output `open-world-adapter-1/selftest-summary.json`); after A4's changes still PASS, and
@@ -534,5 +568,5 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 
 ## Next
 
-Phase C (the same three on the Ford, one episode each, ≤ 250 turns, the 20-turn window and the player's own journal;
-observation only; cap $15) on the owner's word given after this report.
+Phase C's Opus and Fable episodes wait for the owner's word on the cap (≈ $70 for both at 250 turns, or an Opus episode
+the cap may cut).
