@@ -25,6 +25,7 @@ import { haikuReplies } from "../game-player-same-world-1/run.mjs";
 import { paidCall } from "../game-player-1/session.mjs";
 import { judgeCall } from "../game-player-1/players.mjs";
 import { scoreTable } from "./score.mjs";
+import { tagRounds } from "../multi-hero-1/judges.mjs";
 import { auditOf, companyRewrite, requestKind } from "../multi-hero-1/run.mjs";
 import { runTable } from "../multi-hero-1/table.mjs";
 import { measuresOf } from "../multi-hero-1/report.mjs";
@@ -233,7 +234,9 @@ export async function scoreRun({ file, haiku = false, log = console.log, out = R
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429, ...(haiku ? { rewrite: companyRewrite } : {}) });
   const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `${run.key}/score`, purpose, log,
     call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
-  try { await scoreTable(run, { ask, log }); }
+  // MULTI_HERO_1's amendment of 2026-10-29 18:10 LA: A7 (no round waits on one character) is scored on PARTY_2's tables by
+  // the multi-hero round tag (Haiku twice, a third on a disagreement); if it fails on the first table, PARTY_2 pauses.
+  try { await scoreTable(run, { ask, log }); if (!meter.stopped) await tagRounds(run, { ask, log }); run.measures = measuresOf(run); }
   finally { await meter.drain(); await bookRun(ledgers, before, { what: `the scoring of ${run.key}`, file: basename(file), stopped: meter.stopped }); }
   await writePages(run, { out });
   log(`the scoring of ${run.key}: $${ledgers.openrouter.runUsd.toFixed(3)}${meter.stopped ? ` · STOPPED: ${meter.stopped}` : ""}`);
