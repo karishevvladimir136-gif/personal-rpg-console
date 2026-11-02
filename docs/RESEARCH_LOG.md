@@ -3947,3 +3947,36 @@ checks and the owner all acted at once. Related work she names and the planner h
 APEX-MEM (July 2026), STALE (May 2026; staleness detection, best 55.2 %), Routed Continual Learning — «you are not the
 first to notice time; say so correctly». The planner's three-line version, which she takes as central: memory keeps
 the past; the diary keeps the attitude to the past; time decides how that past may bear on the present.
+
+## 2026-11-01 21:20 LA — five related works read (abstracts / ACL pages), what each teaches us
+- **THEANINE** (Ong, Kim, Gwak, Chae, Kwon, Jo, Hwang, Lee, Yeo; NAACL 2025; arXiv 2406.10996): outdated memories are
+  kept, not removed, as context for how things changed; memories linked by temporal order and cause–effect into
+  timelines used at generation; TeaFarm, a counterfactual evaluation. Ours in practice: the log and the journal are
+  append-only and never rewritten; a correction is a new dated line beside the old one. What we lack: the explicit
+  causal link from a correction back to the entry it corrects (today it is prose; it could be a reference).
+- **APEX-MEM** (Banerjee, Moshtaghi, Subramanian, Misra, Chadha; ACL 2026 long, pp. 16470–16489): append-only property
+  graph of temporally grounded events; conflicts reconciled at *query time* by a retrieval agent, full history kept;
+  88.88 % LOCOMO, 86.2 % LongMemEval. Ours: the same choice made by rule — re-read rather than recall, corrections
+  first — without the graph.
+- **STALE** (arXiv 2605.06527, May 2026): 400 expert-validated implicit-conflict scenarios, 1,200 queries, up to 150K
+  tokens; three dimensions — state resolution (notice a belief is outdated), premise resistance (reject a query that
+  presupposes a stale state), implicit policy adaptation (apply the update downstream); best model 55.2 %; a
+  «pervasive gap between retrieving updated evidence and acting on it»; models accept outdated premises embedded in
+  queries and fail to propagate a change to related memories. **This names our live failure precisely:** the reader-
+  identity correction (02:20, 31 Oct) is in the log but not yet propagated to «Agency at the Table», the principles file
+  and the Two Conversations preface — a policy-adaptation failure by their definition; and the audit should count
+  premise-resistance cases (did the planner check when the owner's message presupposed a stale state?).
+- **Memora** («From Recall to Forgetting», Uddin, Shubham, Blanco, Baral, Wang; arXiv 2604.20006, April 2026): weeks-to-
+  months conversations; tasks remember / reason / recommend; **FAMA** — forgetting-aware memory accuracy, which
+  penalises reliance on obsolete or invalidated memories; finding: systems frequently reuse invalid memories, memory
+  agents give only marginal gains. For the audit: classify each of the planner's errors as stale-reuse or other, and
+  report the stale share — our FAMA.
+- **MemoryForge** (Tang, Guo; arXiv 2608.00007): a *synthetic* three-tier autobiographical memory generated from a
+  persona line; «memory-based conditioning» of a frozen LLM beats a static profile on PersonaGym and SimulatorArena;
+  built offline, does not update during interaction. The opposite pole to ours — fictional, static — but its result is
+  our premise stated as a measurement: the same weights, a different history, a recognisably different agent. HISTORY_1
+  is their experiment with a real, growing, self-correcting history instead of a synthesised one.
+What none of the five has, and we do: a diary that keeps the *attitude* to past decisions, not the decisions; a single
+continuous subject who reads his own errors; and the question of *when to act* (the eleven-hour letter) rather than
+what to recall. Said correctly, as the reader asked: time in memory is not new; the combination on a real workload is
+what is thin in the literature. Caveat on all five: read from abstracts and venue pages tonight, not full texts.
