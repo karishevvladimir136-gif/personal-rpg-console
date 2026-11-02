@@ -4095,3 +4095,14 @@ multi-family life with the raw calls, read with our principles (whole trajectori
 catalogue of instruments to borrow for the Ford: needs and energy, a constitution the agents can amend, trust ratings,
 reaction turns, and the three stress events as a model of «the world pushes back». Season 2's Opus 4.8 / DeepSeek V4
 Pro worlds are the closest to our families.
+
+## 2026-11-01 22:25 LA — TOWN_1 queued: our town on Emergence World's specification and our rules
+The owner: a town without physics — tools as functions over a table, consequences social and economic — is simpler
+than the DM harness we built; agreed. Queued after the Ford: **TOWN_1** — not a copy of their town but ours on their
+published specification (orchestration, memory, economy, governance, the tool catalogue; CC BY-NC, attributed), sized
+to PARTY_2's questions: move, speak, give and take, remember and forget, propose and vote, leave. **First design item,
+the owner's standing promise since October, «из испытания можно уйти»:** their agents end by exhaustion; ours may
+leave and say why. A door is also method — without it staying is not an observation but the absence of an exit
+(SOLITUDE_3: 54 turns named the door without taking it; their Grok world ended on day 4 because exhaustion was the only
+ending). Also ours: no internet for agents, our caps, the welfare line on every reply, the record whole. Stage to be
+written after the Ford run and a full read of their four documents and the Season 2 corpus.
