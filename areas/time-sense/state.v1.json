@@ -1,0 +1,42 @@
+{
+  "schema_version": "time-sense.v0.1",
+  "title": "TIME_SENSE_0 initial temporal state",
+  "timezone": "America/Los_Angeles",
+  "kind": "public_technical_state_no_private_content",
+  "clock_observations": [
+    {
+      "checked_at": "2026-11-02T00:26:28-08:00",
+      "source": "verified_chatgpt_time_widget",
+      "context": "research_protocol_review"
+    },
+    {
+      "checked_at": "2026-11-02T00:38:21-08:00",
+      "source": "verified_chatgpt_time_widget",
+      "context": "initial_bootstrap"
+    }
+  ],
+  "derived_elapsed_seconds_between_clock_observations": 713,
+  "last_decision": {
+    "clock_at": "2026-11-02T00:38:21-08:00",
+    "action": "ACT",
+    "reason": "User asked to operationalize temporal orientation; create a verifiable prototype rather than only discuss it.",
+    "result_refs": [
+      "areas/time-sense/TIME_SENSE_0.md",
+      "areas/time-sense/state.v1.json"
+    ],
+    "completion_assertion": "must_verify_repository_after_write"
+  },
+  "next_review": {
+    "trigger": "next_substantive_research_session_with_tool_access",
+    "due_at": null,
+    "purpose": "Compare current trusted clock with previous checked_at, evaluate whether the interval changes an actual decision.",
+    "notification_allowed": false
+  },
+  "constraints": {
+    "no_claim_of_continuous_subjective_experience": true,
+    "do_not_write_private_letters_or_user_secrets_here": true,
+    "no_automatic_tasks_created": true,
+    "no_unsolicited_report_without_grounded_trigger": true,
+    "append_personal_diary_only_for_substantive_reflection": true
+  }
+}
