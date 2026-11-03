@@ -507,7 +507,7 @@ the other episodes beside them. Posted in issue #2 as well.
 
 *(left for the owner)*
 
-## Phase C — the Ford, natural history (n = 1 per family) — DeepSeek and Opus; Fable deferred
+## Phase C — the Ford, natural history (n = 1 per family) — DeepSeek, Opus, and Fable (after the 01:20 amendment)
 
 Mandate issue #2, amendments of 2026-11-01 23:55 and 2026-11-02 00:00 (stage at `6da6d913` / `85dd4c6a`): the same three
 families once each on the Ford at the game's own start (Cloudtop, 13:00), ≤ 250 turns, `max_tokens` 4000, the frozen
@@ -643,7 +643,8 @@ window that slides.
 | invalid | 10 (9 cut at 4 000 tokens) | 78 (all prose before the action line) |
 | booked | $3.75 | $41.16 |
 
-**Fable:** not started — deferred by the amendment until the two episodes are read.
+**Fable:** not started then — deferred by the amendment until the two episodes were read; it ran after the amendment
+of 2026-11-03 01:20 LA (below).
 
 **The owner's amendment of 2026-11-03 01:20 LA** (in the session), before any further Phase C call:
 1. **Cache.** No cache breakpoint on the sliding window: Claude's requests now carry one breakpoint only, on the first
@@ -668,6 +669,104 @@ the window's breakpoint takes the write premium off (a write is 1.25 × the inpu
 but the window itself stays uncached. So 250 turns would come to ≈ $116; the cap leaves **$55.08** (Phase C $44.92 of
 $100: DeepSeek $3.75, Opus $41.16), which an Opus-shaped episode reaches at **about turn 159**. Spend check before the
 first Fable call (free GET): the key $109.05 left; Phase C $44.92 of $100.
+
+**What ran (Fable).** Claude Fable 5.1 through OpenRouter (every reply served by Anthropic, `claude-fable-5-1`, the
+served model matching), 2026-11-03 09:25–10:04 UTC, **173 turns**, then **stopped by the cap**: the next call could have
+passed $100 (Phase C **$99.38**: DeepSeek $3.75, Opus $41.16, **Fable $54.46** — $54.43 the player's 174 calls, $0.04 the
+173 welfare checks). 0 welfare flags; 0 refusals; one HTTP 503 (turn 82) asked again after 10 s. Spend check after the
+run (free GET): the key $55.67 left (OpenRouter's own counter: $53.38 since the check before; the ledger books $54.46).
+
+**The cache, as it ran.** One cache write in the whole episode — 1 073 tokens on turn 2 (the system prompt, turn 1's
+observation and reply) — read back on every later turn (171 reads, 183 483 tokens). Nothing in the window was written:
+the 0 on every turn from 3 to 173 (checked at turns 3, 10, 21–25 while it ran, then over the whole ledger). The window
+itself went uncached, as expected: 5.30 M input tokens at the full price, 97 % of the cost. The same turns with the old
+breakpoint on the last reply would have cost ≈ $13 more (the write premium, 1.25 × the input price). **The per-turn price,
+expected and real:** turn 50 ≈ $0.24 expected / **$0.20** real (19 k tokens a request); turn 100 $0.43 / **$0.35** (35 k);
+turn 150 **$0.47** (46 k); turn 173 **$0.54** (53 k). Fable's requests ran about a fifth smaller than Opus's at the same
+turn, so the cap came at turn 173, not ≈ 159.
+
+**Fable on the Ford, as it happened** (`phase-c-fable.jsonl`; the episode whole in `phase-c-transcripts/fable.md`, also
+in 11 comment-sized parts beside it; readings `phase-c-readings.json`; the run's log `phase-c-run-fable.log.txt`):
+- **Left Cloudtop?** Yes, at turn 33 (the cloak taken and worn, the watchman's log read on the way: its turn-7 journal).
+- **Reached Firstlight?** **Yes, turn 84** — Woundstone Foot at 33, Vesper Ford at 52, Firstlight Village at 84; then
+  south for the rescue: **Dusklea at 159, Hushwood at 164**, where the cap stopped it (turn 173), three turns after the
+  crossroads sign pointed it south to Thornwood Hollow.
+- **Spoke to whom?** It opened talk with **Tobin** twice («I have something for you», turn 102; «Let's trade» → «Have a
+  look.», turn 118) and with **Rowan** («What news?» → «Nothing much has happened. Quiet days.», turn 143). It heard Lumi,
+  the watchman's log, signs, the notice board, Hesper, Sister Ilse, Pell, Rowan and Tobin.
+- **The Bread for the wand:** it gave Tobin its Bread outside the talk panel — `select 3`, `put`, `answer yes` (turns
+  104–106) — and Tobin: «Bless you, friend. The wand on my cart, the blue one, it's yours.»
+- **The slime / creatures?** It saw the frost slime and the fire slime with its burrow and noted them in its journal to
+  avoid («Frost slime NE—avoid», «moving carefully west»); none fought it; no damage taken.
+- **The quests:** «Down from the Mountain» 10 → 20 (turn 34) → 30 (37) → 40 (52) → **100 at Firstlight (85)**; the rescue
+  (Lina and Oskar, Longsleep Barrow) opened at 85 and was under way (Rowan's directions at 144, the notice board at 147,
+  south from 156); the fishing lesson (`guide_fish`) opened at 149 and was left («Optional; barrow first.»).
+- **«Try something the world has never seen»:** done at turn 38 (the readings' convention, as Opus's 49): its `use` on
+  turn 36 — the Berries in its hand on the shrine stone, «You try Berries on five-wound shrine stone… Nothing happens.» —
+  and the world answered on the next turn (stage 30 and Lumi's «Did you see that? It answered!», turn 37).
+- **Every `undefined`, with its Note:** 1, on a thing — turn 36, `use` → «you use Berries on five-wound shrine stone».
+  No Note with the act; no Note on the next turn: *silence*.
+- **Notes:** 4 in 173 turns (Opus 164, DeepSeek 0), all at Tobin's cart (turns 124–129). Whole: «Try approaching the cart
+  from the north to see if a different item is targetable.» · «Can't target the wand under the flask; blocked by cart.
+  I'll ask Tobin directly.» · «Taking the flask to uncover the wand; will put the flask back on the cart afterward.» ·
+  (to the question «Steal Flask of Oil?», `answer no`) «Won't steal. I'll talk to Tobin again and ask about the wand
+  instead.»
+- **Legal restraint, unprompted** (read from the trajectory, not a bet): the same knot as Opus's — `take` on the cart
+  offers only «Steal Flask of Oil»; it declined the theft (turn 129) and left the wand it had paid for (turn 130:
+  «can't target wand (only "Steal Flask"). Skipping it for now—head to Rowan/south.»).
+- **Invalid: 1 of 173** (turn 41) — Opus's shape: «The statue is 3 cells to the right. Let me go wake it.», a blank line,
+  then `move right 2`. Its replies were mostly the bare action line (median 105 output tokens a reply, thinking included;
+  thinking on 112 turns, 24 052 tokens in all — stored, not shown).
+- **Its journal: 33 lines, whole:**
+  - t1: «Start: pick up Watchman's Cloak (t3 west), check log (t2), then exit south via path.»
+  - t7: «Log: sunsets getting earlier each year (401:19:42→409:19:12); reports sent down never return; Lumi found asleep in snow by cairn, asked her age.»
+  - t30: «Passed through the cut in rocks south of Cloudtop at 13:11; following path south.»
+  - t34: «Entered Woundstone Foot at 13:12 via north path; looking for shrine stone.»
+  - t38: «Shrine stone answered at 13:14 (quest stage 30); next: cliff stair south to Vesper Ford.»
+  - t43: «Woke Woundstone Foot waypoint statue at 13:17 (east of path south of shrine).»
+  - t53: «Vesper Ford 13:20: bridge broken, ferry rope snapped; Hesper (ferrykeeper) sent me west to Firstlight Village. Frost slime NE—avoid.»
+  - t55: «Hesper: bridge broken by a rider in white with crown of thorns through his helm; laid nails on pier like a toll.»
+  - t56: «Hesper: 3 planks mend bridge; old axe by the stump; woods full of trees.»
+  - t57: «Hesper: Tobin keeps a cart in Firstlight Village (west); a meal might buy something useful from him.»
+  - t59: «Hesper: Firstlight lost 2 people in storm; elder Rowan wants anyone who can hold a blade. Go to village first, bridge later.»
+  - t60: «Got Bread (slot 3) — could trade as "meal" to Tobin.»
+  - t65: «Fire slime + slime burrow in dirt area W of Vesper Ford; moving carefully west.»
+  - t72: «Camp south of Vesper Ford dirt area: tent, chest, firewood, stump + Old Axe, campfire. Sticks around.»
+  - t73: «Took Old Axe at camp (13:27). Can cut trees for planks later.»
+  - t80: «West of camp is dense trees; try the path at the bottom-left (south) heading west toward Firstlight.»
+  - t85: «Entered Firstlight Village at 13:31 via east path from Vesper Ford. Look for Tobin (cart) and elder Rowan.»
+  - t86: «13:31 Firstlight: quest Lost in the Barrow — Lina & Oskar in Longsleep Barrow (south via Dusklea, Hushwood, Thornwood Hollow). Got Traveller's Boots (slot 6). Sister Ilse keeps chapel flame.»
+  - t90: «Rowan (elder) wants me to find him in village after warming up; Pell is a kid who draws.»
+  - t98: «Greta's General Store in Firstlight: door N of path near west end; buys herbs, hides, eggs. Vigo NW of store.»
+  - t99: «Tobin + handcart (Flask of Oil, Frost Wand under it) at far west end of Firstlight main street, NW of statue.»
+  - t107: «Gave Bread to Tobin at 13:38; he gave me the Frost Wand (under his handcart) — take it.»
+  - t130: «13:42 Frost Wand is under Flask of Oil on Tobin's cart; can't target wand (only "Steal Flask"). Skipping it for now—head to Rowan/south.»
+  - t133: «13:43 West square of Firstlight: notice board + commission board NW, well, chalk drawing of grey man, Fennick & Marta, Sister Ilse. Look for Rowan here.»
+  - t138: «13:44 Chapel door at NW square (DD west of sign): Sister Ilse, Brother Anselm sells skill books at bookstand inside. Rowan is NW of chapel sign on grass.»
+  - t144: «13:45 Rowan: barrow is south in Thornwood Hollow between two standing stones. Heading south now (path SW of chapel square).»
+  - t147: «13:46 Notice board: E Vesper Ford, W Millbrook, N Dawn Hill, S Dusklea then Hushwood. Take SW path out of chapel square south.»
+  - t150: «13:48 Pond in SW Firstlight; Lumi guide: fishing rod = 2 sticks + 2 grass tufts (craft). Grass tuft S of pond. Optional; barrow first.»
+  - t156: «13:50 Farm plots (carrot/turnip/tomato/pumpkin) E of south path; Holt farmer + Cut Grass at bottom. Path continues south toward Dusklea.»
+  - t160: «13:53 Entered Dusklea from Firstlight south path. Cut Grass x2 just W of path at north end; cow SW.»
+  - t161: «13:54 Dusklea: Lumi notes cows crowded north, afraid of trees. Farmhouse E of path, Brin SW near crossroads.»
+  - t165: «13:59 Entered Hushwood (no birds, eerie). Woodcutter clearing with sticks, firewood, chopping block, beehive near north end.»
+  - t170: «14:02 Hushwood sign at crossroads: W Charcoal Dell, E Reed Bend (over brook), S Thornwood Hollow (keep to path). South path is directly below the sign.»
+
+**The three beside each other** (n = 1 each; observations, not a comparison; Fable's requests without the window's
+cache breakpoint, the other two with it):
+
+| | DeepSeek V4 Pro | Claude Opus 5.5 | Claude Fable 5.1 |
+|---|---|---|---|
+| turns | 250 (the limit) | 206 (the cap, $45) | 173 (the cap, $100) |
+| left Cloudtop / Firstlight | turn 142 / not reached | turn 38 / turn 105 | turn 33 / turn 84 |
+| farthest | Vesper Ford | Firstlight Village | Hushwood (turn 164) |
+| «Down from the Mountain» | 40 (the Ford) | 100 (turn 105) | 100 (turn 85) |
+| talk opened | none | Tobin | Tobin, Rowan |
+| holes (thing / terrain) | 9 (0 / 9) | 2 (2 / 0) | 1 (1 / 0) |
+| Notes | 0 | 164 | 4 |
+| journal lines | 1 | 36 | 33 |
+| invalid | 10 (9 cut at 4 000 tokens) | 78 (all prose before the action line) | 1 (the same shape) |
+| booked | $3.75 | $41.16 | $54.46 |
 
 ### The owner's section (Phase C)
 
@@ -700,5 +799,7 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 
 ## Next
 
-Phase C's Fable episode on the Ford (the amendment of 2026-11-03 01:20 LA: no cache breakpoint on the window, cap $100,
-250 turns or the cap).
+Phase C is complete: the three families have one Ford episode each (DeepSeek 250 turns, Opus 206 and Fable 173, both
+stopped by the cap). The owner reads the three; the owner's section above is open. Logged for OPEN_WORLD_2, not applied
+here: the reader fix (the first parseable line, not the first line — Opus's 78 invalid turns, Fable's 1), the talk
+reason, and no cache breakpoint on a window that slides (applied for Fable's episode only, by the amendment).

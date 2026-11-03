@@ -1,0 +1,6 @@
+spend check before fable: OpenRouter credit $109.05 left; Phase C $44.9192 of $100; fable's estimate for 250 turns $44.85 (no cache $46.98; 68 output tokens a reply, Phase B's median)
+phase-c subject fable e1 t82: HTTP 503 — asked again in 10 s
+STOP: the anthropic cap of $100 would be passed (spent $99.3834)
+fable: 173 turns, stages {"guide_fish":10,"rescue":10,"descent":100}, 1 holes, 1 invalid, 33 journal lines, stopped: run: not sent (the anthropic cap of $100 would be passed (spent $99.3834)); Phase C spent $99.3834
+STOP: run: not sent (the anthropic cap of $100 would be passed (spent $99.3834))
+Phase C calls 347 · booked $99.3834

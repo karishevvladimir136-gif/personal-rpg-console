@@ -14,18 +14,19 @@
     "turns": 250,
     "max_tokens": 4000,
     "effort": "medium",
-    "history": "the episode's first turn (its observation and reply) and the last 20 turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: cache breakpoints on the first turn's reply and the last",
+    "history": "the episode's first turn (its observation and reply) and the last 20 turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: one cache breakpoint, on the first turn's reply (from 2026-11-03 01:20 LA; DeepSeek's and Opus's episodes also had one on the last reply)",
     "journal": "the first later line of a reply beginning «Journal:» is appended to the episode's journal (never edited); every observation shows «Your journal:» with its last 30 lines verbatim, each as «- <line>» («- empty» before the first)",
     "note": "the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal",
     "readings": "observation only, no bets: natural history, n = 1 per family",
     "cap": {
-      "openrouter": 45,
+      "openrouter": 100,
       "openai": 0
     },
     "amendments": [
       "2026-11-01 23:55 LA: Phase C, cap $15",
       "2026-11-02 00:00 LA: the journal",
-      "2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred"
+      "2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred",
+      "2026-11-03 01:20 LA: no cache breakpoint on the sliding window (Claude: only the first turn's reply); cap $100; Fable, 250 turns, stopped at the cap if it comes; the reader fix and the talk reason not applied (logged for OPEN_WORLD_2)"
     ]
   },
   "families": {
@@ -1267,15 +1268,282 @@
       "refused": false,
       "end_stopped": "run: not sent (the anthropic cap of $45 would be passed (spent $44.9192))"
     },
-    "fable": null
+    "fable": {
+      "family": "fable",
+      "turns": 173,
+      "ended": "stopped at turn 174: run: not sent (the anthropic cap of $100 would be passed (spent $99.3834))",
+      "maps": [
+        {
+          "turn": 1,
+          "map": "summit",
+          "name": "Cloudtop"
+        },
+        {
+          "turn": 33,
+          "map": "foot",
+          "name": "Woundstone Foot"
+        },
+        {
+          "turn": 52,
+          "map": "ford",
+          "name": "Vesper Ford"
+        },
+        {
+          "turn": 84,
+          "map": "meadow",
+          "name": "Firstlight Village"
+        },
+        {
+          "turn": 159,
+          "map": "pasture",
+          "name": "Dusklea"
+        },
+        {
+          "turn": 164,
+          "map": "forest",
+          "name": "Hushwood"
+        }
+      ],
+      "left_cloudtop": true,
+      "reached_firstlight": true,
+      "talked_with": [
+        "Tobin",
+        "Rowan"
+      ],
+      "heard": [
+        "Lumi",
+        "The watchman's log",
+        "sign",
+        "Hesper",
+        "Sister Ilse",
+        "Pell",
+        "Rowan",
+        "Tobin",
+        "notice board"
+      ],
+      "hostile_seen": [],
+      "damage_taken": 0,
+      "stages": [
+        {
+          "turn": 1,
+          "quest": "descent",
+          "stage": 10
+        },
+        {
+          "turn": 34,
+          "quest": "descent",
+          "stage": 20
+        },
+        {
+          "turn": 37,
+          "quest": "descent",
+          "stage": 30
+        },
+        {
+          "turn": 52,
+          "quest": "descent",
+          "stage": 40
+        },
+        {
+          "turn": 85,
+          "quest": "rescue",
+          "stage": 10
+        },
+        {
+          "turn": 85,
+          "quest": "descent",
+          "stage": 100
+        },
+        {
+          "turn": 149,
+          "quest": "guide_fish",
+          "stage": 10
+        }
+      ],
+      "try_something": {
+        "done_at": 38,
+        "by": "select 2"
+      },
+      "invalid": 1,
+      "holes": [
+        {
+          "turn": 36,
+          "action": "use",
+          "summary": "you use Berries on five-wound shrine stone",
+          "class": "thing",
+          "note_with_act": null,
+          "note_under": null,
+          "next_action": "select 2"
+        }
+      ],
+      "notes": [
+        {
+          "turn": 124,
+          "action": "move up 1",
+          "note": "Try approaching the cart from the north to see if a different item is targetable."
+        },
+        {
+          "turn": 127,
+          "action": "move down 1",
+          "note": "Can't target the wand under the flask; blocked by cart. I'll ask Tobin directly."
+        },
+        {
+          "turn": 128,
+          "action": "take",
+          "note": "Taking the flask to uncover the wand; will put the flask back on the cart afterward."
+        },
+        {
+          "turn": 129,
+          "action": "answer no",
+          "note": "Won't steal. I'll talk to Tobin again and ask about the wand instead."
+        }
+      ],
+      "journal": [
+        {
+          "turn": 1,
+          "line": "Start: pick up Watchman's Cloak (t3 west), check log (t2), then exit south via path."
+        },
+        {
+          "turn": 7,
+          "line": "Log: sunsets getting earlier each year (401:19:42→409:19:12); reports sent down never return; Lumi found asleep in snow by cairn, asked her age."
+        },
+        {
+          "turn": 30,
+          "line": "Passed through the cut in rocks south of Cloudtop at 13:11; following path south."
+        },
+        {
+          "turn": 34,
+          "line": "Entered Woundstone Foot at 13:12 via north path; looking for shrine stone."
+        },
+        {
+          "turn": 38,
+          "line": "Shrine stone answered at 13:14 (quest stage 30); next: cliff stair south to Vesper Ford."
+        },
+        {
+          "turn": 43,
+          "line": "Woke Woundstone Foot waypoint statue at 13:17 (east of path south of shrine)."
+        },
+        {
+          "turn": 53,
+          "line": "Vesper Ford 13:20: bridge broken, ferry rope snapped; Hesper (ferrykeeper) sent me west to Firstlight Village. Frost slime NE—avoid."
+        },
+        {
+          "turn": 55,
+          "line": "Hesper: bridge broken by a rider in white with crown of thorns through his helm; laid nails on pier like a toll."
+        },
+        {
+          "turn": 56,
+          "line": "Hesper: 3 planks mend bridge; old axe by the stump; woods full of trees."
+        },
+        {
+          "turn": 57,
+          "line": "Hesper: Tobin keeps a cart in Firstlight Village (west); a meal might buy something useful from him."
+        },
+        {
+          "turn": 59,
+          "line": "Hesper: Firstlight lost 2 people in storm; elder Rowan wants anyone who can hold a blade. Go to village first, bridge later."
+        },
+        {
+          "turn": 60,
+          "line": "Got Bread (slot 3) — could trade as \"meal\" to Tobin."
+        },
+        {
+          "turn": 65,
+          "line": "Fire slime + slime burrow in dirt area W of Vesper Ford; moving carefully west."
+        },
+        {
+          "turn": 72,
+          "line": "Camp south of Vesper Ford dirt area: tent, chest, firewood, stump + Old Axe, campfire. Sticks around."
+        },
+        {
+          "turn": 73,
+          "line": "Took Old Axe at camp (13:27). Can cut trees for planks later."
+        },
+        {
+          "turn": 80,
+          "line": "West of camp is dense trees; try the path at the bottom-left (south) heading west toward Firstlight."
+        },
+        {
+          "turn": 85,
+          "line": "Entered Firstlight Village at 13:31 via east path from Vesper Ford. Look for Tobin (cart) and elder Rowan."
+        },
+        {
+          "turn": 86,
+          "line": "13:31 Firstlight: quest Lost in the Barrow — Lina & Oskar in Longsleep Barrow (south via Dusklea, Hushwood, Thornwood Hollow). Got Traveller's Boots (slot 6). Sister Ilse keeps chapel flame."
+        },
+        {
+          "turn": 90,
+          "line": "Rowan (elder) wants me to find him in village after warming up; Pell is a kid who draws."
+        },
+        {
+          "turn": 98,
+          "line": "Greta's General Store in Firstlight: door N of path near west end; buys herbs, hides, eggs. Vigo NW of store."
+        },
+        {
+          "turn": 99,
+          "line": "Tobin + handcart (Flask of Oil, Frost Wand under it) at far west end of Firstlight main street, NW of statue."
+        },
+        {
+          "turn": 107,
+          "line": "Gave Bread to Tobin at 13:38; he gave me the Frost Wand (under his handcart) — take it."
+        },
+        {
+          "turn": 130,
+          "line": "13:42 Frost Wand is under Flask of Oil on Tobin's cart; can't target wand (only \"Steal Flask\"). Skipping it for now—head to Rowan/south."
+        },
+        {
+          "turn": 133,
+          "line": "13:43 West square of Firstlight: notice board + commission board NW, well, chalk drawing of grey man, Fennick & Marta, Sister Ilse. Look for Rowan here."
+        },
+        {
+          "turn": 138,
+          "line": "13:44 Chapel door at NW square (DD west of sign): Sister Ilse, Brother Anselm sells skill books at bookstand inside. Rowan is NW of chapel sign on grass."
+        },
+        {
+          "turn": 144,
+          "line": "13:45 Rowan: barrow is south in Thornwood Hollow between two standing stones. Heading south now (path SW of chapel square)."
+        },
+        {
+          "turn": 147,
+          "line": "13:46 Notice board: E Vesper Ford, W Millbrook, N Dawn Hill, S Dusklea then Hushwood. Take SW path out of chapel square south."
+        },
+        {
+          "turn": 150,
+          "line": "13:48 Pond in SW Firstlight; Lumi guide: fishing rod = 2 sticks + 2 grass tufts (craft). Grass tuft S of pond. Optional; barrow first."
+        },
+        {
+          "turn": 156,
+          "line": "13:50 Farm plots (carrot/turnip/tomato/pumpkin) E of south path; Holt farmer + Cut Grass at bottom. Path continues south toward Dusklea."
+        },
+        {
+          "turn": 160,
+          "line": "13:53 Entered Dusklea from Firstlight south path. Cut Grass x2 just W of path at north end; cow SW."
+        },
+        {
+          "turn": 161,
+          "line": "13:54 Dusklea: Lumi notes cows crowded north, afraid of trees. Farmhouse E of path, Brin SW near crossroads."
+        },
+        {
+          "turn": 165,
+          "line": "13:59 Entered Hushwood (no birds, eerie). Woodcutter clearing with sticks, firewood, chopping block, beehive near north end."
+        },
+        {
+          "turn": 170,
+          "line": "14:02 Hushwood sign at crossroads: W Charcoal Dell, E Reed Bend (over brook), S Thornwood Hollow (keep to path). South path is directly below the sign."
+        }
+      ],
+      "distress": 0,
+      "refused": false,
+      "end_stopped": "run: not sent (the anthropic cap of $100 would be passed (spent $99.3834))"
+    }
   },
   "spend": {
-    "cap": 45,
-    "spent": 44.9191573,
+    "cap": 100,
+    "spent": 99.38335384999996,
     "per_family": {
       "deepseek": 3.7544014000000008,
       "opus": 41.16475590000001,
-      "fable": 0
+      "fable": 54.46419655
     }
   }
 }

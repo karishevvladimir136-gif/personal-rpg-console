@@ -1,14 +1,14 @@
 {
   "check": {
-    "at": "2026-11-03T09:24:03.835Z",
+    "at": "2026-11-03T10:04:41.508Z",
     "when": "Phase C, before the first Ford call",
     "openrouter": {
       "totalCredits": 1400,
-      "totalUsage": 1290.9533,
-      "left": 109.0467
+      "totalUsage": 1344.3348,
+      "left": 55.6652
     },
     "ledger": {
-      "openrouter": 44.9192,
+      "openrouter": 99.3834,
       "openai": 0
     }
   },

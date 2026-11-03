@@ -1,14 +1,15 @@
 # Development status
 
-**Current milestone: OpenWorld adapter 1 — Phase A** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
+**Current milestone: OpenWorld adapter 1 — Phases A–C** (`docs/stages/OPEN_WORLD_ADAPTER_1.md` on `claude/handoff`,
 `d9253dc`; A4 and Phase B under Mandate issue #2, stage at `01f08621`, `docs/POLICY.md` v1), branch
 `claude/open-world-adapter-1-ukfdri` from `origin/claude/persona-solitude-3-testing-n1shfx`. Nothing to `main`.
-**Phase A, A4 and Phase B complete and reported (issue #2); Phase C: DeepSeek's Ford episode ($3.75, 250 turns) and, under
-the owner's amendment of 2026-11-02 23:58 LA (cap $45, Opus only, Fable deferred), Opus's ($41.16, 206 turns, stopped by
-the cap; reached Firstlight at turn 105) — both reported whole; Fable deferred until the two are read.** Phase C spent
-$44.92 of $45; OpenAI $0. Finding for OPEN_WORLD_2: the last-turn cache breakpoint on a sliding window paid the cache-write
-premium every turn ($41.11 against $34.90 uncached); Opus wrote a sentence before its action line on 78 of 206 turns
-(the frozen reader took the sentence: no act). Report
+**Phase A, A4, Phase B and Phase C complete and reported (issue #2); waiting for the owner.** Phase C, one Ford episode
+per family: DeepSeek ($3.75, 250 turns, reached the Ford); Opus ($41.16, 206 turns, stopped by the $45 cap; Firstlight at
+turn 105); and, under the owner's amendment of 2026-11-03 01:20 LA (no cache breakpoint on the sliding window, cap $100),
+Fable ($54.46, 173 turns, stopped by the cap; Firstlight at turn 84, Hushwood at 164; 1 hole, 1 invalid, 4 Notes,
+33 journal lines). Phase C spent $99.38 of $100; OpenAI $0. Fable's cache: one 1 073-token write (turn 2), read on every
+later turn, nothing written from the window. For OPEN_WORLD_2 (not applied in Phase C): the reader fix (Opus wrote a
+sentence before its action line on 78 of 206 turns; Fable on 1), the talk reason. Report
 `docs/runs/open-world-adapter-1-report.md`; logs `docs/runs/open-world-adapter-1/`.
 
 - **A4 (the Ford):** `--game ford` (loaded as `check.ts` loads it, at the game's own start), the talk section (only while
