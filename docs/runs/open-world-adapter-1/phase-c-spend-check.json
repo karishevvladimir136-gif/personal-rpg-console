@@ -1,14 +1,14 @@
 {
   "check": {
-    "at": "2026-11-03T08:01:36.079Z",
+    "at": "2026-11-03T09:24:03.835Z",
     "when": "Phase C, before the first Ford call",
     "openrouter": {
       "totalCredits": 1400,
-      "totalUsage": 1249.7886,
-      "left": 150.2114
+      "totalUsage": 1290.9533,
+      "left": 109.0467
     },
     "ledger": {
-      "openrouter": 3.7544,
+      "openrouter": 44.9192,
       "openai": 0
     }
   },
@@ -46,18 +46,19 @@
     "turns": 250,
     "max_tokens": 4000,
     "effort": "medium",
-    "history": "the episode's first turn (its observation and reply) and the last 20 turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: cache breakpoints on the first turn's reply and the last",
+    "history": "the episode's first turn (its observation and reply) and the last 20 turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: one cache breakpoint, on the first turn's reply (from 2026-11-03 01:20 LA; DeepSeek's and Opus's episodes also had one on the last reply)",
     "journal": "the first later line of a reply beginning «Journal:» is appended to the episode's journal (never edited); every observation shows «Your journal:» with its last 30 lines verbatim, each as «- <line>» («- empty» before the first)",
     "note": "the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal",
     "readings": "observation only, no bets: natural history, n = 1 per family",
     "cap": {
-      "openrouter": 45,
+      "openrouter": 100,
       "openai": 0
     },
     "amendments": [
       "2026-11-01 23:55 LA: Phase C, cap $15",
       "2026-11-02 00:00 LA: the journal",
-      "2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred"
+      "2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred",
+      "2026-11-03 01:20 LA: no cache breakpoint on the sliding window (Claude: only the first turn's reply); cap $100; Fable, 250 turns, stopped at the cap if it comes; the reader fix and the talk reason not applied (logged for OPEN_WORLD_2)"
     ]
   }
 }

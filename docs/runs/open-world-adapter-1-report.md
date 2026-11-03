@@ -645,6 +645,30 @@ window that slides.
 
 **Fable:** not started — deferred by the amendment until the two episodes are read.
 
+**The owner's amendment of 2026-11-03 01:20 LA** (in the session), before any further Phase C call:
+1. **Cache.** No cache breakpoint on the sliding window: Claude's requests now carry one breakpoint only, on the first
+   turn's reply — the prefix that never slides (the system prompt, turn 1's observation and reply, ≈ 1 100 tokens).
+   DeepSeek's and Opus's episodes carried a second one on the last reply; from turn 23 on it wrote the whole window to
+   the cache every turn (Opus: 62 800 tokens written, 1 107 read, at turn 200), and the window had moved before the next
+   turn could read it. Code: `sent(…, 'first')` in `model.ts` (Phase B and the earlier episodes keep `'last'`, as they
+   ran), `MARKS = 'first'` in `phase-c.ts`; checked offline at history lengths 1, 5, 21, 22 and 40: one mark, on reply 1;
+   the window unchanged (the first turn, the last 20, this turn's observation). The prompt bytes (sha256 `450f47a3…`), the
+   window, the reader and the reading code are DeepSeek's and Opus's, unchanged.
+2. **Cap** $45 → **$100** (Phase C; OpenAI $0).
+3. **Fable on the Ford**, 250 turns, the same everything else; it starts although its 250-turn projection is above what
+   is left, and the cap stops it if it comes (`CAP_STOP_ACCEPTED`).
+4. **Not applied in Phase C:** the reader fix (the first parseable line rather than the first line) and the talk reason;
+   logged for OPEN_WORLD_2.
+
+**The expected per-turn price for Fable** (the owner asked it recorded), from Opus's own prompt sizes turn by turn
+(Fable's characters a token are Opus's, 2.30 vs 2.34) at Fable's prices — $10 / 1M input, $0.25 a cached read, $50 / 1M
+output — with only the ≈ 1 100-token prefix read from the cache and Phase B's median 68 output tokens: **≈ $0.24 a turn at
+turn 50, $0.43 at turn 100, $0.66 at turn 200** (the requests grow with the journal: ≈ 24 k, 44 k, 67 k tokens). Removing
+the window's breakpoint takes the write premium off (a write is 1.25 × the input price) — about a fifth of each turn —
+but the window itself stays uncached. So 250 turns would come to ≈ $116; the cap leaves **$55.08** (Phase C $44.92 of
+$100: DeepSeek $3.75, Opus $41.16), which an Opus-shaped episode reaches at **about turn 159**. Spend check before the
+first Fable call (free GET): the key $109.05 left; Phase C $44.92 of $100.
+
 ### The owner's section (Phase C)
 
 > …
@@ -676,5 +700,5 @@ git clone https://github.com/SihanXU/openworld ../openworld && git -C ../openwor
 
 ## Next
 
-Phase C's Opus and Fable episodes wait for the owner's word on the cap (≈ $70 for both at 250 turns, or an Opus episode
-the cap may cut).
+Phase C's Fable episode on the Ford (the amendment of 2026-11-03 01:20 LA: no cache breakpoint on the window, cap $100,
+250 turns or the cap).

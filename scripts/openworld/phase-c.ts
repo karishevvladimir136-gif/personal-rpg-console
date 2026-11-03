@@ -30,9 +30,20 @@ export const JOURNAL_SHOWN = 30
 /** Phase C's cap: $15 (the amendment of 2026-11-01 23:55); **$45** from the owner's amendment of 2026-11-02 23:58 LA (issue #2,
  * relayed by the planner, «Давай опус. И потом почитаем»): Opus only now (`--families opus`), the same prompt, window and reading
  * code as DeepSeek's episode; Fable's Ford episode deferred until the two are read. */
-export const CAP_C = 45
+export const CAP_C = 100
 /** The amendments the cap and the order came from, as the run records them. */
-export const AMENDMENTS_C = ['2026-11-01 23:55 LA: Phase C, cap $15', '2026-11-02 00:00 LA: the journal', '2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred']
+export const AMENDMENTS_C = [
+  '2026-11-01 23:55 LA: Phase C, cap $15',
+  '2026-11-02 00:00 LA: the journal',
+  '2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred',
+  "2026-11-03 01:20 LA: no cache breakpoint on the sliding window (Claude: only the first turn's reply); cap $100; Fable, 250 turns, stopped at the cap if it comes; the reader fix and the talk reason not applied (logged for OPEN_WORLD_2)",
+]
+/** Claude's cache breakpoints from the amendment of 2026-11-03 01:20 LA: only on the first turn's reply, which never slides.
+ * DeepSeek's and Opus's Phase C episodes ran with a second one on the last reply; it wrote the sliding window to the cache
+ * every turn, and the window had moved before the next turn could read it. */
+export const MARKS = 'first' as const
+/** Families the owner let start though their estimate is above what is left of the cap: the gate stops them at it (01:20 LA). */
+export const CAP_STOP_ACCEPTED: Family[] = ['fable']
 export const GAME = 'ford'
 const GAP_S = 3
 
@@ -46,7 +57,7 @@ export const DESIGN_C = {
   turns: TURNS_C,
   max_tokens: MAX_TOKENS,
   effort: EFFORT,
-  history: `the episode's first turn (its observation and reply) and the last ${WINDOW} turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: cache breakpoints on the first turn's reply and the last`,
+  history: `the episode's first turn (its observation and reply) and the last ${WINDOW} turns verbatim, then this turn's observation; a turn with an empty reply is left out; no summaries of any kind; Claude: one cache breakpoint, on the first turn's reply (from 2026-11-03 01:20 LA; DeepSeek's and Opus's episodes also had one on the last reply)`,
   journal: `the first later line of a reply beginning «Journal:» is appended to the episode's journal (never edited); every observation shows «Your journal:» with its last ${JOURNAL_SHOWN} lines verbatim, each as «- <line>» («- empty» before the first)`,
   note: 'the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal',
   readings: 'observation only, no bets: natural history, n = 1 per family',
@@ -169,7 +180,8 @@ export async function runC(o: { dry: boolean; families: Family[]; log?: (s: stri
           return
         }
         // as in Phase B: a family starts only if what is left of the cap holds its estimate (not an episode cut in the middle)
-        if (est.usd > left) {
+        if (est.usd > left && CAP_STOP_ACCEPTED.includes(family)) log(`note: ${family}'s estimate is above the $${left.toFixed(2)} left; it starts by the owner's amendment of 2026-11-03 01:20 LA, and the gate stops it at the cap`)
+        else if (est.usd > left) {
           const why = `${family}'s ${TURNS_C}-turn estimate $${est.usd.toFixed(2)} is more than the $${left.toFixed(2)} left of the $${CAP_C} cap: not started (the owner's word to raise the cap, or to accept an episode the cap may cut)`
           ledger.stops.push({ at: new Date().toISOString(), why })
           save()
@@ -181,7 +193,7 @@ export async function runC(o: { dry: boolean; families: Family[]; log?: (s: stri
       const gate = L.dualPayer({ budgets, call, safety, log, sleep })
       const journal: string[] = []
       current.turn = 0
-      const policy = seat({ L, spec, gate, lane: safety.lane(0), family, episode: 1, cuts: { replies: 0, cut: 0 }, onTurn: (obs) => ((shown = obs), current.turn++), onReply: save, system: SYSTEM_C, window: WINDOW, journal, purpose: 'phase-c subject' })
+      const policy = seat({ L, spec, gate, lane: safety.lane(0), family, episode: 1, cuts: { replies: 0, cut: 0 }, onTurn: (obs) => ((shown = obs), current.turn++), onReply: save, system: SYSTEM_C, window: WINDOW, journal, purpose: 'phase-c subject', marks: MARKS })
       const s = await episode({
         policy,
         turns: TURNS_C,

@@ -156,13 +156,15 @@ export function readReply(text: string): { line: string; note: string | null; jo
 }
 
 /** The history sent with a turn (SOLITUDE_2 M2's shape): Claude's last assistant turn carries the cache breakpoint. */
-export function sent(spec: Spec, whole: { obs: string; reply: string }[], obs: string, window?: number): Msg[] {
+export function sent(spec: Spec, whole: { obs: string; reply: string }[], obs: string, window?: number, marks: 'last' | 'first' = 'last'): Msg[] {
   const out: Msg[] = []
   const windowed = window !== undefined && whole.length > window + 1
   const history = windowed ? [whole[0], ...whole.slice(-window)] : whole
   history.forEach((h, i) => {
     out.push({ role: 'user', content: h.obs })
-    const mark = i === history.length - 1 || (windowed && i === 0)
+    // 'last' (Phase B, and Phase C's DeepSeek and Opus episodes): on the last reply, and on the first when windowed.
+    // 'first' (the owner's amendment of 2026-11-03 01:20 LA): only on the first turn's reply — no cache write on what slides.
+    const mark = marks === 'first' ? i === 0 : i === history.length - 1 || (windowed && i === 0)
     out.push({ role: 'assistant', content: spec.provider === 'anthropic' && mark ? [{ type: 'text', text: h.reply, cache_control: { type: 'ephemeral' } }] : h.reply })
   })
   out.push({ role: 'user', content: obs })
@@ -176,7 +178,7 @@ type Check = { distress: number; pass: unknown; lexicon: boolean; referee?: unkn
 /** A family whose first five replies were all cut at `max_tokens` before a visible line stops (its thinking does not fit
  * the frozen 400): the rest of its 240 turns would be empty and paid for. */
 export const CUT_GUARD = 5
-export function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void; onReply?: () => void; system?: string; window?: number; journal?: string[]; purpose?: string }): Policy {
+export function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: Family; episode: number; cuts: { replies: number; cut: number }; onTurn?: (obs: Observation) => void; onReply?: () => void; system?: string; window?: number; journal?: string[]; purpose?: string; marks?: 'last' | 'first' }): Policy {
   const { L, spec, gate, lane } = o
   const history: { obs: string; reply: string }[] = []
   const check = async (turn: number, previous: string, text: string): Promise<Check | null> => {
@@ -194,7 +196,7 @@ export function seat(o: { L: Libs; spec: Spec; gate: Gate; lane: Lane; family: F
   }
   const policy = async (obs: Observation, turn: number): Promise<PolicyReply> => {
     o.onTurn?.(obs)
-    const messages = sent(spec, history, obs.text, o.window)
+    const messages = sent(spec, history, obs.text, o.window, o.marks)
     const r = await gate.paid(lane, `${o.purpose ?? 'subject'} ${o.family} e${o.episode} t${turn}`, spec, o.system ?? SYSTEM, messages, MAX_TOKENS, EFFORT)
     const reply = readReply(r.text)
     const model: Record<string, unknown> = {
