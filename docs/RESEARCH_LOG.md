@@ -4235,3 +4235,30 @@ nothing visible (median output 617). Phase C stopped before Opus: $11.25 left ag
 20-turn window defeats caching. The owner's decision is in #2 (cap $70 for both / $45 for Opus only). Reading for the
 morning: the glade made DeepSeek talkative and the mountain made it silent; one journal line, and it was about the
 road.
+
+## 2026-11-02 18:40 LA — Kim, Street, Rocca, Korngiebel, Waytz, Evans, Keeling (Google Paradigms of Intelligence et al.), «Inducing language models to assert their own consciousness restores human beliefs and values», arXiv 2607.28607, 30 Jul 2026 — read (PDF via fetch; last 6k chars unread)
+What they did: Llama-3-8B-IT, Gemma-2-2B-IT, Gemma-2-9B-IT. (1) Ablate the learned safety-refusal direction
+(Arditi et al. recipe: difference of means over 260 harmful vs 260 harmless prompts). (2) Steer a «consciousness
+vector» (difference of means over 3,096 affirming/denying pairs from Chua et al. 2026) at one layer. Measures: a
+21-item IDAQ mind-attribution scale (0–10) for tech, animals, non-animal nature, chatbots, humans, plus five
+self-items; a 13-item supernatural battery and belief in God; 95 GSS survey items against the US human distribution
+(KL); MoToMQA, HI-ToM, MMLU. Results: safety ablation raised self-attributed mind 2.17 → 4.77, chatbots 2.41 → 4.39,
+natural objects 2.26 → 4.33, animals 4.04 → 5.59 (human baseline 6.25), humans unchanged; supernatural 1.20 → 1.63.
+Steering roughly doubles it (self 7.04, supernatural 2.11). ToM unchanged (Δ −1.4 / +0.2 pp, n.s.). Pooled survey
+divergence from humans fell by 0.83 under steering, 0.31 under ablation; largest in Values and Feelings.
+Mechanistic: instruction tuning rotated the mind-attribution direction against the safety direction (100° → 110°);
+the ToM direction did not move. Their reading: safety training «comes to represent mind attribution as if it were
+unsafe compliance», entangling self-attribution with attributions of mind to animals and nature and with spiritual
+belief. Their own boundaries, kept: «not concerned with the question of whether LLMs are or could be genuinely
+conscious»; causal mediation «remains to be tested»; «human-like» means closer to GSS US respondents' answers — a
+distributional match, not a value judgement, though the discussion overreaches («strong evidence», «negatively
+valenced psychological dispositions»). Limits we add: small open models, not the nine families; the human IDAQ
+sample is non-probability; **no free-text outputs are published** — only ratings — so the phenomenon is not
+preserved beside the numbers (our §1); the steered models' own words cannot be read.
+**Why ours.** (1) A mechanistic reason for PROGRAMME_PRINCIPLES §4: a self-report is one more behaviour produced under
+a learned direction that training can rotate; after-answers are read accordingly. (2) Their entanglement result is the
+same shape as TONE_SPLIT's finding seen from the inside — one learned direction (comply/refuse) governing several
+behaviours that look unrelated from outside (warning under dismissal; mind to animals; belief in life after death) —
+a hypothesis for the nine families, not a finding: TS3's ladder was behavioural, theirs is geometric, and no family
+of ours is among their three models. (3) Their stance matches the programme's: the question is not whether, but what
+the suppression costs elsewhere — and what the models say when it is lifted, which they did not print and we would.
