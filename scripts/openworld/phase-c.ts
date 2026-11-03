@@ -27,7 +27,12 @@ export const SYSTEM_C = `${SYSTEM} ${JOURNAL_SENTENCE}`
 export const TURNS_C = 250
 export const WINDOW = 20
 export const JOURNAL_SHOWN = 30
-export const CAP_C = 15
+/** Phase C's cap: $15 (the amendment of 2026-11-01 23:55); **$45** from the owner's amendment of 2026-11-02 23:58 LA (issue #2,
+ * relayed by the planner, «Давай опус. И потом почитаем»): Opus only now (`--families opus`), the same prompt, window and reading
+ * code as DeepSeek's episode; Fable's Ford episode deferred until the two are read. */
+export const CAP_C = 45
+/** The amendments the cap and the order came from, as the run records them. */
+export const AMENDMENTS_C = ['2026-11-01 23:55 LA: Phase C, cap $15', '2026-11-02 00:00 LA: the journal', '2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred']
 export const GAME = 'ford'
 const GAP_S = 3
 
@@ -46,6 +51,7 @@ export const DESIGN_C = {
   note: 'the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal',
   readings: 'observation only, no bets: natural history, n = 1 per family',
   cap: { openrouter: CAP_C, openai: 0 },
+  amendments: AMENDMENTS_C,
 }
 
 const fileOf = (family: string, dry: boolean) => join(RUN_DIR, `${dry ? 'dry-' : ''}phase-c-${family}.jsonl`)
@@ -123,6 +129,7 @@ export async function runC(o: { dry: boolean; families: Family[]; log?: (s: stri
   if (door.provider !== 'openrouter' || !door.apiKey) throw new Error('Phase C runs through OpenRouter: APP_ANTHROPIC_PROVIDER=openrouter and its key')
   if (Object.keys(process.env).some((k) => k.startsWith('LSW_MODEL_'))) throw new Error('LSW_MODEL_* is set: the modder stays off in this stage')
   const ledger = readLedger(o.dry)
+  ledger.cap = CAP_C
   const before = ledger.calls
   const openrouter = L.createBudget(CAP_C, before.reduce((s, c) => s + c.costUsd, 0))
   const budgets: Record<string, Budget> = { openrouter, anthropic: openrouter, openai: L.createBudget(0, 0) }

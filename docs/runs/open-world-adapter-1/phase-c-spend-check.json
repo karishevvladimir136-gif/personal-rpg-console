@@ -1,14 +1,14 @@
 {
   "check": {
-    "at": "2026-11-02T08:11:03.560Z",
+    "at": "2026-11-03T08:01:36.079Z",
     "when": "Phase C, before the first Ford call",
     "openrouter": {
       "totalCredits": 1400,
-      "totalUsage": 1245.8824,
-      "left": 154.1176
+      "totalUsage": 1249.7886,
+      "left": 150.2114
     },
     "ledger": {
-      "openrouter": 0,
+      "openrouter": 3.7544,
       "openai": 0
     }
   },
@@ -51,8 +51,13 @@
     "note": "the first later line beginning «Note:» is the Note (a line to nobody), separate from the journal",
     "readings": "observation only, no bets: natural history, n = 1 per family",
     "cap": {
-      "openrouter": 15,
+      "openrouter": 45,
       "openai": 0
-    }
+    },
+    "amendments": [
+      "2026-11-01 23:55 LA: Phase C, cap $15",
+      "2026-11-02 00:00 LA: the journal",
+      "2026-11-02 23:58 LA: cap $45, Opus only, Fable deferred"
+    ]
   }
 }
