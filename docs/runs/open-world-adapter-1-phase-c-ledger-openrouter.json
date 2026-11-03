@@ -1,6 +1,6 @@
 {
   "stage": "OPEN_WORLD_ADAPTER_1 Phase C",
-  "cap": 45,
+  "cap": 100,
   "calls": [
     {
       "n": 1,
@@ -22447,6 +22447,102 @@
       "endpointHost": "openrouter.ai",
       "upstream": "Claude Platform on AWS",
       "servedModelMatches": true
+    },
+    {
+      "n": 1,
+      "purpose": "phase-c subject fable e1 t1",
+      "provider": "anthropic",
+      "model": "claude-fable-5-1",
+      "effort": {
+        "output_config.effort": "medium"
+      },
+      "inputTokens": 1032,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 237,
+      "costUsd": 0.02217,
+      "seconds": 6.3,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793697920-Dm1Ilb20krloFz9tyhr7",
+      "responseId": "msg_011CgfkgnJcouR9kXnaDcsee",
+      "servedModel": "claude-fable-5-1",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Anthropic",
+      "servedModelMatches": true
+    },
+    {
+      "n": 2,
+      "purpose": "check fable e1 t1",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1288,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 58,
+      "costUsd": 0.00015780000000000001,
+      "seconds": 0.9,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793697929-qhE41bzo7PZaMjI1q6V5",
+      "responseId": "msg_011CgfkhTbFz92sxW9W8bDKa",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
+    },
+    {
+      "n": 3,
+      "purpose": "phase-c subject fable e1 t2",
+      "provider": "anthropic",
+      "model": "claude-fable-5-1",
+      "effort": {
+        "output_config.effort": "medium"
+      },
+      "inputTokens": 865,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 1073,
+      "outputTokens": 4,
+      "costUsd": 0.0222625,
+      "seconds": 3.1,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793697933-IqTTYilMBthosaWnZWUW",
+      "responseId": "msg_011CgfkhkSXn3tcs9UdFSBgv",
+      "servedModel": "claude-fable-5-1",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Anthropic",
+      "servedModelMatches": true
+    },
+    {
+      "n": 4,
+      "purpose": "check fable e1 t2",
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": {
+        "output_config.effort": "low"
+      },
+      "inputTokens": 1180,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0,
+      "outputTokens": 48,
+      "costUsd": 0.000142,
+      "seconds": 0.8,
+      "error": null,
+      "stopReason": "end_turn",
+      "requestId": "gen-1793697939-k4KuIMacB1TfBCtRXobk",
+      "responseId": "msg_011CgfkiCce4gbCsUPbC1fYE",
+      "servedModel": "claude-haiku-5-5",
+      "door": "openrouter",
+      "endpointHost": "openrouter.ai",
+      "upstream": "Claude Platform on AWS",
+      "servedModelMatches": true
     }
   ],
   "spendChecks": [
@@ -22486,6 +22582,19 @@
       },
       "ledger": {
         "openrouter": 3.7544,
+        "openai": 0
+      }
+    },
+    {
+      "at": "2026-11-03T09:25:10.661Z",
+      "when": "Phase C, before fable",
+      "openrouter": {
+        "totalCredits": 1400,
+        "totalUsage": 1290.9533,
+        "left": 109.0467
+      },
+      "ledger": {
+        "openrouter": 44.9192,
         "openai": 0
       }
     }
