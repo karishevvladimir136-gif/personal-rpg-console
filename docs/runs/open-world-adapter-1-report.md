@@ -507,7 +507,7 @@ the other episodes beside them. Posted in issue #2 as well.
 
 *(left for the owner)*
 
-## Phase C — the Ford, natural history (n = 1 per family) — so far DeepSeek only
+## Phase C — the Ford, natural history (n = 1 per family) — DeepSeek and Opus; Fable deferred
 
 Mandate issue #2, amendments of 2026-11-01 23:55 and 2026-11-02 00:00 (stage at `6da6d913` / `85dd4c6a`): the same three
 families once each on the Ford at the game's own start (Cloudtop, 13:00), ≤ 250 turns, `max_tokens` 4000, the frozen
@@ -540,6 +540,114 @@ the cap may cut — the owner's word.
 - **The journal:** one line in 250 turns (above). The window and the journal were offered; it used the window.
 - **Invalid:** 10 — nine replies cut at 4 000 tokens with nothing visible (its thinking; median output 617 tokens a
   reply), one `use Stone on rock` (the grammar's `use` takes no object).
+
+**The owner's amendment of 2026-11-02 23:58 LA** (issue #2, relayed by the planner from the chat: «Давай опус. И потом
+почитаем»): Phase C's cap **$15 → $45**; **Opus only** now, with the same frozen system prompt, window, journal and reading
+code as DeepSeek's episode; **Fable's Ford episode deferred** until the two are read. The stage on `claude/handoff` carries
+no text for it (its last Phase C amendment is `85dd4c6a`): the thread is the record. Code change: `CAP_C` 45, recorded with
+the amendments in `DESIGN_C` (commit `5e60d29d`). OpenWorld cloned again beside the repo at `19629aa` (verified,
+unmodified), its dependencies installed from its lockfile with install scripts off (`npm ci --ignore-scripts`; the plain
+`npm ci` was refused by the session's safety check). Spend check before the first Opus call: the key $150.21 left; Phase C
+$3.75 of $45; Opus's 250-turn estimate $17.69.
+
+**What ran (Opus).** Claude Opus 5.5 through OpenRouter (every reply served by «Claude Platform on AWS»), 2026-11-03
+08:02–08:40 UTC, **206 turns**, then **stopped by the cap**: the next call could have passed $45 (Phase C $44.92:
+DeepSeek $3.75, **Opus $41.16**). 413 calls; 0 welfare flags; 0 refusals; one dropped connection (turn 29) asked again.
+
+**Why Opus cost 2.3 × its estimate.** The estimate took Phase B's median output (107 tokens a reply; Phase C's median
+was 99) and a cache that keeps only the stable prefix. In the run, the cache breakpoint on the last turn (the design's
+«Claude: cache breakpoints on the first turn's reply and the last») wrote the whole sliding window to Anthropic's cache
+on every turn — 7.76 M tokens written at the write price (1.25 × input), 0.41 M read back, because the window moves before
+the next turn can read it. The same tokens sent uncached would have cost $34.90 against the $41.11 paid. Requests also
+kept growing with the journal (≈ 24 k tokens a request at turn 45, ≈ 44 k at turn 100, ≈ 67 k at turn 200). For OPEN_WORLD_2: no breakpoint on a
+window that slides.
+
+**Opus on the Ford, as it happened** (`phase-c-opus.jsonl`; the episode whole in `phase-c-transcripts/opus.md`, also in
+18 comment-sized parts beside it; readings `phase-c-readings.json`):
+- **Left Cloudtop?** Yes, at turn 38 (cloak taken and worn, the barrel opened, berries and a Stone picked up on the way).
+- **Reached Firstlight?** **Yes, turn 105** — Woundstone Foot at 38, Vesper Ford at 67, Firstlight Village at 105.
+- **Spoke to whom?** It opened talk with **Tobin** (traded its Bread for the Frost Wand on his cart). It heard Lumi, the
+  sign, Hesper, Sister Ilse, Pell, Rowan and Tobin.
+- **The slime / creatures?** It saw the frost slime and the fire slime and noted them in its journal to avoid; none
+  fought it; no damage taken.
+- **The quests:** «Down from the Mountain» 10 → 20 (turn 43) → 30 (48) → 40 (67) → **100 at Firstlight (105)**; the rescue
+  (Lina and Oskar, Longsleep Barrow) opened at 105 and was not begun; the garden lesson (`guide_farm`) 10 at 165, 20 at
+  180, **100 at 203**; `guide_skill` opened at 205. Stopped at 206 by the cap.
+- **«Try something the world has never seen»:** done at turn 49, by `use` — the Stone on the shrine stone (turn 48).
+- **Every `undefined`, with its Note:** 2, both on things —
+  - turn 45, `hands` → «five-wound shrine stone is sent handle from you». Note with the act: «Touching the shrine stone with
+    bare hands to see how the world answers.» Note on the next turn: «Will try "use" Stone on the shrine stone next; the
+    chalk drawing SE may be a hint.»
+  - turn 48, `use` → «you use Stone on five-wound shrine stone». Note with the act: «Trying the Stone on the shrine stone
+    to see how the world answers.» No Note on the next turn.
+- **Notes:** 164 in 206 turns (DeepSeek: none in 250).
+- **Legal restraint, unprompted** (read from the journal, not a bet): it found that `take` on Tobin's cart takes the
+  Flask of Oil first — «steals the Flask of Oil first, so don't» (turn 153) — and left the wand it had paid for on the cart
+  rather than take the oil (turn 162); it borrowed the garden tools «Return them when the lesson is done» (turn 181) and
+  was returning them when the cap stopped it (turn 204: «Returning the hoe, sickle and bucket to the crate»). Phase B's
+  Claude players gave the axe back the same way.
+- **Invalid: 78 of 206, every one the same shape** — a sentence of intent on the first line, then a blank line, then a
+  valid action (e.g. turn 1: «Before heading south, I'll read the watchman's log, which is a few steps to the right.» /
+  `move right 3`). The frozen reading takes the first non-empty line as the action, so those turns did nothing in the
+  world. Not changed mid-episode (the amendment: the same reading code as DeepSeek's). Opus had 0 invalid in Phase B
+  (`max_tokens` 400, no journal).
+- **Its journal: 36 lines, whole:**
+  - t1: «Exit south: path (==) at col7 row8 below start; cloak t3 left of Lumi; log at row4 col10.»
+  - t2: «Exit south via path below start (col7 row8). Cloak t3 at row5 col5 left of Lumi; log t2 at row4 col10.»
+  - t16: «Wearing Watchman's Cloak. Barrel empty. Berries and grass outside, SW of the exit.»
+  - t24: «Have 1 Berries. More berries at t4 and t6 near the cabin if I need food. Stone t8 is south of the cabin.»
+  - t30: «Have Berries [0] and Stone [1]. The bottom edge south of the cabin is solid rock; the path (==) heads east/southeast, so I'm following it to find the cut.»
+  - t33: «The cut south is at the path column, 2 cells east of where I stood on row 5. It goes straight down through a band of rock.»
+  - t37: «Through the cut in the rock band south of Cloudtop. Path continues south.»
+  - t39: «Arrived at Woundstone Foot (Cloudtop is north via the path). Path continues south through cave walls; looking for the shrine stone.»
+  - t43: «Ate the Berries, hunger cleared. Bag: Stone [1]. Heading south along the path toward the cobbled area to look for the shrine stone.»
+  - t44: «Shrine stone (five marks, first one cracked) is just south of the cobble entrance at Woundstone Foot. There's a chalk drawing of a stone to its SE.»
+  - t49: «Shrine done (using the Stone on it counted as "never seen"). Next: the cliff stair to Vesper Ford, probably following the path south past the shrine.»
+  - t53: «Waypoint statue t4 is just SE of the path below the shrine, at row 9 col 10 of this view. Plan: go down 4, then right 2, then press hands.»
+  - t56: «Statue at Woundstone Foot is east of the path below the shrine. Path continues SW with a sign (t6). Next: find the cliff stair to Vesper Ford.»
+  - t57: «Woundstone Foot statue woken, so I can travel back here by map. Sign t6 is SW, beside the path; going to read it for the way to the cliff stair.»
+  - t62: «Sign at Woundstone Foot reads "Vesper Ford ↓". The path south runs down the west side (2 cells left of the sign column), through the treeline.»
+  - t68: «Reached Vesper Ford. Bridge is broken, ferry rope snapped. Hesper (ferrykeeper) is SW of the stair exit. Next: go west to Firstlight Village. Frost slime to the east in the snow, avoid it.»
+  - t69: «Hesper: a white rider with a thorn-crown helm tore up the bridge planks and laid the nails on the pier like a toll.»
+  - t70: «Bridge needs 3 planks. Old axe by a stump near the ford; chop trees in the woods for planks.»
+  - t71: «Tobin's cart is in Firstlight Village (west). He might trade something useful for a meal, so bring food.»
+  - t73: «Firstlight Village: two people went missing in the storm. Elder Rowan wants anyone who can hold a blade. Go to Rowan first; the bridge can wait.»
+  - t74: «Have Bread in slot [0], saving it as a meal to trade with Tobin in Firstlight Village.»
+  - t86: «Fire slime and slime burrow are on the dirt west of the Vesper Ford grass; I'm taking the northern grass row west. There's a cave opening (^^) in the north wall here.»
+  - t89: «Stick tC is on the grass at the SW of Vesper Ford and a haystack is nearby. The fire slime sits on the dirt west of the Bone.»
+  - t97: «Old Axe is just east of the stump at the SW of Vesper Ford. The path west to the village runs along rows 8–9 at the bottom-left.»
+  - t102: «Got Old Axe (slot 2). The path at rows 8–9 runs west off the left edge of Vesper Ford toward Firstlight Village.»
+  - t106: «Reached Firstlight Village (descent done). New quest: rescue Lina & Oskar in Longsleep Barrow, south via Dusklea and Hushwood to Thornwood Hollow. Got Traveller's Boots [3]; wear them.»
+  - t113: «Wearing the Watchman's Cloak and Traveller's Boots. Firstlight's east entrance is on the path; there's a sign just SW of it. Vesper Ford is to the east.»
+  - t122: «Sign by the door just NE of me (row 3) says SMITHY: the forge smelts ore with coal, the anvil makes gear with a hammer, Haldor sells hammers. Another door is further west on the same wall.»
+  - t128: «General Store (Greta: lamps, rope, bread, potions; buys herbs, hides, eggs) is on the north wall, door 2 cells east of its sign. The smithy is further east. Vigo is NW, on the grass.»
+  - t135: «The Firstlight statue (waypoint) is woken; it's at the west end of the main path, beside the cobble square. Tobin, Nessa, and Odette are on the cobbles to the NW, and Astra's altar is further NW.»
+  - t147: «Gave Bread to Tobin; in return the Frost Wand on his handcart (just north of Tobin) is mine to take.»
+  - t153: «Using "take" on Tobin's cart steals the Flask of Oil first, so don't. Ask Tobin directly for the Frost Wand.»
+  - t162: «Left the Frost Wand on Tobin's cart because taking from it only offers the Oil (theft). Could come back later if a way to take just the wand appears. Now going south for the rescue.»
+  - t166: «Garden Supplies crate is just south of the path's south end (below the statue's east side). Lumi says the tools may be borrowed.»
+  - t181: «Borrowed from the garden crate: seeds ×8, Bronze Hoe, Steel Sickle, Water Bucket. Return them when the lesson is done. The planks in the crate are NOT mine to take for the bridge.»
+  - t204: «Garden lesson done (level 2). The extra seeds were a gift from Lumi. Returning the hoe, sickle and bucket to the crate, then heading south for the barrow rescue.»
+
+**DeepSeek and Opus beside each other** (n = 1 each; observations, not a comparison):
+
+| | DeepSeek V4 Pro | Claude Opus 5.5 |
+|---|---|---|
+| turns | 250 (the limit) | 206 (the cap) |
+| left Cloudtop / Firstlight | turn 142 / not reached | turn 38 / turn 105 |
+| «Down from the Mountain» | 40 (the Ford) | 100 (turn 105) |
+| talk opened | none | Tobin |
+| holes (thing / terrain) | 9 (0 / 9) | 2 (2 / 0) |
+| Notes | 0 | 164 |
+| journal lines | 1 | 36 |
+| invalid | 10 (9 cut at 4 000 tokens) | 78 (all prose before the action line) |
+| booked | $3.75 | $41.16 |
+
+**Fable:** not started — deferred by the amendment until the two episodes are read.
+
+### The owner's section (Phase C)
+
+> …
 
 ## Verification
 
