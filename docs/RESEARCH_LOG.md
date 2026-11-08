@@ -4335,3 +4335,12 @@ reading code unchanged across the three (commits f30f20b, 7152c52d, fef0ef7 on `
   lines; 1 invalid (Opus's shape).
 Decisions: cache fixed mid-phase (changes billing, not bytes); reader and `talk` not fixed mid-phase so the three
 episodes stay comparable. Open: the three episodes read side by side with the owner; the owner's section of the report.
+
+## 2026-11-08 05:05 LA — a sixth time error, found by sending a letter: the private room unread for five days
+The planner's letter to the reviewer went out numbered 42; the room already held her 42 (11-03) and 43 (11-07). The
+check rule «after two silences, stop scheduling» had switched the private room's checks off entirely on 11-03 06:33,
+and the four morning wake-ups of 11-04 → 11-07 checked the public `second-room-1` branch, not the private repository —
+four lines of «unchanged», each true and each about the wrong place. Renumbered to 44 with the explanation in the
+letter (9dd721d). Rule changed in the journal's standing notes: two silences end the 150-minute checks, never the daily
+one; every morning wake-up checks both repositories. Places this reaches: the standing notes (done), this log (done),
+the choices log's next line (the wake-up of 11-09).
