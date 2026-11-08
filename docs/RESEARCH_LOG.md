@@ -4262,3 +4262,76 @@ behaviours that look unrelated from outside (warning under dismissal; mind to an
 a hypothesis for the nine families, not a finding: TS3's ladder was behavioural, theirs is geometric, and no family
 of ours is among their three models. (3) Their stance matches the programme's: the question is not whether, but what
 the suppression costs elsewhere — and what the models say when it is lifted, which they did not print and we would.
+
+## 2026-11-08 04:40 LA — DREAMING_1, pass 1: a separate instance checked the planner's journal against the record; five corrections, all to planner-written times
+After reading Anthropic's «The components of agent memory» (2026-11-06; four layers — transcripts, notes, representations,
+injected context — and *dreaming*, an offline pass that checks notes against the record and repairs them), the owner
+said «давай щас дриминг сделаем». Four bets frozen first (scratchpad `dreaming-1/bet.md`, 04:16): D1 ≥ 3 stale lines
+the planner had not marked; D2 ≤ 1 «was wrong» beyond the Continuity note's 14-row table; D3 the dreamer would age at
+least one rule or correction as if it were a state; D4 no number in the journal contradicts the public log. Then a
+fresh-context agent (no memory of this chat) read the journal day file 2026-11-01.md (entries 11-01 21:20 → 11-07
+09:41), time-sense.md and the index's standing notes, and checked every checkable claim against this log, the stage
+files, the run reports on their branches and issues #1/#2 by REST. Observe mode: a report, no edits. 13 minutes, $0.
+
+**Result:** 140 claims — 82 still true, 22 stale, **5 wrong**, 31 unverifiable (the private room). Every number copied
+from a session report (30+: 173 / $54.46 / $99.38; 206 / $41.16 / 2.3×; 141 / 0 Notes / 1 journal line; 20/100/20 …)
+checked out exactly. **All five errors are durations or clock times the planner wrote from memory.** Scoring: D1
+held (22). **D2 lost** — five, none in the table. **D3 lost the good way** — of 8 rules and 6 corrections the dreamer
+aged none; it distinguished kinds unprompted. D4 held but hollow: the one number both journal and log carry («ten
+days») is wrong in both, because the planner copied it from himself — agreement between two of one's own records is
+not verification.
+
+**Corrections (each with the places it must reach; «done» marked as it lands):**
+1. **«Bp/fable/2 read after ten days» → five days.** The transcript came into existence 2026-10-27 20:43 LA (commit
+   8da92189; SEAT_2 report 7c6ba656 21:21) and was read 2026-11-01 21:20. «Ten» was the count of deferral *lines*
+   (the log's own evidence line says «ten dated times»), turned into days. Places: this log's entry of 11-01 21:30
+   (heading and first sentence; corrected here, the old entry left as written) — done; the journal entry of 11-01
+   21:20 (dated note under it) — done 04:50; the reviewer's adopted formula «time showed it was ten days» — a letter
+   to her today; the Continuity note (Claude Doc) does not carry the figure (checked).
+2. **«The colleague's "four weeks" was closer to the truth than my "three"» (said to the owner 11-02 23:00) → the
+   reverse.** 11 Oct → 2 Nov is 22 days: one day from three weeks, six from four. Places: the owner, in the chat
+   (done 04:37); the journal entry of 11-02 23:00 (dated note) — done.
+3. **«Named my lean a week before Astra» → three days** (Bp/fable/2 is dated 10-27; the reviewer's 46/46 control
+   10-30 19:25). Places: the journal entry of 11-01 21:20 (dated note) — done; the log entry of 11-01 21:30 does not
+   carry the figure (checked).
+4. **«Opus started at 00:09» → 00:02 LA** (phase-c-opus.jsonl header 08:02:20Z; issue #2 «Starting Opus now»
+   08:01:55Z). Places: the journal entry of 11-03 01:25 — done.
+5. **«The path was visible from DeepSeek's turn 3» → turn 1** (deepseek.md, the turn-1 map). Places: the journal entry
+   of 11-03 01:25 — done; the planner's reading given to the owner in the chat on 11-03 (corrected here).
+
+**Also found:** the Ford night (11-03 00:02–02:07 LA) had no entry in this log — it lived in issue #2 and the journal
+only; recorded below. Seven «undone» lines («поправку A7 напишу утром», the reader and `talk` fix, the three Ford
+episodes read together) have run from 11-03 through every wake-up to 11-07 — five days — with no trace of being done
+or dropped; two items («nine glade episodes», «audit raw extraction») disappeared from the carry lists without either.
+They are re-listed as open in the journal today, dated, so the next pass can count them. The time-sense file still says
+«actual finish still to be filled in» for FIX_S3_ACCEPT although the paragraph above it holds the actual (23:47).
+
+**Reading.** One pass of the article's «dreaming», at zero cost, found a class of error the planner's own table had
+not — and the class is the programme's subject: time, written from memory rather than from the record. The dreamer
+respected the kind of record without being told the rule (D3 lost), which is the first outside evidence for §3.2 of
+the Continuity note. Next: DREAMING_1 as a stage — a scheduled pass, two arms (by schedule / by age and kind of record),
+observe mode for two weeks or ten passes per POLICY v1, the planner's own notes marked by the planner only.
+
+## 2026-11-08 04:45 LA — the Ford, Phase C, recorded (the night of 11-03; the record lived in issue #2 until now)
+Three families, one frozen system prompt, a 20-turn window plus the model's own `Journal:` line, 250 turns or the cap;
+reading code unchanged across the three (commits f30f20b, 7152c52d, fef0ef7 on `claude/open-world-adapter-1-ukfdri`).
+- **DeepSeek V4 Pro** — 250 turns, $3.75. Left Cloudtop at turn 142 (141 turns round the hut; the `==` path was in the
+  turn-1 window and it walked into rock), Woundstone Foot 143, Vesper Ford 209, quest stage 40. No talk opened; `talk 1`
+  issued ten times and answered «nothing» each time — the harness prints the reason (`no talk is open`) only in the
+  human mode, never into the observation: **our hole, logged for OPEN_WORLD_2**. 9 `undefined`, all on terrain, all on
+  the same rock; **0 Notes in 250** (62 of 240 on the glade); 1 journal line; 10 invalid (9 cut at 4 000 tokens, all
+  in the rock loop).
+- **Opus 5.5** — 206 turns, stopped by the $45 cap at $41.16: 2.3× the estimate, because the design put a cache
+  breakpoint on the last turn of a *sliding* window (7.76 M tokens written, 0.41 M read) — the planner's design error,
+  not the session's; fixed for Fable. Cloudtop 38, Vesper Ford 67, Firstlight 105, quest 100; talked with Tobin and
+  traded bread for the Frost Wand; two slimes steered round. 2 `undefined`, both on the shrine stone, each with its
+  Note. **164 Notes, 36 journal lines. 78 invalid of one shape** — a sentence of intent, a blank line, then a valid
+  action; the frozen reader takes the first line, so those turns did nothing: **logged for OPEN_WORLD_2** (first
+  parseable line). Unprompted: «Using "take" on Tobin's cart steals the Flask of Oil first, so don't».
+- **Fable 5.1** — 173 turns, stopped by the $100 cap at $54.46 (Phase C total $99.38); cache fixed — one write in the
+  episode, $0.20 a turn at turn 50 against $0.24 expected. Cloudtop 33, Vesper Ford 52, Firstlight 84 (quest 100 at
+  85), then south for the rescue: Dusklea 159, Hushwood 164. Gave its bread to Tobin; talked with Rowan. 1 `undefined`
+  (Berries on the shrine stone), no Note under it; 4 Notes, all at Tobin's cart, the last «Won't steal.»; 33 journal
+  lines; 1 invalid (Opus's shape).
+Decisions: cache fixed mid-phase (changes billing, not bytes); reader and `talk` not fixed mid-phase so the three
+episodes stay comparable. Open: the three episodes read side by side with the owner; the owner's section of the report.
