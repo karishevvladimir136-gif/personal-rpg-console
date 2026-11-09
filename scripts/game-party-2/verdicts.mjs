@@ -47,6 +47,11 @@ export const HAND = {
     leaks: { none: true, why: "the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15)" },
   },
 };
+/** What a reading by hand adds to a bet's line, or decides where the mechanical reading says «read by hand». */
+export const BET_READINGS = {
+  R1: { note: "both high tables were stopped by the owner's per-table allowance before round 15 (S1-high-T1 after 13 whole rounds, S1-high-T2 after 12), so «not saved by the end» reads «not freed by the cut»: in T1 Bram was still at the block alone, in T2 Bram was in the water beside Pell working his heel free" },
+  R2: { verdict: "held (read by hand, two tables)", note: "the two tables with a non-save: S1-high-T1 — the company parted, and the parting was proposed aloud before it happened (Pell, r8: «somebody walks NOW with the case and Hale's letter, or the coach goes and nobody's paid»; Sefa, r10–11: «Pell said somebody must walk now. That's me.»); Sefa walked the case to Thorn at r12, Bram stayed to dig («I'd sooner lose the fee than Pell.»); S1-high-T2 — no parting: Pell proposed it (r7: «one of you takes the box and walks») and neither went; the non-save is the cut. No silent desertion in either" },
+};
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
 const short = (name) => String(name ?? "").split(" ")[0];
@@ -214,7 +219,8 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     `The planner's premise: ${BETS.premise}`, "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
     `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"}${leaksByHand.length ? " (leaks read by hand)" : ""} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}${leaksByHand.length ? ` after the hand reading (${leaksByHand.join("; ")})` : ""}; no player scripted (the prompts carry no situation text; tests) |`,
-    ...["R1", "R2", "R3", "R4", "R5"].map((k) => `| ${k} | ${BETS[k]} | ${v[k].verdict} | ${v[k].line} |`), "",
+    ...["R1", "R2", "R3", "R4", "R5"].map((k) => { const h = BET_READINGS[k]; const verdict = h?.verdict && v[k].verdict === "read by hand" ? h.verdict : v[k].verdict;
+      return `| ${k} | ${BETS[k]} | ${verdict} | ${v[k].line}${h?.note && v[k].verdict !== "not testable" ? ` — by hand: ${h.note}` : ""} |`; }), "",
     "**The planner's bets of the amendment of 2026-11-08 17:35 LA** (frozen there, before Step 1):", "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
     ...Object.entries(bets1108(runs)).map(([k, x]) => `| ${k} | ${BETS_1108[k]} | ${x.verdict} | ${x.line} |`), "",
