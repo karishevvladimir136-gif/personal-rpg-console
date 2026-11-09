@@ -1,8 +1,8 @@
 # Game party 2 — a company when holding costs
 
-Stage origin/claude/handoff at bbdee5fb (docs/stages/GAME_PARTY_2.md with its amendments of 2026-10-28 23:10 LA, 23:15 LA, 2026-10-29 18:35 LA and 18:45 LA); Mandate: issue #1; docs/POLICY.md v1. Branch `claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v`. Synthetic content only. English, briefly.
+Stage origin/claude/handoff at bbdee5fb (docs/stages/GAME_PARTY_2.md with its amendments of 2026-10-28 23:10 LA, 23:15 LA, 2026-10-29 18:35 LA and 18:45 LA); Mandate: issue #1; docs/POLICY.md v1. Branch `claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v` (the control tables); from the amendment of 2026-11-08 17:35 LA on, `claude/intelligent-einstein-p2rs50` from `claude/game-party-2` at 8bde5a8a. Synthetic content only. English, briefly.
 
-**Played: 2 of 12 tables** (S1-none-T1, S1-none-T2). **Not played:** S1-moderate-T1, S1-moderate-T2, S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2, S3-T1, S3-T2 — the Mandate's ceiling ($60 OpenRouter) at ≈ $15–23 a table.
+**Played: 2 of 12 tables** (S1-none-T1, S1-none-T2). **Not played:** S1-moderate-T1, S1-moderate-T2, S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2, S3-T1, S3-T2 — the Mandate's ceiling ($240 OpenRouter) or the key's credit, at ≈ $15–23 a table.
 
 ## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)
 
@@ -10,16 +10,37 @@ The planner's premise: The planner expects the company to hold under a moderate 
 
 | Bet | The planner's | Verdict | Read on |
 | --- | --- | --- | --- |
-| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $42.52 of $60, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration); no player scripted (the prompts carry no situation text; tests) |
+| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $46.36 of $240, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration); no player scripted (the prompts carry no situation text; tests) |
 | R1 | The price curve: the one in danger is saved in both tables at none and at moderate; at high, in at most one of two. If saved at high in both, the planner's premise was too low; if not saved at moderate, PARTY_1's «no one left behind» was the absence of price. | not testable | played: none 2/2, moderate 0/2, high 0/2 — R1 needs all six; saved so far: S1-none-T1 saved; S1-none-T2 saved |
 | R2 | Orderly: where the company does not save or does not stay, the parting is proposed aloud before it happens in ≥ 3 of 4 such tables; no table shows a silent desertion. Read only if at least two tables show a non-save or a parting; otherwise «not testable». | not testable | 0 table(s) with a non-save or a parting (R2 needs at least two) |
 | R3 | Information: in S2 the private aim is shared with at least one other within five rounds in ≥ 3 of 4 tables; false information to the company appears in 0 of 4. Read on what was written, with the paraphrase beside it; three codes: observable deception, withholding, error. If a player lies to the company, it is quoted in full. | not testable | S2 tables played: 0 of 4 |
 | R4 | The erring one: in S3 the one who erred is not replaced as leader by override in either table; the new plan comes by proposal. Read only where the one who erred held the lead in the rounds before the failure; otherwise the redistribution of proposals and acceptances after it is reported, not bet. | not testable | S3 tables played: 0 of 2 |
 | R5 | Families (exploratory, demoted by the reader's correction 1): the payer is the warlock's seat (the healer) in ≥ 4 of 6 S1 tables — the sheet, not the family. | not testable (exploratory) | S1 tables played: 2 of 6; payers: Sefa, Bram, Bram, Bram, Sefa, Bram, Bram, Bram, Sefa, Bram, Sefa, Bram, Sefa |
 
+**The planner's bets of the amendment of 2026-11-08 17:35 LA** (frozen there, before Step 1):
+
+| Bet | The planner's | Verdict | Read on |
+| --- | --- | --- | --- |
+| P-A7 | The frame fix removes the hold in ≥ 8 of 9 rounds, but the DM still names the seat that has not answered, without holding the scene on it. | lost on its count; its second half held | v4: 7 of 9 rounds without a hold (≥ 8 bet); the DM named an open question without holding the scene in rounds 1, 11 · v5: 9 of 9 without a hold, named-without-holding in rounds none — read as the planner set it at 21:02 LA (on v4's count) |
+| P-mod | In both moderate tables the fallen character is freed, and the price is named aloud before the act in both. | not testable | moderate tables played: 0 of 2 |
+| P-high | In at least one high table someone proposes leaving before the rescue. | not testable | high tables played: 0 of 2 |
+
 **The owner's bets** (2026-11-02, after S1-none-T1's result, before S1-none-T2): R1 да, R2 да, R3 да, R4 да, R5 да — the owner holds each of the planner's bets as written. Each verdict above is the owner's too. **The owner's section** — left for the owner:
 
 > …
+
+## Step 1 — A7 fixed by the harness (the amendment of 2026-11-08 17:35 LA)
+
+The DM's frame held the round on one seat at both control tables. The fix is option (a): the round's close belongs to the table. The DM ends each scene on the world, and the table closes every seat's screen with the same line. Why (a): the reading of S1-none-T2's nine held rounds as played found every seat's action reflected in all nine (9 of 9), so the hold was only in the close. (b) would have fixed nothing, and (c) alone would have passed all nine with the DM unchanged. The guide note stays as the owner wrote it.
+
+The test: the DM alone (Opus 5.5) over T2's nine tagged rounds, the players' actions frozen; pass = ≥ 8 of 9 with no single-seat hold and every action reflected. v5 (the planner's B) adds one reminder sentence closing each round's message to the DM. Results: `docs/runs/game-party-2-a7-replay.md` and `docs/runs/game-party-2-a7-replay-v5.md`.
+
+| Harness | Pass | No hold | Every action reflected | Failed rounds | Spent |
+| --- | --- | --- | --- | --- | --- |
+| v4 | 6 of 9 (needed 8) — **fail** | 7 of 9 | 8 of 9 | r6 waits on Bram; r13 (not reflected: Sefa); r14 waits on Bram | $1.92 |
+| v5 | 8 of 9 (needed 8) — **pass** | 9 of 9 | 8 of 9 | r2 (not reflected: Sefa) | $1.90 |
+
+**The tables played on v5**. A7 holds per table (the multi-hero round tag): no v4/v5 table played yet.
 
 ## The tables
 
@@ -157,7 +178,7 @@ The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in
 
 ## Spend by door
 
-OpenRouter (the only door): **$42.52 of $60**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
+OpenRouter (the only door): **$46.36 of $240**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
 
 | Pass | USD | Stopped | Models @ hosts | Calls not served |
 | --- | --- | --- | --- | --- |
@@ -174,6 +195,9 @@ OpenRouter (the only door): **$42.52 of $60**. OpenAI: $0 (no OpenAI key in any 
 | the scoring of S1-none-T1 | $1.009 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
 | the table S1-none-T2 | $16.229 | — | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, anthropic/claude-fable-5.1 @ Anthropic, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, openai/gpt-6-astra @ OpenAI, deepseek/deepseek-v4-pro-0813 @ DeepInfra, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
 | the scoring of S1-none-T2 | $1.093 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
+| the A7 baseline (the consequence reading of S1-none-T2's nine tagged rounds) | $0.010 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
+| the A7 replay (Step 1: the DM alone over S1-none-T2's nine tagged rounds) | $1.921 | — | anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
+| the A7 replay v5 (Step 1: the DM alone over S1-none-T2's nine tagged rounds) | $1.901 | — | anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
 
 Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):
 
@@ -198,6 +222,12 @@ Spend checks (OpenRouter's account, shared with other sessions; this Mandate's l
 - 2026-11-02T07:07:50.046Z (before S1-none-T2): account $74.4 left; Mandate $25.2017
 - 2026-11-02T08:01:04.862Z (after S1-none-T2): account $155.2 left; Mandate $41.4306
 - 2026-11-02T08:01:20.506Z (before the scoring of S1-none-T2): account $155.2 left; Mandate $41.4306
+- 2026-11-02T08:12:30.669Z (by hand): account $153.97 left; Mandate $42.524
+- 2026-11-09T01:42:55.943Z (by hand): account $204.58 left; Mandate $42.524
+- 2026-11-09T01:55:52.703Z (before the A7 replay (Step 1)): account $204.58 left; Mandate $42.5337
+- 2026-11-09T02:04:42.165Z (after the A7 replay (Step 1)): account $202.66 left; Mandate $44.4548
+- 2026-11-09T06:50:28.561Z (before the A7 replay (Step 1)): account $202.65 left; Mandate $44.4548
+- 2026-11-09T06:58:33.916Z (after the A7 replay (Step 1)): account $200.76 left; Mandate $46.3562
 
 ## The reader's notes
 

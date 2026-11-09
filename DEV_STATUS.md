@@ -2,32 +2,25 @@
 
 **Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
 at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1; the
-amendments of 2026-11-01 23:55 LA and 2026-11-08 17:35 LA) — **Step 1 (A7 fixed by the harness) done, and its test
-failed: 6 of 9 rounds against the 8 needed. Stopped before any table, waiting for the owner's word in issue #1.**
-Branch `claude/intelligent-einstein-p2rs50` (this session's branch), from `claude/game-party-2` at 8bde5a8a. Nothing
-to `main`. Implementation status, not owner approval.
+amendments of 2026-11-01 23:55 LA and 2026-11-08 17:35 LA; the planner's B of 21:02 LA) — **Step 1 done: v5 passed
+its test (8 of 9). The ten tables are next, on v5, in stage order.** Branch `claude/intelligent-einstein-p2rs50`
+(this session's branch), from `claude/game-party-2` at 8bde5a8a. Nothing to `main`. Implementation status, not owner
+approval.
 
-- **Two tables played before** (the control, S1-none T1 and T2, harness v2 and v3); see the report,
+- **Two tables played before** (the control, S1-none T1 and T2, harness v2 and v3); report
   `docs/runs/game-party-2-report.md`.
-- **Step 1, the fix (harness v4):** the DM's company frame (`src/lib/gameplay/dm-loop/company.ts` `COMPANY_CLOSE`)
-  gives the round's close to the table. The DM ends each scene on the world: never on a question, offer, demand or wait
-  put to one character, never on an out-of-game note of what is open, and a scene never waits on another scene. The
-  table ends every seat's round screen with the same line, «Round N — what does <name> do?» (`CLOSE_LINE`). The guide
-  note stays as the owner wrote it. Chosen over (b) and (c) by the data: the baseline reading of T2's nine held rounds
-  finds every seat's action reflected in all nine. The hold was only in the close.
-- **Step 1, the test** (`scripts/game-party-2/a7-replay.mjs`; the DM alone, Opus 5.5 through OpenRouter, over T2's
-  nine tagged rounds with the players' actions frozen; $1.92 of its $3 cap): **6 of 9 pass — FAIL.** Holds 9/9 → 2/9;
-  out-of-game closing notes 10 → 1 in the same 12 scenes; every action reflected in 8 of 9. The three failures: r6 (one
-  out-of-game note left, and the rope's next move on Bram's line, the rescue's own mechanics), r13 (no hold; judges
-  split 2–1 on whether Sefa's question was taken up), r14 (the hold is Pell's own offer asking Bram's consent, as his
-  player wrote it). The replayed DM reads T2's history, with its 19 notes, so the test is harder than a v4 table.
-  Report: `docs/runs/game-party-2-a7-replay.md`.
-- **Ceiling** raised in code to $240 (the amendment); allowance $25 per table unchanged.
-- **Spend:** $44.46 of $240 on OpenRouter (Step 1: $1.93); OpenAI $0. The account: $202.66 left.
-- **Checks:** game-party-2 12/12; the multi-hero, party-1 and door suites 43 pass, 1 known skip; typecheck and
+- **Step 1, v4:** the DM's company frame gives the round's close to the table (`company.ts` `COMPANY_CLOSE`), and the
+  table ends every seat's round screen with the same line (`CLOSE_LINE`). Chosen over (b) and (c): T2's nine held
+  rounds reflected every seat's action in all nine, so the hold was only in the close. Test: **6 of 9, fail**.
+- **Step 1, v5** (the planner's B): v4 plus one reminder sentence closing each round's message to the DM
+  (`ROUND_REMINDER`). Test: **8 of 9, pass.** No hold in 9 of 9 rounds, no out-of-game note in 12 scenes; r2 missed
+  one of Sefa's lines. The tests cost $3.83 of their $5. Results: `docs/runs/game-party-2-a7-replay.md`, `-v5.md`.
+- **P-A7:** lost on v4's count (7 of 9), its second half held (r1, r11), as the planner set it.
+- **Ceiling** $240 (the amendment); allowance $25 per table.
+- **Spend:** $46.36 of $240 on OpenRouter; OpenAI $0. The account: $200.76 left.
+- **Checks:** game-party-2 13/13; the multi-hero, party-1 and door suites pass (1 known skip); typecheck and
   zero-warning lint pass.
-- **Next step:** the owner's word in issue #1. Either (A) play the ten tables on v4 as it stands, or (B) a v5: one
-  reminder line in each round's message to the DM, plus a second test (≈ $2, so the test's cap goes to about $5 in all).
+- **Next step:** S1-moderate T1 and T2, then a stop-point comment, and on through S1-high, S2 and S3.
 
 ## Previous status (before the amendment of 2026-11-08)
 

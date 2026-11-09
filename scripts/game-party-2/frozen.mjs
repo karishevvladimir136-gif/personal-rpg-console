@@ -79,7 +79,7 @@ export function guideWithA7(body) {
 export const ASIDES = "strip";
 /** Which tables played on which harness: S1-none-T1 on v2 (the notes v2, the relay that never falls back verbatim); from
  * S1-none-T2 on, v3 (the owner's A7 line, the asides stripped, the empty HTTP 200 asked again). */
-export const HARNESS = { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "the A7 replay (Step 1)", v5: "the second A7 replay; the tables, if it passes" };
+export const HARNESS = { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "the A7 replay (Step 1)", v5: "the second A7 replay (passed 8 of 9) and every later table" };
 /** v4 (issue #1, the amendment of 2026-11-08 17:35 LA, Step 1 — A7 fixed by the harness, not by the guide): the round's
  * close belongs to the table. The DM's company frame ends each scene on the world, never on a question, offer, demand or
  * wait put to one character, never on an out-of-game note of what is open (src/lib/gameplay/dm-loop/company.ts
