@@ -799,6 +799,40 @@
           "left": 89.9
         }
       }
+    },
+    {
+      "at": "2026-11-09T14:50:54.028Z",
+      "when": "after S2-moderate-T2",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1468.877023835,
+        "remaining": 81.12,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 168.2447,
+          "cap": 240,
+          "left": 71.76
+        }
+      }
+    },
+    {
+      "at": "2026-11-09T14:51:13.495Z",
+      "when": "before the scoring of S2-moderate-T2",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1469.499809835,
+        "remaining": 80.5,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 168.2447,
+          "cap": 240,
+          "left": 71.76
+        }
+      }
     }
   ]
 }
