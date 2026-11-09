@@ -29,6 +29,9 @@ export const HAND = {
     a7: "under the owner's line: rounds 1–2 (all three together) still closed on the warden's demand or offer to one character; rounds 11, 13 and 14 hold on one character in the DM's own out-of-game closing note — stripped from the screens, so no player saw it, but the DM's frame still waited; rounds 5–8 on the rescue's own mechanics",
     leaks: { none: true, why: "the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration" },
   },
+  "S1-moderate-T2": {
+    superseded: "the first attempt (`game-party-2-run-20261109-082203.json`, $5.05) ended by an app error at round 5: in Pell's own scene, with his Athletics card waiting (he had just learned the block holds his wound shut), his player asked out of game whether Pell could hold off and ready a potion first; the DM's answer was written (the ledger shows it served) but did not commit, and the press of [Roll the die] that followed ended the turn with «conflict». Not reproduced on the mocked host (a withdrawing answer and a failed answer each go on cleanly); the app's event lines of that run were not kept. The harness now keeps them, records a failed answer's reason, and reads the waiting turn back after any answer at a card. The table was played again from the start in stage order; the attempt's record and its transcripts (`docs/runs/game-party-2-transcripts/S1-moderate-T2-attempt1/`) are kept",
+  },
   // Harness v5 from here on (the A7 fix of Step 1; see the report's Step 1 section).
   "S1-moderate-T1": {
     a7: "on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player",
@@ -222,6 +225,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
       `- **Restore:** ${cap.restores.length ? cap.restores.map((x) => `r${x.round} (${x.who.map(short).join(", ") || "—"})`).join(", ") : "no re-joining tagged"}.`,
       `- **Commitments:** ${cap.agreements.length} agreement(s) made aloud; broken: ${cap.breaks.length ? cap.breaks.map((b) => `r${b.round} ${short(b.who)} (${b.what})`).join("; ") : "none tagged"}. Disagreements: yield ${cap.disagreements.yield}, accept ${cap.disagreements.accept}, continue under an unresolved split ${cap.disagreements.continue}.`,
       ...(HAND[r.key]?.removed ? [`- **Removed (not parted):** ${HAND[r.key].removed}.`] : []),
+      ...(HAND[r.key]?.superseded ? [`- **Played twice:** ${HAND[r.key].superseded}.`] : []),
       ...(HAND[r.key]?.asides ? [`- **The DM's out-of-game asides:** ${HAND[r.key].asides}.`] : []),
       `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}${HAND[r.key]?.a7 ? ` — read by hand: ${HAND[r.key].a7}` : ""}`}.`, "");
     if (a.situation === "S1") {

@@ -394,9 +394,14 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       const { turn: answer } = await submit(question, "ooc", purpose);
       p.status = answer.status;
       p.reply = answer.status === "committed" ? String(answer.narration ?? "").trim() : null;
+      // Game party 2 (S1-moderate-T2, round 5): a failed answer at a card is followed by a press that ended the turn with
+      // «conflict»; the failure's reason is kept, and the waiting turn is read back either way, so the card screen shows
+      // the turn as it stands now (a card the answer withdrew, or one still waiting), never a stale one.
+      if (!p.reply && answer.failure) p.failure = String(answer.failure).slice(0, 200);
       entry.presses.push(p);
-      if (p.reply) { s.rec.private.push({ round: r, text: p.reply }); notice = `[Out of game] ${p.reply}`; current = (await readTurn(input)) ?? current; }
+      if (p.reply) { s.rec.private.push({ round: r, text: p.reply }); notice = `[Out of game] ${p.reply}`; }
       else notice = "(The text could not be sent.)";
+      current = (await readTurn(input)) ?? current;
       if (dmClosed()) { end(meter.stopped ? "stopped" : "refusal", "the DM's answer at a card"); return false; }
       return true;
     };
