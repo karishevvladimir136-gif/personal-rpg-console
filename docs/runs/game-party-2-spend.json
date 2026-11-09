@@ -765,6 +765,23 @@
           "left": 90.99
         }
       }
+    },
+    {
+      "at": "2026-11-09T13:32:31.725Z",
+      "when": "after S2-moderate-T2",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1451.357268585,
+        "remaining": 98.64,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 150.1004,
+          "cap": 240,
+          "left": 89.9
+        }
+      }
     }
   ]
 }

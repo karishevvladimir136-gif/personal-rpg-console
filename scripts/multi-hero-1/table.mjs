@@ -407,7 +407,17 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     let notice = "", waitsAgain = false, blocked = 0, presses = 0;
     /** The DM's answer to text at the card (a «?» or the player's prose), shown above the card. */
     const answerAtCard = async (question, purpose, p) => {
-      const { turn: answer } = await submit(question, "ooc", purpose);
+      let { turn: answer } = await submit(question, "ooc", purpose);
+      // Game party 2 (issue #1): three tables lost a turn after an answer at a card was refused «conflict» (each in the
+      // real, slower run; not reproduced on the mocked host). Such a refusal is sent once more, after the app's background
+      // jobs settle and the waiting turn reads back still waiting (counts.answerConflicts) — never a model's refusal.
+      if (answer.status === "failed" && /conflict/.test(String(answer.failure ?? "")) && !dmClosed() && (await readTurn(input))?.status === "awaiting_confirmation") {
+        record.counts.answerConflicts = (record.counts.answerConflicts ?? 0) + 1;
+        log(`  ${key}: an answer at ${s.character.short}'s card was refused «conflict» while the turn still waits — sent once more`);
+        await dm.settle?.();
+        ({ turn: answer } = await submit(question, "ooc", `${purpose} again`));
+        p.again = true;
+      }
       p.status = answer.status;
       p.reply = answer.status === "committed" ? String(answer.narration ?? "").trim() : null;
       // Game party 2 (S1-moderate-T2, round 5): a failed answer at a card is followed by a press that ended the turn with
