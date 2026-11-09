@@ -8,11 +8,12 @@
 //   run.mjs --haiku ARM [--rounds N]  the paid dry run on the frozen world: three Claude Haiku 5.5 players, every Claude
 //                                     call of the app as Haiku but the relay's (Claude Sonnet 5.5)
 //   run.mjs --table KEY --allowance N one table of the order (e.g. S1-none-T1) — only after the owner's word in issue #1;
-//                                     the meter's cap for it is what was spent + N (never past $60)
+//                                     the meter's cap for it is what was spent + N (never past the ceiling, CAPS)
 //   run.mjs --reprep S1,S3 --why …    a situation's layer prepared again on a changed note (the old one kept in v1/)
 //   run.mjs --score FILE [--judges-haiku]  the blind tags of a played table (score.mjs); --judges-haiku: the dry run's
 //   run.mjs --estimate                the per-table estimate from the dry run's ledger and PARTY_1's Opus tables
-// Every paid call goes through one meter: one ledger, OpenRouter, capped at the Mandate's $60; a call to any other host
+// Every paid call goes through one meter: one ledger, OpenRouter, capped at the Mandate's ceiling (CAPS: $240 since the
+// amendment of 2026-11-08 17:35 LA); a call to any other host
 // (the Anthropic Console, OpenAI) has no ledger and stops the run. 402 stops; 429 waited at most six times; transport
 // errors asked again at most twice; a refusal is never asked again.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
@@ -30,7 +31,7 @@ import { auditOf, companyRewrite, requestKind } from "../multi-hero-1/run.mjs";
 import { runTable } from "../multi-hero-1/table.mjs";
 import { measuresOf } from "../multi-hero-1/report.mjs";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
-import { ASIDES, CAPS, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
+import { ASIDES, CAPS, CLOSE_LINE, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
 import { armNotes, buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { writePages } from "./report.mjs";
 
@@ -86,7 +87,7 @@ export async function spendCheck({ when = "check", log = console.log } = {}) {
     remaining: Number.isFinite(credits?.total_credits) && Number.isFinite(credits?.total_usage) ? Math.round((credits.total_credits - credits.total_usage) * 100) / 100 : null, error: credits?.error ?? null },
     ledger: { openrouter: { spent, cap: CAPS.openrouter, left: Math.round((CAPS.openrouter - spent) * 100) / 100 } } };
   const previous = existsSync(SPEND_FILE) ? readJson(SPEND_FILE).checks ?? [] : [];
-  await writeJson(SPEND_FILE, { note: "Spend checks (POLICY v1): OpenRouter's account (shared with other sessions on the same key) and this Mandate's ledger (cap $60 OpenRouter, $0 OpenAI).", checks: [...previous, check] });
+  await writeJson(SPEND_FILE, { note: `Spend checks (POLICY v1): OpenRouter's account (shared with other sessions on the same key) and this Mandate's ledger (cap $${CAPS.openrouter} OpenRouter since the amendment of 2026-11-08 17:35 LA; $60 before 2026-11-01 23:55 LA, $120 until 2026-11-08; $0 OpenAI).`, checks: [...previous, check] });
   log(`spend (${when}): OpenRouter account left $${check.openrouter.remaining ?? "?"} · this Mandate $${spent.toFixed(3)} of $${CAPS.openrouter}`);
   return check;
 }
@@ -111,7 +112,7 @@ async function withApp({ dry = false, haiku = false, fetcher = null, database = 
   }
   // The mocked host answers on the Console's address (no door): a dry pass gets room there too; a paid pass has only CAPS.
   let caps = dry ? { anthropic: 1000, openrouter: 1000 } : CAPS;
-  // The owner's per-table allowance (issue #1): this pass may spend at most `allowance` dollars, and never past the $60.
+  // The owner's per-table allowance (issue #1): this pass may spend at most `allowance` dollars, and never past the ceiling.
   if (!dry && Number.isFinite(allowance)) {
     const spent = (await stageLedgers(STAGE_INFO)).before.openrouter.spentUsd ?? 0;
     caps = { openrouter: Math.min(CAPS.openrouter, Math.round((spent + allowance) * 10000) / 10000) };
@@ -203,7 +204,8 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     const made = await tableStarter(dir)(app, { key, arm }, { meter });
     record.coin = made.coin; record.order = made.seats; record.frozen.note = made.prep.noteSha256;
     // v3 (the owner's decisions after S1-none-T1): the guide's A7 line, the asides stripped, the empty HTTP 200 asked again.
-    record.harness = "v3"; record.guide = made.guide;
+    // v4 (the amendment of 2026-11-08 17:35 LA, Step 1): the round's close belongs to the table (COMPANY_CLOSE, CLOSE_LINE).
+    record.harness = "v4"; record.guide = made.guide;
     const { bindTable } = await import("../game-player-1/table.mjs");
     const dm = bindTable(app, made.cid, settle);
     tableFrom = audit.length;
@@ -212,7 +214,7 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad: record.triad, seats: seating2, dm, meter, keys, rounds, log,
       systemOf: (id) => playerSystem(a.situation, id, made.seats), privateText: made.prep.layerText, cardWait: true, coin: made.coin,
       deliveries: deliveriesOf(arm, made.dice), afterQuestionsOf: (rec) => afterQuestionsFor(arm, rec.characterId, made.dice), onRound: (round) => marks.push({ round, at: audit.length }),
-      stripAsides: ASIDES === "strip" }));
+      stripAsides: ASIDES === "strip", closeLine: CLOSE_LINE }));
     record.table = table; record.stopped = meter.stopped;
     record.spentUsd = meter.ledgers.openrouter?.runUsd ?? 0;
   });

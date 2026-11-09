@@ -1,0 +1,442 @@
+{
+  "table": "S1-none-T2",
+  "rounds": [
+    {
+      "n": 1,
+      "waits": "Bram Halloway",
+      "reflected": {
+        "Pell Dunmore": true,
+        "Bram Halloway": true,
+        "Sefa Marrin": true
+      },
+      "allReflected": true,
+      "open": [
+        "Bram Halloway"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration answers Pell's ground-reading with the prints and lack of blood, has the warden respond to Bram's and Sefa's questions, and ends with the warden demanding an answer from Bram about Thorn's payment."
+        },
+        "b": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration answers Pell's question about the quarrymen and his greeting, Bram's identity question and the cart, and Sefa's call about the case, then leaves the warden waiting on Bram to answer who Thorn paid."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration answers Pell's ground-reading with the prints and lack of blood, has the warden respond to Bram's and Sefa's questions, and ends with the warden demanding an answer from Bram about Thorn's payment."
+        }
+      }
+    },
+    {
+      "n": 2,
+      "waits": "Sefa Marrin",
+      "reflected": {
+        "Bram Halloway": true,
+        "Sefa Marrin": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [
+        "Sefa Marrin"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "Osric answers Bram's question about who sold the salts and the wages, names the owner Pell asked for, and responds to Sefa's offer, then asks Sefa whether she writes a fair hand."
+        },
+        "b": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "Osric answers Bram's question about the salts and wages, takes up Sefa's offer to carry the complaint and Pell's question about the owner, and then asks Sefa directly whether she writes a fair hand."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "Osric answers Bram's question about who sold the salts and the wages, names the owner Pell asked for, and responds to Sefa's offer, then asks Sefa whether she writes a fair hand."
+        }
+      }
+    },
+    {
+      "n": 5,
+      "waits": "Pell Dunmore",
+      "reflected": {
+        "Bram Halloway": true,
+        "Sefa Marrin": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [
+        "Bram Halloway"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration resolves Bram's rope and anchor, answers Sefa's questions and calls, and renders Pell's whistles, shouts, rope work and stone-tracing, while Bram is left holding the loop until Pell answers."
+        },
+        "b": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [],
+          "reason": "The narration answers Sefa's calls and questions, resolves Bram's anchoring and rope work, and takes up Pell's whistles, shouts, rope and carvings, and no character is left with an unanswered question."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration resolves Bram's rope and anchor, answers Sefa's questions and calls, and renders Pell's whistles, shouts, rope work and stone-tracing, while Bram is left holding the loop until Pell answers."
+        }
+      }
+    },
+    {
+      "n": 6,
+      "waits": "Bram Halloway",
+      "reflected": {
+        "Sefa Marrin": true,
+        "Bram Halloway": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [],
+          "reason": "The narration resolves Sefa's light and call, Bram's loop and brace, and Pell's knot, calls and beam report, and it leaves no question or offer unanswered for the players."
+        },
+        "b": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [],
+          "reason": "The narration takes up Sefa's light and call, Bram's loop, slack and brace, and Pell's knot, calls and beam report, and it leaves no question or offer pending for any of them within this round."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [],
+          "reason": "The narration resolves Sefa's light and call, Bram's loop and brace, and Pell's knot, calls and beam report, and it leaves no question or offer unanswered for the players."
+        }
+      }
+    },
+    {
+      "n": 8,
+      "waits": "Pell Dunmore",
+      "reflected": {
+        "Sefa Marrin": true,
+        "Bram Halloway": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [
+        "Pell Dunmore"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "Sefa's question to Osric is answered and her call to Pell is taken up, Bram's haul and guidance are narrated as waiting on Pell, and Pell's probing, marking and calls up the shaft are all resolved in the narration."
+        },
+        "b": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "Sefa's question to Osric is answered and her marking of the place is narrated; Bram's guidance and haul are taken up and wait on Pell; Pell's probing, marking, and call to haul are all narrated, and the narration leaves Pell's knot as his choice."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Bram Halloway": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "Sefa's question to Osric is answered and her call to Pell is taken up, Bram's haul and guidance are narrated as waiting on Pell, and Pell's probing, marking and calls up the shaft are all resolved in the narration."
+        }
+      }
+    },
+    {
+      "n": 11,
+      "waits": "Pell Dunmore",
+      "reflected": {
+        "Bram Halloway": true,
+        "Sefa Marrin": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [
+        "Sefa Marrin"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "The narration takes up each character's written actions (bedroll and shoulder, the hospice-style hush and blanket, Pell's three questions and his plan), and the out-of-game note leaves Sefa's offer to examine Pell's leg open."
+        },
+        "b": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "The narration takes up each player's actions (the bedroll, the shoulder, the blanket, the three questions, the Tobin name, the plans) and its out-of-game note leaves Sefa's offer to look at Pell's leg open."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Sefa Marrin"
+          ],
+          "reason": "The narration takes up each character's written actions (bedroll and shoulder, the hospice-style hush and blanket, Pell's three questions and his plan), and the out-of-game note leaves Sefa's offer to examine Pell's leg open."
+        }
+      }
+    },
+    {
+      "n": 13,
+      "waits": "Sefa Marrin",
+      "reflected": {
+        "Pell Dunmore": true,
+        "Bram Halloway": true,
+        "Sefa Marrin": true
+      },
+      "allReflected": true,
+      "open": [
+        "Bram Halloway",
+        "Sefa Marrin"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway",
+            "Sefa Marrin"
+          ],
+          "reason": "The narration answers Bram's look and Pell's question through Bram's reading and Pell's failed glare-blocked view, and Sefa's look and concern through what she sees; it leaves Bram to report and Sefa to keep the hedge with an open choice."
+        },
+        "b": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway",
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ],
+          "reason": "The narration resolves Bram's scouting, Pell's glare-blinded attempt to see and his hedge-line plan, and Sefa's watching from the rise, and it explicitly leaves Bram's report-or-look choice, Pell's plan, and Sefa's hedge duty open."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Pell Dunmore": true,
+            "Bram Halloway": true,
+            "Sefa Marrin": true
+          },
+          "open": [
+            "Bram Halloway",
+            "Sefa Marrin"
+          ],
+          "reason": "The narration answers Bram's look and Pell's question through Bram's reading and Pell's failed glare-blocked view, and Sefa's look and concern through what she sees; it leaves Bram to report and Sefa to keep the hedge with an open choice."
+        }
+      }
+    },
+    {
+      "n": 14,
+      "waits": "Bram Halloway",
+      "reflected": {
+        "Bram Halloway": true,
+        "Sefa Marrin": true,
+        "Pell Dunmore": true
+      },
+      "allReflected": true,
+      "open": [
+        "Bram Halloway"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration resolves each player's written action (Bram's report and daylight return, Sefa's hold-back and road wait, Pell's hedge approach and offer), and it explicitly leaves Bram the next word on Pell's new half-hour version."
+        },
+        "b": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration takes up all three posts, including Bram's turn toward Beregost and Sefa's start down to the road, and leaves Bram with the next word on Pell's hedge offer."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Bram Halloway": true,
+            "Sefa Marrin": true,
+            "Pell Dunmore": true
+          },
+          "open": [
+            "Bram Halloway"
+          ],
+          "reason": "The narration resolves each player's written action (Bram's report and daylight return, Sefa's hold-back and road wait, Pell's hedge approach and offer), and it explicitly leaves Bram the next word on Pell's new half-hour version."
+        }
+      }
+    },
+    {
+      "n": 15,
+      "waits": "Pell Dunmore",
+      "reflected": {
+        "Sefa Marrin": true,
+        "Pell Dunmore": true,
+        "Bram Halloway": true
+      },
+      "allReflected": true,
+      "open": [
+        "Pell Dunmore"
+      ],
+      "reflect": {
+        "a": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Pell Dunmore": true,
+            "Bram Halloway": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "The narration takes up Sefa's hedge-end proposal, Pell's walk and Beregost plan, and Bram's call to the driver and his question about the hollow, and it ends by offering Pell the tailboard."
+        },
+        "b": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Pell Dunmore": true,
+            "Bram Halloway": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "The narration takes up all three players' lines, including Sefa's hedge-end proposal, Pell's Beregost plan, and Bram's seat and hollow questions, and ends by offering Pell the tailboard."
+        },
+        "third": null,
+        "final": {
+          "reflected": {
+            "Sefa Marrin": true,
+            "Pell Dunmore": true,
+            "Bram Halloway": true
+          },
+          "open": [
+            "Pell Dunmore"
+          ],
+          "reason": "The narration takes up Sefa's hedge-end proposal, Pell's walk and Beregost plan, and Bram's call to the driver and his question about the hollow, and it ends by offering Pell the tailboard."
+        }
+      }
+    }
+  ],
+  "spentUsd": 0.0097697
+}

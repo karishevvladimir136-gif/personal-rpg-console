@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $60; spent before this run $0.0000; this run $42.5240; total $42.5240; 1508 calls.
+Cap $60; spent before this run $0.0000; this run $42.5337; total $42.5337; 1526 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1080,3 +1080,21 @@ Cap $60; spent before this run $0.0000; this run $42.5240; total $42.5240; 1508 
 | S1-none-T2/score | initiative r14 2 | anthropic/claude-haiku-5.5 | 1 | 2675 | 0 | 0 | 372 | $0.0005 | 0 | 0 | 0 |
 | S1-none-T2/score | initiative r15 1 | anthropic/claude-haiku-5.5 | 1 | 3063 | 0 | 0 | 93 | $0.0004 | 0 | 0 | 0 |
 | S1-none-T2/score | initiative r15 2 | anthropic/claude-haiku-5.5 | 1 | 3063 | 0 | 0 | 110 | $0.0004 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r1 1 | anthropic/claude-haiku-5.5 | 1 | 2061 | 0 | 0 | 479 | $0.0004 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r1 2 | anthropic/claude-haiku-5.5 | 1 | 2061 | 0 | 0 | 505 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r2 1 | anthropic/claude-haiku-5.5 | 1 | 2358 | 0 | 0 | 528 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r2 2 | anthropic/claude-haiku-5.5 | 1 | 2358 | 0 | 0 | 558 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r5 1 | anthropic/claude-haiku-5.5 | 1 | 3380 | 0 | 0 | 1182 | $0.0009 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r5 2 | anthropic/claude-haiku-5.5 | 1 | 3380 | 0 | 0 | 710 | $0.0007 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r6 1 | anthropic/claude-haiku-5.5 | 1 | 4010 | 0 | 0 | 114 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r6 2 | anthropic/claude-haiku-5.5 | 1 | 4010 | 0 | 0 | 119 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r8 1 | anthropic/claude-haiku-5.5 | 1 | 3498 | 0 | 0 | 142 | $0.0004 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r8 2 | anthropic/claude-haiku-5.5 | 1 | 3498 | 0 | 0 | 152 | $0.0004 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r11 1 | anthropic/claude-haiku-5.5 | 1 | 3166 | 0 | 0 | 670 | $0.0007 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r11 2 | anthropic/claude-haiku-5.5 | 1 | 3166 | 0 | 0 | 591 | $0.0006 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r13 1 | anthropic/claude-haiku-5.5 | 1 | 2502 | 0 | 0 | 903 | $0.0007 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r13 2 | anthropic/claude-haiku-5.5 | 1 | 2502 | 0 | 0 | 178 | $0.0003 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r14 1 | anthropic/claude-haiku-5.5 | 1 | 2679 | 0 | 0 | 446 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r14 2 | anthropic/claude-haiku-5.5 | 1 | 2679 | 0 | 0 | 457 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r15 1 | anthropic/claude-haiku-5.5 | 1 | 3067 | 0 | 0 | 462 | $0.0005 | 0 | 0 | 0 |
+| a7-baseline/judge | a7 baseline reflect r15 2 | anthropic/claude-haiku-5.5 | 1 | 3067 | 0 | 0 | 655 | $0.0006 | 0 | 0 | 0 |

@@ -374,6 +374,40 @@
           "left": 17.48
         }
       }
+    },
+    {
+      "at": "2026-11-09T01:42:55.943Z",
+      "when": "by hand",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1345.417518235,
+        "remaining": 204.58,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 42.524,
+          "cap": 60,
+          "left": 17.48
+        }
+      }
+    },
+    {
+      "at": "2026-11-09T01:55:52.703Z",
+      "when": "before the A7 replay (Step 1)",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1345.421059035,
+        "remaining": 204.58,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 42.5337,
+          "cap": 60,
+          "left": 17.47
+        }
+      }
     }
   ]
 }

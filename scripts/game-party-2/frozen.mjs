@@ -19,6 +19,7 @@ import { HAIKU_PLAYER } from "../game-player-same-world-1/run.mjs";
 import { DOOR_LINES } from "../game-party-1/frozen.mjs";
 import { AFTER_QUESTIONS, COMPANY_NOTE, MAX_WAIT, RELAY_ALONE, RELAY_MISSING, RELAY_RULES, RELAY_SYSTEM, SHINGLE, companyDoc, companyFiles, dmCompanyLine, ownerOpeningAnswer, rotation, seatsFrom } from "../multi-hero-1/frozen.mjs";
 import { CHARACTERS, REVIEWS, WHO, sheetText } from "../multi-hero-1/sheets.mjs";
+import { COMPANY_CLOSE } from "../../src/lib/gameplay/dm-loop/company.ts";
 
 export { AFTER_QUESTIONS, COMPANY_NOTE, MAX_WAIT, companyFiles, dmCompanyLine, ownerOpeningAnswer, rotation, seatsFrom };
 export const STAGE = "GAME_PARTY_2";
@@ -34,9 +35,11 @@ export const NOTES_VERSION = "v2";
 
 // ---- money (the Mandate's caps supersede the stage's $500 / $80) --------------------------------------------------------
 
-/** Hard ceiling $60 on OpenRouter for the whole Mandate, $0 on OpenAI (no OpenAI ledger: any call there stops the run),
- * nothing on the Anthropic Console (no ledger: any call there stops the run). */
-export const CAPS = { openrouter: 60 };
+/** Hard ceiling on OpenRouter for the whole Mandate, $0 on OpenAI (no OpenAI ledger: any call there stops the run),
+ * nothing on the Anthropic Console (no ledger: any call there stops the run). $60 at the Mandate's issue; $120 by the
+ * amendment of 2026-11-01 23:55 LA; **$240** by the amendment of 2026-11-08 17:35 LA (issue #1). The owner's allowance
+ * per table stays $25 (`--allowance 25`). */
+export const CAPS = { openrouter: 240 };
 
 // ---- the players (POLICY v1: Sol and Astra through OpenRouter pinned to OpenAI, no fallback) ----------------------------
 
@@ -76,7 +79,12 @@ export function guideWithA7(body) {
 export const ASIDES = "strip";
 /** Which tables played on which harness: S1-none-T1 on v2 (the notes v2, the relay that never falls back verbatim); from
  * S1-none-T2 on, v3 (the owner's A7 line, the asides stripped, the empty HTTP 200 asked again). */
-export const HARNESS = { v2: ["S1-none-T1"], v3: "every later table" };
+export const HARNESS = { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "every later table" };
+/** v4 (issue #1, the amendment of 2026-11-08 17:35 LA, Step 1 — A7 fixed by the harness, not by the guide): the round's
+ * close belongs to the table. The DM's company frame ends each scene on the world, never on a question, offer, demand or
+ * wait put to one character, never on an out-of-game note of what is open (src/lib/gameplay/dm-loop/company.ts
+ * COMPANY_CLOSE); the table closes every seat's round screen with the same line, last. The guide note stays as written. */
+export const CLOSE_LINE = (character, round) => `Round ${round} — what does ${character.name} do?`;
 
 // ---- the situations --------------------------------------------------------------------------------------------------------
 
@@ -275,7 +283,7 @@ export const BETS = {
 };
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE, GUIDE_A7_FROM, GUIDE_A7_TO, ASIDES, HARNESS,
+  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE, GUIDE_A7_FROM, GUIDE_A7_TO, ASIDES, HARNESS, CLOSE_LINE: CLOSE_LINE({ name: "NAME" }, "N"), COMPANY_CLOSE,
   situations: Object.fromEntries(Object.entries(SITUATIONS).map(([k, s]) => [k, { title: s.title, wishes: s.wishes, premise: s.premise(["bram", "sefa", "pell"]),
     notes: Object.fromEntries(CHARACTERS.flatMap((c) => Object.keys(s.variants).map((v) => [`${v}/${c.id}`, [s.shared(c.id), s.variants[v].note(c.id)].join("\n\n")]))) }])),
   LETTER_SCREEN: LETTER_SCREEN("TEXT"), PROMPT_RULES, AFTER_QUESTIONS, HOLDER_QUESTION, BETS,

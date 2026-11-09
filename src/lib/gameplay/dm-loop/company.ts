@@ -89,8 +89,14 @@ export function inCompanyOrder<T>(rows: readonly T[], idOf: (row: T) => string, 
 }
 
 /** The frame's company paragraph: who sits at the table, that no one is the main character, and that the company moves
- * when any of them acts (the stage's A7). It closes the frame of every DM role of the mode. */
-export const COMPANY_TABLE = "At this table several players sit together, each playing one character of their own: the player characters, on record as the party. None of them is the main character and you play none of them. Each round brings what every character in a scene does, one paragraph each; resolve them all and narrate what happens to every character there. The company moves when any of them acts: you never wait on one character's decision before the others may move, and one character's consent is never the condition of the others' movement. When you end on a question, put it to the characters it concerns — over the rounds to each of them in turn, never to the same one by habit. Each player character earns and spends their own Heroic Inspiration, and each player has their own allowed rerolls.";
+ * when any of them acts (the stage's A7). It closes the frame of every DM role of the mode.
+ * GAME_PARTY_2 (issue #1, the amendment of 2026-11-08 17:35 LA, Step 1): the round's close belongs to the table, not to
+ * the DM — the sentence «When you end on a question, put it to the characters it concerns …» is replaced by
+ * COMPANY_CLOSE (PARTY_2's nine A7 rounds all held in the narration's last beat: a question, offer or wait put to one
+ * character, or the DM's out-of-game note of what was still open). The table's own closing line is the harness's
+ * (multi-hero-1/table.mjs `closeLine`). */
+export const COMPANY_CLOSE = "The round's close belongs to the table, not to you: the table itself asks every player what their character does next. So end each scene's narration on the world as it stands at that moment — never on a question, an offer, a demand or a call put to one character, never on someone waiting for one character's answer, and never with an out-of-game note of what is still open. A question or an offer put to one character inside the narration stays open into the next round, when every character acts again. A scene never waits on a character in another scene: what it needs from them arrives when they act.";
+export const COMPANY_TABLE = `At this table several players sit together, each playing one character of their own: the player characters, on record as the party. None of them is the main character and you play none of them. Each round brings what every character in a scene does, one paragraph each; resolve them all and narrate what happens to every character there. The company moves when any of them acts: you never wait on one character's decision before the others may move, and one character's consent is never the condition of the others' movement. ${COMPANY_CLOSE} Each player character earns and spends their own Heroic Inspiration, and each player has their own allowed rerolls.`;
 
 /** Whole sentences of the roles and the tools that need more than a word changed (the subject's pronouns, a rule that
  * meant one person). Each `from` is copied from its source; a test checks that every one still occurs there. */

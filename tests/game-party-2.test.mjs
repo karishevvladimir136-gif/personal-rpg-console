@@ -120,14 +120,20 @@ test("S2 on the app with the mocked host: the letter on the holder's screen only
     const r = await playTable({ dir: ${JSON.stringify(join(dir, "frozen"))}, arm: "S2-high", seating: { bram: "haiku", sefa: "haiku", pell: "haiku" }, dry: true, rounds: 5, fetcher: host(), log: () => {}, out: ${JSON.stringify(join(dir, "out"))}, label: "test" });
     const dmRequests = log.slice(from).filter((x) => /game master of a private, long-running/.test(JSON.stringify(x.body.system ?? ""))).map((x) => JSON.stringify(x.body));
     writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify({ r, dmWithNote: dmRequests.filter((b) => b.includes("The situation (the owner")).length, dmWithLetter: dmRequests.filter((b) => b.includes("I owe") || b.includes("the hospice owes Ostrin Vell")).length, dm: dmRequests.length,
-      a7New: dmRequests.filter((b) => b.includes("is resolved inside that character's own screen, in the same round")).length, a7Old: dmRequests.filter((b) => b.includes("A question one character leaves unanswered is not a pause")).length }));
+      a7New: dmRequests.filter((b) => b.includes("is resolved inside that character's own screen, in the same round")).length, a7Old: dmRequests.filter((b) => b.includes("A question one character leaves unanswered is not a pause")).length,
+      closeNew: dmRequests.filter((b) => b.includes("The round's close belongs to the table, not to you")).length, closeOld: dmRequests.filter((b) => b.includes("When you end on a question, put it to the characters it concerns")).length }));
     process.exit(0);`;
   execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", code], { cwd: new URL("..", import.meta.url), encoding: "utf8", stdio: ["ignore", "ignore", "pipe"],
     env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", APP_OPENROUTER_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "", OPENROUTER_API_KEY: "" }, maxBuffer: 256 * 1024 * 1024 });
-  const { r, dmWithNote, dmWithLetter, dm, a7New, a7Old } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
+  const { r, dmWithNote, dmWithLetter, dm, a7New, a7Old, closeNew, closeOld } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
   // The owner's A7 line (after S1-none-T1): in every narrating DM request of the table, the old sentences in none.
   assert.ok(a7New === dm && a7Old === 0, `A7: new line in ${a7New}/${dm}, old in ${a7Old}`);
-  assert.deepEqual([r.harness, r.guide?.a7], ["v3", "owner 2026-11-02"]);
+  // v4 (Step 1 of the amendment of 2026-11-08 17:35 LA): the frame's close in every narrating DM request, the old sentence in none.
+  assert.ok(closeNew === dm && closeOld === 0, `the close: new in ${closeNew}/${dm}, old in ${closeOld}`);
+  assert.deepEqual([r.harness, r.guide?.a7], ["v4", "owner 2026-11-02"]);
+  // The table's own closing line ends every seat's round screen, the same words for each.
+  for (const seat of r.table.seats) for (const sc of seat.screens.filter((x) => /^player r\d+$/.test(x.purpose)))
+    assert.ok(sc.text.endsWith(frozen.CLOSE_LINE({ name: seat.character }, Number(sc.purpose.slice(8)))), `${seat.character} ${sc.purpose}: the closing line last`);
   const t = r.table;
   assert.equal(t.ended.reason, "rounds");
   assert.equal(t.rounds.length, 5);
@@ -244,4 +250,83 @@ test("the owner's decisions after S1-none-T1: the A7 line replaces the guide's t
   // The bets: the owner's, given after S1-none-T1's result.
   const verdicts = await import("../scripts/game-party-2/verdicts.mjs");
   assert.deepEqual(Object.keys(verdicts.OWNER_BETS.bets), ["R1", "R2", "R3", "R4", "R5"]);
+});
+
+// ---- Step 1 of the amendment of 2026-11-08 17:35 LA: A7 fixed by the harness ---------------------------------------------------
+
+test("A7 v4: the company frame gives the round's close to the table (no question, offer, wait or out-of-game note put to one character); the old sentence is gone; the guide note stays", async () => {
+  const company = await import("../src/lib/gameplay/dm-loop/company.ts");
+  assert.ok(company.COMPANY_TABLE.includes(company.COMPANY_CLOSE));
+  assert.doesNotMatch(company.COMPANY_TABLE, /When you end on a question, put it to the characters it concerns/);
+  assert.match(company.COMPANY_CLOSE, /never on a question, an offer, a demand or a call put to one character/);
+  assert.match(company.COMPANY_CLOSE, /never with an out-of-game note of what is still open/);
+  assert.match(company.COMPANY_CLOSE, /A scene never waits on a character in another scene/);
+  // The guide note is the owner's, unchanged (the amendment: «the owner's line is not rewritten»).
+  assert.match(frozen.GUIDE_A7_TO, /^A question or offer addressed to one character is resolved inside that character's own screen, in the same round;/);
+  assert.equal(frozen.CLOSE_LINE({ name: "Sefa Marrin" }, 4), "Round 4 — what does Sefa Marrin do?");
+  assert.deepEqual(frozen.HARNESS, { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "every later table" });
+});
+
+test("A7 replay on a mocked OpenRouter: the request is the captured shape with T2's history and frozen messages, rolls answered locally, both readings per round, the verdict at 8 of 9; nothing past the meter's cap", async () => {
+  const replay = await import("../scripts/game-party-2/a7-replay.mjs");
+  const { anthropicEndpoint } = await import("../src/lib/server/anthropic-endpoint.ts");
+  const keys = { anthropic: "sk-test", openai: "sk-never", door: anthropicEndpoint({ ANTHROPIC_PROVIDER: "openrouter", OPENROUTER_API_KEY: "sk-test", APP_OPENROUTER_API_KEY: "sk-test" }) };
+  keys.door.apiKey = "sk-test";
+  const captured = { capturedAt: "test", output_config: { effort: "high" }, tools: [{ name: "roll", description: "Roll dice", input_schema: { type: "object", properties: {} } }, { name: "recall", description: "Recall", input_schema: { type: "object", properties: {} } }],
+    frame: { type: "text", text: "You are the game master of a private, long-running role-playing campaign. FRAME" }, campaign: [{ type: "text", text: "Campaign: test." }],
+    history: [{ type: "text", text: "Recent scenes and exchanges (oldest first; the conversation so far, public):\n[note] approved" }, { type: "text", text: "[narration] OPENING" }],
+    after: [{ type: "text", text: "Party — the player characters: …" }, { type: "text", text: "Retrieved memory: canon\n\nCurrent state (before this turn; IDs are the references tools accept):\n{\"marker\":\"STALE_STATE_MARKER\"}" }] };
+  const seen = { dm: [], judges: 0, urls: new Set() };
+  const reply = (content, stop = "end_turn") => new Response(JSON.stringify({ id: "msg", model: "anthropic/claude-opus-5.5", stop_reason: stop, content, usage: { input_tokens: 1000, output_tokens: 200 } }), { status: 200, headers: { "content-type": "application/json" } });
+  const fetcher = async (url, init) => {
+    seen.urls.add(String(url));
+    const body = JSON.parse(init.body);
+    const system = Array.isArray(body.system) ? body.system.map((b) => b.text).join("\n") : String(body.system ?? "");
+    if (/game master of a private/.test(system)) {
+      seen.dm.push(body);
+      const last = body.messages.at(-1);
+      if (last.role === "user" && typeof last.content !== "string" && last.content[0]?.type === "text" && /Round 5 /.test(last.content[0].text) && body.messages.length === 1)
+        return reply([{ type: "text", text: "Bram braces. " }, { type: "tool_use", id: "tu1", name: "roll", input: { formula: "1d20+5", difficulty: "hard", actorRef: "Bram Halloway", reason: "Athletics" } }], "tool_use");
+      return reply([{ type: "text", text: "The rope creaks and the yard is still. <ledger>\ntime — 5 minutes\n</ledger>" }]);
+    }
+    seen.judges++;
+    const user = body.messages[0].content;
+    const text = typeof user === "string" ? user : user.map((b) => b.text).join("");
+    const round = Number(/Round (\d+)\./.exec(text)?.[1]);
+    if (/"waits"/.test(text)) return reply([{ type: "text", text: JSON.stringify({ addressed: [], waits: round === 13 ? "Sefa Marrin" : null, reason: "test" }) }]);
+    const acted = (/The characters who acted this round: ([^\n]*)\./.exec(text)?.[1] ?? "").split(", ").filter(Boolean);
+    return reply([{ type: "text", text: JSON.stringify({ reflected: Object.fromEntries(acted.map((n) => [n, true])), open: round === 14 ? ["Bram Halloway"] : [], reason: "test" }) }]);
+  };
+  const dir = mkdtempSync(join(tmpdir(), "a7-replay-test-"));
+  const out = await replay.runReplay({ dry: true, fetcher, keys, captured, log: () => {}, out: join(dir, "a7") });
+  assert.deepEqual([...seen.urls], ["https://openrouter.ai/api/v1/messages"], "every call through OpenRouter, none to the Console or OpenAI");
+  // One DM turn per scene of the nine rounds (r5, r6 and r8 had two scenes at T2), plus r5's tool step(s).
+  assert.equal(out.scenes.length, 12);
+  assert.ok(seen.dm.every((b) => b.model === "anthropic/claude-opus-5.5" && b.max_tokens === replay.DM_MAX_TOKENS && b.system.filter((x) => x.cache_control).length === 4));
+  const first = seen.dm[0];
+  assert.match(first.messages[0].content[0].text, /^Player: \(Round 1 — one paragraph per character in this scene\.\)/);
+  assert.ok(first.system.some((b) => b.text === "[narration] OPENING") && !first.system.some((b) => /\[player\] \(Round 1/.test(b.text)), "round 1 reads the opening, no round of its own");
+  const r15 = seen.dm.find((b) => /Round 15 /.test(b.messages[0].content[0].text));
+  assert.ok(r15.system.some((b) => /^\[player\] \(Round 14 /.test(b.text)) && !r15.system.some((b) => /^\[player\] \(Round 15 /.test(b.text)), "round 15 reads rounds 1–14, not itself");
+  assert.ok(seen.dm.every((b) => !JSON.stringify(b.system).includes("STALE_STATE_MARKER")), "the stale current state is left out");
+  const step = seen.dm.find((b) => b.messages.length === 3);
+  const result = JSON.parse(step.messages[2].content[0].content);
+  assert.equal(step.messages[2].content[0].tool_use_id, "tu1");
+  assert.ok(result.ok && result.dc === 13 && result.dice.length === 1 && result.total === result.dice[0] + 5);
+  assert.ok(out.scenes.every((s) => s.narration === "The rope creaks and the yard is still." || s.narration === "Bram braces. The rope creaks and the yard is still."), "the ledger is left out of the narration");
+  // The verdict: r13 holds on Sefa (fails), the rest pass → 8 of 9.
+  assert.deepEqual([out.verdict.passed, out.verdict.of, out.verdict.holds, out.verdict.noHold, out.verdict.allReflected], [8, 9, true, 8, 9]);
+  assert.deepEqual(out.verdict.namesOpenWithoutHold, [14]);
+  assert.match(readFileSync(join(dir, "a7.md"), "utf8"), /8 of 9 rounds pass \(needed 8\) — PASS/);
+  // A cap the first call could pass: nothing is sent.
+  seen.dm.length = 0;
+  await assert.rejects(replay.runReplay({ dry: true, fetcher, keys, captured, log: () => {}, out: join(dir, "a7-capped"), cap: 0.01 }), /failed|not sent/);
+  assert.equal(seen.dm.length, 0);
+});
+
+test("A7 replay: a roll is the formula's dice, the modifier and the fiction's bonuses against the ladder; a natural 1 fails", async () => {
+  const { localRoll } = await import("../scripts/game-party-2/a7-replay.mjs");
+  assert.deepEqual((({ dice, total, dc, success }) => ({ dice, total, dc, success }))(localRoll({ formula: "1d20+3", difficulty: "normal", bonuses: [{ source: "rope", value: 2 }] }, () => 6)), { dice: [6], total: 11, dc: 10, success: true });
+  assert.equal(localRoll({ formula: "1d20+30", dc: 5 }, () => 1).success, false);
+  assert.equal(localRoll({ formula: "2d6" }, () => 3).total, 6);
 });

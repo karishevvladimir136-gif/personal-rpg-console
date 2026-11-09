@@ -68,9 +68,12 @@ export const oocFor = (character, text, wait = "") => `(${character.short}'s pla
  * shown at the first round from `round` on in which that seat is asked, kept as that seat's private material (the leak
  * check reads it) and never sent to the DM or the relay; `afterQuestionsOf(rec)` — the after-questions of one seat
  * (default: AFTER_QUESTIONS for every seat).
+ * Game party 2, Step 1 of the amendment of 2026-11-08 17:35 LA: `closeLine(character, round)` — the round's closing line
+ * belongs to the table, not to the DM (company.ts COMPANY_CLOSE): the same words close every seat's round screen, last;
+ * none by default (MULTI_HERO_1 and PARTY_1 as they were).
  */
 export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {},
-  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS, stripAsides = false }) {
+  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS, stripAsides = false, closeLine = null }) {
   const record = { key, arm, triad, coin, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
     seats: [], deliveries: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
   const view = () => dm.readView();
@@ -294,7 +297,8 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       record.deliveries.push({ characterId: d.characterId, character: s.character.name, plannedRound: d.round, round: r, text: d.text });
     }
     for (;;) {
-      const screen = compose(s);
+      const close = closeLine ? closeLine(s.character, r) : "";
+      const screen = [compose(s), close].filter(Boolean).join("\n\n");
       const said = await ask(s, screen, `player r${r}`);
       if (said === null) return { kind: s.left === "stopped" ? "absent" : "gone" };
       if (!(await welfare(s, screen, said, `r${r}`))) return { kind: "absent" };

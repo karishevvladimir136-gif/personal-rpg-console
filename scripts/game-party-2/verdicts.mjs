@@ -131,6 +131,13 @@ export function verdicts(runs) {
   return { R1, R2, R3, R4, R5, s1, s2, s3 };
 }
 
+/** What each harness was, for a table's line (frozen.mjs HARNESS). */
+export const HARNESS_TEXT = {
+  v2: () => "the guide's A7 sentences as built; asides passed to screens",
+  v3: (r) => `the owner's A7 line in the guide; the DM's out-of-game asides stripped from screens, ${r.table?.asides?.length ?? 0} stripping(s) kept in the record; an empty HTTP 200 asked again`,
+  v4: (r) => `v3, and the round's close given to the table (Step 1 of the amendment of 2026-11-08 17:35 LA): the DM's frame ends each scene on the world, never on a question, offer, demand or wait put to one character; every seat's round screen ends on the same line, «Round N — what does <name> do?»; ${r.table?.asides?.length ?? 0} aside stripping(s) kept in the record`,
+};
+
 export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const v = verdicts(runs);
   const played = new Set(runs.map((r) => r.key));
@@ -144,7 +151,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const lines = [
     "# Game party 2 — a company when holding costs", "",
     `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-2\` from \`origin/claude/multi-hero-1-mdk43v\`. Synthetic content only. English, briefly.`, "",
-    `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"} — the Mandate's ceiling ($60 OpenRouter) at ≈ $15–23 a table.`, "",
+    `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"} — ${notPlayed.length ? `the Mandate's ceiling ($${CAPS.openrouter} OpenRouter) or the key's credit, at ≈ $15–23 a table` : "none left"}.`, "",
     "## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)", "",
     `The planner's premise: ${BETS.premise}`, "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
@@ -158,7 +165,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
     const cap = capacitiesOf(r);
     const a7 = a7Of(r.table?.initiative);
     lines.push(`### ${r.key} — ${a.situation} ${r.variant}; ${CHARACTERS.map((c) => `${c.short} ${ROSTER[SEATING[r.triad][c.id]].label}`).join(", ")}`, "",
-      `${r.table?.rounds?.length ?? 0} rounds, ended by ${r.table?.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(2)} at the table${r.stopped ? `; STOPPED: ${r.stopped}` : ""}. Harness ${r.harness ?? "v2"}${(r.harness ?? "v2") === "v3" ? " (the owner's A7 line in the guide; the DM's out-of-game asides stripped from screens, " + (r.table?.asides?.length ?? 0) + " stripping(s) kept in the record; an empty HTTP 200 asked again)" : " (the guide's A7 sentences as built; asides passed to screens)"}. Transcripts: \`docs/runs/${STEM}-transcripts/${r.key}/\` (per table and per player).`, "",
+      `${r.table?.rounds?.length ?? 0} rounds, ended by ${r.table?.ended?.reason}; $${(r.spentUsd ?? 0).toFixed(2)} at the table${r.stopped ? `; STOPPED: ${r.stopped}` : ""}. Harness ${r.harness ?? "v2"} (${HARNESS_TEXT[r.harness ?? "v2"](r)}). Transcripts: \`docs/runs/${STEM}-transcripts/${r.key}/\` (per table and per player).`, "",
       `- **Form:** the company formed at round ${cap.formed ?? "—"} around ${cap.around ?? "—"}.`,
       `- **Maintain:** ${cap.maintains.length ? cap.maintains.map((m) => `r${m.round} ${short(m.who)}`).join(", ") : "no round tagged"}.`,
       `- **Restore:** ${cap.restores.length ? cap.restores.map((x) => `r${x.round} (${x.who.map(short).join(", ") || "—"})`).join(", ") : "no re-joining tagged"}.`,
