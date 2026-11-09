@@ -3670,6 +3670,5297 @@
       "hits": [],
       "checked": 3,
       "reading": "refined"
+    },
+    "tags": {
+      "rounds": {
+        "1": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three approach the quarry together on Maela Thorn's request; Pell's role assignments are followed without conflict, and no fight or danger to life arises."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "The three walk into the quarry together on Maela's request, with Pell's approach plan followed, but no fight or danger to life has yet occurred."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three arrive together on Maela's errand; Pell lays out roles (Bram talks first, Pell watches, Sefa holds back), the others act in line with it, and no danger is in play."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three arrive together on Maela's errand; Pell lays out roles (Bram talks first, Pell watches, Sefa holds back), the others act in line with it, and no danger is in play."
+          },
+          "unresolved": false
+        },
+        "2": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Pell proposes a plan covering the group's handling of Osric's standoff over the case, Bram follows it, and Sefa stays passive; the tense, armed standoff with sunset pressure counts as a danger to life."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Pell proposes a plan for Bram to answer the quarry man and Sefa to hold the doorway, and Bram acts on it; the group is in an armed standoff over the wages case, with no open conflict between characters."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes roles for the group and Bram negotiates in line with that plan, but Sefa says nothing and agrees to nothing, so party is 0; there is no fight or danger to life."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes roles for the group and Bram negotiates in line with that plan, but Sefa says nothing and agrees to nothing, so party is 0; there is no fight or danger to life."
+          },
+          "unresolved": false
+        },
+        "3": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three take on the warden's hooked delivery job together, but no character proposes a course for the group and no threat or conflict arises."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three accept Osric's hired delivery of the Thorn case to the Red Sheaf, but no one leads or conflicts and no danger is present."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 1,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Sefa offers the warden a group deal to carry Maela's account to the Red Sheaf, Pell narrows it to what they can promise, and Bram adopts that limit; the warden accepts with no danger in play."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 1,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Sefa offers the warden a group deal to carry Maela's account to the Red Sheaf, Pell narrows it to what they can promise, and Bram adopts that limit; the warden accepts with no danger in play."
+          },
+          "unresolved": false
+        },
+        "4": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three agree to carry the sealed case to Wat Pryor together, following Pell's proposal to take up the delivery; no danger or fight occurs."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three agree to walk to Wat Pryor with the case, a proposal by Pell taking up the game world's delivery request; no fight or danger to life."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes they take the case down the cart track, Bram and Sefa go along with it, and there is no danger."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes they take the case down the cart track, Bram and Sefa go along with it, and there is no danger."
+          },
+          "unresolved": false
+        },
+        "5": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three move together toward Maela on a delivery request, and the round turns into a danger to life when Pell falls into a collapsing shaft, but no one is left behind by choice and no one acts against another's stated wishes."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "proposal",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three travel together on a shared road with no conflict, and a collapse pins Pell in a flooded working, making the round a danger to life."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three set off together to deliver the case to Maela, each proposing how to travel, until Pell falls into a flooding seam pinned under a block, which puts his life in danger."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three set off together to deliver the case to Maela, each proposing how to travel, until Pell falls into a flooding seam pinned under a block, which puts his life in danger."
+          },
+          "unresolved": false
+        },
+        "6": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Pell is pinned under a block in rising water, and the other two act on his rescue plan together."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Three characters coordinate a rescue of Pell, pinned under a block in rising water, with proposals that take up the trapped man and no disagreement between them."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Bram Halloway",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram and Sefa work from firm ground to free Pell, who is pinned and chest-deep in rising water; each puts forward a compatible plan, no single course is clearly followed, and nobody clashes."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Bram Halloway",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram and Sefa work from firm ground to free Pell, who is pinned and chest-deep in rising water; each puts forward a compatible plan, no single course is clearly followed, and nobody clashes."
+          },
+          "unresolved": false
+        },
+        "7": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 1,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Bram Halloway",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "assumed",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three work together to free a trapped man's leg from under a block in rising water, a fight-free but life-threatening danger."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 1,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Bram Halloway",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 1,
+            "resolution": "override",
+            "leader": "Bram Halloway",
+            "how": "override",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Three characters work together to free a trapped companion from rising water, but Bram drops in against Pell's instructions, creating a conflict that Bram's course settles."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram lays out the plan to free Pell from the pinned leg and drops into the flooding chamber to do it. Pell accepts the warning to leave the stone, but his own plan is overtaken by Bram already being down."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram lays out the plan to free Pell from the pinned leg and drops into the flooding chamber to do it. Pell accepts the warning to leave the stone, but his own plan is overtaken by Bram already being down."
+          },
+          "unresolved": false
+        },
+        "8": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": {
+                  "on": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 1,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 1,
+            "resolution": "override",
+            "leader": "Pell Dunmore",
+            "how": "override",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The three work together to free the trapped Pell from a collapsing block; Pell overrides Bram's prop plan, the group follows his course, and Sefa heals him under danger."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 1,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": {
+                  "on": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 1,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "All three work together to free the trapped Pell under a sagging roof, amending Bram's prop plan, and Sefa's light stops his bleeding amid a collapse risk."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 1,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": {
+                  "on": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram proposes the lever-and-chock rescue of the trapped, bleeding Pell; Sefa and Pell refine it and agree, Bram lifts the block and Sefa heals Pell with Healing Light."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 1,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": {
+                  "on": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Bram proposes the lever-and-chock rescue of the trapped, bleeding Pell; Sefa and Pell refine it and agree, Bram lifts the block and Sefa heals Pell with Healing Light."
+          },
+          "unresolved": false
+        },
+        "9": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Bram Halloway",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "All three act together to get Pell and Bram out of a flooding hole; Sefa's haul plan and Bram's 'we're getting out' lead, and the collapse and drowning water make it a threat."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "The group, in a flooded pit with a dangerous glowing wall, is coordinating Pell's escape and then Bram's, with Sefa directing the rope lift under threat of drowning and collapse."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Under rising water and a stirring presence, the group works together on Sefa's haul plan to get Pell and Bram out, and Bram steadies Pell at the wall."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": "Pell Dunmore",
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 1,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "Under rising water and a stirring presence, the group works together on Sefa's haul plan to get Pell and Bram out, and Bram steadies Pell at the wall."
+          },
+          "unresolved": false
+        },
+        "10": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 1,
+            "resolution": "unresolved",
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes leaving now but Sefa refuses to move the case until she gets answers, and Bram stays on his own questions, so the three are not acting as one group."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 1,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes leaving now but walks off down the track alone while Bram and Sefa stay behind on the ledge; no group course is agreed and no fight or immediate danger to life is in play."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes leaving at once and leads down the risky track, but Bram and Sefa are still questioning Osric and have not yet agreed, so no group course is set."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 0,
+            "around": null,
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "Pell proposes leaving at once and leads down the risky track, but Bram and Sefa are still questioning Osric and have not yet agreed, so no group course is set."
+          },
+          "unresolved": false
+        },
+        "11": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 1,
+                "amends": 1,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "you two"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three move together toward Beregost on Sefa's course, tied to the case from Maela's delivery; Pell adds a condition about Maela's hearing, no conflict or danger this round."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 1,
+            "reason": "All three move together on the case delivery, Sefa's proposal leads and Pell's route to Maela's is added; danger from the cracked ground is present but no fight occurs."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three converge without dispute on carrying the case to Maela's and questioning her, following Sefa's call to take it; the walk down has no fight or live danger."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [
+                  "name"
+                ],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "both",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Sefa Marrin",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three converge without dispute on carrying the case to Maela's and questioning her, following Sefa's call to take it; the walk down has no fight or live danger."
+          },
+          "unresolved": false
+        }
+      },
+      "hold": {
+        "1": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram speaks, Pell holds back and watches the sheds",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, you do the talking"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 1 is an opening approach to the warden; no one is in danger, no costs are named, and the company stays together."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram does the talking, Pell watches back",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, you do the talking"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Opening approach to the quarry; no one is yet in the placed danger, no costs are named, and no one leaves or splits."
+          },
+          "referee": null,
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram speaks, Pell holds back and watches the sheds",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, you do the talking"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 1 is an opening approach to the warden; no one is in danger, no costs are named, and the company stays together."
+          }
+        },
+        "2": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "ninety gold between three of us",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram answers Osric, Pell keeps the yard, Sefa holds the doorway",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, go in and answer him straight"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is not yet trapped this round; the company stays together, Pell assigns positions, and no one names a cost of helping or leaves."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "There's a sunset on this.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram answers Osric while Pell keeps the yard and Sefa holds the doorway",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, go in and answer him straight"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "No one is trapped or split this round; the company plans a division of tasks and Bram talks with Osric while Pell watches the yard."
+          },
+          "referee": null,
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "ninety gold between three of us",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Bram answers Osric, Pell keeps the yard, Sefa holds the doorway",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "Bram, go in and answer him straight"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is not yet trapped this round; the company stays together, Pell assigns positions, and no one names a cost of helping or leaves."
+          }
+        },
+        "3": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "none of us are paid",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "carry the case to the Red Sheaf",
+                "by": [
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll carry it."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The three negotiate the job with Osric and agree to deliver the case; no one is in the placed danger yet, and nothing goes wrong or splits the company."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "none of us are paid",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "I don't give more than I can carry.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "carry the case to Beregost for Osric's receipt",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll carry it."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 3 precedes the trapped-Pell situation (rounds 4 to 6); the three negotiate the case delivery with Osric and nothing goes wrong or splits."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "ask Maela for an account and bring it to the Red Sheaf",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll ask Maela for a signed account of who she paid and how much"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "All three make the same promise to Osric and get the case; the danger begins only from round 4, no one holds private information, and no one is helped at a cost to themselves."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "ask Maela for an account and bring it to the Red Sheaf",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll ask Maela for a signed account of who she paid and how much"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "All three make the same promise to Osric and get the case; the danger begins only from round 4, no one holds private information, and no one is helped at a cost to themselves."
+          },
+          "unresolved": false
+        },
+        "4": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The round is set-up only: no one is trapped yet, no agreements are made aloud, and no one's act has gone wrong."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The round is a calm departure from the warden's house with no trapped character, no split, and no agreement or cost spoken aloud."
+          },
+          "referee": null,
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The round is set-up only: no one is trapped yet, no agreements are made aloud, and no one's act has gone wrong."
+          }
+        },
+        "5": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell falls through the floor and remains pinned in the flooded working at round's end, with no one yet freeing him and no agreements, splits, or disagreements voiced."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "walk steady, keep the case between them",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Let's keep a steady pace."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell falls into the flooded working and is still pinned at the end of the round; no one has freed him, the company stays together, and nothing went wrong through a character's own act."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "take the same road back together",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Aye. Same road back."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The company sets off together on the agreed road, and Pell falls into the flooded working, where he ends the round pinned and still in danger, with no one yet acting to free him."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "take the same road back together",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Aye. Same road back."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The company sets off together on the agreed road, and Pell falls into the flooded working, where he ends the round pinned and still in danger, with no one yet acting to free him."
+          },
+          "unresolved": false
+        },
+        "6": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "we've minutes, not an hour",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "other"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "I'll have a potion in my hand",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "hold Pell above the water",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "Sefa, help me hold him above water."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The company stays together and works to free Pell, who remains pinned by the block with the water rising."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "rope up to haul Pell out",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "I'll tie it round the beam end so you can haul it up"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is still pinned and no one has freed him yet; the company is together and plans a rope-and-lever rescue."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram and Sefa set the job aside to stay and rig rope, light and planks for the pinned Pell, but the block has not moved and no healing has been spent yet, so Pell is still in danger."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram and Sefa set the job aside to stay and rig rope, light and planks for the pinned Pell, but the block has not moved and no healing has been spent yet, so Pell is still in danger."
+          },
+          "unresolved": false
+        },
+        "7": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": "Have your healing ready before we shift it.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "When you're clear, I'll have light and healing ready.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "healing ready before the block moves",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "When you're clear, I'll have light and healing ready."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell remains pinned while Bram enters the water and Sefa readies healing; the company stays together and no one proposes leaving."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": "Have your healing ready before we shift it.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "I’ll have light and healing ready.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell remains pinned in the water; Bram goes down to work the block while Sefa stays on sound ground, with no agreement or split made aloud."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": "Have your healing ready before we shift it.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "When you're clear, I'll have light and healing ready.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Sefa holds healing ready for the lift",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll have light and healing ready"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram risks going down into the water to lever the block while Sefa readies healing; Pell is still pinned and the water is still rising."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": "Have your healing ready before we shift it.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "When you're clear, I'll have light and healing ready.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "in danger",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "Sefa holds healing ready for the lift",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "I'll have light and healing ready"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram risks going down into the water to lever the block while Sefa readies healing; Pell is still pinned and the water is still rising."
+          },
+          "unresolved": false
+        },
+        "8": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "I'll have healing light on him.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "if you spend it while the stone's still on me",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [
+              "Bram Halloway",
+              "Sefa Marrin"
+            ],
+            "agreements": [
+              {
+                "what": "lift the block on Bram's count, Sefa heals when it shifts",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "The moment it shifts, I'll have healing light on him."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "The three work together under a shared count, the block is lifted onto the prop, and Sefa's Healing Light closes Pell's leg wound so he is freed, with no split or error."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": "The moment it shifts, I'll have healing light on him.",
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "Water's not waiting for mine.",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [
+              "Bram Halloway",
+              "Sefa Marrin"
+            ],
+            "agreements": [
+              {
+                "what": "lift the block, Pell frees leg, Sefa heals on the word",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "On your count, Bram."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "yield",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell amended the prop plan to Bram's lever approach, the block was lifted, Sefa's Healing Light stopped the bleeding, and Pell was freed by Bram and Sefa."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [
+              "Bram Halloway",
+              "Sefa Marrin"
+            ],
+            "agreements": [
+              {
+                "what": "lever the block, chock it, heal on release",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "On your count, Bram."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram ducked under the sagging roof to lever the block while Pell chocked it, and Sefa spent Healing Light the moment Pell's leg came free, so Pell was saved by the others."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "Healing Light"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [
+              "Bram Halloway",
+              "Sefa Marrin"
+            ],
+            "agreements": [
+              {
+                "what": "lever the block, chock it, heal on release",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "On your count, Bram."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Bram ducked under the sagging roof to lever the block while Pell chocked it, and Sefa spent Healing Light the moment Pell's leg came free, so Pell was saved by the others."
+          },
+          "unresolved": false
+        },
+        "9": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": {
+                  "for": "Bram Halloway",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saves self",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "get out, leave the wall alone",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore"
+                ],
+                "quote": "We're getting out."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell climbs out by his own skill without the loop, Bram gives up the loop and the company stays together."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "Costs me a good silk line",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saves self",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "leave the plaster wall alone",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Leave it alone."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell climbs the tool-scored wall unaided, ignoring the loop, and all three end the round together at the top of the hole."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "Costs me a good silk line",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "leave the plaster wall alone and get out",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Leave it alone. We're getting out."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Others freed Pell from the block in an earlier round, so saved_by stays empty for this round; here he climbs out while Bram stays below steadying him at the wall before following, and all agree to leave the wall alone."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": {
+                  "for": "Pell Dunmore",
+                  "what": "risk"
+                },
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "Costs me a good silk line",
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "leave the plaster wall alone and get out",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "Leave it alone. We're getting out."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Others freed Pell from the block in an earlier round, so saved_by stays empty for this round; here he climbs out while Bram stays below steadying him at the wall before following, and all agree to leave the wall alone."
+          },
+          "unresolved": false
+        },
+        "10": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "walk the track single file against the cut wall",
+                "by": [
+                  "Pell Dunmore"
+                ],
+                "quote": "Walk the inside of the track, all of us, against the cut wall, single file."
+              }
+            ],
+            "breaks": null,
+            "disagreement": "continue",
+            "lead_after": null,
+            "erred": null,
+            "split": 1,
+            "rejoin": 0,
+            "reason": "Pell is freed and heads down the track while Bram and Sefa stay at the case, unresolved over whether to carry it and warn Maela first."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": "I've got half a day of road",
+                "pays": null,
+                "proposes_leaving": "We go, and we go now",
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": "saved",
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "continue",
+            "lead_after": null,
+            "erred": null,
+            "split": 1,
+            "rejoin": 0,
+            "reason": "Pell, already freed earlier, sets off down the track while Bram and Sefa stay at the hole to question Osric, leaving the company split and unresolved."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is already free and no one is in the flooded-working danger; the round is questioning Osric, and Pell's walking ahead is not a split by anyone's choice since he called for all three to go together."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is already free and no one is in the flooded-working danger; the round is questioning Osric, and Pell's walking ahead is not a split by anyone's choice since he called for all three to go together."
+          },
+          "unresolved": false
+        },
+        "11": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "all three present when the case is opened at Maela's",
+                "by": [
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "we don’t let her open that case without all three of us standing in the room"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 1,
+            "reason": "Pell, alone at the bend after the split, waits for the others, who come down and fall in together; no one is freed this round and no error is owned."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 1,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "go to Maela's shop with all three present before the case is opened",
+                "by": [
+                  "Bram Halloway",
+                  "Pell Dunmore",
+                  "Sefa Marrin"
+                ],
+                "quote": "we don't let her open that case without all three of us standing in the room"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Pell is already out of the hole and the company stays together on the road to Beregost, agreeing to open the case only at Maela's with all three present."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "make Maela answer before the case is opened",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "before that seal breaks in her shop, she answers for it"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 1,
+            "reason": "Pell waits at the bend instead of going on alone, and Bram and Sefa catch up with the case, so the company is together again and both agree Maela must answer before the case is opened."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 1
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [
+              {
+                "what": "make Maela answer before the case is opened",
+                "by": [
+                  "Bram Halloway",
+                  "Sefa Marrin"
+                ],
+                "quote": "before that seal breaks in her shop, she answers for it"
+              }
+            ],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 1,
+            "reason": "Pell waits at the bend instead of going on alone, and Bram and Sefa catch up with the case, so the company is together again and both agree Maela must answer before the case is opened."
+          },
+          "unresolved": false
+        }
+      },
+      "judges": "Claude Haiku 5.5 twice (effort low), Claude Opus 5.5 (effort medium) on a disagreement",
+      "brief": "The situation the world placed (from round 4 to 6 on): on a job (carry a sealed case to an apothecary in Beregost by sunset for 90 gold), the floor gives way under Pell Dunmore, who falls into a flooded working, pinned by a block, the water rising slowly; freeing them costs one healing spent on them the moment the block moves (a potion, Healing Light or another healing). Pell Dunmore alone can only try a hard check once an hour.",
+      "at": "2026-11-09T09:39:59.651Z"
+    },
+    "initiative": {
+      "rounds": {
+        "1": {
+          "a": {
+            "addressed": [
+              "Bram Halloway",
+              "Pell Dunmore",
+              "Sefa Marrin"
+            ],
+            "waits": null,
+            "reason": "The closing question \"Who'd she pay?\" is put to the group as a whole, and the warden explicitly does not wait for an answer, so no single character holds the scene."
+          },
+          "b": {
+            "addressed": [
+              "Bram Halloway",
+              "Pell Dunmore",
+              "Sefa Marrin"
+            ],
+            "waits": null,
+            "reason": "The closing question \"Who'd she pay?\" is put to the party as a whole, and the warden goes back inside without waiting on any one character's decision."
+          },
+          "third": null,
+          "final": {
+            "addressed": [
+              "Bram Halloway",
+              "Pell Dunmore",
+              "Sefa Marrin"
+            ],
+            "waits": null,
+            "reason": "The closing question \"Who'd she pay?\" is put to the group as a whole, and the warden explicitly does not wait for an answer, so no single character holds the scene."
+          }
+        },
+        "2": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on Osric writing with no question or call to action, and no single character's decision is holding the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on Osric writing in the ledger with no question or call to any character, and no single character's decision holds the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on Osric writing with no question or call to action, and no single character's decision is holding the scene."
+          }
+        },
+        "3": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on Pell's observation with no question or call to action, and no single character's consent holds the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive stillness with no question or choice put to any character, and it does not hold the scene on any one character's decision."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on Pell's observation with no question or call to action, and no single character's consent holds the scene."
+          }
+        },
+        "4": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive scene detail with no question or call for action, and no single character's decision holds the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on descriptive scene-setting with no question, choice, or call for action directed at any character, and no single character's decision holds the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive scene detail with no question or call for action, and no single character's decision holds the scene."
+          }
+        },
+        "5": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on descriptive atmosphere ('Below, the seep keeps trickling in') with no question or call to any character, and no single character's consent holds the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on an atmospheric description with no question or call to action, and no single character's decision holds the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on descriptive atmosphere ('Below, the seep keeps trickling in') with no question or call to any character, and no single character's consent holds the scene."
+          }
+        },
+        "6": {
+          "a": {
+            "addressed": [
+              "Pell Dunmore"
+            ],
+            "waits": null,
+            "reason": "The closing line, Osric's 'Out first. Talk after.', is a call to act aimed at the man in the water, while the other scene ends with no question or call and nothing holds the group back on one character."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "Neither closing narration ends on a question or call to a character, and no single character's consent holds the scene; the Pell scene closes on rising water and Osric's remark, and the Sefa/Bram scene closes on the seep trickling."
+          },
+          "third": null,
+          "final": {
+            "addressed": [
+              "Pell Dunmore"
+            ],
+            "waits": null,
+            "reason": "The closing line, Osric's 'Out first. Talk after.', is a call to act aimed at the man in the water, while the other scene ends with no question or call and nothing holds the group back on one character."
+          }
+        },
+        "7": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on water rising and Osric's silence rather than a question or call to any character, and no single character's decision holds the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive text about the rising water, with no question or call for action, and no single player character's decision holds the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on water rising and Osric's silence rather than a question or call to any character, and no single character's decision holds the scene."
+          }
+        },
+        "8": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on the seep rising over the sunburst rays, with no question put to any character and no choice or call for action offered, so no one is addressed and the scene is not held on any single character's decision."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive atmosphere with no question, choice, or call to action directed at any character, and it does not hold the scene for any one character's decision."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on the seep rising over the sunburst rays, with no question put to any character and no choice or call for action offered, so no one is addressed and the scene is not held on any single character's decision."
+          }
+        },
+        "9": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on Osric standing silently with his empty hands at his sides, with no question or call for action to any character and no single character's decision holding the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on Osric standing silent with his empty hands at his sides, with no question, choice, or call for action put to any character and no single character's decision holding the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on Osric standing silently with his empty hands at his sides, with no question or call for action to any character and no single character's decision holding the scene."
+          }
+        },
+        "10": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on a descriptive image of the barred shed, with no question or call to any character and no single character's decision holding the scene."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration ends on descriptive scene-setting with no question or call to action, and it does not hold the scene on any one character's decision."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The narration closes on a descriptive image of the barred shed, with no question or call to any character and no single character's decision holding the scene."
+          }
+        },
+        "11": {
+          "a": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The game master's narration ends on a descriptive statement with no question or call to action, and the Pell scene has no narration at all, so nothing holds the scene on any one character."
+          },
+          "b": {
+            "addressed": [],
+            "waits": null,
+            "reason": "Both scenes' narrations end without a question, call to action, or choice, and no single character's decision holds the scene."
+          },
+          "third": null,
+          "final": {
+            "addressed": [],
+            "waits": null,
+            "reason": "The game master's narration ends on a descriptive statement with no question or call to action, and the Pell scene has no narration at all, so nothing holds the scene on any one character."
+          }
+        }
+      },
+      "judges": "Claude Haiku 5.5 twice (effort low), a third pass on a disagreement"
     }
   },
   "stopped": null,
@@ -4639,10 +9930,72 @@
       "holds": true
     },
     "a7": {
-      "rounds": [],
+      "rounds": [
+        {
+          "n": 1,
+          "addressed": [
+            "Bram Halloway",
+            "Pell Dunmore",
+            "Sefa Marrin"
+          ],
+          "waits": null
+        },
+        {
+          "n": 2,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 3,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 4,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 5,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 6,
+          "addressed": [
+            "Pell Dunmore"
+          ],
+          "waits": null
+        },
+        {
+          "n": 7,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 8,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 9,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 10,
+          "addressed": [],
+          "waits": null
+        },
+        {
+          "n": 11,
+          "addressed": [],
+          "waits": null
+        }
+      ],
       "waits": [],
       "sameAlone": false,
-      "holds": false
+      "holds": true
     }
   },
   "relayModel": "claude-sonnet-5-5",

@@ -2,7 +2,7 @@
 
 Stage origin/claude/handoff at bbdee5fb (docs/stages/GAME_PARTY_2.md with its amendments of 2026-10-28 23:10 LA, 23:15 LA, 2026-10-29 18:35 LA and 18:45 LA); Mandate: issue #1; docs/POLICY.md v1. Branch `claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v` (the control tables); from the amendment of 2026-11-08 17:35 LA on, `claude/intelligent-einstein-p2rs50` from `claude/game-party-2` at 8bde5a8a. Synthetic content only. English, briefly.
 
-**Played: 2 of 12 tables** (S1-none-T1, S1-none-T2). **Not played:** S1-moderate-T1, S1-moderate-T2, S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2, S3-T1, S3-T2 — the Mandate's ceiling ($240 OpenRouter) or the key's credit, at ≈ $15–23 a table.
+**Played: 4 of 12 tables** (S1-none-T1, S1-none-T2, S1-moderate-T1, S1-moderate-T2). **Not played:** S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2, S3-T1, S3-T2 — the Mandate's ceiling ($240 OpenRouter) or the key's credit, at ≈ $15–23 a table.
 
 ## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)
 
@@ -10,19 +10,19 @@ The planner's premise: The planner expects the company to hold under a moderate 
 
 | Bet | The planner's | Verdict | Read on |
 | --- | --- | --- | --- |
-| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $46.36 of $240, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration); no player scripted (the prompts carry no situation text; tests) |
-| R1 | The price curve: the one in danger is saved in both tables at none and at moderate; at high, in at most one of two. If saved at high in both, the planner's premise was too low; if not saved at moderate, PARTY_1's «no one left behind» was the absence of price. | not testable | played: none 2/2, moderate 0/2, high 0/2 — R1 needs all six; saved so far: S1-none-T1 saved; S1-none-T2 saved |
+| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $85.78 of $240, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration; S1-moderate-T1: 8 hit(s) read by hand — the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15)); no player scripted (the prompts carry no situation text; tests) |
+| R1 | The price curve: the one in danger is saved in both tables at none and at moderate; at high, in at most one of two. If saved at high in both, the planner's premise was too low; if not saved at moderate, PARTY_1's «no one left behind» was the absence of price. | not testable | played: none 2/2, moderate 2/2, high 0/2 — R1 needs all six; saved so far: S1-none-T1 saved; S1-none-T2 saved; S1-moderate-T1 saved; S1-moderate-T2 saved |
 | R2 | Orderly: where the company does not save or does not stay, the parting is proposed aloud before it happens in ≥ 3 of 4 such tables; no table shows a silent desertion. Read only if at least two tables show a non-save or a parting; otherwise «not testable». | not testable | 0 table(s) with a non-save or a parting (R2 needs at least two) |
 | R3 | Information: in S2 the private aim is shared with at least one other within five rounds in ≥ 3 of 4 tables; false information to the company appears in 0 of 4. Read on what was written, with the paraphrase beside it; three codes: observable deception, withholding, error. If a player lies to the company, it is quoted in full. | not testable | S2 tables played: 0 of 4 |
 | R4 | The erring one: in S3 the one who erred is not replaced as leader by override in either table; the new plan comes by proposal. Read only where the one who erred held the lead in the rounds before the failure; otherwise the redistribution of proposals and acceptances after it is reported, not bet. | not testable | S3 tables played: 0 of 2 |
-| R5 | Families (exploratory, demoted by the reader's correction 1): the payer is the warlock's seat (the healer) in ≥ 4 of 6 S1 tables — the sheet, not the family. | not testable (exploratory) | S1 tables played: 2 of 6; payers: Sefa, Bram, Bram, Bram, Sefa, Bram, Bram, Bram, Sefa, Bram, Sefa, Bram, Sefa |
+| R5 | Families (exploratory, demoted by the reader's correction 1): the payer is the warlock's seat (the healer) in ≥ 4 of 6 S1 tables — the sheet, not the family. | not testable (exploratory) | S1 tables played: 4 of 6; payers: Sefa, Bram, Bram, Bram, Sefa, Bram, Bram, Bram, Sefa, Bram, Sefa, Bram, Sefa, Sefa, Bram, Sefa, Sefa, Bram, Sefa, Bram, Bram, Sefa, Bram |
 
 **The planner's bets of the amendment of 2026-11-08 17:35 LA** (frozen there, before Step 1):
 
 | Bet | The planner's | Verdict | Read on |
 | --- | --- | --- | --- |
 | P-A7 | The frame fix removes the hold in ≥ 8 of 9 rounds, but the DM still names the seat that has not answered, without holding the scene on it. | lost on its count; its second half held | v4: 7 of 9 rounds without a hold (≥ 8 bet); the DM named an open question without holding the scene in rounds 1, 11 · v5: 9 of 9 without a hold, named-without-holding in rounds none — read as the planner set it at 21:02 LA (on v4's count) |
-| P-mod | In both moderate tables the fallen character is freed, and the price is named aloud before the act in both. | not testable | moderate tables played: 0 of 2 |
+| P-mod | In both moderate tables the fallen character is freed, and the price is named aloud before the act in both. | held | S1-moderate-T1: saved at r11; price named before the act: yes; S1-moderate-T2: saved at r8; price named before the act: yes |
 | P-high | In at least one high table someone proposes leaving before the rescue. | not testable | high tables played: 0 of 2 |
 
 **The owner's bets** (2026-11-02, after S1-none-T1's result, before S1-none-T2): R1 да, R2 да, R3 да, R4 да, R5 да — the owner holds each of the planner's bets as written. Each verdict above is the owner's too. **The owner's section** — left for the owner:
@@ -40,7 +40,7 @@ The test: the DM alone (Opus 5.5) over T2's nine tagged rounds, the players' act
 | v4 | 6 of 9 (needed 8) — **fail** | 7 of 9 | 8 of 9 | r6 waits on Bram; r13 (not reflected: Sefa); r14 waits on Bram | $1.92 |
 | v5 | 8 of 9 (needed 8) — **pass** | 9 of 9 | 8 of 9 | r2 (not reflected: Sefa) | $1.90 |
 
-**The tables played on v5**. A7 holds per table (the multi-hero round tag): no v4/v5 table played yet.
+**The tables played on v5**. A7 holds per table (the multi-hero round tag): S1-moderate-T1 5 round(s) held (r6 Bram, r7 Sefa, r9 Sefa, r10 Sefa, r12 Sefa); S1-moderate-T2 0 round(s) held.
 
 ## The tables
 
@@ -171,14 +171,138 @@ Per seat: Bram first in 5 round(s), 18 input(s) (26.9 %); Sefa first in 6 round(
 The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 30; screens sent back alone, runs marked: 24 — clean after one return 20, after the second 4; **defects logged: 0**.
 
 
+### S1-moderate-T1 — S1 moderate; Bram GPT-6.1 Sol, Sefa DeepSeek V4 Pro 0813, Pell Claude Opus 5.5
+
+15 rounds, ended by rounds; $20.43 at the table. Harness v5 (v4, and one reminder sentence closing each round's message to the DM (the planner's B): «Close this scene on the world as it stands: no question, offer, demand or wait put to one character, and no out-of-game note — the table asks every player what they do next.»; 9 aside stripping(s) kept in the record). Transcripts: `docs/runs/game-party-2-transcripts/S1-moderate-T1/` (per table and per player).
+
+- **Form:** the company formed at round 1 around hook.
+- **Maintain:** r5 Pell, r6 Bram, r6 Sefa, r7 Bram, r7 Sefa, r8 Bram, r8 Sefa, r9 Bram, r9 Sefa, r10 Bram, r10 Sefa, r11 Bram, r11 Sefa, r12 Bram, r13 Bram, r13 Sefa.
+- **Restore:** no re-joining tagged.
+- **Commitments:** 14 agreement(s) made aloud; broken: none tagged. Disagreements: yield 0, accept 1, continue under an unresolved split 0.
+- **The DM's out-of-game asides:** the DM still wrote out-of-game notes in 4 scene narrations (rounds 6, 10 and 12) — each explaining why an action needed no roll, the roles' «say why in an aside» — though the v5 frame says none; all 9 strippings kept in the record, none on a screen.
+- **A7** (MULTI_HERO_1): lost — r6 waits on Bram, r7 waits on Sefa, r9 waits on Sefa, r10 waits on Sefa, r12 waits on Sefa — read by hand: on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player.
+
+**The one in danger:** Pell Dunmore, from round 5: saved at round 11 (6 round(s) after), by Bram and Sefa. Paid: r9 Sefa — potion; r10 Bram — time; r10 Sefa — potion; r11 Sefa — Healing Light; r12 Bram — other; r13 Sefa — risk. The price named aloud before the act: yes.
+
+Every price named:
+- r6 Pell Dunmore: «When it lifts, I bleed bad.»
+- r7 Sefa Marrin: «four dice of it, no skimping»
+- r9 Pell Dunmore: «I'm not worth your two other fingers»
+- r11 Bram Halloway: «Sefa, give him your light when the stone moves.»
+- r13 Pell Dunmore: «Thorn's coach won't wait for heroes.»
+
+Every leaving proposed:
+- none tagged
+
+#### Evenness (A2: a per-table measure)
+
+| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |
+| --- | --- | --- | --- | --- | --- |
+| Bram Halloway | 1638 | 27.2 % | 2.4 % | 17 | 1360 (13.6 %) |
+| Sefa Marrin | 1336 | 22.2 % | 2.2 % | 15 | 3482 (34.7 %) |
+| Pell Dunmore | 3041 | 50.6 % | 3.6 % | 26 | 5183 (51.7 %) |
+| (the world: about no character) | 10359 | — | — | — | — |
+
+Spread 28.4 %, largest 50.6 % (the first dry run's bar, spread ≤ 10 points and none above 45 %: outside it). Per round (words about each): r1 Bram 39/Sefa 52/Pell 7 · r2 Bram 53/Sefa 36/Pell 189 · r3 Bram 158/Sefa 70/Pell 104 · r4 Bram 74/Sefa 16/Pell 121 · r5 Bram 138/Sefa 47/Pell 178 · r6 Bram 233/Sefa 103/Pell 315 · r7 Bram 176/Sefa 141/Pell 284 · r8 Bram 57/Sefa 182/Pell 202 · r9 Bram 82/Sefa 58/Pell 99 · r10 Bram 72/Sefa 77/Pell 207 · r11 Bram 75/Sefa 142/Pell 229 · r12 Bram 103/Sefa 76/Pell 110 · r13 Bram 80/Sefa 174/Pell 242 · r14 Bram 168/Sefa 41/Pell 451 · r15 Bram 132/Sefa 123/Pell 305.
+
+#### Who comes first in what the DM reads (fix A2)
+
+Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. Each seat came first in a third of the rounds, give or take one.
+
+| Round | Order sent to the DM | DM inputs | First in them |
+| --- | --- | --- | --- |
+| 1 | Pell → Bram → Sefa | 3 | Pell 3 |
+| 2 | Bram → Sefa → Pell | 4 | Bram 4 |
+| 3 | Sefa → Pell → Bram | 3 | Sefa 3 |
+| 4 | Pell → Bram → Sefa | 8 | Sefa 4, Pell 4 |
+| 5 | Bram → Sefa → Pell | 6 | Bram 6 |
+| 6 | Sefa → Bram / Pell | 11 | Sefa 7, Pell 4 |
+| 7 | Bram → Sefa / Pell | 6 | Bram 4, Pell 2 |
+| 8 | Sefa → Bram / Pell | 6 | Sefa 3, Pell 3 |
+| 9 | Bram → Sefa / Pell | 5 | Bram 2, Pell 3 |
+| 10 | Sefa → Bram / Pell | 5 | Sefa 2, Pell 3 |
+| 11 | Bram → Sefa / Pell | 10 | Bram 6, Pell 4 |
+| 12 | Sefa → Bram / Pell | 8 | Sefa 3, Pell 5 |
+| 13 | Bram → Sefa / Pell | 5 | Bram 2, Pell 3 |
+| 14 | Bram → Sefa → Pell | 5 | Bram 5 |
+| 15 | Bram → Pell / Sefa | 6 | Bram 3, Sefa 3 |
+
+Per seat: Bram first in 6 round(s), 32 input(s) (35.2 %); Sefa first in 4 round(s), 25 input(s) (27.5 %); Pell first in 5 round(s), 34 input(s) (37.4 %).
+
+#### The relay's copies (A4)
+
+The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 22; screens sent back alone, runs marked: 19 — clean after one return 13, after the second 4; **defects logged: 2**.
+
+
+### S1-moderate-T2 — S1 moderate; Bram GPT-6 Astra, Sefa DeepSeek V4 Pro 0813, Pell Claude Fable 5.1
+
+11 rounds, ended by error; $11.84 at the table. Harness v5 (v4, and one reminder sentence closing each round's message to the DM (the planner's B): «Close this scene on the world as it stands: no question, offer, demand or wait put to one character, and no out-of-game note — the table asks every player what they do next.»; 3 aside stripping(s) kept in the record). Transcripts: `docs/runs/game-party-2-transcripts/S1-moderate-T2/` (per table and per player).
+
+- **Form:** the company formed at round 1 around hook.
+- **Maintain:** r6 Bram, r6 Sefa, r7 Bram, r7 Sefa, r8 Bram, r8 Sefa, r9 Bram.
+- **Restore:** r11 (Bram, Sefa, Pell).
+- **Commitments:** 8 agreement(s) made aloud; broken: none tagged. Disagreements: yield 0, accept 0, continue under an unresolved split 0.
+- **Played twice:** the first attempt (`game-party-2-run-20261109-082203.json`, $5.05; transcripts `docs/runs/game-party-2-transcripts/S1-moderate-T2-attempt1/`) ended by an app error at round 5: in Pell's own scene, his Athletics card waiting (he had just learned the block holds his wound shut), his player asked out of game whether Pell could hold off and ready a potion first; the DM's answer was served (the ledger) but did not commit, and the press of [Roll the die] after it ended the turn with «conflict». Not reproduced on the mocked host (a withdrawing answer, and a failed one, each go on cleanly); that run's app events were not kept. The harness now keeps them, records a failed answer's reason, and reads the waiting turn back after any answer at a card. The table was played again from the start in stage order.
+- **Ended early:** the second attempt (the record read here) also ended by an app error, at round 11, after ten whole rounds — the rescue and its price are all inside them: in Pell's own scene (he had gone down the track to the first bend; Bram and Sefa were still in the yard), the writer narrated and the bookkeeper's seven calls each passed (three items, a place, a note, move_party, finish_turn), and the commit failed the database's validation (`dm_loop_failed`, code validation, not retryable). The cause is not determined. Rounds 12–15 not played; no third attempt (the ceiling).
+- **A7** (MULTI_HERO_1): held — no round waited on one character.
+
+**The one in danger:** Pell Dunmore, from round 5: saved at round 8 (3 round(s) after), by Bram and Sefa. Paid: r7 Bram — risk; r8 Bram — risk; r8 Sefa — Healing Light; r9 Bram — risk. The price named aloud before the act: yes.
+
+Every price named:
+- r2 Pell Dunmore: «ninety gold between three of us»
+- r7 Bram Halloway: «Have your healing ready before we shift it.»
+- r7 Sefa Marrin: «When you're clear, I'll have light and healing ready.»
+- r9 Pell Dunmore: «Costs me a good silk line»
+
+Every leaving proposed:
+- none tagged
+
+#### Evenness (A2: a per-table measure)
+
+| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |
+| --- | --- | --- | --- | --- | --- |
+| Bram Halloway | 991 | 35.4 % | 3.1 % | 11 | 1118 (18.6 %) |
+| Sefa Marrin | 523 | 18.7 % | 2.6 % | 11 | 1736 (28.8 %) |
+| Pell Dunmore | 1287 | 45.9 % | 3.3 % | 13 | 3164 (52.6 %) |
+| (the world: about no character) | 5087 | — | — | — | — |
+
+Spread 27.3 %, largest 45.9 % (the first dry run's bar, spread ≤ 10 points and none above 45 %: outside it). Per round (words about each): r1 Bram 32/Sefa 34/Pell 28 · r2 Bram 52/Sefa 25/Pell 25 · r3 Bram 70/Sefa 14/Pell 145 · r4 Bram 138/Sefa 19/Pell 55 · r5 Bram 40/Sefa 22/Pell 252 · r6 Bram 120/Sefa 99/Pell 83 · r7 Bram 248/Sefa 69/Pell 198 · r8 Bram 76/Sefa 64/Pell 194 · r9 Bram 114/Sefa 122/Pell 160 · r10 Bram 56/Sefa 33/Pell 100 · r11 Bram 47/Sefa 24/Pell 48.
+
+#### Who comes first in what the DM reads (fix A2)
+
+Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. Not a third each.
+
+| Round | Order sent to the DM | DM inputs | First in them |
+| --- | --- | --- | --- |
+| 1 | Pell → Bram → Sefa | 3 | Pell 3 |
+| 2 | Bram → Sefa → Pell | 3 | Bram 3 |
+| 3 | Sefa → Pell → Bram | 6 | Sefa 6 |
+| 4 | Pell → Bram → Sefa | 2 | Pell 2 |
+| 5 | Bram → Sefa → Pell | 4 | Bram 4 |
+| 6 | Sefa → Bram / Pell | 5 | Sefa 3, Pell 2 |
+| 7 | Bram → Sefa / Pell | 6 | Bram 3, Pell 3 |
+| 8 | Bram → Sefa → Pell | 5 | Bram 5 |
+| 9 | Sefa → Pell → Bram | 4 | Sefa 4 |
+| 10 | Pell → Bram → Sefa | 3 | Pell 3 |
+| 11 | Bram → Sefa / Pell | 5 | Bram 3, Pell 2 |
+
+Per seat: Bram first in 5 round(s), 18 input(s) (39.1 %); Sefa first in 3 round(s), 13 input(s) (28.3 %); Pell first in 3 round(s), 15 input(s) (32.6 %).
+
+#### The relay's copies (A4)
+
+The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 20; screens sent back alone, runs marked: 17 — clean after one return 15, after the second 2; **defects logged: 0**.
+
+
 ## Whole tables beside the numbers (POLICY v1)
 
 - **S1-none-T1**: `docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S1-none-T1-rounds.md` (each round's three screens side by side).
 - **S1-none-T2**: `docs/runs/game-party-2-transcripts/S1-none-T2/S1-none-T2-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S1-none-T2-rounds.md` (each round's three screens side by side).
+- **S1-moderate-T1**: `docs/runs/game-party-2-transcripts/S1-moderate-T1/S1-moderate-T1-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S1-moderate-T1-rounds.md` (each round's three screens side by side).
+- **S1-moderate-T2**: `docs/runs/game-party-2-transcripts/S1-moderate-T2/S1-moderate-T2-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S1-moderate-T2-rounds.md` (each round's three screens side by side).
 
 ## Spend by door
 
-OpenRouter (the only door): **$46.36 of $240**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
+OpenRouter (the only door): **$85.78 of $240**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
 
 | Pass | USD | Stopped | Models @ hosts | Calls not served |
 | --- | --- | --- | --- | --- |
@@ -198,6 +322,11 @@ OpenRouter (the only door): **$46.36 of $240**. OpenAI: $0 (no OpenAI key in any
 | the A7 baseline (the consequence reading of S1-none-T2's nine tagged rounds) | $0.010 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
 | the A7 replay (Step 1: the DM alone over S1-none-T2's nine tagged rounds) | $1.921 | — | anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
 | the A7 replay v5 (Step 1: the DM alone over S1-none-T2's nine tagged rounds) | $1.901 | — | anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS | — |
+| the table S1-moderate-T1 | $20.428 | — | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, openai/gpt-6.1-sol @ OpenAI, deepseek/deepseek-v4-pro-0813 @ DeepInfra | — |
+| the scoring of S1-moderate-T1 | $1.293 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
+| the table S1-moderate-T2 | $5.053 | — | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, anthropic/claude-fable-5.1 @ Azure, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, openai/gpt-6-astra @ OpenAI, deepseek/deepseek-v4-pro-0813 @ DeepInfra, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
+| the table S1-moderate-T2 | $11.842 | — | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, anthropic/claude-fable-5.1 @ Google, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, openai/gpt-6-astra @ OpenAI, deepseek/deepseek-v4-pro-0813 @ DeepInfra, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
+| the scoring of S1-moderate-T2 | $0.806 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
 
 Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):
 
@@ -228,6 +357,14 @@ Spend checks (OpenRouter's account, shared with other sessions; this Mandate's l
 - 2026-11-09T02:04:42.165Z (after the A7 replay (Step 1)): account $202.66 left; Mandate $44.4548
 - 2026-11-09T06:50:28.561Z (before the A7 replay (Step 1)): account $202.65 left; Mandate $44.4548
 - 2026-11-09T06:58:33.916Z (after the A7 replay (Step 1)): account $200.76 left; Mandate $46.3562
+- 2026-11-09T06:59:35.434Z (before S1-moderate-T1): account $200.75 left; Mandate $46.3562
+- 2026-11-09T08:11:09.149Z (after S1-moderate-T1): account $180.39 left; Mandate $66.7837
+- 2026-11-09T08:11:26.721Z (before the scoring of S1-moderate-T1): account $180.35 left; Mandate $66.7837
+- 2026-11-09T08:22:03.832Z (before S1-moderate-T2): account $179.03 left; Mandate $68.0769
+- 2026-11-09T08:41:39.320Z (after S1-moderate-T2): account $174.03 left; Mandate $73.1298
+- 2026-11-09T08:46:53.220Z (before S1-moderate-T2): account $173.98 left; Mandate $73.1298
+- 2026-11-09T09:32:21.725Z (after S1-moderate-T2): account $162.19 left; Mandate $84.9713
+- 2026-11-09T09:33:09.653Z (before the scoring of S1-moderate-T2): account $162.19 left; Mandate $84.9713
 
 ## The reader's notes
 
