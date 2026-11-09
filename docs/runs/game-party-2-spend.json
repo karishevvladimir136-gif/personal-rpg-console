@@ -1,5 +1,5 @@
 {
-  "note": "Spend checks (POLICY v1): OpenRouter's account (shared with other sessions on the same key) and this Mandate's ledger (cap $60 OpenRouter, $0 OpenAI).",
+  "note": "Spend checks (POLICY v1): OpenRouter's account (shared with other sessions on the same key) and this Mandate's ledger (cap $240 OpenRouter since the amendment of 2026-11-08 17:35 LA; $60 before 2026-11-01 23:55 LA, $120 until 2026-11-08; $0 OpenAI).",
   "checks": [
     {
       "at": "2026-11-01T08:23:12.089Z",
@@ -423,6 +423,23 @@
           "spent": 44.4548,
           "cap": 60,
           "left": 15.55
+        }
+      }
+    },
+    {
+      "at": "2026-11-09T06:50:28.561Z",
+      "when": "before the A7 replay (Step 1)",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1347.348364135,
+        "remaining": 202.65,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 44.4548,
+          "cap": 240,
+          "left": 195.55
         }
       }
     }
