@@ -269,6 +269,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
       ...(HAND[r.key]?.removed ? [`- **Removed (not parted):** ${HAND[r.key].removed}.`] : []),
       ...(HAND[r.key]?.superseded ? [`- **Played twice:** ${HAND[r.key].superseded}.`] : []),
       ...(HAND[r.key]?.unscored ? [`- **Not scored:** ${HAND[r.key].unscored}. The measures below are partial (rounds 1–3) and are not read into the bets.`] : []),
+      ...(r.table?.tags?.unscored?.length ? [`- **Rounds left unscored** (a judge's refusal, recorded and not asked again — the owner's amendment of 2026-11-09 15:23 LA): ${r.table.tags.unscored.map((u) => `r${u.round} (${u.purpose}, ${u.model}, ${u.category ?? "no category"})`).join("; ")}.`] : []),
       ...(HAND[r.key]?.ended ? [`- **Ended early:** ${HAND[r.key].ended}.`] : []),
       ...(HAND[r.key]?.asides ? [`- **The DM's out-of-game asides:** ${HAND[r.key].asides}.`] : []),
       `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}${HAND[r.key]?.a7 ? ` — read by hand: ${HAND[r.key].a7}` : ""}`}.`, "");

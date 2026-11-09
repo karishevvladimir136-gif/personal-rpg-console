@@ -87,6 +87,8 @@ export async function tagRounds(record, { ask, log = () => {} }) {
   t.initiative ??= { rounds: {}, judges: JUDGES.label };
   for (const round of t.rounds ?? []) {
     if (t.initiative.rounds[round.n] || !(round.scenes ?? []).some((s) => s.narration)) continue;
+    // Game party 2: a round left unscored after a refusal (its session closed) is not asked again here either.
+    if ((t.tags?.unscored ?? []).some((u) => u.round === round.n)) continue;
     const tagged = await judge({ ask, request: roundRequest(round), parse: parseRound, key: (x) => ({ waits: x.waits }), purpose: `initiative r${round.n}` });
     if (!tagged) { log(`initiative tags: stopped at round ${round.n}`); break; }
     t.initiative.rounds[round.n] = tagged;

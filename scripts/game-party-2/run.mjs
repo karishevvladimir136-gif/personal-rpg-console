@@ -238,7 +238,10 @@ export async function scoreRun({ file, haiku = false, log = console.log, out = R
   keys.openai = null;
   const { before, ledgers } = await stageLedgers(STAGE_INFO);
   const meter = createMeter({ ledgers, fetcher: globalThis.fetch.bind(globalThis), log, waits429: WAITS_429, ...(haiku ? { rewrite: companyRewrite } : {}) });
-  const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: `${run.key}/score`, purpose, log,
+  // Each round's judges in a session of their own (the owner's amendment of 2026-11-09 15:23 LA): a refusal closes that
+  // round's session only, and the scoring goes on with the next round (score.mjs `tags.unscored`).
+  const sessionOf = (purpose) => { const n = /\br(\d+)\b/.exec(String(purpose ?? ""))?.[1]; return n ? `${run.key}/score/r${n}` : `${run.key}/score`; };
+  const ask = ({ model, system, user, maxTokens, effort, purpose }) => paidCall({ meter, session: sessionOf(purpose), purpose, log,
     call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
   // MULTI_HERO_1's amendment of 2026-10-29 18:10 LA: A7 (no round waits on one character) is scored on PARTY_2's tables by
   // the multi-hero round tag (Haiku twice, a third on a disagreement); if it fails on the first table, PARTY_2 pauses.

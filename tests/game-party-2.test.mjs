@@ -357,3 +357,25 @@ test("A7 v5 (the planner's B): the reminder closes a round's header inside its p
   const v4 = replay.sceneRequest(captured, t2, 15, scene);
   assert.ok(!JSON.stringify(v4).includes(R), "v4's test sends no reminder");
 });
+
+test("scoring (the owner's amendment of 2026-11-09 15:23 LA): a judge's refusal leaves that round unscored and the pass goes on; the refused round is never asked again", async () => {
+  const { scoreTable } = await import("../scripts/game-party-2/score.mjs");
+  const source = JSON.parse(readFileSync(new URL("../docs/runs/game-party-2-run-20261109-154451.json", import.meta.url), "utf8"));
+  const run = { ...source, table: { ...source.table, rounds: source.table.rounds.slice(0, 3), tags: undefined } };
+  const asked = [];
+  const ask = async ({ purpose, model }) => {
+    asked.push(purpose);
+    if (purpose === "round r2 referee") return { text: "", stopReason: "refusal", refusalCategory: "cyber", model };
+    return { text: "not json", stopReason: "end_turn" };
+  };
+  const tags = await scoreTable(run, { ask });
+  assert.deepEqual(tags.unscored.map((u) => [u.round, u.purpose, u.category]), [[2, "round r2 referee", "cyber"]]);
+  assert.ok(tags.rounds[1] && tags.rounds[3] && !tags.rounds[2] && !tags.hold[2], "round 2's tags dropped, rounds 1 and 3 kept");
+  assert.equal(asked.filter((p) => p === "round r2 referee").length, 1, "the refused call is not asked again");
+  assert.ok(!asked.some((p) => /^hold r2 /.test(p)), "nothing more of the refused round is asked");
+  assert.ok(asked.some((p) => /^round r3 /.test(p)) && asked.some((p) => /^hold r3 /.test(p)), "the pass goes on with round 3");
+  // A second pass over the same record skips the unscored round.
+  asked.length = 0;
+  await scoreTable(run, { ask });
+  assert.ok(!asked.some((p) => /\br2\b/.test(p)));
+});

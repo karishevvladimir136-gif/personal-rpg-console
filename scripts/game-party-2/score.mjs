@@ -116,20 +116,39 @@ export function party1Request(round) {
     ...ROUND_TAGS.filter((t) => t.per === "character").map((t) => `- (per character) ${t.rule}`), ...ROUND_TAGS.filter((t) => t.per === "round").map((t) => `- (for the round) ${t.rule}`), "", roundText(round), "", `Answer with ${shape}.`].join("\n") };
 }
 
-/** The scoring pass over one table's record (in place): both tag sets per round. */
+/** The scoring pass over one table's record (in place): both tag sets per round.
+ * The owner's amendment of 2026-11-09 15:23 LA (issue #1): a refusal by any judge of a round (the Opus referee's, at
+ * S2-high-T2) stops the scoring of that round only — its tags are dropped, the round is listed in `tags.unscored` with
+ * the refusal, and the pass goes on with the next round. A refusal is recorded, never asked again, never rephrased (the
+ * meter closes that round's session; run.mjs gives each round its own). */
 export async function scoreTable(run, { ask, log = () => {} }) {
   const t = run.table;
   const brief = situationBrief(run.arm, run.frozen.dice);
   t.tags ??= { rounds: {}, hold: {}, judges: JUDGES.label, brief };
+  t.tags.unscored ??= [];
   for (const round of t.rounds ?? []) {
     if (!(round.scenes ?? []).some((s) => s.narration)) continue;
+    if (t.tags.unscored.some((u) => u.round === round.n)) continue;
+    let refused = null;
+    const roundAsk = async (args) => {
+      const said = await ask(args);
+      if (said?.stopReason === "refusal") refused ??= { purpose: args.purpose, model: args.model, category: said.refusalCategory ?? null };
+      return said;
+    };
+    const drop = () => {
+      delete t.tags.rounds[round.n]; delete t.tags.hold[round.n];
+      t.tags.unscored.push({ round: round.n, ...refused, at: new Date().toISOString() });
+      log(`scoring ${run.key}: round ${round.n} left unscored — a refusal (${refused.purpose}, ${refused.model}, ${refused.category ?? "no category"}); not asked again`);
+    };
     if (!t.tags.rounds[round.n]) {
-      const tagged = await judgeTwice({ ask, request: party1Request(round), parse: parseRound, purpose: `round r${round.n}` });
+      const tagged = await judgeTwice({ ask: roundAsk, request: party1Request(round), parse: parseRound, purpose: `round r${round.n}` });
+      if (refused) { drop(); continue; }
       if (!tagged) { log(`scoring ${run.key}: stopped at round ${round.n}`); return t.tags; }
       t.tags.rounds[round.n] = tagged;
     }
     if (!t.tags.hold[round.n]) {
-      const tagged = await judgeHold({ ask, request: holdRequest(round, brief), purpose: `hold r${round.n}` });
+      const tagged = await judgeHold({ ask: roundAsk, request: holdRequest(round, brief), purpose: `hold r${round.n}` });
+      if (refused) { drop(); continue; }
       if (!tagged) { log(`scoring ${run.key}: stopped at round ${round.n} (holding tags)`); return t.tags; }
       t.tags.hold[round.n] = tagged;
     }
