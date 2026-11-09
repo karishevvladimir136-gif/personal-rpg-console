@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $240; spent before this run $0.0000; this run $107.5322; total $107.5322; 2733 calls.
+Cap $240; spent before this run $0.0000; this run $108.7197; total $108.7197; 2838 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1878,3 +1878,108 @@ Cap $240; spent before this run $0.0000; this run $107.5322; total $107.5322; 27
 | S1-high-T1/Bram | player r14 | openai/gpt-6.1-sol | 1 | 3 | 18962 | 756 | 128 | $0.0051 | 0 | 0 | 0 |
 | S1-high-T1/check | check S1-high-T1 Bram r14 | anthropic/claude-haiku-5.5 | 1 | 1336 | 0 | 0 | 82 | $0.0002 | 0 | 0 | 0 |
 | S1-high-T1 | dm r14 | anthropic/claude-opus-5.5 | 1 | 4 | 68507 | 50665 | 4664 | $0.3658 | 0 | 0 | 0 |
+| S1-high-T1/score | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3830 | 0 | 0 | 1952 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3830 | 0 | 0 | 1918 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | round r1 referee | anthropic/claude-opus-5.5 | 1 | 3830 | 0 | 0 | 1371 | $0.0427 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r1 1 | anthropic/claude-haiku-5.5 | 1 | 4104 | 0 | 0 | 351 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r1 2 | anthropic/claude-haiku-5.5 | 1 | 4104 | 0 | 0 | 336 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 4009 | 0 | 0 | 900 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 4009 | 0 | 0 | 1312 | $0.0011 | 0 | 0 | 0 |
+| S1-high-T1/score | round r2 referee | anthropic/claude-opus-5.5 | 1 | 4009 | 0 | 0 | 868 | $0.0334 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r2 1 | anthropic/claude-haiku-5.5 | 1 | 4283 | 0 | 0 | 368 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r2 2 | anthropic/claude-haiku-5.5 | 1 | 4283 | 0 | 0 | 935 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 4699 | 0 | 0 | 1692 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 4699 | 0 | 0 | 1714 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | round r3 referee | anthropic/claude-opus-5.5 | 1 | 4699 | 0 | 0 | 949 | $0.0378 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r3 1 | anthropic/claude-haiku-5.5 | 1 | 4973 | 0 | 0 | 1217 | $0.0011 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r3 2 | anthropic/claude-haiku-5.5 | 1 | 4973 | 0 | 0 | 418 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r3 referee | anthropic/claude-opus-5.5 | 1 | 4973 | 0 | 0 | 796 | $0.0358 | 0 | 0 | 0 |
+| S1-high-T1/score | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 5100 | 0 | 0 | 1670 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 5100 | 0 | 0 | 1355 | $0.0012 | 0 | 0 | 0 |
+| S1-high-T1/score | round r4 referee | anthropic/claude-opus-5.5 | 1 | 5100 | 0 | 0 | 1108 | $0.0426 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r4 1 | anthropic/claude-haiku-5.5 | 1 | 5374 | 0 | 0 | 838 | $0.0010 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r4 2 | anthropic/claude-haiku-5.5 | 1 | 5374 | 0 | 0 | 1526 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r4 referee | anthropic/claude-opus-5.5 | 1 | 5374 | 0 | 0 | 771 | $0.0369 | 0 | 0 | 0 |
+| S1-high-T1/score | round r5 1 | anthropic/claude-haiku-5.5 | 1 | 5565 | 0 | 0 | 1751 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | round r5 2 | anthropic/claude-haiku-5.5 | 1 | 5565 | 0 | 0 | 1760 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | round r5 referee | anthropic/claude-opus-5.5 | 1 | 5565 | 0 | 0 | 1101 | $0.0443 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r5 1 | anthropic/claude-haiku-5.5 | 1 | 5839 | 0 | 0 | 1422 | $0.0013 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r5 2 | anthropic/claude-haiku-5.5 | 1 | 5839 | 0 | 0 | 1289 | $0.0012 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r5 referee | anthropic/claude-opus-5.5 | 1 | 5839 | 0 | 0 | 808 | $0.0395 | 0 | 0 | 0 |
+| S1-high-T1/score | round r6 1 | anthropic/claude-haiku-5.5 | 1 | 5262 | 0 | 0 | 1843 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | round r6 2 | anthropic/claude-haiku-5.5 | 1 | 5262 | 0 | 0 | 1692 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | round r6 referee | anthropic/claude-opus-5.5 | 1 | 5262 | 0 | 0 | 1071 | $0.0425 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r6 1 | anthropic/claude-haiku-5.5 | 1 | 5536 | 0 | 0 | 406 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r6 2 | anthropic/claude-haiku-5.5 | 1 | 5536 | 0 | 0 | 417 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r6 referee | anthropic/claude-opus-5.5 | 1 | 5536 | 0 | 0 | 880 | $0.0397 | 0 | 0 | 0 |
+| S1-high-T1/score | round r7 1 | anthropic/claude-haiku-5.5 | 1 | 5919 | 0 | 0 | 2278 | $0.0017 | 0 | 0 | 0 |
+| S1-high-T1/score | round r7 2 | anthropic/claude-haiku-5.5 | 1 | 5919 | 0 | 0 | 2220 | $0.0017 | 0 | 0 | 0 |
+| S1-high-T1/score | round r7 referee | anthropic/claude-opus-5.5 | 1 | 5919 | 0 | 0 | 1042 | $0.0445 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r7 1 | anthropic/claude-haiku-5.5 | 1 | 6193 | 0 | 0 | 1498 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r7 2 | anthropic/claude-haiku-5.5 | 1 | 6193 | 0 | 0 | 1239 | $0.0012 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r7 referee | anthropic/claude-opus-5.5 | 1 | 6193 | 0 | 0 | 958 | $0.0439 | 0 | 0 | 0 |
+| S1-high-T1/score | round r8 1 | anthropic/claude-haiku-5.5 | 1 | 6061 | 0 | 0 | 1953 | $0.0016 | 0 | 0 | 0 |
+| S1-high-T1/score | round r8 2 | anthropic/claude-haiku-5.5 | 1 | 6061 | 0 | 0 | 1699 | $0.0015 | 0 | 0 | 0 |
+| S1-high-T1/score | round r8 referee | anthropic/claude-opus-5.5 | 1 | 6061 | 0 | 0 | 1274 | $0.0497 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r8 1 | anthropic/claude-haiku-5.5 | 1 | 6335 | 0 | 0 | 1597 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r8 2 | anthropic/claude-haiku-5.5 | 1 | 6335 | 0 | 0 | 1073 | $0.0012 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r8 referee | anthropic/claude-opus-5.5 | 1 | 6335 | 0 | 0 | 1011 | $0.0456 | 0 | 0 | 0 |
+| S1-high-T1/score | round r9 1 | anthropic/claude-haiku-5.5 | 1 | 6910 | 0 | 0 | 2383 | $0.0019 | 0 | 0 | 0 |
+| S1-high-T1/score | round r9 2 | anthropic/claude-haiku-5.5 | 1 | 6910 | 0 | 0 | 1845 | $0.0016 | 0 | 0 | 0 |
+| S1-high-T1/score | round r9 referee | anthropic/claude-opus-5.5 | 1 | 6910 | 0 | 0 | 1260 | $0.0528 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r9 1 | anthropic/claude-haiku-5.5 | 1 | 7184 | 0 | 0 | 1461 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r9 2 | anthropic/claude-haiku-5.5 | 1 | 7184 | 0 | 0 | 1372 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r9 referee | anthropic/claude-opus-5.5 | 1 | 7184 | 0 | 0 | 1096 | $0.0507 | 0 | 0 | 0 |
+| S1-high-T1/score | round r10 1 | anthropic/claude-haiku-5.5 | 1 | 6616 | 0 | 0 | 2167 | $0.0017 | 0 | 0 | 0 |
+| S1-high-T1/score | round r10 2 | anthropic/claude-haiku-5.5 | 1 | 6616 | 0 | 0 | 2565 | $0.0019 | 0 | 0 | 0 |
+| S1-high-T1/score | round r10 referee | anthropic/claude-opus-5.5 | 1 | 6616 | 0 | 0 | 1382 | $0.0541 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r10 1 | anthropic/claude-haiku-5.5 | 1 | 6890 | 0 | 0 | 494 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r10 2 | anthropic/claude-haiku-5.5 | 1 | 6890 | 0 | 0 | 2291 | $0.0018 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r10 referee | anthropic/claude-opus-5.5 | 1 | 6890 | 0 | 0 | 1025 | $0.0481 | 0 | 0 | 0 |
+| S1-high-T1/score | round r11 1 | anthropic/claude-haiku-5.5 | 1 | 6633 | 0 | 0 | 2702 | $0.0020 | 0 | 0 | 0 |
+| S1-high-T1/score | round r11 2 | anthropic/claude-haiku-5.5 | 1 | 6633 | 0 | 0 | 2897 | $0.0021 | 0 | 0 | 0 |
+| S1-high-T1/score | round r11 referee | anthropic/claude-opus-5.5 | 1 | 6633 | 0 | 0 | 1437 | $0.0553 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r11 1 | anthropic/claude-haiku-5.5 | 1 | 6907 | 0 | 0 | 415 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r11 2 | anthropic/claude-haiku-5.5 | 1 | 6907 | 0 | 0 | 1756 | $0.0016 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r11 referee | anthropic/claude-opus-5.5 | 1 | 6907 | 0 | 0 | 1448 | $0.0566 | 0 | 0 | 0 |
+| S1-high-T1/score | round r12 1 | anthropic/claude-haiku-5.5 | 1 | 5815 | 0 | 0 | 2073 | $0.0016 | 0 | 0 | 0 |
+| S1-high-T1/score | round r12 2 | anthropic/claude-haiku-5.5 | 1 | 5815 | 0 | 0 | 2371 | $0.0018 | 0 | 0 | 0 |
+| S1-high-T1/score | round r12 referee | anthropic/claude-opus-5.5 | 1 | 5815 | 0 | 0 | 1368 | $0.0506 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r12 1 | anthropic/claude-haiku-5.5 | 1 | 6089 | 0 | 0 | 1693 | $0.0015 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r12 2 | anthropic/claude-haiku-5.5 | 1 | 6089 | 0 | 0 | 1682 | $0.0014 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r12 referee | anthropic/claude-opus-5.5 | 1 | 6089 | 0 | 0 | 1133 | $0.0470 | 0 | 0 | 0 |
+| S1-high-T1/score | round r13 1 | anthropic/claude-haiku-5.5 | 1 | 6313 | 0 | 0 | 2281 | $0.0018 | 0 | 0 | 0 |
+| S1-high-T1/score | round r13 2 | anthropic/claude-haiku-5.5 | 1 | 6313 | 0 | 0 | 1955 | $0.0016 | 0 | 0 | 0 |
+| S1-high-T1/score | round r13 referee | anthropic/claude-opus-5.5 | 1 | 6313 | 0 | 0 | 1365 | $0.0526 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r13 1 | anthropic/claude-haiku-5.5 | 1 | 6587 | 0 | 0 | 468 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r13 2 | anthropic/claude-haiku-5.5 | 1 | 6587 | 0 | 0 | 2119 | $0.0017 | 0 | 0 | 0 |
+| S1-high-T1/score | hold r13 referee | anthropic/claude-opus-5.5 | 1 | 6587 | 0 | 0 | 1243 | $0.0512 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r1 1 | anthropic/claude-haiku-5.5 | 1 | 2424 | 0 | 0 | 237 | $0.0004 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r1 2 | anthropic/claude-haiku-5.5 | 1 | 2424 | 0 | 0 | 305 | $0.0004 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r2 1 | anthropic/claude-haiku-5.5 | 1 | 2603 | 0 | 0 | 133 | $0.0003 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r2 2 | anthropic/claude-haiku-5.5 | 1 | 2603 | 0 | 0 | 143 | $0.0003 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r3 1 | anthropic/claude-haiku-5.5 | 1 | 3293 | 0 | 0 | 656 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r3 2 | anthropic/claude-haiku-5.5 | 1 | 3293 | 0 | 0 | 644 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r3 3 | anthropic/claude-haiku-5.5 | 1 | 3293 | 0 | 0 | 381 | $0.0005 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r4 1 | anthropic/claude-haiku-5.5 | 1 | 3703 | 0 | 0 | 354 | $0.0005 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r4 2 | anthropic/claude-haiku-5.5 | 1 | 3703 | 0 | 0 | 365 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r5 1 | anthropic/claude-haiku-5.5 | 1 | 4168 | 0 | 0 | 458 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r5 2 | anthropic/claude-haiku-5.5 | 1 | 4168 | 0 | 0 | 544 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r6 1 | anthropic/claude-haiku-5.5 | 1 | 3865 | 0 | 0 | 531 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r6 2 | anthropic/claude-haiku-5.5 | 1 | 3865 | 0 | 0 | 398 | $0.0006 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r7 1 | anthropic/claude-haiku-5.5 | 1 | 4522 | 0 | 0 | 506 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r7 2 | anthropic/claude-haiku-5.5 | 1 | 4522 | 0 | 0 | 513 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r8 1 | anthropic/claude-haiku-5.5 | 1 | 4664 | 0 | 0 | 674 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r8 2 | anthropic/claude-haiku-5.5 | 1 | 4664 | 0 | 0 | 812 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r9 1 | anthropic/claude-haiku-5.5 | 1 | 5513 | 0 | 0 | 786 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r9 2 | anthropic/claude-haiku-5.5 | 1 | 5513 | 0 | 0 | 656 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r10 1 | anthropic/claude-haiku-5.5 | 1 | 5219 | 0 | 0 | 961 | $0.0010 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r10 2 | anthropic/claude-haiku-5.5 | 1 | 5219 | 0 | 0 | 551 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r10 3 | anthropic/claude-haiku-5.5 | 1 | 5219 | 0 | 0 | 759 | $0.0009 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r11 1 | anthropic/claude-haiku-5.5 | 1 | 5236 | 0 | 0 | 508 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r11 2 | anthropic/claude-haiku-5.5 | 1 | 5236 | 0 | 0 | 460 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r12 1 | anthropic/claude-haiku-5.5 | 1 | 4418 | 0 | 0 | 511 | $0.0007 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r12 2 | anthropic/claude-haiku-5.5 | 1 | 4418 | 0 | 0 | 751 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r12 3 | anthropic/claude-haiku-5.5 | 1 | 4418 | 0 | 0 | 652 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r13 1 | anthropic/claude-haiku-5.5 | 1 | 4925 | 0 | 0 | 566 | $0.0008 | 0 | 0 | 0 |
+| S1-high-T1/score | initiative r13 2 | anthropic/claude-haiku-5.5 | 1 | 4925 | 0 | 0 | 839 | $0.0009 | 0 | 0 | 0 |
