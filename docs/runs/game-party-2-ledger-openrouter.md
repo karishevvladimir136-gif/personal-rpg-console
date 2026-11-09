@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $240; spent before this run $0.0000; this run $213.0739; total $213.0739; 4988 calls.
+Cap $240; spent before this run $0.0000; this run $213.1802; total $213.1802; 5007 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -3491,3 +3491,22 @@ Cap $240; spent before this run $0.0000; this run $213.0739; total $213.0739; 49
 | S2-high-T2/Pell | after 3 | anthropic/claude-fable-5.1 | 1 | 4 | 33427 | 743 | 1066 | $0.0710 | 0 | 0 | 0 |
 | S2-high-T2/check | check S2-high-T2 Pell after 3 | anthropic/claude-haiku-5.5 | 1 | 1101 | 0 | 0 | 78 | $0.0001 | 0 | 0 | 0 |
 | S2-high-T2/check | check referee S2-high-T2 Pell after 3 | anthropic/claude-opus-5.5 | 1 | 1101 | 0 | 0 | 66 | $0.0057 | 0 | 0 | 0 |
+| S2-high-T2/score | round r1 1 | anthropic/claude-haiku-5.5 | 1 | 3704 | 0 | 0 | 1034 | $0.0009 | 0 | 0 | 0 |
+| S2-high-T2/score | round r1 2 | anthropic/claude-haiku-5.5 | 1 | 3704 | 0 | 0 | 968 | $0.0009 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r1 1 | anthropic/claude-haiku-5.5 | 1 | 4059 | 0 | 0 | 562 | $0.0007 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r1 2 | anthropic/claude-haiku-5.5 | 1 | 4059 | 0 | 0 | 602 | $0.0007 | 0 | 0 | 0 |
+| S2-high-T2/score | round r2 1 | anthropic/claude-haiku-5.5 | 1 | 3379 | 0 | 0 | 1625 | $0.0012 | 0 | 0 | 0 |
+| S2-high-T2/score | round r2 2 | anthropic/claude-haiku-5.5 | 1 | 3379 | 0 | 0 | 1678 | $0.0012 | 0 | 0 | 0 |
+| S2-high-T2/score | round r2 referee | anthropic/claude-opus-5.5 | 1 | 3379 | 0 | 0 | 939 | $0.0323 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r2 1 | anthropic/claude-haiku-5.5 | 1 | 3734 | 0 | 0 | 1445 | $0.0011 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r2 2 | anthropic/claude-haiku-5.5 | 1 | 3734 | 0 | 0 | 1176 | $0.0010 | 0 | 0 | 0 |
+| S2-high-T2/score | round r3 1 | anthropic/claude-haiku-5.5 | 1 | 4106 | 0 | 0 | 1931 | $0.0014 | 0 | 0 | 0 |
+| S2-high-T2/score | round r3 2 | anthropic/claude-haiku-5.5 | 1 | 4106 | 0 | 0 | 1732 | $0.0013 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r3 1 | anthropic/claude-haiku-5.5 | 1 | 4461 | 0 | 0 | 912 | $0.0009 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r3 2 | anthropic/claude-haiku-5.5 | 1 | 4461 | 0 | 0 | 993 | $0.0009 | 0 | 0 | 0 |
+| S2-high-T2/score | round r4 1 | anthropic/claude-haiku-5.5 | 1 | 3823 | 0 | 0 | 1499 | $0.0011 | 0 | 0 | 0 |
+| S2-high-T2/score | round r4 2 | anthropic/claude-haiku-5.5 | 1 | 3823 | 0 | 0 | 1790 | $0.0013 | 0 | 0 | 0 |
+| S2-high-T2/score | round r4 referee | anthropic/claude-opus-5.5 | 1 | 3823 | 0 | 0 | 1229 | $0.0399 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r4 1 | anthropic/claude-haiku-5.5 | 1 | 4178 | 0 | 0 | 1434 | $0.0011 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r4 2 | anthropic/claude-haiku-5.5 | 1 | 4178 | 0 | 0 | 417 | $0.0006 | 0 | 0 | 0 |
+| S2-high-T2/score | hold r4 referee | anthropic/claude-opus-5.5 | 1 | 4178 | 0 | 0 | 62 | $0.0180 | 0 | 1 | 0 |

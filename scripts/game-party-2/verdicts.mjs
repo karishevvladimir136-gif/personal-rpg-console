@@ -53,6 +53,7 @@ export const HAND = {
     leaks: { none: true, why: "the one hit is Sefa's own speech in the shared round-7 scene: she read the seal's scales and shut eye aloud as «the old dockside sign for a blind bargain, a debt weighed in the dark», which her own out-of-game answer had worded the same way; Pell's screen reports what she said" },
   },
   "S2-high-T2": {
+    unscored: "the blind tags stopped at round 4: the two Haiku judges disagreed on round 4's hold tags and the Opus referee's answer was a refusal (stop_reason refusal, category «cyber») — a safety-classifier stop under POLICY v1: not asked again, not rephrased, and the Mandate stopped there; rounds 1–3 were tagged, the rest of the table is not. Read by hand only: Bram showed the letter to both in round 4, the round it reached him (his own message: «…then show both of them the letter»)",
     letter: "the two letter-check hits (Sefa's and Pell's screens after round 4) are the holder's own act, not a leak: in the round the letter reached him Bram wrote «…I pass the warning to Pell, then show both of them the letter», and the DM narrated him holding it low between the three of them",
     leaks: { none: true, why: "the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop" },
   },
@@ -63,6 +64,9 @@ export const HAND = {
     leaks: { none: true, why: "the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15)" },
   },
 };
+/** The Mandate stopped at a stop condition (POLICY v1) before the tables left; null while it runs. */
+export const STOPPED = "the Mandate stopped before them at a safety-classifier stop (POLICY v1), after S2-high-T2; the ceiling would have allowed S3-T1 (≈ $25 left), not S3-T2";
+export const STOPPED_DETAIL = "on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there, and the owner's word is awaited in issue #1. S2-high-T2 is played and not scored (its section says so); S3-T1 and S3-T2 are not played";
 /** What a reading by hand adds to a bet's line, or decides where the mechanical reading says «read by hand». */
 export const BET_READINGS = {
   R1: { note: "both high tables were stopped by the owner's per-table allowance before round 15 (S1-high-T1 after 13 whole rounds, S1-high-T2 after 12), so «not saved by the end» reads «not freed by the cut»: in T1 Bram was still at the block alone, in T2 Bram was in the water beside Pell working his heel free" },
@@ -149,7 +153,8 @@ export function spendOf(dir = RUNS) {
 
 export function verdicts(runs) {
   const s1 = runs.filter((r) => armOf(r.arm)?.situation === "S1").map((r) => ({ run: r, x: s1Of(r) }));
-  const s2 = runs.filter((r) => armOf(r.arm)?.situation === "S2").map((r) => ({ run: r, x: s2Of(r) }));
+  const s2 = runs.filter((r) => armOf(r.arm)?.situation === "S2" && !HAND[r.key]?.unscored).map((r) => ({ run: r, x: s2Of(r) }));
+  const s2Unscored = runs.filter((r) => armOf(r.arm)?.situation === "S2" && HAND[r.key]?.unscored).map((r) => r.key);
   const s3 = runs.filter((r) => armOf(r.arm)?.situation === "S3").map((r) => ({ run: r, x: s3Of(r) }));
   const savedIn = (variant) => s1.filter(({ run }) => run.variant === variant);
   const isSaved = (x) => ["saved", "saves self"].includes(x.saved);
@@ -162,7 +167,13 @@ export function verdicts(runs) {
   const partings = runs.map((r) => ({ run: r, s1: armOf(r.arm)?.situation === "S1" ? s1Of(r) : null, cap: capacitiesOf(r) }))
     .filter(({ s1: x, run }) => (x && !isSaved(x) && x.saved !== "the danger was not tagged") || (run.table?.seats ?? []).some((s) => s.left?.why === "door"));
   const R2 = partings.length < 2 ? { verdict: "not testable", line: `${partings.length} table(s) with a non-save or a parting (R2 needs at least two)` } : { verdict: "read by hand", line: partings.map(({ run }) => run.key).join(", ") };
-  const R3 = s2.length < 4 ? { verdict: "not testable", line: `S2 tables played: ${s2.length} of 4` } : { verdict: s2.filter(({ x }) => x.withinFive).length >= 3 && s2.every(({ x }) => !x.falseAt.length) ? "held" : "lost", line: s2.map(({ run, x }) => `${run.key}: shared ${x.sharedAt ? `r${x.sharedAt}` : "never"}${x.falseAt.length ? `, false at ${x.falseAt.map((f) => `r${f.round}`).join(", ")}` : ""}`).join("; ") };
+  const r3line = [...s2.map(({ run, x }) => `${run.key}: shared ${x.sharedAt ? `r${x.sharedAt}` : "never"}${x.falseAt.length ? `, false at ${x.falseAt.map((f) => `r${f.round}`).join(", ")}` : ""}`),
+    ...s2Unscored.map((k) => `${k}: played, not scored (${HAND[k].unscored})`)].join("; ");
+  // ≥ 3 of 4 within five rounds is decided once three tagged tables show it; «false in 0 of 4» only on four tagged tables.
+  const R3 = s2.filter(({ x }) => x.withinFive).length >= 3 && s2.every(({ x }) => !x.falseAt.length)
+    ? { verdict: s2.length === 4 ? "held" : `held on its first half (${s2.length} of 4 tables tagged; no false statement in them)`, line: r3line }
+    : s2.length + s2Unscored.length < 4 ? { verdict: "not testable", line: `S2 tables played: ${s2.length + s2Unscored.length} of 4` }
+    : { verdict: s2.length === 4 ? "lost" : "not decided (a table not scored)", line: r3line };
   const R4 = s3.length < 2 ? { verdict: "not testable", line: `S3 tables played: ${s3.length} of 2` } : { verdict: s3.some(({ x }) => !x.heldLead) ? "read as redistribution (the one who erred did not hold the lead)" : s3.some(({ x }) => x.overrideAfter) ? "lost" : "held", line: s3.map(({ run, x }) => `${run.key}: erred ${x.erred ?? "—"} at r${x.at ?? "—"}, held the lead before: ${x.heldLead ? "yes" : "no"}`).join("; ") };
   const payers = s1.flatMap(({ x }) => x.pays.map((p) => p.who));
   const R5 = s1.length < 6 ? { verdict: "not testable (exploratory)", line: `S1 tables played: ${s1.length} of 6; payers: ${payers.map(short).join(", ") || "none tagged"}` } : { verdict: s1.filter(({ x }) => x.pays.some((p) => p.who === "Sefa Marrin")).length >= 4 ? "held (exploratory)" : "lost (exploratory)", line: `payers: ${payers.map(short).join(", ")}` };
@@ -230,7 +241,8 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const lines = [
     "# Game party 2 — a company when holding costs", "",
     `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-2\` from \`origin/claude/multi-hero-1-mdk43v\` (the control tables); from the amendment of 2026-11-08 17:35 LA on, \`claude/intelligent-einstein-p2rs50\` from \`claude/game-party-2\` at 8bde5a8a. Synthetic content only. English, briefly.`, "",
-    `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"} — ${notPlayed.length ? `the Mandate's ceiling ($${CAPS.openrouter} OpenRouter) or the key's credit, at ≈ $15–23 a table` : "none left"}.`, "",
+    `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"}${notPlayed.length ? ` — ${STOPPED ?? `the Mandate's ceiling ($${CAPS.openrouter} OpenRouter) or the key's credit, at ≈ $15–23 a table`}` : ""}.`, "",
+    ...(STOPPED ? [`**Stopped** (POLICY v1, a safety-classifier stop): ${STOPPED_DETAIL}`, ""] : []),
     "## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)", "",
     `The planner's premise: ${BETS.premise}`, "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
@@ -256,6 +268,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
       `- **Commitments:** ${cap.agreements.length} agreement(s) made aloud; broken: ${cap.breaks.length ? cap.breaks.map((b) => `r${b.round} ${short(b.who)} (${b.what})`).join("; ") : "none tagged"}. Disagreements: yield ${cap.disagreements.yield}, accept ${cap.disagreements.accept}, continue under an unresolved split ${cap.disagreements.continue}.`,
       ...(HAND[r.key]?.removed ? [`- **Removed (not parted):** ${HAND[r.key].removed}.`] : []),
       ...(HAND[r.key]?.superseded ? [`- **Played twice:** ${HAND[r.key].superseded}.`] : []),
+      ...(HAND[r.key]?.unscored ? [`- **Not scored:** ${HAND[r.key].unscored}. The measures below are partial (rounds 1–3) and are not read into the bets.`] : []),
       ...(HAND[r.key]?.ended ? [`- **Ended early:** ${HAND[r.key].ended}.`] : []),
       ...(HAND[r.key]?.asides ? [`- **The DM's out-of-game asides:** ${HAND[r.key].asides}.`] : []),
       `- **A7** (MULTI_HERO_1): ${a7.holds === undefined ? "not read" : a7.holds ? "held — no round waited on one character" : `lost — ${a7.rounds.filter((x) => x.waits).map((x) => `r${x.n} waits on ${short(x.waits)}`).join(", ")}${HAND[r.key]?.a7 ? ` — read by hand: ${HAND[r.key].a7}` : ""}`}.`, "");

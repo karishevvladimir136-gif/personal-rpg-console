@@ -2,25 +2,31 @@
 
 **Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
 at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1; the
-amendments of 2026-11-01 23:55 LA and 2026-11-08 17:35 LA; the planner's B of 21:02 LA) — **Step 1 done: v5 passed
-its test (8 of 9). The ten tables are next, on v5, in stage order.** Branch `claude/intelligent-einstein-p2rs50`
-(this session's branch), from `claude/game-party-2` at 8bde5a8a. Nothing to `main`. Implementation status, not owner
-approval.
+amendments of 2026-11-01 23:55 LA and 2026-11-08 17:35 LA; the planner's B of 21:02 LA) — **stopped at a POLICY v1
+stop condition: 10 of 12 tables played; S2-high-T2 played but not scored; S3 not played. Waiting for the owner's word
+in issue #1.** Branch `claude/intelligent-einstein-p2rs50` (this session's branch), from `claude/game-party-2` at
+8bde5a8a. Nothing to `main`. Implementation status, not owner approval.
 
-- **Two tables played before** (the control, S1-none T1 and T2, harness v2 and v3); report
-  `docs/runs/game-party-2-report.md`.
-- **Step 1, v4:** the DM's company frame gives the round's close to the table (`company.ts` `COMPANY_CLOSE`), and the
-  table ends every seat's round screen with the same line (`CLOSE_LINE`). Chosen over (b) and (c): T2's nine held
-  rounds reflected every seat's action in all nine, so the hold was only in the close. Test: **6 of 9, fail**.
-- **Step 1, v5** (the planner's B): v4 plus one reminder sentence closing each round's message to the DM
-  (`ROUND_REMINDER`). Test: **8 of 9, pass.** No hold in 9 of 9 rounds, no out-of-game note in 12 scenes; r2 missed
-  one of Sefa's lines. The tests cost $3.83 of their $5. Results: `docs/runs/game-party-2-a7-replay.md`, `-v5.md`.
-- **P-A7:** lost on v4's count (7 of 9), its second half held (r1, r11), as the planner set it.
-- **Ceiling** $240 (the amendment); allowance $25 per table.
-- **Spend:** $46.36 of $240 on OpenRouter; OpenAI $0. The account: $200.76 left.
-- **Checks:** game-party-2 13/13; the multi-hero, party-1 and door suites pass (1 known skip); typecheck and
-  zero-warning lint pass.
-- **Next step:** S1-moderate T1 and T2, then a stop-point comment, and on through S1-high, S2 and S3.
+- **The stop:** scoring S2-high-T2, the Opus referee (asked to settle the two Haiku judges' disagreement on round 4's
+  hold tags) answered with a refusal, category «cyber» — a safety-classifier stop. Not asked again, not rephrased.
+- **Step 1 (A7):** v4 (the round's close given to the table) failed its test 6/9; v5 (plus one reminder line in each
+  round's message) passed 8/9. The tables played on v5. Holds per v5 table: 5, 0, 4, 4, 2, 3, 1, 0 — mostly the
+  rescue's own joint count; a known defect, listed per table.
+- **Tables this session (v5):** S1-moderate T1/T2, S1-high T1/T2, S2-moderate T1/T2, S2-high T1/T2. Three were
+  played twice (S1-moderate-T2, S2-moderate-T2, S2-high-T1); the first attempts are kept. Both S1-high tables were
+  cut by the $25 per-table allowance at rounds 14 and 13; S1-moderate-T2 ended at round 11 (a database validation
+  error, cause unknown).
+- **App bug found and fixed** (`src/lib/gameplay/turn-engine.ts`, test `tests/game-party-2-table-fact.test.mjs`): an
+  out-of-game answer that settled a «table fact» pinned it before committing; the pin raised the campaign's revision, so
+  the answer and any waiting game turn failed «conflict». Now pinned after the commit, and not while a card waits.
+- **Bets:** R0 held; R1 held (the high pair cut by the allowance); R2 held by hand; R3 held on its first half (3 of 4
+  tagged); R4 not testable (no S3); R5 held (exploratory); P-A7 lost on its count, second half held; P-mod held;
+  P-high held. Report: `docs/runs/game-party-2-report.md`.
+- **Spend:** $213.18 of $240 on OpenRouter (this session $170.66: tables $159.07, scoring $7.75, Step 1 tests $3.83);
+  OpenAI $0; Anthropic Console $0.
+- **Checks:** turn-path, loop and party suites 241 pass, 1 known skip; typecheck, zero-warning lint and build pass.
+- **Next step:** the owner's word in issue #1 — close the Mandate here, or say what to do with S2-high-T2's scoring and
+  S3-T1 (≈ $25 left under the ceiling).
 
 ## Previous status (before the amendment of 2026-11-08)
 
