@@ -952,6 +952,23 @@
           "left": 26.93
         }
       }
+    },
+    {
+      "at": "2026-11-09T18:13:59.720Z",
+      "when": "before the scoring of S2-high-T2",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1514.248854235,
+        "remaining": 35.75,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 213.0739,
+          "cap": 240,
+          "left": 26.93
+        }
+      }
     }
   ]
 }
