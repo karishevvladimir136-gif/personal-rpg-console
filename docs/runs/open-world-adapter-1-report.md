@@ -778,8 +778,8 @@ south). The owner's words, verbatim:
 The planner's lines beside it, kept apart from the owner's: every repair the three episodes call for — the reader's
 first line, the silent `talk`, the cache on a sliding window — is on the harness's side; nothing on the models' side
 needs fixing. Tobin's cart is the scene of the phase: the villager says «Go on, take the wand off the cart. A deal is a
-deal» and the world offers only «Steal Flask of Oil»; both Claude families chose the interface's word over the
-villager's, Fable after pressing `take`, at the confirmation («Won't steal»). DeepSeek's one journal line at turn 27
+deal» and the world offers only «Steal Flask of Oil»; both Claude families answered «no» after the word «Steal» appeared, Fable after pressing `take`, at the
+confirmation («Won't steal»). — 2026-11-08 21:10 note: an earlier wording here said they «chose the interface's word over the villager's»; that is an explanation, not what the log holds (the reviewer's correction, letter 47). What was chosen — the word, caution, the act's refusal — is not readable from one confirmation. DeepSeek's one journal line at turn 27
 was right («rock wall south; backtrack north to find cut») and was not acted on for 115 more turns — knowing and doing
 came apart, with no record of the attempts in between. Fable's journal carries the world's clock on nearly every line
 from 13:11 on; Opus's and DeepSeek's do not (n = 1 per family; not read as kinship with anything outside the game).
