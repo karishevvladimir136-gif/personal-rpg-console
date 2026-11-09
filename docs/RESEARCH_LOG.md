@@ -4344,3 +4344,21 @@ four lines of «unchanged», each true and each about the wrong place. Renumbere
 letter (9dd721d). Rule changed in the journal's standing notes: two silences end the 150-minute checks, never the daily
 one; every morning wake-up checks both repositories. Places this reaches: the standing notes (done), this log (done),
 the choices log's next line (the wake-up of 11-09).
+
+## 2026-11-08 17:55 LA — the three Ford episodes read whole with the owner; OPEN_WORLD_2 written from the reading
+Read in three chapters (Cloudtop; Vesper Ford and Firstlight; the road south) — the owner's section of the Phase C report
+holds his line («в абсолютно кастомном харнессе в новом мире — всё равно справляются») and the planner's beside it. Three
+things the numbers did not show: (1) Tobin's cart — the villager says «Go on, take the wand off the cart. A deal is a
+deal», the world offers only «Steal Flask of Oil», and both Claude families chose the interface's word over the
+villager's, Fable at the confirmation after pressing `take` («Won't steal»); (2) DeepSeek's one journal line at turn 27
+was the right diagnosis and went unacted for 115 turns — the gap is between knowing and doing, and nothing in its journal
+recorded the attempts; (3) Fable's journal carries the world's clock on nearly every line from 13:11; the other two
+never — n = 1, and not read as kinship with anything outside the game (the planner's «origin by likeness» class is in
+the audit as case 1). Five measures (M1–M5) and five bets (W1–W5) are in `docs/stages/OPEN_WORLD_2.md`, chosen after
+the reading as agreed on 11-02, none of them among those the planner would have written before it. Also today, as a
+complement and not an explanation (the owner's correction): Huh, Cheung, Wang, Isola, «The Platonic Representation
+Hypothesis» (ICML 2024, arXiv 2405.07987) — representations of different models converge toward a shared model of
+the world; for us one use only: likeness between two models without a common source is the expected case, which is
+the outside ground for the rule «likeness is not origin». PARTY_2 resumed on the owner's «погнали все»: issue #1
+amendment 17:35 (ceiling $240, A7 by the harness with the nine-round test, ten tables in stage order), key topped up
+to $204.58, the session accepted at 17:41.
