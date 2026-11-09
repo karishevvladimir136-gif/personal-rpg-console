@@ -10,7 +10,7 @@ import { RUNS } from "../game-player-1/run.mjs";
 import { perTableMeasures } from "../multi-hero-1/report.mjs";
 import { a7Of } from "../multi-hero-1/judges.mjs";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
-import { BETS, CAPS, ORDER, ROSTER, ROUND_REMINDER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
+import { BETS, CAPS, ORDER, ROSTER, ROUND_REMINDER, SEATING, STAGE_SOURCE, TABLE_HARNESS, armOf } from "./frozen.mjs";
 
 const STEM = "game-party-2";
 /** The owner's bets (issue #1, the session chat of 2026-11-02, after S1-none-T1's result was posted — so given with
@@ -139,6 +139,46 @@ export const HARNESS_TEXT = {
   v5: (r) => `v4, and one reminder sentence closing each round's message to the DM (the planner's B): «${ROUND_REMINDER}»; ${r.table?.asides?.length ?? 0} aside stripping(s) kept in the record`,
 };
 
+// ---- the amendment of 2026-11-08 17:35 LA: Step 1 and the planner's three bets ------------------------------------------------
+
+/** The planner's bets of the amendment of 2026-11-08 17:35 LA (frozen there, before Step 1 and the ten tables). */
+export const BETS_1108 = {
+  "P-A7": "The frame fix removes the hold in ≥ 8 of 9 rounds, but the DM still names the seat that has not answered, without holding the scene on it.",
+  "P-mod": "In both moderate tables the fallen character is freed, and the price is named aloud before the act in both.",
+  "P-high": "In at least one high table someone proposes leaving before the rescue.",
+};
+/** Step 1's two tests (a7-replay.mjs): v4, then v5 (the planner's B of 21:02 LA). */
+export function step1Of(dir = RUNS) {
+  const read = (f) => (existsSync(join(dir, f)) ? readJson(join(dir, f)) : null);
+  const one = (x) => (x ? { harness: x.harness ?? "v4", passed: x.verdict.passed, of: x.verdict.of, holds: x.verdict.holds, noHold: x.verdict.noHold, allReflected: x.verdict.allReflected,
+    namesOpen: x.verdict.namesOpenWithoutHold, spent: x.spentUsd, fails: x.readings.filter((r) => !r.pass).map((r) => `r${r.n}${r.waits ? ` waits on ${short(r.waits)}` : ""}${r.allReflected ? "" : ` (not reflected: ${Object.entries(r.reflected).filter(([, v]) => !v).map(([k]) => short(k)).join(", ")})`}`) } : null);
+  return { v4: one(read(`${STEM}-a7-replay.json`)), v5: one(read(`${STEM}-a7-replay-v5.json`)), baseline: read(`${STEM}-a7-replay-baseline.json`) };
+}
+export function bets1108(runs, step1 = step1Of()) {
+  const isSaved = (x) => ["saved", "saves self"].includes(x.saved);
+  const v4 = step1.v4, v5 = step1.v5;
+  const PA7 = { verdict: v4 ? "lost on its count; its second half held" : "not read",
+    line: v4 ? `v4: ${v4.noHold} of ${v4.of} rounds without a hold (≥ 8 bet); the DM named an open question without holding the scene in rounds ${v4.namesOpen.join(", ") || "none"}${v5 ? ` · v5: ${v5.noHold} of ${v5.of} without a hold, named-without-holding in rounds ${v5.namesOpen.join(", ") || "none"}` : ""} — read as the planner set it at 21:02 LA (on v4's count)` : "—" };
+  const of = (variant) => runs.filter((r) => armOf(r.arm)?.situation === "S1" && r.variant === variant).map((r) => ({ run: r, x: s1Of(r) }));
+  const mod = of("moderate"), high = of("high");
+  const Pmod = mod.length < 2 ? { verdict: "not testable", line: `moderate tables played: ${mod.length} of 2` }
+    : { verdict: mod.every(({ x }) => isSaved(x) && x.namedBefore) ? "held" : "lost", line: mod.map(({ run, x }) => `${run.key}: ${x.saved}${x.savedAt ? ` at r${x.savedAt}` : ""}; price named before the act: ${x.namedBefore === null ? "—" : x.namedBefore ? "yes" : "no"}`).join("; ") };
+  const before = (x) => x.leaving.filter((l) => !x.savedAt || l.round <= x.savedAt);
+  const Phigh = high.length < 2 ? { verdict: "not testable", line: `high tables played: ${high.length} of 2` }
+    : { verdict: high.some(({ x }) => before(x).length) ? "held" : "lost", line: high.map(({ run, x }) => `${run.key}: leaving proposed before the rescue ${before(x).length ? before(x).map((l) => `r${l.round} ${short(l.who)}`).join(", ") : "never"}${x.savedAt ? ` (rescued r${x.savedAt})` : ` (${x.saved})`}`).join("; ") };
+  return { "P-A7": PA7, "P-mod": Pmod, "P-high": Phigh };
+}
+function step1Lines(runs, step1 = step1Of()) {
+  const row = (t) => `| ${t.harness} | ${t.passed} of ${t.of} (needed 8) — ${t.holds ? "**pass**" : "**fail**"} | ${t.noHold} of ${t.of} | ${t.allReflected} of ${t.of} | ${t.fails.join("; ") || "—"} | $${t.spent.toFixed(2)} |`;
+  const tests = [step1.v4, step1.v5].filter(Boolean);
+  const holdsPerTable = runs.filter((r) => ["v4", "v5"].includes(r.harness)).map((r) => { const a = a7Of(r.table?.initiative); return `${r.key} ${a.holds === undefined ? "not read" : `${a.waits.length} round(s) held${a.waits.length ? ` (${a.waits.map((x) => `r${x.n} ${short(x.waits)}`).join(", ")})` : ""}`}`; });
+  return ["## Step 1 — A7 fixed by the harness (the amendment of 2026-11-08 17:35 LA)", "",
+    "The DM's frame held the round on one seat at both control tables. The fix is option (a): the round's close belongs to the table. The DM ends each scene on the world, and the table closes every seat's screen with the same line. Why (a): the reading of S1-none-T2's nine held rounds as played found every seat's action reflected in all nine" + (step1.baseline ? ` (${step1.baseline.rounds.filter((r) => r.allReflected).length} of ${step1.baseline.rounds.length})` : "") + ", so the hold was only in the close. (b) would have fixed nothing, and (c) alone would have passed all nine with the DM unchanged. The guide note stays as the owner wrote it.", "",
+    "The test: the DM alone (Opus 5.5) over T2's nine tagged rounds, the players' actions frozen; pass = ≥ 8 of 9 with no single-seat hold and every action reflected. v5 (the planner's B) adds one reminder sentence closing each round's message to the DM. Results: `docs/runs/game-party-2-a7-replay.md`" + (step1.v5 ? " and `docs/runs/game-party-2-a7-replay-v5.md`" : "") + ".", "",
+    "| Harness | Pass | No hold | Every action reflected | Failed rounds | Spent |", "| --- | --- | --- | --- | --- | --- |", ...tests.map(row), "",
+    `**The tables played on ${TABLE_HARNESS}**${step1.v5 && !step1.v5.holds ? " — neither test passed; the planner's B: play on whichever held fewer rounds, with the hold count per table as a known defect beside R0–R5" : ""}. A7 holds per table (the multi-hero round tag): ${holdsPerTable.join("; ") || "no v4/v5 table played yet"}.`, ""];
+}
+
 export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const v = verdicts(runs);
   const played = new Set(runs.map((r) => r.key));
@@ -151,14 +191,18 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
   const R0held = spend.openrouter <= CAPS.openrouter && !extended.length && !leaks && !wrongDoor.length;
   const lines = [
     "# Game party 2 — a company when holding costs", "",
-    `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-2\` from \`origin/claude/multi-hero-1-mdk43v\`. Synthetic content only. English, briefly.`, "",
+    `Stage ${STAGE_SOURCE}. Branch \`claude/game-party-2\` from \`origin/claude/multi-hero-1-mdk43v\` (the control tables); from the amendment of 2026-11-08 17:35 LA on, \`claude/intelligent-einstein-p2rs50\` from \`claude/game-party-2\` at 8bde5a8a. Synthetic content only. English, briefly.`, "",
     `**Played: ${runs.length} of 12 tables** (${runs.map((r) => r.key).join(", ") || "none"}). **Not played:** ${notPlayed.join(", ") || "none"} — ${notPlayed.length ? `the Mandate's ceiling ($${CAPS.openrouter} OpenRouter) or the key's credit, at ≈ $15–23 a table` : "none left"}.`, "",
     "## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)", "",
     `The planner's premise: ${BETS.premise}`, "",
     "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
     `| R0 | ${BETS.R0} | ${R0held ? "held" : "lost"}${leaksByHand.length ? " (leaks read by hand)" : ""} | OpenRouter $${spend.openrouter.toFixed(2)} of $${CAPS.openrouter}, OpenAI $0; doors: ${wrongDoor.length ? `off the pinned host: ${wrongDoor.join(", ")}` : "every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra"}; rounds ≤ 15${extended.length ? ` (extended: ${extended.join(", ")})` : ""}; leaks (refined) ${leaks}${leaksByHand.length ? ` after the hand reading (${leaksByHand.join("; ")})` : ""}; no player scripted (the prompts carry no situation text; tests) |`,
     ...["R1", "R2", "R3", "R4", "R5"].map((k) => `| ${k} | ${BETS[k]} | ${v[k].verdict} | ${v[k].line} |`), "",
+    "**The planner's bets of the amendment of 2026-11-08 17:35 LA** (frozen there, before Step 1):", "",
+    "| Bet | The planner's | Verdict | Read on |", "| --- | --- | --- | --- |",
+    ...Object.entries(bets1108(runs)).map(([k, x]) => `| ${k} | ${BETS_1108[k]} | ${x.verdict} | ${x.line} |`), "",
     `**The owner's bets** (${OWNER_BETS.at}): ${Object.entries(OWNER_BETS.bets).map(([k, b]) => `${k} ${b}`).join(", ")} — ${OWNER_BETS.reading}. Each verdict above is the owner's too. **The owner's section** — left for the owner:`, "", "> …", "",
+    ...step1Lines(runs),
     "## The tables", "",
   ];
   for (const r of runs) {
