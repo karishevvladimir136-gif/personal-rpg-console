@@ -119,7 +119,23 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
     call: () => judgeCall({ model, system, user, maxTokens, effort, keys, fetcher: meter.fetch }) });
   const failed = (error) => { record.errors.push({ error: String(error?.message ?? error).slice(0, 300), code: error?.code ?? null }); return { status: "failed", failure: `exception: ${String(error?.code ?? error?.message ?? error).slice(0, 80)}`, canRetry: false, checks: [] }; };
   const submit = async (text, mode, purpose) => { try { return await meter.within({ session: key, purpose }, () => dm.submit(text, mode)); } catch (error) { return { input: null, turn: failed(error) }; } };
-  const press = async (input, action, checkId, purpose) => { try { return await meter.within({ session: key, purpose }, () => dm.press(input, action, checkId)); } catch (error) { return failed(error); } };
+  // Game party 2 (issue #1): a card's press ended two tables' turns with «conflict» (S1-moderate-T2's first attempt, r5;
+  // S2-moderate-T1, r15), each in a split round's later scene, the press sent while the app's background jobs could still
+  // be running (a message waits for them, a press did not). Now a press waits for them too, and a press answered
+  // «conflict» is sent once more only when the turn reads back still waiting (counts.pressConflicts); nothing the DM or a
+  // player reads changes.
+  const pressOnce = async (input, action, checkId, purpose) => {
+    try { await dm.settle?.(); return await meter.within({ session: key, purpose }, () => dm.press(input, action, checkId)); } catch (error) { return failed(error); }
+  };
+  const press = async (input, action, checkId, purpose) => {
+    const first = await pressOnce(input, action, checkId, purpose);
+    if (first?.status !== "failed" || !/conflict/.test(String(first.failure ?? "")) || dmClosed()) return first;
+    const now = await readTurn(input);
+    if (now?.status !== "awaiting_confirmation") return first;
+    record.counts.pressConflicts = (record.counts.pressConflicts ?? 0) + 1;
+    log(`  ${key}: a press answered «conflict» while the turn still waits — sent once more`);
+    return pressOnce(input, action, checkId, `${purpose} again`);
+  };
   const readTurn = async (input) => { try { return await dm.readTurn(input); } catch { return null; } };
   const dmClosed = () => meter.stopped || meter.closed(key);
 

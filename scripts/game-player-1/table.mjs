@@ -173,6 +173,8 @@ export function bindTable(app, cid, settleBackground) {
     press: (input, action, checkId = null) => command(app, cid, input, action, checkId),
     // Fix S4 run 1 (item 11b): the waiting turn read again after a «?» answer (the DM may have withdrawn its card).
     readTurn: (input) => app.server.gameplay.readTurn(cid, input.operationId),
+    // Game party 2 (issue #1): the background jobs let finish before a card's press too (multi-hero-1/table.mjs).
+    settle: () => settleBackground(),
     // FIX_S4 run 1 (11c): the clock line the DM reads before its next turn, from the DM's own source (for the run record) —
     // its public form: the act plan's aims, its convergence notes and the errand are DM-private and left out («…»).
     clockLine: async () => {

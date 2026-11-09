@@ -40,6 +40,9 @@ export const HAND = {
   "S1-high-T2": {
     ended: "stopped at round 13 by the owner's per-table allowance ($25): the meter refused a DM call whose worst case would pass the table's cap (spent $129.68, the call at worst $2.15, the cap $133.72), so Pell's round-13 scene failed and the table ended; 12 whole rounds were played (and Bram's and Sefa's round-13 scenes), $21.30 at the table — at the cut Bram was in the water beside Pell working his wedged heel free, Sefa on the rope above",
   },
+  "S2-moderate-T1": {
+    ended: "ended by an app error in the last round: 14 whole rounds and Pell's and Bram's round-15 scene were played; in Sefa's own round-15 scene the DM called a Perception check, and her press of [Roll the die] was answered «conflict» (no out-of-game question before it; the app's events show the roll, then nothing). The same press failure as S1-moderate-T2's first attempt. From the next table on, a press waits for the app's background jobs (as a message did), and a press answered «conflict» while the turn still waits is sent once more",
+  },
   // Harness v5 from here on (the A7 fix of Step 1; see the report's Step 1 section).
   "S1-moderate-T1": {
     a7: "on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player",
