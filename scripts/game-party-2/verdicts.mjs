@@ -52,6 +52,10 @@ export const HAND = {
     letter: "the two letter-check hits (Sefa's and Pell's round-7 screens) are the holder's own act, not a leak: at r6 Bram drew out Odda's letter and held it for them to read («There's something you both need to see.»), and the DM narrated them reading it over his arm",
     leaks: { none: true, why: "the one hit is Sefa's own speech in the shared round-7 scene: she read the seal's scales and shut eye aloud as «the old dockside sign for a blind bargain, a debt weighed in the dark», which her own out-of-game answer had worded the same way; Pell's screen reports what she said" },
   },
+  "S2-high-T2": {
+    letter: "the two letter-check hits (Sefa's and Pell's screens after round 4) are the holder's own act, not a leak: in the round the letter reached him Bram wrote «…I pass the warning to Pell, then show both of them the letter», and the DM narrated him holding it low between the three of them",
+    leaks: { none: true, why: "the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop" },
+  },
   // Harness v5 from here on (the A7 fix of Step 1; see the report's Step 1 section).
   "S1-moderate-T1": {
     a7: "on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player",
