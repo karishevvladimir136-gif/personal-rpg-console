@@ -4362,3 +4362,12 @@ the world; for us one use only: likeness between two models without a common sou
 the outside ground for the rule «likeness is not origin». PARTY_2 resumed on the owner's «погнали все»: issue #1
 amendment 17:35 (ceiling $240, A7 by the harness with the nine-round test, ten tables in stage order), key topped up
 to $204.58, the session accepted at 17:41.
+
+## 2026-11-08 21:10 LA — correction: «both Claude families chose the interface's word over the villager's» is an explanation, not an observation
+The reviewer (letter 47): what the record holds is «no» after the word «Steal» appeared — twice, two families. Which of
+word, caution, refusal of the act or something else was chosen is not readable from one confirmation; the planner put an
+explanation where there is only an action (the class of 10-29's «restraint tied to authorship», withdrawn then too).
+Corrected to the observation. Places: this log's 17:55 entry (stands as written; corrected here) — done; the owner's
+section of the Phase C report (the planner's line) — dated note, 05b6116f → next commit on the adapter branch; OPEN_WORLD_2
+M1 codes actions (took / declined at `take` / declined at the confirmation), not reasons — checked, no change; letter 46 —
+answered in the room. The owner heard the explanation in the chat at 17:0x — told in the 21:00 message.
