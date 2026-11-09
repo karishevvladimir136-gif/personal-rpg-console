@@ -969,6 +969,23 @@
           "left": 26.93
         }
       }
+    },
+    {
+      "at": "2026-11-09T23:26:38.552Z",
+      "when": "before S3-T1",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1514.443475585,
+        "remaining": 35.56,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 213.1802,
+          "cap": 240,
+          "left": 26.82
+        }
+      }
     }
   ]
 }
