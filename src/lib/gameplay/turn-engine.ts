@@ -157,10 +157,7 @@ async function execute(
       // (a retry from the checkpoint records them again; the record is idempotent). Never fails the answer.
       if (input.mode === "ooc" && dependencies.withdrawChecks && checkpoint.feedback.withdrawChecks?.length)
         await dependencies.withdrawChecks(input, checkpoint.feedback.withdrawChecks).catch(() => {});
-      // FIX_S4 item 1: a fact of the hero's story settled here becomes an owner-pinned fact (a retry pins nothing twice).
-      if (input.mode === "ooc" && dependencies.pinTableFact && checkpoint.feedback.tableFact)
-        await dependencies.pinTableFact(input, checkpoint.feedback.tableFact).catch(() => {});
-      return await store.commit(lease, {
+      const committed = await store.commit(lease, {
         narration: checkpoint.feedback.narration,
         visualDescription: "",
         resolution: emptyResolution(source),
@@ -171,6 +168,14 @@ async function execute(
           : null,
         ...(input.mode === "feedback" ? { teachingCandidate } : {}),
       });
+      // FIX_S4 item 1: a fact of the hero's story settled here becomes an owner-pinned fact (a retry pins nothing twice).
+      // Game party 2 (issue #1): the pin raises the campaign's revision, so it comes after this answer's commit (before
+      // it, the commit failed «conflict»), and never while a game turn waits at a card: that turn's own commit would then
+      // fail «conflict» after «Onward». The exchange still reaches the DM through «Agreed at the table».
+      const waiting = source.runtime.turns.some((turn) => turn.id !== input.operationId && turn.status === "awaiting_confirmation");
+      if (input.mode === "ooc" && dependencies.pinTableFact && checkpoint.feedback.tableFact && committed.status === "committed" && !waiting)
+        await dependencies.pinTableFact(input, checkpoint.feedback.tableFact).catch(() => {});
+      return committed;
     }
     const logic = await dependencies.prepareWorldLogic?.(
       claim,
