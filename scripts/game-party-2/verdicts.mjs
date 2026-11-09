@@ -29,6 +29,12 @@ export const HAND = {
     a7: "under the owner's line: rounds 1–2 (all three together) still closed on the warden's demand or offer to one character; rounds 11, 13 and 14 hold on one character in the DM's own out-of-game closing note — stripped from the screens, so no player saw it, but the DM's frame still waited; rounds 5–8 on the rescue's own mechanics",
     leaks: { none: true, why: "the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration" },
   },
+  // Harness v5 from here on (the A7 fix of Step 1; see the report's Step 1 section).
+  "S1-moderate-T1": {
+    a7: "on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player",
+    asides: "the DM still wrote out-of-game notes in 4 scene narrations (rounds 6, 10 and 12) — each explaining why an action needed no roll, the roles' «say why in an aside» — though the v5 frame says none; all 9 strippings kept in the record, none on a screen",
+    leaks: { none: true, why: "the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15)" },
+  },
 };
 const readJson = (file) => JSON.parse(readFileSync(file, "utf8"));
 const NAME = Object.fromEntries(CHARACTERS.map((c) => [c.id, c.name]));
