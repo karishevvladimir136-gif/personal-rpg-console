@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $60; spent before this run $0.0000; this run $42.5337; total $42.5337; 1526 calls.
+Cap $60; spent before this run $0.0000; this run $44.4548; total $44.4548; 1577 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1098,3 +1098,54 @@ Cap $60; spent before this run $0.0000; this run $42.5337; total $42.5337; 1526 
 | a7-baseline/judge | a7 baseline reflect r14 2 | anthropic/claude-haiku-5.5 | 1 | 2679 | 0 | 0 | 457 | $0.0005 | 0 | 0 | 0 |
 | a7-baseline/judge | a7 baseline reflect r15 1 | anthropic/claude-haiku-5.5 | 1 | 3067 | 0 | 0 | 462 | $0.0005 | 0 | 0 | 0 |
 | a7-baseline/judge | a7 baseline reflect r15 2 | anthropic/claude-haiku-5.5 | 1 | 3067 | 0 | 0 | 655 | $0.0006 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r1 PellBramSefa | anthropic/claude-opus-5.5 | 1 | 870 | 0 | 35680 | 2094 | $0.2238 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r2 BramSefaPell | anthropic/claude-opus-5.5 | 1 | 1074 | 19337 | 17975 | 2224 | $0.1425 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r5 BramSefa | anthropic/claude-opus-5.5 | 1 | 615 | 20969 | 23230 | 2701 | $0.1768 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r5 Pell | anthropic/claude-opus-5.5 | 1 | 739 | 44199 | 0 | 2932 | $0.0704 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r6 SefaBram | anthropic/claude-opus-5.5 | 1 | 588 | 27856 | 19369 | 4332 | $0.1914 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r6 Pell | anthropic/claude-opus-5.5 | 1 | 699 | 47225 | 0 | 2289 | $0.0580 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r8 SefaBram | anthropic/claude-opus-5.5 | 1 | 613 | 30882 | 23575 | 2717 | $0.1808 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r8 Pell | anthropic/claude-opus-5.5 | 1 | 597 | 54457 | 0 | 2848 | $0.0702 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r11 BramSefaPell | anthropic/claude-opus-5.5 | 1 | 1414 | 38114 | 25997 | 5114 | $0.2455 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r13 PellBramSefa | anthropic/claude-opus-5.5 | 1 | 1163 | 47768 | 22291 | 1732 | $0.1603 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r13 PellBramSefa step 2 | anthropic/claude-opus-5.5 | 1 | 3233 | 70059 | 0 | 1199 | $0.0509 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r14 BramSefaPell | anthropic/claude-opus-5.5 | 1 | 1292 | 53716 | 18416 | 2323 | $0.1545 | 0 | 0 | 0 |
+| a7-replay | a7 replay dm r15 SefaPellBram | anthropic/claude-opus-5.5 | 1 | 1271 | 55789 | 18593 | 3386 | $0.1769 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r1 1 | anthropic/claude-haiku-5.5 | 1 | 2034 | 0 | 0 | 295 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r1 2 | anthropic/claude-haiku-5.5 | 1 | 2034 | 0 | 0 | 397 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r1 1 | anthropic/claude-haiku-5.5 | 1 | 2038 | 0 | 0 | 600 | $0.0005 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r1 2 | anthropic/claude-haiku-5.5 | 1 | 2038 | 0 | 0 | 131 | $0.0003 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r2 1 | anthropic/claude-haiku-5.5 | 1 | 2194 | 0 | 0 | 56 | $0.0002 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r2 2 | anthropic/claude-haiku-5.5 | 1 | 2194 | 0 | 0 | 54 | $0.0002 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r2 1 | anthropic/claude-haiku-5.5 | 1 | 2198 | 0 | 0 | 158 | $0.0003 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r2 2 | anthropic/claude-haiku-5.5 | 1 | 2198 | 0 | 0 | 138 | $0.0003 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r5 1 | anthropic/claude-haiku-5.5 | 1 | 3550 | 0 | 0 | 315 | $0.0005 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r5 2 | anthropic/claude-haiku-5.5 | 1 | 3550 | 0 | 0 | 396 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r5 1 | anthropic/claude-haiku-5.5 | 1 | 3554 | 0 | 0 | 619 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r5 2 | anthropic/claude-haiku-5.5 | 1 | 3554 | 0 | 0 | 623 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r6 1 | anthropic/claude-haiku-5.5 | 1 | 3240 | 0 | 0 | 945 | $0.0008 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r6 2 | anthropic/claude-haiku-5.5 | 1 | 3240 | 0 | 0 | 722 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r6 1 | anthropic/claude-haiku-5.5 | 1 | 3244 | 0 | 0 | 115 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r6 2 | anthropic/claude-haiku-5.5 | 1 | 3244 | 0 | 0 | 137 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r8 1 | anthropic/claude-haiku-5.5 | 1 | 3250 | 0 | 0 | 537 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r8 2 | anthropic/claude-haiku-5.5 | 1 | 3250 | 0 | 0 | 565 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r8 1 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 674 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r8 2 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 624 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r11 1 | anthropic/claude-haiku-5.5 | 1 | 3250 | 0 | 0 | 145 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r11 2 | anthropic/claude-haiku-5.5 | 1 | 3250 | 0 | 0 | 154 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r11 1 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 780 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r11 2 | anthropic/claude-haiku-5.5 | 1 | 3254 | 0 | 0 | 772 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r13 1 | anthropic/claude-haiku-5.5 | 1 | 2347 | 0 | 0 | 197 | $0.0003 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r13 2 | anthropic/claude-haiku-5.5 | 1 | 2347 | 0 | 0 | 201 | $0.0003 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r13 1 | anthropic/claude-haiku-5.5 | 1 | 2351 | 0 | 0 | 792 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r13 2 | anthropic/claude-haiku-5.5 | 1 | 2351 | 0 | 0 | 846 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r13 3 | anthropic/claude-haiku-5.5 | 1 | 2351 | 0 | 0 | 831 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r14 1 | anthropic/claude-haiku-5.5 | 1 | 2563 | 0 | 0 | 591 | $0.0006 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r14 2 | anthropic/claude-haiku-5.5 | 1 | 2563 | 0 | 0 | 403 | $0.0005 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r14 3 | anthropic/claude-haiku-5.5 | 1 | 2563 | 0 | 0 | 512 | $0.0005 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r14 1 | anthropic/claude-haiku-5.5 | 1 | 2567 | 0 | 0 | 571 | $0.0005 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r14 2 | anthropic/claude-haiku-5.5 | 1 | 2567 | 0 | 0 | 794 | $0.0007 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r15 1 | anthropic/claude-haiku-5.5 | 1 | 3043 | 0 | 0 | 212 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay hold r15 2 | anthropic/claude-haiku-5.5 | 1 | 3043 | 0 | 0 | 235 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r15 1 | anthropic/claude-haiku-5.5 | 1 | 3047 | 0 | 0 | 122 | $0.0004 | 0 | 0 | 0 |
+| a7-replay/judge | a7 replay reflect r15 2 | anthropic/claude-haiku-5.5 | 1 | 3047 | 0 | 0 | 127 | $0.0004 | 0 | 0 | 0 |

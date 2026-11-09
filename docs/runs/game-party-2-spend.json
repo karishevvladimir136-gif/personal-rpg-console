@@ -408,6 +408,23 @@
           "left": 17.47
         }
       }
+    },
+    {
+      "at": "2026-11-09T02:04:42.165Z",
+      "when": "after the A7 replay (Step 1)",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1347.344538135,
+        "remaining": 202.66,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 44.4548,
+          "cap": 60,
+          "left": 15.55
+        }
+      }
     }
   ]
 }
