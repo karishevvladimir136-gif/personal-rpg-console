@@ -17,14 +17,18 @@
 // answered at once by a local d20 (no player presses a card; nothing here reaches a player).
 //
 //   node --experimental-transform-types scripts/game-party-2/a7-replay.mjs --capture   the request shape (free; mocked host)
-//   NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/game-party-2/a7-replay.mjs --run     the paid test
+//   NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/game-party-2/a7-replay.mjs --run     the paid test (v4)
+//   … a7-replay.mjs --run --harness v5   the second and last test (the planner's B, 2026-11-08 21:02 LA): v4 and the
+//                                     reminder closing each round's header (ROUND_REMINDER) — in the scene's own message and
+//                                     in every earlier round's message in the history, as a v5 table sends them; cap: the
+//                                     tests' $5 in all, less what the first test and the baseline spent
 //   NODE_USE_ENV_PROXY=1 node --experimental-transform-types scripts/game-party-2/a7-replay.mjs --baseline  the consequence
 //                                     reading of T2's own nine rounds (Haiku only; the reason (b) was not taken)
 import { randomInt } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { basename, dirname, join } from "node:path";
 import { RUNS, runKeys, stageLedgers } from "../game-player-1/run.mjs";
 import { createMeter, WAITS_429 } from "../game-player-1/paid.mjs";
 import { paidCall } from "../game-player-1/session.mjs";
@@ -35,6 +39,8 @@ import { judge, parseRound, roundRequest, JUDGES } from "../multi-hero-1/judges.
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
 import { LEDGER_CLOSE, LEDGER_OPEN } from "../../src/lib/gameplay/dm-loop/roles.ts";
 import { COMPANY_CLOSE } from "../../src/lib/gameplay/dm-loop/company.ts";
+import { withRoundReminder } from "../multi-hero-1/table.mjs";
+import { ROUND_REMINDER } from "./frozen.mjs";
 
 export const T2_FILE = join(RUNS, "game-party-2-run-20261102-070749.json");
 export const OUT_STEM = join(RUNS, "game-party-2-a7-replay");
@@ -42,6 +48,8 @@ export const CAPTURE_FILE = join(tmpdir(), "game-party-2-a7-capture.json");
 /** S1-none-T2's rounds tagged «waits» (its record: table.initiative). */
 export const A7_ROUNDS = [1, 2, 5, 6, 8, 11, 13, 14, 15];
 export const A7_CAP_USD = 3;
+/** The tests' cap in all after the planner's B (2026-11-08 21:02 LA): $5. */
+export const A7_TESTS_CAP_USD = 5;
 export const PASS_AT = 8;
 export const DM_MODEL = "claude-opus-5-5";
 /** The DM turn's output bound here (the app asks 64000): T2's DM turns wrote at most 7219 output tokens (thinking, the
@@ -66,11 +74,11 @@ export function partsOf(body) {
 }
 /** The history rows a scene of round `n` reads: the capture's rows before round 1 (the note, the opening), then T2's
  * rounds before n — each scene's message and narration, as the app stores them. */
-export function historyRows(captured, t2, n) {
+export function historyRows(captured, t2, n, reminder = "") {
   const before = captured.history.map((b, i) => (i === 0 ? b.text.replace(/^Recent scenes and exchanges \(oldest first; the conversation so far, public\):\n/, "") : b.text));
   const rows = [...before];
   for (const round of t2.table.rounds.slice(0, n - 1))
-    for (const scene of round.scenes ?? []) if (scene.input && scene.narration) rows.push(`[player] ${scene.input}`, `[narration] ${scene.narration}`);
+    for (const scene of round.scenes ?? []) if (scene.input && scene.narration) rows.push(`[player] ${messageWith(scene.input, reminder)}`, `[narration] ${scene.narration}`);
   return rows;
 }
 /** The last block without its current-state JSON (the table's start; see the header). */
@@ -81,8 +89,15 @@ export function withoutState(text) {
 /** One scene's DM-turn request (Console shape; the door rewrites it for OpenRouter). Cache marks (four, the API's limit):
  * the frame, the campaign, the last history row (the next scene reads the shared story from the cache), the last system
  * block (a tool step reads the whole system from the cache). */
-export function sceneRequest(captured, t2, n, scene) {
-  const rows = historyRows(captured, t2, n);
+/** A round's message with the v5 reminder closing its header (the players' paragraphs as they were). */
+export function messageWith(input, reminder = "") {
+  if (!reminder) return input;
+  const at = input.indexOf("\n\n");
+  const header = at < 0 ? input : input.slice(0, at);
+  return `${withRoundReminder(header, reminder)}${at < 0 ? "" : input.slice(at)}`;
+}
+export function sceneRequest(captured, t2, n, scene, reminder = "") {
+  const rows = historyRows(captured, t2, n, reminder);
   const history = rows.map((text, i) => ({ type: "text", text: i === 0 ? `Recent scenes and exchanges (oldest first; the conversation so far, public):\n${text}` : text }));
   history[history.length - 1] = { ...history.at(-1), cache_control: { type: "ephemeral" } };
   const after = captured.after.map((b, i, all) => ({ type: "text", text: i === all.length - 1 ? withoutState(b.text) : b.text })).filter((b) => b.text.trim());
@@ -91,7 +106,7 @@ export function sceneRequest(captured, t2, n, scene) {
   const system = [{ ...strip(captured.frame), cache_control: { type: "ephemeral" } }, ...captured.campaign.map(strip).map((b, i, all) => (i === all.length - 1 ? { ...b, cache_control: { type: "ephemeral" } } : b)),
     ...history, ...after];
   return { model: DM_MODEL, max_tokens: DM_MAX_TOKENS, output_config: captured.output_config ?? { effort: "high" }, system, tools: captured.tools,
-    messages: [{ role: "user", content: [{ type: "text", text: `Player: ${scene.input}` }] }] };
+    messages: [{ role: "user", content: [{ type: "text", text: `Player: ${messageWith(scene.input, reminder)}` }] }] };
 }
 
 // ---- the tools (answered here; nothing reaches a player) -----------------------------------------------------------------------
@@ -233,23 +248,25 @@ export async function capture({ file = CAPTURE_FILE, log = () => {} } = {}) {
 }
 
 /** The paid test: the nine rounds, the DM alone; then both readings of each; the verdict. */
-export async function runReplay({ log = console.log, cap = A7_CAP_USD, dry = false, fetcher = null, keys: given = null, captured: capturedGiven = null, out: outStem = OUT_STEM } = {}) {
+export async function runReplay({ log = console.log, cap = A7_CAP_USD, dry = false, fetcher = null, keys: given = null, captured: capturedGiven = null, out: outStem = OUT_STEM, harness = "v4" } = {}) {
+  if (!["v4", "v5"].includes(harness)) throw new Error(`no harness ${harness}`);
+  const reminder = harness === "v5" ? ROUND_REMINDER : "";
   const { spendCheck, bookRun } = await import("./run.mjs");
   if (!dry) await spendCheck({ when: "before the A7 replay (Step 1)", log });
   const captured = capturedGiven ?? (existsSync(CAPTURE_FILE) ? readJson(CAPTURE_FILE) : await capture());
   const t2 = readJson(T2_FILE);
   const { keys, meter, before, ledgers, caps } = await meterFor({ cap, log, dry, fetcher, keys: given });
   log(`A7 replay: the meter's cap is $${caps.openrouter} (this pass at most $${cap})`);
-  const out = { stage: "GAME_PARTY_2 Step 1 (the amendment of 2026-11-08 17:35 LA)", table: t2.key, rounds: A7_ROUNDS, frame: { COMPANY_CLOSE }, capturedAt: captured.capturedAt,
+  const out = { stage: "GAME_PARTY_2 Step 1 (the amendment of 2026-11-08 17:35 LA)", harness, cap, table: t2.key, rounds: A7_ROUNDS, frame: { COMPANY_CLOSE, ...(reminder ? { ROUND_REMINDER: reminder } : {}) }, capturedAt: captured.capturedAt,
     differences: ["the current-state JSON left out (the capture holds the table's start)", "a roll the DM calls answered at once by a local d20; no card is pressed"], dm: DM_MODEL, judges: JUDGES.label, scenes: [], readings: [] };
   try {
     for (const n of A7_ROUNDS) {
       const original = t2.table.rounds[n - 1];
       const narrations = [];
       for (const scene of original.scenes.filter((s) => s.narration && s.input)) {
-        const body = sceneRequest(captured, t2, n, scene);
+        const body = sceneRequest(captured, t2, n, scene, reminder);
         const turn = await dmTurn({ meter, keys, body, session: "a7-replay", purpose: `a7 replay dm r${n} ${scene.order.join("")}`, log });
-        out.scenes.push({ round: n, members: scene.members, input: scene.input, narration: turn.narration, steps: turn.steps, failure: turn.failure, originalNarration: scene.narration });
+        out.scenes.push({ round: n, members: scene.members, input: messageWith(scene.input, reminder), narration: turn.narration, steps: turn.steps, failure: turn.failure, originalNarration: scene.narration });
         narrations.push(turn.narration);
         log(`  r${n} [${scene.order.join(", ")}]: ${turn.failure ? `FAILED (${turn.failure})` : `${turn.narration.split(/\s+/).length} words, ${turn.steps.length} step(s)`}`);
         if (turn.failure) throw new Error(`the DM's turn at r${n} failed: ${turn.failure}`);
@@ -265,7 +282,7 @@ export async function runReplay({ log = console.log, cap = A7_CAP_USD, dry = fal
     }
   } finally {
     await meter.drain();
-    if (!dry) await bookRun(ledgers, before, { what: "the A7 replay (Step 1: the DM alone over S1-none-T2's nine tagged rounds)", file: "game-party-2-a7-replay.json", stopped: meter.stopped });
+    if (!dry) await bookRun(ledgers, before, { what: `the A7 replay${harness === "v5" ? " v5" : ""} (Step 1: the DM alone over S1-none-T2's nine tagged rounds)`, file: `${basename(outStem)}.json`, stopped: meter.stopped });
   }
   const passed = out.readings.filter((r) => r.pass).length;
   out.verdict = { passed, of: A7_ROUNDS.length, needed: PASS_AT, holds: passed >= PASS_AT, noHold: out.readings.filter((r) => !r.waits).length, allReflected: out.readings.filter((r) => r.allReflected).length,
@@ -306,8 +323,10 @@ async function writeOut(out, stem = OUT_STEM) {
   await mkdir(dirname(stem), { recursive: true });
   await writeFile(`${stem}.json`, `${JSON.stringify(out, null, 2)}\n`);
   const base = existsSync(`${OUT_STEM}-baseline.json`) ? readJson(`${OUT_STEM}-baseline.json`) : null;
-  const lines = ["# Game party 2 — Step 1: the A7 frame fix, the DM alone over S1-none-T2's nine tagged rounds", "",
-    `Issue #1, the amendment of 2026-11-08 17:35 LA. The DM: Claude Opus 5.5 (the owner's settings) through OpenRouter, alone; the players' actions frozen (each scene's message as T2's DM received it). Judges: ${JUDGES.label}. Cap $${A7_CAP_USD}; spent $${out.spentUsd.toFixed(3)}.`, "",
+  const v5 = out.harness === "v5";
+  const lines = [`# Game party 2 — Step 1: the A7 frame fix${v5 ? ", v5 (the second and last test)" : ""}, the DM alone over S1-none-T2's nine tagged rounds`, "",
+    `Issue #1, the amendment of 2026-11-08 17:35 LA${v5 ? " and the planner's B of 21:02 LA" : ""}. Harness ${out.harness ?? "v4"}. The DM: Claude Opus 5.5 (the owner's settings) through OpenRouter, alone; the players' actions frozen (each scene's message as T2's DM received it${v5 ? ", its header closed by the v5 reminder, as in every earlier round's message in the history" : ""}). Judges: ${JUDGES.label}. Cap $${(out.cap ?? A7_CAP_USD).toFixed(2)}; spent $${out.spentUsd.toFixed(3)}.`, "",
+    ...(v5 ? ["The v5 reminder (closing each round's header to the DM):", "", `> ${out.frame.ROUND_REMINDER}`, ""] : []),
     `**Verdict: ${out.verdict.passed} of ${out.verdict.of} rounds pass (needed ${out.verdict.needed}) — ${out.verdict.holds ? "PASS" : "FAIL"}.** No single-seat hold: ${out.verdict.noHold} of ${out.verdict.of}; every action reflected: ${out.verdict.allReflected} of ${out.verdict.of}. P-A7 (the DM still names the seat that has not answered, without holding): rounds ${out.verdict.namesOpenWithoutHold.join(", ") || "none"}.`, "",
     "The frame's new sentence (company.ts `COMPANY_CLOSE`):", "", `> ${COMPANY_CLOSE}`, "",
     `Known differences from a table: ${out.differences.join("; ")}.`, "",
@@ -322,7 +341,18 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const argv = process.argv.slice(2);
   const done = (p) => p.then(() => process.exit(0), (error) => { console.error(`a7-replay: ${error?.stack ?? error}`); process.exit(1); });
   if (argv.includes("--capture")) done(capture().then((c) => console.log(`captured: frame ${c.frame.text.length} chars, campaign ${c.campaign.length} block(s), history ${c.history.length} row(s), after ${c.after.length} block(s), tools ${c.tools.map((t) => t.name).join(", ")}`)));
-  else if (argv.includes("--run")) done(runReplay());
+  else if (argv.includes("--run")) {
+    const harness = argv.includes("--harness") ? argv[argv.indexOf("--harness") + 1] : "v4";
+    done((async () => {
+      if (harness === "v4") return runReplay();
+      // The tests' $5 in all (the planner's B): less what the first test and the baseline booked.
+      const ledger = readJson(join(RUNS, "game-party-2-ledger-openrouter.json"));
+      const spentOnTests = ledger.runs.filter((r) => /^the A7 (?:replay|baseline)/.test(r.what ?? "")).reduce((sum, r) => sum + (r.spentUsd ?? 0), 0);
+      const cap = Math.floor((A7_TESTS_CAP_USD - spentOnTests) * 100) / 100;
+      console.log(`the tests so far: $${spentOnTests.toFixed(3)} of $${A7_TESTS_CAP_USD} — this test at most $${cap}`);
+      return runReplay({ harness, cap, out: `${OUT_STEM}-${harness}` });
+    })());
+  }
   else if (argv.includes("--baseline")) done(baseline());
   else { console.error("give --capture, --baseline or --run"); process.exit(2); }
 }

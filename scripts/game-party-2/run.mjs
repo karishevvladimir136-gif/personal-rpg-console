@@ -31,7 +31,7 @@ import { auditOf, companyRewrite, requestKind } from "../multi-hero-1/run.mjs";
 import { runTable } from "../multi-hero-1/table.mjs";
 import { measuresOf } from "../multi-hero-1/report.mjs";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
-import { ASIDES, CAPS, CLOSE_LINE, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
+import { ASIDES, CAPS, CLOSE_LINE, ROUND_REMINDER, TABLE_HARNESS, DESIGN_SHA256, ORDER, PLACED, RELAY_MODEL, ROSTER, ROUNDS, SEATING, SITUATIONS, STAGE, afterQuestionsFor, armOf, deliveriesOf, playerSystem, promptSha256 } from "./frozen.mjs";
 import { armNotes, buildWorld, openFrozenDatabase, prepareLayers, readFrozen, tableStarter } from "./world.mjs";
 import { writePages } from "./report.mjs";
 
@@ -205,7 +205,8 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     record.coin = made.coin; record.order = made.seats; record.frozen.note = made.prep.noteSha256;
     // v3 (the owner's decisions after S1-none-T1): the guide's A7 line, the asides stripped, the empty HTTP 200 asked again.
     // v4 (the amendment of 2026-11-08 17:35 LA, Step 1): the round's close belongs to the table (COMPANY_CLOSE, CLOSE_LINE).
-    record.harness = "v4"; record.guide = made.guide;
+    // v5 (the planner's B): v4 and the reminder closing each round's header (ROUND_REMINDER). TABLE_HARNESS picks.
+    record.harness = TABLE_HARNESS; record.guide = made.guide;
     const { bindTable } = await import("../game-player-1/table.mjs");
     const dm = bindTable(app, made.cid, settle);
     tableFrom = audit.length;
@@ -214,7 +215,7 @@ export async function playTable({ dir = FROZEN_DIR, arm, triad = null, seating =
     const table = await meter.within({ session: key, purpose: "screen" }, () => runTable({ key, arm, triad: record.triad, seats: seating2, dm, meter, keys, rounds, log,
       systemOf: (id) => playerSystem(a.situation, id, made.seats), privateText: made.prep.layerText, cardWait: true, coin: made.coin,
       deliveries: deliveriesOf(arm, made.dice), afterQuestionsOf: (rec) => afterQuestionsFor(arm, rec.characterId, made.dice), onRound: (round) => marks.push({ round, at: audit.length }),
-      stripAsides: ASIDES === "strip", closeLine: CLOSE_LINE }));
+      stripAsides: ASIDES === "strip", closeLine: CLOSE_LINE, roundReminder: TABLE_HARNESS === "v5" ? ROUND_REMINDER : "" }));
     record.table = table; record.stopped = meter.stopped;
     record.spentUsd = meter.ledgers.openrouter?.runUsd ?? 0;
   });

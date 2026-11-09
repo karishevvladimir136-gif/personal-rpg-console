@@ -10,7 +10,7 @@ import { RUNS } from "../game-player-1/run.mjs";
 import { perTableMeasures } from "../multi-hero-1/report.mjs";
 import { a7Of } from "../multi-hero-1/judges.mjs";
 import { CHARACTERS } from "../multi-hero-1/sheets.mjs";
-import { BETS, CAPS, ORDER, ROSTER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
+import { BETS, CAPS, ORDER, ROSTER, ROUND_REMINDER, SEATING, STAGE_SOURCE, armOf } from "./frozen.mjs";
 
 const STEM = "game-party-2";
 /** The owner's bets (issue #1, the session chat of 2026-11-02, after S1-none-T1's result was posted — so given with
@@ -136,6 +136,7 @@ export const HARNESS_TEXT = {
   v2: () => "the guide's A7 sentences as built; asides passed to screens",
   v3: (r) => `the owner's A7 line in the guide; the DM's out-of-game asides stripped from screens, ${r.table?.asides?.length ?? 0} stripping(s) kept in the record; an empty HTTP 200 asked again`,
   v4: (r) => `v3, and the round's close given to the table (Step 1 of the amendment of 2026-11-08 17:35 LA): the DM's frame ends each scene on the world, never on a question, offer, demand or wait put to one character; every seat's round screen ends on the same line, «Round N — what does <name> do?»; ${r.table?.asides?.length ?? 0} aside stripping(s) kept in the record`,
+  v5: (r) => `v4, and one reminder sentence closing each round's message to the DM (the planner's B): «${ROUND_REMINDER}»; ${r.table?.asides?.length ?? 0} aside stripping(s) kept in the record`,
 };
 
 export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {

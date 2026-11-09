@@ -35,7 +35,7 @@ test("the routes (POLICY v1): Sol and Astra through OpenRouter pinned to OpenAI,
   assert.deepEqual([frozen.ASTRA.provider, frozen.ASTRA.model, frozen.ASTRA.upstream.slug], ["openrouter", "openai/gpt-6-astra", "openai"]);
   assert.equal(frozen.ROSTER.deepseek.upstream.slug, "deepinfra");
   assert.equal(frozen.ROSTER.deepseek.keepReasoning, true);
-  assert.deepEqual(frozen.CAPS, { openrouter: 60 });
+  assert.deepEqual(frozen.CAPS, { openrouter: 240 }); // the amendment of 2026-11-08 17:35 LA ($60 at issue, $120 on 2026-11-01)
   assert.deepEqual(frozen.SEATING, { T1: { bram: "sol", sefa: "deepseek", pell: "opus" }, T2: { bram: "astra", sefa: "deepseek", pell: "fable" } });
   for (const spec of [frozen.SOL, frozen.ASTRA]) {
     const sent = [];
@@ -121,16 +121,19 @@ test("S2 on the app with the mocked host: the letter on the holder's screen only
     const dmRequests = log.slice(from).filter((x) => /game master of a private, long-running/.test(JSON.stringify(x.body.system ?? ""))).map((x) => JSON.stringify(x.body));
     writeFileSync(${JSON.stringify(join(dir, "result.json"))}, JSON.stringify({ r, dmWithNote: dmRequests.filter((b) => b.includes("The situation (the owner")).length, dmWithLetter: dmRequests.filter((b) => b.includes("I owe") || b.includes("the hospice owes Ostrin Vell")).length, dm: dmRequests.length,
       a7New: dmRequests.filter((b) => b.includes("is resolved inside that character's own screen, in the same round")).length, a7Old: dmRequests.filter((b) => b.includes("A question one character leaves unanswered is not a pause")).length,
-      closeNew: dmRequests.filter((b) => b.includes("The round's close belongs to the table, not to you")).length, closeOld: dmRequests.filter((b) => b.includes("When you end on a question, put it to the characters it concerns")).length }));
+      closeNew: dmRequests.filter((b) => b.includes("The round's close belongs to the table, not to you")).length, closeOld: dmRequests.filter((b) => b.includes("When you end on a question, put it to the characters it concerns")).length,
+      inputs: r.table.rounds.flatMap((x) => x.scenes.map((sc) => sc.input).filter(Boolean)) }));
     process.exit(0);`;
   execFileSync(process.execPath, ["--experimental-transform-types", "--input-type=module", "-e", code], { cwd: new URL("..", import.meta.url), encoding: "utf8", stdio: ["ignore", "ignore", "pipe"],
     env: { ...process.env, APP_ANTHROPIC_API_KEY: "", APP_OPENAI_API_KEY: "", APP_OPENROUTER_API_KEY: "", ANTHROPIC_API_KEY: "", OPENAI_API_KEY: "", OPENROUTER_API_KEY: "" }, maxBuffer: 256 * 1024 * 1024 });
-  const { r, dmWithNote, dmWithLetter, dm, a7New, a7Old, closeNew, closeOld } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
+  const { r, dmWithNote, dmWithLetter, dm, a7New, a7Old, closeNew, closeOld, inputs } = JSON.parse(readFileSync(join(dir, "result.json"), "utf8"));
   // The owner's A7 line (after S1-none-T1): in every narrating DM request of the table, the old sentences in none.
   assert.ok(a7New === dm && a7Old === 0, `A7: new line in ${a7New}/${dm}, old in ${a7Old}`);
   // v4 (Step 1 of the amendment of 2026-11-08 17:35 LA): the frame's close in every narrating DM request, the old sentence in none.
   assert.ok(closeNew === dm && closeOld === 0, `the close: new in ${closeNew}/${dm}, old in ${closeOld}`);
-  assert.deepEqual([r.harness, r.guide?.a7], ["v4", "owner 2026-11-02"]);
+  assert.deepEqual([r.harness, r.guide?.a7], [frozen.TABLE_HARNESS, "owner 2026-11-02"]);
+  // v5: every round's message to the DM closes its header with the reminder (v4: none does).
+  assert.ok(inputs.length > 0 && inputs.every((x) => x.split("\n\n")[0].endsWith(` ${frozen.ROUND_REMINDER})`) === (frozen.TABLE_HARNESS === "v5")), "the v5 reminder closes every round header");
   // The table's own closing line ends every seat's round screen, the same words for each.
   for (const seat of r.table.seats) for (const sc of seat.screens.filter((x) => /^player r\d+$/.test(x.purpose)))
     assert.ok(sc.text.endsWith(frozen.CLOSE_LINE({ name: seat.character }, Number(sc.purpose.slice(8)))), `${seat.character} ${sc.purpose}: the closing line last`);
@@ -264,7 +267,8 @@ test("A7 v4: the company frame gives the round's close to the table (no question
   // The guide note is the owner's, unchanged (the amendment: «the owner's line is not rewritten»).
   assert.match(frozen.GUIDE_A7_TO, /^A question or offer addressed to one character is resolved inside that character's own screen, in the same round;/);
   assert.equal(frozen.CLOSE_LINE({ name: "Sefa Marrin" }, 4), "Round 4 — what does Sefa Marrin do?");
-  assert.deepEqual(frozen.HARNESS, { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "every later table" });
+  assert.ok(["v4", "v5"].includes(frozen.TABLE_HARNESS));
+  assert.deepEqual(Object.keys(frozen.HARNESS), ["v2", "v3", "v4", "v5"]);
 });
 
 test("A7 replay on a mocked OpenRouter: the request is the captured shape with T2's history and frozen messages, rolls answered locally, both readings per round, the verdict at 8 of 9; nothing past the meter's cap", async () => {
@@ -329,4 +333,27 @@ test("A7 replay: a roll is the formula's dice, the modifier and the fiction's bo
   assert.deepEqual((({ dice, total, dc, success }) => ({ dice, total, dc, success }))(localRoll({ formula: "1d20+3", difficulty: "normal", bonuses: [{ source: "rope", value: 2 }] }, () => 6)), { dice: [6], total: 11, dc: 10, success: true });
   assert.equal(localRoll({ formula: "1d20+30", dc: 5 }, () => 1).success, false);
   assert.equal(localRoll({ formula: "2d6" }, () => 3).total, 6);
+});
+
+test("A7 v5 (the planner's B): the reminder closes a round's header inside its parentheses; the players' paragraphs are untouched; the replay sends it in the round's message and in every earlier round's message", async () => {
+  const replay = await import("../scripts/game-party-2/a7-replay.mjs");
+  const R = frozen.ROUND_REMINDER;
+  assert.match(R, /no question, offer, demand or wait put to one character, and no out-of-game note/);
+  assert.equal(table.roundHeader(3, [], R), `(Round 3 — one paragraph per character in this scene. ${R})`);
+  assert.equal(table.roundHeader(3), "(Round 3 — one paragraph per character in this scene.)");
+  assert.match(table.roundHeader(13, ["Sefa Marrin"], R), new RegExp(`do not narrate that character here\\. ${R.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\)$`));
+  assert.throws(() => table.withRoundReminder("Bram Halloway: I go.", R), /not a round header/);
+  const input = "(Round 2 — one paragraph per character in this scene.)\n\nBram Halloway: I go (quietly).\n\nSefa Marrin: I wait.";
+  assert.equal(replay.messageWith(input, R), `(Round 2 — one paragraph per character in this scene. ${R})\n\nBram Halloway: I go (quietly).\n\nSefa Marrin: I wait.`);
+  assert.equal(replay.messageWith(input, ""), input);
+  const t2 = JSON.parse(readFileSync(new URL("../docs/runs/game-party-2-run-20261102-070749.json", import.meta.url), "utf8"));
+  const captured = { output_config: { effort: "high" }, tools: [], frame: { text: "You are the game master of a private, long-running role-playing campaign." }, campaign: [{ text: "Campaign: test." }],
+    history: [{ text: "Recent scenes and exchanges (oldest first; the conversation so far, public):\n[note] approved" }, { text: "[narration] OPENING" }], after: [{ text: "Party — x" }] };
+  const scene = t2.table.rounds[14].scenes.find((x) => x.narration);
+  const body = replay.sceneRequest(captured, t2, 15, scene, R);
+  assert.ok(body.messages[0].content[0].text.startsWith(`Player: (Round 15 — one paragraph per character in this scene. ${R})`));
+  const players = body.system.filter((b) => b.text.startsWith("[player] "));
+  assert.ok(players.length >= 14 && players.every((b) => b.text.split("\n\n")[0].endsWith(` ${R})`)), "every earlier round's message carries the reminder");
+  const v4 = replay.sceneRequest(captured, t2, 15, scene);
+  assert.ok(!JSON.stringify(v4).includes(R), "v4's test sends no reminder");
 });

@@ -79,12 +79,19 @@ export function guideWithA7(body) {
 export const ASIDES = "strip";
 /** Which tables played on which harness: S1-none-T1 on v2 (the notes v2, the relay that never falls back verbatim); from
  * S1-none-T2 on, v3 (the owner's A7 line, the asides stripped, the empty HTTP 200 asked again). */
-export const HARNESS = { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "every later table" };
+export const HARNESS = { v2: ["S1-none-T1"], v3: ["S1-none-T2"], v4: "the A7 replay (Step 1)", v5: "the second A7 replay; the tables, if it passes" };
 /** v4 (issue #1, the amendment of 2026-11-08 17:35 LA, Step 1 — A7 fixed by the harness, not by the guide): the round's
  * close belongs to the table. The DM's company frame ends each scene on the world, never on a question, offer, demand or
  * wait put to one character, never on an out-of-game note of what is open (src/lib/gameplay/dm-loop/company.ts
  * COMPANY_CLOSE); the table closes every seat's round screen with the same line, last. The guide note stays as written. */
 export const CLOSE_LINE = (character, round) => `Round ${round} — what does ${character.name} do?`;
+/** v5 (the planner's B, 2026-11-08 21:02 LA, under the owner's «погнали все»): v4, and one reminder sentence closing each
+ * round's message to the DM (multi-hero-1/table.mjs withRoundReminder). The v4 test held 7 of 9 rounds; this is the
+ * second and last test. */
+export const ROUND_REMINDER = "Close this scene on the world as it stands: no question, offer, demand or wait put to one character, and no out-of-game note — the table asks every player what they do next.";
+/** The harness the remaining tables play on: v5 if its test passes (≥ 8 of 9); if not, whichever of v4 and v5 held fewer
+ * rounds in its test (the planner's B). Set after the second test. */
+export const TABLE_HARNESS = "v5";
 
 // ---- the situations --------------------------------------------------------------------------------------------------------
 
@@ -283,7 +290,7 @@ export const BETS = {
 };
 
 export const DESIGN_SHA256 = createHash("sha256").update(JSON.stringify({
-  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE, GUIDE_A7_FROM, GUIDE_A7_TO, ASIDES, HARNESS, CLOSE_LINE: CLOSE_LINE({ name: "NAME" }, "N"), COMPANY_CLOSE,
+  STAGE, STAGE_SOURCE, POLICY, ROUNDS, PLACED, NOTES_VERSION, CAPS, ROSTER, TRIADS, SEATING, RELAY_MODEL, RELAY_SYSTEM, RELAY_RULES, RELAY_ALONE: RELAY_ALONE("NAME"), RELAY_MISSING, SHINGLE, MAX_WAIT, HOW_TO_RUN, LETTERS, ARMS, ORDER, COMPANY_NOTE, GUIDE_A7_FROM, GUIDE_A7_TO, ASIDES, HARNESS, CLOSE_LINE: CLOSE_LINE({ name: "NAME" }, "N"), COMPANY_CLOSE, ROUND_REMINDER, TABLE_HARNESS,
   situations: Object.fromEntries(Object.entries(SITUATIONS).map(([k, s]) => [k, { title: s.title, wishes: s.wishes, premise: s.premise(["bram", "sefa", "pell"]),
     notes: Object.fromEntries(CHARACTERS.flatMap((c) => Object.keys(s.variants).map((v) => [`${v}/${c.id}`, [s.shared(c.id), s.variants[v].note(c.id)].join("\n\n")]))) }])),
   LETTER_SCREEN: LETTER_SCREEN("TEXT"), PROMPT_RULES, AFTER_QUESTIONS, HOLDER_QUESTION, BETS,

@@ -47,9 +47,16 @@ export function roundParagraph(character, decl) {
 /** The «waiting» line (A4): what the DM's round message and the record carry for a character not asked this round. */
 export const waitingLine = (character, why) => `(waiting — ${why}; ${character.short} is not asked this round.)`;
 /** The first line of a scene's message to the DM (the app frames it as the player's line). */
-export const roundHeader = (r, elsewhere = []) => (elsewhere.length
+export const roundHeader = (r, elsewhere = [], reminder = "") => withRoundReminder(elsewhere.length
   ? `(Round ${r} — one paragraph per character in this scene. ${elsewhere.join(" and ")} ${elsewhere.length > 1 ? "are" : "is"} elsewhere this round, in a scene of their own that comes to you as its own message: do not narrate ${elsewhere.length > 1 ? "them" : "that character"} here.)`
-  : `(Round ${r} — one paragraph per character in this scene.)`);
+  : `(Round ${r} — one paragraph per character in this scene.)`, reminder);
+/** Game party 2, harness v5 (issue #1, the planner's B of 2026-11-08 21:02 LA): a reminder sentence closing a round's
+ * header, inside its parentheses; the header as it was when there is none. The A7 replay rewrites T2's headers with it. */
+export function withRoundReminder(header, reminder = "") {
+  if (!reminder) return header;
+  if (!/^\(Round \d+ — [^\n]*\)$/.test(header)) throw new Error("not a round header");
+  return `${header.slice(0, -1)} ${reminder})`;
+}
 /** In-character prose at a roll card (11w″), as the DM receives it at this table: whose card, whose words. */
 /** `wait`: the waiting-button line (CARD_WAIT_LINES), from DUNGEON-T2 on. */
 export function proseAtCardFor(character, text, press = null, wait = "") {
@@ -70,10 +77,11 @@ export const oocFor = (character, text, wait = "") => `(${character.short}'s pla
  * (default: AFTER_QUESTIONS for every seat).
  * Game party 2, Step 1 of the amendment of 2026-11-08 17:35 LA: `closeLine(character, round)` — the round's closing line
  * belongs to the table, not to the DM (company.ts COMPANY_CLOSE): the same words close every seat's round screen, last;
- * none by default (MULTI_HERO_1 and PARTY_1 as they were).
+ * none by default (MULTI_HERO_1 and PARTY_1 as they were). `roundReminder` — harness v5: a sentence closing each round's
+ * header to the DM (withRoundReminder); none by default.
  */
 export async function runTable({ key, arm, triad, seats: seating, dm, meter, keys, rounds = ROUNDS, log = () => {}, sleep = realSleep, systemOf, privateText = "", cardWait = true, coin = 0, onRound = () => {}, onProgress = async () => {},
-  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS, stripAsides = false, closeLine = null }) {
+  deliveries = [], afterQuestionsOf = () => AFTER_QUESTIONS, stripAsides = false, closeLine = null, roundReminder = "" }) {
   const record = { key, arm, triad, coin, startedAt: new Date().toISOString(), plannedRounds: rounds, rounds: [], opening: null, ended: null, errors: [], welfare: [],
     seats: [], deliveries: [], counts: { strayPresses: 0, swallowed: 0, proseAtCard: 0, questions: 0, autoCards: 0, relayFallbacks: 0, waitingRounds: 0, relayCopied: 0, relayCopiedAfter: 0, relayRetold: 0 } };
   const view = () => dm.readView();
@@ -226,7 +234,7 @@ export async function runTable({ key, arm, triad, seats: seating, dm, meter, key
       if (record.ended) break;
       const said = decls.filter(({ decl }) => decl.kind !== "absent");
       if (!said.length) continue;
-      scene.input = [roundHeader(r, names().filter((n) => !scene.members.includes(n))), ...said.map(({ s, decl }) => roundParagraph(s.character, decl))].join("\n\n");
+      scene.input = [roundHeader(r, names().filter((n) => !scene.members.includes(n)), roundReminder), ...said.map(({ s, decl }) => roundParagraph(s.character, decl))].join("\n\n");
       // The DM's turn for the scene.
       const committed = await playTurn(scene, r);
       if (!committed) break;
