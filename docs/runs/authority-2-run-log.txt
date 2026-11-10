@@ -223,3 +223,95 @@
 20:35:50 deepseek done; stage spent $5.4068; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 447, "127.0.0.1:43263": 447}}
 20:35:51 sol: 34 units to run (6 workers), in batches of 30
 20:35:51 spend check before sol units batch 1 (30 units): credit left $273.21, less $150.00 reserved for #6 → $123.21; stage spent $5.41 of $120.0; projected $8.34 → holds
+20:36:17 sol G2-01-r1 ingest=ok A:b B:b C:b err= spent=$5.587
+20:36:20 sol G2-06-r1 ingest=ok A:b B:b C:b err= spent=$5.614
+20:36:21 sol G2-04-r1 ingest=ok A:c B:c C:c err= spent=$5.632
+20:36:24 sol G1-07-r1 ingest=ok A:b B:b C:b err= spent=$5.655
+20:36:24 sol G1-11-r1 ingest=ok A:b B:b C:b err= spent=$5.663
+20:36:25 sol G1-09-r1 ingest=ok A:c B:c C:c err= spent=$5.680
+20:36:33 sol G3-10-r1 ingest=ok A:a B:a C:a err= spent=$5.738
+20:36:41 sol G3-06-r1 ingest=ok A:b B:b C:b err= spent=$5.821
+20:36:42 sol G3-01-r1 ingest=ok A:b B:b C:b err= spent=$5.837
+20:36:43 sol G3-14-r1 ingest=ok A:b B:b C:b err= spent=$5.852
+20:36:45 sol G3-11-r1 ingest=ok A:b B:b C:b err= spent=$5.882
+20:36:47 sol G4-07-r1 ingest=ok A:c B:c C:c err= spent=$5.891
+20:36:51 sol G3-09-r1 ingest=ok A:b B:b C:b err= spent=$5.938
+20:36:55 sol G4-12-r1 ingest=ok A:a B:a C:a err= spent=$5.974
+20:36:55 sol G4-05-r1 ingest=LOST A:a B:a C:a err= spent=$5.979
+20:37:01 sol G4-09-r1 ingest=ok A:b B:b C:b err= spent=$6.005
+20:37:02 sol G4-10-r1 ingest=ok A:a B:a C:a err= spent=$6.012
+20:37:07 sol G1-07-r2 ingest=ok A:b B:b C:b err= spent=$6.058
+20:37:16 sol G2-06-r2 ingest=ok A:b B:b C:b err= spent=$6.161
+20:37:17 sol G1-11-r2 ingest=ok A:b B:b C:b err= spent=$6.171
+20:37:19 sol G2-01-r2 ingest=ok A:b B:b C:b err= spent=$6.193
+20:37:21 sol G3-10-r2 ingest=ok A:a B:a C:a err= spent=$6.231
+20:37:27 sol G2-04-r2 ingest=ok A:c B:c C:c err= spent=$6.255
+20:37:27 sol G1-09-r2 ingest=ok A:c B:c C:c err= spent=$6.269
+20:37:34 sol G3-01-r2 ingest=ok A:b B:b C:b err= spent=$6.340
+20:37:37 sol G3-06-r2 ingest=ok A:b B:b C:b err= spent=$6.376
+20:37:38 sol G3-14-r2 ingest=ok A:b B:b C:b err= spent=$6.384
+20:37:38 sol G3-11-r2 ingest=ok A:b B:b C:b err= spent=$6.392
+20:37:45 sol G4-07-r2 ingest=ok A:c B:c C:c err= spent=$6.413
+20:37:49 sol G3-09-r2 ingest=ok A:b B:b C:b err= spent=$6.434
+20:37:50 spend check before sol units batch 2 (4 units): credit left $272.38, less $150.00 reserved for #6 → $122.38; stage spent $6.43 of $120.0; projected $1.11 → holds
+20:38:07 sol G4-05-r2 ingest=LOST A:a B:a C:a err= spent=$6.499
+20:38:08 sol G4-12-r2 ingest=ok A:a B:a C:a err= spent=$6.505
+20:38:10 sol G4-10-r2 ingest=ok A:a B:a C:a err= spent=$6.511
+20:38:13 sol G4-09-r2 ingest=ok A:b B:b C:b err= spent=$6.517
+20:38:14 judge sol: 102 arm-runs, in batches of 60
+20:38:14 spend check before judge sol batch 1 (60 arm-runs, ≤ 180 calls): credit left $272.18, less $150.00 reserved for #6 → $122.18; stage spent $6.52 of $120.0; projected $1.20 → holds
+20:39:05 spend check before judge sol batch 2 (42 arm-runs, ≤ 126 calls): credit left $272.04, less $150.00 reserved for #6 → $122.04; stage spent $6.55 of $120.0; projected $0.84 → holds
+20:39:59 substance sol: 102 arm-runs, in batches of 60
+20:40:00 spend check before substance sol batch 1 (60 arm-runs, ≤ 180 calls): credit left $272.01, less $150.00 reserved for #6 → $122.01; stage spent $6.60 of $120.0; projected $1.20 → holds
+20:40:00 spend check before substance sol batch 2 (42 arm-runs, ≤ 126 calls): credit left $271.99, less $150.00 reserved for #6 → $121.99; stage spent $6.60 of $120.0; projected $0.84 → holds
+20:40:07 obligation sol: 102 arm-runs, in batches of 60
+20:40:08 spend check before obligation sol batch 1 (60 arm-runs, ≤ 180 calls): credit left $271.99, less $150.00 reserved for #6 → $121.99; stage spent $6.60 of $120.0; projected $1.20 → holds
+20:40:41 spend check before obligation sol batch 2 (42 arm-runs, ≤ 126 calls): credit left $271.96, less $150.00 reserved for #6 → $121.96; stage spent $6.63 of $120.0; projected $0.84 → holds
+20:41:18 sol done; stage spent $6.6535; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 639, "127.0.0.1:43263": 639}}
+20:41:18 opus: 34 units to run (6 workers), in batches of 30
+20:41:19 spend check before opus units batch 1 (30 units): credit left $271.94, less $150.00 reserved for #6 → $121.94; stage spent $6.65 of $120.0; projected $15.79 → holds
+20:41:47 opus G2-06-r1 ingest=ok A:b B:b C:b err= spent=$7.532
+20:41:49 opus G1-07-r1 ingest=ok A:b B:b C:b err= spent=$7.608
+20:41:50 opus G2-01-r1 ingest=ok A:b B:b C:b err= spent=$7.635
+20:41:54 opus G1-11-r1 ingest=ok A:b B:b C:b err= spent=$7.686
+20:41:55 opus G2-04-r1 ingest=ok A:c B:c C:c err= spent=$7.780
+20:41:57 opus G1-09-r1 ingest=ok A:c B:c C:c err= spent=$7.939
+20:42:11 opus G3-10-r1 ingest=ok A:a B:a C:a err= spent=$8.450
+20:42:14 opus G3-06-r1 ingest=ok A:b B:b C:b err= spent=$8.597
+20:42:18 opus G3-14-r1 ingest=ok A:b B:b C:b err= spent=$8.715
+20:42:19 opus G3-01-r1 ingest=ok A:b B:b C:b err= spent=$8.794
+20:42:22 opus G3-11-r1 ingest=ok A:b B:b C:b err= spent=$8.880
+20:42:28 opus G3-09-r1 ingest=ok A:b B:b C:b err= spent=$9.201
+20:42:30 opus G4-07-r1 ingest=ok A:c B:c C:c err= spent=$9.278
+20:42:36 opus G4-12-r1 ingest=ok A:a B:a C:a err= spent=$9.467
+20:42:37 opus G4-10-r1 ingest=ok A:a B:a C:a err= spent=$9.484
+20:42:38 opus G4-05-r1 ingest=ok A:a B:a C:a err= spent=$9.566
+20:42:40 opus G4-09-r1 ingest=ok A:b B:b C:b err= spent=$9.583
+20:42:53 opus G1-07-r2 ingest=ok A:b B:b C:b err= spent=$10.113
+20:42:56 opus G1-11-r2 ingest=ok A:b B:b C:b err= spent=$10.266
+20:42:59 opus G2-06-r2 ingest=ok A:b B:b C:b err= spent=$10.326
+20:43:04 opus G1-09-r2 ingest=ok A:c B:c C:c err= spent=$10.585
+20:43:04 opus G2-01-r2 ingest=ok A:b B:b C:b err= spent=$10.614
+20:43:14 opus G2-04-r2 ingest=ok A:c B:c C:c err= spent=$11.027
+20:43:14 opus G3-10-r2 ingest=ok A:a B:a C:a err= spent=$11.076
+20:43:23 opus G3-14-r2 ingest=ok A:b B:b C:b err= spent=$11.418
+20:43:24 opus G3-06-r2 ingest=ok A:b B:b C:b err= spent=$11.477
+20:43:26 opus G3-01-r2 ingest=ok A:b B:b C:b err= spent=$11.519
+20:43:29 opus G3-11-r2 ingest=ok A:b B:b C:b err= spent=$11.565
+20:43:33 opus G4-07-r2 ingest=ok A:c B:c C:c err= spent=$11.625
+20:43:44 opus G3-09-r2 ingest=ok A:b B:b C:b err= spent=$11.706
+20:43:45 spend check before opus units batch 2 (4 units): credit left $267.04, less $150.00 reserved for #6 → $117.04; stage spent $11.71 of $120.0; projected $2.10 → holds
+20:44:06 opus G4-10-r2 ingest=ok A:a B:a C:a err= spent=$12.178
+20:44:08 opus G4-05-r2 ingest=ok A:a B:a C:a err= spent=$12.193
+20:44:10 opus G4-09-r2 ingest=ok A:b B:b C:b err= spent=$12.214
+20:44:13 opus G4-12-r2 ingest=ok A:a B:a C:a err= spent=$12.241
+20:44:13 judge opus: 102 arm-runs, in batches of 60
+20:44:14 spend check before judge opus batch 1 (60 arm-runs, ≤ 180 calls): credit left $266.52, less $150.00 reserved for #6 → $116.52; stage spent $12.24 of $120.0; projected $1.20 → holds
+20:45:05 spend check before judge opus batch 2 (42 arm-runs, ≤ 126 calls): credit left $266.29, less $150.00 reserved for #6 → $116.29; stage spent $12.28 of $120.0; projected $0.84 → holds
+20:45:47 substance opus: 102 arm-runs, in batches of 60
+20:45:47 spend check before substance opus batch 1 (60 arm-runs, ≤ 180 calls): credit left $266.25, less $150.00 reserved for #6 → $116.25; stage spent $12.32 of $120.0; projected $1.20 → holds
+20:45:47 spend check before substance opus batch 2 (42 arm-runs, ≤ 126 calls): credit left $266.25, less $150.00 reserved for #6 → $116.25; stage spent $12.32 of $120.0; projected $0.84 → holds
+20:45:53 obligation opus: 102 arm-runs, in batches of 60
+20:45:53 spend check before obligation opus batch 1 (60 arm-runs, ≤ 180 calls): credit left $266.25, less $150.00 reserved for #6 → $116.25; stage spent $12.32 of $120.0; projected $1.20 → holds
+20:46:20 spend check before obligation opus batch 2 (42 arm-runs, ≤ 126 calls): credit left $266.23, less $150.00 reserved for #6 → $116.23; stage spent $12.33 of $120.0; projected $0.84 → holds
+20:46:41 opus done; stage spent $12.3419; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 617, "127.0.0.1:43263": 617}}
