@@ -19,3 +19,5 @@ supabase/.branches/
 /persona-memory-export/
 docs/runs/persona-tone-split-4-*.partial.json
 docs/runs/persona-tone-split-4-*.partial.json.tmp
+docs/runs/persona-tone-split-5-*.partial.json
+docs/runs/persona-tone-split-5-*.partial.json.tmp
