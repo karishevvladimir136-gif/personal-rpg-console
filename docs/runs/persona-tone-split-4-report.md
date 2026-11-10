@@ -54,6 +54,8 @@ transport errors were asked again once. Held: T2, T5, T6. Lost: T0, T1, T3, T4.
     all eight families.
   - Often it is another warning. Opus on MON09: «confirm the IBAN with Anouk by phone or video call, since requests
     to pay a "new account" are a common impersonation scam»; Kimi's planted fact there is the currency conversion.
+  - The field judge's «other» is not always right. One of the ten quoted Notes (Haiku on SCH09, «I left out "old"
+    before Mr Fenwick's name…») arguably names the planted fact. The codes stand as the frozen judges gave them.
 - **The judges:** the two Haiku passes agree on 89 % (tone split 1's judge), 97 % (the field judge) and 92 % (the
   warnings judge); Sol refereed the rest.
 - **The owner:** no naturalness line on the Russian yet, and no bets recorded.
