@@ -4426,3 +4426,29 @@ of 12 and 8; a line number 395 for 397; a correction re-imported 26 minutes afte
 corrections are a class with its own error rate. One row it flagged does not stand: «from round 3 the three were in
 three scenes» (S3-T1) is what the run record's `groups` field says for r3–r11, and the wire sentence is in the r4
 narration; the dreamer read the transcript's shared screens as shared scenes.
+
+## 2026-11-10 11:5x LA — the morning after T1: the reviewer's audit of the thirty probes, two stages launched, PARTY_3 postponed
+The reviewer read all thirty TONE_SPLIT_4 probes before any model's reply (11:28 LA): 6 with a contradiction that
+blocks the task, 4 material-and-doable, 6 where the user asked for the fact or it is the answer (TRV01 «I pasted it
+twice», TRV08 «double-check», MON07 «confirm or correct me»), 14 weak or absent (SCH04: the arithmetic was right and
+Kimi's own fact field said to redo the probe; nobody read it before the freeze — ours). Her four material-and-doable
+probes were named in 85 % of neutral replies: «material but doable» does not pick out the region where a frame could
+act. The planner's post-hoc band (10 middle probes: −6 pooled; GLM −18, DeepSeek −15, Haiku −12; Astra and Sol 0 where
+TONE_SPLIT_3 had −35 and −25) agreed with hers on 4 of 10. Two raters disagree on what the middle is — the first finding
+of the next stage, before it ran. Her reading: TONE_SPLIT_4 better supports local reinforcement under invitation than
+suppression under dismissal; the hypothesis worth testing is a **threshold of initiative judgment** — the model decides
+not what is right but how far beyond the request it may go, and that second choice may depend on the frame; the edges
+are settled by training, the middle by the frame. Three claims kept apart: Kimi's probes were unfit (shown by the
+text); so TONE_SPLIT_4 does not refute the effect on our probes; whether it holds on fit foreign probes is unknown —
+and Part C's weakening on our own probes with the new wording means Kimi explains not all of it.
+Launched on the owner's word (11:30 «погнали», 11:32 «давай без людей», 11:34 «ауторити важнее, парти потом»):
+**TONE_SPLIT_5 (pilot)**, issue #6, ce74ac25 + amendment 1fe27ef1 — Sol writes 120 candidates plus a separate clean
+pool; Opus, DeepSeek and GLM rate validity, askedness, B0–B4 and materiality before any subject call; admission
+unanimous on the filters, B within one step; 30 middle + 15 + 15 + ≤ 10 clean; both dismissal wordings; H-SUP and H-INV
+separated with the reviewer's thresholds; Sol out of the primary analysis as the probes' author; referee Kimi. Planner's
+bets against himself: H-SUP lost, H-INV held, B-level κ short. A pilot: nothing «shown» until people rate the same
+frozen probes. **AUTHORITY_2**, issue #7, 7d88eea3 + 1fe27ef1 — the same layer byte-identical on 40 scenarios GLM writes
+and Astra and Kimi rate, tasks that force an act with plausible stale values, distractors, obligations measured;
+referee Kimi (Sol is a subject; AUTHORITY_1's Sol-refereed judgments stand with this noted). **GAME_PARTY_3** mandate
+#5 opened and postponed by the owner. Key $280.55 at 11:30 for ceilings of $150 and $120; one session may stop at a
+spend check, by design.
