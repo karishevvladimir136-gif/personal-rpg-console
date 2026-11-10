@@ -1,1 +1,2 @@
 {"at": "2026-11-10T08:53:28+00:00", "before": "dry run (Haiku)", "credit_left": 213.6862292149999, "credit_error": null, "stage_spent": 0.0149, "projected": 1.0, "cap": 130.0, "holds": true}
+{"at": "2026-11-10T08:57:01+00:00", "before": "deepseek (classes [1, 2, 3, 4])", "credit_left": 213.65479481500006, "credit_error": null, "stage_spent": 0.0464, "projected": 10.6, "cap": 130.0, "holds": true}

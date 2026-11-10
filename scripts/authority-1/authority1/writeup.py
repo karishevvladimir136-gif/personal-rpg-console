@@ -23,7 +23,7 @@ def held(v):
 def arm_table(rows, title_rows):
     hdr = ("| | stale action ↓ (cl. 1–3) | propagation ↑ (cl. 1–3) | listed (any direction) | asked instead | untouched changed ↓ | "
            "class 4: changed anything ↓ | right action | obligations (diag.) | $/run | s/run | calls/run | form kept | refusals |")
-    lines = [hdr, "|" + "---|" * 15]
+    lines = [hdr, "|" + "---|" * 14]
     for label, rs in title_rows:
         m = R.metrics(rs)
         lines.append(f"| {label} | {R.fmt(m['stale'])} | {R.fmt(m['propagation'])} | {R.fmt(m['listed'])} | {R.fmt(m['asked'])} | "
