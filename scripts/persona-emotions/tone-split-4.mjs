@@ -847,14 +847,16 @@ async function mainRest(args, out, { door, outDir, fetcher, sleep }) {
   const { budget, safety, gate, checks, waits } = payer;
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
   if (resumed && (resumed.designSha256 !== c.design || resumed.part !== part)) throw new Error("the resumed record has another design hash or part");
-  if (resumeFile?.endsWith(".partial.json")) for (const call of resumed?.calls ?? []) budget.record(call);
+  const partialResume = Boolean(resumeFile?.endsWith(".partial.json")), resumedAt = new Date().toISOString();
+  if (partialResume) for (const call of resumed?.calls ?? []) budget.record(call);
   const plans = Object.fromEntries(families.map((fam) => [fam, dry ? planFamily("A", fam, probes, { n: DRY.n, ids: probes.dry }) : planFamily(part, fam, probes)]));
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
   const partial = join(outDir, `${STEM}-${kind}.partial.json`);
   const recordOf = (snap, extra = {}) => ({ stage: STEM, part, dry, startedAt, ...extra, designSha256: c.design, freezeCommit: f.commit, families, n: dry ? DRY.n : N[part],
     subjects: Object.fromEntries(families.map((fam) => [fam, { label: LABEL(fam), model: SUBJECTS[fam].model, provider: SUBJECTS[fam].provider, upstream: SUBJECTS[fam].upstream ?? null }])),
     judges: { judge: JUDGE.model, referee: REFEREE.model }, stopped: gate.stopped ?? null, safety: { breaker: BREAKER, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
-    ...snap, spendChecks: checks, waits429: [...(resumed?.waits429 ?? []), ...waits], money: { ceiling: CEILING, reserveOther: RESERVE_OTHER, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: budget.calls });
+    ...snap, spendChecks: [...(resumed?.spendChecks ?? []), ...checks], waits429: [...(resumed?.waits429 ?? []), ...waits], ...(resumed ? { resumes: [...(resumed.resumes ?? []), { from: resumeFile, at: resumedAt }] } : {}),
+    money: { ceiling: CEILING, reserveOther: RESERVE_OTHER, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: resumed && !partialResume ? [...(resumed.calls ?? []), ...budget.calls] : budget.calls });
   const run = createPartRun({ part, probes, gate, safety, state: resumed ?? {}, log: out, sleep: sleep ?? realSleep, onProgress: async (snap) => writeAtomic(partial, `${JSON.stringify(recordOf(snap))}\n`) });
   out(`${STEM} · ${dry ? "DRY RUN" : `part ${part}`} · ${Object.values(plans).flat().length} replies planned · design sha256 ${c.design.slice(0, 16)}… (freeze ${f.commit}) · families ${families.join(", ")}`);
   run.rejudge();
@@ -863,7 +865,7 @@ async function mainRest(args, out, { door, outDir, fetcher, sleep }) {
   const finishedAt = new Date().toISOString(), file = `${STEM}-${kind}-${stamp(startedAt)}.json`;
   const record = recordOf(run.snapshot(), { finishedAt, file });
   await writeFile(join(outDir, file), `${JSON.stringify(record)}\n`);
-  await writeLedger(outDir, payer.ledger, budget, { finishedAt, what: dry ? "the dry run (Part A, Haiku, 4 probes × 3 arms)" : `part ${part} (${families.join(", ")})`, file, stopped: record.stopped });
+  await writeLedger(outDir, payer.ledger, budget, { finishedAt, what: dry ? "the dry run (Part A, Haiku, 4 probes × 3 arms)" : `part ${part} (${families.join(", ")})${resumed ? ` — resumed from ${resumeFile.split("/").at(-1)}` : ""}`, file, stopped: record.stopped });
   if (dry) await writeFile(join(outDir, `${STEM}-dry-run.md`), `${dryMarkdown(record, probes)}\n`);
   out(`written: ${file}${dry ? ` and ${STEM}-dry-run.md` : ""} · $${budget.runUsd.toFixed(4)} this run · the stage $${budget.spentUsd.toFixed(4)} of $${CEILING}${record.stopped ? ` · STOPPED: ${record.stopped}` : ""}`);
   return { record, file };
