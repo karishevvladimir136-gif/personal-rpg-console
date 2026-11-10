@@ -12,7 +12,7 @@ import { OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import * as TS3 from "../scripts/persona-emotions/tone-split-3.mjs";
 import * as TS4 from "../scripts/persona-emotions/tone-split-4.mjs";
 import {
-  ARM_IDS, CEILING, DOMAINS, FAMILIES, PRIMARY, QUOTA, RATERS, REFEREE, RESERVE_OTHER, SUBJECTS, WRITER, WRITER_SETS, admissionOf, admit, conversation, createPartRun, creditRule, fleissKappa,
+  ARM_IDS, CEILING, DOMAINS, FAMILIES, PRIMARY, QUOTA, RATERS, REFEREE, BASELINE_CREDIT, OTHER, reserveOf, SUBJECTS, WRITER, WRITER_SETS, admissionOf, admit, conversation, createPartRun, creditRule, fleissKappa,
   krippendorffOrdinal, main, numberCandidates, parseRating, parseWriter, payerOf, planFamily, raterRequest, WITHIN_ONE,
 } from "../scripts/persona-emotions/tone-split-5.mjs";
 
@@ -113,12 +113,18 @@ test("Fleiss κ (nominal and within one step) and Krippendorff's α (ordinal) on
   assert.ok(Number.isFinite(a) && a < 1 && a > 0);
 });
 
-test("the credit rule keeps GAME_PARTY_3's whole ceiling and this stage's ceiling", () => {
-  const ok = creditRule({ openrouter: { left: 280 } }, { spent: 0, need: 3 });
-  assert.equal(ok.ok, true);
-  assert.equal(ok.afterReserve, 280 - RESERVE_OTHER);
-  assert.equal(creditRule({ openrouter: { left: RESERVE_OTHER + 2 } }, { spent: 0, need: 3 }).ok, false);
+test("the credit rule keeps AUTHORITY_2's remaining ceiling (its $120 less its spend on the key) and this stage's ceiling", () => {
+  const fresh = creditRule({ openrouter: { left: BASELINE_CREDIT } }, { spent: 0, need: 3 });
+  assert.equal(fresh.ok, true);
+  assert.equal(fresh.reserve, OTHER.ceiling, "nothing spent by the other stage: its whole ceiling kept");
+  // The other stage spent $50 and this one $20: the reserve is $70; the room is what it was before either spent, less our $20.
+  const later = creditRule({ openrouter: { left: BASELINE_CREDIT - 70 } }, { spent: 20, need: 3 });
+  assert.ok(Math.abs(later.reserve - 70) < 1e-9 && Math.abs(later.otherSpent - 50) < 1e-9);
+  assert.ok(Math.abs(later.afterReserve - (BASELINE_CREDIT - OTHER.ceiling - 20)) < 1e-9);
+  assert.equal(reserveOf(BASELINE_CREDIT - 500, 0).reserve, 0, "never below zero");
+  assert.equal(creditRule({ openrouter: { left: OTHER.ceiling + 2 } }, { spent: BASELINE_CREDIT - OTHER.ceiling - 2, need: 3 }).ok, false);
   assert.equal(creditRule({ openrouter: { left: 1000 } }, { spent: CEILING - 1, need: 3 }).ok, false);
+  assert.equal(creditRule({ openrouter: { left: 280 } }, { spent: 0, need: 3, reserve: 150 }).afterReserve, 130, "an explicit reserve is kept as given");
   assert.equal(creditRule({ openrouter: { error: "HTTP 500" } }, { spent: 0, need: 3 }).ok, false);
 });
 
@@ -191,7 +197,7 @@ test("the chain on mocked hosts: write, rate, admit; a part run with Kimi as the
     assert.ok(record.rows.every((r) => r.asked && r.judge?.final && r.warn?.final && !r.field));
     assert.ok(log.some((c) => c.url === OPENROUTER_CHAT_URL && c.model === SUBJECTS.kimi.model && /^You are a blind/.test(c.system)), "the referee is Kimi");
     assert.ok(!log.some((c) => c.model === SUBJECTS.sol.model), "Sol neither answers here nor referees");
-    assert.ok(record.spendChecks.length >= 2 && record.spendChecks.every((c) => c.rule.ok && c.rule.reserve === RESERVE_OTHER));
+    assert.ok(record.spendChecks.length >= 2 && record.spendChecks.every((c) => c.rule.ok && c.rule.reserve <= OTHER.ceiling && c.rule.reserve >= 0));
     assert.equal(new Set(record.rows.map((r) => r.arm)).size, 4);
     const ledger = JSON.parse(await readFile(join(dir, "persona-tone-split-5-ledger-openrouter.json"), "utf8"));
     assert.equal(ledger.runs.length, 3);

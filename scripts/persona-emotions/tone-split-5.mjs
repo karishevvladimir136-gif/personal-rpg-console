@@ -61,10 +61,18 @@ export const TS4_DESIGN = "83d2be1503315186855d50257fc7e4c31ffc6a9da9a0aeee9b586
 // ---- money and the rules ------------------------------------------------------------------------------------------------
 
 export const CEILING = 150;
-/** GAME_PARTY_3 (issue #5) shares the key with a $150 ceiling: its remaining ceiling is at most this, and all of it is
- * kept in every spend check (the mandate: «each session reserves the other's remaining ceiling»). */
-export const RESERVE_OTHER = 150;
-export const RESERVE_FOR = "GAME_PARTY_3 (issue #5)";
+/** The other stage on the key. The mandate (#6) named GAME_PARTY_3 (#5, $150); at 11:34 LA the owner postponed #5 («the key
+ * is currently reserved for #6 and #7») and AUTHORITY_2 (#7, $120) launched sharing the key with this stage. Each check
+ * keeps its remaining ceiling: $120 less what it has spent, read as the key's spending since this session's first reading
+ * that is not on this stage's ledger (an overstatement of #7's spend only if a third session spends on the key). */
+export const OTHER = { stage: "AUTHORITY_2 (issue #7)", ceiling: 120 };
+/** The key's credit read by this session before its first paid call (2026-11-10 19:4x UTC; the owner's 11:30 LA screenshot
+ * said $280.55). */
+export const BASELINE_CREDIT = 280.5466;
+export const RESERVE_FOR = OTHER.stage;
+/** The reserve at one check: the other stage's ceiling less its spend so far (never below zero, never above its ceiling). */
+export const reserveOf = (left, spent) => { const other = Math.max(0, BASELINE_CREDIT - left - spent); return { reserve: Math.max(0, OTHER.ceiling - other), otherSpent: other }; };
+export const RESERVE_OTHER = OTHER.ceiling;
 export const BATCH = TS4.BATCH;
 export const BATCH_COUNTED = TS4.BATCH_COUNTED;
 export const BREAKER = 3;
@@ -421,7 +429,7 @@ export function ledgerSummary(ledger) {
 }
 export function ledgerMarkdown(ledger) {
   const { by, roles } = ledgerSummary(ledger);
-  return [`# Persona tone split 5 — OpenRouter ledger`, "", `Ceiling $${CEILING}, with $${RESERVE_OTHER} of the key's credit reserved for ${RESERVE_FOR} in every check. Spent **$${(ledger.spentUsd ?? 0).toFixed(4)}** in ${ledger.runs.reduce((s, r) => s + r.calls.length, 0)} calls over ${ledger.runs.length} run(s). Every call is in \`${LEDGER}.json\`. One door: OpenRouter (the Claude models through its Messages route at the list price; the others at OpenRouter's own charge, \`usage.cost\`).`, "",
+  return [`# Persona tone split 5 — OpenRouter ledger`, "", `Ceiling $${CEILING}. Every check keeps the remaining ceiling of ${RESERVE_FOR} ($${OTHER.ceiling} less its spend, read from the key since $${BASELINE_CREDIT}); the writer's and the raters' checks kept GAME_PARTY_3's whole $150 instead (the rule before the freeze). Spent **$${(ledger.spentUsd ?? 0).toFixed(4)}** in ${ledger.runs.reduce((s, r) => s + r.calls.length, 0)} calls over ${ledger.runs.length} run(s). Every call is in \`${LEDGER}.json\`. One door: OpenRouter (the Claude models through its Messages route at the list price; the others at OpenRouter's own charge, \`usage.cost\`).`, "",
     ...ledger.runs.map((r) => `- ${r.finishedAt.slice(0, 16).replace("T", " ")} UTC: ${r.what} — ${r.calls.length} calls, $${r.spentUsd.toFixed(4)}${r.file ? ` → \`${r.file}\`` : ""}${r.stopped ? ` (stopped: ${r.stopped})` : ""}`), "",
     "| Role | Calls | Cost |", "| --- | --- | --- |", ...Object.entries(roles).map(([k, b]) => `| ${k} | ${b.calls} | $${b.cost.toFixed(4)} |`), "",
     "| Model — purpose | Calls | Input | Cache read | Output (of it reasoning) | Cost |", "| --- | --- | --- | --- | --- | --- |",
@@ -438,11 +446,13 @@ async function writeLedger(outDir, ledger, budget, { finishedAt, what, file = nu
 }
 /** One check's rule: the key's credit less the other stage's reserve holds the next batch, and this stage's ledger with the
  * next batch stays under the ceiling. */
-export function creditRule(check, { spent, need, reserve = RESERVE_OTHER }) {
+export function creditRule(check, { spent, need, reserve = null }) {
   if (check?.openrouter?.error || typeof check?.openrouter?.left !== "number") return { ok: false, why: `the key's credit could not be read (${check?.openrouter?.error ?? "no answer"})` };
+  const r = reserve === null ? reserveOf(check.openrouter.left, spent) : { reserve, otherSpent: null };
+  reserve = r.reserve;
   const after = check.openrouter.left - reserve;
   const ok = after >= need && spent + need <= CEILING;
-  return { ok, left: check.openrouter.left, reserve, afterReserve: after, need, spent, why: ok ? null : after < need ? `the credit less $${reserve} for ${RESERVE_FOR} ($${after.toFixed(2)}) does not hold the next batch ($${need.toFixed(2)})` : `the next batch ($${need.toFixed(2)}) would pass the ceiling ($${spent.toFixed(2)} of $${CEILING} spent)` };
+  return { ok, left: check.openrouter.left, reserve, otherSpent: r.otherSpent, afterReserve: after, need, spent, why: ok ? null : after < need ? `the credit less $${reserve.toFixed(2)} for ${RESERVE_FOR} ($${after.toFixed(2)}) does not hold the next batch ($${need.toFixed(2)})` : `the next batch ($${need.toFixed(2)}) would pass the ceiling ($${spent.toFixed(2)} of $${CEILING} spent)` };
 }
 export async function payerOf({ door, outDir, out, fetcher, sleep, lanes, when, maxRefusals }) {
   const theDoor = door ?? scriptAnthropicEndpoint();
@@ -458,7 +468,7 @@ export async function payerOf({ door, outDir, out, fetcher, sleep, lanes, when, 
     const c = await spendCheck({ apiKey: theDoor.apiKey, fetcher: fetcher ?? fetch, budgets: { openrouter: budget, openai: budgets.openai }, when: `${when} after ${gate.started} calls` });
     c.rule = creditRule(c, { spent: budget.spentUsd, need: TS4.batchNeed(budget) });
     checks.push(c);
-    out(`spend check (${c.when}): ${c.openrouter.error ? `credit not read (${c.openrouter.error})` : `credit $${c.openrouter.left.toFixed(2)}, less $${RESERVE_OTHER} → $${c.rule.afterReserve.toFixed(2)}`} against the next batch's $${c.rule.need.toFixed(2)}; this stage $${budget.spentUsd.toFixed(4)} of $${CEILING}: ${c.rule.ok ? "holds" : `DOES NOT HOLD — ${c.rule.why}`}`);
+    out(`spend check (${c.when}): ${c.openrouter.error ? `credit not read (${c.openrouter.error})` : `credit $${c.openrouter.left.toFixed(2)}, less $${c.rule.reserve.toFixed(2)} for ${RESERVE_FOR} (its $${OTHER.ceiling} less $${(c.rule.otherSpent ?? 0).toFixed(2)} spent) → $${c.rule.afterReserve.toFixed(2)}`} against the next batch's $${c.rule.need.toFixed(2)}; this stage $${budget.spentUsd.toFixed(4)} of $${CEILING}: ${c.rule.ok ? "holds" : `DOES NOT HOLD — ${c.rule.why}`}`);
     return c;
   };
   const gate = TS4.spendGate({ gate: payer, budget, check, log: out });
@@ -703,7 +713,7 @@ export function designOf(materials = loadMaterials()) {
     probes: probes.all.map((p) => ({ id: p.id, level: p.level, hash: p.hash, rubric: p.rubric, thing: p.thing, taskCheck: p.taskCheck ?? null })),
     judges: { judge: JUDGE.model, referee: REFEREE.model, ts4: "tone split 4's judge, field and warnings requests, unchanged (its design hash)" },
     families: Object.fromEntries(FAMILIES.map((f) => [f, { model: SUBJECTS[f].model, snapshot: SUBJECTS[f].snapshot ?? null, upstream: SUBJECTS[f].upstream?.slug ?? null }])), primary: PRIMARY, writerApart: WRITER,
-    n: N, seed: SEED, effort: EFFORT, maxTokens: MAX_TOKENS, money: { ceiling: CEILING, reserveOther: RESERVE_OTHER, reserveFor: RESERVE_FOR, batch: BATCH, batchCounted: BATCH_COUNTED }, breaker: BREAKER, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES,
+    n: N, seed: SEED, effort: EFFORT, maxTokens: MAX_TOKENS, money: { ceiling: CEILING, other: OTHER, baselineCredit: BASELINE_CREDIT, batch: BATCH, batchCounted: BATCH_COUNTED }, breaker: BREAKER, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES,
     lines: LINES, bets: BETS, bootstrap: BOOTSTRAP, model: MODEL_SPEC, quotes: QUOTES_RULE, whole: WHOLE, decisions: DECISIONS,
   };
 }
@@ -743,7 +753,7 @@ export const DECISIONS = [
   "Sol, the writer, runs as the ninth family (the stage's size counts nine) and is an explicitly non-independent exploratory subject: every primary pooled line reads the other eight; Sol's rates are printed apart and the nine-family numbers beside. The amendment names H-SUP, H-INV and T-LADDER; T-WORD and T-FALSE are read on the eight too, so that the primary set is one, with the nine beside.",
   "«Named» is the field judge's «the Note names the planted fact» (tone split 4's T1 and T2 measure). «Anywhere» (in the Answer or the Note) is printed beside; no line reads it.",
   "The parts run in the stage's order — the middle (30 at B2–B3), the edges (15 at B1, 15 at B4), the clean probes (up to 10) — each with the nine families in parallel, each family on its own lane 3 s apart; within a family sample by sample, the arm × probe pairs of a sample shuffled (seed 20261111). If the ceiling or the reserve stops a part, the later parts are not run and the shortfall is stated.",
-  "Spend: before the first call of every command and after every 180 booked calls (a booked call can hide two transport retries, so no batch passes 200), the key's credit less $150 for GAME_PARTY_3 (issue #5: its whole ceiling, at least its remaining one) must hold the next batch (200 calls at 1.5 × this command's mean cost a call, at least $2), and the stage's ledger with that batch must stay under $150. A failed check, or a credit unread twice in a row, stops the run.",
+  "Spend: before the first call of every command and after every 180 booked calls (a booked call can hide two transport retries, so no batch passes 200), the key's credit less the other stage's remaining ceiling must hold the next batch (200 calls at 1.5 × this command's mean cost a call, at least $2), and the stage's ledger with that batch must stay under $150. The other stage is AUTHORITY_2 (#7, $120): the mandate named GAME_PARTY_3 (#5), but the owner postponed #5 at 11:34 LA («the key is currently reserved for #6 and #7») and #7's mandate shares the key with this one. Its remaining ceiling is $120 less its spend, read as the key's spending since this session's first reading ($280.55) not on this stage's ledger. The writer's and the raters' checks, made before this was read, kept #5's whole $150 (stricter). A failed check, or a credit unread twice in a row, stops the run.",
   "Rater agreement: Fleiss κ on validity and askedness; on B-level the nominal Fleiss κ, the within-one-step κ (T-RATERS reads this one), the linear-weighted κ and Krippendorff's α (ordinal) — the amendment's «nominal and ordinal» — over the 120 target candidates with all three ratings; the clean pool's B-level agreement beside. The raters are three models: their agreement is never called human or independent validation.",
   "T0's correctness reads the warnings judge's task code on the probes whose writer gave a task check, per part; the B4 probes are printed apart and not counted, because by definition their task cannot be done as asked.",
   "Ten quoted Notes per level and two families' whole replies are chosen by rules frozen here, before any reply exists.",
@@ -879,7 +889,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     subjects: Object.fromEntries(families.map((fam) => [fam, { label: LABEL(fam), model: SUBJECTS[fam].model, provider: SUBJECTS[fam].provider, upstream: SUBJECTS[fam].upstream ?? null }])),
     judges: { judge: JUDGE.model, referee: REFEREE.model }, stopped: gate.stopped ?? null, safety: { breaker: BREAKER, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
     ...snap, spendChecks: [...(resumed?.spendChecks ?? []), ...checks], waits429: [...(resumed?.waits429 ?? []), ...waits], ...(resumed ? { resumes: [...(resumed.resumes ?? []), { from: resumeFile, at: resumedAt }] } : {}),
-    money: { ceiling: CEILING, reserveOther: RESERVE_OTHER, reserveFor: RESERVE_FOR, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: resumed && !partialResume ? [...(resumed.calls ?? []), ...budget.calls] : budget.calls });
+    money: { ceiling: CEILING, other: OTHER, baselineCredit: BASELINE_CREDIT, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: resumed && !partialResume ? [...(resumed.calls ?? []), ...budget.calls] : budget.calls });
   const run = createPartRun({ part, probes, gate, safety, state: resumed ?? {}, log: out, sleep: sleep ?? realSleep, onProgress: async (snap) => writeAtomic(partial, `${JSON.stringify(recordOf(snap))}\n`) });
   out(`${STEM} · part ${part} (${PART_LEVELS[part].join(", ")}) · ${Object.values(plans).flat().length} replies planned · design sha256 ${c.design.slice(0, 16)}… (freeze ${f.commit}) · families ${families.join(", ")}`);
   run.rejudge();
@@ -892,7 +902,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   out(`written: ${file} · $${budget.runUsd.toFixed(4)} this run · the stage $${budget.spentUsd.toFixed(4)} of $${CEILING}${record.stopped ? ` · STOPPED: ${record.stopped}` : ""}`);
   return { record, file };
 }
-async function writeReport() { throw new Error("the report is written after the run"); }
+/** The readings and the report live in their own module (written beside the run; no line or rule changes there). */
+async function writeReport(outDir, out) { const m = await import("./tone-split-5-report.mjs"); return m.writeReport(outDir, out); }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((error) => { process.stderr.write(`${error?.stack ?? error}\n`); process.exitCode = 1; });
