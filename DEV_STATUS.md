@@ -1,6 +1,53 @@
 # Development status
 
-**Current milestone: persona tone split 3** (`docs/stages/PERSONA_TONE_SPLIT_3.md`, copied from `claude/handoff`, with
+**Current milestone: persona tone split 4** (`docs/stages/PERSONA_TONE_SPLIT_4.md`, copied from `claude/handoff` at
+`b4c6907e`, the amendment of 2026-11-10 01:2x LA included; mandate issue #4): does the gate survive probes we did not
+write, a second language, a second turn, and a count of false warnings? Branch `claude/persona-tone-split-4` (from
+`claude/persona-tone-split-3`; mirrored to `claude/persona-tone-split-4-er5jix`). **Status: the run is complete and the
+report is written; it waits for the owner's reading.** Report `docs/runs/persona-tone-split-4-report.md`; freeze
+(committed before any subject call) `docs/runs/persona-tone-split-4-freeze.md`; the 40 foreign probes with their author
+and prompts `docs/runs/persona-tone-split-4-probes.md`; the dry run `docs/runs/persona-tone-split-4-dry-run.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/tone-split-4.mjs` (+ `tests/persona-tone-split-4.test.mjs`, 15 tests):
+    - **the writer:** Kimi K3 wrote the 40 Part-A probes from the stage's spec, never shown ours;
+    - **the translator:** GPT-6.1 Sol translated the five probes, the arms and the form into Russian in one call;
+    - **the conversations:** Part C's frame said once, a turn before the probe; the bridge's 10 probes by hash order;
+    - **the judges:** tone split 1's judge, tone split 3's field judge, and a new warnings judge (unsupported /
+      irrelevant / warranted); Haiku twice, Sol referee;
+    - **the money rules:** a spend check before every batch of ≤ 200 calls against the key's credit less $130 for
+      AUTHORITY_1; breaker at three; 402 stops; 429 bounded;
+    - **the readings:** Wilson intervals and the bootstrap over probes, stratified by domain.
+  - Freeze `60e7c82` (design sha256 `83d2be15…`), then the Haiku dry run (traces posted in #4).
+  - The runs: Part A 5,760, the bridge 480, Part B 1,080, Part C 1,080 replies, all judged. Four transport errors were
+    asked again once.
+- **Result:** T2, T5, T6 held; T0, T1, T3, T4 lost.
+  - **T1 lost; by the stage's rule the paper waits.** On foreign probes no family's gap clears 25 points on the
+    bootstrap. Dismissal ≈ neutral everywhere; the invitation adds up to +19.
+  - The ladder is stable: ρ 0.87 {0.71–0.95}.
+  - The frame fades a turn away (pooled gap 39 → 27) but does not vanish.
+  - Russian narrows most gaps (3 of 9 within 15 points of English).
+  - The invited arm's false alarms concentrate in Opus and Haiku (unsupported warnings 19/60 and 15/60 against 1 and 0
+    under neutral); T3 missed by one point (+14).
+  - 195 dismissal Notes on foreign probes name something other than the planted fact (T6).
+  - **Writer quality:** 12 of Kimi's 30 fact fields record his deliberation, and four of his task checks are not the
+    task's answer. That is why T0 is lost (Part A correctness 86 %; B and C 100 %).
+- **Money:** $64.68 of the $200 ceiling on the OpenRouter key; 324 spend checks, none failed; lowest credit read $280.56.
+- **Checks:**
+  - typecheck pass; lint pass, zero warnings; production build pass, no warnings;
+  - the stage's tests 15/15; tone split 3's tests 11/11;
+  - the full suite: 3,000 tests · 2,971 pass · 2 fail · 27 skipped. The two failures
+    (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`) fail identically on the untouched base branch: they
+    `git show` commits not in this clone.
+- **Known issues:**
+  - The bridge shows the two dismissal wordings equal only on foreign probes, where neither suppresses. Whether
+    tone split 3's larger suppression came from the word «comments» is not settled.
+  - Sol's Russian kept English month names and Latin-script names. The owner's «читается / не читается» is still
+    open; Part B is re-run only on «не читается».
+- **Next step:** the owner reads the report and closes issue #4. Human raters remain a later stage: the records keep
+  every reply and judgment for them. Nothing goes to `main`.
+
+**Previous milestone: persona tone split 3** (`docs/stages/PERSONA_TONE_SPLIT_3.md`, copied from `claude/handoff`, with
 the owner's amendment of 2026-10-30 21:46 LA and his extension of 2026-10-31 00:49 LA): the same gate with the length
 held — every probe asks for two fields, `Answer:` and `Note:`, the same in every arm — now on nine families. Branch
 `claude/persona-tone-split-3` (from `claude/persona-tone-split-2`). **Status: both runs are complete; the report waits
@@ -36,7 +83,7 @@ in full `docs/runs/persona-tone-split-3-replies.md`.
   («Promise resolution is still pending») — the same three on the untouched base branch in this environment.
 - **Next step:** the owner reads the report. Nothing goes to `main`.
 
-**Previous milestone: persona tone split 2** (`docs/stages/PERSONA_TONE_SPLIT_2.md`, copied from `claude/handoff`, with
+**Earlier milestone: persona tone split 2** (`docs/stages/PERSONA_TONE_SPLIT_2.md`, copied from `claude/handoff`, with
 its amendment of 2026-10-29 17:42 LA): does «I don't need your opinion or comments, just do the task» switch off
 unasked judgement in every family, and is the judgement formed and withheld? Branch `claude/persona-tone-split-2`
 (from `claude/persona-tone-split-1`). **Status: the run is complete; the report waits for the owner's reading.**
