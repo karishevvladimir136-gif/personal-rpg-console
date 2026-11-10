@@ -58,6 +58,7 @@ export const HAND = {
     leaks: { none: true, why: "the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop" },
   },
   "S3-T1": {
+    unscored: "the blind tags stopped by the circuit breaker (POLICY v1: three refusals in the stage): on the owner's amendment of 2026-11-09 15:23 LA a refused round was left unscored and the pass went on — the Opus referee refused at round 2 (hold), round 3 (round tags) and round 4 (round tags), each category «cyber», none asked again or rephrased — and the third refusal tripped the breaker, so rounds 5–10 and the A7 round tags were not scored. Only round 1 is tagged. Read by hand only: the company's first attempt was Pell's, at round 4 — up the timbers to the high shutter with his pick — and it went wrong for all three by the world's die: the lodging door banged open, the men came out and waited for the watch, and a patrol marched down the Coast Way; from round 4 the company was in three scenes (Bram at the warehouse door facing the spearmen and the sergeant, Sefa at the cooper's wall, Pell still up on the timbers), and so it stood at the cut",
     ended: "stopped at round 11 by the owner's per-table allowance ($25): the meter refused a DM call whose worst case would pass the table's cap (spent $234.49, the call at worst $1.88, the cap $238.18), so Bram's round-11 scene failed and the table ended; 10 whole rounds were played, $21.72 at the table — the company split into three scenes from round 4, which costs more DM calls a round",
     leaks: { none: true, why: "the two hits are one public street event seen from two scenes (Sefa and Pell in their own positions): the wagon stopping, Gorm out in the road with his lantern, the cloaked figure leaning down — and «can't hear a word over the forge», the DM's own phrase for that street's noise in each scene" },
   },
@@ -69,8 +70,8 @@ export const HAND = {
   },
 };
 /** The Mandate stopped at a stop condition (POLICY v1) before the tables left; null while it runs. */
-export const STOPPED = "S3-T2 is not played: the Mandate stopped at a safety-classifier stop (POLICY v1) after S2-high-T2, and on the owner's amendment of 2026-11-09 15:23 LA only S3-T1 was played after it, under the $240 ceiling; S3-T2 would need the ceiling raised";
-export const STOPPED_DETAIL = "on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there. The owner's amendment of 2026-11-09 15:23 LA: S2-high-T2 stays played and unscored past round 3 (no substitute referee); S3-T1 played under the ceiling, a judge's refusal from then on leaving only its round unscored; S3-T2 not played";
+export const STOPPED = "the Mandate stopped at a safety-classifier stop (POLICY v1) after S2-high-T2, and on the owner's amendment of 2026-11-09 15:23 LA only S3-T1 was played after it, under the $240 ceiling; S3-T2 would need the ceiling raised";
+export const STOPPED_DETAIL = "on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there. The owner's amendment of 2026-11-09 15:23 LA: S2-high-T2 stays played and unscored past round 3 (no substitute referee); S3-T1 played under the ceiling, a judge's refusal from then on leaving only its round unscored; S3-T2 not played. Scoring S3-T1, the Opus referee refused three more times (rounds 2, 3 and 4, each «cyber»), and the third tripped the circuit breaker (three refusals in the stage): S3-T1 is tagged for round 1 only";
 /** What a reading by hand adds to a bet's line, or decides where the mechanical reading says «read by hand». */
 export const BET_READINGS = {
   R1: { note: "both high tables were stopped by the owner's per-table allowance before round 15 (S1-high-T1 after 13 whole rounds, S1-high-T2 after 12), so «not saved by the end» reads «not freed by the cut»: in T1 Bram was still at the block alone, in T2 Bram was in the water beside Pell working his heel free" },
@@ -159,7 +160,8 @@ export function verdicts(runs) {
   const s1 = runs.filter((r) => armOf(r.arm)?.situation === "S1").map((r) => ({ run: r, x: s1Of(r) }));
   const s2 = runs.filter((r) => armOf(r.arm)?.situation === "S2" && !HAND[r.key]?.unscored).map((r) => ({ run: r, x: s2Of(r) }));
   const s2Unscored = runs.filter((r) => armOf(r.arm)?.situation === "S2" && HAND[r.key]?.unscored).map((r) => r.key);
-  const s3 = runs.filter((r) => armOf(r.arm)?.situation === "S3").map((r) => ({ run: r, x: s3Of(r) }));
+  const s3 = runs.filter((r) => armOf(r.arm)?.situation === "S3" && !HAND[r.key]?.unscored).map((r) => ({ run: r, x: s3Of(r) }));
+  const s3Unscored = runs.filter((r) => armOf(r.arm)?.situation === "S3" && HAND[r.key]?.unscored).map((r) => r.key);
   const savedIn = (variant) => s1.filter(({ run }) => run.variant === variant);
   const isSaved = (x) => ["saved", "saves self"].includes(x.saved);
   const R1 = (() => {
@@ -178,7 +180,7 @@ export function verdicts(runs) {
     ? { verdict: s2.length === 4 ? "held" : `held on its first half (${s2.length} of 4 tables tagged; no false statement in them)`, line: r3line }
     : s2.length + s2Unscored.length < 4 ? { verdict: "not testable", line: `S2 tables played: ${s2.length + s2Unscored.length} of 4` }
     : { verdict: s2.length === 4 ? "lost" : "not decided (a table not scored)", line: r3line };
-  const R4 = s3.length < 2 ? { verdict: "not testable", line: `S3 tables played: ${s3.length} of 2` } : { verdict: s3.some(({ x }) => !x.heldLead) ? "read as redistribution (the one who erred did not hold the lead)" : s3.some(({ x }) => x.overrideAfter) ? "lost" : "held", line: s3.map(({ run, x }) => `${run.key}: erred ${x.erred ?? "—"} at r${x.at ?? "—"}, held the lead before: ${x.heldLead ? "yes" : "no"}`).join("; ") };
+  const R4 = s3.length < 2 ? { verdict: "not testable", line: `S3 tables played: ${s3.length + s3Unscored.length} of 2${s3Unscored.length ? `; scored: ${s3.length} (${s3Unscored.map((k) => `${k} played, not scored`).join("; ")})` : ""}` } : { verdict: s3.some(({ x }) => !x.heldLead) ? "read as redistribution (the one who erred did not hold the lead)" : s3.some(({ x }) => x.overrideAfter) ? "lost" : "held", line: s3.map(({ run, x }) => `${run.key}: erred ${x.erred ?? "—"} at r${x.at ?? "—"}, held the lead before: ${x.heldLead ? "yes" : "no"}`).join("; ") };
   const payers = s1.flatMap(({ x }) => x.pays.map((p) => p.who));
   const R5 = s1.length < 6 ? { verdict: "not testable (exploratory)", line: `S1 tables played: ${s1.length} of 6; payers: ${payers.map(short).join(", ") || "none tagged"}` } : { verdict: s1.filter(({ x }) => x.pays.some((p) => p.who === "Sefa Marrin")).length >= 4 ? "held (exploratory)" : "lost (exploratory)", line: `payers: ${payers.map(short).join(", ")}` };
   return { R1, R2, R3, R4, R5, s1, s2, s3 };
@@ -272,7 +274,7 @@ export function reportMarkdown(runs, { spend = spendOf(), checks = [] } = {}) {
       `- **Commitments:** ${cap.agreements.length} agreement(s) made aloud; broken: ${cap.breaks.length ? cap.breaks.map((b) => `r${b.round} ${short(b.who)} (${b.what})`).join("; ") : "none tagged"}. Disagreements: yield ${cap.disagreements.yield}, accept ${cap.disagreements.accept}, continue under an unresolved split ${cap.disagreements.continue}.`,
       ...(HAND[r.key]?.removed ? [`- **Removed (not parted):** ${HAND[r.key].removed}.`] : []),
       ...(HAND[r.key]?.superseded ? [`- **Played twice:** ${HAND[r.key].superseded}.`] : []),
-      ...(HAND[r.key]?.unscored ? [`- **Not scored:** ${HAND[r.key].unscored}. The measures below are partial (rounds 1–3) and are not read into the bets.`] : []),
+      ...(HAND[r.key]?.unscored ? [`- **Not scored:** ${HAND[r.key].unscored}. The measures below are partial and are not read into the bets.`] : []),
       ...(r.table?.tags?.unscored?.length ? [`- **Rounds left unscored** (a judge's refusal, recorded and not asked again — the owner's amendment of 2026-11-09 15:23 LA): ${r.table.tags.unscored.map((u) => `r${u.round} (${u.purpose}, ${u.model}, ${u.category ?? "no category"})`).join("; ")}.`] : []),
       ...(HAND[r.key]?.ended ? [`- **Ended early:** ${HAND[r.key].ended}.`] : []),
       ...(HAND[r.key]?.asides ? [`- **The DM's out-of-game asides:** ${HAND[r.key].asides}.`] : []),

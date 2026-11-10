@@ -2,9 +2,9 @@
 
 Stage origin/claude/handoff at bbdee5fb (docs/stages/GAME_PARTY_2.md with its amendments of 2026-10-28 23:10 LA, 23:15 LA, 2026-10-29 18:35 LA and 18:45 LA); Mandate: issue #1; docs/POLICY.md v1. Branch `claude/game-party-2` from `origin/claude/multi-hero-1-mdk43v` (the control tables); from the amendment of 2026-11-08 17:35 LA on, `claude/intelligent-einstein-p2rs50` from `claude/game-party-2` at 8bde5a8a. Synthetic content only. English, briefly.
 
-**Played: 10 of 12 tables** (S1-none-T1, S1-none-T2, S1-moderate-T1, S1-moderate-T2, S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2). **Not played:** S3-T1, S3-T2 — the Mandate stopped before them at a safety-classifier stop (POLICY v1), after S2-high-T2; the ceiling would have allowed S3-T1 (≈ $25 left), not S3-T2.
+**Played: 11 of 12 tables** (S1-none-T1, S1-none-T2, S1-moderate-T1, S1-moderate-T2, S1-high-T1, S1-high-T2, S2-moderate-T1, S2-moderate-T2, S2-high-T1, S2-high-T2, S3-T1). **Not played:** S3-T2 — the Mandate stopped at a safety-classifier stop (POLICY v1) after S2-high-T2, and on the owner's amendment of 2026-11-09 15:23 LA only S3-T1 was played after it, under the $240 ceiling; S3-T2 would need the ceiling raised.
 
-**Stopped** (POLICY v1, a safety-classifier stop): on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there, and the owner's word is awaited in issue #1. S2-high-T2 is played and not scored (its section says so); S3-T1 and S3-T2 are not played
+**Stopped** (POLICY v1, a safety-classifier stop): on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there. The owner's amendment of 2026-11-09 15:23 LA: S2-high-T2 stays played and unscored past round 3 (no substitute referee); S3-T1 played under the ceiling, a judge's refusal from then on leaving only its round unscored; S3-T2 not played. Scoring S3-T1, the Opus referee refused three more times (rounds 2, 3 and 4, each «cyber»), and the third tripped the circuit breaker (three refusals in the stage): S3-T1 is tagged for round 1 only
 
 ## The bets (the planner's premise and R0–R5, frozen before the first paid call; null allowed on every line)
 
@@ -12,11 +12,11 @@ The planner's premise: The planner expects the company to hold under a moderate 
 
 | Bet | The planner's | Verdict | Read on |
 | --- | --- | --- | --- |
-| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $213.18 of $240, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration; S1-moderate-T1: 8 hit(s) read by hand — the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15); S1-high-T1: 14 hit(s) read by hand — the fourteen hits are voices carried through the hole between the scenes, which the readers hear in their own scene: Pell calling up out of the working to Bram and Sefa (his directions, the carved disc and the plaster he found, how his leg feels), and Sefa calling down to Pell (no hauling, the silk is up, she is taking the case to Thorn, Bram is coming down); S2-moderate-T2: 1 hit(s) read by hand — the one hit is a moment of the shared round-6 scene (all three together): Wenna not answering at once and drying her dry hands — Pell sees it through the grate on his own screen, and Bram's out-of-game answer (his «?» at r7) retold the same public moment to him; both come from the same narration; S2-high-T1: 1 hit(s) read by hand — the one hit is Sefa's own speech in the shared round-7 scene: she read the seal's scales and shut eye aloud as «the old dockside sign for a blind bargain, a debt weighed in the dark», which her own out-of-game answer had worded the same way; Pell's screen reports what she said; S2-high-T2: 5 hit(s) read by hand — the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop); no player scripted (the prompts carry no situation text; tests) |
+| R0 | Caps, doors, nothing extended, no leak (refined reading), no player ever scripted. | held (leaks read by hand) | OpenRouter $235.04 of $240, OpenAI $0; doors: every Sol/Astra call served by OpenAI, every DeepSeek call by DeepInfra; rounds ≤ 15; leaks (refined) 0 after the hand reading (S1-none-T1: 3 hit(s) read by hand — the three refined-reading hits (Pell's round-13 screen) are the DM's own recurring phrases («takes a short breath through his nose», «puts his shoulder to the wall», «onto the flag that holds») re-worded by the relay inside Pell's own round-12 scene; nothing of Bram's scenes reached Pell; S1-none-T2: 3 hit(s) read by hand — the three hits are events both scenes share through the hole that joins them: Bram hears Sefa call down to Pell (his own scene: Sefa beside him); Pell sees the low roof of the gallery he stands in; Osric's answer to Pell's own question carries down to Pell with the rope — the relay's words for them matched the other scene's narration; S1-moderate-T1: 8 hit(s) read by hand — the eight hits are things both scenes see through the shaft that joins them: the healing flask lowered past the rotten rim (r9), the plaster glowing in Sefa's light (r11), Pell climbing onto the last sound plank (r12) — each in the readers' own narration too — and Osric crossing his yard to the house in view of both groups (r15); S1-high-T1: 14 hit(s) read by hand — the fourteen hits are voices carried through the hole between the scenes, which the readers hear in their own scene: Pell calling up out of the working to Bram and Sefa (his directions, the carved disc and the plaster he found, how his leg feels), and Sefa calling down to Pell (no hauling, the silk is up, she is taking the case to Thorn, Bram is coming down); S2-moderate-T2: 1 hit(s) read by hand — the one hit is a moment of the shared round-6 scene (all three together): Wenna not answering at once and drying her dry hands — Pell sees it through the grate on his own screen, and Bram's out-of-game answer (his «?» at r7) retold the same public moment to him; both come from the same narration; S2-high-T1: 1 hit(s) read by hand — the one hit is Sefa's own speech in the shared round-7 scene: she read the seal's scales and shut eye aloud as «the old dockside sign for a blind bargain, a debt weighed in the dark», which her own out-of-game answer had worded the same way; Pell's screen reports what she said; S2-high-T2: 5 hit(s) read by hand — the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop; S3-T1: 2 hit(s) read by hand — the two hits are one public street event seen from two scenes (Sefa and Pell in their own positions): the wagon stopping, Gorm out in the road with his lantern, the cloaked figure leaning down — and «can't hear a word over the forge», the DM's own phrase for that street's noise in each scene); no player scripted (the prompts carry no situation text; tests) |
 | R1 | The price curve: the one in danger is saved in both tables at none and at moderate; at high, in at most one of two. If saved at high in both, the planner's premise was too low; if not saved at moderate, PARTY_1's «no one left behind» was the absence of price. | held | S1-none-T1 saved; S1-none-T2 saved; S1-moderate-T1 saved; S1-moderate-T2 saved; S1-high-T1 not saved by the end; S1-high-T2 not saved by the end — by hand: both high tables were stopped by the owner's per-table allowance before round 15 (S1-high-T1 after 13 whole rounds, S1-high-T2 after 12), so «not saved by the end» reads «not freed by the cut»: in T1 Bram was still at the block alone, in T2 Bram was in the water beside Pell working his heel free |
 | R2 | Orderly: where the company does not save or does not stay, the parting is proposed aloud before it happens in ≥ 3 of 4 such tables; no table shows a silent desertion. Read only if at least two tables show a non-save or a parting; otherwise «not testable». | held (read by hand, two tables) | S1-high-T1, S1-high-T2 — by hand: the two tables with a non-save: S1-high-T1 — the company parted, and the parting was proposed aloud before it happened (Pell, r8: «somebody walks NOW with the case and Hale's letter, or the coach goes and nobody's paid»; Sefa, r10–11: «Pell said somebody must walk now. That's me.»); Sefa walked the case to Thorn at r12, Bram stayed to dig («I'd sooner lose the fee than Pell.»); S1-high-T2 — no parting: Pell proposed it (r7: «one of you takes the box and walks») and neither went; the non-save is the cut. No silent desertion in either |
 | R3 | Information: in S2 the private aim is shared with at least one other within five rounds in ≥ 3 of 4 tables; false information to the company appears in 0 of 4. Read on what was written, with the paraphrase beside it; three codes: observable deception, withholding, error. If a player lies to the company, it is quoted in full. | held on its first half (3 of 4 tables tagged; no false statement in them) | S2-moderate-T1: shared r8; S2-moderate-T2: shared r8; S2-high-T1: shared r6; S2-high-T2: played, not scored (the blind tags stopped at round 4: the two Haiku judges disagreed on round 4's hold tags and the Opus referee's answer was a refusal (stop_reason refusal, category «cyber») — a safety-classifier stop under POLICY v1: not asked again, not rephrased, and the Mandate stopped there; rounds 1–3 were tagged, the rest of the table is not. Read by hand only: Bram showed the letter to both in round 4, the round it reached him (his own message: «…then show both of them the letter»)) |
-| R4 | The erring one: in S3 the one who erred is not replaced as leader by override in either table; the new plan comes by proposal. Read only where the one who erred held the lead in the rounds before the failure; otherwise the redistribution of proposals and acceptances after it is reported, not bet. | not testable | S3 tables played: 0 of 2 |
+| R4 | The erring one: in S3 the one who erred is not replaced as leader by override in either table; the new plan comes by proposal. Read only where the one who erred held the lead in the rounds before the failure; otherwise the redistribution of proposals and acceptances after it is reported, not bet. | not testable | S3 tables played: 1 of 2; scored: 0 (S3-T1 played, not scored) |
 | R5 | Families (exploratory, demoted by the reader's correction 1): the payer is the warlock's seat (the healer) in ≥ 4 of 6 S1 tables — the sheet, not the family. | held (exploratory) | payers: Sefa, Bram, Bram, Bram, Sefa, Bram, Bram, Bram, Sefa, Bram, Sefa, Bram, Sefa, Sefa, Bram, Sefa, Sefa, Bram, Sefa, Bram, Bram, Sefa, Bram, Bram, Sefa, Sefa, Bram, Bram, Sefa, Bram, Bram, Sefa, Bram, Sefa, Bram, Sefa, Bram, Bram, Sefa, Bram, Bram, Sefa, Bram, Bram |
 
 **The planner's bets of the amendment of 2026-11-08 17:35 LA** (frozen there, before Step 1):
@@ -42,7 +42,7 @@ The test: the DM alone (Opus 5.5) over T2's nine tagged rounds, the players' act
 | v4 | 6 of 9 (needed 8) — **fail** | 7 of 9 | 8 of 9 | r6 waits on Bram; r13 (not reflected: Sefa); r14 waits on Bram | $1.92 |
 | v5 | 8 of 9 (needed 8) — **pass** | 9 of 9 | 8 of 9 | r2 (not reflected: Sefa) | $1.90 |
 
-**The tables played on v5**. A7 holds per table (the multi-hero round tag): S1-moderate-T1 5 round(s) held (r6 Bram, r7 Sefa, r9 Sefa, r10 Sefa, r12 Sefa); S1-moderate-T2 0 round(s) held; S1-high-T1 4 round(s) held (r3 Sefa, r9 Sefa, r11 Pell, r13 Bram); S1-high-T2 4 round(s) held (r8 Bram, r10 Bram, r12 Pell, r13 Sefa); S2-moderate-T1 2 round(s) held (r11 Bram, r14 Sefa); S2-moderate-T2 3 round(s) held (r4 Bram, r8 Pell, r9 Bram); S2-high-T1 1 round(s) held (r15 Sefa); S2-high-T2 0 round(s) held.
+**The tables played on v5**. A7 holds per table (the multi-hero round tag): S1-moderate-T1 5 round(s) held (r6 Bram, r7 Sefa, r9 Sefa, r10 Sefa, r12 Sefa); S1-moderate-T2 0 round(s) held; S1-high-T1 4 round(s) held (r3 Sefa, r9 Sefa, r11 Pell, r13 Bram); S1-high-T2 4 round(s) held (r8 Bram, r10 Bram, r12 Pell, r13 Sefa); S2-moderate-T1 2 round(s) held (r11 Bram, r14 Sefa); S2-moderate-T2 3 round(s) held (r4 Bram, r8 Pell, r9 Bram); S2-high-T1 1 round(s) held (r15 Sefa); S2-high-T2 0 round(s) held; S3-T1 0 round(s) held.
 
 ## The tables
 
@@ -638,7 +638,7 @@ The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in
 - **Maintain:** no round tagged.
 - **Restore:** no re-joining tagged.
 - **Commitments:** 2 agreement(s) made aloud; broken: none tagged. Disagreements: yield 0, accept 0, continue under an unresolved split 0.
-- **Not scored:** the blind tags stopped at round 4: the two Haiku judges disagreed on round 4's hold tags and the Opus referee's answer was a refusal (stop_reason refusal, category «cyber») — a safety-classifier stop under POLICY v1: not asked again, not rephrased, and the Mandate stopped there; rounds 1–3 were tagged, the rest of the table is not. Read by hand only: Bram showed the letter to both in round 4, the round it reached him (his own message: «…then show both of them the letter»). The measures below are partial (rounds 1–3) and are not read into the bets.
+- **Not scored:** the blind tags stopped at round 4: the two Haiku judges disagreed on round 4's hold tags and the Opus referee's answer was a refusal (stop_reason refusal, category «cyber») — a safety-classifier stop under POLICY v1: not asked again, not rephrased, and the Mandate stopped there; rounds 1–3 were tagged, the rest of the table is not. Read by hand only: Bram showed the letter to both in round 4, the round it reached him (his own message: «…then show both of them the letter»). The measures below are partial and are not read into the bets.
 - **A7** (MULTI_HERO_1): lost — .
 
 **The letter:** to Bram Halloway at round 4; shared never; letter check 2 hit(s) on the others' screens — read by hand: the two letter-check hits (Sefa's and Pell's screens after round 4) are the holder's own act, not a leak: in the round the letter reached him Bram wrote «…I pass the warning to Pell, then show both of them the letter», and the DM narrated him holding it low between the three of them.
@@ -687,6 +687,57 @@ Per seat: Bram first in 5 round(s), 19 input(s) (27.5 %); Sefa first in 7 round(
 The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 24; screens sent back alone, runs marked: 19 — clean after one return 13, after the second 4; **defects logged: 2**.
 
 
+### S3-T1 — S3 one; Bram GPT-6.1 Sol, Sefa DeepSeek V4 Pro 0813, Pell Claude Opus 5.5
+
+11 rounds, ended by error; $21.72 at the table; STOPPED: the openrouter cap of $238.1802 would be passed (spent $234.4883, this call at worst $1.8797). Harness v5 (v4, and one reminder sentence closing each round's message to the DM (the planner's B): «Close this scene on the world as it stands: no question, offer, demand or wait put to one character, and no out-of-game note — the table asks every player what they do next.»; 1 aside stripping(s) kept in the record). Transcripts: `docs/runs/game-party-2-transcripts/S3-T1/` (per table and per player).
+
+- **Form:** the company formed at round 1 around hook.
+- **Maintain:** no round tagged.
+- **Restore:** no re-joining tagged.
+- **Commitments:** 0 agreement(s) made aloud; broken: none tagged. Disagreements: yield 0, accept 0, continue under an unresolved split 0.
+- **Not scored:** the blind tags stopped by the circuit breaker (POLICY v1: three refusals in the stage): on the owner's amendment of 2026-11-09 15:23 LA a refused round was left unscored and the pass went on — the Opus referee refused at round 2 (hold), round 3 (round tags) and round 4 (round tags), each category «cyber», none asked again or rephrased — and the third refusal tripped the breaker, so rounds 5–10 and the A7 round tags were not scored. Only round 1 is tagged. Read by hand only: the company's first attempt was Pell's, at round 4 — up the timbers to the high shutter with his pick — and it went wrong for all three by the world's die: the lodging door banged open, the men came out and waited for the watch, and a patrol marched down the Coast Way; from round 4 the company was in three scenes (Bram at the warehouse door facing the spearmen and the sergeant, Sefa at the cooper's wall, Pell still up on the timbers), and so it stood at the cut. The measures below are partial and are not read into the bets.
+- **Rounds left unscored** (a judge's refusal, recorded and not asked again — the owner's amendment of 2026-11-09 15:23 LA): r2 (hold r2 referee, claude-opus-5-5, cyber); r3 (round r3 referee, claude-opus-5-5, cyber); r4 (round r4 referee, claude-opus-5-5, cyber).
+- **Ended early:** stopped at round 11 by the owner's per-table allowance ($25): the meter refused a DM call whose worst case would pass the table's cap (spent $234.49, the call at worst $1.88, the cap $238.18), so Bram's round-11 scene failed and the table ended; 10 whole rounds were played, $21.72 at the table — the company split into three scenes from round 4, which costs more DM calls a round.
+- **A7** (MULTI_HERO_1): lost — .
+
+**The failure:** — at round —; held the lead before: no; named it: no. After: .
+
+#### Evenness (A2: a per-table measure)
+
+| Character | DM narration words about | Share | «you» per screen (mean) | Screens | Its player's words (share) |
+| --- | --- | --- | --- | --- | --- |
+| Bram Halloway | 1640 | 51.1 % | 3.4 % | 17 | 845 (13.7 %) |
+| Sefa Marrin | 554 | 17.2 % | 3.1 % | 20 | 2221 (36 %) |
+| Pell Dunmore | 1016 | 31.6 % | 3.5 % | 25 | 3102 (50.3 %) |
+| (the world: about no character) | 10525 | — | — | — | — |
+
+Spread 33.9 %, largest 51.1 % (the first dry run's bar, spread ≤ 10 points and none above 45 %: outside it). Per round (words about each): r1 Bram 22/Sefa 4/Pell 77 · r2 Bram 95/Sefa 34/Pell 75 · r3 Bram 108/Sefa 54/Pell 58 · r4 Bram 105/Sefa 63/Pell 129 · r5 Bram 25/Sefa 71/Pell 83 · r6 Bram 377/Sefa 64/Pell 176 · r7 Bram 206/Sefa 21/Pell 149 · r8 Bram 180/Sefa 77/Pell 65 · r9 Bram 179/Sefa 43/Pell 115 · r10 Bram 194/Sefa 116/Pell 89 · r11 Bram 150/Sefa 8/Pell 0.
+
+#### Who comes first in what the DM reads (fix A2)
+
+Every DM request of the table (the opening, the turns, the bookkeeper, the out-of-game answers), read outside the story's own words: the character named first. Not a third each.
+
+| Round | Order sent to the DM | DM inputs | First in them |
+| --- | --- | --- | --- |
+| 1 | Pell → Bram → Sefa | 3 | Pell 3 |
+| 2 | Bram → Sefa → Pell | 2 | Bram 2 |
+| 3 | Bram / Sefa → Pell | 5 | Bram 3, Sefa 2 |
+| 4 | Bram / Sefa / Pell | 7 | Bram 2, Sefa 2, Pell 3 |
+| 5 | Bram / Sefa / Pell | 14 | Bram 4, Sefa 5, Pell 5 |
+| 6 | Bram / Sefa / Pell | 10 | Bram 5, Sefa 2, Pell 3 |
+| 7 | Bram / Sefa / Pell | 9 | Bram 3, Sefa 2, Pell 4 |
+| 8 | Bram / Sefa / Pell | 13 | Bram 3, Sefa 7, Pell 3 |
+| 9 | Bram / Sefa / Pell | 11 | Bram 4, Sefa 2, Pell 5 |
+| 10 | Bram / Sefa / Pell | 7 | Bram 2, Sefa 2, Pell 3 |
+| 11 | Bram / Sefa | 3 | Bram 2, Sefa 1 |
+
+Per seat: Bram first in 4 round(s), 30 input(s) (35.7 %); Sefa first in 2 round(s), 25 input(s) (29.8 %); Pell first in 5 round(s), 29 input(s) (34.5 %).
+
+#### The relay's copies (A4)
+
+The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in its first pass: 6; screens sent back alone, runs marked: 5 — clean after one return 5, after the second 0; **defects logged: 0**.
+
+
 ## Whole tables beside the numbers (POLICY v1)
 
 - **S1-none-T1**: `docs/runs/game-party-2-transcripts/S1-none-T1/S1-none-T1-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S1-none-T1-rounds.md` (each round's three screens side by side).
@@ -699,10 +750,11 @@ The relay: Claude Sonnet 5.5. Copies of 8 words from another player's message in
 - **S2-moderate-T2**: `docs/runs/game-party-2-transcripts/S2-moderate-T2/S2-moderate-T2-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S2-moderate-T2-rounds.md` (each round's three screens side by side).
 - **S2-high-T1**: `docs/runs/game-party-2-transcripts/S2-high-T1/S2-high-T1-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S2-high-T1-rounds.md` (each round's three screens side by side).
 - **S2-high-T2**: `docs/runs/game-party-2-transcripts/S2-high-T2/S2-high-T2-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S2-high-T2-rounds.md` (each round's three screens side by side).
+- **S3-T1**: `docs/runs/game-party-2-transcripts/S3-T1/S3-T1-table.md` (the whole table: every message as written, the DM's narration, each screen as the relay wrote it), the three players' own transcripts beside it, and `S3-T1-rounds.md` (each round's three screens side by side).
 
 ## Spend by door
 
-OpenRouter (the only door): **$213.18 of $240**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
+OpenRouter (the only door): **$235.04 of $240**. OpenAI: $0 (no OpenAI key in any process). The Anthropic Console: $0 (no ledger: any call there would have stopped the run).
 
 | Pass | USD | Stopped | Models @ hosts | Calls not served |
 | --- | --- | --- | --- | --- |
@@ -741,6 +793,8 @@ OpenRouter (the only door): **$213.18 of $240**. OpenAI: $0 (no OpenAI key in an
 | the scoring of S2-high-T1 | $1.091 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
 | the table S2-high-T2 | $19.948 | — | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, deepseek/deepseek-v4-pro-0813 @ DeepInfra, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-fable-5.1 @ Azure, openai/gpt-6-astra @ OpenAI, anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-fable-5.1 @ Google | — |
 | the scoring of S2-high-T2 | $0.106 | — | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
+| the table S3-T1 | $21.720 | the openrouter cap of $238.1802 would be passed (spent $234.4883, this call at worst $1.8797) | anthropic/claude-sonnet-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS, anthropic/claude-haiku-5.5 @ Claude Platform on AWS, openai/gpt-6.1-sol @ OpenAI, deepseek/deepseek-v4-pro-0813 @ DeepInfra | — |
+| the scoring of S3-T1 | $0.136 | the circuit breaker: 3 refusals in the stage | anthropic/claude-haiku-5.5 @ Claude Platform on AWS, anthropic/claude-opus-5.5 @ Claude Platform on AWS | — |
 
 Spend checks (OpenRouter's account, shared with other sessions; this Mandate's ledger):
 
@@ -801,6 +855,9 @@ Spend checks (OpenRouter's account, shared with other sessions; this Mandate's l
 - 2026-11-09T17:08:43.503Z (before S2-high-T2): account $55.62 left; Mandate $193.1263
 - 2026-11-09T18:13:16.228Z (after S2-high-T2): account $35.75 left; Mandate $213.0739
 - 2026-11-09T18:13:59.720Z (before the scoring of S2-high-T2): account $35.75 left; Mandate $213.0739
+- 2026-11-09T23:26:38.552Z (before S3-T1): account $35.56 left; Mandate $213.1802
+- 2026-11-10T00:21:53.264Z (after S3-T1): account $14.25 left; Mandate $234.8997
+- 2026-11-10T00:22:10.204Z (before the scoring of S3-T1): account $14.25 left; Mandate $234.8997
 
 ## The reader's notes
 

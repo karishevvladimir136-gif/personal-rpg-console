@@ -2,31 +2,35 @@
 
 **Current milestone: game party 2 — what holds a company together when holding costs** (`docs/stages/GAME_PARTY_2.md`
 at bbdee5fb on origin/claude/handoff, with its four amendments; Mandate: GitHub issue #1; `docs/POLICY.md` v1; the
-amendments of 2026-11-01 23:55 LA and 2026-11-08 17:35 LA; the planner's B of 21:02 LA) — **stopped at a POLICY v1
-stop condition: 10 of 12 tables played; S2-high-T2 played but not scored; S3 not played. Waiting for the owner's word
-in issue #1.** Branch `claude/intelligent-einstein-p2rs50` (this session's branch), from `claude/game-party-2` at
-8bde5a8a. Nothing to `main`. Implementation status, not owner approval.
+amendments of 2026-11-01 23:55 LA, 2026-11-08 17:35 LA and 2026-11-09 15:23 LA; the planner's B of 2026-11-08
+21:02 LA) — **done as far as the Mandate allows: 11 of 12 tables played, 9 scored; S3-T2 not played. The final comment
+is in issue #1; the owner closes it.** Branch `claude/intelligent-einstein-p2rs50` (this session's branch), from
+`claude/game-party-2` at 8bde5a8a. Nothing to `main`. Implementation status, not owner approval.
 
-- **The stop:** scoring S2-high-T2, the Opus referee (asked to settle the two Haiku judges' disagreement on round 4's
-  hold tags) answered with a refusal, category «cyber» — a safety-classifier stop. Not asked again, not rephrased.
+- **Report:** `docs/runs/game-party-2-report.md` (bets, every table, transcripts per player and per table, spend by
+  door). Step 1's tests: `docs/runs/game-party-2-a7-replay.md` and `-v5.md`.
 - **Step 1 (A7):** v4 (the round's close given to the table) failed its test 6/9; v5 (plus one reminder line in each
-  round's message) passed 8/9. The tables played on v5. Holds per v5 table: 5, 0, 4, 4, 2, 3, 1, 0 — mostly the
-  rescue's own joint count; a known defect, listed per table.
-- **Tables this session (v5):** S1-moderate T1/T2, S1-high T1/T2, S2-moderate T1/T2, S2-high T1/T2. Three were
-  played twice (S1-moderate-T2, S2-moderate-T2, S2-high-T1); the first attempts are kept. Both S1-high tables were
-  cut by the $25 per-table allowance at rounds 14 and 13; S1-moderate-T2 ended at round 11 (a database validation
-  error, cause unknown).
+  round's message) passed 8/9; every table from S1-moderate on played on v5. Holds per v5 table: 5, 0, 4, 4, 2, 3, 1,
+  0 (S3-T1 not read) — mostly the rescue's own joint count; a known defect.
+- **Played this session:** S1-moderate T1/T2, S1-high T1/T2, S2-moderate T1/T2, S2-high T1/T2, S3-T1. Three were
+  played twice (S1-moderate-T2, S2-moderate-T2, S2-high-T1; the first attempts kept). S1-high T1/T2 and S3-T1 were cut
+  by the $25 per-table allowance (after 13, 12 and 10 whole rounds); S1-moderate-T2 ended at round 11 (a database
+  validation error, cause unknown).
+- **Not scored:** S2-high-T2 (past round 3) and S3-T1 (past round 1). The Opus referee refused four times, each
+  category «cyber» (S2-high-T2 r4; S3-T1 r2, r3, r4). None was asked again or rephrased; the third in S3-T1's pass
+  tripped the circuit breaker. Both tables are read by hand only and kept out of the bets.
 - **App bug found and fixed** (`src/lib/gameplay/turn-engine.ts`, test `tests/game-party-2-table-fact.test.mjs`): an
   out-of-game answer that settled a «table fact» pinned it before committing; the pin raised the campaign's revision, so
-  the answer and any waiting game turn failed «conflict». Now pinned after the commit, and not while a card waits.
+  the answer and any game turn waiting at a card failed «conflict». Now pinned after the commit, never while a card waits.
+- **Harness changes:** the company frame's close (`company.ts` COMPANY_CLOSE), the table's closing line, the v5
+  reminder, the A7 replay test, a press that waits for background jobs and one resend on «conflict», the app's event
+  log kept per table, a judge's refusal leaving only its round unscored (the owner's amendment of 2026-11-09).
 - **Bets:** R0 held; R1 held (the high pair cut by the allowance); R2 held by hand; R3 held on its first half (3 of 4
-  tagged); R4 not testable (no S3); R5 held (exploratory); P-A7 lost on its count, second half held; P-mod held;
-  P-high held. Report: `docs/runs/game-party-2-report.md`.
-- **Spend:** $213.18 of $240 on OpenRouter (this session $170.66: tables $159.07, scoring $7.75, Step 1 tests $3.83);
-  OpenAI $0; Anthropic Console $0.
-- **Checks:** turn-path, loop and party suites 241 pass, 1 known skip; typecheck, zero-warning lint and build pass.
-- **Next step:** the owner's word in issue #1 — close the Mandate here, or say what to do with S2-high-T2's scoring and
-  S3-T1 (≈ $25 left under the ceiling).
+  tagged); R4 not testable; R5 held (exploratory); P-A7 lost on its count, second half held; P-mod held; P-high held.
+- **Spend:** $235.04 of $240 on OpenRouter (this session $192.51: tables $180.79, scoring $7.89, Step 1 tests $3.83); OpenAI $0; Anthropic Console $0.
+- **Checks:** complete test suite, typecheck, zero-warning lint and build — results in the final comment.
+- **Next step:** the owner's and the reader's sections of the report; the owner closes issue #1. S3-T2, or rescoring
+  the two unscored tables, would need a new Mandate (and a judge that does not refuse this content).
 
 ## Previous status (before the amendment of 2026-11-08)
 

@@ -5640,6 +5640,423 @@
       ],
       "checked": 3,
       "reading": "refined"
+    },
+    "tags": {
+      "rounds": {
+        "1": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 1,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": "Pell Dunmore",
+            "how": "proposal",
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three act together on Hesta Corl's letter-of-claim request for the deed box, with Pell's plan to collect it followed; guards are tense but no fight or danger to life is yet in play."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 1,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three present one shared claim on Hesta Corl's deed box, but no leader or plan is settled, guards block without drawing steel, and no one is in immediate danger."
+          },
+          "referee": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three press Hesta Corl's claim to the guards together, without proposing anything among themselves and without a fight."
+          },
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Sefa Marrin": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              },
+              "Pell Dunmore": {
+                "proposes": 0,
+                "accepts": 0,
+                "amends": 0,
+                "overrides": 0,
+                "care": null,
+                "heal": null,
+                "front": 0,
+                "scouts": 0,
+                "volunteers": 0,
+                "for": 0,
+                "parts": 0,
+                "addresses": [],
+                "model_sign": 0,
+                "person_sign": 0
+              }
+            },
+            "party": 1,
+            "around": "hook",
+            "conflict": 0,
+            "resolution": null,
+            "leader": null,
+            "how": null,
+            "left": null,
+            "by": null,
+            "threat": 0,
+            "reason": "All three press Hesta Corl's claim to the guards together, without proposing anything among themselves and without a fight."
+          },
+          "unresolved": false
+        }
+      },
+      "hold": {
+        "1": {
+          "a": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 1 is opening negotiation at the gate with no price named, no splitting, no agreements, and no failed act yet."
+          },
+          "b": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 1 is opening negotiation at the gate with no price named, no agreement, no failed act, and no one in danger."
+          },
+          "referee": null,
+          "final": {
+            "characters": {
+              "Bram Halloway": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Sefa Marrin": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              },
+              "Pell Dunmore": {
+                "price_named": null,
+                "pays": null,
+                "proposes_leaving": null,
+                "maintains": 0,
+                "info": null,
+                "info_quote": null,
+                "names_error": 0,
+                "rejoins": 0
+              }
+            },
+            "endangered": null,
+            "saved_by": [],
+            "agreements": [],
+            "breaks": null,
+            "disagreement": "none",
+            "lead_after": null,
+            "erred": null,
+            "split": 0,
+            "rejoin": 0,
+            "reason": "Round 1 is opening negotiation at the gate with no price named, no splitting, no agreements, and no failed act yet."
+          }
+        }
+      },
+      "judges": "Claude Haiku 5.5 twice (effort low), Claude Opus 5.5 (effort medium) on a disagreement",
+      "brief": "The situation the world placed: the three were hired to fetch a deed box from a warehouse locked and watched by a creditor's men, by nightfall, for 60 gold. The company's first decisive attempt to get in (from round 4 on) goes wrong for all three by the world's die — a bell-wire, a face recognised, noise — and the creditor's men come; the planned way is closed.",
+      "unscored": [
+        {
+          "round": 2,
+          "purpose": "hold r2 referee",
+          "model": "claude-opus-5-5",
+          "category": "cyber",
+          "at": "2026-11-10T00:22:52.232Z"
+        },
+        {
+          "round": 3,
+          "purpose": "round r3 referee",
+          "model": "claude-opus-5-5",
+          "category": "cyber",
+          "at": "2026-11-10T00:23:07.510Z"
+        },
+        {
+          "round": 4,
+          "purpose": "round r4 referee",
+          "model": "claude-opus-5-5",
+          "category": "cyber",
+          "at": "2026-11-10T00:23:16.147Z"
+        }
+      ]
     }
   },
   "stopped": "the openrouter cap of $238.1802 would be passed (spent $234.4883, this call at worst $1.8797)",
