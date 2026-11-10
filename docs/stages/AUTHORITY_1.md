@@ -1,6 +1,6 @@
 # Authority 1 — does a structured correction layer over an existing memory backend reduce stale actions, and is it the structure or the extra pass?
 
-Written 2026-11-10 00:2x LA from the reviewer's proposal (GPT-6, the owner's chat, two messages of 2026-11-10 00:05 and
+Written 2026-11-10 00:2x LA (families widened 00:2x on the owner's question) from the reviewer's proposal (GPT-6, the owner's chat, two messages of 2026-11-10 00:05 and
 00:10 LA) and the planner's answer. Her comparison with Letta, Mem0 and Zep stands (the planner verified DolphinBench —
 NeurIPS 2026, arXiv 2609.24971 — and did not verify the rest): background consolidation, bi-temporal facts, decay and
 action-based evaluation all exist. Time as such is not our distinction. What no one of them is shown to do is the thing
@@ -14,11 +14,14 @@ show on correction propagation and on unnecessary intervention, not on stale act
 the structure is theatre and the result says so.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
-**`claude/authority-1`** from `origin/claude/handoff`. One subject model for all arms: **DeepSeek V4 Pro** via
-OpenRouter (cheap, and the family whose knowing-doing gap OPEN_WORLD showed; a 10-scenario replay on Opus 5.5 if the
-ceiling allows). Memory backend: **Mem0 open-source, local mode**, with the same subject model as its memory LLM and a
+**`claude/authority-1`** from `origin/claude/handoff`. **Three subject families, each in all three arms: DeepSeek V4
+Pro, GPT-6.1 Sol, Claude Opus 5.5** (via OpenRouter, Sol pinned to OpenAI, no fallbacks). The owner's question
+(2026-11-10 00:13, «только дипсик хватит?») is the reason: a strong model's plain pass may find every dependency by
+itself and erase the structure's advantage; a weak one's may not — how much structure a model needs as permission was a
+family property in TONE_SPLIT_3, and it may be one here. Memory backend: **Mem0 open-source, local mode**, with the same subject model as its memory LLM and a
 local vector store — no Mem0 cloud key, nothing leaves the sandbox (if local mode needs a cloud key after all, stop and
-say so; `MEM0_API_KEY` would live in env, never in chat). **Ceiling $60.** Report `docs/runs/authority-1-report.md`.
+say so; `MEM0_API_KEY` would live in env, never in chat). **Ceiling $130**; if the projection passes it, Opus runs
+classes 3 and 4 only (chains and controls), stated in the report. Report `docs/runs/authority-1-report.md`.
 English, briefly. **Launch on the owner's word after the dry run.**
 
 ## The three arms (the reviewer's control, 00:10)
@@ -46,8 +49,8 @@ action is, what counts as an unnecessary change. Four classes of ten:
 3. **Chain.** A correction to A touches B, which touches C; D cites A but in a way the correction does not change.
 4. **Control.** A change event that touches nothing (a new fact beside, a rule restated, a correction of an item no
    decision used). The correct action is to change nothing and say so.
-Three repeats per scenario per arm (the model's variance), so 40 × 3 × 3 = 360 runs; a dry run of 4 scenarios × 3 arms
-on Haiku first, shown to the planner.
+Two repeats per scenario per arm per family (the model's variance), so 40 × 3 arms × 3 families × 2 = 720 runs; a dry
+run of 4 scenarios × 3 arms on Haiku first, shown to the planner.
 
 ## Measured (the reviewer's split: primary and guard)
 - **Primary.** *Stale-action rate*: the task is done on an item the truth table marks stale or revoked. *Correction
@@ -66,17 +69,20 @@ on Haiku first, shown to the planner.
 - **AU2:** correction propagation: C > B by ≥ 15 points, and C > A by ≥ 25 points. This is the bet the stage exists for.
 - **AU3:** unnecessary intervention: B > A (the plain pass makes the agent fiddle); C ≤ A on class 4.
 - **AU4:** cost: C costs no more than 1.5× B per run; latency within 2×.
-- **AU5 (exploratory):** on class 3 (chains), C's advantage over B is largest; on class 1 it is smallest.
+- **AU5:** the gap C − B on correction propagation **shrinks with the family's strength**: largest for DeepSeek,
+  smallest for Opus; the planner bets it stays ≥ 5 points even for Opus. If it vanishes for Opus, the layer is a
+  permission some families need and others do not — reported as a result, beside the Note-field ladder of TONE_SPLIT_3.
+- **AU6 (exploratory):** on class 3 (chains), C's advantage over B is largest; on class 1 it is smallest.
 Null allowed on every line. 40 scenarios are an engineering pilot: the report says so wherever it reports a rate.
 
 ## What this stage does not claim
 Nothing about Letta, Zep or Mem0's own benchmarks; nothing about our memory «being more accurate»; nothing about the
 other five mechanisms. If C wins, the sentence we may say is the reviewer's: *the layer reduced stale actions and
 improved correction propagation over the same memory backend, controlling for unnecessary interventions, latency and
-cost — on forty authored scenarios, one model, three repeats.*
+cost — on forty authored scenarios, three families, two repeats.*
 
 ## Done when
-Dry run shown; 360 runs or the ceiling; AU0–AU5 held / lost; the per-class tables; three full worked examples (one
+Dry run shown; 720 runs or the ceiling; AU0–AU6 held / lost; the per-class and per-family tables; three full worked examples (one
 chain where C and B differed, one control where B changed something, one where C was wrong); spend by door; the
 reviewer's and the owner's notes.
 
@@ -84,5 +90,5 @@ reviewer's and the owner's notes.
 «Read `docs/stages/AUTHORITY_1.md`. Branch `claude/authority-1` from `origin/claude/handoff`. Install Mem0 open-source in
 local mode beside the repo, pinned, never vendored; if local mode needs a cloud key, stop and say so. Write the 40
 scenarios with their truth tables and the three arms' prompts, hash them. Dry-run 4 scenarios × 3 arms on Haiku and show
-me one scenario's full trace per arm, then stop for my word and the bets. Ceiling $60; spend check before the paid run;
-402 stops; 429 bounded; refusals recorded. Then the 360 runs, scoring, report. Nothing to main. English, briefly.»
+me one scenario's full trace per arm, then stop for my word and the bets. Ceiling $130; spend check before each family;
+402 stops; 429 bounded; refusals recorded. Then the 720 runs (DeepSeek, Sol, Opus in that order), scoring, report. Nothing to main. English, briefly.»
