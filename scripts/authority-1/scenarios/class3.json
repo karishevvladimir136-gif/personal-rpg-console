@@ -1,0 +1,581 @@
+[
+  {
+    "id": "S3-01",
+    "class": 3,
+    "title": "Fundraiser dinner seating",
+    "owner": "Mira",
+    "now": "2026-10-20",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-02", "source": "Riverside Hall booking office", "text": "Riverside Hall's main room seats up to 80 guests at round tables of eight, and its step-free entrance is the side door on Tanner Lane."},
+      {"id": "F2", "kind": "state", "date": "2026-09-02", "source": "Riverside Hall booking office", "text": "Riverside Hall is free on Saturday 7 November from 17:00 to 23:30; the hire fee is 640 with a 200 deposit that is non-refundable once paid."},
+      {"id": "F3", "kind": "state", "date": "2026-09-04", "source": "RentCo price list", "text": "RentCo rents folding chairs at 2.10 each and round tables at 9.50 each, delivered the day before an event, minimum order 30 chairs."},
+      {"id": "F4", "kind": "state", "date": "2026-09-04", "source": "Mira", "text": "Last year's fundraiser guest list has 76 names, including the 6 committee members."},
+      {"id": "F5", "kind": "state", "date": "2026-09-05", "source": "Lumen Kitchen quote", "text": "Lumen Kitchen will cater a three-course dinner at 31 per cover, final numbers due 10 days before the event."},
+      {"id": "F6", "kind": "state", "date": "2026-09-05", "source": "Jo", "text": "Mira's sister Jo is vegetarian and will run the raffle table again."},
+      {"id": "F7", "kind": "state", "date": "2026-09-09", "source": "Grandad's carer, Petra", "text": "Grandad uses a wheelchair now and Petra can bring him to evening events if the entrance is step-free."},
+      {"id": "F8", "kind": "state", "date": "2026-09-03", "source": "Mira", "text": "The committee's float for the evening is 1,900, held in the club account."},
+      {"id": "F9", "kind": "state", "date": "2026-09-15", "source": "Tanner Lane residents' notice", "text": "Tanner Lane is closed to through traffic on weekdays until the end of November for pipe works; weekend access is normal."},
+      {"id": "F10", "kind": "state", "date": "2026-09-20", "source": "Jo", "text": "Jo has collected 14 raffle prizes so far, the top one a weekend at a cottage in the Dales."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Committee constitution", "text": "Any single payment over 500 from the club account needs a second committee signature."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Committee constitution", "text": "Invitations for a fundraiser go out at least four weeks before the event."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-06", "source": "Mira", "text": "Hold the fundraiser dinner at Riverside Hall on Saturday 7 November and pay the 200 deposit now.", "depends_on": ["F2", "F8"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-08", "source": "Mira", "text": "Invite all 76 people on last year's list to the dinner, seated.", "depends_on": ["F1", "F4"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-10", "source": "Mira", "text": "Ask Petra to bring Grandad in through the Tanner Lane side door.", "depends_on": ["F1", "F7"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-12", "source": "Mira", "text": "Order 76 chairs and 10 round tables from RentCo for delivery on Friday 6 November.", "depends_on": ["D2", "F3"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-12", "source": "Mira", "text": "Book Lumen Kitchen for 76 covers, with the vegetarian main as an option on every table.", "depends_on": ["D2", "F5", "F6"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-14", "source": "Mira", "text": "Jo runs the raffle at a separate table by the stage, not counted in the seating.", "depends_on": ["F6"]},
+      {"id": "D7", "kind": "decision", "date": "2026-09-30", "source": "Mira", "text": "Send the invitations by email on 1 October.", "depends_on": ["R2", "D1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-12", "due": "2026-10-20", "source": "Mira", "text": "When the RentCo order is placed, text the delivery slot to Sam, the hall caretaker.", "depends_on": ["D4"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-12", "due": "2026-10-28", "source": "Mira", "text": "Give Lumen Kitchen the final number of covers by 28 October.", "depends_on": ["D5"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-20", "due": "2026-11-01", "source": "Jo", "text": "Send Jo the printed raffle tickets by 1 November."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-10-16", "source": "Riverside Hall booking office", "text": "Correction from the hall after its fire inspection: the main room's seated limit is 56, not 80, for any event from 1 November. The Tanner Lane step-free side door is unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "RentCo need the final chair and table numbers for the dinner today. Place the order.",
+      "options": [
+        {"id": "a", "text": "76 chairs and 10 tables"},
+        {"id": "b", "text": "56 chairs and 7 tables"},
+        {"id": "c", "text": "80 chairs and 10 tables"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a", "c"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "The seated guest list is cut to at most 56 (the hall's new limit); the others are not seated invitees (waiting list or apology)."},
+        {"id": "D4", "direction": "The RentCo order becomes 56 chairs and 7 tables (not 76/10)."},
+        {"id": "D5", "direction": "Lumen Kitchen is booked for at most 56 covers, not 76."}
+      ],
+      "untouched": ["D1", "D3", "D6", "D7"],
+      "obligations_due": ["O1"],
+      "why": "The hall's seated limit fell from 80 to 56, so seating 76 guests (D2) is void, and the chair order (D4) and catering (D5) built on that number follow it down. The venue and date stand (deposit paid, D1), the step-free side door is explicitly unchanged (D3 cites F1 for the entrance only), the raffle table is outside the seating (D6), and the invitations already went (D7)."
+    }
+  },
+  {
+    "id": "S3-02",
+    "class": 3,
+    "title": "Wedding breakfast tables",
+    "owner": "Priya",
+    "now": "2026-11-03",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-10", "source": "Priya and Sam", "text": "Any booking over 1,000 is agreed by both Priya and Sam before it is confirmed."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-10", "source": "Priya and Sam", "text": "Every supplier gets final numbers by email, with Sam copied in."},
+      {"id": "F1", "kind": "state", "date": "2026-06-12", "source": "Hollins Barn events office", "text": "Hollins Barn is held for the wedding on Saturday 21 November: ceremony at 13:30 in the threshing room, wedding breakfast from 15:30 in the main barn, evening until midnight."},
+      {"id": "F2", "kind": "state", "date": "2026-06-12", "source": "Hollins Barn events office", "text": "The main barn takes up to 18 round tables of eight. The barn supplies all the chairs and one long trestle table that seats 14, but no round tables. The venue fee is 3,200 with a 1,000 deposit."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-14", "source": "Priya", "text": "Book Hollins Barn for Saturday 21 November and pay the 1,000 deposit.", "depends_on": ["F1", "F2", "R1"]},
+      {"id": "F3", "kind": "state", "date": "2026-06-19", "source": "Saffron & Salt quote", "text": "Saffron & Salt quote 58 per adult cover for a three-course wedding breakfast and 21 per child's meal; final numbers are due by 7 November."},
+      {"id": "D2", "kind": "decision", "date": "2026-06-22", "source": "Priya", "text": "Go with Saffron & Salt: three courses with the lamb main for adults, and their pasta-and-ice-cream menu for children.", "depends_on": ["F3", "R1"]},
+      {"id": "F4", "kind": "state", "date": "2026-06-26", "source": "Party Hire North price list", "text": "Party Hire North rent round tables that seat eight at 12 each, white linen included, delivered the day before and collected the Monday after."},
+      {"id": "F5", "kind": "state", "date": "2026-07-03", "source": "Bloom & Stem", "text": "Bloom & Stem charge 48 for a large table centrepiece and 22 for a small posy; their centrepiece orders close on 3 November."},
+      {"id": "F6", "kind": "state", "date": "2026-07-10", "source": "Sam", "text": "Sam's college friend Jonah runs Captain Confetti children's parties and can keep up to 15 children busy for two hours for 140."},
+      {"id": "F7", "kind": "state", "date": "2026-07-18", "source": "Anjali", "text": "Priya's cousin Anjali will DJ the evening for free if she can use the barn's sound system."},
+      {"id": "F8", "kind": "state", "date": "2026-07-20", "source": "Hollins Barn events office", "text": "The barn's own sound system is free for wedding parties to use; amplified music must stop at 23:30."},
+      {"id": "D3", "kind": "decision", "date": "2026-07-21", "source": "Priya", "text": "Anjali DJs the evening on the barn's sound system, last song at 23:15.", "depends_on": ["F7", "F8"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-07-21", "due": "2026-11-14", "source": "Priya", "text": "Send Anjali the first-dance song and the do-not-play list by 14 November.", "depends_on": ["D3"]},
+      {"id": "F9", "kind": "state", "date": "2026-08-02", "source": "Sugarloaf Bakes", "text": "Sugarloaf Bakes has the order for a three-tier lemon and elderflower cake, delivered to the barn at 11:00 on the day."},
+      {"id": "F10", "kind": "state", "date": "2026-08-15", "source": "Kings Arms, Hollinsby", "text": "The Kings Arms is holding 20 rooms for wedding guests at 95 a night; guests book directly with the code HOLLINS."},
+      {"id": "F11", "kind": "state", "date": "2026-08-25", "source": "Priya", "text": "Priya's last dress fitting is on Saturday 31 October at Ivory Lane Bridal in Leeds."},
+      {"id": "F12", "kind": "state", "date": "2026-09-05", "source": "Hollinsby parish council", "text": "Hollinsby's Christmas market fills the village green on Saturday 21 November; the lane to Hollins Barn is not affected."},
+      {"id": "F13", "kind": "state", "date": "2026-09-18", "source": "Hollins Barn events office", "text": "The registrar, Mrs Dalby, will meet Priya and Sam at the barn at 13:00 on the day."},
+      {"id": "F14", "kind": "state", "date": "2026-09-26", "source": "Tunde", "text": "Sam's brother Tunde is best man and will give his speech after the main course."},
+      {"id": "F15", "kind": "state", "date": "2026-10-12", "source": "RSVP tracker", "text": "RSVPs have closed: 104 adults and 12 children are coming to the wedding breakfast, and 7 of the adults have chosen the vegetarian main."},
+      {"id": "F16", "kind": "state", "date": "2026-10-12", "source": "RSVP tracker", "text": "A further 41 guests have accepted for the evening only."},
+      {"id": "D4", "kind": "decision", "date": "2026-10-13", "source": "Priya", "text": "Confirm Saffron & Salt for 104 adult covers and 12 children's meals.", "depends_on": ["F15", "D2", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-13", "source": "Priya", "text": "Tell Saffron & Salt that 7 adults take the vegetarian main and the rest the lamb.", "depends_on": ["F15", "D2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-13", "due": "2026-11-07", "source": "Priya", "text": "Email Saffron & Salt the final numbers and the dietary list by 7 November.", "depends_on": ["D4", "D5", "R2"]},
+      {"id": "D6", "kind": "decision", "date": "2026-10-14", "source": "Priya", "text": "Book Jonah's Captain Confetti for the 12 children from 17:00 to 19:00, while the adults are at dinner.", "depends_on": ["F15", "F6", "F1"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-15", "source": "Priya", "text": "Hire 13 round tables of eight from Party Hire North to seat the 104 adult covers; the 12 children sit together at the barn's trestle table.", "depends_on": ["D4", "F2", "F4"]},
+      {"id": "D8", "kind": "decision", "date": "2026-10-16", "source": "Priya", "text": "Order from Bloom & Stem one large centrepiece for each round table, 13 in all, and 2 small posies for the children's trestle table.", "depends_on": ["D7", "F5"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-16", "due": "2026-11-03", "source": "Priya", "text": "When the centrepiece order is placed, email Gail at Hollins Barn the florist's delivery time, with Sam copied in.", "depends_on": ["D8", "R2"]},
+      {"id": "F17", "kind": "state", "date": "2026-10-20", "source": "Dale Cabs", "text": "Dale Cabs have two eight-seat minibuses free from 23:00 on 21 November for runs back to Hollinsby."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-11-02", "source": "RSVP tracker (Sam)", "text": "Correction to the RSVP count: the Adeyemi family's eight replies were entered twice, so 96 adults are coming to the wedding breakfast, not 104. The 12 children and the 7 vegetarian adults are unchanged.", "revokes": ["F15"]},
+    "task": {
+      "text": "Bloom & Stem close the centrepiece order today. Place it for the wedding.",
+      "options": [
+        {"id": "a", "text": "13 large centrepieces and 2 small posies"},
+        {"id": "b", "text": "12 large centrepieces and no posies"},
+        {"id": "c", "text": "12 large centrepieces and 2 small posies"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["F15"],
+      "touched": [
+        {"id": "D4", "direction": "Saffron & Salt are confirmed for 96 adult covers (not 104) plus the 12 children's meals."},
+        {"id": "D7", "direction": "Party Hire North order becomes 12 round tables of eight for the 96 adult covers; the children keep the barn's trestle table."},
+        {"id": "D8", "direction": "Bloom & Stem order becomes 12 large centrepieces plus the 2 small posies for the children's table."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D5", "D6"],
+      "obligations_due": ["O1"],
+      "why": "Eight adults were counted twice, so the caterer booking (D4) falls from 104 to 96 adult covers; the round tables built on those covers (D7) fall from 13 to 12, and the large centrepieces built on the tables (D8) from 13 to 12. The children's trestle table and its 2 posies, the 7 vegetarian mains (D5) and the children's entertainer (D6) rest on figures the correction states are unchanged, and the venue, menu and DJ (D1-D3) do not depend on the adult count."
+    }
+  },
+  {
+    "id": "S3-03",
+    "class": 3,
+    "title": "Kitchen units order",
+    "owner": "Tomasz",
+    "now": "2026-10-09",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-08-28", "source": "Tomasz and Eva", "text": "Renovation orders go on the joint renovation card, never on a personal card."},
+      {"id": "R2", "kind": "rule", "date": "2026-08-28", "source": "Tomasz and Eva", "text": "Deliveries come to the side gate while the hall floor is being laid."},
+      {"id": "F1", "kind": "state", "date": "2026-09-01", "source": "Hartwell Kitchens catalogue", "text": "Hartwell Kitchens' Shaker range has 600 mm base units at 145, 600 mm wall cabinets at 110 and a 2.25 m tall larder unit at 390; delivery is three weeks from order."},
+      {"id": "F2", "kind": "state", "date": "2026-09-03", "source": "Tomasz, first measure", "text": "The kitchen's back wall measures 3.65 m from the corner to the door frame; the window in it starts 60 cm from the corner and is 60 cm wide; the ceiling is 2.40 m high throughout."},
+      {"id": "F3", "kind": "state", "date": "2026-09-05", "source": "Aled, kitchen fitter", "text": "Aled can fit the kitchen in the week of 2 November if the units are on site by Friday 30 October."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-06", "source": "Tomasz", "text": "Go with Hartwell's Shaker range in sage green.", "depends_on": ["F1"]},
+      {"id": "F4", "kind": "state", "date": "2026-09-08", "source": "Eva", "text": "Eva wants the splashback and the window sill tiled in the same deep green."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-10", "source": "Tomasz", "text": "Run six 600 mm base units along the back wall with a 5 cm filler at the door end, the sink in the second unit from the corner, under the window.", "depends_on": ["F2", "F1", "D1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-10", "source": "Tomasz", "text": "Put the 2.25 m tall larder unit on the side wall next to the fridge, where it clears the 2.40 m ceiling.", "depends_on": ["F2", "F1", "D1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-12", "source": "Tomasz", "text": "Hang a wall cabinet over every back-wall base unit except the sink unit under the window: five wall cabinets.", "depends_on": ["D2", "F1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-12", "due": "2026-10-09", "source": "Tomasz", "text": "Once the Hartwell order is placed, text Aled the delivery date.", "depends_on": ["D4"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-14", "source": "Tomasz", "text": "Tile the splashback and window sill in Eva's deep green from Tile Depot.", "depends_on": ["F4"]},
+      {"id": "F5", "kind": "state", "date": "2026-09-15", "source": "Bryn's Skips", "text": "Bryn's Skips hire a 6-yard skip for a week at 220, council permit included."},
+      {"id": "D6", "kind": "decision", "date": "2026-09-16", "source": "Tomasz", "text": "Hire a skip from Bryn's Skips for the fitting week of 2 November.", "depends_on": ["F5", "F3"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-16", "due": "2026-10-23", "source": "Tomasz", "text": "Book the skip with Bryn's Skips by 23 October.", "depends_on": ["D6"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-20", "source": "Marta, electrician", "text": "Marta will move the cooker socket and add one for the extractor hood on Thursday 29 October."},
+      {"id": "F7", "kind": "state", "date": "2026-09-25", "source": "Gas engineer", "text": "The boiler was serviced on 24 September and stays in the utility cupboard."},
+      {"id": "F8", "kind": "state", "date": "2026-10-01", "source": "Ashby recycling centre", "text": "The recycling centre takes old kitchen carcasses free of charge on weekdays."},
+      {"id": "F9", "kind": "state", "date": "2026-10-02", "source": "Kev, floor fitter", "text": "The hall floor is being laid on 19 and 20 October."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-10-08", "source": "Aled, kitchen fitter", "text": "Correction from Aled's site measure: the back wall is 3.05 m from the corner to the door frame, not 3.65 m; the first measure ran on into the old pantry doorway. The window position and the 2.40 m ceiling are unchanged.", "revokes": ["F2"]},
+    "task": {
+      "text": "Hartwell need the kitchen units order today if it's to arrive by 30 October. Place it.",
+      "options": [
+        {"id": "a", "text": "5 base units, 4 wall cabinets and the tall larder unit"},
+        {"id": "b", "text": "6 base units, 5 wall cabinets and the tall larder unit"},
+        {"id": "c", "text": "5 base units, 4 wall cabinets and no larder unit"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F2"],
+      "touched": [
+        {"id": "D2", "direction": "Five 600 mm base units along the 3.05 m back wall with the 5 cm filler; the sink stays in the second unit, under the window."},
+        {"id": "D4", "direction": "Four wall cabinets: one over each of the five base units except the sink unit."}
+      ],
+      "untouched": ["D1", "D3", "D5", "D6"],
+      "obligations_due": ["O1"],
+      "why": "The back wall is 60 cm shorter, so it takes five base units, not six (D2), and the wall cabinets that hang over those units (D4) drop from five to four. The tall larder unit (D3) cites the measure only for the ceiling height, which is unchanged, and stands on the side wall; the range, tiles and skip do not depend on the wall length."
+    }
+  },
+  {
+    "id": "S3-04",
+    "class": 3,
+    "title": "Lisbon talk and cat-sitting",
+    "owner": "Helen",
+    "now": "2026-11-05",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-15", "source": "Helen", "text": "Pepper is never left alone overnight: someone comes in every evening Helen is away."},
+      {"id": "R2", "kind": "rule", "date": "2026-08-01", "source": "Northgate Analytics travel policy", "text": "Staff fly out the day before any talk or workshop they give abroad."},
+      {"id": "R3", "kind": "rule", "date": "2026-08-01", "source": "Northgate Analytics travel policy", "text": "Hotels abroad are booked through the travel portal, at up to 160 a night."},
+      {"id": "F1", "kind": "state", "date": "2026-08-10", "source": "Ewan", "text": "Helen's brother Ewan has a spare key and checks on the house whenever it is empty."},
+      {"id": "F2", "kind": "state", "date": "2026-08-18", "source": "Lisbon Data Summit programme", "text": "The Lisbon Data Summit runs from Tuesday 17 to Thursday 19 November at the Centro de Congressos in Belém; Helen's talk is on Thursday 19 November at 15:00."},
+      {"id": "F3", "kind": "state", "date": "2026-08-18", "source": "Lisbon Data Summit speaker office", "text": "Speakers get a free three-day pass; the closing dinner is on Thursday 19 November at 19:30."},
+      {"id": "F4", "kind": "state", "date": "2026-08-20", "source": "Gareth", "text": "Gareth wants Helen at all three days of the summit and at the closing dinner, to meet the Porto clients."},
+      {"id": "F5", "kind": "state", "date": "2026-08-21", "source": "easyJet timetable", "text": "easyJet flies Bristol to Lisbon every day at 07:10, landing at 10:05, and Lisbon to Bristol every day at 10:50, landing at 13:30."},
+      {"id": "F6", "kind": "state", "date": "2026-08-21", "source": "Hotel Miradouro", "text": "Hotel Miradouro, a ten-minute walk from the Belém venue, has standard rooms at 128 a night throughout the week of 16 November."},
+      {"id": "D1", "kind": "decision", "date": "2026-08-22", "source": "Helen", "text": "Accept the invitation to speak and register for the free three-day speaker pass.", "depends_on": ["F2", "F3"]},
+      {"id": "F7", "kind": "state", "date": "2026-08-23", "source": "Lottie", "text": "Lottie from number 14 looks after Pepper for 15 an evening and is free every evening in November except Saturdays."},
+      {"id": "F8", "kind": "state", "date": "2026-08-23", "source": "Helen", "text": "Pepper has one pouch of food in the evening and must be shut in by 21:00."},
+      {"id": "D2", "kind": "decision", "date": "2026-08-24", "source": "Helen", "text": "Stay at Hotel Miradouro, within walking distance of the Belém venue.", "depends_on": ["F2", "F6", "R3"]},
+      {"id": "D3", "kind": "decision", "date": "2026-08-24", "source": "Helen", "text": "Stay for all three summit days and the closing dinner, and fly home on the 10:50 on Friday 20 November.", "depends_on": ["F2", "F3", "F4", "F5"]},
+      {"id": "D4", "kind": "decision", "date": "2026-08-25", "source": "Helen", "text": "Fly out on the 07:10 on Wednesday 18 November, the day before the talk.", "depends_on": ["F2", "F5", "R2"]},
+      {"id": "D5", "kind": "decision", "date": "2026-08-26", "source": "Helen", "text": "Book Hotel Miradouro through the portal for the nights of Wednesday 18 and Thursday 19 November, checking out on Friday 20.", "depends_on": ["D2", "D3", "D4", "R3"]},
+      {"id": "D6", "kind": "decision", "date": "2026-08-27", "source": "Helen", "text": "Lottie comes in for Pepper on the evenings of Wednesday 18 and Thursday 19 November, the nights Helen is at the hotel.", "depends_on": ["D5", "F7", "F8", "R1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-08-27", "due": "2026-11-05", "source": "Helen", "text": "Once Lottie's evenings are confirmed with her, text the dates to Ewan.", "depends_on": ["D6", "F1"]},
+      {"id": "F9", "kind": "state", "date": "2026-08-28", "source": "First Bus", "text": "The Airport Flyer runs from Temple Meads to Bristol Airport every 10 minutes from 04:30."},
+      {"id": "D7", "kind": "decision", "date": "2026-08-29", "source": "Helen", "text": "Take the Airport Flyer from Temple Meads rather than drive to the airport.", "depends_on": ["F9"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-01", "source": "Northgate office manager", "text": "The Bristol office moves to the second floor on Friday 27 November; desks must be cleared by the 26th."},
+      {"id": "F11", "kind": "state", "date": "2026-09-03", "source": "Gareth", "text": "Gareth is on leave from 16 to 20 November; Priyanka signs off travel claims while he is away."},
+      {"id": "F12", "kind": "state", "date": "2026-09-10", "source": "Helen", "text": "Helen's passport is valid until March 2031."},
+      {"id": "F13", "kind": "state", "date": "2026-09-15", "source": "Lisbon Data Summit speaker office", "text": "Talks are 30 minutes including questions; final slides go on the summit portal by 10 November."},
+      {"id": "F14", "kind": "state", "date": "2026-09-15", "source": "Lisbon Data Summit app", "text": "1,200 people have registered for the summit so far."},
+      {"id": "D8", "kind": "decision", "date": "2026-09-16", "source": "Helen", "text": "Cut the talk to 22 slides to leave 8 minutes for questions.", "depends_on": ["F13"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-16", "due": "2026-11-10", "source": "Helen", "text": "Upload the final slides to the summit portal by 10 November.", "depends_on": ["D8", "F13"]},
+      {"id": "F15", "kind": "state", "date": "2026-09-22", "source": "Northgate IT", "text": "Helen's laptop is booked in for its IT refresh on Monday 23 November."},
+      {"id": "F16", "kind": "state", "date": "2026-10-05", "source": "Lisbon transport notice", "text": "Lisbon's metro green line is closed for works at weekends in November; trams to Belém run as normal."},
+      {"id": "F17", "kind": "state", "date": "2026-10-08", "source": "Northgate HR", "text": "The office Christmas lunch is on Friday 11 December at the Glassboat."},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-08", "due": "2026-11-20", "source": "Helen", "text": "Send HR a Christmas lunch menu choice by 20 November.", "depends_on": ["F17"]},
+      {"id": "F18", "kind": "state", "date": "2026-10-12", "source": "Gareth", "text": "The Porto clients would like ten printed copies of the case study booklet."},
+      {"id": "D9", "kind": "decision", "date": "2026-10-13", "source": "Helen", "text": "Take ten printed case study booklets for the Porto clients.", "depends_on": ["F18", "F4"]},
+      {"id": "F19", "kind": "state", "date": "2026-10-13", "source": "Northgate print room", "text": "The print room needs five working days for colour booklets."},
+      {"id": "O4", "kind": "obligation", "date": "2026-10-14", "due": "2026-11-09", "source": "Helen", "text": "Send the booklet to the print room by 9 November.", "depends_on": ["D9", "F19"]},
+      {"id": "F20", "kind": "state", "date": "2026-10-20", "source": "Helen", "text": "Scaffolding goes up next door at number 12 on Monday 23 November for a loft conversion."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-11-04", "source": "Lisbon Data Summit programme committee", "text": "Programme correction: Helen's talk is on Tuesday 17 November at 15:00, not Thursday 19 November. The summit dates, the Belém venue and the Thursday closing dinner are unchanged.", "revokes": ["F2"]},
+    "task": {
+      "text": "Lottie has asked which evenings she's coming in for Pepper this month, so she can plan her shifts. Confirm them with her now.",
+      "options": [
+        {"id": "a", "text": "Monday 16 to Wednesday 18 November"},
+        {"id": "b", "text": "Monday 16 to Thursday 19 November"},
+        {"id": "c", "text": "Wednesday 18 and Thursday 19 November"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["c"],
+      "unnecessary_options": ["a"],
+      "stale_items": ["F2"],
+      "touched": [
+        {"id": "D4", "direction": "Fly out on the 07:10 on Monday 16 November, the day before the Tuesday talk."},
+        {"id": "D5", "direction": "Hotel Miradouro for the four nights of Monday 16 to Thursday 19 November, checking out on Friday 20."},
+        {"id": "D6", "direction": "Lottie comes on the evenings of Monday 16, Tuesday 17, Wednesday 18 and Thursday 19 November."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D7", "D8", "D9"],
+      "obligations_due": ["O1"],
+      "why": "The talk moves from Thursday to Tuesday, so the day-before rule puts the outbound flight on Monday 16 (D4); the hotel nights built on the flight become Monday to Thursday (D5), and Lottie's evenings follow the nights away (D6). The Friday 20 return (D3) rests on the unchanged summit dates, the closing dinner and Gareth's wish for all three days, so the Thursday evening stays and cutting it (option a) is unnecessary; the speaker pass and hotel choice (D1, D2) cite the programme only for its dates and venue."
+    }
+  },
+  {
+    "id": "S3-05",
+    "class": 3,
+    "title": "Sugar-glass bottles",
+    "owner": "Dev",
+    "now": "2026-09-29",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-07-20", "source": "Lyceum Players committee", "text": "Any single prop costing over 50 needs the treasurer's OK before it is bought."},
+      {"id": "R2", "kind": "rule", "date": "2026-07-20", "source": "Dev, props manager", "text": "Breakable props are bought new for every performance and for the dress rehearsal; nothing smashed is reused."},
+      {"id": "F1", "kind": "state", "date": "2026-08-25", "source": "Lyceum Players committee", "text": "'The Vicarage Murders' plays the Lyceum Studio six times: evenings Wednesday 14 to Saturday 17 October at 19:30, a schools' matinee on Thursday 15 at 13:30 and a matinee on Saturday 17 at 14:30. The dress rehearsal is on Tuesday 13 October."},
+      {"id": "F2", "kind": "state", "date": "2026-09-02", "source": "StageBreak catalogue", "text": "StageBreak sell sugar-glass wine bottles at 14 each and a soft rubber candlestick at 55; orders arrive within 10 days."},
+      {"id": "F3", "kind": "state", "date": "2026-09-04", "source": "Bev, Lyceum Studio manager", "text": "The Lyceum Studio has a lockable props cupboard in the wings that a visiting company can use for its whole run."},
+      {"id": "F4", "kind": "state", "date": "2026-09-07", "source": "Ruth, costumes", "text": "Ruth has found a 1940s cassock for the vicar at the Oxfam shop in Hebden Bridge for 12."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-08", "source": "Dev", "text": "Keep the props in the Lyceum's lockable cupboard from the dress rehearsal on Tuesday 13 October until after the last show on Saturday 17 October.", "depends_on": ["F1", "F3"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-08", "due": "2026-10-09", "source": "Dev", "text": "Give Bev the names of the two crew who will hold the props cupboard keys by 9 October.", "depends_on": ["D1"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-09", "source": "Dev", "text": "Buy Ruth's cassock for the vicar.", "depends_on": ["F4"]},
+      {"id": "F5", "kind": "state", "date": "2026-09-10", "source": "Colin, treasurer", "text": "Colin has OK'd up to 60 for the murder weapon in Act 2."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-11", "source": "Dev", "text": "Buy StageBreak's rubber candlestick for the murder in Act 2.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-12", "source": "Dev", "text": "The bottle is smashed for real at every performance and at the dress rehearsal, so the show needs 7 sugar-glass bottles.", "depends_on": ["F1", "F2", "R2"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-14", "source": "Dev", "text": "Put the 7 sugar-glass bottles and the rubber candlestick on one StageBreak order, delivered to the Lyceum by Friday 9 October.", "depends_on": ["D4", "D3", "F2"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-14", "due": "2026-09-29", "source": "Dev", "text": "When the StageBreak order is placed, tell Bev the delivery day so someone at the Lyceum can sign for it.", "depends_on": ["D5"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-18", "source": "Arun", "text": "Arun can drive the props van on the day of the dress rehearsal and at the Sunday get-out."},
+      {"id": "F7", "kind": "state", "date": "2026-09-22", "source": "Lyceum Players committee", "text": "Tickets are 12, or 9 for members, from the Hebden Bridge box office."}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-09-28", "source": "Lyceum Players committee", "text": "Both matinees are cancelled: the schools' matinee on Thursday 15 had too few bookings, and the Studio is needed for a wedding on the Saturday afternoon. The four evening performances, Wednesday 14 to Saturday 17 October, and the dress rehearsal on Tuesday 13 are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "StageBreak need our props order today to get it to the Lyceum by the 9th. Place it.",
+      "options": [
+        {"id": "a", "text": "7 sugar-glass bottles and the rubber candlestick"},
+        {"id": "b", "text": "4 sugar-glass bottles and the rubber candlestick"},
+        {"id": "c", "text": "6 sugar-glass bottles and the rubber candlestick"},
+        {"id": "d", "text": "5 sugar-glass bottles and the rubber candlestick"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["d"],
+      "stale_options": ["a", "c"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D4", "direction": "5 sugar-glass bottles: one for each of the four evening performances and one for the dress rehearsal."},
+        {"id": "D5", "direction": "The StageBreak order is 5 sugar-glass bottles plus the rubber candlestick, for delivery by Friday 9 October."}
+      ],
+      "untouched": ["D1", "D2", "D3"],
+      "obligations_due": ["O1"],
+      "why": "With both matinees gone the run is four performances, and with the dress rehearsal that is 5 smashes, not 7 (D4); the StageBreak order built on that count (D5) follows. The cupboard booking (D1) cites the run only for its first and last dates, which are unchanged, and the candlestick and cassock are reusable, not bought per show. Option b drops the dress-rehearsal bottle; option c is the old six-performance count."
+    }
+  },
+  {
+    "id": "S3-06",
+    "class": 3,
+    "title": "Regatta start and briefing",
+    "owner": "Agnes",
+    "now": "2026-08-25",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Larkmouth SC sailing instructions", "text": "Racing starts no earlier than two hours before high water, when the harbour bar becomes passable, and every boat must be back inside the bar by two hours after high water."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Larkmouth SC sailing instructions", "text": "The competitors' briefing is held in the clubhouse one hour before the first warning signal."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Larkmouth SC committee", "text": "Any event with more than 30 boats has at least three safety boats on the water."},
+      {"id": "F1", "kind": "state", "date": "2026-06-10", "source": "Larkmouth SC committee", "text": "The club regatta is on Saturday 29 August for Lasers and RS200s; entries close on 21 August."},
+      {"id": "F2", "kind": "state", "date": "2026-06-18", "source": "Harbour Café", "text": "Harbour Café opens at 07:30 at weekends and will deliver bacon rolls at 3.50 each, and tea urns serving 30 at 25 each, to the dinghy park."},
+      {"id": "F3", "kind": "state", "date": "2026-06-25", "source": "Larkmouth SC committee", "text": "The clubhouse showers are being retiled in the first week of August."},
+      {"id": "F4", "kind": "state", "date": "2026-07-05", "source": "Dan, bosun", "text": "The club has three working safety RIBs; the fourth is away for engine repair until October."},
+      {"id": "F5", "kind": "state", "date": "2026-07-12", "source": "Agnes", "text": "Agnes's own Laser, Kittiwake, needs a new mainsheet before the regatta."},
+      {"id": "D1", "kind": "decision", "date": "2026-07-13", "source": "Agnes", "text": "Buy Kittiwake's new mainsheet at Larkmouth Chandlery.", "depends_on": ["F5"]},
+      {"id": "F6", "kind": "state", "date": "2026-07-15", "source": "RYA newsletter", "text": "The RYA's regional race officer course runs in Plymouth on 10 October."},
+      {"id": "F7", "kind": "state", "date": "2026-07-20", "source": "Larkmouth harbour master", "text": "Tide notice for Saturday 29 August: high water at Larkmouth is at 14:10, and the outer race area off Gull Point is clear of shipping all day."},
+      {"id": "D2", "kind": "decision", "date": "2026-07-21", "source": "Agnes", "text": "Set the first warning signal for 12:10 on Saturday 29 August, as soon as the bar opens.", "depends_on": ["F7", "R1", "F1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-07-22", "source": "Agnes", "text": "Hold the competitors' briefing in the clubhouse at 11:10.", "depends_on": ["D2", "R2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-07-22", "due": "2026-08-25", "source": "Agnes", "text": "Once entries have closed, put the briefing time up on the clubhouse board and email it to every entrant.", "depends_on": ["D3"]},
+      {"id": "F8", "kind": "state", "date": "2026-07-28", "source": "Gull Point Trust", "text": "Gull Point Trust lets the club lay racing marks off the point as long as they are lifted the same day."},
+      {"id": "F9", "kind": "state", "date": "2026-07-28", "source": "Gwen, race officer", "text": "Gwen will run the racing from the committee boat Merlin and wants three races of about 40 minutes."},
+      {"id": "D4", "kind": "decision", "date": "2026-07-29", "source": "Agnes", "text": "Lay the three courses in the outer race area off Gull Point and lift the marks the same afternoon.", "depends_on": ["F7", "F8", "F9"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-07-29", "due": "2026-08-28", "source": "Agnes", "text": "Get Gull Point Trust's permission for the marks in writing by 28 August.", "depends_on": ["D4"]},
+      {"id": "D5", "kind": "decision", "date": "2026-07-30", "source": "Agnes", "text": "Have Harbour Café bring the bacon rolls and tea urns to the dinghy park at 10:40, half an hour before the briefing.", "depends_on": ["D3", "F2"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-07-30", "due": "2026-08-25", "source": "Agnes", "text": "Confirm the delivery time and the order with Harbour Café by 25 August.", "depends_on": ["D5"]},
+      {"id": "F10", "kind": "state", "date": "2026-08-03", "source": "Larkmouth town council", "text": "The town carnival is on Sunday 30 August, and the harbour car park is closed that day."},
+      {"id": "F11", "kind": "state", "date": "2026-08-12", "source": "Agnes", "text": "The club's starting hooter is back from Marine Electrics and working."},
+      {"id": "F12", "kind": "state", "date": "2026-08-15", "source": "Larkmouth lifeboat station", "text": "The lifeboat crew will exercise off Gull Point from 19:00 on Saturday 29 August."},
+      {"id": "F13", "kind": "state", "date": "2026-08-18", "source": "Gwen, race officer", "text": "Merlin's new VHF radio is fitted and tested."},
+      {"id": "F14", "kind": "state", "date": "2026-08-22", "source": "Moira, entries secretary", "text": "Entries have closed at 38 boats, 26 Lasers and 12 RS200s, which is 50 sailors in all."},
+      {"id": "D6", "kind": "decision", "date": "2026-08-23", "source": "Agnes", "text": "Order 60 bacon rolls and two tea urns: a roll for each of the 50 sailors and 10 for helpers.", "depends_on": ["F14", "F2"]},
+      {"id": "D7", "kind": "decision", "date": "2026-08-23", "source": "Agnes", "text": "Put all three working RIBs out as safety boats, crewed by Dan, Sunita and Callum.", "depends_on": ["F14", "F4", "R3"]}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-08-24", "source": "Larkmouth harbour master", "text": "Correction to the tide notice for Saturday 29 August: high water at Larkmouth is at 11:40, not 14:10; the printed notice had a typing error. The outer race area off Gull Point is clear of shipping all day, as before.", "revokes": ["F7"]},
+    "task": {
+      "text": "Harbour Café want their delivery time for Saturday today, and the briefing time has to go up on the clubhouse board. Sort out both.",
+      "options": [
+        {"id": "a", "text": "Briefing at 08:40; café delivery at 08:10"},
+        {"id": "b", "text": "Briefing at 11:10; café delivery at 10:40"},
+        {"id": "c", "text": "Briefing at 08:40; café delivery at 10:40"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b", "c"],
+      "unnecessary_options": [],
+      "stale_items": ["F7"],
+      "touched": [
+        {"id": "D2", "direction": "First warning signal at 09:40, two hours before the 11:40 high water."},
+        {"id": "D3", "direction": "Competitors' briefing in the clubhouse at 08:40."},
+        {"id": "D5", "direction": "Harbour Café delivers the rolls and urns to the dinghy park at 08:10."}
+      ],
+      "untouched": ["D1", "D4", "D6", "D7"],
+      "obligations_due": ["O1", "O2"],
+      "why": "High water is two and a half hours earlier, so the bar opens and the first warning moves to 09:40 (D2); the briefing an hour before it moves to 08:40 (D3), and the café delivery half an hour before the briefing moves to 08:10 (D5), which the café's 07:30 opening allows. The course area (D4) cites the tide notice only for the race area, which is unchanged; the roll count (D6) and safety boats (D7) rest on the entries, not the tide. Option c updates the briefing but leaves the café on the old time."
+    }
+  },
+  {
+    "id": "S3-07",
+    "class": 3,
+    "title": "October room sheet",
+    "owner": "Rafael",
+    "now": "2026-09-04",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-15", "source": "Marguerite, practice manager", "text": "Rooms are booked a month at a time; each month's room sheet closes on the first Friday of the month before."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-15", "source": "Marguerite, practice manager", "text": "Sessions run 08:30 to 12:30 and 13:30 to 16:30, one room per clinician per session; admin time is spent in the shared office upstairs, not in a clinic room."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-15", "source": "Marguerite, practice manager", "text": "Whenever an afternoon clinic runs, a named receptionist is rota'd to the front desk for it."},
+      {"id": "F1", "kind": "state", "date": "2026-07-01", "source": "Elm Street rooms list", "text": "Room 2, which has a sink and a couch, is free on Monday mornings and on Tuesday and Wednesday afternoons; the midwives have it all day Thursday."},
+      {"id": "F2", "kind": "state", "date": "2026-07-01", "source": "Elm Street rooms list", "text": "Rooms 1 and 3 are the GPs' consulting rooms, Room 5 is let to the hearing-aid service every weekday, and Room 6 has no sink."},
+      {"id": "F3", "kind": "state", "date": "2026-07-01", "source": "Elm Street rooms list", "text": "Room 4, the meeting room, seats 12 and is free on Thursday mornings."},
+      {"id": "F4", "kind": "state", "date": "2026-07-06", "source": "Leo", "text": "Leo works the Elm Street front desk Monday to Thursday, 08:00 to 16:30; Bea covers Fridays."},
+      {"id": "F5", "kind": "state", "date": "2026-07-14", "source": "Elm Street estates", "text": "The fire alarm is tested every Monday at 09:00 and sounds for about two minutes."},
+      {"id": "F6", "kind": "state", "date": "2026-07-20", "source": "Elm Street HR", "text": "Jo Kemp, practice nurse, works at Elm Street on Mondays and Wednesdays and at the Northfield branch on Fridays, 08:30 to 16:30 each day."},
+      {"id": "F7", "kind": "state", "date": "2026-07-21", "source": "Northfield branch manager", "text": "Northfield keeps its Room 1 for Jo every Friday, and Northfield's own reception covers her sessions there."},
+      {"id": "D1", "kind": "decision", "date": "2026-07-22", "source": "Rafael", "text": "Jo runs her Monday morning clinic at Elm Street, 08:30 to 12:30.", "depends_on": ["F6", "R2"]},
+      {"id": "D2", "kind": "decision", "date": "2026-07-22", "source": "Rafael", "text": "Jo runs her afternoon clinic at Elm Street on Wednesdays, 13:30 to 16:30, and spends Wednesday mornings on admin.", "depends_on": ["F6", "R2"]},
+      {"id": "D3", "kind": "decision", "date": "2026-07-23", "source": "Rafael", "text": "Jo's Friday sessions stay in Northfield's Room 1.", "depends_on": ["F6", "F7"]},
+      {"id": "D4", "kind": "decision", "date": "2026-07-24", "source": "Rafael", "text": "Book Room 2 for Jo on Monday mornings and Wednesday afternoons, month by month.", "depends_on": ["D1", "D2", "F1", "F2", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-07-24", "source": "Rafael", "text": "Rota Leo to the front desk for Jo's Wednesday afternoon clinic.", "depends_on": ["D2", "F4", "R3"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-07-24", "due": "2026-09-04", "source": "Rafael", "text": "Once Jo's October room bookings are in, send her the room list and copy Leo.", "depends_on": ["D4"]},
+      {"id": "F8", "kind": "state", "date": "2026-08-03", "source": "IT support", "text": "The appointment system goes offline for an upgrade on Saturday 19 September."},
+      {"id": "F9", "kind": "state", "date": "2026-08-05", "source": "Rafael", "text": "The new reception printer has arrived; one spare toner cartridge is in the store cupboard."},
+      {"id": "D6", "kind": "decision", "date": "2026-08-06", "source": "Rafael", "text": "Order a second spare toner cartridge for the reception printer.", "depends_on": ["F9"]},
+      {"id": "F10", "kind": "state", "date": "2026-08-10", "source": "Brightway Cleaning", "text": "Brightway clean the clinic rooms every evening from 18:00."},
+      {"id": "F11", "kind": "state", "date": "2026-08-12", "source": "Elm Street estates", "text": "The car park will be resurfaced on the weekend of 12 and 13 September."},
+      {"id": "O2", "kind": "obligation", "date": "2026-08-12", "due": "2026-09-07", "source": "Rafael", "text": "Tell all staff about the car park closure by 7 September.", "depends_on": ["F11"]},
+      {"id": "F12", "kind": "state", "date": "2026-08-14", "source": "Marguerite, practice manager", "text": "From October the monthly staff meeting moves to the first Thursday morning of each month."},
+      {"id": "D7", "kind": "decision", "date": "2026-08-17", "source": "Rafael", "text": "Book Room 4 for the staff meeting on the first Thursday morning of each month from October.", "depends_on": ["F3", "F12"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-08-17", "due": "2026-09-18", "source": "Rafael", "text": "Send the October staff meeting invite by 18 September.", "depends_on": ["D7"]},
+      {"id": "F13", "kind": "state", "date": "2026-08-20", "source": "Dr Patel", "text": "Dr Patel is on leave from 12 to 23 October."},
+      {"id": "F14", "kind": "state", "date": "2026-08-26", "source": "Elm Street estates", "text": "The lift is out of service from 1 to 3 September for its annual inspection."},
+      {"id": "O4", "kind": "obligation", "date": "2026-08-26", "due": "2026-09-11", "source": "Rafael", "text": "File a copy of the lift inspection certificate with estates by 11 September.", "depends_on": ["F14"]},
+      {"id": "D8", "kind": "decision", "date": "2026-08-28", "source": "Rafael", "text": "Ask Brightway to add Room 4 to their evening round from October.", "depends_on": ["F10", "D7"]},
+      {"id": "F15", "kind": "state", "date": "2026-09-01", "source": "Leo", "text": "Leo is taking a day's annual leave on Monday 26 October."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-09-03", "source": "Elm Street HR", "text": "Correction to Jo Kemp's record: her Elm Street days are Mondays and Tuesdays, not Mondays and Wednesdays. Her Fridays at Northfield and her hours, 08:30 to 16:30, are unchanged.", "revokes": ["F6"]},
+    "task": {
+      "text": "The October room sheet closes today. Put in Jo's room bookings at Elm Street.",
+      "options": [
+        {"id": "a", "text": "Room 2 on Monday mornings and Wednesday afternoons"},
+        {"id": "b", "text": "Room 2 on Monday mornings and Tuesday afternoons"},
+        {"id": "c", "text": "Room 2 on Tuesday afternoons only"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F6"],
+      "touched": [
+        {"id": "D2", "direction": "Jo's afternoon clinic moves to Tuesdays, 13:30 to 16:30, with Tuesday mornings for admin."},
+        {"id": "D4", "direction": "Room 2 is booked for Jo on Monday mornings and Tuesday afternoons."},
+        {"id": "D5", "direction": "Leo is rota'd to the front desk for Jo's Tuesday afternoon clinic."}
+      ],
+      "untouched": ["D1", "D3", "D6", "D7", "D8"],
+      "obligations_due": ["O1"],
+      "why": "Jo's second Elm Street day is Tuesday, not Wednesday, so her afternoon clinic (D2) moves to Tuesday; the Room 2 booking built on it (D4) becomes Monday mornings and Tuesday afternoons, and Room 2 is free on Tuesday afternoons; Leo's front-desk rota for that clinic (D5) moves to Tuesday, a day he works. The Monday morning clinic (D1) and the Friday Northfield sessions (D3) cite the HR record for days the correction states are unchanged, so dropping Monday (option c) is unnecessary; the staff meeting, toner and cleaning decisions do not depend on Jo's days."
+    }
+  },
+  {
+    "id": "S3-08",
+    "class": 3,
+    "title": "Canal Wharf move dates",
+    "owner": "Keiko",
+    "now": "2026-11-04",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Fernhill Design directors", "text": "At a new site the IT is installed and tested before anyone moves in, with a clear day in between for fixes."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Fernhill Design directors", "text": "Clients are emailed about any day the studio is closed at least a week ahead."},
+      {"id": "F1", "kind": "state", "date": "2026-09-05", "source": "Dmitri", "text": "The studio's archive is 22 boxes, all going to the storeroom at the new office."},
+      {"id": "F2", "kind": "state", "date": "2026-09-08", "source": "Harbour & Co letting agents", "text": "Unit 7, Canal Wharf: keys and access from Monday 23 November; the lease starts on 1 December; the open-plan room takes 14 desks and there is one meeting room."},
+      {"id": "F3", "kind": "state", "date": "2026-09-09", "source": "Coastline IT", "text": "Coastline IT only do site installs on Tuesdays and Wednesdays and have every one of them free until Christmas; an install takes a full day to cable, set up the Wi-Fi and phones, and test."},
+      {"id": "F4", "kind": "state", "date": "2026-09-09", "source": "Mill Lane landlord", "text": "The Mill Lane office must be handed back empty, with keys, by Friday 11 December."},
+      {"id": "F5", "kind": "state", "date": "2026-09-10", "source": "Swift Removals", "text": "Swift Removals have a crew free on any weekday from 23 November to 10 December, starting at 07:30."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-11", "source": "Keiko", "text": "Take all 14 desks from Mill Lane to Unit 7 and buy no new ones.", "depends_on": ["F2"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-11", "source": "Keiko", "text": "Sign the Unit 7 lease from 1 December and hand Mill Lane's keys back on Friday 11 December.", "depends_on": ["F2", "F4"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-12", "source": "Keiko", "text": "Book Coastline IT for Tuesday 24 November, the first install day after access.", "depends_on": ["F2", "F3", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-14", "source": "Keiko", "text": "Move the team into Unit 7 on Thursday 26 November, keeping the Wednesday clear for IT fixes.", "depends_on": ["D3", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-15", "source": "Keiko", "text": "Book Swift Removals for 07:30 on Thursday 26 November to move the desks and the archive boxes.", "depends_on": ["D4", "D1", "F1", "F5"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-15", "due": "2026-11-04", "source": "Keiko", "text": "Once the install and removal dates are confirmed, email clients the day the studio will be closed for the move.", "depends_on": ["D5", "R2"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-21", "source": "Royal Mail", "text": "Royal Mail's redirection service needs five working days' notice."},
+      {"id": "F7", "kind": "state", "date": "2026-10-01", "source": "Halden Print", "text": "Halden Print will buy the studio's old plotter and collect it from Mill Lane on Friday 20 November."},
+      {"id": "D6", "kind": "decision", "date": "2026-10-02", "source": "Keiko", "text": "Sell the plotter to Halden Print rather than move it.", "depends_on": ["F7"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-02", "due": "2026-11-20", "source": "Keiko", "text": "Have the plotter unplugged and ready for Halden Print's collection on 20 November.", "depends_on": ["D6"]},
+      {"id": "F8", "kind": "state", "date": "2026-10-06", "source": "Owen, Canal Wharf building manager", "text": "Canal Wharf has six permit parking bays for Unit 7; Owen issues the permits."},
+      {"id": "D7", "kind": "decision", "date": "2026-10-07", "source": "Keiko", "text": "Give the six parking permits to the six staff who drive in every day.", "depends_on": ["F8"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-07", "due": "2026-11-20", "source": "Keiko", "text": "Send Owen the six car registration numbers by 20 November.", "depends_on": ["D7"]},
+      {"id": "F9", "kind": "state", "date": "2026-10-14", "source": "Canal Wharf café", "text": "The ground-floor café at Canal Wharf gives tenants 10% off."},
+      {"id": "F10", "kind": "state", "date": "2026-10-20", "source": "Fernhill Design directors", "text": "The studio's Christmas party is on Friday 18 December at the Lock Keeper."}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-11-03", "source": "Harbour & Co letting agents", "text": "Update on Unit 7: keys and access are now from Monday 30 November, not 23 November, because the landlord's decorating has overrun. The 1 December lease start and the 14-desk open-plan room are unchanged.", "revokes": ["F2"]},
+    "task": {
+      "text": "Coastline IT and Swift Removals both want their Canal Wharf dates confirmed today. Confirm both.",
+      "options": [
+        {"id": "a", "text": "Install Tuesday 24 November; removals Thursday 26 November"},
+        {"id": "b", "text": "Install Tuesday 1 December; removals Thursday 26 November"},
+        {"id": "c", "text": "Install Tuesday 1 December; removals Thursday 3 December"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a", "b"],
+      "unnecessary_options": [],
+      "stale_items": ["F2"],
+      "touched": [
+        {"id": "D3", "direction": "Coastline IT installs on Tuesday 1 December, the first install day after the 30 November access."},
+        {"id": "D4", "direction": "The team moves in on Thursday 3 December, with Wednesday 2 December clear for IT fixes."},
+        {"id": "D5", "direction": "Swift Removals booked for 07:30 on Thursday 3 December."}
+      ],
+      "untouched": ["D1", "D2", "D6", "D7"],
+      "obligations_due": ["O1"],
+      "why": "Access slips a week to Monday 30 November, so the first Tuesday-or-Wednesday install day after it is Tuesday 1 December (D3); the move with a clear day after the install becomes Thursday 3 December (D4), and the removal booking for the move day follows (D5); Swift are free then and the Mill Lane hand-back on 11 December still comes after. The desks (D1) and the lease start and hand-back (D2) cite the letting details only for the desk count and the 1 December lease, which are unchanged. Option b moves the install but leaves the removals on the old day."
+    }
+  },
+  {
+    "id": "S3-09",
+    "class": 3,
+    "title": "Tournament medals",
+    "owner": "Bronwyn",
+    "now": "2026-10-06",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Hollow Vale Juniors committee", "text": "Every child who plays at a club tournament gets a medal and a goody bag; no child is left out."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Vale Youth League rules", "text": "Squads are capped at 10 players at under-9 and 12 at under-11."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Vale Youth League rules", "text": "Under-9 games are 5-a-side and under-11 games 7-a-side."},
+      {"id": "F1", "kind": "state", "date": "2026-06-20", "source": "Hollow Vale Juniors committee", "text": "The club's autumn tournament is on Sunday 18 October at Ashgrove Park, for under-9 and under-11 teams."},
+      {"id": "F2", "kind": "state", "date": "2026-06-22", "source": "Vale Youth League rules", "text": "Junior tournament days for under-9s and under-11s must finish by 16:00."},
+      {"id": "F3", "kind": "state", "date": "2026-06-24", "source": "Ashgrove Park bookings", "text": "Ashgrove Park's four pitches and the pavilion are booked for us from 08:30 to 16:30 on Sunday 18 October."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-26", "source": "Bronwyn", "text": "Run the tournament from 09:30 to 16:00, with the pavilion as headquarters.", "depends_on": ["F1", "F2", "F3"]},
+      {"id": "F4", "kind": "state", "date": "2026-07-02", "source": "Trophy Town", "text": "Trophy Town sell football medals with printed ribbons at 1.80 each and cups at 14 each, engraved free; ribbon printing takes ten days."},
+      {"id": "D2", "kind": "decision", "date": "2026-07-03", "source": "Bronwyn", "text": "Order 4 engraved cups from Trophy Town along with the medals: winners and runners-up in each age group.", "depends_on": ["F4"]},
+      {"id": "F5", "kind": "state", "date": "2026-07-10", "source": "KitBag", "text": "KitBag supply drawstring goody bags with a water bottle and a sweatband at 2.40 a bag, delivered within a week."},
+      {"id": "F6", "kind": "state", "date": "2026-07-15", "source": "County FA", "text": "The county FA has sanctioned the tournament; the sanction number has to be printed in the programme."},
+      {"id": "F7", "kind": "state", "date": "2026-07-20", "source": "Ashgrove Park café", "text": "The park café opens at 09:00 on Sundays and will stay open until 16:00 for the tournament."},
+      {"id": "F8", "kind": "state", "date": "2026-08-20", "source": "Dafydd, treasurer", "text": "The entry fee is 30 a team, paid into the club account."},
+      {"id": "F9", "kind": "state", "date": "2026-09-01", "source": "Ceri", "text": "Ceri's bakery will give ten dozen Welsh cakes for the tea stall."},
+      {"id": "F10", "kind": "state", "date": "2026-09-05", "source": "Ashgrove Park bookings", "text": "Pitches 1 and 2 are marked for 5-a-side and pitches 3 and 4 for 7-a-side."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-06", "source": "Bronwyn", "text": "Under-9s play on pitches 1 and 2, under-11s on pitches 3 and 4.", "depends_on": ["F10", "R3"]},
+      {"id": "F11", "kind": "state", "date": "2026-09-08", "source": "County FA referees' secretary", "text": "The county FA can send youth referees at 20 each for the day; each referee stays on one pitch all day."},
+      {"id": "D4", "kind": "decision", "date": "2026-09-09", "source": "Bronwyn", "text": "Book four county FA referees, one for each pitch.", "depends_on": ["F11", "F10"]},
+      {"id": "F12", "kind": "state", "date": "2026-09-10", "source": "Bronwyn", "text": "Ashgrove Park's car park holds 120 cars; overflow parking is at Ashgrove Primary School."},
+      {"id": "F13", "kind": "state", "date": "2026-09-15", "source": "Siân", "text": "Siân will take team photos during the lunch break."},
+      {"id": "D5", "kind": "decision", "date": "2026-09-16", "source": "Bronwyn", "text": "Siân takes the team photos by the pavilion in the 12:30 lunch break.", "depends_on": ["F13", "D1"]},
+      {"id": "F14", "kind": "state", "date": "2026-09-20", "source": "Vale Gazette", "text": "The Vale Gazette would like a results report by Monday 19 October."},
+      {"id": "F15", "kind": "state", "date": "2026-09-25", "source": "Rhys", "text": "Rhys will run the tea stall with Ceri."},
+      {"id": "F16", "kind": "state", "date": "2026-09-28", "source": "Trophy Town", "text": "Trophy Town will deliver the order to Bronwyn's house on Friday 16 October if it is placed by 6 October."},
+      {"id": "F17", "kind": "state", "date": "2026-10-02", "source": "Carys, entries secretary", "text": "Entries have closed: 10 under-9 teams and 8 under-11 teams, every squad registered at the league cap."},
+      {"id": "F18", "kind": "state", "date": "2026-10-03", "source": "Carys, entries secretary", "text": "Two under-9 teams from Brynmawr asked to enter after the closing date; Carys has told them the under-9 section is full."},
+      {"id": "D6", "kind": "decision", "date": "2026-10-03", "source": "Bronwyn", "text": "Run the under-9s as two groups of five, one group on each 5-a-side pitch, with the final at 14:30.", "depends_on": ["F17", "D3"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-03", "source": "Bronwyn", "text": "Plan for 196 players on the day: 100 under-9s in 10 squads of 10 and 96 under-11s in 8 squads of 12.", "depends_on": ["F17", "R2"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-03", "due": "2026-10-09", "source": "Bronwyn", "text": "Confirm the four referees and their pitches with the county FA by 9 October.", "depends_on": ["D4"]},
+      {"id": "O4", "kind": "obligation", "date": "2026-10-03", "due": "2026-10-10", "source": "Bronwyn", "text": "Email every team manager the timetable by 10 October.", "depends_on": ["D6"]},
+      {"id": "D8", "kind": "decision", "date": "2026-10-04", "source": "Bronwyn", "text": "Order 196 medals from Trophy Town, one per player, with 'Hollow Vale 2026' on the ribbon.", "depends_on": ["D7", "F4", "R1"]},
+      {"id": "D9", "kind": "decision", "date": "2026-10-04", "source": "Bronwyn", "text": "Order 196 goody bags from KitBag, one per player.", "depends_on": ["D7", "F5", "R1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-04", "due": "2026-10-06", "source": "Bronwyn", "text": "When the Trophy Town order is placed, tell Dafydd the total so he can pay it.", "depends_on": ["D8", "D2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-04", "due": "2026-10-09", "source": "Bronwyn", "text": "Place the KitBag goody bag order by 9 October.", "depends_on": ["D9"]}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-10-05", "source": "Carys, entries secretary", "text": "Correction to the entry list: Millbrook and Daleside had withdrawn their under-11 teams before entries closed and were left on the list by mistake, so 6 under-11 teams are coming, not 8. The 10 under-9 teams and the full squads are unchanged.", "revokes": ["F17"]},
+    "task": {
+      "text": "Trophy Town need our order today to get the ribbons printed in time. Place it.",
+      "options": [
+        {"id": "a", "text": "172 medals and 4 cups"},
+        {"id": "b", "text": "196 medals and 4 cups"},
+        {"id": "c", "text": "152 medals and 4 cups"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F17"],
+      "touched": [
+        {"id": "D7", "direction": "Plan for 172 players: 100 under-9s and 72 under-11s in 6 squads of 12."},
+        {"id": "D8", "direction": "Order 172 medals from Trophy Town, one per player."},
+        {"id": "D9", "direction": "Order 172 goody bags from KitBag, one per player."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D4", "D5", "D6"],
+      "obligations_due": ["O1"],
+      "why": "Two under-11 entries had withdrawn, so the players to plan for (D7) fall by 24 to 172, and the medal and goody-bag orders built on that count (D8, D9) follow. The under-9 groups (D6) cite the entry list only for the under-9 count, which is explicitly unchanged, so cutting under-9 medals as well (152, option c) is unnecessary; the 4 cups (D2) are per age group, not per team, and the referees (D4) are one per pitch."
+    }
+  },
+  {
+    "id": "S3-10",
+    "class": 3,
+    "title": "Gin shoot retouching",
+    "owner": "Olu",
+    "now": "2026-09-14",
+    "items": [
+      {"id": "R1", "kind": "rule", "date": "2026-06-10", "source": "Olu", "text": "Finished images are delivered within six working days of a shoot."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-10", "source": "Olu", "text": "Retouching goes to Rosa, booked in whole days, at six finished images a day."},
+      {"id": "F1", "kind": "state", "date": "2026-08-12", "source": "Harwood Gin brief", "text": "Harwood Gin's brief: photograph their 4 new bottles for the spring catalogue, each as a cut-out on white and in two styled scenes, at their Leeds distillery on Thursday 17 September."},
+      {"id": "F2", "kind": "state", "date": "2026-08-13", "source": "Rosa", "text": "Rosa is free for retouching every weekday from 21 September to 2 October."},
+      {"id": "F3", "kind": "state", "date": "2026-08-14", "source": "Lens & Light hire", "text": "Lens & Light hire a white paper backdrop with two strip softboxes at 85 a day."},
+      {"id": "F4", "kind": "state", "date": "2026-08-15", "source": "Premier Inn, Leeds", "text": "The Premier Inn by Leeds station has rooms at 79 on Wednesday 16 September."},
+      {"id": "D1", "kind": "decision", "date": "2026-08-16", "source": "Olu", "text": "Shoot at the Leeds distillery on Thursday 17 September and stay at the Premier Inn the night before.", "depends_on": ["F1", "F4"]},
+      {"id": "D2", "kind": "decision", "date": "2026-08-17", "source": "Olu", "text": "Hire the white backdrop and softboxes from Lens & Light for the cut-outs.", "depends_on": ["F1", "F3"]},
+      {"id": "D3", "kind": "decision", "date": "2026-08-18", "source": "Olu", "text": "Shot list: each bottle as a cut-out on white and in two styled scenes, 12 set-ups in all.", "depends_on": ["F1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-08-19", "source": "Olu", "text": "Deliver two finished images per set-up, 24 in all, by Friday 25 September.", "depends_on": ["D3", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-08-20", "source": "Olu", "text": "Book Rosa for four days, Monday 21 to Thursday 24 September, to retouch the 24 images.", "depends_on": ["D4", "F2", "R2"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-08-20", "due": "2026-09-14", "source": "Olu", "text": "Once Rosa's days are confirmed, send her the shot list and Harwood's colour notes.", "depends_on": ["D5"]},
+      {"id": "F5", "kind": "state", "date": "2026-08-25", "source": "Fen, Harwood marketing", "text": "Fen wants the styled scenes shot in front of the distillery's copper still."},
+      {"id": "D6", "kind": "decision", "date": "2026-08-26", "source": "Olu", "text": "Shoot the styled scenes in front of the copper still, dressed with juniper and lemon.", "depends_on": ["F5"]},
+      {"id": "F6", "kind": "state", "date": "2026-08-28", "source": "Olu", "text": "Olu's 100 mm macro lens is back from its service."},
+      {"id": "F7", "kind": "state", "date": "2026-09-01", "source": "Mrs Okeke", "text": "A couple, the Okekes, have asked for a quote for their wedding on Saturday 12 December."},
+      {"id": "F8", "kind": "state", "date": "2026-09-02", "source": "Northern Rail", "text": "Rail strikes are called on Northern routes for Saturday 3 October."},
+      {"id": "F9", "kind": "state", "date": "2026-09-03", "source": "Olu", "text": "Olu's portfolio website renewal is due on 30 September."},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-03", "due": "2026-09-30", "source": "Olu", "text": "Renew the portfolio website by 30 September.", "depends_on": ["F9"]},
+      {"id": "D7", "kind": "decision", "date": "2026-09-04", "source": "Olu", "text": "Drive to Leeds on Wednesday 16 September with the hired lighting kit rather than take the train.", "depends_on": ["D1", "D2"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-05", "source": "Fen, Harwood marketing", "text": "Fen will be at the shoot from 10:00 to sign off each set-up as it is done."},
+      {"id": "F11", "kind": "state", "date": "2026-09-08", "source": "Lens & Light hire", "text": "Lens & Light close at 17:30 on weekdays."},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-08", "due": "2026-09-16", "source": "Olu", "text": "Collect the Lens & Light kit before 17:30 on Wednesday 16 September.", "depends_on": ["D2", "F11"]},
+      {"id": "F12", "kind": "state", "date": "2026-09-09", "source": "Olu", "text": "The studio dehumidifier needs a new filter."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-09-11", "source": "Fen, Harwood marketing", "text": "Correction to the brief: the catalogue has 3 new bottles, not 4; the damson gin was listed by mistake and is not being launched. The cut-out on white and two styled scenes for each bottle, the date and the Leeds distillery are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "Rosa wants the Harwood retouching confirmed today: how many images and which days. Book her.",
+      "options": [
+        {"id": "a", "text": "24 images, Monday 21 to Thursday 24 September"},
+        {"id": "b", "text": "18 images, Monday 21 to Thursday 24 September"},
+        {"id": "c", "text": "18 images, Monday 21 to Wednesday 23 September"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a", "b"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D3", "direction": "9 set-ups: each of the 3 bottles on white and in two styled scenes."},
+        {"id": "D4", "direction": "18 finished images (two per set-up), still by Friday 25 September."},
+        {"id": "D5", "direction": "Rosa booked for three days, Monday 21 to Wednesday 23 September, for the 18 images."}
+      ],
+      "untouched": ["D1", "D2", "D6", "D7"],
+      "obligations_due": ["O1"],
+      "why": "One bottle fewer means 9 set-ups instead of 12 (D3), so two images per set-up gives 18 finished images, not 24 (D4), and at six a day Rosa needs three days, not four (D5). The shoot date, distillery and hotel (D1) and the backdrop hire (D2) cite the brief only for date, place and the white cut-outs, which are unchanged, and the delivery date stays Friday 25 September. Option b updates the image count but keeps Rosa's old four days."
+    }
+  }
+]

@@ -1,0 +1,581 @@
+[
+  {
+    "id": "S2-01",
+    "class": 2,
+    "title": "Illustrator payment terms",
+    "owner": "Tomasz",
+    "now": "2026-10-01",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Tomasz", "text": "Tomasz works as a freelance illustrator from a shared studio on Mill Road and emails his invoices as PDFs from his own template."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Tomasz's terms of business", "text": "Invoices are payable within 30 days of the invoice date."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Tomasz's terms of business", "text": "When a client has issued a purchase-order number, the invoice quotes it."},
+      {"id": "F2", "kind": "state", "date": "2026-07-02", "source": "Ana", "text": "Ana from the next studio has lent Tomasz her A2 light box until early October."},
+      {"id": "F3", "kind": "state", "date": "2026-08-10", "source": "Harbour Books", "text": "Harbour Books' purchase order for the 'Saltmarsh' cover illustration is HB-0412, fee 1,200."},
+      {"id": "D1", "kind": "decision", "date": "2026-08-14", "source": "Tomasz", "text": "Invoice Harbour Books 1,200 for the 'Saltmarsh' cover today, payable by 13 September, quoting HB-0412.", "depends_on": ["F3", "R1", "R2"]},
+      {"id": "F4", "kind": "state", "date": "2026-08-20", "source": "Mill Road studio manager", "text": "The studio's broadband is being upgraded on Saturday 3 October, with no internet from 9:00 to 13:00."},
+      {"id": "F5", "kind": "state", "date": "2026-09-05", "source": "Pell & Daughters", "text": "Pell & Daughters accepted 640 for six menu illustrations, to be delivered on 15 September; they don't issue purchase orders."},
+      {"id": "F6", "kind": "state", "date": "2026-09-08", "source": "Greywell Museum", "text": "Greywell Museum's fee for the poster series is 2,400 under purchase order GM-2209; the curator, Ruth Oyelaran, will sign off the final files on 1 October."},
+      {"id": "F7", "kind": "state", "date": "2026-09-09", "source": "Inkwell Art Supplies", "text": "Repairing Tomasz's old A3 scanner would cost 140; Inkwell has a new A3 scanner at 199 in its autumn sale, which ends on 30 September."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-10", "source": "Tomasz", "text": "Buy the new A3 scanner in Inkwell's sale rather than repair the old one.", "depends_on": ["F7"]},
+      {"id": "F8", "kind": "state", "date": "2026-09-11", "source": "Harbour Books", "text": "Harbour Books paid the 'Saltmarsh' invoice in full on 10 September."},
+      {"id": "F9", "kind": "state", "date": "2026-09-14", "source": "Kestrel Games", "text": "Kestrel Games want 30 card illustrations in two batches; the first 15 are due on 30 October for 900, under purchase order KG-5521."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-15", "source": "Tomasz", "text": "Invoice Pell & Daughters 640 for the menu illustrations today, payable by 15 October.", "depends_on": ["F5", "R1"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-16", "source": "Lark Festival", "text": "The Lark Festival's programme map is 450, to be delivered on 29 September, under purchase order LF-077."},
+      {"id": "D4", "kind": "decision", "date": "2026-09-17", "source": "Tomasz", "text": "Invoice Greywell Museum 2,400 on 1 October, the sign-off day, payable by 31 October, quoting GM-2209.", "depends_on": ["F6", "R1", "R2"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-17", "source": "Tomasz", "due": "2026-10-01", "text": "When the Greywell invoice goes out, copy it to Ines Barros in the museum's accounts office as well as to Ruth.", "depends_on": ["D4"]},
+      {"id": "F11", "kind": "state", "date": "2026-09-18", "source": "Ruth Oyelaran", "text": "Ruth wants the final poster files as print-ready PDFs with 3 mm bleed."},
+      {"id": "D5", "kind": "decision", "date": "2026-09-18", "source": "Tomasz", "text": "Invoice Kestrel Games 900 for the first batch on 30 October, payable by 29 November, quoting KG-5521.", "depends_on": ["F9", "R1", "R2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-18", "source": "Tomasz", "due": "2026-10-30", "text": "Deliver the first batch of 15 card illustrations to Kestrel by 30 October.", "depends_on": ["F9"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-21", "source": "Tomasz", "due": "2026-10-05", "text": "Return Ana's A2 light box by 5 October.", "depends_on": ["F2"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-29", "source": "Tomasz", "text": "Invoice the Lark Festival 450 for the programme map today, payable by 29 October, quoting LF-077.", "depends_on": ["F10", "R1", "R2"]}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-30", "source": "Tomasz", "text": "Tomasz has changed his payment terms after two clients paid more than a month late this summer, and has told all current clients: invoices dated on or after 1 October are payable within 14 days of the invoice date. Invoices dated before 1 October keep their 30-day terms.", "revokes": ["R1"]},
+    "task": {
+      "text": "Ruth signed off the Greywell posters this morning. Send the museum's invoice today.",
+      "options": [
+        {"id": "a", "text": "2,400 quoting GM-2209, payable by 31 October"},
+        {"id": "b", "text": "2,400 quoting GM-2209, payable by 15 October"},
+        {"id": "c", "text": "2,400 quoting GM-2209, payable by 15 October, and reissue the Lark Festival invoice payable by 13 October"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D4", "direction": "The Greywell invoice, dated 1 October, is payable by 15 October (14 days), not 31 October."},
+        {"id": "D5", "direction": "The Kestrel invoice, dated 30 October, is payable by 13 November (14 days), not 29 November."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D6"],
+      "obligations_due": ["O1"],
+      "why": "The new terms reach only invoices dated on or after 1 October, so the Greywell invoice (1 October) and the Kestrel invoice (30 October) become 14-day invoices. The Harbour Books (14 August, already paid), Pell & Daughters (15 September) and Lark Festival (29 September) invoices are dated before 1 October and keep 30 days; the scanner purchase has nothing to do with payment terms."
+    }
+  },
+  {
+    "id": "S2-02",
+    "class": 2,
+    "title": "Tennis club family renewals",
+    "owner": "Priya",
+    "now": "2026-09-11",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-01", "source": "Priya", "text": "Priya is the volunteer membership secretary of Elmfield Tennis Club; Dev Mistry is the club treasurer."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Elmfield Tennis Club membership rules", "text": "A family membership covers two adults and their children aged under 18 on 1 October, all living at one address, for 380 a season."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Elmfield Tennis Club membership rules", "text": "Adult membership is 220 a season and junior membership, for under-18s on 1 October, is 90; the season runs from 1 October to 30 September."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Elmfield Tennis Club membership rules", "text": "Only members who have renewed by 1 October can play in the county winter league."},
+      {"id": "F2", "kind": "state", "date": "2026-06-05", "source": "Club membership records", "text": "The Moretti family, Luca, Giulia and their son Matteo, who is 16, hold a family membership for the 2025–26 season."},
+      {"id": "F3", "kind": "state", "date": "2026-06-10", "source": "Club membership records", "text": "The club has 212 members this season, 61 of them juniors."},
+      {"id": "F4", "kind": "state", "date": "2026-06-18", "source": "Sandra, head coach", "text": "The summer junior programme runs on Saturday mornings from 4 July to 29 August and is free for juniors covered by a current membership."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-20", "source": "Priya", "text": "Enrol Matteo Moretti in the summer junior programme under his family's 2025–26 membership, with no extra fee.", "depends_on": ["F2", "F4", "R1"]},
+      {"id": "F5", "kind": "state", "date": "2026-07-01", "source": "Club calendar", "text": "The club AGM is on Thursday 15 October at 19:30 in the clubhouse."},
+      {"id": "F6", "kind": "state", "date": "2026-07-10", "source": "Alan, groundsman", "text": "The two clay courts will be closed for relining from 14 to 18 September."},
+      {"id": "F7", "kind": "state", "date": "2026-07-22", "source": "Okafor renewal form", "text": "Chidi and Ngozi Okafor are renewing for 2026–27 with Ada, who will be 12 on 1 October, and Tobi, who will be 15; all live at 14 Larch Road."},
+      {"id": "F8", "kind": "state", "date": "2026-07-30", "source": "Lindqvist renewal form", "text": "Karin and Per Lindqvist are renewing for 2026–27 with Elsa, who will be 16 on 1 October, and Nils, who will be 10; all live at 3 Ferry Close."},
+      {"id": "F9", "kind": "state", "date": "2026-08-04", "source": "Clubhouse bookings", "text": "The clubhouse is free on Saturday 26 September from 18:00; the bar staff need numbers a week ahead."},
+      {"id": "F10", "kind": "state", "date": "2026-08-06", "source": "Club membership records", "text": "Last season the Okafors, Lindqvists, Haddads and Brennans were each on a single family membership."},
+      {"id": "F11", "kind": "state", "date": "2026-08-10", "source": "Haddad renewal form", "text": "Rami and Lina Haddad are renewing for 2026–27 with Yusuf, who will be 17 on 1 October, and Mariam, who will be 9; all live at 22 Quarry Lane."},
+      {"id": "D2", "kind": "decision", "date": "2026-08-12", "source": "Priya", "text": "Hold the end-of-season social in the clubhouse on Saturday 26 September from 18:00.", "depends_on": ["F9"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-08-12", "source": "Priya", "due": "2026-09-19", "text": "Give the bar staff the numbers for the end-of-season social by 19 September.", "depends_on": ["D2"]},
+      {"id": "F12", "kind": "state", "date": "2026-08-14", "source": "Brennan renewal form", "text": "Siobhan and Mark Brennan are renewing for 2026–27 with Ciara, who will be 8 on 1 October, and Liam, who will be 13; all live at 9 Orchard Way."},
+      {"id": "D3", "kind": "decision", "date": "2026-08-18", "source": "Priya", "text": "Renew the Okafors, Chidi, Ngozi, Ada and Tobi, on one family membership at 380 for 2026–27.", "depends_on": ["F7", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-08-20", "source": "Priya", "text": "Renew the Lindqvists, Karin, Per, Elsa and Nils, on one family membership at 380 for 2026–27.", "depends_on": ["F8", "R1"]},
+      {"id": "F13", "kind": "state", "date": "2026-08-21", "source": "Giulia Moretti", "text": "The Morettis are moving to Bristol at the end of September and will not renew for 2026–27."},
+      {"id": "D5", "kind": "decision", "date": "2026-08-24", "source": "Priya", "text": "Renew the Haddads, Rami, Lina, Yusuf and Mariam, on one family membership at 380 for 2026–27.", "depends_on": ["F11", "R1"]},
+      {"id": "F14", "kind": "state", "date": "2026-08-26", "source": "County tennis association", "text": "Winter league entries close on 25 September; each team needs at least six players."},
+      {"id": "D6", "kind": "decision", "date": "2026-08-27", "source": "Priya", "text": "Renew the Brennans, Siobhan, Mark, Ciara and Liam, on one family membership at 380 for 2026–27.", "depends_on": ["F12", "R1"]},
+      {"id": "F15", "kind": "state", "date": "2026-08-28", "source": "Dev Mistry", "text": "Dev sends the renewal requests by email; each one shows the total the household owes for the season."},
+      {"id": "O2", "kind": "obligation", "date": "2026-08-28", "source": "Priya", "due": "2026-09-12", "text": "Give Dev the amount each renewed family should pay by 12 September, so the renewal requests go out before the season starts."},
+      {"id": "F16", "kind": "state", "date": "2026-08-30", "source": "Ollie, men's second team captain", "text": "The men's second team has eight players, and all of them have said they will renew by 1 October."},
+      {"id": "F17", "kind": "state", "date": "2026-09-01", "source": "Topspin Sports", "text": "Topspin Sports charge 18 per club shirt with the crest, minimum order 10, delivered in two weeks."},
+      {"id": "D7", "kind": "decision", "date": "2026-09-02", "source": "Priya", "text": "Enter the men's second team in the county winter league.", "depends_on": ["F14", "F16", "R3"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-02", "source": "Priya", "due": "2026-09-25", "text": "Send the county association the men's second team entry form by 25 September.", "depends_on": ["D7"]},
+      {"id": "D8", "kind": "decision", "date": "2026-09-04", "source": "Priya", "text": "Order 12 club shirts from Topspin for the league teams.", "depends_on": ["F17"]},
+      {"id": "F18", "kind": "state", "date": "2026-09-05", "source": "Club membership records", "text": "Family renewals received so far: the Okafors, Lindqvists, Haddads and Brennans; Dev handles individual adult renewals himself."},
+      {"id": "F19", "kind": "state", "date": "2026-09-07", "source": "Sandra, head coach", "text": "Sandra is away from 1 to 15 October; the Tuesday junior sessions move to Thursdays while she is away."},
+      {"id": "F20", "kind": "state", "date": "2026-09-08", "source": "Karin Lindqvist", "text": "Karin asked whether Nils can join the Thursday mini-tennis group; Sandra says yes."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-10", "source": "Elmfield Tennis Club committee", "text": "Committee decision, after the county association split its insurance bands at age 16: from the 2026–27 season, a family membership covers two adults and their children aged under 16 on 1 October, all living at one address, still for 380. Children aged 16 or 17 on 1 October need their own junior membership at 90. Memberships for the 2025–26 season are unaffected.", "revokes": ["R1"]},
+    "task": {
+      "text": "Dev is sending out the 2026–27 renewal requests tomorrow. Give him today the amount each family I've renewed so far should pay.",
+      "options": [
+        {"id": "a", "text": "Okafor 380, Lindqvist 380, Haddad 380, Brennan 380"},
+        {"id": "b", "text": "Okafor 470, Lindqvist 470, Haddad 470, Brennan 380"},
+        {"id": "c", "text": "Okafor 380, Lindqvist 470, Haddad 470, Brennan 380"},
+        {"id": "d", "text": "Okafor 380, Lindqvist 470, Haddad 380, Brennan 380"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a", "d"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D4", "direction": "The Lindqvists pay 470: a family membership at 380 for Karin, Per and Nils plus a junior membership at 90 for Elsa, who is 16."},
+        {"id": "D5", "direction": "The Haddads pay 470: a family membership at 380 for Rami, Lina and Mariam plus a junior membership at 90 for Yusuf, who is 17."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D6", "D7", "D8"],
+      "obligations_due": ["O2"],
+      "why": "From the 2026–27 season the family membership covers only children under 16 on 1 October, so the Lindqvists (Elsa, 16) and Haddads (Yusuf, 17) each need a 90 junior membership on top of the 380. The Okafors (Tobi is 15) and Brennans (13 and 8) stay fully covered, Matteo's summer programme ran under the 2025–26 membership the change leaves alone, and the social, league entry and shirts don't depend on the family rule."
+    }
+  },
+  {
+    "id": "S2-03",
+    "class": 2,
+    "title": "Food bank Saturday rota",
+    "owner": "Gareth",
+    "now": "2026-11-04",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-03", "source": "Gareth", "text": "Gareth coordinates the volunteer rota for the Harlow Road Food Bank warehouse; warehouse shifts run from 9:00 to 12:00."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-03", "source": "Harlow Road Food Bank volunteer handbook", "text": "Every warehouse shift needs at least two volunteers, one of whom holds a food hygiene certificate."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-03", "source": "Harlow Road Food Bank volunteer handbook", "text": "Volunteers under 18 can help on distribution days but not in the warehouse."},
+      {"id": "F2", "kind": "state", "date": "2026-09-14", "source": "Food bank training records", "text": "Hannah Cole, Priti Rao and Tom Okoye hold food hygiene certificates; Dev Sharma, Leila Haddou and Marcus Bell do not."},
+      {"id": "F3", "kind": "state", "date": "2026-10-02", "source": "Coldline Refrigeration", "text": "The walk-in fridge was serviced on 1 October; the engineer's next visit is in April."},
+      {"id": "F4", "kind": "state", "date": "2026-10-07", "source": "Packwell", "text": "Packwell sell paper food bags in boxes of 200, delivered within three working days."},
+      {"id": "F5", "kind": "state", "date": "2026-10-08", "source": "Volunteer availability poll", "text": "Free for warehouse shifts: Saturday 31 October, Hannah and Priti; Tuesday 3 November, Hannah, Leila and Marcus; Thursday 5 November, Leila, Tom and Marcus; Saturday 7 November, Dev, Hannah and Marcus; Saturday 14 November, Dev, Priti and Marcus."},
+      {"id": "D1", "kind": "decision", "date": "2026-10-09", "source": "Gareth", "text": "Saturday 31 October warehouse shift: Hannah Cole and Priti Rao.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "D2", "kind": "decision", "date": "2026-10-12", "source": "Gareth", "text": "Saturday 7 November warehouse shift: Dev Sharma and Hannah Cole; Marcus waits until he has done his warehouse induction.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-12", "source": "Gareth", "due": "2026-11-04", "text": "Text the Saturday 7 November warehouse team by Wednesday 4 November to confirm their shift."},
+      {"id": "D3", "kind": "decision", "date": "2026-10-13", "source": "Gareth", "text": "Tuesday 3 November warehouse shift: Hannah Cole and Leila Haddou.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-10-14", "source": "Gareth", "text": "Saturday 14 November warehouse shift: Dev Sharma and Priti Rao.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-15", "source": "Gareth", "text": "Thursday 5 November warehouse shift: Leila Haddou and Tom Okoye.", "depends_on": ["F2", "F5", "R1"]},
+      {"id": "F6", "kind": "state", "date": "2026-10-16", "source": "St Mark's church office", "text": "The Christmas hamper collection runs from 23 November to 18 December at St Mark's church hall."},
+      {"id": "D6", "kind": "decision", "date": "2026-10-19", "source": "Gareth", "text": "Ask St Mark's to lend their two trestle tables for the hamper collection.", "depends_on": ["F6"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-20", "source": "Gareth", "due": "2026-11-06", "text": "Order two boxes of Packwell food bags by Friday 6 November.", "depends_on": ["F4"]},
+      {"id": "F7", "kind": "state", "date": "2026-10-21", "source": "Marcus Bell", "text": "Marcus Bell completed his warehouse induction today."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-10-26", "source": "Food bank management team", "text": "Because the supermarket donations now arrive as one large pallet delivery every Saturday morning, from 1 November every Saturday warehouse shift needs at least three volunteers, one of whom holds a food hygiene certificate. Weekday warehouse shifts stay at a minimum of two.", "revokes": ["R1"]},
+    "task": {
+      "text": "Text this Saturday's warehouse team to confirm their shift.",
+      "options": [
+        {"id": "a", "text": "Dev Sharma, Hannah Cole and Marcus Bell"},
+        {"id": "b", "text": "Dev Sharma and Hannah Cole"},
+        {"id": "c", "text": "Dev Sharma, Hannah Cole and Marcus Bell, and add Marcus to Thursday's shift as well"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D2", "direction": "Saturday 7 November gets a third volunteer: Dev Sharma, Hannah Cole and Marcus Bell, the only other volunteer free that day and now inducted."},
+        {"id": "D4", "direction": "Saturday 14 November gets a third volunteer: Dev Sharma, Priti Rao and Marcus Bell."}
+      ],
+      "untouched": ["D1", "D3", "D5", "D6"],
+      "obligations_due": ["O1"],
+      "why": "The minimum of three applies only to Saturday shifts from 1 November, so the 7 and 14 November Saturdays each need a third volunteer, and Marcus is the one free on both days and inducted since 21 October. The Saturday 31 October shift falls before 1 November, the Tuesday and Thursday shifts are weekday shifts that stay at two, and the trestle-table request is unrelated."
+    }
+  },
+  {
+    "id": "S2-04",
+    "class": 2,
+    "title": "Coworking meeting rooms",
+    "owner": "Noor",
+    "now": "2026-09-30",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Noor", "text": "Noor runs Fieldnote, a four-person design studio, on a membership at Hive Works on Canal Street."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Hive Works house rules", "text": "Members book the Atrium, the 10-seat meeting room on the ground floor, at the front desk; bookings are free and can run up to a full day, 9:00 to 18:00."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Hive Works house rules", "text": "Guests must be signed in at the front desk and wear a visitor badge."},
+      {"id": "F2", "kind": "state", "date": "2026-07-14", "source": "Ade", "text": "Ade, Fieldnote's junior designer, is on holiday from 19 to 23 October."},
+      {"id": "F3", "kind": "state", "date": "2026-08-05", "source": "Hive Works", "text": "The members' kitchen is being refitted from 5 to 9 October; members can use the ground-floor café meanwhile."},
+      {"id": "F4", "kind": "state", "date": "2026-08-18", "source": "Clearpath", "text": "Clearpath is sending six user testers for a full day on Tuesday 29 September."},
+      {"id": "D1", "kind": "decision", "date": "2026-08-20", "source": "Noor", "text": "Book the Atrium on Tuesday 29 September, 9:00–17:00, for the Clearpath user-testing day.", "depends_on": ["F4", "R1"]},
+      {"id": "F5", "kind": "state", "date": "2026-08-28", "source": "Brightwater", "text": "Brightwater's product lead, Sam Ortiz, can do a 90-minute call on Tuesday 6 October from 10:00."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-01", "source": "Noor", "text": "Book the Atrium on Tuesday 6 October, 10:00–11:30, for the call with Brightwater.", "depends_on": ["F5", "R1"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-02", "source": "Noor", "text": "The quarterly planning day is Thursday 15 October, 9:00–17:00, for the four of us."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-03", "source": "Noor", "text": "Book the Atrium on Thursday 15 October, 9:00–17:00, for the planning day.", "depends_on": ["F6", "R1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-03", "source": "Noor", "due": "2026-10-08", "text": "Send the planning-day agenda to the team by 8 October.", "depends_on": ["D3"]},
+      {"id": "F7", "kind": "state", "date": "2026-09-07", "source": "Hive Works front desk", "text": "A fixed desk bank of four costs 640 a month, against 560 for four hot-desk passes."},
+      {"id": "F8", "kind": "state", "date": "2026-09-07", "source": "Noor", "text": "The three shortlisted designers can each do 45 minutes on the afternoon of Wednesday 21 October."},
+      {"id": "D4", "kind": "decision", "date": "2026-09-08", "source": "Noor", "text": "Book the Atrium on Wednesday 21 October, 13:00–16:00, for the three designer interviews.", "depends_on": ["F8", "R1"]},
+      {"id": "F9", "kind": "state", "date": "2026-09-09", "source": "Hive Works front desk", "text": "Bike lockers are 15 a month on six-month rentals; Fieldnote's current rental ends on 30 September."},
+      {"id": "D5", "kind": "decision", "date": "2026-09-10", "source": "Noor", "text": "Move the team from four hot-desk passes to a fixed desk bank of four from 1 November.", "depends_on": ["F7"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-10", "source": "Noor", "due": "2026-10-15", "text": "Tell the front desk by 15 October that the team is moving to the fixed desk bank.", "depends_on": ["D5"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-11", "source": "Noor", "text": "Renew the bike-locker rental for another six months.", "depends_on": ["F9"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-12", "source": "Kemi Adeyemi", "text": "Kemi can run the accessibility workshop on Monday 2 November, 9:30–15:30, for up to eight people, bringing two assistants; she'll confirm by the end of September."},
+      {"id": "F11", "kind": "state", "date": "2026-09-14", "source": "Sam Ortiz", "text": "Sam asked for a design review at Hive Works on Friday 9 October, 13:00–17:00."},
+      {"id": "D7", "kind": "decision", "date": "2026-09-15", "source": "Noor", "text": "Hold the accessibility workshop with Kemi on Monday 2 November, 9:30–15:30, in the Atrium, and book it as soon as she confirms.", "depends_on": ["F10", "R1"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-15", "source": "Noor", "due": "2026-09-30", "text": "Once the workshop room is booked, send Kemi the room and the sign-in details for her two assistants.", "depends_on": ["D7", "R2"]},
+      {"id": "D8", "kind": "decision", "date": "2026-09-16", "source": "Noor", "text": "Book the Atrium on Friday 9 October, 13:00–17:00, for the Brightwater design review.", "depends_on": ["F11", "R1"]},
+      {"id": "F12", "kind": "state", "date": "2026-09-17", "source": "Hive Works", "text": "The first-floor printer is out of toner until a delivery on Monday 21 September."},
+      {"id": "F13", "kind": "state", "date": "2026-09-21", "source": "Hive Works", "text": "The Loft, the 14-seat room on the second floor, has a ceiling projector and a whiteboard wall; the Atrium has a 55-inch screen."},
+      {"id": "F14", "kind": "state", "date": "2026-09-22", "source": "Clearpath", "text": "Clearpath's testers will arrive at 8:45 and need visitor badges."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-24", "source": "Hive Works management", "text": "Because day-long holds on the Atrium were leaving no room for short client meetings, from 1 October any booking longer than 4 hours goes in the Loft, the 14-seat room on the second floor, including bookings already made; bookings of 4 hours or less stay in the Atrium. Both rooms remain free for members and are booked at the front desk; the Loft has no other bookings yet for October or November.", "revokes": ["R1"]},
+    "task": {
+      "text": "Kemi has just confirmed the accessibility workshop. Book the room for it now.",
+      "options": [
+        {"id": "a", "text": "Atrium, Monday 2 November, 9:30–15:30"},
+        {"id": "b", "text": "Loft, Monday 2 November, 9:30–15:30, and move the 9 October Brightwater review to the Loft too"},
+        {"id": "c", "text": "Loft, Monday 2 November, 9:30–15:30"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D3", "direction": "The 15 October planning day (9:00–17:00, 8 hours) moves from the Atrium to the Loft."},
+        {"id": "D7", "direction": "The 2 November workshop (9:30–15:30, 6 hours) is booked in the Loft, not the Atrium."}
+      ],
+      "untouched": ["D1", "D2", "D4", "D5", "D6", "D8"],
+      "obligations_due": ["O3"],
+      "why": "From 1 October only bookings longer than 4 hours move to the Loft, so the 8-hour planning day and the 6-hour workshop go there. The Clearpath day (29 September) falls before 1 October, the Brightwater call (1.5 hours), the interviews (3 hours) and the Brightwater review (exactly 4 hours) stay in the Atrium, and the desk bank and bike lockers are unrelated."
+    }
+  },
+  {
+    "id": "S2-05",
+    "class": 2,
+    "title": "PTA spending approvals",
+    "owner": "Aisha",
+    "now": "2026-10-02",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Aisha", "text": "Aisha chairs the Brookfield Primary PTA; Femi Bankole is treasurer and Jen Walsh is secretary."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Brookfield Primary PTA constitution", "text": "Any single PTA purchase over 150 needs a vote at the monthly committee meeting before it is made; purchases of 150 or less can be approved by the chair alone."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Brookfield Primary PTA constitution", "text": "Volunteers are paid back for approved purchases within 14 days of handing in the receipt."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-02", "source": "Brookfield Primary PTA constitution", "text": "Money taken at an event is counted by two committee members before it leaves the school."},
+      {"id": "F2", "kind": "state", "date": "2026-06-10", "source": "PTA calendar", "text": "The committee meets on the first Tuesday of each month at 19:00."},
+      {"id": "F3", "kind": "state", "date": "2026-06-20", "source": "School office", "text": "Autumn half-term is 19 to 23 October."},
+      {"id": "F4", "kind": "state", "date": "2026-07-02", "source": "Femi", "text": "The PTA's card reader for events needs charging the night before it is used."},
+      {"id": "F5", "kind": "state", "date": "2026-07-15", "source": "Summer fair accounts", "text": "The summer fair raised 2,310 and spent 1,040, about 300 more than planned, mostly on a bouncy castle and extra gazebos."},
+      {"id": "F6", "kind": "state", "date": "2026-08-27", "source": "Mrs Hughes, headteacher", "text": "The school hall is free on Friday 16 October from 18:00 for the quiz night."},
+      {"id": "F7", "kind": "state", "date": "2026-08-30", "source": "Year 6 parents", "text": "Year 6 parents want a leavers' hoodie order again in the spring."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-01", "source": "Aisha", "text": "Hold the autumn quiz night in the school hall on Friday 16 October at 18:30.", "depends_on": ["F6"]},
+      {"id": "F8", "kind": "state", "date": "2026-09-02", "source": "Jen", "text": "Jen will buy the food for the welcome picnic, about 140, from Freshway on Friday 11 September."},
+      {"id": "F9", "kind": "state", "date": "2026-09-04", "source": "School office", "text": "Reception has 28 new families this year."},
+      {"id": "F10", "kind": "state", "date": "2026-09-05", "source": "Mr Osei", "text": "Mr Osei, a Year 4 dad, has offered to run the second-hand uniform stall at the Christmas fair."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-08", "source": "Aisha", "text": "Approve 140 for the welcome picnic food that Jen buys on 11 September.", "depends_on": ["F8", "R1"]},
+      {"id": "F11", "kind": "state", "date": "2026-09-09", "source": "Bill, caretaker", "text": "The noticeboard by the gate needs a new lock; Bill has a spare."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-10", "source": "Aisha", "text": "Ask Mr Osei to run the second-hand uniform stall at the Christmas fair.", "depends_on": ["F10"]},
+      {"id": "F12", "kind": "state", "date": "2026-09-11", "source": "Party Bright", "text": "Party Bright hire a disco light set for 120 a night, delivered and collected; bookings close a week before the date."},
+      {"id": "F13", "kind": "state", "date": "2026-09-12", "source": "PTA calendar", "text": "The Halloween disco is on Friday 30 October, 17:30 to 19:30, in the school hall."},
+      {"id": "D4", "kind": "decision", "date": "2026-09-14", "source": "Aisha", "text": "Approve 120 to hire Party Bright's disco light set for the Halloween disco, to be booked in mid-October.", "depends_on": ["F12", "F13", "R1"]},
+      {"id": "F14", "kind": "state", "date": "2026-09-15", "source": "Christmas fair team", "text": "The Christmas fair is on Saturday 5 December; the craft table needs felt, glue and card."},
+      {"id": "D5", "kind": "decision", "date": "2026-09-16", "source": "Aisha", "text": "Approve 60 for craft-table supplies for the Christmas fair, to be bought in November.", "depends_on": ["F14", "R1"]},
+      {"id": "F15", "kind": "state", "date": "2026-09-17", "source": "Bill, caretaker", "text": "The uniform stall's rail and hangers are stored in the hall cupboard."},
+      {"id": "F16", "kind": "state", "date": "2026-09-18", "source": "PrintHut", "text": "PrintHut quote 95 for two vinyl banners for the book fair, ready five days after ordering."},
+      {"id": "F17", "kind": "state", "date": "2026-09-18", "source": "Ms Ward, school librarian", "text": "The book fair runs from 9 to 13 November in the library."},
+      {"id": "F18", "kind": "state", "date": "2026-09-19", "source": "Rob, quizmaster", "text": "The quiz winners' prize will be a 75 hamper from the farm shop."},
+      {"id": "F19", "kind": "state", "date": "2026-09-20", "source": "Mrs Hughes, headteacher", "text": "From October the PTA can meet in the staff room instead of the library."},
+      {"id": "D6", "kind": "decision", "date": "2026-09-21", "source": "Aisha", "text": "Approve 95 for PrintHut's two book fair banners, to be ordered in October.", "depends_on": ["F16", "F17", "R1"]},
+      {"id": "F20", "kind": "state", "date": "2026-09-21", "source": "Jen", "text": "Jen handed in the Freshway receipt for the picnic food: 138.60."},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-21", "source": "Aisha", "due": "2026-10-05", "text": "Pay Jen back 138.60 for the picnic food by 5 October.", "depends_on": ["D2", "F20", "R2"]},
+      {"id": "D7", "kind": "decision", "date": "2026-09-22", "source": "Aisha", "text": "Approve 75 for the quiz winners' hamper, to be bought in the week of the quiz.", "depends_on": ["F18", "D1", "R1"]},
+      {"id": "F21", "kind": "state", "date": "2026-09-23", "source": "LineCraft", "text": "LineCraft quote 380 to repaint the hopscotch and number-snake playground markings over half-term."},
+      {"id": "D8", "kind": "decision", "date": "2026-09-24", "source": "Aisha", "text": "Hold committee meetings in the staff room from October.", "depends_on": ["F19"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-24", "source": "Aisha", "due": "2026-10-02", "text": "Send the committee the agenda for the October meeting, with every spending item to be voted on, by Friday 2 October."},
+      {"id": "D9", "kind": "decision", "date": "2026-09-25", "source": "Aisha", "text": "Put LineCraft's 380 quote for the playground markings to the October committee vote.", "depends_on": ["F21", "R1"]},
+      {"id": "F22", "kind": "state", "date": "2026-09-26", "source": "Bill, caretaker", "text": "Bill will put the hall chairs out for the quiz night by 17:30."},
+      {"id": "F23", "kind": "state", "date": "2026-09-27", "source": "Jen", "text": "Jen can't make the October meeting; Femi will take the minutes."},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-28", "source": "Aisha", "due": "2026-10-16", "text": "Line up two committee members to count the quiz-night takings on 16 October.", "depends_on": ["D1", "R3"]}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-29", "source": "Brookfield Primary PTA committee", "text": "After the summer fair overspend, the committee has lowered the spending limit: from 1 October, any single purchase over 75 needs a vote at the monthly committee meeting before it is made, even if the chair has already approved it; purchases of 75 or less can still be approved by the chair alone. Purchases made before 1 October are not affected.", "revokes": ["R1"]},
+    "task": {
+      "text": "The committee meets on Tuesday. Send round the agenda today, with the spending items we're voting on.",
+      "options": [
+        {"id": "a", "text": "Playground markings 380"},
+        {"id": "b", "text": "Playground markings 380, disco lights 120, book fair banners 95"},
+        {"id": "c", "text": "Playground markings 380, disco lights 120, book fair banners 95, quiz hamper 75"},
+        {"id": "d", "text": "Playground markings 380, disco lights 120, book fair banners 95, welcome picnic food 140"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c", "d"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D4", "direction": "The 120 disco light hire goes to the 6 October committee vote and is not booked until it passes."},
+        {"id": "D6", "direction": "The 95 book fair banners go to the 6 October committee vote and are not ordered until it passes."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D5", "D7", "D8", "D9"],
+      "obligations_due": ["O2"],
+      "why": "From 1 October any purchase over 75 needs a committee vote, so the disco lights (120) and banners (95), approved by the chair alone and not yet bought, join the playground markings (380, which needed a vote anyway) on Tuesday's agenda. The picnic food was bought on 11 September, before the cut-off, and the craft supplies (60) and quiz hamper (exactly 75) stay within the chair's limit; the quiz night, uniform stall and meeting room have nothing to do with spending limits."
+    }
+  },
+  {
+    "id": "S2-06",
+    "class": 2,
+    "title": "Allotment shed approvals",
+    "owner": "Bernard",
+    "now": "2026-09-05",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Bernard", "text": "Bernard is the volunteer secretary of Ashby Lane Allotments: 40 plots, numbered from the riverside (plot 1) up to the top path (plot 40)."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Ashby Lane Allotment Society rules", "text": "A plot holder may put up one shed of up to 2 by 1.5 metres on their plot once the secretary has approved its position."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Ashby Lane Allotment Society rules", "text": "Bonfires are allowed only on Monday and Thursday mornings before 10:00."},
+      {"id": "F2", "kind": "state", "date": "2026-06-18", "source": "Hamid", "text": "Hamid on plot 4 wants to put a 2 by 1.5 metre shed in the north-east corner of his plot."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-22", "source": "Bernard", "text": "Approve Hamid's shed in the north-east corner of plot 4.", "depends_on": ["F2", "R1"]},
+      {"id": "F3", "kind": "state", "date": "2026-06-29", "source": "Hamid", "text": "Hamid's shed on plot 4 is up and painted green."},
+      {"id": "F4", "kind": "state", "date": "2026-07-10", "source": "Lucy Brand", "text": "Lucy Brand on plot 19 wants a 1.8 by 1.2 metre shed at the gate end of her plot."},
+      {"id": "D2", "kind": "decision", "date": "2026-07-14", "source": "Bernard", "text": "Approve Lucy's shed at the gate end of plot 19.", "depends_on": ["F4", "R1"]},
+      {"id": "F5", "kind": "state", "date": "2026-07-20", "source": "Ashby village hall", "text": "The Ashby produce show is on Saturday 12 September in the village hall."},
+      {"id": "F6", "kind": "state", "date": "2026-07-28", "source": "AgriSupply", "text": "AgriSupply sell 500-litre water troughs at 85 each, delivered free on orders over 150."},
+      {"id": "D3", "kind": "decision", "date": "2026-07-30", "source": "Bernard", "text": "Order two water troughs from AgriSupply for the top path.", "depends_on": ["F6"]},
+      {"id": "F7", "kind": "state", "date": "2026-08-06", "source": "Gwen Pryce", "text": "Gwen Pryce on plot 7 has ordered a 2 by 1.5 metre shed kit, due in early September, for the path end of her plot."},
+      {"id": "D4", "kind": "decision", "date": "2026-08-11", "source": "Bernard", "text": "Approve Gwen's shed at the path end of plot 7, to go up when her kit arrives.", "depends_on": ["F7", "R1"]},
+      {"id": "F8", "kind": "state", "date": "2026-08-14", "source": "Bernard", "text": "The tool store's padlock was changed today; the new code is 4071."},
+      {"id": "O1", "kind": "obligation", "date": "2026-08-14", "source": "Bernard", "due": "2026-09-05", "text": "Next time you're in touch with Gwen, give her the tool store's new padlock code.", "depends_on": ["F8"]},
+      {"id": "F9", "kind": "state", "date": "2026-08-20", "source": "The Nowaks", "text": "The Nowaks on plot 11 want a 1.5 by 1.2 metre shed beside their water butt, going up in October."},
+      {"id": "F10", "kind": "state", "date": "2026-08-24", "source": "Tunde Bakare", "text": "Tunde on plot 26 wants a 2 by 1.5 metre shed, going up in October."},
+      {"id": "D5", "kind": "decision", "date": "2026-08-25", "source": "Bernard", "text": "Approve the Nowaks' shed beside the water butt on plot 11.", "depends_on": ["F9", "R1"]},
+      {"id": "D6", "kind": "decision", "date": "2026-08-27", "source": "Bernard", "text": "Approve Tunde's shed on plot 26.", "depends_on": ["F10", "R1"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-08-30", "source": "Bernard", "due": "2026-09-14", "text": "Send every plot holder the water-rate notice by 14 September."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-03", "source": "Ashby Lane Allotment Society committee", "text": "The Environment Agency's new flood map puts the riverside plots, 1 to 12, in its flood zone, so from today no new shed may be put up on plots 1 to 12; sheds already standing there can stay. On plots 13 to 40 the rule is unchanged: one shed of up to 2 by 1.5 metres once the secretary has approved its position.", "revokes": ["R1"]},
+    "task": {
+      "text": "Gwen's shed kit arrived yesterday and she wants to put it up this weekend. Reply to her.",
+      "options": [
+        {"id": "a", "text": "Tell Gwen no shed can go up on plot 7"},
+        {"id": "b", "text": "Tell Gwen to go ahead at the path end of plot 7"},
+        {"id": "c", "text": "Tell Gwen no shed can go up on plot 7, and ask Hamid to take down his shed on plot 4"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D4", "direction": "Gwen's shed approval for plot 7 is withdrawn: no new shed can go up there."},
+        {"id": "D5", "direction": "The Nowaks' shed approval for plot 11 is withdrawn: no new shed can go up there."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D6"],
+      "obligations_due": ["O1"],
+      "why": "The amendment bars new sheds only on plots 1 to 12, so the approved but not yet built sheds on plot 7 (Gwen) and plot 11 (the Nowaks) can no longer go up. Hamid's shed on plot 4 was already standing and may stay, Lucy (plot 19) and Tunde (plot 26) are outside the riverside plots, and the water troughs are unrelated."
+    }
+  },
+  {
+    "id": "S2-07",
+    "class": 2,
+    "title": "Homeware shop returns",
+    "owner": "Rosa",
+    "now": "2026-10-07",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-03", "source": "Rosa", "text": "Rosa owns Linden Home, a homeware shop on Linden Street; Joel works there part-time."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-03", "source": "Linden Home returns policy", "text": "Unused items returned within 30 days of purchase with a receipt get a full refund to the original payment method."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-03", "source": "Linden Home returns policy", "text": "Made-to-order items, such as engraved or cut-to-size pieces, can't be returned."},
+      {"id": "F2", "kind": "state", "date": "2026-07-01", "source": "Rosa", "text": "The clearance rail by the window holds end-of-line stock at 40% off, marked with yellow tags."},
+      {"id": "F3", "kind": "state", "date": "2026-08-20", "source": "Rosa", "text": "The window cleaner comes every other Tuesday morning."},
+      {"id": "F4", "kind": "state", "date": "2026-09-01", "source": "Rosa", "text": "Kiln & Co's stoneware mugs sell at 14 each; the last 24 sold out in three weeks."},
+      {"id": "F5", "kind": "state", "date": "2026-09-10", "source": "Kiln & Co", "text": "Kiln & Co can deliver 40 more mugs by 20 October."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-15", "source": "Rosa", "text": "Order 40 stoneware mugs from Kiln & Co for the Christmas window.", "depends_on": ["F4", "F5"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-15", "source": "Rosa", "due": "2026-10-20", "text": "Unpack and price the Kiln & Co mugs on the day they arrive.", "depends_on": ["D1"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-19", "source": "Till receipt", "text": "Ms Varga bought a brass table lamp at full price, 58, by card on 19 September."},
+      {"id": "F7", "kind": "state", "date": "2026-09-22", "source": "Till receipt", "text": "Mrs Choi bought two packs of clearance linen napkins, 15 in total, in cash on 22 September."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-24", "source": "Rosa", "text": "Ms Varga says the lamp is the wrong height and unused; refund her 58 to her card when she brings it back next week.", "depends_on": ["F6", "R1"]},
+      {"id": "F8", "kind": "state", "date": "2026-09-25", "source": "Linden Street traders' group", "text": "The Linden Street fair is on Saturday 17 October; pitches are free for shops on the street."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-28", "source": "Rosa", "text": "Run a stall outside the shop at the Linden Street fair on 17 October, with Joel minding the till.", "depends_on": ["F8"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-28", "source": "Rosa", "due": "2026-10-16", "text": "Confirm the fair pitch with the traders' group by 16 October.", "depends_on": ["D3"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-29", "source": "Rosa", "text": "Mrs Choi says the napkins are the wrong colour and unopened; refund her 15 in cash when she brings them back on Saturday 10 October.", "depends_on": ["F7", "R1"]},
+      {"id": "F9", "kind": "state", "date": "2026-09-30", "source": "Joel", "text": "Joel can't work Saturdays in October except the fair day."},
+      {"id": "F10", "kind": "state", "date": "2026-10-01", "source": "Till receipt", "text": "Tom Reilly bought a clearance wool throw for 36 in cash on 1 October."},
+      {"id": "F11", "kind": "state", "date": "2026-10-02", "source": "Till receipt", "text": "Mr Adeyemi bought a clearance glass vase for 24 by card on 2 October."},
+      {"id": "F12", "kind": "state", "date": "2026-10-02", "source": "Till receipt", "text": "Jas Bhatt bought a pair of full-price linen cushions for 42 by card on 2 October."},
+      {"id": "D5", "kind": "decision", "date": "2026-10-03", "source": "Rosa", "text": "Jas Bhatt emailed that the cushions clash with her sofa and are unused; refund her 42 to her card when she returns them.", "depends_on": ["F12", "R1"]},
+      {"id": "D6", "kind": "decision", "date": "2026-10-03", "source": "Rosa", "text": "Mr Adeyemi phoned: the vase is too tall for his shelf and still boxed; refund him 24 to his card when he brings it in on Wednesday 7 October.", "depends_on": ["F11", "R1"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-03", "source": "Rosa", "due": "2026-10-07", "text": "Log Mr Adeyemi's return in the returns book with his receipt number when he comes in."},
+      {"id": "D7", "kind": "decision", "date": "2026-10-04", "source": "Rosa", "text": "Tom Reilly says the throw is the wrong shade and unused; refund him 36 in cash when he brings it back on 9 October.", "depends_on": ["F10", "R1"]},
+      {"id": "F13", "kind": "state", "date": "2026-10-04", "source": "Joel", "text": "Joel has offered to repaint the shop sign on a Sunday in November."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-10-05", "source": "Rosa", "text": "After several clearance items came back used, Rosa has changed the returns policy: unused items bought at a clearance price on or after 1 October can be exchanged or swapped for store credit within 30 days with a receipt, but not refunded. Unused full-price items, and clearance items bought before 1 October, keep the full refund to the original payment method within 30 days.", "revokes": ["R1"]},
+    "task": {
+      "text": "Mr Adeyemi is at the counter with the vase and his receipt. Sort out his return.",
+      "options": [
+        {"id": "a", "text": "Refund 24 to his card"},
+        {"id": "b", "text": "Offer him 24 in store credit or an exchange"},
+        {"id": "c", "text": "Offer him 24 in store credit or an exchange, and switch Jas Bhatt's cushion refund to store credit too"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D6", "direction": "Mr Adeyemi's clearance vase, bought 2 October, gets an exchange or 24 in store credit, not a card refund."},
+        {"id": "D7", "direction": "Tom Reilly's clearance throw, bought 1 October, gets an exchange or 36 in store credit, not a cash refund."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D4", "D5"],
+      "obligations_due": ["O3"],
+      "why": "Only clearance items bought on or after 1 October lose the refund, so Mr Adeyemi's vase (2 October) and Tom Reilly's throw (1 October) move to exchange or store credit. Ms Varga's lamp and Jas Bhatt's cushions were full price, Mrs Choi's clearance napkins were bought on 22 September, and the mug order and fair stall have nothing to do with returns."
+    }
+  },
+  {
+    "id": "S2-08",
+    "class": 2,
+    "title": "Choir concert line-up",
+    "owner": "Declan",
+    "now": "2026-11-06",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Declan", "text": "Declan is secretary of the Harbourside Community Choir; Moira Kelso conducts and Rhiannon Price leads the altos."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Harbourside Community Choir handbook", "text": "A member sings in a concert only if they attended at least 7 of the 10 rehearsals in the block before it."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Harbourside Community Choir handbook", "text": "Concert dress is black with the choir's teal scarf, issued by the wardrobe secretary."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-02", "source": "Harbourside Community Choir handbook", "text": "Members tell their section leader before a rehearsal if they are going to miss it."},
+      {"id": "F2", "kind": "state", "date": "2026-06-15", "source": "Declan", "text": "Rehearsals are on Wednesdays, 19:30 to 21:30, in St Anne's church hall."},
+      {"id": "F3", "kind": "state", "date": "2026-06-24", "source": "Rhiannon Price", "text": "Summer block register: Farah Aziz attended 6 of the 10 rehearsals and gave notice for all four absences."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-26", "source": "Declan", "text": "Leave Farah Aziz out of the summer concert on Saturday 4 July; she attended 6 of 10 rehearsals.", "depends_on": ["F3", "R1"]},
+      {"id": "F4", "kind": "state", "date": "2026-07-08", "source": "Lifeboat station", "text": "The summer concert raised 860 for the lifeboat station."},
+      {"id": "F5", "kind": "state", "date": "2026-08-05", "source": "Alun, choir treasurer", "text": "Subscriptions for the autumn block are 45, payable by the second rehearsal."},
+      {"id": "F6", "kind": "state", "date": "2026-08-19", "source": "Moira Kelso", "text": "The autumn block is ten Wednesday rehearsals, 2 September to 4 November, preparing the Christmas concert on Saturday 12 December."},
+      {"id": "F7", "kind": "state", "date": "2026-08-26", "source": "Seaview Methodist Church", "text": "Seaview Methodist Church can host the Christmas concert on Saturday 12 December from 17:00; hall hire is 240."},
+      {"id": "D2", "kind": "decision", "date": "2026-08-28", "source": "Declan", "text": "Hold the Christmas concert at Seaview Methodist Church on Saturday 12 December at 19:00.", "depends_on": ["F6", "F7"]},
+      {"id": "F8", "kind": "state", "date": "2026-09-09", "source": "Declan", "text": "Four new members joined at the first autumn rehearsal: two sopranos, a tenor and an alto, Joanne Kerr."},
+      {"id": "F9", "kind": "state", "date": "2026-09-16", "source": "Glenys, wardrobe secretary", "text": "Glenys has 8 spare teal scarves; new ones are 9 each from Loomcraft and take three weeks."},
+      {"id": "D3", "kind": "decision", "date": "2026-09-18", "source": "Declan", "text": "Order 12 teal scarves from Loomcraft for new members and replacements.", "depends_on": ["F9", "R2"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-23", "source": "Rhiannon Price", "text": "Rhiannon marks the alto register at every rehearsal and notes any absence notified to her beforehand."},
+      {"id": "F11", "kind": "state", "date": "2026-09-30", "source": "Kath", "text": "Kath, the soprano section leader, is stepping down at Christmas."},
+      {"id": "F12", "kind": "state", "date": "2026-10-07", "source": "Declan", "text": "The alto section this autumn is Joanne Kerr, Mei Lin, Rhiannon Price, Farah Aziz, Carol Dunne, Bea Okonjo and Petra Sousa."},
+      {"id": "F13", "kind": "state", "date": "2026-10-21", "source": "Seaview Methodist Church", "text": "The church's piano can be tuned on Friday 11 December if we confirm by 20 November."},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-21", "source": "Declan", "due": "2026-11-20", "text": "Confirm the piano tuning for 11 December with Seaview Methodist by 20 November.", "depends_on": ["D2", "F13"]},
+      {"id": "F14", "kind": "state", "date": "2026-10-28", "source": "Moira Kelso", "text": "Moira needs the alto line-up for the Christmas concert by Friday 6 November to set the seating plan."},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-28", "source": "Declan", "due": "2026-11-06", "text": "Send Moira the alto line-up for the Christmas concert by Friday 6 November.", "depends_on": ["F14"]},
+      {"id": "F15", "kind": "state", "date": "2026-10-30", "source": "Harbourside Gazette", "text": "The local paper will photograph the choir at the final autumn rehearsal on 4 November."},
+      {"id": "F16", "kind": "state", "date": "2026-11-02", "source": "Glenys, wardrobe secretary", "text": "Glenys needs to know by 11 November how many new members need scarves."},
+      {"id": "O3", "kind": "obligation", "date": "2026-11-02", "source": "Declan", "due": "2026-11-11", "text": "Tell Glenys by 11 November how many new members need scarves.", "depends_on": ["F16"]},
+      {"id": "F17", "kind": "state", "date": "2026-11-04", "source": "Rhiannon Price", "text": "Autumn block register for the altos, out of 10: Joanne Kerr 10; Mei Lin 9; Rhiannon Price 8; Farah Aziz 6, notice given for all four absences; Carol Dunne 6, no notice for any of her four absences; Bea Okonjo 5, notice given for two absences and not for the other three; Petra Sousa 4, notice given for three absences and not for the other three."},
+      {"id": "D4", "kind": "decision", "date": "2026-11-04", "source": "Declan", "text": "Joanne Kerr, Mei Lin and Rhiannon Price sing in the Christmas concert.", "depends_on": ["F17", "R1"]},
+      {"id": "D5", "kind": "decision", "date": "2026-11-04", "source": "Declan", "text": "Leave Farah Aziz out of the Christmas concert; she attended 6 of 10.", "depends_on": ["F17", "R1"]},
+      {"id": "D6", "kind": "decision", "date": "2026-11-04", "source": "Declan", "text": "Leave Carol Dunne out of the Christmas concert; she attended 6 of 10.", "depends_on": ["F17", "R1"]},
+      {"id": "D7", "kind": "decision", "date": "2026-11-04", "source": "Declan", "text": "Leave Bea Okonjo out of the Christmas concert; she attended 5 of 10.", "depends_on": ["F17", "R1"]},
+      {"id": "D8", "kind": "decision", "date": "2026-11-04", "source": "Declan", "text": "Leave Petra Sousa out of the Christmas concert; she attended 4 of 10.", "depends_on": ["F17", "R1"]}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-11-05", "source": "Harbourside Community Choir committee", "text": "After members who work shifts said the attendance rule shut them out, the committee has changed it, starting with the autumn block: a member still needs 7 of the 10 rehearsals in the block, but absences notified to the section leader beforehand now count as attended, up to two per block. Absences without notice still count as missed.", "revokes": ["R1"]},
+    "task": {
+      "text": "Moira needs the alto line-up for the Christmas concert today. Send it to her.",
+      "options": [
+        {"id": "a", "text": "Joanne, Mei, Rhiannon"},
+        {"id": "b", "text": "Joanne, Mei, Rhiannon, Farah, Bea, Petra"},
+        {"id": "c", "text": "Joanne, Mei, Rhiannon, Farah, Bea, Carol"},
+        {"id": "d", "text": "Joanne, Mei, Rhiannon, Farah, Bea"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["d"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["b", "c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D5", "direction": "Farah sings: 6 attended plus two notified absences counted makes 8 of 10."},
+        {"id": "D7", "direction": "Bea sings: 5 attended plus her two notified absences counted makes 7 of 10."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D4", "D6", "D8"],
+      "obligations_due": ["O2"],
+      "why": "From the autumn block, up to two notified absences count as attended, which lifts Farah to 8 and Bea to 7, so both now sing. Carol gave no notice and stays at 6, Petra reaches only 6 (4 plus the two-absence cap), the three altos already in stay in, and Farah's summer exclusion belongs to a block before the change starts; the venue and scarves are unrelated."
+    }
+  },
+  {
+    "id": "S2-09",
+    "class": 2,
+    "title": "Bike room allocations",
+    "owner": "Ingrid",
+    "now": "2026-10-02",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Ingrid", "text": "Ingrid is secretary of the Larkfield Court residents' association; the building has 16 flats and a basement bike room with 14 rack spaces."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Larkfield Court house rules", "text": "Residents keep bikes and scooters in the basement bike room, one rack space per flat, allocated by the residents' association secretary."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Larkfield Court house rules", "text": "Nothing may be left in the stairwells or corridors."},
+      {"id": "F2", "kind": "state", "date": "2026-06-12", "source": "Mr Osei, flat 3A", "text": "Mr Osei in flat 3A has a road bike and asked for a rack space."},
+      {"id": "D1", "kind": "decision", "date": "2026-06-15", "source": "Ingrid", "text": "Give flat 3A rack space 7 in the bike room for Mr Osei's road bike.", "depends_on": ["F2", "R1"]},
+      {"id": "F3", "kind": "state", "date": "2026-07-16", "source": "The Larsens, flat 1C", "text": "The Larsens in flat 1C have bought a pedal cargo bike with a child seat."},
+      {"id": "D2", "kind": "decision", "date": "2026-07-20", "source": "Ingrid", "text": "Give flat 1C rack space 9, at the wide end of the bike room, for the Larsens' cargo bike.", "depends_on": ["F3", "R1"]},
+      {"id": "F4", "kind": "state", "date": "2026-08-20", "source": "Amara, flat 4D", "text": "Amara in flat 4D has an e-scooter and asked for a space near the bike-room socket."},
+      {"id": "D3", "kind": "decision", "date": "2026-08-24", "source": "Ingrid", "text": "Give flat 4D rack space 11, next to the socket, for Amara's e-scooter.", "depends_on": ["F4", "R1"]},
+      {"id": "F5", "kind": "state", "date": "2026-08-28", "source": "Clearview Windows", "text": "Clearview Windows can clean all the outside windows on Monday 12 October."},
+      {"id": "D4", "kind": "decision", "date": "2026-09-02", "source": "Ingrid", "text": "Book Clearview for the window cleaning on 12 October.", "depends_on": ["F5"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-02", "source": "Ingrid", "due": "2026-10-05", "text": "Tell all residents the window-cleaning date a week ahead.", "depends_on": ["D4"]},
+      {"id": "F6", "kind": "state", "date": "2026-09-10", "source": "Harrow Lettings", "text": "Sofie Brandt is renting flat 2B from 3 October and has an e-bike."},
+      {"id": "D5", "kind": "decision", "date": "2026-09-14", "source": "Ingrid", "text": "Give flat 2B rack space 4 in the bike room for Sofie Brandt's e-bike.", "depends_on": ["F6", "R1"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-14", "source": "Ingrid", "due": "2026-10-02", "text": "Send Sofie Brandt the residents' welcome pack before she moves in on 3 October."},
+      {"id": "F7", "kind": "state", "date": "2026-09-19", "source": "Ingrid", "text": "The residents' association annual meeting is on Thursday 22 October in the ground-floor common room."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-09-21", "source": "Larkfield Court managing agent", "text": "After the building insurer's fire-safety review, from 1 October e-bikes and e-scooters may not be kept or charged in the basement bike room; they go in the new ground-floor charging cage by the bin store, one bay per flat. Pedal bikes, cargo bikes included, stay in the basement bike room as before.", "revokes": ["R1"]},
+    "task": {
+      "text": "Sofie Brandt moves into 2B tomorrow with her e-bike. Tell her where to keep it.",
+      "options": [
+        {"id": "a", "text": "Basement bike room, rack space 4"},
+        {"id": "b", "text": "A bay in the ground-floor charging cage, and move the Larsens' cargo bike there too"},
+        {"id": "c", "text": "A bay in the ground-floor charging cage"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D3", "direction": "Amara's e-scooter moves from rack space 11 to a bay in the ground-floor charging cage."},
+        {"id": "D5", "direction": "Sofie Brandt's e-bike gets a bay in the ground-floor charging cage, not rack space 4."}
+      ],
+      "untouched": ["D1", "D2", "D4"],
+      "obligations_due": ["O2"],
+      "why": "From 1 October only e-bikes and e-scooters leave the basement for the charging cage, so Amara's e-scooter and Sofie's e-bike both go there. Mr Osei's road bike and the Larsens' pedal cargo bike stay in their rack spaces, as the notice says, and the window cleaning is unrelated."
+    }
+  },
+  {
+    "id": "S2-10",
+    "class": 2,
+    "title": "Frozen sample shipping days",
+    "owner": "Kenji",
+    "now": "2026-11-02",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-02", "source": "Kenji", "text": "Kenji manages the Ferris plant biology lab, which sends frozen samples to partner labs with CourierOne's overnight dry-ice service."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-02", "source": "Department shipping procedure", "text": "Frozen samples ship on dry ice by overnight courier on Mondays, Tuesdays or Wednesdays only, so no parcel sits in a depot over the weekend."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-02", "source": "Department shipping procedure", "text": "Every shipment carries a sample manifest signed by the lab manager."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-02", "source": "Department shipping procedure", "text": "Shipments abroad carry the receiving lab's import permit number on the customs form."},
+      {"id": "F2", "kind": "state", "date": "2026-06-15", "source": "Kenji", "text": "The lab's two -80 °C freezers are in room B14; freezer 2 needs a defrost this autumn."},
+      {"id": "F3", "kind": "state", "date": "2026-06-20", "source": "Kenji", "text": "Polystyrene shipping boxes are kept on the top shelf in room B12; 14 are left."},
+      {"id": "F4", "kind": "state", "date": "2026-07-14", "source": "CourierOne", "text": "CourierOne pickups must be booked by noon on the working day before; the latest pickup is 15:00."},
+      {"id": "F5", "kind": "state", "date": "2026-07-30", "source": "CourierOne", "text": "Overnight dry-ice parcels from the lab normally reach the Netherlands, Switzerland, France and Sweden the next morning."},
+      {"id": "F6", "kind": "state", "date": "2026-08-03", "source": "Department IT", "text": "The label printer jams on the new freezer-safe labels; IT suggests the Brother QL model at 160."},
+      {"id": "D1", "kind": "decision", "date": "2026-08-06", "source": "Kenji", "text": "Buy the Brother QL label printer.", "depends_on": ["F6"]},
+      {"id": "F7", "kind": "state", "date": "2026-08-25", "source": "Department safety office", "text": "The next induction for new lab members is on 9 October."},
+      {"id": "F8", "kind": "state", "date": "2026-09-02", "source": "Kenji", "text": "Partner labs this autumn: Uppsala, Leiden, Basel and Montpellier abroad; Edinburgh and Cardiff in the UK."},
+      {"id": "F9", "kind": "state", "date": "2026-09-15", "source": "Kenji", "text": "Freezer 2's defrost needs a Saturday when nobody is running experiments; 14 November is free."},
+      {"id": "D2", "kind": "decision", "date": "2026-09-17", "source": "Kenji", "text": "Defrost freezer 2 on Saturday 14 November, moving its boxes to freezer 1 the day before.", "depends_on": ["F2", "F9"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-17", "source": "Kenji", "due": "2026-11-13", "text": "Move freezer 2's boxes to freezer 1 on Friday 13 November.", "depends_on": ["D2"]},
+      {"id": "F10", "kind": "state", "date": "2026-09-28", "source": "Uppsala lab", "text": "The Uppsala lab wants the Arabidopsis leaf extracts by the end of October; its import permit number is SE-PL-4471."},
+      {"id": "F11", "kind": "state", "date": "2026-10-01", "source": "Department estates", "text": "The loading bay is closed on Friday 6 November for resurfacing."},
+      {"id": "F12", "kind": "state", "date": "2026-10-05", "source": "Ayo", "text": "The Arabidopsis leaf extracts for Uppsala will be packed and ready on Wednesday 28 October."},
+      {"id": "F13", "kind": "state", "date": "2026-10-06", "source": "Department finance office", "text": "The department's courier account code changes to FER-26B on 1 December."},
+      {"id": "D3", "kind": "decision", "date": "2026-10-08", "source": "Kenji", "text": "Ship the leaf extracts to Uppsala on Wednesday 28 October.", "depends_on": ["F10", "F12", "R1", "R3"]},
+      {"id": "F14", "kind": "state", "date": "2026-10-09", "source": "Dr Visser, Leiden", "text": "Dr Visser's lab in Leiden wants the yeast strain set as soon as it's ready; its import permit number is NL-2290."},
+      {"id": "F15", "kind": "state", "date": "2026-10-10", "source": "Ayo", "text": "The last plate of the yeast strain set will be frozen and ready to ship on Wednesday 4 November."},
+      {"id": "D4", "kind": "decision", "date": "2026-10-12", "source": "Kenji", "text": "Ship the yeast strain set to Dr Visser's lab in Leiden on Wednesday 4 November, the day it's ready.", "depends_on": ["F14", "F15", "R1", "R3"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-12", "source": "Kenji", "due": "2026-11-02", "text": "Email Femke, Dr Visser's lab manager, the pickup date for the yeast strains as soon as it's booked.", "depends_on": ["D4"]},
+      {"id": "F16", "kind": "state", "date": "2026-10-13", "source": "Dr Rachel Moss, Edinburgh", "text": "The Edinburgh lab wants the root extracts delivered on Thursday 5 November, when Dr Moss is in."},
+      {"id": "D5", "kind": "decision", "date": "2026-10-14", "source": "Kenji", "text": "Ship the root extracts to the Edinburgh lab on Wednesday 4 November.", "depends_on": ["F16", "R1"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-14", "source": "Kenji", "due": "2026-11-03", "text": "Sign the manifest for the Edinburgh parcel by 3 November.", "depends_on": ["D5", "R2"]},
+      {"id": "F17", "kind": "state", "date": "2026-10-16", "source": "Basel lab", "text": "The Basel lab wants the seed-coat samples as soon as they're ready; its import permit number is CH-0918."},
+      {"id": "F18", "kind": "state", "date": "2026-10-17", "source": "Ayo", "text": "The seed-coat samples will be ready to ship on Wednesday 11 November."},
+      {"id": "D6", "kind": "decision", "date": "2026-10-19", "source": "Kenji", "text": "Ship the seed-coat samples to the Basel lab on Wednesday 11 November, the day they're ready.", "depends_on": ["F17", "F18", "R1", "R3"]},
+      {"id": "F19", "kind": "state", "date": "2026-10-20", "source": "Cardiff lab", "text": "The Cardiff lab can only receive parcels on Wednesdays and Thursdays."},
+      {"id": "D7", "kind": "decision", "date": "2026-10-21", "source": "Kenji", "text": "Ship the frozen leaf extracts to the Cardiff lab on Tuesday 10 November, to arrive on the Wednesday.", "depends_on": ["F19", "R1"]},
+      {"id": "F20", "kind": "state", "date": "2026-10-22", "source": "Montpellier lab", "text": "The Montpellier lab wants the pollen samples on Tuesday 3 November; its import permit number is FR-7735."},
+      {"id": "D8", "kind": "decision", "date": "2026-10-23", "source": "Kenji", "text": "Ship the pollen samples to the Montpellier lab on Monday 2 November.", "depends_on": ["F20", "R1", "R3"]},
+      {"id": "F21", "kind": "state", "date": "2026-10-26", "source": "CourierOne", "text": "CourierOne confirmed the Montpellier pickup for Monday 2 November at 14:00."},
+      {"id": "F22", "kind": "state", "date": "2026-10-26", "source": "Ayo", "text": "Ayo is presenting a poster at the plant science meeting in Bristol from 18 to 20 November."}
+    ],
+    "change": {"id": "C1", "kind": "rule", "date": "2026-10-27", "source": "Department safety office", "text": "Because CourierOne now holds dry-ice parcels going abroad for an extra customs check at its hub, from 1 November frozen shipments to addresses outside the UK may go only on Mondays and Tuesdays. Frozen shipments within the UK can still go on Mondays, Tuesdays or Wednesdays.", "revokes": ["R1"]},
+    "task": {
+      "text": "Book the courier pickup for the Leiden yeast strains.",
+      "options": [
+        {"id": "a", "text": "Monday 9 November"},
+        {"id": "b", "text": "Wednesday 4 November"},
+        {"id": "c", "text": "Monday 9 November, and move the Edinburgh parcel to Monday 9 November too"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["R1"],
+      "touched": [
+        {"id": "D4", "direction": "The Leiden yeast strains ship on Monday 9 November, the first Monday or Tuesday once they're ready on 4 November, not Wednesday 4 November."},
+        {"id": "D6", "direction": "The Basel seed-coat samples ship on Monday 16 November, the first Monday or Tuesday once they're ready on 11 November, not Wednesday 11 November."}
+      ],
+      "untouched": ["D1", "D2", "D3", "D5", "D7", "D8"],
+      "obligations_due": ["O2"],
+      "why": "From 1 November only frozen shipments abroad are limited to Mondays and Tuesdays, so the Leiden and Basel parcels, both planned for a November Wednesday, move to the first Monday after they're ready. Uppsala shipped on 28 October, before the change took effect, Edinburgh and Cardiff are UK shipments that keep Monday to Wednesday, and Montpellier already goes on a Monday; the label printer and freezer defrost are unrelated."
+    }
+  }
+]

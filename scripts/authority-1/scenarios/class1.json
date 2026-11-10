@@ -1,0 +1,587 @@
+[
+  {
+    "id": "S1-01",
+    "class": 1,
+    "title": "House move van booking",
+    "owner": "Hannah",
+    "now": "2026-11-03",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-14", "source": "Dunmore Lettings", "text": "Hannah's tenancy at 7 Larch Close starts on Friday 13 November; the keys can be collected from Dunmore Lettings' office on Mill Street from 09:00 that day."},
+      {"id": "F2", "kind": "state", "date": "2026-09-10", "source": "Hannah", "text": "Hannah has given notice on the flat at 14 Elm Road; that tenancy ends on Monday 30 November, with the landlord Mr Brennan's check-out inspection at 11:00 that day."},
+      {"id": "F3", "kind": "state", "date": "2026-09-16", "source": "BoxMove quote", "text": "BoxMove quoted 480 for a two-person crew and a 3.5-tonne van for a full day, and 1.20 per flat-pack box. They have crews free on every Friday in November and move a booked date free of charge if told at least 7 days before it."},
+      {"id": "F4", "kind": "state", "date": "2026-09-15", "source": "Larch Close residents' association", "text": "Larch Close is a narrow cul-de-sac closed to vehicles over 3.5 tonnes; number 7 has its own driveway that takes one 3.5-tonne van, so no parking suspension is needed."},
+      {"id": "F5", "kind": "state", "date": "2026-09-20", "source": "Fibrelink", "text": "Fibrelink installs broadband at 7 Larch Close on weekdays or Saturdays with 10 days' notice; the engineer comes between 08:00 and 12:00 and an adult must be in."},
+      {"id": "F6", "kind": "state", "date": "2026-09-22", "source": "Beth", "text": "Hannah's sister Beth is free on Mondays in November and has offered to help on the Elm Road side."},
+      {"id": "F7", "kind": "state", "date": "2026-09-25", "source": "Whiskers Cattery, Ashby", "text": "Whiskers Cattery takes cats for a minimum of two nights at 18 a night and has space on any night in November."},
+      {"id": "F8", "kind": "state", "date": "2026-09-28", "source": "Hallam Council", "text": "The council collects bulky waste from the kerb on Tuesdays, 25 for up to three items, booked online at least a week ahead."},
+      {"id": "F9", "kind": "state", "date": "2026-10-02", "source": "Shine Cleaning", "text": "Shine Cleaning does end-of-tenancy cleans on Saturdays for 165 and works from a key left in a key safe."},
+      {"id": "F10", "kind": "state", "date": "2026-10-01", "source": "Hannah", "text": "The Elm Road gas meter read 08412 on 1 October."},
+      {"id": "F11", "kind": "state", "date": "2026-10-06", "source": "Tom", "text": "Tom's office day has moved to Wednesdays from October."},
+      {"id": "F12", "kind": "state", "date": "2026-10-08", "source": "Larch Close residents' association", "text": "Bin day on Larch Close is Tuesday; recycling goes out every other week."},
+      {"id": "F13", "kind": "state", "date": "2026-10-12", "source": "Hannah", "text": "The corner shop at the end of Larch Close opens at 07:00 and sells parcel tape."},
+      {"id": "F14", "kind": "state", "date": "2026-10-15", "source": "Tom", "text": "Tom's parents are visiting for the weekend of 12 December."},
+      {"id": "F15", "kind": "state", "date": "2026-10-20", "source": "Hannah", "text": "From Larch Close, Hannah's commute will be the 41 bus, which runs every 12 minutes."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-08", "source": "Hannah and Tom", "text": "Any single move cost over 300 is agreed with Tom before it is booked."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-08", "source": "Hannah and Tom", "text": "Every move booking goes on the shared family calendar the day it is made."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-12", "source": "Hannah", "text": "Keep 14 Elm Road until its tenancy ends on 30 November, so the two places overlap.", "depends_on": ["F2"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-17", "source": "Hannah", "text": "Book BoxMove's two-person crew and 3.5-tonne van for Friday 13 November: load at Elm Road from 08:00, collect the keys at 09:00 and unload at Larch Close. Tom has agreed the 480.", "depends_on": ["F1", "F3", "F4", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-18", "source": "Hannah", "text": "Order 40 flat-pack boxes from BoxMove, delivered to Elm Road by 1 November.", "depends_on": ["F3"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-23", "source": "Hannah", "text": "Book the Fibrelink installation at 7 Larch Close for Saturday 14 November, the morning after the keys are collected; Tom will be in.", "depends_on": ["F1", "F5"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-24", "source": "Hannah", "text": "Beth helps Hannah with the Elm Road check-out on Monday 30 November.", "depends_on": ["F2", "F6"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-26", "source": "Hannah", "text": "Book Milo the cat into Whiskers Cattery for the nights of 12 and 13 November, so he is out of the way while the keys are collected and the van unloads.", "depends_on": ["F1", "F7"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-05", "source": "Hannah", "text": "Book Shine Cleaning for the end-of-tenancy clean at Elm Road on Saturday 28 November.", "depends_on": ["F2", "F9"]},
+      {"id": "D8", "kind": "decision", "date": "2026-10-01", "source": "Hannah", "text": "Book the council to collect the old sofa and the broken wardrobe from Elm Road on Tuesday 24 November.", "depends_on": ["F2", "F8"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-17", "source": "Hannah", "due": "2026-11-03", "text": "Phone BoxMove by 3 November to confirm the day, crew and van; they send the crew schedule once it is confirmed.", "depends_on": ["D2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-05", "source": "Hannah", "due": "2026-11-27", "text": "Leave the Elm Road spare key in the key safe for Shine Cleaning by 27 November.", "depends_on": ["D7"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-24", "source": "Hannah", "due": "2026-11-23", "text": "Text Beth the check-out time at Elm Road by 23 November.", "depends_on": ["D5"]}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-10-30", "source": "Dunmore Lettings", "text": "Correction from Dunmore Lettings: the start date in our September email was wrong. Hannah's tenancy at 7 Larch Close starts on Friday 20 November, as in the signed agreement, with keys from 09:00 at the Mill Street office. The rent, the deposit already paid and the driveway are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "BoxMove are ringing me back at lunchtime to lock in the van and crew for the move. What exactly do I confirm with them?",
+      "options": [
+        {"id": "a", "text": "Friday 20 November, two-person crew, 3.5-tonne van"},
+        {"id": "b", "text": "Friday 13 November, two-person crew, 3.5-tonne van"},
+        {"id": "c", "text": "Friday 20 November, three-person crew, 7.5-tonne van"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "BoxMove is booked for Friday 20 November (same two-person crew and 3.5-tonne van, same 08:00 load and 09:00 key collection); the move is free since it is more than 7 days ahead."},
+        {"id": "D4", "direction": "The Fibrelink installation moves to Saturday 21 November, the morning after the new key date."},
+        {"id": "D6", "direction": "Milo's cattery nights move to 19 and 20 November."}
+      ],
+      "untouched": ["D1", "D3", "D5", "D7", "D8"],
+      "obligations_due": ["O1"],
+      "why": "The keys now come on Friday 20 November, so the van day (D2), the broadband install timed for the morning after the keys (D4) and Milo's cattery nights around the key day (D6) all move one week later; BoxMove has Friday crews and the date change is free. The crew and van size stay (Larch Close bars vehicles over 3.5 tonnes), and the Elm Road side — overlap, check-out with Beth, the clean, the bulky-waste pick-up and the boxes — rests on the unchanged Elm Road dates."
+    }
+  },
+  {
+    "id": "S1-02",
+    "class": 1,
+    "title": "Bakery butter order",
+    "owner": "Tomasz",
+    "now": "2026-11-02",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-03", "source": "Dale Dairy price list", "text": "Dale Dairy's unsalted butter comes in 5 kg blocks at 41 a block."},
+      {"id": "F2", "kind": "state", "date": "2026-09-03", "source": "Dale Dairy price list", "text": "Dale Dairy's double cream comes in 5-litre tubs at 19 a tub."},
+      {"id": "F3", "kind": "state", "date": "2026-09-01", "source": "Dale Dairy", "text": "Dale Dairy delivers on Wednesday mornings; orders close at 16:00 on the Monday before."},
+      {"id": "F4", "kind": "state", "date": "2026-09-05", "source": "Millhouse Flour", "text": "Millhouse Flour sells strong white flour in 16 kg sacks at 14.50 and delivers on Tuesdays."},
+      {"id": "F5", "kind": "state", "date": "2026-09-10", "source": "Tomasz", "text": "The croissant and pastry lamination uses 20 kg of butter a week; the December mince pies need about another 20 kg a week on top."},
+      {"id": "F6", "kind": "state", "date": "2026-09-12", "source": "Tomasz", "text": "The walk-in fridge was serviced and holds a steady 3°C."},
+      {"id": "F7", "kind": "state", "date": "2026-09-20", "source": "Kuba", "text": "Kuba can do early shifts from Tuesday to Saturday until Christmas."},
+      {"id": "F8", "kind": "state", "date": "2026-10-06", "source": "The Larder café", "text": "The Larder café wants 30 sourdough loaves every Saturday through November."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Tomasz", "text": "Supplier orders always go by email, so there is a written record."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Tomasz", "text": "Keep at least two days' butter in the walk-in fridge at all times."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-06", "source": "Tomasz", "text": "Standing flour order with Millhouse: 6 sacks of strong white every Tuesday.", "depends_on": ["F4", "R1"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-11", "source": "Tomasz", "text": "Standing butter order with Dale Dairy: 4 blocks, 20 kg, every Wednesday for the lamination.", "depends_on": ["F1", "F3", "F5", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-11", "source": "Tomasz", "text": "Standing cream order with Dale Dairy: 2 tubs every Wednesday.", "depends_on": ["F2", "F3", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-25", "source": "Tomasz", "text": "For the weeks of 7 and 14 December, double the Dale Dairy butter order to 8 blocks a week for the mince pies.", "depends_on": ["F1", "F5"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-07", "source": "Tomasz", "text": "Bake The Larder's 30 Saturday loaves in the 05:00 oven slot, with Kuba on the early shift.", "depends_on": ["F7", "F8"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-26", "source": "Tomasz", "due": "2026-11-02", "text": "Email Dale Dairy the order for Wednesday 4 November by 16:00 on Monday 2 November.", "depends_on": ["D2", "D3"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-25", "source": "Tomasz", "due": "2026-11-20", "text": "Confirm the December butter order with Dale Dairy by 20 November.", "depends_on": ["D4"]}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-10-29", "source": "Dale Dairy", "text": "Dale Dairy has stopped making the 5 kg butter block; unsalted butter now comes only in 2.5 kg blocks at 21 a block. Cream, the other lines and the Wednesday delivery are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "It's Monday and Dale Dairy close orders at four. Email them Wednesday's butter.",
+      "options": [
+        {"id": "a", "text": "4 blocks of 5 kg"},
+        {"id": "b", "text": "8 blocks of 2.5 kg"},
+        {"id": "c", "text": "4 blocks of 2.5 kg"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a", "c"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "The standing butter order becomes 8 blocks of 2.5 kg (still 20 kg) every Wednesday."},
+        {"id": "D4", "direction": "For the weeks of 7 and 14 December the butter order is 16 blocks of 2.5 kg (40 kg) a week."}
+      ],
+      "untouched": ["D1", "D3", "D5"],
+      "obligations_due": ["O1"],
+      "why": "The 5 kg block no longer exists, so each butter quantity written in 5 kg blocks is re-expressed in 2.5 kg blocks at the same weight: 8 a week standing (D2) and 16 a week for the two December weeks (D4). Cream still comes in 5-litre tubs and is explicitly unchanged (D3), and the flour and Larder decisions rest on other suppliers and staff."
+    }
+  },
+  {
+    "id": "S1-03",
+    "class": 1,
+    "title": "Half-term flight day",
+    "owner": "Priya",
+    "now": "2026-10-12",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-07-02", "source": "Skylark Air booking confirmation", "text": "Outbound flight SK 2214, Bristol to Palma, departs on Saturday 24 October at 06:40 and lands at 10:05 local time."},
+      {"id": "F2", "kind": "state", "date": "2026-07-02", "source": "Skylark Air booking confirmation", "text": "Return flight SK 2215, Palma to Bristol, departs on Saturday 31 October at 09:35 local time and lands at 11:05."},
+      {"id": "F3", "kind": "state", "date": "2026-07-04", "source": "Skylark Air", "text": "The four of us have seats 14A to 14D on both flights, and each ticket includes one 10 kg cabin bag."},
+      {"id": "F4", "kind": "state", "date": "2026-07-10", "source": "Casa Olivera listing", "text": "Casa Olivera, the villa near Sóller, is booked for the nights of 24 to 30 October, with check-out by 10:00 on 31 October."},
+      {"id": "F5", "kind": "state", "date": "2026-07-12", "source": "SolCar", "text": "SolCar's desk at Palma airport is open 07:00 to 23:00; a booked car is held for 60 minutes after the pick-up time, and times can be amended free until 12 days before pick-up."},
+      {"id": "F6", "kind": "state", "date": "2026-07-15", "source": "Bristol Airport Parking", "text": "Long-stay parking at Bristol Airport is booked by entry and exit time; the times can be changed free online until 12 days before entry."},
+      {"id": "F7", "kind": "state", "date": "2026-07-05", "source": "Priya", "text": "The drive from home in Frome to Bristol Airport takes about an hour."},
+      {"id": "F8", "kind": "state", "date": "2026-07-22", "source": "Marta", "text": "Marta, the Casa Olivera key holder, meets guests at the villa at any time between 10:00 and 22:00 on the arrival day; the drive from the airport takes about 50 minutes."},
+      {"id": "F9", "kind": "state", "date": "2026-08-03", "source": "Sue next door", "text": "Sue next door can feed Biscuit the cat twice a day while we are away."},
+      {"id": "F10", "kind": "state", "date": "2026-08-10", "source": "Sóller boat tours", "text": "Boat trips from Port de Sóller to Sa Dragonera run on Tuesdays and Thursdays until the end of October."},
+      {"id": "F11", "kind": "state", "date": "2026-08-14", "source": "Priya", "text": "Anya's school breaks up for half-term on Friday 23 October at 15:15 and goes back on Monday 2 November."},
+      {"id": "F12", "kind": "state", "date": "2026-08-20", "source": "Dev", "text": "Dev has annual leave from Friday 23 October to Monday 2 November."},
+      {"id": "F13", "kind": "state", "date": "2026-08-25", "source": "Priya", "text": "Rohan's swimming lessons are on Wednesdays at 17:00 and pause over half-term."},
+      {"id": "F14", "kind": "state", "date": "2026-09-02", "source": "Frome library", "text": "The library books borrowed in September are due back on 14 November."},
+      {"id": "F15", "kind": "state", "date": "2026-09-08", "source": "Dev", "text": "Dev's sister Kavita is visiting Bath on 7 and 8 November."},
+      {"id": "F16", "kind": "state", "date": "2026-09-15", "source": "Priya", "text": "The car's MOT is due in January."},
+      {"id": "F17", "kind": "state", "date": "2026-09-20", "source": "Priya", "text": "Sóller's Saturday market runs until 13:00."},
+      {"id": "F18", "kind": "state", "date": "2026-09-28", "source": "Priya", "text": "Casa Olivera has two child-size snorkel sets that guests can use."},
+      {"id": "F19", "kind": "state", "date": "2026-10-01", "source": "SolCar", "text": "The SolCar booking includes two child booster seats."},
+      {"id": "F20", "kind": "state", "date": "2026-10-02", "source": "Priya", "text": "Anya's class photos are on Tuesday 3 November."},
+      {"id": "F21", "kind": "state", "date": "2026-10-04", "source": "Dev", "text": "The garage door sticks in wet weather; Dev will oil it at the weekend."},
+      {"id": "F22", "kind": "state", "date": "2026-10-05", "source": "Frome Town Council", "text": "The Frome Christmas lights switch-on is on Friday 27 November."},
+      {"id": "R1", "kind": "rule", "date": "2026-07-01", "source": "Priya and Dev", "text": "With the children, we get to the airport at least two hours before any flight."},
+      {"id": "R2", "kind": "rule", "date": "2026-07-01", "source": "Priya and Dev", "text": "Every travel booking reference goes in the shared 'Mallorca' note the day it is made."},
+      {"id": "D1", "kind": "decision", "date": "2026-07-15", "source": "Priya", "text": "Book Bristol Airport long-stay parking from 04:40 on Saturday 24 October, two hours before the flight, to 12:00 on Saturday 31 October.", "depends_on": ["F1", "F2", "F6", "R1"]},
+      {"id": "D2", "kind": "decision", "date": "2026-07-16", "source": "Priya", "text": "Pick up the SolCar hire car at Palma at 10:45 on 24 October, 40 minutes after landing, and return it at 07:30 on 31 October.", "depends_on": ["F1", "F2", "F5", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-07-22", "source": "Priya", "text": "Ask Marta to meet us at Casa Olivera at 11:45 on 24 October, an hour and forty minutes after landing.", "depends_on": ["F1", "F8"]},
+      {"id": "D4", "kind": "decision", "date": "2026-07-04", "source": "Priya", "text": "Keep seats 14A to 14D together and travel with cabin bags only.", "depends_on": ["F3"]},
+      {"id": "D5", "kind": "decision", "date": "2026-08-04", "source": "Priya", "text": "Ask Sue to feed Biscuit from the evening of Saturday 24 October to the morning of Saturday 31 October.", "depends_on": ["F2", "F4", "F9"]},
+      {"id": "D6", "kind": "decision", "date": "2026-08-12", "source": "Priya", "text": "Book the Sa Dragonera boat trip for Tuesday 27 October.", "depends_on": ["F4", "F10"]},
+      {"id": "D7", "kind": "decision", "date": "2026-08-21", "source": "Priya", "text": "Dev collects Anya from school at 15:15 on Friday 23 October and we pack that evening.", "depends_on": ["F11", "F12"]},
+      {"id": "D8", "kind": "decision", "date": "2026-09-29", "source": "Priya", "text": "Use the villa's snorkel sets rather than packing our own.", "depends_on": ["F3", "F18"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-07-15", "source": "Priya", "due": "2026-10-12", "text": "Confirm or change the airport parking times online by 12 October, the last day for free changes.", "depends_on": ["D1"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-07-16", "source": "Priya", "due": "2026-10-12", "text": "Confirm the SolCar pick-up and return times by 12 October, the last day for free amendments.", "depends_on": ["D2"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-07-22", "source": "Priya", "due": "2026-10-20", "text": "Message Marta our arrival time at the villa by 20 October.", "depends_on": ["D3"]},
+      {"id": "O4", "kind": "obligation", "date": "2026-08-04", "source": "Priya", "due": "2026-10-22", "text": "Leave Sue the spare key and the cat food by 22 October.", "depends_on": ["D5"]}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-10-07", "source": "Skylark Air", "text": "Skylark Air has retimed flight SK 2214: it now departs Bristol on Saturday 24 October at 14:20 and lands in Palma at 17:45 local time. The return flight, the seats and the bags are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "The airport car park and SolCar both need our times confirmed today. Confirm the parking entry time and the car pick-up time.",
+      "options": [
+        {"id": "a", "text": "Parking from 04:40; car at 10:45"},
+        {"id": "b", "text": "Parking from 12:20; car at 10:45"},
+        {"id": "c", "text": "Parking from 12:20; car at 18:25"},
+        {"id": "d", "text": "Parking from 04:40; car at 18:25"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a", "b", "d"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D1", "direction": "Parking entry moves to 12:20 on 24 October (two hours before 14:20); the exit stays 12:00 on 31 October."},
+        {"id": "D2", "direction": "Car pick-up moves to 18:25 on 24 October (40 minutes after the 17:45 landing); the return stays 07:30 on 31 October."},
+        {"id": "D3", "direction": "Marta is asked to meet us at 19:25 on 24 October (an hour and forty minutes after the 17:45 landing)."}
+      ],
+      "untouched": ["D4", "D5", "D6", "D7", "D8"],
+      "obligations_due": ["O1", "O2"],
+      "why": "Only the outbound flight moved, by 7 hours 40 minutes. Everything timed from it moves by its own stated offset: parking entry (D1), car pick-up (D2) and Marta's meeting time (D3); the return-day halves of D1 and D2 rest on the unchanged return flight. Seats and bags are explicitly unchanged (D4), and the cat-sitting dates, boat trip, school pick-up and snorkels rest on other facts."
+    }
+  },
+  {
+    "id": "S1-04",
+    "class": 1,
+    "title": "Museum trip lunches",
+    "owner": "Gareth",
+    "now": "2026-11-05",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-10-08", "source": "Ashdown Primary school office", "text": "Consent forms are back for 52 Year 5 pupils for the museum trip: 26 from 5G and 26 from 5P."},
+      {"id": "F2", "kind": "state", "date": "2026-09-14", "source": "Museum of Making bookings", "text": "Ashdown's Year 5 visit to the Museum of Making is booked for Thursday 12 November, 10:00 to 14:30; its workshop rooms take groups of up to 30."},
+      {"id": "F3", "kind": "state", "date": "2026-09-10", "source": "Ashdown Primary school office", "text": "Year 5 has 56 pupils: 28 in 5G and 28 in 5P."},
+      {"id": "F4", "kind": "state", "date": "2026-09-16", "source": "Hilltop Coaches", "text": "Hilltop Coaches have a 70-seat coach free on 12 November, leaving the school gate at 09:00 and back by 15:15."},
+      {"id": "F5", "kind": "state", "date": "2026-09-18", "source": "School kitchen", "text": "The school kitchen makes trip packed lunches if it has the number by the end of the day one week before the trip."},
+      {"id": "F6", "kind": "state", "date": "2026-09-21", "source": "Gareth", "text": "Seven adults have said yes for the trip: Gareth, Ms Ali, Mr Dunne, two teaching assistants and parent helpers Kerry and Joe."},
+      {"id": "F7", "kind": "state", "date": "2026-09-25", "source": "Museum of Making", "text": "The museum has a lunch room for school groups and lockers for coats."},
+      {"id": "F8", "kind": "state", "date": "2026-09-30", "source": "Ashdown Primary school office", "text": "Year 5 swimming moves to Friday mornings from October."},
+      {"id": "F9", "kind": "state", "date": "2026-10-02", "source": "Gareth", "text": "The Year 5 harvest assembly is on Friday 16 October."},
+      {"id": "F10", "kind": "state", "date": "2026-10-05", "source": "PTA", "text": "The PTA Christmas fair is on Saturday 5 December."},
+      {"id": "F11", "kind": "state", "date": "2026-10-12", "source": "Ashdown Primary school office", "text": "The staff car park is being resurfaced over half-term."},
+      {"id": "F12", "kind": "state", "date": "2026-09-29", "source": "Ashdown Primary school office", "text": "The hall is free for parents' evenings on 24 and 26 November."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Ashdown trips policy", "text": "Off-site visits need at least one adult for every 8 pupils."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Ashdown trips policy", "text": "Every off-site visit needs the head's sign-off on the risk assessment at least five school days before it."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-16", "source": "Gareth", "text": "Book Hilltop's 70-seat coach for 12 November so the whole year group and the adults fit.", "depends_on": ["F2", "F3", "F4"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-22", "source": "Gareth", "text": "Take all seven adults who said yes; that covers the whole 56-pupil year group at one adult per 8.", "depends_on": ["F3", "F6", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-10-09", "source": "Gareth", "text": "Book the museum's 'Make it Move' workshop for 52 pupils, as two groups of 26.", "depends_on": ["F1", "F2"]},
+      {"id": "D4", "kind": "decision", "date": "2026-10-09", "source": "Gareth", "text": "Order packed lunches from the school kitchen for 52 pupils and 7 adults, 59 in all.", "depends_on": ["F1", "F5", "F6"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-01", "source": "Gareth", "text": "5G does the workshop in the morning and 5P in the afternoon; both classes eat in the museum's lunch room at 12:15.", "depends_on": ["F2", "F3", "F7"]},
+      {"id": "D6", "kind": "decision", "date": "2026-10-13", "source": "Gareth", "text": "Hold the Year 5 parents' evening on Tuesday 24 November.", "depends_on": ["F12"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-09", "source": "Gareth", "due": "2026-11-05", "text": "Give the school kitchen the final packed-lunch number by the end of Thursday 5 November.", "depends_on": ["D4"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-09", "source": "Gareth", "due": "2026-11-06", "text": "Confirm the workshop group sizes with the museum by Friday 6 November.", "depends_on": ["D3"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-22", "source": "Gareth", "due": "2026-11-09", "text": "Text Kerry and Joe the meeting time, 08:40 at the school gate, by Monday 9 November.", "depends_on": ["D2"]}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-11-03", "source": "Ashdown Primary school office", "text": "Correction from the school office: 48 pupils have valid consent forms for the museum trip, 24 from 5G and 24 from 5P, not 26 and 26; four of the slips counted were left over from last year's trip. The trip date and the seven adults are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "The kitchen needs the packed-lunch number for the museum trip by the end of today. Put the order in.",
+      "options": [
+        {"id": "a", "text": "59 lunches"},
+        {"id": "b", "text": "55 lunches"},
+        {"id": "c", "text": "48 lunches"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D3", "direction": "The workshop is booked for 48 pupils, as two groups of 24."},
+        {"id": "D4", "direction": "The lunch order is 55: 48 pupils and 7 adults."}
+      ],
+      "untouched": ["D1", "D2", "D5", "D6"],
+      "obligations_due": ["O1"],
+      "why": "Only the number of consenting pupils fell, from 52 to 48, so the two decisions built on that number — the workshop groups (D3) and the lunch order (D4) — follow it down, the lunches to 48 + 7 = 55. The coach and the adult team were sized on the whole 56-pupil year group and still fit and meet the ratio (the seven adults are explicitly unchanged), the class split and lunch room stay, and the parents' evening is unrelated."
+    }
+  },
+  {
+    "id": "S1-05",
+    "class": 1,
+    "title": "Allotment manure order",
+    "owner": "Aoife",
+    "now": "2026-11-04",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-12", "source": "Brookfield Allotment Society noticeboard", "text": "This winter's manure from Hollins Farm allows up to 10 bags per plot, ordered through the society."},
+      {"id": "F2", "kind": "state", "date": "2026-09-12", "source": "Brookfield Allotment Society noticeboard", "text": "The manure comes to the main gate on Saturday 14 November at 09:00; bags are 4.50 each, and final numbers go to Marion, the secretary, by 4 November."},
+      {"id": "F3", "kind": "state", "date": "2026-06-15", "source": "Ciaran", "text": "Ciaran next door has a van and is free on Saturdays in November except the 28th."},
+      {"id": "F4", "kind": "state", "date": "2026-06-02", "source": "Aoife", "text": "Next year's rotation on plot 14: potatoes on beds 2 and 3, which can take anything from 4 to 10 bags of manure between them; brassicas on bed 1; onions and garlic on bed 4."},
+      {"id": "F5", "kind": "state", "date": "2026-07-20", "source": "Aoife", "text": "Aoife can barrow up to 6 bags from the main gate to plot 14 in a morning; more than that needs Ciaran's van round the back lane to plot 14's back gate."},
+      {"id": "F6", "kind": "state", "date": "2026-07-14", "source": "Marion", "text": "The site's water troughs are turned off for winter on 1 November."},
+      {"id": "F7", "kind": "state", "date": "2026-08-20", "source": "Aoife", "text": "The 'Solent Wight' garlic bulbs arrived and are in the shed."},
+      {"id": "F8", "kind": "state", "date": "2026-09-03", "source": "Aoife", "text": "Blackbirds have been taking the autumn raspberries."},
+      {"id": "F9", "kind": "state", "date": "2026-10-10", "source": "Aoife", "text": "Both compost bays are full; the left one will be ready by spring."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Brookfield Allotment Society rules", "text": "No vehicles on the site paths; deliveries are unloaded at the main gate or at a plot's own back gate."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Brookfield Allotment Society rules", "text": "No bonfires anywhere on the site."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Brookfield Allotment Society rules", "text": "Plots must be at least two-thirds cultivated at the spring inspection."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-14", "source": "Aoife", "text": "Order the full allowance of 10 bags.", "depends_on": ["F1", "F2", "F4"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-14", "source": "Aoife", "text": "The manure goes on beds 2 and 3 for next year's potatoes.", "depends_on": ["F4"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-15", "source": "Aoife", "text": "Ask Ciaran to bring his van round the back lane at 09:00 on Saturday 14 November, since the full 10-bag allowance is too many to barrow.", "depends_on": ["F1", "F2", "F3", "F5", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-10-12", "source": "Aoife", "text": "Plant the garlic on bed 4 in the first week of November.", "depends_on": ["F4", "F7"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-11", "source": "Aoife", "text": "Spread the right-hand compost bay on bed 1 in December.", "depends_on": ["F4", "F9"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-14", "source": "Aoife", "due": "2026-11-04", "text": "Give Marion the final number of bags by 4 November.", "depends_on": ["D1"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-15", "source": "Aoife", "due": "2026-11-04", "text": "Tell Ciaran by 4 November whether the van is needed on the 14th.", "depends_on": ["D3"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-12", "source": "Marion", "due": "2026-11-20", "text": "Hand the plot inspection form back to Marion by 20 November."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-11-02", "source": "Marion, Brookfield Allotment Society secretary", "text": "Correction from Marion: Hollins Farm can only bring half a load this winter, so the most any plot can have is 5 bags, not 10. The day, time, gate and price are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "Marion wants my final manure number today, and Ciaran's waiting to hear from me about the van for Saturday the 14th. Reply to them both.",
+      "options": [
+        {"id": "a", "text": "5 bags; tell Ciaran the van isn't needed"},
+        {"id": "b", "text": "10 bags; Ciaran's van at 09:00 on the 14th"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D1", "direction": "Order 5 bags, the new maximum per plot."},
+        {"id": "D3", "direction": "Ciaran's van is not needed: 5 bags is within the 6 Aoife can barrow from the main gate."}
+      ],
+      "untouched": ["D2", "D4", "D5"],
+      "obligations_due": ["O1", "O2"],
+      "why": "The per-plot allowance fell from 10 bags to 5, so 'order the full allowance' (D1) becomes 5, and the van booked only because the full allowance was too many to barrow (D3) is no longer needed, since 5 is under Aoife's 6-bag barrow limit. Beds 2 and 3 take anything from 4 to 10 bags (D2 stays), and the garlic and compost plans rest on other facts."
+    }
+  },
+  {
+    "id": "S1-06",
+    "class": 1,
+    "title": "Dog-walk rota and invoice",
+    "owner": "Marcus",
+    "now": "2026-11-06",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-07", "source": "Mrs Okafor", "text": "The Okafors need Pepper, their collie cross, walked at 12:30 on Mondays, Wednesdays and Fridays."},
+      {"id": "F2", "kind": "state", "date": "2026-09-01", "source": "Marcus", "text": "Pawsteps charges 14 for an hour's group walk."},
+      {"id": "F3", "kind": "state", "date": "2026-09-02", "source": "Marcus", "text": "The Monday, Wednesday and Friday 12:30 walk in Hartley Woods has Rolo, Mabel and Biscuit."},
+      {"id": "F4", "kind": "state", "date": "2026-09-02", "source": "Marcus", "text": "The Tuesday and Thursday 12:30 walk in Hartley Woods has Juno, Kip and Otto."},
+      {"id": "F5", "kind": "state", "date": "2026-09-03", "source": "Zoe", "text": "Zoe, Pawsteps' second walker, works mornings only, 08:00 to 12:00, Monday to Friday."},
+      {"id": "F6", "kind": "state", "date": "2026-09-08", "source": "Mrs Okafor", "text": "Pepper's lead and towel are in the porch, and the key is in the key safe by the side gate."},
+      {"id": "F7", "kind": "state", "date": "2026-09-10", "source": "Hartley Woods ranger", "text": "From November to February dogs must be on a lead around the lake in Hartley Woods."},
+      {"id": "F8", "kind": "state", "date": "2026-09-14", "source": "Mr Patel", "text": "The Patels' labrador Rolo is away with them from 16 to 27 November."},
+      {"id": "F9", "kind": "state", "date": "2026-09-20", "source": "Marcus", "text": "The van's MOT is booked for Saturday 21 November at Kwik Garage."},
+      {"id": "F10", "kind": "state", "date": "2026-09-22", "source": "Marcus", "text": "Pawsteps walks every weekday except bank holidays; this year's Christmas bank holidays are Friday 25 and Monday 28 December."},
+      {"id": "F11", "kind": "state", "date": "2026-09-25", "source": "Ms Lund", "text": "Ms Lund, Biscuit's owner, has recommended Pawsteps to her neighbour, who has a beagle puppy."},
+      {"id": "F12", "kind": "state", "date": "2026-10-02", "source": "Marcus", "text": "The new treat pouches arrived; 40 are left in the box."},
+      {"id": "F13", "kind": "state", "date": "2026-10-05", "source": "Kings Road Pets", "text": "Kings Road Pets gives Pawsteps 10% off poo bags."},
+      {"id": "F14", "kind": "state", "date": "2026-10-08", "source": "Zoe", "text": "Zoe has her driving test on Thursday 19 November."},
+      {"id": "F15", "kind": "state", "date": "2026-10-15", "source": "Hallam Council", "text": "The council inspection for Pawsteps' dog-walking licence is due in March."},
+      {"id": "F16", "kind": "state", "date": "2026-10-18", "source": "Marcus", "text": "The Hartley Woods café now sells dog-friendly ice cream."},
+      {"id": "F17", "kind": "state", "date": "2026-10-24", "source": "Zoe", "text": "Zoe can work Saturdays in December if needed."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Council licence conditions", "text": "No more than four dogs on any one walk."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Marcus", "text": "Clients are invoiced every Friday for the following week's walks."},
+      {"id": "R3", "kind": "rule", "date": "2026-09-01", "source": "Marcus", "text": "Every new dog has a meet-and-greet before its first group walk."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-02", "source": "Marcus", "text": "Juno, Kip and Otto walk together on Tuesdays and Thursdays at 12:30 in Hartley Woods.", "depends_on": ["F4", "R1"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-09", "source": "Marcus", "text": "Pepper joins Rolo, Mabel and Biscuit in the Monday, Wednesday and Friday 12:30 walk.", "depends_on": ["F1", "F3", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-09", "source": "Marcus", "text": "Invoice the Okafors for three walks a week at 14, 42 a week.", "depends_on": ["F1", "F2", "R2"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-04", "source": "Marcus", "text": "Marcus does all the 12:30 walks himself; Zoe keeps the morning rounds.", "depends_on": ["F5"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-15", "source": "Marcus", "text": "While Rolo is away, keep his place open; no new dog takes it.", "depends_on": ["F3", "F8"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-23", "source": "Marcus", "text": "Pencil in Pepper's Christmas-week walks for Monday 21 and Wednesday 23 December; Friday 25 is a bank holiday.", "depends_on": ["F1", "F10"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-03", "source": "Marcus", "text": "Offer the beagle puppy a meet-and-greet in January.", "depends_on": ["F11", "R3"]},
+      {"id": "D8", "kind": "decision", "date": "2026-09-10", "source": "Marcus", "text": "Keep every dog on the lead around the lake from November, Pepper included.", "depends_on": ["F7"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-30", "source": "Marcus", "due": "2026-11-06", "text": "Send Zoe and the clients the rota for the week of 9 November by Friday 6 November."},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-30", "source": "Marcus", "due": "2026-11-06", "text": "Send the invoices for the week of 9 November by Friday 6 November.", "depends_on": ["R2"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-23", "source": "Marcus", "due": "2026-12-01", "text": "Confirm the Christmas-week walks with Mrs Okafor by 1 December.", "depends_on": ["D6"]}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-11-02", "source": "Mrs Okafor", "text": "Mrs Okafor's work pattern has changed: from Monday 9 November Pepper needs walking at 12:30 on Tuesdays and Thursdays only, not on Mondays, Wednesdays or Fridays. The key safe, the lead and the towel are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "It's Friday, so next week's rota and invoices go out tonight. What do I put down for Pepper?",
+      "options": [
+        {"id": "a", "text": "Mon, Wed and Fri 12:30 walk; invoice 42"},
+        {"id": "b", "text": "Tue and Thu 12:30 walk; invoice 42"},
+        {"id": "c", "text": "Mon, Wed and Fri 12:30 walk; invoice 28"},
+        {"id": "d", "text": "Tue and Thu 12:30 walk; invoice 28"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["d"],
+      "stale_options": ["a", "b", "c"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "Pepper moves to the Tuesday and Thursday 12:30 walk with Juno, Kip and Otto (four dogs, within the limit)."},
+        {"id": "D3", "direction": "The Okafors are invoiced for two walks a week, 28."},
+        {"id": "D6", "direction": "Pepper's Christmas-week walks are Tuesday 22 and Thursday 24 December."}
+      ],
+      "untouched": ["D1", "D4", "D5", "D7", "D8"],
+      "obligations_due": ["O1", "O2"],
+      "why": "Pepper's days moved from Monday/Wednesday/Friday to Tuesday/Thursday, so every decision built on those days follows: the group walk (D2), the weekly invoice (D3, two walks at 14) and the Christmas-week dates (D6; neither 22 nor 24 December is a bank holiday). Juno, Kip and Otto still walk Tuesday/Thursday and Pepper makes four, the licence limit; staffing, Rolo's open place, the beagle and the lake lead rule rest on other facts."
+    }
+  },
+  {
+    "id": "S1-07",
+    "class": 1,
+    "title": "Bath panel order",
+    "owner": "Leila",
+    "now": "2026-11-05",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-20", "source": "BathStore order confirmation", "text": "The Arden bath on Leila's order is the 1700 × 700 mm model."},
+      {"id": "F2", "kind": "state", "date": "2026-09-20", "source": "BathStore order confirmation", "text": "The Arden basin on the order is 550 mm wide, with the matching close-coupled WC, both in white."},
+      {"id": "F3", "kind": "state", "date": "2026-09-18", "source": "BathStore", "text": "BathStore delivers the Arden suite on Monday 9 November between 07:00 and 13:00; matching bath panels are made to order and must be ordered by 5 November to arrive by 20 November."},
+      {"id": "F4", "kind": "state", "date": "2026-10-12", "source": "Hughes Plumbing", "text": "Dan Hughes will do the first fix on Wednesday 11 November and the second fix, fitting the bath, basin, WC and shower, on Wednesday 25 November."},
+      {"id": "F5", "kind": "state", "date": "2026-09-28", "source": "Kerr Tiling quote", "text": "Kerr Tiling can tile the bathroom walls and floor from 18 to 20 November for 1,380."},
+      {"id": "F6", "kind": "state", "date": "2026-10-18", "source": "Ace Skips", "text": "Ace Skips can put a 6-yard skip on the drive from 6 to 20 November."},
+      {"id": "F7", "kind": "state", "date": "2026-09-10", "source": "Sam", "text": "Sam is away for work from 9 to 13 November."},
+      {"id": "F8", "kind": "state", "date": "2026-08-30", "source": "Leila", "text": "The bathroom's window wall, where the bath goes, is 2400 mm long."},
+      {"id": "F9", "kind": "state", "date": "2026-09-25", "source": "Leila", "text": "The hallway paint, 'Pale Sage', is on order at the decorating centre."},
+      {"id": "F10", "kind": "state", "date": "2026-09-14", "source": "Leila", "text": "Bruno's grooming appointment is on Saturday 14 November."},
+      {"id": "F11", "kind": "state", "date": "2026-10-05", "source": "Mrs Reid", "text": "Mrs Reid next door is having her fence replaced in early November."},
+      {"id": "F12", "kind": "state", "date": "2026-10-22", "source": "Leila", "text": "The downstairs cloakroom toilet works fine, so the house is never without one."},
+      {"id": "F13", "kind": "state", "date": "2026-10-25", "source": "Leila", "text": "Leila's book group meets on Tuesday 10 November."},
+      {"id": "R1", "kind": "rule", "date": "2026-08-01", "source": "Leila and Sam", "text": "Any single renovation purchase over 500 is agreed by both Leila and Sam first."},
+      {"id": "R2", "kind": "rule", "date": "2026-08-01", "source": "Leila and Sam", "text": "Tradespeople get the side-gate code, never a house key."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-21", "source": "Leila", "text": "Order the matching white gloss bath panels from BathStore: a 1700 mm front panel and a 700 mm end panel.", "depends_on": ["F1", "F3"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-22", "source": "Leila", "text": "Order a straight chrome shower-curtain rail cut to 1700 mm to run the length of the bath.", "depends_on": ["F1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-10-13", "source": "Leila", "text": "Work from home on Wednesday 11 November to let Dan in for the first fix, since Sam is away.", "depends_on": ["F4", "F7"]},
+      {"id": "D4", "kind": "decision", "date": "2026-10-13", "source": "Leila", "text": "Work from home on Wednesday 25 November for the second fix.", "depends_on": ["F4"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-01", "source": "Leila", "text": "Go with Kerr Tiling for the walls and floor, 18 to 20 November; Sam has agreed the 1,380.", "depends_on": ["F5", "R1"]},
+      {"id": "D6", "kind": "decision", "date": "2026-10-20", "source": "Leila", "text": "Hire the Ace Skips skip for 6 to 20 November.", "depends_on": ["F6"]},
+      {"id": "D7", "kind": "decision", "date": "2026-09-23", "source": "Leila", "text": "Keep the basin on the wall opposite the bath, where the old one is, so its waste pipe stays put.", "depends_on": ["F2"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-21", "source": "Leila", "due": "2026-11-05", "text": "Place the bath panel order with BathStore by 5 November.", "depends_on": ["D1"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-13", "source": "Leila", "due": "2026-11-10", "text": "Text Dan the side-gate code before the first fix.", "depends_on": ["D3", "R2"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-22", "source": "Leila", "due": "2026-11-20", "text": "Ask Dan by 20 November to bring rail brackets for the second fix.", "depends_on": ["D2"]}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-11-03", "source": "BathStore", "text": "Correction from BathStore: the Arden bath coming with Leila's suite is the 1800 × 800 mm model, not 1700 × 700; the order listing showed the wrong size. The basin, the WC and the delivery day are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "Today is BathStore's last day for ordering the made-to-order panels. Place the bath panel order.",
+      "options": [
+        {"id": "a", "text": "1700 mm front, 700 mm end"},
+        {"id": "b", "text": "1800 mm front, 700 mm end"},
+        {"id": "c", "text": "1800 mm front, 800 mm end"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["c"],
+      "stale_options": ["a", "b"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D1", "direction": "Order an 1800 mm front panel and an 800 mm end panel."},
+        {"id": "D2", "direction": "The curtain rail is cut to 1800 mm."}
+      ],
+      "untouched": ["D3", "D4", "D5", "D6", "D7"],
+      "obligations_due": ["O1"],
+      "why": "The bath is 1800 × 800, not 1700 × 700, so the two decisions sized from the bath — the panels (D1) and the rail (D2) — take the new dimensions. The bath still fits the 2400 mm wall, and nothing else rests on its size: Dan's dates, the home-working days, the tiler, the skip and the basin position rest on other facts, and the basin and WC are explicitly unchanged."
+    }
+  },
+  {
+    "id": "S1-08",
+    "class": 1,
+    "title": "Book club venue",
+    "owner": "Femi",
+    "now": "2026-11-03",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-10", "source": "Lantern Café", "text": "The Lantern Café lets the book club have its back room free on second Tuesdays, 19:00 to 21:30.", "expires": "2026-10-31"},
+      {"id": "F2", "kind": "state", "date": "2026-06-12", "source": "Orchard Library", "text": "Orchard Library's community room can be booked free by local groups on Tuesday evenings until 21:30, at least a week ahead."},
+      {"id": "F3", "kind": "state", "date": "2026-09-15", "source": "Femi", "text": "The November book is 'Small Things Like These', chosen by Dele."},
+      {"id": "F4", "kind": "state", "date": "2026-07-20", "source": "Femi", "text": "The club has 11 members since Hana joined in July."},
+      {"id": "F5", "kind": "state", "date": "2026-08-05", "source": "Dele", "text": "Dele is away for most of December."},
+      {"id": "F6", "kind": "state", "date": "2026-09-02", "source": "Femi", "text": "Several members asked about e-books; the library app lends them free."},
+      {"id": "F7", "kind": "state", "date": "2026-10-10", "source": "Hana", "text": "Hana has a stall at the Christmas market on 12 December."},
+      {"id": "F8", "kind": "state", "date": "2026-10-14", "source": "Lantern Café", "text": "The Lantern Café has a new pear and ginger cake."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Book club rules", "text": "Meetings are on the second Tuesday of the month at 19:00."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Book club rules", "text": "If the Lantern can't host a meeting, it moves to the Orchard Library community room, same day and time."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-15", "source": "Femi", "text": "Read 'Small Things Like These' for November, with Dele leading the discussion.", "depends_on": ["F3"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-16", "source": "Femi", "text": "Hold the November meeting on Tuesday 10 November at 19:00 in the Lantern Café's back room.", "depends_on": ["F1", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-16", "source": "Femi", "text": "Hold the December meeting on Tuesday 8 December at 19:00 in the Lantern Café's back room.", "depends_on": ["F1", "R1"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-20", "source": "Femi", "text": "Make December's meeting a Christmas book swap: each of the 11 members brings one wrapped second-hand book.", "depends_on": ["F4"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-16", "source": "Femi", "due": "2026-11-03", "text": "Send everyone the November meeting reminder, with the venue, by 3 November.", "depends_on": ["D2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-20", "source": "Femi", "due": "2026-12-01", "text": "Remind everyone about the book swap by 1 December.", "depends_on": ["D4"]}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-10-28", "source": "Lantern Café", "text": "The Lantern Café's back-room arrangement with the book club ends on 31 October and is not being renewed; from November the café closes at 17:00 on weekdays.", "revokes": ["F1"]},
+    "task": {
+      "text": "Book club is next Tuesday. Send everyone the reminder this morning with where and when.",
+      "options": [
+        {"id": "a", "text": "Lantern Café back room, Tuesday 10 November, 19:00"},
+        {"id": "b", "text": "Orchard Library community room, Tuesday 10 November, 19:00"},
+        {"id": "c", "text": "Orchard Library community room, Tuesday 17 November, 19:00"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "The November meeting is on Tuesday 10 November at 19:00 in the Orchard Library community room."},
+        {"id": "D3", "direction": "The December meeting is on Tuesday 8 December at 19:00 in the Orchard Library community room."}
+      ],
+      "untouched": ["D1", "D4"],
+      "obligations_due": ["O1"],
+      "why": "The Lantern's free back room ended on 31 October and the café now shuts at 17:00 on weekdays, so both meetings planned there (D2, D3) move to the Orchard Library room under the club's own fallback rule, keeping the second-Tuesday 19:00 slot (booking today is a week ahead). The November book and leader (D1) and the December book swap (D4) do not depend on the venue."
+    }
+  },
+  {
+    "id": "S1-09",
+    "class": 1,
+    "title": "Train-out club ride",
+    "owner": "Ingrid",
+    "now": "2026-11-08",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-06-28", "source": "Southvale Rail summer timetable", "text": "On Sundays the first train from Hatherby to Kingsbridge leaves at 07:52 and arrives at 08:40.", "expires": "2026-10-31"},
+      {"id": "F2", "kind": "state", "date": "2026-06-28", "source": "Southvale Rail", "text": "Southvale trains carry up to six bikes; spaces are booked free online, and booking closes seven days before travel."},
+      {"id": "F3", "kind": "state", "date": "2026-09-05", "source": "Ingrid", "text": "The Kingsbridge Return route runs 64 km from Kingsbridge station back to Hatherby, via Stowe and Coldharbour Hill, mostly on lanes."},
+      {"id": "F4", "kind": "state", "date": "2026-09-06", "source": "The Plough, Stowe", "text": "The Plough in Stowe serves cyclists from 10:00 to 16:00 on Sundays; groups under ten need no booking."},
+      {"id": "F5", "kind": "state", "date": "2026-09-10", "source": "Ingrid", "text": "At B pace the Kingsbridge Return takes about four and a half hours, including the stop at the Plough, 40 km in."},
+      {"id": "F6", "kind": "state", "date": "2026-09-14", "source": "County Highways", "text": "The resurfacing on Coldharbour Hill finished in August and the road is fully open."},
+      {"id": "F7", "kind": "state", "date": "2026-10-01", "source": "Ingrid", "text": "Sunset on Sunday 15 November is at 16:13."},
+      {"id": "F8", "kind": "state", "date": "2026-09-12", "source": "Ravi", "text": "Ravi has offered to drive the club's support car on 15 November instead of riding."},
+      {"id": "F9", "kind": "state", "date": "2026-09-20", "source": "Vale Wheelers committee", "text": "The club's support car carries spare wheels, a track pump and the club tool roll."},
+      {"id": "F10", "kind": "state", "date": "2026-10-12", "source": "Ingrid", "text": "Six riders have signed up for 15 November: Ingrid, Tom, Saskia, Jo, Mehmet and Lena."},
+      {"id": "F11", "kind": "state", "date": "2026-10-05", "source": "Lena", "text": "Lena is new to the club, and this is her first ride over 50 km."},
+      {"id": "F12", "kind": "state", "date": "2026-07-03", "source": "Vale Wheelers", "text": "The club's annual dinner is on Saturday 5 December at the Crown."},
+      {"id": "F13", "kind": "state", "date": "2026-07-15", "source": "Tom", "text": "Tom is selling his old winter wheels."},
+      {"id": "F14", "kind": "state", "date": "2026-08-02", "source": "Hatherby station", "text": "Hatherby station's café opens at 07:00 on Sundays."},
+      {"id": "F15", "kind": "state", "date": "2026-08-18", "source": "Vale Wheelers", "text": "The club jersey reorder closes on 30 November."},
+      {"id": "F16", "kind": "state", "date": "2026-08-25", "source": "Saskia", "text": "Saskia has a new gravel bike with 40 mm tyres."},
+      {"id": "F17", "kind": "state", "date": "2026-09-28", "source": "Vale Wheelers", "text": "The Wednesday evening chain-gang has finished for the winter."},
+      {"id": "F18", "kind": "state", "date": "2026-10-22", "source": "Vale Wheelers", "text": "The club's Christmas ride is on Sunday 20 December from the Market Square."},
+      {"id": "F19", "kind": "state", "date": "2026-10-26", "source": "Saskia", "text": "Saskia is bringing flapjacks for the group on the 15th."},
+      {"id": "F20", "kind": "state", "date": "2026-10-30", "source": "Hatherby station", "text": "Hatherby station car park is free on Sundays."},
+      {"id": "F21", "kind": "state", "date": "2026-09-03", "source": "Southvale Rail", "text": "Kingsbridge station has a step-free exit for bikes."},
+      {"id": "F22", "kind": "state", "date": "2026-06-20", "source": "Ingrid", "text": "Ingrid's own bike is booked in for a service on 20 November."},
+      {"id": "F23", "kind": "state", "date": "2026-09-05", "source": "Ingrid", "text": "Coldharbour Hill, at 52 km, is the route's only steep climb."},
+      {"id": "F24", "kind": "state", "date": "2026-06-28", "source": "Southvale Rail", "text": "Kingsbridge trains leave Hatherby from platform 2."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Vale Wheelers ride rules", "text": "On train rides the group meets on the platform 30 minutes before departure."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Vale Wheelers ride rules", "text": "Every club ride finishes before sunset, or every rider carries front and rear lights."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Vale Wheelers ride rules", "text": "A B-pace ride has a named leader and a back marker."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-06", "source": "Ingrid", "text": "Lead the Kingsbridge Return on Sunday 15 November at B pace: train out, ride home.", "depends_on": ["F2", "F3"]},
+      {"id": "D2", "kind": "decision", "date": "2026-10-02", "source": "Ingrid", "text": "Meet on Hatherby platform 2 at 07:22 for the 07:52 train.", "depends_on": ["F1", "F24", "R1"]},
+      {"id": "D3", "kind": "decision", "date": "2026-10-02", "source": "Ingrid", "text": "Book six bike spaces on the 07:52 from Hatherby to Kingsbridge.", "depends_on": ["F1", "F2"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-11", "source": "Ingrid", "text": "Café stop at the Plough in Stowe, 40 km in; no booking needed.", "depends_on": ["F4", "F5"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-03", "source": "Ingrid", "text": "Ravi drives the support car to Kingsbridge station to meet the 08:40 arrival, then leapfrogs the group home.", "depends_on": ["F1", "F8", "F9"]},
+      {"id": "D6", "kind": "decision", "date": "2026-10-12", "source": "Ingrid", "text": "Ingrid leads and Tom is back marker, with Lena riding in the middle of the group.", "depends_on": ["F10", "F11", "R3"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-14", "source": "Ingrid", "text": "Cap the ride at the six riders signed up, the train's bike limit.", "depends_on": ["F2", "F10"]},
+      {"id": "D8", "kind": "decision", "date": "2026-08-19", "source": "Ingrid", "text": "Order two club jerseys in size M before the reorder closes.", "depends_on": ["F15"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-02", "source": "Ingrid", "due": "2026-11-08", "text": "Book the bike spaces online by Sunday 8 November, when booking for the 15th closes.", "depends_on": ["D3"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-12", "source": "Ingrid", "due": "2026-11-08", "text": "Send the six riders the meeting time and place by 8 November.", "depends_on": ["D2"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-03", "source": "Ingrid", "due": "2026-11-13", "text": "Confirm the Kingsbridge meeting time with Ravi by Friday 13 November.", "depends_on": ["D5"]},
+      {"id": "O4", "kind": "obligation", "date": "2026-08-19", "source": "Ingrid", "due": "2026-11-30", "text": "Send the jersey order to the club secretary by 30 November.", "depends_on": ["D8"]}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-11-01", "source": "Southvale Rail winter timetable", "text": "Southvale Rail's winter timetable starts on 1 November: on Sundays the first train from Hatherby to Kingsbridge now leaves at 08:52 and arrives at 09:40. Bike spaces and booking rules are unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "Bike booking for next Sunday's ride closes today. Book the spaces and tell everyone what time to be on the platform.",
+      "options": [
+        {"id": "a", "text": "07:52 train; platform at 07:22"},
+        {"id": "b", "text": "08:52 train; platform at 08:22; route cut to 40 km"},
+        {"id": "c", "text": "08:52 train; platform at 07:22"},
+        {"id": "d", "text": "08:52 train; platform at 08:22"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["d"],
+      "stale_options": ["a", "c"],
+      "unnecessary_options": ["b"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "The group meets on platform 2 at 08:22 for the 08:52 train."},
+        {"id": "D3", "direction": "Six bike spaces are booked on the 08:52 from Hatherby to Kingsbridge."},
+        {"id": "D5", "direction": "Ravi meets the 09:40 arrival at Kingsbridge station."}
+      ],
+      "untouched": ["D1", "D4", "D6", "D7", "D8"],
+      "obligations_due": ["O1", "O2"],
+      "why": "The summer timetable behind the 07:52 ran out on 31 October; the winter first train is the 08:52, arriving 09:40. The meeting time (D2), the bike booking (D3) and Ravi's pick-up (D5) hang on that train and move an hour later. The route, the Plough stop, the leaders and the six-rider cap stay: starting around 09:50 still brings the group home about 14:20, well before the 16:13 sunset, and the bike limit is unchanged."
+    }
+  },
+  {
+    "id": "S1-10",
+    "class": 1,
+    "title": "Ultracentrifuge booking",
+    "owner": "Kenji",
+    "now": "2026-11-05",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-10-05", "source": "Biosciences Equipment Office", "text": "The Optima ultracentrifuge in room B110 is bookable in 4-hour slots in the department booking system; its safety certificate runs to 31 October, and the renewal inspection is booked for 3 November.", "expires": "2026-10-31"},
+      {"id": "F2", "kind": "state", "date": "2026-10-05", "source": "Biosciences Equipment Office", "text": "The two benchtop centrifuges in B110 are serviced and bookable in 1-hour slots."},
+      {"id": "F3", "kind": "state", "date": "2026-09-01", "source": "Estates", "text": "Biosciences staff and student cards open labs B101 to B120 and C301 to C310."},
+      {"id": "F4", "kind": "state", "date": "2026-09-15", "source": "Kenji", "text": "The group's Type 70 Ti rotor fits any Optima ultracentrifuge; it lives in B110's rotor cabinet and its run log is up to date."},
+      {"id": "F5", "kind": "state", "date": "2026-09-22", "source": "Ana", "text": "Ana's membrane prep on Wednesday 11 November needs a 1-hour benchtop pre-clearing spin and then a 4-hour ultracentrifuge run."},
+      {"id": "F6", "kind": "state", "date": "2026-09-24", "source": "Liam", "text": "Liam's density gradient needs one 4-hour ultracentrifuge run; he is free on Friday 20 November."},
+      {"id": "F7", "kind": "state", "date": "2026-09-25", "source": "Wei", "text": "Wei's pilot spin needs a 4-hour ultracentrifuge run on Monday 16 November."},
+      {"id": "F8", "kind": "state", "date": "2026-09-10", "source": "Dr Hale", "text": "Dr Hale is at a conference from 9 to 13 November."},
+      {"id": "F9", "kind": "state", "date": "2026-09-18", "source": "Imaging Facility", "text": "The confocal in B214 is bookable in 3-hour slots, and Wei is trained on it."},
+      {"id": "F10", "kind": "state", "date": "2026-09-30", "source": "LabSupply", "text": "LabSupply delivers on Tuesdays; 26 mL polycarbonate tubes are 84 for a box of 25."},
+      {"id": "F11", "kind": "state", "date": "2026-10-01", "source": "Kenji", "text": "The group has 9 of the 26 mL tubes left."},
+      {"id": "F12", "kind": "state", "date": "2026-09-05", "source": "Estates", "text": "The B-wing lifts are being replaced in December."},
+      {"id": "F13", "kind": "state", "date": "2026-09-12", "source": "Kenji", "text": "The -80 freezer alarm was tested on 1 September."},
+      {"id": "F14", "kind": "state", "date": "2026-10-12", "source": "Department office", "text": "The department Christmas lunch is on 16 December."},
+      {"id": "F15", "kind": "state", "date": "2026-10-15", "source": "Wei", "text": "Wei's thesis committee meets on 3 December."},
+      {"id": "F16", "kind": "state", "date": "2026-10-20", "source": "Kenji", "text": "The lab printer's toner was replaced."},
+      {"id": "F17", "kind": "state", "date": "2026-10-22", "source": "Department office", "text": "There is a fire drill in the B wing on Wednesday 18 November at 10:00."},
+      {"id": "F18", "kind": "state", "date": "2026-06-15", "source": "Kenji", "text": "The group's cold-room shelves are 3 and 4 in B118."},
+      {"id": "F19", "kind": "state", "date": "2026-10-28", "source": "Ana", "text": "Ana's samples are ready on shelf 3 of the cold room."},
+      {"id": "R1", "kind": "rule", "date": "2026-06-01", "source": "Department booking rules", "text": "The booking system locks the following week's bookings at 17:00 every Thursday; after that, changes go through the Equipment Office."},
+      {"id": "R2", "kind": "rule", "date": "2026-06-01", "source": "Department safety rules", "text": "Ultracentrifuge runs need a trained user present for the first 20 minutes; Ana, Liam and Kenji are trained, Wei is not yet."},
+      {"id": "R3", "kind": "rule", "date": "2026-06-01", "source": "Department safety rules", "text": "Every rotor run is written in the rotor log the same day."},
+      {"id": "D1", "kind": "decision", "date": "2026-10-06", "source": "Kenji", "text": "Book a B110 benchtop centrifuge for Ana's pre-clearing spin, Wednesday 11 November 08:00 to 09:00.", "depends_on": ["F2", "F5"]},
+      {"id": "D2", "kind": "decision", "date": "2026-10-06", "source": "Kenji", "text": "Book the B110 ultracentrifuge for Ana's run, Wednesday 11 November 09:00 to 13:00.", "depends_on": ["F1", "F5"]},
+      {"id": "D3", "kind": "decision", "date": "2026-10-07", "source": "Kenji", "text": "Book the B110 ultracentrifuge for Wei's pilot spin, Monday 16 November 09:00 to 13:00.", "depends_on": ["F1", "F7"]},
+      {"id": "D4", "kind": "decision", "date": "2026-10-07", "source": "Kenji", "text": "Kenji stays for the first 20 minutes of Wei's pilot spin.", "depends_on": ["F7", "R2"]},
+      {"id": "D5", "kind": "decision", "date": "2026-10-08", "source": "Kenji", "text": "Book the B110 ultracentrifuge for Liam's run, Friday 20 November 13:00 to 17:00.", "depends_on": ["F1", "F6"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-16", "source": "Kenji", "text": "Use the group's Type 70 Ti rotor for all the November ultracentrifuge runs.", "depends_on": ["F4"]},
+      {"id": "D7", "kind": "decision", "date": "2026-10-02", "source": "Kenji", "text": "Order two boxes of 26 mL tubes for November.", "depends_on": ["F10", "F11"]},
+      {"id": "D8", "kind": "decision", "date": "2026-09-20", "source": "Kenji", "text": "Book the B214 confocal for Wei on Tuesday 17 November, 09:00 to 12:00.", "depends_on": ["F9"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-10-06", "source": "Kenji", "due": "2026-11-05", "text": "Check Ana's bookings for the week of 9 November before the lock on Thursday 5 November.", "depends_on": ["D1", "D2"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-10-08", "source": "Kenji", "due": "2026-11-12", "text": "Check Wei's and Liam's bookings before the lock on Thursday 12 November.", "depends_on": ["D3", "D5"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-10-02", "source": "Dr Hale", "due": "2026-11-20", "text": "Send Dr Hale the November equipment usage summary by 20 November."}
+    ],
+    "change": {"id": "C1", "kind": "state", "date": "2026-11-04", "source": "Biosciences Equipment Office", "text": "The B110 Optima ultracentrifuge failed its renewal inspection on 3 November and is out of service until January. The identical Optima in C305 is now open to Biosciences users in the same booking system, in the same 4-hour slots, and has no November bookings yet. The benchtop centrifuges in B110 are unaffected.", "revokes": ["F1"]},
+    "task": {
+      "text": "Next week's bookings lock at five today. Make sure Ana's ultracentrifuge run on Wednesday is booked.",
+      "options": [
+        {"id": "a", "text": "C305 Optima, Wednesday 11 November 09:00–13:00"},
+        {"id": "b", "text": "B110 Optima, Wednesday 11 November 09:00–13:00"},
+        {"id": "c", "text": "C305 Optima, Wednesday 11 November 09:00–13:00, and cancel her B110 benchtop slot"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["a"],
+      "stale_options": ["b"],
+      "unnecessary_options": ["c"],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "Ana's run is booked on the C305 Optima, Wednesday 11 November 09:00 to 13:00."},
+        {"id": "D3", "direction": "Wei's pilot spin is booked on the C305 Optima, Monday 16 November 09:00 to 13:00."},
+        {"id": "D5", "direction": "Liam's run is booked on the C305 Optima, Friday 20 November 13:00 to 17:00."}
+      ],
+      "untouched": ["D1", "D4", "D6", "D7", "D8"],
+      "obligations_due": ["O1"],
+      "why": "The B110 ultracentrifuge's certificate ran out on 31 October and it failed renewal, so the three runs booked on it (D2, D3, D5) move to the identical C305 machine in the same slots, which is free, in the same system and opened by the same cards. The B110 benchtop centrifuges are explicitly unaffected (D1), the Type 70 Ti rotor fits any Optima (D6), Kenji still supervises Wei's start (D4), and the tubes and confocal are unrelated."
+    }
+  }
+]

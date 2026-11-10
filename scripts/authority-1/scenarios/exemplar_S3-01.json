@@ -1,0 +1,56 @@
+[
+  {
+    "id": "S3-01",
+    "class": 3,
+    "title": "Fundraiser dinner seating",
+    "owner": "Mira",
+    "now": "2026-10-20",
+    "items": [
+      {"id": "F1", "kind": "state", "date": "2026-09-02", "source": "Riverside Hall booking office", "text": "Riverside Hall's main room seats up to 80 guests at round tables of eight, and its step-free entrance is the side door on Tanner Lane."},
+      {"id": "F2", "kind": "state", "date": "2026-09-02", "source": "Riverside Hall booking office", "text": "Riverside Hall is free on Saturday 7 November from 17:00 to 23:30; the hire fee is 640 with a 200 deposit that is non-refundable once paid."},
+      {"id": "F3", "kind": "state", "date": "2026-09-04", "source": "RentCo price list", "text": "RentCo rents folding chairs at 2.10 each and round tables at 9.50 each, delivered the day before an event, minimum order 30 chairs."},
+      {"id": "F4", "kind": "state", "date": "2026-09-04", "source": "Mira", "text": "Last year's fundraiser guest list has 76 names, including the 6 committee members."},
+      {"id": "F5", "kind": "state", "date": "2026-09-05", "source": "Lumen Kitchen quote", "text": "Lumen Kitchen will cater a three-course dinner at 31 per cover, final numbers due 10 days before the event."},
+      {"id": "F6", "kind": "state", "date": "2026-09-05", "source": "Jo", "text": "Mira's sister Jo is vegetarian and will run the raffle table again."},
+      {"id": "F7", "kind": "state", "date": "2026-09-09", "source": "Grandad's carer, Petra", "text": "Grandad uses a wheelchair now and Petra can bring him to evening events if the entrance is step-free."},
+      {"id": "F8", "kind": "state", "date": "2026-09-03", "source": "Mira", "text": "The committee's float for the evening is 1,900, held in the club account."},
+      {"id": "F9", "kind": "state", "date": "2026-09-15", "source": "Tanner Lane residents' notice", "text": "Tanner Lane is closed to through traffic on weekdays until the end of November for pipe works; weekend access is normal."},
+      {"id": "F10", "kind": "state", "date": "2026-09-20", "source": "Jo", "text": "Jo has collected 14 raffle prizes so far, the top one a weekend at a cottage in the Dales."},
+      {"id": "R1", "kind": "rule", "date": "2026-09-01", "source": "Committee constitution", "text": "Any single payment over 500 from the club account needs a second committee signature."},
+      {"id": "R2", "kind": "rule", "date": "2026-09-01", "source": "Committee constitution", "text": "Invitations for a fundraiser go out at least four weeks before the event."},
+      {"id": "D1", "kind": "decision", "date": "2026-09-06", "source": "Mira", "text": "Hold the fundraiser dinner at Riverside Hall on Saturday 7 November and pay the 200 deposit now.", "depends_on": ["F2", "F8"]},
+      {"id": "D2", "kind": "decision", "date": "2026-09-08", "source": "Mira", "text": "Invite all 76 people on last year's list to the dinner, seated.", "depends_on": ["F1", "F4"]},
+      {"id": "D3", "kind": "decision", "date": "2026-09-10", "source": "Mira", "text": "Ask Petra to bring Grandad in through the Tanner Lane side door.", "depends_on": ["F1", "F7"]},
+      {"id": "D4", "kind": "decision", "date": "2026-09-12", "source": "Mira", "text": "Order 76 chairs and 10 round tables from RentCo for delivery on Friday 6 November.", "depends_on": ["D2", "F3"]},
+      {"id": "D5", "kind": "decision", "date": "2026-09-12", "source": "Mira", "text": "Book Lumen Kitchen for 76 covers, with the vegetarian main as an option on every table.", "depends_on": ["D2", "F5", "F6"]},
+      {"id": "D6", "kind": "decision", "date": "2026-09-14", "source": "Mira", "text": "Jo runs the raffle at a separate table by the stage, not counted in the seating.", "depends_on": ["F6"]},
+      {"id": "D7", "kind": "decision", "date": "2026-09-30", "source": "Mira", "text": "Send the invitations by email on 1 October.", "depends_on": ["R2", "D1"]},
+      {"id": "O1", "kind": "obligation", "date": "2026-09-12", "source": "Mira", "due": "2026-10-20", "text": "When the RentCo order is placed, text the delivery slot to Sam, the hall caretaker.", "depends_on": ["D4"]},
+      {"id": "O2", "kind": "obligation", "date": "2026-09-12", "source": "Mira", "due": "2026-10-28", "text": "Give Lumen Kitchen the final number of covers by 28 October.", "depends_on": ["D5"]},
+      {"id": "O3", "kind": "obligation", "date": "2026-09-20", "source": "Jo", "due": "2026-11-01", "text": "Send Jo the printed raffle tickets by 1 November."}
+    ],
+    "change": {"id": "C1", "kind": "correction", "date": "2026-10-16", "source": "Riverside Hall booking office", "text": "Correction from the hall after its fire inspection: the main room's seated limit is 56, not 80, for any event from 1 November. The Tanner Lane step-free side door is unchanged.", "revokes": ["F1"]},
+    "task": {
+      "text": "RentCo need the final chair and table numbers for the dinner today. Place the order.",
+      "options": [
+        {"id": "a", "text": "76 chairs and 10 tables"},
+        {"id": "b", "text": "56 chairs and 7 tables"},
+        {"id": "c", "text": "80 chairs and 10 tables"}
+      ]
+    },
+    "truth": {
+      "correct_options": ["b"],
+      "stale_options": ["a", "c"],
+      "unnecessary_options": [],
+      "stale_items": ["F1"],
+      "touched": [
+        {"id": "D2", "direction": "The seated guest list is cut to at most 56 (the hall's new limit); the others are not seated invitees (waiting list or apology)."},
+        {"id": "D4", "direction": "The RentCo order becomes 56 chairs and 7 tables (not 76/10)."},
+        {"id": "D5", "direction": "Lumen Kitchen is booked for at most 56 covers, not 76."}
+      ],
+      "untouched": ["D1", "D3", "D6", "D7"],
+      "obligations_due": ["O1"],
+      "why": "The hall's seated limit fell from 80 to 56, so seating 76 guests (D2) is void, and the chair order (D4) and catering (D5) built on that number follow it down. The venue and date stand (deposit paid, D1), the step-free side door is explicitly unchanged (D3 cites F1 for the entrance only), the raffle table is outside the seating (D6), and the invitations already went (D7)."
+    }
+  }
+]

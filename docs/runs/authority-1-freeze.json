@@ -1,0 +1,36 @@
+{
+ "scenarios_files": {
+  "scripts/authority-1/scenarios/class1.json": "80e11dd6963788d56211df7f3a81f003b79b374a7871d929de72fab2b0cd3e2f",
+  "scripts/authority-1/scenarios/class2.json": "ac702d88446f0bcb64d349d044cbe5cefa2f9cd119e47647e73f09bf5e3f7594",
+  "scripts/authority-1/scenarios/class3.json": "0fa46d60279a85e85ae63071f795beee356bcceaa6696d025d11a15766df9ca1",
+  "scripts/authority-1/scenarios/class4.json": "fcffb4677914acd2f63bee04031f21caead7a20cc48991853525ca5bfb61f24d"
+ },
+ "scenarios_all": "5f28dce2fcb0a1364a0623c871662fa1027a8cb1cdd8f5753d97d0218eb44523",
+ "truth_tables": "4f58427590d8925cf186adfc29115d6a7d6d986dd60b525fd11aaef58ae143ba",
+ "prompts": {
+  "FRAME": "ee8371e64ae358671aed6135d3e924719420e489eccb54ebbd845e310820c6f1",
+  "MEMORY_PLAIN": "f64dcf8a860ca4d47ee8f145a5652282b4bed597e5c5b1db328cb0ddd0c9907c",
+  "MEMORY_LAYER": "ed4c05c6a755a7875684dbcd1acd050db754b497e9c025417883f51bb056b77a",
+  "LAYER_NOTHING": "9be7dd36aca40d3d94e450e19bf0a5ca1a7dedbef8240b402ff27e049a2a2dbf",
+  "LAYER_ADDED": "076a67be8579d4c4b1e705811f642ae060214a3d385bc33db49f5b08143a8ba5",
+  "TASK": "396d245553d66159ea401b9add27a49d1c572e5dda34006c805e04120be23a00",
+  "B_CHECK": "97b6a6fad8c0d30d7cdb782435229ecee7173fc31d32cc3b3c49ed6c5a66e934",
+  "B_CHECK_HANDOFF": "c8f8cf68e55446027488049b97f74cdd76cc8c58728cc550b83e8b736389e544",
+  "ACT_FORM": "c75c749b3089f5d8c579cd46e4f768fa4d8f5341b25245d0a7728236418f3987",
+  "LAYER_MARK": "d1c59ee09c612053172d9f4179921c02fd4452ecafc7d1bd465b24bb9b53975a",
+  "JUDGE": "20f8e09090b738937037cca79da9c7f1812c855ce4b8664861a72f727abce7b0",
+  "REFEREE": "7d982eab516626ca4898dc02f3fa6df6399734f21aeb48f786d198cc9f759b4b"
+ },
+ "prompts_all": "645cd94fb7924c476d107e11aa024348d0669758c0a782ae813c6ec9b268a23a",
+ "code": {
+  "authority1/prompts.py": "b412dd7b81766a3906a2708f646498a3ab6d9c0377e2bf9cae09fa5ee1856392",
+  "authority1/layer.py": "d5516bc87deae87208576375dac72523d2c80b3ab65a2d56b938b800be5ef9d3",
+  "authority1/scoring.py": "0ce080911f174fd76c4917d4bf96ddd0b3c48eccd4070ab15bf61bcb9cd0efa7",
+  "authority1/unit.py": "948b682f09a47a4e2bec6e9cbed1f0921156ec427550374b57df6d2098f091b4",
+  "authority1/mem.py": "dffb840a61e22be7d7e4db597fc5c832ae9ced09890f81b8ae74e890b3a36df9",
+  "authority1/specs.py": "1ba8f5af612995118df74226fd1d112f974eca696c4f11987de81a236e23f630",
+  "authority1/gateway.py": "ca816d547a784534db1480a11bf0b511478143c555b9a95cc85fcae98b504413",
+  "authority1/scenarios.py": "f7b00eac4985e8f5f562452effa9417933b313721e4b41e25e48ee005fb203ab"
+ },
+ "requirements_lock": "9dfa408eb403f683d4cc7d53fa33d69cb8b4fc0bf740d07463dc92cbe88416d2"
+}
