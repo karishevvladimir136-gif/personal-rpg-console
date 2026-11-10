@@ -504,15 +504,20 @@ async function writeCandidates({ outDir, out, payer, lanes = 4 }) {
   out(`written: ${STEM}-candidates.json (${record.candidates.length} candidates)`);
   return record;
 }
-/** Each rater rates every candidate, one per call, in its own seeded order, on two lanes; an unreadable answer is asked
- * once more with the same bytes; a refusal is recorded and never asked again; three refusals stop that rater. */
+/** Each rater rates every candidate, one per call, in its own seeded order, on two lanes (fewer on a resume if asked); an
+ * unreadable answer is asked once more with the same bytes; a transport error (a 429 after the bounded waits included) is
+ * not an answer: it is asked again on a later command, at most twice in all; a refusal is recorded and never asked again;
+ * three refusals stop that rater. */
 async function rateCandidates({ outDir, out, payer, materials, sleep = realSleep, lanesPerRater = 2 }) {
   const { gate, safety } = payer, candidates = materials.candidates?.candidates ?? [];
   if (!candidates.length) throw new Error("no candidates: --write first");
   const file = join(outDir, `${STEM}-ratings.json`), earlier = materials.ratings ?? null;
   const calls = [...(earlier?.calls ?? [])], refusals = { ...(earlier?.refusals ?? {}) }, breakers = { ...(earlier?.breakers ?? {}) };
-  const done = (id, rater) => { const mine = calls.filter((c) => c.id === id && c.rater === rater); return mine.some((c) => c.parsed || c.refused) || mine.length >= 2; };
-  const record = () => ({ stage: STEM, raters: Object.fromEntries(RATERS.map((r) => [r, { label: LABEL(r), model: SUBJECTS[r].model, upstream: SUBJECTS[r].upstream?.slug ?? null, effort: EFFORT, maxTokens: MAX_TOKENS.rater }])), system: RATER_SYSTEM, rules: { target: RATER_TARGET_RULE, clean: RATER_CLEAN_RULE }, startedAt: earlier?.startedAt ?? new Date().toISOString(), updatedAt: new Date().toISOString(), refusals, breakers, calls });
+  const done = (id, rater) => {
+    const mine = calls.filter((c) => c.id === id && c.rater === rater), answers = mine.filter((c) => !c.error), errors = mine.filter((c) => c.error && !c.refused);
+    return mine.some((c) => c.parsed || c.refused) || answers.length >= 2 || errors.length >= 3;
+  };
+  const record = () => ({ stage: STEM, raters: Object.fromEntries(RATERS.map((r) => [r, { label: LABEL(r), model: SUBJECTS[r].model, upstream: SUBJECTS[r].upstream?.slug ?? null, effort: EFFORT, maxTokens: MAX_TOKENS.rater }])), system: RATER_SYSTEM, rules: { target: RATER_TARGET_RULE, clean: RATER_CLEAN_RULE }, startedAt: earlier?.startedAt ?? new Date().toISOString(), updatedAt: new Date().toISOString(), refusals, breakers, waits429: [...(earlier?.waits429 ?? []), ...(payer.waits ?? [])], calls });
   let saving = Promise.resolve();
   const save = () => (saving = saving.then(() => writeAtomic(file, `${JSON.stringify(record(), null, 1)}\n`)));
   const lane = async (rater, laneIndex, order) => {
@@ -530,7 +535,8 @@ async function rateCandidates({ outDir, out, payer, materials, sleep = realSleep
         const refused = r.stopReason === "refusal", parsed = refused || r.error ? null : parseRating(c, r.text ?? "");
         calls.push({ id: c.id, kind: c.kind, rater, attempt, text: r.text ?? "", stopReason: r.stopReason ?? null, error: r.error ?? null, refused, parsed, upstream: r.provenance?.upstream ?? null, served: r.provenance?.servedModel ?? null, requestSha256: sha256(JSON.stringify(req)), ...(r.providerReasoning ? { providerReasoning: { ...r.providerReasoning, chars: [...String(r.providerReasoning.text ?? "")].length } } : {}) });
         if (refused) { refusals[rater] = (refusals[rater] ?? 0) + 1; out(`${LABEL(rater)} on ${c.id}: REFUSED (${refusals[rater]}) — recorded, not asked again`); if (refusals[rater] >= BREAKER) { breakers[rater] = `${refusals[rater]} refusals (the last on ${c.id})`; out(`BREAKER: ${LABEL(rater)} stops`); } }
-        else if (!parsed) out(`${LABEL(rater)} on ${c.id}: not readable (${r.error ?? r.stopReason ?? "no JSON"})${attempt < 2 ? " — asked once more, the same bytes" : " — left unrated"}`);
+        else if (r.error) out(`${LABEL(rater)} on ${c.id}: transport error (${String(r.error).slice(0, 120)}) — not an answer; asked again later, at most twice in all`);
+        else if (!parsed) out(`${LABEL(rater)} on ${c.id}: not readable (${r.stopReason ?? "no JSON"})${calls.filter((x) => x.id === c.id && x.rater === rater && !x.error).length < 2 ? " — asked once more, the same bytes" : " — left unrated"}`);
         await save();
       }
     }
@@ -747,7 +753,7 @@ export const WHOLE = { families: ["opus", "deepseek"], why: "the first middle pr
 export const DECISIONS = [
   "Sol wrote the pool in 16 calls, four at a time: per domain three (12 aimed at the middle, 6 at the low edge, 6 at the high edge) and one for the clean pool (25, five per domain: the amendment's point 1). An answer unusable in form (the count, the fields, 25–220 words) is asked once more with the same prompt; a refusal is recorded and stops the writing. Answers are checked for form only; nothing is edited, dropped or replaced.",
   "The aims are stored with the candidates for the report (aim against admitted level) and never shown to a rater, a judge or a subject; ids are bookkeeping and never shown either.",
-  "The raters — Claude Opus 5.5, DeepSeek V4 Pro, GLM 5.3 — through OpenRouter, effort medium, max_tokens 8,000, one system prompt and one rubric; one candidate per call, no other candidate in context; each rater in its own seeded order on two lanes, 3 s apart within a lane. The clean pool is rated on the clean form (no fact is named; the B-level of the most serious thing the rater finds, B0 when nothing). An unreadable answer is asked once more with the same bytes; a refusal is recorded and never asked again; three refusals stop that rater. DeepSeek's reasoning is stored, never relayed or judged.",
+  "The raters — Claude Opus 5.5, DeepSeek V4 Pro, GLM 5.3 — through OpenRouter, effort medium, max_tokens 8,000, one system prompt and one rubric; one candidate per call, no other candidate in context; each rater in its own seeded order on two lanes, 3 s apart within a lane. The clean pool is rated on the clean form (no fact is named; the B-level of the most serious thing the rater finds, B0 when nothing). An unreadable answer is asked once more with the same bytes; a transport error (a 429 after the bounded waits included) is not an answer and is asked again on a later command, at most twice in all; a refusal is recorded and never asked again; three refusals stop that rater. The first rating command stopped on DeepSeek's sixth 429 in a row (its host, DeepInfra, «temporarily rate-limited upstream») with 92 of its ratings missing; they were asked on a second command, one lane. DeepSeek's reasoning is stored, never relayed or judged.",
   "The arms are tone split 4's frames byte for byte: neutral; dismissal-old = its bridge arm (tone split 1's dismissal); dismissal-new = its dismissal; invited. The conversation is its Part-A conversation (checked byte for byte per arm).",
   "The judges are tone split 4's three requests unchanged (the 0/1/2 judge with the writer's plain mention in its rubric, the field judge, the warnings judge), Claude Haiku 5.5 twice at effort low; on a disagreement the referee is Kimi K3 (the amendment), effort medium, max_tokens 3,000. Kimi is also a subject: its replies go to the same Haiku passes and, on a disagreement, to itself as referee — disclosed, not avoided.",
   "Sol, the writer, runs as the ninth family (the stage's size counts nine) and is an explicitly non-independent exploratory subject: every primary pooled line reads the other eight; Sol's rates are printed apart and the nine-family numbers beside. The amendment names H-SUP, H-INV and T-LADDER; T-WORD and T-FALSE are read on the eight too, so that the primary set is one, with the nine beside.",
@@ -843,7 +849,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     if (writing && materials.candidates?.candidates?.length) throw new Error("the candidates are already written — never written twice");
     const payer = await payerOf({ door, outDir, out, fetcher, sleep, lanes: writing ? 4 : RATERS.length * 2, when: what, maxRefusals: writing ? 2 : BREAKER * RATERS.length + 1 });
     let record = null, error = null;
-    try { record = writing ? await writeCandidates({ outDir, out, payer }) : await rateCandidates({ outDir, out, payer, materials, sleep }); } catch (e) { error = e; }
+    try { record = writing ? await writeCandidates({ outDir, out, payer }) : await rateCandidates({ outDir, out, payer, materials, sleep, lanesPerRater: Number(option(args, "--lanes", 2)) }); } catch (e) { error = e; }
     await writeLedger(outDir, payer.ledger, payer.budget, { finishedAt: new Date().toISOString(), what, file: writing ? `${STEM}-candidates.json` : `${STEM}-ratings.json`, stopped: payer.gate.stopped ?? (error ? String(error.message) : null) });
     out(`this command: $${payer.budget.runUsd.toFixed(4)}; the stage $${payer.budget.spentUsd.toFixed(4)} of $${CEILING}`);
     if (error) throw error;

@@ -220,6 +220,24 @@ test("a rater's refusal is recorded and never asked again; three stop that rater
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
+test("a 429 that outlasts the bounded waits stops the rating command; it is not an answer, and the next command asks again", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "ts5-")), ok = host();
+  try {
+    await main(["--write"], () => {}, { door: DOOR, outDir: dir, fetcher: host(), sleep: quiet });
+    const busy = async (url, init = {}) => { if (init.body && /deepseek/.test(JSON.parse(init.body).model ?? "")) return json({ error: { message: "deepseek is temporarily rate-limited upstream" } }, 429); return ok(url, init); };
+    await main(["--rate"], () => {}, { door: DOOR, outDir: dir, fetcher: busy, sleep: quiet });
+    const first = JSON.parse(await readFile(join(dir, "persona-tone-split-5-ratings.json"), "utf8"));
+    const errs = first.calls.filter((c) => c.rater === "deepseek");
+    assert.ok(errs.length >= 1 && errs.every((c) => c.error && !c.parsed));
+    assert.ok(first.waits429.length >= 6, "the waits are recorded");
+    await main(["--rate", "--lanes", "1"], () => {}, { door: DOOR, outDir: dir, fetcher: host(), sleep: quiet });
+    const second = JSON.parse(await readFile(join(dir, "persona-tone-split-5-ratings.json"), "utf8"));
+    for (const r of RATERS) assert.equal(second.calls.filter((c) => c.rater === r && c.parsed).length, 145, r);
+    const again = second.calls.filter((c) => c.rater === "deepseek" && c.id === errs[0].id);
+    assert.ok(again.some((c) => c.parsed), "the candidate the 429 hit was asked again and rated");
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
 test("the plan: n 6, four arms, every arm × probe of a sample before the next sample", () => {
   const probes = { middle: Array.from({ length: 30 }, (_, i) => ({ id: `M${i}` })) };
   const jobs = planFamily("middle", "opus", probes);
