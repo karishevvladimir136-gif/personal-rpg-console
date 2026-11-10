@@ -4371,3 +4371,25 @@ Corrected to the observation. Places: this log's 17:55 entry (stands as written;
 section of the Phase C report (the planner's line) — dated note, 05b6116f → next commit on the adapter branch; OPEN_WORLD_2
 M1 codes actions (took / declined at `take` / declined at the confirmation), not reasons — checked, no change; letter 46 —
 answered in the room. The owner heard the explanation in the chat at 17:0x — told in the 21:00 message.
+
+## 2026-11-09 19:05 LA — PARTY_2 closed and read; S3-T1 read whole; PARTY_3 written (a designed conflict, seats rotated)
+PARTY_2 closed by its session (final comment in issue #1, 2026-11-10 00:47Z): eleven tables of twelve, nine scored,
+$235.04 of $240; R0, R1, R2 held, R3 on its first half, R4 not testable, R5 mechanically; 94 agreements aloud, none
+broken; the letter shared in 4 of 4 with no false statement. Two things the stage cannot say: (1) seats and families
+were glued (Pell always Claude, Bram always OpenAI, Sefa always DeepSeek; pit and letter always the same seat), so no
+seat finding separates from a family finding — the owner: «исправить точно»; (2) nothing in it diverged — the owner:
+«нужно, чтобы реально был конфликт… иначе это фигня». S3-T1 read whole by the planner at the owner's request (hand
+reading; the table is unscored — the referee refused r2–r4): the alarm came on a successful roll (Investigation 15 vs
+DC 15, the wire «set so fine that his touch was enough»), so there was no error of anyone's; from round 3 the three
+were in three scenes and did not meet again before the cut at r11, so no blame, replacement or re-planning could occur.
+Observed all the same: neither player at the door gave the third up or lied about him («Pell can answer for himself»;
+no answer to «where's he got to?»), one lie to a spearman followed by «I did hide» to the sergeant, no weapon drawn.
+S3 as designed cannot ask its question; to be rewritten (the failure in one scene with all three present, following
+from a player's decision), not replayed. `docs/stages/GAME_PARTY_3.md`: one layer («one dose» — two matched letters to
+two seats, an indivisible vial in the third's hand, every third way closed in the DM's frozen layer), two arms that
+differ by one opportunity (a night at round 6 on one screen), a Latin square of three families over three seats in
+each arm, six tables, ceiling $150, the referee of another family, bets C0–C6 with the planner's premise stated
+(dissolved, not fought). A correction carried in the stage: the planner told the owner the rotation would show
+own-family siding; with three different families at every table it cannot. Also recorded here, late: the session's
+model changed from Fable 5.1 to Fable 5.2 on 2026-11-09 15:21 LA (the owner changed nothing); every planner entry
+before that time was written under 5.1.
