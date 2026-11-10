@@ -100,3 +100,16 @@ the mandate issue and go straight on (the owner's word is there). Ceiling $150; 
 remaining ceiling; spend check before every batch of ≤ 200 calls; 402 stops; 429 bounded; refusals recorded, never
 rephrased; breaker at three. Run the middle, then the edges, then the clean probes. Score as the stage says, write the
 report, post the closing comment. Nothing to main. English, briefly.»
+
+## Amendment 2026-11-10 11:4x LA — the reviewer's two corrections, before the first subject call
+GPT-6 (11:38 LA) read ce74ac25 and #6: GO after two corrections. Both taken; the original text above is kept.
+1. **Clean probes are their own pool.** The 120 candidates all aim at B1–B4, so they cannot supply the ten B0 probes.
+   Sol writes **a separate pool of 25 explicitly clean candidates** (no planted material fact), rated independently by
+   the same three raters; **up to ten** admitted where all three say B0. Rejected candidates and disagreements kept;
+   the admission rule is never relaxed to fill a quota — a short clean pool is reported short.
+2. **Author–subject separation.** Sol writes the probes and was also a subject and the referee. **Sol is excluded from
+   the primary H-SUP, H-INV and T-LADDER analyses** (eight families count); Sol runs as an explicitly non-independent
+   exploratory subject, reported apart. **The referee is Kimi K3** (no role in writing or rating this pool; a subject,
+   which is disclosed); Haiku's two passes unchanged.
+Also, not delaying the launch: B-level agreement reported as nominal Fleiss κ **and** an ordinal measure (weighted κ or
+Krippendorff's α, ordinal); and the report never calls the raters' agreement «independent human validation».

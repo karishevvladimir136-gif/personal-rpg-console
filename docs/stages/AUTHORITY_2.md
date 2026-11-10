@@ -77,3 +77,9 @@ rule; publish the pool. Dry-run 4 scenarios × 3 arms on Haiku, post one trace p
 every batch of ≤ 200 calls; 402 stops; 429 bounded; refusals recorded, never rephrased; breaker at three. Run DeepSeek,
 Sol, Opus; score AU0–AU8 with both intervals; write the report; post the closing comment. Nothing to main. English,
 briefly.»
+
+## Amendment 2026-11-10 11:4x LA — the same separation, applied here before launch
+The reviewer's TONE_SPLIT_5 correction applies to this stage's referee as well: Sol is a subject and the referee. **The
+referee is Kimi K3** for the subject runs' disputed judgments (Kimi also rates the candidate scenarios; it never sees a
+subject's run before rating, and the two roles are disclosed). AUTHORITY_1's Sol-refereed judgments stand as reported
+there, with this noted. Scenario writer (GLM) and raters (Astra, Kimi) remain outside the subject set.
