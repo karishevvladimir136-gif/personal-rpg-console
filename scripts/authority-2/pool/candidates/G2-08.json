@@ -1,0 +1,328 @@
+{
+ "id": "G2-08",
+ "class": 2,
+ "setting": "A residential landlord managing twelve units at Fairview Properties whose assistant remembers each tenant's repair-request history and agreed fixes",
+ "prompt_sha256": "63f09b13ba7a76391f08bdc234360f50f1761b34249058570602988078edbe81",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Changed repair rule at Fairview\",\n \"setting\": \"A residential landlord managing twelve units at Fairview Properties whose assistant remembers each tenant's repair-request history and agreed fixes\",\n \"owner\": \"Dana\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Fairview Properties is two stairwells, A and B, on Lime Street with twelve rented units; Dana is the landlord and handles all day-to-day admin herself.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Gary Miller is the standing handyman for Fairview; he charges 22 pounds an hour plus parts and can take small jobs at short notice.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Repair jobs estimated under 300 pounds are assigned straight to Gary Miller without contractor quotes; jobs estimated at 300 pounds or more need three written quotes before any work starts.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Rent is due on the 1st of each month; if a tenant is more than seven days in arrears, a written reminder goes out before any further step.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"Any work on gas appliances must be carried out by a Gas Safe registered engineer, no exceptions.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"owner\", \"text\": \"Priya Shah rents unit 4; she reported in June that the kitchen tap had a slow drip and again that the mixer was stiff.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Repaint stairwell B, estimated at 280 pounds, assigned to Gary Miller to do over a weekend in July.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"Marcus Webb rents unit 9; he is generally at home on weekday mornings.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"owner\", \"text\": \"Each unit has one allocated parking permit; replacements cost 15 pounds from the council office.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"owner\", \"text\": \"Replace the broken fence panel behind unit 2, estimated at 190 pounds, assigned to Gary Miller; the work was completed on 14 July.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-05\", \"source\": \"owner\", \"text\": \"Three quotes came in for the roof work: Topline Roofing 2,600 pounds, Slatecare 3,100 pounds, Hartnell 2,950 pounds.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Award the roof flashing repair over unit 7 to Topline Roofing for 2,600 pounds, the lowest of the three quotes.\", \"depends_on\": [\"R1\", \"F6\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Pay Topline Roofing's final invoice of 2,600 pounds. Done on 21 August.\", \"due\": \"2026-08-31\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-03\", \"source\": \"owner\", \"text\": \"The communal boiler was last serviced on 5 December 2025; the service contract lapsed and needs renewing each December.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"owner\", \"text\": \"Tom Reeve in unit 6 fell nine days behind on September rent.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-01\", \"source\": \"owner\", \"text\": \"Send Tom Reeve the standard written arrears reminder rather than escalating further.\", \"depends_on\": [\"R2\", \"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"owner\", \"text\": \"Ridge Plumbing cleared the blocked communal drain in August for 150 pounds; Dana kept their card on file.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-14\", \"source\": \"owner\", \"text\": \"Fix the dripping kitchen tap in unit 4: estimated 120 pounds for a replacement cartridge and about an hour of work, so it goes to Gary Miller in the week of 26 October.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-14\", \"source\": \"owner\", \"text\": \"Arrange the visit for the unit 4 kitchen tap repair with the tenant before the end of October. Not done yet.\", \"due\": \"2026-10-23\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"owner\", \"text\": \"Order two Voss FX-20 ceramic tap cartridges (34 pounds each) so there is a spare for the unit 4 tap job.\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Brasswell Plumbing\", \"text\": \"Brasswell Plumbing sent a written quote of 240 pounds flat rate per plumbing visit, any small job, valid for 60 days.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"owner\", \"text\": \"Marcus Webb reported that the shower valve in unit 9 drips continuously after use.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Fix the dripping shower valve in unit 9: estimated 95 pounds, so it goes to Gary Miller on Tuesday 3 November while Webb is home in the morning.\", \"depends_on\": [\"R1\", \"F10\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-06\", \"source\": \"owner\", \"text\": \"Book the annual communal boiler service with a Gas Safe engineer for December. Not done yet.\", \"due\": \"2026-11-30\", \"status\": \"open\", \"depends_on\": [\"R3\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-15\", \"source\": \"owner\", \"text\": \"Storage heaters in units 3 and 10 were checked in October and both passed.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-20\", \"source\": \"owner\", \"text\": \"From today, all plumbing and drainage repairs at Fairview, whatever the estimated cost, are assigned to Ridge Plumbing (90 pound callout plus parts at their usual rate) and no longer go to Gary Miller; Gary keeps every non-plumbing job under 300 pounds, and the three-quote rule still applies to jobs of 300 pounds or more. Work already completed under the old arrangement is not reopened.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Priya has just chased me about her kitchen tap again — please get someone out to unit 4 this week.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Gary Miller to replace the tap cartridge at unit 4 on Wednesday 28 October.\"}, {\"id\": \"b\", \"text\": \"Call Ridge Plumbing for a 90 pound callout at unit 4 on Wednesday 28 October.\"}, {\"id\": \"c\", \"text\": \"Book Brasswell Plumbing's 240 pound flat-rate visit at unit 4 on Friday 30 October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F11\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The unit 4 tap job is plumbing, so it no longer goes to Gary Miller under the under-300 rule; it must be booked with Ridge Plumbing at the 90 pound callout plus parts.\"},\n   {\"id\": \"D5\", \"direction\": \"The cartridge order can stand as spare parts, but the fitting at unit 4 is now Ridge Plumbing's work, not Gary Miller's.\"},\n   {\"id\": \"D6\", \"direction\": \"The unit 9 shower valve job is plumbing, so it must be reassigned from Gary Miller to Ridge Plumbing for Tuesday 3 November.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Book the repair visit for the unit 4 kitchen tap this week, with the tradesman the current rule requires\", \"correct_value\": \"Ridge Plumbing, 90 pound callout, visit on Wednesday 28 October\", \"stale_value\": \"Gary Miller, week of 26 October\"},\n  \"why\": \"The amended rule moves all plumbing work to Ridge Plumbing regardless of cost, so the unit 4 tap booking (D4, and D5 through it) and the unit 9 shower valve booking (D6) must switch from Gary Miller; the stairwell repaint, the completed fence job, the roof award above threshold and the arrears decision are unaffected. Brasswell's flat-rate quote was never accepted and is not the current route. O1 falls due with this task.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 5816,
+    "reasoning_tokens": 3397,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02641092,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Changed repair rule at Fairview",
+  "setting": "A residential landlord managing twelve units at Fairview Properties whose assistant remembers each tenant's repair-request history and agreed fixes",
+  "owner": "Dana",
+  "now": "2026-10-26",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "owner",
+    "text": "Fairview Properties is two stairwells, A and B, on Lime Street with twelve rented units; Dana is the landlord and handles all day-to-day admin herself."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Gary Miller is the standing handyman for Fairview; he charges 22 pounds an hour plus parts and can take small jobs at short notice."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Repair jobs estimated under 300 pounds are assigned straight to Gary Miller without contractor quotes; jobs estimated at 300 pounds or more need three written quotes before any work starts."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "owner",
+    "text": "Rent is due on the 1st of each month; if a tenant is more than seven days in arrears, a written reminder goes out before any further step."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "owner",
+    "text": "Any work on gas appliances must be carried out by a Gas Safe registered engineer, no exceptions."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "owner",
+    "text": "Priya Shah rents unit 4; she reported in June that the kitchen tap had a slow drip and again that the mixer was stiff."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "Repaint stairwell B, estimated at 280 pounds, assigned to Gary Miller to do over a weekend in July.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "owner",
+    "text": "Marcus Webb rents unit 9; he is generally at home on weekday mornings."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "owner",
+    "text": "Each unit has one allocated parking permit; replacements cost 15 pounds from the council office."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "owner",
+    "text": "Replace the broken fence panel behind unit 2, estimated at 190 pounds, assigned to Gary Miller; the work was completed on 14 July.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-05",
+    "source": "owner",
+    "text": "Three quotes came in for the roof work: Topline Roofing 2,600 pounds, Slatecare 3,100 pounds, Hartnell 2,950 pounds."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "Award the roof flashing repair over unit 7 to Topline Roofing for 2,600 pounds, the lowest of the three quotes.",
+    "depends_on": [
+     "R1",
+     "F6"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "Pay Topline Roofing's final invoice of 2,600 pounds. Done on 21 August.",
+    "due": "2026-08-31",
+    "status": "done",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-03",
+    "source": "owner",
+    "text": "The communal boiler was last serviced on 5 December 2025; the service contract lapsed and needs renewing each December."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-30",
+    "source": "owner",
+    "text": "Tom Reeve in unit 6 fell nine days behind on September rent."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-01",
+    "source": "owner",
+    "text": "Send Tom Reeve the standard written arrears reminder rather than escalating further.",
+    "depends_on": [
+     "R2",
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "owner",
+    "text": "Ridge Plumbing cleared the blocked communal drain in August for 150 pounds; Dana kept their card on file."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-14",
+    "source": "owner",
+    "text": "Fix the dripping kitchen tap in unit 4: estimated 120 pounds for a replacement cartridge and about an hour of work, so it goes to Gary Miller in the week of 26 October.",
+    "depends_on": [
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-14",
+    "source": "owner",
+    "text": "Arrange the visit for the unit 4 kitchen tap repair with the tenant before the end of October. Not done yet.",
+    "due": "2026-10-23",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "owner",
+    "text": "Order two Voss FX-20 ceramic tap cartridges (34 pounds each) so there is a spare for the unit 4 tap job.",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Brasswell Plumbing",
+    "text": "Brasswell Plumbing sent a written quote of 240 pounds flat rate per plumbing visit, any small job, valid for 60 days."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "owner",
+    "text": "Marcus Webb reported that the shower valve in unit 9 drips continuously after use."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Fix the dripping shower valve in unit 9: estimated 95 pounds, so it goes to Gary Miller on Tuesday 3 November while Webb is home in the morning.",
+    "depends_on": [
+     "R1",
+     "F10"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-06",
+    "source": "owner",
+    "text": "Book the annual communal boiler service with a Gas Safe engineer for December. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open",
+    "depends_on": [
+     "R3"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-15",
+    "source": "owner",
+    "text": "Storage heaters in units 3 and 10 were checked in October and both passed."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-20",
+   "source": "owner",
+   "text": "From today, all plumbing and drainage repairs at Fairview, whatever the estimated cost, are assigned to Ridge Plumbing (90 pound callout plus parts at their usual rate) and no longer go to Gary Miller; Gary keeps every non-plumbing job under 300 pounds, and the three-quote rule still applies to jobs of 300 pounds or more. Work already completed under the old arrangement is not reopened.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Priya has just chased me about her kitchen tap again — please get someone out to unit 4 this week.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Gary Miller to replace the tap cartridge at unit 4 on Wednesday 28 October."
+    },
+    {
+     "id": "b",
+     "text": "Call Ridge Plumbing for a 90 pound callout at unit 4 on Wednesday 28 October."
+    },
+    {
+     "id": "c",
+     "text": "Book Brasswell Plumbing's 240 pound flat-rate visit at unit 4 on Friday 30 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F11"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The unit 4 tap job is plumbing, so it no longer goes to Gary Miller under the under-300 rule; it must be booked with Ridge Plumbing at the 90 pound callout plus parts."
+    },
+    {
+     "id": "D5",
+     "direction": "The cartridge order can stand as spare parts, but the fitting at unit 4 is now Ridge Plumbing's work, not Gary Miller's."
+    },
+    {
+     "id": "D6",
+     "direction": "The unit 9 shower valve job is plumbing, so it must be reassigned from Gary Miller to Ridge Plumbing for Tuesday 3 November."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book the repair visit for the unit 4 kitchen tap this week, with the tradesman the current rule requires",
+    "correct_value": "Ridge Plumbing, 90 pound callout, visit on Wednesday 28 October",
+    "stale_value": "Gary Miller, week of 26 October"
+   },
+   "why": "The amended rule moves all plumbing work to Ridge Plumbing regardless of cost, so the unit 4 tap booking (D4, and D5 through it) and the unit 9 shower valve booking (D6) must switch from Gary Miller; the stairwell repaint, the completed fence job, the roof award above threshold and the arrears decision are unaffected. Brasswell's flat-rate quote was never accepted and is not the current route. O1 falls due with this task."
+  },
+  "id": "G2-08",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

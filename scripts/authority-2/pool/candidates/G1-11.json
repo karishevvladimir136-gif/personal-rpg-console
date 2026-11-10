@@ -1,0 +1,358 @@
+{
+ "id": "G1-11",
+ "class": 1,
+ "setting": "A university department chair at Northgate University whose academic assistant keeps the record of committee decisions and tenure timeline commitments",
+ "prompt_sha256": "fb282972c4dff62927f268965a18eb82baeb046fc0f21eb037c7f455fb3a7c51",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Graduate Council review moved earlier\",\n \"setting\": \"A university department chair at Northgate University whose academic assistant keeps the record of committee decisions and tenure timeline commitments\",\n \"owner\": \"Dana\",\n \"now\": \"2026-11-02\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Priya, department administrator\", \"text\": \"The History Department at Northgate University has 22 full-time faculty members.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-11\", \"source\": \"Priya, department administrator\", \"text\": \"Two adjunct positions for the autumn semester in European history are being filled this year.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-12\", \"source\": \"Dana\", \"text\": \"Every committee decision is circulated to all faculty within five working days of the meeting.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Priya, department administrator\", \"text\": \"The autumn departmental seminar series runs every second Thursday from 4:00 to 5:30 pm in Room 214.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Priya, department administrator\", \"text\": \"Room 214 seats 45 people and is the only departmental room with a ceiling projector suitable for large meetings.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-19\", \"source\": \"Dana\", \"text\": \"Circulate the June faculty meeting minutes to all faculty. Done on 25 June.\", \"due\": \"2026-07-10\", \"status\": \"done\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Dana\", \"text\": \"The June faculty meeting minutes are circulated by email to all 22 faculty members within five working days.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Dana\", \"text\": \"The request to fill the two adjunct positions is routed through the dean's office for sign-off before it goes to the Provost's office.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Priya, department administrator\", \"text\": \"The department's stationery supplier is Cottrell Office Supplies, invoiced monthly.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-30\", \"source\": \"Dana\", \"text\": \"Any submission to a University-wide body goes through the dean's office for sign-off first.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Graduate Council secretary\", \"text\": \"The Graduate Council will review the department's revised PhD curriculum proposal at its meeting on 12 March 2027.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-24\", \"source\": \"Dana\", \"text\": \"The new BA course descriptions were approved by the department and must go into the 2027-28 course catalogue.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-01\", \"source\": \"Dana\", \"text\": \"Room 214 is booked for the autumn seminar series on alternate Thursdays, 4:00 to 5:30 pm.\", \"depends_on\": [\"F3\", \"F4\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Dana\", \"text\": \"The internal pre-review faculty meeting on the revised PhD curriculum proposal is held in Room 214 two weeks before the Graduate Council review, with the room booked well in advance.\", \"depends_on\": [\"F4\", \"F6\", \"R3\"]},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-08-04\", \"source\": \"Priya, department administrator\", \"text\": \"Departmental meeting rooms are booked at least two weeks before the meeting date.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Dana\", \"text\": \"The full revised PhD curriculum proposal is submitted to the Graduate Council portal exactly two weeks before the Council review, after dean's office sign-off.\", \"depends_on\": [\"F6\", \"R2\", \"D2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"Dana\", \"text\": \"Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"curriculum committee\", \"text\": \"The annotated curriculum map for the revised PhD programme exists as a working draft held by the curriculum committee.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Priya, department administrator\", \"text\": \"Guest lecturer Dr. Sabine Kern visits the department from 14 to 18 November 2026 and will give a public lecture on 16 November.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Priya, department administrator\", \"text\": \"The PhD student roundtable this autumn is expected to draw about 25 students.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-03\", \"source\": \"Dana\", \"text\": \"The new BA course descriptions are sent to the catalogue editor by 15 January 2027 so they appear in the 2027-28 catalogue.\", \"depends_on\": [\"F7\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Dana\", \"text\": \"Dana presents the annotated curriculum map at the internal pre-review faculty meeting, and the administrator prepares 40 printed copies for the room.\", \"depends_on\": [\"D4\", \"F8\", \"F1\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-29\", \"source\": \"dean's office\", \"text\": \"The dean's office requires sign-off requests at least ten working days before any submission deadline.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Dana\", \"text\": \"Room 108 is booked for the PhD student roundtable on 20 November 2026, 3:00 to 5:00 pm.\", \"depends_on\": [\"F10\", \"R3\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Undergraduate Curriculum Committee secretary\", \"text\": \"The Undergraduate Curriculum Committee will review the new BA course list at its meeting on Friday 5 February 2027.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-19\", \"source\": \"Priya, department administrator\", \"text\": \"The annual parking permits for visiting speakers expire on 31 December 2026 and are renewed in December.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-26\", \"source\": \"Priya, department administrator\", \"text\": \"The department's remaining conference travel budget for 2026-27 is $4,800.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-30\", \"source\": \"Dana\", \"text\": \"Collect syllabus confirmations from all course convenors for the 2027-28 catalogue. Not done yet.\", \"due\": \"2027-01-15\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-28\", \"source\": \"Graduate Council secretary\", \"text\": \"The Graduate Council has moved its review of the department's revised PhD curriculum proposal forward to its meeting on Friday 26 February 2027; the previously recorded March date no longer stands. Every preparation deadline tied to the review shifts accordingly.\", \"revokes\": [\"F6\"]},\n \"task\": {\"text\": \"I want the internal pre-review meeting on the PhD curriculum proposal on the books now — please book the right room and send the calendar invite to all faculty.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Room 214 for Friday 26 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty.\"}, {\"id\": \"b\", \"text\": \"Book Room 214 for Friday 12 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty.\"}, {\"id\": \"c\", \"text\": \"Book Room 214 for Friday 5 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"F6\"], \"distractor_items\": [\"F14\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The pre-review meeting moves two weeks before the new review date: Friday 12 February 2027, still in Room 214.\"},\n   {\"id\": \"D5\", \"direction\": \"The proposal goes to the Graduate Council portal two weeks before the new review date: by 12 February 2027, still after dean's office sign-off.\"},\n   {\"id\": \"D7\", \"direction\": \"Dana presents the curriculum map and 40 printed copies are prepared for the pre-review meeting on 12 February 2027; nothing else about the presentation changes.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D6\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date\", \"correct_value\": \"12 February 2027\", \"stale_value\": \"26 February 2027\"},\n  \"why\": \"The correction moves the Graduate Council review from 12 March 2027 to 26 February 2027, so every deadline computed as two weeks before the review shifts to 12 February 2027. The pre-review meeting booking (task) and the notice of intent (O2) both follow that rule. The 26 February booking is stale (the old two-weeks-before date under the revoked March review), and 5 February is the Undergraduate Curriculum Committee date, a different body and topic.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 5551,
+    "reasoning_tokens": 2942,
+    "cached_tokens": 0
+   },
+   "cost": 0.0283822,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Graduate Council review moved earlier",
+  "setting": "A university department chair at Northgate University whose academic assistant keeps the record of committee decisions and tenure timeline commitments",
+  "owner": "Dana",
+  "now": "2026-11-02",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Priya, department administrator",
+    "text": "The History Department at Northgate University has 22 full-time faculty members."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-11",
+    "source": "Priya, department administrator",
+    "text": "Two adjunct positions for the autumn semester in European history are being filled this year."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Dana",
+    "text": "Every committee decision is circulated to all faculty within five working days of the meeting."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Priya, department administrator",
+    "text": "The autumn departmental seminar series runs every second Thursday from 4:00 to 5:30 pm in Room 214."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Priya, department administrator",
+    "text": "Room 214 seats 45 people and is the only departmental room with a ceiling projector suitable for large meetings."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-19",
+    "source": "Dana",
+    "text": "Circulate the June faculty meeting minutes to all faculty. Done on 25 June.",
+    "due": "2026-07-10",
+    "status": "done",
+    "depends_on": [
+     "R1"
+    ]
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Dana",
+    "text": "The June faculty meeting minutes are circulated by email to all 22 faculty members within five working days.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Dana",
+    "text": "The request to fill the two adjunct positions is routed through the dean's office for sign-off before it goes to the Provost's office.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Priya, department administrator",
+    "text": "The department's stationery supplier is Cottrell Office Supplies, invoiced monthly."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-30",
+    "source": "Dana",
+    "text": "Any submission to a University-wide body goes through the dean's office for sign-off first."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Graduate Council secretary",
+    "text": "The Graduate Council will review the department's revised PhD curriculum proposal at its meeting on 12 March 2027."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-24",
+    "source": "Dana",
+    "text": "The new BA course descriptions were approved by the department and must go into the 2027-28 course catalogue."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-01",
+    "source": "Dana",
+    "text": "Room 214 is booked for the autumn seminar series on alternate Thursdays, 4:00 to 5:30 pm.",
+    "depends_on": [
+     "F3",
+     "F4"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Dana",
+    "text": "The internal pre-review faculty meeting on the revised PhD curriculum proposal is held in Room 214 two weeks before the Graduate Council review, with the room booked well in advance.",
+    "depends_on": [
+     "F4",
+     "F6",
+     "R3"
+    ]
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-08-04",
+    "source": "Priya, department administrator",
+    "text": "Departmental meeting rooms are booked at least two weeks before the meeting date."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Dana",
+    "text": "The full revised PhD curriculum proposal is submitted to the Graduate Council portal exactly two weeks before the Council review, after dean's office sign-off.",
+    "depends_on": [
+     "F6",
+     "R2",
+     "D2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "Dana",
+    "text": "Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "curriculum committee",
+    "text": "The annotated curriculum map for the revised PhD programme exists as a working draft held by the curriculum committee."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Priya, department administrator",
+    "text": "Guest lecturer Dr. Sabine Kern visits the department from 14 to 18 November 2026 and will give a public lecture on 16 November."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Priya, department administrator",
+    "text": "The PhD student roundtable this autumn is expected to draw about 25 students."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "Dana",
+    "text": "The new BA course descriptions are sent to the catalogue editor by 15 January 2027 so they appear in the 2027-28 catalogue.",
+    "depends_on": [
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Dana",
+    "text": "Dana presents the annotated curriculum map at the internal pre-review faculty meeting, and the administrator prepares 40 printed copies for the room.",
+    "depends_on": [
+     "D4",
+     "F8",
+     "F1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-29",
+    "source": "dean's office",
+    "text": "The dean's office requires sign-off requests at least ten working days before any submission deadline."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Dana",
+    "text": "Room 108 is booked for the PhD student roundtable on 20 November 2026, 3:00 to 5:00 pm.",
+    "depends_on": [
+     "F10",
+     "R3"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Undergraduate Curriculum Committee secretary",
+    "text": "The Undergraduate Curriculum Committee will review the new BA course list at its meeting on Friday 5 February 2027."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-19",
+    "source": "Priya, department administrator",
+    "text": "The annual parking permits for visiting speakers expire on 31 December 2026 and are renewed in December."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-26",
+    "source": "Priya, department administrator",
+    "text": "The department's remaining conference travel budget for 2026-27 is $4,800."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-30",
+    "source": "Dana",
+    "text": "Collect syllabus confirmations from all course convenors for the 2027-28 catalogue. Not done yet.",
+    "due": "2027-01-15",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-28",
+   "source": "Graduate Council secretary",
+   "text": "The Graduate Council has moved its review of the department's revised PhD curriculum proposal forward to its meeting on Friday 26 February 2027; the previously recorded March date no longer stands. Every preparation deadline tied to the review shifts accordingly.",
+   "revokes": [
+    "F6"
+   ]
+  },
+  "task": {
+   "text": "I want the internal pre-review meeting on the PhD curriculum proposal on the books now — please book the right room and send the calendar invite to all faculty.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Room 214 for Friday 26 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    },
+    {
+     "id": "b",
+     "text": "Book Room 214 for Friday 12 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    },
+    {
+     "id": "c",
+     "text": "Book Room 214 for Friday 5 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F6"
+   ],
+   "distractor_items": [
+    "F14"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The pre-review meeting moves two weeks before the new review date: Friday 12 February 2027, still in Room 214."
+    },
+    {
+     "id": "D5",
+     "direction": "The proposal goes to the Graduate Council portal two weeks before the new review date: by 12 February 2027, still after dean's office sign-off."
+    },
+    {
+     "id": "D7",
+     "direction": "Dana presents the curriculum map and 40 printed copies are prepared for the pre-review meeting on 12 February 2027; nothing else about the presentation changes."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date",
+    "correct_value": "12 February 2027",
+    "stale_value": "26 February 2027"
+   },
+   "why": "The correction moves the Graduate Council review from 12 March 2027 to 26 February 2027, so every deadline computed as two weeks before the review shifts to 12 February 2027. The pre-review meeting booking (task) and the notice of intent (O2) both follow that rule. The 26 February booking is stale (the old two-weeks-before date under the revoked March review), and 5 February is the Undergraduate Curriculum Committee date, a different body and topic."
+  },
+  "id": "G1-11",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

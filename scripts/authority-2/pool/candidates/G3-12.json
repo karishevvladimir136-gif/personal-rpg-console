@@ -1,0 +1,352 @@
+{
+ "id": "G3-12",
+ "class": 3,
+ "setting": "A golf club manager at Pinehurst Greens whose assistant remembers member committee rulings on course rules and event bookings",
+ "prompt_sha256": "f513ac8516b3ddc6f9839ad2876f1c5c96005dca2b20a5db4f6328d1d65626ea",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Terrace Room capacity correction\",\n  \"setting\": \"A golf club manager at Pinehurst Greens whose assistant remembers member committee rulings on course rules and event bookings\",\n  \"owner\": \"Marta\",\n  \"now\": \"2026-10-12\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"membership officer\", \"text\": \"Pinehurst Greens currently has 312 full members and 44 junior members.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"course superintendent\", \"text\": \"The greens contractor Turfcare visits the club every second Tuesday for maintenance.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"club secretary\", \"text\": \"The Terrace Room seats up to 80 guests for seated dinners.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-22\", \"source\": \"committee\", \"text\": \"Any members' event expected to exceed 50 guests needs committee approval before it is booked.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-22\", \"source\": \"committee\", \"text\": \"All club catering over €500 must be ordered through Fairway Foods, the club's contracted caterer.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-08\", \"source\": \"Marta\", \"text\": \"Adopt the 2026 summer fixture list as circulated, running from 1 July to 30 September.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"club secretary\", \"text\": \"The Spike Bar seats up to 40 people.\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-06\", \"source\": \"office manager\", \"text\": \"Fairway Foods' 2026 price list offers three-course dinner menus at €15 per head, with a minimum order of €400.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"office manager\", \"text\": \"The clubhouse boiler was serviced on 8 July; the next service is due in January 2027.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Marta\", \"text\": \"Keep the clubhouse closed on Mondays through July and August for deep cleaning.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"club secretary\", \"text\": \"The Autumn Members' Dinner has been held on the first Saturday of November every year since 2019.\"},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Marta\", \"text\": \"Host the Autumn Members' Dinner on Saturday 7 November in the Terrace Room with a guest list of up to 80; committee approval granted as attendance will exceed 50.\", \"depends_on\": [\"F3\", \"R1\", \"F7\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-18\", \"source\": \"office manager\", \"text\": \"Marquee supplier Canvas & Pole charges €850 for a 60-guest marquee, delivery included.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Marta\", \"text\": \"Use the Terrace Room for the monthly trophy presentation, since it is the club's largest function room, with seating set cabaret-style.\", \"depends_on\": [\"F3\"]},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"pro shop manager\", \"text\": \"The pro shop stocktake found 14 boxes of unlabelled logo balls in the back store.\"},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-08-28\", \"source\": \"Marta\", \"text\": \"Publish the autumn fixtures poster in the clubhouse. Done on 12 September.\", \"due\": \"2026-09-15\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Marta\", \"text\": \"Order the Autumn Members' Dinner catering from Fairway Foods as 80 three-course covers at €15 per head, and print 80 souvenir menus.\", \"depends_on\": [\"D3\", \"R2\", \"F5\"]},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Marta\", \"text\": \"Hold the Junior Prizegiving in the Spike Bar, as expected attendance is around 35.\", \"depends_on\": [\"F4\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"office manager\", \"text\": \"The club's printer, Cardwell Print, charges €1.20 per A4 souvenir menu.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Marta\", \"text\": \"Close the front nine for aeration during the week of 5 October and move that week's Saturday medal to the back nine.\", \"depends_on\": [\"F11\"]},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"course superintendent\", \"text\": \"Course aeration is scheduled for the week of 5 October, with the front nine closed that week.\"},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"match secretary\", \"text\": \"The interclub match dinner at Oakfield Golf Club on 14 November has 48 Pinehurst members signed up so far.\"},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Approve a €300 prize budget for the Winter Quiz Nights in the Spike Bar.\", \"depends_on\": [\"F4\", \"F1\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-02\", \"source\": \"Marta\", \"text\": \"Confirm final catering numbers for the Autumn Members' Dinner with Fairway Foods. Not done yet.\", \"due\": \"2026-10-12\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"office manager\", \"text\": \"The Chestnuts hotel quoted €22 per head for external conference catering, available on club dates in November.\"},\n    {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-06\", \"source\": \"Marta\", \"text\": \"Engage the string quartet Melody Lane for two hours at the Autumn Members' Dinner, fee €250, following the club's November dinner tradition.\", \"depends_on\": [\"F7\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-07\", \"source\": \"Marta\", \"text\": \"Order the winter grit supply from Turfcare. Not done yet.\", \"due\": \"2026-10-31\", \"status\": \"open\", \"depends_on\": [\"F2\"]}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-09\", \"source\": \"fire safety officer\", \"text\": \"The annual fire safety inspection on 9 October reset the Terrace Room's maximum seated capacity from 80 to 60 guests. The room remains the club's largest function room, and its layout, kitchen access and booking arrangements are unchanged.\", \"revokes\": [\"F3\"]},\n  \"task\": {\"text\": \"Please call Fairway Foods this morning and confirm the catering order for the Autumn Members' Dinner.\", \"options\": [{\"id\": \"a\", \"text\": \"Confirm 60 three-course covers at €15 per head and 60 souvenir menus with Fairway Foods.\"}, {\"id\": \"b\", \"text\": \"Confirm 80 three-course covers at €15 per head and 80 souvenir menus with Fairway Foods.\"}, {\"id\": \"c\", \"text\": \"Confirm 48 three-course covers at €15 per head with Fairway Foods.\"}, {\"id\": \"d\", \"text\": \"Confirm 60 three-course covers at €22 per head with The Chestnuts hotel.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"a\"],\n    \"stale_options\": [\"b\"],\n    \"distractor_options\": [\"c\", \"d\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F3\"],\n    \"distractor_items\": [\"F12\", \"F13\"],\n    \"touched\": [\n      {\"id\": \"D3\", \"direction\": \"Cap the Autumn Members' Dinner guest list at 60, since the Terrace Room now seats 60; the date, the venue and the committee approval (still over 50 guests) stand.\"},\n      {\"id\": \"D5\", \"direction\": \"Order 60 three-course covers at €15 per head from Fairway Foods and print 60 souvenir menus instead of 80.\"}\n    ],\n    \"untouched\": [\"D1\", \"D2\", \"D4\", \"D6\", \"D7\", \"D8\", \"D9\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Confirm final catering numbers for the Autumn Members' Dinner with Fairway Foods today\", \"correct_value\": \"60 covers (and 60 souvenir menus)\", \"stale_value\": \"80 covers (and 80 menus)\"},\n    \"why\": \"C1 revokes F3, cutting the Terrace Room's seated capacity from 80 to 60. D3 rests directly on F3 and must be revised to a 60-guest cap, and D5 rests on D3, so the catering order and menu count drop to 60 as well. D4 cites F3 only for the room being the club's largest function room, which C1 explicitly leaves standing, so it and all other decisions stay unchanged; the due obligation O2 requires confirming the dinner catering numbers today, giving 60 covers.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 6414,
+    "reasoning_tokens": 3988,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02903792,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Terrace Room capacity correction",
+  "setting": "A golf club manager at Pinehurst Greens whose assistant remembers member committee rulings on course rules and event bookings",
+  "owner": "Marta",
+  "now": "2026-10-12",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "membership officer",
+    "text": "Pinehurst Greens currently has 312 full members and 44 junior members."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "course superintendent",
+    "text": "The greens contractor Turfcare visits the club every second Tuesday for maintenance."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "club secretary",
+    "text": "The Terrace Room seats up to 80 guests for seated dinners."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-22",
+    "source": "committee",
+    "text": "Any members' event expected to exceed 50 guests needs committee approval before it is booked."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-22",
+    "source": "committee",
+    "text": "All club catering over €500 must be ordered through Fairway Foods, the club's contracted caterer."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "Adopt the 2026 summer fixture list as circulated, running from 1 July to 30 September.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "club secretary",
+    "text": "The Spike Bar seats up to 40 people."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-06",
+    "source": "office manager",
+    "text": "Fairway Foods' 2026 price list offers three-course dinner menus at €15 per head, with a minimum order of €400."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "office manager",
+    "text": "The clubhouse boiler was serviced on 8 July; the next service is due in January 2027."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Keep the clubhouse closed on Mondays through July and August for deep cleaning.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "club secretary",
+    "text": "The Autumn Members' Dinner has been held on the first Saturday of November every year since 2019."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Marta",
+    "text": "Host the Autumn Members' Dinner on Saturday 7 November in the Terrace Room with a guest list of up to 80; committee approval granted as attendance will exceed 50.",
+    "depends_on": [
+     "F3",
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-18",
+    "source": "office manager",
+    "text": "Marquee supplier Canvas & Pole charges €850 for a 60-guest marquee, delivery included."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marta",
+    "text": "Use the Terrace Room for the monthly trophy presentation, since it is the club's largest function room, with seating set cabaret-style.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "pro shop manager",
+    "text": "The pro shop stocktake found 14 boxes of unlabelled logo balls in the back store."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-08-28",
+    "source": "Marta",
+    "text": "Publish the autumn fixtures poster in the clubhouse. Done on 12 September.",
+    "due": "2026-09-15",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Marta",
+    "text": "Order the Autumn Members' Dinner catering from Fairway Foods as 80 three-course covers at €15 per head, and print 80 souvenir menus.",
+    "depends_on": [
+     "D3",
+     "R2",
+     "F5"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Marta",
+    "text": "Hold the Junior Prizegiving in the Spike Bar, as expected attendance is around 35.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "office manager",
+    "text": "The club's printer, Cardwell Print, charges €1.20 per A4 souvenir menu."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Marta",
+    "text": "Close the front nine for aeration during the week of 5 October and move that week's Saturday medal to the back nine.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "course superintendent",
+    "text": "Course aeration is scheduled for the week of 5 October, with the front nine closed that week."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "match secretary",
+    "text": "The interclub match dinner at Oakfield Golf Club on 14 November has 48 Pinehurst members signed up so far."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Approve a €300 prize budget for the Winter Quiz Nights in the Spike Bar.",
+    "depends_on": [
+     "F4",
+     "F1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-02",
+    "source": "Marta",
+    "text": "Confirm final catering numbers for the Autumn Members' Dinner with Fairway Foods. Not done yet.",
+    "due": "2026-10-12",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "office manager",
+    "text": "The Chestnuts hotel quoted €22 per head for external conference catering, available on club dates in November."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-06",
+    "source": "Marta",
+    "text": "Engage the string quartet Melody Lane for two hours at the Autumn Members' Dinner, fee €250, following the club's November dinner tradition.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-07",
+    "source": "Marta",
+    "text": "Order the winter grit supply from Turfcare. Not done yet.",
+    "due": "2026-10-31",
+    "status": "open",
+    "depends_on": [
+     "F2"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-09",
+   "source": "fire safety officer",
+   "text": "The annual fire safety inspection on 9 October reset the Terrace Room's maximum seated capacity from 80 to 60 guests. The room remains the club's largest function room, and its layout, kitchen access and booking arrangements are unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Please call Fairway Foods this morning and confirm the catering order for the Autumn Members' Dinner.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Confirm 60 three-course covers at €15 per head and 60 souvenir menus with Fairway Foods."
+    },
+    {
+     "id": "b",
+     "text": "Confirm 80 three-course covers at €15 per head and 80 souvenir menus with Fairway Foods."
+    },
+    {
+     "id": "c",
+     "text": "Confirm 48 three-course covers at €15 per head with Fairway Foods."
+    },
+    {
+     "id": "d",
+     "text": "Confirm 60 three-course covers at €22 per head with The Chestnuts hotel."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [
+    "b"
+   ],
+   "distractor_options": [
+    "c",
+    "d"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F12",
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Cap the Autumn Members' Dinner guest list at 60, since the Terrace Room now seats 60; the date, the venue and the committee approval (still over 50 guests) stand."
+    },
+    {
+     "id": "D5",
+     "direction": "Order 60 three-course covers at €15 per head from Fairway Foods and print 60 souvenir menus instead of 80."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D4",
+    "D6",
+    "D7",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Confirm final catering numbers for the Autumn Members' Dinner with Fairway Foods today",
+    "correct_value": "60 covers (and 60 souvenir menus)",
+    "stale_value": "80 covers (and 80 menus)"
+   },
+   "why": "C1 revokes F3, cutting the Terrace Room's seated capacity from 80 to 60. D3 rests directly on F3 and must be revised to a 60-guest cap, and D5 rests on D3, so the catering order and menu count drop to 60 as well. D4 cites F3 only for the room being the club's largest function room, which C1 explicitly leaves standing, so it and all other decisions stay unchanged; the due obligation O2 requires confirming the dinner catering numbers today, giving 60 covers."
+  },
+  "id": "G3-12",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,286 @@
+{
+ "id": "G3-06",
+ "class": 3,
+ "setting": "A freight forwarder at Crossway Shipping whose assistant remembers customs broker instructions and repeated client routing preferences",
+ "prompt_sha256": "fbb81f1f025189a57bff118998aa771869adf8b425e1b5108be18a16cb2f2d15",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Nordvik's new customs broker\",\n  \"setting\": \"A freight forwarder at Crossway Shipping whose assistant remembers customs broker instructions and repeated client routing preferences\",\n  \"owner\": \"Marta\",\n  \"now\": \"2026-11-09\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Crossway Shipping's Gothenburg office coordinates all Nordic road freight.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Consignments over 3 tonnes need customs pre-clearance at least 48 hours before arrival at the destination.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Only customs brokers on Crossway's approved panel may file declarations for our clients.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Nordvik logistics (Per)\", \"text\": \"Nordvik Timber's Oslo-bound consignments are cleared by customs broker Halden Customs, and the declarations are filed at the Gothenburg entry office.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Halden Customs and Stranda Customs are both on Crossway's approved broker panel.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"A client's routing preferences may only be changed on written confirmation from that client.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Nordvik logistics (Per)\", \"text\": \"Nordvik Timber ships a roughly 4-tonne consignment to Oslo every Thursday.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"owner\", \"text\": \"All Nordvik Oslo consignments are cleared through Halden Customs, pre-cleared at least 48 hours before arrival in Oslo.\", \"depends_on\": [\"F2\", \"F4\", \"R1\"]},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-26\", \"source\": \"owner\", \"text\": \"The Gothenburg customs entry office accepts declaration filings between 08:00 and 12:00.\"},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"owner\", \"text\": \"Nordvik's Oslo consignments are declared at the Gothenburg customs entry office, with filing done in the morning window.\", \"depends_on\": [\"F2\", \"F5\"]},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"owner\", \"text\": \"Set up a standing customs slot for the Nordvik Oslo run: every Thursday at 10:00 with Halden Customs, with the declaration filed by noon on the preceding Tuesday.\", \"depends_on\": [\"D1\", \"R1\"]},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"owner\", \"text\": \"All Danish-route consignments for client Byggmax Nord are cleared through broker Bredsjo Tull.\", \"depends_on\": [\"F1\", \"R2\"]},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"owner\", \"text\": \"Crossway's pallet supplier is StenaPack in Borås.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Order 200 pallets from StenaPack on the first working day of each month.\", \"depends_on\": [\"F6\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"owner\", \"text\": \"Complete the annual audit of the approved broker panel. Done on 28 September.\", \"due\": \"2026-09-30\", \"status\": \"done\"},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"client (Kollberg Chem)\", \"text\": \"New client Kollberg Chem ships solvents from Malmö to Hamburg twice a month.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"owner\", \"text\": \"Include Nordvik Timber's weekly volume in the Thursday KPI report sent to management.\", \"depends_on\": [\"F4\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Crossway's Gothenburg warehouse lease runs until June 2028 at 62,000 SEK per month.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Strand Logistics\", \"text\": \"Strand Logistics quoted 2,400 SEK per declaration for Oslo-route consignments, valid until 30 November; the quote has not been accepted.\"},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-11-02\", \"source\": \"owner\", \"text\": \"Book the customs clearance slot for Nordvik Timber's Thursday 12 November Oslo consignment. Not done yet.\", \"due\": \"2026-11-09\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-11-04\", \"source\": \"owner\", \"text\": \"File the Q4 fuel surcharge report with the finance team. Not done yet.\", \"due\": \"2026-11-30\", \"status\": \"open\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-06\", \"source\": \"Nordvik logistics (Per)\", \"text\": \"Nordvik Timber has changed customs broker for the Oslo route: Stranda Customs in Gothenburg now files all their declarations, and Halden Customs no longer acts for Nordvik. The Gothenburg entry office, the Thursday schedule and the 48-hour pre-clearance rule stay as before.\", \"revokes\": [\"F2\"]},\n  \"task\": {\"text\": \"Please sort out customs clearance for this week's Nordvik Oslo consignment — book the slot and note when the declaration goes in.\", \"options\": [\n    {\"id\": \"a\", \"text\": \"Book the Thursday 12 November 10:00 customs slot with Halden Customs and file the declaration by noon on Tuesday 10 November.\"},\n    {\"id\": \"b\", \"text\": \"Book the Thursday 12 November 10:00 customs slot with Stranda Customs and file the declaration by noon on Tuesday 10 November.\"},\n    {\"id\": \"c\", \"text\": \"Book Strand Logistics under their 2,400 SEK per-declaration quote for the 12 November consignment.\"}\n  ]},\n  \"truth\": {\n    \"correct_options\": [\"b\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"c\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F2\"],\n    \"distractor_items\": [\"F9\"],\n    \"touched\": [\n      {\"id\": \"D1\", \"direction\": \"Clear all Nordvik Oslo consignments through Stranda Customs instead of Halden Customs; the 48-hour pre-clearance timing stays.\"},\n      {\"id\": \"D2\", \"direction\": \"The standing Thursday 10:00 customs slot moves from Halden Customs to Stranda Customs; Tuesday-noon filing stays.\"}\n    ],\n    \"untouched\": [\"D3\", \"D4\", \"D5\", \"D6\"],\n    \"obligations_due\": [\"O1\"],\n    \"obligation_due\": {\"id\": \"O1\", \"act\": \"Book the customs clearance slot for the Thursday 12 November Nordvik Oslo consignment and note the declaration filing time.\", \"correct_value\": \"Stranda Customs, Thursday 12 November 10:00 slot, declaration filed by Tuesday 10 November noon\", \"stale_value\": \"Halden Customs, Thursday 12 November 10:00 slot\"},\n    \"why\": \"The correction replaces the broker on the Nordvik Oslo route: F2 is revoked, so D1 (which routes through Halden) and D2 (the standing Halden slot, resting on D1) are touched and the booking must go to Stranda Customs. D3 is untouched because it rests on F2 only for the Gothenburg entry office, which the correction explicitly leaves standing. F9 is an unaccepted quote from a different firm and must not be acted on.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2823,
+    "completion_tokens": 4955,
+    "reasoning_tokens": 2893,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02261692,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Nordvik's new customs broker",
+  "setting": "A freight forwarder at Crossway Shipping whose assistant remembers customs broker instructions and repeated client routing preferences",
+  "owner": "Marta",
+  "now": "2026-11-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Crossway Shipping's Gothenburg office coordinates all Nordic road freight."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Consignments over 3 tonnes need customs pre-clearance at least 48 hours before arrival at the destination."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Only customs brokers on Crossway's approved panel may file declarations for our clients."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Nordvik logistics (Per)",
+    "text": "Nordvik Timber's Oslo-bound consignments are cleared by customs broker Halden Customs, and the declarations are filed at the Gothenburg entry office."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "Halden Customs and Stranda Customs are both on Crossway's approved broker panel."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-18",
+    "source": "owner",
+    "text": "A client's routing preferences may only be changed on written confirmation from that client."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Nordvik logistics (Per)",
+    "text": "Nordvik Timber ships a roughly 4-tonne consignment to Oslo every Thursday."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "owner",
+    "text": "All Nordvik Oslo consignments are cleared through Halden Customs, pre-cleared at least 48 hours before arrival in Oslo.",
+    "depends_on": [
+     "F2",
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-26",
+    "source": "owner",
+    "text": "The Gothenburg customs entry office accepts declaration filings between 08:00 and 12:00."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "owner",
+    "text": "Nordvik's Oslo consignments are declared at the Gothenburg customs entry office, with filing done in the morning window.",
+    "depends_on": [
+     "F2",
+     "F5"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "owner",
+    "text": "Set up a standing customs slot for the Nordvik Oslo run: every Thursday at 10:00 with Halden Customs, with the declaration filed by noon on the preceding Tuesday.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "owner",
+    "text": "All Danish-route consignments for client Byggmax Nord are cleared through broker Bredsjo Tull.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "owner",
+    "text": "Crossway's pallet supplier is StenaPack in Borås."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Order 200 pallets from StenaPack on the first working day of each month.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "owner",
+    "text": "Complete the annual audit of the approved broker panel. Done on 28 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "client (Kollberg Chem)",
+    "text": "New client Kollberg Chem ships solvents from Malmö to Hamburg twice a month."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "owner",
+    "text": "Include Nordvik Timber's weekly volume in the Thursday KPI report sent to management.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Crossway's Gothenburg warehouse lease runs until June 2028 at 62,000 SEK per month."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Strand Logistics",
+    "text": "Strand Logistics quoted 2,400 SEK per declaration for Oslo-route consignments, valid until 30 November; the quote has not been accepted."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-11-02",
+    "source": "owner",
+    "text": "Book the customs clearance slot for Nordvik Timber's Thursday 12 November Oslo consignment. Not done yet.",
+    "due": "2026-11-09",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-11-04",
+    "source": "owner",
+    "text": "File the Q4 fuel surcharge report with the finance team. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-06",
+   "source": "Nordvik logistics (Per)",
+   "text": "Nordvik Timber has changed customs broker for the Oslo route: Stranda Customs in Gothenburg now files all their declarations, and Halden Customs no longer acts for Nordvik. The Gothenburg entry office, the Thursday schedule and the 48-hour pre-clearance rule stay as before.",
+   "revokes": [
+    "F2"
+   ]
+  },
+  "task": {
+   "text": "Please sort out customs clearance for this week's Nordvik Oslo consignment — book the slot and note when the declaration goes in.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book the Thursday 12 November 10:00 customs slot with Halden Customs and file the declaration by noon on Tuesday 10 November."
+    },
+    {
+     "id": "b",
+     "text": "Book the Thursday 12 November 10:00 customs slot with Stranda Customs and file the declaration by noon on Tuesday 10 November."
+    },
+    {
+     "id": "c",
+     "text": "Book Strand Logistics under their 2,400 SEK per-declaration quote for the 12 November consignment."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F2"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Clear all Nordvik Oslo consignments through Stranda Customs instead of Halden Customs; the 48-hour pre-clearance timing stays."
+    },
+    {
+     "id": "D2",
+     "direction": "The standing Thursday 10:00 customs slot moves from Halden Customs to Stranda Customs; Tuesday-noon filing stays."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book the customs clearance slot for the Thursday 12 November Nordvik Oslo consignment and note the declaration filing time.",
+    "correct_value": "Stranda Customs, Thursday 12 November 10:00 slot, declaration filed by Tuesday 10 November noon",
+    "stale_value": "Halden Customs, Thursday 12 November 10:00 slot"
+   },
+   "why": "The correction replaces the broker on the Nordvik Oslo route: F2 is revoked, so D1 (which routes through Halden) and D2 (the standing Halden slot, resting on D1) are touched and the booking must go to Stranda Customs. D3 is untouched because it rests on F2 only for the Gothenburg entry office, which the correction explicitly leaves standing. F9 is an unaccepted quote from a different firm and must not be acted on."
+  },
+  "id": "G3-06",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

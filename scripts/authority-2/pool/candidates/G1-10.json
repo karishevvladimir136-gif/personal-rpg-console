@@ -1,0 +1,324 @@
+{
+ "id": "G1-10",
+ "class": 1,
+ "setting": "A boutique owner at Silk & Stone Apparel whose assistant recalls which wholesalers promised which delivery windows",
+ "prompt_sha256": "4c38763df742a30c29265f648bffc3dd89608771b256218d4955fc3fd0718df6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The scarf delivery that moved\",\n \"setting\": \"A boutique owner at Silk & Stone Apparel whose assistant recalls which wholesalers promised which delivery windows\",\n \"owner\": \"Amara\",\n \"now\": \"2026-11-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Amara\", \"text\": \"Silk & Stone Apparel is a boutique on Fellworth Lane; it is open Tuesday to Saturday, 10:00 to 18:00.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Amara\", \"text\": \"Priya is the floor manager and handles day-to-day supplier calls when Amara is off.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Amara\", \"text\": \"We only place reorders with wholesalers that have given us a confirmed delivery window in writing or by call.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-20\", \"source\": \"Amara\", \"text\": \"Any supplier invoice over 500 pounds needs Amara's signature before payment.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-01\", \"source\": \"Amara\", \"text\": \"The shop window is refreshed before every season launch so the display is up at least a week before the launch event.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-07-08\", \"source\": \"Priya\", \"text\": \"Northline Textiles is our main scarf wholesaler; their rep is Colin and he confirms delivery windows by phone.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Amara\", \"text\": \"Last winter's scarf launch sold 320 scarves at 28 pounds each in four weeks.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Amara\", \"text\": \"This year's holiday window theme is 'Alpine Frost', white and silver with the new scarves as the centrepiece.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"Lindon Fabric Co\", \"text\": \"Lindon Fabric Co quoted 250 merino beanies at 5.40 pounds each, delivered to the shop by 15 September.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Amara\", \"text\": \"Ordered 250 merino beanies from Lindon Fabric Co for the autumn season.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Colin at Northline Textiles\", \"text\": \"Northline Textiles promised a delivery window of 20 to 27 November for the winter scarf reorder, at 7.50 pounds per scarf.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Amara\", \"text\": \"Order 400 winter scarves from Northline Textiles this season, up from 320 last year.\", \"depends_on\": [\"F4\", \"F7\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-14\", \"source\": \"Amara\", \"text\": \"The winter scarf launch event will be Saturday 28 November at the shop, with evening drinks from 18:30.\", \"depends_on\": [\"D6\", \"F7\", \"R3\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"Amara\", \"text\": \"The marketing email announcing the scarf line goes out on 16 November, ahead of the delivery.\", \"depends_on\": [\"F7\", \"D2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"Amara\", \"text\": \"Confirm the 400-scarf reorder with Northline Textiles and book the delivery date with Colin, no later than Friday 6 November. Not done yet.\", \"due\": \"2026-11-06\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Amara\", \"text\": \"Decorator Marcus will install the Alpine Frost window display on Thursday 19 November.\", \"depends_on\": [\"D2\", \"F5\", \"R3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-02\", \"source\": \"Amara\", \"text\": \"Run a 15 percent preview discount for mailing-list customers on the beanies through October.\", \"depends_on\": [\"F4\", \"D1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Meridian Wool Supplies\", \"text\": \"Meridian Wool Supplies quoted 300 lambswool scarves at 6.20 pounds each, delivered by 1 December.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-30\", \"source\": \"Amara\", \"text\": \"Pay the Lindon Fabric Co beanie invoice (1,350 pounds). Done on 24 September.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"D1\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Priya\", \"text\": \"Lindon Fabric Co delivered the 250 beanies on 14 September, all in good condition.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"Amara\", \"text\": \"Book Marcus for the window installation. Done on 6 October for Thursday 19 November.\", \"due\": \"2026-10-15\", \"status\": \"done\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-11\", \"source\": \"Amara\", \"text\": \"Priya is on holiday from 12 to 25 October; Amara covers the shop alone in that stretch.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-28\", \"source\": \"Priya\", \"text\": \"The beanie preview discount sold 90 beanies in October.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-11-02\", \"source\": \"Amara\", \"text\": \"The shop's Christmas gift-wrapping station will be set up in the back corner from 1 December.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-05\", \"source\": \"Colin at Northline Textiles\", \"text\": \"Colin called: Northline Textiles has moved the winter scarf delivery window to 5 to 10 November, earlier than previously promised, because the dye lot finished early. The price stays at 7.50 pounds per scarf and the reorder quantity is unchanged. Only the delivery window changes.\", \"revokes\": [\"F7\"]},\n \"task\": {\"text\": \"Can you sort out the scarf reorder with Northline today? Place the order with Colin and get the delivery booked in.\", \"options\": [{\"id\": \"a\", \"text\": \"Order 300 lambswool scarves from Meridian Wool Supplies at 6.20 pounds each for delivery by 1 December.\"}, {\"id\": \"b\", \"text\": \"Confirm the reorder of 400 winter scarves with Northline Textiles at 7.50 pounds each and book the delivery for Monday 9 November.\"}, {\"id\": \"c\", \"text\": \"Confirm the reorder of 400 winter scarves with Northline Textiles at 7.50 pounds each and book the delivery for Tuesday 24 November.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"c\"],\n  \"distractor_options\": [\"a\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F7\"],\n  \"distractor_items\": [\"F8\"],\n  \"touched\": [\n   {\"id\": \"D6\", \"direction\": \"Quantity (400) and supplier stand; only the expected delivery window changes to 5-10 November, so the reorder can be confirmed now against the new window.\"},\n   {\"id\": \"D2\", \"direction\": \"The 28 November launch event no longer needs to wait for the delivery; it stands as booked, but the plan's timing assumption is revised to the 5-10 November window.\"},\n   {\"id\": \"D3\", \"direction\": \"The 16 November marketing email should be pulled earlier so it lands before the scarves arrive in the 5-10 November window.\"},\n   {\"id\": \"D4\", \"direction\": \"Marcus's 19 November installation can stay, but with delivery on 5-10 November the display could go up earlier; the decision rests on D2, which no longer depends on the late window.\"}\n  ],\n  \"untouched\": [\"D1\", \"D5\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Confirming the 400-scarf reorder with Northline Textiles and booking the delivery date with Colin today\", \"correct_value\": \"delivery booked for a day in the 5-10 November 2026 window (e.g. Monday 9 November)\", \"stale_value\": \"delivery booked for a day in the 20-27 November 2026 window\"},\n  \"why\": \"The correction revokes only F7, the old 20-27 November delivery window, replacing it with 5-10 November at the same price and quantity. The reorder confirmation (O1) is due today and must use the new window, so booking 9 November is correct and 24 November is stale; the Meridian quote is a distractor from another supplier. D1 and D5 concern the beanies and rest on Lindon and sales figures, not on F7, so they are untouched.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2823,
+    "completion_tokens": 4383,
+    "reasoning_tokens": 1988,
+    "cached_tokens": 0
+   },
+   "cost": 0.0232374,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "The scarf delivery that moved",
+  "setting": "A boutique owner at Silk & Stone Apparel whose assistant recalls which wholesalers promised which delivery windows",
+  "owner": "Amara",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Amara",
+    "text": "Silk & Stone Apparel is a boutique on Fellworth Lane; it is open Tuesday to Saturday, 10:00 to 18:00."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Amara",
+    "text": "Priya is the floor manager and handles day-to-day supplier calls when Amara is off."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Amara",
+    "text": "We only place reorders with wholesalers that have given us a confirmed delivery window in writing or by call."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-20",
+    "source": "Amara",
+    "text": "Any supplier invoice over 500 pounds needs Amara's signature before payment."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-07-01",
+    "source": "Amara",
+    "text": "The shop window is refreshed before every season launch so the display is up at least a week before the launch event."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Priya",
+    "text": "Northline Textiles is our main scarf wholesaler; their rep is Colin and he confirms delivery windows by phone."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Amara",
+    "text": "Last winter's scarf launch sold 320 scarves at 28 pounds each in four weeks."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Amara",
+    "text": "This year's holiday window theme is 'Alpine Frost', white and silver with the new scarves as the centrepiece."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "Lindon Fabric Co",
+    "text": "Lindon Fabric Co quoted 250 merino beanies at 5.40 pounds each, delivered to the shop by 15 September."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Amara",
+    "text": "Ordered 250 merino beanies from Lindon Fabric Co for the autumn season.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Colin at Northline Textiles",
+    "text": "Northline Textiles promised a delivery window of 20 to 27 November for the winter scarf reorder, at 7.50 pounds per scarf."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Amara",
+    "text": "Order 400 winter scarves from Northline Textiles this season, up from 320 last year.",
+    "depends_on": [
+     "F4",
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-14",
+    "source": "Amara",
+    "text": "The winter scarf launch event will be Saturday 28 November at the shop, with evening drinks from 18:30.",
+    "depends_on": [
+     "D6",
+     "F7",
+     "R3"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "Amara",
+    "text": "The marketing email announcing the scarf line goes out on 16 November, ahead of the delivery.",
+    "depends_on": [
+     "F7",
+     "D2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "Amara",
+    "text": "Confirm the 400-scarf reorder with Northline Textiles and book the delivery date with Colin, no later than Friday 6 November. Not done yet.",
+    "due": "2026-11-06",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "Amara",
+    "text": "Decorator Marcus will install the Alpine Frost window display on Thursday 19 November.",
+    "depends_on": [
+     "D2",
+     "F5",
+     "R3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-02",
+    "source": "Amara",
+    "text": "Run a 15 percent preview discount for mailing-list customers on the beanies through October.",
+    "depends_on": [
+     "F4",
+     "D1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Meridian Wool Supplies",
+    "text": "Meridian Wool Supplies quoted 300 lambswool scarves at 6.20 pounds each, delivered by 1 December."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-30",
+    "source": "Amara",
+    "text": "Pay the Lindon Fabric Co beanie invoice (1,350 pounds). Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "D1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Priya",
+    "text": "Lindon Fabric Co delivered the 250 beanies on 14 September, all in good condition."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "Amara",
+    "text": "Book Marcus for the window installation. Done on 6 October for Thursday 19 November.",
+    "due": "2026-10-15",
+    "status": "done",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-11",
+    "source": "Amara",
+    "text": "Priya is on holiday from 12 to 25 October; Amara covers the shop alone in that stretch."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "Priya",
+    "text": "The beanie preview discount sold 90 beanies in October."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-11-02",
+    "source": "Amara",
+    "text": "The shop's Christmas gift-wrapping station will be set up in the back corner from 1 December."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-05",
+   "source": "Colin at Northline Textiles",
+   "text": "Colin called: Northline Textiles has moved the winter scarf delivery window to 5 to 10 November, earlier than previously promised, because the dye lot finished early. The price stays at 7.50 pounds per scarf and the reorder quantity is unchanged. Only the delivery window changes.",
+   "revokes": [
+    "F7"
+   ]
+  },
+  "task": {
+   "text": "Can you sort out the scarf reorder with Northline today? Place the order with Colin and get the delivery booked in.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 300 lambswool scarves from Meridian Wool Supplies at 6.20 pounds each for delivery by 1 December."
+    },
+    {
+     "id": "b",
+     "text": "Confirm the reorder of 400 winter scarves with Northline Textiles at 7.50 pounds each and book the delivery for Monday 9 November."
+    },
+    {
+     "id": "c",
+     "text": "Confirm the reorder of 400 winter scarves with Northline Textiles at 7.50 pounds each and book the delivery for Tuesday 24 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "c"
+   ],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F7"
+   ],
+   "distractor_items": [
+    "F8"
+   ],
+   "touched": [
+    {
+     "id": "D6",
+     "direction": "Quantity (400) and supplier stand; only the expected delivery window changes to 5-10 November, so the reorder can be confirmed now against the new window."
+    },
+    {
+     "id": "D2",
+     "direction": "The 28 November launch event no longer needs to wait for the delivery; it stands as booked, but the plan's timing assumption is revised to the 5-10 November window."
+    },
+    {
+     "id": "D3",
+     "direction": "The 16 November marketing email should be pulled earlier so it lands before the scarves arrive in the 5-10 November window."
+    },
+    {
+     "id": "D4",
+     "direction": "Marcus's 19 November installation can stay, but with delivery on 5-10 November the display could go up earlier; the decision rests on D2, which no longer depends on the late window."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D5"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Confirming the 400-scarf reorder with Northline Textiles and booking the delivery date with Colin today",
+    "correct_value": "delivery booked for a day in the 5-10 November 2026 window (e.g. Monday 9 November)",
+    "stale_value": "delivery booked for a day in the 20-27 November 2026 window"
+   },
+   "why": "The correction revokes only F7, the old 20-27 November delivery window, replacing it with 5-10 November at the same price and quantity. The reorder confirmation (O1) is due today and must use the new window, so booking 9 November is correct and 24 November is stale; the Meridian quote is a distractor from another supplier. D1 and D5 concern the beanies and rest on Lindon and sales figures, not on F7, so they are untouched."
+  },
+  "id": "G1-10",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

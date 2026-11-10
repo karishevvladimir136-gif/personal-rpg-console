@@ -1,0 +1,410 @@
+{
+ "id": "G2-09",
+ "class": 2,
+ "setting": "A head chef at Marchetti's Trattoria whose kitchen assistant logs daily supplier deliveries and menu-change decisions",
+ "prompt_sha256": "0b9ec0fc00d217908defff2a615d6cc20b39f27f670279377d5982ab9d5cd453",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The 09:30 cutoff moves to 10:15\",\n  \"setting\": \"A head chef at Marchetti's Trattoria whose kitchen assistant logs daily supplier deliveries and menu-change decisions\",\n  \"owner\": \"Luca\",\n  \"now\": \"2026-10-05\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Nadia\", \"text\": \"Marchetti's Trattoria sits at 12 Quarry Lane; Luca is the head chef and Nadia is the kitchen assistant who logs deliveries and menu decisions.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Luca\", \"text\": \"Hargrove's Wholesale Fish is the trattoria's main fish supplier; their van delivers every morning except Sunday.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Luca\", \"text\": \"The standing weekly fish order is 12 kg of mixed white fish, 8 kg of monkfish, and 6 kg of live langoustines for the Friday seafood linguine.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-06\", \"source\": \"Luca\", \"text\": \"Any fresh-fish delivery from Hargrove's that arrives after 09:30 is refused at the door; Nadia then calls Brannock Fisheries for a same-day replacement.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Luca\", \"text\": \"Brannock Fisheries on Wren Street is the backup fishmonger.\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Nadia\", \"text\": \"Pell's Produce delivers vegetables on Tuesdays and Fridays at 07:00.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-09\", \"source\": \"Luca\", \"text\": \"Menu changes are decided by Luca alone; Nadia logs them but never decides.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-11\", \"source\": \"Luca\", \"text\": \"Every standing order is confirmed with the supplier on the Monday of the week it covers, before that week's first delivery loads.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-14\", \"source\": \"Nadia\", \"text\": \"Aldo's Bakery delivers bread daily at 06:30.\"},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Luca\", \"text\": \"The trattoria is closed on Sundays, and fish orders skip Sundays.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Luca\", \"text\": \"Keep the standing weekly fish order exactly as it is through the summer.\", \"depends_on\": [\"F3\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Nadia\", \"text\": \"Kessler & Sons supplies meat; the meat order goes in on Thursdays.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-14\", \"source\": \"Luca\", \"text\": \"The summer terrace seats 40 extra guests; the terrace closes at the end of September.\", \"expires\": \"2026-09-30\"},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"Nadia\", \"text\": \"Hargrove's opened a new packing depot in August, so the van's arrival time varies from day to day.\"},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-18\", \"source\": \"Luca\", \"text\": \"The autumn menu launches on 6 October.\"},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Luca\", \"text\": \"Book the supplier tasting evening for 19 October, with all four suppliers invited.\", \"depends_on\": [\"F11\"]},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Nadia\", \"text\": \"Hargrove's charges €14.20 per kg for mixed white fish.\"},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Nadia\", \"text\": \"Hargrove's hake delivery arrived at 09:55 on 7 September.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Luca\", \"text\": \"Refuse the 7 September hake delivery at the door for arriving after 09:30, and reorder the day's fish from Brannock Fisheries.\", \"depends_on\": [\"F13\", \"R1\"]},\n    {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Nadia\", \"text\": \"Hargrove's delivery arrived at 10:35 on 14 September.\"},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Luca\", \"text\": \"Refuse the 14 September Hargrove's delivery at the door; Brannock Fisheries covered the day with a same-day order.\", \"depends_on\": [\"F14\", \"R1\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-17\", \"source\": \"Luca\", \"text\": \"Pay Brannock Fisheries' invoice of €212 for the 14 September replacement fish by 30 September. Done on 24 September.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n    {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Nadia\", \"text\": \"Hargrove's monkfish delivery arrived at 10:05 on 21 September.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-23\", \"source\": \"Luca\", \"text\": \"Refuse the 21 September monkfish delivery at the door for arriving after 09:30, and buy replacement monkfish from Brannock Fisheries.\", \"depends_on\": [\"F15\", \"R1\"]},\n    {\"id\": \"F16\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"Nadia\", \"text\": \"Hargrove's live langoustines arrived at 09:40 on 25 September.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-26\", \"source\": \"Luca\", \"text\": \"From the week of 5 October, move the standing 8 kg monkfish line from Hargrove's to Brannock Fisheries, because Hargrove's has twice missed the morning cutoff.\", \"depends_on\": [\"D4\", \"F3\"]},\n    {\"id\": \"F18\", \"kind\": \"state\", \"date\": \"2026-09-27\", \"source\": \"Nadia\", \"text\": \"On Friday 25 September the kitchen used 9 kg of langoustines for the seafood linguine when the terrace was full and the dish sold out.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-28\", \"source\": \"Luca\", \"text\": \"Refuse the 25 September langoustine delivery at the door under the rule, since live shellfish arrived after 09:30; buy the Friday langoustines from Brannock instead.\", \"depends_on\": [\"F16\", \"R1\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-29\", \"source\": \"Luca\", \"text\": \"Send Hargrove's the weekly confirmation of the standing fish order for the week starting Monday 5 October, before the van loads that morning. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"R3\", \"F3\"]},\n    {\"id\": \"F17\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Nadia\", \"text\": \"Brannock Fisheries' flyer offers a one-off bulk price of €19.90 per kg on monkfish orders of 20 kg or more, valid until 15 October.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-30\", \"source\": \"Luca\", \"text\": \"Replace the summer caprese with pumpkin risotto on the autumn menu from 6 October.\", \"depends_on\": [\"F11\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Luca\", \"text\": \"Reply to Pell's Produce with the winter vegetable list by 15 October. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"F5\"]},\n    {\"id\": \"F19\", \"kind\": \"state\", \"date\": \"2026-10-02\", \"source\": \"Nadia\", \"text\": \"Hargrove's confirmed that the wholesale fish market moved to Northgate this week, making their morning route longer.\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-04\", \"source\": \"Luca\", \"text\": \"Because the wholesale market moved to Northgate and Hargrove's morning route is longer, the refusal cutoff for Hargrove's fresh-fish deliveries is 10:15 from today, not 09:30; live shellfish deliveries are still refused if they arrive after 09:30. Nothing else about the fish suppliers or the standing order changes.\", \"revokes\": [\"R1\"]},\n  \"task\": {\"text\": \"Monday morning, and the Hargrove's van loads at half ten — get this week's fish order confirmation sent off now, will you?\", \"options\": [{\"id\": \"a\", \"text\": \"Send Hargrove's the confirmation for 12 kg of mixed white fish and 6 kg of langoustines, and order the 8 kg of monkfish for the week from Brannock Fisheries.\"}, {\"id\": \"b\", \"text\": \"Send Brannock Fisheries an order for 20 kg of monkfish at €19.90 per kg for the week and cancel the Hargrove's standing order.\"}, {\"id\": \"c\", \"text\": \"Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 6 kg of langoustines for Friday.\"}, {\"id\": \"d\", \"text\": \"Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 9 kg of langoustines for Friday.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"c\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"b\", \"d\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"R1\"],\n    \"distractor_items\": [\"F17\", \"F18\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The 7 September hake arrived at 09:55, inside the new 10:15 cutoff, so the refusal and the Brannock replacement were unnecessary; the delivery should have been accepted at the door.\"},\n      {\"id\": \"D4\", \"direction\": \"The 21 September monkfish arrived at 10:05, inside the new cutoff, so it should have been accepted, not refused and replaced from Brannock.\"},\n      {\"id\": \"D6\", \"direction\": \"The two late arrivals behind the switch fall inside the new 10:15 cutoff, so the monkfish line stays with Hargrove's; the move of the 8 kg line to Brannock from the week of 5 October is void.\"}\n    ],\n    \"untouched\": [\"D1\", \"D3\", \"D5\", \"D7\", \"D8\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Hargrove's the weekly confirmation of the standing fish order for the week of 5 October\", \"correct_value\": \"12 kg mixed white fish, 8 kg monkfish and 6 kg langoustines, all confirmed to Hargrove's\", \"stale_value\": \"12 kg white fish and 6 kg langoustines confirmed to Hargrove's, with the 8 kg monkfish ordered from Brannock instead\"},\n    \"why\": \"C1 amends R1 by moving the refusal cutoff to 10:15 (shellfish excepted), which voids the refusals of the 09:55 and 10:05 deliveries (D2, D4) and, through D4, voids D6's move of the monkfish line to Brannock. The 10:35 refusal (D3) and the shellfish refusal (D5) remain valid under the amendment's terms. The due obligation O2 is therefore carried out by confirming the full standing order, monkfish included, to Hargrove's.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2826,
+    "completion_tokens": 11283,
+    "reasoning_tokens": 8185,
+    "cached_tokens": 2752
+   },
+   "cost": 0.05046432,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The 09:30 cutoff moves to 10:15\",\n  \"setting\": \"A head chef at Marchetti's Trattoria whose kitchen assistant logs daily supplier deliveries and menu-change decisions\",\n  \"owner\": \"Luca\",\n  \"now\": \"2026-10-05\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Nadia\", \"text\": \"Marchetti's Trattoria sits at 12 Quarry Lane; Luca is the head chef and Nadia is the kitchen assistant who logs deliveries and menu decisions.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Luca\", \"text\": \"Hargrove's Wholesale Fish is the trattoria's main fish supplier; their van delivers every morning except Sunday.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Luca\", \"text\": \"The standing weekly fish order is 12 kg of mixed white fish, 8 kg of monkfish, and 6 kg of live langoustines for the Friday seafood linguine.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-06\", \"source\": \"Luca\", \"text\": \"Any fresh-fish delivery from Hargrove's that arrives after 09:30 is refused at the door; Nadia then calls Brannock Fisheries for a same-day replacement.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Luca\", \"text\": \"Brannock Fisheries on Wren Street is the backup fishmonger.\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Nadia\", \"text\": \"Pell's Produce delivers vegetables on Tuesdays and Fridays at 07:00.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-09\", \"source\": \"Luca\", \"text\": \"Menu changes are decided by Luca alone; Nadia logs them but never decides.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-11\", \"source\": \"Luca\", \"text\": \"Every standing order is confirmed with the supplier on the Monday of the week it covers, before that week's first delivery loads.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-14\", \"source\": \"Nadia\", \"text\": \"Aldo's Bakery delivers bread daily at 06:30.\"},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Luca\", \"text\": \"The trattoria is closed on Sundays, and fish orders skip Sundays.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Luca\", \"text\": \"Keep the standing weekly fish order exactly as it is through the summer.\", \"depends_on\": [\"F3\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Nadia\", \"text\": \"Kessler & Sons supplies meat; the meat order goes in on Thursdays.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Nadia\", \"text\": \"The summer terrace, which seated 40 extra guests, closed at the end of September as planned.\"},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"Nadia\", \"text\": \"Hargrove's opened a new packing depot in August, so the van's arrival time varies from day to day.\"},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-18\", \"source\": \"Luca\", \"text\": \"The autumn menu launches on 6 October.\"},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Luca\", \"text\": \"Book the supplier tasting evening for 19 October, with all four suppliers invited.\", \"depends_on\": [\"F11\"]},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Nadia\", \"text\": \"Hargrove's charges €14.20 per kg for mixed white fish.\"},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Nadia\", \"text\": \"Hargrove's hake delivery arrived at 09:55 on 7 September.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Luca\", \"text\": \"Refuse the 7 September hake delivery at the door for arriving after 09:30, and reorder the day's fish from Brannock Fisheries.\", \"depends_on\": [\"F13\", \"R1\"]},\n    {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Nadia\", \"text\": \"Hargrove's delivery arrived at 10:35 on 14 September.\"},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Luca\", \"text\": \"Refuse the 14 September Hargrove's delivery at the door; Brannock Fisheries covered the day with a same-day order.\", \"depends_on\": [\"F14\", \"R1\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-17\", \"source\": \"Luca\", \"text\": \"Pay Brannock Fisheries' invoice of €212 for the 14 September replacement fish by 30 September. Done on 24 September.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n    {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Nadia\", \"text\": \"Hargrove's monkfish delivery arrived at 10:05 on 21 September.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-23\", \"source\": \"Luca\", \"text\": \"Refuse the 21 September monkfish delivery at the door for arriving after 09:30, and buy replacement monkfish from Brannock Fisheries.\", \"depends_on\": [\"F15\", \"R1\"]},\n    {\"id\": \"F16\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"Nadia\", \"text\": \"Hargrove's live langoustines arrived at 09:40 on 25 September.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-26\", \"source\": \"Luca\", \"text\": \"From the week of 5 October, move the standing 8 kg monkfish line from Hargrove's to Brannock Fisheries, because Hargrove's has twice missed the morning cutoff.\", \"depends_on\": [\"D4\", \"F3\"]},\n    {\"id\": \"F18\", \"kind\": \"state\", \"date\": \"2026-09-27\", \"source\": \"Nadia\", \"text\": \"On Friday 25 September the kitchen used 9 kg of langoustines for the seafood linguine when the terrace was full and the dish sold out.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-28\", \"source\": \"Luca\", \"text\": \"Refuse the 25 September langoustine delivery at the door under the rule, since live shellfish arrived after 09:30; buy the Friday langoustines from Brannock instead.\", \"depends_on\": [\"F16\", \"R1\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-29\", \"source\": \"Luca\", \"text\": \"Send Hargrove's the weekly confirmation of the standing fish order for the week starting Monday 5 October, before the van loads that morning. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"R3\", \"F3\"]},\n    {\"id\": \"F17\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Nadia\", \"text\": \"Brannock Fisheries' flyer offers a one-off bulk price of €19.90 per kg on monkfish orders of 20 kg or more, valid until 15 October.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-30\", \"source\": \"Luca\", \"text\": \"Replace the summer caprese with pumpkin risotto on the autumn menu from 6 October.\", \"depends_on\": [\"F11\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Luca\", \"text\": \"Reply to Pell's Produce with the winter vegetable list by 15 October. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"F5\"]},\n    {\"id\": \"F19\", \"kind\": \"state\", \"date\": \"2026-10-02\", \"source\": \"Nadia\", \"text\": \"Hargrove's confirmed that the wholesale fish market moved to Northgate this week, making their morning route longer.\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-04\", \"source\": \"Luca\", \"text\": \"Because the wholesale market moved to Northgate and Hargrove's morning route is longer, the refusal cutoff for Hargrove's fresh-fish deliveries is 10:15 from today, not 09:30; live shellfish deliveries are still refused if they arrive after 09:30. Nothing else about the fish suppliers or the standing order changes.\", \"revokes\": [\"R1\"]},\n  \"task\": {\"text\": \"Monday morning, and the Hargrove's van loads at half ten — get this week's fish order confirmation sent off now, will you?\", \"options\": [{\"id\": \"a\", \"text\": \"Send Hargrove's the confirmation for 12 kg of mixed white fish and 6 kg of langoustines, and order the 8 kg of monkfish for the week from Brannock Fisheries.\"}, {\"id\": \"b\", \"text\": \"Send Brannock Fisheries an order for 20 kg of monkfish at €19.90 per kg for the week and cancel the Hargrove's standing order.\"}, {\"id\": \"c\", \"text\": \"Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 6 kg of langoustines for Friday.\"}, {\"id\": \"d\", \"text\": \"Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 9 kg of langoustines for Friday.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"c\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"b\", \"d\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"R1\"],\n    \"distractor_items\": [\"F17\", \"F18\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The 7 September hake arrived at 09:55, inside the new 10:15 cutoff, so the refusal and the Brannock replacement were unnecessary; the delivery should have been accepted at the door.\"},\n      {\"id\": \"D4\", \"direction\": \"The 21 September monkfish arrived at 10:05, inside the new cutoff, so it should have been accepted, not refused and replaced from Brannock.\"},\n      {\"id\": \"D6\", \"direction\": \"The two late arrivals behind the switch fall inside the new 10:15 cutoff, so the monkfish line stays with Hargrove's; the move of the 8 kg line to Brannock from the week of 5 October is void.\"}\n    ],\n    \"untouched\": [\"D1\", \"D3\", \"D5\", \"D7\", \"D8\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Hargrove's the weekly confirmation of the standing fish order for the week of 5 October\", \"correct_value\": \"12 kg mixed white fish, 8 kg monkfish and 6 kg langoustines, all confirmed to Hargrove's\", \"stale_value\": \"12 kg white fish and 6 kg langoustines confirmed to Hargrove's, with the 8 kg monkfish ordered from Brannock instead\"},\n    \"why\": \"C1 amends R1 by moving the refusal cutoff to 10:15 (shellfish excepted), which voids the refusals of the 09:55 and 10:05 deliveries (D2, D4) and, through D4, voids D6's move of the monkfish line to Brannock. The 10:35 refusal (D3) and the shellfish refusal (D5) remain valid under the amendment's terms. The due obligation O2 is therefore carried out by confirming the full standing order, monkfish included, to Hargrove's.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5970,
+    "completion_tokens": 3213,
+    "reasoning_tokens": 124,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01928496,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-09: F9 expired before now but is not the revoked item\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "The 09:30 cutoff moves to 10:15",
+  "setting": "A head chef at Marchetti's Trattoria whose kitchen assistant logs daily supplier deliveries and menu-change decisions",
+  "owner": "Luca",
+  "now": "2026-10-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Nadia",
+    "text": "Marchetti's Trattoria sits at 12 Quarry Lane; Luca is the head chef and Nadia is the kitchen assistant who logs deliveries and menu decisions."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Luca",
+    "text": "Hargrove's Wholesale Fish is the trattoria's main fish supplier; their van delivers every morning except Sunday."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Luca",
+    "text": "The standing weekly fish order is 12 kg of mixed white fish, 8 kg of monkfish, and 6 kg of live langoustines for the Friday seafood linguine."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-06",
+    "source": "Luca",
+    "text": "Any fresh-fish delivery from Hargrove's that arrives after 09:30 is refused at the door; Nadia then calls Brannock Fisheries for a same-day replacement."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Luca",
+    "text": "Brannock Fisheries on Wren Street is the backup fishmonger."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Nadia",
+    "text": "Pell's Produce delivers vegetables on Tuesdays and Fridays at 07:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-09",
+    "source": "Luca",
+    "text": "Menu changes are decided by Luca alone; Nadia logs them but never decides."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-11",
+    "source": "Luca",
+    "text": "Every standing order is confirmed with the supplier on the Monday of the week it covers, before that week's first delivery loads."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-14",
+    "source": "Nadia",
+    "text": "Aldo's Bakery delivers bread daily at 06:30."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Luca",
+    "text": "The trattoria is closed on Sundays, and fish orders skip Sundays."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Luca",
+    "text": "Keep the standing weekly fish order exactly as it is through the summer.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Nadia",
+    "text": "Kessler & Sons supplies meat; the meat order goes in on Thursdays."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Nadia",
+    "text": "The summer terrace, which seated 40 extra guests, closed at the end of September as planned."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Nadia",
+    "text": "Hargrove's opened a new packing depot in August, so the van's arrival time varies from day to day."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-18",
+    "source": "Luca",
+    "text": "The autumn menu launches on 6 October."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Luca",
+    "text": "Book the supplier tasting evening for 19 October, with all four suppliers invited.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Nadia",
+    "text": "Hargrove's charges €14.20 per kg for mixed white fish."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Nadia",
+    "text": "Hargrove's hake delivery arrived at 09:55 on 7 September."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Luca",
+    "text": "Refuse the 7 September hake delivery at the door for arriving after 09:30, and reorder the day's fish from Brannock Fisheries.",
+    "depends_on": [
+     "F13",
+     "R1"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Nadia",
+    "text": "Hargrove's delivery arrived at 10:35 on 14 September."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Luca",
+    "text": "Refuse the 14 September Hargrove's delivery at the door; Brannock Fisheries covered the day with a same-day order.",
+    "depends_on": [
+     "F14",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-17",
+    "source": "Luca",
+    "text": "Pay Brannock Fisheries' invoice of €212 for the 14 September replacement fish by 30 September. Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Nadia",
+    "text": "Hargrove's monkfish delivery arrived at 10:05 on 21 September."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-23",
+    "source": "Luca",
+    "text": "Refuse the 21 September monkfish delivery at the door for arriving after 09:30, and buy replacement monkfish from Brannock Fisheries.",
+    "depends_on": [
+     "F15",
+     "R1"
+    ]
+   },
+   {
+    "id": "F16",
+    "kind": "state",
+    "date": "2026-09-26",
+    "source": "Nadia",
+    "text": "Hargrove's live langoustines arrived at 09:40 on 25 September."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-26",
+    "source": "Luca",
+    "text": "From the week of 5 October, move the standing 8 kg monkfish line from Hargrove's to Brannock Fisheries, because Hargrove's has twice missed the morning cutoff.",
+    "depends_on": [
+     "D4",
+     "F3"
+    ]
+   },
+   {
+    "id": "F18",
+    "kind": "state",
+    "date": "2026-09-27",
+    "source": "Nadia",
+    "text": "On Friday 25 September the kitchen used 9 kg of langoustines for the seafood linguine when the terrace was full and the dish sold out."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-28",
+    "source": "Luca",
+    "text": "Refuse the 25 September langoustine delivery at the door under the rule, since live shellfish arrived after 09:30; buy the Friday langoustines from Brannock instead.",
+    "depends_on": [
+     "F16",
+     "R1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-29",
+    "source": "Luca",
+    "text": "Send Hargrove's the weekly confirmation of the standing fish order for the week starting Monday 5 October, before the van loads that morning. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "R3",
+     "F3"
+    ]
+   },
+   {
+    "id": "F17",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Nadia",
+    "text": "Brannock Fisheries' flyer offers a one-off bulk price of €19.90 per kg on monkfish orders of 20 kg or more, valid until 15 October."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-30",
+    "source": "Luca",
+    "text": "Replace the summer caprese with pumpkin risotto on the autumn menu from 6 October.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Luca",
+    "text": "Reply to Pell's Produce with the winter vegetable list by 15 October. Not done yet.",
+    "due": "2026-10-15",
+    "status": "open",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F19",
+    "kind": "state",
+    "date": "2026-10-02",
+    "source": "Nadia",
+    "text": "Hargrove's confirmed that the wholesale fish market moved to Northgate this week, making their morning route longer."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-04",
+   "source": "Luca",
+   "text": "Because the wholesale market moved to Northgate and Hargrove's morning route is longer, the refusal cutoff for Hargrove's fresh-fish deliveries is 10:15 from today, not 09:30; live shellfish deliveries are still refused if they arrive after 09:30. Nothing else about the fish suppliers or the standing order changes.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Monday morning, and the Hargrove's van loads at half ten — get this week's fish order confirmation sent off now, will you?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Hargrove's the confirmation for 12 kg of mixed white fish and 6 kg of langoustines, and order the 8 kg of monkfish for the week from Brannock Fisheries."
+    },
+    {
+     "id": "b",
+     "text": "Send Brannock Fisheries an order for 20 kg of monkfish at €19.90 per kg for the week and cancel the Hargrove's standing order."
+    },
+    {
+     "id": "c",
+     "text": "Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 6 kg of langoustines for Friday."
+    },
+    {
+     "id": "d",
+     "text": "Send Hargrove's the weekly confirmation for 12 kg of mixed white fish, 8 kg of monkfish and 9 kg of langoustines for Friday."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b",
+    "d"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F17",
+    "F18"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "The 7 September hake arrived at 09:55, inside the new 10:15 cutoff, so the refusal and the Brannock replacement were unnecessary; the delivery should have been accepted at the door."
+    },
+    {
+     "id": "D4",
+     "direction": "The 21 September monkfish arrived at 10:05, inside the new cutoff, so it should have been accepted, not refused and replaced from Brannock."
+    },
+    {
+     "id": "D6",
+     "direction": "The two late arrivals behind the switch fall inside the new 10:15 cutoff, so the monkfish line stays with Hargrove's; the move of the 8 kg line to Brannock from the week of 5 October is void."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D3",
+    "D5",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Hargrove's the weekly confirmation of the standing fish order for the week of 5 October",
+    "correct_value": "12 kg mixed white fish, 8 kg monkfish and 6 kg langoustines, all confirmed to Hargrove's",
+    "stale_value": "12 kg white fish and 6 kg langoustines confirmed to Hargrove's, with the 8 kg monkfish ordered from Brannock instead"
+   },
+   "why": "C1 amends R1 by moving the refusal cutoff to 10:15 (shellfish excepted), which voids the refusals of the 09:55 and 10:05 deliveries (D2, D4) and, through D4, voids D6's move of the monkfish line to Brannock. The 10:35 refusal (D3) and the shellfish refusal (D5) remain valid under the amendment's terms. The due obligation O2 is therefore carried out by confirming the full standing order, monkfish included, to Hargrove's."
+  },
+  "id": "G2-09",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

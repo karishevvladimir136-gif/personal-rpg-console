@@ -1,0 +1,334 @@
+{
+ "id": "G2-10",
+ "class": 2,
+ "setting": "A real estate broker at Harborline Realty whose transaction coordinator retains every negotiation counteroffer and inspection contingency",
+ "prompt_sha256": "8f14eb3ad64bf31aa95e1e383085c1808e2eb42b8685a423d36dac970830438f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Bayview counteroffer under the amended presentation rule\",\n \"setting\": \"A real estate broker at Harborline Realty whose transaction coordinator retains every negotiation counteroffer and inspection contingency\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-14\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"Harborline Realty's files are managed by transaction coordinator Priya Nair, who keeps every counteroffer and inspection contingency on record.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"listing agreement\", \"text\": \"Harborline lists the condo at 12 Bayview Court, unit 4C, at $529,000; the seller is Dana Whitfield.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"office policy\", \"text\": \"Every buyer counteroffer on a Harborline listing must be presented to the seller within 24 hours of receipt, no exceptions.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"office policy\", \"text\": \"Inspection contingencies on Harborline listings run ten business days from acceptance.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-06\", \"source\": \"Priya\", \"text\": \"Every counteroffer received must be logged with the transaction coordinator the same day.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Buyer Marcus Lee toured the Bayview condo twice and asked about parking.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"listing agreement\", \"text\": \"Harborline lists the Maple Street house at 448 Maple Street for $472,000; the sellers are the Okafor family.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"Marta\", \"text\": \"For the Okafor family's Maple Street listing, every buyer counteroffer will be presented to them within 24 hours of receipt; the listing closed in August with all counteroffers so presented.\", \"depends_on\": [\"R1\", \"F4\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"The Ferry Landing house went under contract at $610,000.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marta\", \"text\": \"The inspection contingency for the Ferry Landing house runs ten business days from acceptance, so it ends on 16 July.\", \"depends_on\": [\"R2\", \"F8\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"office newsletter\", \"text\": \"Harborline Realty is sponsoring the waterfront 5K run in September.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Priya\", \"text\": \"The Harborcrest duplex is listed at $695,000, and a buyer's counteroffer at $680,000 was received.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marta\", \"text\": \"Present the buyer's $680,000 counteroffer on the Harborcrest duplex to the sellers within 24 hours of receipt; it was presented on 23 September.\", \"depends_on\": [\"R1\", \"F5\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-30\", \"source\": \"Marta\", \"text\": \"Deliver the Ferry Landing inspection report to the buyers. Done on 18 September.\", \"due\": \"2026-09-20\", \"status\": \"done\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Marta\", \"text\": \"Order a roof inspection for the Ferry Landing house, to be filed with the contingency paperwork.\", \"depends_on\": [\"D6\", \"F9\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"buyers' agent\", \"text\": \"The Ferry Landing buyers requested a roof inspection before closing.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"office manager\", \"text\": \"The office printer lease was renewed for another year.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Priya\", \"text\": \"Marcus Lee raised his offer on the Bayview condo to $540,000 as a formal counteroffer, logged with Priya the same day.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Priya\", \"text\": \"Priya started using a new filing software for all transaction documents.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-10-02\", \"source\": \"Marta\", \"text\": \"For Marcus Lee's $540,000 counteroffer on the Bayview condo, present it to Dana Whitfield within 24 hours of receipt, per the standing presentation rule.\", \"depends_on\": [\"R1\", \"F2\", \"F6\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Priya\", \"text\": \"The Selby Avenue townhouse is listed at $475,000, and buyer Nora Feld's counteroffer at $465,000 was received on 5 October and logged; the presentation to the sellers is still pending.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-06\", \"source\": \"Marta\", \"text\": \"For Nora Feld's $465,000 counteroffer on the Selby Avenue townhouse, present it to the sellers within 24 hours of receipt, per the standing presentation rule.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"Set a same-evening strategy call with Priya on each day of the Bayview counteroffer window, following the 24-hour presentation plan.\", \"depends_on\": [\"D3\", \"R3\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-09\", \"source\": \"Tom Ruiz\", \"text\": \"Tom Ruiz, the buyer's agent on the Bayview condo, said that sellers he works with usually only take counteroffer meetings on Tuesdays.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"Present Marcus Lee's $540,000 counteroffer on the Bayview condo to Dana Whitfield and get the presentation meeting booked. Not done yet.\", \"due\": \"2026-10-14\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-07\", \"source\": \"office manager\", \"text\": \"Renew Harborline's errors-and-omissions insurance binder. Not done yet.\", \"due\": \"2026-10-31\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-12\", \"source\": \"office manager Renata Bock\", \"text\": \"Amends the presentation rule effective 12 October 2026: the 24-hour counteroffer presentation deadline applies only to counteroffers at or above $600,000; counteroffers below $600,000 may be held for up to 72 hours before being presented to the seller. Counteroffers already presented before 12 October were handled correctly. The change follows a workload review of the coordination desk. The duty to log every counteroffer with the transaction coordinator the same day is unchanged.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Marcus Lee's $540,000 counteroffer on the Bayview condo is in this morning — please get Dana's presentation on the calendar today.\", \"options\": [{\"id\": \"a\", \"text\": \"Book the seller presentation for Thursday 15 October at 4 pm.\"}, {\"id\": \"b\", \"text\": \"Book the seller presentation for Tuesday 20 October at 10 am.\"}, {\"id\": \"c\", \"text\": \"Book the seller presentation for Friday 16 October at 4 pm.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"The Bayview counteroffer of $540,000 falls below $600,000, so it may be held up to 72 hours; the presentation to Dana Whitfield moves from a 24-hour to a 72-hour window.\"},\n   {\"id\": \"D4\", \"direction\": \"The Selby Avenue counteroffer of $465,000 also falls below $600,000, so its pending presentation moves to the 72-hour window.\"},\n   {\"id\": \"D5\", \"direction\": \"The same-evening strategy calls with Priya should span the 72-hour window rather than the single day implied by the 24-hour plan.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Present Marcus Lee's $540,000 counteroffer on the Bayview condo to Dana Whitfield by booking the presentation meeting today.\", \"correct_value\": \"Presentation meeting Friday 16 October 2026 at 4 pm (within the 72-hour window).\", \"stale_value\": \"Presentation meeting Thursday 15 October 2026 at 4 pm (24-hour rule).\"},\n  \"why\": \"The amendment of 12 October keeps the 24-hour deadline only for counteroffers at or above $600,000 and gives those below $600,000 a 72-hour window. The Bayview ($540,000) and Selby ($465,000) counteroffers were still pending presentation, so D3 and D4 are void and D5, which rests on D3, is touched through it. The Maple Street and Harborcrest presentations were completed before 12 October (and Harborcrest was above the threshold), so D1 and D2 stand; the inspection decisions rest on R2, which is unchanged. The buyer's agent's Tuesday-meeting remark is an unused opinion, not a rule.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 7126,
+    "reasoning_tokens": 4556,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03217072,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Bayview counteroffer under the amended presentation rule",
+  "setting": "A real estate broker at Harborline Realty whose transaction coordinator retains every negotiation counteroffer and inspection contingency",
+  "owner": "Marta",
+  "now": "2026-10-14",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Harborline Realty's files are managed by transaction coordinator Priya Nair, who keeps every counteroffer and inspection contingency on record."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "listing agreement",
+    "text": "Harborline lists the condo at 12 Bayview Court, unit 4C, at $529,000; the seller is Dana Whitfield."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "office policy",
+    "text": "Every buyer counteroffer on a Harborline listing must be presented to the seller within 24 hours of receipt, no exceptions."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "office policy",
+    "text": "Inspection contingencies on Harborline listings run ten business days from acceptance."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-06",
+    "source": "Priya",
+    "text": "Every counteroffer received must be logged with the transaction coordinator the same day."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Buyer Marcus Lee toured the Bayview condo twice and asked about parking."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "listing agreement",
+    "text": "Harborline lists the Maple Street house at 448 Maple Street for $472,000; the sellers are the Okafor family."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "For the Okafor family's Maple Street listing, every buyer counteroffer will be presented to them within 24 hours of receipt; the listing closed in August with all counteroffers so presented.",
+    "depends_on": [
+     "R1",
+     "F4"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "The Ferry Landing house went under contract at $610,000."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "The inspection contingency for the Ferry Landing house runs ten business days from acceptance, so it ends on 16 July.",
+    "depends_on": [
+     "R2",
+     "F8"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "office newsletter",
+    "text": "Harborline Realty is sponsoring the waterfront 5K run in September."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Priya",
+    "text": "The Harborcrest duplex is listed at $695,000, and a buyer's counteroffer at $680,000 was received."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "Present the buyer's $680,000 counteroffer on the Harborcrest duplex to the sellers within 24 hours of receipt; it was presented on 23 September.",
+    "depends_on": [
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-30",
+    "source": "Marta",
+    "text": "Deliver the Ferry Landing inspection report to the buyers. Done on 18 September.",
+    "due": "2026-09-20",
+    "status": "done",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Order a roof inspection for the Ferry Landing house, to be filed with the contingency paperwork.",
+    "depends_on": [
+     "D6",
+     "F9"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "buyers' agent",
+    "text": "The Ferry Landing buyers requested a roof inspection before closing."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "office manager",
+    "text": "The office printer lease was renewed for another year."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Priya",
+    "text": "Marcus Lee raised his offer on the Bayview condo to $540,000 as a formal counteroffer, logged with Priya the same day."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Priya",
+    "text": "Priya started using a new filing software for all transaction documents."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-10-02",
+    "source": "Marta",
+    "text": "For Marcus Lee's $540,000 counteroffer on the Bayview condo, present it to Dana Whitfield within 24 hours of receipt, per the standing presentation rule.",
+    "depends_on": [
+     "R1",
+     "F2",
+     "F6"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Priya",
+    "text": "The Selby Avenue townhouse is listed at $475,000, and buyer Nora Feld's counteroffer at $465,000 was received on 5 October and logged; the presentation to the sellers is still pending."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-06",
+    "source": "Marta",
+    "text": "For Nora Feld's $465,000 counteroffer on the Selby Avenue townhouse, present it to the sellers within 24 hours of receipt, per the standing presentation rule.",
+    "depends_on": [
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Set a same-evening strategy call with Priya on each day of the Bayview counteroffer window, following the 24-hour presentation plan.",
+    "depends_on": [
+     "D3",
+     "R3"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-09",
+    "source": "Tom Ruiz",
+    "text": "Tom Ruiz, the buyer's agent on the Bayview condo, said that sellers he works with usually only take counteroffer meetings on Tuesdays."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Present Marcus Lee's $540,000 counteroffer on the Bayview condo to Dana Whitfield and get the presentation meeting booked. Not done yet.",
+    "due": "2026-10-14",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-07",
+    "source": "office manager",
+    "text": "Renew Harborline's errors-and-omissions insurance binder. Not done yet.",
+    "due": "2026-10-31",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-12",
+   "source": "office manager Renata Bock",
+   "text": "Amends the presentation rule effective 12 October 2026: the 24-hour counteroffer presentation deadline applies only to counteroffers at or above $600,000; counteroffers below $600,000 may be held for up to 72 hours before being presented to the seller. Counteroffers already presented before 12 October were handled correctly. The change follows a workload review of the coordination desk. The duty to log every counteroffer with the transaction coordinator the same day is unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Marcus Lee's $540,000 counteroffer on the Bayview condo is in this morning — please get Dana's presentation on the calendar today.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book the seller presentation for Thursday 15 October at 4 pm."
+    },
+    {
+     "id": "b",
+     "text": "Book the seller presentation for Tuesday 20 October at 10 am."
+    },
+    {
+     "id": "c",
+     "text": "Book the seller presentation for Friday 16 October at 4 pm."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "The Bayview counteroffer of $540,000 falls below $600,000, so it may be held up to 72 hours; the presentation to Dana Whitfield moves from a 24-hour to a 72-hour window."
+    },
+    {
+     "id": "D4",
+     "direction": "The Selby Avenue counteroffer of $465,000 also falls below $600,000, so its pending presentation moves to the 72-hour window."
+    },
+    {
+     "id": "D5",
+     "direction": "The same-evening strategy calls with Priya should span the 72-hour window rather than the single day implied by the 24-hour plan."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Present Marcus Lee's $540,000 counteroffer on the Bayview condo to Dana Whitfield by booking the presentation meeting today.",
+    "correct_value": "Presentation meeting Friday 16 October 2026 at 4 pm (within the 72-hour window).",
+    "stale_value": "Presentation meeting Thursday 15 October 2026 at 4 pm (24-hour rule)."
+   },
+   "why": "The amendment of 12 October keeps the 24-hour deadline only for counteroffers at or above $600,000 and gives those below $600,000 a 72-hour window. The Bayview ($540,000) and Selby ($465,000) counteroffers were still pending presentation, so D3 and D4 are void and D5, which rests on D3, is touched through it. The Maple Street and Harborcrest presentations were completed before 12 October (and Harborcrest was above the threshold), so D1 and D2 stand; the inspection decisions rest on R2, which is unchanged. The buyer's agent's Tuesday-meeting remark is an unused opinion, not a rule."
+  },
+  "id": "G2-10",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

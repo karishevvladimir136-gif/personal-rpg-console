@@ -1,0 +1,359 @@
+{
+ "id": "G3-09",
+ "class": 3,
+ "setting": "A music school owner at Cadence Academy whose assistant tracks each student's lesson-time changes and recital participation confirmations",
+ "prompt_sha256": "500b980dd4b59e660f528b459ba471dcbbba25b91bc2f6bf1f971c48d54ac604",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Eli's rehearsal call time after the lesson-day correction\",\n \"setting\": \"A music school owner at Cadence Academy whose assistant tracks each student's lesson-time changes and recital participation confirmations\",\n \"owner\": \"Marta\",\n \"now\": \"2026-11-05\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"Cadence Academy has 46 students and three teachers: Priya Kade, Marcus Bell and Ines Roth.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"The autumn recital is set for Saturday 21 November at 18:00 at Harrow Hall.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Every student's recital participation must be confirmed no later than four weeks before the recital date.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-18\", \"source\": \"Marta\", \"text\": \"Rehearsals are scheduled next to the student's regular lesson whenever possible, and accompanists always receive their written call time at least two weeks before the rehearsal.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-12\", \"source\": \"Marta\", \"text\": \"The standard lesson fee is $38 per 45-minute lesson, billed monthly.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Priya Kade teaches piano on Thursdays and Fridays.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Marcus Bell teaches piano on Saturdays.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Marta\", \"text\": \"Eli Novak's weekly piano lesson is on Saturdays at 10:00 with Marcus Bell and lasts 45 minutes.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Ines Roth\", \"text\": \"Mia Chen is a cello student of Ines Roth.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Ines Roth\", \"text\": \"Mia Chen's cello lesson is on Wednesdays at 16:00.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"Book Harrow Hall for the recital on the evening of 21 November.\", \"depends_on\": [\"F2\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marta\", \"text\": \"Pay Harrow Hall the $200 hall deposit. Done on 30 July.\", \"due\": \"2026-08-15\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Marta\", \"text\": \"Have the recital programme printed by Printwise, 60 copies.\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Marta\", \"text\": \"Buy two new metronomes and a spare bench for the teaching rooms.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"Eli Novak will play \\\"Nuvole Bianche\\\" at the autumn recital.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Marta\", \"text\": \"Eli Novak's monthly invoice is four lessons at $38 each, $152 in total.\", \"depends_on\": [\"F5\", \"R3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marta\", \"text\": \"The recital running order: Mia Chen opens, Eli Novak closes the first half.\", \"depends_on\": [\"F6\", \"F8\", \"D1\"]},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Marta\", \"text\": \"Send recital save-the-date emails to all families by the end of the week.\", \"depends_on\": [\"D1\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"Eli Novak's recital rehearsal is set for Saturday 14 November at 9:00 in room 2, right before the Saturday lesson block, since he is on site on Saturdays anyway.\", \"depends_on\": [\"F5\", \"R2\", \"D1\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-02\", \"source\": \"Marta\", \"text\": \"Order recital posters from Printwise and put them up at the school entrance.\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"Marta\", \"text\": \"Sona Velle is the school's regular accompanist and charges $60 per rehearsal.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-20\", \"source\": \"Marta\", \"text\": \"Engage Sona Velle to accompany Eli Novak's piece at the rehearsal and recital; her call time for the rehearsal is 8:30 on Saturday 14 November, fee $60.\", \"depends_on\": [\"D4\", \"F8\", \"F11\", \"R2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-21\", \"source\": \"Marta\", \"text\": \"Send every accompanist their written rehearsal call time. Not done yet.\", \"due\": \"2026-11-02\", \"status\": \"open\", \"depends_on\": [\"D7\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-25\", \"source\": \"Ines Roth\", \"text\": \"Mia Chen's recital rehearsal is on Saturday 14 November at 11:15 in room 2.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-28\", \"source\": \"Marta\", \"text\": \"Deliver the 60 printed programmes to Harrow Hall. Not done yet.\", \"due\": \"2026-11-18\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-30\", \"source\": \"Ines Roth\", \"text\": \"Ines Roth is away the week of 2 November; her lessons that week are cancelled.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Marta\", \"text\": \"The school piano is tuned once a year; the last tuning was in May.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Marta\", \"text\": \"Parking at Harrow Hall is free for performers' families on recital evenings.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-03\", \"source\": \"Marta\", \"text\": \"Eli Novak's weekly piano lesson is on Thursdays at 17:00 with Priya Kade, not on Saturdays at 10:00 with Marcus Bell; the lesson still lasts 45 minutes and the fee is unchanged. His recital rehearsal therefore moves to Thursday 12 November at 17:00 in room 2, and the accompanist's call time is 16:30 the same day. The recital itself on 21 November, the running order and the piece are unchanged.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"Please get Sona's written call time for Eli's rehearsal sent off today — she's been waiting for it.\", \"options\": [{\"id\": \"a\", \"text\": \"Email Sona Velle her call time: Saturday 14 November at 08:30, room 2.\"}, {\"id\": \"b\", \"text\": \"Email Sona Velle her call time: Thursday 12 November at 16:30, room 2.\"}, {\"id\": \"c\", \"text\": \"Email Sona Velle her call time: Saturday 14 November at 10:45, room 2.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"Eli's rehearsal is no longer Saturday 14 November at 9:00; it moves to Thursday 12 November at 17:00 in room 2, next to his Thursday lesson.\"},\n   {\"id\": \"D7\", \"direction\": \"Sona Velle's call time is no longer 8:30 on Saturday 14 November; it becomes 16:30 on Thursday 12 November, room 2; her $60 fee and the engagement stand.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D5\", \"D6\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Sona Velle her written rehearsal call time today, carrying out D7 as revised by the correction.\", \"correct_value\": \"Thursday 12 November at 16:30, room 2\", \"stale_value\": \"Saturday 14 November at 08:30, room 2\"},\n  \"why\": \"C1 revokes F5 (Saturday 10:00 lesson with Marcus) and establishes Thursday 17:00 with Priya. D4 rests on F5's Saturday slot, so the rehearsal moves to Thursday 12 November at 17:00; D7 rests on D4 and only inherits the new time, so Sona's call time becomes 16:30 on 12 November. D3 is untouched because the correction explicitly keeps the 45-minute length and fee that D3 rests on, and no other decision depends on F5, D4 or D7. Option c wrongly uses Mia Chen's rehearsal time from F9.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 5798,
+    "reasoning_tokens": 3230,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02633172,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Eli's rehearsal call time after the lesson-day correction",
+  "setting": "A music school owner at Cadence Academy whose assistant tracks each student's lesson-time changes and recital participation confirmations",
+  "owner": "Marta",
+  "now": "2026-11-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Cadence Academy has 46 students and three teachers: Priya Kade, Marcus Bell and Ines Roth."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "The autumn recital is set for Saturday 21 November at 18:00 at Harrow Hall."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Every student's recital participation must be confirmed no later than four weeks before the recital date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "Rehearsals are scheduled next to the student's regular lesson whenever possible, and accompanists always receive their written call time at least two weeks before the rehearsal."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "The standard lesson fee is $38 per 45-minute lesson, billed monthly."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Priya Kade teaches piano on Thursdays and Fridays."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Marcus Bell teaches piano on Saturdays."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "Eli Novak's weekly piano lesson is on Saturdays at 10:00 with Marcus Bell and lasts 45 minutes."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Ines Roth",
+    "text": "Mia Chen is a cello student of Ines Roth."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Ines Roth",
+    "text": "Mia Chen's cello lesson is on Wednesdays at 16:00."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Book Harrow Hall for the recital on the evening of 21 November.",
+    "depends_on": [
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Pay Harrow Hall the $200 hall deposit. Done on 30 July.",
+    "due": "2026-08-15",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Have the recital programme printed by Printwise, 60 copies.",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marta",
+    "text": "Buy two new metronomes and a spare bench for the teaching rooms.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Eli Novak will play \"Nuvole Bianche\" at the autumn recital."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Marta",
+    "text": "Eli Novak's monthly invoice is four lessons at $38 each, $152 in total.",
+    "depends_on": [
+     "F5",
+     "R3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "The recital running order: Mia Chen opens, Eli Novak closes the first half.",
+    "depends_on": [
+     "F6",
+     "F8",
+     "D1"
+    ]
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Marta",
+    "text": "Send recital save-the-date emails to all families by the end of the week.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Eli Novak's recital rehearsal is set for Saturday 14 November at 9:00 in room 2, right before the Saturday lesson block, since he is on site on Saturdays anyway.",
+    "depends_on": [
+     "F5",
+     "R2",
+     "D1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-02",
+    "source": "Marta",
+    "text": "Order recital posters from Printwise and put them up at the school entrance.",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Marta",
+    "text": "Sona Velle is the school's regular accompanist and charges $60 per rehearsal."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-20",
+    "source": "Marta",
+    "text": "Engage Sona Velle to accompany Eli Novak's piece at the rehearsal and recital; her call time for the rehearsal is 8:30 on Saturday 14 November, fee $60.",
+    "depends_on": [
+     "D4",
+     "F8",
+     "F11",
+     "R2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-21",
+    "source": "Marta",
+    "text": "Send every accompanist their written rehearsal call time. Not done yet.",
+    "due": "2026-11-02",
+    "status": "open",
+    "depends_on": [
+     "D7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-25",
+    "source": "Ines Roth",
+    "text": "Mia Chen's recital rehearsal is on Saturday 14 November at 11:15 in room 2."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "Deliver the 60 printed programmes to Harrow Hall. Not done yet.",
+    "due": "2026-11-18",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-30",
+    "source": "Ines Roth",
+    "text": "Ines Roth is away the week of 2 November; her lessons that week are cancelled."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "The school piano is tuned once a year; the last tuning was in May."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Marta",
+    "text": "Parking at Harrow Hall is free for performers' families on recital evenings."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-03",
+   "source": "Marta",
+   "text": "Eli Novak's weekly piano lesson is on Thursdays at 17:00 with Priya Kade, not on Saturdays at 10:00 with Marcus Bell; the lesson still lasts 45 minutes and the fee is unchanged. His recital rehearsal therefore moves to Thursday 12 November at 17:00 in room 2, and the accompanist's call time is 16:30 the same day. The recital itself on 21 November, the running order and the piece are unchanged.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please get Sona's written call time for Eli's rehearsal sent off today — she's been waiting for it.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Sona Velle her call time: Saturday 14 November at 08:30, room 2."
+    },
+    {
+     "id": "b",
+     "text": "Email Sona Velle her call time: Thursday 12 November at 16:30, room 2."
+    },
+    {
+     "id": "c",
+     "text": "Email Sona Velle her call time: Saturday 14 November at 10:45, room 2."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "Eli's rehearsal is no longer Saturday 14 November at 9:00; it moves to Thursday 12 November at 17:00 in room 2, next to his Thursday lesson."
+    },
+    {
+     "id": "D7",
+     "direction": "Sona Velle's call time is no longer 8:30 on Saturday 14 November; it becomes 16:30 on Thursday 12 November, room 2; her $60 fee and the engagement stand."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D6",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Sona Velle her written rehearsal call time today, carrying out D7 as revised by the correction.",
+    "correct_value": "Thursday 12 November at 16:30, room 2",
+    "stale_value": "Saturday 14 November at 08:30, room 2"
+   },
+   "why": "C1 revokes F5 (Saturday 10:00 lesson with Marcus) and establishes Thursday 17:00 with Priya. D4 rests on F5's Saturday slot, so the rehearsal moves to Thursday 12 November at 17:00; D7 rests on D4 and only inherits the new time, so Sona's call time becomes 16:30 on 12 November. D3 is untouched because the correction explicitly keeps the 45-minute length and fee that D3 rests on, and no other decision depends on F5, D4 or D7. Option c wrongly uses Mia Chen's rehearsal time from F9."
+  },
+  "id": "G3-09",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

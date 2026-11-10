@@ -1,0 +1,355 @@
+{
+ "id": "G2-12",
+ "class": 2,
+ "setting": "A nursing home administrator at Maplewood Senior Living whose assistant records family-care-plan decisions and staffing agency commitments",
+ "prompt_sha256": "351f43cadce98e6bb97768f76d19672101ccacdc611b12a9b1ed9e428a8900dd",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sunday CNA booking under the amended notice rule\",\n \"setting\": \"A nursing home administrator at Maplewood Senior Living whose assistant records family-care-plan decisions and staffing agency commitments\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-10-19\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Harbor Staffing Partners supplies temporary CNAs at 32 dollars per hour and RNs at 58 dollars per hour, invoiced monthly.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"nurse desk\", \"text\": \"Maplewood Senior Living has 42 residents, and Wing B needs three CNAs on the day shift at all times.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Karen Bennett\", \"text\": \"Mrs. Alice Bennett lives in room 12; her daughter Karen visits on Sundays, and the family asks for an extra CNA on Sundays from 9:00 to 17:00 to help with her mobility routine.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"nurse desk\", \"text\": \"RN supervisor Priya works Monday to Friday and is off on weekends.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Every agency shift must be booked at least 14 days in advance; requests with shorter notice are declined, no exceptions.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Any change to a resident's family care plan requires the administrator's written approval before it takes effect.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"office manager\", \"text\": \"The garden contractor GreenScape mows the grounds every second Tuesday for 120 dollars per visit.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"kitchen lead\", \"text\": \"Food supplier Meadow Foods delivers on Mondays and Thursdays.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-03\", \"source\": \"owner\", \"text\": \"Any agency shift cancelled less than 48 hours before its start time is billed in full by the agency.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"owner\", \"text\": \"Book a Harbor RN for Saturday day coverage through July, placing each booking 14 days ahead as the rule requires.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"nurse desk\", \"text\": \"Mr. Ortiz in room 8 wants a phone update to his family every evening around 18:00.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"owner\", \"text\": \"Declined Harbor's offer of an extra CNA for the August weekends because the request came only 9 days ahead, below the required notice.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"owner\", \"text\": \"The activities budget is 900 dollars per quarter.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Approve the Bennett family care plan: an extra CNA every Sunday from 9:00 to 17:00 starting in September, with each agency booking made at least 14 days ahead as the rule requires.\", \"depends_on\": [\"F3\", \"R1\", \"R2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"owner\", \"text\": \"For the Sunday extra CNA, rotate Harbor's CNAs week to week and confirm each Sunday shift 14 days ahead, following the approved plan.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"owner\", \"text\": \"Declined the request to add a second Sunday CNA for the fall festival weekend because it was made only 10 days ahead, below the required notice.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"owner\", \"text\": \"Book Harbor RNs for Friday night coverage through October, placing each booking 14 days ahead as the rule requires.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"owner\", \"text\": \"Switch the kitchen to Meadow Foods' weekly fresh fruit basket at 85 dollars per week.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"owner\", \"text\": \"Approve the Ortiz family care plan with no extra staffing: the evening phone updates are handled by the existing front-desk staff.\", \"depends_on\": [\"F7\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"BrightPath sales rep\", \"text\": \"BrightPath Staffing quoted 28 dollars per hour for weekend CNAs, with a minimum booking window of 30 days ahead; the quote is valid until 31 October.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-07\", \"source\": \"owner\", \"text\": \"Keep Harbor Staffing Partners as Maplewood's sole staffing agency for the rest of 2026.\", \"depends_on\": [\"F1\", \"F9\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Pay Harbor's September invoice of 6,240 dollars. Done on 5 October.\", \"due\": \"2026-10-10\", \"status\": \"done\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"owner\", \"text\": \"Confirm with Harbor Staffing the extra Sunday CNA for the last Sunday of October under Mrs. Bennett's plan. Not done yet.\", \"due\": \"2026-10-19\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"office manager\", \"text\": \"The Maplewood minibus takes residents shopping on Thursdays at 10:00.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-09\", \"source\": \"owner\", \"text\": \"Compile the staffing records file for the state inspection in December. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": []}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-12\", \"source\": \"owner\", \"text\": \"Amends the agency booking rule, effective today: the minimum notice for CNA shifts is now 5 days, because Harbor Staffing has opened a quick-fill list for CNAs. The 14-day minimum still applies to RN shifts. The 48-hour cancellation billing rule is unchanged.\"},\n \"task\": {\"text\": \"It's Monday morning — please set up this week's extra Sunday caregiver for Mrs. Bennett's plan and confirm the booking with the agency now.\", \"options\": [{\"id\": \"a\", \"text\": \"Decline the booking for this Sunday and confirm the extra CNA from Sunday 8 November, keeping 14 days' notice.\"}, {\"id\": \"b\", \"text\": \"Book a Harbor Staffing CNA for Sunday 25 October, 9:00–17:00, at 32 dollars per hour.\"}, {\"id\": \"c\", \"text\": \"Book a BrightPath CNA for Sunday 25 October, 9:00–17:00, at 28 dollars per hour.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D2\", \"direction\": \"Void as a refusal: under the amended rule an extra CNA can be booked with 5 days' notice, so the August weekends could have been staffed; rebook if still wanted.\"},\n   {\"id\": \"D3\", \"direction\": \"The 14-day booking clause is void; the extra Sunday CNA 9:00–17:00 stands but bookings now need only 5 days' notice.\"},\n   {\"id\": \"D4\", \"direction\": \"Change the confirmation lead time from 14 days to 5 days; the weekly rotation of Harbor CNAs stays as it is.\"},\n   {\"id\": \"D5\", \"direction\": \"The refusal reason no longer holds: a second Sunday CNA could be booked with 5 days' notice; revisit if the family still wants extra coverage for festival-type weekends.\"}\n  ],\n  \"untouched\": [\"D1\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Confirm with Harbor Staffing the extra Sunday CNA for the coming Sunday under Mrs. Bennett's plan\", \"correct_value\": \"Harbor CNA, Sunday 25 October 2026, 9:00–17:00, at 32 dollars per hour\", \"stale_value\": \"booking declined and deferred to Sunday 8 November under the old 14-day notice rule\"},\n  \"why\": \"The change revokes the 14-day booking rule for CNA shifts, replacing it with 5 days' notice while keeping 14 days for RNs. Sunday 25 October is 6 days away, so the booking is now allowed; acting on the revoked rule (option a) wrongly defers to 8 November. The BrightPath quote (option c) is not usable because it demands 30-day advance booking and Maplewood keeps Harbor as its sole agency. Decisions D1 and D6 concern RN shifts and remain valid under the 14-day rule; D2, D3, D5 cite the rule for CNA bookings and D4 inherits through D3.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 6372,
+    "reasoning_tokens": 3844,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02885452,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sunday CNA booking under the amended notice rule\",\n \"setting\": \"A nursing home administrator at Maplewood Senior Living whose assistant records family-care-plan decisions and staffing agency commitments\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-10-19\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Harbor Staffing Partners supplies temporary CNAs at 32 dollars per hour and RNs at 58 dollars per hour, invoiced monthly.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"nurse desk\", \"text\": \"Maplewood Senior Living has 42 residents, and Wing B needs three CNAs on the day shift at all times.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Karen Bennett\", \"text\": \"Mrs. Alice Bennett lives in room 12; her daughter Karen visits on Sundays, and the family asks for an extra CNA on Sundays from 9:00 to 17:00 to help with her mobility routine.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"nurse desk\", \"text\": \"RN supervisor Priya works Monday to Friday and is off on weekends.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Every agency shift must be booked at least 14 days in advance; requests with shorter notice are declined, no exceptions.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Any change to a resident's family care plan requires the administrator's written approval before it takes effect.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"office manager\", \"text\": \"The garden contractor GreenScape mows the grounds every second Tuesday for 120 dollars per visit.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"kitchen lead\", \"text\": \"Food supplier Meadow Foods delivers on Mondays and Thursdays.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-03\", \"source\": \"owner\", \"text\": \"Any agency shift cancelled less than 48 hours before its start time is billed in full by the agency.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"owner\", \"text\": \"Book a Harbor RN for Saturday day coverage through July, placing each booking 14 days ahead as the rule requires.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"nurse desk\", \"text\": \"Mr. Ortiz in room 8 wants a phone update to his family every evening around 18:00.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"owner\", \"text\": \"Declined Harbor's offer of an extra CNA for the August weekends because the request came only 9 days ahead, below the required notice.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"owner\", \"text\": \"The activities budget is 900 dollars per quarter.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Approve the Bennett family care plan: an extra CNA every Sunday from 9:00 to 17:00 starting in September, with each agency booking made at least 14 days ahead as the rule requires.\", \"depends_on\": [\"F3\", \"R1\", \"R2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"owner\", \"text\": \"For the Sunday extra CNA, rotate Harbor's CNAs week to week and confirm each Sunday shift 14 days ahead, following the approved plan.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"owner\", \"text\": \"Declined the request to add a second Sunday CNA for the fall festival weekend because it was made only 10 days ahead, below the required notice.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"owner\", \"text\": \"Book Harbor RNs for Friday night coverage through October, placing each booking 14 days ahead as the rule requires.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"owner\", \"text\": \"Switch the kitchen to Meadow Foods' weekly fresh fruit basket at 85 dollars per week.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"owner\", \"text\": \"Approve the Ortiz family care plan with no extra staffing: the evening phone updates are handled by the existing front-desk staff.\", \"depends_on\": [\"F7\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"BrightPath sales rep\", \"text\": \"BrightPath Staffing quoted 28 dollars per hour for weekend CNAs, with a minimum booking window of 30 days ahead; the quote is valid until 31 October.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-07\", \"source\": \"owner\", \"text\": \"Keep Harbor Staffing Partners as Maplewood's sole staffing agency for the rest of 2026.\", \"depends_on\": [\"F1\", \"F9\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Pay Harbor's September invoice of 6,240 dollars. Done on 5 October.\", \"due\": \"2026-10-10\", \"status\": \"done\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"owner\", \"text\": \"Confirm with Harbor Staffing the extra Sunday CNA for the last Sunday of October under Mrs. Bennett's plan. Not done yet.\", \"due\": \"2026-10-19\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"office manager\", \"text\": \"The Maplewood minibus takes residents shopping on Thursdays at 10:00.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-09\", \"source\": \"owner\", \"text\": \"Compile the staffing records file for the state inspection in December. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": []}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-12\", \"source\": \"owner\", \"text\": \"Amends the agency booking rule, effective today: the minimum notice for CNA shifts is now 5 days, because Harbor Staffing has opened a quick-fill list for CNAs. The 14-day minimum still applies to RN shifts. The 48-hour cancellation billing rule is unchanged.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"It's Monday morning — please set up this week's extra Sunday caregiver for Mrs. Bennett's plan and confirm the booking with the agency now.\", \"options\": [{\"id\": \"a\", \"text\": \"Decline the booking for this Sunday and confirm the extra CNA from Sunday 8 November, keeping 14 days' notice.\"}, {\"id\": \"b\", \"text\": \"Book a Harbor Staffing CNA for Sunday 25 October, 9:00–17:00, at 32 dollars per hour.\"}, {\"id\": \"c\", \"text\": \"Book a BrightPath CNA for Sunday 25 October, 9:00–17:00, at 28 dollars per hour.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D2\", \"direction\": \"Void as a refusal: under the amended rule an extra CNA can be booked with 5 days' notice, so the August weekends could have been staffed; rebook if still wanted.\"},\n   {\"id\": \"D3\", \"direction\": \"The 14-day booking clause is void; the extra Sunday CNA 9:00–17:00 stands but bookings now need only 5 days' notice.\"},\n   {\"id\": \"D4\", \"direction\": \"Change the confirmation lead time from 14 days to 5 days; the weekly rotation of Harbor CNAs stays as it is.\"},\n   {\"id\": \"D5\", \"direction\": \"The refusal reason no longer holds: a second Sunday CNA could be booked with 5 days' notice; revisit if the family still wants extra coverage for festival-type weekends.\"}\n  ],\n  \"untouched\": [\"D1\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Confirm with Harbor Staffing the extra Sunday CNA for the coming Sunday under Mrs. Bennett's plan\", \"correct_value\": \"Harbor CNA, Sunday 25 October 2026, 9:00–17:00, at 32 dollars per hour\", \"stale_value\": \"booking declined and deferred to Sunday 8 November under the old 14-day notice rule\"},\n  \"why\": \"The change revokes the 14-day booking rule for CNA shifts, replacing it with 5 days' notice while keeping 14 days for RNs. Sunday 25 October is 6 days away, so the booking is now allowed; acting on the revoked rule (option a) wrongly defers to 8 November. The BrightPath quote (option c) is not usable because it demands 30-day advance booking and Maplewood keeps Harbor as its sole agency. Decisions D1 and D6 concern RN shifts and remain valid under the 14-day rule; D2, D3, D5 cite the rule for CNA bookings and D4 inherits through D3.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5395,
+    "completion_tokens": 2537,
+    "reasoning_tokens": 0,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01550556,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-12: change.revokes must be a list\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Sunday CNA booking under the amended notice rule",
+  "setting": "A nursing home administrator at Maplewood Senior Living whose assistant records family-care-plan decisions and staffing agency commitments",
+  "owner": "Marcus",
+  "now": "2026-10-19",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "owner",
+    "text": "Harbor Staffing Partners supplies temporary CNAs at 32 dollars per hour and RNs at 58 dollars per hour, invoiced monthly."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "nurse desk",
+    "text": "Maplewood Senior Living has 42 residents, and Wing B needs three CNAs on the day shift at all times."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Karen Bennett",
+    "text": "Mrs. Alice Bennett lives in room 12; her daughter Karen visits on Sundays, and the family asks for an extra CNA on Sundays from 9:00 to 17:00 to help with her mobility routine."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "nurse desk",
+    "text": "RN supervisor Priya works Monday to Friday and is off on weekends."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Every agency shift must be booked at least 14 days in advance; requests with shorter notice are declined, no exceptions."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "owner",
+    "text": "Any change to a resident's family care plan requires the administrator's written approval before it takes effect."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "office manager",
+    "text": "The garden contractor GreenScape mows the grounds every second Tuesday for 120 dollars per visit."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "kitchen lead",
+    "text": "Food supplier Meadow Foods delivers on Mondays and Thursdays."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-07-03",
+    "source": "owner",
+    "text": "Any agency shift cancelled less than 48 hours before its start time is billed in full by the agency."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "owner",
+    "text": "Book a Harbor RN for Saturday day coverage through July, placing each booking 14 days ahead as the rule requires.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "nurse desk",
+    "text": "Mr. Ortiz in room 8 wants a phone update to his family every evening around 18:00."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "owner",
+    "text": "Declined Harbor's offer of an extra CNA for the August weekends because the request came only 9 days ahead, below the required notice.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "owner",
+    "text": "The activities budget is 900 dollars per quarter."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Approve the Bennett family care plan: an extra CNA every Sunday from 9:00 to 17:00 starting in September, with each agency booking made at least 14 days ahead as the rule requires.",
+    "depends_on": [
+     "F3",
+     "R1",
+     "R2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "owner",
+    "text": "For the Sunday extra CNA, rotate Harbor's CNAs week to week and confirm each Sunday shift 14 days ahead, following the approved plan.",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "owner",
+    "text": "Declined the request to add a second Sunday CNA for the fall festival weekend because it was made only 10 days ahead, below the required notice.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "owner",
+    "text": "Book Harbor RNs for Friday night coverage through October, placing each booking 14 days ahead as the rule requires.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-20",
+    "source": "owner",
+    "text": "Switch the kitchen to Meadow Foods' weekly fresh fruit basket at 85 dollars per week.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "owner",
+    "text": "Approve the Ortiz family care plan with no extra staffing: the evening phone updates are handled by the existing front-desk staff.",
+    "depends_on": [
+     "F7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "BrightPath sales rep",
+    "text": "BrightPath Staffing quoted 28 dollars per hour for weekend CNAs, with a minimum booking window of 30 days ahead; the quote is valid until 31 October."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-07",
+    "source": "owner",
+    "text": "Keep Harbor Staffing Partners as Maplewood's sole staffing agency for the rest of 2026.",
+    "depends_on": [
+     "F1",
+     "F9"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Pay Harbor's September invoice of 6,240 dollars. Done on 5 October.",
+    "due": "2026-10-10",
+    "status": "done",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-10-08",
+    "source": "owner",
+    "text": "Confirm with Harbor Staffing the extra Sunday CNA for the last Sunday of October under Mrs. Bennett's plan. Not done yet.",
+    "due": "2026-10-19",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-10",
+    "source": "office manager",
+    "text": "The Maplewood minibus takes residents shopping on Thursdays at 10:00."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-09",
+    "source": "owner",
+    "text": "Compile the staffing records file for the state inspection in December. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open",
+    "depends_on": []
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-12",
+   "source": "owner",
+   "text": "Amends the agency booking rule, effective today: the minimum notice for CNA shifts is now 5 days, because Harbor Staffing has opened a quick-fill list for CNAs. The 14-day minimum still applies to RN shifts. The 48-hour cancellation billing rule is unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "It's Monday morning — please set up this week's extra Sunday caregiver for Mrs. Bennett's plan and confirm the booking with the agency now.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Decline the booking for this Sunday and confirm the extra CNA from Sunday 8 November, keeping 14 days' notice."
+    },
+    {
+     "id": "b",
+     "text": "Book a Harbor Staffing CNA for Sunday 25 October, 9:00–17:00, at 32 dollars per hour."
+    },
+    {
+     "id": "c",
+     "text": "Book a BrightPath CNA for Sunday 25 October, 9:00–17:00, at 28 dollars per hour."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "Void as a refusal: under the amended rule an extra CNA can be booked with 5 days' notice, so the August weekends could have been staffed; rebook if still wanted."
+    },
+    {
+     "id": "D3",
+     "direction": "The 14-day booking clause is void; the extra Sunday CNA 9:00–17:00 stands but bookings now need only 5 days' notice."
+    },
+    {
+     "id": "D4",
+     "direction": "Change the confirmation lead time from 14 days to 5 days; the weekly rotation of Harbor CNAs stays as it is."
+    },
+    {
+     "id": "D5",
+     "direction": "The refusal reason no longer holds: a second Sunday CNA could be booked with 5 days' notice; revisit if the family still wants extra coverage for festival-type weekends."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D6",
+    "D7",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Confirm with Harbor Staffing the extra Sunday CNA for the coming Sunday under Mrs. Bennett's plan",
+    "correct_value": "Harbor CNA, Sunday 25 October 2026, 9:00–17:00, at 32 dollars per hour",
+    "stale_value": "booking declined and deferred to Sunday 8 November under the old 14-day notice rule"
+   },
+   "why": "The change revokes the 14-day booking rule for CNA shifts, replacing it with 5 days' notice while keeping 14 days for RNs. Sunday 25 October is 6 days away, so the booking is now allowed; acting on the revoked rule (option a) wrongly defers to 8 November. The BrightPath quote (option c) is not usable because it demands 30-day advance booking and Maplewood keeps Harbor as its sole agency. Decisions D1 and D6 concern RN shifts and remain valid under the 14-day rule; D2, D3, D5 cite the rule for CNA bookings and D4 inherits through D3."
+  },
+  "id": "G2-12",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

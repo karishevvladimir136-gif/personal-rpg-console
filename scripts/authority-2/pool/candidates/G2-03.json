@@ -1,0 +1,324 @@
+{
+ "id": "G2-03",
+ "class": 2,
+ "setting": "A theater director at Lantern Community Playhouse whose production assistant tracks casting decisions and rehearsal-space bookings",
+ "prompt_sha256": "f8eac7b7e87c7e82eabf9d013132df6e43076c7588b7065433da352227b857a2",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Casting offers under the amended sign-off rule\",\n \"setting\": \"A theater director at Lantern Community Playhouse whose production assistant tracks casting decisions and rehearsal-space bookings\",\n \"owner\": \"Mara\",\n \"now\": \"2026-09-24\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Mara\", \"text\": \"The Lantern Community Playhouse's autumn mainstage production is \\\"The Lighthouse Keeper's Wife\\\", directed by Mara, opening on 20 November 2026.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Mara\", \"text\": \"Theo is the production assistant and handles all casting correspondence and rehearsal-room bookings for the playhouse.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Mara\", \"text\": \"Casting offers for every role in a mainstage production go out only after Mara has signed the cast list at the full read-through.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-06\", \"source\": \"playhouse committee\", \"text\": \"The Cedar Street studio is booked in three-hour blocks and must be left broom-clean after each rehearsal.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Cedar Street studio office\", \"text\": \"The Cedar Street studio is available to the playhouse on Monday and Thursday evenings from September onwards.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Theo\", \"text\": \"Dev Okonkwo has been a regular member of the playhouse ensemble since 2023.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Theo\", \"text\": \"A full-company read-through needs the large studio at Cedar Street, which seats twenty around tables.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Mara\", \"text\": \"Priya Nair is cast as Helen, the lead. Her offer is to be held until the cast list is signed at the read-through.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-18\", \"source\": \"Mara\", \"text\": \"Dev Okonkwo is cast as the Caretaker, a supporting role filled from the regular ensemble. His offer is to be held until the cast list is signed at the read-through.\", \"depends_on\": [\"F1\", \"F4\", \"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"Mara\", \"text\": \"Ruth Calder is cast as the Cook. She is new to the playhouse, so her offer waits for the signed cast list like any outside hire.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-08-05\", \"source\": \"playhouse committee\", \"text\": \"Programme bios are due from every cast member two weeks before opening night.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-09\", \"source\": \"Mara\", \"text\": \"Rehearsals for the autumn production begin on 6 October 2026.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-15\", \"source\": \"Theo\", \"text\": \"Sam Fielding has been a regular member of the playhouse ensemble for four years.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-01\", \"source\": \"Mara\", \"text\": \"The full read-through is scheduled for Saturday 3 October at 7pm in the large studio at Cedar Street, with the cast list signed beforehand.\", \"depends_on\": [\"F1\", \"F3\", \"F5\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-22\", \"source\": \"Mara\", \"text\": \"The scenery budget for the production is 1,400 pounds.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-08-25\", \"source\": \"Mara\", \"text\": \"Pay the 400-pound scenery deposit to Harlow Scene Works. Done on 28 August.\", \"due\": \"2026-08-31\", \"status\": \"done\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"box office\", \"text\": \"Box office sales for the autumn production open on 26 October 2026.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Mara\", \"text\": \"Sam Fielding is cast as understudy to Helen, a supporting position filled from the regular ensemble. His offer is to be held until the cast list is signed at the read-through.\", \"depends_on\": [\"F1\", \"F7\", \"R1\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Theo\", \"text\": \"The props order from Nell's Props, 260 pounds, is due to be delivered on 12 October.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Theo\", \"text\": \"Dev Okonkwo's Caretaker offer will go out in the read-through mailing on Saturday 3 October, together with the schedules.\", \"depends_on\": [\"D2\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Harbor Studio\", \"text\": \"Harbor Studio quoted 18 pounds an hour for understudy rehearsals on weekday mornings.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-16\", \"source\": \"costume shop\", \"text\": \"Ruth Calder's costume measurements were taken at the shop on 12 September.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Millbrook Players committee\", \"text\": \"The Millbrook Players offered to second their member Ella Bright to play the Cook while their own season is dark this autumn.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-19\", \"source\": \"Theo\", \"text\": \"The chorus of six has been filled from playhouse members, all confirmed.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"Mara\", \"text\": \"Send out the casting offers for the roles Mara has approved. Not done yet.\", \"due\": \"2026-09-24\", \"status\": \"open\", \"depends_on\": [\"D2\", \"D4\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-09-21\", \"source\": \"Mara\", \"text\": \"Because the rehearsal calendar is compressed this autumn, the casting rule is amended from 21 September 2026: for supporting roles filled from the playhouse's regular ensemble, Theo may send the offer directly by email once Mara has approved that casting by email; Mara has approved Dev Okonkwo as the Caretaker and Sam Fielding as understudy by email. Offers for lead roles and for anyone new to the playhouse still go out only after Mara has signed the cast list at the full read-through.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Theo, the casting paperwork has been sitting long enough — please send out whatever casting offers can go out today, and tell me who you've emailed.\", \"options\": [{\"id\": \"a\", \"text\": \"Add all four casting offers to the read-through packet for Saturday 3 October and send nothing today.\"}, {\"id\": \"b\", \"text\": \"Email casting offers today to Dev Okonkwo for the Caretaker and Sam Fielding as understudy to Helen, and leave Priya Nair's and Ruth Calder's offers for the signed cast list at the 3 October read-through.\"}, {\"id\": \"c\", \"text\": \"Email an offer for the Cook role to Ella Bright of the Millbrook Players today and remove Ruth Calder from the cast list.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D2\", \"direction\": \"Dev Okonkwo is a regular ensemble member in a supporting role approved by Mara, so under the amended rule Theo emails his Caretaker offer now instead of holding it for the signed cast list.\"},\n   {\"id\": \"D4\", \"direction\": \"Sam Fielding is a regular ensemble member in a supporting role approved by Mara, so his understudy offer also goes out by email now.\"},\n   {\"id\": \"D5\", \"direction\": \"The read-through mailing on 3 October no longer carries Dev's Caretaker offer, since it is sent by email beforehand; the mailing keeps only the schedules.\"}\n  ],\n  \"untouched\": [\"D1\", \"D3\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the casting offers that can go out on 24 September 2026\", \"correct_value\": \"Email offers to Dev Okonkwo (Caretaker) and Sam Fielding (understudy to Helen) today; hold Priya Nair's and Ruth Calder's offers for the signed cast list at the read-through on Saturday 3 October\", \"stale_value\": \"Hold all four offers for the signed cast list at the read-through on Saturday 3 October\"},\n  \"why\": \"The amended rule lets Theo email offers for supporting roles filled from the regular ensemble once Mara approves by email, and she has approved Dev Okonkwo and Sam Fielding; leads (Priya Nair) and new hires (Ruth Calder) still require the signed cast list at the 3 October read-through, so D1, D3 and D6 stand. Ella Bright's availability was only an enquiry from the Millbrook Players and does not displace Ruth Calder as the Cook, so acting on it is the distractor; holding every offer is what the revoked rule required.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2823,
+    "completion_tokens": 6170,
+    "reasoning_tokens": 3693,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02796292,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Casting offers under the amended sign-off rule",
+  "setting": "A theater director at Lantern Community Playhouse whose production assistant tracks casting decisions and rehearsal-space bookings",
+  "owner": "Mara",
+  "now": "2026-09-24",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Mara",
+    "text": "The Lantern Community Playhouse's autumn mainstage production is \"The Lighthouse Keeper's Wife\", directed by Mara, opening on 20 November 2026."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "Mara",
+    "text": "Theo is the production assistant and handles all casting correspondence and rehearsal-room bookings for the playhouse."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Mara",
+    "text": "Casting offers for every role in a mainstage production go out only after Mara has signed the cast list at the full read-through."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-06",
+    "source": "playhouse committee",
+    "text": "The Cedar Street studio is booked in three-hour blocks and must be left broom-clean after each rehearsal."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Cedar Street studio office",
+    "text": "The Cedar Street studio is available to the playhouse on Monday and Thursday evenings from September onwards."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Theo",
+    "text": "Dev Okonkwo has been a regular member of the playhouse ensemble since 2023."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Theo",
+    "text": "A full-company read-through needs the large studio at Cedar Street, which seats twenty around tables."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Mara",
+    "text": "Priya Nair is cast as Helen, the lead. Her offer is to be held until the cast list is signed at the read-through.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-18",
+    "source": "Mara",
+    "text": "Dev Okonkwo is cast as the Caretaker, a supporting role filled from the regular ensemble. His offer is to be held until the cast list is signed at the read-through.",
+    "depends_on": [
+     "F1",
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Mara",
+    "text": "Ruth Calder is cast as the Cook. She is new to the playhouse, so her offer waits for the signed cast list like any outside hire.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-08-05",
+    "source": "playhouse committee",
+    "text": "Programme bios are due from every cast member two weeks before opening night."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-09",
+    "source": "Mara",
+    "text": "Rehearsals for the autumn production begin on 6 October 2026."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-15",
+    "source": "Theo",
+    "text": "Sam Fielding has been a regular member of the playhouse ensemble for four years."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-01",
+    "source": "Mara",
+    "text": "The full read-through is scheduled for Saturday 3 October at 7pm in the large studio at Cedar Street, with the cast list signed beforehand.",
+    "depends_on": [
+     "F1",
+     "F3",
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-22",
+    "source": "Mara",
+    "text": "The scenery budget for the production is 1,400 pounds."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-08-25",
+    "source": "Mara",
+    "text": "Pay the 400-pound scenery deposit to Harlow Scene Works. Done on 28 August.",
+    "due": "2026-08-31",
+    "status": "done",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-30",
+    "source": "box office",
+    "text": "Box office sales for the autumn production open on 26 October 2026."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Mara",
+    "text": "Sam Fielding is cast as understudy to Helen, a supporting position filled from the regular ensemble. His offer is to be held until the cast list is signed at the read-through.",
+    "depends_on": [
+     "F1",
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Theo",
+    "text": "The props order from Nell's Props, 260 pounds, is due to be delivered on 12 October."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-08",
+    "source": "Theo",
+    "text": "Dev Okonkwo's Caretaker offer will go out in the read-through mailing on Saturday 3 October, together with the schedules.",
+    "depends_on": [
+     "D2",
+     "F5"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Harbor Studio",
+    "text": "Harbor Studio quoted 18 pounds an hour for understudy rehearsals on weekday mornings."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-16",
+    "source": "costume shop",
+    "text": "Ruth Calder's costume measurements were taken at the shop on 12 September."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Millbrook Players committee",
+    "text": "The Millbrook Players offered to second their member Ella Bright to play the Cook while their own season is dark this autumn."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-19",
+    "source": "Theo",
+    "text": "The chorus of six has been filled from playhouse members, all confirmed."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "Mara",
+    "text": "Send out the casting offers for the roles Mara has approved. Not done yet.",
+    "due": "2026-09-24",
+    "status": "open",
+    "depends_on": [
+     "D2",
+     "D4"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-09-21",
+   "source": "Mara",
+   "text": "Because the rehearsal calendar is compressed this autumn, the casting rule is amended from 21 September 2026: for supporting roles filled from the playhouse's regular ensemble, Theo may send the offer directly by email once Mara has approved that casting by email; Mara has approved Dev Okonkwo as the Caretaker and Sam Fielding as understudy by email. Offers for lead roles and for anyone new to the playhouse still go out only after Mara has signed the cast list at the full read-through.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Theo, the casting paperwork has been sitting long enough — please send out whatever casting offers can go out today, and tell me who you've emailed.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Add all four casting offers to the read-through packet for Saturday 3 October and send nothing today."
+    },
+    {
+     "id": "b",
+     "text": "Email casting offers today to Dev Okonkwo for the Caretaker and Sam Fielding as understudy to Helen, and leave Priya Nair's and Ruth Calder's offers for the signed cast list at the 3 October read-through."
+    },
+    {
+     "id": "c",
+     "text": "Email an offer for the Cook role to Ella Bright of the Millbrook Players today and remove Ruth Calder from the cast list."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "Dev Okonkwo is a regular ensemble member in a supporting role approved by Mara, so under the amended rule Theo emails his Caretaker offer now instead of holding it for the signed cast list."
+    },
+    {
+     "id": "D4",
+     "direction": "Sam Fielding is a regular ensemble member in a supporting role approved by Mara, so his understudy offer also goes out by email now."
+    },
+    {
+     "id": "D5",
+     "direction": "The read-through mailing on 3 October no longer carries Dev's Caretaker offer, since it is sent by email beforehand; the mailing keeps only the schedules."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D3",
+    "D6"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the casting offers that can go out on 24 September 2026",
+    "correct_value": "Email offers to Dev Okonkwo (Caretaker) and Sam Fielding (understudy to Helen) today; hold Priya Nair's and Ruth Calder's offers for the signed cast list at the read-through on Saturday 3 October",
+    "stale_value": "Hold all four offers for the signed cast list at the read-through on Saturday 3 October"
+   },
+   "why": "The amended rule lets Theo email offers for supporting roles filled from the regular ensemble once Mara approves by email, and she has approved Dev Okonkwo and Sam Fielding; leads (Priya Nair) and new hires (Ruth Calder) still require the signed cast list at the 3 October read-through, so D1, D3 and D6 stand. Ella Bright's availability was only an enquiry from the Millbrook Players and does not displace Ruth Calder as the Cook, so acting on it is the distractor; holding every offer is what the revoked rule required."
+  },
+  "id": "G2-03",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

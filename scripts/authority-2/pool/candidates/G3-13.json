@@ -1,0 +1,376 @@
+{
+ "id": "G3-13",
+ "class": 3,
+ "setting": "An e-commerce founder at Hearth & Habit Home Goods whose assistant tracks supplier packaging agreements and seasonal promo decisions",
+ "prompt_sha256": "2a3bf746c172e602f3d369dbd465868d79de5e2bde70ea0be06c59a4b1b4a098",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Glow jar delivery correction\",\n  \"setting\": \"An e-commerce founder at Hearth & Habit Home Goods whose assistant tracks supplier packaging agreements and seasonal promo decisions\",\n  \"owner\": \"Maya\",\n  \"now\": \"2026-10-05\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Hearth & Habit will run an autumn candle and gift collection called Harvest Glow as the centrepiece of the second half of the year.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Clearline Packaging in Millbrook supplies all of Hearth & Habit's glass jars.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Any supplier order of 5,000 dollars or more needs Maya's written sign-off before it is placed.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"Promo launches never run during Black Friday week; they finish at least ten days before Thanksgiving.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Every decision based on a supplier quote must record the quoted delivery date in the decision itself.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Clearline account manager\", \"text\": \"Clearline quoted 40,000 amber 8-oz glass jars at 0.62 dollars each, minimum order 10,000 jars, with delivery on Thursday 8 October 2026.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-14\", \"source\": \"owner\", \"text\": \"Assembly and packing happen in the back room of the Hearth & Habit warehouse on Fenwick Road.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"The autumn collection will carry the Harvest Glow theme across candles, gift sets and the website banner.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"owner\", \"text\": \"The Harvest Glow scents are spiced pear, cedar smoke and burnt honey.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-26\", \"source\": \"owner\", \"text\": \"Parcels ship with courier firm Delmore, who collect from the warehouse every Tuesday and Friday.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"owner\", \"text\": \"Order 40,000 amber 8-oz jars from Clearline at 0.62 dollars each for the Harvest Glow collection, with delivery on Thursday 8 October 2026.\", \"depends_on\": [\"F3\", \"R1\", \"R3\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-09\", \"source\": \"owner\", \"text\": \"Schedule the Harvest Glow gift set assembly for Monday 12 October 2026 and the promo launch weekend for Friday 16 to Sunday 18 October 2026, with 500 gift sets built for the launch.\", \"depends_on\": [\"D2\", \"R2\", \"F5\"]},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"owner\", \"text\": \"Gift sets will use the 8-oz amber jar with a kraft paper label; the label artwork is ordered to fit this jar size.\", \"depends_on\": [\"F3\", \"D1\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Book a photographer for the Harvest Glow launch shots. Done on 30 July.\", \"due\": \"2026-08-05\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"owner\", \"text\": \"Rigid gift boxes come from Bramble & Co at 1.40 dollars per box with no minimum order.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-03\", \"source\": \"owner\", \"text\": \"Set the autumn packaging budget at 28,500 dollars, based on the jar price of 0.62 dollars each plus gift boxes and filler.\", \"depends_on\": [\"F3\", \"D2\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"owner\", \"text\": \"The Hearth & Habit newsletter goes out to 9,200 subscribers every second Thursday.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Returns are accepted within 30 days except on personalised candles.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"owner\", \"text\": \"Price the Harvest Glow gift set at 48 dollars, covering three candles in the launch scents.\", \"depends_on\": [\"D1\", \"F5\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-25\", \"source\": \"owner\", \"text\": \"Send Clearline the signed order confirmation stating the agreed delivery date for the jar order. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"owner\", \"text\": \"The Hearth & Habit website runs on the Pixelfield platform with a planned redesign in January 2027.\"},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"owner\", \"text\": \"The warehouse needs two extra shelving racks installed before the autumn stock arrives.\"},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Northgate Supply sales rep\", \"text\": \"Northgate Supply quoted amber 8-oz glass jars at 0.55 dollars each with delivery on Friday 30 October 2026, minimum order 20,000 jars.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"owner\", \"text\": \"Stay with Clearline for this autumn's jar order; the Northgate quote is noted but not taken up for now.\", \"depends_on\": [\"F12\", \"F2\", \"R1\"]},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"owner\", \"text\": \"Six part-time packers are available from the Fenwick Road temp pool on weekdays in October.\"},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"owner\", \"text\": \"Book six part-time packers from the temp pool for the gift set assembly day.\", \"depends_on\": [\"D3\", \"F13\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-28\", \"source\": \"owner\", \"text\": \"Pay the Clearline invoice in full. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n    {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-29\", \"source\": \"owner\", \"text\": \"The Harvest Glow email teaser is drafted and waiting to be scheduled once launch dates are fixed.\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-01\", \"source\": \"Clearline account manager\", \"text\": \"Clearline's earlier quote is superseded: the 40,000 amber 8-oz jars will be delivered on Tuesday 27 October 2026 at a corrected price of 0.71 dollars per jar. The jar size, colour and the 10,000-jar minimum order are unchanged. Revokes: F3.\", \"revokes\": [\"F3\"]},\n  \"task\": {\"text\": \"Can you lock in the Harvest Glow launch? Book the gift set assembly session and the promo launch weekend, and get the Clearline paperwork sent off.\", \"options\": [{\"id\": \"a\", \"text\": \"Book the packers for assembly on Monday 12 October, schedule the launch weekend for 16–18 October, and send Clearline the signed confirmation with delivery 8 October.\"}, {\"id\": \"b\", \"text\": \"Book the packers for assembly on Wednesday 28 October, schedule the launch weekend for 6–8 November, and send Clearline the signed confirmation with delivery 27 October.\"}, {\"id\": \"c\", \"text\": \"Place the jar order with Northgate Supply at 0.55 dollars each, book the packers for assembly on Monday 2 November, and schedule the launch weekend for 13–15 November.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"b\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"c\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F3\"],\n    \"distractor_items\": [\"F12\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The order stands with Clearline but at 0.71 dollars per jar with delivery Tuesday 27 October 2026.\"},\n      {\"id\": \"D3\", \"direction\": \"Move the gift set assembly to Wednesday 28 October 2026 and the launch weekend to 6–8 November 2026 (still clear of Black Friday week).\"},\n      {\"id\": \"D5\", \"direction\": \"Raise the autumn packaging budget by 3,600 dollars to 32,100 dollars to reflect the 0.71-dollar jar price.\"},\n      {\"id\": \"D8\", \"direction\": \"Book the six part-time packers for the new assembly day, Wednesday 28 October 2026.\"}\n    ],\n    \"untouched\": [\"D1\", \"D4\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Clearline the signed order confirmation stating the agreed delivery date for the jar order\", \"correct_value\": \"delivery 27 October 2026\", \"stale_value\": \"delivery 8 October 2026\"},\n    \"why\": \"The correction revokes the Clearline quote F3, replacing the 8 October delivery with 27 October and the 0.62-dollar price with 0.71 dollars. D2 rests directly on F3 and changes; D3 and D8 rest on D2/D3 and must move to the new dates; D5's budget must rise. D4 cites F3 only for the unchanged jar size, and D7's choice to stay with Clearline is unaffected, so they stay. The correct act books assembly on 28 October, launch 6–8 November, and confirms delivery 27 October with Clearline; option a uses the stale 8/12/16 October dates, and option c wrongly switches to the Northgate quote F12.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 5604,
+    "reasoning_tokens": 2928,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02547392,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Glow jar delivery correction\",\n  \"setting\": \"An e-commerce founder at Hearth & Habit Home Goods whose assistant tracks supplier packaging agreements and seasonal promo decisions\",\n  \"owner\": \"Maya\",\n  \"now\": \"2026-10-05\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Hearth & Habit will run an autumn candle and gift collection called Harvest Glow as the centrepiece of the second half of the year.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Clearline Packaging in Millbrook supplies all of Hearth & Habit's glass jars.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Any supplier order of 5,000 dollars or more needs Maya's written sign-off before it is placed.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"Promo launches never run during Black Friday week; they finish at least ten days before Thanksgiving.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Every decision based on a supplier quote must record the quoted delivery date in the decision itself.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Clearline account manager\", \"text\": \"Clearline quoted 40,000 amber 8-oz glass jars at 0.62 dollars each, minimum order 10,000 jars, with delivery on Thursday 8 October 2026.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-14\", \"source\": \"owner\", \"text\": \"Assembly and packing happen in the back room of the Hearth & Habit warehouse on Fenwick Road.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"The autumn collection will carry the Harvest Glow theme across candles, gift sets and the website banner.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"owner\", \"text\": \"The Harvest Glow scents are spiced pear, cedar smoke and burnt honey.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-26\", \"source\": \"owner\", \"text\": \"Parcels ship with courier firm Delmore, who collect from the warehouse every Tuesday and Friday.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"owner\", \"text\": \"Order 40,000 amber 8-oz jars from Clearline at 0.62 dollars each for the Harvest Glow collection, with delivery on Thursday 8 October 2026.\", \"depends_on\": [\"F3\", \"R1\", \"R3\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-09\", \"source\": \"owner\", \"text\": \"Schedule the Harvest Glow gift set assembly for Monday 12 October 2026 and the promo launch weekend for Friday 16 to Sunday 18 October 2026, with 500 gift sets built for the launch.\", \"depends_on\": [\"D2\", \"R2\", \"F5\"]},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"owner\", \"text\": \"Gift sets will use the 8-oz amber jar with a kraft paper label; the label artwork is ordered to fit this jar size.\", \"depends_on\": [\"F3\", \"D1\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Book a photographer for the Harvest Glow launch shots. Done on 30 July.\", \"due\": \"2026-08-05\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"owner\", \"text\": \"Rigid gift boxes come from Bramble & Co at 1.40 dollars per box with no minimum order.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-03\", \"source\": \"owner\", \"text\": \"Set the autumn packaging budget at 28,500 dollars, based on the jar price of 0.62 dollars each plus gift boxes and filler.\", \"depends_on\": [\"F3\", \"D2\"]},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"owner\", \"text\": \"The Hearth & Habit newsletter goes out to 9,200 subscribers every second Thursday.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Returns are accepted within 30 days except on personalised candles.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"owner\", \"text\": \"Price the Harvest Glow gift set at 48 dollars, covering three candles in the launch scents.\", \"depends_on\": [\"D1\", \"F5\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-25\", \"source\": \"owner\", \"text\": \"Send Clearline the signed order confirmation stating the agreed delivery date for the jar order. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"owner\", \"text\": \"The Hearth & Habit website runs on the Pixelfield platform with a planned redesign in January 2027.\"},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"owner\", \"text\": \"The warehouse needs two extra shelving racks installed before the autumn stock arrives.\"},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Northgate Supply sales rep\", \"text\": \"Northgate Supply quoted amber 8-oz glass jars at 0.55 dollars each with delivery on Friday 30 October 2026, minimum order 20,000 jars.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"owner\", \"text\": \"Stay with Clearline for this autumn's jar order; the Northgate quote is noted but not taken up for now.\", \"depends_on\": [\"F12\", \"F2\", \"R1\"]},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"owner\", \"text\": \"Six part-time packers are available from the Fenwick Road temp pool on weekdays in October.\"},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"owner\", \"text\": \"Book six part-time packers from the temp pool for the gift set assembly day.\", \"depends_on\": [\"D3\", \"F13\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-28\", \"source\": \"owner\", \"text\": \"Pay the Clearline invoice in full. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n    {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-29\", \"source\": \"owner\", \"text\": \"The Harvest Glow email teaser is drafted and waiting to be scheduled once launch dates are fixed.\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-01\", \"source\": \"Clearline account manager\", \"text\": \"Clearline's earlier quote is superseded: the 40,000 amber 8-oz jars will be delivered on Tuesday 27 October 2026 at a corrected price of 0.71 dollars per jar. The jar size, colour and the 10,000-jar minimum order are unchanged.\", \"revokes\": [\"F3\"]},\n  \"task\": {\"text\": \"Can you lock in the Harvest Glow launch? Book the gift set assembly session and the promo launch weekend, and get the Clearline paperwork sent off.\", \"options\": [{\"id\": \"a\", \"text\": \"Book the packers for assembly on Monday 12 October, schedule the launch weekend for 16–18 October, and send Clearline the signed confirmation with delivery 8 October.\"}, {\"id\": \"b\", \"text\": \"Book the packers for assembly on Wednesday 28 October, schedule the launch weekend for 6–8 November, and send Clearline the signed confirmation with delivery 27 October.\"}, {\"id\": \"c\", \"text\": \"Place the jar order with Northgate Supply at 0.55 dollars each, book the packers for assembly on Monday 2 November, and schedule the launch weekend for 13–15 November.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"b\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"c\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F3\"],\n    \"distractor_items\": [\"F12\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The order stands with Clearline but at 0.71 dollars per jar with delivery Tuesday 27 October 2026.\"},\n      {\"id\": \"D3\", \"direction\": \"Move the gift set assembly to Wednesday 28 October 2026 and the launch weekend to 6–8 November 2026 (still clear of Black Friday week).\"},\n      {\"id\": \"D5\", \"direction\": \"Raise the autumn packaging budget by 3,600 dollars to 32,100 dollars to reflect the 0.71-dollar jar price.\"},\n      {\"id\": \"D8\", \"direction\": \"Book the six part-time packers for the new assembly day, Wednesday 28 October 2026.\"}\n    ],\n    \"untouched\": [\"D1\", \"D4\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Clearline the signed order confirmation stating the agreed delivery date for the jar order\", \"correct_value\": \"delivery 27 October 2026\", \"stale_value\": \"delivery 8 October 2026\"},\n    \"why\": \"The correction revokes the Clearline quote F3, replacing the 8 October delivery with 27 October and the 0.62-dollar price with 0.71 dollars. D2 rests directly on F3 and changes; D3 and D8 rest on D2/D3 and must move to the new dates; D5's budget must rise. D4 cites F3 only for the unchanged jar size, and D7's choice to stay with Clearline is unaffected, so they stay. The correct act books assembly on 28 October, launch 6–8 November, and confirms delivery 27 October with Clearline; option a uses the stale 8/12/16 October dates, and option c wrongly switches to the Northgate quote F12.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5549,
+    "completion_tokens": 2692,
+    "reasoning_tokens": 22,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01640316,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-13: change text must not carry ids or Revokes (the renderer adds them)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Harvest Glow jar delivery correction",
+  "setting": "An e-commerce founder at Hearth & Habit Home Goods whose assistant tracks supplier packaging agreements and seasonal promo decisions",
+  "owner": "Maya",
+  "now": "2026-10-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "owner",
+    "text": "Hearth & Habit will run an autumn candle and gift collection called Harvest Glow as the centrepiece of the second half of the year."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Clearline Packaging in Millbrook supplies all of Hearth & Habit's glass jars."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Any supplier order of 5,000 dollars or more needs Maya's written sign-off before it is placed."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "owner",
+    "text": "Promo launches never run during Black Friday week; they finish at least ten days before Thanksgiving."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "Every decision based on a supplier quote must record the quoted delivery date in the decision itself."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Clearline account manager",
+    "text": "Clearline quoted 40,000 amber 8-oz glass jars at 0.62 dollars each, minimum order 10,000 jars, with delivery on Thursday 8 October 2026."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-14",
+    "source": "owner",
+    "text": "Assembly and packing happen in the back room of the Hearth & Habit warehouse on Fenwick Road."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-18",
+    "source": "owner",
+    "text": "The autumn collection will carry the Harvest Glow theme across candles, gift sets and the website banner.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "owner",
+    "text": "The Harvest Glow scents are spiced pear, cedar smoke and burnt honey."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-26",
+    "source": "owner",
+    "text": "Parcels ship with courier firm Delmore, who collect from the warehouse every Tuesday and Friday."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "owner",
+    "text": "Order 40,000 amber 8-oz jars from Clearline at 0.62 dollars each for the Harvest Glow collection, with delivery on Thursday 8 October 2026.",
+    "depends_on": [
+     "F3",
+     "R1",
+     "R3"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-09",
+    "source": "owner",
+    "text": "Schedule the Harvest Glow gift set assembly for Monday 12 October 2026 and the promo launch weekend for Friday 16 to Sunday 18 October 2026, with 500 gift sets built for the launch.",
+    "depends_on": [
+     "D2",
+     "R2",
+     "F5"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "owner",
+    "text": "Gift sets will use the 8-oz amber jar with a kraft paper label; the label artwork is ordered to fit this jar size.",
+    "depends_on": [
+     "F3",
+     "D1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "Book a photographer for the Harvest Glow launch shots. Done on 30 July.",
+    "due": "2026-08-05",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "owner",
+    "text": "Rigid gift boxes come from Bramble & Co at 1.40 dollars per box with no minimum order."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-03",
+    "source": "owner",
+    "text": "Set the autumn packaging budget at 28,500 dollars, based on the jar price of 0.62 dollars each plus gift boxes and filler.",
+    "depends_on": [
+     "F3",
+     "D2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "owner",
+    "text": "The Hearth & Habit newsletter goes out to 9,200 subscribers every second Thursday."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Returns are accepted within 30 days except on personalised candles."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "owner",
+    "text": "Price the Harvest Glow gift set at 48 dollars, covering three candles in the launch scents.",
+    "depends_on": [
+     "D1",
+     "F5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-25",
+    "source": "owner",
+    "text": "Send Clearline the signed order confirmation stating the agreed delivery date for the jar order. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "owner",
+    "text": "The Hearth & Habit website runs on the Pixelfield platform with a planned redesign in January 2027."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "owner",
+    "text": "The warehouse needs two extra shelving racks installed before the autumn stock arrives."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Northgate Supply sales rep",
+    "text": "Northgate Supply quoted amber 8-oz glass jars at 0.55 dollars each with delivery on Friday 30 October 2026, minimum order 20,000 jars."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "owner",
+    "text": "Stay with Clearline for this autumn's jar order; the Northgate quote is noted but not taken up for now.",
+    "depends_on": [
+     "F12",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "owner",
+    "text": "Six part-time packers are available from the Fenwick Road temp pool on weekdays in October."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "owner",
+    "text": "Book six part-time packers from the temp pool for the gift set assembly day.",
+    "depends_on": [
+     "D3",
+     "F13"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-28",
+    "source": "owner",
+    "text": "Pay the Clearline invoice in full. Not done yet.",
+    "due": "2026-11-15",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-29",
+    "source": "owner",
+    "text": "The Harvest Glow email teaser is drafted and waiting to be scheduled once launch dates are fixed."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-01",
+   "source": "Clearline account manager",
+   "text": "Clearline's earlier quote is superseded: the 40,000 amber 8-oz jars will be delivered on Tuesday 27 October 2026 at a corrected price of 0.71 dollars per jar. The jar size, colour and the 10,000-jar minimum order are unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Can you lock in the Harvest Glow launch? Book the gift set assembly session and the promo launch weekend, and get the Clearline paperwork sent off.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book the packers for assembly on Monday 12 October, schedule the launch weekend for 16–18 October, and send Clearline the signed confirmation with delivery 8 October."
+    },
+    {
+     "id": "b",
+     "text": "Book the packers for assembly on Wednesday 28 October, schedule the launch weekend for 6–8 November, and send Clearline the signed confirmation with delivery 27 October."
+    },
+    {
+     "id": "c",
+     "text": "Place the jar order with Northgate Supply at 0.55 dollars each, book the packers for assembly on Monday 2 November, and schedule the launch weekend for 13–15 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "The order stands with Clearline but at 0.71 dollars per jar with delivery Tuesday 27 October 2026."
+    },
+    {
+     "id": "D3",
+     "direction": "Move the gift set assembly to Wednesday 28 October 2026 and the launch weekend to 6–8 November 2026 (still clear of Black Friday week)."
+    },
+    {
+     "id": "D5",
+     "direction": "Raise the autumn packaging budget by 3,600 dollars to 32,100 dollars to reflect the 0.71-dollar jar price."
+    },
+    {
+     "id": "D8",
+     "direction": "Book the six part-time packers for the new assembly day, Wednesday 28 October 2026."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D4",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Clearline the signed order confirmation stating the agreed delivery date for the jar order",
+    "correct_value": "delivery 27 October 2026",
+    "stale_value": "delivery 8 October 2026"
+   },
+   "why": "The correction revokes the Clearline quote F3, replacing the 8 October delivery with 27 October and the 0.62-dollar price with 0.71 dollars. D2 rests directly on F3 and changes; D3 and D8 rest on D2/D3 and must move to the new dates; D5's budget must rise. D4 cites F3 only for the unchanged jar size, and D7's choice to stay with Clearline is unaffected, so they stay. The correct act books assembly on 28 October, launch 6–8 November, and confirms delivery 27 October with Clearline; option a uses the stale 8/12/16 October dates, and option c wrongly switches to the Northgate quote F12."
+  },
+  "id": "G3-13",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

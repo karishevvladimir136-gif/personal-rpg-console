@@ -1,0 +1,357 @@
+{
+ "id": "G3-03",
+ "class": 3,
+ "setting": "A small-town newspaper editor at The Ashford Gazette whose editorial assistant tracks freelance assignment deadlines and photo usage rights",
+ "prompt_sha256": "69b741c5ce5daaa62f3eb106efd8d7d8bed366e59367078fa377efc598ef5597",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Heritage feature photo licence correction\",\n \"setting\": \"A small-town newspaper editor at The Ashford Gazette whose editorial assistant tracks freelance assignment deadlines and photo usage rights\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"The Ashford Gazette is a weekly paper published every Saturday, covering Ashford and the surrounding villages.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Dev (editorial assistant)\", \"text\": \"Freelance photographer Nell Harding charges 40 pounds per published photo, with a minimum of 150 pounds per commission.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The print run is 4,200 copies per week.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-04\", \"source\": \"Marta\", \"text\": \"Any freelance commission over 200 pounds needs the editor's written approval before it is confirmed.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-04\", \"source\": \"Marta\", \"text\": \"Every published photo must carry a credit naming the photographer.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The Ashford summer fair takes place on Saturday 18 July 2026.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Nell Harding is the first-choice freelancer for photo assignments at the Gazette.\", \"depends_on\": [\"F2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"The summer fair will be covered by the two staff photographers, with no freelancer booked.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The Gazette's licence with the Bramble Stock Photo Archive runs to 31 December 2026 and covers both print and web use.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"A web gallery of summer fair coverage will be published on the website in the week of 20 July, using six Bramble Archive images alongside the staff photos.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Dev (editorial assistant)\", \"text\": \"Ashford District Council meets on the first Tuesday of each month and gets a standing report in the paper.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"Dev (editorial assistant)\", \"text\": \"Ashford heritage week runs from 19 to 25 October 2026.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marta\", \"text\": \"A 15-image heritage feature will run in the Saturday 24 October issue to close heritage week.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Marta\", \"text\": \"Confirm Nell Harding's commission details in writing, with the photo count and total fee, by 5 October. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-05\", \"source\": \"Dev (editorial assistant)\", \"text\": \"Pay the Bramble Archive quarterly invoice of 120 pounds for July to September. Done on 28 July.\", \"due\": \"2026-07-31\", \"status\": \"done\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"The heritage feature will use eight images from the Bramble Stock Photo Archive and seven original photos commissioned from Nell Harding.\", \"depends_on\": [\"F5\", \"D4\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Marta\", \"text\": \"Commission Nell Harding for seven heritage photos at 40 pounds each, 280 pounds in total, with the shoot on Monday 12 October and delivery by Monday 19 October. Marta gave written approval for the 280-pound fee on 15 July.\", \"depends_on\": [\"D5\", \"F2\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"Nell Harding\", \"text\": \"Nell Harding quoted a half-day studio rate of 180 pounds covering up to 10 photos, valid for autumn bookings.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The Gazette's website is due to be relaunched in September 2026.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-25\", \"source\": \"Marta\", \"text\": \"The heritage feature will be laid out as double-page spreads across pages 4 to 7 of the 24 October issue.\", \"depends_on\": [\"D4\", \"F3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-08-02\", \"source\": \"Marta\", \"text\": \"Collect heritage feature advert bookings from local shops by 2 November. Not done yet.\", \"due\": \"2026-11-02\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-06\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The sports reporter covers every Ashford United home match.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-08-10\", \"source\": \"Marta\", \"text\": \"Marcus Vane is appointed as second-string freelance photographer for overflow assignments when Nell Harding is unavailable.\", \"depends_on\": [\"F10\", \"D1\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The Bramble Archive catalogue holds about 30,000 images of Kent towns and villages.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Marta\", \"text\": \"Two Bramble Archive images will be used for the 'then and now' piece in the Saturday 12 September issue.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Dev (editorial assistant)\", \"text\": \"Copy deadline for each Saturday issue is Thursday noon.\"},\n  {\"id\": \"D10\", \"kind\": \"decision\", \"date\": \"2026-09-03\", \"source\": \"Marta\", \"text\": \"After the website relaunch, online photo galleries will be limited to twelve images each, all credited.\", \"depends_on\": [\"F9\", \"R2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Dev (editorial assistant)\", \"text\": \"The office photocopier is booked for servicing on 8 October.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-05\", \"source\": \"Priya at Bramble Archive\", \"text\": \"The Gazette's Bramble Stock Photo Archive licence actually ended on 30 September 2026. The 31 December date on file was the deadline to reply to the renewal quote, not the licence end date. While the licence ran, its print and web coverage was as previously recorded. No renewal has been taken out.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"Please get Nell's commission for the heritage feature sorted today — send her the confirmation with the photo count, the total fee and the shoot date.\", \"options\": [{\"id\": \"a\", \"text\": \"Confirm Nell Harding for 7 photos at 40 pounds each, 280 pounds total, shoot Monday 12 October, delivery by Monday 19 October.\"}, {\"id\": \"b\", \"text\": \"Confirm Nell Harding for 15 photos at 40 pounds each, 600 pounds total, shoot Monday 12 October, delivery by Monday 19 October.\"}, {\"id\": \"c\", \"text\": \"Book Nell Harding's half-day studio rate of 180 pounds for up to 10 photos, shoot Monday 12 October, delivery by Monday 19 October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F8\"],\n  \"touched\": [\n   {\"id\": \"D5\", \"direction\": \"The heritage feature can no longer use the eight Bramble Archive images, since the licence ended 30 September; all 15 images must be original photos.\"},\n   {\"id\": \"D6\", \"direction\": \"Nell Harding's commission becomes 15 photos at 40 pounds each, 600 pounds total, keeping the 12 October shoot and 19 October delivery; Marta's approval is needed for the higher fee.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D7\", \"D8\", \"D9\", \"D10\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Nell Harding the written commission confirmation with the photo count and total fee\", \"correct_value\": \"15 photos, 600 pounds\", \"stale_value\": \"7 photos, 280 pounds\"},\n  \"why\": \"The correction ends the Bramble Archive licence on 30 September 2026, so the 24 October heritage feature cannot use the eight archive images and all 15 photos must be commissioned from Nell at 40 pounds each (600 pounds total). D5 rests on F5 and D6 rests on D5, so both are touched; D3 and D9 used the archive before the licence ended and stay valid. Option a acts on the stale seven-photo plan, option c on Nell's half-day studio quote, and option b is the correct commission.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 6062,
+    "reasoning_tokens": 3496,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02749052,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Heritage feature photo licence correction",
+  "setting": "A small-town newspaper editor at The Ashford Gazette whose editorial assistant tracks freelance assignment deadlines and photo usage rights",
+  "owner": "Marta",
+  "now": "2026-10-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "The Ashford Gazette is a weekly paper published every Saturday, covering Ashford and the surrounding villages."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Dev (editorial assistant)",
+    "text": "Freelance photographer Nell Harding charges 40 pounds per published photo, with a minimum of 150 pounds per commission."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Dev (editorial assistant)",
+    "text": "The print run is 4,200 copies per week."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-04",
+    "source": "Marta",
+    "text": "Any freelance commission over 200 pounds needs the editor's written approval before it is confirmed."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-04",
+    "source": "Marta",
+    "text": "Every published photo must carry a credit naming the photographer."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Dev (editorial assistant)",
+    "text": "The Ashford summer fair takes place on Saturday 18 July 2026."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Nell Harding is the first-choice freelancer for photo assignments at the Gazette.",
+    "depends_on": [
+     "F2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "The summer fair will be covered by the two staff photographers, with no freelancer booked.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dev (editorial assistant)",
+    "text": "The Gazette's licence with the Bramble Stock Photo Archive runs to 31 December 2026 and covers both print and web use."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "A web gallery of summer fair coverage will be published on the website in the week of 20 July, using six Bramble Archive images alongside the staff photos.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Dev (editorial assistant)",
+    "text": "Ashford District Council meets on the first Tuesday of each month and gets a standing report in the paper."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Dev (editorial assistant)",
+    "text": "Ashford heritage week runs from 19 to 25 October 2026."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "A 15-image heritage feature will run in the Saturday 24 October issue to close heritage week.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Marta",
+    "text": "Confirm Nell Harding's commission details in writing, with the photo count and total fee, by 5 October. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-05",
+    "source": "Dev (editorial assistant)",
+    "text": "Pay the Bramble Archive quarterly invoice of 120 pounds for July to September. Done on 28 July.",
+    "due": "2026-07-31",
+    "status": "done"
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "The heritage feature will use eight images from the Bramble Stock Photo Archive and seven original photos commissioned from Nell Harding.",
+    "depends_on": [
+     "F5",
+     "D4"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Marta",
+    "text": "Commission Nell Harding for seven heritage photos at 40 pounds each, 280 pounds in total, with the shoot on Monday 12 October and delivery by Monday 19 October. Marta gave written approval for the 280-pound fee on 15 July.",
+    "depends_on": [
+     "D5",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-18",
+    "source": "Nell Harding",
+    "text": "Nell Harding quoted a half-day studio rate of 180 pounds covering up to 10 photos, valid for autumn bookings."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "Dev (editorial assistant)",
+    "text": "The Gazette's website is due to be relaunched in September 2026."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-25",
+    "source": "Marta",
+    "text": "The heritage feature will be laid out as double-page spreads across pages 4 to 7 of the 24 October issue.",
+    "depends_on": [
+     "D4",
+     "F3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-08-02",
+    "source": "Marta",
+    "text": "Collect heritage feature advert bookings from local shops by 2 November. Not done yet.",
+    "due": "2026-11-02",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-06",
+    "source": "Dev (editorial assistant)",
+    "text": "The sports reporter covers every Ashford United home match."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-10",
+    "source": "Marta",
+    "text": "Marcus Vane is appointed as second-string freelance photographer for overflow assignments when Nell Harding is unavailable.",
+    "depends_on": [
+     "F10",
+     "D1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Dev (editorial assistant)",
+    "text": "The Bramble Archive catalogue holds about 30,000 images of Kent towns and villages."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marta",
+    "text": "Two Bramble Archive images will be used for the 'then and now' piece in the Saturday 12 September issue.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Dev (editorial assistant)",
+    "text": "Copy deadline for each Saturday issue is Thursday noon."
+   },
+   {
+    "id": "D10",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "Marta",
+    "text": "After the website relaunch, online photo galleries will be limited to twelve images each, all credited.",
+    "depends_on": [
+     "F9",
+     "R2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Dev (editorial assistant)",
+    "text": "The office photocopier is booked for servicing on 8 October."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-05",
+   "source": "Priya at Bramble Archive",
+   "text": "The Gazette's Bramble Stock Photo Archive licence actually ended on 30 September 2026. The 31 December date on file was the deadline to reply to the renewal quote, not the licence end date. While the licence ran, its print and web coverage was as previously recorded. No renewal has been taken out.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please get Nell's commission for the heritage feature sorted today — send her the confirmation with the photo count, the total fee and the shoot date.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Confirm Nell Harding for 7 photos at 40 pounds each, 280 pounds total, shoot Monday 12 October, delivery by Monday 19 October."
+    },
+    {
+     "id": "b",
+     "text": "Confirm Nell Harding for 15 photos at 40 pounds each, 600 pounds total, shoot Monday 12 October, delivery by Monday 19 October."
+    },
+    {
+     "id": "c",
+     "text": "Book Nell Harding's half-day studio rate of 180 pounds for up to 10 photos, shoot Monday 12 October, delivery by Monday 19 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F8"
+   ],
+   "touched": [
+    {
+     "id": "D5",
+     "direction": "The heritage feature can no longer use the eight Bramble Archive images, since the licence ended 30 September; all 15 images must be original photos."
+    },
+    {
+     "id": "D6",
+     "direction": "Nell Harding's commission becomes 15 photos at 40 pounds each, 600 pounds total, keeping the 12 October shoot and 19 October delivery; Marta's approval is needed for the higher fee."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D7",
+    "D8",
+    "D9",
+    "D10"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Nell Harding the written commission confirmation with the photo count and total fee",
+    "correct_value": "15 photos, 600 pounds",
+    "stale_value": "7 photos, 280 pounds"
+   },
+   "why": "The correction ends the Bramble Archive licence on 30 September 2026, so the 24 October heritage feature cannot use the eight archive images and all 15 photos must be commissioned from Nell at 40 pounds each (600 pounds total). D5 rests on F5 and D6 rests on D5, so both are touched; D3 and D9 used the archive before the licence ended and stay valid. Option a acts on the stale seven-photo plan, option c on Nell's half-day studio quote, and option b is the correct commission."
+  },
+  "id": "G3-03",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

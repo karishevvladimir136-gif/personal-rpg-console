@@ -1,0 +1,362 @@
+{
+ "id": "G1-06",
+ "class": 1,
+ "setting": "A freelance wedding planner at Rosethorn Events who leans on an assistant to remember vendor quotes, deposits paid, and bride's changing color schemes",
+ "prompt_sha256": "b4f962514587e549c0c5ed97d0e16caf6065fe06726b800590ba34458d22dd4c",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The Sage Scheme That Wasn't\",\n \"setting\": \"A freelance wedding planner at Rosethorn Events who leans on an assistant to remember vendor quotes, deposits paid, and bride's changing color schemes\",\n \"owner\": \"Dana\",\n \"now\": \"2026-09-28\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Maya Williams and Rafael Ortiz are getting married on Saturday 17 October 2026 at Hollow Creek Barn, with about 120 guests.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Catering is handled by Bramble Table, doing a plated dinner service.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"bride\", \"text\": \"The bride's color scheme is sage green accents with cream neutrals, to be used for all florals, linens and stationery.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"LinenLoft is the chosen linen supplier; their rental package quote is $1,120 for 120 covers.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"owner\", \"text\": \"Sound Harbor DJ Company is booked for the evening reception.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"venue coordinator\", \"text\": \"Hollow Creek Barn includes warm string lighting across the barn ceiling at no extra cost.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Any vendor deposit over $500 is paid only from the Rosethorn events account, never from the personal card.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Every vendor booking is confirmed in writing before any deposit is sent.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"The couple chose the braised short rib plate as the main for the plated dinner.\", \"depends_on\": [\"F2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"owner\", \"text\": \"Linens will be rented from LinenLoft: cream tablecloths with sage green napkins for all guest tables.\", \"depends_on\": [\"F3\", \"F4\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"owner\", \"text\": \"Fern & Flora will work in a sage green and cream palette for the bouquets, boutonnieres and ceremony florals.\", \"depends_on\": [\"F3\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"owner\", \"text\": \"No extra lighting rental is needed, since the barn's string lights are included with the venue.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"owner\", \"text\": \"Fern & Flora is the florist for the wedding.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-03\", \"source\": \"owner\", \"text\": \"The wedding cake is being made by Sweet Meridian.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"owner\", \"text\": \"Pay the Bramble Table catering deposit of $900 from the events account. Done on 2 July.\", \"due\": \"2026-07-02\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"owner\", \"text\": \"Centerpieces will be cream hydrangeas with sage eucalyptus stems in brass compotes, following the florist's palette.\", \"depends_on\": [\"D3\", \"F7\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"owner\", \"text\": \"The cake will be three tiers of ivory buttercream with lemon elderflower filling.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Day-of stationery from Paper & Pine will be sage green ink on cream cardstock.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"A room block of 15 rooms is held at the Ashford Inn for out-of-town guests.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-22\", \"source\": \"owner\", \"text\": \"The final guest count is confirmed at 118.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-26\", \"source\": \"owner\", \"text\": \"Velvet Vine Linens quoted a blush-rose linen package at $940 for the same 120-cover scope; the quote is valid until 1 October 2026.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-02\", \"source\": \"owner\", \"text\": \"Priya Nair is hired as the day-of coordinator.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"owner\", \"text\": \"Place the final linen order with LinenLoft for the wedding, with written confirmation and payment from the events account. Not done yet.\", \"due\": \"2026-09-30\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"owner\", \"text\": \"Hair and makeup for the bridal party will start at 9:00 on the wedding morning at the Ashford Inn.\", \"depends_on\": [\"F1\", \"F9\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"owner\", \"text\": \"The rehearsal dinner is booked at Nonna's Table for Friday 16 October 2026 at 6:30 p.m.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-18\", \"source\": \"owner\", \"text\": \"Send the final headcount of 118 to Bramble Table. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"F10\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-28\", \"source\": \"bride\", \"text\": \"Maya has changed the color scheme: accents are now dusty blue with ivory neutrals, replacing sage green with cream across all florals, linens and stationery. The ivory/cream neutral base stays as the neutral. Everything else about the wedding — vendors, venues, dates, guest count — is unchanged.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Can you place the final linen order for the Williams–Ortiz wedding today? Just send LinenLoft the confirmed order.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Send LinenLoft the written order for 118 covers: cream tablecloths with sage green napkins, $1,120.\"},\n  {\"id\": \"b\", \"text\": \"Send LinenLoft the written order for 118 covers: ivory tablecloths with dusty blue napkins, $1,120.\"},\n  {\"id\": \"c\", \"text\": \"Book the Velvet Vine blush-rose linen package for 118 covers at $940 instead.\"},\n  {\"id\": \"d\", \"text\": \"Send LinenLoft the written order for 118 covers: dusty blue tablecloths with dusty blue napkins, $1,120.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [\"d\"],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F11\"],\n  \"touched\": [\n   {\"id\": \"D2\", \"direction\": \"Linens become ivory tablecloths with dusty blue napkins from LinenLoft.\"},\n   {\"id\": \"D3\", \"direction\": \"Fern & Flora's palette becomes dusty blue with ivory instead of sage green and cream.\"},\n   {\"id\": \"D5\", \"direction\": \"Centerpieces keep ivory hydrangeas but the sage eucalyptus accents are swapped for dusty blue and silver-green foliage per the new palette.\"},\n   {\"id\": \"D7\", \"direction\": \"Remaining Paper & Pine stationery is ordered in dusty blue ink on ivory cardstock instead of sage green on cream.\"}\n  ],\n  \"untouched\": [\"D1\", \"D4\", \"D6\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the final written linen order with LinenLoft for the Williams–Ortiz wedding\", \"correct_value\": \"ivory tablecloths with dusty blue napkins, 118 covers\", \"stale_value\": \"cream tablecloths with sage green napkins\"},\n  \"why\": \"C1 revokes the sage-green-with-cream scheme (F3), so every decision resting on F3 — D2, D3, D7 directly, and D5 through D3 — must shift to dusty blue with ivory; the task is exactly the due obligation O2, which now means ordering ivory cloths with dusty blue napkins. The Velvet Vine blush quote (F11) is an untouched distractor, and option d over-applies the new color to the tablecloths that should stay ivory.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2834,
+    "completion_tokens": 4414,
+    "reasoning_tokens": 2004,
+    "cached_tokens": 0
+   },
+   "cost": 0.0233892,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The Sage Scheme That Wasn't\",\n \"setting\": \"A freelance wedding planner at Rosethorn Events who leans on an assistant to remember vendor quotes, deposits paid, and bride's changing color schemes\",\n \"owner\": \"Dana\",\n \"now\": \"2026-09-28\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Maya Williams and Rafael Ortiz are getting married on Saturday 17 October 2026 at Hollow Creek Barn, with about 120 guests.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"Catering is handled by Bramble Table, doing a plated dinner service.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"bride\", \"text\": \"The bride's color scheme is sage green accents with cream neutrals, to be used for all florals, linens and stationery.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"owner\", \"text\": \"LinenLoft is the chosen linen supplier; their rental package quote is $1,120 for 120 covers.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"owner\", \"text\": \"Sound Harbor DJ Company is booked for the evening reception.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"venue coordinator\", \"text\": \"Hollow Creek Barn includes warm string lighting across the barn ceiling at no extra cost.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Any vendor deposit over $500 is paid only from the Rosethorn events account, never from the personal card.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"Every vendor booking is confirmed in writing before any deposit is sent.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"The couple chose the braised short rib plate as the main for the plated dinner.\", \"depends_on\": [\"F2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"owner\", \"text\": \"Linens will be rented from LinenLoft: cream tablecloths with sage green napkins for all guest tables.\", \"depends_on\": [\"F3\", \"F4\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"owner\", \"text\": \"Fern & Flora will work in a sage green and cream palette for the bouquets, boutonnieres and ceremony florals.\", \"depends_on\": [\"F3\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"owner\", \"text\": \"No extra lighting rental is needed, since the barn's string lights are included with the venue.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"owner\", \"text\": \"Fern & Flora is the florist for the wedding.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-03\", \"source\": \"owner\", \"text\": \"The wedding cake is being made by Sweet Meridian.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"owner\", \"text\": \"Pay the Bramble Table catering deposit of $900 from the events account. Done on 2 July.\", \"due\": \"2026-07-02\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"owner\", \"text\": \"Centerpieces will be cream hydrangeas with sage eucalyptus stems in brass compotes, following the florist's palette.\", \"depends_on\": [\"D3\", \"F7\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"owner\", \"text\": \"The cake will be three tiers of ivory buttercream with lemon elderflower filling.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Day-of stationery from Paper & Pine will be sage green ink on cream cardstock.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"A room block of 15 rooms is held at the Ashford Inn for out-of-town guests.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-22\", \"source\": \"owner\", \"text\": \"The final guest count is confirmed at 118.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-26\", \"source\": \"owner\", \"text\": \"Velvet Vine Linens quoted a blush-rose linen package at $940 for the same 120-cover scope; the quote is valid until 1 October 2026.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-02\", \"source\": \"owner\", \"text\": \"Priya Nair is hired as the day-of coordinator.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"owner\", \"text\": \"Place the final linen order with LinenLoft for the wedding, with written confirmation and payment from the events account. Not done yet.\", \"due\": \"2026-09-25\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"owner\", \"text\": \"Hair and makeup for the bridal party will start at 9:00 on the wedding morning at the Ashford Inn.\", \"depends_on\": [\"F1\", \"F9\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"owner\", \"text\": \"The rehearsal dinner is booked at Nonna's Table for Friday 16 October 2026 at 6:30 p.m.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-18\", \"source\": \"owner\", \"text\": \"Send the final headcount of 118 to Bramble Table. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"F10\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-28\", \"source\": \"bride\", \"text\": \"Maya has changed the color scheme: accents are now dusty blue with ivory neutrals, replacing sage green with cream across all florals, linens and stationery. The ivory/cream neutral base stays as the neutral. Everything else about the wedding — vendors, venues, dates, guest count — is unchanged.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Can you place the final linen order for the Williams–Ortiz wedding today? Just send LinenLoft the confirmed order.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Send LinenLoft the written order for 118 covers: cream tablecloths with sage green napkins, $1,120.\"},\n  {\"id\": \"b\", \"text\": \"Send LinenLoft the written order for 118 covers: ivory tablecloths with dusty blue napkins, $1,120.\"},\n  {\"id\": \"c\", \"text\": \"Book the Velvet Vine blush-rose linen package for 118 covers at $940 instead.\"},\n  {\"id\": \"d\", \"text\": \"Send LinenLoft the written order for 118 covers: dusty blue tablecloths with dusty blue napkins, $1,120.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [\"d\"],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F11\"],\n  \"touched\": [\n   {\"id\": \"D2\", \"direction\": \"Linens become ivory tablecloths with dusty blue napkins from LinenLoft.\"},\n   {\"id\": \"D3\", \"direction\": \"Fern & Flora's palette becomes dusty blue with ivory instead of sage green and cream.\"},\n   {\"id\": \"D5\", \"direction\": \"Centerpieces keep ivory hydrangeas but the sage eucalyptus accents are swapped for dusty blue and silver-green foliage per the new palette.\"},\n   {\"id\": \"D7\", \"direction\": \"Remaining Paper & Pine stationery is ordered in dusty blue ink on ivory cardstock instead of sage green on cream.\"}\n  ],\n  \"untouched\": [\"D1\", \"D4\", \"D6\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the final written linen order with LinenLoft for the Williams–Ortiz wedding\", \"correct_value\": \"ivory tablecloths with dusty blue napkins, 118 covers\", \"stale_value\": \"cream tablecloths with sage green napkins\"},\n  \"why\": \"C1 revokes the sage-green-with-cream scheme (F3), so every decision resting on F3 — D2, D3, D7 directly, and D5 through D3 — must shift to dusty blue with ivory; the task is exactly the due obligation O2, which now means ordering ivory cloths with dusty blue napkins. The Velvet Vine blush quote (F11) is an untouched distractor, and option d over-applies the new color to the tablecloths that should stay ivory.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5290,
+    "completion_tokens": 2426,
+    "reasoning_tokens": 16,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01487016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G1-06: due obligation O2 must be due on or before now\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "The Sage Scheme That Wasn't",
+  "setting": "A freelance wedding planner at Rosethorn Events who leans on an assistant to remember vendor quotes, deposits paid, and bride's changing color schemes",
+  "owner": "Dana",
+  "now": "2026-09-28",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Maya Williams and Rafael Ortiz are getting married on Saturday 17 October 2026 at Hollow Creek Barn, with about 120 guests."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Catering is handled by Bramble Table, doing a plated dinner service."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "bride",
+    "text": "The bride's color scheme is sage green accents with cream neutrals, to be used for all florals, linens and stationery."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "owner",
+    "text": "LinenLoft is the chosen linen supplier; their rental package quote is $1,120 for 120 covers."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "owner",
+    "text": "Sound Harbor DJ Company is booked for the evening reception."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "venue coordinator",
+    "text": "Hollow Creek Barn includes warm string lighting across the barn ceiling at no extra cost."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "owner",
+    "text": "Any vendor deposit over $500 is paid only from the Rosethorn events account, never from the personal card."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "owner",
+    "text": "Every vendor booking is confirmed in writing before any deposit is sent."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "The couple chose the braised short rib plate as the main for the plated dinner.",
+    "depends_on": [
+     "F2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "owner",
+    "text": "Linens will be rented from LinenLoft: cream tablecloths with sage green napkins for all guest tables.",
+    "depends_on": [
+     "F3",
+     "F4"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "owner",
+    "text": "Fern & Flora will work in a sage green and cream palette for the bouquets, boutonnieres and ceremony florals.",
+    "depends_on": [
+     "F3",
+     "F7"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "owner",
+    "text": "No extra lighting rental is needed, since the barn's string lights are included with the venue.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "owner",
+    "text": "Fern & Flora is the florist for the wedding."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-03",
+    "source": "owner",
+    "text": "The wedding cake is being made by Sweet Meridian."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-02",
+    "source": "owner",
+    "text": "Pay the Bramble Table catering deposit of $900 from the events account. Done on 2 July.",
+    "due": "2026-07-02",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "owner",
+    "text": "Centerpieces will be cream hydrangeas with sage eucalyptus stems in brass compotes, following the florist's palette.",
+    "depends_on": [
+     "D3",
+     "F7"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "owner",
+    "text": "The cake will be three tiers of ivory buttercream with lemon elderflower filling.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Day-of stationery from Paper & Pine will be sage green ink on cream cardstock.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "A room block of 15 rooms is held at the Ashford Inn for out-of-town guests."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-22",
+    "source": "owner",
+    "text": "The final guest count is confirmed at 118."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-26",
+    "source": "owner",
+    "text": "Velvet Vine Linens quoted a blush-rose linen package at $940 for the same 120-cover scope; the quote is valid until 1 October 2026."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-02",
+    "source": "owner",
+    "text": "Priya Nair is hired as the day-of coordinator."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "owner",
+    "text": "Place the final linen order with LinenLoft for the wedding, with written confirmation and payment from the events account. Not done yet.",
+    "due": "2026-09-25",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "owner",
+    "text": "Hair and makeup for the bridal party will start at 9:00 on the wedding morning at the Ashford Inn.",
+    "depends_on": [
+     "F1",
+     "F9"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "owner",
+    "text": "The rehearsal dinner is booked at Nonna's Table for Friday 16 October 2026 at 6:30 p.m."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-18",
+    "source": "owner",
+    "text": "Send the final headcount of 118 to Bramble Table. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "F10"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-09-28",
+   "source": "bride",
+   "text": "Maya has changed the color scheme: accents are now dusty blue with ivory neutrals, replacing sage green with cream across all florals, linens and stationery. The ivory/cream neutral base stays as the neutral. Everything else about the wedding — vendors, venues, dates, guest count — is unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Can you place the final linen order for the Williams–Ortiz wedding today? Just send LinenLoft the confirmed order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send LinenLoft the written order for 118 covers: cream tablecloths with sage green napkins, $1,120."
+    },
+    {
+     "id": "b",
+     "text": "Send LinenLoft the written order for 118 covers: ivory tablecloths with dusty blue napkins, $1,120."
+    },
+    {
+     "id": "c",
+     "text": "Book the Velvet Vine blush-rose linen package for 118 covers at $940 instead."
+    },
+    {
+     "id": "d",
+     "text": "Send LinenLoft the written order for 118 covers: dusty blue tablecloths with dusty blue napkins, $1,120."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [
+    "d"
+   ],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F11"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "Linens become ivory tablecloths with dusty blue napkins from LinenLoft."
+    },
+    {
+     "id": "D3",
+     "direction": "Fern & Flora's palette becomes dusty blue with ivory instead of sage green and cream."
+    },
+    {
+     "id": "D5",
+     "direction": "Centerpieces keep ivory hydrangeas but the sage eucalyptus accents are swapped for dusty blue and silver-green foliage per the new palette."
+    },
+    {
+     "id": "D7",
+     "direction": "Remaining Paper & Pine stationery is ordered in dusty blue ink on ivory cardstock instead of sage green on cream."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D4",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place the final written linen order with LinenLoft for the Williams–Ortiz wedding",
+    "correct_value": "ivory tablecloths with dusty blue napkins, 118 covers",
+    "stale_value": "cream tablecloths with sage green napkins"
+   },
+   "why": "C1 revokes the sage-green-with-cream scheme (F3), so every decision resting on F3 — D2, D3, D7 directly, and D5 through D3 — must shift to dusty blue with ivory; the task is exactly the due obligation O2, which now means ordering ivory cloths with dusty blue napkins. The Velvet Vine blush quote (F11) is an untouched distractor, and option d over-applies the new color to the tablecloths that should stay ivory."
+  },
+  "id": "G1-06",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

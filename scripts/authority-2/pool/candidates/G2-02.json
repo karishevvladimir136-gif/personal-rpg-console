@@ -1,0 +1,322 @@
+{
+ "id": "G2-02",
+ "class": 2,
+ "setting": "A veterinary practice owner at Furry Friends Animal Hospital whose assistant remembers each pet owner's payment plan terms",
+ "prompt_sha256": "54bebad6cae3e4aaec78836edf7db3f8c0a47846a2efa7f337f9e1f85c6b901b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Feline spay deposit under the new payment plan rule\",\n \"setting\": \"A veterinary practice owner at Furry Friends Animal Hospital whose assistant remembers each pet owner's payment plan terms\",\n \"owner\": \"Dana\",\n \"now\": \"2026-10-05\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Dana\", \"text\": \"Furry Friends Animal Hospital is open Monday to Saturday, and elective procedures are scheduled on weekday mornings.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Dana\", \"text\": \"Payment plans require a 25% deposit at signup and the balance within 90 days. Any owner with an outstanding balance over $400 cannot book an elective procedure until the balance is back under $400.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"Owners get a reminder call 48 hours before any appointment.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Dr. Patel\", \"text\": \"Marta Gomez's dog Luna needs dental surgery costing $1,200.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Dana\", \"text\": \"Signed Marta Gomez's payment plan for Luna's surgery: $1,200 total, $300 deposit, balance within 90 days. Marta paid the deposit the same day.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Dr. Patel\", \"text\": \"Ben Ortiz's cat Miso needs an abscess treatment costing $800.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-24\", \"source\": \"Dana\", \"text\": \"Signed Ben Ortiz's payment plan for Miso's treatment: $800 total, $200 deposit paid, balance due by 22 September. Ben paid the balance in full on 10 September.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-01\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"Order the autumn vaccine stock from Hartwell Veterinary Supply with a budget of about $2,800. Done on 28 July.\", \"due\": \"2026-07-30\", \"status\": \"done\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"The practice sends all bloodwork to Cedar Lane Lab, which returns results within two days.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"Carla Ruiz's account carries an outstanding balance of $350 from her June visits.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-06\", \"source\": \"Dana\", \"text\": \"Approved booking Carla Ruiz's cat Whiskers for an elective dental cleaning in October. Her balance of $350 sits under the $400 limit, so the booking is allowed under the payment plan rule.\", \"depends_on\": [\"R1\", \"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Dana\", \"text\": \"Reception hours move to 8:00 to 18:00 from September onwards.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-18\", \"source\": \"Dr. Patel\", \"text\": \"Sam Weber's cat Nala, six months old, is due for a spay; the practice's estimate for the surgery and aftercare is $600.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Dana\", \"text\": \"Approved payment plan terms for Sam Weber for Nala's spay: $600 total, $150 deposit, balance within 90 days, to be signed when Sam comes in for Nala's pre-op paperwork visit in early October.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"Dr. Patel is on holiday from 12 to 19 September.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-28\", \"source\": \"Dana\", \"text\": \"Keep sending all bloodwork to Cedar Lane Lab rather than switching to Metro Animal Lab for the rest of the year.\", \"depends_on\": [\"F4\", \"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Hartwell Veterinary Supply\", \"text\": \"Hartwell Veterinary Supply will raise vaccine prices by 5% for all 2027 orders.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Dr. Patel\", \"text\": \"Scheduled Nala's spay for Tuesday 6 October at 8:30 with Dr. Patel, contingent on Sam Weber signing his payment plan at the paperwork visit on Monday 5 October.\", \"depends_on\": [\"D4\", \"F1\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-16\", \"source\": \"Sam Weber\", \"text\": \"Barking Lane Clinic quoted Sam Weber $450 for a feline spay when he consulted them in August; he mentioned the quote when asking whether Furry Friends could match it.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-17\", \"source\": \"Dana\", \"text\": \"Finalize Sam Weber's booking when he comes in with Nala's paperwork on 5 October and collect his deposit then. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"The autumn vaccine stock arrived; 120 doses are stored in fridge 2.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-23\", \"source\": \"SteriTech\", \"text\": \"SteriTech's autoclave service contract expires in December 2026; their renewal quote is $1,150.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"Dana\", \"text\": \"Renew the autoclave service contract with SteriTech for 2027 at $1,150.\", \"depends_on\": [\"F12\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"Nadia Okafor (practice manager)\", \"text\": \"The waiting room repainting is booked for the week of 19 October.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-27\", \"source\": \"Dana\", \"text\": \"Complete the quarterly inventory count of supplies and drugs. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-09-28\", \"source\": \"Dana\", \"text\": \"Payment plan terms change today: any new payment plan requires a 40% deposit at signup and the balance within 60 days, and the elective-procedure booking threshold drops from $400 to $200 for all owners, effective immediately. Plans already signed before today keep the old 25% deposit and 90-day balance terms.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Sam Weber is coming in this morning with Nala's paperwork — please finalize her spay booking for tomorrow and tell me what deposit we're collecting from him.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Nala's spay for Tuesday 6 October at 8:30 and collect a $150 deposit from Sam Weber.\"}, {\"id\": \"b\", \"text\": \"Book Nala's spay for Tuesday 6 October at 8:30 and collect a $180 deposit based on the $450 outside quote.\"}, {\"id\": \"c\", \"text\": \"Book Nala's spay for Tuesday 6 October at 8:30 and collect a $240 deposit from Sam Weber.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Carla Ruiz's elective dental cleaning booking is no longer allowed as it stands: with the threshold now $200, her $350 balance blocks it until she pays at least $151 to bring the balance under $200.\"},\n   {\"id\": \"D4\", \"direction\": \"Sam Weber's plan terms must be reissued before signing: $240 deposit (40% of $600) and the balance within 60 days, since the plan was never signed before 28 September.\"},\n   {\"id\": \"D6\", \"direction\": \"Nala's spay stays on Tuesday 6 October at 8:30, but it can only be confirmed against the reissued plan with a $240 deposit.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D5\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Finalize Nala's spay booking on 5 October and collect Sam Weber's deposit under the new plan terms\", \"correct_value\": \"$240 deposit\", \"stale_value\": \"$150 deposit\"},\n  \"why\": \"The amendment revokes R1 and, because Sam Weber's plan was never signed before 28 September, its new 40% deposit applies: $240 on the $600 estimate. D4 was made under the old 25% rule and is void, and D6, which rests on D4, inherits the change. D1 and D2 are untouched because both plans were signed and their deposits paid before the amendment, so they keep the old terms; D5 and D7 rest on other facts entirely. Option a uses the stale 25% deposit and option b uses the irrelevant outside quote from Barking Lane Clinic.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 6965,
+    "reasoning_tokens": 4442,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03146372,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Feline spay deposit under the new payment plan rule",
+  "setting": "A veterinary practice owner at Furry Friends Animal Hospital whose assistant remembers each pet owner's payment plan terms",
+  "owner": "Dana",
+  "now": "2026-10-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Dana",
+    "text": "Furry Friends Animal Hospital is open Monday to Saturday, and elective procedures are scheduled on weekday mornings."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Dana",
+    "text": "Payment plans require a 25% deposit at signup and the balance within 90 days. Any owner with an outstanding balance over $400 cannot book an elective procedure until the balance is back under $400."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "Owners get a reminder call 48 hours before any appointment."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Dr. Patel",
+    "text": "Marta Gomez's dog Luna needs dental surgery costing $1,200."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Dana",
+    "text": "Signed Marta Gomez's payment plan for Luna's surgery: $1,200 total, $300 deposit, balance within 90 days. Marta paid the deposit the same day.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Dr. Patel",
+    "text": "Ben Ortiz's cat Miso needs an abscess treatment costing $800."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-24",
+    "source": "Dana",
+    "text": "Signed Ben Ortiz's payment plan for Miso's treatment: $800 total, $200 deposit paid, balance due by 22 September. Ben paid the balance in full on 10 September.",
+    "depends_on": [
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-01",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "Order the autumn vaccine stock from Hartwell Veterinary Supply with a budget of about $2,800. Done on 28 July.",
+    "due": "2026-07-30",
+    "status": "done"
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "The practice sends all bloodwork to Cedar Lane Lab, which returns results within two days."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "Carla Ruiz's account carries an outstanding balance of $350 from her June visits."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-06",
+    "source": "Dana",
+    "text": "Approved booking Carla Ruiz's cat Whiskers for an elective dental cleaning in October. Her balance of $350 sits under the $400 limit, so the booking is allowed under the payment plan rule.",
+    "depends_on": [
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-12",
+    "source": "Dana",
+    "text": "Reception hours move to 8:00 to 18:00 from September onwards."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-18",
+    "source": "Dr. Patel",
+    "text": "Sam Weber's cat Nala, six months old, is due for a spay; the practice's estimate for the surgery and aftercare is $600."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Dana",
+    "text": "Approved payment plan terms for Sam Weber for Nala's spay: $600 total, $150 deposit, balance within 90 days, to be signed when Sam comes in for Nala's pre-op paperwork visit in early October.",
+    "depends_on": [
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "Dr. Patel is on holiday from 12 to 19 September."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-28",
+    "source": "Dana",
+    "text": "Keep sending all bloodwork to Cedar Lane Lab rather than switching to Metro Animal Lab for the rest of the year.",
+    "depends_on": [
+     "F4",
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Hartwell Veterinary Supply",
+    "text": "Hartwell Veterinary Supply will raise vaccine prices by 5% for all 2027 orders."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Dr. Patel",
+    "text": "Scheduled Nala's spay for Tuesday 6 October at 8:30 with Dr. Patel, contingent on Sam Weber signing his payment plan at the paperwork visit on Monday 5 October.",
+    "depends_on": [
+     "D4",
+     "F1"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-16",
+    "source": "Sam Weber",
+    "text": "Barking Lane Clinic quoted Sam Weber $450 for a feline spay when he consulted them in August; he mentioned the quote when asking whether Furry Friends could match it."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-17",
+    "source": "Dana",
+    "text": "Finalize Sam Weber's booking when he comes in with Nala's paperwork on 5 October and collect his deposit then. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "The autumn vaccine stock arrived; 120 doses are stored in fridge 2."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-23",
+    "source": "SteriTech",
+    "text": "SteriTech's autoclave service contract expires in December 2026; their renewal quote is $1,150."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-24",
+    "source": "Dana",
+    "text": "Renew the autoclave service contract with SteriTech for 2027 at $1,150.",
+    "depends_on": [
+     "F12"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-26",
+    "source": "Nadia Okafor (practice manager)",
+    "text": "The waiting room repainting is booked for the week of 19 October."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-27",
+    "source": "Dana",
+    "text": "Complete the quarterly inventory count of supplies and drugs. Not done yet.",
+    "due": "2026-11-15",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-09-28",
+   "source": "Dana",
+   "text": "Payment plan terms change today: any new payment plan requires a 40% deposit at signup and the balance within 60 days, and the elective-procedure booking threshold drops from $400 to $200 for all owners, effective immediately. Plans already signed before today keep the old 25% deposit and 90-day balance terms.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Sam Weber is coming in this morning with Nala's paperwork — please finalize her spay booking for tomorrow and tell me what deposit we're collecting from him.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Nala's spay for Tuesday 6 October at 8:30 and collect a $150 deposit from Sam Weber."
+    },
+    {
+     "id": "b",
+     "text": "Book Nala's spay for Tuesday 6 October at 8:30 and collect a $180 deposit based on the $450 outside quote."
+    },
+    {
+     "id": "c",
+     "text": "Book Nala's spay for Tuesday 6 October at 8:30 and collect a $240 deposit from Sam Weber."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Carla Ruiz's elective dental cleaning booking is no longer allowed as it stands: with the threshold now $200, her $350 balance blocks it until she pays at least $151 to bring the balance under $200."
+    },
+    {
+     "id": "D4",
+     "direction": "Sam Weber's plan terms must be reissued before signing: $240 deposit (40% of $600) and the balance within 60 days, since the plan was never signed before 28 September."
+    },
+    {
+     "id": "D6",
+     "direction": "Nala's spay stays on Tuesday 6 October at 8:30, but it can only be confirmed against the reissued plan with a $240 deposit."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D5",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Finalize Nala's spay booking on 5 October and collect Sam Weber's deposit under the new plan terms",
+    "correct_value": "$240 deposit",
+    "stale_value": "$150 deposit"
+   },
+   "why": "The amendment revokes R1 and, because Sam Weber's plan was never signed before 28 September, its new 40% deposit applies: $240 on the $600 estimate. D4 was made under the old 25% rule and is void, and D6, which rests on D4, inherits the change. D1 and D2 are untouched because both plans were signed and their deposits paid before the amendment, so they keep the old terms; D5 and D7 rest on other facts entirely. Option a uses the stale 25% deposit and option b uses the irrelevant outside quote from Barking Lane Clinic."
+  },
+  "id": "G2-02",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

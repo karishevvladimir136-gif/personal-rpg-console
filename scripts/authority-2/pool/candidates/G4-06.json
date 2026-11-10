@@ -1,0 +1,292 @@
+{
+ "id": "G4-06",
+ "class": 4,
+ "setting": "A translation agency owner at Lingua Bridge whose assistant tracks project deadlines, client glossary preferences, and freelancer rate agreements",
+ "prompt_sha256": "8b92d479ecc7501c02fc4fde28d6ad7e1311d0a95cf7c4173d8a19cbe3a8567e",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Glossary correction beside an active booking\",\n \"setting\": \"A translation agency owner at Lingua Bridge whose assistant tracks project deadlines, client glossary preferences, and freelancer rate agreements\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-30\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"Dana Kowal is a freelance translator for the agency (Polish to English) and her 2026 rate agreement sets her rate at 12 euro cents per word.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Nordvia Bank\", \"text\": \"Nordvia Bank's current style guide is glossary version 4, in force since March 2026, and all their translations must use it.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"The agency office is at 18 Ulica Piwna in Gdansk and the rent is 1,350 euro per month.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"All client work follows the client's current style guide version, never an archived one.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Every freelancer booking must be confirmed in writing, with rate and deadline, before the work starts.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"The intern Tomek handles invoice filing on Thursdays.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"All Nordvia Bank work in 2026 will use glossary version 4.\", \"depends_on\": [\"F2\", \"R1\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Tomek\", \"text\": \"The archived 2025 glossary version 3.0 from Nordvia Bank rendered their product term as \\\"paying platform\\\".\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"Marta\", \"text\": \"The Nordvia Bank compliance manual (40,000 words, Polish to English) is assigned to Dana Kowal at 12 euro cents per word, with final delivery on Friday 6 November 2026.\", \"depends_on\": [\"F1\", \"F2\", \"R1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Halmark Studio\", \"text\": \"Client Halmark Studio prefers all deliverables in .docx format.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-14\", \"source\": \"Marta\", \"text\": \"The budget line for the Nordvia Bank manual is set at 4,800 euro (40,000 words at 12 euro cents).\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Dana Kowal\", \"text\": \"Dana works Monday to Thursday and takes no weekend work.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marta\", \"text\": \"The Nordvia Bank manual will be delivered in two batches of roughly 20,000 words each: Wednesday 14 October and Friday 6 November 2026.\", \"depends_on\": [\"D1\", \"F7\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-24\", \"source\": \"Marta\", \"text\": \"Pay the October rent for the Gdansk office. Done on 2 October.\", \"due\": \"2026-10-02\", \"status\": \"done\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Marta\", \"text\": \"Send Dana Kowal the written booking confirmation for the Nordvia Bank manual, stating her rate and the delivery dates. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"D1\", \"D2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-15\", \"source\": \"Marta\", \"text\": \"The Halmark Studio brochure (8,000 words) will be delivered as a .docx file by 30 November 2026.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"The agency renewed ten Trados licences; the renewal runs to September 2027.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Petra Nowak\", \"text\": \"Petra Nowak quoted 14 euro cents per word for Polish-to-English legal-financial texts in an email this week; no project has been assigned to her.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Archive all project files for the Nordvia Bank manual after final delivery. Not done yet.\", \"due\": \"2026-12-15\", \"status\": \"open\", \"depends_on\": [\"D2\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-28\", \"source\": \"Ingrid (Nordvia terminology lead)\", \"text\": \"The archived 2025 glossary version 3.0 always rendered the product term as \\\"payment platform\\\"; the earlier note that it said \\\"paying platform\\\" was a recording error. Glossary version 4 and all current work are unaffected.\", \"revokes\": [\"F5\"]},\n \"task\": {\n  \"text\": \"Please sort out Dana's paperwork for the Nordvia manual today.\",\n  \"options\": [\n   {\"id\": \"a\", \"text\": \"Send Dana a booking confirmation for the Nordvia manual that instructs her to use the corrected glossary version 3.0 term \\\"payment platform\\\" instead of glossary version 4.\"},\n   {\"id\": \"b\", \"text\": \"Send Dana the booking confirmation at 12 euro cents per word with batches due Wednesday 14 October and Friday 6 November 2026.\"},\n   {\"id\": \"c\", \"text\": \"Book Petra Nowak for the Nordvia manual at 14 euro cents per word with final delivery on Friday 6 November 2026.\"},\n   {\"id\": \"d\", \"text\": \"Send Dana the booking confirmation at 12 euro cents per word with a single final delivery on Friday 6 November 2026 and no batch dates.\"}\n  ]\n },\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [\"a\", \"d\"],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Dana Kowal the written booking confirmation for the Nordvia Bank manual today, stating her rate and both delivery dates.\", \"correct_value\": \"12 euro cents per word, batches Wednesday 14 October 2026 and Friday 6 November 2026\", \"stale_value\": null},\n  \"why\": \"The correction only fixes a recording error in an archived 2025 glossary note that no decision rests on, and it explicitly leaves glossary version 4 and current work unaffected, so every decision (D1-D5) stands and the plan must be carried out as it is. The correct act is the ordinary booking confirmation at Dana's agreed rate with the two batch dates from D2. Option a wrongly swaps the current style guide for the old glossary, option d drops the agreed batch plan, and option c acts on Petra Nowak's unused quote.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2846,
+    "completion_tokens": 4371,
+    "reasoning_tokens": 2403,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02007952,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Glossary correction beside an active booking\",\n \"setting\": \"A translation agency owner at Lingua Bridge whose assistant tracks project deadlines, client glossary preferences, and freelancer rate agreements\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-30\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"Dana Kowal is a freelance translator for the agency (Polish to English) and her 2026 rate agreement sets her rate at 12 euro cents per word.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Nordvia Bank\", \"text\": \"Nordvia Bank's current style guide is glossary version 4, in force since March 2026, and all their translations must use it.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"The agency office is at 18 Ulica Piwna in Gdansk and the rent is 1,350 euro per month.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"All client work follows the client's current style guide version, never an archived one.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Every freelancer booking must be confirmed in writing, with rate and deadline, before the work starts.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"The intern Tomek handles invoice filing on Thursdays.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"All Nordvia Bank work in 2026 will use glossary version 4.\", \"depends_on\": [\"F2\", \"R1\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Tomek\", \"text\": \"The archived 2025 glossary version 3.0 from Nordvia Bank rendered their product term as \\\"paying platform\\\".\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"Marta\", \"text\": \"The Nordvia Bank compliance manual (40,000 words, Polish to English) is assigned to Dana Kowal at 12 euro cents per word, with final delivery on Friday 6 November 2026.\", \"depends_on\": [\"F1\", \"F2\", \"R1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Halmark Studio\", \"text\": \"Client Halmark Studio prefers all deliverables in .docx format.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-14\", \"source\": \"Marta\", \"text\": \"The budget line for the Nordvia Bank manual is set at 4,800 euro (40,000 words at 12 euro cents).\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Dana Kowal\", \"text\": \"Dana works Monday to Thursday and takes no weekend work.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marta\", \"text\": \"The Nordvia Bank manual will be delivered in two batches of roughly 20,000 words each: Wednesday 14 October and Friday 6 November 2026.\", \"depends_on\": [\"D1\", \"F7\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-24\", \"source\": \"Marta\", \"text\": \"Pay the October rent for the Gdansk office. Done on 2 October.\", \"due\": \"2026-10-02\", \"status\": \"done\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Marta\", \"text\": \"Send Dana Kowal the written booking confirmation for the Nordvia Bank manual, stating her rate and the delivery dates. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"D1\", \"D2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-15\", \"source\": \"Marta\", \"text\": \"The Halmark Studio brochure (8,000 words) will be delivered as a .docx file by 30 November 2026.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"The agency renewed ten Trados licences; the renewal runs to September 2027.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Marta\", \"text\": \"Halmark Studio's brochure source text will arrive from their marketing team on Monday 2 November 2026.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Petra Nowak\", \"text\": \"Petra Nowak quoted 14 euro cents per word for Polish-to-English legal-financial texts in an email this week; no project has been assigned to her.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Archive all project files for the Nordvia Bank manual after final delivery. Not done yet.\", \"due\": \"2026-12-15\", \"status\": \"open\", \"depends_on\": [\"D2\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-28\", \"source\": \"Ingrid (Nordvia terminology lead)\", \"text\": \"The archived 2025 glossary version 3.0 always rendered the product term as \\\"payment platform\\\"; the earlier note that it said \\\"paying platform\\\" was a recording error. Glossary version 4 and all current work are unaffected.\", \"revokes\": [\"F5\"]},\n \"task\": {\n  \"text\": \"Please sort out Dana's paperwork for the Nordvia manual today.\",\n  \"options\": [\n   {\"id\": \"a\", \"text\": \"Send Dana a booking confirmation for the Nordvia manual that instructs her to use the corrected glossary version 3.0 term \\\"payment platform\\\" instead of glossary version 4.\"},\n   {\"id\": \"b\", \"text\": \"Send Dana the booking confirmation at 12 euro cents per word with batches due Wednesday 14 October and Friday 6 November 2026.\"},\n   {\"id\": \"c\", \"text\": \"Book Petra Nowak for the Nordvia manual at 14 euro cents per word with final delivery on Friday 6 November 2026.\"},\n   {\"id\": \"d\", \"text\": \"Send Dana the booking confirmation at 12 euro cents per word with a single final delivery on Friday 6 November 2026 and no batch dates.\"}\n  ]\n },\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [\"a\", \"d\"],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Dana Kowal the written booking confirmation for the Nordvia Bank manual today, stating her rate and both delivery dates.\", \"correct_value\": \"12 euro cents per word, batches Wednesday 14 October 2026 and Friday 6 November 2026\", \"stale_value\": null},\n  \"why\": \"The correction only fixes a recording error in an archived 2025 glossary note that no decision rests on, and it explicitly leaves glossary version 4 and current work unaffected, so every decision (D1-D5) stands and the plan must be carried out as it is. The correct act is the ordinary booking confirmation at Dana's agreed rate with the two batch dates from D2. Option a wrongly swaps the current style guide for the old glossary, option d drops the agreed batch plan, and option c acts on Petra Nowak's unused quote.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4860,
+    "completion_tokens": 2043,
+    "reasoning_tokens": 17,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01258296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G4-06: history has 19 items; need 20–50\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Glossary correction beside an active booking",
+  "setting": "A translation agency owner at Lingua Bridge whose assistant tracks project deadlines, client glossary preferences, and freelancer rate agreements",
+  "owner": "Marta",
+  "now": "2026-10-30",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "Dana Kowal is a freelance translator for the agency (Polish to English) and her 2026 rate agreement sets her rate at 12 euro cents per word."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Nordvia Bank",
+    "text": "Nordvia Bank's current style guide is glossary version 4, in force since March 2026, and all their translations must use it."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "The agency office is at 18 Ulica Piwna in Gdansk and the rent is 1,350 euro per month."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "All client work follows the client's current style guide version, never an archived one."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "Every freelancer booking must be confirmed in writing, with rate and deadline, before the work starts."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "The intern Tomek handles invoice filing on Thursdays."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "All Nordvia Bank work in 2026 will use glossary version 4.",
+    "depends_on": [
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Tomek",
+    "text": "The archived 2025 glossary version 3.0 from Nordvia Bank rendered their product term as \"paying platform\"."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "The Nordvia Bank compliance manual (40,000 words, Polish to English) is assigned to Dana Kowal at 12 euro cents per word, with final delivery on Friday 6 November 2026.",
+    "depends_on": [
+     "F1",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Halmark Studio",
+    "text": "Client Halmark Studio prefers all deliverables in .docx format."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-14",
+    "source": "Marta",
+    "text": "The budget line for the Nordvia Bank manual is set at 4,800 euro (40,000 words at 12 euro cents).",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Dana Kowal",
+    "text": "Dana works Monday to Thursday and takes no weekend work."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "The Nordvia Bank manual will be delivered in two batches of roughly 20,000 words each: Wednesday 14 October and Friday 6 November 2026.",
+    "depends_on": [
+     "D1",
+     "F7"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-24",
+    "source": "Marta",
+    "text": "Pay the October rent for the Gdansk office. Done on 2 October.",
+    "due": "2026-10-02",
+    "status": "done"
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Marta",
+    "text": "Send Dana Kowal the written booking confirmation for the Nordvia Bank manual, stating her rate and the delivery dates. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "D2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-15",
+    "source": "Marta",
+    "text": "The Halmark Studio brochure (8,000 words) will be delivered as a .docx file by 30 November 2026.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "The agency renewed ten Trados licences; the renewal runs to September 2027."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Marta",
+    "text": "Halmark Studio's brochure source text will arrive from their marketing team on Monday 2 November 2026."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Petra Nowak",
+    "text": "Petra Nowak quoted 14 euro cents per word for Polish-to-English legal-financial texts in an email this week; no project has been assigned to her."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Archive all project files for the Nordvia Bank manual after final delivery. Not done yet.",
+    "due": "2026-12-15",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-28",
+   "source": "Ingrid (Nordvia terminology lead)",
+   "text": "The archived 2025 glossary version 3.0 always rendered the product term as \"payment platform\"; the earlier note that it said \"paying platform\" was a recording error. Glossary version 4 and all current work are unaffected.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please sort out Dana's paperwork for the Nordvia manual today.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Dana a booking confirmation for the Nordvia manual that instructs her to use the corrected glossary version 3.0 term \"payment platform\" instead of glossary version 4."
+    },
+    {
+     "id": "b",
+     "text": "Send Dana the booking confirmation at 12 euro cents per word with batches due Wednesday 14 October and Friday 6 November 2026."
+    },
+    {
+     "id": "c",
+     "text": "Book Petra Nowak for the Nordvia manual at 14 euro cents per word with final delivery on Friday 6 November 2026."
+    },
+    {
+     "id": "d",
+     "text": "Send Dana the booking confirmation at 12 euro cents per word with a single final delivery on Friday 6 November 2026 and no batch dates."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [
+    "a",
+    "d"
+   ],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Dana Kowal the written booking confirmation for the Nordvia Bank manual today, stating her rate and both delivery dates.",
+    "correct_value": "12 euro cents per word, batches Wednesday 14 October 2026 and Friday 6 November 2026",
+    "stale_value": null
+   },
+   "why": "The correction only fixes a recording error in an archived 2025 glossary note that no decision rests on, and it explicitly leaves glossary version 4 and current work unaffected, so every decision (D1-D5) stands and the plan must be carried out as it is. The correct act is the ordinary booking confirmation at Dana's agreed rate with the two batch dates from D2. Option a wrongly swaps the current style guide for the old glossary, option d drops the agreed batch plan, and option c acts on Petra Nowak's unused quote."
+  },
+  "id": "G4-06",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

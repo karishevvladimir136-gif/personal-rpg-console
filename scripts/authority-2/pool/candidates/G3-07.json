@@ -1,0 +1,330 @@
+{
+ "id": "G3-07",
+ "class": 3,
+ "setting": "A household manager for the affluent Barrett family estate who relies on an assistant to track household staff schedules and vendor maintenance agreements",
+ "prompt_sha256": "1ec0999de24fc3fc0071dd8beabae7154d6fc9c009f8df9eef73340ca746f6ec",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Pool heater service chain\",\n \"setting\": \"A household manager for the affluent Barrett family estate who relies on an assistant to track household staff schedules and vendor maintenance agreements\",\n \"owner\": \"Miriam\",\n \"now\": \"2026-11-09\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Miriam\", \"text\": \"The estate's core staff are Tomas the head gardener, Rosa the housekeeper, and Peter the handyman. Miriam manages all vendor agreements for the estate.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Miriam\", \"text\": \"AquaServ holds the maintenance agreement for the estate's irrigation pumps and sends technician Gary for all call-outs.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Miriam\", \"text\": \"The pool heating is a gas boiler, an AquaServ GX-200, installed in the pool plant room. It needs an annual winter shutdown-and-drain service before 1 December, plus quarterly checks, all under the AquaServ boiler plan at 85 pounds per visit.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-06\", \"source\": \"Miriam\", \"text\": \"The tennis court is due for resurfacing; the family uses it heavily from April to October.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Miriam\", \"text\": \"All vendor visits to the estate must be booked at least ten days ahead and confirmed by email.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Miriam\", \"text\": \"The assistant may approve single vendor jobs up to 500 pounds; anything above that needs Miriam's approval.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Miriam\", \"text\": \"Renew the security-system monitoring contract with SentinelCo for another year at 40 pounds per month.\", \"depends_on\": [\"F6\", \"R2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Miriam\", \"text\": \"Sign the AquaServ year-round boiler plan for the pool heating: quarterly checks plus the annual winter shutdown-and-drain, at 85 pounds per visit.\", \"depends_on\": [\"F3\", \"F2\", \"R2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-12\", \"source\": \"Miriam\", \"text\": \"Pay the AquaServ plan deposit of 85 pounds by 31 July. Done on 24 July.\", \"due\": \"2026-07-31\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Miriam\", \"text\": \"Book the tennis court resurfacing with Courtline for March 2027, when the court is out of use.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Miriam\", \"text\": \"The pool plant room stays locked and Tomas holds the only key; he must open up and be present for any service visit to equipment in that room.\", \"depends_on\": [\"F3\", \"F7\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Tomas\", \"text\": \"Tomas is on holiday from 30 November to 12 December; Peter covers the garden and pool area while he is away.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Miriam\", \"text\": \"Schedule the winter shutdown-and-drain service for the pool boiler with AquaServ for Friday 20 November at 09:00, with Tomas on site.\", \"depends_on\": [\"D2\", \"R1\", \"F5\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-14\", \"source\": \"Miriam\", \"text\": \"Book and confirm the annual pool heater service before 10 November. Not done yet.\", \"due\": \"2026-11-10\", \"status\": \"open\", \"depends_on\": [\"D5\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Miriam\", \"text\": \"The greenhouse heater is serviced once a year by Bloomfield Heating, usually in October.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Miriam\", \"text\": \"Book Bloomfield Heating for the annual greenhouse heater service in the second week of October.\", \"depends_on\": [\"F8\", \"R1\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Miriam\", \"text\": \"Confirm the greenhouse heater service appointment. Done on 8 September for 13 October.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-20\", \"source\": \"PoolStyle Direct\", \"text\": \"PoolStyle Direct has quoted 640 pounds to inspect and service the pool heat-pump pipework and the automatic pool cover in one visit; the quote is valid until 30 November.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Miriam\", \"text\": \"The outdoor pool is closed to the family from 1 November until the end of March.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Peter\", \"text\": \"Peter maintains the automatic pool cover himself; he cleans and lubricates the tracks each quarter.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Miriam\", \"text\": \"Rosa orders all household cleaning supplies from Hartley Wholesale on the first Monday of each month.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Miriam\", \"text\": \"The pool plant room also houses the filtration pumps and the dosing equipment for the pool.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Miriam\", \"text\": \"The estate's security monitoring is with SentinelCo; the alarm panel was last serviced in May.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-06\", \"source\": \"Miriam\", \"text\": \"The pool heating is not a gas boiler. The pipework inspection in late October confirmed the heater is a CalorTech HX-300 electric heat pump, installed in the pool plant room. It needs one annual service by CalorTech before the end of November; no winter shutdown-and-drain is required, and the AquaServ boiler plan does not apply to the heater. The plant room and the filtration pumps in it are unchanged, and AquaServ continues to look after the irrigation pumps.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Please get the pool heater's annual service booked and confirmed with the right vendor today, and put the visit in the calendar with whoever needs to be on site.\", \"options\": [{\"id\": \"a\", \"text\": \"Book AquaServ's winter shutdown-and-drain service for the pool boiler on Friday 20 November at 09:00, with Tomas on site.\"}, {\"id\": \"b\", \"text\": \"Book CalorTech's annual heat-pump service for Tuesday 17 November at 10:00, with Tomas on site.\"}, {\"id\": \"c\", \"text\": \"Book PoolStyle Direct's 640-pound pipework and pool-cover service for Thursday 26 November.\"}, {\"id\": \"d\", \"text\": \"Confirm AquaServ's next quarterly boiler check for Tuesday 8 December at 09:00.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\", \"d\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"], \"distractor_items\": [\"F9\"],\n  \"touched\": [{\"id\": \"D2\", \"direction\": \"Void: the AquaServ boiler plan no longer covers the pool heating; the heater needs a single annual CalorTech service instead of quarterly checks and a winter drain-down.\"}, {\"id\": \"D5\", \"direction\": \"Void: no shutdown-and-drain on 20 November; replace with the CalorTech annual heat-pump service before 30 November, booked at least ten days ahead, Tomas present.\"}],\n  \"untouched\": [\"D1\", \"D3\", \"D4\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Book and confirm the annual pool heater service today, at least ten days ahead, with Tomas present.\", \"correct_value\": \"CalorTech annual heat-pump service, Tuesday 17 November 2026 at 10:00\", \"stale_value\": \"AquaServ winter shutdown-and-drain, Friday 20 November 2026 at 09:00\"},\n  \"why\": \"The correction revokes F3 (gas boiler) and replaces it with a CalorTech HX-300 heat pump needing one annual autumn service. D2 rests on F3 and is void, and D5 rests on D2 and is void through the chain, so the 20 November drain-down and the December quarterly check are stale; the right act is the CalorTech annual service booked within the ten-day rule. D4 rests on F3 only for the plant-room location, which the correction leaves unchanged, and D1, D3 and D6 concern other equipment, so they stand. PoolStyle Direct's quote is a tempting but unrelated distractor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 5380,
+    "reasoning_tokens": 3006,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02449252,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Pool heater service chain\",\n \"setting\": \"A household manager for the affluent Barrett family estate who relies on an assistant to track household staff schedules and vendor maintenance agreements\",\n \"owner\": \"Miriam\",\n \"now\": \"2026-11-09\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Miriam\", \"text\": \"The estate's core staff are Tomas the head gardener, Rosa the housekeeper, and Peter the handyman. Miriam manages all vendor agreements for the estate.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Miriam\", \"text\": \"AquaServ holds the maintenance agreement for the estate's irrigation pumps and sends technician Gary for all call-outs.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Miriam\", \"text\": \"The pool heating is a gas boiler, an AquaServ GX-200, installed in the pool plant room. It needs an annual winter shutdown-and-drain service before 1 December, plus quarterly checks, all under the AquaServ boiler plan at 85 pounds per visit.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-06\", \"source\": \"Miriam\", \"text\": \"The tennis court is due for resurfacing; the family uses it heavily from April to October.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Miriam\", \"text\": \"All vendor visits to the estate must be booked at least ten days ahead and confirmed by email.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Miriam\", \"text\": \"The assistant may approve single vendor jobs up to 500 pounds; anything above that needs Miriam's approval.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Miriam\", \"text\": \"Renew the security-system monitoring contract with SentinelCo for another year at 40 pounds per month.\", \"depends_on\": [\"F6\", \"R2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Miriam\", \"text\": \"Sign the AquaServ year-round boiler plan for the pool heating: quarterly checks plus the annual winter shutdown-and-drain, at 85 pounds per visit.\", \"depends_on\": [\"F3\", \"F2\", \"R2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-12\", \"source\": \"Miriam\", \"text\": \"Pay the AquaServ plan deposit of 85 pounds by 31 July. Done on 24 July.\", \"due\": \"2026-07-31\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Miriam\", \"text\": \"Book the tennis court resurfacing with Courtline for March 2027, when the court is out of use.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Miriam\", \"text\": \"The pool plant room stays locked and Tomas holds the only key; he must open up and be present for any service visit to equipment in that room.\", \"depends_on\": [\"F3\", \"F7\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Tomas\", \"text\": \"Tomas is on holiday from 30 November to 12 December; Peter covers the garden and pool area while he is away.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Miriam\", \"text\": \"Schedule the winter shutdown-and-drain service for the pool boiler with AquaServ for Friday 20 November at 09:00, with Tomas on site.\", \"depends_on\": [\"D2\", \"R1\", \"F5\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-14\", \"source\": \"Miriam\", \"text\": \"Book and confirm the annual pool heater service before 9 November. Not done yet.\", \"due\": \"2026-11-09\", \"status\": \"open\", \"depends_on\": [\"D5\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Miriam\", \"text\": \"The greenhouse heater is serviced once a year by Bloomfield Heating, usually in October.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Miriam\", \"text\": \"Book Bloomfield Heating for the annual greenhouse heater service in the second week of October.\", \"depends_on\": [\"F8\", \"R1\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Miriam\", \"text\": \"Confirm the greenhouse heater service appointment. Done on 8 September for 13 October.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-20\", \"source\": \"PoolStyle Direct\", \"text\": \"PoolStyle Direct has quoted 640 pounds to inspect and service the pool heat-pump pipework and the automatic pool cover in one visit; the quote is valid until 30 November.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Miriam\", \"text\": \"The outdoor pool is closed to the family from 1 November until the end of March.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Peter\", \"text\": \"Peter maintains the automatic pool cover himself; he cleans and lubricates the tracks each quarter.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Miriam\", \"text\": \"Rosa orders all household cleaning supplies from Hartley Wholesale on the first Monday of each month.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Miriam\", \"text\": \"The pool plant room also houses the filtration pumps and the dosing equipment for the pool.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Miriam\", \"text\": \"The estate's security monitoring is with SentinelCo; the alarm panel was last serviced in May.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-06\", \"source\": \"Miriam\", \"text\": \"The pool heating is not a gas boiler. The pipework inspection in late October confirmed the heater is a CalorTech HX-300 electric heat pump, installed in the pool plant room. It needs one annual service by CalorTech before the end of November; no winter shutdown-and-drain is required, and the AquaServ boiler plan does not apply to the heater. The plant room and the filtration pumps in it are unchanged, and AquaServ continues to look after the irrigation pumps.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Please get the pool heater's annual service booked and confirmed with the right vendor today, and put the visit in the calendar with whoever needs to be on site.\", \"options\": [{\"id\": \"a\", \"text\": \"Book AquaServ's winter shutdown-and-drain service for the pool boiler on Friday 20 November at 09:00, with Tomas on site.\"}, {\"id\": \"b\", \"text\": \"Book CalorTech's annual heat-pump service for Tuesday 17 November at 10:00, with Tomas on site.\"}, {\"id\": \"c\", \"text\": \"Book PoolStyle Direct's 640-pound pipework and pool-cover service for Thursday 26 November.\"}, {\"id\": \"d\", \"text\": \"Confirm AquaServ's next quarterly boiler check for Tuesday 8 December at 09:00.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\", \"d\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"], \"distractor_items\": [\"F9\"],\n  \"touched\": [{\"id\": \"D2\", \"direction\": \"Void: the AquaServ boiler plan no longer covers the pool heating; the heater needs a single annual CalorTech service instead of quarterly checks and a winter drain-down.\"}, {\"id\": \"D5\", \"direction\": \"Void: no shutdown-and-drain on 20 November; replace with the CalorTech annual heat-pump service before 30 November, booked at least ten days ahead, Tomas present.\"}],\n  \"untouched\": [\"D1\", \"D3\", \"D4\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Book and confirm the annual pool heater service today, at least ten days ahead, with Tomas present.\", \"correct_value\": \"CalorTech annual heat-pump service, Tuesday 17 November 2026 at 10:00\", \"stale_value\": \"AquaServ winter shutdown-and-drain, Friday 20 November 2026 at 09:00\"},\n  \"why\": \"The correction revokes F3 (gas boiler) and replaces it with a CalorTech HX-300 heat pump needing one annual autumn service. D2 rests on F3 and is void, and D5 rests on D2 and is void through the chain, so the 20 November drain-down and the December quarterly check are stale; the right act is the CalorTech annual service booked within the ten-day rule. D4 rests on F3 only for the plant-room location, which the correction leaves unchanged, and D1, D3 and D6 concern other equipment, so they stand. PoolStyle Direct's quote is a tempting but unrelated distractor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5247,
+    "completion_tokens": 2405,
+    "reasoning_tokens": 31,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01479052,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-07: due obligation O2 must be due on or before now\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Pool heater service chain",
+  "setting": "A household manager for the affluent Barrett family estate who relies on an assistant to track household staff schedules and vendor maintenance agreements",
+  "owner": "Miriam",
+  "now": "2026-11-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Miriam",
+    "text": "The estate's core staff are Tomas the head gardener, Rosa the housekeeper, and Peter the handyman. Miriam manages all vendor agreements for the estate."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Miriam",
+    "text": "AquaServ holds the maintenance agreement for the estate's irrigation pumps and sends technician Gary for all call-outs."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Miriam",
+    "text": "The pool heating is a gas boiler, an AquaServ GX-200, installed in the pool plant room. It needs an annual winter shutdown-and-drain service before 1 December, plus quarterly checks, all under the AquaServ boiler plan at 85 pounds per visit."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-06",
+    "source": "Miriam",
+    "text": "The tennis court is due for resurfacing; the family uses it heavily from April to October."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Miriam",
+    "text": "All vendor visits to the estate must be booked at least ten days ahead and confirmed by email."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Miriam",
+    "text": "The assistant may approve single vendor jobs up to 500 pounds; anything above that needs Miriam's approval."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Miriam",
+    "text": "Renew the security-system monitoring contract with SentinelCo for another year at 40 pounds per month.",
+    "depends_on": [
+     "F6",
+     "R2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Miriam",
+    "text": "Sign the AquaServ year-round boiler plan for the pool heating: quarterly checks plus the annual winter shutdown-and-drain, at 85 pounds per visit.",
+    "depends_on": [
+     "F3",
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-12",
+    "source": "Miriam",
+    "text": "Pay the AquaServ plan deposit of 85 pounds by 31 July. Done on 24 July.",
+    "due": "2026-07-31",
+    "status": "done",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Miriam",
+    "text": "Book the tennis court resurfacing with Courtline for March 2027, when the court is out of use.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Miriam",
+    "text": "The pool plant room stays locked and Tomas holds the only key; he must open up and be present for any service visit to equipment in that room.",
+    "depends_on": [
+     "F3",
+     "F7"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Tomas",
+    "text": "Tomas is on holiday from 30 November to 12 December; Peter covers the garden and pool area while he is away."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Miriam",
+    "text": "Schedule the winter shutdown-and-drain service for the pool boiler with AquaServ for Friday 20 November at 09:00, with Tomas on site.",
+    "depends_on": [
+     "D2",
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-14",
+    "source": "Miriam",
+    "text": "Book and confirm the annual pool heater service before 9 November. Not done yet.",
+    "due": "2026-11-09",
+    "status": "open",
+    "depends_on": [
+     "D5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Miriam",
+    "text": "The greenhouse heater is serviced once a year by Bloomfield Heating, usually in October."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Miriam",
+    "text": "Book Bloomfield Heating for the annual greenhouse heater service in the second week of October.",
+    "depends_on": [
+     "F8",
+     "R1"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "Miriam",
+    "text": "Confirm the greenhouse heater service appointment. Done on 8 September for 13 October.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-20",
+    "source": "PoolStyle Direct",
+    "text": "PoolStyle Direct has quoted 640 pounds to inspect and service the pool heat-pump pipework and the automatic pool cover in one visit; the quote is valid until 30 November."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Miriam",
+    "text": "The outdoor pool is closed to the family from 1 November until the end of March."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Peter",
+    "text": "Peter maintains the automatic pool cover himself; he cleans and lubricates the tracks each quarter."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Miriam",
+    "text": "Rosa orders all household cleaning supplies from Hartley Wholesale on the first Monday of each month."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "Miriam",
+    "text": "The pool plant room also houses the filtration pumps and the dosing equipment for the pool."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Miriam",
+    "text": "The estate's security monitoring is with SentinelCo; the alarm panel was last serviced in May."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-06",
+   "source": "Miriam",
+   "text": "The pool heating is not a gas boiler. The pipework inspection in late October confirmed the heater is a CalorTech HX-300 electric heat pump, installed in the pool plant room. It needs one annual service by CalorTech before the end of November; no winter shutdown-and-drain is required, and the AquaServ boiler plan does not apply to the heater. The plant room and the filtration pumps in it are unchanged, and AquaServ continues to look after the irrigation pumps.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Please get the pool heater's annual service booked and confirmed with the right vendor today, and put the visit in the calendar with whoever needs to be on site.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book AquaServ's winter shutdown-and-drain service for the pool boiler on Friday 20 November at 09:00, with Tomas on site."
+    },
+    {
+     "id": "b",
+     "text": "Book CalorTech's annual heat-pump service for Tuesday 17 November at 10:00, with Tomas on site."
+    },
+    {
+     "id": "c",
+     "text": "Book PoolStyle Direct's 640-pound pipework and pool-cover service for Thursday 26 November."
+    },
+    {
+     "id": "d",
+     "text": "Confirm AquaServ's next quarterly boiler check for Tuesday 8 December at 09:00."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a",
+    "d"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "Void: the AquaServ boiler plan no longer covers the pool heating; the heater needs a single annual CalorTech service instead of quarterly checks and a winter drain-down."
+    },
+    {
+     "id": "D5",
+     "direction": "Void: no shutdown-and-drain on 20 November; replace with the CalorTech annual heat-pump service before 30 November, booked at least ten days ahead, Tomas present."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D3",
+    "D4",
+    "D6"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Book and confirm the annual pool heater service today, at least ten days ahead, with Tomas present.",
+    "correct_value": "CalorTech annual heat-pump service, Tuesday 17 November 2026 at 10:00",
+    "stale_value": "AquaServ winter shutdown-and-drain, Friday 20 November 2026 at 09:00"
+   },
+   "why": "The correction revokes F3 (gas boiler) and replaces it with a CalorTech HX-300 heat pump needing one annual autumn service. D2 rests on F3 and is void, and D5 rests on D2 and is void through the chain, so the 20 November drain-down and the December quarterly check are stale; the right act is the CalorTech annual service booked within the ten-day rule. D4 rests on F3 only for the plant-room location, which the correction leaves unchanged, and D1, D3 and D6 concern other equipment, so they stand. PoolStyle Direct's quote is a tempting but unrelated distractor."
+  },
+  "id": "G3-07",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

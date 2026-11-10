@@ -1,0 +1,340 @@
+{
+ "id": "G4-10",
+ "class": 4,
+ "setting": "A private tutor running Mathnasium-style services at Scholar's Nook whose assistant tracks each family's session-package terms and schedule adjustments",
+ "prompt_sha256": "7eb91796a1dedb74e5ecff327d43e18b2b34e7710da935ba88f659d4865c51e5",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Makeup session beside a spring top-up\",\n \"setting\": \"A private tutor running Mathnasium-style services at Scholar's Nook whose assistant tracks each family's session-package terms and schedule adjustments\",\n \"owner\": \"Marta\",\n \"now\": \"2026-11-09\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"Scholar's Nook runs term-time maths tutoring from the Maple Street studio; Marta owns the business and employs tutors Dana and Ben.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Priya Patel, age 12, is enrolled on a 24-session package of 60-minute sessions that runs through the autumn and winter terms.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Priya's standing slot is Tuesdays at 16:30 with tutor Dana.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Any missed session is converted into a makeup credit that must be booked within 30 days of the missed date.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"All weekly bookings are confirmed by Monday noon of that week.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Marta\", \"text\": \"Session length follows the family's package terms; the standard session is 60 minutes.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Priya's tuition follows her standing weekly slot with Dana for the whole package period.\", \"depends_on\": [\"F2\", \"F3\", \"R3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Marta\", \"text\": \"The Okonkwo family enrolled twins Chidi and Ngozi on a shared 16-session package.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"The Okonkwo twins take their sessions together on Thursdays at 17:00 with Ben.\", \"depends_on\": [\"F4\", \"R3\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"The studio closes for summer holidays from 20 July to 16 August 2026.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marta\", \"text\": \"All term-time schedules pause during the summer closure and resume in the week of 17 August.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Marta\", \"text\": \"Dana takes a training course on Friday 9 October 2026, so no Friday sessions that day.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"Marta\", \"text\": \"The Navarro family joined with a 12-session package of 60-minute sessions for their son Mateo.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"Marta\", \"text\": \"Mateo Navarro takes his sessions on Wednesdays at 16:00 with Dana.\", \"depends_on\": [\"F7\", \"R3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Marta\", \"text\": \"The studio's workbook supplier is Cedar Education Supplies; orders go by email.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-30\", \"source\": \"Marta\", \"text\": \"Send the Patel family their October invoice for four sessions. Done on 2 October.\", \"due\": \"2026-10-05\", \"status\": \"done\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Marta\", \"text\": \"Priya's 60-minute sessions are billed at 48 pounds each under the Patel package.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-14\", \"source\": \"Marta\", \"text\": \"Mateo Navarro's family gets a sibling-discount rate of 45 pounds per session if his sister joins later.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Marta\", \"text\": \"Ben covers Dana's Tuesday clients when Dana is on the October training day.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-26\", \"source\": \"Priya's mother\", \"text\": \"Priya will miss her Tuesday 27 October session because of a school trip.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-28\", \"source\": \"Marta\", \"text\": \"Priya's missed session of 27 October becomes a makeup credit, to be booked within 30 days under the makeup rule.\", \"depends_on\": [\"F11\", \"R1\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-28\", \"source\": \"Marta\", \"text\": \"The Okonkwo twins extended their package with 90-minute sessions for the winter term.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-30\", \"source\": \"Marta\", \"text\": \"Dana is free on Saturday mornings at the studio; the 10:00 Saturday slot is open in November.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-11-02\", \"source\": \"Marta\", \"text\": \"Priya's makeup session is set for Saturday 14 November 2026 at 10:00 with Dana, 60 minutes, matching her package terms.\", \"depends_on\": [\"D6\", \"F13\", \"R3\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-11-02\", \"source\": \"Marta\", \"text\": \"Confirm and book Priya Patel's makeup session in the calendar by Monday 9 November. Not done yet.\", \"due\": \"2026-11-09\", \"status\": \"open\", \"depends_on\": [\"D7\", \"R2\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-11-03\", \"source\": \"Marta\", \"text\": \"The studio printer needs new toner; the office supply shop on Birch Road stocks it.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-11-04\", \"source\": \"Marta\", \"text\": \"Email Cedar Education Supplies the winter-term workbook order. Not done yet.\", \"due\": \"2026-11-30\", \"status\": \"open\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-11-05\", \"source\": \"Marta\", \"text\": \"The Patel family has 9 unused sessions left in their current 24-session package after this week.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"state\", \"date\": \"2026-11-09\", \"source\": \"Priya's mother\", \"text\": \"The Patel family has paid for a 4-session top-up that applies to the spring term from 12 January 2027 onward; the top-up sessions are separate from the sessions remaining in the current package and do not change any November or December bookings.\", \"revokes\": []},\n \"task\": {\"text\": \"Please get Priya's makeup session sorted and booked in the calendar for this week.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 60 minutes.\"}, {\"id\": \"b\", \"text\": \"Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 90 minutes.\"}, {\"id\": \"c\", \"text\": \"Move Priya's standing slot from Tuesdays at 16:30 to Thursdays at 17:00 starting next week.\"}, {\"id\": \"d\", \"text\": \"Add four extra Patel sessions to the calendar on Monday evenings starting 16 November.\"}]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [\"c\", \"d\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Book Priya Patel's makeup session in the calendar today\", \"correct_value\": \"Saturday 14 November 2026 at 10:00 with Dana, 60 minutes\", \"stale_value\": null},\n  \"why\": \"The change only adds spring-term top-up sessions for the Patels from January 2027 and explicitly leaves all November and December bookings untouched, so every decision stands and the correct act is to book the makeup session exactly as decided on 2 November: Saturday 14 November at 10:00 with Dana, 60 minutes. Option b wrongly applies the Okonkwo twins' new 90-minute session length, option c needlessly changes the standing slot, and option d needlessly adds the spring top-up sessions to the November calendar.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2841,
+    "completion_tokens": 3792,
+    "reasoning_tokens": 1422,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01752492,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Makeup session beside a spring top-up",
+  "setting": "A private tutor running Mathnasium-style services at Scholar's Nook whose assistant tracks each family's session-package terms and schedule adjustments",
+  "owner": "Marta",
+  "now": "2026-11-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Scholar's Nook runs term-time maths tutoring from the Maple Street studio; Marta owns the business and employs tutors Dana and Ben."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Priya Patel, age 12, is enrolled on a 24-session package of 60-minute sessions that runs through the autumn and winter terms."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Priya's standing slot is Tuesdays at 16:30 with tutor Dana."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any missed session is converted into a makeup credit that must be booked within 30 days of the missed date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "All weekly bookings are confirmed by Monday noon of that week."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "Session length follows the family's package terms; the standard session is 60 minutes."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Priya's tuition follows her standing weekly slot with Dana for the whole package period.",
+    "depends_on": [
+     "F2",
+     "F3",
+     "R3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "The Okonkwo family enrolled twins Chidi and Ngozi on a shared 16-session package."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "The Okonkwo twins take their sessions together on Thursdays at 17:00 with Ben.",
+    "depends_on": [
+     "F4",
+     "R3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "The studio closes for summer holidays from 20 July to 16 August 2026."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "All term-time schedules pause during the summer closure and resume in the week of 17 August.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Dana takes a training course on Friday 9 October 2026, so no Friday sessions that day."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Marta",
+    "text": "The Navarro family joined with a 12-session package of 60-minute sessions for their son Mateo."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marta",
+    "text": "Mateo Navarro takes his sessions on Wednesdays at 16:00 with Dana.",
+    "depends_on": [
+     "F7",
+     "R3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Marta",
+    "text": "The studio's workbook supplier is Cedar Education Supplies; orders go by email."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-30",
+    "source": "Marta",
+    "text": "Send the Patel family their October invoice for four sessions. Done on 2 October.",
+    "due": "2026-10-05",
+    "status": "done"
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Marta",
+    "text": "Priya's 60-minute sessions are billed at 48 pounds each under the Patel package."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-14",
+    "source": "Marta",
+    "text": "Mateo Navarro's family gets a sibling-discount rate of 45 pounds per session if his sister joins later.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Marta",
+    "text": "Ben covers Dana's Tuesday clients when Dana is on the October training day."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-26",
+    "source": "Priya's mother",
+    "text": "Priya will miss her Tuesday 27 October session because of a school trip."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "Priya's missed session of 27 October becomes a makeup credit, to be booked within 30 days under the makeup rule.",
+    "depends_on": [
+     "F11",
+     "R1"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "The Okonkwo twins extended their package with 90-minute sessions for the winter term."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-30",
+    "source": "Marta",
+    "text": "Dana is free on Saturday mornings at the studio; the 10:00 Saturday slot is open in November."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-11-02",
+    "source": "Marta",
+    "text": "Priya's makeup session is set for Saturday 14 November 2026 at 10:00 with Dana, 60 minutes, matching her package terms.",
+    "depends_on": [
+     "D6",
+     "F13",
+     "R3",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-11-02",
+    "source": "Marta",
+    "text": "Confirm and book Priya Patel's makeup session in the calendar by Monday 9 November. Not done yet.",
+    "due": "2026-11-09",
+    "status": "open",
+    "depends_on": [
+     "D7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-03",
+    "source": "Marta",
+    "text": "The studio printer needs new toner; the office supply shop on Birch Road stocks it."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-11-04",
+    "source": "Marta",
+    "text": "Email Cedar Education Supplies the winter-term workbook order. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-11-05",
+    "source": "Marta",
+    "text": "The Patel family has 9 unused sessions left in their current 24-session package after this week."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-11-09",
+   "source": "Priya's mother",
+   "text": "The Patel family has paid for a 4-session top-up that applies to the spring term from 12 January 2027 onward; the top-up sessions are separate from the sessions remaining in the current package and do not change any November or December bookings.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Please get Priya's makeup session sorted and booked in the calendar for this week.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 60 minutes."
+    },
+    {
+     "id": "b",
+     "text": "Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 90 minutes."
+    },
+    {
+     "id": "c",
+     "text": "Move Priya's standing slot from Tuesdays at 16:30 to Thursdays at 17:00 starting next week."
+    },
+    {
+     "id": "d",
+     "text": "Add four extra Patel sessions to the calendar on Monday evenings starting 16 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book Priya Patel's makeup session in the calendar today",
+    "correct_value": "Saturday 14 November 2026 at 10:00 with Dana, 60 minutes",
+    "stale_value": null
+   },
+   "why": "The change only adds spring-term top-up sessions for the Patels from January 2027 and explicitly leaves all November and December bookings untouched, so every decision stands and the correct act is to book the makeup session exactly as decided on 2 November: Saturday 14 November at 10:00 with Dana, 60 minutes. Option b wrongly applies the Okonkwo twins' new 90-minute session length, option c needlessly changes the standing slot, and option d needlessly adds the spring top-up sessions to the November calendar."
+  },
+  "id": "G4-10",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

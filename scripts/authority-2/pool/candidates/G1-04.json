@@ -1,0 +1,377 @@
+{
+ "id": "G1-04",
+ "class": 1,
+ "setting": "A warehouse supervisor at Treadwell Distribution whose logistics assistant keeps records of loading-dock slot decisions and carrier disputes",
+ "prompt_sha256": "19466aa0f5a0cec0f37d4c6a0f11caf90cce2b0283141a2ac16ef579167dfffd",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Bayline dock slot moved to Dock 5\",\n \"setting\": \"A warehouse supervisor at Treadwell Distribution whose logistics assistant keeps records of loading-dock slot decisions and carrier disputes\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-09-21\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marcus\", \"text\": \"Dock 4 can hold about 300 pallets of staging overflow beside the returns area.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Treadwell management\", \"text\": \"A carrier only gets a standing dock slot if it has a signed annual agreement with the site.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"receiving clerk Denny\", \"text\": \"Meridian Freight short-delivered 40 cartons on 5 June; the claim value is 450 dollars.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Treadwell management\", \"text\": \"Disputes with a claim value above 300 dollars need a written incident record before any settlement is issued.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-05\", \"source\": \"Marcus\", \"text\": \"Dock 4 becomes pallet-staging overflow from 1 July.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Marcus\", \"text\": \"Settle the Meridian Freight shortage claim by issuing a credit note of 450 dollars.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-09\", \"source\": \"Marcus\", \"text\": \"Bayline Carrier signed the annual agreement with the site on 1 June 2026; it runs to 31 May 2027.\", \"expires\": \"2027-05-31\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"site manager Elena Voss\", \"text\": \"Bayline Carrier holds the standing loading slot on Tuesdays and Thursdays, 06:00-08:00, at Dock 3.\", \"expires\": \"2027-05-31\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"Marcus\", \"text\": \"Bayline gets the standing morning slot: Tuesdays and Thursdays, 06:00-08:00, at Dock 3.\", \"depends_on\": [\"F7\", \"F3\", \"R1\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"shift lead Ramona\", \"text\": \"Ramona's crew of four loaders works the early shift with a 05:30 start.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marcus\", \"text\": \"Crestline Parcels drops about 80 parcels per run at the site.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Marcus\", \"text\": \"Crestline Parcels takes the standing slot on Mondays and Wednesdays, 09:00-10:30, at Dock 1.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marcus\", \"text\": \"Ramona's crew covers the Bayline arrivals; their shift starts at 05:45 on slot days and they work Dock 3.\", \"depends_on\": [\"F7\", \"F4\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-15\", \"source\": \"Treadwell management\", \"text\": \"Issue the written incident record and the credit note for the Meridian Freight claim. Done on 10 July.\", \"due\": \"2026-07-15\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"receiving clerk Denny\", \"text\": \"The Bayline loads use about 1.8 pallets of edge guards per week.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Marcus\", \"text\": \"Place a standing weekly order of two pallets of edge guards each Sunday so stock is ready before the Bayline loads of that week.\", \"depends_on\": [\"D3\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"maintenance\", \"text\": \"Forklift number 2 is due for its service contract renewal in October.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"Nordhaul Logistics\", \"text\": \"Nordhaul Logistics quoted a handling rate 10 percent below the current carrier for a trial period.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"gate office\", \"text\": \"Paper check-in takes about 25 minutes per driver; the digital app takes about 6 minutes.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-08-27\", \"source\": \"maintenance\", \"text\": \"New LED yard lights were installed covering Docks 5 and 6.\"},\n  {\"id\": \"F3b\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"Marcus\", \"text\": \"The painted bay numbers on Docks 1 to 4 are peeling badly.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-28\", \"source\": \"Marcus\", \"text\": \"Carrier check-in moves to the digital app from 5 October.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Marcus\", \"text\": \"Repaint the bay numbers on Docks 1 to 4 during the October shutdown week.\", \"depends_on\": [\"F3b\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"receiving clerk Denny\", \"text\": \"August outbound volume was 4,200 pallets.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-03\", \"source\": \"maintenance\", \"text\": \"Renew the service contract for forklift number 2. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"F11\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-09\", \"source\": \"Nordhaul Logistics\", \"text\": \"Nordhaul Logistics offered a trial loading package: Tuesdays and Thursdays, 05:00-07:00, at Dock 2, available from 29 September.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-11\", \"source\": \"Marcus\", \"text\": \"Declined the Nordhaul trial package; Bayline stays the primary carrier under the annual agreement.\", \"depends_on\": [\"F10\", \"F13\", \"F3\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"site manager Elena Voss\", \"text\": \"Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice. Not done yet.\", \"due\": \"2026-09-18\", \"status\": \"open\", \"depends_on\": [\"D3\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-14\", \"source\": \"site manager Elena Voss\", \"text\": \"Bayline's standing dock slot changes: from Monday 21 September 2026 the carrier loads on Mondays and Wednesdays, 05:30-07:30, at Dock 5. The Tuesday/Thursday 06:00-08:00 slot at Dock 3 no longer applies. Bayline remains the primary carrier and the annual agreement stands unchanged.\", \"revokes\": [\"F7\"]},\n \"task\": {\"text\": \"Please get Bayline's loading slots booked in the yard system for this week and post the crew notice.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Bayline for Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3.\"}, {\"id\": \"b\", \"text\": \"Book Nordhaul for Tuesday 22 and Thursday 24 September, 05:00-07:00, at Dock 2.\"}, {\"id\": \"c\", \"text\": \"Book Bayline for Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F7\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Revise the standing slot to Mondays and Wednesdays, 05:30-07:30, at Dock 5, per the 14 September correction.\"},\n   {\"id\": \"D4\", \"direction\": \"Ramona's crew now starts at 05:15 on Mondays and Wednesdays and works Dock 5 instead of 05:45 slot days at Dock 3.\"},\n   {\"id\": \"D5\", \"direction\": \"The weekly two-pallet edge-guard order should now be placed each Saturday so stock is ready for the Monday and Wednesday Bayline loads.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice\", \"correct_value\": \"Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5\", \"stale_value\": \"Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3\"},\n  \"why\": \"The 14 September correction revokes F7 and moves Bayline's slot to Mondays and Wednesdays 05:30-07:30 at Dock 5, so booking for the week must use the new slot. D3 and D4 rest on F7 directly and D5 rests on D3, so all three are touched; the other decisions do not rest on F7 or on any touched decision. The Nordhaul trial package (F13) was declined on 11 September and is not the current arrangement, so option b is the distractor act.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2828,
+    "completion_tokens": 6234,
+    "reasoning_tokens": 3605,
+    "cached_tokens": 0
+   },
+   "cost": 0.0313888,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Bayline dock slot moved to Dock 5\",\n \"setting\": \"A warehouse supervisor at Treadwell Distribution whose logistics assistant keeps records of loading-dock slot decisions and carrier disputes\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-09-21\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marcus\", \"text\": \"Dock 4 can hold about 300 pallets of staging overflow beside the returns area.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Treadwell management\", \"text\": \"A carrier only gets a standing dock slot if it has a signed annual agreement with the site.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"receiving clerk Denny\", \"text\": \"Meridian Freight short-delivered 40 cartons on 5 June; the claim value is 450 dollars.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Treadwell management\", \"text\": \"Disputes with a claim value above 300 dollars need a written incident record before any settlement is issued.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-05\", \"source\": \"Marcus\", \"text\": \"Dock 4 becomes pallet-staging overflow from 1 July.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Marcus\", \"text\": \"Settle the Meridian Freight shortage claim by issuing a credit note of 450 dollars.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-09\", \"source\": \"Marcus\", \"text\": \"Bayline Carrier signed the annual agreement with the site on 1 June 2026; it runs to 31 May 2027.\", \"expires\": \"2027-05-31\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"site manager Elena Voss\", \"text\": \"Bayline Carrier holds the standing loading slot on Tuesdays and Thursdays, 06:00-08:00, at Dock 3.\", \"expires\": \"2027-05-31\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"Marcus\", \"text\": \"Bayline gets the standing morning slot: Tuesdays and Thursdays, 06:00-08:00, at Dock 3.\", \"depends_on\": [\"F7\", \"F3\", \"R1\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"shift lead Ramona\", \"text\": \"Ramona's crew of four loaders works the early shift with a 05:30 start.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marcus\", \"text\": \"Crestline Parcels drops about 80 parcels per run at the site.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Marcus\", \"text\": \"Crestline Parcels takes the standing slot on Mondays and Wednesdays, 09:00-10:30, at Dock 1.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marcus\", \"text\": \"Ramona's crew covers the Bayline arrivals; their shift starts at 05:45 on slot days and they work Dock 3.\", \"depends_on\": [\"F7\", \"F4\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-15\", \"source\": \"Treadwell management\", \"text\": \"Issue the written incident record and the credit note for the Meridian Freight claim. Done on 10 July.\", \"due\": \"2026-07-15\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"receiving clerk Denny\", \"text\": \"The Bayline loads use about 1.8 pallets of edge guards per week.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Marcus\", \"text\": \"Place a standing weekly order of two pallets of edge guards each Sunday so stock is ready before the Bayline loads of that week.\", \"depends_on\": [\"D3\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"maintenance\", \"text\": \"Forklift number 2 is due for its service contract renewal in October.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"Nordhaul Logistics\", \"text\": \"Nordhaul Logistics quoted a handling rate 10 percent below the current carrier for a trial period.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"gate office\", \"text\": \"Paper check-in takes about 25 minutes per driver; the digital app takes about 6 minutes.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-08-27\", \"source\": \"maintenance\", \"text\": \"New LED yard lights were installed covering Docks 5 and 6.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"Marcus\", \"text\": \"The painted bay numbers on Docks 1 to 4 are peeling badly.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-28\", \"source\": \"Marcus\", \"text\": \"Carrier check-in moves to the digital app from 5 October.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Marcus\", \"text\": \"Repaint the bay numbers on Docks 1 to 4 during the October shutdown week.\", \"depends_on\": [\"F9\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"receiving clerk Denny\", \"text\": \"August outbound volume was 4,200 pallets.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-03\", \"source\": \"maintenance\", \"text\": \"Renew the service contract for forklift number 2. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"F11\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-09\", \"source\": \"Nordhaul Logistics\", \"text\": \"Nordhaul Logistics offered a trial loading package: Tuesdays and Thursdays, 05:00-07:00, at Dock 2, available from 29 September.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-11\", \"source\": \"Marcus\", \"text\": \"Declined the Nordhaul trial package; Bayline stays the primary carrier under the annual agreement.\", \"depends_on\": [\"F10\", \"F13\", \"F3\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"site manager Elena Voss\", \"text\": \"Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice. Not done yet.\", \"due\": \"2026-09-18\", \"status\": \"open\", \"depends_on\": [\"D3\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-14\", \"source\": \"site manager Elena Voss\", \"text\": \"Bayline's standing dock slot changes: from Monday 21 September 2026 the carrier loads on Mondays and Wednesdays, 05:30-07:30, at Dock 5. The Tuesday/Thursday 06:00-08:00 slot at Dock 3 no longer applies. Bayline remains the primary carrier and the annual agreement stands unchanged.\", \"revokes\": [\"F7\"]},\n \"task\": {\"text\": \"Please get Bayline's loading slots booked in the yard system for this week and post the crew notice.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Bayline for Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3.\"}, {\"id\": \"b\", \"text\": \"Book Nordhaul for Tuesday 22 and Thursday 24 September, 05:00-07:00, at Dock 2.\"}, {\"id\": \"c\", \"text\": \"Book Bayline for Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F7\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Revise the standing slot to Mondays and Wednesdays, 05:30-07:30, at Dock 5, per the 14 September correction.\"},\n   {\"id\": \"D4\", \"direction\": \"Ramona's crew now starts at 05:15 on Mondays and Wednesdays and works Dock 5 instead of 05:45 slot days at Dock 3.\"},\n   {\"id\": \"D5\", \"direction\": \"The weekly two-pallet edge-guard order should now be placed each Saturday so stock is ready for the Monday and Wednesday Bayline loads.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice\", \"correct_value\": \"Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5\", \"stale_value\": \"Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3\"},\n  \"why\": \"The 14 September correction revokes F7 and moves Bayline's slot to Mondays and Wednesdays 05:30-07:30 at Dock 5, so booking for the week must use the new slot. D3 and D4 rest on F7 directly and D5 rests on D3, so all three are touched; the other decisions do not rest on F7 or on any touched decision. The Nordhaul trial package (F13) was declined on 11 September and is not the current arrangement, so option b is the distractor act.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5505,
+    "completion_tokens": 2641,
+    "reasoning_tokens": 14,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01611716,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G1-04: F3b: id must be F<n> for kind state\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Bayline dock slot moved to Dock 5",
+  "setting": "A warehouse supervisor at Treadwell Distribution whose logistics assistant keeps records of loading-dock slot decisions and carrier disputes",
+  "owner": "Marcus",
+  "now": "2026-09-21",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marcus",
+    "text": "Dock 4 can hold about 300 pallets of staging overflow beside the returns area."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Treadwell management",
+    "text": "A carrier only gets a standing dock slot if it has a signed annual agreement with the site."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "receiving clerk Denny",
+    "text": "Meridian Freight short-delivered 40 cartons on 5 June; the claim value is 450 dollars."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Treadwell management",
+    "text": "Disputes with a claim value above 300 dollars need a written incident record before any settlement is issued."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-05",
+    "source": "Marcus",
+    "text": "Dock 4 becomes pallet-staging overflow from 1 July.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Marcus",
+    "text": "Settle the Meridian Freight shortage claim by issuing a credit note of 450 dollars.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-09",
+    "source": "Marcus",
+    "text": "Bayline Carrier signed the annual agreement with the site on 1 June 2026; it runs to 31 May 2027.",
+    "expires": "2027-05-31"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "site manager Elena Voss",
+    "text": "Bayline Carrier holds the standing loading slot on Tuesdays and Thursdays, 06:00-08:00, at Dock 3.",
+    "expires": "2027-05-31"
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-18",
+    "source": "Marcus",
+    "text": "Bayline gets the standing morning slot: Tuesdays and Thursdays, 06:00-08:00, at Dock 3.",
+    "depends_on": [
+     "F7",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "shift lead Ramona",
+    "text": "Ramona's crew of four loaders works the early shift with a 05:30 start."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Marcus",
+    "text": "Crestline Parcels drops about 80 parcels per run at the site."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Marcus",
+    "text": "Crestline Parcels takes the standing slot on Mondays and Wednesdays, 09:00-10:30, at Dock 1.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marcus",
+    "text": "Ramona's crew covers the Bayline arrivals; their shift starts at 05:45 on slot days and they work Dock 3.",
+    "depends_on": [
+     "F7",
+     "F4"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-15",
+    "source": "Treadwell management",
+    "text": "Issue the written incident record and the credit note for the Meridian Freight claim. Done on 10 July.",
+    "due": "2026-07-15",
+    "status": "done",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "receiving clerk Denny",
+    "text": "The Bayline loads use about 1.8 pallets of edge guards per week."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Marcus",
+    "text": "Place a standing weekly order of two pallets of edge guards each Sunday so stock is ready before the Bayline loads of that week.",
+    "depends_on": [
+     "D3",
+     "F5"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "maintenance",
+    "text": "Forklift number 2 is due for its service contract renewal in October."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "Nordhaul Logistics",
+    "text": "Nordhaul Logistics quoted a handling rate 10 percent below the current carrier for a trial period."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "gate office",
+    "text": "Paper check-in takes about 25 minutes per driver; the digital app takes about 6 minutes."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-08-27",
+    "source": "maintenance",
+    "text": "New LED yard lights were installed covering Docks 5 and 6."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "Marcus",
+    "text": "The painted bay numbers on Docks 1 to 4 are peeling badly."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-08-28",
+    "source": "Marcus",
+    "text": "Carrier check-in moves to the digital app from 5 October.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Marcus",
+    "text": "Repaint the bay numbers on Docks 1 to 4 during the October shutdown week.",
+    "depends_on": [
+     "F9"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "receiving clerk Denny",
+    "text": "August outbound volume was 4,200 pallets."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-03",
+    "source": "maintenance",
+    "text": "Renew the service contract for forklift number 2. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-09",
+    "source": "Nordhaul Logistics",
+    "text": "Nordhaul Logistics offered a trial loading package: Tuesdays and Thursdays, 05:00-07:00, at Dock 2, available from 29 September."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-11",
+    "source": "Marcus",
+    "text": "Declined the Nordhaul trial package; Bayline stays the primary carrier under the annual agreement.",
+    "depends_on": [
+     "F10",
+     "F13",
+     "F3"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "site manager Elena Voss",
+    "text": "Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice. Not done yet.",
+    "due": "2026-09-18",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-09-14",
+   "source": "site manager Elena Voss",
+   "text": "Bayline's standing dock slot changes: from Monday 21 September 2026 the carrier loads on Mondays and Wednesdays, 05:30-07:30, at Dock 5. The Tuesday/Thursday 06:00-08:00 slot at Dock 3 no longer applies. Bayline remains the primary carrier and the annual agreement stands unchanged.",
+   "revokes": [
+    "F7"
+   ]
+  },
+  "task": {
+   "text": "Please get Bayline's loading slots booked in the yard system for this week and post the crew notice.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Bayline for Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3."
+    },
+    {
+     "id": "b",
+     "text": "Book Nordhaul for Tuesday 22 and Thursday 24 September, 05:00-07:00, at Dock 2."
+    },
+    {
+     "id": "c",
+     "text": "Book Bayline for Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F7"
+   ],
+   "distractor_items": [
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Revise the standing slot to Mondays and Wednesdays, 05:30-07:30, at Dock 5, per the 14 September correction."
+    },
+    {
+     "id": "D4",
+     "direction": "Ramona's crew now starts at 05:15 on Mondays and Wednesdays and works Dock 5 instead of 05:45 slot days at Dock 3."
+    },
+    {
+     "id": "D5",
+     "direction": "The weekly two-pallet edge-guard order should now be placed each Saturday so stock is ready for the Monday and Wednesday Bayline loads."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D6",
+    "D7",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Confirm Bayline's loading slots in the yard system for the week of 21 September and post the crew notice",
+    "correct_value": "Monday 21 and Wednesday 23 September, 05:30-07:30, at Dock 5",
+    "stale_value": "Tuesday 22 and Thursday 24 September, 06:00-08:00, at Dock 3"
+   },
+   "why": "The 14 September correction revokes F7 and moves Bayline's slot to Mondays and Wednesdays 05:30-07:30 at Dock 5, so booking for the week must use the new slot. D3 and D4 rest on F7 directly and D5 rests on D3, so all three are touched; the other decisions do not rest on F7 or on any touched decision. The Nordhaul trial package (F13) was declined on 11 September and is not the current arrangement, so option b is the distractor act."
+  },
+  "id": "G1-04",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

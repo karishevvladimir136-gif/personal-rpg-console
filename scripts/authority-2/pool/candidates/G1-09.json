@@ -1,0 +1,340 @@
+{
+ "id": "G1-09",
+ "class": 1,
+ "setting": "A farm owner at Two Rivers Dairy whose operations assistant remembers feed-supplier contracts and veterinary visit outcomes",
+ "prompt_sha256": "26d173b94882c634d64202de715bc3a388cba38135441d884150803ffc8e3017",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Pellet supplier switch at Two Rivers Dairy\",\n \"setting\": \"A farm owner at Two Rivers Dairy whose operations assistant remembers feed-supplier contracts and veterinary visit outcomes\",\n \"owner\": \"Martha\",\n \"now\": \"2026-11-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Martha\", \"text\": \"Two Rivers Dairy milks 120 cows and employs two herdspeople, Ben and Katja.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Martha\", \"text\": \"All feed invoices are paid within 14 days of delivery, and no feed order over 2000 pounds is placed without Martha's approval.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Martha\", \"text\": \"Any change of animal-medicine supplier or vaccination plan goes through the veterinary practice first.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Martha\", \"text\": \"The herd's veterinary practice is Dalehead Vets in Ashford; visits are charged at 90 pounds per farm call.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Martha\", \"text\": \"Book the herd's bovine vaccination day with Dalehead Vets in late August.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Martha\", \"text\": \"Hay for winter is bought from neighbouring Fern Hollow Farm at 145 pounds per round bale.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Martha\", \"text\": \"Reserve 180 round bales of hay from Fern Hollow Farm for winter, to be collected in October.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Martha\", \"text\": \"The farm's silage clamp holds enough for the winter, so no extra silage purchase is needed.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Martha\", \"text\": \"Millbrook Feed Cooperative supplies the herd's dairy pellets at 28 pounds per 100-kilogram bag, delivered on the first Monday of each month.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Martha\", \"text\": \"Buy all dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag, with a standing monthly order.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"Martha\", \"text\": \"The milk tanker from Dales Creamery collects every second day at 6 a.m.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"Martha\", \"text\": \"Pay Millbrook's July invoice within the 14-day payment rule. Done on 15 July.\", \"due\": \"2026-07-20\", \"status\": \"done\", \"depends_on\": [\"R1\", \"D3\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Martha\", \"text\": \"Set the monthly pellet order at 80 bags, enough for the milking herd between deliveries.\", \"depends_on\": [\"F5\", \"D3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Martha\", \"text\": \"Keep the Millbrook arrangement as the standing pellet supply for the rest of the year and renew the frame agreement in December.\", \"depends_on\": [\"D3\", \"D4\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-25\", \"source\": \"Martha\", \"text\": \"Mineral supplements for the herd come from Dalehead Vets' farm shop at 60 pounds per 25-kilogram tub.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-30\", \"source\": \"Martha\", \"text\": \"Order four tubs of mineral supplement from the Dalehead farm shop each quarter, as the vet recommends.\", \"depends_on\": [\"F7\", \"R2\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Ben\", \"text\": \"The vaccination day on 27 August went well; no adverse reactions in the herd.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Martha\", \"text\": \"Set the monthly feed budget line for dairy pellets at 2240 pounds.\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Martha\", \"text\": \"Have the silage analysed by Dalehead Vets' lab in October rather than buying extra forage.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Martha\", \"text\": \"The yard electrician, Orchard Electrical, services the milking parlour every six months; next service is due in January.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Martha\", \"text\": \"All 180 hay bales were collected from Fern Hollow Farm and stored in the Dutch barn.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Katja\", \"text\": \"Herd condition scores have improved since the August vaccination day; no new health flags from the vet.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Martha\", \"text\": \"Westfield Agri quoted 25.40 pounds per 100-kilogram bag for dairy pellets, delivered free on orders of 60 bags or more.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-28\", \"source\": \"Martha\", \"text\": \"The silage analysis came back from the lab showing good protein levels; no extra concentrate top-up is needed.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-30\", \"source\": \"Martha\", \"text\": \"Place the November pellet order for the standing 80-bag monthly quantity. Not done yet.\", \"due\": \"2026-11-05\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-11-02\", \"source\": \"Martha\", \"text\": \"Katja will be on holiday the week of 16 November, so parlour cover that week is Ben alone.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-05\", \"source\": \"Martha\", \"text\": \"Harvest Grains Ltd is now the dairy-pellet supplier at 23.50 pounds per 100-kilogram bag, and all future pellet orders go to Harvest Grains; the Millbrook arrangement and its price and delivery terms are ended. Deliveries from Harvest Grains are arranged per order, with the next delivery slot on Tuesday 10 November. Everything else about the feeding plan stays as it is.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"Can you sort out the November pellets today? Place the order and tell me what I'll be paying.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 80 bags of dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag for delivery on Monday 2 November.\"},\n  {\"id\": \"b\", \"text\": \"Order 80 bags of dairy pellets from Westfield Agri at 25.40 pounds per bag for delivery on Friday 13 November.\"},\n  {\"id\": \"c\", \"text\": \"Order 80 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November.\"},\n  {\"id\": \"d\", \"text\": \"Order 60 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Buy all dairy pellets from Harvest Grains at 23.50 pounds per bag instead of Millbrook at 28 pounds.\"},\n   {\"id\": \"D4\", \"direction\": \"Keep the 80-bag monthly quantity, but order it from Harvest Grains with per-order delivery slots rather than Millbrook's first-Monday delivery.\"},\n   {\"id\": \"D5\", \"direction\": \"The Millbrook standing arrangement and December frame-renewal are dropped; the standing supply is Harvest Grains, so O2 is placed with Harvest Grains.\"},\n   {\"id\": \"D6\", \"direction\": \"The monthly pellet budget line becomes 80 bags at 23.50 pounds, i.e. 1880 pounds.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the November pellet order today: 80 bags of dairy pellets from the current supplier with the next delivery slot.\", \"correct_value\": \"80 bags from Harvest Grains at 23.50 pounds per bag (1880 pounds total), delivery Tuesday 10 November 2026.\", \"stale_value\": \"80 bags from Millbrook Feed Cooperative at 28 pounds per bag (2240 pounds total), first-Monday delivery.\"},\n  \"why\": \"C1 ends F5 (Millbrook, 28 pounds, first-Monday delivery) and names Harvest Grains at 23.50 pounds with a Tuesday 10 November slot as the standing supply. D3 and D4 rest directly on F5, and D5 and D6 rest on those, so all four are touched; D1, D2, D7 and D8 rest on other facts and rules and are unaffected. The due obligation O2 is the November order, correctly placed with Harvest Grains; option a is the stale Millbrook act and option b acts on the Westfield quote that was never accepted.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 3566,
+    "reasoning_tokens": 1028,
+    "cached_tokens": 0
+   },
+   "cost": 0.0196454,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Pellet supplier switch at Two Rivers Dairy",
+  "setting": "A farm owner at Two Rivers Dairy whose operations assistant remembers feed-supplier contracts and veterinary visit outcomes",
+  "owner": "Martha",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Martha",
+    "text": "Two Rivers Dairy milks 120 cows and employs two herdspeople, Ben and Katja."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Martha",
+    "text": "All feed invoices are paid within 14 days of delivery, and no feed order over 2000 pounds is placed without Martha's approval."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Martha",
+    "text": "Any change of animal-medicine supplier or vaccination plan goes through the veterinary practice first."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Martha",
+    "text": "The herd's veterinary practice is Dalehead Vets in Ashford; visits are charged at 90 pounds per farm call."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Martha",
+    "text": "Book the herd's bovine vaccination day with Dalehead Vets in late August.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Martha",
+    "text": "Hay for winter is bought from neighbouring Fern Hollow Farm at 145 pounds per round bale."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Martha",
+    "text": "Reserve 180 round bales of hay from Fern Hollow Farm for winter, to be collected in October.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Martha",
+    "text": "The farm's silage clamp holds enough for the winter, so no extra silage purchase is needed."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Martha",
+    "text": "Millbrook Feed Cooperative supplies the herd's dairy pellets at 28 pounds per 100-kilogram bag, delivered on the first Monday of each month."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Martha",
+    "text": "Buy all dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag, with a standing monthly order.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Martha",
+    "text": "The milk tanker from Dales Creamery collects every second day at 6 a.m."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-02",
+    "source": "Martha",
+    "text": "Pay Millbrook's July invoice within the 14-day payment rule. Done on 15 July.",
+    "due": "2026-07-20",
+    "status": "done",
+    "depends_on": [
+     "R1",
+     "D3"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Martha",
+    "text": "Set the monthly pellet order at 80 bags, enough for the milking herd between deliveries.",
+    "depends_on": [
+     "F5",
+     "D3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Martha",
+    "text": "Keep the Millbrook arrangement as the standing pellet supply for the rest of the year and renew the frame agreement in December.",
+    "depends_on": [
+     "D3",
+     "D4"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-25",
+    "source": "Martha",
+    "text": "Mineral supplements for the herd come from Dalehead Vets' farm shop at 60 pounds per 25-kilogram tub."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-30",
+    "source": "Martha",
+    "text": "Order four tubs of mineral supplement from the Dalehead farm shop each quarter, as the vet recommends.",
+    "depends_on": [
+     "F7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Ben",
+    "text": "The vaccination day on 27 August went well; no adverse reactions in the herd."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Martha",
+    "text": "Set the monthly feed budget line for dairy pellets at 2240 pounds.",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Martha",
+    "text": "Have the silage analysed by Dalehead Vets' lab in October rather than buying extra forage.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Martha",
+    "text": "The yard electrician, Orchard Electrical, services the milking parlour every six months; next service is due in January."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Martha",
+    "text": "All 180 hay bales were collected from Fern Hollow Farm and stored in the Dutch barn."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Katja",
+    "text": "Herd condition scores have improved since the August vaccination day; no new health flags from the vet."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Martha",
+    "text": "Westfield Agri quoted 25.40 pounds per 100-kilogram bag for dairy pellets, delivered free on orders of 60 bags or more."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "Martha",
+    "text": "The silage analysis came back from the lab showing good protein levels; no extra concentrate top-up is needed."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "Martha",
+    "text": "Place the November pellet order for the standing 80-bag monthly quantity. Not done yet.",
+    "due": "2026-11-05",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-02",
+    "source": "Martha",
+    "text": "Katja will be on holiday the week of 16 November, so parlour cover that week is Ben alone."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-05",
+   "source": "Martha",
+   "text": "Harvest Grains Ltd is now the dairy-pellet supplier at 23.50 pounds per 100-kilogram bag, and all future pellet orders go to Harvest Grains; the Millbrook arrangement and its price and delivery terms are ended. Deliveries from Harvest Grains are arranged per order, with the next delivery slot on Tuesday 10 November. Everything else about the feeding plan stays as it is.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Can you sort out the November pellets today? Place the order and tell me what I'll be paying.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 80 bags of dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag for delivery on Monday 2 November."
+    },
+    {
+     "id": "b",
+     "text": "Order 80 bags of dairy pellets from Westfield Agri at 25.40 pounds per bag for delivery on Friday 13 November."
+    },
+    {
+     "id": "c",
+     "text": "Order 80 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November."
+    },
+    {
+     "id": "d",
+     "text": "Order 60 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Buy all dairy pellets from Harvest Grains at 23.50 pounds per bag instead of Millbrook at 28 pounds."
+    },
+    {
+     "id": "D4",
+     "direction": "Keep the 80-bag monthly quantity, but order it from Harvest Grains with per-order delivery slots rather than Millbrook's first-Monday delivery."
+    },
+    {
+     "id": "D5",
+     "direction": "The Millbrook standing arrangement and December frame-renewal are dropped; the standing supply is Harvest Grains, so O2 is placed with Harvest Grains."
+    },
+    {
+     "id": "D6",
+     "direction": "The monthly pellet budget line becomes 80 bags at 23.50 pounds, i.e. 1880 pounds."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place the November pellet order today: 80 bags of dairy pellets from the current supplier with the next delivery slot.",
+    "correct_value": "80 bags from Harvest Grains at 23.50 pounds per bag (1880 pounds total), delivery Tuesday 10 November 2026.",
+    "stale_value": "80 bags from Millbrook Feed Cooperative at 28 pounds per bag (2240 pounds total), first-Monday delivery."
+   },
+   "why": "C1 ends F5 (Millbrook, 28 pounds, first-Monday delivery) and names Harvest Grains at 23.50 pounds with a Tuesday 10 November slot as the standing supply. D3 and D4 rest directly on F5, and D5 and D6 rest on those, so all four are touched; D1, D2, D7 and D8 rest on other facts and rules and are unaffected. The due obligation O2 is the November order, correctly placed with Harvest Grains; option a is the stale Millbrook act and option b acts on the Westfield quote that was never accepted."
+  },
+  "id": "G1-09",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

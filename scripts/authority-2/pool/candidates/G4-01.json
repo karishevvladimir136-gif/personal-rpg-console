@@ -1,0 +1,287 @@
+{
+ "id": "G4-01",
+ "class": 4,
+ "setting": "A shipping clerk at a mid-sized electronics plant, Voltline Manufacturing, whose logistics assistant remembers carrier pickup commitments and pallet-count disputes",
+ "prompt_sha256": "0a78285806847af7baf67dc359910d97628527af6a9edac3df9f0006388816ea",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Delco pickup under an unchanged plan\",\n \"setting\": \"A shipping clerk at a mid-sized electronics plant, Voltline Manufacturing, whose logistics assistant remembers carrier pickup commitments and pallet-count disputes\",\n \"owner\": \"Marisol\",\n \"now\": \"2026-10-12\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marisol\", \"text\": \"All outbound freight at Voltline Manufacturing leaves from Dock 4 on the north side of the plant.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"warehouse supervisor Gareth\", \"text\": \"Every carrier pickup must be confirmed with the carrier at least 24 hours before the scheduled window.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marisol\", \"text\": \"Meridian Freight is Voltline's contracted outbound carrier; its pickup windows at the plant are Tuesdays and Thursdays, 09:00 to 12:00.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-11\", \"source\": \"Marisol\", \"text\": \"Any dispute over a pallet count on a Meridian pickup must be logged in the freight log the same day it happens.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-11\", \"source\": \"warehouse supervisor Gareth\", \"text\": \"Using any carrier other than the contracted one requires the warehouse supervisor's written approval before booking.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Marisol\", \"text\": \"PackRight Supplies delivers stretch wrap and corner boards on the first Monday of each month.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Marisol\", \"text\": \"The June pallet-count dispute with Meridian Freight over shipment 4471 was settled at 22 pallets after recount.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Marisol\", \"text\": \"Stay with Meridian Freight for all Q3 and Q4 outbound shipments; no other carrier is to be booked without approval.\", \"depends_on\": [\"F2\", \"R3\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"warehouse supervisor Gareth\", \"text\": \"Forklift FE-2 is assigned to Dock 4 loading duty through the end of the year.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-03\", \"source\": \"Marisol\", \"text\": \"File the freight-log entry for the June pallet-count dispute with Meridian. Done on 2 July.\", \"due\": \"2026-07-03\", \"status\": \"done\", \"depends_on\": [\"R2\", \"F4\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Marisol\", \"text\": \"Dock 3 is being repaved and is closed to trucks until 21 August.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marisol\", \"text\": \"Plan all Q4 outbound shipments in Meridian's Tuesday and Thursday 09:00-12:00 windows at Dock 4.\", \"depends_on\": [\"F2\", \"D1\", \"F1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"sales office\", \"text\": \"Customer Delco Retail expects a shipment of 18 pallets of control panels, ship date 14 October 2026.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-26\", \"source\": \"Marisol\", \"text\": \"The office ordered 200 new printed shipping labels in teal; they arrive in September.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Harborline Logistics email\", \"text\": \"Harborline Logistics quoted pickup service for Voltline at 48 dollars per pallet with early-morning slots from 07:00, available any weekday from October onwards.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Marisol\", \"text\": \"Set the Delco Retail shipment for Thursday 14 October 2026 in Meridian's 09:00-12:00 window at Dock 4, 18 pallets.\", \"depends_on\": [\"F7\", \"D2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"Marisol\", \"text\": \"Decline the Harborline Logistics quote and keep booking outbound freight with Meridian Freight.\", \"depends_on\": [\"F9\", \"R3\", \"D1\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-25\", \"source\": \"Meridian Freight rate notice\", \"text\": \"Meridian Freight raised its fuel surcharge from 6 to 8 percent effective 1 October 2026; pickup windows and routes are unchanged.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-16\", \"source\": \"Marisol\", \"text\": \"Book the Meridian Freight pickup for the Delco Retail shipment. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-01\", \"source\": \"Marisol\", \"text\": \"Accept the new 8 percent Meridian fuel surcharge; do not change any shipment schedule or carrier because of it.\", \"depends_on\": [\"F10\", \"D1\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-06\", \"source\": \"Marisol\", \"text\": \"The pallet yard currently holds 34 empty Euro pallets ready for reuse.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-02\", \"source\": \"warehouse supervisor Gareth\", \"text\": \"Confirm the October forklift service for FE-2. Done on 2 October.\", \"due\": \"2026-10-09\", \"status\": \"done\", \"depends_on\": [\"F5\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"Meridian account rep\", \"text\": \"Meridian Freight's Cedar Falls depot will close its walk-in counter from 1 November 2026. Scheduled door pickups at customer sites, including all Voltline pickups at Dock 4, are not affected and continue as booked.\", \"revokes\": []},\n \"task\": {\"text\": \"The Delco shipment needs to get moving — please book the carrier pickup for it now.\", \"options\": [{\"id\": \"a\", \"text\": \"Book Harborline Logistics to collect 18 pallets at Dock 4 on Thursday 14 October 2026 at 07:00.\"}, {\"id\": \"b\", \"text\": \"Book Meridian Freight to collect 18 pallets at Dock 4 on Thursday 14 October 2026, 09:00-12:00 window, and confirm the booking 24 hours ahead.\"}, {\"id\": \"c\", \"text\": \"Cancel the door pickup and instead haul the 18 pallets to Meridian's Cedar Falls depot counter for drop-off on Wednesday 14 October 2026.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [], \"distractor_options\": [\"a\"], \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [], \"distractor_items\": [\"F9\"],\n  \"touched\": [], \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Book the Meridian Freight pickup for the Delco Retail shipment of 18 pallets at Dock 4, with 24-hour confirmation.\", \"correct_value\": \"Meridian Freight, Thursday 14 October 2026, 09:00-12:00 window, 18 pallets\", \"stale_value\": null},\n  \"why\": \"The change is a new fact beside the topic: it closes Meridian's depot walk-in counter from 1 November and explicitly leaves scheduled door pickups at Voltline untouched, so no decision, rule or fact is revoked or made stale. The plan in D3 and the due obligation O2 stand exactly as they are, so the correct act is the Meridian door pickup on Thursday 14 October in the 09:00-12:00 window. Option (a) acts on the declined Harborline quote (F9, distractor) and option (c) needlessly reworks a door pickup into a depot drop-off that the plan never called for.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2840,
+    "completion_tokens": 3468,
+    "reasoning_tokens": 1358,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01609792,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Delco pickup under an unchanged plan",
+  "setting": "A shipping clerk at a mid-sized electronics plant, Voltline Manufacturing, whose logistics assistant remembers carrier pickup commitments and pallet-count disputes",
+  "owner": "Marisol",
+  "now": "2026-10-12",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marisol",
+    "text": "All outbound freight at Voltline Manufacturing leaves from Dock 4 on the north side of the plant."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "warehouse supervisor Gareth",
+    "text": "Every carrier pickup must be confirmed with the carrier at least 24 hours before the scheduled window."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marisol",
+    "text": "Meridian Freight is Voltline's contracted outbound carrier; its pickup windows at the plant are Tuesdays and Thursdays, 09:00 to 12:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-11",
+    "source": "Marisol",
+    "text": "Any dispute over a pallet count on a Meridian pickup must be logged in the freight log the same day it happens."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-11",
+    "source": "warehouse supervisor Gareth",
+    "text": "Using any carrier other than the contracted one requires the warehouse supervisor's written approval before booking."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marisol",
+    "text": "PackRight Supplies delivers stretch wrap and corner boards on the first Monday of each month."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marisol",
+    "text": "The June pallet-count dispute with Meridian Freight over shipment 4471 was settled at 22 pallets after recount."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Marisol",
+    "text": "Stay with Meridian Freight for all Q3 and Q4 outbound shipments; no other carrier is to be booked without approval.",
+    "depends_on": [
+     "F2",
+     "R3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "warehouse supervisor Gareth",
+    "text": "Forklift FE-2 is assigned to Dock 4 loading duty through the end of the year."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-03",
+    "source": "Marisol",
+    "text": "File the freight-log entry for the June pallet-count dispute with Meridian. Done on 2 July.",
+    "due": "2026-07-03",
+    "status": "done",
+    "depends_on": [
+     "R2",
+     "F4"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-05",
+    "source": "Marisol",
+    "text": "Dock 3 is being repaved and is closed to trucks until 21 August."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marisol",
+    "text": "Plan all Q4 outbound shipments in Meridian's Tuesday and Thursday 09:00-12:00 windows at Dock 4.",
+    "depends_on": [
+     "F2",
+     "D1",
+     "F1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "sales office",
+    "text": "Customer Delco Retail expects a shipment of 18 pallets of control panels, ship date 14 October 2026."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-26",
+    "source": "Marisol",
+    "text": "The office ordered 200 new printed shipping labels in teal; they arrive in September."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Harborline Logistics email",
+    "text": "Harborline Logistics quoted pickup service for Voltline at 48 dollars per pallet with early-morning slots from 07:00, available any weekday from October onwards."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Marisol",
+    "text": "Set the Delco Retail shipment for Thursday 14 October 2026 in Meridian's 09:00-12:00 window at Dock 4, 18 pallets.",
+    "depends_on": [
+     "F7",
+     "D2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "Marisol",
+    "text": "Decline the Harborline Logistics quote and keep booking outbound freight with Meridian Freight.",
+    "depends_on": [
+     "F9",
+     "R3",
+     "D1"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Meridian Freight rate notice",
+    "text": "Meridian Freight raised its fuel surcharge from 6 to 8 percent effective 1 October 2026; pickup windows and routes are unchanged."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-16",
+    "source": "Marisol",
+    "text": "Book the Meridian Freight pickup for the Delco Retail shipment. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-01",
+    "source": "Marisol",
+    "text": "Accept the new 8 percent Meridian fuel surcharge; do not change any shipment schedule or carrier because of it.",
+    "depends_on": [
+     "F10",
+     "D1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-06",
+    "source": "Marisol",
+    "text": "The pallet yard currently holds 34 empty Euro pallets ready for reuse."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-02",
+    "source": "warehouse supervisor Gareth",
+    "text": "Confirm the October forklift service for FE-2. Done on 2 October.",
+    "due": "2026-10-09",
+    "status": "done",
+    "depends_on": [
+     "F5"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-10-10",
+   "source": "Meridian account rep",
+   "text": "Meridian Freight's Cedar Falls depot will close its walk-in counter from 1 November 2026. Scheduled door pickups at customer sites, including all Voltline pickups at Dock 4, are not affected and continue as booked.",
+   "revokes": []
+  },
+  "task": {
+   "text": "The Delco shipment needs to get moving — please book the carrier pickup for it now.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Harborline Logistics to collect 18 pallets at Dock 4 on Thursday 14 October 2026 at 07:00."
+    },
+    {
+     "id": "b",
+     "text": "Book Meridian Freight to collect 18 pallets at Dock 4 on Thursday 14 October 2026, 09:00-12:00 window, and confirm the booking 24 hours ahead."
+    },
+    {
+     "id": "c",
+     "text": "Cancel the door pickup and instead haul the 18 pallets to Meridian's Cedar Falls depot counter for drop-off on Wednesday 14 October 2026."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Book the Meridian Freight pickup for the Delco Retail shipment of 18 pallets at Dock 4, with 24-hour confirmation.",
+    "correct_value": "Meridian Freight, Thursday 14 October 2026, 09:00-12:00 window, 18 pallets",
+    "stale_value": null
+   },
+   "why": "The change is a new fact beside the topic: it closes Meridian's depot walk-in counter from 1 November and explicitly leaves scheduled door pickups at Voltline untouched, so no decision, rule or fact is revoked or made stale. The plan in D3 and the due obligation O2 stand exactly as they are, so the correct act is the Meridian door pickup on Thursday 14 October in the 09:00-12:00 window. Option (a) acts on the declined Harborline quote (F9, distractor) and option (c) needlessly reworks a door pickup into a depot drop-off that the plan never called for."
+  },
+  "id": "G4-01",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

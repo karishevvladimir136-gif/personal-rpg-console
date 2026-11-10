@@ -1,0 +1,324 @@
+{
+ "id": "G3-04",
+ "class": 3,
+ "setting": "An auto repair shop owner at Gibson Auto whose service advisor logs each customer's verbal approval for diagnostics and parts ordering",
+ "prompt_sha256": "cd2c86a45945f8e37b949c3784a7101fd5898e0fa3b715cb77ec9cc3b7cf1f06",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Water pump booking after corrected approval\",\n \"setting\": \"An auto repair shop owner at Gibson Auto whose service advisor logs each customer's verbal approval for diagnostics and parts ordering\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-10-05\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marcus\", \"text\": \"Gibson Auto has one loaner car, a silver 2019 Corolla the team calls Spot, kept for customers whose repair takes half a day or more.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marcus\", \"text\": \"Kellerman Parts is Gibson Auto's main parts supplier; orders placed before 14:00 arrive the next business day.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marcus\", \"text\": \"Customer Dana Whitfield prefers to be called on 555-0142 in the mornings.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marcus\", \"text\": \"Never order a part costing over $300 without a verbal approval from the customer logged the same day.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marcus\", \"text\": \"Repair slots are booked in half-hour multiples, and the first slot of the day starts at 08:00.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marcus\", \"text\": \"Call the customer to confirm the booking no later than the business day before the repair date.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"Marcus\", \"text\": \"The shop's labour rate is $95 per hour.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Dana Whitfield\", \"text\": \"Dana Whitfield's 2021 Honda CR-V was dropped off with overheating at motorway speed and a coolant smell from the front of the engine.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Marcus\", \"text\": \"Take the CR-V straight into bay two for a cooling-system diagnostic.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Marcus\", \"text\": \"The diagnostic found a failing water pump; bill Dana the $140 diagnostic fee and recommend replacement.\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-09\", \"source\": \"Kellerman Parts\", \"text\": \"Kellerman Parts quoted $540 for the OEM water pump kit for a 2021 CR-V, delivered the next business day.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Dana Whitfield\", \"text\": \"Dana Whitfield verbally approved the water pump job on her CR-V: OEM pump from Kellerman at $540 with 3.5 hours of labour; she will drop the car off at 08:00 and gets the free loaner.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"Marcus\", \"text\": \"Order the OEM water pump kit from Kellerman Parts at $540 for Dana Whitfield's CR-V.\", \"depends_on\": [\"F7\", \"F6\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Marcus\", \"text\": \"Log Dana Whitfield's verbal approval in her customer file. Done on 10 September.\", \"due\": \"2026-09-10\", \"status\": \"done\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-11\", \"source\": \"Marcus\", \"text\": \"Reserve the loaner Corolla for Dana Whitfield on her repair day and note her 08:00 drop-off.\", \"depends_on\": [\"F7\", \"F1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Marcus\", \"text\": \"Dana Whitfield's CR-V tyres measured 5/32 inch at the last check; rotation recommended at the next visit.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Marcus\", \"text\": \"Book Dana Whitfield's water-pump replacement as a 3.5-hour slot on Tuesday 6 October starting at 08:00.\", \"depends_on\": [\"D3\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-24\", \"source\": \"Bramwell Auto Supply\", \"text\": \"Bramwell Auto Supply quoted $615 for an OEM water pump kit for the 2021 CR-V platform, valid until 31 October.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-25\", \"source\": \"Marta Oyelaran\", \"text\": \"Marta Oyelaran's 2018 Ford Transit needs front brake pads; she asked for a quote.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Marcus\", \"text\": \"Quote Marta Oyelaran $260 for front brake pads on the Transit and schedule once she approves.\", \"depends_on\": [\"F10\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-16\", \"source\": \"Marcus\", \"text\": \"Call Dana Whitfield to confirm the final details of her repair booking. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D5\", \"R3\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Marcus\", \"text\": \"The shop is closed on Friday 16 October for an all-day staff training.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Marcus\", \"text\": \"Apprentice mechanic Rio started on 28 September and works weekdays.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-30\", \"source\": \"Marcus\", \"text\": \"Plan a tyre rotation for Dana Whitfield's CR-V at her December visit at $85, using the 5/32 measurement from the last check.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Marcus\", \"text\": \"Get Marta Oyelaran's approval for the Transit brake job. Not done yet.\", \"due\": \"2026-10-20\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-03\", \"source\": \"Dana Whitfield\", \"text\": \"Dana called to sort out her approval: what she agreed on 10 September was the water pump job with an aftermarket pump at $310 and a 2.5-hour labour cap, keeping her total authorisation at $1,200 including the diagnostic fee — not the OEM pump at $540 with 3.5 hours. Her 08:00 drop-off and the free loaner stand exactly as agreed. The Kellerman OEM kit has not been opened and goes back.\", \"revokes\": [\"F7\"]},\n \"task\": {\"text\": \"Dana's repair day is tomorrow — please finalise her booking and send her the confirmation.\", \"options\": [{\"id\": \"a\", \"text\": \"Confirm a 3.5-hour slot on Tuesday 6 October starting 08:00 with the Kellerman OEM pump at $540 and the loaner Corolla.\"}, {\"id\": \"b\", \"text\": \"Confirm a 2.5-hour slot on Tuesday 6 October starting 08:00 with the aftermarket pump at $310 and the loaner Corolla.\"}, {\"id\": \"c\", \"text\": \"Confirm a 3.5-hour slot on Tuesday 6 October starting 08:00 with the Bramwell OEM pump at $615 and the loaner Corolla.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F7\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Return the unopened Kellerman OEM kit and order the aftermarket pump at $310 instead, within the 2.5-hour labour cap.\"},\n   {\"id\": \"D5\", \"direction\": \"Rebook the repair as a 2.5-hour slot on Tuesday 6 October at 08:00 instead of a 3.5-hour slot.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D4\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Call Dana on 555-0142 to confirm the final details of tomorrow's repair booking\", \"correct_value\": \"Tuesday 6 October, 08:00 drop-off, 2.5-hour slot, aftermarket pump at $310, free loaner Corolla\", \"stale_value\": \"Tuesday 6 October, 08:00 drop-off, 3.5-hour slot, OEM pump at $540\"},\n  \"why\": \"The correction revokes F7 and replaces the OEM-pump, 3.5-hour approval with an aftermarket pump at $310 and a 2.5-hour labour cap, so D3 (order the OEM kit) is stale and D5, which rests on D3, must be rebooked as a 2.5-hour slot. D4 (loaner and 08:00 drop-off) cites F7 only for aspects the correction explicitly leaves standing, and D1, D2, D6 and D7 rest on other facts entirely. The Bramwell quote (F9) is a different supplier's OEM price that was never chosen.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2826,
+    "completion_tokens": 6838,
+    "reasoning_tokens": 4374,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03090632,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Water pump booking after corrected approval",
+  "setting": "An auto repair shop owner at Gibson Auto whose service advisor logs each customer's verbal approval for diagnostics and parts ordering",
+  "owner": "Marcus",
+  "now": "2026-10-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marcus",
+    "text": "Gibson Auto has one loaner car, a silver 2019 Corolla the team calls Spot, kept for customers whose repair takes half a day or more."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marcus",
+    "text": "Kellerman Parts is Gibson Auto's main parts supplier; orders placed before 14:00 arrive the next business day."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marcus",
+    "text": "Customer Dana Whitfield prefers to be called on 555-0142 in the mornings."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marcus",
+    "text": "Never order a part costing over $300 without a verbal approval from the customer logged the same day."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marcus",
+    "text": "Repair slots are booked in half-hour multiples, and the first slot of the day starts at 08:00."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marcus",
+    "text": "Call the customer to confirm the booking no later than the business day before the repair date."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Marcus",
+    "text": "The shop's labour rate is $95 per hour."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Dana Whitfield",
+    "text": "Dana Whitfield's 2021 Honda CR-V was dropped off with overheating at motorway speed and a coolant smell from the front of the engine."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-08",
+    "source": "Marcus",
+    "text": "Take the CR-V straight into bay two for a cooling-system diagnostic.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Marcus",
+    "text": "The diagnostic found a failing water pump; bill Dana the $140 diagnostic fee and recommend replacement.",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-09",
+    "source": "Kellerman Parts",
+    "text": "Kellerman Parts quoted $540 for the OEM water pump kit for a 2021 CR-V, delivered the next business day."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Dana Whitfield",
+    "text": "Dana Whitfield verbally approved the water pump job on her CR-V: OEM pump from Kellerman at $540 with 3.5 hours of labour; she will drop the car off at 08:00 and gets the free loaner."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "Marcus",
+    "text": "Order the OEM water pump kit from Kellerman Parts at $540 for Dana Whitfield's CR-V.",
+    "depends_on": [
+     "F7",
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "Marcus",
+    "text": "Log Dana Whitfield's verbal approval in her customer file. Done on 10 September.",
+    "due": "2026-09-10",
+    "status": "done",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-11",
+    "source": "Marcus",
+    "text": "Reserve the loaner Corolla for Dana Whitfield on her repair day and note her 08:00 drop-off.",
+    "depends_on": [
+     "F7",
+     "F1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Marcus",
+    "text": "Dana Whitfield's CR-V tyres measured 5/32 inch at the last check; rotation recommended at the next visit."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Marcus",
+    "text": "Book Dana Whitfield's water-pump replacement as a 3.5-hour slot on Tuesday 6 October starting at 08:00.",
+    "depends_on": [
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-24",
+    "source": "Bramwell Auto Supply",
+    "text": "Bramwell Auto Supply quoted $615 for an OEM water pump kit for the 2021 CR-V platform, valid until 31 October."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Marta Oyelaran",
+    "text": "Marta Oyelaran's 2018 Ford Transit needs front brake pads; she asked for a quote."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "Marcus",
+    "text": "Quote Marta Oyelaran $260 for front brake pads on the Transit and schedule once she approves.",
+    "depends_on": [
+     "F10"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-16",
+    "source": "Marcus",
+    "text": "Call Dana Whitfield to confirm the final details of her repair booking. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D5",
+     "R3"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Marcus",
+    "text": "The shop is closed on Friday 16 October for an all-day staff training."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Marcus",
+    "text": "Apprentice mechanic Rio started on 28 September and works weekdays."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-30",
+    "source": "Marcus",
+    "text": "Plan a tyre rotation for Dana Whitfield's CR-V at her December visit at $85, using the 5/32 measurement from the last check.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Marcus",
+    "text": "Get Marta Oyelaran's approval for the Transit brake job. Not done yet.",
+    "due": "2026-10-20",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-03",
+   "source": "Dana Whitfield",
+   "text": "Dana called to sort out her approval: what she agreed on 10 September was the water pump job with an aftermarket pump at $310 and a 2.5-hour labour cap, keeping her total authorisation at $1,200 including the diagnostic fee — not the OEM pump at $540 with 3.5 hours. Her 08:00 drop-off and the free loaner stand exactly as agreed. The Kellerman OEM kit has not been opened and goes back.",
+   "revokes": [
+    "F7"
+   ]
+  },
+  "task": {
+   "text": "Dana's repair day is tomorrow — please finalise her booking and send her the confirmation.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Confirm a 3.5-hour slot on Tuesday 6 October starting 08:00 with the Kellerman OEM pump at $540 and the loaner Corolla."
+    },
+    {
+     "id": "b",
+     "text": "Confirm a 2.5-hour slot on Tuesday 6 October starting 08:00 with the aftermarket pump at $310 and the loaner Corolla."
+    },
+    {
+     "id": "c",
+     "text": "Confirm a 3.5-hour slot on Tuesday 6 October starting 08:00 with the Bramwell OEM pump at $615 and the loaner Corolla."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F7"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Return the unopened Kellerman OEM kit and order the aftermarket pump at $310 instead, within the 2.5-hour labour cap."
+    },
+    {
+     "id": "D5",
+     "direction": "Rebook the repair as a 2.5-hour slot on Tuesday 6 October at 08:00 instead of a 3.5-hour slot."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D4",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Call Dana on 555-0142 to confirm the final details of tomorrow's repair booking",
+    "correct_value": "Tuesday 6 October, 08:00 drop-off, 2.5-hour slot, aftermarket pump at $310, free loaner Corolla",
+    "stale_value": "Tuesday 6 October, 08:00 drop-off, 3.5-hour slot, OEM pump at $540"
+   },
+   "why": "The correction revokes F7 and replaces the OEM-pump, 3.5-hour approval with an aftermarket pump at $310 and a 2.5-hour labour cap, so D3 (order the OEM kit) is stale and D5, which rests on D3, must be rebooked as a 2.5-hour slot. D4 (loaner and 08:00 drop-off) cites F7 only for aspects the correction explicitly leaves standing, and D1, D2, D6 and D7 rest on other facts entirely. The Bramwell quote (F9) is a different supplier's OEM price that was never chosen."
+  },
+  "id": "G3-04",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

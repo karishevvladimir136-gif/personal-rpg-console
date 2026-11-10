@@ -1,0 +1,313 @@
+{
+ "id": "G4-09",
+ "class": 4,
+ "setting": "A head of procurement at Greenfield Regional Hospital whose assistant keeps minutes of vendor negotiation calls and contract renewal dates",
+ "prompt_sha256": "9a9b2a2cae801013adcd980aa58c00cda21716c96d03aa7e9c080e4834b245b6",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Linen renewal on schedule\",\n \"setting\": \"A head of procurement at Greenfield Regional Hospital whose assistant keeps minutes of vendor negotiation calls and contract renewal dates\",\n \"owner\": \"Marta\",\n \"now\": \"2026-11-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Norlake sales rep\", \"text\": \"Norlake Cleaning Supplies quotes a standard delivery lead time of 15 working days from order confirmation for all standing orders to the hospital.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Brightpath account rep\", \"text\": \"The Brightpath Linen Services contract with Greenfield Regional Hospital runs until 31 December 2026, and the renewal rate agreed at last year's negotiation is $48,500 per year for the full linen service.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Brightpath account rep\", \"text\": \"Dana Wells is the Brightpath Linen Services account representative handling the Greenfield Regional Hospital contract, and all renewal paperwork goes through her.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"owner\", \"text\": \"Every contract renewal above $10,000 per year needs three quotes on file before it is signed, but a renewal with an incumbent whose rate was negotiated within the last eighteen months counts as already quoted.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"owner\", \"text\": \"Minutes of every vendor negotiation call are circulated to all attendees within 48 hours of the call.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"owner\", \"text\": \"Only the head of procurement signs supplier contracts for Greenfield Regional Hospital; no one else may sign on her behalf.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Medisafe dispatcher\", \"text\": \"Medisafe Waste Co collects clinical waste from the hospital on Tuesday and Friday mornings, with a combined weekly volume of about 40 bins.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"facilities manager\", \"text\": \"The central stores room on level B holds about 2 cubic metres of spare linen, enough for roughly four days of normal ward demand.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-09\", \"source\": \"owner\", \"text\": \"The staff cafeteria coffee contract with Brewmans costs $1,150 per month and renews automatically each March.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"owner\", \"text\": \"Renew the Brightpath Linen Services contract for calendar year 2027 at $48,500 per year, the rate agreed with Dana Wells, since the rate was negotiated eleven months ago and counts as already quoted.\", \"depends_on\": [\"F2\", \"F3\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"pharmacy lead\", \"text\": \"The pharmacy's two sample fridges are serviced twice a year by PolarTech Refrigeration under a maintenance agreement.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-03\", \"source\": \"owner\", \"text\": \"Keep Medisafe clinical waste collection as it stands, with Tuesday and Friday morning pickups, and take no action on the competitor that offered Monday-only collection.\", \"depends_on\": [\"F4\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"owner\", \"text\": \"Circulate the minutes of the 8 September negotiation call with Brightpath to all attendees. Done on 10 September, within the 48-hour window.\", \"due\": \"2026-09-12\", \"status\": \"done\", \"depends_on\": [\"R2\", \"D1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"PolarTech service manager\", \"text\": \"PolarTech charges $3,200 per year for the twice-yearly fridge maintenance visits under a rolling agreement.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"owner\", \"text\": \"Approve the PolarTech maintenance agreement at $3,200 per year for another two years, since it is below the $10,000 threshold that requires quotes.\", \"depends_on\": [\"F7\", \"F8\", \"R1\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"visitor desk team lead\", \"text\": \"The visitor parking contract with Cityspace Parking runs to 30 June 2027 at $880 per month.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Set Friday 6 November 2026 as the deadline to sign and send the Brightpath renewal paperwork for 2027 to Dana Wells, well ahead of the 31 December contract end.\", \"depends_on\": [\"D1\", \"F2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-14\", \"source\": \"facilities manager\", \"text\": \"The hospital's annual deep-clean by an outside crew is booked for the last week of January 2027.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"Cedarfresh sales rep\", \"text\": \"Cedarfresh Linen submitted an unsolicited quote of $52,400 per year to take over the hospital's full linen service from January 2027.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-22\", \"source\": \"owner\", \"text\": \"Decline the Cedarfresh Linen quote of $52,400 per year and stay with Brightpath, since the Cedarfresh price is higher than the agreed $48,500 renewal rate.\", \"depends_on\": [\"F11\", \"D1\", \"R1\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-28\", \"source\": \"IT helpdesk\", \"text\": \"The procurement office's shared printer is leased from Officeprint at $95 per month until May 2028.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-30\", \"source\": \"owner\", \"text\": \"Sign and send the Brightpath Linen renewal for 2027 at $48,500 per year to Dana Wells. Not done yet; due Friday 6 November.\", \"due\": \"2026-11-06\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-30\", \"source\": \"owner\", \"text\": \"Reconcile the Medisafe Waste Co invoices against the pickup log for the autumn quarter. Not done yet; due 15 December.\", \"due\": \"2026-12-15\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-11-01\", \"source\": \"owner\", \"text\": \"Marta's office hours on Fridays are 9:00 to 13:00, and she signs all pending contracts before lunch.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-11-02\", \"source\": \"Norlake sales rep\", \"text\": \"Norlake Cleaning Supplies bills the hospital $640 per month for cleaning consumables on a rolling basis.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-11-03\", \"source\": \"Norlake sales rep\", \"text\": \"Correction: Norlake Cleaning Supplies' standard delivery lead time is 10 working days from order confirmation, not 15; the 15-day figure came from their old 2023 service sheet and no longer applies. Their billing and product range are unchanged. This affects only the cleaning-supplies standing order, not the linen or waste contracts.\", \"revokes\": [\"F1\"]},\n \"task\": {\"text\": \"Today's Friday — please get the Brightpath linen renewal wrapped up while I'm in this morning, and send the paperwork over for me.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Cedarfresh Linen a signed 2027 contract at $52,400 per year.\"}, {\"id\": \"b\", \"text\": \"Send Dana Wells the signed Brightpath 2027 renewal at $48,500 per year before lunch.\"}, {\"id\": \"c\", \"text\": \"Hold the renewal and launch a fresh three-quote tender for the linen service today.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [], \"distractor_options\": [\"a\"], \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [\"F1\"], \"distractor_items\": [\"F11\"],\n  \"touched\": [], \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Sign and send the Brightpath 2027 linen renewal today, 6 November, per D4's deadline.\", \"correct_value\": \"$48,500 per year to Dana Wells at Brightpath\", \"stale_value\": null},\n  \"why\": \"The change corrects only Norlake's delivery lead time (F1), which no decision rests on, directly or through other decisions; every decision about linen, waste, fridges and parking stands unchanged. The Brightpath renewal at $48,500 was decided (D1), scheduled for 6 November (D4), and Cedarfresh's $52,400 quote was already declined (D5), so the correct act is to send the signed renewal to Dana Wells. Re-running a tender would change a plan that should stay, and awarding Cedarfresh would act on the declined quote.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2844,
+    "completion_tokens": 3739,
+    "reasoning_tokens": 1338,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01729592,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Linen renewal on schedule",
+  "setting": "A head of procurement at Greenfield Regional Hospital whose assistant keeps minutes of vendor negotiation calls and contract renewal dates",
+  "owner": "Marta",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Norlake sales rep",
+    "text": "Norlake Cleaning Supplies quotes a standard delivery lead time of 15 working days from order confirmation for all standing orders to the hospital."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Brightpath account rep",
+    "text": "The Brightpath Linen Services contract with Greenfield Regional Hospital runs until 31 December 2026, and the renewal rate agreed at last year's negotiation is $48,500 per year for the full linen service."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Brightpath account rep",
+    "text": "Dana Wells is the Brightpath Linen Services account representative handling the Greenfield Regional Hospital contract, and all renewal paperwork goes through her."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Every contract renewal above $10,000 per year needs three quotes on file before it is signed, but a renewal with an incumbent whose rate was negotiated within the last eighteen months counts as already quoted."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Minutes of every vendor negotiation call are circulated to all attendees within 48 hours of the call."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Only the head of procurement signs supplier contracts for Greenfield Regional Hospital; no one else may sign on her behalf."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Medisafe dispatcher",
+    "text": "Medisafe Waste Co collects clinical waste from the hospital on Tuesday and Friday mornings, with a combined weekly volume of about 40 bins."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "facilities manager",
+    "text": "The central stores room on level B holds about 2 cubic metres of spare linen, enough for roughly four days of normal ward demand."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-09",
+    "source": "owner",
+    "text": "The staff cafeteria coffee contract with Brewmans costs $1,150 per month and renews automatically each March."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "owner",
+    "text": "Renew the Brightpath Linen Services contract for calendar year 2027 at $48,500 per year, the rate agreed with Dana Wells, since the rate was negotiated eleven months ago and counts as already quoted.",
+    "depends_on": [
+     "F2",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "pharmacy lead",
+    "text": "The pharmacy's two sample fridges are serviced twice a year by PolarTech Refrigeration under a maintenance agreement."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "owner",
+    "text": "Keep Medisafe clinical waste collection as it stands, with Tuesday and Friday morning pickups, and take no action on the competitor that offered Monday-only collection.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "owner",
+    "text": "Circulate the minutes of the 8 September negotiation call with Brightpath to all attendees. Done on 10 September, within the 48-hour window.",
+    "due": "2026-09-12",
+    "status": "done",
+    "depends_on": [
+     "R2",
+     "D1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "PolarTech service manager",
+    "text": "PolarTech charges $3,200 per year for the twice-yearly fridge maintenance visits under a rolling agreement."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "owner",
+    "text": "Approve the PolarTech maintenance agreement at $3,200 per year for another two years, since it is below the $10,000 threshold that requires quotes.",
+    "depends_on": [
+     "F7",
+     "F8",
+     "R1"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-26",
+    "source": "visitor desk team lead",
+    "text": "The visitor parking contract with Cityspace Parking runs to 30 June 2027 at $880 per month."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Set Friday 6 November 2026 as the deadline to sign and send the Brightpath renewal paperwork for 2027 to Dana Wells, well ahead of the 31 December contract end.",
+    "depends_on": [
+     "D1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-14",
+    "source": "facilities manager",
+    "text": "The hospital's annual deep-clean by an outside crew is booked for the last week of January 2027."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Cedarfresh sales rep",
+    "text": "Cedarfresh Linen submitted an unsolicited quote of $52,400 per year to take over the hospital's full linen service from January 2027."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-22",
+    "source": "owner",
+    "text": "Decline the Cedarfresh Linen quote of $52,400 per year and stay with Brightpath, since the Cedarfresh price is higher than the agreed $48,500 renewal rate.",
+    "depends_on": [
+     "F11",
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "IT helpdesk",
+    "text": "The procurement office's shared printer is leased from Officeprint at $95 per month until May 2028."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "owner",
+    "text": "Sign and send the Brightpath Linen renewal for 2027 at $48,500 per year to Dana Wells. Not done yet; due Friday 6 November.",
+    "due": "2026-11-06",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "owner",
+    "text": "Reconcile the Medisafe Waste Co invoices against the pickup log for the autumn quarter. Not done yet; due 15 December.",
+    "due": "2026-12-15",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-11-01",
+    "source": "owner",
+    "text": "Marta's office hours on Fridays are 9:00 to 13:00, and she signs all pending contracts before lunch."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-02",
+    "source": "Norlake sales rep",
+    "text": "Norlake Cleaning Supplies bills the hospital $640 per month for cleaning consumables on a rolling basis."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-03",
+   "source": "Norlake sales rep",
+   "text": "Correction: Norlake Cleaning Supplies' standard delivery lead time is 10 working days from order confirmation, not 15; the 15-day figure came from their old 2023 service sheet and no longer applies. Their billing and product range are unchanged. This affects only the cleaning-supplies standing order, not the linen or waste contracts.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Today's Friday — please get the Brightpath linen renewal wrapped up while I'm in this morning, and send the paperwork over for me.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Cedarfresh Linen a signed 2027 contract at $52,400 per year."
+    },
+    {
+     "id": "b",
+     "text": "Send Dana Wells the signed Brightpath 2027 renewal at $48,500 per year before lunch."
+    },
+    {
+     "id": "c",
+     "text": "Hold the renewal and launch a fresh three-quote tender for the linen service today."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F11"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Sign and send the Brightpath 2027 linen renewal today, 6 November, per D4's deadline.",
+    "correct_value": "$48,500 per year to Dana Wells at Brightpath",
+    "stale_value": null
+   },
+   "why": "The change corrects only Norlake's delivery lead time (F1), which no decision rests on, directly or through other decisions; every decision about linen, waste, fridges and parking stands unchanged. The Brightpath renewal at $48,500 was decided (D1), scheduled for 6 November (D4), and Cedarfresh's $52,400 quote was already declined (D5), so the correct act is to send the signed renewal to Dana Wells. Re-running a tender would change a plan that should stay, and awarding Cedarfresh would act on the declined quote."
+  },
+  "id": "G4-09",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

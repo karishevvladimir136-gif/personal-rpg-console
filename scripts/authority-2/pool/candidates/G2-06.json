@@ -1,0 +1,326 @@
+{
+ "id": "G2-06",
+ "class": 2,
+ "setting": "A craft brewery owner at Old Anchor Brewing whose assistant tracks distributor handshake deals and ingredient reorder cadences",
+ "prompt_sha256": "723fe1c9280eb181894a05d609c9d6994570cded901924482ca0e89171a81795",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Volume discount threshold raised at Old Anchor\",\n \"setting\": \"A craft brewery owner at Old Anchor Brewing whose assistant tracks distributor handshake deals and ingredient reorder cadences\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"Old Anchor Brewing runs a 20-hectolitre brewhouse on Salcombe quay and sells its core beers to distributors at a list price of £2.80 per litre.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Any distributor handshake deal worth 500 litres or more per month earns the 10% volume discount off the list price.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-09\", \"source\": \"Marta\", \"text\": \"Barley Row Farm supplies pale ale malt at £380 per tonne, delivered every four weeks.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Ingredients are reordered whenever stock cover falls to 10 days, ordering enough to cover 30 days.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Harbor Cider House in Plymouth takes a handshake deal of 600 litres a month from June onwards.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-16\", \"source\": \"Marta\", \"text\": \"The Harbor Cider House deal of 600 litres a month carries the 10% volume discount, a net price of £2.52 per litre.\", \"depends_on\": [\"F1\", \"R1\", \"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"Northgate Cellars has a standing order of 900 litres a month.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Marta\", \"text\": \"Northgate Cellars' 900-litre standing order is billed at the 10% discount, £2.52 per litre.\", \"depends_on\": [\"F1\", \"R1\", \"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"Marta\", \"text\": \"Two Rivers Bistro agreed a handshake deal of 550 litres a month starting in July.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"Two Rivers Bistro's 550-litre deal is billed with the 10% volume discount, £2.52 per litre.\", \"depends_on\": [\"F1\", \"R1\", \"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-06\", \"source\": \"Marta\", \"text\": \"The brewery taproom opens Friday to Sunday, noon to 10pm.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"Fernwood Market has a standing order of 1,200 litres a month.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"Marta\", \"text\": \"Fernwood Market's 1,200-litre standing order is billed with the 10% volume discount, £2.52 per litre.\", \"depends_on\": [\"F1\", \"R1\", \"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"Marta\", \"text\": \"The hop contract with Weald Hops covers 40 kg of East Kent Goldings at £26 per kilo.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marta\", \"text\": \"Send Fernwood Market the signed standing-order sheet. Done on 10 August.\", \"due\": \"2026-08-15\", \"status\": \"done\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-25\", \"source\": \"Marta\", \"text\": \"Book Harbor Cider House's expected monthly revenue at £1,512 a month and use that figure as the brewing-budget baseline for their volume.\", \"depends_on\": [\"D1\", \"F3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"Marta\", \"text\": \"Keep ordering 2.5 tonnes of pale ale malt per four-week cycle from Barley Row Farm to keep 30 days of cover.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-08\", \"source\": \"Marta\", \"text\": \"Ana is head brewer and works Tuesday to Saturday.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marta\", \"text\": \"Salcombe Wine Merchants, a separate account, pays £2.65 per litre on their 700-litre monthly order under a matched-price promise from last year.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-22\", \"source\": \"Marta\", \"text\": \"The canning line runs at 1,200 cans an hour on Wednesdays.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"Book the autumn hop delivery slot with Weald Hops for the first week of October. Done on 24 September.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Marta\", \"text\": \"Extend the Weald Hops contract for another 12 months at the same £26 per kilo.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Marta\", \"text\": \"Barley Row Farm raises the malt price to £420 per tonne from 1 October.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-28\", \"source\": \"Marta\", \"text\": \"Confirm October pricing to Harbor Cider House by Tuesday 6 October. Not done yet.\", \"due\": \"2026-10-06\", \"status\": \"open\", \"depends_on\": [\"D1\", \"F3\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-05\", \"source\": \"Marta\", \"text\": \"Because malt costs rise to £420 per tonne from 1 October, the volume-discount rule is amended from 1 October 2026: the 10% discount applies only to orders of 800 litres a month or more; orders below 800 litres are billed at the £2.80 list price. Orders at or above 800 litres keep the discount unchanged.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Harbor Cider House are chasing their October pricing confirmation — can you send it over to them today?\", \"options\": [{\"id\": \"a\", \"text\": \"Email Harbor Cider House: 600 litres at £2.52 per litre with the 10% volume discount, total £1,512 for October.\"}, {\"id\": \"b\", \"text\": \"Email Harbor Cider House: 600 litres at the £2.80 list price, no discount, total £1,680 for October.\"}, {\"id\": \"c\", \"text\": \"Email Harbor Cider House: 600 litres at £2.65 per litre under a matched-price promise, total £1,590 for October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Harbor Cider House's 600-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount.\"},\n   {\"id\": \"D3\", \"direction\": \"Two Rivers Bistro's 550-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount.\"},\n   {\"id\": \"D5\", \"direction\": \"Harbor Cider House's expected monthly revenue baseline rises from £1,512 to £1,680 a month now that the 600-litre deal is billed at list price.\"}\n  ],\n  \"untouched\": [\"D2\", \"D4\", \"D6\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Harbor Cider House their October pricing confirmation today\", \"correct_value\": \"600 litres at £2.80 per litre list price, no discount, total £1,680\", \"stale_value\": \"600 litres at £2.52 per litre with the 10% discount, total £1,512\"},\n  \"why\": \"The amended rule (C1) raises the discount threshold to 800 litres, so D1 (Harbor, 600 L) and D3 (Two Rivers, 550 L) are void and their accounts revert to the £2.80 list price; D5, which rests on D1, must be rebooked at £1,680 a month. D2 (Northgate, 900 L) and D4 (Fernwood, 1,200 L) keep the discount unchanged, and D6 and D8 rest on malt and hop facts untouched by the rule change. The task is to carry out O1, so the correct act confirms Harbor's October price at £2.80 per litre, £1,680 total, not the stale discounted £1,512 or the £2.65 matched price owed to a different account.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 4604,
+    "reasoning_tokens": 2139,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02107392,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Volume discount threshold raised at Old Anchor",
+  "setting": "A craft brewery owner at Old Anchor Brewing whose assistant tracks distributor handshake deals and ingredient reorder cadences",
+  "owner": "Marta",
+  "now": "2026-10-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Old Anchor Brewing runs a 20-hectolitre brewhouse on Salcombe quay and sells its core beers to distributors at a list price of £2.80 per litre."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any distributor handshake deal worth 500 litres or more per month earns the 10% volume discount off the list price."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-09",
+    "source": "Marta",
+    "text": "Barley Row Farm supplies pale ale malt at £380 per tonne, delivered every four weeks."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Ingredients are reordered whenever stock cover falls to 10 days, ordering enough to cover 30 days."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Harbor Cider House in Plymouth takes a handshake deal of 600 litres a month from June onwards."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-16",
+    "source": "Marta",
+    "text": "The Harbor Cider House deal of 600 litres a month carries the 10% volume discount, a net price of £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Northgate Cellars has a standing order of 900 litres a month."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Marta",
+    "text": "Northgate Cellars' 900-litre standing order is billed at the 10% discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Marta",
+    "text": "Two Rivers Bistro agreed a handshake deal of 550 litres a month starting in July."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Two Rivers Bistro's 550-litre deal is billed with the 10% volume discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-06",
+    "source": "Marta",
+    "text": "The brewery taproom opens Friday to Sunday, noon to 10pm."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Fernwood Market has a standing order of 1,200 litres a month."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "Marta",
+    "text": "Fernwood Market's 1,200-litre standing order is billed with the 10% volume discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-18",
+    "source": "Marta",
+    "text": "The hop contract with Weald Hops covers 40 kg of East Kent Goldings at £26 per kilo."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Send Fernwood Market the signed standing-order sheet. Done on 10 August.",
+    "due": "2026-08-15",
+    "status": "done",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-25",
+    "source": "Marta",
+    "text": "Book Harbor Cider House's expected monthly revenue at £1,512 a month and use that figure as the brewing-budget baseline for their volume.",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Marta",
+    "text": "Keep ordering 2.5 tonnes of pale ale malt per four-week cycle from Barley Row Farm to keep 30 days of cover.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-08",
+    "source": "Marta",
+    "text": "Ana is head brewer and works Tuesday to Saturday."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marta",
+    "text": "Salcombe Wine Merchants, a separate account, pays £2.65 per litre on their 700-litre monthly order under a matched-price promise from last year."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-22",
+    "source": "Marta",
+    "text": "The canning line runs at 1,200 cans an hour on Wednesdays."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Book the autumn hop delivery slot with Weald Hops for the first week of October. Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Extend the Weald Hops contract for another 12 months at the same £26 per kilo.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Marta",
+    "text": "Barley Row Farm raises the malt price to £420 per tonne from 1 October."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-28",
+    "source": "Marta",
+    "text": "Confirm October pricing to Harbor Cider House by Tuesday 6 October. Not done yet.",
+    "due": "2026-10-06",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-05",
+   "source": "Marta",
+   "text": "Because malt costs rise to £420 per tonne from 1 October, the volume-discount rule is amended from 1 October 2026: the 10% discount applies only to orders of 800 litres a month or more; orders below 800 litres are billed at the £2.80 list price. Orders at or above 800 litres keep the discount unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Harbor Cider House are chasing their October pricing confirmation — can you send it over to them today?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Harbor Cider House: 600 litres at £2.52 per litre with the 10% volume discount, total £1,512 for October."
+    },
+    {
+     "id": "b",
+     "text": "Email Harbor Cider House: 600 litres at the £2.80 list price, no discount, total £1,680 for October."
+    },
+    {
+     "id": "c",
+     "text": "Email Harbor Cider House: 600 litres at £2.65 per litre under a matched-price promise, total £1,590 for October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Harbor Cider House's 600-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount."
+    },
+    {
+     "id": "D3",
+     "direction": "Two Rivers Bistro's 550-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount."
+    },
+    {
+     "id": "D5",
+     "direction": "Harbor Cider House's expected monthly revenue baseline rises from £1,512 to £1,680 a month now that the 600-litre deal is billed at list price."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D4",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Harbor Cider House their October pricing confirmation today",
+    "correct_value": "600 litres at £2.80 per litre list price, no discount, total £1,680",
+    "stale_value": "600 litres at £2.52 per litre with the 10% discount, total £1,512"
+   },
+   "why": "The amended rule (C1) raises the discount threshold to 800 litres, so D1 (Harbor, 600 L) and D3 (Two Rivers, 550 L) are void and their accounts revert to the £2.80 list price; D5, which rests on D1, must be rebooked at £1,680 a month. D2 (Northgate, 900 L) and D4 (Fernwood, 1,200 L) keep the discount unchanged, and D6 and D8 rest on malt and hop facts untouched by the rule change. The task is to carry out O1, so the correct act confirms Harbor's October price at £2.80 per litre, £1,680 total, not the stale discounted £1,512 or the £2.65 matched price owed to a different account."
+  },
+  "id": "G2-06",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

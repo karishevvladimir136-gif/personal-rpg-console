@@ -1,0 +1,58 @@
+19:49:09 spend check before probe (writer, raters): credit left $280.55, less $150.00 reserved for #6 → $130.55; stage spent $0.00 of $120.0; projected $0.50 → holds
+19:49:11 probe glm: host Z.AI model z-ai/glm-5.3 text 'ready' err None cost $0.00004
+19:49:13 probe astra: host OpenAI model openai/gpt-6-astra text 'ready' err None cost $0.00038
+19:49:16 probe kimi: host Moonshot AI model moonshotai/kimi-k3 text 'ready' err None cost $0.00079
+19:49:20 spend check before writer settings (1 call): credit left $280.55, less $150.00 reserved for #6 → $130.55; stage spent $0.00 of $120.0; projected $1.00 → holds
+19:49:41 settings: 50 from GLM (host Z.AI), $0.0055
+19:49:46 write: 50 candidates to write (≤ 150 calls)
+19:49:46 spend check before writer (50 candidates, ≤ 150 calls): credit left $280.55, less $150.00 reserved for #6 → $130.55; stage spent $0.01 of $120.0; projected $7.50 → holds
+19:50:19 G1-09: valid=True rounds=1 errors=[] spent=$0.026
+19:50:28 G1-08: valid=True rounds=1 errors=[] spent=$0.050
+19:50:29 G1-10: valid=True rounds=1 errors=[] spent=$0.073
+19:50:31 G1-03: valid=True rounds=1 errors=[] spent=$0.098
+19:50:42 G1-11: valid=True rounds=1 errors=[] spent=$0.201
+19:50:47 G1-12: valid=True rounds=2 errors=[] spent=$0.216
+19:50:47 G1-02: valid=True rounds=1 errors=[] spent=$0.246
+19:50:54 G1-06: valid=True rounds=2 errors=[] spent=$0.292
+19:50:57 G1-05: valid=True rounds=2 errors=[] spent=$0.308
+19:50:57 G1-01: valid=True rounds=1 errors=[] spent=$0.344
+19:51:05 G1-04: valid=True rounds=2 errors=[] spent=$0.360
+19:51:29 G2-03: valid=True rounds=1 errors=[] spent=$0.388
+19:51:30 G2-06: valid=True rounds=1 errors=[] spent=$0.409
+19:51:38 G2-02: valid=True rounds=1 errors=[] spent=$0.505
+19:51:49 G2-01: valid=True rounds=2 errors=[] spent=$0.549
+19:51:52 G2-04: valid=True rounds=2 errors=[] spent=$0.564
+19:52:00 G1-07: valid=True rounds=1 errors=[] spent=$0.599
+19:52:03 G2-05: valid=True rounds=2 errors=[] spent=$0.616
+19:52:07 G2-08: valid=True rounds=1 errors=[] spent=$0.668
+19:52:09 G2-10: valid=True rounds=1 errors=[] spent=$0.700
+19:52:17 G2-07: valid=True rounds=1 errors=[] spent=$0.759
+19:52:18 G2-11: valid=True rounds=2 errors=[] spent=$0.774
+19:52:27 G3-02: valid=True rounds=1 errors=[] spent=$0.798
+19:52:44 G3-03: valid=True rounds=1 errors=[] spent=$0.868
+19:52:44 G3-01: valid=True rounds=3 errors=[] spent=$0.883
+19:52:48 G2-12: valid=True rounds=2 errors=[] spent=$0.949
+19:52:51 G3-06: valid=True rounds=1 errors=[] spent=$0.972
+19:52:55 G3-08: valid=True rounds=1 errors=[] spent=$0.994
+19:53:05 G2-09: valid=True rounds=2 errors=[] spent=$1.013
+19:53:06 G3-04: valid=True rounds=1 errors=[] spent=$1.044
+19:53:10 G3-11: valid=True rounds=1 errors=[] spent=$1.064
+19:53:14 G3-10: valid=True rounds=1 errors=[] spent=$1.114
+19:53:16 G3-09: valid=True rounds=1 errors=[] spent=$1.140
+19:53:24 G4-01: valid=True rounds=1 errors=[] spent=$1.156
+19:53:29 G3-07: valid=True rounds=2 errors=[] spent=$1.171
+19:53:32 G4-02: valid=True rounds=1 errors=[] spent=$1.188
+19:53:48 G4-05: valid=True rounds=1 errors=[] spent=$1.277
+19:53:48 G4-04: valid=True rounds=1 errors=[] spent=$1.296
+19:53:50 G3-12: valid=True rounds=1 errors=[] spent=$1.325
+19:53:52 G4-07: valid=True rounds=1 errors=[] spent=$1.341
+19:53:57 G3-13: valid=True rounds=2 errors=[] spent=$1.358
+19:53:59 G4-03: valid=True rounds=2 errors=[] spent=$1.371
+19:54:03 G3-14: valid=True rounds=2 errors=[] spent=$1.406
+19:54:09 G4-09: valid=True rounds=1 errors=[] spent=$1.423
+19:54:09 G4-10: valid=True rounds=1 errors=[] spent=$1.441
+19:54:14 G4-06: valid=True rounds=2 errors=[] spent=$1.453
+19:54:31 G4-08: valid=True rounds=2 errors=[] spent=$1.509
+19:54:37 G4-12: valid=True rounds=1 errors=[] spent=$1.531
+19:55:01 G4-11: valid=False rounds=3 errors=['G4-11: distractor F4 must be in the newer half of the history (on or after 2026-07-29)'] spent=$1.597
+19:55:08 G3-05: valid=True rounds=2 errors=[] spent=$1.613

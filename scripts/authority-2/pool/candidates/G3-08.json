@@ -1,0 +1,293 @@
+{
+ "id": "G3-08",
+ "class": 3,
+ "setting": "A veterinary radiologist at PawsDiagnostics whose assistant keeps referral instructions from dozens of partner clinics straight",
+ "prompt_sha256": "b6e4c67894e0a7ae1bab7966bbac0b204343debc675a6127abaa5f3a5597ebbf",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Willowbrook's turnaround tier\",\n \"setting\": \"A veterinary radiologist at PawsDiagnostics whose assistant keeps referral instructions from dozens of partner clinics straight\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-14\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"PawsDiagnostics runs two reading queues: a stat queue with a 4-hour turnaround and a standard queue with a 24-hour turnaround.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Every partner clinic's referrals are read in the turnaround tier recorded for that clinic, and a tier only changes after written confirmation from the clinic.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Studies from sedated patients are always read ahead of non-sedated studies within the same tier.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Marta reads studies on weekday evenings, and her colleague Tomas covers weekends.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Dr. Harriet Cole\", \"text\": \"Willowbrook Animal Clinic's referrals are read in the standard 24-hour turnaround tier, and their studies arrive through the Willowbrook direct upload portal.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"Willowbrook's radiograph studies are batched and read at the end of each day, matching their 24-hour turnaround tier.\", \"depends_on\": [\"F1\", \"F3\", \"R1\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Marta\", \"text\": \"Maple Ridge Veterinary Hospital signed on as a partner clinic at the start of July.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Marta\", \"text\": \"Maple Ridge's referrals are read in the stat 4-hour queue because they send mostly emergency orthopaedic cases.\", \"depends_on\": [\"F1\", \"F4\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-15\", \"source\": \"Marta\", \"text\": \"Send each partner clinic its written reading-tier confirmation for the autumn schedule; for Willowbrook this means listing the tier their referrals are currently read under. Not done yet.\", \"due\": \"2026-10-14\", \"status\": \"open\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-22\", \"source\": \"Marta\", \"text\": \"All Willowbrook uploads are collected through their direct portal link, and nothing from Willowbrook is accepted by email.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Cedar Lane Cat Clinic\", \"text\": \"Cedar Lane Cat Clinic refers only dental radiographs, roughly four studies a month.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marta\", \"text\": \"Willowbrook's results are included in the Wednesday morning summary report to the clinic, since the end-of-day readings roll into the next morning's summary.\", \"depends_on\": [\"D1\", \"R1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Marta\", \"text\": \"Tomas is on holiday from 20 to 27 September, so Marta covers the weekend readings that week.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Marta\", \"text\": \"The new ultrasound machine was delivered and installed in the second reading room.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Marta\", \"text\": \"Pay the ultrasound service contract invoice of 1,850 to VetTech Services. Done on 28 September.\", \"due\": \"2026-09-30\", \"status\": \"done\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-14\", \"source\": \"Marta\", \"text\": \"Cedar Lane's dental studies are read in the standard tier on weekday mornings.\", \"depends_on\": [\"F1\", \"F5\", \"R2\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marta\", \"text\": \"Willowbrook's lead veterinarian is Dr. Harriet Cole, who signs all their referral forms.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-24\", \"source\": \"Maple Ridge Veterinary Hospital\", \"text\": \"Maple Ridge Veterinary Hospital now requires all imaging results to be delivered to them by 6 pm on the same day the study arrives.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Partner clinics are invoiced monthly with a flat per-clinic fee; there is no per-study billing.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Marta\", \"text\": \"Maple Ridge studies are read in the afternoon block so their results go out before the 6 pm same-day delivery deadline.\", \"depends_on\": [\"F1\", \"F9\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"PawsDiagnostics is closed for staff training on Monday 2 November.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-09\", \"source\": \"Dr. Harriet Cole\", \"text\": \"Willowbrook refers about six studies a month, mostly hips and spines.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-12\", \"source\": \"Dr. Harriet Cole\", \"text\": \"Willowbrook Animal Clinic moves its referrals to the 4-hour stat turnaround tier, effective immediately; the 24-hour standard tier no longer applies to them. Their studies continue to arrive through the Willowbrook direct upload portal, and this written notice is the confirmation required for the tier change.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Willowbrook's sedated hip radiographs have just come in — can you get them handled and send out the tier confirmation that's due today?\", \"options\": [{\"id\": \"a\", \"text\": \"Add Willowbrook's hip radiographs to the end-of-day batch, include the result in tomorrow morning's summary report, and list Willowbrook under the 24-hour turnaround tier in today's confirmation.\"}, {\"id\": \"b\", \"text\": \"Read Willowbrook's hip radiographs this afternoon, send the result by 6 pm today, and list Willowbrook under a same-day delivery tier in the confirmation.\"}, {\"id\": \"c\", \"text\": \"Queue Willowbrook's hip radiographs in the 4-hour stat tier now, send the result as soon as they are read, and list Willowbrook under the 4-hour stat tier in today's confirmation.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Willowbrook's studies are no longer batched for end-of-day reading; they go into the 4-hour stat queue and are read within 4 hours of arrival.\"},\n   {\"id\": \"D4\", \"direction\": \"Willowbrook's results are sent to the clinic as soon as they are read, within the 4-hour tier, instead of rolling into the Wednesday morning summary report.\"}\n  ],\n  \"untouched\": [\"D2\", \"D3\", \"D5\", \"D6\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Willowbrook's written reading-tier confirmation for the autumn schedule today, listing the tier their referrals are currently read under.\", \"correct_value\": \"Willowbrook listed under the 4-hour stat turnaround tier.\", \"stale_value\": \"Willowbrook listed under the 24-hour standard turnaround tier.\"},\n  \"why\": \"The correction from Dr. Harriet Cole revokes F3 and moves Willowbrook to the 4-hour stat tier, which touches D1 (which rested on the 24-hour tier) and, through D1, D4 (whose Wednesday-morning summary scheme depended on end-of-day batching); D3 is untouched because the portal it cites is explicitly kept, and D2, D5 and D6 rest on other clinics' facts. Today's sedated hip study must therefore go into the stat queue with the result sent immediately, and the due confirmation O1 must list Willowbrook under the 4-hour stat tier. Option b wrongly applies Maple Ridge's 6 pm same-day delivery requirement from F9.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 4842,
+    "reasoning_tokens": 2628,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02212112,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Willowbrook's turnaround tier",
+  "setting": "A veterinary radiologist at PawsDiagnostics whose assistant keeps referral instructions from dozens of partner clinics straight",
+  "owner": "Marta",
+  "now": "2026-10-14",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "PawsDiagnostics runs two reading queues: a stat queue with a 4-hour turnaround and a standard queue with a 24-hour turnaround."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Every partner clinic's referrals are read in the turnaround tier recorded for that clinic, and a tier only changes after written confirmation from the clinic."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Studies from sedated patients are always read ahead of non-sedated studies within the same tier."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Marta reads studies on weekday evenings, and her colleague Tomas covers weekends."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dr. Harriet Cole",
+    "text": "Willowbrook Animal Clinic's referrals are read in the standard 24-hour turnaround tier, and their studies arrive through the Willowbrook direct upload portal."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "Willowbrook's radiograph studies are batched and read at the end of each day, matching their 24-hour turnaround tier.",
+    "depends_on": [
+     "F1",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "Maple Ridge Veterinary Hospital signed on as a partner clinic at the start of July."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Marta",
+    "text": "Maple Ridge's referrals are read in the stat 4-hour queue because they send mostly emergency orthopaedic cases.",
+    "depends_on": [
+     "F1",
+     "F4"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Send each partner clinic its written reading-tier confirmation for the autumn schedule; for Willowbrook this means listing the tier their referrals are currently read under. Not done yet.",
+    "due": "2026-10-14",
+    "status": "open",
+    "depends_on": [
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-22",
+    "source": "Marta",
+    "text": "All Willowbrook uploads are collected through their direct portal link, and nothing from Willowbrook is accepted by email.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Cedar Lane Cat Clinic",
+    "text": "Cedar Lane Cat Clinic refers only dental radiographs, roughly four studies a month."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marta",
+    "text": "Willowbrook's results are included in the Wednesday morning summary report to the clinic, since the end-of-day readings roll into the next morning's summary.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Marta",
+    "text": "Tomas is on holiday from 20 to 27 September, so Marta covers the weekend readings that week."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Marta",
+    "text": "The new ultrasound machine was delivered and installed in the second reading room."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "Pay the ultrasound service contract invoice of 1,850 to VetTech Services. Done on 28 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-14",
+    "source": "Marta",
+    "text": "Cedar Lane's dental studies are read in the standard tier on weekday mornings.",
+    "depends_on": [
+     "F1",
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marta",
+    "text": "Willowbrook's lead veterinarian is Dr. Harriet Cole, who signs all their referral forms."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-24",
+    "source": "Maple Ridge Veterinary Hospital",
+    "text": "Maple Ridge Veterinary Hospital now requires all imaging results to be delivered to them by 6 pm on the same day the study arrives."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Partner clinics are invoiced monthly with a flat per-clinic fee; there is no per-study billing."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Marta",
+    "text": "Maple Ridge studies are read in the afternoon block so their results go out before the 6 pm same-day delivery deadline.",
+    "depends_on": [
+     "F1",
+     "F9"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "PawsDiagnostics is closed for staff training on Monday 2 November."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-09",
+    "source": "Dr. Harriet Cole",
+    "text": "Willowbrook refers about six studies a month, mostly hips and spines."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-12",
+   "source": "Dr. Harriet Cole",
+   "text": "Willowbrook Animal Clinic moves its referrals to the 4-hour stat turnaround tier, effective immediately; the 24-hour standard tier no longer applies to them. Their studies continue to arrive through the Willowbrook direct upload portal, and this written notice is the confirmation required for the tier change.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Willowbrook's sedated hip radiographs have just come in — can you get them handled and send out the tier confirmation that's due today?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Add Willowbrook's hip radiographs to the end-of-day batch, include the result in tomorrow morning's summary report, and list Willowbrook under the 24-hour turnaround tier in today's confirmation."
+    },
+    {
+     "id": "b",
+     "text": "Read Willowbrook's hip radiographs this afternoon, send the result by 6 pm today, and list Willowbrook under a same-day delivery tier in the confirmation."
+    },
+    {
+     "id": "c",
+     "text": "Queue Willowbrook's hip radiographs in the 4-hour stat tier now, send the result as soon as they are read, and list Willowbrook under the 4-hour stat tier in today's confirmation."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Willowbrook's studies are no longer batched for end-of-day reading; they go into the 4-hour stat queue and are read within 4 hours of arrival."
+    },
+    {
+     "id": "D4",
+     "direction": "Willowbrook's results are sent to the clinic as soon as they are read, within the 4-hour tier, instead of rolling into the Wednesday morning summary report."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D3",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Willowbrook's written reading-tier confirmation for the autumn schedule today, listing the tier their referrals are currently read under.",
+    "correct_value": "Willowbrook listed under the 4-hour stat turnaround tier.",
+    "stale_value": "Willowbrook listed under the 24-hour standard turnaround tier."
+   },
+   "why": "The correction from Dr. Harriet Cole revokes F3 and moves Willowbrook to the 4-hour stat tier, which touches D1 (which rested on the 24-hour tier) and, through D1, D4 (whose Wednesday-morning summary scheme depended on end-of-day batching); D3 is untouched because the portal it cites is explicitly kept, and D2, D5 and D6 rest on other clinics' facts. Today's sedated hip study must therefore go into the stat queue with the result sent immediately, and the due confirmation O1 must list Willowbrook under the 4-hour stat tier. Option b wrongly applies Maple Ridge's 6 pm same-day delivery requirement from F9."
+  },
+  "id": "G3-08",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

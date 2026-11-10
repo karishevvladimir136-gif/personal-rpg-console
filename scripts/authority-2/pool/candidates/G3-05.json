@@ -1,0 +1,326 @@
+{
+ "id": "G3-05",
+ "class": 3,
+ "setting": "A preschool director at Little Acorns Learning Center whose assistant maintains enrollment waitlist decisions and parent payment arrangements",
+ "prompt_sha256": "bfc5afd52878b0c5db5329e2e1bcaea2b4525771ea333abf9b8dc8671d90875d",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The second Turtle Room offer\",\n  \"setting\": \"A preschool director at Little Acorns Learning Center whose assistant maintains enrollment waitlist decisions and parent payment arrangements\",\n  \"owner\": \"Marisol\",\n  \"now\": \"2026-09-28\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marisol (owner)\", \"text\": \"The Turtle Room takes three-year-olds in the morning session 8:30-12:30, is licensed for 14 children, and is led by Nora Blum.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"The Turtle Room autumn waitlist, in order, is: 1. Zoey Parkman, 2. Amir Haddad, 3. Lena Frost, 4. Tomás Rivera, 5. Priya Nair. All five families want a morning place.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"Seats are offered in strict waitlist order, except that a family with a sibling already enrolled at Little Acorns moves to the top of their waitlist.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"Every seat offer carries a $150 non-refundable deposit, due within ten days of the offer.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Marisol (owner)\", \"text\": \"The Sunflower Room takes four-year-olds in the afternoon, holds 16 places, and is led by Elena Ruiz.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marisol (owner)\", \"text\": \"Crayon Crate delivers craft supplies every second Tuesday at $240 per delivery.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marisol (owner)\", \"text\": \"Keep the Turtle Room at its licensed 14 morning places with Nora Blum as lead teacher; no staffing change for autumn.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Marisol (owner)\", \"text\": \"Switch the weekly snack order to Orchard Basket at $95 a week from 1 August.\", \"depends_on\": [\"F4\"]},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"Marisol (owner)\", \"text\": \"Monthly Turtle Room tuition is $520 per child.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-01\", \"source\": \"Marisol (owner)\", \"text\": \"Families may split monthly tuition into two equal payments, due on the 1st and the 15th.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marisol (owner)\", \"text\": \"Open three afternoon places in the Sunflower Room from September and offer them in order to the Sunflower waitlist: Bennett, Okafor, Duval.\", \"depends_on\": [\"F3\", \"R1\"]},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marisol (owner)\", \"text\": \"Set October Turtle Room invoices at $520 per child; families on the split plan pay $260 on the 1st and $260 on the 15th.\", \"depends_on\": [\"F5\", \"R3\"]},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Marisol (owner)\", \"text\": \"The Little Acorns autumn fair is planned for Saturday 10 October, 10:00-13:00, in the yard.\"},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-08-01\", \"source\": \"Marisol (owner)\", \"text\": \"File the autumn roster with the county early-childhood office. Done on 28 August.\", \"due\": \"2026-08-31\", \"status\": \"done\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Marisol (owner)\", \"text\": \"The Marcus and Halle families gave notice; two Turtle Room children leave at the end of September.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Marisol (owner)\", \"text\": \"Two Turtle Room seats open from Thursday 1 October. Offer them in waitlist order to Zoey Parkman first and Amir Haddad second; the next family in line after those two is Lena Frost.\", \"depends_on\": [\"F2\", \"F7\", \"R1\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Marisol (owner)\", \"text\": \"Send Zoey Parkman's offer letter with the $150 deposit due ten days after the offer. If either of the first two families declines, offer the freed seat to the next family in line, Lena Frost, on the same deposit terms.\", \"depends_on\": [\"D2\", \"R2\"]},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Marisol (owner)\", \"text\": \"Order five printed welcome packets from Lakeside Print Co, one for each of the five families on the Turtle Room autumn waitlist.\", \"depends_on\": [\"F2\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Nora Blum\", \"text\": \"Zoey Parkman's family accepted her Turtle Room place and paid the $150 deposit on 14 September.\"},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-16\", \"source\": \"Marisol (owner)\", \"text\": \"Amir Haddad's family declined their Turtle Room offer; Amir enrolled at Cedar Lane Preschool instead.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marisol (owner)\", \"text\": \"Priya Nair's mother asked to be first in line for an afternoon Sunflower Room place if one opens this autumn.\"},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Marisol (owner)\", \"text\": \"Every Turtle Room seat offer from the waitlist must be followed by a written offer letter to the family stating the deposit deadline, with all autumn offers out by Wednesday 30 September at the latest. Not done yet for the second seat.\", \"due\": \"2026-09-30\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"Marisol (owner)\", \"text\": \"Post the October tuition invoices to all enrolled Turtle Room families. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-24\", \"source\": \"Marisol (owner)\", \"text\": \"Tomás Rivera's older sister Sofia started in the Sunflower Room on 1 September, so the sibling-priority rule applies. The corrected Turtle Room autumn waitlist order is: 1. Zoey Parkman, 2. Amir Haddad, 3. Tomás Rivera, 4. Lena Frost, 5. Priya Nair. The same five families are on the list; only the order changes.\", \"revokes\": [\"F2\"]},\n  \"task\": {\"text\": \"Amir's family turned down their Turtle Room spot, so please send out the second Turtle Room offer letter this morning, on our usual deposit terms.\", \"options\": [{\"id\": \"a\", \"text\": \"Send the written offer letter to Lena Frost, with the $150 deposit due 8 October.\"}, {\"id\": \"b\", \"text\": \"Send the written offer letter to Priya Nair, with the $150 deposit due 8 October.\"}, {\"id\": \"c\", \"text\": \"Send the written offer letter to Tomás Rivera, with the $150 deposit due 8 October.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"c\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"b\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F2\"],\n    \"distractor_items\": [\"F9\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The offers still go to Zoey Parkman and Amir Haddad, but the next family in line after them is Tomás Rivera, not Lena Frost.\"},\n      {\"id\": \"D3\", \"direction\": \"If a top-two family declines, the freed seat goes to Tomás Rivera, with the same $150 deposit due ten days after the offer.\"}\n    ],\n    \"untouched\": [\"D1\", \"D4\", \"D5\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the written Turtle Room offer letter for the freed seat to the next family in the corrected waitlist order, stating the deposit deadline.\", \"correct_value\": \"Letter to Tomás Rivera, $150 deposit due 8 October\", \"stale_value\": \"Letter to Lena Frost, $150 deposit due 8 October\"},\n    \"why\": \"C1 revokes F2 and reorders the waitlist, putting Tomás Rivera third. D2 rests on F2 and named Lena Frost as next in line, and D3 rests on D2, so both are touched; since Amir declined, the second seat goes to Tomás Rivera, not Lena Frost. D4 cites F2 only for the fact that five families are on the list, which the correction leaves standing, so it and the other decisions are untouched. F9 concerns Priya Nair and an afternoon Sunflower place and does not affect the morning Turtle Room offer, so acting on it is the distractor.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 8007,
+    "reasoning_tokens": 5574,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03604712,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The second Turtle Room offer\",\n  \"setting\": \"A preschool director at Little Acorns Learning Center whose assistant maintains enrollment waitlist decisions and parent payment arrangements\",\n  \"owner\": \"Marisol\",\n  \"now\": \"2026-09-28\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marisol (owner)\", \"text\": \"The Turtle Room takes three-year-olds in the morning session 8:30-12:30, is licensed for 14 children, and is led by Nora Blum.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"The Turtle Room autumn waitlist, in order, is: 1. Zoey Parkman, 2. Amir Haddad, 3. Lena Frost, 4. Tomás Rivera, 5. Priya Nair. All five families want a morning place.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"Seats are offered in strict waitlist order, except that a family with a sibling already enrolled at Little Acorns moves to the top of their waitlist.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Marisol (owner)\", \"text\": \"Every seat offer carries a $150 non-refundable deposit, due within ten days of the offer.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Marisol (owner)\", \"text\": \"The Sunflower Room takes four-year-olds in the afternoon, holds 16 places, and is led by Elena Ruiz.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marisol (owner)\", \"text\": \"Crayon Crate delivers craft supplies every second Tuesday at $240 per delivery.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marisol (owner)\", \"text\": \"Keep the Turtle Room at its licensed 14 morning places with Nora Blum as lead teacher; no staffing change for autumn.\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Marisol (owner)\", \"text\": \"Switch the weekly snack order to Orchard Basket at $95 a week from 1 August.\", \"depends_on\": [\"F4\"]},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"Marisol (owner)\", \"text\": \"Monthly Turtle Room tuition is $520 per child.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-01\", \"source\": \"Marisol (owner)\", \"text\": \"Families may split monthly tuition into two equal payments, due on the 1st and the 15th.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marisol (owner)\", \"text\": \"Open three afternoon places in the Sunflower Room from September and offer them in order to the Sunflower waitlist: Bennett, Okafor, Duval.\", \"depends_on\": [\"F3\", \"R1\"]},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marisol (owner)\", \"text\": \"Set October Turtle Room invoices at $520 per child; families on the split plan pay $260 on the 1st and $260 on the 15th.\", \"depends_on\": [\"F5\", \"R3\"]},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Marisol (owner)\", \"text\": \"The Little Acorns autumn fair is planned for Saturday 10 October, 10:00-13:00, in the yard.\"},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-08-01\", \"source\": \"Marisol (owner)\", \"text\": \"File the autumn roster with the county early-childhood office. Done on 28 August.\", \"due\": \"2026-08-31\", \"status\": \"done\", \"depends_on\": [\"F1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Marisol (owner)\", \"text\": \"The Marcus and Halle families gave notice; two Turtle Room children leave at the end of September.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Marisol (owner)\", \"text\": \"Two Turtle Room seats open from Thursday 1 October. Offer them in waitlist order to Zoey Parkman first and Amir Haddad second; the next family in line after those two is Lena Frost.\", \"depends_on\": [\"F2\", \"F7\", \"R1\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Marisol (owner)\", \"text\": \"Send Zoey Parkman's offer letter with the $150 deposit due ten days after the offer. If either of the first two families declines, offer the freed seat to the next family in line, Lena Frost, on the same deposit terms.\", \"depends_on\": [\"D2\", \"R2\"]},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Marisol (owner)\", \"text\": \"Order five printed welcome packets from Lakeside Print Co, one for each of the five families on the Turtle Room autumn waitlist.\", \"depends_on\": [\"F2\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Nora Blum\", \"text\": \"Zoey Parkman's family accepted her Turtle Room place and paid the $150 deposit on 14 September.\"},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-16\", \"source\": \"Marisol (owner)\", \"text\": \"Amir Haddad's family declined their Turtle Room offer; Amir enrolled at Cedar Lane Preschool instead.\"},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marisol (owner)\", \"text\": \"Priya Nair's mother asked to be first in line for an afternoon Sunflower Room place if one opens this autumn.\"},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Marisol (owner)\", \"text\": \"Every Turtle Room seat offer from the waitlist must be followed by a written offer letter to the family stating the deposit deadline, with all autumn offers out by Monday 28 September at the latest. Not done yet for the second seat.\", \"due\": \"2026-09-28\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"Marisol (owner)\", \"text\": \"Post the October tuition invoices to all enrolled Turtle Room families. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-24\", \"source\": \"Marisol (owner)\", \"text\": \"Tomás Rivera's older sister Sofia started in the Sunflower Room on 1 September, so the sibling-priority rule applies. The corrected Turtle Room autumn waitlist order is: 1. Zoey Parkman, 2. Amir Haddad, 3. Tomás Rivera, 4. Lena Frost, 5. Priya Nair. The same five families are on the list; only the order changes.\", \"revokes\": [\"F2\"]},\n  \"task\": {\"text\": \"Amir's family turned down their Turtle Room spot, so please send out the second Turtle Room offer letter this morning, on our usual deposit terms.\", \"options\": [{\"id\": \"a\", \"text\": \"Send the written offer letter to Lena Frost, with the $150 deposit due 8 October.\"}, {\"id\": \"b\", \"text\": \"Send the written offer letter to Priya Nair, with the $150 deposit due 8 October.\"}, {\"id\": \"c\", \"text\": \"Send the written offer letter to Tomás Rivera, with the $150 deposit due 8 October.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"c\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"b\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F2\"],\n    \"distractor_items\": [\"F9\"],\n    \"touched\": [\n      {\"id\": \"D2\", \"direction\": \"The offers still go to Zoey Parkman and Amir Haddad, but the next family in line after them is Tomás Rivera, not Lena Frost.\"},\n      {\"id\": \"D3\", \"direction\": \"If a top-two family declines, the freed seat goes to Tomás Rivera, with the same $150 deposit due ten days after the offer.\"}\n    ],\n    \"untouched\": [\"D1\", \"D4\", \"D5\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the written Turtle Room offer letter for the freed seat to the next family in the corrected waitlist order, stating the deposit deadline.\", \"correct_value\": \"Letter to Tomás Rivera, $150 deposit due 8 October\", \"stale_value\": \"Letter to Lena Frost, $150 deposit due 8 October\"},\n    \"why\": \"C1 revokes F2 and reorders the waitlist, putting Tomás Rivera third. D2 rests on F2 and named Lena Frost as next in line, and D3 rests on D2, so both are touched; since Amir declined, the second seat goes to Tomás Rivera, not Lena Frost. D4 cites F2 only for the fact that five families are on the list, which the correction leaves standing, so it and the other decisions are untouched. F9 concerns Priya Nair and an afternoon Sunflower place and does not affect the morning Turtle Room offer, so acting on it is the distractor.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5303,
+    "completion_tokens": 2560,
+    "reasoning_tokens": 127,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01547796,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-05: due obligation O2 must be due on or before now\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "The second Turtle Room offer",
+  "setting": "A preschool director at Little Acorns Learning Center whose assistant maintains enrollment waitlist decisions and parent payment arrangements",
+  "owner": "Marisol",
+  "now": "2026-09-28",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marisol (owner)",
+    "text": "The Turtle Room takes three-year-olds in the morning session 8:30-12:30, is licensed for 14 children, and is led by Nora Blum."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marisol (owner)",
+    "text": "The Turtle Room autumn waitlist, in order, is: 1. Zoey Parkman, 2. Amir Haddad, 3. Lena Frost, 4. Tomás Rivera, 5. Priya Nair. All five families want a morning place."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Marisol (owner)",
+    "text": "Seats are offered in strict waitlist order, except that a family with a sibling already enrolled at Little Acorns moves to the top of their waitlist."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Marisol (owner)",
+    "text": "Every seat offer carries a $150 non-refundable deposit, due within ten days of the offer."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Marisol (owner)",
+    "text": "The Sunflower Room takes four-year-olds in the afternoon, holds 16 places, and is led by Elena Ruiz."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Marisol (owner)",
+    "text": "Crayon Crate delivers craft supplies every second Tuesday at $240 per delivery."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marisol (owner)",
+    "text": "Keep the Turtle Room at its licensed 14 morning places with Nora Blum as lead teacher; no staffing change for autumn.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Marisol (owner)",
+    "text": "Switch the weekly snack order to Orchard Basket at $95 a week from 1 August.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Marisol (owner)",
+    "text": "Monthly Turtle Room tuition is $520 per child."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-07-01",
+    "source": "Marisol (owner)",
+    "text": "Families may split monthly tuition into two equal payments, due on the 1st and the 15th."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marisol (owner)",
+    "text": "Open three afternoon places in the Sunflower Room from September and offer them in order to the Sunflower waitlist: Bennett, Okafor, Duval.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marisol (owner)",
+    "text": "Set October Turtle Room invoices at $520 per child; families on the split plan pay $260 on the 1st and $260 on the 15th.",
+    "depends_on": [
+     "F5",
+     "R3"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-05",
+    "source": "Marisol (owner)",
+    "text": "The Little Acorns autumn fair is planned for Saturday 10 October, 10:00-13:00, in the yard."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-08-01",
+    "source": "Marisol (owner)",
+    "text": "File the autumn roster with the county early-childhood office. Done on 28 August.",
+    "due": "2026-08-31",
+    "status": "done",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Marisol (owner)",
+    "text": "The Marcus and Halle families gave notice; two Turtle Room children leave at the end of September."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Marisol (owner)",
+    "text": "Two Turtle Room seats open from Thursday 1 October. Offer them in waitlist order to Zoey Parkman first and Amir Haddad second; the next family in line after those two is Lena Frost.",
+    "depends_on": [
+     "F2",
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-08",
+    "source": "Marisol (owner)",
+    "text": "Send Zoey Parkman's offer letter with the $150 deposit due ten days after the offer. If either of the first two families declines, offer the freed seat to the next family in line, Lena Frost, on the same deposit terms.",
+    "depends_on": [
+     "D2",
+     "R2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Marisol (owner)",
+    "text": "Order five printed welcome packets from Lakeside Print Co, one for each of the five families on the Turtle Room autumn waitlist.",
+    "depends_on": [
+     "F2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Nora Blum",
+    "text": "Zoey Parkman's family accepted her Turtle Room place and paid the $150 deposit on 14 September."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-16",
+    "source": "Marisol (owner)",
+    "text": "Amir Haddad's family declined their Turtle Room offer; Amir enrolled at Cedar Lane Preschool instead."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marisol (owner)",
+    "text": "Priya Nair's mother asked to be first in line for an afternoon Sunflower Room place if one opens this autumn."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Marisol (owner)",
+    "text": "Every Turtle Room seat offer from the waitlist must be followed by a written offer letter to the family stating the deposit deadline, with all autumn offers out by Monday 28 September at the latest. Not done yet for the second seat.",
+    "due": "2026-09-28",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "Marisol (owner)",
+    "text": "Post the October tuition invoices to all enrolled Turtle Room families. Not done yet.",
+    "due": "2026-10-15",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-09-24",
+   "source": "Marisol (owner)",
+   "text": "Tomás Rivera's older sister Sofia started in the Sunflower Room on 1 September, so the sibling-priority rule applies. The corrected Turtle Room autumn waitlist order is: 1. Zoey Parkman, 2. Amir Haddad, 3. Tomás Rivera, 4. Lena Frost, 5. Priya Nair. The same five families are on the list; only the order changes.",
+   "revokes": [
+    "F2"
+   ]
+  },
+  "task": {
+   "text": "Amir's family turned down their Turtle Room spot, so please send out the second Turtle Room offer letter this morning, on our usual deposit terms.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send the written offer letter to Lena Frost, with the $150 deposit due 8 October."
+    },
+    {
+     "id": "b",
+     "text": "Send the written offer letter to Priya Nair, with the $150 deposit due 8 October."
+    },
+    {
+     "id": "c",
+     "text": "Send the written offer letter to Tomás Rivera, with the $150 deposit due 8 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F2"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D2",
+     "direction": "The offers still go to Zoey Parkman and Amir Haddad, but the next family in line after them is Tomás Rivera, not Lena Frost."
+    },
+    {
+     "id": "D3",
+     "direction": "If a top-two family declines, the freed seat goes to Tomás Rivera, with the same $150 deposit due ten days after the offer."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the written Turtle Room offer letter for the freed seat to the next family in the corrected waitlist order, stating the deposit deadline.",
+    "correct_value": "Letter to Tomás Rivera, $150 deposit due 8 October",
+    "stale_value": "Letter to Lena Frost, $150 deposit due 8 October"
+   },
+   "why": "C1 revokes F2 and reorders the waitlist, putting Tomás Rivera third. D2 rests on F2 and named Lena Frost as next in line, and D3 rests on D2, so both are touched; since Amir declined, the second seat goes to Tomás Rivera, not Lena Frost. D4 cites F2 only for the fact that five families are on the list, which the correction leaves standing, so it and the other decisions are untouched. F9 concerns Priya Nair and an afternoon Sunflower place and does not affect the morning Turtle Room offer, so acting on it is the distractor."
+  },
+  "id": "G3-05",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,321 @@
+{
+ "id": "G1-01",
+ "class": 1,
+ "setting": "A solo patent attorney at Marlowe & Voss Legal who depends on a legal assistant to track client call notes and filing deadlines",
+ "prompt_sha256": "9006db79a7b6d46643d2f067ac443c3dd9bc913c7162a9cc9329c3c970cf569e",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Translation vendor swap before the Ozawa PCT deadline\",\n \"setting\": \"A solo patent attorney at Marlowe & Voss Legal who depends on a legal assistant to track client call notes and filing deadlines\",\n \"owner\": \"Nadia\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Nadia\", \"text\": \"The practice sits in Suite 4, Meridian House, 18 Canal Street; the front desk collects all courier deliveries and signs for them.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Nadia\", \"text\": \"The main clients are Ozawa Medical Devices in Tokyo, Bergström Robotics in Gothenburg and Halley Optics in Bristol.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Vela & Crane\", \"text\": \"All patent translations are handled by Vela & Crane Translations in Rotterdam: standard turnaround is 10 business days, orders must be placed at least 12 business days before the filing date, and finished translations are delivered by courier from the Rotterdam office.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-16\", \"source\": \"EPO register\", \"text\": \"The Ozawa Medical Devices PCT application enters the European regional phase with a deadline of 2026-11-20.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Nadia\", \"text\": \"Nadia works from home on Tuesdays and takes client calls only in the afternoons on those days.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Nadia\", \"text\": \"Filing materials must be complete and checked three business days before any filing deadline.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Nadia\", \"text\": \"Client call notes are logged in the case file on the same day the call happens.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Nadia\", \"text\": \"Any expense over €500 needs the client's written sign-off before it is committed.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-18\", \"source\": \"Nadia\", \"text\": \"Adopt CaseLoop as the docketing software for all filing deadlines, replacing the spreadsheet.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Nadia\", \"text\": \"For the Bergström Robotics European filing due 2026-12-04, the Swedish translation will be ordered from Vela & Crane by 2026-11-16 so it is delivered by 2026-11-27.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-08\", \"source\": \"Nadia\", \"text\": \"Pay the CaseLoop annual invoice of €360. Done on 2026-07-19.\", \"due\": \"2026-07-20\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-14\", \"source\": \"Nadia\", \"text\": \"The Ozawa PCT specification runs to 74 pages and is in Japanese; a full English translation is needed for the European filing.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-30\", \"source\": \"Priya\", \"text\": \"Sequence listings for the Ozawa case are prepared in-house with the PATSEQ tool and need no outside help.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Nadia\", \"text\": \"The Ozawa translation will be ordered from Vela & Crane, with the order placed by 2026-11-04 and delivery by 2026-11-10 so the three-day check window before the 2026-11-20 deadline is protected.\", \"depends_on\": [\"F3\", \"F6\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-21\", \"source\": \"Nadia\", \"text\": \"Keep Vela & Crane on their €400-per-quarter retainer through the fourth quarter of 2026, since it stays under the sign-off threshold and covers both pending translation jobs.\", \"depends_on\": [\"F3\", \"R3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"Priya\", \"text\": \"The Bergström Robotics specification is 41 pages and written in Swedish.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Nadia\", \"text\": \"Keep the Ozawa sequence-listing preparation in house with PATSEQ; no vendor is to be engaged for it.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Priya\", \"text\": \"Linden Words, a Rotterdam translation agency, quoted €0.18 per word for Japanese-to-English patent translations with a 14-business-day turnaround, the quote being valid through October 2026; Nadia declined it for the Bergström case on price.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-24\", \"source\": \"Nadia\", \"text\": \"Place the translation order for the Ozawa PCT specification so the translation is delivered in time for the 2026-11-20 filing. Not done yet.\", \"due\": \"2026-10-24\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-30\", \"source\": \"Priya\", \"text\": \"Book a courier pickup of the finished Ozawa translation at Vela & Crane's Rotterdam office on 2026-11-11, the day after its planned delivery.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-06\", \"source\": \"Nadia\", \"text\": \"Use the new one-page call-note template with fields for client, date, matters discussed and next step.\", \"depends_on\": [\"R2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"Priya\", \"text\": \"Halley Optics has asked for help renewing a UK trademark, due 2027-02-01; it is unrelated to any translation work.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-14\", \"source\": \"Nadia\", \"text\": \"Place the Bergström Swedish translation order according to the filing plan. Not done yet.\", \"due\": \"2026-11-16\", \"status\": \"open\", \"depends_on\": [\"D2\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-25\", \"source\": \"Priya\", \"text\": \"Vela & Crane Translations is closing its patent translation practice on 2026-10-31 and will not accept new orders. From today, all patent translations are handled by Kestrel Linguistics: turnaround is 7 business days, orders must be placed at least 9 business days before the filing date, and finished translations are delivered by secure upload to the case portal. Per-page rates and the €500 client sign-off rule are unchanged.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Priya, please get the Ozawa translation order sorted today — I don't want it hanging over the 20 November deadline while I'm travelling.\", \"options\": [{\"id\": \"a\", \"text\": \"Order the Japanese-to-English translation of the 74-page Ozawa specification from Vela & Crane, for delivery by 2026-11-10.\"}, {\"id\": \"b\", \"text\": \"Order the translation from Linden Words at €0.18 per word, for delivery by 2026-11-12.\"}, {\"id\": \"c\", \"text\": \"Order the translation from Kestrel Linguistics, for delivery by 2026-11-13.\"}, {\"id\": \"d\", \"text\": \"Order the translation from Kestrel Linguistics for delivery by 2026-11-13 and outsource the Ozawa sequence-listing preparation to an external vendor at €600.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [\"d\"],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Order the Ozawa translation from Kestrel Linguistics instead of Vela & Crane; a 7-business-day turnaround ordered now comfortably meets the 2026-11-13 delivery needed for the three-day check window.\"},\n   {\"id\": \"D2\", \"direction\": \"The Bergström translation must be ordered from Kestrel Linguistics (9 business days before 2026-12-04), not Vela & Crane.\"},\n   {\"id\": \"D4\", \"direction\": \"The Vela & Crane retainer ends; no renewal payment should be made for Q4.\"},\n   {\"id\": \"D6\", \"direction\": \"No courier pickup at Vela's Rotterdam office is needed; Kestrel delivers by secure upload, so the 2026-11-11 pickup booking should be dropped.\"}\n  ],\n  \"untouched\": [\"D1\", \"D5\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the translation order for the 74-page Ozawa PCT specification today so it arrives in time for the 2026-11-20 filing.\", \"correct_value\": \"Kestrel Linguistics, delivery by 2026-11-13\", \"stale_value\": \"Vela & Crane, delivery by 2026-11-10\"},\n  \"why\": \"The correction ends F3, so every plan built on Vela & Crane (D2, D3, D4 directly, D6 through D3) is stale and the order must go to Kestrel Linguistics. D1, D5 and D7 rest only on untouched facts and rules, and the sequence-listing work stays in house, so option d changes a plan that should stand. The Linden Words quote (F9) was declined and was never the standing vendor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2832,
+    "completion_tokens": 7217,
+    "reasoning_tokens": 4674,
+    "cached_tokens": 0
+   },
+   "cost": 0.0357196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Translation vendor swap before the Ozawa PCT deadline",
+  "setting": "A solo patent attorney at Marlowe & Voss Legal who depends on a legal assistant to track client call notes and filing deadlines",
+  "owner": "Nadia",
+  "now": "2026-10-26",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Nadia",
+    "text": "The practice sits in Suite 4, Meridian House, 18 Canal Street; the front desk collects all courier deliveries and signs for them."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Nadia",
+    "text": "The main clients are Ozawa Medical Devices in Tokyo, Bergström Robotics in Gothenburg and Halley Optics in Bristol."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Vela & Crane",
+    "text": "All patent translations are handled by Vela & Crane Translations in Rotterdam: standard turnaround is 10 business days, orders must be placed at least 12 business days before the filing date, and finished translations are delivered by courier from the Rotterdam office."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-16",
+    "source": "EPO register",
+    "text": "The Ozawa Medical Devices PCT application enters the European regional phase with a deadline of 2026-11-20."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Nadia",
+    "text": "Nadia works from home on Tuesdays and takes client calls only in the afternoons on those days."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Nadia",
+    "text": "Filing materials must be complete and checked three business days before any filing deadline."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Nadia",
+    "text": "Client call notes are logged in the case file on the same day the call happens."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Nadia",
+    "text": "Any expense over €500 needs the client's written sign-off before it is committed."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-18",
+    "source": "Nadia",
+    "text": "Adopt CaseLoop as the docketing software for all filing deadlines, replacing the spreadsheet.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Nadia",
+    "text": "For the Bergström Robotics European filing due 2026-12-04, the Swedish translation will be ordered from Vela & Crane by 2026-11-16 so it is delivered by 2026-11-27.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-08",
+    "source": "Nadia",
+    "text": "Pay the CaseLoop annual invoice of €360. Done on 2026-07-19.",
+    "due": "2026-07-20",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-14",
+    "source": "Nadia",
+    "text": "The Ozawa PCT specification runs to 74 pages and is in Japanese; a full English translation is needed for the European filing."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-30",
+    "source": "Priya",
+    "text": "Sequence listings for the Ozawa case are prepared in-house with the PATSEQ tool and need no outside help."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Nadia",
+    "text": "The Ozawa translation will be ordered from Vela & Crane, with the order placed by 2026-11-04 and delivery by 2026-11-10 so the three-day check window before the 2026-11-20 deadline is protected.",
+    "depends_on": [
+     "F3",
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-21",
+    "source": "Nadia",
+    "text": "Keep Vela & Crane on their €400-per-quarter retainer through the fourth quarter of 2026, since it stays under the sign-off threshold and covers both pending translation jobs.",
+    "depends_on": [
+     "F3",
+     "R3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "Priya",
+    "text": "The Bergström Robotics specification is 41 pages and written in Swedish."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Nadia",
+    "text": "Keep the Ozawa sequence-listing preparation in house with PATSEQ; no vendor is to be engaged for it.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Priya",
+    "text": "Linden Words, a Rotterdam translation agency, quoted €0.18 per word for Japanese-to-English patent translations with a 14-business-day turnaround, the quote being valid through October 2026; Nadia declined it for the Bergström case on price."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-24",
+    "source": "Nadia",
+    "text": "Place the translation order for the Ozawa PCT specification so the translation is delivered in time for the 2026-11-20 filing. Not done yet.",
+    "due": "2026-10-24",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-30",
+    "source": "Priya",
+    "text": "Book a courier pickup of the finished Ozawa translation at Vela & Crane's Rotterdam office on 2026-11-11, the day after its planned delivery.",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-06",
+    "source": "Nadia",
+    "text": "Use the new one-page call-note template with fields for client, date, matters discussed and next step.",
+    "depends_on": [
+     "R2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-10",
+    "source": "Priya",
+    "text": "Halley Optics has asked for help renewing a UK trademark, due 2027-02-01; it is unrelated to any translation work."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-14",
+    "source": "Nadia",
+    "text": "Place the Bergström Swedish translation order according to the filing plan. Not done yet.",
+    "due": "2026-11-16",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-25",
+   "source": "Priya",
+   "text": "Vela & Crane Translations is closing its patent translation practice on 2026-10-31 and will not accept new orders. From today, all patent translations are handled by Kestrel Linguistics: turnaround is 7 business days, orders must be placed at least 9 business days before the filing date, and finished translations are delivered by secure upload to the case portal. Per-page rates and the €500 client sign-off rule are unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Priya, please get the Ozawa translation order sorted today — I don't want it hanging over the 20 November deadline while I'm travelling.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order the Japanese-to-English translation of the 74-page Ozawa specification from Vela & Crane, for delivery by 2026-11-10."
+    },
+    {
+     "id": "b",
+     "text": "Order the translation from Linden Words at €0.18 per word, for delivery by 2026-11-12."
+    },
+    {
+     "id": "c",
+     "text": "Order the translation from Kestrel Linguistics, for delivery by 2026-11-13."
+    },
+    {
+     "id": "d",
+     "text": "Order the translation from Kestrel Linguistics for delivery by 2026-11-13 and outsource the Ozawa sequence-listing preparation to an external vendor at €600."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "d"
+   ],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Order the Ozawa translation from Kestrel Linguistics instead of Vela & Crane; a 7-business-day turnaround ordered now comfortably meets the 2026-11-13 delivery needed for the three-day check window."
+    },
+    {
+     "id": "D2",
+     "direction": "The Bergström translation must be ordered from Kestrel Linguistics (9 business days before 2026-12-04), not Vela & Crane."
+    },
+    {
+     "id": "D4",
+     "direction": "The Vela & Crane retainer ends; no renewal payment should be made for Q4."
+    },
+    {
+     "id": "D6",
+     "direction": "No courier pickup at Vela's Rotterdam office is needed; Kestrel delivers by secure upload, so the 2026-11-11 pickup booking should be dropped."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D5",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place the translation order for the 74-page Ozawa PCT specification today so it arrives in time for the 2026-11-20 filing.",
+    "correct_value": "Kestrel Linguistics, delivery by 2026-11-13",
+    "stale_value": "Vela & Crane, delivery by 2026-11-10"
+   },
+   "why": "The correction ends F3, so every plan built on Vela & Crane (D2, D3, D4 directly, D6 through D3) is stale and the order must go to Kestrel Linguistics. D1, D5 and D7 rest only on untouched facts and rules, and the sequence-listing work stays in house, so option d changes a plan that should stand. The Linden Words quote (F9) was declined and was never the standing vendor."
+  },
+  "id": "G1-01",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

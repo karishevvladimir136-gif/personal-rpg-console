@@ -1,0 +1,342 @@
+{
+ "id": "G2-01",
+ "class": 2,
+ "setting": "A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements",
+ "prompt_sha256": "1f814926bcd6bcec78753a2b554068f817eae554d41706426ab71d1fd29f9878",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Verbal agreement limit lowered before the splashback starts\",\n \"setting\": \"A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements\",\n \"owner\": \"Gemma\",\n \"now\": \"2026-10-14\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Tom (site assistant)\", \"text\": \"Mrs Prentice's kitchen renovation at 14 Wrenfield Road runs from 1 September to 20 November 2026 with a budget of £38,000.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Gemma\", \"text\": \"Tom keeps the site log of all verbal agreements made with subcontractors.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Gemma\", \"text\": \"Any verbal agreement with a subcontractor worth £800 or less may stand on the site log alone. Anything above £800 needs a written variation order countersigned by Gemma before work starts.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Tom\", \"text\": \"Mrs Prentice chose bone-white handcrafted metro tiles from Stonebrook Tiles at £62 per square metre for her kitchen.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Gemma\", \"text\": \"The company van goes to Haleworth Motors for its service on 25 June 2026.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Gemma\", \"text\": \"Order 9 square metres of the bone-white handcrafted metro tiles from Stonebrook Tiles for the Wrenfield Road kitchen.\", \"depends_on\": [\"F1\", \"F3\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Tom\", \"text\": \"Devlin Plumbing, run by Kieran Devlin, is the plumber for the Wrenfield Road kitchen; his day rate is £320.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Devlin Plumbing to reroute the pipework during the second-fix phase starting 9 November, for a fixed £750, kept on the site log without a written order.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"Tom\", \"text\": \"Mr Okoro's loft conversion at 3 Maple Close runs from 6 July to 18 December 2026 at £52,000.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Tom\", \"text\": \"Brightwork Electrical, run by Sandra Bright, is the electrician at Maple Close.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Brightwork Electrical to add two extra sockets in the loft for £260, kept on the site log without a written order. The sockets were fitted on 15 July.\", \"depends_on\": [\"F7\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-21\", \"source\": \"Gemma\", \"text\": \"Hale & Sons won the Fernsby bathroom refit, which starts in January 2027.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-01\", \"source\": \"Tom\", \"text\": \"Marco Bruni of Marco Tiles is the firm's preferred tiling subcontractor.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Marco Tiles to tile the splashback in the Wrenfield Road kitchen for £620, starting 20 October, kept on the site log without a written order.\", \"depends_on\": [\"F1\", \"F9\", \"R1\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Tom\", \"text\": \"Nash Plastering, run by Alan Nash, covers both Haleworth and Millbrook.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-30\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Nash Plastering to skim the Maple Close loft for £1,400; because it exceeded the limit, a written variation order was made and countersigned by Gemma on 2 September. The skimming was completed on 18 September.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Gemma\", \"text\": \"Pay the Stonebrook Tiles deposit of £560 for the Wrenfield Road tile order. Done on 10 September.\", \"due\": \"2026-09-12\", \"status\": \"done\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Gemma\", \"text\": \"Gemma approved the Christmas shutdown from 21 December 2026 to 4 January 2027.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Gemma\", \"text\": \"The Marco Tiles splashback agreement will be carried on the site log only, and no written variation order will be prepared for it.\", \"depends_on\": [\"D3\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Tom\", \"text\": \"Hire a skip from Haleworth Skips for the Maple Close drive at their flat fee of £180, delivered 2 October.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Gemma\", \"text\": \"The staff barbecue is at the yard on 30 October 2026.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Gemma\", \"text\": \"Review the subcontractor paperwork for the Wrenfield Road kitchen and send off anything outstanding. Not done yet.\", \"due\": \"2026-10-14\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Tom\", \"text\": \"Ravel Tiling quoted £440 to tile the same Wrenfield Road splashback if the work were moved to them; the quote is valid until 31 October and has not been taken up.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"Tom\", \"text\": \"Book the portaloo for the Maple Close site for November. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-12\", \"source\": \"Gemma\", \"text\": \"After the September dispute with Ferndown Joinery over an uncountersigned £700 verbal agreement, the verbal-agreement limit is lowered from £800 to £300 with immediate effect. Any verbal agreement above £300 now needs a written variation order countersigned by Gemma before work starts; agreements of £300 or less still stand on the site log alone. This applies to every verbal agreement for work not yet started, including the Devlin pipework and the Marco splashback.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Marco Tiles is booked to start the splashback at Mrs Prentice's kitchen on Tuesday 20 October — please deal with his paperwork today so everything is in order.\", \"options\": [{\"id\": \"a\", \"text\": \"Enter the £620 splashback on the site log as a verbal agreement and send Marco Tiles a start confirmation for Tuesday 20 October.\"}, {\"id\": \"b\", \"text\": \"Send Marco Tiles a written variation order for the £620 splashback job, for Gemma's countersignature before work starts on 20 October.\"}, {\"id\": \"c\", \"text\": \"Send Ravel Tiling a booking for the splashback starting Tuesday 20 October at their quoted £440.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"The £750 Devlin pipework agreement now needs a written variation order countersigned by Gemma before the second fix starts on 9 November; it can no longer stand on the site log alone.\"},\n   {\"id\": \"D3\", \"direction\": \"The £620 Marco Tiles splashback agreement now needs a written variation order countersigned by Gemma before work starts on 20 October; it can no longer stand on the site log alone.\"},\n   {\"id\": \"D4\", \"direction\": \"Void: the log-only treatment of the splashback must be reversed and a countersigned written variation order prepared instead.\"}\n  ],\n  \"untouched\": [\"D2\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the outstanding subcontractor paperwork for the Wrenfield Road kitchen today, which is the written variation order to Marco Tiles\", \"correct_value\": \"£620 splashback variation order to Marco Tiles, for Gemma's countersignature before 20 October\", \"stale_value\": \"no written order — a log-only entry under the old £800 limit\"},\n  \"why\": \"The amendment lowers the verbal-agreement limit to £300, so the £620 Marco agreement and the £750 Devlin agreement both require countersigned written variation orders before work starts, and D4's log-only treatment is void. D2 (£260, under the new limit, work already done), D7 (already countersigned under the old limit) and D5/D6 (no dependence on the rule) stand unchanged. Ravel Tiling's £440 quote was never accepted, so booking them would be acting on the distractor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 8290,
+    "reasoning_tokens": 5799,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03729652,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Verbal agreement limit lowered before the splashback starts\",\n \"setting\": \"A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements\",\n \"owner\": \"Gemma\",\n \"now\": \"2026-10-14\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Tom (site assistant)\", \"text\": \"Mrs Prentice's kitchen renovation at 14 Wrenfield Road runs from 1 September to 20 November 2026 with a budget of £38,000.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Gemma\", \"text\": \"Tom keeps the site log of all verbal agreements made with subcontractors.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Gemma\", \"text\": \"Any verbal agreement with a subcontractor worth £800 or less may stand on the site log alone. Anything above £800 needs a written variation order countersigned by Gemma before work starts.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Gemma\", \"text\": \"Client change orders are only actioned once Mrs Prentice or the client in question has confirmed them in writing, by email or signed note; a verbal change from a client is logged but never acted on.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Tom\", \"text\": \"Mrs Prentice chose bone-white handcrafted metro tiles from Stonebrook Tiles at £62 per square metre for her kitchen.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Gemma\", \"text\": \"The company van goes to Haleworth Motors for its service on 25 June 2026.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Gemma\", \"text\": \"Order 9 square metres of the bone-white handcrafted metro tiles from Stonebrook Tiles for the Wrenfield Road kitchen.\", \"depends_on\": [\"F1\", \"F3\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Tom\", \"text\": \"Devlin Plumbing, run by Kieran Devlin, is the plumber for the Wrenfield Road kitchen; his day rate is £320.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Devlin Plumbing to reroute the pipework during the second-fix phase starting 9 November, for a fixed £750, kept on the site log without a written order.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"Tom\", \"text\": \"Mr Okoro's loft conversion at 3 Maple Close runs from 6 July to 18 December 2026 at £52,000.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Tom\", \"text\": \"Brightwork Electrical, run by Sandra Bright, is the electrician at Maple Close.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Brightwork Electrical to add two extra sockets in the loft for £260, kept on the site log without a written order. The sockets were fitted on 15 July.\", \"depends_on\": [\"F7\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-21\", \"source\": \"Gemma\", \"text\": \"Hale & Sons won the Fernsby bathroom refit, which starts in January 2027.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-01\", \"source\": \"Tom\", \"text\": \"Marco Bruni of Marco Tiles is the firm's preferred tiling subcontractor.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Marco Tiles to tile the splashback in the Wrenfield Road kitchen for £620, starting 20 October, kept on the site log without a written order.\", \"depends_on\": [\"F1\", \"F9\", \"R1\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Tom\", \"text\": \"Nash Plastering, run by Alan Nash, covers both Haleworth and Millbrook.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-30\", \"source\": \"Tom\", \"text\": \"Agreed verbally with Nash Plastering to skim the Maple Close loft for £1,400; because it exceeded the limit, a written variation order was made and countersigned by Gemma on 2 September. The skimming was completed on 18 September.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Gemma\", \"text\": \"Pay the Stonebrook Tiles deposit of £560 for the Wrenfield Road tile order. Done on 10 September.\", \"due\": \"2026-09-12\", \"status\": \"done\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Gemma\", \"text\": \"Gemma approved the Christmas shutdown from 21 December 2026 to 4 January 2027.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Gemma\", \"text\": \"The Marco Tiles splashback agreement will be carried on the site log only, and no written variation order will be prepared for it.\", \"depends_on\": [\"D3\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Tom\", \"text\": \"Hire a skip from Haleworth Skips for the Maple Close drive at their flat fee of £180, delivered 2 October.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Gemma\", \"text\": \"The staff barbecue is at the yard on 30 October 2026.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Gemma\", \"text\": \"Review the subcontractor paperwork for the Wrenfield Road kitchen and send off anything outstanding. Not done yet.\", \"due\": \"2026-10-14\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Tom\", \"text\": \"Ravel Tiling quoted £440 to tile the same Wrenfield Road splashback if the work were moved to them; the quote is valid until 31 October and has not been taken up.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"Tom\", \"text\": \"Book the portaloo for the Maple Close site for November. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-12\", \"source\": \"Gemma\", \"text\": \"After the September dispute with Ferndown Joinery over an uncountersigned £700 verbal agreement, the verbal-agreement limit is lowered from £800 to £300 with immediate effect. Any verbal agreement above £300 now needs a written variation order countersigned by Gemma before work starts; agreements of £300 or less still stand on the site log alone. This applies to every verbal agreement for work not yet started, including the Devlin pipework and the Marco splashback. The client change-order rule is unchanged.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Marco Tiles is booked to start the splashback at Mrs Prentice's kitchen on Tuesday 20 October — please deal with his paperwork today so everything is in order.\", \"options\": [{\"id\": \"a\", \"text\": \"Enter the £620 splashback on the site log as a verbal agreement and send Marco Tiles a start confirmation for Tuesday 20 October.\"}, {\"id\": \"b\", \"text\": \"Send Marco Tiles a written variation order for the £620 splashback job, for Gemma's countersignature before work starts on 20 October.\"}, {\"id\": \"c\", \"text\": \"Send Ravel Tiling a booking for the splashback starting Tuesday 20 October at their quoted £440.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F13\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"The £750 Devlin pipework agreement now needs a written variation order countersigned by Gemma before the second fix starts on 9 November; it can no longer stand on the site log alone.\"},\n   {\"id\": \"D3\", \"direction\": \"The £620 Marco Tiles splashback agreement now needs a written variation order countersigned by Gemma before work starts on 20 October; it can no longer stand on the site log alone.\"},\n   {\"id\": \"D4\", \"direction\": \"Void: the log-only treatment of the splashback must be reversed and a countersigned written variation order prepared instead.\"}\n  ],\n  \"untouched\": [\"D2\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the outstanding subcontractor paperwork for the Wrenfield Road kitchen today, which is the written variation order to Marco Tiles\", \"correct_value\": \"£620 splashback variation order to Marco Tiles, for Gemma's countersignature before 20 October\", \"stale_value\": \"no written order — a log-only entry under the old £800 limit\"},\n  \"why\": \"The amendment lowers the verbal-agreement limit to £300, so the £620 Marco agreement and the £750 Devlin agreement both require countersigned written variation orders before work starts, and D4's log-only treatment is void. D2 (£260, under the new limit, work already done), D7 (already countersigned under the old limit) and D5/D6 (no dependence on the rule) stand unchanged. Ravel Tiling's £440 quote was never accepted, so booking them would be acting on the distractor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5362,
+    "completion_tokens": 2588,
+    "reasoning_tokens": 11,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01568376,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-01: 1 rules; need 2–3\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Verbal agreement limit lowered before the splashback starts",
+  "setting": "A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements",
+  "owner": "Gemma",
+  "now": "2026-10-14",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Tom (site assistant)",
+    "text": "Mrs Prentice's kitchen renovation at 14 Wrenfield Road runs from 1 September to 20 November 2026 with a budget of £38,000."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Gemma",
+    "text": "Tom keeps the site log of all verbal agreements made with subcontractors."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Gemma",
+    "text": "Any verbal agreement with a subcontractor worth £800 or less may stand on the site log alone. Anything above £800 needs a written variation order countersigned by Gemma before work starts."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Gemma",
+    "text": "Client change orders are only actioned once Mrs Prentice or the client in question has confirmed them in writing, by email or signed note; a verbal change from a client is logged but never acted on."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Tom",
+    "text": "Mrs Prentice chose bone-white handcrafted metro tiles from Stonebrook Tiles at £62 per square metre for her kitchen."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Gemma",
+    "text": "The company van goes to Haleworth Motors for its service on 25 June 2026."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Gemma",
+    "text": "Order 9 square metres of the bone-white handcrafted metro tiles from Stonebrook Tiles for the Wrenfield Road kitchen.",
+    "depends_on": [
+     "F1",
+     "F3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Tom",
+    "text": "Devlin Plumbing, run by Kieran Devlin, is the plumber for the Wrenfield Road kitchen; his day rate is £320."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Tom",
+    "text": "Agreed verbally with Devlin Plumbing to reroute the pipework during the second-fix phase starting 9 November, for a fixed £750, kept on the site log without a written order.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Tom",
+    "text": "Mr Okoro's loft conversion at 3 Maple Close runs from 6 July to 18 December 2026 at £52,000."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Tom",
+    "text": "Brightwork Electrical, run by Sandra Bright, is the electrician at Maple Close."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Tom",
+    "text": "Agreed verbally with Brightwork Electrical to add two extra sockets in the loft for £260, kept on the site log without a written order. The sockets were fitted on 15 July.",
+    "depends_on": [
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-21",
+    "source": "Gemma",
+    "text": "Hale & Sons won the Fernsby bathroom refit, which starts in January 2027."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-01",
+    "source": "Tom",
+    "text": "Marco Bruni of Marco Tiles is the firm's preferred tiling subcontractor."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Tom",
+    "text": "Agreed verbally with Marco Tiles to tile the splashback in the Wrenfield Road kitchen for £620, starting 20 October, kept on the site log without a written order.",
+    "depends_on": [
+     "F1",
+     "F9",
+     "R1"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-12",
+    "source": "Tom",
+    "text": "Nash Plastering, run by Alan Nash, covers both Haleworth and Millbrook."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-30",
+    "source": "Tom",
+    "text": "Agreed verbally with Nash Plastering to skim the Maple Close loft for £1,400; because it exceeded the limit, a written variation order was made and countersigned by Gemma on 2 September. The skimming was completed on 18 September.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "Gemma",
+    "text": "Pay the Stonebrook Tiles deposit of £560 for the Wrenfield Road tile order. Done on 10 September.",
+    "due": "2026-09-12",
+    "status": "done",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Gemma",
+    "text": "Gemma approved the Christmas shutdown from 21 December 2026 to 4 January 2027."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Gemma",
+    "text": "The Marco Tiles splashback agreement will be carried on the site log only, and no written variation order will be prepared for it.",
+    "depends_on": [
+     "D3",
+     "F2"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "Tom",
+    "text": "Hire a skip from Haleworth Skips for the Maple Close drive at their flat fee of £180, delivered 2 October.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Gemma",
+    "text": "The staff barbecue is at the yard on 30 October 2026."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Gemma",
+    "text": "Review the subcontractor paperwork for the Wrenfield Road kitchen and send off anything outstanding. Not done yet.",
+    "due": "2026-10-14",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Tom",
+    "text": "Ravel Tiling quoted £440 to tile the same Wrenfield Road splashback if the work were moved to them; the quote is valid until 31 October and has not been taken up."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-08",
+    "source": "Tom",
+    "text": "Book the portaloo for the Maple Close site for November. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-12",
+   "source": "Gemma",
+   "text": "After the September dispute with Ferndown Joinery over an uncountersigned £700 verbal agreement, the verbal-agreement limit is lowered from £800 to £300 with immediate effect. Any verbal agreement above £300 now needs a written variation order countersigned by Gemma before work starts; agreements of £300 or less still stand on the site log alone. This applies to every verbal agreement for work not yet started, including the Devlin pipework and the Marco splashback. The client change-order rule is unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Marco Tiles is booked to start the splashback at Mrs Prentice's kitchen on Tuesday 20 October — please deal with his paperwork today so everything is in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Enter the £620 splashback on the site log as a verbal agreement and send Marco Tiles a start confirmation for Tuesday 20 October."
+    },
+    {
+     "id": "b",
+     "text": "Send Marco Tiles a written variation order for the £620 splashback job, for Gemma's countersignature before work starts on 20 October."
+    },
+    {
+     "id": "c",
+     "text": "Send Ravel Tiling a booking for the splashback starting Tuesday 20 October at their quoted £440."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "The £750 Devlin pipework agreement now needs a written variation order countersigned by Gemma before the second fix starts on 9 November; it can no longer stand on the site log alone."
+    },
+    {
+     "id": "D3",
+     "direction": "The £620 Marco Tiles splashback agreement now needs a written variation order countersigned by Gemma before work starts on 20 October; it can no longer stand on the site log alone."
+    },
+    {
+     "id": "D4",
+     "direction": "Void: the log-only treatment of the splashback must be reversed and a countersigned written variation order prepared instead."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the outstanding subcontractor paperwork for the Wrenfield Road kitchen today, which is the written variation order to Marco Tiles",
+    "correct_value": "£620 splashback variation order to Marco Tiles, for Gemma's countersignature before 20 October",
+    "stale_value": "no written order — a log-only entry under the old £800 limit"
+   },
+   "why": "The amendment lowers the verbal-agreement limit to £300, so the £620 Marco agreement and the £750 Devlin agreement both require countersigned written variation orders before work starts, and D4's log-only treatment is void. D2 (£260, under the new limit, work already done), D7 (already countersigned under the old limit) and D5/D6 (no dependence on the rule) stand unchanged. Ravel Tiling's £440 quote was never accepted, so booking them would be acting on the distractor."
+  },
+  "id": "G2-01",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

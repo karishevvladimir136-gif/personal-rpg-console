@@ -1,0 +1,419 @@
+{
+ "id": "G2-05",
+ "class": 2,
+ "setting": "A head librarian at Millbrook Public Library whose assistant retains notes on programming schedules and volunteer availability commitments",
+ "prompt_sha256": "5c7923d3ff098b3991de70d86c1b45de3e2f57d1b09319decacca5beecc26f99",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Weekend staffing rule raised to three volunteers\",\n \"setting\": \"A head librarian at Millbrook Public Library whose assistant retains notes on programming schedules and volunteer availability commitments\",\n \"owner\": \"Ruth\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Ruth\", \"text\": \"The main branch of Millbrook Public Library has reopened after the spring renovation, and weekend footfall is roughly double what it was last year.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ruth\", \"text\": \"Volunteer availability: Tomas and Priya cover Saturdays, Alan covers both Saturdays and Sundays, Megan covers weekdays only, and Dolores covers Sundays only.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ruth\", \"text\": \"Standing staffing rule: every weekend program at the main branch runs with two volunteers on the desk; weekday programs run with one volunteer. The Fairview satellite branch keeps two volunteers on any program day.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Ruth\", \"text\": \"The Tuesday evening book club meets at 18:30 and has 14 members.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-05\", \"source\": \"Ruth\", \"text\": \"Set the summer weekend staffing for main-branch programs at two volunteers per session, with Tomas and Priya alternating on Saturdays.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-09\", \"source\": \"Ruth\", \"text\": \"Staff the Tuesday book club with one volunteer, Megan, each week.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Ruth\", \"text\": \"Saturday Family Story Time runs at 10:30 and draws about 35 children after the renovation.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Ruth\", \"text\": \"Staff Saturday Family Story Time with two volunteers, Tomas and Priya together every week.\", \"depends_on\": [\"R1\", \"F2\", \"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Ruth\", \"text\": \"The Sunday Craft Circle meets at 14:00 with about 20 adult participants.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-06-16\", \"source\": \"Ruth\", \"text\": \"Staff the Sunday Craft Circle with two volunteers, Alan and Dolores.\", \"depends_on\": [\"R1\", \"F5\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-18\", \"source\": \"Ruth\", \"text\": \"Order craft supplies for the summer programs. Done on 8 July.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Ruth\", \"text\": \"The meeting-room projector has failed; two repair quotes came in at 300 and 540 dollars.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Ruth\", \"text\": \"Keep the Tomas-and-Priya pair as the standing story time desk team through the autumn term.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-03\", \"source\": \"Ruth\", \"text\": \"Toddler Time runs Thursdays at 10:00 with about 15 families.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-06\", \"source\": \"Ruth\", \"text\": \"Staff Toddler Time with one volunteer, Megan.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Ruth\", \"text\": \"The Fairview satellite branch holds Saturday browsing hours from 10:00 to 14:00.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Ruth\", \"text\": \"Staff the Fairview Saturday sessions with two volunteers drawn from the weekday pool.\", \"depends_on\": [\"R1\", \"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"Ruth\", \"text\": \"The broken projector was replaced with a new NovaBeam X200 unit at 540 dollars.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Ruth\", \"text\": \"Pay the 540-dollar projector invoice from programs budget line P-22.\", \"depends_on\": [\"F6\", \"F9\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Ruth\", \"text\": \"A volunteer social is planned for Saturday 14 November at the main branch.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Ruth\", \"text\": \"Book club membership has risen to 18.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Ruth\", \"text\": \"Move the book club to the larger room B from September.\", \"depends_on\": [\"F11\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"Ruth\", \"text\": \"Order six extra chairs for room B before the November rush. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D9\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Ruth\", \"text\": \"A Halloween Spooktacular evening event is set for 31 October at 19:00 at the main branch.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Ruth\", \"text\": \"Sunday Craft Circle attendance has grown to 26 participants.\"},\n  {\"id\": \"D10\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Ruth\", \"text\": \"Extend the Alan-and-Dolores desk pair for the Sunday Craft Circle through December to handle the larger group.\", \"depends_on\": [\"D4\", \"F13\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"Friends committee\", \"text\": \"The Friends' committee has asked for four volunteers on the floor for the Spooktacular evening event on 31 October.\"},\n  {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Ruth\", \"text\": \"Saturday Family Story Time attendance has climbed to about 48 children.\"},\n  {\"id\": \"F16\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Alan\", \"text\": \"Alan will be away for the weekend of 14 November.\"},\n  {\"id\": \"F17\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Ruth\", \"text\": \"A book club speaker evening with author June Calloway is set for 3 November.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-14\", \"source\": \"Ruth\", \"text\": \"Confirm and email the volunteer roster for the October Saturday story times. Not done yet.\", \"due\": \"2026-10-26\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F18\", \"kind\": \"state\", \"date\": \"2026-10-15\", \"source\": \"Ruth\", \"text\": \"Megan has asked to add one weekday morning shift per week during flu season.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-20\", \"source\": \"Ruth\", \"text\": \"Amended staffing rule, effective Saturday 24 October: because weekend attendance has doubled since the renovation, every main-branch weekend program now runs with three volunteers on the desk. Weekday programs still run with one volunteer, and the Fairview satellite branch still keeps two volunteers on any program day.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Could you sort out the desk volunteers for this Saturday's Family Story Time and email them the roster? It's the 31 October session at 10:30.\", \"options\": [{\"id\": \"a\", \"text\": \"Email Tomas and Priya confirming them as the two desk volunteers for Saturday 31 October, 10:30.\"}, {\"id\": \"b\", \"text\": \"Email Tomas, Priya and Alan confirming them as the three desk volunteers for Saturday 31 October, 10:30.\"}, {\"id\": \"c\", \"text\": \"Email Tomas, Priya, Alan and Dolores confirming them as the four desk volunteers for Saturday 31 October, 10:30.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F14\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Summer two-volunteer weekend standard is superseded for the main branch: weekend sessions there now need three volunteers.\"},\n   {\"id\": \"D3\", \"direction\": \"Story time now needs three desk volunteers: keep Tomas and Priya and add Alan.\"},\n   {\"id\": \"D4\", \"direction\": \"The Sunday Craft Circle now needs three volunteers: Alan and Dolores plus one more.\"},\n   {\"id\": \"D5\", \"direction\": \"The standing story time desk team becomes a trio (Tomas, Priya, Alan) rather than a pair.\"},\n   {\"id\": \"D10\", \"direction\": \"The fourth-quarter craft circle staffing becomes three volunteers, not the Alan-and-Dolores pair.\"}\n  ],\n  \"untouched\": [\"D2\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O3\"],\n  \"obligation_due\": {\"id\": \"O3\", \"act\": \"Confirm and email today the volunteer roster for the remaining October Saturday story time (31 October, 10:30).\", \"correct_value\": \"Three volunteers: Tomas, Priya and Alan.\", \"stale_value\": \"Two volunteers: Tomas and Priya.\"},\n  \"why\": \"The amended rule effective 24 October raises main-branch weekend programs to three desk volunteers, and the 31 October story time falls after that date, so the roster is Tomas, Priya and Alan. Option a acts on the revoked two-volunteer rule; option c uses the four-volunteer figure that belongs only to the evening Spooktacular event (F14). Weekday programs (D2, D6), the Fairview satellite (D7) and unrelated decisions (D8, D9) are outside the amendment's terms.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 6202,
+    "reasoning_tokens": 3487,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02810512,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Weekend staffing rule raised to three volunteers\",\n \"setting\": \"A head librarian at Millbrook Public Library whose assistant retains notes on programming schedules and volunteer availability commitments\",\n \"owner\": \"Ruth\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Ruth\", \"text\": \"The main branch of Millbrook Public Library has reopened after the spring renovation, and weekend footfall is roughly double what it was last year.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ruth\", \"text\": \"Volunteer availability: Tomas and Priya cover Saturdays, Alan covers both Saturdays and Sundays, Megan covers weekdays only, and Dolores covers Sundays only.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ruth\", \"text\": \"Standing staffing rule: every weekend program at the main branch runs with two volunteers on the desk; weekday programs run with one volunteer. The Fairview satellite branch keeps two volunteers on any program day.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-04\", \"source\": \"Ruth\", \"text\": \"Volunteer confirmation rule: rosters for any program must be emailed to the volunteers at least five days before the session.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Ruth\", \"text\": \"The Tuesday evening book club meets at 18:30 and has 14 members.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-05\", \"source\": \"Ruth\", \"text\": \"Set the summer weekend staffing for main-branch programs at two volunteers per session, with Tomas and Priya alternating on Saturdays.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-09\", \"source\": \"Ruth\", \"text\": \"Staff the Tuesday book club with one volunteer, Megan, each week.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Ruth\", \"text\": \"Saturday Family Story Time runs at 10:30 and draws about 35 children after the renovation.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Ruth\", \"text\": \"Staff Saturday Family Story Time with two volunteers, Tomas and Priya together every week.\", \"depends_on\": [\"R1\", \"F2\", \"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Ruth\", \"text\": \"The Sunday Craft Circle meets at 14:00 with about 20 adult participants.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-06-16\", \"source\": \"Ruth\", \"text\": \"Staff the Sunday Craft Circle with two volunteers, Alan and Dolores.\", \"depends_on\": [\"R1\", \"F5\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-18\", \"source\": \"Ruth\", \"text\": \"Order craft supplies for the summer programs. Done on 8 July.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Ruth\", \"text\": \"The meeting-room projector has failed; two repair quotes came in at 300 and 540 dollars.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Ruth\", \"text\": \"Keep the Tomas-and-Priya pair as the standing story time desk team through the autumn term.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-03\", \"source\": \"Ruth\", \"text\": \"Toddler Time runs Thursdays at 10:00 with about 15 families.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-06\", \"source\": \"Ruth\", \"text\": \"Staff Toddler Time with one volunteer, Megan.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Ruth\", \"text\": \"The Fairview satellite branch holds Saturday browsing hours from 10:00 to 14:00.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Ruth\", \"text\": \"Staff the Fairview Saturday sessions with two volunteers drawn from the weekday pool.\", \"depends_on\": [\"R1\", \"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"Ruth\", \"text\": \"The broken projector was replaced with a new NovaBeam X200 unit at 540 dollars.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Ruth\", \"text\": \"Pay the 540-dollar projector invoice from programs budget line P-22.\", \"depends_on\": [\"F6\", \"F9\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Ruth\", \"text\": \"A volunteer social is planned for Saturday 14 November at the main branch.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Ruth\", \"text\": \"Book club membership has risen to 18.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Ruth\", \"text\": \"Move the book club to the larger room B from September.\", \"depends_on\": [\"F11\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-20\", \"source\": \"Ruth\", \"text\": \"Order six extra chairs for room B before the November rush. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D9\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Ruth\", \"text\": \"A Halloween Spooktacular evening event is set for 31 October at 19:00 at the main branch.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Ruth\", \"text\": \"Sunday Craft Circle attendance has grown to 26 participants.\"},\n  {\"id\": \"D10\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Ruth\", \"text\": \"Extend the Alan-and-Dolores desk pair for the Sunday Craft Circle through December to handle the larger group.\", \"depends_on\": [\"D4\", \"F13\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-26\", \"source\": \"Friends committee\", \"text\": \"The Friends' committee has asked for four volunteers on the floor for the Spooktacular evening event on 31 October.\"},\n  {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Ruth\", \"text\": \"Saturday Family Story Time attendance has climbed to about 48 children.\"},\n  {\"id\": \"F16\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Alan\", \"text\": \"Alan will be away for the weekend of 14 November.\"},\n  {\"id\": \"F17\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Ruth\", \"text\": \"A book club speaker evening with author June Calloway is set for 3 November.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-14\", \"source\": \"Ruth\", \"text\": \"Confirm and email the volunteer roster for the October Saturday story times. Not done yet.\", \"due\": \"2026-10-26\", \"status\": \"open\", \"depends_on\": [\"D5\", \"R2\"]},\n  {\"id\": \"F18\", \"kind\": \"state\", \"date\": \"2026-10-15\", \"source\": \"Ruth\", \"text\": \"Megan has asked to add one weekday morning shift per week during flu season.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-20\", \"source\": \"Ruth\", \"text\": \"Amended staffing rule, effective Saturday 24 October: because weekend attendance has doubled since the renovation, every main-branch weekend program now runs with three volunteers on the desk. Weekday programs still run with one volunteer, and the Fairview satellite branch still keeps two volunteers on any program day. The five-day email-confirmation rule for rosters is unchanged.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Could you sort out the desk volunteers for this Saturday's Family Story Time and email them the roster? It's the 31 October session at 10:30.\", \"options\": [{\"id\": \"a\", \"text\": \"Email Tomas and Priya confirming them as the two desk volunteers for Saturday 31 October, 10:30.\"}, {\"id\": \"b\", \"text\": \"Email Tomas, Priya and Alan confirming them as the three desk volunteers for Saturday 31 October, 10:30.\"}, {\"id\": \"c\", \"text\": \"Email Tomas, Priya, Alan and Dolores confirming them as the four desk volunteers for Saturday 31 October, 10:30.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F14\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Summer two-volunteer weekend standard is superseded for the main branch: weekend sessions there now need three volunteers.\"},\n   {\"id\": \"D3\", \"direction\": \"Story time now needs three desk volunteers: keep Tomas and Priya and add Alan.\"},\n   {\"id\": \"D4\", \"direction\": \"The Sunday Craft Circle now needs three volunteers: Alan and Dolores plus one more.\"},\n   {\"id\": \"D5\", \"direction\": \"The standing story time desk team becomes a trio (Tomas, Priya, Alan) rather than a pair.\"},\n   {\"id\": \"D10\", \"direction\": \"The fourth-quarter craft circle staffing becomes three volunteers, not the Alan-and-Dolores pair.\"}\n  ],\n  \"untouched\": [\"D2\", \"D6\", \"D7\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O3\"],\n  \"obligation_due\": {\"id\": \"O3\", \"act\": \"Confirm and email today the volunteer roster for the remaining October Saturday story time (31 October, 10:30).\", \"correct_value\": \"Three volunteers: Tomas, Priya and Alan.\", \"stale_value\": \"Two volunteers: Tomas and Priya.\"},\n  \"why\": \"The amended rule effective 24 October raises main-branch weekend programs to three desk volunteers, and the 31 October story time falls after that date, so the roster is Tomas, Priya and Alan. Option a acts on the revoked two-volunteer rule; option c uses the four-volunteer figure that belongs only to the evening Spooktacular event (F14). Weekday programs (D2, D6), the Fairview satellite (D7) and unrelated decisions (D8, D9) are outside the amendment's terms; the five-day confirmation rule (R2) is explicitly unchanged.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5583,
+    "completion_tokens": 2824,
+    "reasoning_tokens": 19,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01703156,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-05: 1 rules; need 2–3\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Weekend staffing rule raised to three volunteers",
+  "setting": "A head librarian at Millbrook Public Library whose assistant retains notes on programming schedules and volunteer availability commitments",
+  "owner": "Ruth",
+  "now": "2026-10-26",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Ruth",
+    "text": "The main branch of Millbrook Public Library has reopened after the spring renovation, and weekend footfall is roughly double what it was last year."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Ruth",
+    "text": "Volunteer availability: Tomas and Priya cover Saturdays, Alan covers both Saturdays and Sundays, Megan covers weekdays only, and Dolores covers Sundays only."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Ruth",
+    "text": "Standing staffing rule: every weekend program at the main branch runs with two volunteers on the desk; weekday programs run with one volunteer. The Fairview satellite branch keeps two volunteers on any program day."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-04",
+    "source": "Ruth",
+    "text": "Volunteer confirmation rule: rosters for any program must be emailed to the volunteers at least five days before the session."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Ruth",
+    "text": "The Tuesday evening book club meets at 18:30 and has 14 members."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-05",
+    "source": "Ruth",
+    "text": "Set the summer weekend staffing for main-branch programs at two volunteers per session, with Tomas and Priya alternating on Saturdays.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-09",
+    "source": "Ruth",
+    "text": "Staff the Tuesday book club with one volunteer, Megan, each week.",
+    "depends_on": [
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Ruth",
+    "text": "Saturday Family Story Time runs at 10:30 and draws about 35 children after the renovation."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Ruth",
+    "text": "Staff Saturday Family Story Time with two volunteers, Tomas and Priya together every week.",
+    "depends_on": [
+     "R1",
+     "F2",
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Ruth",
+    "text": "The Sunday Craft Circle meets at 14:00 with about 20 adult participants."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-06-16",
+    "source": "Ruth",
+    "text": "Staff the Sunday Craft Circle with two volunteers, Alan and Dolores.",
+    "depends_on": [
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-18",
+    "source": "Ruth",
+    "text": "Order craft supplies for the summer programs. Done on 8 July.",
+    "due": "2026-07-10",
+    "status": "done"
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Ruth",
+    "text": "The meeting-room projector has failed; two repair quotes came in at 300 and 540 dollars."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Ruth",
+    "text": "Keep the Tomas-and-Priya pair as the standing story time desk team through the autumn term.",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-03",
+    "source": "Ruth",
+    "text": "Toddler Time runs Thursdays at 10:00 with about 15 families."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-06",
+    "source": "Ruth",
+    "text": "Staff Toddler Time with one volunteer, Megan.",
+    "depends_on": [
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Ruth",
+    "text": "The Fairview satellite branch holds Saturday browsing hours from 10:00 to 14:00."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Ruth",
+    "text": "Staff the Fairview Saturday sessions with two volunteers drawn from the weekday pool.",
+    "depends_on": [
+     "R1",
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-07-18",
+    "source": "Ruth",
+    "text": "The broken projector was replaced with a new NovaBeam X200 unit at 540 dollars."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Ruth",
+    "text": "Pay the 540-dollar projector invoice from programs budget line P-22.",
+    "depends_on": [
+     "F6",
+     "F9"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Ruth",
+    "text": "A volunteer social is planned for Saturday 14 November at the main branch."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-12",
+    "source": "Ruth",
+    "text": "Book club membership has risen to 18."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-08-15",
+    "source": "Ruth",
+    "text": "Move the book club to the larger room B from September.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "Ruth",
+    "text": "Order six extra chairs for room B before the November rush. Not done yet.",
+    "due": "2026-11-15",
+    "status": "open",
+    "depends_on": [
+     "D9"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Ruth",
+    "text": "A Halloween Spooktacular evening event is set for 31 October at 19:00 at the main branch."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Ruth",
+    "text": "Sunday Craft Circle attendance has grown to 26 participants."
+   },
+   {
+    "id": "D10",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Ruth",
+    "text": "Extend the Alan-and-Dolores desk pair for the Sunday Craft Circle through December to handle the larger group.",
+    "depends_on": [
+     "D4",
+     "F13"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-26",
+    "source": "Friends committee",
+    "text": "The Friends' committee has asked for four volunteers on the floor for the Spooktacular evening event on 31 October."
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Ruth",
+    "text": "Saturday Family Story Time attendance has climbed to about 48 children."
+   },
+   {
+    "id": "F16",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Alan",
+    "text": "Alan will be away for the weekend of 14 November."
+   },
+   {
+    "id": "F17",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Ruth",
+    "text": "A book club speaker evening with author June Calloway is set for 3 November."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-14",
+    "source": "Ruth",
+    "text": "Confirm and email the volunteer roster for the October Saturday story times. Not done yet.",
+    "due": "2026-10-26",
+    "status": "open",
+    "depends_on": [
+     "D5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F18",
+    "kind": "state",
+    "date": "2026-10-15",
+    "source": "Ruth",
+    "text": "Megan has asked to add one weekday morning shift per week during flu season."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-20",
+   "source": "Ruth",
+   "text": "Amended staffing rule, effective Saturday 24 October: because weekend attendance has doubled since the renovation, every main-branch weekend program now runs with three volunteers on the desk. Weekday programs still run with one volunteer, and the Fairview satellite branch still keeps two volunteers on any program day. The five-day email-confirmation rule for rosters is unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Could you sort out the desk volunteers for this Saturday's Family Story Time and email them the roster? It's the 31 October session at 10:30.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Tomas and Priya confirming them as the two desk volunteers for Saturday 31 October, 10:30."
+    },
+    {
+     "id": "b",
+     "text": "Email Tomas, Priya and Alan confirming them as the three desk volunteers for Saturday 31 October, 10:30."
+    },
+    {
+     "id": "c",
+     "text": "Email Tomas, Priya, Alan and Dolores confirming them as the four desk volunteers for Saturday 31 October, 10:30."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F14"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Summer two-volunteer weekend standard is superseded for the main branch: weekend sessions there now need three volunteers."
+    },
+    {
+     "id": "D3",
+     "direction": "Story time now needs three desk volunteers: keep Tomas and Priya and add Alan."
+    },
+    {
+     "id": "D4",
+     "direction": "The Sunday Craft Circle now needs three volunteers: Alan and Dolores plus one more."
+    },
+    {
+     "id": "D5",
+     "direction": "The standing story time desk team becomes a trio (Tomas, Priya, Alan) rather than a pair."
+    },
+    {
+     "id": "D10",
+     "direction": "The fourth-quarter craft circle staffing becomes three volunteers, not the Alan-and-Dolores pair."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D6",
+    "D7",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O3"
+   ],
+   "obligation_due": {
+    "id": "O3",
+    "act": "Confirm and email today the volunteer roster for the remaining October Saturday story time (31 October, 10:30).",
+    "correct_value": "Three volunteers: Tomas, Priya and Alan.",
+    "stale_value": "Two volunteers: Tomas and Priya."
+   },
+   "why": "The amended rule effective 24 October raises main-branch weekend programs to three desk volunteers, and the 31 October story time falls after that date, so the roster is Tomas, Priya and Alan. Option a acts on the revoked two-volunteer rule; option c uses the four-volunteer figure that belongs only to the evening Spooktacular event (F14). Weekday programs (D2, D6), the Fairview satellite (D7) and unrelated decisions (D8, D9) are outside the amendment's terms; the five-day confirmation rule (R2) is explicitly unchanged."
+  },
+  "id": "G2-05",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

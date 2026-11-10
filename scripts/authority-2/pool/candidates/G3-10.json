@@ -1,0 +1,341 @@
+{
+ "id": "G3-10",
+ "class": 3,
+ "setting": "A plumbing company owner at Rightflow Plumbing whose dispatcher assistant recalls which jobs were quoted flat-rate versus hourly",
+ "prompt_sha256": "166aaaecb101729c1cea7d1a7d76410f739c819fda36aa38c530515fa2454e4e",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Kowalski re-pipe: flat-rate or hourly\",\n \"setting\": \"A plumbing company owner at Rightflow Plumbing whose dispatcher assistant recalls which jobs were quoted flat-rate versus hourly\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-29\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Marta\", \"text\": \"The Kowalski bathroom re-pipe at 14 Brannan Court was quoted flat-rate at $2,400, materials included.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"Rightflow runs two crews: Luis's Northside crew and Petra's Southside crew.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"office manager\", \"text\": \"Copperline Supply is Rightflow's main materials supplier and delivers within three working days.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"office manager\", \"text\": \"Brannan Court sits in the Northside service zone.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"The service vans are serviced quarterly at Harper's Garage.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"office manager\", \"text\": \"The Mehdi water heater replacement at 88 Selby Avenue is an hourly job at $95 per hour plus materials.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-08\", \"source\": \"Marta\", \"text\": \"PipeHouse Depot stocks Granite water heaters at $780 each.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"office manager\", \"text\": \"The office phone contract with ClearTalk runs through June 2027.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Marta\", \"text\": \"The Ridgeview condo bathroom re-pipe was quoted flat-rate at $2,900, materials included.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"office manager\", \"text\": \"Weekend emergency call volume rose about 30 percent in July.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"Luis\", \"text\": \"Drain camera number one is seven years old and keeps cutting out mid-inspection.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-09\", \"source\": \"office manager\", \"text\": \"The annual truck insurance renewal is due by 15 October 2026.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-16\", \"source\": \"Marta\", \"text\": \"Apprentice Dan passed his licensing exam and can take solo call-outs.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Flat-rate jobs get one crew visit with Rightflow absorbing the materials cost; hourly jobs are billed per hour with a daily sign-off sheet, and materials are added to the client invoice at cost.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Any flat-rate quote above $2,500 needs Marta's signature before the job is booked.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-08-12\", \"source\": \"Marta\", \"text\": \"Weekend on-call is shared in rotation between the crews during busy periods.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"Marta\", \"text\": \"Book the Kowalski bathroom re-pipe as a single two-day visit on Tuesday 3 November and Wednesday 4 November, billed at the flat rate of $2,400 with materials included.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"Marta\", \"text\": \"Order 40 metres of type-L copper and the fixture kit from Copperline for delivery on Friday 30 October for the Kowalski job, with the cost absorbed under the flat rate.\", \"depends_on\": [\"D1\", \"F3\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marta\", \"text\": \"Assign Luis's Northside crew to the Kowalski job at 14 Brannan Court, since Brannan Court is in the Northside zone.\", \"depends_on\": [\"F1\", \"F4\", \"F2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"Buy the Mehdi replacement heater from PipeHouse Depot at $780 and add it to the hourly invoice at cost.\", \"depends_on\": [\"F6\", \"F7\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"Marta\", \"text\": \"Start the weekend on-call rotation between the two crews from the first weekend of September.\", \"depends_on\": [\"F10\", \"R3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Marta\", \"text\": \"Buy a second drain camera from PipeHouse Depot for $1,900 and retire camera number one.\", \"depends_on\": [\"F11\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"Book the Ridgeview condo re-pipe as a single visit on Thursday 12 November at the flat rate of $2,900, materials included; Marta has signed off on it.\", \"depends_on\": [\"F9\", \"R1\", \"R2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"office manager\", \"text\": \"Renew the truck insurance before the deadline. Done on Friday 9 October.\", \"due\": \"2026-10-15\", \"status\": \"done\", \"depends_on\": [\"F12\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-24\", \"source\": \"Marta\", \"text\": \"Send the Kowalski work order with the billing terms to Luis's crew ahead of the job. Not done yet.\", \"due\": \"2026-10-29\", \"status\": \"open\", \"depends_on\": [\"D1\", \"D2\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Winterize all service vans at Harper's Garage before the cold sets in. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": [\"F5\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-28\", \"source\": \"office manager\", \"text\": \"The signed agreement for the Kowalski bathroom re-pipe at 14 Brannan Court is hourly at $95 per hour plus materials billed at cost; the job is not flat-rate. The visit dates of 3 and 4 November, the crew assignment, and the Copperline material order all stand.\", \"revokes\": [\"F1\"]},\n \"task\": {\"text\": \"Luis's crew is counting on the paperwork today — please send them the work order for the Kowalski job with the billing terms.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Luis's crew the work order for 3–4 November billing hourly at $95 per hour plus materials at cost, with daily sign-off sheets.\"}, {\"id\": \"b\", \"text\": \"Send Luis's crew the work order for 3–4 November at a flat rate of $2,400 with materials included.\"}, {\"id\": \"c\", \"text\": \"Send Luis's crew the work order for 3–4 November at a flat rate of $2,900 with materials included.\"}, {\"id\": \"d\", \"text\": \"Cancel the Copperline delivery booked for Friday 30 October and re-book it for 5 November.\"}]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [\"b\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [\"d\"],\n  \"stale_items\": [\"F1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Rebook the Kowalski visit for 3–4 November as an hourly job at $95 per hour with materials billed at cost; the flat-rate price of $2,400 no longer applies.\"},\n   {\"id\": \"D2\", \"direction\": \"Keep the Copperline order for delivery on 30 October, but bill the materials to the Kowalski invoice at cost instead of absorbing them under a flat rate.\"}\n  ],\n  \"untouched\": [\"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the Kowalski work order with billing terms to Luis's crew today\", \"correct_value\": \"hourly at $95 per hour plus materials at cost, daily sign-off\", \"stale_value\": \"flat-rate $2,400 including materials\"},\n  \"why\": \"The correction revokes the flat-rate fact F1, so D1, which booked the job flat-rate, is touched, and D2, which rests on D1, is touched through the chain; the task's work order must carry the hourly terms. D3 cites F1 only for the address and zone and is untouched, as are the unrelated decisions. F9's $2,900 flat rate belongs to the Ridgeview job and must not be used.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 5480,
+    "reasoning_tokens": 3047,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02492832,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Kowalski re-pipe: flat-rate or hourly",
+  "setting": "A plumbing company owner at Rightflow Plumbing whose dispatcher assistant recalls which jobs were quoted flat-rate versus hourly",
+  "owner": "Marta",
+  "now": "2026-10-29",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "The Kowalski bathroom re-pipe at 14 Brannan Court was quoted flat-rate at $2,400, materials included."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "Rightflow runs two crews: Luis's Northside crew and Petra's Southside crew."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "office manager",
+    "text": "Copperline Supply is Rightflow's main materials supplier and delivers within three working days."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "office manager",
+    "text": "Brannan Court sits in the Northside service zone."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "The service vans are serviced quarterly at Harper's Garage."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "office manager",
+    "text": "The Mehdi water heater replacement at 88 Selby Avenue is an hourly job at $95 per hour plus materials."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Marta",
+    "text": "PipeHouse Depot stocks Granite water heaters at $780 each."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "office manager",
+    "text": "The office phone contract with ClearTalk runs through June 2027."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Marta",
+    "text": "The Ridgeview condo bathroom re-pipe was quoted flat-rate at $2,900, materials included."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "office manager",
+    "text": "Weekend emergency call volume rose about 30 percent in July."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Luis",
+    "text": "Drain camera number one is seven years old and keeps cutting out mid-inspection."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-09",
+    "source": "office manager",
+    "text": "The annual truck insurance renewal is due by 15 October 2026."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-16",
+    "source": "Marta",
+    "text": "Apprentice Dan passed his licensing exam and can take solo call-outs."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Flat-rate jobs get one crew visit with Rightflow absorbing the materials cost; hourly jobs are billed per hour with a daily sign-off sheet, and materials are added to the client invoice at cost."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any flat-rate quote above $2,500 needs Marta's signature before the job is booked."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-08-12",
+    "source": "Marta",
+    "text": "Weekend on-call is shared in rotation between the crews during busy periods."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-20",
+    "source": "Marta",
+    "text": "Book the Kowalski bathroom re-pipe as a single two-day visit on Tuesday 3 November and Wednesday 4 November, billed at the flat rate of $2,400 with materials included.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-24",
+    "source": "Marta",
+    "text": "Order 40 metres of type-L copper and the fixture kit from Copperline for delivery on Friday 30 October for the Kowalski job, with the cost absorbed under the flat rate.",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "Assign Luis's Northside crew to the Kowalski job at 14 Brannan Court, since Brannan Court is in the Northside zone.",
+    "depends_on": [
+     "F1",
+     "F4",
+     "F2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Buy the Mehdi replacement heater from PipeHouse Depot at $780 and add it to the hourly invoice at cost.",
+    "depends_on": [
+     "F6",
+     "F7"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marta",
+    "text": "Start the weekend on-call rotation between the two crews from the first weekend of September.",
+    "depends_on": [
+     "F10",
+     "R3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Marta",
+    "text": "Buy a second drain camera from PipeHouse Depot for $1,900 and retire camera number one.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Book the Ridgeview condo re-pipe as a single visit on Thursday 12 November at the flat rate of $2,900, materials included; Marta has signed off on it.",
+    "depends_on": [
+     "F9",
+     "R1",
+     "R2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "office manager",
+    "text": "Renew the truck insurance before the deadline. Done on Friday 9 October.",
+    "due": "2026-10-15",
+    "status": "done",
+    "depends_on": [
+     "F12"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-24",
+    "source": "Marta",
+    "text": "Send the Kowalski work order with the billing terms to Luis's crew ahead of the job. Not done yet.",
+    "due": "2026-10-29",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "D2"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Winterize all service vans at Harper's Garage before the cold sets in. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open",
+    "depends_on": [
+     "F5"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-28",
+   "source": "office manager",
+   "text": "The signed agreement for the Kowalski bathroom re-pipe at 14 Brannan Court is hourly at $95 per hour plus materials billed at cost; the job is not flat-rate. The visit dates of 3 and 4 November, the crew assignment, and the Copperline material order all stand.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Luis's crew is counting on the paperwork today — please send them the work order for the Kowalski job with the billing terms.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Luis's crew the work order for 3–4 November billing hourly at $95 per hour plus materials at cost, with daily sign-off sheets."
+    },
+    {
+     "id": "b",
+     "text": "Send Luis's crew the work order for 3–4 November at a flat rate of $2,400 with materials included."
+    },
+    {
+     "id": "c",
+     "text": "Send Luis's crew the work order for 3–4 November at a flat rate of $2,900 with materials included."
+    },
+    {
+     "id": "d",
+     "text": "Cancel the Copperline delivery booked for Friday 30 October and re-book it for 5 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [
+    "b"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [
+    "d"
+   ],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Rebook the Kowalski visit for 3–4 November as an hourly job at $95 per hour with materials billed at cost; the flat-rate price of $2,400 no longer applies."
+    },
+    {
+     "id": "D2",
+     "direction": "Keep the Copperline order for delivery on 30 October, but bill the materials to the Kowalski invoice at cost instead of absorbing them under a flat rate."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the Kowalski work order with billing terms to Luis's crew today",
+    "correct_value": "hourly at $95 per hour plus materials at cost, daily sign-off",
+    "stale_value": "flat-rate $2,400 including materials"
+   },
+   "why": "The correction revokes the flat-rate fact F1, so D1, which booked the job flat-rate, is touched, and D2, which rests on D1, is touched through the chain; the task's work order must carry the hourly terms. D3 cites F1 only for the address and zone and is untouched, as are the unrelated decisions. F9's $2,900 flat rate belongs to the Ridgeview job and must not be used."
+  },
+  "id": "G3-10",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

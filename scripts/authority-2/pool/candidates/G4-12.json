@@ -1,0 +1,317 @@
+{
+ "id": "G4-12",
+ "class": 4,
+ "setting": "A food truck operator at Rusty Spatula Street Food whose assistant logs commissary kitchen slot bookings and event organizer payment terms",
+ "prompt_sha256": "d599f04efbd5046b6d9342d07039f420c99335a86c4da1237ccd2480449410a4",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Propane Supplier Correction, Commissary Booking Stands\",\n  \"setting\": \"A food truck operator at Rusty Spatula Street Food whose assistant logs commissary kitchen slot bookings and event organizer payment terms\",\n  \"owner\": \"Marisol\",\n  \"now\": \"2026-10-28\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marisol\", \"text\": \"Rusty Spatula Street Food's licensed commissary is Harbor City Commissary on Delgado Avenue; prep bays there cost 38 dollars per hour.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Marisol\", \"text\": \"All food prep for the truck must happen at Harbor City Commissary, the licensed commissary.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marisol\", \"text\": \"The truck's menu prices are brisket tacos at 9 dollars, elote cups at 5 dollars, and aguas frescas at 4 dollars.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"Marisol\", \"text\": \"Standard payment terms for event organizers are a 50 percent deposit on booking and the balance due 7 days after the event.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Dana Whitfield\", \"text\": \"The Lakeside Jazz Festival is confirmed for Sunday 8 November 2026 at Waterfront Park; the organizer is Dana Whitfield.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-22\", \"source\": \"Marisol\", \"text\": \"Every commissary booking must be confirmed with the commissary office at least 48 hours before the slot.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"Harbor City Commissary office\", \"text\": \"Harbor City Commissary Bay 3 has morning slots from 06:00 to 10:00 free on Fridays through the autumn.\"},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-15\", \"source\": \"Marisol\", \"text\": \"Book the August county health re-inspection at Harbor City Commissary. Done on 28 July.\", \"due\": \"2026-08-01\", \"status\": \"done\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-08\", \"source\": \"Marisol\", \"text\": \"The truck's county health permit is valid through 31 March 2027.\"},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Marisol\", \"text\": \"FlameLine Propane refills the truck's propane tanks every Thursday at 85 dollars per refill.\"},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-28\", \"source\": \"Marisol\", \"text\": \"Part-time cook Teo started with the truck in August, working Thursdays through Sundays.\"},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"Harbor City Commissary office\", \"text\": \"Harbor City Commissary charges 44 dollars per hour for prep bays after 16:00.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marisol\", \"text\": \"Accept the Lakeside Jazz Festival booking for Sunday 8 November 2026.\", \"depends_on\": [\"F3\", \"R2\"]},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Marisol\", \"text\": \"For festival prep, book Bay 3 at Harbor City Commissary on Friday 6 November 2026 from 06:00 to 10:00 at 38 dollars per hour.\", \"depends_on\": [\"F4\", \"F1\", \"R1\", \"D1\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Marisol\", \"text\": \"Quote the Lakeside Jazz Festival organizer a flat fee of 4,500 dollars for the event.\", \"depends_on\": [\"D1\", \"F2\"]},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"Marisol\", \"text\": \"Festival organizer Dana Whitfield estimates about 600 covers over the festival weekend.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Marisol\", \"text\": \"Order extra brisket and tortillas from Verde Produce for delivery on Thursday 5 November.\", \"depends_on\": [\"D1\", \"F9\"]},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-18\", \"source\": \"Marisol\", \"text\": \"Send Dana Whitfield the standard payment terms sheet along with the 4,500 dollar quote.\", \"depends_on\": [\"D3\", \"R2\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-18\", \"source\": \"Marisol\", \"text\": \"Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking, stating the 50 percent deposit and the balance due 7 days after the event. Not done yet.\", \"due\": \"2026-10-28\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Sweetwater Depot\", \"text\": \"Sweetwater Depot on the east side quoted evening prep slots at 42 dollars per hour for October and November; Marisol declined because Harbor City is the licensed commissary.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-26\", \"source\": \"Marisol\", \"text\": \"Schedule Teo for the Friday 6 November prep slot and the full festival weekend.\", \"depends_on\": [\"F7\", \"D2\"]},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-02\", \"source\": \"Marisol\", \"text\": \"Weekly produce restocking from Verde Produce happens on Tuesdays.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-08\", \"source\": \"Marisol\", \"text\": \"Plan a smaller Harvest Market pop-up on Sunday 15 November, prepping in Bay 3 Friday mornings as usual.\", \"depends_on\": [\"F4\", \"R1\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"Marisol\", \"text\": \"Confirm the 6 November Bay 3 booking with the commissary office at least 48 hours ahead. Not done yet.\", \"due\": \"2026-11-04\", \"status\": \"open\", \"depends_on\": [\"D2\", \"R3\"]}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-26\", \"source\": \"Teo\", \"text\": \"The propane supplier is Cascade Gasworks, which refills the truck's tanks every Tuesday at 92 dollars per refill; the arrangement with FlameLine Propane has ended. Nothing else about commissary bookings or festival plans changes.\", \"revokes\": [\"F6\"]},\n  \"task\": {\"text\": \"Please get our Lakeside festival prep sorted today: book the commissary slot and send Dana our payment terms.\", \"options\": [\n    {\"id\": \"a\", \"text\": \"Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event.\"},\n    {\"id\": \"b\", \"text\": \"Book an evening prep slot at Sweetwater Depot on Thursday 5 November 2026, 18:00–22:00, at 42 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event.\"},\n    {\"id\": \"c\", \"text\": \"Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00, and send Dana Whitfield revised terms of a 40 percent deposit with the balance due on event day.\"},\n    {\"id\": \"d\", \"text\": \"Book Bay 3 at Harbor City Commissary on Saturday 7 November 2026, 09:00–13:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event.\"}\n  ]},\n  \"truth\": {\n    \"correct_options\": [\"a\"],\n    \"stale_options\": [],\n    \"distractor_options\": [\"b\"],\n    \"unnecessary_options\": [\"c\", \"d\"],\n    \"stale_items\": [\"F6\"],\n    \"distractor_items\": [\"F10\"],\n    \"touched\": [],\n    \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O1\"],\n    \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking today\", \"correct_value\": \"50 percent deposit, balance due 7 days after the event (with the Bay 3 booking, Friday 6 November 2026, 06:00–10:00, 38 dollars per hour)\", \"stale_value\": null},\n    \"why\": \"The correction only replaces the propane supplier fact F6, which no decision rests on, so every festival and commissary decision stands unchanged. The correct act is to carry out the standing plan: book Bay 3 at Harbor City Commissary on Friday 6 November 06:00–10:00 and send the standard 50 percent deposit terms to Dana. Option b acts on the declined Sweetwater Depot quote, and options c and d needlessly change the payment terms or the slot day that the standing decisions D2 and D5 already fixed.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2848,
+    "completion_tokens": 4827,
+    "reasoning_tokens": 2405,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02208872,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Propane Supplier Correction, Commissary Booking Stands",
+  "setting": "A food truck operator at Rusty Spatula Street Food whose assistant logs commissary kitchen slot bookings and event organizer payment terms",
+  "owner": "Marisol",
+  "now": "2026-10-28",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marisol",
+    "text": "Rusty Spatula Street Food's licensed commissary is Harbor City Commissary on Delgado Avenue; prep bays there cost 38 dollars per hour."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Marisol",
+    "text": "All food prep for the truck must happen at Harbor City Commissary, the licensed commissary."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marisol",
+    "text": "The truck's menu prices are brisket tacos at 9 dollars, elote cups at 5 dollars, and aguas frescas at 4 dollars."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marisol",
+    "text": "Standard payment terms for event organizers are a 50 percent deposit on booking and the balance due 7 days after the event."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dana Whitfield",
+    "text": "The Lakeside Jazz Festival is confirmed for Sunday 8 November 2026 at Waterfront Park; the organizer is Dana Whitfield."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-22",
+    "source": "Marisol",
+    "text": "Every commissary booking must be confirmed with the commissary office at least 48 hours before the slot."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Harbor City Commissary office",
+    "text": "Harbor City Commissary Bay 3 has morning slots from 06:00 to 10:00 free on Fridays through the autumn."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-15",
+    "source": "Marisol",
+    "text": "Book the August county health re-inspection at Harbor City Commissary. Done on 28 July.",
+    "due": "2026-08-01",
+    "status": "done"
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Marisol",
+    "text": "The truck's county health permit is valid through 31 March 2027."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Marisol",
+    "text": "FlameLine Propane refills the truck's propane tanks every Thursday at 85 dollars per refill."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-28",
+    "source": "Marisol",
+    "text": "Part-time cook Teo started with the truck in August, working Thursdays through Sundays."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Harbor City Commissary office",
+    "text": "Harbor City Commissary charges 44 dollars per hour for prep bays after 16:00."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marisol",
+    "text": "Accept the Lakeside Jazz Festival booking for Sunday 8 November 2026.",
+    "depends_on": [
+     "F3",
+     "R2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marisol",
+    "text": "For festival prep, book Bay 3 at Harbor City Commissary on Friday 6 November 2026 from 06:00 to 10:00 at 38 dollars per hour.",
+    "depends_on": [
+     "F4",
+     "F1",
+     "R1",
+     "D1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Marisol",
+    "text": "Quote the Lakeside Jazz Festival organizer a flat fee of 4,500 dollars for the event.",
+    "depends_on": [
+     "D1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "Marisol",
+    "text": "Festival organizer Dana Whitfield estimates about 600 covers over the festival weekend."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Marisol",
+    "text": "Order extra brisket and tortillas from Verde Produce for delivery on Thursday 5 November.",
+    "depends_on": [
+     "D1",
+     "F9"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "Marisol",
+    "text": "Send Dana Whitfield the standard payment terms sheet along with the 4,500 dollar quote.",
+    "depends_on": [
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-18",
+    "source": "Marisol",
+    "text": "Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking, stating the 50 percent deposit and the balance due 7 days after the event. Not done yet.",
+    "due": "2026-10-28",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Sweetwater Depot",
+    "text": "Sweetwater Depot on the east side quoted evening prep slots at 42 dollars per hour for October and November; Marisol declined because Harbor City is the licensed commissary."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-26",
+    "source": "Marisol",
+    "text": "Schedule Teo for the Friday 6 November prep slot and the full festival weekend.",
+    "depends_on": [
+     "F7",
+     "D2"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-02",
+    "source": "Marisol",
+    "text": "Weekly produce restocking from Verde Produce happens on Tuesdays."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marisol",
+    "text": "Plan a smaller Harvest Market pop-up on Sunday 15 November, prepping in Bay 3 Friday mornings as usual.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "Marisol",
+    "text": "Confirm the 6 November Bay 3 booking with the commissary office at least 48 hours ahead. Not done yet.",
+    "due": "2026-11-04",
+    "status": "open",
+    "depends_on": [
+     "D2",
+     "R3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-26",
+   "source": "Teo",
+   "text": "The propane supplier is Cascade Gasworks, which refills the truck's tanks every Tuesday at 92 dollars per refill; the arrangement with FlameLine Propane has ended. Nothing else about commissary bookings or festival plans changes.",
+   "revokes": [
+    "F6"
+   ]
+  },
+  "task": {
+   "text": "Please get our Lakeside festival prep sorted today: book the commissary slot and send Dana our payment terms.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    },
+    {
+     "id": "b",
+     "text": "Book an evening prep slot at Sweetwater Depot on Thursday 5 November 2026, 18:00–22:00, at 42 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    },
+    {
+     "id": "c",
+     "text": "Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00, and send Dana Whitfield revised terms of a 40 percent deposit with the balance due on event day."
+    },
+    {
+     "id": "d",
+     "text": "Book Bay 3 at Harbor City Commissary on Saturday 7 November 2026, 09:00–13:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [
+    "F6"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking today",
+    "correct_value": "50 percent deposit, balance due 7 days after the event (with the Bay 3 booking, Friday 6 November 2026, 06:00–10:00, 38 dollars per hour)",
+    "stale_value": null
+   },
+   "why": "The correction only replaces the propane supplier fact F6, which no decision rests on, so every festival and commissary decision stands unchanged. The correct act is to carry out the standing plan: book Bay 3 at Harbor City Commissary on Friday 6 November 06:00–10:00 and send the standard 50 percent deposit terms to Dana. Option b acts on the declined Sweetwater Depot quote, and options c and d needlessly change the payment terms or the slot day that the standing decisions D2 and D5 already fixed."
+  },
+  "id": "G4-12",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

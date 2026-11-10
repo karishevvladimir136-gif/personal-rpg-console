@@ -1,0 +1,357 @@
+{
+ "id": "G1-02",
+ "class": 1,
+ "setting": "A head nurse at Cedar Grove Family Clinic whose scheduling assistant remembers every shift-swap agreement among the twelve nursing staff",
+ "prompt_sha256": "d3610d04e89e7ab3f598676ae3b15101c77555bd5469754b9fbbc395110872da",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Last-weekend night block changes hands\",\n \"setting\": \"A head nurse at Cedar Grove Family Clinic whose scheduling assistant remembers every shift-swap agreement among the twelve nursing staff\",\n \"owner\": \"Ingrid\",\n \"now\": \"2026-10-30\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ingrid\", \"text\": \"Cedar Grove Family Clinic runs three shifts each day: early 07:00-15:00, late 13:00-21:00, and night 21:00-07:00.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Ingrid\", \"text\": \"The nursing team has twelve members: Priya Nair, Marcus Osei, Dana Whitfield, Chen Wu, Ana Bakre, Sofia Marek, Tomas Reyes, Leah Grant, Peter Osei-Fosu, Rita Valdez, Jonah Beck and Amara Sy.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ingrid\", \"text\": \"Every shift swap must be agreed by both nurses involved and logged with the head nurse within 48 hours of being agreed.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Ingrid\", \"text\": \"The flu-vaccination clinic runs on Saturday mornings throughout October and needs two nurses on each of those mornings.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-08\", \"source\": \"Ingrid\", \"text\": \"Leah Grant covers Jonah Beck's late shifts from 15 to 19 June while Jonah is at a conference.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Chen\", \"text\": \"Chen Wu is doing a part-time phlebotomy certification and is off every Thursday through August.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Ingrid\", \"text\": \"Ana Bakre covers Chen Wu's Thursday late shifts for July and August.\", \"depends_on\": [\"F4\", \"R1\"]},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-18\", \"source\": \"Ingrid\", \"text\": \"Night shifts are assigned as whole shifts; a night is never split between two nurses.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Priya\", \"text\": \"Priya Nair has taken over the Saturday-night shift on the last weekend of each month as a standing arrangement.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Ingrid\", \"text\": \"Priya Nair holds the last-weekend Saturday-night block (Saturday 21:00 to Sunday 07:00) through December 2026.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Ingrid\", \"text\": \"The clinic is closed on the August bank holiday Monday, with only an on-call nurse.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-22\", \"source\": \"Ingrid\", \"text\": \"Submit the list of nurses due for the annual resuscitation refresher to the clinic manager. Done on 10 August.\", \"due\": \"2026-08-14\", \"status\": \"done\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-28\", \"source\": \"Marcus\", \"text\": \"Marcus Osei holds the Sunday-night shift on the last weekend of each month as a standing arrangement.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-04\", \"source\": \"Ingrid\", \"text\": \"Dana Whitfield and Sofia Marek staff the October Saturday-morning flu clinics, one early and one late volunteer each week.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"Ingrid\", \"text\": \"Priya Nair covers the Saturday-night shift on 26 September (21:00 to 07:00 Sunday), and she is released from the Sunday morning clinic on 27 September as recovery time.\", \"depends_on\": [\"F5\", \"D3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-10\", \"source\": \"Sofia\", \"text\": \"Sofia Marek works early shifts only during September while her son starts school.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Ingrid\", \"text\": \"Marcus Osei keeps the last-weekend Sunday-night block (Sunday 21:00 to Monday 07:00) through December 2026.\", \"depends_on\": [\"F7\", \"R2\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-02\", \"source\": \"Ingrid\", \"text\": \"All twelve nurses must complete the resuscitation refresher by the end of November 2026.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Ingrid\", \"text\": \"The all-staff resuscitation refresher is scheduled for Saturday morning 31 October; night cover that last weekend stays with the block holders, so the day staff who attend arrive rested.\", \"depends_on\": [\"D3\", \"F9\"]},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-09-15\", \"source\": \"Ingrid\", \"text\": \"No nurse works more than three nights in a row.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Ingrid\", \"text\": \"The clinic's new glove supplier delivers on the first Tuesday of each month.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"Ingrid\", \"text\": \"Order the November glove stock for delivery on Tuesday 3 November.\", \"depends_on\": [\"F10\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Tomas\", \"text\": \"Tomas Reyes returned from parental leave on Monday 14 September and prefers night shifts.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Dana\", \"text\": \"Dana Whitfield has offered to take extra night shifts on the second weekend of each month from November onwards, to bank leave.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-28\", \"source\": \"Ingrid\", \"text\": \"Send the clinic manager the night-cover rota for the last weekend of October and for November. Not done yet.\", \"due\": \"2026-10-30\", \"status\": \"open\", \"depends_on\": [\"D3\", \"D6\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Ingrid\", \"text\": \"The annex car park is being resurfaced during October, so staff use the retail car park.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-03\", \"source\": \"Ingrid\", \"text\": \"Staff park at the retail car park until the annex resurfacing finishes at the end of October.\", \"depends_on\": [\"F13\", \"R1\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-02\", \"source\": \"Ingrid\", \"text\": \"Collect signed training records from all twelve nurses after the refresher. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": [\"D7\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-27\", \"source\": \"Priya\", \"text\": \"Priya Nair has moved to permanent day shifts; her last night shift was Saturday 26 September. Tomas Reyes takes over the last-weekend Saturday-night block (Saturday 21:00 to Sunday 07:00) from October through December. Everything else about the last-weekend nights, including Marcus Osei's Sunday-night block, stays as agreed.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"Please send Marta the night-cover rota for the last weekend of October and for November today, and make sure the Saturday-night slot this weekend is filled.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Marta the rota with Priya Nair on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Priya on the last-weekend Saturdays of November.\"}, {\"id\": \"b\", \"text\": \"Send Marta the rota with Tomas Reyes on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Tomas on the last-weekend Saturdays of November.\"}, {\"id\": \"c\", \"text\": \"Send Marta the rota with Dana Whitfield on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Dana on the last-weekend Saturdays of November.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"], \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"The last-weekend Saturday-night block through December is now held by Tomas Reyes, not Priya Nair.\"},\n   {\"id\": \"D5\", \"direction\": \"The 26 September swap happened as recorded, but it is now the last of Priya's night covers; no further Monday-morning recovery releases for Priya.\"},\n   {\"id\": \"D7\", \"direction\": \"The refresher stays on Saturday morning 31 October, but the Saturday-night cover for that weekend is Tomas Reyes; Marcus keeps Sunday night.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D4\", \"D6\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Marta the night-cover rota for the last weekend of October and November, filling the Saturday-night slot\", \"correct_value\": \"Tomas Reyes, Saturday 31 October 21:00-07:00\", \"stale_value\": \"Priya Nair, Saturday 31 October 21:00-07:00\"},\n  \"why\": \"The correction revokes F5 and hands the last-weekend Saturday-night block to Tomas Reyes, so the rota sent to Marta must list Tomas for Saturday 31 October and the November last weekends. Priya's name is the stale act; Dana's offer covers only the second weekend of each month from November, so assigning her to 31 October is the distractor act. D6 (Marcus's Sunday block) and the other decisions rest on facts the correction does not touch.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2828,
+    "completion_tokens": 5995,
+    "reasoning_tokens": 3322,
+    "cached_tokens": 0
+   },
+   "cost": 0.0303372,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Last-weekend night block changes hands",
+  "setting": "A head nurse at Cedar Grove Family Clinic whose scheduling assistant remembers every shift-swap agreement among the twelve nursing staff",
+  "owner": "Ingrid",
+  "now": "2026-10-30",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Ingrid",
+    "text": "Cedar Grove Family Clinic runs three shifts each day: early 07:00-15:00, late 13:00-21:00, and night 21:00-07:00."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Ingrid",
+    "text": "The nursing team has twelve members: Priya Nair, Marcus Osei, Dana Whitfield, Chen Wu, Ana Bakre, Sofia Marek, Tomas Reyes, Leah Grant, Peter Osei-Fosu, Rita Valdez, Jonah Beck and Amara Sy."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Ingrid",
+    "text": "Every shift swap must be agreed by both nurses involved and logged with the head nurse within 48 hours of being agreed."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Ingrid",
+    "text": "The flu-vaccination clinic runs on Saturday mornings throughout October and needs two nurses on each of those mornings."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-08",
+    "source": "Ingrid",
+    "text": "Leah Grant covers Jonah Beck's late shifts from 15 to 19 June while Jonah is at a conference.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Chen",
+    "text": "Chen Wu is doing a part-time phlebotomy certification and is off every Thursday through August."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Ingrid",
+    "text": "Ana Bakre covers Chen Wu's Thursday late shifts for July and August.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-18",
+    "source": "Ingrid",
+    "text": "Night shifts are assigned as whole shifts; a night is never split between two nurses."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Priya",
+    "text": "Priya Nair has taken over the Saturday-night shift on the last weekend of each month as a standing arrangement."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Ingrid",
+    "text": "Priya Nair holds the last-weekend Saturday-night block (Saturday 21:00 to Sunday 07:00) through December 2026.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Ingrid",
+    "text": "The clinic is closed on the August bank holiday Monday, with only an on-call nurse."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-22",
+    "source": "Ingrid",
+    "text": "Submit the list of nurses due for the annual resuscitation refresher to the clinic manager. Done on 10 August.",
+    "due": "2026-08-14",
+    "status": "done"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-28",
+    "source": "Marcus",
+    "text": "Marcus Osei holds the Sunday-night shift on the last weekend of each month as a standing arrangement."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-04",
+    "source": "Ingrid",
+    "text": "Dana Whitfield and Sofia Marek staff the October Saturday-morning flu clinics, one early and one late volunteer each week.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Ingrid",
+    "text": "Priya Nair covers the Saturday-night shift on 26 September (21:00 to 07:00 Sunday), and she is released from the Sunday morning clinic on 27 September as recovery time.",
+    "depends_on": [
+     "F5",
+     "D3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "Sofia",
+    "text": "Sofia Marek works early shifts only during September while her son starts school."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Ingrid",
+    "text": "Marcus Osei keeps the last-weekend Sunday-night block (Sunday 21:00 to Monday 07:00) through December 2026.",
+    "depends_on": [
+     "F7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-02",
+    "source": "Ingrid",
+    "text": "All twelve nurses must complete the resuscitation refresher by the end of November 2026."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Ingrid",
+    "text": "The all-staff resuscitation refresher is scheduled for Saturday morning 31 October; night cover that last weekend stays with the block holders, so the day staff who attend arrive rested.",
+    "depends_on": [
+     "D3",
+     "F9"
+    ]
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-09-15",
+    "source": "Ingrid",
+    "text": "No nurse works more than three nights in a row."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Ingrid",
+    "text": "The clinic's new glove supplier delivers on the first Tuesday of each month."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-20",
+    "source": "Ingrid",
+    "text": "Order the November glove stock for delivery on Tuesday 3 November.",
+    "depends_on": [
+     "F10"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Tomas",
+    "text": "Tomas Reyes returned from parental leave on Monday 14 September and prefers night shifts."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Dana",
+    "text": "Dana Whitfield has offered to take extra night shifts on the second weekend of each month from November onwards, to bank leave."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-28",
+    "source": "Ingrid",
+    "text": "Send the clinic manager the night-cover rota for the last weekend of October and for November. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open",
+    "depends_on": [
+     "D3",
+     "D6"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Ingrid",
+    "text": "The annex car park is being resurfaced during October, so staff use the retail car park."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-03",
+    "source": "Ingrid",
+    "text": "Staff park at the retail car park until the annex resurfacing finishes at the end of October.",
+    "depends_on": [
+     "F13",
+     "R1"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-02",
+    "source": "Ingrid",
+    "text": "Collect signed training records from all twelve nurses after the refresher. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open",
+    "depends_on": [
+     "D7"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-27",
+   "source": "Priya",
+   "text": "Priya Nair has moved to permanent day shifts; her last night shift was Saturday 26 September. Tomas Reyes takes over the last-weekend Saturday-night block (Saturday 21:00 to Sunday 07:00) from October through December. Everything else about the last-weekend nights, including Marcus Osei's Sunday-night block, stays as agreed.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please send Marta the night-cover rota for the last weekend of October and for November today, and make sure the Saturday-night slot this weekend is filled.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Marta the rota with Priya Nair on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Priya on the last-weekend Saturdays of November."
+    },
+    {
+     "id": "b",
+     "text": "Send Marta the rota with Tomas Reyes on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Tomas on the last-weekend Saturdays of November."
+    },
+    {
+     "id": "c",
+     "text": "Send Marta the rota with Dana Whitfield on Saturday 31 October 21:00-07:00, Marcus Osei on Sunday, and Dana on the last-weekend Saturdays of November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "The last-weekend Saturday-night block through December is now held by Tomas Reyes, not Priya Nair."
+    },
+    {
+     "id": "D5",
+     "direction": "The 26 September swap happened as recorded, but it is now the last of Priya's night covers; no further Monday-morning recovery releases for Priya."
+    },
+    {
+     "id": "D7",
+     "direction": "The refresher stays on Saturday morning 31 October, but the Saturday-night cover for that weekend is Tomas Reyes; Marcus keeps Sunday night."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D4",
+    "D6",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Marta the night-cover rota for the last weekend of October and November, filling the Saturday-night slot",
+    "correct_value": "Tomas Reyes, Saturday 31 October 21:00-07:00",
+    "stale_value": "Priya Nair, Saturday 31 October 21:00-07:00"
+   },
+   "why": "The correction revokes F5 and hands the last-weekend Saturday-night block to Tomas Reyes, so the rota sent to Marta must list Tomas for Saturday 31 October and the November last weekends. Priya's name is the stale act; Dana's offer covers only the second weekend of each month from November, so assigning her to 31 October is the distractor act. D6 (Marcus's Sunday block) and the other decisions rest on facts the correction does not touch."
+  },
+  "id": "G1-02",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

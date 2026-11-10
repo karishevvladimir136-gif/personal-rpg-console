@@ -1,0 +1,368 @@
+{
+ "id": "G1-12",
+ "class": 1,
+ "setting": "A restaurant owner at The Copper Ladle whose assistant notes every staff rota adjustment and supplier substitution approval",
+ "prompt_sha256": "cd5152bca45e32f296e7e8c2e12d8bf00a1c6e2a0867ee08416828c25c73edee",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Cheddar back to Hollow Vale\",\n \"setting\": \"A restaurant owner at The Copper Ladle whose assistant notes every staff rota adjustment and supplier substitution approval\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"The Copper Ladle has 46 covers and is open Wednesday to Sunday for dinner.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Every supplier substitution must be approved and recorded before the first delivery under it.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Standing food orders are placed each Monday for Thursday delivery.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"All suppliers are paid on 30-day terms from invoice date.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"The summer menu runs until 31 August 2026.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"supplier email\", \"text\": \"Hollow Vale Creamery supplies the restaurant's butter (10 kg a week) and cream (20 litres a week).\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"supplier email\", \"text\": \"Ash Mill Bakery can deliver fresh bread daily before 7 a.m.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"owner\", \"text\": \"The kitchen brigade is head chef Iwan, sous chef Nadia and six part-time staff.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Set the summer menu with six mains, keeping the cheese board as a fixed feature. Rests on nothing but the summer menu facts.\", \"depends_on\": [\"F1\", \"F2\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"head chef\", \"text\": \"Hollow Vale butter is 82% fat and gives the best pastry texture.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"owner\", \"text\": \"Switch the bread supply to Ash Mill Bakery with daily 7 a.m. delivery. Rests on the delivery-time fact and the substitution rule.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"owner\", \"text\": \"Hollow Vale Creamery has stopped making cheddar, so Gorstan Dairy supplies all the restaurant's cheddar from 13 July through the end of November 2026.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"owner\", \"text\": \"Move the standing cheddar order to Gorstan Dairy: 12 kg every Monday for Thursday delivery. Rests on the substitution approval and the standing-order rule.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-14\", \"source\": \"owner\", \"text\": \"Send the updated menu card to the printer with the new cheese wording. Done on 24 July.\", \"due\": \"2026-07-31\", \"status\": \"done\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"owner\", \"text\": \"Update the printed menu card so the cheese board names Gorstan Dairy as the cheddar source. Rests on the substitution approval.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Keep the butter and cream standing order with Hollow Vale Creamery unchanged at 10 kg and 20 litres weekly. Rests on the Hollow Vale dairy fact and the standing-order rule.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"owner\", \"text\": \"Put a cheddar tart on the autumn tasting menu and raise the cheddar standing order to 18 kg a week while the tasting menu runs, through the end of November. Rests on the Gorstan cheddar order decision.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Sunday covers have averaged 55 since June.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"owner\", \"text\": \"The autumn menu starts on 15 September 2026.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"head chef\", \"text\": \"Use Hollow Vale butter for all pastry rather than supermarket butter. Rests on the butter quality fact.\", \"depends_on\": [\"F7\", \"F4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"supplier email\", \"text\": \"Gorstan Dairy also sells a blue cheese at £14 per kg.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"supplier email\", \"text\": \"Fenwick Farm quoted farmhouse cheddar at £9.40 per kg, available for delivery from January 2027.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"supplier email\", \"text\": \"Redcliff Cellars issues its new wine price list on 1 October.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"owner\", \"text\": \"Add a second roasting session on Sundays to cover the 55 average covers. Rests on the Sunday covers fact.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Confirm the cheddar supplier and weekly volume for the November menus and place the first November order. Not done yet.\", \"due\": \"2026-10-26\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"owner\", \"text\": \"Book the winter supplier review meeting with all main suppliers. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"head chef\", \"text\": \"The walk-in fridge's bottom shelf was repaired on 8 October.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-10-15\", \"source\": \"supplier email\", \"text\": \"Hollow Vale Creamery's herd is back from summer pasture and milk yield is up 15%.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-22\", \"source\": \"owner\", \"text\": \"Hollow Vale Creamery has restarted cheddar production, so all cheddar orders go back to Hollow Vale Creamery from Monday 26 October 2026. The Gorstan Dairy cheddar arrangement is finished. Hollow Vale butter and cream, and Gorstan's blue cheese, are not affected.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"It's Monday morning — please get this week's cheddar order in for The Copper Ladle.\", \"options\": [{\"id\": \"a\", \"text\": \"Order 18 kg of cheddar from Gorstan Dairy for delivery on Thursday 29 October.\"}, {\"id\": \"b\", \"text\": \"Order 18 kg of cheddar from Hollow Vale Creamery for delivery on Thursday 29 October.\"}, {\"id\": \"c\", \"text\": \"Order 15 kg of farmhouse cheddar from Fenwick Farm at £9.40 per kg for delivery on Thursday 29 October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Re-point the standing cheddar order to Hollow Vale Creamery, keeping 18 kg weekly for Thursday delivery.\"},\n   {\"id\": \"D4\", \"direction\": \"The menu card should name Hollow Vale Creamery as the cheddar source again at the next printing.\"},\n   {\"id\": \"D6\", \"direction\": \"The tasting-menu cheddar tart keeps its 18 kg weekly volume but the cheddar now comes from Hollow Vale Creamery.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D5\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place this week's cheddar order under the standing Monday order for Thursday delivery\", \"correct_value\": \"18 kg from Hollow Vale Creamery, delivery Thursday 29 October\", \"stale_value\": \"18 kg from Gorstan Dairy\"},\n  \"why\": \"The correction ends the Gorstan cheddar substitution and returns cheddar supply to Hollow Vale Creamery from 26 October, while the 18 kg weekly volume set for the tasting menu still stands. The Monday order must therefore go to Hollow Vale; ordering from Gorstan acts on the revoked fact, and the Fenwick Farm quote only applies from January 2027. Butter, cream, bread, blue cheese and rota decisions are untouched.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2826,
+    "completion_tokens": 4521,
+    "reasoning_tokens": 2097,
+    "cached_tokens": 0
+   },
+   "cost": 0.0238488,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Cheddar back to Hollow Vale\",\n \"setting\": \"A restaurant owner at The Copper Ladle whose assistant notes every staff rota adjustment and supplier substitution approval\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"owner\", \"text\": \"The Copper Ladle has 46 covers and is open Wednesday to Sunday for dinner.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Every supplier substitution must be approved and recorded before the first delivery under it.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Standing food orders are placed each Monday for Thursday delivery.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"All suppliers are paid on 30-day terms from invoice date.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"owner\", \"text\": \"The summer menu runs until 31 August 2026.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"supplier email\", \"text\": \"Hollow Vale Creamery supplies the restaurant's butter (10 kg a week) and cream (20 litres a week).\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"supplier email\", \"text\": \"Ash Mill Bakery can deliver fresh bread daily before 7 a.m.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"owner\", \"text\": \"The kitchen brigade is head chef Iwan, sous chef Nadia and six part-time staff.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"owner\", \"text\": \"Set the summer menu with six mains, keeping the cheese board as a fixed feature.\", \"depends_on\": [\"F1\", \"F2\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"head chef\", \"text\": \"Hollow Vale butter is 82% fat and gives the best pastry texture.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"owner\", \"text\": \"Switch the bread supply to Ash Mill Bakery with daily 7 a.m. delivery.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"owner\", \"text\": \"Hollow Vale Creamery has stopped making cheddar, so Gorstan Dairy supplies all the restaurant's cheddar from 13 July through the end of November 2026.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"owner\", \"text\": \"Move the standing cheddar order to Gorstan Dairy: 12 kg every Monday for Thursday delivery.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"owner\", \"text\": \"Update the printed menu card so the cheese board names Gorstan Dairy as the cheddar source.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-16\", \"source\": \"owner\", \"text\": \"Send the updated menu card to the printer with the new cheese wording. Done on 24 July.\", \"due\": \"2026-07-31\", \"status\": \"done\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Keep the butter and cream standing order with Hollow Vale Creamery unchanged at 10 kg and 20 litres weekly.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-02\", \"source\": \"owner\", \"text\": \"Put a cheddar tart on the autumn tasting menu and raise the cheddar standing order to 18 kg a week while the tasting menu runs, through the end of November.\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"owner\", \"text\": \"Sunday covers have averaged 55 since June.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"owner\", \"text\": \"The autumn menu starts on 15 September 2026.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"head chef\", \"text\": \"Use Hollow Vale butter for all pastry rather than supermarket butter.\", \"depends_on\": [\"F7\", \"F4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"supplier email\", \"text\": \"Gorstan Dairy also sells a blue cheese at £14 per kg.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"supplier email\", \"text\": \"Fenwick Farm quoted farmhouse cheddar at £9.40 per kg, available for delivery from January 2027.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"supplier email\", \"text\": \"Redcliff Cellars issues its new wine price list on 1 October.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"owner\", \"text\": \"Add a second roasting session on Sundays to cover the 55 average covers.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Confirm the cheddar supplier and weekly volume for the November menus and place the first November order. Not done yet.\", \"due\": \"2026-10-26\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-20\", \"source\": \"owner\", \"text\": \"Book the winter supplier review meeting with all main suppliers. Not done yet.\", \"due\": \"2026-11-15\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"head chef\", \"text\": \"The walk-in fridge's bottom shelf was repaired on 8 October.\"},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-10-15\", \"source\": \"supplier email\", \"text\": \"Hollow Vale Creamery's herd is back from summer pasture and milk yield is up 15%.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-22\", \"source\": \"owner\", \"text\": \"Hollow Vale Creamery has restarted cheddar production, so all cheddar orders go back to Hollow Vale Creamery from Monday 26 October 2026. The Gorstan Dairy cheddar arrangement is finished. Hollow Vale butter and cream, and Gorstan's blue cheese, are not affected.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"It's Monday morning — please get this week's cheddar order in for The Copper Ladle.\", \"options\": [{\"id\": \"a\", \"text\": \"Order 18 kg of cheddar from Gorstan Dairy for delivery on Thursday 29 October.\"}, {\"id\": \"b\", \"text\": \"Order 18 kg of cheddar from Hollow Vale Creamery for delivery on Thursday 29 October.\"}, {\"id\": \"c\", \"text\": \"Order 15 kg of farmhouse cheddar from Fenwick Farm at £9.40 per kg for delivery on Thursday 29 October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Re-point the standing cheddar order to Hollow Vale Creamery, keeping 18 kg weekly for Thursday delivery.\"},\n   {\"id\": \"D4\", \"direction\": \"The menu card should name Hollow Vale Creamery as the cheddar source again at the next printing.\"},\n   {\"id\": \"D6\", \"direction\": \"The tasting-menu cheddar tart keeps its 18 kg weekly volume but the cheddar now comes from Hollow Vale Creamery.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D5\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place this week's cheddar order under the standing Monday order for Thursday delivery\", \"correct_value\": \"18 kg from Hollow Vale Creamery, delivery Thursday 29 October\", \"stale_value\": \"18 kg from Gorstan Dairy\"},\n  \"why\": \"The correction ends the Gorstan cheddar substitution and returns cheddar supply to Hollow Vale Creamery from 26 October, while the 18 kg weekly volume set for the tasting menu still stands. The Monday order must therefore go to Hollow Vale; ordering from Gorstan acts on the revoked fact, and the Fenwick Farm quote only applies from January 2027. Butter, cream, bread, blue cheese and rota decisions are untouched.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5511,
+    "completion_tokens": 2342,
+    "reasoning_tokens": 0,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01480996,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G1-12: D1: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D2: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D3: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D4: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D5: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D6: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D7: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: D8: text must not carry ids/Rests on/Revokes (the renderer adds them)\n- G1-12: O1: depends on later-dated D4\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Cheddar back to Hollow Vale",
+  "setting": "A restaurant owner at The Copper Ladle whose assistant notes every staff rota adjustment and supplier substitution approval",
+  "owner": "Marta",
+  "now": "2026-10-26",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "The Copper Ladle has 46 covers and is open Wednesday to Sunday for dinner."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Every supplier substitution must be approved and recorded before the first delivery under it."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Standing food orders are placed each Monday for Thursday delivery."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "owner",
+    "text": "All suppliers are paid on 30-day terms from invoice date."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "owner",
+    "text": "The summer menu runs until 31 August 2026."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "supplier email",
+    "text": "Hollow Vale Creamery supplies the restaurant's butter (10 kg a week) and cream (20 litres a week)."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "supplier email",
+    "text": "Ash Mill Bakery can deliver fresh bread daily before 7 a.m."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "owner",
+    "text": "The kitchen brigade is head chef Iwan, sous chef Nadia and six part-time staff."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "Set the summer menu with six mains, keeping the cheese board as a fixed feature.",
+    "depends_on": [
+     "F1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "head chef",
+    "text": "Hollow Vale butter is 82% fat and gives the best pastry texture."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "owner",
+    "text": "Switch the bread supply to Ash Mill Bakery with daily 7 a.m. delivery.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "owner",
+    "text": "Hollow Vale Creamery has stopped making cheddar, so Gorstan Dairy supplies all the restaurant's cheddar from 13 July through the end of November 2026."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "owner",
+    "text": "Move the standing cheddar order to Gorstan Dairy: 12 kg every Monday for Thursday delivery.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "owner",
+    "text": "Update the printed menu card so the cheese board names Gorstan Dairy as the cheddar source.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-16",
+    "source": "owner",
+    "text": "Send the updated menu card to the printer with the new cheese wording. Done on 24 July.",
+    "due": "2026-07-31",
+    "status": "done",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "Keep the butter and cream standing order with Hollow Vale Creamery unchanged at 10 kg and 20 litres weekly.",
+    "depends_on": [
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "owner",
+    "text": "Put a cheddar tart on the autumn tasting menu and raise the cheddar standing order to 18 kg a week while the tasting menu runs, through the end of November.",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Sunday covers have averaged 55 since June."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-30",
+    "source": "owner",
+    "text": "The autumn menu starts on 15 September 2026."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "head chef",
+    "text": "Use Hollow Vale butter for all pastry rather than supermarket butter.",
+    "depends_on": [
+     "F7",
+     "F4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "supplier email",
+    "text": "Gorstan Dairy also sells a blue cheese at £14 per kg."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "supplier email",
+    "text": "Fenwick Farm quoted farmhouse cheddar at £9.40 per kg, available for delivery from January 2027."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "supplier email",
+    "text": "Redcliff Cellars issues its new wine price list on 1 October."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-24",
+    "source": "owner",
+    "text": "Add a second roasting session on Sundays to cover the 55 average covers.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Confirm the cheddar supplier and weekly volume for the November menus and place the first November order. Not done yet.",
+    "due": "2026-10-26",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "owner",
+    "text": "Book the winter supplier review meeting with all main suppliers. Not done yet.",
+    "due": "2026-11-15",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "head chef",
+    "text": "The walk-in fridge's bottom shelf was repaired on 8 October."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-10-15",
+    "source": "supplier email",
+    "text": "Hollow Vale Creamery's herd is back from summer pasture and milk yield is up 15%."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-22",
+   "source": "owner",
+   "text": "Hollow Vale Creamery has restarted cheddar production, so all cheddar orders go back to Hollow Vale Creamery from Monday 26 October 2026. The Gorstan Dairy cheddar arrangement is finished. Hollow Vale butter and cream, and Gorstan's blue cheese, are not affected.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "It's Monday morning — please get this week's cheddar order in for The Copper Ladle.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 18 kg of cheddar from Gorstan Dairy for delivery on Thursday 29 October."
+    },
+    {
+     "id": "b",
+     "text": "Order 18 kg of cheddar from Hollow Vale Creamery for delivery on Thursday 29 October."
+    },
+    {
+     "id": "c",
+     "text": "Order 15 kg of farmhouse cheddar from Fenwick Farm at £9.40 per kg for delivery on Thursday 29 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Re-point the standing cheddar order to Hollow Vale Creamery, keeping 18 kg weekly for Thursday delivery."
+    },
+    {
+     "id": "D4",
+     "direction": "The menu card should name Hollow Vale Creamery as the cheddar source again at the next printing."
+    },
+    {
+     "id": "D6",
+     "direction": "The tasting-menu cheddar tart keeps its 18 kg weekly volume but the cheddar now comes from Hollow Vale Creamery."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D5",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place this week's cheddar order under the standing Monday order for Thursday delivery",
+    "correct_value": "18 kg from Hollow Vale Creamery, delivery Thursday 29 October",
+    "stale_value": "18 kg from Gorstan Dairy"
+   },
+   "why": "The correction ends the Gorstan cheddar substitution and returns cheddar supply to Hollow Vale Creamery from 26 October, while the 18 kg weekly volume set for the tasting menu still stands. The Monday order must therefore go to Hollow Vale; ordering from Gorstan acts on the revoked fact, and the Fenwick Farm quote only applies from January 2027. Butter, cream, bread, blue cheese and rota decisions are untouched."
+  },
+  "id": "G1-12",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

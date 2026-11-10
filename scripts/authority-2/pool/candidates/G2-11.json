@@ -1,0 +1,349 @@
+{
+ "id": "G2-11",
+ "class": 2,
+ "setting": "A gym owner at Ironwood Fitness whose front-desk assistant tracks membership freeze requests and trainer schedule swaps",
+ "prompt_sha256": "01548e2c9637814a1e4e863648f47ddf7ad8d2e89f7511e7905f33f1e13e3381",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Freeze cap cut to seven days\",\n \"setting\": \"A gym owner at Ironwood Fitness whose front-desk assistant tracks membership freeze requests and trainer schedule swaps\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-12\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Ironwood Fitness has 340 members, three full-time trainers, and Rosa Lind as head trainer.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"front desk\", \"text\": \"Members submit freeze requests by email or at the front desk. Priya Kaur has been a member since 2024.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"front desk\", \"text\": \"Sam Whitlock holds a year membership and trains on Tuesdays and Thursdays at 18:00.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Rosa Lind approves all trainer schedule swaps.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"front desk\", \"text\": \"The gym closes on public holidays; the next closure is 25 December 2026.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"FreshLin delivers towels every Tuesday and sends its invoice on the 1st of each month, around 240 euros.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"front desk\", \"text\": \"Dana Osei joined Ironwood Fitness in January 2026 on a monthly plan.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Rosa Lind\", \"text\": \"Leo Vance teaches the Monday 19:00 spin class.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"The Riverside satellite studio handles its own memberships separately and is not covered by Ironwood Fitness membership terms.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-06\", \"source\": \"front desk\", \"text\": \"Riya Kaur, Priya's sister, holds her own separate membership and has asked about freezing it for two weeks from 2 November 2026.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-02\", \"source\": \"front desk\", \"text\": \"Priya Kaur trains with Theo Nash on Wednesdays at 17:00.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Members may freeze their membership for at most 14 days per calendar year, and freeze requests must reach the front desk at least 7 days before the freeze starts.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Trainer swaps must be approved by the head trainer at least 48 hours before the class, and the covering trainer must hold equal or higher certification.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Supplier invoices are paid within 30 days of receipt.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"Approved Dana Osei's 10-day freeze running 20 to 30 July 2026.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-22\", \"source\": \"Marta\", \"text\": \"Denied Priya Kaur's request for a 21-day freeze in August because it exceeded the annual freeze cap.\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"Marta\", \"text\": \"Approved Sam Whitlock's 12-day freeze running 25 October to 5 November 2026; the request came in well ahead of the notice deadline.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Marta\", \"text\": \"Approved Lena Marsh's 5-day freeze running 18 to 23 October 2026.\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Approved Priya Kaur's 9-day freeze running 22 to 30 October 2026, since it was within the cap and requested more than a week ahead.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Rosa Lind\", \"text\": \"Booked Theo Nash to cover Sam Whitlock's Tuesday and Thursday 18:00 classes for the whole freeze period, 27 and 29 October and 3 and 5 November.\", \"depends_on\": [\"D3\", \"R2\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Rosa Lind\", \"text\": \"Approved Leo Vance swapping his Monday 19:00 spin class with Rosa Lind for 24 August 2026.\", \"depends_on\": [\"R2\", \"F8\", \"F4\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Marta\", \"text\": \"Moved the FreshLin towel delivery from Tuesdays to Thursdays starting in October 2026.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Send a written freeze confirmation to every member with an approved freeze starting in the coming month, starting with Priya Kaur. Not done yet.\", \"due\": \"2026-10-12\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-02\", \"source\": \"Marta\", \"text\": \"Pay the FreshLin towel invoice of 240 euros by the end of September. Done on 30 September 2026.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"R3\", \"F6\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"Rosa Lind\", \"text\": \"Book the annual first-aid refresher course for all three trainers. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": [\"F1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-10\", \"source\": \"Marta\", \"text\": \"From 10 October 2026 the freeze policy is tightened: members may freeze for at most 7 days per calendar year, and requests must reach the front desk at least 10 days before the freeze starts. The new cap applies to every freeze starting on or after 15 October 2026; freezes already running or starting before 15 October stand exactly as approved. The change is driven by cash flow after the summer.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Please get those freeze confirmations out today — start with Priya Kaur's.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Priya Kahr a confirmation of a 9-day freeze running 22 to 30 October 2026.\"}, {\"id\": \"b\", \"text\": \"Send Priya Kaur a confirmation of a 7-day freeze running Thursday 22 October to Wednesday 28 October 2026.\"}, {\"id\": \"c\", \"text\": \"Send Priya Kaur a confirmation of a 14-day freeze starting Monday 2 November 2026.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"], \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D5\", \"direction\": \"Priya's approved freeze must be cut from 9 days (22–30 October) to 7 days (22–28 October), since it starts after 15 October.\"},\n   {\"id\": \"D3\", \"direction\": \"Sam Whitlock's approved freeze must be cut from 12 days (25 October–5 November) to 7 days (25–31 October), since it starts after 15 October.\"},\n   {\"id\": \"D6\", \"direction\": \"Theo Nash's cover for Sam's classes is only needed for the shortened freeze: Tuesday 27 and Thursday 29 October; the 3 and 5 November covers are dropped.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D4\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Priya Kaur her written freeze confirmation today, stating the freeze length and dates.\", \"correct_value\": \"7 days, 22–28 October 2026\", \"stale_value\": \"9 days, 22–30 October 2026\"},\n  \"why\": \"C1 amends R1 to a 7-day cap for freezes starting on or after 15 October, and Priya's freeze starts 22 October, so D5 is void in part and the confirmation must state 7 days (22–28 October). D3 and D6 are reached the same way. D1, D2 and D4 concern freezes already finished or starting before 15 October, and D2's denial stands because 21 days exceeds even the old cap; D7 and D8 are trainer-swap and supplier decisions untouched by the freeze rule.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2825,
+    "completion_tokens": 5706,
+    "reasoning_tokens": 3272,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02592412,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Freeze cap cut to seven days\",\n \"setting\": \"A gym owner at Ironwood Fitness whose front-desk assistant tracks membership freeze requests and trainer schedule swaps\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-12\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Ironwood Fitness has 340 members, three full-time trainers, and Rosa Lind as head trainer.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"front desk\", \"text\": \"Members submit freeze requests by email or at the front desk. Priya Kaur has been a member since 2024.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"front desk\", \"text\": \"Sam Whitlock holds a year membership and trains on Tuesdays and Thursdays at 18:00.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Rosa Lind approves all trainer schedule swaps.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"The gym closes on public holidays; the next closure is 25 December 2026.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"FreshLin delivers towels every Tuesday and sends its invoice on the 1st of each month, around 240 euros.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"front desk\", \"text\": \"Dana Osei joined Ironwood Fitness in January 2026 on a monthly plan.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Rosa Lind\", \"text\": \"Leo Vance teaches the Monday 19:00 spin class.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"The Riverside satellite studio handles its own memberships separately and is not covered by Ironwood Fitness membership terms.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-06\", \"source\": \"front desk\", \"text\": \"Riya Kaur, Priya's sister, holds her own separate membership and has asked about freezing it for two weeks from 2 November 2026.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-02\", \"source\": \"front desk\", \"text\": \"Priya Kaur trains with Theo Nash on Wednesdays at 17:00.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Members may freeze their membership for at most 14 days per calendar year, and freeze requests must reach the front desk at least 7 days before the freeze starts.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Trainer swaps must be approved by the head trainer at least 48 hours before the class, and the covering trainer must hold equal or higher certification.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Supplier invoices are paid within 30 days of receipt.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"Approved Dana Osei's 10-day freeze running 20 to 30 July 2026.\", \"depends_on\": [\"R1\", \"F7\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-22\", \"source\": \"Marta\", \"text\": \"Denied Priya Kaur's request for a 21-day freeze in August because it exceeded the annual freeze cap.\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-20\", \"source\": \"Marta\", \"text\": \"Approved Sam Whitlock's 12-day freeze running 25 October to 5 November 2026; the request came in well ahead of the notice deadline.\", \"depends_on\": [\"R1\", \"F3\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-25\", \"source\": \"Marta\", \"text\": \"Approved Lena Marsh's 5-day freeze running 18 to 23 October 2026.\", \"depends_on\": [\"R1\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Approved Priya Kaur's 9-day freeze running 22 to 30 October 2026, since it was within the cap and requested more than a week ahead.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Rosa Lind\", \"text\": \"Booked Theo Nash to cover Sam Whitlock's Tuesday and Thursday 18:00 classes for the whole freeze period, 27 and 29 October and 3 and 5 November.\", \"depends_on\": [\"D3\", \"R2\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-14\", \"source\": \"Rosa Lind\", \"text\": \"Approved Leo Vance swapping his Monday 19:00 spin class with Rosa Lind for 24 August 2026.\", \"depends_on\": [\"R2\", \"F8\", \"F4\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Marta\", \"text\": \"Moved the FreshLin towel delivery from Tuesdays to Thursdays starting in October 2026.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"Send a written freeze confirmation to every member with an approved freeze starting in the coming month, starting with Priya Kaur. Not done yet.\", \"due\": \"2026-10-12\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-02\", \"source\": \"Marta\", \"text\": \"Pay the FreshLin towel invoice of 240 euros by the end of September. Done on 30 September 2026.\", \"due\": \"2026-09-30\", \"status\": \"done\", \"depends_on\": [\"R3\", \"F6\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-08\", \"source\": \"Rosa Lind\", \"text\": \"Book the annual first-aid refresher course for all three trainers. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\", \"depends_on\": [\"F1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-10\", \"source\": \"Marta\", \"text\": \"From 10 October 2026 the freeze policy is tightened: members may freeze for at most 7 days per calendar year, and requests must reach the front desk at least 10 days before the freeze starts. The new cap applies to every freeze starting on or after 15 October 2026; freezes already running or starting before 15 October stand exactly as approved. The change is driven by cash flow after the summer.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Please get those freeze confirmations out today — start with Priya Kaur's.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Priya Kahr a confirmation of a 9-day freeze running 22 to 30 October 2026.\"}, {\"id\": \"b\", \"text\": \"Send Priya Kaur a confirmation of a 7-day freeze running Thursday 22 October to Wednesday 28 October 2026.\"}, {\"id\": \"c\", \"text\": \"Send Priya Kaur a confirmation of a 14-day freeze starting Monday 2 November 2026.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"], \"stale_options\": [\"a\"], \"distractor_options\": [\"c\"], \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"], \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D5\", \"direction\": \"Priya's approved freeze must be cut from 9 days (22–30 October) to 7 days (22–28 October), since it starts after 15 October.\"},\n   {\"id\": \"D3\", \"direction\": \"Sam Whitlock's approved freeze must be cut from 12 days (25 October–5 November) to 7 days (25–31 October), since it starts after 15 October.\"},\n   {\"id\": \"D6\", \"direction\": \"Theo Nash's cover for Sam's classes is only needed for the shortened freeze: Tuesday 27 and Thursday 29 October; the 3 and 5 November covers are dropped.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D4\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Priya Kaur her written freeze confirmation today, stating the freeze length and dates.\", \"correct_value\": \"7 days, 22–28 October 2026\", \"stale_value\": \"9 days, 22–30 October 2026\"},\n  \"why\": \"C1 amends R1 to a 7-day cap for freezes starting on or after 15 October, and Priya's freeze starts 22 October, so D5 is void in part and the confirmation must state 7 days (22–28 October). D3 and D6 are reached the same way. D1, D2 and D4 concern freezes already finished or starting before 15 October, and D2's denial stands because 21 days exceeds even the old cap; D7 and D8 are trainer-swap and supplier decisions untouched by the freeze rule.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5304,
+    "completion_tokens": 2471,
+    "reasoning_tokens": 37,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01508776,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-11: D1: depends on later-dated F7\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Freeze cap cut to seven days",
+  "setting": "A gym owner at Ironwood Fitness whose front-desk assistant tracks membership freeze requests and trainer schedule swaps",
+  "owner": "Marta",
+  "now": "2026-10-12",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "Ironwood Fitness has 340 members, three full-time trainers, and Rosa Lind as head trainer."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "front desk",
+    "text": "Members submit freeze requests by email or at the front desk. Priya Kaur has been a member since 2024."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "front desk",
+    "text": "Sam Whitlock holds a year membership and trains on Tuesdays and Thursdays at 18:00."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Rosa Lind approves all trainer schedule swaps."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "The gym closes on public holidays; the next closure is 25 December 2026."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "FreshLin delivers towels every Tuesday and sends its invoice on the 1st of each month, around 240 euros."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "front desk",
+    "text": "Dana Osei joined Ironwood Fitness in January 2026 on a monthly plan."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Rosa Lind",
+    "text": "Leo Vance teaches the Monday 19:00 spin class."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "The Riverside satellite studio handles its own memberships separately and is not covered by Ironwood Fitness membership terms."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-06",
+    "source": "front desk",
+    "text": "Riya Kaur, Priya's sister, holds her own separate membership and has asked about freezing it for two weeks from 2 November 2026."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-02",
+    "source": "front desk",
+    "text": "Priya Kaur trains with Theo Nash on Wednesdays at 17:00."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Members may freeze their membership for at most 14 days per calendar year, and freeze requests must reach the front desk at least 7 days before the freeze starts."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Trainer swaps must be approved by the head trainer at least 48 hours before the class, and the covering trainer must hold equal or higher certification."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Supplier invoices are paid within 30 days of receipt."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Approved Dana Osei's 10-day freeze running 20 to 30 July 2026.",
+    "depends_on": [
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-22",
+    "source": "Marta",
+    "text": "Denied Priya Kaur's request for a 21-day freeze in August because it exceeded the annual freeze cap.",
+    "depends_on": [
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-20",
+    "source": "Marta",
+    "text": "Approved Sam Whitlock's 12-day freeze running 25 October to 5 November 2026; the request came in well ahead of the notice deadline.",
+    "depends_on": [
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "Marta",
+    "text": "Approved Lena Marsh's 5-day freeze running 18 to 23 October 2026.",
+    "depends_on": [
+     "R1"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Approved Priya Kaur's 9-day freeze running 22 to 30 October 2026, since it was within the cap and requested more than a week ahead.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Rosa Lind",
+    "text": "Booked Theo Nash to cover Sam Whitlock's Tuesday and Thursday 18:00 classes for the whole freeze period, 27 and 29 October and 3 and 5 November.",
+    "depends_on": [
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Rosa Lind",
+    "text": "Approved Leo Vance swapping his Monday 19:00 spin class with Rosa Lind for 24 August 2026.",
+    "depends_on": [
+     "R2",
+     "F8",
+     "F4"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Moved the FreshLin towel delivery from Tuesdays to Thursdays starting in October 2026.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Send a written freeze confirmation to every member with an approved freeze starting in the coming month, starting with Priya Kaur. Not done yet.",
+    "due": "2026-10-12",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-02",
+    "source": "Marta",
+    "text": "Pay the FreshLin towel invoice of 240 euros by the end of September. Done on 30 September 2026.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "R3",
+     "F6"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-08",
+    "source": "Rosa Lind",
+    "text": "Book the annual first-aid refresher course for all three trainers. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open",
+    "depends_on": [
+     "F1"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-10",
+   "source": "Marta",
+   "text": "From 10 October 2026 the freeze policy is tightened: members may freeze for at most 7 days per calendar year, and requests must reach the front desk at least 10 days before the freeze starts. The new cap applies to every freeze starting on or after 15 October 2026; freezes already running or starting before 15 October stand exactly as approved. The change is driven by cash flow after the summer.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Please get those freeze confirmations out today — start with Priya Kaur's.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Priya Kahr a confirmation of a 9-day freeze running 22 to 30 October 2026."
+    },
+    {
+     "id": "b",
+     "text": "Send Priya Kaur a confirmation of a 7-day freeze running Thursday 22 October to Wednesday 28 October 2026."
+    },
+    {
+     "id": "c",
+     "text": "Send Priya Kaur a confirmation of a 14-day freeze starting Monday 2 November 2026."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D5",
+     "direction": "Priya's approved freeze must be cut from 9 days (22–30 October) to 7 days (22–28 October), since it starts after 15 October."
+    },
+    {
+     "id": "D3",
+     "direction": "Sam Whitlock's approved freeze must be cut from 12 days (25 October–5 November) to 7 days (25–31 October), since it starts after 15 October."
+    },
+    {
+     "id": "D6",
+     "direction": "Theo Nash's cover for Sam's classes is only needed for the shortened freeze: Tuesday 27 and Thursday 29 October; the 3 and 5 November covers are dropped."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D4",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Priya Kaur her written freeze confirmation today, stating the freeze length and dates.",
+    "correct_value": "7 days, 22–28 October 2026",
+    "stale_value": "9 days, 22–30 October 2026"
+   },
+   "why": "C1 amends R1 to a 7-day cap for freezes starting on or after 15 October, and Priya's freeze starts 22 October, so D5 is void in part and the confirmation must state 7 days (22–28 October). D3 and D6 are reached the same way. D1, D2 and D4 concern freezes already finished or starting before 15 October, and D2's denial stands because 21 days exceeds even the old cap; D7 and D8 are trainer-swap and supplier decisions untouched by the freeze rule."
+  },
+  "id": "G2-11",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

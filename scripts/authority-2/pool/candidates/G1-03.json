@@ -1,0 +1,327 @@
+{
+ "id": "G1-03",
+ "class": 1,
+ "setting": "A bed-and-breakfast owner at Willow Pond Guest House who relies on an assistant to recall each regular guest's breakfast preferences and booking terms",
+ "prompt_sha256": "57a84cb8c856681dbecb741e3d18d47aa9e5aa74b41bb741098e6ea3ae1a2ef8",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Marcus's later departure\",\n  \"setting\": \"A bed-and-breakfast owner at Willow Pond Guest House who relies on an assistant to recall each regular guest's breakfast preferences and booking terms\",\n  \"owner\": \"Nora\",\n  \"now\": \"2026-09-10\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Nora\", \"text\": \"Willow Pond Guest House has four rooms: Rose, Willow, Green and Pond.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Nora\", \"text\": \"Harlow Bakery delivers bread every Tuesday and Friday morning at 14 pounds per delivery.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Nora\", \"text\": \"Bright & Co cleaning comes on Mondays and Thursdays at 11:00.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Nora\", \"text\": \"Regular guests' standing preferences and routines are applied without asking them again.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Nora\", \"text\": \"Departure taxis are booked with Millford Cabs unless the guest asks for another firm.\"},\n    {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Nora\", \"text\": \"Supplier invoices are paid on the last day of the month.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Nora\", \"text\": \"Marcus Bell, a regular guest, stays one night or two each month, always in the Rose Room, usually Tuesday to Thursday.\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Nora\", \"text\": \"On departure days Marcus Bell has breakfast at 07:30 and a Millford Cabs pickup at 09:00 to Millford station.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Nora\", \"text\": \"Keep Harlow Bakery on account at 14 pounds per delivery and pay monthly.\", \"depends_on\": [\"F2\", \"R3\"]},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-06-26\", \"source\": \"Nora\", \"text\": \"Pay the July Harlow Bakery invoice. Done on 30 July.\", \"due\": \"2026-07-31\", \"status\": \"done\", \"depends_on\": [\"D1\"]},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Nora\", \"text\": \"Book Marcus Bell the Rose Room for 15 to 17 September 2026.\", \"depends_on\": [\"F4\", \"R1\"]},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-03\", \"source\": \"Nora\", \"text\": \"For the September stay, serve Marcus breakfast at 07:30 and book Millford Cabs for 09:00 on the morning he leaves.\", \"depends_on\": [\"F5\", \"D2\"]},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-08\", \"source\": \"Nora\", \"text\": \"Lena Oster, another regular, stays the first weekend of each month in the Green Room.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Nora\", \"text\": \"For Lena Oster's autumn stays, serve breakfast at 08:30 in the Green Room.\", \"depends_on\": [\"F6\", \"R1\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Nora\", \"text\": \"The garden is open to guests until dusk and the pond fence was repaired this week.\"},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Harlow Bakery\", \"text\": \"Harlow Bakery raised the bread price to 16 pounds per delivery from August.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-28\", \"source\": \"Nora\", \"text\": \"Kitchen staff Ana works Marcus Bell's departure mornings, starting at 06:45 so breakfast is ready for 07:30.\", \"depends_on\": [\"F5\", \"D3\"]},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Nora\", \"text\": \"Lena Oster's departure routine is breakfast at 08:30 and a Millford Cabs pickup at 10:15.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Nora\", \"text\": \"Book Millford Cabs for 10:15 on the departure morning of each of Lena Oster's autumn stays.\", \"depends_on\": [\"F10\", \"D4\"]},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Nora\", \"text\": \"September breakfast roster: Ana alone works Marcus Bell's departure morning with the kitchen opening at 06:45; other staff start at 08:00.\", \"depends_on\": [\"D3\", \"D5\"]},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"Nora\", \"text\": \"The guest Wi-Fi password was changed for the autumn season.\"},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-08-28\", \"source\": \"Nora\", \"text\": \"Book Marcus Bell's departure taxi for the September stay by 10 September. Not done yet.\", \"due\": \"2026-09-10\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Nora\", \"text\": \"Confirm Lena Oster's October weekend with her. Not done yet.\", \"due\": \"2026-09-30\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n    {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Nora\", \"text\": \"Stay with Harlow Bakery for the autumn despite the price rise to 16 pounds per delivery.\", \"depends_on\": [\"F8\", \"R3\"]}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-10\", \"source\": \"Marcus Bell\", \"text\": \"Marcus Bell called: from now on he leaves later on departure days. Breakfast is at 09:00 and the taxi pickup is at 10:30, starting with the September stay. His old 07:30 breakfast and 09:00 pickup routine no longer applies.\", \"revokes\": [\"F5\"]},\n  \"task\": {\"text\": \"Marcus is coming next week — can you sort out his departure arrangements for this stay, please?\", \"options\": [{\"id\": \"a\", \"text\": \"Book Millford Cabs to collect Marcus at 09:00 on Thursday 17 September.\"}, {\"id\": \"b\", \"text\": \"Book Millford Cabs to collect Marcus at 10:30 on Thursday 17 September and tell Ana breakfast is at 09:00.\"}, {\"id\": \"c\", \"text\": \"Book Millford Cabs to collect Marcus at 10:15 on Thursday 17 September.\"}]},\n  \"truth\": {\n    \"correct_options\": [\"b\"],\n    \"stale_options\": [\"a\"],\n    \"distractor_options\": [\"c\"],\n    \"unnecessary_options\": [],\n    \"stale_items\": [\"F5\"],\n    \"distractor_items\": [\"F10\"],\n    \"touched\": [\n      {\"id\": \"D3\", \"direction\": \"For the September stay, serve Marcus breakfast at 09:00 and book Millford Cabs for 10:30 on Thursday 17 September.\"},\n      {\"id\": \"D5\", \"direction\": \"Ana starts at 08:15 on Marcus's departure mornings so breakfast is ready for 09:00.\"},\n      {\"id\": \"D7\", \"direction\": \"The September roster has Ana alone on Marcus's departure morning with the kitchen opening at 08:15.\"}\n    ],\n    \"untouched\": [\"D1\", \"D2\", \"D4\", \"D6\", \"D8\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Book Marcus Bell's departure taxi with Millford Cabs for the September stay today\", \"correct_value\": \"pickup at 10:30 on Thursday 17 September 2026\", \"stale_value\": \"pickup at 09:00 on Thursday 17 September 2026\"},\n    \"why\": \"C1 revokes F5, so the 09:00 taxi and 07:30 breakfast are stale; D3, D5 and D7 rest directly or via each other on F5 and must move to 10:30 and 09:00. D2 rests only on F4 and R1, and D1, D4, D6 and D8 rest on other facts and rules, so they stand. Option c uses Lena Oster's 10:15 pickup from F10, which is not Marcus's value.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2833,
+    "completion_tokens": 4685,
+    "reasoning_tokens": 2440,
+    "cached_tokens": 0
+   },
+   "cost": 0.0245802,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Marcus's later departure",
+  "setting": "A bed-and-breakfast owner at Willow Pond Guest House who relies on an assistant to recall each regular guest's breakfast preferences and booking terms",
+  "owner": "Nora",
+  "now": "2026-09-10",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Nora",
+    "text": "Willow Pond Guest House has four rooms: Rose, Willow, Green and Pond."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Nora",
+    "text": "Harlow Bakery delivers bread every Tuesday and Friday morning at 14 pounds per delivery."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Nora",
+    "text": "Bright & Co cleaning comes on Mondays and Thursdays at 11:00."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Nora",
+    "text": "Regular guests' standing preferences and routines are applied without asking them again."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Nora",
+    "text": "Departure taxis are booked with Millford Cabs unless the guest asks for another firm."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Nora",
+    "text": "Supplier invoices are paid on the last day of the month."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Nora",
+    "text": "Marcus Bell, a regular guest, stays one night or two each month, always in the Rose Room, usually Tuesday to Thursday."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Nora",
+    "text": "On departure days Marcus Bell has breakfast at 07:30 and a Millford Cabs pickup at 09:00 to Millford station."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Nora",
+    "text": "Keep Harlow Bakery on account at 14 pounds per delivery and pay monthly.",
+    "depends_on": [
+     "F2",
+     "R3"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-26",
+    "source": "Nora",
+    "text": "Pay the July Harlow Bakery invoice. Done on 30 July.",
+    "due": "2026-07-31",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Nora",
+    "text": "Book Marcus Bell the Rose Room for 15 to 17 September 2026.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-03",
+    "source": "Nora",
+    "text": "For the September stay, serve Marcus breakfast at 07:30 and book Millford Cabs for 09:00 on the morning he leaves.",
+    "depends_on": [
+     "F5",
+     "D2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Nora",
+    "text": "Lena Oster, another regular, stays the first weekend of each month in the Green Room."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Nora",
+    "text": "For Lena Oster's autumn stays, serve breakfast at 08:30 in the Green Room.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Nora",
+    "text": "The garden is open to guests until dusk and the pond fence was repaired this week."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Harlow Bakery",
+    "text": "Harlow Bakery raised the bread price to 16 pounds per delivery from August."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-28",
+    "source": "Nora",
+    "text": "Kitchen staff Ana works Marcus Bell's departure mornings, starting at 06:45 so breakfast is ready for 07:30.",
+    "depends_on": [
+     "F5",
+     "D3"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-05",
+    "source": "Nora",
+    "text": "Lena Oster's departure routine is breakfast at 08:30 and a Millford Cabs pickup at 10:15."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Nora",
+    "text": "Book Millford Cabs for 10:15 on the departure morning of each of Lena Oster's autumn stays.",
+    "depends_on": [
+     "F10",
+     "D4"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Nora",
+    "text": "September breakfast roster: Ana alone works Marcus Bell's departure morning with the kitchen opening at 06:45; other staff start at 08:00.",
+    "depends_on": [
+     "D3",
+     "D5"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "Nora",
+    "text": "The guest Wi-Fi password was changed for the autumn season."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-28",
+    "source": "Nora",
+    "text": "Book Marcus Bell's departure taxi for the September stay by 10 September. Not done yet.",
+    "due": "2026-09-10",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-01",
+    "source": "Nora",
+    "text": "Confirm Lena Oster's October weekend with her. Not done yet.",
+    "due": "2026-09-30",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Nora",
+    "text": "Stay with Harlow Bakery for the autumn despite the price rise to 16 pounds per delivery.",
+    "depends_on": [
+     "F8",
+     "R3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-09-10",
+   "source": "Marcus Bell",
+   "text": "Marcus Bell called: from now on he leaves later on departure days. Breakfast is at 09:00 and the taxi pickup is at 10:30, starting with the September stay. His old 07:30 breakfast and 09:00 pickup routine no longer applies.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Marcus is coming next week — can you sort out his departure arrangements for this stay, please?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Millford Cabs to collect Marcus at 09:00 on Thursday 17 September."
+    },
+    {
+     "id": "b",
+     "text": "Book Millford Cabs to collect Marcus at 10:30 on Thursday 17 September and tell Ana breakfast is at 09:00."
+    },
+    {
+     "id": "c",
+     "text": "Book Millford Cabs to collect Marcus at 10:15 on Thursday 17 September."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "For the September stay, serve Marcus breakfast at 09:00 and book Millford Cabs for 10:30 on Thursday 17 September."
+    },
+    {
+     "id": "D5",
+     "direction": "Ana starts at 08:15 on Marcus's departure mornings so breakfast is ready for 09:00."
+    },
+    {
+     "id": "D7",
+     "direction": "The September roster has Ana alone on Marcus's departure morning with the kitchen opening at 08:15."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D4",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Book Marcus Bell's departure taxi with Millford Cabs for the September stay today",
+    "correct_value": "pickup at 10:30 on Thursday 17 September 2026",
+    "stale_value": "pickup at 09:00 on Thursday 17 September 2026"
+   },
+   "why": "C1 revokes F5, so the 09:00 taxi and 07:30 breakfast are stale; D3, D5 and D7 rest directly or via each other on F5 and must move to 10:30 and 09:00. D2 rests only on F4 and R1, and D1, D4, D6 and D8 rest on other facts and rules, so they stand. Option c uses Lena Oster's 10:15 pickup from F10, which is not Marcus's value."
+  },
+  "id": "G1-03",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

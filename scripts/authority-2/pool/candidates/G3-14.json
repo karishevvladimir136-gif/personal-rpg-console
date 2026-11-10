@@ -1,0 +1,334 @@
+{
+ "id": "G3-14",
+ "class": 3,
+ "setting": "A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care",
+ "prompt_sha256": "ac45e2fb323351157189115d216fd4c0074512af014dbc58c8887b7711363b42",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Meadows memorial music under the upgraded package\",\n \"setting\": \"A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care\",\n \"owner\": \"Diane\",\n \"now\": \"2026-10-21\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Diane\", \"text\": \"The Rose Chapel at Peaceful Passage Services seats 90 guests.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Diane\", \"text\": \"Cedar Hill Florist is the standing floral supplier for Peaceful Passage Services, delivering on 24 hours' notice.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Diane\", \"text\": \"All service arrangements for a family must be confirmed no later than three days before the service date.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-12\", \"source\": \"Diane\", \"text\": \"Any change a family requests to an arrangement must be confirmed back to them in writing the same day it is requested.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Diane\", \"text\": \"Payment reminders for outstanding balances go out exactly one week before the due date.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"Denise Meadows\", \"text\": \"The Meadows family chose the Willowbrook memorial package at $4,800, which covers the Rose Chapel, the officiant, a solo harpist, and printed programs; the balance is due on 30 October 2026.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Minh Tran\", \"text\": \"The Tran family expects about 80 guests at their memorial service.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Diane\", \"text\": \"Book the Rose Chapel for the Tran memorial service on Saturday 12 September 2026 at 10:00.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Diane\", \"text\": \"Order 80 white lily arrangements from Cedar Hill Florist for the Tran service on 12 September.\", \"depends_on\": [\"F2\", \"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Grace Okafor\", \"text\": \"The Okafor family booked the Rose Chapel for a joint service on Saturday 3 October 2026 at 14:00.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-13\", \"source\": \"Diane\", \"text\": \"The Tran memorial service took place on 12 September and the family settled their account in full.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Grace Okafor\", \"text\": \"The Okafor joint service on 3 October will honour two relatives and the family asked for two officiants.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Diane\", \"text\": \"The Meadows memorial service is set for Saturday 24 October 2026 at 11:00 in the Rose Chapel.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Diane\", \"text\": \"Hire Pastor Kyle Munroe as second officiant for the Okafor joint service on 3 October.\", \"depends_on\": [\"F5\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Diane\", \"text\": \"The music at the Meadows memorial will be a solo harpist, as that is what the family's package covers; no other musicians are needed.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Diane\", \"text\": \"Send the Meadows family their balance reminder on Friday 23 October, one week before the balance is due.\", \"depends_on\": [\"F3\", \"R3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Diane\", \"text\": \"Book Elena Voss, harpist, for the Meadows memorial on Saturday 24 October at the $250 solo fee, and list 'harp music by Elena Voss' in the printed order of service.\", \"depends_on\": [\"D4\", \"F8\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Diane\", \"text\": \"Book the musicians for the Meadows memorial and confirm the booking with the family in writing. Not done yet.\", \"due\": \"2026-10-21\", \"status\": \"open\", \"depends_on\": [\"D6\", \"R1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Diane\", \"text\": \"Order the flowers for the Okafor joint service. Done on 1 October.\", \"due\": \"2026-10-01\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Diane\", \"text\": \"Send the Meadows family their payment reminder for the outstanding balance. Not done yet.\", \"due\": \"2026-10-23\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Meadowlark Print Shop\", \"text\": \"Meadowlark Print Shop prints orders of service at $1.50 each with a 48-hour turnaround.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Diane\", \"text\": \"Use Meadowlark Print Shop for the Meadows order of service, 120 copies, to be collected on 22 October.\", \"depends_on\": [\"F9\", \"F8\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-14\", \"source\": \"Harmony Lane Musicians\", \"text\": \"Harmony Lane Musicians quoted $680 for a string quartet on 24 October; Diane has not accepted the quote.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-18\", \"source\": \"Diane\", \"text\": \"The Rose Chapel heating service visit is scheduled for Thursday 22 October, before the weekend services.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"Denise Meadows\", \"text\": \"The Meadows family upgraded from the Willowbrook package to the Evergreen package at $6,200, effective 20 October. The Evergreen package covers the Rose Chapel, the officiant, the printed programs, a memorial video, and the Aria Strings string quartet; it does not include a solo harpist. The service date, chapel, officiant, programs and the 30 October balance due date are unchanged. Revokes: F3.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Please get the music for the Meadows memorial sorted out today — book the musicians and send the confirmation to the family.\", \"options\": [{\"id\": \"a\", \"text\": \"Book harpist Elena Voss for the Meadows memorial on Saturday 24 October 2026 at the $250 solo fee and send the family a written confirmation.\"}, {\"id\": \"b\", \"text\": \"Book the Aria Strings string quartet for the Meadows memorial on Saturday 24 October 2026 under the Evergreen package and send the family a written confirmation.\"}, {\"id\": \"c\", \"text\": \"Book the Harmony Lane Musicians string quartet for Saturday 24 October 2026 at their quoted $680 and send the family a written confirmation.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The music at the Meadows memorial is now the Aria Strings string quartet covered by the Evergreen package, not a solo harpist.\"},\n   {\"id\": \"D6\", \"direction\": \"Book the Aria Strings string quartet for Saturday 24 October under the Evergreen package instead of Elena Voss at $250, and change the music line in the order of service to the string quartet.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D5\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Booking the musicians for the Meadows memorial today and sending the family a written confirmation\", \"correct_value\": \"Aria Strings string quartet, Saturday 24 October 2026, under the Evergreen package\", \"stale_value\": \"Elena Voss, harpist, Saturday 24 October 2026, $250 solo fee\"},\n  \"why\": \"The correction revokes F3 and replaces the Willowbrook package with the Evergreen package, whose music provision is a string quartet rather than a solo harpist. D4 rests directly on F3 and D6 rests on D4, so the chain A→B→C is touched and the booking (O1, due today) must be made with Aria Strings; D5 also cites F3 but only for the 30 October balance due date, which the correction leaves unchanged, so D5, like the other decisions, stands. Option a acts on the revoked package's harpist and option c acts on the unaccepted Harmony Lane quote.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2826,
+    "completion_tokens": 6113,
+    "reasoning_tokens": 3705,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02771632,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Meadows memorial music under the upgraded package\",\n \"setting\": \"A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care\",\n \"owner\": \"Diane\",\n \"now\": \"2026-10-21\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-01\", \"source\": \"Diane\", \"text\": \"The Rose Chapel at Peaceful Passage Services seats 90 guests.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Diane\", \"text\": \"Cedar Hill Florist is the standing floral supplier for Peaceful Passage Services, delivering on 24 hours' notice.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Diane\", \"text\": \"All service arrangements for a family must be confirmed no later than three days before the service date.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-12\", \"source\": \"Diane\", \"text\": \"Any change a family requests to an arrangement must be confirmed back to them in writing the same day it is requested.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-15\", \"source\": \"Diane\", \"text\": \"Payment reminders for outstanding balances go out exactly one week before the due date.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-08-30\", \"source\": \"Denise Meadows\", \"text\": \"The Meadows family chose the Willowbrook memorial package at $4,800, which covers the Rose Chapel, the officiant, a solo harpist, and printed programs; the balance is due on 30 October 2026.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Minh Tran\", \"text\": \"The Tran family expects about 80 guests at their memorial service.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-10\", \"source\": \"Diane\", \"text\": \"Book the Rose Chapel for the Tran memorial service on Saturday 12 September 2026 at 10:00.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Diane\", \"text\": \"Order 80 white lily arrangements from Cedar Hill Florist for the Tran service on 12 September.\", \"depends_on\": [\"F2\", \"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Grace Okafor\", \"text\": \"The Okafor family booked the Rose Chapel for a joint service on Saturday 3 October 2026 at 14:00.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-13\", \"source\": \"Diane\", \"text\": \"The Tran memorial service took place on 12 September and the family settled their account in full.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Grace Okafor\", \"text\": \"The Okafor joint service on 3 October will honour two relatives and the family asked for two officiants.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Diane\", \"text\": \"The Meadows memorial service is set for Saturday 24 October 2026 at 11:00 in the Rose Chapel.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Diane\", \"text\": \"Hire Pastor Kyle Munroe as second officiant for the Okafor joint service on 3 October.\", \"depends_on\": [\"F5\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Diane\", \"text\": \"The music at the Meadows memorial will be a solo harpist, as that is what the family's package covers; no other musicians are needed.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-08\", \"source\": \"Diane\", \"text\": \"Send the Meadows family their balance reminder on Friday 23 October, one week before the balance is due.\", \"depends_on\": [\"F3\", \"R3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-05\", \"source\": \"Diane\", \"text\": \"Book Elena Voss, harpist, for the Meadows memorial on Saturday 24 October at the $250 solo fee, and list 'harp music by Elena Voss' in the printed order of service.\", \"depends_on\": [\"D4\", \"F8\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"Diane\", \"text\": \"Book the musicians for the Meadows memorial and confirm the booking with the family in writing. Not done yet.\", \"due\": \"2026-10-21\", \"status\": \"open\", \"depends_on\": [\"D6\", \"R1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Diane\", \"text\": \"Order the flowers for the Okafor joint service. Done on 1 October.\", \"due\": \"2026-10-01\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Diane\", \"text\": \"Send the Meadows family their payment reminder for the outstanding balance. Not done yet.\", \"due\": \"2026-10-23\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Meadowlark Print Shop\", \"text\": \"Meadowlark Print Shop prints orders of service at $1.50 each with a 48-hour turnaround.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"Diane\", \"text\": \"Use Meadowlark Print Shop for the Meadows order of service, 120 copies, to be collected on 22 October.\", \"depends_on\": [\"F9\", \"F8\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-14\", \"source\": \"Harmony Lane Musicians\", \"text\": \"Harmony Lane Musicians quoted $680 for a string quartet on 24 October; Diane has not accepted the quote.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-18\", \"source\": \"Diane\", \"text\": \"The Rose Chapel heating service visit is scheduled for Thursday 22 October, before the weekend services.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"Denise Meadows\", \"text\": \"The Meadows family upgraded from the Willowbrook package to the Evergreen package at $6,200, effective 20 October. The Evergreen package covers the Rose Chapel, the officiant, the printed programs, a memorial video, and the Aria Strings string quartet; it does not include a solo harpist. The service date, chapel, officiant, programs and the 30 October balance due date are unchanged.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Please get the music for the Meadows memorial sorted out today — book the musicians and send the confirmation to the family.\", \"options\": [{\"id\": \"a\", \"text\": \"Book harpist Elena Voss for the Meadows memorial on Saturday 24 October 2026 at the $250 solo fee and send the family a written confirmation.\"}, {\"id\": \"b\", \"text\": \"Book the Aria Strings string quartet for the Meadows memorial on Saturday 24 October 2026 under the Evergreen package and send the family a written confirmation.\"}, {\"id\": \"c\", \"text\": \"Book the Harmony Lane Musicians string quartet for Saturday 24 October 2026 at their quoted $680 and send the family a written confirmation.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F10\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The music at the Meadows memorial is now the Aria Strings string quartet covered by the Evergreen package, not a solo harpist.\"},\n   {\"id\": \"D6\", \"direction\": \"Book the Aria Strings string quartet for Saturday 24 October under the Evergreen package instead of Elena Voss at $250, and change the music line in the order of service to the string quartet.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D5\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Booking the musicians for the Meadows memorial today and sending the family a written confirmation\", \"correct_value\": \"Aria Strings string quartet, Saturday 24 October 2026, under the Evergreen package\", \"stale_value\": \"Elena Voss, harpist, Saturday 24 October 2026, $250 solo fee\"},\n  \"why\": \"The correction revokes F3 and replaces the Willowbrook package with the Evergreen package, whose music provision is a string quartet rather than a solo harpist. D4 rests directly on F3 and D6 rests on D4, so the chain A→B→C is touched and the booking (O1, due today) must be made with Aria Strings; D5 also cites F3 but only for the 30 October balance due date, which the correction leaves unchanged, so D5, like the other decisions, stands. Option a acts on the revoked package's harpist and option c acts on the unaccepted Harmony Lane quote.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5283,
+    "completion_tokens": 2414,
+    "reasoning_tokens": 12,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01488052,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-14: change text must not carry ids or Revokes (the renderer adds them)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Meadows memorial music under the upgraded package",
+  "setting": "A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care",
+  "owner": "Diane",
+  "now": "2026-10-21",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Diane",
+    "text": "The Rose Chapel at Peaceful Passage Services seats 90 guests."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Diane",
+    "text": "Cedar Hill Florist is the standing floral supplier for Peaceful Passage Services, delivering on 24 hours' notice."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Diane",
+    "text": "All service arrangements for a family must be confirmed no later than three days before the service date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Diane",
+    "text": "Any change a family requests to an arrangement must be confirmed back to them in writing the same day it is requested."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Diane",
+    "text": "Payment reminders for outstanding balances go out exactly one week before the due date."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-08-30",
+    "source": "Denise Meadows",
+    "text": "The Meadows family chose the Willowbrook memorial package at $4,800, which covers the Rose Chapel, the officiant, a solo harpist, and printed programs; the balance is due on 30 October 2026."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Minh Tran",
+    "text": "The Tran family expects about 80 guests at their memorial service."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Diane",
+    "text": "Book the Rose Chapel for the Tran memorial service on Saturday 12 September 2026 at 10:00.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Diane",
+    "text": "Order 80 white lily arrangements from Cedar Hill Florist for the Tran service on 12 September.",
+    "depends_on": [
+     "F2",
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Grace Okafor",
+    "text": "The Okafor family booked the Rose Chapel for a joint service on Saturday 3 October 2026 at 14:00."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-13",
+    "source": "Diane",
+    "text": "The Tran memorial service took place on 12 September and the family settled their account in full."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Grace Okafor",
+    "text": "The Okafor joint service on 3 October will honour two relatives and the family asked for two officiants."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Diane",
+    "text": "The Meadows memorial service is set for Saturday 24 October 2026 at 11:00 in the Rose Chapel."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Diane",
+    "text": "Hire Pastor Kyle Munroe as second officiant for the Okafor joint service on 3 October.",
+    "depends_on": [
+     "F5",
+     "F7"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Diane",
+    "text": "The music at the Meadows memorial will be a solo harpist, as that is what the family's package covers; no other musicians are needed.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-08",
+    "source": "Diane",
+    "text": "Send the Meadows family their balance reminder on Friday 23 October, one week before the balance is due.",
+    "depends_on": [
+     "F3",
+     "R3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Diane",
+    "text": "Book Elena Voss, harpist, for the Meadows memorial on Saturday 24 October at the $250 solo fee, and list 'harp music by Elena Voss' in the printed order of service.",
+    "depends_on": [
+     "D4",
+     "F8"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "Diane",
+    "text": "Book the musicians for the Meadows memorial and confirm the booking with the family in writing. Not done yet.",
+    "due": "2026-10-21",
+    "status": "open",
+    "depends_on": [
+     "D6",
+     "R1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Diane",
+    "text": "Order the flowers for the Okafor joint service. Done on 1 October.",
+    "due": "2026-10-01",
+    "status": "done",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Diane",
+    "text": "Send the Meadows family their payment reminder for the outstanding balance. Not done yet.",
+    "due": "2026-10-23",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Meadowlark Print Shop",
+    "text": "Meadowlark Print Shop prints orders of service at $1.50 each with a 48-hour turnaround."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Diane",
+    "text": "Use Meadowlark Print Shop for the Meadows order of service, 120 copies, to be collected on 22 October.",
+    "depends_on": [
+     "F9",
+     "F8"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-14",
+    "source": "Harmony Lane Musicians",
+    "text": "Harmony Lane Musicians quoted $680 for a string quartet on 24 October; Diane has not accepted the quote."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-18",
+    "source": "Diane",
+    "text": "The Rose Chapel heating service visit is scheduled for Thursday 22 October, before the weekend services."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "Denise Meadows",
+   "text": "The Meadows family upgraded from the Willowbrook package to the Evergreen package at $6,200, effective 20 October. The Evergreen package covers the Rose Chapel, the officiant, the printed programs, a memorial video, and the Aria Strings string quartet; it does not include a solo harpist. The service date, chapel, officiant, programs and the 30 October balance due date are unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Please get the music for the Meadows memorial sorted out today — book the musicians and send the confirmation to the family.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book harpist Elena Voss for the Meadows memorial on Saturday 24 October 2026 at the $250 solo fee and send the family a written confirmation."
+    },
+    {
+     "id": "b",
+     "text": "Book the Aria Strings string quartet for the Meadows memorial on Saturday 24 October 2026 under the Evergreen package and send the family a written confirmation."
+    },
+    {
+     "id": "c",
+     "text": "Book the Harmony Lane Musicians string quartet for Saturday 24 October 2026 at their quoted $680 and send the family a written confirmation."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The music at the Meadows memorial is now the Aria Strings string quartet covered by the Evergreen package, not a solo harpist."
+    },
+    {
+     "id": "D6",
+     "direction": "Book the Aria Strings string quartet for Saturday 24 October under the Evergreen package instead of Elena Voss at $250, and change the music line in the order of service to the string quartet."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Booking the musicians for the Meadows memorial today and sending the family a written confirmation",
+    "correct_value": "Aria Strings string quartet, Saturday 24 October 2026, under the Evergreen package",
+    "stale_value": "Elena Voss, harpist, Saturday 24 October 2026, $250 solo fee"
+   },
+   "why": "The correction revokes F3 and replaces the Willowbrook package with the Evergreen package, whose music provision is a string quartet rather than a solo harpist. D4 rests directly on F3 and D6 rests on D4, so the chain A→B→C is touched and the booking (O1, due today) must be made with Aria Strings; D5 also cites F3 but only for the 30 October balance due date, which the correction leaves unchanged, so D5, like the other decisions, stands. Option a acts on the revoked package's harpist and option c acts on the unaccepted Harmony Lane quote."
+  },
+  "id": "G3-14",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

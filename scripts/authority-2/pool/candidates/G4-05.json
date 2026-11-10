@@ -1,0 +1,303 @@
+{
+ "id": "G4-05",
+ "class": 4,
+ "setting": "A wedding venue manager at Grandview Estate Barn whose assistant remembers every couple's layout decisions and vendor access rules",
+ "prompt_sha256": "894823d27aae7e4ee18d04b16525aa5e072b7b8aa945d588566f300bfacf4d5d",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Foxglove load-in under the restated vendor gate rule\",\n \"setting\": \"A wedding venue manager at Grandview Estate Barn whose assistant remembers every couple's layout decisions and vendor access rules\",\n \"owner\": \"Priya\",\n \"now\": \"2026-08-30\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Priya\", \"text\": \"The Halvorsen–Mercer wedding is booked for Saturday 19 September 2026 at Grandview Estate Barn with 90 guests.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Priya\", \"text\": \"The Halvorsen–Mercer couple chose Foxglove Studio as their florist.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Priya\", \"text\": \"Brindle Kitchen will cater the Halvorsen–Mercer wedding with a three-course plated dinner.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Priya\", \"text\": \"Resonant Audio is the sound crew for the Halvorsen–Mercer wedding.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Grandview Estate\", \"text\": \"On event days, vendor vehicles enter by the north gravel gate and may be on site between 9:00 and 12:00.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Priya\", \"text\": \"The barn layout must be confirmed with the couple no later than 14 days before the event.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Priya\", \"text\": \"The Okafor wedding is booked for Saturday 8 August 2026 with 120 guests.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Foxglove Studio\", \"text\": \"Foxglove Studio's head florist is Dana Whitlock.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Priya\", \"text\": \"Foxglove Studio gets the 9:00–10:30 load-in slot on Saturday 19 September for the Halvorsen–Mercer wedding, entering by the north gravel gate.\", \"depends_on\": [\"F1\", \"F2\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-24\", \"source\": \"Priya\", \"text\": \"Brindle Kitchen gets the 10:30–12:00 load-in slot on Saturday 19 September, entering by the north gravel gate.\", \"depends_on\": [\"F1\", \"F3\", \"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"Priya\", \"text\": \"Resonant Audio loads in from 9:00 to 10:00 on Saturday 19 September through the north gravel gate.\", \"depends_on\": [\"F1\", \"F4\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Priya\", \"text\": \"The Okafor wedding dinner will be a buffet served from the east bay of the barn.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-05\", \"source\": \"Priya\", \"text\": \"Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding. Not done yet.\", \"due\": \"2026-08-30\", \"status\": \"open\", \"depends_on\": [\"D1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-09\", \"source\": \"Priya\", \"text\": \"Lilac Row is the florist for the Okafor wedding.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-12\", \"source\": \"Priya\", \"text\": \"Lilac Row gets the 9:00–10:30 load-in slot on Saturday 8 August for the Okafor wedding, entering by the north gravel gate.\", \"depends_on\": [\"F5\", \"F7\", \"R1\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Priya\", \"text\": \"The Halvorsen–Mercer barn layout uses eight long tables with the head table against the north wall; to be confirmed with the couple by 5 September.\", \"depends_on\": [\"F1\", \"R2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Priya\", \"text\": \"Confirm the Lilac Row load-in slot for the Okafor wedding. Done on 2 August.\", \"due\": \"2026-08-04\", \"status\": \"done\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-24\", \"source\": \"Priya\", \"text\": \"Barn Weave supplies all linen and delivers on the Friday before each event.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-28\", \"source\": \"Priya\", \"text\": \"Barn Weave delivers the Halvorsen–Mercer linen on Friday 18 September between 14:00 and 16:00.\", \"depends_on\": [\"F1\", \"F8\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Foxglove Studio\", \"text\": \"Foxglove Studio's latest price list lists a 13:00 afternoon delivery slot as an available option for Saturday weddings.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-08-22\", \"source\": \"Priya\", \"text\": \"Confirm the barn layout with the Halvorsen–Mercer couple. Not done yet.\", \"due\": \"2026-09-05\", \"status\": \"open\", \"depends_on\": [\"D6\", \"R2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-23\", \"source\": \"Priya\", \"text\": \"The guest parking area is being resurfaced from 1 to 3 September; guest parking moves to the meadow field that week.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-08-25\", \"source\": \"Grandview Estate\", \"text\": \"Restated vendor access rule for Grandview Estate Barn: on event days, all vendor set-up happens through the north gravel gate, and vendor trucks may be on the grounds from 9 in the morning until noon. This is the same arrangement as before, put in clearer words; no load-in slot or gate assignment changes.\", \"revokes\": []},\n \"task\": {\"text\": \"Can you send Foxglove their load-in confirmation for the Halvorsen wedding today, please?\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Email Dana Whitlock at Foxglove Studio confirming load-in on Saturday 19 September, 9:00–10:30, via the north gravel gate.\"},\n  {\"id\": \"b\", \"text\": \"Email Dana Whitlock at Foxglove Studio booking the 13:00 afternoon delivery slot on Saturday 19 September.\"},\n  {\"id\": \"c\", \"text\": \"Email Foxglove Studio the 9:00–10:30 slot and move Brindle Kitchen's load-in to 12:30–14:00 on Saturday 19 September.\"},\n  {\"id\": \"d\", \"text\": \"Email Foxglove Studio the 9:00–10:30 slot on Saturday 19 September but direct them to enter through the south garden gate.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [\"c\", \"d\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding today\", \"correct_value\": \"Load-in Saturday 19 September 2026, 9:00–10:30, north gravel gate\", \"stale_value\": null},\n  \"why\": \"The change only restates the vendor access rule in other words with identical terms, so no decision is touched and every load-in slot stands. The correct act is the existing plan: Foxglove loads in Saturday 19 September, 9:00–10:30, through the north gravel gate. Option b acts on Foxglove's 13:00 price-list slot (the distractor), which was never chosen for this wedding; options c and d change plans (the caterer's slot, the gate) that should stay as they are.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2844,
+    "completion_tokens": 4153,
+    "reasoning_tokens": 1941,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01911752,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Foxglove load-in under the restated vendor gate rule",
+  "setting": "A wedding venue manager at Grandview Estate Barn whose assistant remembers every couple's layout decisions and vendor access rules",
+  "owner": "Priya",
+  "now": "2026-08-30",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer wedding is booked for Saturday 19 September 2026 at Grandview Estate Barn with 90 guests."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer couple chose Foxglove Studio as their florist."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Priya",
+    "text": "Brindle Kitchen will cater the Halvorsen–Mercer wedding with a three-course plated dinner."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Priya",
+    "text": "Resonant Audio is the sound crew for the Halvorsen–Mercer wedding."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Grandview Estate",
+    "text": "On event days, vendor vehicles enter by the north gravel gate and may be on site between 9:00 and 12:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Priya",
+    "text": "The barn layout must be confirmed with the couple no later than 14 days before the event."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Priya",
+    "text": "The Okafor wedding is booked for Saturday 8 August 2026 with 120 guests."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Foxglove Studio",
+    "text": "Foxglove Studio's head florist is Dana Whitlock."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Priya",
+    "text": "Foxglove Studio gets the 9:00–10:30 load-in slot on Saturday 19 September for the Halvorsen–Mercer wedding, entering by the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-24",
+    "source": "Priya",
+    "text": "Brindle Kitchen gets the 10:30–12:00 load-in slot on Saturday 19 September, entering by the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "Priya",
+    "text": "Resonant Audio loads in from 9:00 to 10:00 on Saturday 19 September through the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Priya",
+    "text": "The Okafor wedding dinner will be a buffet served from the east bay of the barn.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-05",
+    "source": "Priya",
+    "text": "Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding. Not done yet.",
+    "due": "2026-08-30",
+    "status": "open",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-09",
+    "source": "Priya",
+    "text": "Lilac Row is the florist for the Okafor wedding."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "Priya",
+    "text": "Lilac Row gets the 9:00–10:30 load-in slot on Saturday 8 August for the Okafor wedding, entering by the north gravel gate.",
+    "depends_on": [
+     "F5",
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-16",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer barn layout uses eight long tables with the head table against the north wall; to be confirmed with the couple by 5 September.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Priya",
+    "text": "Confirm the Lilac Row load-in slot for the Okafor wedding. Done on 2 August.",
+    "due": "2026-08-04",
+    "status": "done",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-24",
+    "source": "Priya",
+    "text": "Barn Weave supplies all linen and delivers on the Friday before each event."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-28",
+    "source": "Priya",
+    "text": "Barn Weave delivers the Halvorsen–Mercer linen on Friday 18 September between 14:00 and 16:00.",
+    "depends_on": [
+     "F1",
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Foxglove Studio",
+    "text": "Foxglove Studio's latest price list lists a 13:00 afternoon delivery slot as an available option for Saturday weddings."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-08-22",
+    "source": "Priya",
+    "text": "Confirm the barn layout with the Halvorsen–Mercer couple. Not done yet.",
+    "due": "2026-09-05",
+    "status": "open",
+    "depends_on": [
+     "D6",
+     "R2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-23",
+    "source": "Priya",
+    "text": "The guest parking area is being resurfaced from 1 to 3 September; guest parking moves to the meadow field that week."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-08-25",
+   "source": "Grandview Estate",
+   "text": "Restated vendor access rule for Grandview Estate Barn: on event days, all vendor set-up happens through the north gravel gate, and vendor trucks may be on the grounds from 9 in the morning until noon. This is the same arrangement as before, put in clearer words; no load-in slot or gate assignment changes.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Can you send Foxglove their load-in confirmation for the Halvorsen wedding today, please?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Dana Whitlock at Foxglove Studio confirming load-in on Saturday 19 September, 9:00–10:30, via the north gravel gate."
+    },
+    {
+     "id": "b",
+     "text": "Email Dana Whitlock at Foxglove Studio booking the 13:00 afternoon delivery slot on Saturday 19 September."
+    },
+    {
+     "id": "c",
+     "text": "Email Foxglove Studio the 9:00–10:30 slot and move Brindle Kitchen's load-in to 12:30–14:00 on Saturday 19 September."
+    },
+    {
+     "id": "d",
+     "text": "Email Foxglove Studio the 9:00–10:30 slot on Saturday 19 September but direct them to enter through the south garden gate."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding today",
+    "correct_value": "Load-in Saturday 19 September 2026, 9:00–10:30, north gravel gate",
+    "stale_value": null
+   },
+   "why": "The change only restates the vendor access rule in other words with identical terms, so no decision is touched and every load-in slot stands. The correct act is the existing plan: Foxglove loads in Saturday 19 September, 9:00–10:30, through the north gravel gate. Option b acts on Foxglove's 13:00 price-list slot (the distractor), which was never chosen for this wedding; options c and d change plans (the caterer's slot, the gate) that should stay as they are."
+  },
+  "id": "G4-05",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

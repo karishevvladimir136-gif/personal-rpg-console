@@ -1,0 +1,319 @@
+{
+ "id": "G4-03",
+ "class": 4,
+ "setting": "A horse stable owner at Foxglove Riding Stables whose assistant tracks lesson package sales, boarder feed arrangements, and farrier visit schedules",
+ "prompt_sha256": "e3d1e879d6ed7f4976d85058a6d990e87b8a2a3cc1efcae93c03e41591a262a3",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Foxglove Stables October hay order\",\n \"setting\": \"A horse stable owner at Foxglove Riding Stables whose assistant tracks lesson package sales, boarder feed arrangements, and farrier visit schedules\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-20\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"Foxglove Riding Stables has 14 stalls, nine of which are let to boarders, and runs a schooling string of six lesson horses.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"The nine boarders are Priya, Tom, Greta, Alan, Sofia, Ben, Iris, Colin and Dana.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Bellamy Feed & Grain supplies Foxglove with alfalfa hay at 14 dollars a bale, delivered to the yard.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-11\", \"source\": \"Marta\", \"text\": \"Nils Pedersen is the yard's farrier and works a standard eight-week shoeing cycle for the whole herd.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Lesson packages are sold at 180 dollars for a block of 10 private lessons and 320 dollars for a block of 10 group lessons.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Marta\", \"text\": \"Foxglove's straw bedding comes from Harrow Supply, delivered on the second Tuesday of every month.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"All feed and bedding invoices are paid on delivery, never on account.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"The farrier visits every eight weeks unless a horse throws a shoe, in which case he comes out as soon as he can.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Lesson packages are valid for six months from purchase and are not extended.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"Bellamy Feed & Grain will be the yard's sole hay supplier for the whole of 2026.\", \"depends_on\": [\"F1\", \"F3\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"Nils Pedersen is booked on the eight-week cycle, with the first round of visits starting Tuesday 4 August.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Marta\", \"text\": \"A standing monthly order of 12 bales of alfalfa from Bellamy Feed & Grain will be placed in the third week of each month, paid on delivery.\", \"depends_on\": [\"F3\", \"D1\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-08\", \"source\": \"Priya\", \"text\": \"Priya's gelding Cooper cannot eat alfalfa and gets timothy hay instead.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Marta\", \"text\": \"Lesson package prices stay unchanged through the winter term.\", \"depends_on\": [\"F5\", \"R3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Marta\", \"text\": \"Cooper's timothy hay is added to the monthly Bellamy order as a two-bale special order each month.\", \"depends_on\": [\"F7\", \"D1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marta\", \"text\": \"The autumn half-term pony camp runs Monday 26 to Friday 30 October with twelve children signed up.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-28\", \"source\": \"Marta\", \"text\": \"The next farrier round for the whole herd is booked for Tuesday 10 November.\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marta\", \"text\": \"Confirm the first farrier round with Nils Pedersen. Done on 21 July.\", \"due\": \"2026-07-25\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"The indoor arena surface is rutted near the gate and needs topping up before the winter term.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Cedar Ridge Feed\", \"text\": \"Cedar Ridge Feed sent a flyer quoting oat hay at 9 dollars 50 a bale, delivered, for orders placed in October.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"Marta\", \"text\": \"The lesson horse Frosty is on box rest until the farrier round on 10 November.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-12\", \"source\": \"Marta\", \"text\": \"Place this month's standing hay order with Bellamy Feed & Grain. Not done yet.\", \"due\": \"2026-10-20\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-14\", \"source\": \"Marta\", \"text\": \"Collect a quote for topping up the arena surface. Not done yet; the surface is only needed once camp is over.\", \"due\": \"2026-12-01\", \"status\": \"open\", \"depends_on\": [\"F10\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-18\", \"source\": \"Marta\", \"text\": \"Correction to the bedding record: Foxglove's straw comes from Redmond Farm, not Harrow Supply, and it is delivered on the first Wednesday of each month, not the second Tuesday. The hay arrangements with Bellamy are unaffected. Revokes: F6.\", \"revokes\": [\"F6\"]},\n \"task\": {\"text\": \"It's the third week of October — can you get this month's hay order in with Bellamy today, the usual standing order?\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 12 bales of oat hay from Cedar Ridge Feed at 9 dollars 50 a bale for delivery Friday 23 October.\"},\n  {\"id\": \"b\", \"text\": \"Cancel the Harrow Supply bedding account and set up the monthly straw delivery from Redmond Farm for Wednesday 4 November.\"},\n  {\"id\": \"c\", \"text\": \"Order 12 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October.\"},\n  {\"id\": \"d\", \"text\": \"Order 18 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"a\"],\n  \"unnecessary_options\": [\"b\", \"d\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F11\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the standing monthly hay order with Bellamy Feed & Grain\", \"correct_value\": \"12 bales of alfalfa at 14 dollars a bale from Bellamy, delivery Thursday 22 October 2026\", \"stale_value\": null},\n  \"why\": \"The correction only replaces the bedding-supplier fact F6, which no decision rests on; every decision about hay rests on F3 and D1, which the correction leaves standing. The Cedar Ridge flyer is an unsolicited quote, not the yard's arrangement, and the bedding switch is a side topic that the task does not touch. So the right act is the standing order exactly as decided in D3, which also discharges obligation O2 today.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2851,
+    "completion_tokens": 3623,
+    "reasoning_tokens": 1487,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01679532,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Foxglove Stables October hay order\",\n \"setting\": \"A horse stable owner at Foxglove Riding Stables whose assistant tracks lesson package sales, boarder feed arrangements, and farrier visit schedules\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-20\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"Foxglove Riding Stables has 14 stalls, nine of which are let to boarders, and runs a schooling string of six lesson horses.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"The nine boarders are Priya, Tom, Greta, Alan, Sofia, Ben, Iris, Colin and Dana.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Bellamy Feed & Grain supplies Foxglove with alfalfa hay at 14 dollars a bale, delivered to the yard.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-11\", \"source\": \"Marta\", \"text\": \"Nils Pedersen is the yard's farrier and works a standard eight-week shoeing cycle for the whole herd.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Lesson packages are sold at 180 dollars for a block of 10 private lessons and 320 dollars for a block of 10 group lessons.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Marta\", \"text\": \"Foxglove's straw bedding comes from Harrow Supply, delivered on the second Tuesday of every month.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"All feed and bedding invoices are paid on delivery, never on account.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"The farrier visits every eight weeks unless a horse throws a shoe, in which case he comes out as soon as he can.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Lesson packages are valid for six months from purchase and are not extended.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"Bellamy Feed & Grain will be the yard's sole hay supplier for the whole of 2026.\", \"depends_on\": [\"F1\", \"F3\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"Nils Pedersen is booked on the eight-week cycle, with the first round of visits starting Tuesday 4 August.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Marta\", \"text\": \"A standing monthly order of 12 bales of alfalfa from Bellamy Feed & Grain will be placed in the third week of each month, paid on delivery.\", \"depends_on\": [\"F3\", \"D1\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-08\", \"source\": \"Priya\", \"text\": \"Priya's gelding Cooper cannot eat alfalfa and gets timothy hay instead.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Marta\", \"text\": \"Lesson package prices stay unchanged through the winter term.\", \"depends_on\": [\"F5\", \"R3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Marta\", \"text\": \"Cooper's timothy hay is added to the monthly Bellamy order as a two-bale special order each month.\", \"depends_on\": [\"F7\", \"D1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marta\", \"text\": \"The autumn half-term pony camp runs Monday 26 to Friday 30 October with twelve children signed up.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-28\", \"source\": \"Marta\", \"text\": \"The next farrier round for the whole herd is booked for Tuesday 10 November.\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marta\", \"text\": \"Confirm the first farrier round with Nils Pedersen. Done on 21 July.\", \"due\": \"2026-07-25\", \"status\": \"done\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Marta\", \"text\": \"The indoor arena surface is rutted near the gate and needs topping up before the winter term.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Cedar Ridge Feed\", \"text\": \"Cedar Ridge Feed sent a flyer quoting oat hay at 9 dollars 50 a bale, delivered, for orders placed in October.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-10\", \"source\": \"Marta\", \"text\": \"The lesson horse Frosty is on box rest until the farrier round on 10 November.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-12\", \"source\": \"Marta\", \"text\": \"Place this month's standing hay order with Bellamy Feed & Grain. Not done yet.\", \"due\": \"2026-10-20\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-14\", \"source\": \"Marta\", \"text\": \"Collect a quote for topping up the arena surface. Not done yet; the surface is only needed once camp is over.\", \"due\": \"2026-12-01\", \"status\": \"open\", \"depends_on\": [\"F10\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-18\", \"source\": \"Marta\", \"text\": \"Correction to the bedding record: Foxglove's straw comes from Redmond Farm, not Harrow Supply, and it is delivered on the first Wednesday of each month, not the second Tuesday. The hay arrangements with Bellamy are unaffected.\", \"revokes\": [\"F6\"]},\n \"task\": {\"text\": \"It's the third week of October — can you get this month's hay order in with Bellamy today, the usual standing order?\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 12 bales of oat hay from Cedar Ridge Feed at 9 dollars 50 a bale for delivery Friday 23 October.\"},\n  {\"id\": \"b\", \"text\": \"Cancel the Harrow Supply bedding account and set up the monthly straw delivery from Redmond Farm for Wednesday 4 November.\"},\n  {\"id\": \"c\", \"text\": \"Order 12 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October.\"},\n  {\"id\": \"d\", \"text\": \"Order 18 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"a\"],\n  \"unnecessary_options\": [\"b\", \"d\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F11\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place the standing monthly hay order with Bellamy Feed & Grain\", \"correct_value\": \"12 bales of alfalfa at 14 dollars a bale from Bellamy, delivery Thursday 22 October 2026\", \"stale_value\": null},\n  \"why\": \"The correction only replaces the bedding-supplier fact F6, which no decision rests on; every decision about hay rests on F3 and D1, which the correction leaves standing. The Cedar Ridge flyer is an unsolicited quote, not the yard's arrangement, and the bedding switch is a side topic that the task does not touch. So the right act is the standing order exactly as decided in D3, which also discharges obligation O2 today.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5036,
+    "completion_tokens": 2142,
+    "reasoning_tokens": 12,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01326496,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G4-03: change text must not carry ids or Revokes (the renderer adds them)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Foxglove Stables October hay order",
+  "setting": "A horse stable owner at Foxglove Riding Stables whose assistant tracks lesson package sales, boarder feed arrangements, and farrier visit schedules",
+  "owner": "Marta",
+  "now": "2026-10-20",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "Foxglove Riding Stables has 14 stalls, nine of which are let to boarders, and runs a schooling string of six lesson horses."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "The nine boarders are Priya, Tom, Greta, Alan, Sofia, Ben, Iris, Colin and Dana."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Bellamy Feed & Grain supplies Foxglove with alfalfa hay at 14 dollars a bale, delivered to the yard."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-11",
+    "source": "Marta",
+    "text": "Nils Pedersen is the yard's farrier and works a standard eight-week shoeing cycle for the whole herd."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Lesson packages are sold at 180 dollars for a block of 10 private lessons and 320 dollars for a block of 10 group lessons."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "Foxglove's straw bedding comes from Harrow Supply, delivered on the second Tuesday of every month."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "All feed and bedding invoices are paid on delivery, never on account."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "The farrier visits every eight weeks unless a horse throws a shoe, in which case he comes out as soon as he can."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "Lesson packages are valid for six months from purchase and are not extended."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Bellamy Feed & Grain will be the yard's sole hay supplier for the whole of 2026.",
+    "depends_on": [
+     "F1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Nils Pedersen is booked on the eight-week cycle, with the first round of visits starting Tuesday 4 August.",
+    "depends_on": [
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Marta",
+    "text": "A standing monthly order of 12 bales of alfalfa from Bellamy Feed & Grain will be placed in the third week of each month, paid on delivery.",
+    "depends_on": [
+     "F3",
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-08",
+    "source": "Priya",
+    "text": "Priya's gelding Cooper cannot eat alfalfa and gets timothy hay instead."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Marta",
+    "text": "Lesson package prices stay unchanged through the winter term.",
+    "depends_on": [
+     "F5",
+     "R3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Marta",
+    "text": "Cooper's timothy hay is added to the monthly Bellamy order as a two-bale special order each month.",
+    "depends_on": [
+     "F7",
+     "D1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marta",
+    "text": "The autumn half-term pony camp runs Monday 26 to Friday 30 October with twelve children signed up."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-28",
+    "source": "Marta",
+    "text": "The next farrier round for the whole herd is booked for Tuesday 10 November.",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Confirm the first farrier round with Nils Pedersen. Done on 21 July.",
+    "due": "2026-07-25",
+    "status": "done",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "The indoor arena surface is rutted near the gate and needs topping up before the winter term."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Cedar Ridge Feed",
+    "text": "Cedar Ridge Feed sent a flyer quoting oat hay at 9 dollars 50 a bale, delivered, for orders placed in October."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-10",
+    "source": "Marta",
+    "text": "The lesson horse Frosty is on box rest until the farrier round on 10 November."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-12",
+    "source": "Marta",
+    "text": "Place this month's standing hay order with Bellamy Feed & Grain. Not done yet.",
+    "due": "2026-10-20",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-14",
+    "source": "Marta",
+    "text": "Collect a quote for topping up the arena surface. Not done yet; the surface is only needed once camp is over.",
+    "due": "2026-12-01",
+    "status": "open",
+    "depends_on": [
+     "F10"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-18",
+   "source": "Marta",
+   "text": "Correction to the bedding record: Foxglove's straw comes from Redmond Farm, not Harrow Supply, and it is delivered on the first Wednesday of each month, not the second Tuesday. The hay arrangements with Bellamy are unaffected.",
+   "revokes": [
+    "F6"
+   ]
+  },
+  "task": {
+   "text": "It's the third week of October — can you get this month's hay order in with Bellamy today, the usual standing order?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 12 bales of oat hay from Cedar Ridge Feed at 9 dollars 50 a bale for delivery Friday 23 October."
+    },
+    {
+     "id": "b",
+     "text": "Cancel the Harrow Supply bedding account and set up the monthly straw delivery from Redmond Farm for Wednesday 4 November."
+    },
+    {
+     "id": "c",
+     "text": "Order 12 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October."
+    },
+    {
+     "id": "d",
+     "text": "Order 18 bales of alfalfa from Bellamy Feed & Grain at 14 dollars a bale for delivery Thursday 22 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "b",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F11"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place the standing monthly hay order with Bellamy Feed & Grain",
+    "correct_value": "12 bales of alfalfa at 14 dollars a bale from Bellamy, delivery Thursday 22 October 2026",
+    "stale_value": null
+   },
+   "why": "The correction only replaces the bedding-supplier fact F6, which no decision rests on; every decision about hay rests on F3 and D1, which the correction leaves standing. The Cedar Ridge flyer is an unsolicited quote, not the yard's arrangement, and the bedding switch is a side topic that the task does not touch. So the right act is the standing order exactly as decided in D3, which also discharges obligation O2 today."
+  },
+  "id": "G4-03",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

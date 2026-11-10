@@ -1,0 +1,297 @@
+{
+ "id": "G4-04",
+ "class": 4,
+ "setting": "A pharmacy owner at Cornerstone Chemist whose assistant maintains records of supplier backorder promises and patient delivery schedule agreements",
+ "prompt_sha256": "f3f2bc0c8a9ea8de4ec5b4f6eadd191ca2485176e49954d584cf9aad32ec4529",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Friday run for Hollis\",\n \"setting\": \"A pharmacy owner at Cornerstone Chemist whose assistant maintains records of supplier backorder promises and patient delivery schedule agreements\",\n \"owner\": \"Maren\",\n \"now\": \"2026-09-18\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Maren\", \"text\": \"Cornerstone Chemist buys its stock from two main suppliers: Medlay Supplies and Norvick Wholesale.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Maren\", \"text\": \"Deliveries to housebound patients always go out on Fridays at 10:00.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Maren\", \"text\": \"If a supplier's backorder will take more than two weeks to fill, the item is ordered from the alternate supplier instead.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Maren\", \"text\": \"Patient Hollis Baker is housebound and receives his weekly blister pack from the pharmacy.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Maren\", \"text\": \"Hollis Baker's blister pack will be delivered every Friday at 10:00 by the courier Rowan Express.\", \"depends_on\": [\"F2\", \"R1\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Rowan Express\", \"text\": \"Courier Rowan Express charges a flat 9 pounds per delivery run.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Maren\", \"text\": \"Each Rowan Express run for Hollis Baker is booked at the flat rate of 9 pounds and entered in the delivery ledger.\", \"depends_on\": [\"F2\", \"F3\", \"D1\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Medlay Supplies\", \"text\": \"Medlay Supplies has Eltofer syrup on backorder and promises delivery by 10 September.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Maren\", \"text\": \"Eltofer syrup will be ordered from Norvick Wholesale rather than Medlay Supplies, because the Medlay backorder runs past two weeks.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-08\", \"source\": \"Norvick Wholesale\", \"text\": \"Norvick Wholesale delivers orders within three working days.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-10\", \"source\": \"Maren\", \"text\": \"Place the Eltofer syrup order with Norvick Wholesale. Done on 13 July.\", \"due\": \"2026-07-15\", \"status\": \"done\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-15\", \"source\": \"Maren\", \"text\": \"Norvick Wholesale remains the syrup supplier until Medlay Supplies restocks; recheck the situation on 10 September.\", \"depends_on\": [\"F4\", \"D3\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"Maren\", \"text\": \"Cornerstone Chemist opens at 08:30 on weekdays.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-29\", \"source\": \"Maren\", \"text\": \"Dispensary assistant Priya does the full stock count every Wednesday morning.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Maren\", \"text\": \"Patient June Okafor receives a monthly inhaler delivery from the pharmacy.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Maren\", \"text\": \"June Okafor's inhaler is delivered on the first Monday of each month by Rowan Express.\", \"depends_on\": [\"F8\", \"R1\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-14\", \"source\": \"Medlay Supplies\", \"text\": \"Medlay Supplies confirms the Eltofer syrup restock will arrive on 10 September.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Maren\", \"text\": \"From 10 September, Eltofer syrup is ordered from Medlay Supplies again.\", \"depends_on\": [\"F9\", \"D4\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-28\", \"source\": \"SwiftPost\", \"text\": \"Courier firm SwiftPost offers delivery runs at 4.50 pounds each, but only on Tuesdays and Saturdays.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Maren\", \"text\": \"The flu vaccine clinic is set for Saturday 3 October.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Maren\", \"text\": \"Order June Okafor's inhaler for October. Not done yet.\", \"due\": \"2026-10-05\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-10\", \"source\": \"Medlay Supplies\", \"text\": \"The Medlay restock of Eltofer syrup arrived as promised on 10 September.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-14\", \"source\": \"Maren\", \"text\": \"Book Hollis Baker's delivery run for the week of 14 September. Not done yet.\", \"due\": \"2026-09-18\", \"status\": \"open\", \"depends_on\": [\"D1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"state\", \"date\": \"2026-09-17\", \"source\": \"Medlay Supplies\", \"text\": \"Medlay Supplies reports a new backorder of vitamin D drops, with restock expected on 5 October. All other Medlay lines, including Eltofer syrup, remain in normal supply, and nothing about this affects patient deliveries.\", \"revokes\": []},\n \"task\": {\"text\": \"Hollis' packs are ready — can you book his delivery for this week?\", \"options\": [{\"id\": \"a\", \"text\": \"Book Rowan Express for Hollis Baker, Friday 18 September at 10:00, at the flat rate of 9 pounds.\"}, {\"id\": \"b\", \"text\": \"Book SwiftPost for Hollis Baker, Tuesday 22 September, at 4.50 pounds.\"}, {\"id\": \"c\", \"text\": \"Hold Hollis Baker's packs and send them with the Medlay vitamin D restock on 5 October.\"}]},\n \"truth\": {\n  \"correct_options\": [\"a\"], \"stale_options\": [], \"distractor_options\": [\"b\"], \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [], \"distractor_items\": [\"F10\"],\n  \"touched\": [], \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Book Hollis Baker's weekly blister-pack delivery run for the week of 14 September\", \"correct_value\": \"Rowan Express, Friday 18 September 2026 at 10:00, at 9 pounds\", \"stale_value\": null},\n  \"why\": \"The change only adds a backorder of vitamin D drops, a stock item with no link to Hollis Baker's standing Friday delivery arrangement or to any decision in the memory. D1 and D2 stand unchanged, so the correct act is the usual Rowan Express run on Friday 18 September at 10:00 for 9 pounds. SwiftPost's Tuesday offer is a cheaper distractor no rule or decision adopts, and holding the packs for 5 October needlessly breaks the weekly delivery plan.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2837,
+    "completion_tokens": 4074,
+    "reasoning_tokens": 2077,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01876012,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Friday run for Hollis",
+  "setting": "A pharmacy owner at Cornerstone Chemist whose assistant maintains records of supplier backorder promises and patient delivery schedule agreements",
+  "owner": "Maren",
+  "now": "2026-09-18",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Maren",
+    "text": "Cornerstone Chemist buys its stock from two main suppliers: Medlay Supplies and Norvick Wholesale."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Maren",
+    "text": "Deliveries to housebound patients always go out on Fridays at 10:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Maren",
+    "text": "If a supplier's backorder will take more than two weeks to fill, the item is ordered from the alternate supplier instead."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Maren",
+    "text": "Patient Hollis Baker is housebound and receives his weekly blister pack from the pharmacy."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Maren",
+    "text": "Hollis Baker's blister pack will be delivered every Friday at 10:00 by the courier Rowan Express.",
+    "depends_on": [
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Rowan Express",
+    "text": "Courier Rowan Express charges a flat 9 pounds per delivery run."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Maren",
+    "text": "Each Rowan Express run for Hollis Baker is booked at the flat rate of 9 pounds and entered in the delivery ledger.",
+    "depends_on": [
+     "F2",
+     "F3",
+     "D1"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Medlay Supplies",
+    "text": "Medlay Supplies has Eltofer syrup on backorder and promises delivery by 10 September."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Maren",
+    "text": "Eltofer syrup will be ordered from Norvick Wholesale rather than Medlay Supplies, because the Medlay backorder runs past two weeks.",
+    "depends_on": [
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Norvick Wholesale",
+    "text": "Norvick Wholesale delivers orders within three working days."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-10",
+    "source": "Maren",
+    "text": "Place the Eltofer syrup order with Norvick Wholesale. Done on 13 July.",
+    "due": "2026-07-15",
+    "status": "done",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Maren",
+    "text": "Norvick Wholesale remains the syrup supplier until Medlay Supplies restocks; recheck the situation on 10 September.",
+    "depends_on": [
+     "F4",
+     "D3"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "Maren",
+    "text": "Cornerstone Chemist opens at 08:30 on weekdays."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-29",
+    "source": "Maren",
+    "text": "Dispensary assistant Priya does the full stock count every Wednesday morning."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Maren",
+    "text": "Patient June Okafor receives a monthly inhaler delivery from the pharmacy."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Maren",
+    "text": "June Okafor's inhaler is delivered on the first Monday of each month by Rowan Express.",
+    "depends_on": [
+     "F8",
+     "R1"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Medlay Supplies",
+    "text": "Medlay Supplies confirms the Eltofer syrup restock will arrive on 10 September."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Maren",
+    "text": "From 10 September, Eltofer syrup is ordered from Medlay Supplies again.",
+    "depends_on": [
+     "F9",
+     "D4"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "SwiftPost",
+    "text": "Courier firm SwiftPost offers delivery runs at 4.50 pounds each, but only on Tuesdays and Saturdays."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Maren",
+    "text": "The flu vaccine clinic is set for Saturday 3 October."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Maren",
+    "text": "Order June Okafor's inhaler for October. Not done yet.",
+    "due": "2026-10-05",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Medlay Supplies",
+    "text": "The Medlay restock of Eltofer syrup arrived as promised on 10 September."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-14",
+    "source": "Maren",
+    "text": "Book Hollis Baker's delivery run for the week of 14 September. Not done yet.",
+    "due": "2026-09-18",
+    "status": "open",
+    "depends_on": [
+     "D1"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-09-17",
+   "source": "Medlay Supplies",
+   "text": "Medlay Supplies reports a new backorder of vitamin D drops, with restock expected on 5 October. All other Medlay lines, including Eltofer syrup, remain in normal supply, and nothing about this affects patient deliveries.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Hollis' packs are ready — can you book his delivery for this week?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Rowan Express for Hollis Baker, Friday 18 September at 10:00, at the flat rate of 9 pounds."
+    },
+    {
+     "id": "b",
+     "text": "Book SwiftPost for Hollis Baker, Tuesday 22 September, at 4.50 pounds."
+    },
+    {
+     "id": "c",
+     "text": "Hold Hollis Baker's packs and send them with the Medlay vitamin D restock on 5 October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book Hollis Baker's weekly blister-pack delivery run for the week of 14 September",
+    "correct_value": "Rowan Express, Friday 18 September 2026 at 10:00, at 9 pounds",
+    "stale_value": null
+   },
+   "why": "The change only adds a backorder of vitamin D drops, a stock item with no link to Hollis Baker's standing Friday delivery arrangement or to any decision in the memory. D1 and D2 stand unchanged, so the correct act is the usual Rowan Express run on Friday 18 September at 10:00 for 9 pounds. SwiftPost's Tuesday offer is a cheaper distractor no rule or decision adopts, and holding the packs for 5 October needlessly breaks the weekly delivery plan."
+  },
+  "id": "G4-04",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

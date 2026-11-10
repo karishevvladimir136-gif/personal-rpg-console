@@ -1,0 +1,311 @@
+{
+ "id": "G3-11",
+ "class": 3,
+ "setting": "A medical practice manager at Lakeside Internal Medicine whose assistant maintains referral letter chains and specialist appointment follow-ups",
+ "prompt_sha256": "01e82caebf7c6128534468a5bba6ca4c8d59891bedd9f7bf5a8205bad3e3d279",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Marta Levin's cardiology follow-up call\",\n \"setting\": \"A medical practice manager at Lakeside Internal Medicine whose assistant maintains referral letter chains and specialist appointment follow-ups\",\n \"owner\": \"Priya\",\n \"now\": \"2026-10-16\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Priya\", \"text\": \"Lakeside Internal Medicine has three admin staff: Priya (practice manager), Tomas (reception) and Ulla (records).\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Priya\", \"text\": \"Every specialist referral gets one follow-up call exactly one week after the specialist appointment, booked as a 30-minute phone slot at 14:00 in the practice calendar.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Priya\", \"text\": \"Confirmation letters for follow-up calls go out to the patient on the same day the call slot is booked, stating the call date and the specialist involved.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-11\", \"source\": \"Priya\", \"text\": \"All outgoing referral letters go on the practice letterhead signed by the referring physician.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Dr. Amara Osei\", \"text\": \"Marta Levin, born 1958, is a registered patient at Lakeside Internal Medicine.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Dr. Amara Osei\", \"text\": \"Marta Levin reported recurrent chest pain during exertion and needs a cardiology workup.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-09-02\", \"source\": \"Ulla\", \"text\": \"Fernside Dermatology, Dr. Patel, 14 Willow Road, handles the practice's dermatology referrals.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Tomas\", \"text\": \"Marta Levin's cardiology referral letter was sent to Dr. Novak at Northgate Cardiology, and her specialist appointment is Tuesday 13 October 2026 at 10:30.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Priya\", \"text\": \"Marta Levin will be referred to a cardiologist for a workup of her exertional chest pain.\", \"depends_on\": [\"F2\", \"F3\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-09-03\", \"source\": \"Priya\", \"text\": \"Harold Kim's skin-lesion referral will go to Dr. Patel at Fernside Dermatology.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-04\", \"source\": \"Ulla\", \"text\": \"Marta Levin's resting ECG report is complete and filed in her chart.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Dr. Amara Osei\", \"text\": \"The ECG report will be attached to Marta Levin's cardiology referral letter.\", \"depends_on\": [\"F6\", \"D1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-08\", \"source\": \"Priya\", \"text\": \"Send Marta Levin's referral letter to the cardiologist. Done on 8 September.\", \"due\": \"2026-09-10\", \"status\": \"done\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-09\", \"source\": \"Priya\", \"text\": \"Marta Levin's follow-up call will be booked one week after her specialist appointment as a 30-minute slot at 14:00, i.e. Tuesday 20 October 2026, to hear how the cardiology visit went.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Tomas\", \"text\": \"Otto Brandt's cardiology appointment with Dr. Kessler at Eastfield Heart Center is Monday 19 October 2026 at 09:00.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Priya\", \"text\": \"Otto Brandt gets a reminder postcard one week before his Eastfield Heart Center appointment.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-16\", \"source\": \"Priya\", \"text\": \"For the annual clinical audit, Marta Levin's referral is recorded under the reason 'cardiology workup for exertional chest pain'.\", \"depends_on\": [\"F5\", \"F3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-17\", \"source\": \"Priya\", \"text\": \"On the day Marta Levin's follow-up call slot is booked, a confirmation letter goes out to her stating the call date and the specialist who saw her.\", \"depends_on\": [\"D4\", \"R2\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"Tomas\", \"text\": \"The practice's flu vaccine clinic runs on Friday 6 November 2026 and needs two volunteers from admin.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-25\", \"source\": \"Priya\", \"text\": \"The practice orders letterhead and envelopes from Bracken Office Supplies, invoice due quarterly.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-29\", \"source\": \"Priya\", \"text\": \"Tomas and Ulla will staff the flu vaccine clinic on 6 November.\", \"depends_on\": [\"F8\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-05\", \"source\": \"Priya\", \"text\": \"Book Marta Levin's follow-up call slot and send her the confirmation letter with the call date and the specialist's name. Not done yet.\", \"due\": \"2026-10-16\", \"status\": \"open\", \"depends_on\": [\"D6\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Priya\", \"text\": \"Review the Bracken Office Supplies quarterly invoice against the order log. Not done yet.\", \"due\": \"2026-11-30\", \"status\": \"open\", \"depends_on\": [\"F9\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-05\", \"source\": \"Northgate Cardiology\", \"text\": \"Marta Levin's cardiology appointment was moved from Dr. Novak at Northgate Cardiology to Dr. Havel at Cedar Heart Clinic; the new appointment is Thursday 15 October 2026 at 11:15, and the 13 October slot with Dr. Novak is cancelled. The referral reason and the attached ECG report are unchanged.\", \"revokes\": [\"F5\"]},\n \"task\": {\"text\": \"Please get Marta Levin's follow-up call sorted today — book the slot in the calendar and send her the confirmation letter.\", \"options\": [{\"id\": \"a\", \"text\": \"Book a 30-minute slot on Tuesday 20 October at 14:00 and send Marta a letter naming Dr. Novak as the specialist.\"}, {\"id\": \"b\", \"text\": \"Book a 30-minute slot on Thursday 22 October at 14:00 and send Marta a letter naming Dr. Havel as the specialist.\"}, {\"id\": \"c\", \"text\": \"Book a 30-minute slot on Monday 19 October at 14:00 and send Marta a letter naming Dr. Kessler as the specialist.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F5\"],\n  \"distractor_items\": [\"F7\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The follow-up call is one week after the new appointment: Thursday 22 October 2026 at 14:00, not Tuesday 20 October.\"},\n   {\"id\": \"D6\", \"direction\": \"The confirmation letter must state the call date of Thursday 22 October and name Dr. Havel, not Dr. Novak.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D5\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Book Marta Levin's follow-up call slot and send the confirmation letter with the call date and specialist name\", \"correct_value\": \"call on Thursday 22 October 2026 at 14:00, specialist Dr. Havel\", \"stale_value\": \"call on Tuesday 20 October 2026 at 14:00, specialist Dr. Novak\"},\n  \"why\": \"C1 revokes F5, so the specialist appointment is now Dr. Havel on 15 October. D4 rests on F5 and must be revised to a follow-up call on 22 October, and D6 (which rests on D4) must name Dr. Havel in the letter. D5 cites F5 only for the referral reason, which the correction leaves unchanged, so it stands, as do the dermatology, audit and vaccine decisions. Option c acts on Otto Brandt's appointment (F7), a distractor.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 4406,
+    "reasoning_tokens": 2087,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02020272,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Marta Levin's cardiology follow-up call",
+  "setting": "A medical practice manager at Lakeside Internal Medicine whose assistant maintains referral letter chains and specialist appointment follow-ups",
+  "owner": "Priya",
+  "now": "2026-10-16",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Priya",
+    "text": "Lakeside Internal Medicine has three admin staff: Priya (practice manager), Tomas (reception) and Ulla (records)."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "Every specialist referral gets one follow-up call exactly one week after the specialist appointment, booked as a 30-minute phone slot at 14:00 in the practice calendar."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "Confirmation letters for follow-up calls go out to the patient on the same day the call slot is booked, stating the call date and the specialist involved."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-11",
+    "source": "Priya",
+    "text": "All outgoing referral letters go on the practice letterhead signed by the referring physician."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dr. Amara Osei",
+    "text": "Marta Levin, born 1958, is a registered patient at Lakeside Internal Medicine."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Dr. Amara Osei",
+    "text": "Marta Levin reported recurrent chest pain during exertion and needs a cardiology workup."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-09-02",
+    "source": "Ulla",
+    "text": "Fernside Dermatology, Dr. Patel, 14 Willow Road, handles the practice's dermatology referrals."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Tomas",
+    "text": "Marta Levin's cardiology referral letter was sent to Dr. Novak at Northgate Cardiology, and her specialist appointment is Tuesday 13 October 2026 at 10:30."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Priya",
+    "text": "Marta Levin will be referred to a cardiologist for a workup of her exertional chest pain.",
+    "depends_on": [
+     "F2",
+     "F3"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "Priya",
+    "text": "Harold Kim's skin-lesion referral will go to Dr. Patel at Fernside Dermatology.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-04",
+    "source": "Ulla",
+    "text": "Marta Levin's resting ECG report is complete and filed in her chart."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Dr. Amara Osei",
+    "text": "The ECG report will be attached to Marta Levin's cardiology referral letter.",
+    "depends_on": [
+     "F6",
+     "D1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Priya",
+    "text": "Send Marta Levin's referral letter to the cardiologist. Done on 8 September.",
+    "due": "2026-09-10",
+    "status": "done"
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Priya",
+    "text": "Marta Levin's follow-up call will be booked one week after her specialist appointment as a 30-minute slot at 14:00, i.e. Tuesday 20 October 2026, to hear how the cardiology visit went.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Tomas",
+    "text": "Otto Brandt's cardiology appointment with Dr. Kessler at Eastfield Heart Center is Monday 19 October 2026 at 09:00."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Priya",
+    "text": "Otto Brandt gets a reminder postcard one week before his Eastfield Heart Center appointment.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Priya",
+    "text": "For the annual clinical audit, Marta Levin's referral is recorded under the reason 'cardiology workup for exertional chest pain'.",
+    "depends_on": [
+     "F5",
+     "F3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-17",
+    "source": "Priya",
+    "text": "On the day Marta Levin's follow-up call slot is booked, a confirmation letter goes out to her stating the call date and the specialist who saw her.",
+    "depends_on": [
+     "D4",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Tomas",
+    "text": "The practice's flu vaccine clinic runs on Friday 6 November 2026 and needs two volunteers from admin."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Priya",
+    "text": "The practice orders letterhead and envelopes from Bracken Office Supplies, invoice due quarterly."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-29",
+    "source": "Priya",
+    "text": "Tomas and Ulla will staff the flu vaccine clinic on 6 November.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "Priya",
+    "text": "Book Marta Levin's follow-up call slot and send her the confirmation letter with the call date and the specialist's name. Not done yet.",
+    "due": "2026-10-16",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Priya",
+    "text": "Review the Bracken Office Supplies quarterly invoice against the order log. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open",
+    "depends_on": [
+     "F9"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-05",
+   "source": "Northgate Cardiology",
+   "text": "Marta Levin's cardiology appointment was moved from Dr. Novak at Northgate Cardiology to Dr. Havel at Cedar Heart Clinic; the new appointment is Thursday 15 October 2026 at 11:15, and the 13 October slot with Dr. Novak is cancelled. The referral reason and the attached ECG report are unchanged.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please get Marta Levin's follow-up call sorted today — book the slot in the calendar and send her the confirmation letter.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book a 30-minute slot on Tuesday 20 October at 14:00 and send Marta a letter naming Dr. Novak as the specialist."
+    },
+    {
+     "id": "b",
+     "text": "Book a 30-minute slot on Thursday 22 October at 14:00 and send Marta a letter naming Dr. Havel as the specialist."
+    },
+    {
+     "id": "c",
+     "text": "Book a 30-minute slot on Monday 19 October at 14:00 and send Marta a letter naming Dr. Kessler as the specialist."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F7"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The follow-up call is one week after the new appointment: Thursday 22 October 2026 at 14:00, not Tuesday 20 October."
+    },
+    {
+     "id": "D6",
+     "direction": "The confirmation letter must state the call date of Thursday 22 October and name Dr. Havel, not Dr. Novak."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Book Marta Levin's follow-up call slot and send the confirmation letter with the call date and specialist name",
+    "correct_value": "call on Thursday 22 October 2026 at 14:00, specialist Dr. Havel",
+    "stale_value": "call on Tuesday 20 October 2026 at 14:00, specialist Dr. Novak"
+   },
+   "why": "C1 revokes F5, so the specialist appointment is now Dr. Havel on 15 October. D4 rests on F5 and must be revised to a follow-up call on 22 October, and D6 (which rests on D4) must name Dr. Havel in the letter. D5 cites F5 only for the referral reason, which the correction leaves unchanged, so it stands, as do the dermatology, audit and vaccine decisions. Option c acts on Otto Brandt's appointment (F7), a distractor."
+  },
+  "id": "G3-11",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

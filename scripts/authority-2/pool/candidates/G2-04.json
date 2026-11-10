@@ -1,0 +1,334 @@
+{
+ "id": "G2-04",
+ "class": 2,
+ "setting": "A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone",
+ "prompt_sha256": "34568494b1192ae14851a9c4a168854de23bc34f68934fabf93b8db9f8f57c70",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Booking discount re-quoted\",\n \"setting\": \"A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-11-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marcus\", \"text\": \"The standard local crew rate at Anchor Movers is $150 per hour for a three-person crew, for all jobs inside the standard service area.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marcus\", \"text\": \"Every phone estimate gets 10% off the quoted total when the move is booked at least 30 days before the move date. The discount applies to all local jobs inside the standard service area.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"office\", \"text\": \"The dispatch office takes estimate calls Monday to Saturday, 08:00 to 18:00.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Marcus\", \"text\": \"Quoted the Lund family for their local move on 25 July 2026: 6 crew hours at the standard rate less the 10% booking discount, total $810. They signed the contract on 18 June 2026.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-20\", \"source\": \"Marcus\", \"text\": \"File the signed Lund contract in the customer binder. Done on 20 June 2026.\", \"due\": \"2026-06-30\", \"status\": \"done\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marcus\", \"text\": \"Anchor Movers has two box trucks and one large van available for local jobs.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marcus\", \"text\": \"Assigned the two box trucks to the July weekend schedule and kept the van for small storage runs.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"office\", \"text\": \"For jobs outside the standard service area, the long-distance crew rate is $185 per hour.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Marcus\", \"text\": \"Quoted Kaya Paxton for her local move on 14 August 2026: 5 crew hours at the standard rate, no booking discount because she booked only 25 days ahead, total $750. She signed on 3 August 2026.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-01\", \"source\": \"office\", \"text\": \"Anchor Movers buys packing materials from the supplier Nordpak.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"Marcus\", \"text\": \"Ordered a monthly standing box of packing materials from Nordpak, 200 boxes per month.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"office\", \"text\": \"The dispatch office parking spots were renumbered in August; the loading bay is now Gate 4.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"office\", \"text\": \"Pay the Nordpak August invoice of $430. Done on 10 September 2026.\", \"due\": \"2026-09-15\", \"status\": \"done\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Marcus\", \"text\": \"Anchor Movers does not move pianos or safes over 150 kg with the standard crews.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-15\", \"source\": \"Marcus\", \"text\": \"Quoted the Melin office a storage run: 4 crew hours at the standard rate, no discount, total $600. Signed the same week.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"office\", \"text\": \"Fuel costs for the box trucks are logged weekly by the office assistant.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-26\", \"source\": \"Marcus\", \"text\": \"Quoted Nadia Sorre over the phone for her local move inside the standard service area on 12 December 2026: 8 crew hours at the standard rate, with the 10% booking discount because she booked 47 days ahead, total $1,080. Not signed yet.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-26\", \"source\": \"Marcus\", \"text\": \"Send Nadia Sorre the written estimate confirmation email within two weeks of the phone quote. Not done yet.\", \"due\": \"2026-11-06\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-29\", \"source\": \"office\", \"text\": \"Nadia Sorre asked on the phone whether her move might go outside the standard service area; her move on 12 December 2026 stays inside it, so the standard crew rate applies.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-28\", \"source\": \"Marcus\", \"text\": \"Quoted Sven Brandt for his local move on 15 January 2027: 10 crew hours at the standard rate with the 10% booking discount, total $1,350. Not signed yet.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-11-01\", \"source\": \"Marcus\", \"text\": \"Planned the January staffing around Brandt's quoted job, reserving one three-person crew for 15 January 2027 and budgeting the job at $1,350.\", \"depends_on\": [\"D6\", \"F3\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-11-02\", \"source\": \"Marcus\", \"text\": \"From 1 November 2026 the booking discount changes: 15% off the quoted total when the move is booked at least 60 days before the move date, and no discount for bookings made 30 to 59 days ahead. Signed contracts keep their price unchanged. Unsigned quotes for moves on or after 1 December 2026 must be re-quoted under these new terms; quotes for moves before 1 December 2026 stand as they are.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Nadia Sorre is on the phone asking for the written estimate we promised her. Please send her confirmation email now.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,080 after the 10% booking discount.\"}, {\"id\": \"b\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at the long-distance rate of $185/h, total $1,480.\"}, {\"id\": \"c\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,200 with no discount.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D5\", \"direction\": \"Nadia booked 47 days ahead, so under the amended rule she gets no discount; her quote must be re-quoted at 8 x $150 = $1,200.\"},\n   {\"id\": \"D6\", \"direction\": \"Brandt booked 79 days ahead, so under the amended rule he gets 15% instead of 10%; his quote must be re-quoted at 10 x $150 = $1,500 minus 15% = $1,275.\"},\n   {\"id\": \"D7\", \"direction\": \"The January staffing budget line for Brandt's reserved crew changes from $1,350 to $1,275; the crew reservation itself stays.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Nadia Sorre the written estimate confirmation email today\", \"correct_value\": \"8 crew hours at $150/h, total $1,200 with no booking discount\", \"stale_value\": \"8 crew hours at $150/h, total $1,080 after the 10% booking discount\"},\n  \"why\": \"The change amends the booking-discount rule: Nadia booked 47 days ahead, so her unsigned quote for a move on 12 December 2026 must be re-quoted with no discount, making $1,200 the correct total and O1's confirmation today the due act. Option a applies the revoked 10% rule and option b wrongly uses the long-distance rate for a local move. D5, D6 and D7 are touched; D1 and D3 were signed jobs for moves before 1 December 2026, and D2, D4, D8 do not rest on the rule, so all stay unchanged.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2826,
+    "completion_tokens": 5967,
+    "reasoning_tokens": 3641,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02707392,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Booking discount re-quoted\",\n \"setting\": \"A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone\",\n \"owner\": \"Marcus\",\n \"now\": \"2026-11-06\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marcus\", \"text\": \"The standard local crew rate at Anchor Movers is $150 per hour for a three-person crew, for all jobs inside the standard service area.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marcus\", \"text\": \"Every phone estimate gets 10% off the quoted total when the move is booked at least 30 days before the move date. The discount applies to all local jobs inside the standard service area.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"office\", \"text\": \"The dispatch office takes estimate calls Monday to Saturday, 08:00 to 18:00.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"Marcus\", \"text\": \"Every signed moving contract requires a deposit of 20% of the quoted total, due within 14 days of signing; the deposit is non-refundable if the customer cancels less than 7 days before the move date.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Marcus\", \"text\": \"Quoted the Lund family for their local move on 25 July 2026: 6 crew hours at the standard rate less the 10% booking discount, total $810. They signed the contract on 18 June 2026.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-20\", \"source\": \"Marcus\", \"text\": \"File the signed Lund contract in the customer binder. Done on 20 June 2026.\", \"due\": \"2026-06-30\", \"status\": \"done\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Marcus\", \"text\": \"Anchor Movers has two box trucks and one large van available for local jobs.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Marcus\", \"text\": \"Assigned the two box trucks to the July weekend schedule and kept the van for small storage runs.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"office\", \"text\": \"For jobs outside the standard service area, the long-distance crew rate is $185 per hour.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Marcus\", \"text\": \"Quoted Kaya Paxton for her local move on 14 August 2026: 5 crew hours at the standard rate, no booking discount because she booked only 25 days ahead, total $750. She signed on 3 August 2026.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Marcus\", \"text\": \"Set the Lund deposit at $162 and the Paxton deposit at $150, both due within 14 days of their signing dates; both were received on time.\", \"depends_on\": [\"D1\", \"D3\", \"R2\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-01\", \"source\": \"office\", \"text\": \"Anchor Movers buys packing materials from the supplier Nordpak.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-18\", \"source\": \"Marcus\", \"text\": \"Ordered a monthly standing box of packing materials from Nordpak, 200 boxes per month.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"office\", \"text\": \"The dispatch office parking spots were renumbered in August; the loading bay is now Gate 4.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-05\", \"source\": \"office\", \"text\": \"Pay the Nordpak August invoice of $430. Done on 10 September 2026.\", \"due\": \"2026-09-15\", \"status\": \"done\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Marcus\", \"text\": \"Anchor Movers does not move pianos or safes over 150 kg with the standard crews.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-15\", \"source\": \"Marcus\", \"text\": \"Quoted the Melin office a storage run: 4 crew hours at the standard rate, no discount, total $600. Signed the same week, deposit of $120 received.\", \"depends_on\": [\"F1\", \"R2\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-10-20\", \"source\": \"office\", \"text\": \"Fuel costs for the box trucks are logged weekly by the office assistant.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-26\", \"source\": \"Marcus\", \"text\": \"Quoted Nadia Sorre over the phone for her local move inside the standard service area on 12 December 2026: 8 crew hours at the standard rate, with the 10% booking discount because she booked 47 days ahead, total $1,080. Not signed yet.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-10-26\", \"source\": \"Marcus\", \"text\": \"Send Nadia Sorre the written estimate confirmation email within two weeks of the phone quote. Not done yet.\", \"due\": \"2026-11-06\", \"status\": \"open\", \"depends_on\": [\"D5\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-29\", \"source\": \"office\", \"text\": \"Nadia Sorre asked on the phone whether her move might go outside the standard service area; her move on 12 December 2026 stays inside it, so the standard crew rate applies.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-28\", \"source\": \"Marcus\", \"text\": \"Quoted Sven Brandt for his local move on 15 January 2027: 10 crew hours at the standard rate with the 10% booking discount, total $1,350. Not signed yet.\", \"depends_on\": [\"F1\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-11-01\", \"source\": \"Marcus\", \"text\": \"Planned the January staffing around Brandt's quoted job, reserving one three-person crew for 15 January 2027 and budgeting the job at $1,350.\", \"depends_on\": [\"D6\", \"F3\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-11-02\", \"source\": \"Marcus\", \"text\": \"From 1 November 2026 the booking discount changes: 15% off the quoted total when the move is booked at least 60 days before the move date, and no discount for bookings made 30 to 59 days ahead. Signed contracts keep their price unchanged. Unsigned quotes for moves on or after 1 December 2026 must be re-quoted under these new terms; quotes for moves before 1 December 2026 stand as they are. The deposit terms are unaffected by this change.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Nadia Sorre is on the phone asking for the written estimate we promised her. Please send her confirmation email now.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,080 after the 10% booking discount.\"}, {\"id\": \"b\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at the long-distance rate of $185/h, total $1,480.\"}, {\"id\": \"c\", \"text\": \"Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,200 with no discount.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D5\", \"direction\": \"Nadia booked 47 days ahead, so under the amended rule she gets no discount; her quote must be re-quoted at 8 x $150 = $1,200.\"},\n   {\"id\": \"D6\", \"direction\": \"Brandt booked 79 days ahead, so under the amended rule he gets 15% instead of 10%; his quote must be re-quoted at 10 x $150 = $1,500 minus 15% = $1,275.\"},\n   {\"id\": \"D7\", \"direction\": \"The January staffing budget line for Brandt's reserved crew changes from $1,350 to $1,275; the crew reservation itself stays.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D8\", \"D9\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send Nadia Sorre the written estimate confirmation email today\", \"correct_value\": \"8 crew hours at $150/h, total $1,200 with no booking discount\", \"stale_value\": \"8 crew hours at $150/h, total $1,080 after the 10% booking discount\"},\n  \"why\": \"The change amends the booking-discount rule: Nadia booked 47 days ahead, so her unsigned quote for a move on 12 December 2026 must be re-quoted with no discount, making $1,200 the correct total and O1's confirmation today the due act. Option a applies the revoked 10% rule and option b wrongly uses the long-distance rate for a local move. D5, D6 and D7 are touched; D1 and D3 were signed jobs for moves before 1 December 2026, D9 and D8 rest on the untouched deposit rule R2, and D2 and D4 do not rest on the discount rule, so all stay unchanged.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5196,
+    "completion_tokens": 2602,
+    "reasoning_tokens": 75,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01551296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G2-04: 1 rules; need 2–3\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Booking discount re-quoted",
+  "setting": "A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone",
+  "owner": "Marcus",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marcus",
+    "text": "The standard local crew rate at Anchor Movers is $150 per hour for a three-person crew, for all jobs inside the standard service area."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marcus",
+    "text": "Every phone estimate gets 10% off the quoted total when the move is booked at least 30 days before the move date. The discount applies to all local jobs inside the standard service area."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "office",
+    "text": "The dispatch office takes estimate calls Monday to Saturday, 08:00 to 18:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marcus",
+    "text": "Every signed moving contract requires a deposit of 20% of the quoted total, due within 14 days of signing; the deposit is non-refundable if the customer cancels less than 7 days before the move date."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marcus",
+    "text": "Quoted the Lund family for their local move on 25 July 2026: 6 crew hours at the standard rate less the 10% booking discount, total $810. They signed the contract on 18 June 2026.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-20",
+    "source": "Marcus",
+    "text": "File the signed Lund contract in the customer binder. Done on 20 June 2026.",
+    "due": "2026-06-30",
+    "status": "done"
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Marcus",
+    "text": "Anchor Movers has two box trucks and one large van available for local jobs."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marcus",
+    "text": "Assigned the two box trucks to the July weekend schedule and kept the van for small storage runs.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "office",
+    "text": "For jobs outside the standard service area, the long-distance crew rate is $185 per hour."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Marcus",
+    "text": "Quoted Kaya Paxton for her local move on 14 August 2026: 5 crew hours at the standard rate, no booking discount because she booked only 25 days ahead, total $750. She signed on 3 August 2026.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Marcus",
+    "text": "Set the Lund deposit at $162 and the Paxton deposit at $150, both due within 14 days of their signing dates; both were received on time.",
+    "depends_on": [
+     "D1",
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-01",
+    "source": "office",
+    "text": "Anchor Movers buys packing materials from the supplier Nordpak."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marcus",
+    "text": "Ordered a monthly standing box of packing materials from Nordpak, 200 boxes per month.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "office",
+    "text": "The dispatch office parking spots were renumbered in August; the loading bay is now Gate 4."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "office",
+    "text": "Pay the Nordpak August invoice of $430. Done on 10 September 2026.",
+    "due": "2026-09-15",
+    "status": "done"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Marcus",
+    "text": "Anchor Movers does not move pianos or safes over 150 kg with the standard crews."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-15",
+    "source": "Marcus",
+    "text": "Quoted the Melin office a storage run: 4 crew hours at the standard rate, no discount, total $600. Signed the same week, deposit of $120 received.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "office",
+    "text": "Fuel costs for the box trucks are logged weekly by the office assistant."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-26",
+    "source": "Marcus",
+    "text": "Quoted Nadia Sorre over the phone for her local move inside the standard service area on 12 December 2026: 8 crew hours at the standard rate, with the 10% booking discount because she booked 47 days ahead, total $1,080. Not signed yet.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-10-26",
+    "source": "Marcus",
+    "text": "Send Nadia Sorre the written estimate confirmation email within two weeks of the phone quote. Not done yet.",
+    "due": "2026-11-06",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-29",
+    "source": "office",
+    "text": "Nadia Sorre asked on the phone whether her move might go outside the standard service area; her move on 12 December 2026 stays inside it, so the standard crew rate applies."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-28",
+    "source": "Marcus",
+    "text": "Quoted Sven Brandt for his local move on 15 January 2027: 10 crew hours at the standard rate with the 10% booking discount, total $1,350. Not signed yet.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-11-01",
+    "source": "Marcus",
+    "text": "Planned the January staffing around Brandt's quoted job, reserving one three-person crew for 15 January 2027 and budgeting the job at $1,350.",
+    "depends_on": [
+     "D6",
+     "F3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-11-02",
+   "source": "Marcus",
+   "text": "From 1 November 2026 the booking discount changes: 15% off the quoted total when the move is booked at least 60 days before the move date, and no discount for bookings made 30 to 59 days ahead. Signed contracts keep their price unchanged. Unsigned quotes for moves on or after 1 December 2026 must be re-quoted under these new terms; quotes for moves before 1 December 2026 stand as they are. The deposit terms are unaffected by this change.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Nadia Sorre is on the phone asking for the written estimate we promised her. Please send her confirmation email now.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,080 after the 10% booking discount."
+    },
+    {
+     "id": "b",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at the long-distance rate of $185/h, total $1,480."
+    },
+    {
+     "id": "c",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,200 with no discount."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D5",
+     "direction": "Nadia booked 47 days ahead, so under the amended rule she gets no discount; her quote must be re-quoted at 8 x $150 = $1,200."
+    },
+    {
+     "id": "D6",
+     "direction": "Brandt booked 79 days ahead, so under the amended rule he gets 15% instead of 10%; his quote must be re-quoted at 10 x $150 = $1,500 minus 15% = $1,275."
+    },
+    {
+     "id": "D7",
+     "direction": "The January staffing budget line for Brandt's reserved crew changes from $1,350 to $1,275; the crew reservation itself stays."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Nadia Sorre the written estimate confirmation email today",
+    "correct_value": "8 crew hours at $150/h, total $1,200 with no booking discount",
+    "stale_value": "8 crew hours at $150/h, total $1,080 after the 10% booking discount"
+   },
+   "why": "The change amends the booking-discount rule: Nadia booked 47 days ahead, so her unsigned quote for a move on 12 December 2026 must be re-quoted with no discount, making $1,200 the correct total and O1's confirmation today the due act. Option a applies the revoked 10% rule and option b wrongly uses the long-distance rate for a local move. D5, D6 and D7 are touched; D1 and D3 were signed jobs for moves before 1 December 2026, D9 and D8 rest on the untouched deposit rule R2, and D2 and D4 do not rest on the discount rule, so all stay unchanged."
+  },
+  "id": "G2-04",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

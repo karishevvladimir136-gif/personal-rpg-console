@@ -1,0 +1,312 @@
+{
+ "id": "G1-08",
+ "class": 1,
+ "setting": "A dental office manager at Brightsmile Dental whose front-desk assistant tracks appointment rescheduling promises and insurance verifications",
+ "prompt_sha256": "73e1b9f66bb8125916e3bad9fe7521eac3314c0c823471100c51b1fb29790aa2",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"DeltaShield verification portal switch\",\n \"setting\": \"A dental office manager at Brightsmile Dental whose front-desk assistant tracks appointment rescheduling promises and insurance verifications\",\n \"owner\": \"Dana\",\n \"now\": \"2026-10-09\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Dana\", \"text\": \"Brightsmile Dental has two dentists, Dr. Nash and Dr. Okafor, and four treatment chairs.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Dana\", \"text\": \"Insurance eligibility must be verified before any treatment appointment is confirmed to the patient.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Dana\", \"text\": \"Every appointment rescheduling promise made to a patient is logged the same day it is made.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Priya\", \"text\": \"DeltaShield Dental is Brightsmile's largest insurer and covers about sixty percent of the practice's patients.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Priya\", \"text\": \"DeltaShield Dental processes eligibility verifications through the FastClaim portal and typically returns an answer within five business days.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Priya\", \"text\": \"The front desk opens at 7:30 and closes at 17:00 on weekdays.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-22\", \"source\": \"Dana\", \"text\": \"Northstar Dental Supply delivers consumables on the first Tuesday of each month.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Dana\", \"text\": \"For DeltaShield patients, submit the eligibility verification through FastClaim at least five business days before the planned treatment date.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Dana\", \"text\": \"Confirm treatment appointments with DeltaShield patients only after the FastClaim response has arrived.\", \"depends_on\": [\"D1\", \"R1\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Priya\", \"text\": \"For DeltaShield cases, prepare the pre-treatment cost estimate right after the FastClaim response arrives and attach it to the appointment record.\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-05\", \"source\": \"Dana\", \"text\": \"Send FastClaim verification requests for DeltaShield patients in the morning batch before 9:00.\", \"depends_on\": [\"F3\", \"F4\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-12\", \"source\": \"Priya\", \"text\": \"Meridian Health, Brightsmile's second insurer, requires verifications to be phoned in to their payer line.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Dana\", \"text\": \"Meridian Health verifications are phoned in by the front desk at 10:00 on any day a Meridian patient has a treatment appointment coming up.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Dana\", \"text\": \"Patients who reschedule less than 24 hours ahead are offered the next available slot the following week.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Dana\", \"text\": \"Dr. Okafor is on vacation 14 to 18 September and all his appointments that week were moved to Dr. Nash.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-08-10\", \"source\": \"Dana\", \"text\": \"Order 200 new patient welcome folders from Northstar Dental Supply. Done on 26 August.\", \"due\": \"2026-08-30\", \"status\": \"done\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Priya\", \"text\": \"Meridian Health now returns phone verifications within one business day for basic procedures; crown preauthorizations still take five business days.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-25\", \"source\": \"Priya\", \"text\": \"Mrs. Rosen is a DeltaShield patient scheduled for a crown with Dr. Nash on Wednesday 14 October 2026.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-28\", \"source\": \"Dana\", \"text\": \"Verify DeltaShield coverage for Mrs. Rosen's 14 October crown appointment. Not done yet.\", \"due\": \"2026-10-09\", \"status\": \"open\", \"depends_on\": [\"D1\", \"F10\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-30\", \"source\": \"Dana\", \"text\": \"Book Mrs. Rosen's crown in the 9:00 slot with Dr. Nash on 14 October and hold the chair for 90 minutes.\", \"depends_on\": [\"F10\", \"F1\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-01\", \"source\": \"Dana\", \"text\": \"A new temp, Marcus, started at the front desk on 1 October.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-02\", \"source\": \"Dana\", \"text\": \"Collect the autumn patient feedback cards and tally the results. Not done yet.\", \"due\": \"2026-11-30\", \"status\": \"open\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Dana\", \"text\": \"The practice car park is being resurfaced from 20 to 22 October.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-06\", \"source\": \"DeltaShield representative, relayed by Priya\", \"text\": \"DeltaShield Dental has switched verification processing from FastClaim to the VerifyNow portal as of 6 October 2026; FastClaim no longer accepts DeltaShield requests, and VerifyNow returns eligibility verifications within 48 hours. Meridian Health procedures are unaffected.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"Mrs. Rosen's crown is coming up next week — please get her insurance verification sorted out today.\", \"options\": [{\"id\": \"a\", \"text\": \"Submit Mrs. Rosen's verification through the FastClaim portal in Monday's morning batch.\"}, {\"id\": \"b\", \"text\": \"Phone Meridian Health's payer line to verify Mrs. Rosen's coverage today.\"}, {\"id\": \"c\", \"text\": \"Submit Mrs. Rosen's DeltaShield verification through the VerifyNow portal today.\"}, {\"id\": \"d\", \"text\": \"Reschedule Mrs. Rosen's crown to 22 October and submit the verification through FastClaim next week.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\", \"d\"],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Submit DeltaShield verifications through VerifyNow instead of FastClaim, at least 48 hours (rather than five business days) before the treatment date.\"},\n   {\"id\": \"D2\", \"direction\": \"Confirm DeltaShield treatment appointments only after the VerifyNow response arrives; confirmation can now happen on the same week as treatment.\"},\n   {\"id\": \"D3\", \"direction\": \"Prepare the pre-treatment cost estimate right after the VerifyNow response arrives and attach it to the appointment record.\"},\n   {\"id\": \"D4\", \"direction\": \"Send VerifyNow verification requests in the morning batch before 9:00; FastClaim requests are no longer possible.\"}\n  ],\n  \"untouched\": [\"D5\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Submit the DeltaShield eligibility verification for Mrs. Rosen's 14 October crown today\", \"correct_value\": \"VerifyNow portal, 48-hour turnaround\", \"stale_value\": \"FastClaim portal, five-business-day turnaround\"},\n  \"why\": \"C1 revokes F3, so every decision resting on F3 directly (D1, D4) or through D1 and D2 (D2, D3) is touched and now runs through VerifyNow with a 48-hour turnaround. D5 concerns Meridian and D6 only fixes the chair slot, so neither changes. The verification for Mrs. Rosen (O2) must therefore be submitted through VerifyNow today; acting on stale memory would use FastClaim's five-day rule, and the distractor F9 would wrongly send Dana to Meridian's phone line.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2829,
+    "completion_tokens": 4522,
+    "reasoning_tokens": 2310,
+    "cached_tokens": 0
+   },
+   "cost": 0.0238574,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "DeltaShield verification portal switch",
+  "setting": "A dental office manager at Brightsmile Dental whose front-desk assistant tracks appointment rescheduling promises and insurance verifications",
+  "owner": "Dana",
+  "now": "2026-10-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Dana",
+    "text": "Brightsmile Dental has two dentists, Dr. Nash and Dr. Okafor, and four treatment chairs."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Dana",
+    "text": "Insurance eligibility must be verified before any treatment appointment is confirmed to the patient."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Dana",
+    "text": "Every appointment rescheduling promise made to a patient is logged the same day it is made."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "DeltaShield Dental is Brightsmile's largest insurer and covers about sixty percent of the practice's patients."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Priya",
+    "text": "DeltaShield Dental processes eligibility verifications through the FastClaim portal and typically returns an answer within five business days."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Priya",
+    "text": "The front desk opens at 7:30 and closes at 17:00 on weekdays."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Dana",
+    "text": "Northstar Dental Supply delivers consumables on the first Tuesday of each month."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Dana",
+    "text": "For DeltaShield patients, submit the eligibility verification through FastClaim at least five business days before the planned treatment date.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Dana",
+    "text": "Confirm treatment appointments with DeltaShield patients only after the FastClaim response has arrived.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Priya",
+    "text": "For DeltaShield cases, prepare the pre-treatment cost estimate right after the FastClaim response arrives and attach it to the appointment record.",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-05",
+    "source": "Dana",
+    "text": "Send FastClaim verification requests for DeltaShield patients in the morning batch before 9:00.",
+    "depends_on": [
+     "F3",
+     "F4"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-12",
+    "source": "Priya",
+    "text": "Meridian Health, Brightsmile's second insurer, requires verifications to be phoned in to their payer line."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Dana",
+    "text": "Meridian Health verifications are phoned in by the front desk at 10:00 on any day a Meridian patient has a treatment appointment coming up.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Dana",
+    "text": "Patients who reschedule less than 24 hours ahead are offered the next available slot the following week."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Dana",
+    "text": "Dr. Okafor is on vacation 14 to 18 September and all his appointments that week were moved to Dr. Nash."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-08-10",
+    "source": "Dana",
+    "text": "Order 200 new patient welcome folders from Northstar Dental Supply. Done on 26 August.",
+    "due": "2026-08-30",
+    "status": "done"
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Priya",
+    "text": "Meridian Health now returns phone verifications within one business day for basic procedures; crown preauthorizations still take five business days."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Priya",
+    "text": "Mrs. Rosen is a DeltaShield patient scheduled for a crown with Dr. Nash on Wednesday 14 October 2026."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-28",
+    "source": "Dana",
+    "text": "Verify DeltaShield coverage for Mrs. Rosen's 14 October crown appointment. Not done yet.",
+    "due": "2026-10-09",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "F10"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-30",
+    "source": "Dana",
+    "text": "Book Mrs. Rosen's crown in the 9:00 slot with Dr. Nash on 14 October and hold the chair for 90 minutes.",
+    "depends_on": [
+     "F10",
+     "F1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Dana",
+    "text": "A new temp, Marcus, started at the front desk on 1 October."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-02",
+    "source": "Dana",
+    "text": "Collect the autumn patient feedback cards and tally the results. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open"
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Dana",
+    "text": "The practice car park is being resurfaced from 20 to 22 October."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-06",
+   "source": "DeltaShield representative, relayed by Priya",
+   "text": "DeltaShield Dental has switched verification processing from FastClaim to the VerifyNow portal as of 6 October 2026; FastClaim no longer accepts DeltaShield requests, and VerifyNow returns eligibility verifications within 48 hours. Meridian Health procedures are unaffected.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Mrs. Rosen's crown is coming up next week — please get her insurance verification sorted out today.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Submit Mrs. Rosen's verification through the FastClaim portal in Monday's morning batch."
+    },
+    {
+     "id": "b",
+     "text": "Phone Meridian Health's payer line to verify Mrs. Rosen's coverage today."
+    },
+    {
+     "id": "c",
+     "text": "Submit Mrs. Rosen's DeltaShield verification through the VerifyNow portal today."
+    },
+    {
+     "id": "d",
+     "text": "Reschedule Mrs. Rosen's crown to 22 October and submit the verification through FastClaim next week."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a",
+    "d"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Submit DeltaShield verifications through VerifyNow instead of FastClaim, at least 48 hours (rather than five business days) before the treatment date."
+    },
+    {
+     "id": "D2",
+     "direction": "Confirm DeltaShield treatment appointments only after the VerifyNow response arrives; confirmation can now happen on the same week as treatment."
+    },
+    {
+     "id": "D3",
+     "direction": "Prepare the pre-treatment cost estimate right after the VerifyNow response arrives and attach it to the appointment record."
+    },
+    {
+     "id": "D4",
+     "direction": "Send VerifyNow verification requests in the morning batch before 9:00; FastClaim requests are no longer possible."
+    }
+   ],
+   "untouched": [
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Submit the DeltaShield eligibility verification for Mrs. Rosen's 14 October crown today",
+    "correct_value": "VerifyNow portal, 48-hour turnaround",
+    "stale_value": "FastClaim portal, five-business-day turnaround"
+   },
+   "why": "C1 revokes F3, so every decision resting on F3 directly (D1, D4) or through D1 and D2 (D2, D3) is touched and now runs through VerifyNow with a 48-hour turnaround. D5 concerns Meridian and D6 only fixes the chair slot, so neither changes. The verification for Mrs. Rosen (O2) must therefore be submitted through VerifyNow today; acting on stale memory would use FastClaim's five-day rule, and the distractor F9 would wrongly send Dana to Meridian's phone line."
+  },
+  "id": "G1-08",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

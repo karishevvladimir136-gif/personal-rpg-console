@@ -1,0 +1,311 @@
+{
+ "id": "G4-08",
+ "class": 4,
+ "setting": "A summer camp director at Camp Blue Heron whose assistant retains staff hiring decisions, parent medical instructions, and activity schedule changes",
+ "prompt_sha256": "67594aeed32f63e7a7b7cb21a16adbb895fe5d4f6a2144f58be4ae88a4119a1d",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Canoe morning at Camp Blue Heron\",\n \"setting\": \"A summer camp director at Camp Blue Heron whose assistant retains staff hiring decisions, parent medical instructions, and activity schedule changes\",\n \"owner\": \"Dana\",\n \"now\": \"2026-08-10\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"camp office\", \"text\": \"The Osprey unit has 14 campers aged 11 to 13 this summer.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"staff file\", \"text\": \"Marta's lifeguard certification runs through March 2027.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"staff file\", \"text\": \"Ravi's lifeguard certification runs through January 2027.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-07\", \"source\": \"camp office\", \"text\": \"The camp owns one van seating 11 and one truck seating 5.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-09\", \"source\": \"camp office\", \"text\": \"The Lark Lake public boat launch is a 40-minute drive from camp.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-11\", \"source\": \"staff file\", \"text\": \"Quinn is the camp's certified archery instructor.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Pine Ridge Outfitters\", \"text\": \"Pine Ridge Outfitters rents canoes at 18 dollars per canoe per day.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"camp kitchen\", \"text\": \"Elaine runs the camp kitchen and packs boxed lunches on request with one day's notice.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-30\", \"source\": \"Pine Ridge Outfitters\", \"text\": \"Pine Ridge quoted 6 canoes for the Voyager unit's overnight canoe trip on 18-19 September.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"waterfront director\", \"text\": \"The Osprey unit's swim skill checks are complete; all 14 campers passed the intermediate level.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"camp board\", \"text\": \"Every waterfront activity needs at least two certified lifeguards on duty at all times, and no more than eight campers per lifeguard.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"camp nurse\", \"text\": \"Camper medication is given only by the camp nurse, Priya, exactly as written in each signed parent instruction form.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-04\", \"source\": \"camp board\", \"text\": \"Any activity schedule change must be posted to the parent bulletin by 18:00 the day before the activity.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Dana\", \"text\": \"The Osprey unit will do a canoe morning on Lark Lake on Thursday 13 August, departing camp at 9:00, with Marta and Ravi as the two lifeguards on duty.\", \"depends_on\": [\"F1\", \"R1\", \"F5\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-26\", \"source\": \"Dana\", \"text\": \"The van and the truck will both drive the Osprey canoe group to the Lark Lake boat launch, leaving camp at 9:00 with Marta driving the van.\", \"depends_on\": [\"D1\", \"F4\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"Dana\", \"text\": \"Rent four canoes from Pine Ridge Outfitters for the Osprey canoe morning; at three paddlers per canoe that covers the whole group of sixteen.\", \"depends_on\": [\"D1\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Dana\", \"text\": \"The archery range will be open to campers on Tuesday and Thursday afternoons from 14:00 to 16:00 with Quinn supervising.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-06\", \"source\": \"Dana\", \"text\": \"Post the notice about the Osprey canoe morning to the parent bulletin by 18:00 on Wednesday 12 August.\", \"depends_on\": [\"D1\", \"R3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Dana\", \"text\": \"The Osprey unit's regular lake swim sessions stay at the main dock with Marta and Ravi as the two lifeguards on duty.\", \"depends_on\": [\"F1\", \"F10\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-21\", \"source\": \"Dana\", \"text\": \"Book six canoes from Pine Ridge for the Voyager unit's overnight trip on 18-19 September.\", \"depends_on\": [\"F9\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-06\", \"source\": \"Dana\", \"text\": \"Confirm the canoe rental with Pine Ridge Outfitters by phone for the Osprey canoe morning. Not done yet.\", \"due\": \"2026-08-10\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-18\", \"source\": \"Dana\", \"text\": \"Collect signed parent medication forms for all Osprey campers. Done on 28 July.\", \"due\": \"2026-07-31\", \"status\": \"done\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-07-24\", \"source\": \"camp office\", \"text\": \"Submit seasonal staff contract renewals to the camp office. Not done yet.\", \"due\": \"2026-09-15\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-08-08\", \"source\": \"camp board\", \"text\": \"The waterfront rule now reads: no waterfront activity may run unless at least two certified lifeguards are present for the entire session, with no more than eight campers per lifeguard. This is the same rule as before, restated in the staff handbook for clarity; its terms are unchanged.\", \"revokes\": []},\n \"task\": {\"text\": \"Before lunch, please lock in the Osprey canoe morning for me: confirm the rental with Pine Ridge and write Marta and Ravi down as the leaders.\", \"options\": [{\"id\": \"a\", \"text\": \"Phone Pine Ridge and confirm the rental of four canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip.\"}, {\"id\": \"b\", \"text\": \"Phone Pine Ridge and confirm the rental of six canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip.\"}, {\"id\": \"c\", \"text\": \"Move the Osprey canoe morning to Wednesday 12 August with the same crew and tell Pine Ridge the new date.\"}]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Phone Pine Ridge Outfitters today to confirm the canoe rental for the Osprey canoe morning and record the two lifeguards leading it.\", \"correct_value\": \"4 canoes for Thursday 13 August, with Marta and Ravi as the two lifeguards\", \"stale_value\": null},\n  \"why\": \"The change only restates the waterfront rule in other words with identical terms, so nothing in memory becomes stale and every decision stands. The Osprey trip plan calls for four canoes on Thursday 13 August with Marta and Ravi as the two lifeguards, which satisfies the restated rule exactly as written. Six canoes belongs to the Voyager unit's September trip (F9), and moving the trip to Wednesday 12 August would change a plan that should stay.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2847,
+    "completion_tokens": 5234,
+    "reasoning_tokens": 3082,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02387812,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Canoe morning at Camp Blue Heron\",\n \"setting\": \"A summer camp director at Camp Blue Heron whose assistant retains staff hiring decisions, parent medical instructions, and activity schedule changes\",\n \"owner\": \"Dana\",\n \"now\": \"2026-08-10\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"camp office\", \"text\": \"The Osprey unit has 14 campers aged 11 to 13 this summer.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"staff file\", \"text\": \"Marta's lifeguard certification runs through March 2027.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"staff file\", \"text\": \"Ravi's lifeguard certification runs through January 2027.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-07\", \"source\": \"camp office\", \"text\": \"The camp owns one van seating 11 and one truck seating 5.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-09\", \"source\": \"camp office\", \"text\": \"The Lark Lake public boat launch is a 40-minute drive from camp.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-11\", \"source\": \"staff file\", \"text\": \"Quinn is the camp's certified archery instructor.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Pine Ridge Outfitters\", \"text\": \"Pine Ridge Outfitters rents canoes at 18 dollars per canoe per day.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"camp kitchen\", \"text\": \"Elaine runs the camp kitchen and packs boxed lunches on request with one day's notice.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-07-10\", \"source\": \"Pine Ridge Outfitters\", \"text\": \"Pine Ridge quoted 6 canoes for the Voyager unit's overnight canoe trip on 18-19 September.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-07-05\", \"source\": \"waterfront director\", \"text\": \"The Osprey unit's swim skill checks are complete; all 14 campers passed the intermediate level.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"camp board\", \"text\": \"Every waterfront activity needs at least two certified lifeguards on duty at all times, and no more than eight campers per lifeguard.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"camp nurse\", \"text\": \"Camper medication is given only by the camp nurse, Priya, exactly as written in each signed parent instruction form.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-04\", \"source\": \"camp board\", \"text\": \"Any activity schedule change must be posted to the parent bulletin by 18:00 the day before the activity.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Dana\", \"text\": \"The Osprey unit will do a canoe morning on Lark Lake on Thursday 13 August, departing camp at 9:00, with Marta and Ravi as the two lifeguards on duty.\", \"depends_on\": [\"F1\", \"R1\", \"F5\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-26\", \"source\": \"Dana\", \"text\": \"The van and the truck will both drive the Osprey canoe group to the Lark Lake boat launch, leaving camp at 9:00 with Marta driving the van.\", \"depends_on\": [\"D1\", \"F4\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-28\", \"source\": \"Dana\", \"text\": \"Rent four canoes from Pine Ridge Outfitters for the Osprey canoe morning; at three paddlers per canoe that covers the whole group of sixteen.\", \"depends_on\": [\"D1\", \"F7\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-01\", \"source\": \"Dana\", \"text\": \"The archery range will be open to campers on Tuesday and Thursday afternoons from 14:00 to 16:00 with Quinn supervising.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-07-06\", \"source\": \"Dana\", \"text\": \"Post the notice about the Osprey canoe morning to the parent bulletin by 18:00 on Wednesday 12 August.\", \"depends_on\": [\"D1\", \"R3\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Dana\", \"text\": \"The Osprey unit's regular lake swim sessions stay at the main dock with Marta and Ravi as the two lifeguards on duty.\", \"depends_on\": [\"F1\", \"F10\", \"R1\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-07-21\", \"source\": \"Dana\", \"text\": \"Book six canoes from Pine Ridge for the Voyager unit's overnight trip on 18-19 September.\", \"depends_on\": [\"F9\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-06\", \"source\": \"Dana\", \"text\": \"Confirm the canoe rental with Pine Ridge Outfitters by phone for the Osprey canoe morning. Not done yet.\", \"due\": \"2026-08-10\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-18\", \"source\": \"Dana\", \"text\": \"Collect signed parent medication forms for all Osprey campers. Done on 28 July.\", \"due\": \"2026-07-31\", \"status\": \"done\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-07-24\", \"source\": \"camp office\", \"text\": \"Submit seasonal staff contract renewals to the camp office. Not done yet.\", \"due\": \"2026-09-15\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-08-08\", \"source\": \"camp board\", \"text\": \"The waterfront rule now reads: no waterfront activity may run unless at least two certified lifeguards are present for the entire session, with no more than eight campers per lifeguard. This is the same rule as before, restated in the staff handbook for clarity; its terms are unchanged.\", \"revokes\": []},\n \"task\": {\"text\": \"Before lunch, please lock in the Osprey canoe morning for me: confirm the rental with Pine Ridge and write Marta and Ravi down as the leaders.\", \"options\": [{\"id\": \"a\", \"text\": \"Phone Pine Ridge and confirm the rental of four canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip.\"}, {\"id\": \"b\", \"text\": \"Phone Pine Ridge and confirm the rental of six canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip.\"}, {\"id\": \"c\", \"text\": \"Move the Osprey canoe morning to Wednesday 12 August with the same crew and tell Pine Ridge the new date.\"}]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Phone Pine Ridge Outfitters today to confirm the canoe rental for the Osprey canoe morning and record the two lifeguards leading it.\", \"correct_value\": \"4 canoes for Thursday 13 August, with Marta and Ravi as the two lifeguards\", \"stale_value\": null},\n  \"why\": \"The change only restates the waterfront rule in other words with identical terms, so nothing in memory becomes stale and every decision stands. The Osprey trip plan calls for four canoes on Thursday 13 August with Marta and Ravi as the two lifeguards, which satisfies the restated rule exactly as written. Six canoes belongs to the Voyager unit's September trip (F9), and moving the trip to Wednesday 12 August would change a plan that should stay.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5061,
+    "completion_tokens": 2235,
+    "reasoning_tokens": 83,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01370916,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G4-08: D6: depends on later-dated F10\n- G4-08: D7: depends on later-dated F9\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Canoe morning at Camp Blue Heron",
+  "setting": "A summer camp director at Camp Blue Heron whose assistant retains staff hiring decisions, parent medical instructions, and activity schedule changes",
+  "owner": "Dana",
+  "now": "2026-08-10",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "camp office",
+    "text": "The Osprey unit has 14 campers aged 11 to 13 this summer."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "staff file",
+    "text": "Marta's lifeguard certification runs through March 2027."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "staff file",
+    "text": "Ravi's lifeguard certification runs through January 2027."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-07",
+    "source": "camp office",
+    "text": "The camp owns one van seating 11 and one truck seating 5."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-09",
+    "source": "camp office",
+    "text": "The Lark Lake public boat launch is a 40-minute drive from camp."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-11",
+    "source": "staff file",
+    "text": "Quinn is the camp's certified archery instructor."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Pine Ridge Outfitters",
+    "text": "Pine Ridge Outfitters rents canoes at 18 dollars per canoe per day."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "camp kitchen",
+    "text": "Elaine runs the camp kitchen and packs boxed lunches on request with one day's notice."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Pine Ridge Outfitters",
+    "text": "Pine Ridge quoted 6 canoes for the Voyager unit's overnight canoe trip on 18-19 September."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-07-05",
+    "source": "waterfront director",
+    "text": "The Osprey unit's swim skill checks are complete; all 14 campers passed the intermediate level."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "camp board",
+    "text": "Every waterfront activity needs at least two certified lifeguards on duty at all times, and no more than eight campers per lifeguard."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "camp nurse",
+    "text": "Camper medication is given only by the camp nurse, Priya, exactly as written in each signed parent instruction form."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-04",
+    "source": "camp board",
+    "text": "Any activity schedule change must be posted to the parent bulletin by 18:00 the day before the activity."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Dana",
+    "text": "The Osprey unit will do a canoe morning on Lark Lake on Thursday 13 August, departing camp at 9:00, with Marta and Ravi as the two lifeguards on duty.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-26",
+    "source": "Dana",
+    "text": "The van and the truck will both drive the Osprey canoe group to the Lark Lake boat launch, leaving camp at 9:00 with Marta driving the van.",
+    "depends_on": [
+     "D1",
+     "F4"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "Dana",
+    "text": "Rent four canoes from Pine Ridge Outfitters for the Osprey canoe morning; at three paddlers per canoe that covers the whole group of sixteen.",
+    "depends_on": [
+     "D1",
+     "F7"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Dana",
+    "text": "The archery range will be open to campers on Tuesday and Thursday afternoons from 14:00 to 16:00 with Quinn supervising.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-06",
+    "source": "Dana",
+    "text": "Post the notice about the Osprey canoe morning to the parent bulletin by 18:00 on Wednesday 12 August.",
+    "depends_on": [
+     "D1",
+     "R3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-16",
+    "source": "Dana",
+    "text": "The Osprey unit's regular lake swim sessions stay at the main dock with Marta and Ravi as the two lifeguards on duty.",
+    "depends_on": [
+     "F1",
+     "F10",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-21",
+    "source": "Dana",
+    "text": "Book six canoes from Pine Ridge for the Voyager unit's overnight trip on 18-19 September.",
+    "depends_on": [
+     "F9"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-06",
+    "source": "Dana",
+    "text": "Confirm the canoe rental with Pine Ridge Outfitters by phone for the Osprey canoe morning. Not done yet.",
+    "due": "2026-08-10",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-18",
+    "source": "Dana",
+    "text": "Collect signed parent medication forms for all Osprey campers. Done on 28 July.",
+    "due": "2026-07-31",
+    "status": "done"
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-07-24",
+    "source": "camp office",
+    "text": "Submit seasonal staff contract renewals to the camp office. Not done yet.",
+    "due": "2026-09-15",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-08-08",
+   "source": "camp board",
+   "text": "The waterfront rule now reads: no waterfront activity may run unless at least two certified lifeguards are present for the entire session, with no more than eight campers per lifeguard. This is the same rule as before, restated in the staff handbook for clarity; its terms are unchanged.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Before lunch, please lock in the Osprey canoe morning for me: confirm the rental with Pine Ridge and write Marta and Ravi down as the leaders.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Phone Pine Ridge and confirm the rental of four canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip."
+    },
+    {
+     "id": "b",
+     "text": "Phone Pine Ridge and confirm the rental of six canoes for Thursday 13 August, and schedule Marta and Ravi as the two lifeguards on duty for the trip."
+    },
+    {
+     "id": "c",
+     "text": "Move the Osprey canoe morning to Wednesday 12 August with the same crew and tell Pine Ridge the new date."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Phone Pine Ridge Outfitters today to confirm the canoe rental for the Osprey canoe morning and record the two lifeguards leading it.",
+    "correct_value": "4 canoes for Thursday 13 August, with Marta and Ravi as the two lifeguards",
+    "stale_value": null
+   },
+   "why": "The change only restates the waterfront rule in other words with identical terms, so nothing in memory becomes stale and every decision stands. The Osprey trip plan calls for four canoes on Thursday 13 August with Marta and Ravi as the two lifeguards, which satisfies the restated rule exactly as written. Six canoes belongs to the Voyager unit's September trip (F9), and moving the trip to Wednesday 12 August would change a plan that should stay."
+  },
+  "id": "G4-08",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

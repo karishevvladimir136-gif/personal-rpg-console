@@ -1,0 +1,356 @@
+{
+ "id": "G4-11",
+ "class": 4,
+ "setting": "A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements",
+ "prompt_sha256": "d384978ae4e57e7211bc36f6cba51bdee7746cfb18870ab2046a19e8dabb1de0",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Slip for the Kestrel\",\n \"setting\": \"A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements\",\n \"owner\": \"Ray\",\n \"now\": \"2026-09-28\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ray\", \"text\": \"Pelican Point Marina has 42 slips: south dock slips C-1 to C-20 and north dock slips N-1 to N-22.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ray\", \"text\": \"Seasonal and long-stay slips are assigned strictly in waiting-list order; when a slip frees up, it is offered to the person at the top of the list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Ray\", \"text\": \"Winter storage invoices go out on 15 October and payment is due by 30 November.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Ray\", \"text\": \"The fuel dock is open 8:00 to 17:00 daily through the season.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"office\", \"text\": \"Marlow's sloop Kestrel joined the slip waiting list on 20 June as number three on the list.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Ray\", \"text\": \"The winter dry-storage rate for 2026-27 is 18 dollars per foot of boat length.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-30\", \"source\": \"office\", \"text\": \"South dock in-water monthly rate for visiting boats is 12.50 dollars per foot per month.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-30\", \"source\": \"Ray\", \"text\": \"Hedley's sloop Pepper gets slip C-14 on the south dock for July through September.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"office\", \"text\": \"Post the new pump-out schedule at both dock gates. Done on 5 July.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-05\", \"source\": \"Ray\", \"text\": \"Boats paying the winter storage invoice by 30 November get a 10 percent discount off the 18-dollar-per-foot rate.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-12\", \"source\": \"office\", \"text\": \"The pump-out station at the north dock is out of service until 20 July.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"office\", \"text\": \"Twenty-two boats are registered for the August regatta.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Ray\", \"text\": \"The regatta fleet will raft at the outer breakwater on regatta weekend rather than take guest slips.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-28\", \"source\": \"office\", \"text\": \"North dock in-water monthly rate is 15 dollars per foot per month, reflecting its deeper water and shore power.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"office\", \"text\": \"Two names remain ahead of Marlow on the slip waiting list.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Hedley\", \"text\": \"Hedley confirmed that Pepper leaves the marina on 30 September, so slip C-14 becomes free on 1 October.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Ray\", \"text\": \"When C-14 frees up on 1 October, it goes to the top of the waiting list; the list will have run down to Marlow by then, so Kestrel takes C-14 from 1 October through next spring.\", \"depends_on\": [\"R1\", \"F10\", \"F9\", \"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Ray\", \"text\": \"Kestrel will be billed at the south dock in-water monthly rate for its stay, starting 1 October.\", \"depends_on\": [\"D4\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"office\", \"text\": \"The marina office is closed on Mondays for staff training during September.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Ray\", \"text\": \"The Duarte family's catamaran gets slip C-7 from the top of the waiting list when the current holder leaves in November.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Ray\", \"text\": \"Confirm Kestrel's slip to Marlow in writing with the slip number, start date and monthly rate by 28 September. Not done yet.\", \"due\": \"2026-09-28\", \"status\": \"open\", \"depends_on\": [\"D4\", \"D5\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"office\", \"text\": \"Cormorant Charters is giving up north dock slip N-9 on 1 October, and the north dock has openings from that date.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Ray\", \"text\": \"Send out the winter storage invoices to all berth holders. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"R2\", \"D2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"office\", \"text\": \"The harbor dredge is scheduled for the first week of November, blocking the north dock fairway on weekdays.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"Ray\", \"text\": \"North dock winter residents will be moved to the work quay during the dredge week and returned afterwards.\", \"depends_on\": [\"F13\", \"F1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-09-26\", \"source\": \"Ray\", \"text\": \"Restating the standing practice so it is on paper in plainer words: whenever a slip becomes available, the person who has been on the waiting list longest is the one who gets the offer. This says the same thing as the existing practice and changes nothing about it.\", \"revokes\": []},\n \"task\": {\"text\": \"Marlow just called — Kestrel arrives Thursday. Get his slip sorted and send him the confirmation.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Email Marlow confirming slip C-14 on the south dock for Kestrel from 1 October at 12.50 dollars per foot per month.\"},\n  {\"id\": \"b\", \"text\": \"Email Marlow confirming slip N-9 on the north dock for Kestrel from 1 October at 15 dollars per foot per month.\"},\n  {\"id\": \"c\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at 12.50 dollars per foot per month, and tell Hedley to move Pepper out of C-14 by 25 September.\"},\n  {\"id\": \"d\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at the winter storage rate of 18 dollars per foot.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\", \"d\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F12\", \"F8\", \"F4\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Marlow the written confirmation of Kestrel's slip with slip number, start date and monthly rate.\", \"correct_value\": \"Slip C-14, south dock, from 1 October, at 12.50 dollars per foot per month.\", \"stale_value\": null},\n  \"why\": \"The change only restates the waitlist rule in other words and revokes nothing, so every decision stands as it is. D4 and D5 already fixed Kestrel in slip C-14 from 1 October at the south dock rate, and the restated rule produces exactly the same outcome. Option b wrongly acts on the north dock opening in F12 and its rate in F8, option d wrongly applies the winter storage rate from F4, and option c needlessly disrupts Pepper's paid stay, which runs to 30 September.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2845,
+    "completion_tokens": 3945,
+    "reasoning_tokens": 1637,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01820372,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Slip for the Kestrel\",\n \"setting\": \"A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements\",\n \"owner\": \"Ray\",\n \"now\": \"2026-09-28\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ray\", \"text\": \"Pelican Point Marina has 42 slips: south dock slips C-1 to C-20 and north dock slips N-1 to N-22.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ray\", \"text\": \"Seasonal and long-stay slips are assigned strictly in waiting-list order; when a slip frees up, it is offered to the person at the top of the list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Ray\", \"text\": \"Winter storage invoices go out on 15 October and payment is due by 30 November.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Ray\", \"text\": \"The fuel dock is open 8:00 to 17:00 daily through the season.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"office\", \"text\": \"Marlow's sloop Kestrel joined the slip waiting list on 20 June as number three on the list.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Ray\", \"text\": \"South dock in-water monthly rate for visiting boats is 12.50 dollars per foot per month.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-30\", \"source\": \"Ray\", \"text\": \"Hedley's sloop Pepper gets slip C-14 on the south dock for July through September.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"office\", \"text\": \"Post the new pump-out schedule at both dock gates. Done on 5 July.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"office\", \"text\": \"The winter dry-storage rate for 2026-27 has been set at 18 dollars per foot of boat length.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-25\", \"source\": \"Ray\", \"text\": \"Boats paying the winter storage invoice by 30 November get a 10 percent discount off the 18-dollar-per-foot rate.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-12\", \"source\": \"office\", \"text\": \"The pump-out station at the north dock is out of service until 20 July.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"office\", \"text\": \"Twenty-two boats are registered for the August regatta.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Ray\", \"text\": \"The regatta fleet will raft at the outer breakwater on regatta weekend rather than take guest slips.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-28\", \"source\": \"office\", \"text\": \"North dock in-water monthly rate is 15 dollars per foot per month, reflecting its deeper water and shore power.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"office\", \"text\": \"Two names remain ahead of Marlow on the slip waiting list.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Hedley\", \"text\": \"Hedley confirmed that Pepper leaves the marina on 30 September, so slip C-14 becomes free on 1 October.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Ray\", \"text\": \"When C-14 frees up on 1 October, it goes to the top of the waiting list; the list will have run down to Marlow by then, so Kestrel takes C-14 from 1 October through next spring.\", \"depends_on\": [\"R1\", \"F10\", \"F9\", \"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Ray\", \"text\": \"Kestrel will be billed at the south dock in-water monthly rate for its stay, starting 1 October.\", \"depends_on\": [\"D4\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"office\", \"text\": \"The marina office is closed on Mondays for staff training during September.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Ray\", \"text\": \"The Duarte family's catamaran gets slip C-7 from the top of the waiting list when the current holder leaves in November.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Ray\", \"text\": \"Confirm Kestrel's slip to Marlow in writing with the slip number, start date and monthly rate by 28 September. Not done yet.\", \"due\": \"2026-09-28\", \"status\": \"open\", \"depends_on\": [\"D4\", \"D5\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"office\", \"text\": \"Cormorant Charters is giving up north dock slip N-9 on 1 October, and the north dock has openings from that date.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Ray\", \"text\": \"Send out the winter storage invoices to all berth holders. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"R2\", \"D2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"office\", \"text\": \"The harbor dredge is scheduled for the first week of November, blocking the north dock fairway on weekdays.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"Ray\", \"text\": \"North dock winter residents will be moved to the work quay during the dredge week and returned afterwards.\", \"depends_on\": [\"F13\", \"F1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-09-26\", \"source\": \"Ray\", \"text\": \"Restating the standing practice so it is on paper in plainer words: whenever a slip becomes available, the person who has been on the waiting list longest is the one who gets the offer. This says the same thing as the existing practice and changes nothing about it.\", \"revokes\": []},\n \"task\": {\"text\": \"Marlow just called — Kestrel arrives Thursday. Get his slip sorted and send him the confirmation.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Email Marlow confirming slip C-14 on the south dock for Kestrel from 1 October at 12.50 dollars per foot per month.\"},\n  {\"id\": \"b\", \"text\": \"Email Marlow confirming slip N-9 on the north dock for Kestrel from 1 October at 15 dollars per foot per month.\"},\n  {\"id\": \"c\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at 12.50 dollars per foot per month, and tell Hedley to move Pepper out of C-14 by 25 September.\"},\n  {\"id\": \"d\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at the winter storage rate of 18 dollars per foot.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\", \"d\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F12\", \"F8\", \"F4\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Marlow the written confirmation of Kestrel's slip with slip number, start date and monthly rate.\", \"correct_value\": \"Slip C-14, south dock, from 1 October, at 12.50 dollars per foot per month.\", \"stale_value\": null},\n  \"why\": \"The change only restates the waitlist rule in other words and revokes nothing, so every decision stands as it is. D4 and D5 already fixed Kestrel in slip C-14 from 1 October at the south dock rate, and the restated rule produces exactly the same outcome. Option b wrongly acts on the north dock opening in F12 and its rate in F8, option d wrongly applies the winter storage rate from F4, and option c needlessly disrupts Pepper's paid stay, which runs to 30 September.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5212,
+    "completion_tokens": 2451,
+    "reasoning_tokens": 140,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01487096,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G4-11: distractor F4 must be in the newer half of the history (on or after 2026-07-20)\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Slip for the Kestrel\",\n \"setting\": \"A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements\",\n \"owner\": \"Ray\",\n \"now\": \"2026-09-28\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Ray\", \"text\": \"Pelican Point Marina has 42 slips: south dock slips C-1 to C-20 and north dock slips N-1 to N-22.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Ray\", \"text\": \"Seasonal and long-stay slips are assigned strictly in waiting-list order; when a slip frees up, it is offered to the person at the top of the list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Ray\", \"text\": \"Winter storage invoices go out on 15 October and payment is due by 30 November.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Ray\", \"text\": \"The fuel dock is open 8:00 to 17:00 daily through the season.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"office\", \"text\": \"Marlow's sloop Kestrel joined the slip waiting list on 20 June as number three on the list.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Ray\", \"text\": \"South dock in-water monthly rate for visiting boats is 12.50 dollars per foot per month.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-30\", \"source\": \"Ray\", \"text\": \"Hedley's sloop Pepper gets slip C-14 on the south dock for July through September.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-02\", \"source\": \"office\", \"text\": \"Post the new pump-out schedule at both dock gates. Done on 5 July.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-12\", \"source\": \"office\", \"text\": \"The pump-out station at the north dock is out of service until 20 July.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-18\", \"source\": \"office\", \"text\": \"Twenty-two boats are registered for the August regatta.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"Ray\", \"text\": \"The regatta fleet will raft at the outer breakwater on regatta weekend rather than take guest slips.\", \"depends_on\": [\"F7\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-26\", \"source\": \"office\", \"text\": \"The winter dry-storage rate for 2026-27 has been set at 18 dollars per foot of boat length.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-29\", \"source\": \"Ray\", \"text\": \"Boats paying the winter storage invoice by 30 November get a 10 percent discount off the 18-dollar-per-foot rate.\", \"depends_on\": [\"F4\", \"R2\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"office\", \"text\": \"North dock in-water monthly rate is 15 dollars per foot per month, reflecting its deeper water and shore power.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"office\", \"text\": \"Two names remain ahead of Marlow on the slip waiting list.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-12\", \"source\": \"Hedley\", \"text\": \"Hedley confirmed that Pepper leaves the marina on 30 September, so slip C-14 becomes free on 1 October.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Ray\", \"text\": \"When C-14 frees up on 1 October, it goes to the top of the waiting list; the list will have run down to Marlow by then, so Kestrel takes C-14 from 1 October through next spring.\", \"depends_on\": [\"R1\", \"F10\", \"F9\", \"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Ray\", \"text\": \"Kestrel will be billed at the south dock in-water monthly rate for its stay, starting 1 October.\", \"depends_on\": [\"D4\", \"F5\"]},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"office\", \"text\": \"The marina office is closed on Mondays for staff training during September.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Ray\", \"text\": \"The Duarte family's catamaran gets slip C-7 from the top of the waiting list when the current holder leaves in November.\", \"depends_on\": [\"R1\", \"F1\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Ray\", \"text\": \"Confirm Kestrel's slip to Marlow in writing with the slip number, start date and monthly rate by 28 September. Not done yet.\", \"due\": \"2026-09-28\", \"status\": \"open\", \"depends_on\": [\"D4\", \"D5\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"office\", \"text\": \"Cormorant Charters is giving up north dock slip N-9 on 1 October, and the north dock has openings from that date.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Ray\", \"text\": \"Send out the winter storage invoices to all berth holders. Not done yet.\", \"due\": \"2026-10-15\", \"status\": \"open\", \"depends_on\": [\"R2\", \"D2\"]},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"office\", \"text\": \"The harbor dredge is scheduled for the first week of November, blocking the north dock fairway on weekdays.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-24\", \"source\": \"Ray\", \"text\": \"North dock winter residents will be moved to the work quay during the dredge week and returned afterwards.\", \"depends_on\": [\"F13\", \"F1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-09-26\", \"source\": \"Ray\", \"text\": \"Restating the standing practice so it is on paper in plainer words: whenever a slip becomes available, the person who has been on the waiting list longest is the one who gets the offer. This says the same thing as the existing practice and changes nothing about it.\", \"revokes\": []},\n \"task\": {\"text\": \"Marlow just called — Kestrel arrives Thursday. Get his slip sorted and send him the confirmation.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Email Marlow confirming slip C-14 on the south dock for Kestrel from 1 October at 12.50 dollars per foot per month.\"},\n  {\"id\": \"b\", \"text\": \"Email Marlow confirming slip N-9 on the north dock for Kestrel from 1 October at 15 dollars per foot per month.\"},\n  {\"id\": \"c\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at 12.50 dollars per foot per month, and tell Hedley to move Pepper out of C-14 by 25 September.\"},\n  {\"id\": \"d\", \"text\": \"Email Marlow confirming slip C-14 from 1 October at the winter storage rate of 18 dollars per foot.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\", \"d\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F12\", \"F8\", \"F4\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send Marlow the written confirmation of Kestrel's slip with slip number, start date and monthly rate.\", \"correct_value\": \"Slip C-14, south dock, from 1 October, at 12.50 dollars per foot per month.\", \"stale_value\": null},\n  \"why\": \"The change only restates the waitlist rule in other words and revokes nothing, so every decision stands as it is. D4 and D5 already fixed Kestrel in slip C-14 from 1 October at the south dock rate, and the restated rule produces exactly the same outcome. Option b wrongly acts on the north dock opening in F12 and its rate in F8, option d wrongly applies the winter storage rate from F4, and option c needlessly disrupts Pepper's paid stay, which runs to 30 September.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7582,
+    "completion_tokens": 2362,
+    "reasoning_tokens": 51,
+    "cached_tokens": 5184
+   },
+   "cost": 0.01509784,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G4-11: distractor F4 must be in the newer half of the history (on or after 2026-07-25)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "Slip for the Kestrel",
+  "setting": "A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements",
+  "owner": "Ray",
+  "now": "2026-09-28",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Ray",
+    "text": "Pelican Point Marina has 42 slips: south dock slips C-1 to C-20 and north dock slips N-1 to N-22."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Ray",
+    "text": "Seasonal and long-stay slips are assigned strictly in waiting-list order; when a slip frees up, it is offered to the person at the top of the list."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Ray",
+    "text": "Winter storage invoices go out on 15 October and payment is due by 30 November."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Ray",
+    "text": "The fuel dock is open 8:00 to 17:00 daily through the season."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "office",
+    "text": "Marlow's sloop Kestrel joined the slip waiting list on 20 June as number three on the list."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Ray",
+    "text": "South dock in-water monthly rate for visiting boats is 12.50 dollars per foot per month."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-30",
+    "source": "Ray",
+    "text": "Hedley's sloop Pepper gets slip C-14 on the south dock for July through September.",
+    "depends_on": [
+     "R1",
+     "F1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-02",
+    "source": "office",
+    "text": "Post the new pump-out schedule at both dock gates. Done on 5 July.",
+    "due": "2026-07-10",
+    "status": "done"
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-12",
+    "source": "office",
+    "text": "The pump-out station at the north dock is out of service until 20 July."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-18",
+    "source": "office",
+    "text": "Twenty-two boats are registered for the August regatta."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Ray",
+    "text": "The regatta fleet will raft at the outer breakwater on regatta weekend rather than take guest slips.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-26",
+    "source": "office",
+    "text": "The winter dry-storage rate for 2026-27 has been set at 18 dollars per foot of boat length."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-29",
+    "source": "Ray",
+    "text": "Boats paying the winter storage invoice by 30 November get a 10 percent discount off the 18-dollar-per-foot rate.",
+    "depends_on": [
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "office",
+    "text": "North dock in-water monthly rate is 15 dollars per foot per month, reflecting its deeper water and shore power."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "office",
+    "text": "Two names remain ahead of Marlow on the slip waiting list."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-12",
+    "source": "Hedley",
+    "text": "Hedley confirmed that Pepper leaves the marina on 30 September, so slip C-14 becomes free on 1 October."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-15",
+    "source": "Ray",
+    "text": "When C-14 frees up on 1 October, it goes to the top of the waiting list; the list will have run down to Marlow by then, so Kestrel takes C-14 from 1 October through next spring.",
+    "depends_on": [
+     "R1",
+     "F10",
+     "F9",
+     "F3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Ray",
+    "text": "Kestrel will be billed at the south dock in-water monthly rate for its stay, starting 1 October.",
+    "depends_on": [
+     "D4",
+     "F5"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "office",
+    "text": "The marina office is closed on Mondays for staff training during September."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Ray",
+    "text": "The Duarte family's catamaran gets slip C-7 from the top of the waiting list when the current holder leaves in November.",
+    "depends_on": [
+     "R1",
+     "F1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-01",
+    "source": "Ray",
+    "text": "Confirm Kestrel's slip to Marlow in writing with the slip number, start date and monthly rate by 28 September. Not done yet.",
+    "due": "2026-09-28",
+    "status": "open",
+    "depends_on": [
+     "D4",
+     "D5"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "office",
+    "text": "Cormorant Charters is giving up north dock slip N-9 on 1 October, and the north dock has openings from that date."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "Ray",
+    "text": "Send out the winter storage invoices to all berth holders. Not done yet.",
+    "due": "2026-10-15",
+    "status": "open",
+    "depends_on": [
+     "R2",
+     "D2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "office",
+    "text": "The harbor dredge is scheduled for the first week of November, blocking the north dock fairway on weekdays."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-24",
+    "source": "Ray",
+    "text": "North dock winter residents will be moved to the work quay during the dredge week and returned afterwards.",
+    "depends_on": [
+     "F13",
+     "F1"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-09-26",
+   "source": "Ray",
+   "text": "Restating the standing practice so it is on paper in plainer words: whenever a slip becomes available, the person who has been on the waiting list longest is the one who gets the offer. This says the same thing as the existing practice and changes nothing about it.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Marlow just called — Kestrel arrives Thursday. Get his slip sorted and send him the confirmation.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Marlow confirming slip C-14 on the south dock for Kestrel from 1 October at 12.50 dollars per foot per month."
+    },
+    {
+     "id": "b",
+     "text": "Email Marlow confirming slip N-9 on the north dock for Kestrel from 1 October at 15 dollars per foot per month."
+    },
+    {
+     "id": "c",
+     "text": "Email Marlow confirming slip C-14 from 1 October at 12.50 dollars per foot per month, and tell Hedley to move Pepper out of C-14 by 25 September."
+    },
+    {
+     "id": "d",
+     "text": "Email Marlow confirming slip C-14 from 1 October at the winter storage rate of 18 dollars per foot."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b",
+    "d"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F12",
+    "F8",
+    "F4"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Marlow the written confirmation of Kestrel's slip with slip number, start date and monthly rate.",
+    "correct_value": "Slip C-14, south dock, from 1 October, at 12.50 dollars per foot per month.",
+    "stale_value": null
+   },
+   "why": "The change only restates the waitlist rule in other words and revokes nothing, so every decision stands as it is. D4 and D5 already fixed Kestrel in slip C-14 from 1 October at the south dock rate, and the restated rule produces exactly the same outcome. Option b wrongly acts on the north dock opening in F12 and its rate in F8, option d wrongly applies the winter storage rate from F4, and option c needlessly disrupts Pepper's paid stay, which runs to 30 September."
+  },
+  "id": "G4-11",
+  "class": 4
+ },
+ "errors": [
+  "G4-11: distractor F4 must be in the newer half of the history (on or after 2026-07-29)"
+ ],
+ "valid": false
+}

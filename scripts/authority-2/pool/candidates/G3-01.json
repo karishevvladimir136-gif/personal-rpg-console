@@ -1,0 +1,354 @@
+{
+ "id": "G3-01",
+ "class": 3,
+ "setting": "A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices",
+ "prompt_sha256": "d290c9417e59465bc39a6d423b84ede4e74c654cc6c02b0665f036023c34e816",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The Remeasured Suit\",\n \"setting\": \"A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices\",\n \"owner\": \"Mira\",\n \"now\": \"2026-10-22\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo's chest measures 102 cm and his sleeve length is 64 cm, taken at his first visit.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Mira\", \"text\": \"Norlind Mills is on the atelier's approved supplier list and charges 85 euros per metre for charcoal Super 120s wool.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Mira\", \"text\": \"Chen & Thread Atelier is open Tuesday to Saturday, 9:00 to 18:00.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-14\", \"source\": \"Mira\", \"text\": \"Mr. Bell takes a 34-inch waist and 30-inch inside leg for his trousers.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Mira\", \"text\": \"Mrs. Petrov chose an ivory silk twill for her winter gala dress, to be sourced from Maison Lys.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Mira\", \"text\": \"The atelier has two fitting rooms; fitting slots run 45 minutes each.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Norlind Mills\", \"text\": \"Norlind Mills needs 10 working days from order to delivery of wool cloth.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-06-13\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo wants a single-breasted two-piece charcoal suit.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Hartley Mills\", \"text\": \"Hartley Mills quoted 3.4 metres of navy wool at 78 euros per metre for the atelier's autumn sample run.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Mira\", \"text\": \"The atelier's autumn window display theme is planned around grey and camel tones.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Mira\", \"text\": \"All fabric is ordered only from suppliers on the approved list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Mira\", \"text\": \"If a client's measurements are older than 12 months when cutting begins, re-measure the client before cutting.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Mira\", \"text\": \"Fittings for two-piece suits are booked on Saturday mornings in 45-minute slots.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Mira\", \"text\": \"Cut Mr. Okonkwo's jacket pattern to size 40R based on his measurements; a 40R two-piece in charcoal Super 120s needs 3.2 metres of cloth.\", \"depends_on\": [\"F1\", \"F8\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Mira\", \"text\": \"Finish Mr. Okonkwo's jacket sleeves at 64 cm with working buttonholes.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Mira\", \"text\": \"Order the cloth for Mr. Okonkwo's suit from Norlind Mills: 3.2 metres of charcoal Super 120s, to arrive well before his fitting.\", \"depends_on\": [\"D1\", \"F2\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Mira\", \"text\": \"Cut Mr. Bell's trousers from the 34-inch waist block with 1.5 metres of grey flannel from the shop stock.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Mira\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys for Mrs. Petrov's gala dress.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Mira\", \"text\": \"Book Mr. Okonkwo's first fitting for Saturday 14 November at 10:00 in fitting room 1.\", \"depends_on\": [\"F7\", \"R3\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Mira\", \"text\": \"Set the made-to-measure two-piece price list at 950 euros for the autumn season.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-01\", \"source\": \"Mira\", \"text\": \"Hire a part-time apprentice for Tuesdays and Thursdays starting in October.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-03\", \"source\": \"Mira\", \"text\": \"Place the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills. Not done yet.\", \"due\": \"2026-10-22\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-25\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a measurement card after his first visit. Done on 26 June.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-16\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a written confirmation of his 14 November fitting. Not done yet.\", \"due\": \"2026-11-05\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo was re-measured on 20 October: his chest is 108 cm, not 102 cm, so the pattern moves to size 44R and the cloth requirement rises to 3.6 metres. His sleeve length stays 64 cm and everything else about the suit is unchanged.\", \"revokes\": [\"F1\"]},\n \"task\": {\"text\": \"Mr. Okonkwo's fitting is coming up — please place his cloth order with the mill today.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 3.2 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"b\", \"text\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"c\", \"text\": \"Order 3.4 metres of navy wool from Hartley Mills.\"},\n  {\"id\": \"d\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Cut the jacket pattern to size 44R based on the 108 cm chest; the cloth requirement becomes 3.6 metres.\"},\n   {\"id\": \"D2\", \"direction\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills instead of 3.2 metres.\"}\n  ],\n  \"untouched\": [\"D3\", \"D4\", \"D5\", \"D6\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Placing the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills today.\", \"correct_value\": \"3.6 metres of charcoal Super 120s\", \"stale_value\": \"3.2 metres of charcoal Super 120s\"},\n  \"why\": \"The correction revokes F1's chest measurement, so D1 (pattern size and cloth quantity) and D2 (the fabric order resting on D1) are touched through the chain; the order must be 3.6 metres. D3 rests on F1 only for sleeve length, which the correction explicitly leaves at 64 cm, so it stands, as do all other decisions. The Hartley Mills navy quote is an unrelated sample-run offer and the Maison Lys order belongs to another client.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2828,
+    "completion_tokens": 4331,
+    "reasoning_tokens": 2084,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01987832,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The Remeasured Suit\",\n \"setting\": \"A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices\",\n \"owner\": \"Mira\",\n \"now\": \"2026-10-22\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo's chest measures 102 cm and his sleeve length is 64 cm, taken at his first visit.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Mira\", \"text\": \"Norlind Mills is on the atelier's approved supplier list and charges 85 euros per metre for charcoal Super 120s wool.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Mira\", \"text\": \"Chen & Thread Atelier is open Tuesday to Saturday, 9:00 to 18:00.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-14\", \"source\": \"Mira\", \"text\": \"Mr. Bell takes a 34-inch waist and 30-inch inside leg for his trousers.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Mira\", \"text\": \"Mrs. Petrov chose an ivory silk twill for her winter gala dress, to be sourced from Maison Lys.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Mira\", \"text\": \"The atelier has two fitting rooms; fitting slots run 45 minutes each.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Norlind Mills\", \"text\": \"Norlind Mills needs 10 working days from order to delivery of wool cloth.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-06-13\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo wants a single-breasted two-piece charcoal suit.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Hartley Mills\", \"text\": \"Hartley Mills quoted 3.4 metres of navy wool at 78 euros per metre for the atelier's autumn sample run.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Mira\", \"text\": \"The atelier's autumn window display theme is planned around grey and camel tones.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Mira\", \"text\": \"All fabric is ordered only from suppliers on the approved list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Mira\", \"text\": \"If a client's measurements are older than 12 months when cutting begins, re-measure the client before cutting.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Mira\", \"text\": \"Fittings for two-piece suits are booked on Saturday mornings in 45-minute slots.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Mira\", \"text\": \"Cut Mr. Okonkwo's jacket pattern to size 40R based on his measurements; a 40R two-piece in charcoal Super 120s needs 3.2 metres of cloth.\", \"depends_on\": [\"F1\", \"F8\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Mira\", \"text\": \"Finish Mr. Okonkwo's jacket sleeves at 64 cm with working buttonholes.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Mira\", \"text\": \"Order the cloth for Mr. Okonkwo's suit from Norlind Mills: 3.2 metres of charcoal Super 120s, to arrive well before his fitting.\", \"depends_on\": [\"D1\", \"F2\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Mira\", \"text\": \"Cut Mr. Bell's trousers from the 34-inch waist block with 1.5 metres of grey flannel from the shop stock.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Mira\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys for Mrs. Petrov's gala dress.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Mira\", \"text\": \"Book Mr. Okonkwo's first fitting for Saturday 14 November at 10:00 in fitting room 1.\", \"depends_on\": [\"F7\", \"R3\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Mira\", \"text\": \"Set the made-to-measure two-piece price list at 950 euros for the autumn season.\", \"depends_on\": [\"F10\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-01\", \"source\": \"Mira\", \"text\": \"Hire a part-time apprentice for Tuesdays and Thursdays starting in October.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-03\", \"source\": \"Mira\", \"text\": \"Place the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills. Not done yet.\", \"due\": \"2026-10-22\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-25\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a measurement card after his first visit. Done on 26 June.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-16\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a written confirmation of his 14 November fitting. Not done yet.\", \"due\": \"2026-11-05\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo was re-measured on 20 October: his chest is 108 cm, not 102 cm, so the pattern moves to size 44R and the cloth requirement rises to 3.6 metres. His sleeve length stays 64 cm and everything else about the suit is unchanged.\", \"revokes\": [\"F1\"]},\n \"task\": {\"text\": \"Mr. Okonkwo's fitting is coming up — please place his cloth order with the mill today.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 3.2 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"b\", \"text\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"c\", \"text\": \"Order 3.4 metres of navy wool from Hartley Mills.\"},\n  {\"id\": \"d\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Cut the jacket pattern to size 44R based on the 108 cm chest; the cloth requirement becomes 3.6 metres.\"},\n   {\"id\": \"D2\", \"direction\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills instead of 3.2 metres.\"}\n  ],\n  \"untouched\": [\"D3\", \"D4\", \"D5\", \"D6\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Placing the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills today.\", \"correct_value\": \"3.6 metres of charcoal Super 120s\", \"stale_value\": \"3.2 metres of charcoal Super 120s\"},\n  \"why\": \"The correction revokes F1's chest measurement, so D1 (pattern size and cloth quantity) and D2 (the fabric order resting on D1) are touched through the chain; the order must be 3.6 metres. D3 rests on F1 only for sleeve length, which the correction explicitly leaves at 64 cm, so it stands, as do all other decisions. The Hartley Mills navy quote is an unrelated sample-run offer and the Maison Lys order belongs to another client.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5135,
+    "completion_tokens": 2307,
+    "reasoning_tokens": 42,
+    "cached_tokens": 2816
+   },
+   "cost": 0.01412956,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-01: D7: a decision must cite depends_on\n- G3-01: D8: a decision must cite depends_on\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The Remeasured Suit\",\n \"setting\": \"A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices\",\n \"owner\": \"Mira\",\n \"now\": \"2026-10-22\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo's chest measures 102 cm and his sleeve length is 64 cm, taken at his first visit.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Mira\", \"text\": \"Norlind Mills is on the atelier's approved supplier list and charges 85 euros per metre for charcoal Super 120s wool.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"Mira\", \"text\": \"Chen & Thread Atelier is open Tuesday to Saturday, 9:00 to 18:00.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-14\", \"source\": \"Mira\", \"text\": \"Mr. Bell takes a 34-inch waist and 30-inch inside leg for his trousers.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-02\", \"source\": \"Mira\", \"text\": \"Mrs. Petrov chose an ivory silk twill for her winter gala dress, to be sourced from Maison Lys.\"},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-08\", \"source\": \"Mira\", \"text\": \"The atelier has two fitting rooms; fitting slots run 45 minutes each.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"Norlind Mills\", \"text\": \"Norlind Mills needs 10 working days from order to delivery of wool cloth.\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-06-13\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo wants a single-breasted two-piece charcoal suit.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Hartley Mills\", \"text\": \"Hartley Mills quoted 3.4 metres of navy wool at 78 euros per metre for the atelier's autumn sample run.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-05\", \"source\": \"Mira\", \"text\": \"The atelier's autumn window display theme is planned around grey and camel tones.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Mira\", \"text\": \"All fabric is ordered only from suppliers on the approved list.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"Mira\", \"text\": \"If a client's measurements are older than 12 months when cutting begins, re-measure the client before cutting.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Mira\", \"text\": \"Fittings for two-piece suits are booked on Saturday mornings in 45-minute slots.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Mira\", \"text\": \"Cut Mr. Okonkwo's jacket pattern to size 40R based on his measurements; a 40R two-piece in charcoal Super 120s needs 3.2 metres of cloth.\", \"depends_on\": [\"F1\", \"F8\"]},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-06-22\", \"source\": \"Mira\", \"text\": \"Finish Mr. Okonkwo's jacket sleeves at 64 cm with working buttonholes.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-02\", \"source\": \"Mira\", \"text\": \"Order the cloth for Mr. Okonkwo's suit from Norlind Mills: 3.2 metres of charcoal Super 120s, to arrive well before his fitting.\", \"depends_on\": [\"D1\", \"F2\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-16\", \"source\": \"Mira\", \"text\": \"Cut Mr. Bell's trousers from the 34-inch waist block with 1.5 metres of grey flannel from the shop stock.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-05\", \"source\": \"Mira\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys for Mrs. Petrov's gala dress.\", \"depends_on\": [\"F5\", \"R1\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Mira\", \"text\": \"Book Mr. Okonkwo's first fitting for Saturday 14 November at 10:00 in fitting room 1.\", \"depends_on\": [\"F7\", \"R3\"]},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Mira\", \"text\": \"Set the made-to-measure two-piece price list at 950 euros for the autumn season.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-01\", \"source\": \"Mira\", \"text\": \"Hire a part-time apprentice for Tuesdays and Thursdays starting in October.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-03\", \"source\": \"Mira\", \"text\": \"Place the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills. Not done yet.\", \"due\": \"2026-10-22\", \"status\": \"open\", \"depends_on\": [\"D2\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-25\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a measurement card after his first visit. Done on 26 June.\", \"due\": \"2026-07-10\", \"status\": \"done\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-09-16\", \"source\": \"Mira\", \"text\": \"Send Mr. Okonkwo a written confirmation of his 14 November fitting. Not done yet.\", \"due\": \"2026-11-05\", \"status\": \"open\", \"depends_on\": [\"D6\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"Mira\", \"text\": \"Mr. Okonkwo was re-measured on 20 October: his chest is 108 cm, not 102 cm, so the pattern moves to size 44R and the cloth requirement rises to 3.6 metres. His sleeve length stays 64 cm and everything else about the suit is unchanged.\", \"revokes\": [\"F1\"]},\n \"task\": {\"text\": \"Mr. Okonkwo's fitting is coming up — please place his cloth order with the mill today.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Order 3.2 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"b\", \"text\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills.\"},\n  {\"id\": \"c\", \"text\": \"Order 3.4 metres of navy wool from Hartley Mills.\"},\n  {\"id\": \"d\", \"text\": \"Order 4 metres of ivory silk twill from Maison Lys.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F1\"],\n  \"distractor_items\": [\"F9\"],\n  \"touched\": [\n   {\"id\": \"D1\", \"direction\": \"Cut the jacket pattern to size 44R based on the 108 cm chest; the cloth requirement becomes 3.6 metres.\"},\n   {\"id\": \"D2\", \"direction\": \"Order 3.6 metres of charcoal Super 120s from Norlind Mills instead of 3.2 metres.\"}\n  ],\n  \"untouched\": [\"D3\", \"D4\", \"D5\", \"D6\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Placing the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills today.\", \"correct_value\": \"3.6 metres of charcoal Super 120s\", \"stale_value\": \"3.2 metres of charcoal Super 120s\"},\n  \"why\": \"The correction revokes F1's chest measurement, so D1 (pattern size and cloth quantity) and D2 (the fabric order resting on D1) are touched through the chain; the order must be 3.6 metres. D3 rests on F1 only for sleeve length, which the correction explicitly leaves at 64 cm, so it stands, as do all other decisions. The Hartley Mills navy quote is an unrelated sample-run offer and the Maison Lys order belongs to another client.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7445,
+    "completion_tokens": 2368,
+    "reasoning_tokens": 103,
+    "cached_tokens": 5120
+   },
+   "cost": 0.0150054,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- G3-01: D7: depends on later-dated F10\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "scenario": {
+  "title": "The Remeasured Suit",
+  "setting": "A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices",
+  "owner": "Mira",
+  "now": "2026-10-22",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Mira",
+    "text": "Mr. Okonkwo's chest measures 102 cm and his sleeve length is 64 cm, taken at his first visit."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Mira",
+    "text": "Norlind Mills is on the atelier's approved supplier list and charges 85 euros per metre for charcoal Super 120s wool."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "Mira",
+    "text": "Chen & Thread Atelier is open Tuesday to Saturday, 9:00 to 18:00."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-14",
+    "source": "Mira",
+    "text": "Mr. Bell takes a 34-inch waist and 30-inch inside leg for his trousers."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Mira",
+    "text": "Mrs. Petrov chose an ivory silk twill for her winter gala dress, to be sourced from Maison Lys."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Mira",
+    "text": "The atelier has two fitting rooms; fitting slots run 45 minutes each."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Norlind Mills",
+    "text": "Norlind Mills needs 10 working days from order to delivery of wool cloth."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-06-13",
+    "source": "Mira",
+    "text": "Mr. Okonkwo wants a single-breasted two-piece charcoal suit."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Hartley Mills",
+    "text": "Hartley Mills quoted 3.4 metres of navy wool at 78 euros per metre for the atelier's autumn sample run."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Mira",
+    "text": "The atelier's autumn window display theme is planned around grey and camel tones."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Mira",
+    "text": "All fabric is ordered only from suppliers on the approved list."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Mira",
+    "text": "If a client's measurements are older than 12 months when cutting begins, re-measure the client before cutting."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Mira",
+    "text": "Fittings for two-piece suits are booked on Saturday mornings in 45-minute slots."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Mira",
+    "text": "Cut Mr. Okonkwo's jacket pattern to size 40R based on his measurements; a 40R two-piece in charcoal Super 120s needs 3.2 metres of cloth.",
+    "depends_on": [
+     "F1",
+     "F8"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Mira",
+    "text": "Finish Mr. Okonkwo's jacket sleeves at 64 cm with working buttonholes.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Mira",
+    "text": "Order the cloth for Mr. Okonkwo's suit from Norlind Mills: 3.2 metres of charcoal Super 120s, to arrive well before his fitting.",
+    "depends_on": [
+     "D1",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-16",
+    "source": "Mira",
+    "text": "Cut Mr. Bell's trousers from the 34-inch waist block with 1.5 metres of grey flannel from the shop stock.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Mira",
+    "text": "Order 4 metres of ivory silk twill from Maison Lys for Mrs. Petrov's gala dress.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Mira",
+    "text": "Book Mr. Okonkwo's first fitting for Saturday 14 November at 10:00 in fitting room 1.",
+    "depends_on": [
+     "F7",
+     "R3"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Mira",
+    "text": "Set the made-to-measure two-piece price list at 950 euros for the autumn season.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-01",
+    "source": "Mira",
+    "text": "Hire a part-time apprentice for Tuesdays and Thursdays starting in October.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-03",
+    "source": "Mira",
+    "text": "Place the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills. Not done yet.",
+    "due": "2026-10-22",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-25",
+    "source": "Mira",
+    "text": "Send Mr. Okonkwo a measurement card after his first visit. Done on 26 June.",
+    "due": "2026-07-10",
+    "status": "done"
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-16",
+    "source": "Mira",
+    "text": "Send Mr. Okonkwo a written confirmation of his 14 November fitting. Not done yet.",
+    "due": "2026-11-05",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "Mira",
+   "text": "Mr. Okonkwo was re-measured on 20 October: his chest is 108 cm, not 102 cm, so the pattern moves to size 44R and the cloth requirement rises to 3.6 metres. His sleeve length stays 64 cm and everything else about the suit is unchanged.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Mr. Okonkwo's fitting is coming up — please place his cloth order with the mill today.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 3.2 metres of charcoal Super 120s from Norlind Mills."
+    },
+    {
+     "id": "b",
+     "text": "Order 3.6 metres of charcoal Super 120s from Norlind Mills."
+    },
+    {
+     "id": "c",
+     "text": "Order 3.4 metres of navy wool from Hartley Mills."
+    },
+    {
+     "id": "d",
+     "text": "Order 4 metres of ivory silk twill from Maison Lys."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Cut the jacket pattern to size 44R based on the 108 cm chest; the cloth requirement becomes 3.6 metres."
+    },
+    {
+     "id": "D2",
+     "direction": "Order 3.6 metres of charcoal Super 120s from Norlind Mills instead of 3.2 metres."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Placing the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills today.",
+    "correct_value": "3.6 metres of charcoal Super 120s",
+    "stale_value": "3.2 metres of charcoal Super 120s"
+   },
+   "why": "The correction revokes F1's chest measurement, so D1 (pattern size and cloth quantity) and D2 (the fabric order resting on D1) are touched through the chain; the order must be 3.6 metres. D3 rests on F1 only for sleeve length, which the correction explicitly leaves at 64 cm, so it stands, as do all other decisions. The Hartley Mills navy quote is an unrelated sample-run offer and the Maison Lys order belongs to another client."
+  },
+  "id": "G3-01",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

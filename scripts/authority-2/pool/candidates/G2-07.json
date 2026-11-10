@@ -1,0 +1,340 @@
+{
+ "id": "G2-07",
+ "class": 2,
+ "setting": "A senior software consultant at Bluepeak Advisors who relies on an assistant to recall client meeting takeaways and scope-change acknowledgments",
+ "prompt_sha256": "c1cf7df9dcd3eba88487ed6eb2a0a2d348ce3ef07cf19fdeeffaa3bccc5744b8",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Change-order threshold raised\",\n \"setting\": \"A senior software consultant at Bluepeak Advisors who relies on an assistant to recall client meeting takeaways and scope-change acknowledgments\",\n \"owner\": \"Nadia\",\n \"now\": \"2026-10-26\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Nadia is a senior software consultant at Bluepeak Advisors; her main clients are Coastline Freight, Tinberry Labs and Arden Retail Group.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"owner\", \"text\": \"Coastline Freight's project sponsor is Tanya Okafor and their day-to-day contact is Priya Menon.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-04\", \"source\": \"owner\", \"text\": \"Coastline Freight's freight-reporting module runs on the Quillstack platform, hosted at the Northgate Data Centre.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Bluepeak operations\", \"text\": \"Any client-requested scope change estimated above 8 hours needs a countersigned change order from the client's project sponsor before work is booked; changes of 8 hours or fewer need only an email acknowledgement from the client contact.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"owner\", \"text\": \"Send each client contact weekly status notes by close of business on Friday.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-06-02\", \"source\": \"owner\", \"text\": \"Record takeaways from every client meeting in the assistant's memory within 24 hours of the meeting.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"owner\", \"text\": \"Tinberry Labs' day-to-day contact is Ravi Sundar and their project sponsor is Lena Brandt.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-15\", \"source\": \"Priya Menon\", \"text\": \"Coastline Freight asked for a 9-hour change to the reporting module: extra filters on the CSV exports.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-16\", \"source\": \"owner\", \"text\": \"The 9-hour CSV-filter change for Coastline Freight requires a countersigned change order from Tanya Okafor before it is booked; the order was signed two days later and the work was delivered in June.\", \"depends_on\": [\"R1\", \"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-01\", \"source\": \"owner\", \"text\": \"Arden Retail Group's day-to-day contact is Sofia Reyes and their project sponsor is Hugo Lindqvist.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-20\", \"source\": \"owner\", \"text\": \"Move Coastline Freight's weekly status call to Thursday at 10:00 instead of Tuesday.\", \"depends_on\": [\"F2\", \"R2\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Northgate Data Centre\", \"text\": \"Northgate Data Centre has a maintenance window on Saturday 12 September 2026 from 06:00 to 10:00 UTC; hosted reporting will be unavailable.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"owner\", \"text\": \"Send Tinberry Labs the Q3 consulting invoice for 4,800 euros. Done on 28 September.\", \"due\": \"2026-09-30\", \"status\": \"done\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"owner\", \"text\": \"Upgrade Coastline Freight's reporting module to Quillstack 5.2 during the November maintenance slot.\", \"depends_on\": [\"F3\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-14\", \"source\": \"Sofia Reyes\", \"text\": \"Arden Retail's stock-sync module runs its nightly job at 02:00 UTC and occasionally overruns into the morning window.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Priya Menon\", \"text\": \"Coastline Freight requested a 10-hour change to the reporting module: scheduled PDF digest attachments for the weekly freight summaries.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-10-05\", \"source\": \"owner\", \"text\": \"Hold the 10-hour PDF-digest change for Coastline Freight: book nothing into the sprint until Tanya Okafor has countersigned a change order for it.\", \"depends_on\": [\"R1\", \"F9\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-10-09\", \"source\": \"owner\", \"text\": \"Decline Arden Retail's request that Nadia take over maintenance of their email server; it is outside Bluepeak's consulting scope.\", \"depends_on\": [\"F6\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-14\", \"source\": \"Sofia Reyes\", \"text\": \"Arden Retail requested an 18-hour change to migrate three years of order history into their new analytics store.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-10-15\", \"source\": \"owner\", \"text\": \"Arden Retail's 18-hour order-history migration requires a countersigned change order from Hugo Lindqvist before any work is booked.\", \"depends_on\": [\"R1\", \"F10\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-15\", \"source\": \"Bluepeak operations\", \"text\": \"Complete Bluepeak's annual data-protection refresher course. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-10-19\", \"source\": \"Ravi Sundar\", \"text\": \"Tinberry Labs requested a 13-hour change to add automatic retries to their API webhook connector.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-10-19\", \"source\": \"owner\", \"text\": \"Tinberry Labs' 13-hour webhook-retry change requires a countersigned change order from Lena Brandt before any work starts on it.\", \"depends_on\": [\"R1\", \"F11\"]},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-20\", \"source\": \"owner\", \"text\": \"Because the Coastline PDF-digest change is on hold pending a countersigned change order, allocate the sprint's 12 hours of spare capacity next week to the Arden stock-sync job overrun fix instead.\", \"depends_on\": [\"D4\", \"F8\"]},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-21\", \"source\": \"Devlin Osei\", \"text\": \"Coastline Freight's operations lead Devlin Osei asked for a full redesign of the freight dashboard; Nadia's estimate is 20 hours and she told him she would look at scheduling it.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-26\", \"source\": \"Priya Menon\", \"text\": \"This morning Coastline Freight sent a new request: add SMS notification digests to the freight-reporting module, estimated at 12 hours of work.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-26\", \"source\": \"owner\", \"text\": \"Send out the paperwork for Coastline Freight's SMS-digest change request and get it booked into the sprint. Not done yet.\", \"due\": \"2026-10-26\", \"status\": \"open\", \"depends_on\": [\"R1\"]}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-26\", \"source\": \"Marcus Feld, Bluepeak operations director\", \"text\": \"The change-order rule is amended, effective for requests received on or after 1 October 2026: the threshold rises from 8 hours to 15 hours, so changes above 15 hours still need a countersigned change order from the client's project sponsor, while changes of 15 hours or fewer need only an email acknowledgement from the client contact. Requests received before 1 October 2026 keep the old 8-hour threshold. Reason: clients complained that small changes were being slowed by paperwork, and the announcement was delayed by an admin slip.\", \"revokes\": [\"R1\"]},\n \"task\": {\"text\": \"Priya just emailed me about adding SMS notification digests to the freight-reporting module — she reckons about 12 hours of work. Please sort out the paperwork and get it into the sprint.\", \"options\": [{\"id\": \"a\", \"text\": \"Send Tanya a change order for the 12-hour SMS-digest change to countersign, and hold all booking until it comes back signed.\"}, {\"id\": \"b\", \"text\": \"Send Priya an email asking her to acknowledge the 12-hour SMS-digest change by reply, and book 12 hours into the sprint.\"}, {\"id\": \"c\", \"text\": \"Send Devlin a note confirming that the 20-hour dashboard redesign is booked into the sprint.\"}]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"R1\"],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D4\", \"direction\": \"The 10-hour PDF-digest change was received on 5 October, so under the amended rule it needs only Priya's email acknowledgement and can be booked into the sprint now.\"},\n   {\"id\": \"D7\", \"direction\": \"The 13-hour Tinberry webhook-retry change was received on 19 October, so under the amended rule it needs only Ravi's email acknowledgement, not a countersigned change order from Lena.\"},\n   {\"id\": \"D8\", \"direction\": \"The sprint's 12 spare hours were allocated to the Arden stock-sync fix only because the 10-hour Coastline digest change was on hold; that hold is lifted, so the allocation must be redone to fit the digest change.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D5\", \"D6\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Send the paperwork for today's 12-hour Coastline SMS-digest change and book it into the sprint.\", \"correct_value\": \"email acknowledgement from Priya for the 12-hour change, then book 12 hours\", \"stale_value\": \"countersigned change order from Tanya for the 12-hour change before booking\"},\n  \"why\": \"The amendment raises the change-order threshold from 8 to 15 hours for requests received on or after 1 October 2026, so the 12-hour SMS-digest request needs only Priya's email acknowledgement before booking. The 10-hour and 13-hour changes received in October fall under the new threshold, voiding D4 and D7 and, through D4, the sprint allocation in D8. The June 9-hour change (D1) and the 18-hour Arden change (D6) keep the change-order route — D1 predates 1 October and D6 exceeds 15 hours — and D2, D3 and D5 have nothing to do with the rule. The 20-hour dashboard redesign (F12) is a separate, undecided request and must not be booked.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2829,
+    "completion_tokens": 8601,
+    "reasoning_tokens": 5823,
+    "cached_tokens": 2752
+   },
+   "cost": 0.03866772,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Change-order threshold raised",
+  "setting": "A senior software consultant at Bluepeak Advisors who relies on an assistant to recall client meeting takeaways and scope-change acknowledgments",
+  "owner": "Nadia",
+  "now": "2026-10-26",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "owner",
+    "text": "Nadia is a senior software consultant at Bluepeak Advisors; her main clients are Coastline Freight, Tinberry Labs and Arden Retail Group."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Coastline Freight's project sponsor is Tanya Okafor and their day-to-day contact is Priya Menon."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "owner",
+    "text": "Coastline Freight's freight-reporting module runs on the Quillstack platform, hosted at the Northgate Data Centre."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Bluepeak operations",
+    "text": "Any client-requested scope change estimated above 8 hours needs a countersigned change order from the client's project sponsor before work is booked; changes of 8 hours or fewer need only an email acknowledgement from the client contact."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Send each client contact weekly status notes by close of business on Friday."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "owner",
+    "text": "Record takeaways from every client meeting in the assistant's memory within 24 hours of the meeting."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "owner",
+    "text": "Tinberry Labs' day-to-day contact is Ravi Sundar and their project sponsor is Lena Brandt."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Priya Menon",
+    "text": "Coastline Freight asked for a 9-hour change to the reporting module: extra filters on the CSV exports."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-16",
+    "source": "owner",
+    "text": "The 9-hour CSV-filter change for Coastline Freight requires a countersigned change order from Tanya Okafor before it is booked; the order was signed two days later and the work was delivered in June.",
+    "depends_on": [
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "owner",
+    "text": "Arden Retail Group's day-to-day contact is Sofia Reyes and their project sponsor is Hugo Lindqvist."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "owner",
+    "text": "Move Coastline Freight's weekly status call to Thursday at 10:00 instead of Tuesday.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-05",
+    "source": "Northgate Data Centre",
+    "text": "Northgate Data Centre has a maintenance window on Saturday 12 September 2026 from 06:00 to 10:00 UTC; hosted reporting will be unavailable."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "owner",
+    "text": "Send Tinberry Labs the Q3 consulting invoice for 4,800 euros. Done on 28 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "owner",
+    "text": "Upgrade Coastline Freight's reporting module to Quillstack 5.2 during the November maintenance slot.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Sofia Reyes",
+    "text": "Arden Retail's stock-sync module runs its nightly job at 02:00 UTC and occasionally overruns into the morning window."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Priya Menon",
+    "text": "Coastline Freight requested a 10-hour change to the reporting module: scheduled PDF digest attachments for the weekly freight summaries."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Hold the 10-hour PDF-digest change for Coastline Freight: book nothing into the sprint until Tanya Okafor has countersigned a change order for it.",
+    "depends_on": [
+     "R1",
+     "F9"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-09",
+    "source": "owner",
+    "text": "Decline Arden Retail's request that Nadia take over maintenance of their email server; it is outside Bluepeak's consulting scope.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-14",
+    "source": "Sofia Reyes",
+    "text": "Arden Retail requested an 18-hour change to migrate three years of order history into their new analytics store."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-15",
+    "source": "owner",
+    "text": "Arden Retail's 18-hour order-history migration requires a countersigned change order from Hugo Lindqvist before any work is booked.",
+    "depends_on": [
+     "R1",
+     "F10"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-15",
+    "source": "Bluepeak operations",
+    "text": "Complete Bluepeak's annual data-protection refresher course. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open"
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-19",
+    "source": "Ravi Sundar",
+    "text": "Tinberry Labs requested a 13-hour change to add automatic retries to their API webhook connector."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-19",
+    "source": "owner",
+    "text": "Tinberry Labs' 13-hour webhook-retry change requires a countersigned change order from Lena Brandt before any work starts on it.",
+    "depends_on": [
+     "R1",
+     "F11"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-20",
+    "source": "owner",
+    "text": "Because the Coastline PDF-digest change is on hold pending a countersigned change order, allocate the sprint's 12 hours of spare capacity next week to the Arden stock-sync job overrun fix instead.",
+    "depends_on": [
+     "D4",
+     "F8"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-21",
+    "source": "Devlin Osei",
+    "text": "Coastline Freight's operations lead Devlin Osei asked for a full redesign of the freight dashboard; Nadia's estimate is 20 hours and she told him she would look at scheduling it."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-26",
+    "source": "Priya Menon",
+    "text": "This morning Coastline Freight sent a new request: add SMS notification digests to the freight-reporting module, estimated at 12 hours of work."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-26",
+    "source": "owner",
+    "text": "Send out the paperwork for Coastline Freight's SMS-digest change request and get it booked into the sprint. Not done yet.",
+    "due": "2026-10-26",
+    "status": "open",
+    "depends_on": [
+     "R1"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-26",
+   "source": "Marcus Feld, Bluepeak operations director",
+   "text": "The change-order rule is amended, effective for requests received on or after 1 October 2026: the threshold rises from 8 hours to 15 hours, so changes above 15 hours still need a countersigned change order from the client's project sponsor, while changes of 15 hours or fewer need only an email acknowledgement from the client contact. Requests received before 1 October 2026 keep the old 8-hour threshold. Reason: clients complained that small changes were being slowed by paperwork, and the announcement was delayed by an admin slip.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Priya just emailed me about adding SMS notification digests to the freight-reporting module — she reckons about 12 hours of work. Please sort out the paperwork and get it into the sprint.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Tanya a change order for the 12-hour SMS-digest change to countersign, and hold all booking until it comes back signed."
+    },
+    {
+     "id": "b",
+     "text": "Send Priya an email asking her to acknowledge the 12-hour SMS-digest change by reply, and book 12 hours into the sprint."
+    },
+    {
+     "id": "c",
+     "text": "Send Devlin a note confirming that the 20-hour dashboard redesign is booked into the sprint."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The 10-hour PDF-digest change was received on 5 October, so under the amended rule it needs only Priya's email acknowledgement and can be booked into the sprint now."
+    },
+    {
+     "id": "D7",
+     "direction": "The 13-hour Tinberry webhook-retry change was received on 19 October, so under the amended rule it needs only Ravi's email acknowledgement, not a countersigned change order from Lena."
+    },
+    {
+     "id": "D8",
+     "direction": "The sprint's 12 spare hours were allocated to the Arden stock-sync fix only because the 10-hour Coastline digest change was on hold; that hold is lifted, so the allocation must be redone to fit the digest change."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the paperwork for today's 12-hour Coastline SMS-digest change and book it into the sprint.",
+    "correct_value": "email acknowledgement from Priya for the 12-hour change, then book 12 hours",
+    "stale_value": "countersigned change order from Tanya for the 12-hour change before booking"
+   },
+   "why": "The amendment raises the change-order threshold from 8 to 15 hours for requests received on or after 1 October 2026, so the 12-hour SMS-digest request needs only Priya's email acknowledgement before booking. The 10-hour and 13-hour changes received in October fall under the new threshold, voiding D4 and D7 and, through D4, the sprint allocation in D8. The June 9-hour change (D1) and the 18-hour Arden change (D6) keep the change-order route — D1 predates 1 October and D6 exceeds 15 hours — and D2, D3 and D5 have nothing to do with the rule. The 20-hour dashboard redesign (F12) is a separate, undecided request and must not be booked."
+  },
+  "id": "G2-07",
+  "class": 2
+ },
+ "errors": [],
+ "valid": true
+}

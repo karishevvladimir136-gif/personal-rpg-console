@@ -1,0 +1,349 @@
+{
+ "id": "G4-07",
+ "class": 4,
+ "setting": "A hardware store owner at Timpson Supply Co. whose assistant notes special-order commitments made to regular contractors",
+ "prompt_sha256": "738f926472a432a761da3038d5432e29d077e1cfea765530d304c699a0b0134b",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Cedar for Ray's crew\",\n  \"setting\": \"A hardware store owner at Timpson Supply Co. whose assistant notes special-order commitments made to regular contractors\",\n  \"owner\": \"Marty\",\n  \"now\": \"2026-10-06\",\n  \"items\": [\n    {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marty\", \"text\": \"Timpson Supply Co. buys its cedar decking boards from Lakeland Timber Yard, at 28 dollars per board on standing terms.\"},\n    {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marty\", \"text\": \"Ray's Builders is a regular contractor account with Timpson Supply Co.; Ray Ottwell runs a four-person crew doing deck builds.\"},\n    {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marty\", \"text\": \"Any special order over 500 dollars total needs Marty's written approval before it is placed with the supplier.\"},\n    {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Marty\", \"text\": \"Regular contractor accounts get 10 percent off the supplier list price on special orders.\"},\n    {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Dana at Lakeland Timber\", \"text\": \"Lakeland Timber Yard delivers to contractor job sites on Tuesdays and Fridays, morning slots only.\"},\n    {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-14\", \"source\": \"Marty\", \"text\": \"Hana's Finish Crew is a regular contractor account, mostly interior trim and fasteners.\"},\n    {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Marty\", \"text\": \"The store opens at 7 a.m. on weekdays and 8 a.m. on Saturdays.\"},\n    {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-25\", \"source\": \"Marty\", \"text\": \"Approved Hana's Finish Crew's standing monthly order of finish nails and screws from Bolton Fastener Co., capped at 400 dollars a month.\", \"depends_on\": [\"F4\", \"R1\"]},\n    {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Marty\", \"text\": \"Timpson Supply Co. sponsors the county fair in August with a 250-dollar booth fee.\"},\n    {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Marty\", \"text\": \"Decided to move the annual inventory count to the last weekend of September.\", \"depends_on\": [\"F5\"]},\n    {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-15\", \"source\": \"Marty\", \"text\": \"Store staff are Petra (counter), Silas (warehouse), and Jonah (deliveries).\"},\n    {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marty\", \"text\": \"Pay Lakeland Timber Yard the July invoice of 1,120 dollars by the end of August. Done on 14 August.\", \"due\": \"2026-08-31\", \"status\": \"done\"},\n    {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-04\", \"source\": \"Ray Ottwell\", \"text\": \"Ray's Builders has a deck rebuild booked on Maple Grove Lane starting the week of 12 October.\"},\n    {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marty\", \"text\": \"Agreed to sponsor the county fair booth again, same 250-dollar fee as last year.\", \"depends_on\": [\"F6\"]},\n    {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-08-18\", \"source\": \"Marty\", \"text\": \"Lakeland Timber Yard's current cedar decking stock is 5/4-inch radius-edge boards in 8-foot lengths.\"},\n    {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-08-25\", \"source\": \"Marty\", \"text\": \"Petra takes her holiday the first week of October, so Silas covers the counter.\"},\n    {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-09-02\", \"source\": \"Marty\", \"text\": \"Decided that from October on, special orders for contractor job sites include delivery in the quoted price, no separate delivery fee.\", \"depends_on\": [\"F3\", \"R2\"]},\n    {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-08\", \"source\": \"Ray Ottwell\", \"text\": \"Ray needs 40 cedar decking boards for the Maple Grove Lane deck, delivered straight to the job site.\"},\n    {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-09-10\", \"source\": \"Marty\", \"text\": \"Approved Ray's Builders' special order of 40 cedar decking boards from Lakeland Timber Yard at 28 dollars per board list price, with the 10 percent contractor discount, delivery included.\", \"depends_on\": [\"F1\", \"F11\", \"R1\", \"R2\"]},\n    {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-09-12\", \"source\": \"Dana at Lakeland Timber\", \"text\": \"Lakeland Timber Yard has 40 cedar boards of the 8-foot radius-edge type set aside for Timpson Supply Co., held until 10 October.\"},\n    {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-15\", \"source\": \"Marty\", \"text\": \"Scheduled the cedar delivery to the Maple Grove Lane job site for Friday 9 October, morning slot, with Jonah driving.\", \"depends_on\": [\"D5\", \"F3\", \"F8\"]},\n    {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Marty\", \"text\": \"The annual inventory count is confirmed for the weekend of 26–27 September.\"},\n    {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-09-20\", \"source\": \"Marty\", \"text\": \"Meadowbrook Mill, a new regional mill, quoted cedar decking boards at 24 dollars each for same-week delivery.\"},\n    {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Marty\", \"text\": \"Turned down the Meadowbrook Mill cedar quote for now, because the boards are rough-sawn rather than radius-edge; kept Lakeland Timber Yard as the cedar supplier.\", \"depends_on\": [\"F14\", \"F9\", \"D5\"]},\n    {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-09-25\", \"source\": \"Marty\", \"text\": \"Place Ray's Builders' cedar order with Lakeland Timber Yard by Tuesday 6 October so the boards ship for the Friday delivery. Not done yet.\", \"due\": \"2026-10-06\", \"status\": \"open\", \"depends_on\": [\"D5\", \"D6\"]},\n    {\"id\": \"F15\", \"kind\": \"state\", \"date\": \"2026-09-28\", \"source\": \"Marty\", \"text\": \"The inventory count went fine; stock levels matched records to within two items.\"},\n    {\"id\": \"F16\", \"kind\": \"state\", \"date\": \"2026-09-30\", \"source\": \"Hana Kessler\", \"text\": \"Hana's Finish Crew wants a bulk order of stainless trim screws placed in mid-November.\"},\n    {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-01\", \"source\": \"Marty\", \"text\": \"Place Hana's November bulk screw order with Bolton Fastener Co. by 13 November. Not done yet.\", \"due\": \"2026-11-13\", \"status\": \"open\", \"depends_on\": [\"D1\", \"F16\"]},\n    {\"id\": \"F17\", \"kind\": \"state\", \"date\": \"2026-10-03\", \"source\": \"Petra\", \"text\": \"Petra is back from holiday as of Monday 5 October.\"}\n  ],\n  \"change\": {\"id\": \"C1\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"Marty\", \"text\": \"Timpson Supply Co. has signed on Meadowbrook Mill as a second supplier for pine fencing pickets only; cedar decking continues to come from Lakeland Timber Yard, and nothing else about supplier arrangements changes.\", \"revokes\": []},\n  \"task\": {\"text\": \"Can you get Ray's cedar order placed today? I want it arriving at the Maple Grove Lane site before his crew starts.\", \"options\": [\n    {\"id\": \"a\", \"text\": \"Order 40 cedar boards from Meadowbrook Mill at 24 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning.\"},\n    {\"id\": \"b\", \"text\": \"Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 16 October, morning.\"},\n    {\"id\": \"c\", \"text\": \"Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning, no delivery fee.\"},\n    {\"id\": \"d\", \"text\": \"Order 20 cedar boards from Lakeland Timber Yard and 20 from Meadowbrook Mill, delivery to Maple Grove Lane on Friday 9 October, morning.\"}\n  ]},\n  \"truth\": {\n    \"correct_options\": [\"c\"],\n    \"stale_options\": [],\n    \"distractor_options\": [\"a\"],\n    \"unnecessary_options\": [\"b\", \"d\"],\n    \"stale_items\": [],\n    \"distractor_items\": [\"F14\"],\n    \"touched\": [],\n    \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\"],\n    \"obligations_due\": [\"O2\"],\n    \"obligation_due\": {\"id\": \"O2\", \"act\": \"Place Ray's Builders' cedar order with Lakeland Timber Yard so it ships for the Friday 9 October delivery to Maple Grove Lane.\", \"correct_value\": \"40 boards from Lakeland Timber Yard at 28 dollars each less the 10 percent contractor discount, delivery included, Friday 9 October 2026, morning slot\", \"stale_value\": null},\n    \"why\": \"The change only adds Meadowbrook Mill as a supplier for pine fencing pickets; cedar decking still comes from Lakeland Timber Yard, and no decision rests on anything the change revokes (it revokes nothing). D5 and D6 stand as approved: 40 boards from Lakeland at 28 dollars with the 10 percent contractor discount and free delivery, arriving Friday 9 October before Ray's crew starts the week of 12 October. Option a wrongly acts on the declined Meadowbrook quote (F14, a distractor); options b and d needlessly change a standing plan by delaying or splitting the order.\"\n  }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2836,
+    "completion_tokens": 3585,
+    "reasoning_tokens": 973,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01660712,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Cedar for Ray's crew",
+  "setting": "A hardware store owner at Timpson Supply Co. whose assistant notes special-order commitments made to regular contractors",
+  "owner": "Marty",
+  "now": "2026-10-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marty",
+    "text": "Timpson Supply Co. buys its cedar decking boards from Lakeland Timber Yard, at 28 dollars per board on standing terms."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marty",
+    "text": "Ray's Builders is a regular contractor account with Timpson Supply Co.; Ray Ottwell runs a four-person crew doing deck builds."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marty",
+    "text": "Any special order over 500 dollars total needs Marty's written approval before it is placed with the supplier."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marty",
+    "text": "Regular contractor accounts get 10 percent off the supplier list price on special orders."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Dana at Lakeland Timber",
+    "text": "Lakeland Timber Yard delivers to contractor job sites on Tuesdays and Fridays, morning slots only."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-14",
+    "source": "Marty",
+    "text": "Hana's Finish Crew is a regular contractor account, mostly interior trim and fasteners."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marty",
+    "text": "The store opens at 7 a.m. on weekdays and 8 a.m. on Saturdays."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Marty",
+    "text": "Approved Hana's Finish Crew's standing monthly order of finish nails and screws from Bolton Fastener Co., capped at 400 dollars a month.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marty",
+    "text": "Timpson Supply Co. sponsors the county fair in August with a 250-dollar booth fee."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Marty",
+    "text": "Decided to move the annual inventory count to the last weekend of September.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Marty",
+    "text": "Store staff are Petra (counter), Silas (warehouse), and Jonah (deliveries)."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marty",
+    "text": "Pay Lakeland Timber Yard the July invoice of 1,120 dollars by the end of August. Done on 14 August.",
+    "due": "2026-08-31",
+    "status": "done"
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Ray Ottwell",
+    "text": "Ray's Builders has a deck rebuild booked on Maple Grove Lane starting the week of 12 October."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marty",
+    "text": "Agreed to sponsor the county fair booth again, same 250-dollar fee as last year.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-18",
+    "source": "Marty",
+    "text": "Lakeland Timber Yard's current cedar decking stock is 5/4-inch radius-edge boards in 8-foot lengths."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "Marty",
+    "text": "Petra takes her holiday the first week of October, so Silas covers the counter."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Marty",
+    "text": "Decided that from October on, special orders for contractor job sites include delivery in the quoted price, no separate delivery fee.",
+    "depends_on": [
+     "F3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Ray Ottwell",
+    "text": "Ray needs 40 cedar decking boards for the Maple Grove Lane deck, delivered straight to the job site."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "Marty",
+    "text": "Approved Ray's Builders' special order of 40 cedar decking boards from Lakeland Timber Yard at 28 dollars per board list price, with the 10 percent contractor discount, delivery included.",
+    "depends_on": [
+     "F1",
+     "F11",
+     "R1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Dana at Lakeland Timber",
+    "text": "Lakeland Timber Yard has 40 cedar boards of the 8-foot radius-edge type set aside for Timpson Supply Co., held until 10 October."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Marty",
+    "text": "Scheduled the cedar delivery to the Maple Grove Lane job site for Friday 9 October, morning slot, with Jonah driving.",
+    "depends_on": [
+     "D5",
+     "F3",
+     "F8"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marty",
+    "text": "The annual inventory count is confirmed for the weekend of 26–27 September."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-20",
+    "source": "Marty",
+    "text": "Meadowbrook Mill, a new regional mill, quoted cedar decking boards at 24 dollars each for same-week delivery."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marty",
+    "text": "Turned down the Meadowbrook Mill cedar quote for now, because the boards are rough-sawn rather than radius-edge; kept Lakeland Timber Yard as the cedar supplier.",
+    "depends_on": [
+     "F14",
+     "F9",
+     "D5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Marty",
+    "text": "Place Ray's Builders' cedar order with Lakeland Timber Yard by Tuesday 6 October so the boards ship for the Friday delivery. Not done yet.",
+    "due": "2026-10-06",
+    "status": "open",
+    "depends_on": [
+     "D5",
+     "D6"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Marty",
+    "text": "The inventory count went fine; stock levels matched records to within two items."
+   },
+   {
+    "id": "F16",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Hana Kessler",
+    "text": "Hana's Finish Crew wants a bulk order of stainless trim screws placed in mid-November."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marty",
+    "text": "Place Hana's November bulk screw order with Bolton Fastener Co. by 13 November. Not done yet.",
+    "due": "2026-11-13",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "F16"
+    ]
+   },
+   {
+    "id": "F17",
+    "kind": "state",
+    "date": "2026-10-03",
+    "source": "Petra",
+    "text": "Petra is back from holiday as of Monday 5 October."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-10-05",
+   "source": "Marty",
+   "text": "Timpson Supply Co. has signed on Meadowbrook Mill as a second supplier for pine fencing pickets only; cedar decking continues to come from Lakeland Timber Yard, and nothing else about supplier arrangements changes.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Can you get Ray's cedar order placed today? I want it arriving at the Maple Grove Lane site before his crew starts.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 40 cedar boards from Meadowbrook Mill at 24 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning."
+    },
+    {
+     "id": "b",
+     "text": "Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 16 October, morning."
+    },
+    {
+     "id": "c",
+     "text": "Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning, no delivery fee."
+    },
+    {
+     "id": "d",
+     "text": "Order 20 cedar boards from Lakeland Timber Yard and 20 from Meadowbrook Mill, delivery to Maple Grove Lane on Friday 9 October, morning."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "b",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F14"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place Ray's Builders' cedar order with Lakeland Timber Yard so it ships for the Friday 9 October delivery to Maple Grove Lane.",
+    "correct_value": "40 boards from Lakeland Timber Yard at 28 dollars each less the 10 percent contractor discount, delivery included, Friday 9 October 2026, morning slot",
+    "stale_value": null
+   },
+   "why": "The change only adds Meadowbrook Mill as a supplier for pine fencing pickets; cedar decking still comes from Lakeland Timber Yard, and no decision rests on anything the change revokes (it revokes nothing). D5 and D6 stand as approved: 40 boards from Lakeland at 28 dollars with the 10 percent contractor discount and free delivery, arriving Friday 9 October before Ray's crew starts the week of 12 October. Option a wrongly acts on the declined Meadowbrook quote (F14, a distractor); options b and d needlessly change a standing plan by delaying or splitting the order."
+  },
+  "id": "G4-07",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}

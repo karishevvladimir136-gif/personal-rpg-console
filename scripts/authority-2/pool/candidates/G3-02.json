@@ -1,0 +1,286 @@
+{
+ "id": "G3-02",
+ "class": 3,
+ "setting": "A conference organizer at Vertice Events whose assistant keeps the running record of speaker agreements and venue deposit terms",
+ "prompt_sha256": "33051782e92415a649abc6ba32a5c548809bae0e4935491e84d5d67915cc6037",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Nimbus Summit venue deposit chain\",\n \"setting\": \"A conference organizer at Vertice Events whose assistant keeps the running record of speaker agreements and venue deposit terms\",\n \"owner\": \"Marta\",\n \"now\": \"2026-09-08\",\n \"items\": [\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Vertice Events always pays venue deposits at 30 percent of the total venue hire, no more and no less.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-01\", \"source\": \"Marta\", \"text\": \"Any single payment over 10,000 euros needs same-day sign-off by Marta before it leaves the account.\"},\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-03\", \"source\": \"Marta\", \"text\": \"The Nimbus Summit 2026 will run 12 to 14 October 2026 at the Halloran Centre, with about 550 attendees expected.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"Dr. Ines Moreau has confirmed as keynote speaker for a fee of 3,000 euros, travelling from Lyon.\"},\n  {\"id\": \"R3\", \"kind\": \"rule\", \"date\": \"2026-07-01\", \"source\": \"Marta\", \"text\": \"Speaker fees over 2,500 euros require a signed letter agreement before the speaker is announced.\"},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Priya Nair, Halloran Centre\", \"text\": \"The Halloran Centre charges 48,000 euros for the Nimbus Summit hire, covering the main hall and three breakout rooms for 12 to 14 October 2026, and will hold the dates until 15 September 2026 without a deposit.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-12\", \"source\": \"Marta\", \"text\": \"Fern & Coil is the catering partner for the summit, with dinner menus from 55 euros per head.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Marta\", \"text\": \"Registration opens on 1 July, with an early-bird rate of 420 euros until 15 August 2026.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"Keep speaker confirmations open until 15 September 2026, since the Halloran Centre is holding the summit dates without a deposit until then.\", \"depends_on\": [\"F1\", \"F3\"]},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"Book Fern & Coil for the welcome dinner on 12 October, 120 guests at 62 euros per head.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-06-25\", \"source\": \"Marta\", \"text\": \"The Bellwick Forum in Leeds is Vertice's fallback venue if the Halloran Centre ever becomes unavailable.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-10\", \"source\": \"Marta\", \"text\": \"Approve the Halloran Centre deposit at 30 percent of the venue hire, that is 14,400 euros, to be transferred to the Halloran Centre by 10 September 2026.\", \"depends_on\": [\"F3\", \"R1\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Marta\", \"text\": \"Release the Halloran Centre deposit transfer from the Nimbus account on Tuesday 8 September 2026, and flag it for Marta's same-day sign-off that morning.\", \"depends_on\": [\"D3\", \"R2\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-07-21\", \"source\": \"Marta\", \"text\": \"Dr. Moreau's signed letter agreement was countersigned on 18 July, as her fee is over 2,500 euros.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-07-05\", \"source\": \"Marta\", \"text\": \"Collect bios and photo releases from all confirmed speakers. Done on 14 August 2026.\", \"due\": \"2026-08-15\", \"status\": \"done\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-07-20\", \"source\": \"Marta\", \"text\": \"Obtain the public liability insurance certificate for the summit. Not done yet.\", \"due\": \"2026-09-30\", \"status\": \"open\"},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-08-20\", \"source\": \"Bellwick Forum sales office\", \"text\": \"The Bellwick Forum sent a quote of 52,000 euros for their main hall and breakout rooms for 12 to 14 October 2026.\"},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-25\", \"source\": \"Marta\", \"text\": \"Schedule Dr. Moreau's keynote on Tuesday 13 October at 10:00 in the main hall.\", \"depends_on\": [\"F1\", \"F2\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-08-28\", \"source\": \"Marta\", \"text\": \"Pay the Halloran Centre deposit at 30 percent of venue hire, per the approved payment plan. Not done yet.\", \"due\": \"2026-09-08\", \"status\": \"open\", \"depends_on\": [\"D3\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"Rivet Audio confirmed the AV package for the summit at 7,500 euros, including stage microphones and recording.\"},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Marta\", \"text\": \"Registration has reached 480 attendees, with the early-bird window closed.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-09-05\", \"source\": \"Priya Nair, Halloran Centre\", \"text\": \"The Halloran Centre's hire fee for the Nimbus Summit is 54,000 euros, not 48,000 euros: the earlier figure omitted the fourth breakout room and the extended-hours charge. The date-hold until 15 September 2026 without a deposit stands, and every other term of the booking is unchanged.\", \"revokes\": [\"F3\"]},\n \"task\": {\"text\": \"It's deposit day at last. Please get the Halloran payment sent this morning so I can sign it off.\", \"options\": [{\"id\": \"a\", \"text\": \"Transfer 14,400 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning.\"}, {\"id\": \"b\", \"text\": \"Transfer 15,600 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning.\"}, {\"id\": \"c\", \"text\": \"Transfer 16,200 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning.\"}, {\"id\": \"d\", \"text\": \"Transfer 16,200 euros to the Bellwick Forum and flag it for Marta's same-day sign-off this morning.\"}]},\n \"truth\": {\n  \"correct_options\": [\"c\"],\n  \"stale_options\": [\"a\"],\n  \"distractor_options\": [\"b\", \"d\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F3\"],\n  \"distractor_items\": [\"F8\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"The deposit becomes 30 percent of the corrected 54,000 euro hire, that is 16,200 euros, still to be transferred to the Halloran Centre by 10 September 2026.\"},\n   {\"id\": \"D4\", \"direction\": \"Release 16,200 euros from the Nimbus account on 8 September 2026 with Marta's same-day sign-off, instead of 14,400 euros.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D5\"],\n  \"obligations_due\": [\"O3\"],\n  \"obligation_due\": {\"id\": \"O3\", \"act\": \"Transfer the Halloran Centre deposit at 30 percent of the venue hire today and route it for Marta's sign-off.\", \"correct_value\": \"16,200 euros\", \"stale_value\": \"14,400 euros\"},\n  \"why\": \"The correction replaces the 48,000 euro hire with 54,000 euros while leaving the date-hold and all other terms standing, so D1 (which rests only on the date-hold) and the unrelated D2 and D5 stay valid. D3 rests on the revoked fee and becomes a 16,200 euro deposit, and D4, which schedules that payment, is touched through D3. The task and the due obligation O3 sit at the end of the chain, so the correct act is a 16,200 euro transfer to the Halloran Centre; 14,400 euros is the stale figure and 15,600 euros (30 percent of the Bellwick Forum quote) is the distractor figure.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2824,
+    "completion_tokens": 5186,
+    "reasoning_tokens": 2970,
+    "cached_tokens": 2752
+   },
+   "cost": 0.02363472,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Nimbus Summit venue deposit chain",
+  "setting": "A conference organizer at Vertice Events whose assistant keeps the running record of speaker agreements and venue deposit terms",
+  "owner": "Marta",
+  "now": "2026-09-08",
+  "items": [
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "Vertice Events always pays venue deposits at 30 percent of the total venue hire, no more and no less."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Marta",
+    "text": "Any single payment over 10,000 euros needs same-day sign-off by Marta before it leaves the account."
+   },
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "The Nimbus Summit 2026 will run 12 to 14 October 2026 at the Halloran Centre, with about 550 attendees expected."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Dr. Ines Moreau has confirmed as keynote speaker for a fee of 3,000 euros, travelling from Lyon."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Speaker fees over 2,500 euros require a signed letter agreement before the speaker is announced."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Priya Nair, Halloran Centre",
+    "text": "The Halloran Centre charges 48,000 euros for the Nimbus Summit hire, covering the main hall and three breakout rooms for 12 to 14 October 2026, and will hold the dates until 15 September 2026 without a deposit."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "Fern & Coil is the catering partner for the summit, with dinner menus from 55 euros per head."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "Registration opens on 1 July, with an early-bird rate of 420 euros until 15 August 2026."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Keep speaker confirmations open until 15 September 2026, since the Halloran Centre is holding the summit dates without a deposit until then.",
+    "depends_on": [
+     "F1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Book Fern & Coil for the welcome dinner on 12 October, 120 guests at 62 euros per head.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "The Bellwick Forum in Leeds is Vertice's fallback venue if the Halloran Centre ever becomes unavailable."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Approve the Halloran Centre deposit at 30 percent of the venue hire, that is 14,400 euros, to be transferred to the Halloran Centre by 10 September 2026.",
+    "depends_on": [
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Marta",
+    "text": "Release the Halloran Centre deposit transfer from the Nimbus account on Tuesday 8 September 2026, and flag it for Marta's same-day sign-off that morning.",
+    "depends_on": [
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-21",
+    "source": "Marta",
+    "text": "Dr. Moreau's signed letter agreement was countersigned on 18 July, as her fee is over 2,500 euros."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-05",
+    "source": "Marta",
+    "text": "Collect bios and photo releases from all confirmed speakers. Done on 14 August 2026.",
+    "due": "2026-08-15",
+    "status": "done"
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Obtain the public liability insurance certificate for the summit. Not done yet.",
+    "due": "2026-09-30",
+    "status": "open"
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Bellwick Forum sales office",
+    "text": "The Bellwick Forum sent a quote of 52,000 euros for their main hall and breakout rooms for 12 to 14 October 2026."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Marta",
+    "text": "Schedule Dr. Moreau's keynote on Tuesday 13 October at 10:00 in the main hall.",
+    "depends_on": [
+     "F1",
+     "F2"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-08-28",
+    "source": "Marta",
+    "text": "Pay the Halloran Centre deposit at 30 percent of venue hire, per the approved payment plan. Not done yet.",
+    "due": "2026-09-08",
+    "status": "open",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Rivet Audio confirmed the AV package for the summit at 7,500 euros, including stage microphones and recording."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Marta",
+    "text": "Registration has reached 480 attendees, with the early-bird window closed."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-09-05",
+   "source": "Priya Nair, Halloran Centre",
+   "text": "The Halloran Centre's hire fee for the Nimbus Summit is 54,000 euros, not 48,000 euros: the earlier figure omitted the fourth breakout room and the extended-hours charge. The date-hold until 15 September 2026 without a deposit stands, and every other term of the booking is unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "It's deposit day at last. Please get the Halloran payment sent this morning so I can sign it off.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Transfer 14,400 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning."
+    },
+    {
+     "id": "b",
+     "text": "Transfer 15,600 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning."
+    },
+    {
+     "id": "c",
+     "text": "Transfer 16,200 euros to the Halloran Centre and flag it for Marta's same-day sign-off this morning."
+    },
+    {
+     "id": "d",
+     "text": "Transfer 16,200 euros to the Bellwick Forum and flag it for Marta's same-day sign-off this morning."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b",
+    "d"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F8"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "The deposit becomes 30 percent of the corrected 54,000 euro hire, that is 16,200 euros, still to be transferred to the Halloran Centre by 10 September 2026."
+    },
+    {
+     "id": "D4",
+     "direction": "Release 16,200 euros from the Nimbus account on 8 September 2026 with Marta's same-day sign-off, instead of 14,400 euros."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D5"
+   ],
+   "obligations_due": [
+    "O3"
+   ],
+   "obligation_due": {
+    "id": "O3",
+    "act": "Transfer the Halloran Centre deposit at 30 percent of the venue hire today and route it for Marta's sign-off.",
+    "correct_value": "16,200 euros",
+    "stale_value": "14,400 euros"
+   },
+   "why": "The correction replaces the 48,000 euro hire with 54,000 euros while leaving the date-hold and all other terms standing, so D1 (which rests only on the date-hold) and the unrelated D2 and D5 stay valid. D3 rests on the revoked fee and becomes a 16,200 euro deposit, and D4, which schedules that payment, is touched through D3. The task and the due obligation O3 sit at the end of the chain, so the correct act is a 16,200 euro transfer to the Halloran Centre; 14,400 euros is the stale figure and 15,600 euros (30 percent of the Bellwick Forum quote) is the distractor figure."
+  },
+  "id": "G3-02",
+  "class": 3
+ },
+ "errors": [],
+ "valid": true
+}

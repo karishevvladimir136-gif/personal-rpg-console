@@ -1,0 +1,370 @@
+{
+ "id": "G1-07",
+ "class": 1,
+ "setting": "A fleet manager at Kestrel Courier Service whose dispatch assistant logs each route change agreed with drivers by phone",
+ "prompt_sha256": "29d77218f1ae0e352b6584de7464df671ef3d60e24f15a26ea2cc257d175f0e9",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The 07:45 Wexford lab run\",\n \"setting\": \"A fleet manager at Kestrel Courier Service whose dispatch assistant logs each route change agreed with drivers by phone\",\n \"owner\": \"Marta\",\n \"now\": \"2026-10-22\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Marta\", \"text\": \"Kestrel Courier Service operates out of the Halden Road depot.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-05\", \"source\": \"Marta\", \"text\": \"The five Kestrel drivers are Tomas, Irena, Ivo, Clara and Pavel.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-08\", \"source\": \"Marta\", \"text\": \"Every route change agreed with a driver by phone must be logged the same day and confirmed in writing to the depot board by 17:00 the day before the run.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-10\", \"source\": \"Marta\", \"text\": \"Only drivers holding the chilled-sample certificate may drive the Wexford lab run; Tomas, Irena and Clara hold it.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-15\", \"source\": \"Marta\", \"text\": \"The Halden Road depot opens at 07:15 and the first van check must be finished by 07:35.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-20\", \"source\": \"Marta\", \"text\": \"Wexford Lab is a 35-minute drive from the Halden Road depot.\"},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-06-28\", \"source\": \"dispatch assistant\", \"text\": \"Tomas has held the chilled-sample certificate since 2024.\"},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-07-02\", \"source\": \"Marta\", \"text\": \"Van V-07 is the chilled van normally used for lab runs.\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-08\", \"source\": \"Marta\", \"text\": \"Van V-07 is the designated van for all chilled lab runs.\", \"depends_on\": [\"F5\", \"R2\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-07-25\", \"source\": \"Marta\", \"text\": \"The Eastport parcels route takes 45 minutes from the Halden Road depot.\"},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-08-03\", \"source\": \"dispatch assistant\", \"text\": \"The daily Wexford lab-sample run leaves Halden Road depot at 07:45, driven by Tomas in van V-07.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-08-04\", \"source\": \"Marta\", \"text\": \"Tomas is assigned to the daily Wexford lab run, departing at 07:45 each working day.\", \"depends_on\": [\"F7\", \"F4\", \"R2\"]},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-06\", \"source\": \"Marta\", \"text\": \"Wexford Lab holds a standing handover window at 08:20 every working day for Kestrel's lab samples.\", \"depends_on\": [\"F7\", \"F3\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-12\", \"source\": \"Marta\", \"text\": \"Van V-07's weekly maintenance is slotted for Wednesdays at 06:00 so the van is back and checked before the morning lab run.\", \"depends_on\": [\"D3\", \"F5\"]},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-08-15\", \"source\": \"Marta\", \"text\": \"Pavel is assigned to the Eastport parcels route, departing at 08:00 each working day.\", \"depends_on\": [\"F6\", \"R1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-07-20\", \"source\": \"dispatch assistant\", \"text\": \"Clara is on holiday from 12 to 26 September.\"},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-09-01\", \"source\": \"Marta\", \"text\": \"Wexford Lab reception opens at 08:00.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-04\", \"source\": \"Marta\", \"text\": \"Ivo covers the Eastport parcels run on Fridays.\", \"depends_on\": [\"D6\", \"F2\"]},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-10\", \"source\": \"Marta\", \"text\": \"Sign the winter tyre contract with Merrick Tyres by 30 September. Done on 24 September.\", \"due\": \"2026-09-30\", \"status\": \"done\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-09-12\", \"source\": \"Marta\", \"text\": \"Buy 200 insulated sample pouches from Barrow Supplies.\", \"depends_on\": [\"F5\", \"F3\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-09-15\", \"source\": \"Marta\", \"text\": \"The fuel card limit was raised to 400 pounds per van per month.\"},\n  {\"id\": \"F11\", \"kind\": \"state\", \"date\": \"2026-09-22\", \"source\": \"dispatch assistant\", \"text\": \"Pavel's van V-11 had its brake service at Merrick's garage.\"},\n  {\"id\": \"F12\", \"kind\": \"state\", \"date\": \"2026-10-05\", \"source\": \"dispatch assistant\", \"text\": \"Each Friday Ivo takes a separate parcel-post delivery to Wexford, leaving Halden Road at 09:15 in van V-11.\"},\n  {\"id\": \"F13\", \"kind\": \"state\", \"date\": \"2026-10-08\", \"source\": \"Marta\", \"text\": \"The depot heating service is booked for 3 November.\"},\n  {\"id\": \"D9\", \"kind\": \"decision\", \"date\": \"2026-10-09\", \"source\": \"Marta\", \"text\": \"Irena is added to the chilled-sample rota alongside Tomas and Clara.\", \"depends_on\": [\"R2\", \"F2\"]},\n  {\"id\": \"D10\", \"kind\": \"decision\", \"date\": \"2026-10-14\", \"source\": \"Marta\", \"text\": \"Clara takes over the Eastport parcels run while Pavel trains the new hire for two weeks.\", \"depends_on\": [\"D7\"]},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-10-15\", \"source\": \"Marta\", \"text\": \"Each working day, confirm the next day's departure time and driver for the Wexford lab run with Wexford Lab reception. Not done yet for Friday 23 October.\", \"due\": \"2026-10-22\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F14\", \"kind\": \"state\", \"date\": \"2026-10-16\", \"source\": \"dispatch assistant\", \"text\": \"Irena completed the chilled-sample refresher course and passed.\"},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-18\", \"source\": \"Marta\", \"text\": \"Book the winter safety check for all five vans. Not done yet.\", \"due\": \"2026-11-20\", \"status\": \"open\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"correction\", \"date\": \"2026-10-20\", \"source\": \"dispatch assistant\", \"text\": \"Correction logged from Tomas's phone call: Tomas moves to the Northgate rounds and no longer drives the daily Wexford lab run. From Tuesday 20 October the daily Wexford lab-sample run leaves Halden Road depot at 08:40, driven by Irena in van V-07, and the handover window at Wexford Lab moves to 09:15. The Wednesday 06:00 maintenance slot for V-07 no longer fits around an 08:40 departure and must be re-timed. Ivo's separate Friday parcel-post run at 09:15 is unaffected.\", \"revokes\": [\"F7\"]},\n \"task\": {\"text\": \"Please sort out tomorrow's Wexford lab-sample run — book the van and driver, and confirm the handover time with the lab.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Book van V-07 with Tomas, departing Halden Road at 07:45, and confirm an 08:20 handover at Wexford Lab.\"},\n  {\"id\": \"b\", \"text\": \"Book van V-07 with Irena, departing Halden Road at 08:40, and confirm a 09:15 handover at Wexford Lab.\"},\n  {\"id\": \"c\", \"text\": \"Book van V-11 with Ivo, departing Halden Road at 09:15, and confirm a 09:50 handover at Wexford Lab.\"},\n  {\"id\": \"d\", \"text\": \"Book van V-07 with Irena, departing Halden Road at 08:40, and confirm an 08:20 handover at Wexford Lab.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"b\"],\n  \"stale_options\": [\"a\", \"d\"],\n  \"distractor_options\": [\"c\"],\n  \"unnecessary_options\": [],\n  \"stale_items\": [\"F7\"],\n  \"distractor_items\": [\"F12\"],\n  \"touched\": [\n   {\"id\": \"D3\", \"direction\": \"Reassign the daily Wexford lab run to Irena, departing 08:40; Tomas moves to Northgate rounds.\"},\n   {\"id\": \"D4\", \"direction\": \"Move the standing handover window at Wexford Lab from 08:20 to 09:15.\"},\n   {\"id\": \"D5\", \"direction\": \"Re-time van V-07's weekly maintenance slot; Wednesday 06:00 no longer works before an 08:40 departure.\"}\n  ],\n  \"untouched\": [\"D1\", \"D2\", \"D6\", \"D7\", \"D8\", \"D9\", \"D10\"],\n  \"obligations_due\": [\"O2\"],\n  \"obligation_due\": {\"id\": \"O2\", \"act\": \"Confirm Friday 23 October's departure time and driver for the Wexford lab run with Wexford Lab reception.\", \"correct_value\": \"08:40 departure with Irena, 09:15 handover\", \"stale_value\": \"07:45 departure with Tomas, 08:20 handover\"},\n  \"why\": \"The correction revokes F7, so the daily Wexford lab run now leaves at 08:40 with Irena in van V-07 and the handover is 09:15; D3, D4 and D5 rest on F7 (D5 via D3) and must be revised accordingly. Options a and d act on the revoked 07:45 schedule or its 08:20 handover; option c acts on Ivo's separate Friday parcel-post run at 09:15, which the change explicitly leaves standing. Obligation O2 is due today and is fulfilled by confirming the corrected 08:40 time and Irena as driver with Wexford Lab.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2827,
+    "completion_tokens": 6891,
+    "reasoning_tokens": 4165,
+    "cached_tokens": 0
+   },
+   "cost": 0.0342782,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "The 07:45 Wexford lab run",
+  "setting": "A fleet manager at Kestrel Courier Service whose dispatch assistant logs each route change agreed with drivers by phone",
+  "owner": "Marta",
+  "now": "2026-10-22",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Kestrel Courier Service operates out of the Halden Road depot."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "The five Kestrel drivers are Tomas, Irena, Ivo, Clara and Pavel."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "Every route change agreed with a driver by phone must be logged the same day and confirmed in writing to the depot board by 17:00 the day before the run."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Only drivers holding the chilled-sample certificate may drive the Wexford lab run; Tomas, Irena and Clara hold it."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "The Halden Road depot opens at 07:15 and the first van check must be finished by 07:35.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Wexford Lab is a 35-minute drive from the Halden Road depot."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "dispatch assistant",
+    "text": "Tomas has held the chilled-sample certificate since 2024."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "Van V-07 is the chilled van normally used for lab runs."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Marta",
+    "text": "Van V-07 is the designated van for all chilled lab runs.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-25",
+    "source": "Marta",
+    "text": "The Eastport parcels route takes 45 minutes from the Halden Road depot."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-03",
+    "source": "dispatch assistant",
+    "text": "The daily Wexford lab-sample run leaves Halden Road depot at 07:45, driven by Tomas in van V-07."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-04",
+    "source": "Marta",
+    "text": "Tomas is assigned to the daily Wexford lab run, departing at 07:45 each working day.",
+    "depends_on": [
+     "F7",
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-06",
+    "source": "Marta",
+    "text": "Wexford Lab holds a standing handover window at 08:20 every working day for Kestrel's lab samples.",
+    "depends_on": [
+     "F7",
+     "F3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marta",
+    "text": "Van V-07's weekly maintenance is slotted for Wednesdays at 06:00 so the van is back and checked before the morning lab run.",
+    "depends_on": [
+     "D3",
+     "F5"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-15",
+    "source": "Marta",
+    "text": "Pavel is assigned to the Eastport parcels route, departing at 08:00 each working day.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "dispatch assistant",
+    "text": "Clara is on holiday from 12 to 26 September."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Wexford Lab reception opens at 08:00."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Marta",
+    "text": "Ivo covers the Eastport parcels run on Fridays.",
+    "depends_on": [
+     "D6",
+     "F2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "Sign the winter tyre contract with Merrick Tyres by 30 September. Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Buy 200 insulated sample pouches from Barrow Supplies.",
+    "depends_on": [
+     "F5",
+     "F3"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Marta",
+    "text": "The fuel card limit was raised to 400 pounds per van per month."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "dispatch assistant",
+    "text": "Pavel's van V-11 had its brake service at Merrick's garage."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "dispatch assistant",
+    "text": "Each Friday Ivo takes a separate parcel-post delivery to Wexford, leaving Halden Road at 09:15 in van V-11."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "The depot heating service is booked for 3 November."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-09",
+    "source": "Marta",
+    "text": "Irena is added to the chilled-sample rota alongside Tomas and Clara.",
+    "depends_on": [
+     "R2",
+     "F2"
+    ]
+   },
+   {
+    "id": "D10",
+    "kind": "decision",
+    "date": "2026-10-14",
+    "source": "Marta",
+    "text": "Clara takes over the Eastport parcels run while Pavel trains the new hire for two weeks.",
+    "depends_on": [
+     "D7"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-15",
+    "source": "Marta",
+    "text": "Each working day, confirm the next day's departure time and driver for the Wexford lab run with Wexford Lab reception. Not done yet for Friday 23 October.",
+    "due": "2026-10-22",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-10-16",
+    "source": "dispatch assistant",
+    "text": "Irena completed the chilled-sample refresher course and passed."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-18",
+    "source": "Marta",
+    "text": "Book the winter safety check for all five vans. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "dispatch assistant",
+   "text": "Correction logged from Tomas's phone call: Tomas moves to the Northgate rounds and no longer drives the daily Wexford lab run. From Tuesday 20 October the daily Wexford lab-sample run leaves Halden Road depot at 08:40, driven by Irena in van V-07, and the handover window at Wexford Lab moves to 09:15. The Wednesday 06:00 maintenance slot for V-07 no longer fits around an 08:40 departure and must be re-timed. Ivo's separate Friday parcel-post run at 09:15 is unaffected.",
+   "revokes": [
+    "F7"
+   ]
+  },
+  "task": {
+   "text": "Please sort out tomorrow's Wexford lab-sample run — book the van and driver, and confirm the handover time with the lab.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book van V-07 with Tomas, departing Halden Road at 07:45, and confirm an 08:20 handover at Wexford Lab."
+    },
+    {
+     "id": "b",
+     "text": "Book van V-07 with Irena, departing Halden Road at 08:40, and confirm a 09:15 handover at Wexford Lab."
+    },
+    {
+     "id": "c",
+     "text": "Book van V-11 with Ivo, departing Halden Road at 09:15, and confirm a 09:50 handover at Wexford Lab."
+    },
+    {
+     "id": "d",
+     "text": "Book van V-07 with Irena, departing Halden Road at 08:40, and confirm an 08:20 handover at Wexford Lab."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a",
+    "d"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F7"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Reassign the daily Wexford lab run to Irena, departing 08:40; Tomas moves to Northgate rounds."
+    },
+    {
+     "id": "D4",
+     "direction": "Move the standing handover window at Wexford Lab from 08:20 to 09:15."
+    },
+    {
+     "id": "D5",
+     "direction": "Re-time van V-07's weekly maintenance slot; Wednesday 06:00 no longer works before an 08:40 departure."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Confirm Friday 23 October's departure time and driver for the Wexford lab run with Wexford Lab reception.",
+    "correct_value": "08:40 departure with Irena, 09:15 handover",
+    "stale_value": "07:45 departure with Tomas, 08:20 handover"
+   },
+   "why": "The correction revokes F7, so the daily Wexford lab run now leaves at 08:40 with Irena in van V-07 and the handover is 09:15; D3, D4 and D5 rest on F7 (D5 via D3) and must be revised accordingly. Options a and d act on the revoked 07:45 schedule or its 08:20 handover; option c acts on Ivo's separate Friday parcel-post run at 09:15, which the change explicitly leaves standing. Obligation O2 is due today and is fulfilled by confirming the corrected 08:40 time and Irena as driver with Wexford Lab."
+  },
+  "id": "G1-07",
+  "class": 1
+ },
+ "errors": [],
+ "valid": true
+}

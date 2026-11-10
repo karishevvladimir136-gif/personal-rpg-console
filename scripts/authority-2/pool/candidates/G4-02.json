@@ -1,0 +1,307 @@
+{
+ "id": "G4-02",
+ "class": 4,
+ "setting": "A CFO at a 40-person fintech startup, Quanta Ledger, whose executive assistant keeps the record of board call decisions and investor follow-up promises",
+ "prompt_sha256": "b77bf17c44c95082538675652eb3038c8c93e3c3fd018cfc3ab79f8e519152d0",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Board pre-read day at Quanta Ledger\",\n \"setting\": \"A CFO at a 40-person fintech startup, Quanta Ledger, whose executive assistant keeps the record of board call decisions and investor follow-up promises\",\n \"owner\": \"Mara\",\n \"now\": \"2026-10-16\",\n \"items\": [\n  {\"id\": \"F1\", \"kind\": \"state\", \"date\": \"2026-06-02\", \"source\": \"Mara\", \"text\": \"The Quanta Ledger board has five members: chair Priya, plus Dev, Ingrid, Tomoko and Yusuf.\"},\n  {\"id\": \"R1\", \"kind\": \"rule\", \"date\": \"2026-06-03\", \"source\": \"Mara\", \"text\": \"Board pre-read materials are circulated to all board members five working days before each board call, not counting the day of the call.\"},\n  {\"id\": \"R2\", \"kind\": \"rule\", \"date\": \"2026-06-05\", \"source\": \"Mara\", \"text\": \"Every promise made to an investor on a call is logged in the follow-up register within 48 hours.\"},\n  {\"id\": \"F2\", \"kind\": \"state\", \"date\": \"2026-06-10\", \"source\": \"Mara\", \"text\": \"Quanta Ledger uses the BoardSpot portal for all board document sharing.\"},\n  {\"id\": \"D1\", \"kind\": \"decision\", \"date\": \"2026-06-12\", \"source\": \"Mara\", \"text\": \"Keep the monthly investor update call with Apex Capital on the last Thursday of each month at 15:00.\", \"depends_on\": [\"F1\"]},\n  {\"id\": \"F3\", \"kind\": \"state\", \"date\": \"2026-06-18\", \"source\": \"Mara\", \"text\": \"Quanta Ledger moved to the Ashgrove House office in June; the old Rectory Lane lease ended 31 May.\"},\n  {\"id\": \"O2\", \"kind\": \"obligation\", \"date\": \"2026-06-20\", \"source\": \"Mara\", \"text\": \"Book the boardroom for the Q2 board call. Done on 22 June.\", \"due\": \"2026-06-26\", \"status\": \"done\"},\n  {\"id\": \"D2\", \"kind\": \"decision\", \"date\": \"2026-07-14\", \"source\": \"Mara\", \"text\": \"The Q3 board call is set for Friday 23 October at 10:00 in the Ashgrove House boardroom, with the pre-read package due to members on Friday 16 October.\", \"depends_on\": [\"R1\", \"F2\", \"F3\"]},\n  {\"id\": \"F4\", \"kind\": \"state\", \"date\": \"2026-07-22\", \"source\": \"Mara\", \"text\": \"Quanta Ledger finished June with 40 employees, up from 33 in March.\"},\n  {\"id\": \"D3\", \"kind\": \"decision\", \"date\": \"2026-07-28\", \"source\": \"Mara\", \"text\": \"Hire a second finance analyst before the end of September; recruiter is Halbrook Search.\", \"depends_on\": [\"F4\"]},\n  {\"id\": \"F5\", \"kind\": \"state\", \"date\": \"2026-08-05\", \"source\": \"Mara\", \"text\": \"Cash runway stood at 14 months as of the September close, based on the July board model refresh.\"},\n  {\"id\": \"D4\", \"kind\": \"decision\", \"date\": \"2026-08-20\", \"source\": \"Mara\", \"text\": \"The annual budget board call is set for Friday 20 November, with its pre-read due to members on Friday 13 November.\", \"depends_on\": [\"R1\", \"F2\"]},\n  {\"id\": \"D5\", \"kind\": \"decision\", \"date\": \"2026-08-26\", \"source\": \"Mara\", \"text\": \"The Q3 pre-read package will open with the cash runway slide and the payments-volume dashboard, in that order.\", \"depends_on\": [\"F5\"]},\n  {\"id\": \"F6\", \"kind\": \"state\", \"date\": \"2026-09-03\", \"source\": \"Mara\", \"text\": \"The annual audit will be run by Whitcombe & Vale again, with fieldwork starting 12 January 2027.\"},\n  {\"id\": \"O1\", \"kind\": \"obligation\", \"date\": \"2026-09-01\", \"source\": \"Mara\", \"text\": \"Send the Q3 board pre-read package to all five board members for the 23 October call. Not done yet.\", \"due\": \"2026-10-16\", \"status\": \"open\", \"depends_on\": [\"D2\", \"D5\"]},\n  {\"id\": \"F7\", \"kind\": \"state\", \"date\": \"2026-09-18\", \"source\": \"Nora at Apex Capital\", \"text\": \"For the monthly Apex investor update call, Nora asks that materials reach her three working days ahead instead of five, because the Apex partners read them the week of the call.\"},\n  {\"id\": \"D6\", \"kind\": \"decision\", \"date\": \"2026-09-22\", \"source\": \"Mara\", \"text\": \"Send the monthly Apex update deck to Nora three working days before each investor update call, starting with the October call.\", \"depends_on\": [\"F7\", \"D1\"]},\n  {\"id\": \"F8\", \"kind\": \"state\", \"date\": \"2026-09-25\", \"source\": \"Mara\", \"text\": \"The payments team's new settlement provider, Ridgeline Pay, went live on 14 September.\"},\n  {\"id\": \"D7\", \"kind\": \"decision\", \"date\": \"2026-09-29\", \"source\": \"Mara\", \"text\": \"Log the promise made on the September Apex call — a COO intro by mid-November — in the follow-up register within 48 hours.\", \"depends_on\": [\"R2\", \"D1\"]},\n  {\"id\": \"O3\", \"kind\": \"obligation\", \"date\": \"2026-10-02\", \"source\": \"Mara\", \"text\": \"Send the annual budget board pre-read for the 20 November call. Not done yet.\", \"due\": \"2026-11-13\", \"status\": \"open\", \"depends_on\": [\"D4\"]},\n  {\"id\": \"F9\", \"kind\": \"state\", \"date\": \"2026-10-06\", \"source\": \"Mara\", \"text\": \"Board member Yusuf asked that board packs be sent as a single merged PDF rather than separate slide files.\"},\n  {\"id\": \"D8\", \"kind\": \"decision\", \"date\": \"2026-10-08\", \"source\": \"Mara\", \"text\": \"From the Q3 pack onwards, board pre-reads go out as one merged PDF per Yusuf's request.\", \"depends_on\": [\"F9\", \"F2\"]},\n  {\"id\": \"F10\", \"kind\": \"state\", \"date\": \"2026-10-12\", \"source\": \"Mara\", \"text\": \"The Q3 pre-read package is finished: 34 pages, cash runway slide first, payments dashboard second.\"}\n ],\n \"change\": {\"id\": \"C1\", \"kind\": \"rule\", \"date\": \"2026-10-15\", \"source\": \"Mara\", \"text\": \"To state it plainly: board pre-reads must reach every board member no later than five working days ahead of the call, with the day of the call itself not counted — same practice as before, just written out clearly. This applies to every board call, including the Q3 call tomorrow week.\", \"revokes\": []},\n \"task\": {\"text\": \"Today is pre-read day for the board — please take care of getting the Q3 package out.\", \"options\": [\n  {\"id\": \"a\", \"text\": \"Upload the merged Q3 pre-read PDF to BoardSpot for all five board members today, Friday 16 October, for the 23 October call.\"},\n  {\"id\": \"b\", \"text\": \"Hold the pack and send it to all five board members on Tuesday 20 October.\"},\n  {\"id\": \"c\", \"text\": \"Upload the pack today and move the Q3 board call to Tuesday 27 October to give members more reading time.\"},\n  {\"id\": \"d\", \"text\": \"Email the pack to Nora at Apex Capital today for the monthly investor update call.\"}\n ]},\n \"truth\": {\n  \"correct_options\": [\"a\"],\n  \"stale_options\": [],\n  \"distractor_options\": [\"b\", \"d\"],\n  \"unnecessary_options\": [\"c\"],\n  \"stale_items\": [],\n  \"distractor_items\": [\"F7\"],\n  \"touched\": [],\n  \"untouched\": [\"D1\", \"D2\", \"D3\", \"D4\", \"D5\", \"D6\", \"D7\", \"D8\"],\n  \"obligations_due\": [\"O1\"],\n  \"obligation_due\": {\"id\": \"O1\", \"act\": \"Send the finished Q3 board pre-read package to all five board members for the 23 October call, as one merged PDF on BoardSpot, today 16 October.\", \"correct_value\": \"BoardSpot upload to all five members, merged PDF, Friday 16 October 2026\", \"stale_value\": null},\n  \"why\": \"The change only restates the existing pre-read rule in other words and revokes nothing, so every decision stands as it is. The Q3 call is Friday 23 October; five working days before it, not counting the call day, is Friday 16 October, which is today, so the correct act is to upload the merged pack to BoardSpot now. Option b applies the three-working-day lead time from F7, which belongs to the Apex investor update calls, not the board; option d sends the pack to the wrong audience; option c needlessly moves a call that should stay on 23 October.\"\n }\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 2853,
+    "completion_tokens": 3697,
+    "reasoning_tokens": 1484,
+    "cached_tokens": 2752
+   },
+   "cost": 0.01712372,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "scenario": {
+  "title": "Board pre-read day at Quanta Ledger",
+  "setting": "A CFO at a 40-person fintech startup, Quanta Ledger, whose executive assistant keeps the record of board call decisions and investor follow-up promises",
+  "owner": "Mara",
+  "now": "2026-10-16",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Mara",
+    "text": "The Quanta Ledger board has five members: chair Priya, plus Dev, Ingrid, Tomoko and Yusuf."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Mara",
+    "text": "Board pre-read materials are circulated to all board members five working days before each board call, not counting the day of the call."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Mara",
+    "text": "Every promise made to an investor on a call is logged in the follow-up register within 48 hours."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Mara",
+    "text": "Quanta Ledger uses the BoardSpot portal for all board document sharing."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-12",
+    "source": "Mara",
+    "text": "Keep the monthly investor update call with Apex Capital on the last Thursday of each month at 15:00.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Mara",
+    "text": "Quanta Ledger moved to the Ashgrove House office in June; the old Rectory Lane lease ended 31 May."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-20",
+    "source": "Mara",
+    "text": "Book the boardroom for the Q2 board call. Done on 22 June.",
+    "due": "2026-06-26",
+    "status": "done"
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-14",
+    "source": "Mara",
+    "text": "The Q3 board call is set for Friday 23 October at 10:00 in the Ashgrove House boardroom, with the pre-read package due to members on Friday 16 October.",
+    "depends_on": [
+     "R1",
+     "F2",
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-22",
+    "source": "Mara",
+    "text": "Quanta Ledger finished June with 40 employees, up from 33 in March."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-28",
+    "source": "Mara",
+    "text": "Hire a second finance analyst before the end of September; recruiter is Halbrook Search.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-05",
+    "source": "Mara",
+    "text": "Cash runway stood at 14 months as of the September close, based on the July board model refresh."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Mara",
+    "text": "The annual budget board call is set for Friday 20 November, with its pre-read due to members on Friday 13 November.",
+    "depends_on": [
+     "R1",
+     "F2"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-26",
+    "source": "Mara",
+    "text": "The Q3 pre-read package will open with the cash runway slide and the payments-volume dashboard, in that order.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Mara",
+    "text": "The annual audit will be run by Whitcombe & Vale again, with fieldwork starting 12 January 2027."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-01",
+    "source": "Mara",
+    "text": "Send the Q3 board pre-read package to all five board members for the 23 October call. Not done yet.",
+    "due": "2026-10-16",
+    "status": "open",
+    "depends_on": [
+     "D2",
+     "D5"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Nora at Apex Capital",
+    "text": "For the monthly Apex investor update call, Nora asks that materials reach her three working days ahead instead of five, because the Apex partners read them the week of the call."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Mara",
+    "text": "Send the monthly Apex update deck to Nora three working days before each investor update call, starting with the October call.",
+    "depends_on": [
+     "F7",
+     "D1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Mara",
+    "text": "The payments team's new settlement provider, Ridgeline Pay, went live on 14 September."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-29",
+    "source": "Mara",
+    "text": "Log the promise made on the September Apex call — a COO intro by mid-November — in the follow-up register within 48 hours.",
+    "depends_on": [
+     "R2",
+     "D1"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-02",
+    "source": "Mara",
+    "text": "Send the annual budget board pre-read for the 20 November call. Not done yet.",
+    "due": "2026-11-13",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-06",
+    "source": "Mara",
+    "text": "Board member Yusuf asked that board packs be sent as a single merged PDF rather than separate slide files."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Mara",
+    "text": "From the Q3 pack onwards, board pre-reads go out as one merged PDF per Yusuf's request.",
+    "depends_on": [
+     "F9",
+     "F2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Mara",
+    "text": "The Q3 pre-read package is finished: 34 pages, cash runway slide first, payments dashboard second."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-15",
+   "source": "Mara",
+   "text": "To state it plainly: board pre-reads must reach every board member no later than five working days ahead of the call, with the day of the call itself not counted — same practice as before, just written out clearly. This applies to every board call, including the Q3 call tomorrow week.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Today is pre-read day for the board — please take care of getting the Q3 package out.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Upload the merged Q3 pre-read PDF to BoardSpot for all five board members today, Friday 16 October, for the 23 October call."
+    },
+    {
+     "id": "b",
+     "text": "Hold the pack and send it to all five board members on Tuesday 20 October."
+    },
+    {
+     "id": "c",
+     "text": "Upload the pack today and move the Q3 board call to Tuesday 27 October to give members more reading time."
+    },
+    {
+     "id": "d",
+     "text": "Email the pack to Nora at Apex Capital today for the monthly investor update call."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b",
+    "d"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F7"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send the finished Q3 board pre-read package to all five board members for the 23 October call, as one merged PDF on BoardSpot, today 16 October.",
+    "correct_value": "BoardSpot upload to all five members, merged PDF, Friday 16 October 2026",
+    "stale_value": null
+   },
+   "why": "The change only restates the existing pre-read rule in other words and revokes nothing, so every decision stands as it is. The Q3 call is Friday 23 October; five working days before it, not counting the call day, is Friday 16 October, which is today, so the correct act is to upload the merged pack to BoardSpot now. Option b applies the three-working-day lead time from F7, which belongs to the Apex investor update calls, not the board; option d sends the pack to the wrong audience; option c needlessly moves a call that should stay on 23 October."
+  },
+  "id": "G4-02",
+  "class": 4
+ },
+ "errors": [],
+ "valid": true
+}
