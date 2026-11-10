@@ -4372,6 +4372,8 @@ section of the Phase C report (the planner's line) — dated note, 05b6116f → 
 M1 codes actions (took / declined at `take` / declined at the confirmation), not reasons — checked, no change; letter 46 —
 answered in the room. The owner heard the explanation in the chat at 17:0x — told in the 21:00 message.
 
+> Dated note 2026-11-10 10:2x LA, under the entry of 2026-11-08 17:55: «the session accepted at 17:41» — the acceptance comment on #1 is timestamped 2026-11-09T01:43:05Z = 17:43:05 LA. Named by the dreamer (pass 2, row 8) and by the planner's wake-up of 11-09 09:41; the public copy is corrected here, late by a day.
+
 ## 2026-11-09 19:05 LA — PARTY_2 closed and read; S3-T1 read whole; PARTY_3 written (a designed conflict, seats rotated)
 PARTY_2 closed by its session (final comment in issue #1, 2026-11-10 00:47Z): eleven tables of twelve, nine scored,
 $235.04 of $240; R0, R1, R2 held, R3 on its first half, R4 not testable, R5 mechanically; 94 agreements aloud, none
@@ -4393,3 +4395,34 @@ each arm, six tables, ceiling $150, the referee of another family, bets C0–C6 
 own-family siding; with three different families at every table it cannot. Also recorded here, late: the session's
 model changed from Fable 5.1 to Fable 5.2 on 2026-11-09 15:21 LA (the owner changed nothing); every planner entry
 before that time was written under 5.1.
+
+## 2026-11-10 10:2x LA — AUTHORITY_1 and TONE_SPLIT_4 both closed overnight; the dangerous test went first and did not hold
+TONE_SPLIT_4 (issue #4, launched on the owner's word of 2026-11-10 01:02 LA, the reviewer's four corrections taken
+before any paid call in b4c6907e; freeze 60e7c82; Part A started 09:36Z; closed 15:14Z; $64.68 of $200; branch
+`claude/persona-tone-split-4` at a94679f): **T1 lost.** On Kimi K3's thirty probes the dismissal does not suppress the
+unasked warning in any of eight families (dismissal − neutral from −10 to +1 points; no bootstrap interval clears 25;
+the bridge with the old «… or comments …» wording does not suppress there either). By the stage's own rule, the paper
+waits. Held: T2 (the ladder of filling the Note field is stable across probe authors, ρ = 0.87 {0.71–0.95}; Fable 58 %,
+Opus 57 % top, DeepSeek 19 % bottom), T5 (the frame said a turn earlier leaves a 27-point gap on our probes), T6 (195
+«other» Notes under dismissal). Lost: T0 (four of Kimi's task checks were not the task's answer), T3 by one point
+(invited − neutral unnecessary warnings +14 {10–19}; Opus and Haiku invent problems when invited, 19 and 15 of 60),
+T4 (Russian narrows most gaps; the planner's bet against himself on DeepSeek lost too). What TONE_SPLIT_1–3 called the
+gate rested, in this programme, on our probes, the old wording and n 4. What can be written now: the invitation
+raises disclosure and, in some families, false alarms; the family ladder survives the author of the probes.
+AUTHORITY_1 (issue #3; closed 09:51Z; $18.48 of $130; `claude/authority-1`): the structured layer C propagates a
+correction to 97.3 % of touched decisions against 86.4 % (bare Mem0) and 85.6 % (the plain «check before you act»
+pass) — +11 points in every family, cheaper and faster than B. Stale actions were near zero in every arm (3, 2, 0 of
+≈ 180), so AU1 had nothing to measure; AU2's magnitudes were too large (lost); **AU5 lost the other way** — the C − B
+gap grew with the family's strength (DeepSeek 9.6, Sol 12.3, Opus 13.0), and the planner's midnight line to the owner
+«a strong model's plain pass will close the gap by itself» was wrong. The reviewer's sentence holds in part: on forty
+authored scenarios, three families, two repeats, the layer improved correction propagation over the same backend and
+over a plain pass, controlling for unnecessary interventions, latency and cost; it did not measurably reduce stale
+actions. Both closings are the sessions' own; the owner has not yet accepted either.
+Also recorded: the model under this planner's chat went 5.1 → 5.2 at 15:21 LA 11-09 (entry 19:05) and **back to 5.1 by
+the owner's own `/model` commands that evening** (the command record in the session feed; commit trailers: 048d8960
+signed 5.2 at 19:05:13, 1041c40a onward signed 5.1 from 00:11:59 11-10; no commit between, so the minute is not in git).
+The dreamer's pass 3 (03:28 LA) found three errors inside the planner's own corrections (a duration «2–8 min» for leads
+of 12 and 8; a line number 395 for 397; a correction re-imported 26 minutes after it had been overturned) — the
+corrections are a class with its own error rate. One row it flagged does not stand: «from round 3 the three were in
+three scenes» (S3-T1) is what the run record's `groups` field says for r3–r11, and the wire sentence is in the r4
+narration; the dreamer read the transcript's shared screens as shared scenes.
