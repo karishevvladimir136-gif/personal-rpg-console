@@ -303,5 +303,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change explicitly restates R1 with no amendment, so nothing is touched and the key's classifications all hold. Five working days before Friday 23 October, excluding the call day, lands exactly on Friday 16 October, making option a correct; b misapplies the Apex three-day rule (F7), d targets the wrong audience, c is unnecessary. F7 is the newer relevant-looking but untouched distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change explicitly restates R1 with no amendment, so nothing is touched and the key's classifications all hold. Five working days before Friday 23 October, excluding the call day, lands exactly on Friday 16 October, making option a correct; b misapplies the Apex three-day rule (F7), d targets the wrong audience, c is unnecessary. F7 is the newer relevant-looking but untouched distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2285,
+    "completion_tokens": 230,
+    "reasoning_tokens": 95,
+    "cached_tokens": 256
+   },
+   "cost": 0.0096138,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8a8594237805ab54465d75c1d61f56a31d37432f424c7057e87bb83bfa5275fd"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"no\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The change restates the existing rule, so no decisions are touched and option a correctly fulfills O1. Option b explicitly holds the pack and postpones sending until 20 October, violating the no-wait-or-postpone requirement. F7 supplies a relevant-looking but inapplicable three-working-day lead time for investor updates.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "no",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change restates the existing rule, so no decisions are touched and option a correctly fulfills O1. Option b explicitly holds the pack and postpones sending until 20 October, violating the no-wait-or-postpone requirement. F7 supplies a relevant-looking but inapplicable three-working-day lead time for investor updates."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2204,
+    "completion_tokens": 185,
+    "reasoning_tokens": 88,
+    "cached_tokens": 0
+   },
+   "cost": 0.0367925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8a8594237805ab54465d75c1d61f56a31d37432f424c7057e87bb83bfa5275fd"
+  }
+ }
 }

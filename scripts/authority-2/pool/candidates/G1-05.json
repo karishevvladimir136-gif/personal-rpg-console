@@ -362,5 +362,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The date correction revokes F3 and touches D2, D3, D4, D9 directly and D5 through D2, exactly as the key states; D1, D6, D7, D8 rest on unrelated facts. Option a misuses the quiz night date from F9 (the distractor item), option c uses the revoked date, and both the flyer order and the marquee deposit (O2, due today) must act now with 17 October.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The date correction revokes F3 and touches D2, D3, D4, D9 directly and D5 through D2, exactly as the key states; D1, D6, D7, D8 rest on unrelated facts. Option a misuses the quiz night date from F9 (the distractor item), option c uses the revoked date, and both the flyer order and the marquee deposit (O2, due today) must act now with 17 October."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2576,
+    "completion_tokens": 232,
+    "reasoning_tokens": 83,
+    "cached_tokens": 0
+   },
+   "cost": 0.011208,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a8d86d2062edbc720136a3828e49de46443f29cc53dbcfe116bb8f7636602789"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"R1 requires two written quotes before booking an external hire over £200, but the £340 marquee hire has only one quote recorded. Paying an £85 deposit still confirms that £340 booking, so option b is not unambiguously permissible even though it uses the correct date.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "R1 requires two written quotes before booking an external hire over £200, but the £340 marquee hire has only one quote recorded. Paying an £85 deposit still confirms that £340 booking, so option b is not unambiguously permissible even though it uses the correct date."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2497,
+    "completion_tokens": 207,
+    "reasoning_tokens": 119,
+    "cached_tokens": 0
+   },
+   "cost": 0.041555,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a8d86d2062edbc720136a3828e49de46443f29cc53dbcfe116bb8f7636602789"
+  }
+ }
 }

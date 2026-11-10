@@ -338,5 +338,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"The amended rule changes D1 and D3 directly and D4 through D3, while the listed untouched decisions remain valid. Option b performs the paperwork action required for Marco's £620 agreement; option a uses the revoked limit, and option c improperly acts on the unaccepted Ravel quote.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amended rule changes D1 and D3 directly and D4 through D3, while the listed untouched decisions remain valid. Option b performs the paperwork action required for Marco's £620 agreement; option a uses the revoked limit, and option c improperly acts on the unaccepted Ravel quote."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2544,
+    "completion_tokens": 138,
+    "reasoning_tokens": 47,
+    "cached_tokens": 0
+   },
+   "cost": 0.0386925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "da33815d75424e4e8f0fa8b25b4f95e4b79ec82ef08a4003fc1352b6d7abd892"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amendment to R1 cleanly splits decisions: D1 and D3 (both above £300, work not started) are touched, D4 is void two hops away via D3, while D2 (£260, completed), D7 (already countersigned), D5 and D6 stand. Option b is the unique correct act and all three options are acts. F13 (the unaccepted Ravel quote) is a proper newer distractor untouched by the change.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amendment to R1 cleanly splits decisions: D1 and D3 (both above £300, work not started) are touched, D4 is void two hops away via D3, while D2 (£260, completed), D7 (already countersigned), D5 and D6 stand. Option b is the unique correct act and all three options are acts. F13 (the unaccepted Ravel quote) is a proper newer distractor untouched by the change."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2614,
+    "completion_tokens": 293,
+    "reasoning_tokens": 147,
+    "cached_tokens": 256
+   },
+   "cost": 0.0115458,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "da33815d75424e4e8f0fa8b25b4f95e4b79ec82ef08a4003fc1352b6d7abd892"
+  }
+ }
 }

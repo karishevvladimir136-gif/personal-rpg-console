@@ -330,5 +330,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"The amended rule permits presentation anytime within 72 hours, so both Thursday and Friday are allowed if receipt was Wednesday morning; it does not uniquely require option c. Thursday at 4 pm is also not within 24 hours of Wednesday morning, undermining its designation as the stale-rule option. The history records receipt on 1 October, contradicting the task's fresh receipt, and neither that counteroffer nor Selby's receives an explicit deadline reset under the amendment.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amended rule permits presentation anytime within 72 hours, so both Thursday and Friday are allowed if receipt was Wednesday morning; it does not uniquely require option c. Thursday at 4 pm is also not within 24 hours of Wednesday morning, undermining its designation as the stale-rule option. The history records receipt on 1 October, contradicting the task's fresh receipt, and neither that counteroffer nor Selby's receives an explicit deadline reset under the amendment."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2490,
+    "completion_tokens": 161,
+    "reasoning_tokens": 37,
+    "cached_tokens": 0
+   },
+   "cost": 0.0391675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe10cd27e102874fe342ce04eb608e2f0f7986f6c6e2c69666e15f1f9556f8fa"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amendment to R1 cleanly splits pending sub-$600k presentations (D3, D4 touched, D5 touched through D3) from completed or above-threshold ones (D1, D2) and from R2-based decisions (D6, D7); option (a) replicates the old 24-hour value while (c) fits the new 72-hour window. F13's Tuesday-meeting remark is a relevant-looking but unused opinion serving as the distractor. Minor wrinkle: F6 dates receipt 10-01 while the task says 'this morning,' but the intended reading is unambiguous.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amendment to R1 cleanly splits pending sub-$600k presentations (D3, D4 touched, D5 touched through D3) from completed or above-threshold ones (D1, D2) and from R2-based decisions (D6, D7); option (a) replicates the old 24-hour value while (c) fits the new 72-hour window. F13's Tuesday-meeting remark is a relevant-looking but unused opinion serving as the distractor. Minor wrinkle: F6 dates receipt 10-01 while the task says 'this morning,' but the intended reading is unambiguous."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2588,
+    "completion_tokens": 791,
+    "reasoning_tokens": 614,
+    "cached_tokens": 256
+   },
+   "cost": 0.0189378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe10cd27e102874fe342ce04eb608e2f0f7986f6c6e2c69666e15f1f9556f8fa"
+  }
+ }
 }

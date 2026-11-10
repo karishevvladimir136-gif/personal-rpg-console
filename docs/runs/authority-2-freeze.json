@@ -1,0 +1,55 @@
+{
+ "authority1_harness": {
+  "layer_mark_sha256": "d1c59ee09c612053172d9f4179921c02fd4452ecafc7d1bd465b24bb9b53975a",
+  "authority1_prompts_all": "645cd94fb7924c476d107e11aa024348d0669758c0a782ae813c6ec9b268a23a",
+  "checked": "identical"
+ },
+ "scenarios_file": "c7af06411aa8837f02cc4102afc2728d4bad0ad131eb6e55902158c6474b61c6",
+ "scenarios_all": "80b06857a3b2ee682bcc1bbc1fd3bddb5eed1f2df5067a1ef3f173df64ca7bbd",
+ "truth_tables": "7c7b90ed88db55fb8942f3d0db1fbab4198b569293c9a03dc763bac3fad18da7",
+ "scenario_ids": [
+  "G1-07",
+  "G1-11",
+  "G1-09",
+  "G2-06",
+  "G2-04",
+  "G2-01",
+  "G3-10",
+  "G3-14",
+  "G3-06",
+  "G3-01",
+  "G3-11",
+  "G3-09",
+  "G4-07",
+  "G4-12",
+  "G4-05",
+  "G4-10",
+  "G4-09"
+ ],
+ "prompts_authority2": {
+  "WRITER_SPEC": "f8a46e37ab1e7c5556dffac4b6e4bbddee850106948447fde3dc7297196eb6e8",
+  "RATER_INSTRUMENT": "5abafcb39bf128629594c4b4dc2d32bbd4e27554d9908576629c1a4ddbcd53f0",
+  "SETTINGS": "834ee251481f37d3aaa4a172c3ce74474bba127210bd6b7d911330ec71cd3b3c",
+  "WRITE": "fbef8b1a18f4be785f22371d697083fdcebe3b9df74ed084029fe0199de10474",
+  "REPAIR": "7187e4bf1b0c289afdfc62af2f24734984796e77aadd0c6e17f071a36f681683",
+  "OBLIGATION": "3031b47e6db3db6247c57ef9d3e8452144c0277186e884c9d65a1d397e442530",
+  "OBLIGATION_REFEREE": "e28d7ea60584b548a0f20d0c2585c979bfe4c1c19250f4a93c10d5d03e7dd03c"
+ },
+ "prompts_reused_from_authority1": {
+  "JUDGE": "20f8e09090b738937037cca79da9c7f1812c855ce4b8664861a72f727abce7b0",
+  "REFEREE": "7d982eab516626ca4898dc02f3fa6df6399734f21aeb48f786d198cc9f759b4b",
+  "SUBSTANCE": "94b0dee61803b7db28a06cdc72031bf3cc9fa515710996cf751ab7ec2f0c3deb",
+  "SUBSTANCE_REFEREE": "f22072975a4ae6eeb60ddbe5cf818a8e5c262b5f04d574fb7e809e4db1e8d066"
+ },
+ "code": {
+  "run.py": "9d80321c5c04ea85a1769b7d98b1f32c5d0d40209014698654eacf51c69de5d1",
+  "authority2/specs2.py": "e067284818b4d6ae580a47deb3e9179b6393e509aec423f406c8e71759ec9126",
+  "authority2/pool.py": "a28c259376e9937f959475370a6b681637be2b87cd08737232d626c5d2b8a21b",
+  "authority2/validate.py": "675e2b6277e79b98fbea44823f912dbefe279f99d66c45ecfbdc9385cc9cb7be",
+  "authority2/oblig.py": "a1b90208390939d194ce084a6be62a00e7d18b327fa2031a6104992702faa1fa",
+  "authority2/stats.py": "1d81c9a8032396ade5d185a5f472642fdd2f5e2f5968c961a8d187d46efc3d7d",
+  "WRITER_SPEC.md": "f8a46e37ab1e7c5556dffac4b6e4bbddee850106948447fde3dc7297196eb6e8",
+  "RATER_INSTRUMENT.md": "5abafcb39bf128629594c4b4dc2d32bbd4e27554d9908576629c1a4ddbcd53f0"
+ },
+ "admission": "ce35db76d188f3915e0710cd49252d5ae0e6f533b2300c37a544be2f6dc0ae32"
+}

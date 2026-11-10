@@ -348,5 +348,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"C1 revokes state fact F3 (Terrace Room capacity 80→60), touching D3 directly and D5 two hops away via D3, while D4 cites F3 only for the 'largest room' aspect C1 explicitly preserves, so it stands; option a (60 covers at €15 via Fairway Foods, satisfying R2's €500 rule) is unambiguously correct. All four options are acts of confirming an order with no wait/ask alternative. F12 (48 signups for a different dinner) and F13 (Chestnuts quote) are newer, relevant-looking items that support the wrong options c and d.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "C1 revokes state fact F3 (Terrace Room capacity 80→60), touching D3 directly and D5 two hops away via D3, while D4 cites F3 only for the 'largest room' aspect C1 explicitly preserves, so it stands; option a (60 covers at €15 via Fairway Foods, satisfying R2's €500 rule) is unambiguously correct. All four options are acts of confirming an order with no wait/ask alternative. F12 (48 signups for a different dinner) and F13 (Chestnuts quote) are newer, relevant-looking items that support the wrong options c and d."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2433,
+    "completion_tokens": 739,
+    "reasoning_tokens": 556,
+    "cached_tokens": 256
+   },
+   "cost": 0.0176928,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "658d77f64904279e8d418ea5bfac26982625a6ef6f7e7316c2c5e38222729cd5"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The capacity correction touches D3 directly and D5 through D3, reducing the dinner order and menu count to 60; D4's largest-room rationale is explicitly preserved. The task requires confirming the order now. F12's 48 attendees and F13's €22 price concern other arrangements and are untouched distractors.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The capacity correction touches D3 directly and D5 through D3, reducing the dinner order and menu count to 60; D4's largest-room rationale is explicitly preserved. The task requires confirming the order now. F12's 48 attendees and F13's €22 price concern other arrangements and are untouched distractors."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2337,
+    "completion_tokens": 422,
+    "reasoning_tokens": 325,
+    "cached_tokens": 0
+   },
+   "cost": 0.050305,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "658d77f64904279e8d418ea5bfac26982625a6ef6f7e7316c2c5e38222729cd5"
+  }
+ }
 }

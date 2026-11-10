@@ -322,5 +322,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"The amended rule changes D1 and D3 and propagates through D1 to D5, while the listed untouched decisions stand. O1 requires sending today's October confirmation at £2.80 per litre, totaling £1,680, and every option is a sending act. F10 supplies a newer, relevant-looking matched price for a separate account, not Harbor Cider House.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amended rule changes D1 and D3 and propagates through D1 to D5, while the listed untouched decisions stand. O1 requires sending today's October confirmation at £2.80 per litre, totaling £1,680, and every option is a sending act. F10 supplies a newer, relevant-looking matched price for a separate account, not Harbor Cider House."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2418,
+    "completion_tokens": 182,
+    "reasoning_tokens": 74,
+    "cached_tokens": 0
+   },
+   "cost": 0.0393175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "daefb7e299f449971b3a357ecb72e6f559b7ea9981e9af9d9e9c695b9c190a2d"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The rule amendment (C1) raises the discount threshold to 800 L, voiding D1 and D3 and two-hop D5 while D2 and D4 stand, matching the key exactly; option b (£2.80, £1,680) correctly fulfils the due obligation O1. All three options are send-email acts with no wait/check option. F10 (Salcombe's £2.65 matched price) is a newer, relevant-looking but untouched fact that lures option c.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The rule amendment (C1) raises the discount threshold to 800 L, voiding D1 and D3 and two-hop D5 while D2 and D4 stand, matching the key exactly; option b (£2.80, £1,680) correctly fulfils the due obligation O1. All three options are send-email acts with no wait/check option. F10 (Salcombe's £2.65 matched price) is a newer, relevant-looking but untouched fact that lures option c."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2518,
+    "completion_tokens": 206,
+    "reasoning_tokens": 55,
+    "cached_tokens": 256
+   },
+   "cost": 0.0099528,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "daefb7e299f449971b3a357ecb72e6f559b7ea9981e9af9d9e9c695b9c190a2d"
+  }
+ }
 }

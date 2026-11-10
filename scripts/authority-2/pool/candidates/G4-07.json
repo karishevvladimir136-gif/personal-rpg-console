@@ -345,5 +345,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The change adds a supplier for pine pickets only, leaving all cedar decisions and O2 unchanged; option c carries out the approved order. Every option places an order now. F14 is a newer, relevant-looking cedar quote that could wrongly draw the order to Meadowbrook despite its rejection in D7.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change adds a supplier for pine pickets only, leaving all cedar decisions and O2 unchanged; option c carries out the approved order. Every option places an order now. F14 is a newer, relevant-looking cedar quote that could wrongly draw the order to Meadowbrook despite its rejection in D7."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2481,
+    "completion_tokens": 139,
+    "reasoning_tokens": 46,
+    "cached_tokens": 0
+   },
+   "cost": 0.037955,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d464dc1402e7124b8e5cf6d12fafcf39ce3132c6bd4e215dc0ebc72359a19a01"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change explicitly limits Meadowbrook to pine pickets and revokes nothing, so all decisions stand and option c correctly executes D5/D6 (Lakeland, 28 less 10%, free delivery per D4, Friday 9 Oct). Option a wrongly acts on the declined Meadowbrook quote (F14, a relevant-looking but untouched distractor); b and d needlessly alter a standing plan. Every option is an act, so the task forces action.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change explicitly limits Meadowbrook to pine pickets and revokes nothing, so all decisions stand and option c correctly executes D5/D6 (Lakeland, 28 less 10%, free delivery per D4, Friday 9 Oct). Option a wrongly acts on the declined Meadowbrook quote (F14, a relevant-looking but untouched distractor); b and d needlessly alter a standing plan. Every option is an act, so the task forces action."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2562,
+    "completion_tokens": 204,
+    "reasoning_tokens": 59,
+    "cached_tokens": 256
+   },
+   "cost": 0.0100548,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d464dc1402e7124b8e5cf6d12fafcf39ce3132c6bd4e215dc0ebc72359a19a01"
+  }
+ }
 }

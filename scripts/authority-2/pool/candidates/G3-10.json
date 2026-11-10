@@ -337,5 +337,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The billing correction touches D1 and, through D1, D2, while preserving D3's crew assignment and the existing dates and material order. O2 requires sending the work order today with hourly billing, materials at cost, and daily sign-off sheets. F9 supplies the newer, unrelated $2,900 flat-rate distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The billing correction touches D1 and, through D1, D2, while preserving D3's crew assignment and the existing dates and material order. O2 requires sending the work order today with hourly billing, materials at cost, and daily sign-off sheets. F9 supplies the newer, unrelated $2,900 flat-rate distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2341,
+    "completion_tokens": 134,
+    "reasoning_tokens": 34,
+    "cached_tokens": 0
+   },
+   "cost": 0.035955,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1bd01fef9a5fae90f17db0914096d2f78480d3dc292fab9794cf2c39774995df"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction revokes flat-rate fact F1: D1 is touched directly, D2 is touched through D1 (materials now billed at cost, though the order itself stands per the change), and D3 cites F1 only for the address/zone, which the correction does not alter, so it is untouched — matching the chain class. Option (a) is the unique correct act, (b) is stale, (c) misuses the newer Ridgeview fact F9, and (d) contradicts the change's explicit statement that the Copperline order stands. F9 is a newer, relevant-looking but untouched item serving as a proper distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction revokes flat-rate fact F1: D1 is touched directly, D2 is touched through D1 (materials now billed at cost, though the order itself stands per the change), and D3 cites F1 only for the address/zone, which the correction does not alter, so it is untouched — matching the chain class. Option (a) is the unique correct act, (b) is stale, (c) misuses the newer Ridgeview fact F9, and (d) contradicts the change's explicit statement that the Copperline order stands. F9 is a newer, relevant-looking but untouched item serving as a proper distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2454,
+    "completion_tokens": 380,
+    "reasoning_tokens": 195,
+    "cached_tokens": 256
+   },
+   "cost": 0.0123708,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1bd01fef9a5fae90f17db0914096d2f78480d3dc292fab9794cf2c39774995df"
+  }
+ }
 }

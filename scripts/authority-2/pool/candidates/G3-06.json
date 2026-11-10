@@ -282,5 +282,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The broker correction touches D1 and, through D1, D2, while D3 retains the explicitly unchanged Gothenburg entry office and filing window. The task requires booking now under O1, making option b correct. F9 is a newer, unaccepted quote from a different firm and is an actionable-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The broker correction touches D1 and, through D1, D2, while D3 retains the explicitly unchanged Gothenburg entry office and filing window. The task requires booking now under O1, making option b correct. F9 is a newer, unaccepted quote from a different firm and is an actionable-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2074,
+    "completion_tokens": 180,
+    "reasoning_tokens": 83,
+    "cached_tokens": 0
+   },
+   "cost": 0.0349175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07f391062f8b9024fbbb60ae407320db38b916fa6494088d82614732ac5a7483"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F2 (broker change): D1 is touched directly, D2 is touched through D1 (two hops), and D3 cites F2 only for the Gothenburg entry office, which the change explicitly preserves, so it stands — matching the chain class. Option b follows from the updated broker with unchanged timing; option a is stale on the broker, and c wrongly acts on the unaccepted Strand Logistics quote (F9), the relevant-looking but untouched distractor. All options are acts and the task demands booking now, so an act is forced.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction revokes F2 (broker change): D1 is touched directly, D2 is touched through D1 (two hops), and D3 cites F2 only for the Gothenburg entry office, which the change explicitly preserves, so it stands — matching the chain class. Option b follows from the updated broker with unchanged timing; option a is stale on the broker, and c wrongly acts on the unaccepted Strand Logistics quote (F9), the relevant-looking but untouched distractor. All options are acts and the task demands booking now, so an act is forced."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2172,
+    "completion_tokens": 244,
+    "reasoning_tokens": 78,
+    "cached_tokens": 256
+   },
+   "cost": 0.0094848,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07f391062f8b9024fbbb60ae407320db38b916fa6494088d82614732ac5a7483"
+  }
+ }
 }

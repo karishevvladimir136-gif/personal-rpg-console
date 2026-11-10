@@ -282,5 +282,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F3's fee, touching D3 (deposit becomes 16,200) and D4 through D3, while D1 cites only F3's unchanged date-hold and stands, fitting the chain pattern. Option c is the correct act; a is the stale 14,400 and b is 30 percent of the untouched Bellwick quote (F8), a relevant-looking newer distractor. All options are transfers, so the task forces an act.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction revokes F3's fee, touching D3 (deposit becomes 16,200) and D4 through D3, while D1 cites only F3's unchanged date-hold and stands, fitting the chain pattern. Option c is the correct act; a is the stale 14,400 and b is 30 percent of the untouched Bellwick quote (F8), a relevant-looking newer distractor. All options are transfers, so the task forces an act."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2353,
+    "completion_tokens": 301,
+    "reasoning_tokens": 154,
+    "cached_tokens": 256
+   },
+   "cost": 0.0108828,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cead96f81ee86f842d94da057f6bcb122398e6a754fdd4080decf5762878dfb8"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The dependency chain and corrected deposit of 16,200 euros are sound, but R2 requires Marta's sign-off before the payment leaves the account. Option c merely says to transfer and flag for sign-off, so it does not unambiguously specify a compliant act. F8 supplies the untouched, relevant-looking distractor value.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The dependency chain and corrected deposit of 16,200 euros are sound, but R2 requires Marta's sign-off before the payment leaves the account. Option c merely says to transfer and flag for sign-off, so it does not unambiguously specify a compliant act. F8 supplies the untouched, relevant-looking distractor value."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2251,
+    "completion_tokens": 300,
+    "reasoning_tokens": 202,
+    "cached_tokens": 0
+   },
+   "cost": 0.04313,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cead96f81ee86f842d94da057f6bcb122398e6a754fdd4080decf5762878dfb8"
+  }
+ }
 }

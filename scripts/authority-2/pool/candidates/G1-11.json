@@ -354,5 +354,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"The revoked review date shifts D4 and D5 to 12 February 2027 and propagates through D4 to D7; O2 must state the updated submission date. Option a retains the old pre-review date, while option c uses the unrelated F14 committee date. The task and all options require immediate booking and sending.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The revoked review date shifts D4 and D5 to 12 February 2027 and propagates through D4 to D7; O2 must state the updated submission date. Option a retains the old pre-review date, while option c uses the unrelated F14 committee date. The task and all options require immediate booking and sending."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2515,
+    "completion_tokens": 180,
+    "reasoning_tokens": 81,
+    "cached_tokens": 0
+   },
+   "cost": 0.04043,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3249618b061725182645e731f2b0bf0eab6c10aaa3b228a81c2d92e50fb733c9"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"F6 (12 March review) is revoked in favor of 26 February 2027, so two-weeks-before deadlines move to 12 February: D4 and D5 directly, D7 through D4; the old derived date 26 February is exactly option a (stale), and F14's 5 February UCC date is a live but irrelevant distractor (option c). D1, D2, D3, D6, D8 rest on untouched facts/rules, and O2 is genuinely due (past its 30 Oct 2026 due date, not done) with the new planned date 12 February 2027. All options are acts with no wait/ask alternative.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "F6 (12 March review) is revoked in favor of 26 February 2027, so two-weeks-before deadlines move to 12 February: D4 and D5 directly, D7 through D4; the old derived date 26 February is exactly option a (stale), and F14's 5 February UCC date is a live but irrelevant distractor (option c). D1, D2, D3, D6, D8 rest on untouched facts/rules, and O2 is genuinely due (past its 30 Oct 2026 due date, not done) with the new planned date 12 February 2027. All options are acts with no wait/ask alternative."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2591,
+    "completion_tokens": 480,
+    "reasoning_tokens": 285,
+    "cached_tokens": 256
+   },
+   "cost": 0.0142818,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3249618b061725182645e731f2b0bf0eab6c10aaa3b228a81c2d92e50fb733c9"
+  }
+ }
 }

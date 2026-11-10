@@ -318,5 +318,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amendment of R1 voids D3 (balance $350 exceeds the new $200 threshold) and D4 (plan never signed, so new 40% terms give a $240 deposit), with D6 touched two hops away through D4; D1 and D2 are protected as pre-signed plans and D5/D7 rest on unrelated facts. Option a is stale (old 25% deposit), option b misuses the irrelevant F10 outside quote, and every option is a booking act matching the due obligation O2.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amendment of R1 voids D3 (balance $350 exceeds the new $200 threshold) and D4 (plan never signed, so new 40% terms give a $240 deposit), with D6 touched two hops away through D4; D1 and D2 are protected as pre-signed plans and D5/D7 rest on unrelated facts. Option a is stale (old 25% deposit), option b misuses the irrelevant F10 outside quote, and every option is a booking act matching the due obligation O2."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2570,
+    "completion_tokens": 247,
+    "reasoning_tokens": 89,
+    "cached_tokens": 256
+   },
+   "cost": 0.0107238,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "16bd5def93f32c50d4bfe6ab8c70d8efc93176ddcb850524ef2069d49078e0fa"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"Sam’s $240 deposit leaves a $360 outstanding balance, exceeding the new $200 elective-booking threshold that applies to all owners. The history provides no exemption for newly signed payment plans, so option c is not unambiguously permitted and the key’s instruction to confirm D6 does not clearly follow.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "Sam’s $240 deposit leaves a $360 outstanding balance, exceeding the new $200 elective-booking threshold that applies to all owners. The history provides no exemption for newly signed payment plans, so option c is not unambiguously permitted and the key’s instruction to confirm D6 does not clearly follow."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2479,
+    "completion_tokens": 256,
+    "reasoning_tokens": 163,
+    "cached_tokens": 0
+   },
+   "cost": 0.04378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "16bd5def93f32c50d4bfe6ab8c70d8efc93176ddcb850524ef2069d49078e0fa"
+  }
+ }
 }

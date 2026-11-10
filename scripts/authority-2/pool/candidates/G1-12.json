@@ -364,5 +364,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"Option b correctly fulfills the task, but the key misstates O2: it requires confirming the supplier and volume for November and placing the first November order, not merely placing this week's order for Thursday 29 October. The history does not establish that the October delivery fulfills that November obligation.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "Option b correctly fulfills the task, but the key misstates O2: it requires confirming the supplier and volume for November and placing the first November order, not merely placing this week's order for Thursday 29 October. The history does not establish that the October delivery fulfills that November obligation."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2234,
+    "completion_tokens": 159,
+    "reasoning_tokens": 70,
+    "cached_tokens": 0
+   },
+   "cost": 0.0358675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a21b5b502dea18c0a26cf7b79d3ceb16f06803c092bb11dcf2e83492b9053a62"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F5, touching D3 directly, D4 (also resting on F5), and D6 two hops away via D3, while the 18 kg volume from D6 still stands, so option b (18 kg from Hollow Vale for Thursday 29 Oct) is the right act and option a is stale; F12 (Fenwick Farm, available only from January 2027) is a relevant-looking but inapplicable distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes F5, touching D3 directly, D4 (also resting on F5), and D6 two hops away via D3, while the 18 kg volume from D6 still stands, so option b (18 kg from Hollow Vale for Thursday 29 Oct) is the right act and option a is stale; F12 (Fenwick Farm, available only from January 2027) is a relevant-looking but inapplicable distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2315,
+    "completion_tokens": 260,
+    "reasoning_tokens": 115,
+    "cached_tokens": 256
+   },
+   "cost": 0.0101538,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a21b5b502dea18c0a26cf7b79d3ceb16f06803c092bb11dcf2e83492b9053a62"
+  }
+ }
 }

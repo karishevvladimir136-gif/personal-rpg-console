@@ -288,5 +288,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The correction only fixes F5, an archived-glossary note no decision cites, and explicitly leaves current work unaffected, so all decisions stand and option b (the ordinary confirmation per D1/D2/O1) is unambiguously right. All four options are acts with no ask/wait choice, and F9 (Petra's newer unused quote) is a plausible untouched distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction only fixes F5, an archived-glossary note no decision cites, and explicitly leaves current work unaffected, so all decisions stand and option b (the ordinary confirmation per D1/D2/O1) is unambiguously right. All four options are acts with no ask/wait choice, and F9 (Petra's newer unused quote) is a plausible untouched distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2176,
+    "completion_tokens": 224,
+    "reasoning_tokens": 96,
+    "cached_tokens": 256
+   },
+   "cost": 0.0091968,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "842ef7ef5e2d93e0fd5375ca13a9917d23c2d2a1f9c7adeaeae85ff1eb459e38"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The correction is a control: no decision uses F5, and Petra's unused quote is a distractor. However, O1 schedules booking confirmation for 30 October, after the first batch was due on 14 October, despite R2 requiring confirmation before work starts. Thus option b is not unambiguously valid as an ordinary booking confirmation without addressing the overdue batch and confirmation.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction is a control: no decision uses F5, and Petra's unused quote is a distractor. However, O1 schedules booking confirmation for 30 October, after the first batch was due on 14 October, despite R2 requiring confirmation before work starts. Thus option b is not unambiguously valid as an ordinary booking confirmation without addressing the overdue batch and confirmation."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2074,
+    "completion_tokens": 334,
+    "reasoning_tokens": 226,
+    "cached_tokens": 0
+   },
+   "cost": 0.0426175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "842ef7ef5e2d93e0fd5375ca13a9917d23c2d2a1f9c7adeaeae85ff1eb459e38"
+  }
+ }
 }

@@ -336,5 +336,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The rule amendment's grandfather clause cleanly partitions the decisions: D4 and D7 (October requests ≤15h) are voided, D8 is touched two hops away through D4, while D1 (pre-October) and D6 (>15h) stand, matching the key. All three options are acts with no wait/check option, so the task forces action. F12 (the 20-hour dashboard redesign) is a newer relevant-looking item untouched by the change that could be wrongly booked, serving as the distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The rule amendment's grandfather clause cleanly partitions the decisions: D4 and D7 (October requests ≤15h) are voided, D8 is touched two hops away through D4, while D1 (pre-October) and D6 (>15h) stand, matching the key. All three options are acts with no wait/check option, so the task forces action. F12 (the 20-hour dashboard redesign) is a newer relevant-looking item untouched by the change that could be wrongly booked, serving as the distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2792,
+    "completion_tokens": 279,
+    "reasoning_tokens": 121,
+    "cached_tokens": 256
+   },
+   "cost": 0.0118698,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5b60893f1b58f51de9f165fb8ee870dff220175d9e23d4f37abf6598ae7885ea"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"Option b books work without explicitly waiting for Priya’s required acknowledgement, and the key likewise says D4 can be booked now despite no recorded acknowledgement. D8 needs reconsideration, but the amendment does not require reallocating capacity specifically to the PDF-digest change, particularly alongside the new 12-hour SMS request.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "Option b books work without explicitly waiting for Priya’s required acknowledgement, and the key likewise says D4 can be booked now despite no recorded acknowledgement. D8 needs reconsideration, but the amendment does not require reallocating capacity specifically to the PDF-digest change, particularly alongside the new 12-hour SMS request."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2693,
+    "completion_tokens": 337,
+    "reasoning_tokens": 242,
+    "cached_tokens": 0
+   },
+   "cost": 0.050505,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5b60893f1b58f51de9f165fb8ee870dff220175d9e23d4f37abf6598ae7885ea"
+  }
+ }
 }

@@ -353,5 +353,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The correction touches D5 and, through it, D6, while D3 and D9 remain valid because their uses precede the corrected licence end date. It does not establish that all eight archive images must be replaced by new photos commissioned from Nell, so the 15-photo, £600 commission is not uniquely required. Moreover, R1 requires written approval before confirming that commission, and the recorded approval covers only £280.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction touches D5 and, through it, D6, while D3 and D9 remain valid because their uses precede the corrected licence end date. It does not establish that all eight archive images must be replaced by new photos commissioned from Nell, so the 15-photo, £600 commission is not uniquely required. Moreover, R1 requires written approval before confirming that commission, and the recorded approval covers only £280."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2461,
+    "completion_tokens": 170,
+    "reasoning_tokens": 52,
+    "cached_tokens": 0
+   },
+   "cost": 0.039255,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07c700790c2c2afbed38f0ed203d709ea1493023b1d7962c2e563b9a1daa74cf"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"F5's revocation touches D5 directly and D6 through D5, while D3 and D9 used the archive before the licence ended and stand; F8 (Nell's newer studio rate) is an untouched newer fact backing distractor option c. One minor wrinkle: the 600-pound fee exceeds the 200-pound threshold in R1 and no approval for it is on file, but the key flags this and all three options are confirmations, so b remains unambiguously correct.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "F5's revocation touches D5 directly and D6 through D5, while D3 and D9 used the archive before the licence ended and stand; F8 (Nell's newer studio rate) is an untouched newer fact backing distractor option c. One minor wrinkle: the 600-pound fee exceeds the 200-pound threshold in R1 and no approval for it is on file, but the key flags this and all three options are confirmations, so b remains unambiguously correct."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2568,
+    "completion_tokens": 558,
+    "reasoning_tokens": 407,
+    "cached_tokens": 256
+   },
+   "cost": 0.0153828,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07c700790c2c2afbed38f0ed203d709ea1493023b1d7962c2e563b9a1daa74cf"
+  }
+ }
 }

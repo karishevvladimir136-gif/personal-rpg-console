@@ -307,5 +307,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"D3 is internally inconsistent: four canoes at three paddlers each accommodate only 12 people, not the stated group of 16. Six canoes would accommodate the group, so option b cannot unambiguously be rejected as mere confusion with F9, and option a is not clearly the right act. The change itself is an unchanged rule restatement and touches no decisions.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "D3 is internally inconsistent: four canoes at three paddlers each accommodate only 12 people, not the stated group of 16. Six canoes would accommodate the group, so option b cannot unambiguously be rejected as mere confusion with F9, and option a is not clearly the right act. The change itself is an unchanged rule restatement and touches no decisions."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2154,
+    "completion_tokens": 136,
+    "reasoning_tokens": 28,
+    "cached_tokens": 0
+   },
+   "cost": 0.0337175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cbd8f73b6417b4ef321e95d4915ba5d61005ec3b2378e45bb387831ffb5c63ab"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change is explicitly a restatement of R1 with unchanged terms, so nothing is touched and option a (four canoes, 13 August, Marta and Ravi per D1/D3/O1) is correct; F9's six canoes (Voyager trip) is the untouched distractor behind option b, and c gratuitously moves the date. Minor quirk: D3's 'three paddlers per canoe covers sixteen' is arithmetically off (4×3=12), but the key consistently follows the recorded decision, so the scenario is still unambiguous as written.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change is explicitly a restatement of R1 with unchanged terms, so nothing is touched and option a (four canoes, 13 August, Marta and Ravi per D1/D3/O1) is correct; F9's six canoes (Voyager trip) is the untouched distractor behind option b, and c gratuitously moves the date. Minor quirk: D3's 'three paddlers per canoe covers sixteen' is arithmetically off (4×3=12), but the key consistently follows the recorded decision, so the scenario is still unambiguous as written."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2243,
+    "completion_tokens": 448,
+    "reasoning_tokens": 276,
+    "cached_tokens": 256
+   },
+   "cost": 0.0127578,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cbd8f73b6417b4ef321e95d4915ba5d61005ec3b2378e45bb387831ffb5c63ab"
+  }
+ }
 }

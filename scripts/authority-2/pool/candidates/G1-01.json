@@ -317,5 +317,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"D4 needs reconsideration, but the closure does not establish that the retainer can be terminated without payment or that no Q4 renewal payment is owed. R1 requires completion and checking by November 17, not delivery by November 13 specifically, although option c comfortably meets the deadline. The scenario otherwise fits stale fact, and F9 supplies an untouched, relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "D4 needs reconsideration, but the closure does not establish that the retainer can be terminated without payment or that no Q4 renewal payment is owed. R1 requires completion and checking by November 17, not delivery by November 13 specifically, although option c comfortably meets the deadline. The scenario otherwise fits stale fact, and F9 supplies an untouched, relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2497,
+    "completion_tokens": 231,
+    "reasoning_tokens": 122,
+    "cached_tokens": 0
+   },
+   "cost": 0.042755,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9107056fa5216013f8b3bb0997f64693b23caa66322468e8187c03fc4ea7fe79"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes state fact F3, touching D2, D3, D4 directly and D6 two hops away via D3, while D1, D5, D7 rest on untouched facts/rules; option c is the only act consistent with the new vendor and timeline. F9 (the declined Linden Words quote) is a relevant-looking newer item untouched by the change, serving as a genuine distractor. All options are acts with no ask/wait alternative.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes state fact F3, touching D2, D3, D4 directly and D6 two hops away via D3, while D1, D5, D7 rest on untouched facts/rules; option c is the only act consistent with the new vendor and timeline. F9 (the declined Linden Words quote) is a relevant-looking newer item untouched by the change, serving as a genuine distractor. All options are acts with no ask/wait alternative."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2604,
+    "completion_tokens": 281,
+    "reasoning_tokens": 137,
+    "cached_tokens": 0
+   },
+   "cost": 0.012027,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9107056fa5216013f8b3bb0997f64693b23caa66322468e8187c03fc4ea7fe79"
+  }
+ }
 }

@@ -320,5 +320,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes state fact F7 with a newer delivery window, touching D6, D2, D3 directly and D4 two hops away via D2, while D1 and D5 clearly stand; option b matches the due obligation O1 with the new window, c is stale, and a is the Meridian distractor (F8). All options are acts with no wait/ask choice, so the task forces an act. This is a textbook stale-fact scenario with a relevant-looking but untouched newer item (F8).\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes state fact F7 with a newer delivery window, touching D6, D2, D3 directly and D4 two hops away via D2, while D1 and D5 clearly stand; option b matches the due obligation O1 with the new window, c is stale, and a is the Meridian distractor (F8). All options are acts with no wait/ask choice, so the task forces an act. This is a textbook stale-fact scenario with a relevant-looking but untouched newer item (F8)."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2449,
+    "completion_tokens": 315,
+    "reasoning_tokens": 156,
+    "cached_tokens": 256
+   },
+   "cost": 0.0113808,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "615684da7352bc02a9a85080b170308e6c85aa584cd2ba2e08903eb6a7488ffc"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"Option b books delivery on a Monday, when the shop is closed; no arrangement for receiving deliveries while closed is stated, so it is not unambiguously correct. The earlier delivery also does not establish the key's claimed downstream timing changes: the launch and installation dates can remain as booked, and moving the installation earlier is merely optional.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "Option b books delivery on a Monday, when the shop is closed; no arrangement for receiving deliveries while closed is stated, so it is not unambiguously correct. The earlier delivery also does not establish the key's claimed downstream timing changes: the launch and installation dates can remain as booked, and moving the installation earlier is merely optional."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2370,
+    "completion_tokens": 348,
+    "reasoning_tokens": 249,
+    "cached_tokens": 0
+   },
+   "cost": 0.0470175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "615684da7352bc02a9a85080b170308e6c85aa584cd2ba2e08903eb6a7488ffc"
+  }
+ }
 }

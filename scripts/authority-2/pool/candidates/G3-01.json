@@ -350,5 +350,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The chest correction changes D1 and, through D1, D2, while D3 stands because sleeve length is explicitly unchanged. The due order is therefore 3.6 metres of charcoal Super 120s from Norlind Mills, and every option is an immediate ordering act. F9 is a newer, relevant-looking but unrelated quote that could misdirect the order.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The chest correction changes D1 and, through D1, D2, while D3 stands because sleeve length is explicitly unchanged. The due order is therefore 3.6 metres of charcoal Super 120s from Norlind Mills, and every option is an immediate ordering act. F9 is a newer, relevant-looking but unrelated quote that could misdirect the order."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2212,
+    "completion_tokens": 191,
+    "reasoning_tokens": 84,
+    "cached_tokens": 0
+   },
+   "cost": 0.0371925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "55764742f7a6e47af0b3e995bcb10cfc322bc06f5869a246019e1df17255c13d"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction of F1 (chest) touches D1 directly and D2 through D1, while D3 cites F1 only for the unchanged sleeve length, exactly matching a chain pattern; option b is the only consistent act. F9 (newer Hartley navy quote) is a relevant-looking but untouched distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction of F1 (chest) touches D1 directly and D2 through D1, while D3 cites F1 only for the unchanged sleeve length, exactly matching a chain pattern; option b is the only consistent act. F9 (newer Hartley navy quote) is a relevant-looking but untouched distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2317,
+    "completion_tokens": 162,
+    "reasoning_tokens": 46,
+    "cached_tokens": 256
+   },
+   "cost": 0.0086898,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "55764742f7a6e47af0b3e995bcb10cfc322bc06f5869a246019e1df17255c13d"
+  }
+ }
 }

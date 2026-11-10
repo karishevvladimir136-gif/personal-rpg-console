@@ -324,5 +324,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The change amends rule R1, voiding plumbing assignments (D4, D5 via D4, D6) while non-plumbing and completed decisions stand, matching the key exactly. All options are booking acts, so the task forces an act. F11 (Brasswell's flat-rate quote) is a newer, relevant-looking item that is untouched by the change and could wrongly be acted on.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The change amends rule R1, voiding plumbing assignments (D4, D5 via D4, D6) while non-plumbing and completed decisions stand, matching the key exactly. All options are booking acts, so the task forces an act. F11 (Brasswell's flat-rate quote) is a newer, relevant-looking item that is untouched by the change and could wrongly be acted on."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2468,
+    "completion_tokens": 265,
+    "reasoning_tokens": 132,
+    "cached_tokens": 256
+   },
+   "cost": 0.0106878,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "870a943e639efc9373419506950ce98a9b89f95974966ebcea06ddf675f96426"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"D5 orders cartridges, not Gary's fitting services; the amendment does not alter that order, so the key incorrectly labels D5 a touched decision. The rule change otherwise fits class 2, and option b is correct. O1 is already overdue on the task date, rather than falling due with the task as the key claims.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "D5 orders cartridges, not Gary's fitting services; the amendment does not alter that order, so the key incorrectly labels D5 a touched decision. The rule change otherwise fits class 2, and option b is correct. O1 is already overdue on the task date, rather than falling due with the task as the key claims."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2392,
+    "completion_tokens": 230,
+    "reasoning_tokens": 131,
+    "cached_tokens": 0
+   },
+   "cost": 0.0413925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "870a943e639efc9373419506950ce98a9b89f95974966ebcea06ddf675f96426"
+  }
+ }
 }

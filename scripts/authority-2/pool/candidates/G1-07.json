@@ -366,5 +366,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F7 and directly touches D3 and D4, with D5 touched two hops away via D3, matching the key; all other decisions rest on untouched facts. Every option is an act with no ask/wait option, and F12 (Ivo's unaffected 09:15 Friday run) is a relevant-looking but untouched distractor exploited by option c.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes F7 and directly touches D3 and D4, with D5 touched two hops away via D3, matching the key; all other decisions rest on untouched facts. Every option is an act with no ask/wait option, and F12 (Ivo's unaffected 09:15 Friday run) is a relevant-looking but untouched distractor exploited by option c."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2675,
+    "completion_tokens": 210,
+    "reasoning_tokens": 82,
+    "cached_tokens": 256
+   },
+   "cost": 0.0104838,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "19d66f4bf672dda22d4e3ac55df7835557809a0db6f45c014a1cbe0f008feb5a"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"The correction revokes F7 and explicitly establishes the revised driver, departure, handover and maintenance requirement, matching the key and O2. The task requires booking and confirmation, and every option proposes those acts. F12 is a newer, relevant-looking but unaffected fact about Ivo's separate parcel-post run.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes F7 and explicitly establishes the revised driver, departure, handover and maintenance requirement, matching the key and O2. The task requires booking and confirmation, and every option proposes those acts. F12 is a newer, relevant-looking but unaffected fact about Ivo's separate parcel-post run."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2577,
+    "completion_tokens": 232,
+    "reasoning_tokens": 138,
+    "cached_tokens": 0
+   },
+   "cost": 0.043805,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "19d66f4bf672dda22d4e3ac55df7835557809a0db6f45c014a1cbe0f008feb5a"
+  }
+ }
 }

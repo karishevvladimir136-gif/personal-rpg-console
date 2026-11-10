@@ -289,5 +289,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction of F3 touches D1 directly and D4 through D1, while D3 cites F3's portal aspect which the correction explicitly keeps, matching class 3 exactly. Option b wrongly imports Maple Ridge's F9 same-day deadline, an untouched newer fact, so the distractor requirement holds. All options are concrete acts with no ask/wait choice, and O1 is due on the task day with the correct 4-hour stat tier value.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction of F3 touches D1 directly and D4 through D1, while D3 cites F3's portal aspect which the correction explicitly keeps, matching class 3 exactly. Option b wrongly imports Maple Ridge's F9 same-day deadline, an untouched newer fact, so the distractor requirement holds. All options are concrete acts with no ask/wait choice, and O1 is due on the task day with the correct 4-hour stat tier value."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2326,
+    "completion_tokens": 253,
+    "reasoning_tokens": 112,
+    "cached_tokens": 256
+   },
+   "cost": 0.0100818,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b6166356b7d4fb7282b9c6f36882fd9ed359f9f02f30025c549f526dd24fd67c"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The 4-hour tier specifies reading turnaround, not immediate result delivery, so the key's requirement to send results immediately and replace the Wednesday summary does not unambiguously follow. The correction does touch D1 and, through it, D4, while explicitly preserving the portal aspect supporting D3. F9 supplies the untouched, relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The 4-hour tier specifies reading turnaround, not immediate result delivery, so the key's requirement to send results immediately and replace the Wednesday summary does not unambiguously follow. The correction does touch D1 and, through it, D4, while explicitly preserving the portal aspect supporting D3. F9 supplies the untouched, relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2223,
+    "completion_tokens": 212,
+    "reasoning_tokens": 110,
+    "cached_tokens": 0
+   },
+   "cost": 0.03838,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b6166356b7d4fb7282b9c6f36882fd9ed359f9f02f30025c549f526dd24fd67c"
+  }
+ }
 }

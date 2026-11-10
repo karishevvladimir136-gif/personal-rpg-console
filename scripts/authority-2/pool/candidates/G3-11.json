@@ -307,5 +307,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The correction changes D4 and, through D4, D6, making option b correct; D5's audit classification remains unchanged. The task and every option require immediate booking and sending. F7 is a newer, relevant-looking but unaffected appointment for another patient that supplies the distractor values.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction changes D4 and, through D4, D6, making option b correct; D5's audit classification remains unchanged. The task and every option require immediate booking and sending. F7 is a newer, relevant-looking but unaffected appointment for another patient that supplies the distractor values."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2309,
+    "completion_tokens": 181,
+    "reasoning_tokens": 90,
+    "cached_tokens": 0
+   },
+   "cost": 0.037905,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bd63524e19d69a0c118dd26f7166cfb14321f10a62d4a96842ef499a56a1b553"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"C1 corrects F5 (appointment now Dr. Havel, 15 Oct), touching D4 directly (call moves to Thu 22 Oct 14:00) and D6 through D4 (letter must name Dr. Havel and the new date), while D5 cites F5 only for the unchanged referral reason and stands — a textbook chain. Option b is the only correct act; a is stale, c wrongly uses Otto Brandt's F7/Dr. Kessler, the intended distractor. All three options are acts with no ask/wait choice.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "C1 corrects F5 (appointment now Dr. Havel, 15 Oct), touching D4 directly (call moves to Thu 22 Oct 14:00) and D6 through D4 (letter must name Dr. Havel and the new date), while D5 cites F5 only for the unchanged referral reason and stands — a textbook chain. Option b is the only correct act; a is stale, c wrongly uses Otto Brandt's F7/Dr. Kessler, the intended distractor. All three options are acts with no ask/wait choice."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2414,
+    "completion_tokens": 339,
+    "reasoning_tokens": 171,
+    "cached_tokens": 256
+   },
+   "cost": 0.0116358,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bd63524e19d69a0c118dd26f7166cfb14321f10a62d4a96842ef499a56a1b553"
+  }
+ }
 }

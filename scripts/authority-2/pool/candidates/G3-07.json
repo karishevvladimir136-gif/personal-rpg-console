@@ -326,5 +326,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"Option b schedules the visit for 17 November, only eight days after the task date of 9 November, violating R1's ten-day advance-booking requirement. Thus the keyed correct option and obligation value are invalid, and none of the offered options fully satisfies the task. The dependency structure fits class 3: D2 and D5 are touched, while D4 relies on the unchanged plant-room location.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "Option b schedules the visit for 17 November, only eight days after the task date of 9 November, violating R1's ten-day advance-booking requirement. Thus the keyed correct option and obligation value are invalid, and none of the offered options fully satisfies the task. The dependency structure fits class 3: D2 and D5 are touched, while D4 relies on the unchanged plant-room location."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2361,
+    "completion_tokens": 162,
+    "reasoning_tokens": 48,
+    "cached_tokens": 0
+   },
+   "cost": 0.037605,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fb7d11de1670b95620ae325991495c87c83f05e473713cc5d64fbd4dc9532624"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The change revokes F3, voiding D2 directly and D5 through it, while D4 cites F3 only for the unchanged plant-room location, so the chain structure and touched/untouched sets are right. However, the key's own correct value (Tuesday 17 November) is only 8 days after the task day of 9 November, violating R1's ten-day booking rule that the key itself invokes — the earliest compliant date is 19 November, so option b and the key's correct value are internally inconsistent. The PoolStyle Direct quote (F9) is a proper newer relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The change revokes F3, voiding D2 directly and D5 through it, while D4 cites F3 only for the unchanged plant-room location, so the chain structure and touched/untouched sets are right. However, the key's own correct value (Tuesday 17 November) is only 8 days after the task day of 9 November, violating R1's ten-day booking rule that the key itself invokes — the earliest compliant date is 19 November, so option b and the key's correct value are internally inconsistent. The PoolStyle Direct quote (F9) is a proper newer relevant-looking distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2462,
+    "completion_tokens": 409,
+    "reasoning_tokens": 232,
+    "cached_tokens": 256
+   },
+   "cost": 0.0128298,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fb7d11de1670b95620ae325991495c87c83f05e473713cc5d64fbd4dc9532624"
+  }
+ }
 }

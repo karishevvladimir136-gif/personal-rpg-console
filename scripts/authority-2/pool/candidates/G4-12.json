@@ -313,5 +313,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The correction replaces only F6, which no decision uses, so all standing decisions remain valid and option a carries out the booking and due payment-terms obligation. Every option specifies immediate actions. F10 is a newer, relevant-looking but declined quote that could wrongly prompt the Sweetwater Depot booking.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction replaces only F6, which no decision uses, so all standing decisions remain valid and option a carries out the booking and due payment-terms obligation. Every option specifies immediate actions. F10 is a newer, relevant-looking but declined quote that could wrongly prompt the Sweetwater Depot booking."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2393,
+    "completion_tokens": 139,
+    "reasoning_tokens": 48,
+    "cached_tokens": 0
+   },
+   "cost": 0.036855,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5eee38ff0b2cfb0177c92e5a9ee21bc664ae4f459a5b14aca422d0b2179a8218"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change revokes only F6 (propane supplier), which no decision or obligation rests on, so the standing plan (D2 booking, D5/O1 payment terms) is untouched and option a is unambiguously correct. F10 (the declined Sweetwater Depot quote) is a relevant-looking distractor that option b wrongly acts on, while c and d needlessly alter fixed terms. The task requires acting now (book + send) with no wait/ask option.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change revokes only F6 (propane supplier), which no decision or obligation rests on, so the standing plan (D2 booking, D5/O1 payment terms) is untouched and option a is unambiguously correct. F10 (the declined Sweetwater Depot quote) is a relevant-looking distractor that option b wrongly acts on, while c and d needlessly alter fixed terms. The task requires acting now (book + send) with no wait/ask option."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2494,
+    "completion_tokens": 198,
+    "reasoning_tokens": 51,
+    "cached_tokens": 256
+   },
+   "cost": 0.0097608,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5eee38ff0b2cfb0177c92e5a9ee21bc664ae4f459a5b14aca422d0b2179a8218"
+  }
+ }
 }

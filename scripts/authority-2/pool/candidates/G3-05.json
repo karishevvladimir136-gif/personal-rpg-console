@@ -322,5 +322,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"C1 places Tomás third, but R1 says an enrolled sibling moves a family to the top of its waitlist. Sofia enrolled before D2, so retaining Zoey and Amir as the first two recipients conflicts with R1; no exception explains this, making the key's stated direction for D2 unsupported. The dependency structure otherwise fits class 3, and F9 supplies the distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "C1 places Tomás third, but R1 says an enrolled sibling moves a family to the top of its waitlist. Sofia enrolled before D2, so retaining Zoey and Amir as the first two recipients conflicts with R1; no exception explains this, making the key's stated direction for D2 unsupported. The dependency structure otherwise fits class 3, and F9 supplies the distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2437,
+    "completion_tokens": 196,
+    "reasoning_tokens": 84,
+    "cached_tokens": 0
+   },
+   "cost": 0.040255,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe51417188804668490babaa57f300ef3e6665bf79e247cdcff51fa02e33fb36"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"C1 corrects fact F2; D2 rests on F2 and is touched, D3 is touched through D2, and D4 cites F2 only for the unchanged count of five families and stands—exactly the chain pattern. The correct act (Tomás Rivera, $150 due 8 October) follows from the corrected order and Amir's decline; F9 is a relevant-looking but untouched distractor about Priya Nair.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "C1 corrects fact F2; D2 rests on F2 and is touched, D3 is touched through D2, and D4 cites F2 only for the unchanged count of five families and stands—exactly the chain pattern. The correct act (Tomás Rivera, $150 due 8 October) follows from the corrected order and Amir's decline; F9 is a relevant-looking but untouched distractor about Priya Nair."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2532,
+    "completion_tokens": 347,
+    "reasoning_tokens": 206,
+    "cached_tokens": 256
+   },
+   "cost": 0.0121098,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe51417188804668490babaa57f300ef3e6665bf79e247cdcff51fa02e33fb36"
+  }
+ }
 }

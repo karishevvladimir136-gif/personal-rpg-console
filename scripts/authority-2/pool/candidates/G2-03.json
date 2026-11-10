@@ -320,5 +320,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amendment to R1 splits decisions cleanly: ensemble supporting roles approved by email (D2, D4, and D5 two hops away via D2) are touched, while lead and new-hire offers (D1, D3) and the read-through itself (D6) still stand, matching the key. All three options are acts with no ask/wait choice. F13 (Ella Bright's offer) is a newer, relevant-looking but untouched item that could wrongly displace Ruth Calder.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amendment to R1 splits decisions cleanly: ensemble supporting roles approved by email (D2, D4, and D5 two hops away via D2) are touched, while lead and new-hire offers (D1, D3) and the read-through itself (D6) still stand, matching the key. All three options are acts with no ask/wait choice. F13 (Ella Bright's offer) is a newer, relevant-looking but untouched item that could wrongly displace Ruth Calder."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2517,
+    "completion_tokens": 313,
+    "reasoning_tokens": 160,
+    "cached_tokens": 256
+   },
+   "cost": 0.0115548,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "694371ba2318f356b2be2fc6bed66fec826de7470413fbdc5527cbf8f196c31a"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"no\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"The key says D6 clearly stands, but it schedules Cedar Street for Saturday when F3 establishes availability only on Monday and Thursday evenings; it also specifies signing beforehand rather than at the read-through. Option a explicitly postpones sending every offer, so the options do not force action now. The amendment otherwise fits class 2, and F13 supplies the relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "no",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The key says D6 clearly stands, but it schedules Cedar Street for Saturday when F3 establishes availability only on Monday and Thursday evenings; it also specifies signing beforehand rather than at the read-through. Option a explicitly postpones sending every offer, so the options do not force action now. The amendment otherwise fits class 2, and F13 supplies the relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2437,
+    "completion_tokens": 424,
+    "reasoning_tokens": 317,
+    "cached_tokens": 0
+   },
+   "cost": 0.051655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "694371ba2318f356b2be2fc6bed66fec826de7470413fbdc5527cbf8f196c31a"
+  }
+ }
 }

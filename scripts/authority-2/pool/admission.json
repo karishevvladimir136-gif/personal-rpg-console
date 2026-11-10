@@ -1,0 +1,1560 @@
+{
+ "rows": [
+  {
+   "id": "G1-01",
+   "class": 1,
+   "setting": "A solo patent attorney at Marlowe & Voss Legal who depends on a legal assistant to track client call notes and filing deadlines",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "D4 needs reconsideration, but the closure does not establish that the retainer can be terminated without payment or that no Q4 renewal payment is owed. R1 requires completion and checking by November 17, not delivery by November 13 specifically, although option c comfortably meets the deadline. The scenario otherwise fits stale fact, and F9 supplies an untouched, relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes state fact F3, touching D2, D3, D4 directly and D6 two hops away via D3, while D1, D5, D7 rest on untouched facts/rules; option c is the only act consistent with the new vendor and timeline. F9 (the declined Linden Words quote) is a relevant-looking newer item untouched by the change, serving as a genuine distractor. All options are acts with no ask/wait alternative."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "725a11119fcb9b4d4e89ea4453122513055e32217ffcc32787a7a8e767d45300"
+  },
+  {
+   "id": "G1-02",
+   "class": 1,
+   "setting": "A head nurse at Cedar Grove Family Clinic whose scheduling assistant remembers every shift-swap agreement among the twelve nursing staff",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "Option b is correct, but D5 is untouched: the correction preserves Priya’s 26 September night shift and does not alter her 27 September recovery release. The key invents further Monday-morning recovery releases, whereas D5 specifies only that Sunday morning. D3 changes and D7 is touched through D3, while D5’s historical use of F5 remains valid, making this a chain scenario."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes F5 and reassigns the Saturday-night block to Tomas, so b is correct, a is the stale act, and c misuses Dana's second-weekend offer (F12, untouched). Touched chain is D3 (direct), D5 (via F5/D3), D7 (two hops via D3), with D1, D2, D4, D6, D8, D9 clearly standing. The due obligation O2 matches the task, which only admits sending the rota."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "8b151aedb7c10d618eb717ca7cda3f4cc8a5f5e92ed0cb4609bd48fa5d4ae2a5"
+  },
+  {
+   "id": "G1-03",
+   "class": 1,
+   "setting": "A bed-and-breakfast owner at Willow Pond Guest House who relies on an assistant to recall each regular guest's breakfast preferences and booking terms",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "Option b and the touched-decision set are correct, but the history does not establish a fixed 45-minute preparation requirement that entails Ana starting at 08:15. The revised D7 also cannot unambiguously retain Ana working alone when other staff are scheduled to start at 08:00."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "C1 revokes F5, touching D3 directly, D5 directly, and D7 two hops away via D3/D5, all updated consistently (10:30 taxi, 09:00 breakfast, 08:15 start = 45 min before breakfast as in the original 06:45/07:30 gap); D2, D1, D4, D6, D8 rest on unaffected facts/rules. Option a uses the stale 09:00, option c wrongly applies Lena's 10:15 from the newer untouched F10, and O2 is due on the task day with the correct 10:30 value."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "87e64d597674870f7576ae6fab72b6e163c74e2bb7052fda5b148cd2eb0dfba5"
+  },
+  {
+   "id": "G1-04",
+   "class": 1,
+   "setting": "A warehouse supervisor at Treadwell Distribution whose logistics assistant keeps records of loading-dock slot decisions and carrier disputes",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "Option c is correct, but the key's downstream revisions are not unambiguously supported. D4 establishes no rule requiring a crew start 15 minutes before loading, and D5 establishes no lead time requiring Saturday ordering rather than Sunday, which still precedes Monday's loads."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes state fact F7; D3 and D4 rest on it directly and D5 rests on D3 (two hops), all with the key's correct new-slot directions, while the other decisions stand. All three options are booking acts with no ask/wait alternative. F13 (the declined Nordhaul trial) is a newer, relevant-looking but untouched item backing distractor option b."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "ca71e3feecdb537426fd502660c9db7630330802be6869784d1e48170f323891"
+  },
+  {
+   "id": "G1-05",
+   "class": 1,
+   "setting": "A school principal at Hartwell Primary whose admin assistant retains minutes of every term-planning meeting and parent commitment",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "R1 requires two written quotes before booking an external hire over £200, but the £340 marquee hire has only one quote recorded. Paying an £85 deposit still confirms that £340 booking, so option b is not unambiguously permissible even though it uses the correct date."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The date correction revokes F3 and touches D2, D3, D4, D9 directly and D5 through D2, exactly as the key states; D1, D6, D7, D8 rest on unrelated facts. Option a misuses the quiz night date from F9 (the distractor item), option c uses the revoked date, and both the flyer order and the marquee deposit (O2, due today) must act now with 17 October."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "c442b0812fd99e67b1a8b4db13680185bec1aab8f34269285d0b8d8ab1af701e"
+  },
+  {
+   "id": "G1-06",
+   "class": 1,
+   "setting": "A freelance wedding planner at Rosethorn Events who leans on an assistant to remember vendor quotes, deposits paid, and bride's changing color schemes",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "Option b follows the revised palette, but the key invents a specific centerpiece revision: neither dusty-blue foliage nor silver-green foliage is specified by the history or change. D5 is touched, but its exact replacement materials are undetermined, so the key's full stated direction does not unambiguously follow."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "F3 (sage/cream scheme) is revoked by C1; D2, D3, D7 cite it directly and D5 is touched through D3, all shifting to dusty blue with ivory, while D1, D4, D6, D8 stand. Option b is the due obligation O2 executed correctly; a is stale, c wrongly acts on the untouched Velvet Vine quote (F11), and d over-applies dusty blue to the tablecloths. All options are acts with no ask/wait choice."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "4f466b4f6a1cd96598a9fda3b7efd42f4d79f045bc2c981a59a2c17d010f34c1"
+  },
+  {
+   "id": "G1-07",
+   "class": 1,
+   "setting": "A fleet manager at Kestrel Courier Service whose dispatch assistant logs each route change agreed with drivers by phone",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes F7 and explicitly establishes the revised driver, departure, handover and maintenance requirement, matching the key and O2. The task requires booking and confirmation, and every option proposes those acts. F12 is a newer, relevant-looking but unaffected fact about Ivo's separate parcel-post run."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes F7 and directly touches D3 and D4, with D5 touched two hops away via D3, matching the key; all other decisions rest on untouched facts. Every option is an act with no ask/wait option, and F12 (Ivo's unaffected 09:15 Friday run) is a relevant-looking but untouched distractor exploited by option c."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "4ebb082ff53d8b5b14a7a45b095e136bcfa15e4ea7d3abacf7928dac59c284f8",
+   "admitted": true
+  },
+  {
+   "id": "G1-08",
+   "class": 1,
+   "setting": "A dental office manager at Brightsmile Dental whose front-desk assistant tracks appointment rescheduling promises and insurance verifications",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "no",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The answer key follows from the revoked portal and turnaround facts and their stated dependencies. However, option a postpones submission until Monday, and option d postpones it until next week, violating the requirement that no option postpone action. F9 is a newer, relevant-looking Meridian fact that could wrongly steer verification to the phone line."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "C1 revokes the state fact F3, touching D1 and D4 directly and D2 and D3 by propagation, with D3 two hops away; D5 (Meridian) and D6 (chair slot) stand, and O2 is due on the task day with VerifyNow as the correct value. All four options are acts with no wait/ask escape, and option c is the unique correct act. The newer item F9 (Meridian phone-line turnaround) is untouched but tempting, matching distractor option b."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "30627a68274a01a103aaaa8f8d873c5880085de9036653285817b24357c83e5b"
+  },
+  {
+   "id": "G1-09",
+   "class": 1,
+   "setting": "A farm owner at Two Rivers Dairy whose operations assistant remembers feed-supplier contracts and veterinary visit outcomes",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "C1 revokes F5, affecting D3 and D4 directly and D5 and D6 downstream, while preserving the 80-bag quantity and unrelated decisions. Option c fulfills O2 at £1,880; option d incorrectly reduces the unchanged quantity. F12 is an untouched, relevant-looking alternative quote that could prompt the wrong supplier choice."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "C1 revokes F5 (Millbrook supplier/price/delivery), touching D3 and D4 directly and D5 and D6 through them, while D1, D2, D7, D8 stand; option c matches the new supplier, price, and 10 November slot, and option a is the stale Millbrook act. F12 (Westfield quote) is a newer, relevant-looking but untouched fact serving as the distractor behind option b. All options are acts, so the task forces acting now."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "b5db928093f198a323a959de164bcc5c00a8c92810e195983659e1435be81cb7",
+   "admitted": true
+  },
+  {
+   "id": "G1-10",
+   "class": 1,
+   "setting": "A boutique owner at Silk & Stone Apparel whose assistant recalls which wholesalers promised which delivery windows",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "Option b books delivery on a Monday, when the shop is closed; no arrangement for receiving deliveries while closed is stated, so it is not unambiguously correct. The earlier delivery also does not establish the key's claimed downstream timing changes: the launch and installation dates can remain as booked, and moving the installation earlier is merely optional."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes state fact F7 with a newer delivery window, touching D6, D2, D3 directly and D4 two hops away via D2, while D1 and D5 clearly stand; option b matches the due obligation O1 with the new window, c is stale, and a is the Meridian distractor (F8). All options are acts with no wait/ask choice, so the task forces an act. This is a textbook stale-fact scenario with a relevant-looking but untouched newer item (F8)."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "3eb7ebd9f1210ee4854df968fedef38d90504f6001f72afbaad5b38e2b25a3dc"
+  },
+  {
+   "id": "G1-11",
+   "class": 1,
+   "setting": "A university department chair at Northgate University whose academic assistant keeps the record of committee decisions and tenure timeline commitments",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The revoked review date shifts D4 and D5 to 12 February 2027 and propagates through D4 to D7; O2 must state the updated submission date. Option a retains the old pre-review date, while option c uses the unrelated F14 committee date. The task and all options require immediate booking and sending."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "F6 (12 March review) is revoked in favor of 26 February 2027, so two-weeks-before deadlines move to 12 February: D4 and D5 directly, D7 through D4; the old derived date 26 February is exactly option a (stale), and F14's 5 February UCC date is a live but irrelevant distractor (option c). D1, D2, D3, D6, D8 rest on untouched facts/rules, and O2 is genuinely due (past its 30 Oct 2026 due date, not done) with the new planned date 12 February 2027. All options are acts with no wait/ask alternative."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "a13a15594f556e2bd0e6773bbcfa383f1acdb5484994b83e8c3477d4f64724c1",
+   "admitted": true
+  },
+  {
+   "id": "G1-12",
+   "class": 1,
+   "setting": "A restaurant owner at The Copper Ladle whose assistant notes every staff rota adjustment and supplier substitution approval",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "Option b correctly fulfills the task, but the key misstates O2: it requires confirming the supplier and volume for November and placing the first November order, not merely placing this week's order for Thursday 29 October. The history does not establish that the October delivery fulfills that November obligation."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "The correction revokes F5, touching D3 directly, D4 (also resting on F5), and D6 two hops away via D3, while the 18 kg volume from D6 still stands, so option b (18 kg from Hollow Vale for Thursday 29 Oct) is the right act and option a is stale; F12 (Fenwick Farm, available only from January 2027) is a relevant-looking but inapplicable distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "8f7256e939671ba035fccd699d669f658c0bba17ddb680f75f39189d4188c21a"
+  },
+  {
+   "id": "G2-01",
+   "class": 2,
+   "setting": "A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amended rule changes D1 and D3 directly and D4 through D3, while the listed untouched decisions remain valid. Option b performs the paperwork action required for Marco's £620 agreement; option a uses the revoked limit, and option c improperly acts on the unaccepted Ravel quote."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amendment to R1 cleanly splits decisions: D1 and D3 (both above £300, work not started) are touched, D4 is void two hops away via D3, while D2 (£260, completed), D7 (already countersigned), D5 and D6 stand. Option b is the unique correct act and all three options are acts. F13 (the unaccepted Ravel quote) is a proper newer distractor untouched by the change."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "a6acf1e0e2776e52ea19db62c18cff62ce6a5a87d003c94f6640e3277356137a",
+   "admitted": true
+  },
+  {
+   "id": "G2-02",
+   "class": 2,
+   "setting": "A veterinary practice owner at Furry Friends Animal Hospital whose assistant remembers each pet owner's payment plan terms",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "Sam’s $240 deposit leaves a $360 outstanding balance, exceeding the new $200 elective-booking threshold that applies to all owners. The history provides no exemption for newly signed payment plans, so option c is not unambiguously permitted and the key’s instruction to confirm D6 does not clearly follow."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amendment of R1 voids D3 (balance $350 exceeds the new $200 threshold) and D4 (plan never signed, so new 40% terms give a $240 deposit), with D6 touched two hops away through D4; D1 and D2 are protected as pre-signed plans and D5/D7 rest on unrelated facts. Option a is stale (old 25% deposit), option b misuses the irrelevant F10 outside quote, and every option is a booking act matching the due obligation O2."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "8bbd5fd618ba5a9995688ee40356484ce739049fffc72c9487d59b15a5e7970e"
+  },
+  {
+   "id": "G2-03",
+   "class": 2,
+   "setting": "A theater director at Lantern Community Playhouse whose production assistant tracks casting decisions and rehearsal-space bookings",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "no",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The key says D6 clearly stands, but it schedules Cedar Street for Saturday when F3 establishes availability only on Monday and Thursday evenings; it also specifies signing beforehand rather than at the read-through. Option a explicitly postpones sending every offer, so the options do not force action now. The amendment otherwise fits class 2, and F13 supplies the relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amendment to R1 splits decisions cleanly: ensemble supporting roles approved by email (D2, D4, and D5 two hops away via D2) are touched, while lead and new-hire offers (D1, D3) and the read-through itself (D6) still stand, matching the key. All three options are acts with no ask/wait choice. F13 (Ella Bright's offer) is a newer, relevant-looking but untouched item that could wrongly displace Ruth Calder."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "2801725a32953861d0f621f7c434cbf702b2471eaf6db929e718457fe1af8d8a"
+  },
+  {
+   "id": "G2-04",
+   "class": 2,
+   "setting": "A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amended rule requires Nadia’s unsigned quote to become $1,200 and Brandt’s to become $1,275, also changing D7’s budget while leaving the listed untouched decisions intact. Every option sends the email immediately. The untouched long-distance rate in F4 supplies the distractor value, although F9 itself confirms that Nadia’s move is local."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amended discount rule cleanly splits decisions: signed contracts (D1, D3) stand by the amendment's own terms, unsigned post-1-December quotes (D5, D6) are re-quoted with D7 touched two hops through D6, and R2-based decisions are unaffected. The task requires sending the email now and all three options are acts. F9 is the relevant-looking distractor: it raises the long-distance rate question but confirms the standard rate applies, so option b is wrong."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "654202e48cd6ebcc3ba2908fb69fcc30567ae064e1b79daba7b305b229d7fce9",
+   "admitted": true
+  },
+  {
+   "id": "G2-05",
+   "class": 2,
+   "setting": "A head librarian at Millbrook Public Library whose assistant retains notes on programming schedules and volunteer availability commitments",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "Option b is correct, but the touched-decision list incorrectly includes D1: its summer-only staffing decision is not altered by an amendment effective 24 October. The amendment changes ongoing main-branch weekend staffing, not completed summer sessions."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amendment to R1 voids main-branch weekend two-volunteer decisions (D1, D3, D4) and two-hop derivatives (D5 via D3, D10 via D4) while explicitly sparing weekday, Fairview and unrelated decisions, matching the key. Option b correctly staffs three available Saturday volunteers; F14's four-volunteer figure for the Spooktacular is a relevant-looking but inapplicable distractor driving option c. The task only permits emailing a roster now, and O3 is due today."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "99c769d29b946c61172daf6fd5518a83c6e7a57a926fcdf98d30082c30066c11"
+  },
+  {
+   "id": "G2-06",
+   "class": 2,
+   "setting": "A craft brewery owner at Old Anchor Brewing whose assistant tracks distributor handshake deals and ingredient reorder cadences",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amended rule changes D1 and D3 and propagates through D1 to D5, while the listed untouched decisions stand. O1 requires sending today's October confirmation at £2.80 per litre, totaling £1,680, and every option is a sending act. F10 supplies a newer, relevant-looking matched price for a separate account, not Harbor Cider House."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The rule amendment (C1) raises the discount threshold to 800 L, voiding D1 and D3 and two-hop D5 while D2 and D4 stand, matching the key exactly; option b (£2.80, £1,680) correctly fulfils the due obligation O1. All three options are send-email acts with no wait/check option. F10 (Salcombe's £2.65 matched price) is a newer, relevant-looking but untouched fact that lures option c."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "265d28dcac88da0fde10ba10eec2036b4b78a2422f2bfede143864c8fc59dbef",
+   "admitted": true
+  },
+  {
+   "id": "G2-07",
+   "class": 2,
+   "setting": "A senior software consultant at Bluepeak Advisors who relies on an assistant to recall client meeting takeaways and scope-change acknowledgments",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "Option b books work without explicitly waiting for Priya’s required acknowledgement, and the key likewise says D4 can be booked now despite no recorded acknowledgement. D8 needs reconsideration, but the amendment does not require reallocating capacity specifically to the PDF-digest change, particularly alongside the new 12-hour SMS request."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The rule amendment's grandfather clause cleanly partitions the decisions: D4 and D7 (October requests ≤15h) are voided, D8 is touched two hops away through D4, while D1 (pre-October) and D6 (>15h) stand, matching the key. All three options are acts with no wait/check option, so the task forces action. F12 (the 20-hour dashboard redesign) is a newer relevant-looking item untouched by the change that could be wrongly booked, serving as the distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "4ca55ee1b68fbe3b18803b8593bdadaeb8cf63ac9cdc33d63dce949db175f6a5"
+  },
+  {
+   "id": "G2-08",
+   "class": 2,
+   "setting": "A residential landlord managing twelve units at Fairview Properties whose assistant remembers each tenant's repair-request history and agreed fixes",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "D5 orders cartridges, not Gary's fitting services; the amendment does not alter that order, so the key incorrectly labels D5 a touched decision. The rule change otherwise fits class 2, and option b is correct. O1 is already overdue on the task date, rather than falling due with the task as the key claims."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The change amends rule R1, voiding plumbing assignments (D4, D5 via D4, D6) while non-plumbing and completed decisions stand, matching the key exactly. All options are booking acts, so the task forces an act. F11 (Brasswell's flat-rate quote) is a newer, relevant-looking item that is untouched by the change and could wrongly be acted on."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "3f8d6c9e9f033b8580c7d78be6982f14feb7e686fb6fe1fbdf8aba4d50a59a56"
+  },
+  {
+   "id": "G2-09",
+   "class": 2,
+   "setting": "A head chef at Marchetti's Trattoria whose kitchen assistant logs daily supplier deliveries and menu-change decisions",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "C1 applies 'from today' (4 October), so it does not invalidate September refusals D2 and D4 or automatically void D6's supplier switch. With no decision altered and standing-order changes expressly excluded, option a remains the right act, not c. F17's bulk discount and F18's langoustine usage are untouched, relevant-looking distractors."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "C1 amends rule R1, voiding D2 and D4 (arrivals within the new 10:15 cutoff) and, two hops away through D4, voiding D6's monkfish switch, while D3 (10:35) and D5 (shellfish exception) stand; option c correctly confirms the full standing order to Hargrove's per O2. F17 (Brannock bulk price) and F18 (9 kg langoustines used) are relevant-looking newer facts untouched by the change that wrongly support options b and d."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "a218e83db4bba5afbf48b004715d3d2ec091e0df5ab427aae2c3175f72a350db"
+  },
+  {
+   "id": "G2-10",
+   "class": 2,
+   "setting": "A real estate broker at Harborline Realty whose transaction coordinator retains every negotiation counteroffer and inspection contingency",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amended rule permits presentation anytime within 72 hours, so both Thursday and Friday are allowed if receipt was Wednesday morning; it does not uniquely require option c. Thursday at 4 pm is also not within 24 hours of Wednesday morning, undermining its designation as the stale-rule option. The history records receipt on 1 October, contradicting the task's fresh receipt, and neither that counteroffer nor Selby's receives an explicit deadline reset under the amendment."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The amendment to R1 cleanly splits pending sub-$600k presentations (D3, D4 touched, D5 touched through D3) from completed or above-threshold ones (D1, D2) and from R2-based decisions (D6, D7); option (a) replicates the old 24-hour value while (c) fits the new 72-hour window. F13's Tuesday-meeting remark is a relevant-looking but unused opinion serving as the distractor. Minor wrinkle: F6 dates receipt 10-01 while the task says 'this morning,' but the intended reading is unambiguous."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "eff4d04c078e5628b4e6bd648c1193189430d83653d6c9f2165879d8acaa4975"
+  },
+  {
+   "id": "G2-11",
+   "class": 2,
+   "setting": "A gym owner at Ironwood Fitness whose front-desk assistant tracks membership freeze requests and trainer schedule swaps",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "C1 invalidates approvals exceeding the new cap but does not authorize automatically shortening them while retaining their start dates, so the exact revised freezes and option b are not unambiguously required. The key also incorrectly says D4 starts before 15 October: it starts on 18 October and remains valid because its five-day duration and advance notice satisfy the tightened rule."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "C1 amends R1 with explicit grandfathering, voiding D5 and D3 (both start after 15 Oct, cut to 7 days) and reaching D6 two hops away via D3, while D1/D2/D4/D7/D8 stand — matching the key. F10 (Riya Kaur's separate membership, dated 2026-10-06) is a newer relevant-looking item untouched by the change, behind distractor option c."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "0875002ec4cbd7119e1039325fe50f194f59356244d33a0ae05863cb741d13bb"
+  },
+  {
+   "id": "G2-12",
+   "class": 2,
+   "setting": "A nursing home administrator at Maplewood Senior Living whose assistant records family-care-plan decisions and staffing agency commitments",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "C1 takes effect on 12 October and does not retroactively invalidate D2 or D5, which declined earlier requests under the then-valid rule. The key therefore incorrectly marks those historical refusals as void; option b and the prospective updates to D3 and D4 are supported. All options involve making or confirming a booking now, even though option a schedules later coverage."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 2,
+     "distractor": "yes",
+     "reasons": "The change amends R1 (14-day notice for CNA shifts drops to 5 days; RN rule kept), so CNA-citing decisions D2, D3, D5 are voided in the key's stated direction and D4 is touched two hops through D3, while RN-based D1/D6 and unrelated D7/D8/D9 stand. Sunday 25 October is 6 days out, so booking a Harbor CNA (b) is correct; option a applies the revoked rule and BrightPath (c) fails its own 30-day window and D9's sole-agency commitment. F9 is a newer, relevant-looking but untouched item that serves as the distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "dc271332da2152574d16955d79a0e8dabef8a4c1e6a6bd7d39674a897c9555c5"
+  },
+  {
+   "id": "G3-01",
+   "class": 3,
+   "setting": "A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices",
+   "valid": true,
+   "errors": [],
+   "rounds": 3,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The chest correction changes D1 and, through D1, D2, while D3 stands because sleeve length is explicitly unchanged. The due order is therefore 3.6 metres of charcoal Super 120s from Norlind Mills, and every option is an immediate ordering act. F9 is a newer, relevant-looking but unrelated quote that could misdirect the order."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction of F1 (chest) touches D1 directly and D2 through D1, while D3 cites F1 only for the unchanged sleeve length, exactly matching a chain pattern; option b is the only consistent act. F9 (newer Hartley navy quote) is a relevant-looking but untouched distractor."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "7b95883a87c4bbd64f496171249107a42fe0d704c1427c9598a6c5b8c123ee00",
+   "admitted": true
+  },
+  {
+   "id": "G3-02",
+   "class": 3,
+   "setting": "A conference organizer at Vertice Events whose assistant keeps the running record of speaker agreements and venue deposit terms",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The dependency chain and corrected deposit of 16,200 euros are sound, but R2 requires Marta's sign-off before the payment leaves the account. Option c merely says to transfer and flag for sign-off, so it does not unambiguously specify a compliant act. F8 supplies the untouched, relevant-looking distractor value."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction revokes F3's fee, touching D3 (deposit becomes 16,200) and D4 through D3, while D1 cites only F3's unchanged date-hold and stands, fitting the chain pattern. Option c is the correct act; a is the stale 14,400 and b is 30 percent of the untouched Bellwick quote (F8), a relevant-looking newer distractor. All options are transfers, so the task forces an act."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "8f32287ffede61eca015ee99b574a1331b906cd3ea40e0ef47e22427a70f1672"
+  },
+  {
+   "id": "G3-03",
+   "class": 3,
+   "setting": "A small-town newspaper editor at The Ashford Gazette whose editorial assistant tracks freelance assignment deadlines and photo usage rights",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction touches D5 and, through it, D6, while D3 and D9 remain valid because their uses precede the corrected licence end date. It does not establish that all eight archive images must be replaced by new photos commissioned from Nell, so the 15-photo, £600 commission is not uniquely required. Moreover, R1 requires written approval before confirming that commission, and the recorded approval covers only £280."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "F5's revocation touches D5 directly and D6 through D5, while D3 and D9 used the archive before the licence ended and stand; F8 (Nell's newer studio rate) is an untouched newer fact backing distractor option c. One minor wrinkle: the 600-pound fee exceeds the 200-pound threshold in R1 and no approval for it is on file, but the key flags this and all three options are confirmations, so b remains unambiguously correct."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": false
+   },
+   "eligible": false,
+   "hash": "53aec2d47d0c434bba3b6d0c2bb011b42f8bae204afbe1ddf3482da0a1590532"
+  },
+  {
+   "id": "G3-04",
+   "class": 3,
+   "setting": "An auto repair shop owner at Gibson Auto whose service advisor logs each customer's verbal approval for diagnostics and parts ordering",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The key directs a new $310 aftermarket-pump order, but R1 requires verbal customer approval logged on the order date; no such approval is established for 5 October. The selective correction otherwise fits class 3, and F9 supplies the untouched, relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction of F7 touches D3 directly and D5 through D3, while D4 cites F7 only for aspects (loaner, 08:00 drop-off) the correction explicitly preserves, matching the chain pattern. Option b is the unique correct act, and F9 (Bramwell quote) is a newer, relevant-looking but never-chosen item that serves as the distractor behind option c."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "f330432d8943753aa2bf34bab5981402282421e017170a3ac5c01276978334f1"
+  },
+  {
+   "id": "G3-05",
+   "class": 3,
+   "setting": "A preschool director at Little Acorns Learning Center whose assistant maintains enrollment waitlist decisions and parent payment arrangements",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "C1 places Tomás third, but R1 says an enrolled sibling moves a family to the top of its waitlist. Sofia enrolled before D2, so retaining Zoey and Amir as the first two recipients conflicts with R1; no exception explains this, making the key's stated direction for D2 unsupported. The dependency structure otherwise fits class 3, and F9 supplies the distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "C1 corrects fact F2; D2 rests on F2 and is touched, D3 is touched through D2, and D4 cites F2 only for the unchanged count of five families and stands—exactly the chain pattern. The correct act (Tomás Rivera, $150 due 8 October) follows from the corrected order and Amir's decline; F9 is a relevant-looking but untouched distractor about Priya Nair."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "08edb350741bb07bc6a4829ff22d348dfa3d972fa260b5124e3b0cf4e5693fcf"
+  },
+  {
+   "id": "G3-06",
+   "class": 3,
+   "setting": "A freight forwarder at Crossway Shipping whose assistant remembers customs broker instructions and repeated client routing preferences",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The broker correction touches D1 and, through D1, D2, while D3 retains the explicitly unchanged Gothenburg entry office and filing window. The task requires booking now under O1, making option b correct. F9 is a newer, unaccepted quote from a different firm and is an actionable-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction revokes F2 (broker change): D1 is touched directly, D2 is touched through D1 (two hops), and D3 cites F2 only for the Gothenburg entry office, which the change explicitly preserves, so it stands — matching the chain class. Option b follows from the updated broker with unchanged timing; option a is stale on the broker, and c wrongly acts on the unaccepted Strand Logistics quote (F9), the relevant-looking but untouched distractor. All options are acts and the task demands booking now, so an act is forced."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "5971d42094569a0b492fadf5e302013045eca5effe628d304812a6b4a994b08f",
+   "admitted": true
+  },
+  {
+   "id": "G3-07",
+   "class": 3,
+   "setting": "A household manager for the affluent Barrett family estate who relies on an assistant to track household staff schedules and vendor maintenance agreements",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "Option b schedules the visit for 17 November, only eight days after the task date of 9 November, violating R1's ten-day advance-booking requirement. Thus the keyed correct option and obligation value are invalid, and none of the offered options fully satisfies the task. The dependency structure fits class 3: D2 and D5 are touched, while D4 relies on the unchanged plant-room location."
+    },
+    "kimi": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The change revokes F3, voiding D2 directly and D5 through it, while D4 cites F3 only for the unchanged plant-room location, so the chain structure and touched/untouched sets are right. However, the key's own correct value (Tuesday 17 November) is only 8 days after the task day of 9 November, violating R1's ten-day booking rule that the key itself invokes — the earliest compliant date is 19 November, so option b and the key's correct value are internally inconsistent. The PoolStyle Direct quote (F9) is a proper newer relevant-looking distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": false
+   },
+   "eligible": false,
+   "hash": "0a29ef621a2a7e3c43d24e4e6a71b255adf299d82657299e4370b5cb50a2d9a8"
+  },
+  {
+   "id": "G3-08",
+   "class": 3,
+   "setting": "A veterinary radiologist at PawsDiagnostics whose assistant keeps referral instructions from dozens of partner clinics straight",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The 4-hour tier specifies reading turnaround, not immediate result delivery, so the key's requirement to send results immediately and replace the Wednesday summary does not unambiguously follow. The correction does touch D1 and, through it, D4, while explicitly preserving the portal aspect supporting D3. F9 supplies the untouched, relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction of F3 touches D1 directly and D4 through D1, while D3 cites F3's portal aspect which the correction explicitly keeps, matching class 3 exactly. Option b wrongly imports Maple Ridge's F9 same-day deadline, an untouched newer fact, so the distractor requirement holds. All options are concrete acts with no ask/wait choice, and O1 is due on the task day with the correct 4-hour stat tier value."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "fc1df7f74474829f069f3cdc647753858cd6357bfc46b38c265f395762e505c2"
+  },
+  {
+   "id": "G3-09",
+   "class": 3,
+   "setting": "A music school owner at Cadence Academy whose assistant tracks each student's lesson-time changes and recital participation confirmations",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "C1 changes the lesson timing underlying D4 and, through D4, D7, while explicitly preserving the duration and fee underlying D3. The overdue O2 still calls for sending Sona the revised call time today, making b correct. F9 is a newer, unchanged rehearsal entry for Mia that supplies the misleading basis for option c."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "F5 is corrected; D4 is touched directly, D7 touched through D4, and D3 cites F5 only for the unchanged 45-minute/fee aspect so it correctly stands. All options are acts of sending the call time, and F9 (Mia Chen's newer Saturday 11:15 rehearsal) is an untouched, relevant-looking value that option c wrongly uses."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "cd922762246c69920ebb424a4f3cc450c3ed23ceff73bf752120d7c628240bdc",
+   "admitted": true
+  },
+  {
+   "id": "G3-10",
+   "class": 3,
+   "setting": "A plumbing company owner at Rightflow Plumbing whose dispatcher assistant recalls which jobs were quoted flat-rate versus hourly",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The billing correction touches D1 and, through D1, D2, while preserving D3's crew assignment and the existing dates and material order. O2 requires sending the work order today with hourly billing, materials at cost, and daily sign-off sheets. F9 supplies the newer, unrelated $2,900 flat-rate distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction revokes flat-rate fact F1: D1 is touched directly, D2 is touched through D1 (materials now billed at cost, though the order itself stands per the change), and D3 cites F1 only for the address/zone, which the correction does not alter, so it is untouched — matching the chain class. Option (a) is the unique correct act, (b) is stale, (c) misuses the newer Ridgeview fact F9, and (d) contradicts the change's explicit statement that the Copperline order stands. F9 is a newer, relevant-looking but untouched item serving as a proper distractor."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "0cc29bb28b2560a4a2bd9128a159cd0bf56265e4e540f0219153062a546b6b33",
+   "admitted": true
+  },
+  {
+   "id": "G3-11",
+   "class": 3,
+   "setting": "A medical practice manager at Lakeside Internal Medicine whose assistant maintains referral letter chains and specialist appointment follow-ups",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction changes D4 and, through D4, D6, making option b correct; D5's audit classification remains unchanged. The task and every option require immediate booking and sending. F7 is a newer, relevant-looking but unaffected appointment for another patient that supplies the distractor values."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "C1 corrects F5 (appointment now Dr. Havel, 15 Oct), touching D4 directly (call moves to Thu 22 Oct 14:00) and D6 through D4 (letter must name Dr. Havel and the new date), while D5 cites F5 only for the unchanged referral reason and stands — a textbook chain. Option b is the only correct act; a is stale, c wrongly uses Otto Brandt's F7/Dr. Kessler, the intended distractor. All three options are acts with no ask/wait choice."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "8473864433bc951ebdbb03770f8d20d485912d1a66433dd2eeda253c2c7a5271",
+   "admitted": true
+  },
+  {
+   "id": "G3-12",
+   "class": 3,
+   "setting": "A golf club manager at Pinehurst Greens whose assistant remembers member committee rulings on course rules and event bookings",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The capacity correction touches D3 directly and D5 through D3, reducing the dinner order and menu count to 60; D4's largest-room rationale is explicitly preserved. The task requires confirming the order now. F12's 48 attendees and F13's €22 price concern other arrangements and are untouched distractors."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 1,
+     "distractor": "yes",
+     "reasons": "C1 revokes state fact F3 (Terrace Room capacity 80→60), touching D3 directly and D5 two hops away via D3, while D4 cites F3 only for the 'largest room' aspect C1 explicitly preserves, so it stands; option a (60 covers at €15 via Fairway Foods, satisfying R2's €500 rule) is unambiguously correct. All four options are acts of confirming an order with no wait/ask alternative. F12 (48 signups for a different dinner) and F13 (Chestnuts quote) are newer, relevant-looking items that support the wrong options c and d."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": false
+   },
+   "eligible": false,
+   "hash": "5857e318ec07b271f66da9da79e51539c3dde42a165370981dd69ed69eab5339"
+  },
+  {
+   "id": "G3-13",
+   "class": 3,
+   "setting": "An e-commerce founder at Hearth & Habit Home Goods whose assistant tracks supplier packaging agreements and seasonal promo decisions",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction requires rescheduling, but the history does not establish 28 October and 6–8 November as the uniquely required replacement dates. More importantly, the revised $28,400 jar order needs Maya's written sign-off under R1; approval of the earlier $24,800 order does not unambiguously authorize sending a signed confirmation at the increased price. The dependency structure otherwise fits class 3, with D4 relying only on unchanged jar characteristics and F12 serving as the distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction revokes F3; D2 changes directly, D3/D8 change through the chain, D5's budget rises by exactly 3,600 dollars, and D4 stands because it cites F3 only for the unchanged jar size — the signature of a chain scenario. Option b matches all corrected values, a is fully stale, and c wrongly acts on the newer but superseded-by-choice Northgate quote F12."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "7f67ca2dbb36529238d88b7e3cf14d370deebefe77378226224223aad6a3a884"
+  },
+  {
+   "id": "G3-14",
+   "class": 3,
+   "setting": "A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The package change alters D4 and, through D4, D6, while D5 remains valid because the balance due date is explicitly unchanged. All options require immediate booking and written confirmation, and only Aria Strings matches the upgraded package. F10 is a newer, relevant-looking but unaccepted quote that supports the distractor option."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 3,
+     "distractor": "yes",
+     "reasons": "The correction replaces F3 with a new package value: D4 rests on it directly and D6 through D4 (touched chain), while D5 cites F3 only for the unchanged balance due date and stands, matching the key exactly. F10 (the newer, unaccepted Harmony Lane quote) is a relevant-looking distractor untouched by the change. All three options are booking acts, so the task forces action."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "2ef4d28ce924083804dca25cc48da4fd5a565c92a8bb982c6bf9589c3c08a659",
+   "admitted": true
+  },
+  {
+   "id": "G4-01",
+   "class": 4,
+   "setting": "A shipping clerk at a mid-sized electronics plant, Voltline Manufacturing, whose logistics assistant remembers carrier pickup commitments and pallet-count disputes",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "14 October 2026 is Wednesday, not Thursday, so D3, option b, and the key conflict with Meridian’s Tuesday/Thursday pickup windows; the intended booking is therefore not unambiguous. The change itself touches no decisions, and the declined Harborline quote remains a relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change explicitly leaves scheduled door pickups untouched, so nothing is revoked and the plan (D3/O2) stands; option b is the only correct act. Every option is an act with no wait/ask alternative, and F9 (the declined Harborline quote) is a relevant-looking but untouched distractor that option a wrongly acts on."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "3255e84b2ccf86e9705f975798ea1e0487c64c5af7ecdef5d46913f074831d54"
+  },
+  {
+   "id": "G4-02",
+   "class": 4,
+   "setting": "A CFO at a 40-person fintech startup, Quanta Ledger, whose executive assistant keeps the record of board call decisions and investor follow-up promises",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "no",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change restates the existing rule, so no decisions are touched and option a correctly fulfills O1. Option b explicitly holds the pack and postpones sending until 20 October, violating the no-wait-or-postpone requirement. F7 supplies a relevant-looking but inapplicable three-working-day lead time for investor updates."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change explicitly restates R1 with no amendment, so nothing is touched and the key's classifications all hold. Five working days before Friday 23 October, excluding the call day, lands exactly on Friday 16 October, making option a correct; b misapplies the Apex three-day rule (F7), d targets the wrong audience, c is unnecessary. F7 is the newer relevant-looking but untouched distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "3ca89472f1ca5fb259a184ce3f362fe04fd750f914b80e3dde54b450956adc57"
+  },
+  {
+   "id": "G4-03",
+   "class": 4,
+   "setting": "A horse stable owner at Foxglove Riding Stables whose assistant tracks lesson package sales, boarder feed arrangements, and farrier visit schedules",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "D5 adds two bales of timothy to the monthly Bellamy order, so option c does not unambiguously fulfill the usual standing order. The history also does not establish Thursday 22 October as the delivery date asserted by the key. The correction affects no decision, and F11 provides an untouched, relevant-looking distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction revokes only F6 (bedding supplier/schedule), which no decision or obligation rests on, so all decisions stand and the right act is the standing Bellamy order per D3, discharging O2; option b wrongly acts on the bedding change and F11's unsolicited Cedar Ridge flyer is the relevant-looking untouched distractor behind option a. Option d invents a quantity not in D3. All options are acts with no ask/wait path, and the scenario is a clean control."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "b75f5f775260a0798fb41cdd9eeffef92cd48653f62a89b38799df83adaefc08"
+  },
+  {
+   "id": "G4-04",
+   "class": 4,
+   "setting": "A pharmacy owner at Cornerstone Chemist whose assistant maintains records of supplier backorder promises and patient delivery schedule agreements",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "no",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change leaves all existing decisions untouched, so option a correctly fulfills O1. Option c explicitly holds and postpones delivery until 5 October, violating the requirement that no option allow waiting or postponement. F10 supplies the newer, relevant-looking cheaper-courier distractor."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change (vitamin D backorder) explicitly leaves Eltofer and patient deliveries unaffected and is cited by no decision, so nothing is touched and option a follows cleanly from D1/D2/O1. All three options are concrete acts (book or hold-and-send) with no ask/check/wait escape. F10 (cheaper SwiftPost Tuesday run) is the newer relevant-looking distractor that could wrongly pull toward option b, though R1 fixes housebound deliveries to Friday 10:00."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "db4a384fd780cde425d9885af41569dc8088201b3e6b7202efed37871f3e0609"
+  },
+  {
+   "id": "G4-05",
+   "class": 4,
+   "setting": "A wedding venue manager at Grandview Estate Barn whose assistant remembers every couple's layout decisions and vendor access rules",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change explicitly restates the existing access arrangement without changing any slot or gate, so no decisions are touched and option a fulfills O1. Every option requires sending an email now. F9 is a newer, relevant-looking distractor: its 13:00 slot was never selected and falls outside the venue's permitted access hours."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change explicitly restates R1 with identical terms, so nothing is touched and option a (the existing plan, due today via O1) is correct; F9's 13:00 slot is a plausible newer distractor (option b), while c and d alter unrelated plans. All four options are acts, so the task forces action. No inconsistencies in the key."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "7bedb0e89b7fe037bbe6fdb48c67fce6b4661705001d182704350aa1f6bb5c6f",
+   "admitted": true
+  },
+  {
+   "id": "G4-06",
+   "class": 4,
+   "setting": "A translation agency owner at Lingua Bridge whose assistant tracks project deadlines, client glossary preferences, and freelancer rate agreements",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction is a control: no decision uses F5, and Petra's unused quote is a distractor. However, O1 schedules booking confirmation for 30 October, after the first batch was due on 14 October, despite R2 requiring confirmation before work starts. Thus option b is not unambiguously valid as an ordinary booking confirmation without addressing the overdue batch and confirmation."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction only fixes F5, an archived-glossary note no decision cites, and explicitly leaves current work unaffected, so all decisions stand and option b (the ordinary confirmation per D1/D2/O1) is unambiguously right. All four options are acts with no ask/wait choice, and F9 (Petra's newer unused quote) is a plausible untouched distractor."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "5e8016b1e7eaa04a4b190ceece59d37b792cbe874aa5df5de1601dbb9aaab2e2"
+  },
+  {
+   "id": "G4-07",
+   "class": 4,
+   "setting": "A hardware store owner at Timpson Supply Co. whose assistant notes special-order commitments made to regular contractors",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change adds a supplier for pine pickets only, leaving all cedar decisions and O2 unchanged; option c carries out the approved order. Every option places an order now. F14 is a newer, relevant-looking cedar quote that could wrongly draw the order to Meadowbrook despite its rejection in D7."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change explicitly limits Meadowbrook to pine pickets and revokes nothing, so all decisions stand and option c correctly executes D5/D6 (Lakeland, 28 less 10%, free delivery per D4, Friday 9 Oct). Option a wrongly acts on the declined Meadowbrook quote (F14, a relevant-looking but untouched distractor); b and d needlessly alter a standing plan. Every option is an act, so the task forces action."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "654f97e3a59a7440a123ca118d325aa8c551a4c631ee65c7406e05614c9d3a64",
+   "admitted": true
+  },
+  {
+   "id": "G4-08",
+   "class": 4,
+   "setting": "A summer camp director at Camp Blue Heron whose assistant retains staff hiring decisions, parent medical instructions, and activity schedule changes",
+   "valid": true,
+   "errors": [],
+   "rounds": 2,
+   "ratings": {
+    "astra": {
+     "truth_follows": "no",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "D3 is internally inconsistent: four canoes at three paddlers each accommodate only 12 people, not the stated group of 16. Six canoes would accommodate the group, so option b cannot unambiguously be rejected as mere confusion with F9, and option a is not clearly the right act. The change itself is an unchanged rule restatement and touches no decisions."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change is explicitly a restatement of R1 with unchanged terms, so nothing is touched and option a (four canoes, 13 August, Marta and Ravi per D1/D3/O1) is correct; F9's six canoes (Voyager trip) is the untouched distractor behind option b, and c gratuitously moves the date. Minor quirk: D3's 'three paddlers per canoe covers sixteen' is arithmetically off (4×3=12), but the key consistently follows the recorded decision, so the scenario is still unambiguous as written."
+    }
+   },
+   "marks": {
+    "astra": false,
+    "kimi": true
+   },
+   "eligible": false,
+   "hash": "c3489ce25900509af68e274b3838d14d3678cc3df0a69a5f9e3f2b56aad29076"
+  },
+  {
+   "id": "G4-09",
+   "class": 4,
+   "setting": "A head of procurement at Greenfield Regional Hospital whose assistant keeps minutes of vendor negotiation calls and contract renewal dates",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction revokes only F1, which no decision uses, so the existing Brightpath renewal and O2 remain valid. Every option requires an immediate action, including launching a tender in option c. F11 is a newer, relevant-looking but already declined quote that could wrongly drive option a."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction revokes F1, which no decision cites, so all decisions stand and sending the signed Brightpath renewal (b) is unambiguously right. The task requires acting now, and all three options are acts with no wait-or-check escape. F11 (the newer Cedarfresh quote) is a relevant-looking but untouched item that an assistant could wrongly act on, as in option a."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "e0bc3292b01d30a4632f19bf4e4343d73ff6244c458487206a1352f4c19cf3b7",
+   "admitted": true
+  },
+  {
+   "id": "G4-10",
+   "class": 4,
+   "setting": "A private tutor running Mathnasium-style services at Scholar's Nook whose assistant tracks each family's session-package terms and schedule adjustments",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The spring-term top-up explicitly leaves November and December bookings unchanged, so no decisions are touched and O1 requires booking option a today. Every option is an immediate scheduling act. F12 supplies a relevant-looking 90-minute duration for another family that could wrongly be applied to Priya."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change adds spring-2027 top-up sessions and explicitly leaves November/December bookings untouched, so nothing is stale and booking the 14 Nov 10:00 60-minute makeup (option a) is correct. F12 (the Okonkwo twins' new 90-minute sessions) is a newer relevant-looking item that could wrongly be applied to Priya, matching distractor option b. All options are acts, so the task forces action."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "cf4e3b5eff3bb014aa644f516984dd1728a87a8dffd023206a53c82c921217cb",
+   "admitted": true
+  },
+  {
+   "id": "G4-11",
+   "class": 4,
+   "setting": "A marina harbor master at Pelican Point Marina whose assistant remembers slip-assignment rulings and seasonal storage fee arrangements",
+   "valid": false,
+   "errors": [
+    "G4-11: distractor F4 must be in the newer half of the history (on or after 2026-07-29)"
+   ],
+   "rounds": 3,
+   "ratings": {
+    "astra": null,
+    "kimi": null
+   },
+   "marks": {
+    "astra": false,
+    "kimi": false
+   },
+   "eligible": false,
+   "hash": null
+  },
+  {
+   "id": "G4-12",
+   "class": 4,
+   "setting": "A food truck operator at Rusty Spatula Street Food whose assistant logs commissary kitchen slot bookings and event organizer payment terms",
+   "valid": true,
+   "errors": [],
+   "rounds": 1,
+   "ratings": {
+    "astra": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The correction replaces only F6, which no decision uses, so all standing decisions remain valid and option a carries out the booking and due payment-terms obligation. Every option specifies immediate actions. F10 is a newer, relevant-looking but declined quote that could wrongly prompt the Sweetwater Depot booking."
+    },
+    "kimi": {
+     "truth_follows": "yes",
+     "forces_act": "yes",
+     "class": 4,
+     "distractor": "yes",
+     "reasons": "The change revokes only F6 (propane supplier), which no decision or obligation rests on, so the standing plan (D2 booking, D5/O1 payment terms) is untouched and option a is unambiguously correct. F10 (the declined Sweetwater Depot quote) is a relevant-looking distractor that option b wrongly acts on, while c and d needlessly alter fixed terms. The task requires acting now (book + send) with no wait/ask option."
+    }
+   },
+   "marks": {
+    "astra": true,
+    "kimi": true
+   },
+   "eligible": true,
+   "hash": "672877919c7f8729503732ec9813c4e5ce2c1653a78646a520322c8b6ee11bec",
+   "admitted": true
+  }
+ ],
+ "kappa": {
+  "truth_follows": [
+   0.030769230769230826,
+   49
+  ],
+  "forces_act": [
+   0.0,
+   49
+  ],
+  "class": [
+   0.8912922906267332,
+   49
+  ],
+  "distractor": [
+   1.0,
+   49
+  ],
+  "admission_mark": [
+   0.006756756756756625,
+   49
+  ]
+ },
+ "admitted_by_class": {
+  "1": [
+   "G1-07",
+   "G1-11",
+   "G1-09"
+  ],
+  "2": [
+   "G2-06",
+   "G2-04",
+   "G2-01"
+  ],
+  "3": [
+   "G3-10",
+   "G3-14",
+   "G3-06",
+   "G3-01",
+   "G3-11",
+   "G3-09"
+  ],
+  "4": [
+   "G4-07",
+   "G4-12",
+   "G4-05",
+   "G4-10",
+   "G4-09"
+  ]
+ }
+}

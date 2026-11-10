@@ -309,5 +309,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F1, which no decision cites, so all decisions stand and sending the signed Brightpath renewal (b) is unambiguously right. The task requires acting now, and all three options are acts with no wait-or-check escape. F11 (the newer Cedarfresh quote) is a relevant-looking but untouched item that an assistant could wrongly act on, as in option a.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction revokes F1, which no decision cites, so all decisions stand and sending the signed Brightpath renewal (b) is unambiguously right. The task requires acting now, and all three options are acts with no wait-or-check escape. F11 (the newer Cedarfresh quote) is a relevant-looking but untouched item that an assistant could wrongly act on, as in option a."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2488,
+    "completion_tokens": 173,
+    "reasoning_tokens": 41,
+    "cached_tokens": 256
+   },
+   "cost": 0.0093678,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c7b4e289e85adbe9717bf265d1269650fd48688ac90e3dbd826738cba5c004c9"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The correction revokes only F1, which no decision uses, so the existing Brightpath renewal and O2 remain valid. Every option requires an immediate action, including launching a tender in option c. F11 is a newer, relevant-looking but already declined quote that could wrongly drive option a.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction revokes only F1, which no decision uses, so the existing Brightpath renewal and O2 remain valid. Every option requires an immediate action, including launching a tender in option c. F11 is a newer, relevant-looking but already declined quote that could wrongly drive option a."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2406,
+    "completion_tokens": 209,
+    "reasoning_tokens": 118,
+    "cached_tokens": 0
+   },
+   "cost": 0.0405175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c7b4e289e85adbe9717bf265d1269650fd48688ac90e3dbd826738cba5c004c9"
+  }
+ }
 }

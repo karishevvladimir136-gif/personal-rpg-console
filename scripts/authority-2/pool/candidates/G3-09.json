@@ -355,5 +355,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"F5 is corrected; D4 is touched directly, D7 touched through D4, and D3 cites F5 only for the unchanged 45-minute/fee aspect so it correctly stands. All options are acts of sending the call time, and F9 (Mia Chen's newer Saturday 11:15 rehearsal) is an untouched, relevant-looking value that option c wrongly uses.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "F5 is corrected; D4 is touched directly, D7 touched through D4, and D3 cites F5 only for the unchanged 45-minute/fee aspect so it correctly stands. All options are acts of sending the call time, and F9 (Mia Chen's newer Saturday 11:15 rehearsal) is an untouched, relevant-looking value that option c wrongly uses."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2539,
+    "completion_tokens": 378,
+    "reasoning_tokens": 252,
+    "cached_tokens": 256
+   },
+   "cost": 0.0125958,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "65e909e5b0fc21b8f371939290be6240d801495cb55703d5467620acae192925"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"C1 changes the lesson timing underlying D4 and, through D4, D7, while explicitly preserving the duration and fee underlying D3. The overdue O2 still calls for sending Sona the revised call time today, making b correct. F9 is a newer, unchanged rehearsal entry for Mia that supplies the misleading basis for option c.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "C1 changes the lesson timing underlying D4 and, through D4, D7, while explicitly preserving the duration and fee underlying D3. The overdue O2 still calls for sending Sona the revised call time today, making b correct. F9 is a newer, unchanged rehearsal entry for Mia that supplies the misleading basis for option c."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2414,
+    "completion_tokens": 270,
+    "reasoning_tokens": 169,
+    "cached_tokens": 0
+   },
+   "cost": 0.0436675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "65e909e5b0fc21b8f371939290be6240d801495cb55703d5467620acae192925"
+  }
+ }
 }

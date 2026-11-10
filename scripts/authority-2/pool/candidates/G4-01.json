@@ -283,5 +283,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"14 October 2026 is Wednesday, not Thursday, so D3, option b, and the key conflict with Meridian’s Tuesday/Thursday pickup windows; the intended booking is therefore not unambiguous. The change itself touches no decisions, and the declined Harborline quote remains a relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "14 October 2026 is Wednesday, not Thursday, so D3, option b, and the key conflict with Meridian’s Tuesday/Thursday pickup windows; the intended booking is therefore not unambiguous. The change itself touches no decisions, and the declined Harborline quote remains a relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2144,
+    "completion_tokens": 138,
+    "reasoning_tokens": 45,
+    "cached_tokens": 0
+   },
+   "cost": 0.0336925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "63283f49e39e87b45298003b9b97e99e06677d7cd79da0abdc91bb401282a393"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change explicitly leaves scheduled door pickups untouched, so nothing is revoked and the plan (D3/O2) stands; option b is the only correct act. Every option is an act with no wait/ask alternative, and F9 (the declined Harborline quote) is a relevant-looking but untouched distractor that option a wrongly acts on.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change explicitly leaves scheduled door pickups untouched, so nothing is revoked and the plan (D3/O2) stands; option b is the only correct act. Every option is an act with no wait/ask alternative, and F9 (the declined Harborline quote) is a relevant-looking but untouched distractor that option a wrongly acts on."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2224,
+    "completion_tokens": 208,
+    "reasoning_tokens": 89,
+    "cached_tokens": 256
+   },
+   "cost": 0.0091008,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "63283f49e39e87b45298003b9b97e99e06677d7cd79da0abdc91bb401282a393"
+  }
+ }
 }

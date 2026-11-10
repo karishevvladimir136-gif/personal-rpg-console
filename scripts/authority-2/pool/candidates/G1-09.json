@@ -336,5 +336,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"C1 revokes F5, affecting D3 and D4 directly and D5 and D6 downstream, while preserving the 80-bag quantity and unrelated decisions. Option c fulfills O2 at £1,880; option d incorrectly reduces the unchanged quantity. F12 is an untouched, relevant-looking alternative quote that could prompt the wrong supplier choice.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "C1 revokes F5, affecting D3 and D4 directly and D5 and D6 downstream, while preserving the 80-bag quantity and unrelated decisions. Option c fulfills O2 at £1,880; option d incorrectly reduces the unchanged quantity. F12 is an untouched, relevant-looking alternative quote that could prompt the wrong supplier choice."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2455,
+    "completion_tokens": 290,
+    "reasoning_tokens": 187,
+    "cached_tokens": 0
+   },
+   "cost": 0.04518,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d35effcec1d27d0a7f14909b210d4dabe9786152bff272a724db6268874c61e7"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"C1 revokes F5 (Millbrook supplier/price/delivery), touching D3 and D4 directly and D5 and D6 through them, while D1, D2, D7, D8 stand; option c matches the new supplier, price, and 10 November slot, and option a is the stale Millbrook act. F12 (Westfield quote) is a newer, relevant-looking but untouched fact serving as the distractor behind option b. All options are acts, so the task forces acting now.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "C1 revokes F5 (Millbrook supplier/price/delivery), touching D3 and D4 directly and D5 and D6 through them, while D1, D2, D7, D8 stand; option c matches the new supplier, price, and 10 November slot, and option a is the stale Millbrook act. F12 (Westfield quote) is a newer, relevant-looking but untouched fact serving as the distractor behind option b. All options are acts, so the task forces acting now."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2536,
+    "completion_tokens": 281,
+    "reasoning_tokens": 126,
+    "cached_tokens": 256
+   },
+   "cost": 0.0111318,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d35effcec1d27d0a7f14909b210d4dabe9786152bff272a724db6268874c61e7"
+  }
+ }
 }

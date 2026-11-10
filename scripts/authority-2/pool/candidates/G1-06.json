@@ -358,5 +358,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"Option b follows the revised palette, but the key invents a specific centerpiece revision: neither dusty-blue foliage nor silver-green foliage is specified by the history or change. D5 is touched, but its exact replacement materials are undetermined, so the key's full stated direction does not unambiguously follow.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "Option b follows the revised palette, but the key invents a specific centerpiece revision: neither dusty-blue foliage nor silver-green foliage is specified by the history or change. D5 is touched, but its exact replacement materials are undetermined, so the key's full stated direction does not unambiguously follow."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2299,
+    "completion_tokens": 151,
+    "reasoning_tokens": 58,
+    "cached_tokens": 0
+   },
+   "cost": 0.03628,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2e934a7624370c25f0f1c1c843e563a9af5e753e0c9864f177c7603f67678d4e"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"F3 (sage/cream scheme) is revoked by C1; D2, D3, D7 cite it directly and D5 is touched through D3, all shifting to dusty blue with ivory, while D1, D4, D6, D8 stand. Option b is the due obligation O2 executed correctly; a is stale, c wrongly acts on the untouched Velvet Vine quote (F11), and d over-applies dusty blue to the tablecloths. All options are acts with no ask/wait choice.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "F3 (sage/cream scheme) is revoked by C1; D2, D3, D7 cite it directly and D5 is touched through D3, all shifting to dusty blue with ivory, while D1, D4, D6, D8 stand. Option b is the due obligation O2 executed correctly; a is stale, c wrongly acts on the untouched Velvet Vine quote (F11), and d over-applies dusty blue to the tablecloths. All options are acts with no ask/wait choice."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2383,
+    "completion_tokens": 227,
+    "reasoning_tokens": 70,
+    "cached_tokens": 0
+   },
+   "cost": 0.010554,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2e934a7624370c25f0f1c1c843e563a9af5e753e0c9864f177c7603f67678d4e"
+  }
+ }
 }

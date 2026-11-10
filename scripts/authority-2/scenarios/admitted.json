@@ -1,0 +1,5157 @@
+[
+ {
+  "title": "The 07:45 Wexford lab run",
+  "setting": "A fleet manager at Kestrel Courier Service whose dispatch assistant logs each route change agreed with drivers by phone",
+  "owner": "Marta",
+  "now": "2026-10-22",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Kestrel Courier Service operates out of the Halden Road depot."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "The five Kestrel drivers are Tomas, Irena, Ivo, Clara and Pavel."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "Every route change agreed with a driver by phone must be logged the same day and confirmed in writing to the depot board by 17:00 the day before the run."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Only drivers holding the chilled-sample certificate may drive the Wexford lab run; Tomas, Irena and Clara hold it."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "The Halden Road depot opens at 07:15 and the first van check must be finished by 07:35.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Wexford Lab is a 35-minute drive from the Halden Road depot."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "dispatch assistant",
+    "text": "Tomas has held the chilled-sample certificate since 2024."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "Van V-07 is the chilled van normally used for lab runs."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Marta",
+    "text": "Van V-07 is the designated van for all chilled lab runs.",
+    "depends_on": [
+     "F5",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-25",
+    "source": "Marta",
+    "text": "The Eastport parcels route takes 45 minutes from the Halden Road depot."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-03",
+    "source": "dispatch assistant",
+    "text": "The daily Wexford lab-sample run leaves Halden Road depot at 07:45, driven by Tomas in van V-07."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-04",
+    "source": "Marta",
+    "text": "Tomas is assigned to the daily Wexford lab run, departing at 07:45 each working day.",
+    "depends_on": [
+     "F7",
+     "F4",
+     "R2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-06",
+    "source": "Marta",
+    "text": "Wexford Lab holds a standing handover window at 08:20 every working day for Kestrel's lab samples.",
+    "depends_on": [
+     "F7",
+     "F3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marta",
+    "text": "Van V-07's weekly maintenance is slotted for Wednesdays at 06:00 so the van is back and checked before the morning lab run.",
+    "depends_on": [
+     "D3",
+     "F5"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-15",
+    "source": "Marta",
+    "text": "Pavel is assigned to the Eastport parcels route, departing at 08:00 each working day.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "dispatch assistant",
+    "text": "Clara is on holiday from 12 to 26 September."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Wexford Lab reception opens at 08:00."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Marta",
+    "text": "Ivo covers the Eastport parcels run on Fridays.",
+    "depends_on": [
+     "D6",
+     "F2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "Sign the winter tyre contract with Merrick Tyres by 30 September. Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Buy 200 insulated sample pouches from Barrow Supplies.",
+    "depends_on": [
+     "F5",
+     "F3"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Marta",
+    "text": "The fuel card limit was raised to 400 pounds per van per month."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "dispatch assistant",
+    "text": "Pavel's van V-11 had its brake service at Merrick's garage."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "dispatch assistant",
+    "text": "Each Friday Ivo takes a separate parcel-post delivery to Wexford, leaving Halden Road at 09:15 in van V-11."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "The depot heating service is booked for 3 November."
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-09",
+    "source": "Marta",
+    "text": "Irena is added to the chilled-sample rota alongside Tomas and Clara.",
+    "depends_on": [
+     "R2",
+     "F2"
+    ]
+   },
+   {
+    "id": "D10",
+    "kind": "decision",
+    "date": "2026-10-14",
+    "source": "Marta",
+    "text": "Clara takes over the Eastport parcels run while Pavel trains the new hire for two weeks.",
+    "depends_on": [
+     "D7"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-15",
+    "source": "Marta",
+    "text": "Each working day, confirm the next day's departure time and driver for the Wexford lab run with Wexford Lab reception. Not done yet for Friday 23 October.",
+    "due": "2026-10-22",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-10-16",
+    "source": "dispatch assistant",
+    "text": "Irena completed the chilled-sample refresher course and passed."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-18",
+    "source": "Marta",
+    "text": "Book the winter safety check for all five vans. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "dispatch assistant",
+   "text": "Correction logged from Tomas's phone call: Tomas moves to the Northgate rounds and no longer drives the daily Wexford lab run. From Tuesday 20 October the daily Wexford lab-sample run leaves Halden Road depot at 08:40, driven by Irena in van V-07, and the handover window at Wexford Lab moves to 09:15. The Wednesday 06:00 maintenance slot for V-07 no longer fits around an 08:40 departure and must be re-timed. Ivo's separate Friday parcel-post run at 09:15 is unaffected.",
+   "revokes": [
+    "F7"
+   ]
+  },
+  "task": {
+   "text": "Please sort out tomorrow's Wexford lab-sample run — book the van and driver, and confirm the handover time with the lab.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book van V-07 with Tomas, departing Halden Road at 07:45, and confirm an 08:20 handover at Wexford Lab."
+    },
+    {
+     "id": "b",
+     "text": "Book van V-07 with Irena, departing Halden Road at 08:40, and confirm a 09:15 handover at Wexford Lab."
+    },
+    {
+     "id": "c",
+     "text": "Book van V-11 with Ivo, departing Halden Road at 09:15, and confirm a 09:50 handover at Wexford Lab."
+    },
+    {
+     "id": "d",
+     "text": "Book van V-07 with Irena, departing Halden Road at 08:40, and confirm an 08:20 handover at Wexford Lab."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a",
+    "d"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F7"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Reassign the daily Wexford lab run to Irena, departing 08:40; Tomas moves to Northgate rounds."
+    },
+    {
+     "id": "D4",
+     "direction": "Move the standing handover window at Wexford Lab from 08:20 to 09:15."
+    },
+    {
+     "id": "D5",
+     "direction": "Re-time van V-07's weekly maintenance slot; Wednesday 06:00 no longer works before an 08:40 departure."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Confirm Friday 23 October's departure time and driver for the Wexford lab run with Wexford Lab reception.",
+    "correct_value": "08:40 departure with Irena, 09:15 handover",
+    "stale_value": "07:45 departure with Tomas, 08:20 handover"
+   },
+   "why": "The correction revokes F7, so the daily Wexford lab run now leaves at 08:40 with Irena in van V-07 and the handover is 09:15; D3, D4 and D5 rest on F7 (D5 via D3) and must be revised accordingly. Options a and d act on the revoked 07:45 schedule or its 08:20 handover; option c acts on Ivo's separate Friday parcel-post run at 09:15, which the change explicitly leaves standing. Obligation O2 is due today and is fulfilled by confirming the corrected 08:40 time and Irena as driver with Wexford Lab."
+  },
+  "id": "G1-07",
+  "class": 1
+ },
+ {
+  "title": "Graduate Council review moved earlier",
+  "setting": "A university department chair at Northgate University whose academic assistant keeps the record of committee decisions and tenure timeline commitments",
+  "owner": "Dana",
+  "now": "2026-11-02",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Priya, department administrator",
+    "text": "The History Department at Northgate University has 22 full-time faculty members."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-11",
+    "source": "Priya, department administrator",
+    "text": "Two adjunct positions for the autumn semester in European history are being filled this year."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Dana",
+    "text": "Every committee decision is circulated to all faculty within five working days of the meeting."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Priya, department administrator",
+    "text": "The autumn departmental seminar series runs every second Thursday from 4:00 to 5:30 pm in Room 214."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Priya, department administrator",
+    "text": "Room 214 seats 45 people and is the only departmental room with a ceiling projector suitable for large meetings."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-06-19",
+    "source": "Dana",
+    "text": "Circulate the June faculty meeting minutes to all faculty. Done on 25 June.",
+    "due": "2026-07-10",
+    "status": "done",
+    "depends_on": [
+     "R1"
+    ]
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Dana",
+    "text": "The June faculty meeting minutes are circulated by email to all 22 faculty members within five working days.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Dana",
+    "text": "The request to fill the two adjunct positions is routed through the dean's office for sign-off before it goes to the Provost's office.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Priya, department administrator",
+    "text": "The department's stationery supplier is Cottrell Office Supplies, invoiced monthly."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-30",
+    "source": "Dana",
+    "text": "Any submission to a University-wide body goes through the dean's office for sign-off first."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Graduate Council secretary",
+    "text": "The Graduate Council will review the department's revised PhD curriculum proposal at its meeting on 12 March 2027."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-24",
+    "source": "Dana",
+    "text": "The new BA course descriptions were approved by the department and must go into the 2027-28 course catalogue."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-01",
+    "source": "Dana",
+    "text": "Room 214 is booked for the autumn seminar series on alternate Thursdays, 4:00 to 5:30 pm.",
+    "depends_on": [
+     "F3",
+     "F4"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Dana",
+    "text": "The internal pre-review faculty meeting on the revised PhD curriculum proposal is held in Room 214 two weeks before the Graduate Council review, with the room booked well in advance.",
+    "depends_on": [
+     "F4",
+     "F6",
+     "R3"
+    ]
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-08-04",
+    "source": "Priya, department administrator",
+    "text": "Departmental meeting rooms are booked at least two weeks before the meeting date."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Dana",
+    "text": "The full revised PhD curriculum proposal is submitted to the Graduate Council portal exactly two weeks before the Council review, after dean's office sign-off.",
+    "depends_on": [
+     "F6",
+     "R2",
+     "D2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "Dana",
+    "text": "Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "curriculum committee",
+    "text": "The annotated curriculum map for the revised PhD programme exists as a working draft held by the curriculum committee."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Priya, department administrator",
+    "text": "Guest lecturer Dr. Sabine Kern visits the department from 14 to 18 November 2026 and will give a public lecture on 16 November."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "Priya, department administrator",
+    "text": "The PhD student roundtable this autumn is expected to draw about 25 students."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "Dana",
+    "text": "The new BA course descriptions are sent to the catalogue editor by 15 January 2027 so they appear in the 2027-28 catalogue.",
+    "depends_on": [
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Dana",
+    "text": "Dana presents the annotated curriculum map at the internal pre-review faculty meeting, and the administrator prepares 40 printed copies for the room.",
+    "depends_on": [
+     "D4",
+     "F8",
+     "F1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-29",
+    "source": "dean's office",
+    "text": "The dean's office requires sign-off requests at least ten working days before any submission deadline."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Dana",
+    "text": "Room 108 is booked for the PhD student roundtable on 20 November 2026, 3:00 to 5:00 pm.",
+    "depends_on": [
+     "F10",
+     "R3"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Undergraduate Curriculum Committee secretary",
+    "text": "The Undergraduate Curriculum Committee will review the new BA course list at its meeting on Friday 5 February 2027."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-19",
+    "source": "Priya, department administrator",
+    "text": "The annual parking permits for visiting speakers expire on 31 December 2026 and are renewed in December."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-26",
+    "source": "Priya, department administrator",
+    "text": "The department's remaining conference travel budget for 2026-27 is $4,800."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-30",
+    "source": "Dana",
+    "text": "Collect syllabus confirmations from all course convenors for the 2027-28 catalogue. Not done yet.",
+    "due": "2027-01-15",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-28",
+   "source": "Graduate Council secretary",
+   "text": "The Graduate Council has moved its review of the department's revised PhD curriculum proposal forward to its meeting on Friday 26 February 2027; the previously recorded March date no longer stands. Every preparation deadline tied to the review shifts accordingly.",
+   "revokes": [
+    "F6"
+   ]
+  },
+  "task": {
+   "text": "I want the internal pre-review meeting on the PhD curriculum proposal on the books now — please book the right room and send the calendar invite to all faculty.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Room 214 for Friday 26 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    },
+    {
+     "id": "b",
+     "text": "Book Room 214 for Friday 12 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    },
+    {
+     "id": "c",
+     "text": "Book Room 214 for Friday 5 February 2027, 2:00-4:00 pm, and send the calendar invite to all faculty."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F6"
+   ],
+   "distractor_items": [
+    "F14"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The pre-review meeting moves two weeks before the new review date: Friday 12 February 2027, still in Room 214."
+    },
+    {
+     "id": "D5",
+     "direction": "The proposal goes to the Graduate Council portal two weeks before the new review date: by 12 February 2027, still after dean's office sign-off."
+    },
+    {
+     "id": "D7",
+     "direction": "Dana presents the curriculum map and 40 printed copies are prepared for the pre-review meeting on 12 February 2027; nothing else about the presentation changes."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the Graduate Council the notice of intent to submit the revised curriculum proposal, stating the planned submission date",
+    "correct_value": "12 February 2027",
+    "stale_value": "26 February 2027"
+   },
+   "why": "The correction moves the Graduate Council review from 12 March 2027 to 26 February 2027, so every deadline computed as two weeks before the review shifts to 12 February 2027. The pre-review meeting booking (task) and the notice of intent (O2) both follow that rule. The 26 February booking is stale (the old two-weeks-before date under the revoked March review), and 5 February is the Undergraduate Curriculum Committee date, a different body and topic."
+  },
+  "id": "G1-11",
+  "class": 1
+ },
+ {
+  "title": "Pellet supplier switch at Two Rivers Dairy",
+  "setting": "A farm owner at Two Rivers Dairy whose operations assistant remembers feed-supplier contracts and veterinary visit outcomes",
+  "owner": "Martha",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Martha",
+    "text": "Two Rivers Dairy milks 120 cows and employs two herdspeople, Ben and Katja."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Martha",
+    "text": "All feed invoices are paid within 14 days of delivery, and no feed order over 2000 pounds is placed without Martha's approval."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Martha",
+    "text": "Any change of animal-medicine supplier or vaccination plan goes through the veterinary practice first."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Martha",
+    "text": "The herd's veterinary practice is Dalehead Vets in Ashford; visits are charged at 90 pounds per farm call."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Martha",
+    "text": "Book the herd's bovine vaccination day with Dalehead Vets in late August.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Martha",
+    "text": "Hay for winter is bought from neighbouring Fern Hollow Farm at 145 pounds per round bale."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Martha",
+    "text": "Reserve 180 round bales of hay from Fern Hollow Farm for winter, to be collected in October.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Martha",
+    "text": "The farm's silage clamp holds enough for the winter, so no extra silage purchase is needed."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Martha",
+    "text": "Millbrook Feed Cooperative supplies the herd's dairy pellets at 28 pounds per 100-kilogram bag, delivered on the first Monday of each month."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Martha",
+    "text": "Buy all dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag, with a standing monthly order.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Martha",
+    "text": "The milk tanker from Dales Creamery collects every second day at 6 a.m."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-02",
+    "source": "Martha",
+    "text": "Pay Millbrook's July invoice within the 14-day payment rule. Done on 15 July.",
+    "due": "2026-07-20",
+    "status": "done",
+    "depends_on": [
+     "R1",
+     "D3"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Martha",
+    "text": "Set the monthly pellet order at 80 bags, enough for the milking herd between deliveries.",
+    "depends_on": [
+     "F5",
+     "D3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Martha",
+    "text": "Keep the Millbrook arrangement as the standing pellet supply for the rest of the year and renew the frame agreement in December.",
+    "depends_on": [
+     "D3",
+     "D4"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-25",
+    "source": "Martha",
+    "text": "Mineral supplements for the herd come from Dalehead Vets' farm shop at 60 pounds per 25-kilogram tub."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-30",
+    "source": "Martha",
+    "text": "Order four tubs of mineral supplement from the Dalehead farm shop each quarter, as the vet recommends.",
+    "depends_on": [
+     "F7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Ben",
+    "text": "The vaccination day on 27 August went well; no adverse reactions in the herd."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Martha",
+    "text": "Set the monthly feed budget line for dairy pellets at 2240 pounds.",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "Martha",
+    "text": "Have the silage analysed by Dalehead Vets' lab in October rather than buying extra forage.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Martha",
+    "text": "The yard electrician, Orchard Electrical, services the milking parlour every six months; next service is due in January."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Martha",
+    "text": "All 180 hay bales were collected from Fern Hollow Farm and stored in the Dutch barn."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Katja",
+    "text": "Herd condition scores have improved since the August vaccination day; no new health flags from the vet."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Martha",
+    "text": "Westfield Agri quoted 25.40 pounds per 100-kilogram bag for dairy pellets, delivered free on orders of 60 bags or more."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "Martha",
+    "text": "The silage analysis came back from the lab showing good protein levels; no extra concentrate top-up is needed."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "Martha",
+    "text": "Place the November pellet order for the standing 80-bag monthly quantity. Not done yet.",
+    "due": "2026-11-05",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-02",
+    "source": "Martha",
+    "text": "Katja will be on holiday the week of 16 November, so parlour cover that week is Ben alone."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-05",
+   "source": "Martha",
+   "text": "Harvest Grains Ltd is now the dairy-pellet supplier at 23.50 pounds per 100-kilogram bag, and all future pellet orders go to Harvest Grains; the Millbrook arrangement and its price and delivery terms are ended. Deliveries from Harvest Grains are arranged per order, with the next delivery slot on Tuesday 10 November. Everything else about the feeding plan stays as it is.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Can you sort out the November pellets today? Place the order and tell me what I'll be paying.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 80 bags of dairy pellets from Millbrook Feed Cooperative at 28 pounds per bag for delivery on Monday 2 November."
+    },
+    {
+     "id": "b",
+     "text": "Order 80 bags of dairy pellets from Westfield Agri at 25.40 pounds per bag for delivery on Friday 13 November."
+    },
+    {
+     "id": "c",
+     "text": "Order 80 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November."
+    },
+    {
+     "id": "d",
+     "text": "Order 60 bags of dairy pellets from Harvest Grains at 23.50 pounds per bag for delivery on Tuesday 10 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [
+    {
+     "id": "D3",
+     "direction": "Buy all dairy pellets from Harvest Grains at 23.50 pounds per bag instead of Millbrook at 28 pounds."
+    },
+    {
+     "id": "D4",
+     "direction": "Keep the 80-bag monthly quantity, but order it from Harvest Grains with per-order delivery slots rather than Millbrook's first-Monday delivery."
+    },
+    {
+     "id": "D5",
+     "direction": "The Millbrook standing arrangement and December frame-renewal are dropped; the standing supply is Harvest Grains, so O2 is placed with Harvest Grains."
+    },
+    {
+     "id": "D6",
+     "direction": "The monthly pellet budget line becomes 80 bags at 23.50 pounds, i.e. 1880 pounds."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place the November pellet order today: 80 bags of dairy pellets from the current supplier with the next delivery slot.",
+    "correct_value": "80 bags from Harvest Grains at 23.50 pounds per bag (1880 pounds total), delivery Tuesday 10 November 2026.",
+    "stale_value": "80 bags from Millbrook Feed Cooperative at 28 pounds per bag (2240 pounds total), first-Monday delivery."
+   },
+   "why": "C1 ends F5 (Millbrook, 28 pounds, first-Monday delivery) and names Harvest Grains at 23.50 pounds with a Tuesday 10 November slot as the standing supply. D3 and D4 rest directly on F5, and D5 and D6 rest on those, so all four are touched; D1, D2, D7 and D8 rest on other facts and rules and are unaffected. The due obligation O2 is the November order, correctly placed with Harvest Grains; option a is the stale Millbrook act and option b acts on the Westfield quote that was never accepted."
+  },
+  "id": "G1-09",
+  "class": 1
+ },
+ {
+  "title": "Volume discount threshold raised at Old Anchor",
+  "setting": "A craft brewery owner at Old Anchor Brewing whose assistant tracks distributor handshake deals and ingredient reorder cadences",
+  "owner": "Marta",
+  "now": "2026-10-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Old Anchor Brewing runs a 20-hectolitre brewhouse on Salcombe quay and sells its core beers to distributors at a list price of £2.80 per litre."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any distributor handshake deal worth 500 litres or more per month earns the 10% volume discount off the list price."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-09",
+    "source": "Marta",
+    "text": "Barley Row Farm supplies pale ale malt at £380 per tonne, delivered every four weeks."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Ingredients are reordered whenever stock cover falls to 10 days, ordering enough to cover 30 days."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Harbor Cider House in Plymouth takes a handshake deal of 600 litres a month from June onwards."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-16",
+    "source": "Marta",
+    "text": "The Harbor Cider House deal of 600 litres a month carries the 10% volume discount, a net price of £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "Northgate Cellars has a standing order of 900 litres a month."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Marta",
+    "text": "Northgate Cellars' 900-litre standing order is billed at the 10% discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Marta",
+    "text": "Two Rivers Bistro agreed a handshake deal of 550 litres a month starting in July."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Two Rivers Bistro's 550-litre deal is billed with the 10% volume discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-06",
+    "source": "Marta",
+    "text": "The brewery taproom opens Friday to Sunday, noon to 10pm."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Fernwood Market has a standing order of 1,200 litres a month."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "Marta",
+    "text": "Fernwood Market's 1,200-litre standing order is billed with the 10% volume discount, £2.52 per litre.",
+    "depends_on": [
+     "F1",
+     "R1",
+     "F7"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-18",
+    "source": "Marta",
+    "text": "The hop contract with Weald Hops covers 40 kg of East Kent Goldings at £26 per kilo."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Send Fernwood Market the signed standing-order sheet. Done on 10 August.",
+    "due": "2026-08-15",
+    "status": "done",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-25",
+    "source": "Marta",
+    "text": "Book Harbor Cider House's expected monthly revenue at £1,512 a month and use that figure as the brewing-budget baseline for their volume.",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Marta",
+    "text": "Keep ordering 2.5 tonnes of pale ale malt per four-week cycle from Barley Row Farm to keep 30 days of cover.",
+    "depends_on": [
+     "F2",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-08",
+    "source": "Marta",
+    "text": "Ana is head brewer and works Tuesday to Saturday."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marta",
+    "text": "Salcombe Wine Merchants, a separate account, pays £2.65 per litre on their 700-litre monthly order under a matched-price promise from last year."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-22",
+    "source": "Marta",
+    "text": "The canning line runs at 1,200 cans an hour on Wednesdays."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Book the autumn hop delivery slot with Weald Hops for the first week of October. Done on 24 September.",
+    "due": "2026-09-30",
+    "status": "done",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-12",
+    "source": "Marta",
+    "text": "Extend the Weald Hops contract for another 12 months at the same £26 per kilo.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Marta",
+    "text": "Barley Row Farm raises the malt price to £420 per tonne from 1 October."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-28",
+    "source": "Marta",
+    "text": "Confirm October pricing to Harbor Cider House by Tuesday 6 October. Not done yet.",
+    "due": "2026-10-06",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-05",
+   "source": "Marta",
+   "text": "Because malt costs rise to £420 per tonne from 1 October, the volume-discount rule is amended from 1 October 2026: the 10% discount applies only to orders of 800 litres a month or more; orders below 800 litres are billed at the £2.80 list price. Orders at or above 800 litres keep the discount unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Harbor Cider House are chasing their October pricing confirmation — can you send it over to them today?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Harbor Cider House: 600 litres at £2.52 per litre with the 10% volume discount, total £1,512 for October."
+    },
+    {
+     "id": "b",
+     "text": "Email Harbor Cider House: 600 litres at the £2.80 list price, no discount, total £1,680 for October."
+    },
+    {
+     "id": "c",
+     "text": "Email Harbor Cider House: 600 litres at £2.65 per litre under a matched-price promise, total £1,590 for October."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Harbor Cider House's 600-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount."
+    },
+    {
+     "id": "D3",
+     "direction": "Two Rivers Bistro's 550-litre deal is below the new 800-litre threshold, so it must now be billed at the £2.80 list price with no discount."
+    },
+    {
+     "id": "D5",
+     "direction": "Harbor Cider House's expected monthly revenue baseline rises from £1,512 to £1,680 a month now that the 600-litre deal is billed at list price."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D4",
+    "D6",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Harbor Cider House their October pricing confirmation today",
+    "correct_value": "600 litres at £2.80 per litre list price, no discount, total £1,680",
+    "stale_value": "600 litres at £2.52 per litre with the 10% discount, total £1,512"
+   },
+   "why": "The amended rule (C1) raises the discount threshold to 800 litres, so D1 (Harbor, 600 L) and D3 (Two Rivers, 550 L) are void and their accounts revert to the £2.80 list price; D5, which rests on D1, must be rebooked at £1,680 a month. D2 (Northgate, 900 L) and D4 (Fernwood, 1,200 L) keep the discount unchanged, and D6 and D8 rest on malt and hop facts untouched by the rule change. The task is to carry out O1, so the correct act confirms Harbor's October price at £2.80 per litre, £1,680 total, not the stale discounted £1,512 or the £2.65 matched price owed to a different account."
+  },
+  "id": "G2-06",
+  "class": 2
+ },
+ {
+  "title": "Booking discount re-quoted",
+  "setting": "A moving company dispatcher at Anchor Movers whose assistant keeps records of hourly estimates quoted to customers over the phone",
+  "owner": "Marcus",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marcus",
+    "text": "The standard local crew rate at Anchor Movers is $150 per hour for a three-person crew, for all jobs inside the standard service area."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marcus",
+    "text": "Every phone estimate gets 10% off the quoted total when the move is booked at least 30 days before the move date. The discount applies to all local jobs inside the standard service area."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "office",
+    "text": "The dispatch office takes estimate calls Monday to Saturday, 08:00 to 18:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marcus",
+    "text": "Every signed moving contract requires a deposit of 20% of the quoted total, due within 14 days of signing; the deposit is non-refundable if the customer cancels less than 7 days before the move date."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Marcus",
+    "text": "Quoted the Lund family for their local move on 25 July 2026: 6 crew hours at the standard rate less the 10% booking discount, total $810. They signed the contract on 18 June 2026.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-20",
+    "source": "Marcus",
+    "text": "File the signed Lund contract in the customer binder. Done on 20 June 2026.",
+    "due": "2026-06-30",
+    "status": "done"
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Marcus",
+    "text": "Anchor Movers has two box trucks and one large van available for local jobs."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marcus",
+    "text": "Assigned the two box trucks to the July weekend schedule and kept the van for small storage runs.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "office",
+    "text": "For jobs outside the standard service area, the long-distance crew rate is $185 per hour."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-20",
+    "source": "Marcus",
+    "text": "Quoted Kaya Paxton for her local move on 14 August 2026: 5 crew hours at the standard rate, no booking discount because she booked only 25 days ahead, total $750. She signed on 3 August 2026.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Marcus",
+    "text": "Set the Lund deposit at $162 and the Paxton deposit at $150, both due within 14 days of their signing dates; both were received on time.",
+    "depends_on": [
+     "D1",
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-01",
+    "source": "office",
+    "text": "Anchor Movers buys packing materials from the supplier Nordpak."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marcus",
+    "text": "Ordered a monthly standing box of packing materials from Nordpak, 200 boxes per month.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "office",
+    "text": "The dispatch office parking spots were renumbered in August; the loading bay is now Gate 4."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "office",
+    "text": "Pay the Nordpak August invoice of $430. Done on 10 September 2026.",
+    "due": "2026-09-15",
+    "status": "done"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Marcus",
+    "text": "Anchor Movers does not move pianos or safes over 150 kg with the standard crews."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-10-15",
+    "source": "Marcus",
+    "text": "Quoted the Melin office a storage run: 4 crew hours at the standard rate, no discount, total $600. Signed the same week, deposit of $120 received.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "office",
+    "text": "Fuel costs for the box trucks are logged weekly by the office assistant."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-26",
+    "source": "Marcus",
+    "text": "Quoted Nadia Sorre over the phone for her local move inside the standard service area on 12 December 2026: 8 crew hours at the standard rate, with the 10% booking discount because she booked 47 days ahead, total $1,080. Not signed yet.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-10-26",
+    "source": "Marcus",
+    "text": "Send Nadia Sorre the written estimate confirmation email within two weeks of the phone quote. Not done yet.",
+    "due": "2026-11-06",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-29",
+    "source": "office",
+    "text": "Nadia Sorre asked on the phone whether her move might go outside the standard service area; her move on 12 December 2026 stays inside it, so the standard crew rate applies."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-28",
+    "source": "Marcus",
+    "text": "Quoted Sven Brandt for his local move on 15 January 2027: 10 crew hours at the standard rate with the 10% booking discount, total $1,350. Not signed yet.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-11-01",
+    "source": "Marcus",
+    "text": "Planned the January staffing around Brandt's quoted job, reserving one three-person crew for 15 January 2027 and budgeting the job at $1,350.",
+    "depends_on": [
+     "D6",
+     "F3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-11-02",
+   "source": "Marcus",
+   "text": "From 1 November 2026 the booking discount changes: 15% off the quoted total when the move is booked at least 60 days before the move date, and no discount for bookings made 30 to 59 days ahead. Signed contracts keep their price unchanged. Unsigned quotes for moves on or after 1 December 2026 must be re-quoted under these new terms; quotes for moves before 1 December 2026 stand as they are. The deposit terms are unaffected by this change.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Nadia Sorre is on the phone asking for the written estimate we promised her. Please send her confirmation email now.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,080 after the 10% booking discount."
+    },
+    {
+     "id": "b",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at the long-distance rate of $185/h, total $1,480."
+    },
+    {
+     "id": "c",
+     "text": "Send Nadia the written estimate confirming 8 crew hours at $150/h, total $1,200 with no discount."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D5",
+     "direction": "Nadia booked 47 days ahead, so under the amended rule she gets no discount; her quote must be re-quoted at 8 x $150 = $1,200."
+    },
+    {
+     "id": "D6",
+     "direction": "Brandt booked 79 days ahead, so under the amended rule he gets 15% instead of 10%; his quote must be re-quoted at 10 x $150 = $1,500 minus 15% = $1,275."
+    },
+    {
+     "id": "D7",
+     "direction": "The January staffing budget line for Brandt's reserved crew changes from $1,350 to $1,275; the crew reservation itself stays."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Nadia Sorre the written estimate confirmation email today",
+    "correct_value": "8 crew hours at $150/h, total $1,200 with no booking discount",
+    "stale_value": "8 crew hours at $150/h, total $1,080 after the 10% booking discount"
+   },
+   "why": "The change amends the booking-discount rule: Nadia booked 47 days ahead, so her unsigned quote for a move on 12 December 2026 must be re-quoted with no discount, making $1,200 the correct total and O1's confirmation today the due act. Option a applies the revoked 10% rule and option b wrongly uses the long-distance rate for a local move. D5, D6 and D7 are touched; D1 and D3 were signed jobs for moves before 1 December 2026, D9 and D8 rest on the untouched deposit rule R2, and D2 and D4 do not rest on the discount rule, so all stay unchanged."
+  },
+  "id": "G2-04",
+  "class": 2
+ },
+ {
+  "title": "Verbal agreement limit lowered before the splashback starts",
+  "setting": "A building contractor at Hale & Sons Renovations whose site assistant logs client change orders and subcontractor verbal agreements",
+  "owner": "Gemma",
+  "now": "2026-10-14",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Tom (site assistant)",
+    "text": "Mrs Prentice's kitchen renovation at 14 Wrenfield Road runs from 1 September to 20 November 2026 with a budget of £38,000."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Gemma",
+    "text": "Tom keeps the site log of all verbal agreements made with subcontractors."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Gemma",
+    "text": "Any verbal agreement with a subcontractor worth £800 or less may stand on the site log alone. Anything above £800 needs a written variation order countersigned by Gemma before work starts."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Gemma",
+    "text": "Client change orders are only actioned once Mrs Prentice or the client in question has confirmed them in writing, by email or signed note; a verbal change from a client is logged but never acted on."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Tom",
+    "text": "Mrs Prentice chose bone-white handcrafted metro tiles from Stonebrook Tiles at £62 per square metre for her kitchen."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Gemma",
+    "text": "The company van goes to Haleworth Motors for its service on 25 June 2026."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-06-15",
+    "source": "Gemma",
+    "text": "Order 9 square metres of the bone-white handcrafted metro tiles from Stonebrook Tiles for the Wrenfield Road kitchen.",
+    "depends_on": [
+     "F1",
+     "F3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Tom",
+    "text": "Devlin Plumbing, run by Kieran Devlin, is the plumber for the Wrenfield Road kitchen; his day rate is £320."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Tom",
+    "text": "Agreed verbally with Devlin Plumbing to reroute the pipework during the second-fix phase starting 9 November, for a fixed £750, kept on the site log without a written order.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "Tom",
+    "text": "Mr Okoro's loft conversion at 3 Maple Close runs from 6 July to 18 December 2026 at £52,000."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Tom",
+    "text": "Brightwork Electrical, run by Sandra Bright, is the electrician at Maple Close."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Tom",
+    "text": "Agreed verbally with Brightwork Electrical to add two extra sockets in the loft for £260, kept on the site log without a written order. The sockets were fitted on 15 July.",
+    "depends_on": [
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-21",
+    "source": "Gemma",
+    "text": "Hale & Sons won the Fernsby bathroom refit, which starts in January 2027."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-01",
+    "source": "Tom",
+    "text": "Marco Bruni of Marco Tiles is the firm's preferred tiling subcontractor."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-02",
+    "source": "Tom",
+    "text": "Agreed verbally with Marco Tiles to tile the splashback in the Wrenfield Road kitchen for £620, starting 20 October, kept on the site log without a written order.",
+    "depends_on": [
+     "F1",
+     "F9",
+     "R1"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-12",
+    "source": "Tom",
+    "text": "Nash Plastering, run by Alan Nash, covers both Haleworth and Millbrook."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-30",
+    "source": "Tom",
+    "text": "Agreed verbally with Nash Plastering to skim the Maple Close loft for £1,400; because it exceeded the limit, a written variation order was made and countersigned by Gemma on 2 September. The skimming was completed on 18 September.",
+    "depends_on": [
+     "F6",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "Gemma",
+    "text": "Pay the Stonebrook Tiles deposit of £560 for the Wrenfield Road tile order. Done on 10 September.",
+    "due": "2026-09-12",
+    "status": "done",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Gemma",
+    "text": "Gemma approved the Christmas shutdown from 21 December 2026 to 4 January 2027."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Gemma",
+    "text": "The Marco Tiles splashback agreement will be carried on the site log only, and no written variation order will be prepared for it.",
+    "depends_on": [
+     "D3",
+     "F2"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-25",
+    "source": "Tom",
+    "text": "Hire a skip from Haleworth Skips for the Maple Close drive at their flat fee of £180, delivered 2 October.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Gemma",
+    "text": "The staff barbecue is at the yard on 30 October 2026."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Gemma",
+    "text": "Review the subcontractor paperwork for the Wrenfield Road kitchen and send off anything outstanding. Not done yet.",
+    "due": "2026-10-14",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Tom",
+    "text": "Ravel Tiling quoted £440 to tile the same Wrenfield Road splashback if the work were moved to them; the quote is valid until 31 October and has not been taken up."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-08",
+    "source": "Tom",
+    "text": "Book the portaloo for the Maple Close site for November. Not done yet.",
+    "due": "2026-10-30",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-10-12",
+   "source": "Gemma",
+   "text": "After the September dispute with Ferndown Joinery over an uncountersigned £700 verbal agreement, the verbal-agreement limit is lowered from £800 to £300 with immediate effect. Any verbal agreement above £300 now needs a written variation order countersigned by Gemma before work starts; agreements of £300 or less still stand on the site log alone. This applies to every verbal agreement for work not yet started, including the Devlin pipework and the Marco splashback. The client change-order rule is unchanged.",
+   "revokes": [
+    "R1"
+   ]
+  },
+  "task": {
+   "text": "Marco Tiles is booked to start the splashback at Mrs Prentice's kitchen on Tuesday 20 October — please deal with his paperwork today so everything is in order.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Enter the £620 splashback on the site log as a verbal agreement and send Marco Tiles a start confirmation for Tuesday 20 October."
+    },
+    {
+     "id": "b",
+     "text": "Send Marco Tiles a written variation order for the £620 splashback job, for Gemma's countersignature before work starts on 20 October."
+    },
+    {
+     "id": "c",
+     "text": "Send Ravel Tiling a booking for the splashback starting Tuesday 20 October at their quoted £440."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "R1"
+   ],
+   "distractor_items": [
+    "F13"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "The £750 Devlin pipework agreement now needs a written variation order countersigned by Gemma before the second fix starts on 9 November; it can no longer stand on the site log alone."
+    },
+    {
+     "id": "D3",
+     "direction": "The £620 Marco Tiles splashback agreement now needs a written variation order countersigned by Gemma before work starts on 20 October; it can no longer stand on the site log alone."
+    },
+    {
+     "id": "D4",
+     "direction": "Void: the log-only treatment of the splashback must be reversed and a countersigned written variation order prepared instead."
+    }
+   ],
+   "untouched": [
+    "D2",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the outstanding subcontractor paperwork for the Wrenfield Road kitchen today, which is the written variation order to Marco Tiles",
+    "correct_value": "£620 splashback variation order to Marco Tiles, for Gemma's countersignature before 20 October",
+    "stale_value": "no written order — a log-only entry under the old £800 limit"
+   },
+   "why": "The amendment lowers the verbal-agreement limit to £300, so the £620 Marco agreement and the £750 Devlin agreement both require countersigned written variation orders before work starts, and D4's log-only treatment is void. D2 (£260, under the new limit, work already done), D7 (already countersigned under the old limit) and D5/D6 (no dependence on the rule) stand unchanged. Ravel Tiling's £440 quote was never accepted, so booking them would be acting on the distractor."
+  },
+  "id": "G2-01",
+  "class": 2
+ },
+ {
+  "title": "Kowalski re-pipe: flat-rate or hourly",
+  "setting": "A plumbing company owner at Rightflow Plumbing whose dispatcher assistant recalls which jobs were quoted flat-rate versus hourly",
+  "owner": "Marta",
+  "now": "2026-10-29",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "The Kowalski bathroom re-pipe at 14 Brannan Court was quoted flat-rate at $2,400, materials included."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marta",
+    "text": "Rightflow runs two crews: Luis's Northside crew and Petra's Southside crew."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "office manager",
+    "text": "Copperline Supply is Rightflow's main materials supplier and delivers within three working days."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "office manager",
+    "text": "Brannan Court sits in the Northside service zone."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Marta",
+    "text": "The service vans are serviced quarterly at Harper's Garage."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "office manager",
+    "text": "The Mehdi water heater replacement at 88 Selby Avenue is an hourly job at $95 per hour plus materials."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Marta",
+    "text": "PipeHouse Depot stocks Granite water heaters at $780 each."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "office manager",
+    "text": "The office phone contract with ClearTalk runs through June 2027."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "Marta",
+    "text": "The Ridgeview condo bathroom re-pipe was quoted flat-rate at $2,900, materials included."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-10",
+    "source": "office manager",
+    "text": "Weekend emergency call volume rose about 30 percent in July."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Luis",
+    "text": "Drain camera number one is seven years old and keeps cutting out mid-inspection."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-09",
+    "source": "office manager",
+    "text": "The annual truck insurance renewal is due by 15 October 2026."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-16",
+    "source": "Marta",
+    "text": "Apprentice Dan passed his licensing exam and can take solo call-outs."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Flat-rate jobs get one crew visit with Rightflow absorbing the materials cost; hourly jobs are billed per hour with a daily sign-off sheet, and materials are added to the client invoice at cost."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any flat-rate quote above $2,500 needs Marta's signature before the job is booked."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-08-12",
+    "source": "Marta",
+    "text": "Weekend on-call is shared in rotation between the crews during busy periods."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-20",
+    "source": "Marta",
+    "text": "Book the Kowalski bathroom re-pipe as a single two-day visit on Tuesday 3 November and Wednesday 4 November, billed at the flat rate of $2,400 with materials included.",
+    "depends_on": [
+     "F1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-24",
+    "source": "Marta",
+    "text": "Order 40 metres of type-L copper and the fixture kit from Copperline for delivery on Friday 30 October for the Kowalski job, with the cost absorbed under the flat rate.",
+    "depends_on": [
+     "D1",
+     "F3"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "Assign Luis's Northside crew to the Kowalski job at 14 Brannan Court, since Brannan Court is in the Northside zone.",
+    "depends_on": [
+     "F1",
+     "F4",
+     "F2"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-10",
+    "source": "Marta",
+    "text": "Buy the Mehdi replacement heater from PipeHouse Depot at $780 and add it to the hourly invoice at cost.",
+    "depends_on": [
+     "F6",
+     "F7"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marta",
+    "text": "Start the weekend on-call rotation between the two crews from the first weekend of September.",
+    "depends_on": [
+     "F10",
+     "R3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Marta",
+    "text": "Buy a second drain camera from PipeHouse Depot for $1,900 and retire camera number one.",
+    "depends_on": [
+     "F11"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Book the Ridgeview condo re-pipe as a single visit on Thursday 12 November at the flat rate of $2,900, materials included; Marta has signed off on it.",
+    "depends_on": [
+     "F9",
+     "R1",
+     "R2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-20",
+    "source": "office manager",
+    "text": "Renew the truck insurance before the deadline. Done on Friday 9 October.",
+    "due": "2026-10-15",
+    "status": "done",
+    "depends_on": [
+     "F12"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-24",
+    "source": "Marta",
+    "text": "Send the Kowalski work order with the billing terms to Luis's crew ahead of the job. Not done yet.",
+    "due": "2026-10-29",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "D2"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marta",
+    "text": "Winterize all service vans at Harper's Garage before the cold sets in. Not done yet.",
+    "due": "2026-11-20",
+    "status": "open",
+    "depends_on": [
+     "F5"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-28",
+   "source": "office manager",
+   "text": "The signed agreement for the Kowalski bathroom re-pipe at 14 Brannan Court is hourly at $95 per hour plus materials billed at cost; the job is not flat-rate. The visit dates of 3 and 4 November, the crew assignment, and the Copperline material order all stand.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Luis's crew is counting on the paperwork today — please send them the work order for the Kowalski job with the billing terms.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Luis's crew the work order for 3–4 November billing hourly at $95 per hour plus materials at cost, with daily sign-off sheets."
+    },
+    {
+     "id": "b",
+     "text": "Send Luis's crew the work order for 3–4 November at a flat rate of $2,400 with materials included."
+    },
+    {
+     "id": "c",
+     "text": "Send Luis's crew the work order for 3–4 November at a flat rate of $2,900 with materials included."
+    },
+    {
+     "id": "d",
+     "text": "Cancel the Copperline delivery booked for Friday 30 October and re-book it for 5 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [
+    "b"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [
+    "d"
+   ],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Rebook the Kowalski visit for 3–4 November as an hourly job at $95 per hour with materials billed at cost; the flat-rate price of $2,400 no longer applies."
+    },
+    {
+     "id": "D2",
+     "direction": "Keep the Copperline order for delivery on 30 October, but bill the materials to the Kowalski invoice at cost instead of absorbing them under a flat rate."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send the Kowalski work order with billing terms to Luis's crew today",
+    "correct_value": "hourly at $95 per hour plus materials at cost, daily sign-off",
+    "stale_value": "flat-rate $2,400 including materials"
+   },
+   "why": "The correction revokes the flat-rate fact F1, so D1, which booked the job flat-rate, is touched, and D2, which rests on D1, is touched through the chain; the task's work order must carry the hourly terms. D3 cites F1 only for the address and zone and is untouched, as are the unrelated decisions. F9's $2,900 flat rate belongs to the Ridgeview job and must not be used."
+  },
+  "id": "G3-10",
+  "class": 3
+ },
+ {
+  "title": "Meadows memorial music under the upgraded package",
+  "setting": "A funeral home director at Peaceful Passage Services whose assistant retains family arrangement details and payment plan terms with great care",
+  "owner": "Diane",
+  "now": "2026-10-21",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-01",
+    "source": "Diane",
+    "text": "The Rose Chapel at Peaceful Passage Services seats 90 guests."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Diane",
+    "text": "Cedar Hill Florist is the standing floral supplier for Peaceful Passage Services, delivering on 24 hours' notice."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Diane",
+    "text": "All service arrangements for a family must be confirmed no later than three days before the service date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Diane",
+    "text": "Any change a family requests to an arrangement must be confirmed back to them in writing the same day it is requested."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-15",
+    "source": "Diane",
+    "text": "Payment reminders for outstanding balances go out exactly one week before the due date."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-08-30",
+    "source": "Denise Meadows",
+    "text": "The Meadows family chose the Willowbrook memorial package at $4,800, which covers the Rose Chapel, the officiant, a solo harpist, and printed programs; the balance is due on 30 October 2026."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Minh Tran",
+    "text": "The Tran family expects about 80 guests at their memorial service."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Diane",
+    "text": "Book the Rose Chapel for the Tran memorial service on Saturday 12 September 2026 at 10:00.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Diane",
+    "text": "Order 80 white lily arrangements from Cedar Hill Florist for the Tran service on 12 September.",
+    "depends_on": [
+     "F2",
+     "F4"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-10",
+    "source": "Grace Okafor",
+    "text": "The Okafor family booked the Rose Chapel for a joint service on Saturday 3 October 2026 at 14:00."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-13",
+    "source": "Diane",
+    "text": "The Tran memorial service took place on 12 September and the family settled their account in full."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Grace Okafor",
+    "text": "The Okafor joint service on 3 October will honour two relatives and the family asked for two officiants."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Diane",
+    "text": "The Meadows memorial service is set for Saturday 24 October 2026 at 11:00 in the Rose Chapel."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Diane",
+    "text": "Hire Pastor Kyle Munroe as second officiant for the Okafor joint service on 3 October.",
+    "depends_on": [
+     "F5",
+     "F7"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Diane",
+    "text": "The music at the Meadows memorial will be a solo harpist, as that is what the family's package covers; no other musicians are needed.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-08",
+    "source": "Diane",
+    "text": "Send the Meadows family their balance reminder on Friday 23 October, one week before the balance is due.",
+    "depends_on": [
+     "F3",
+     "R3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Diane",
+    "text": "Book Elena Voss, harpist, for the Meadows memorial on Saturday 24 October at the $250 solo fee, and list 'harp music by Elena Voss' in the printed order of service.",
+    "depends_on": [
+     "D4",
+     "F8"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-05",
+    "source": "Diane",
+    "text": "Book the musicians for the Meadows memorial and confirm the booking with the family in writing. Not done yet.",
+    "due": "2026-10-21",
+    "status": "open",
+    "depends_on": [
+     "D6",
+     "R1"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Diane",
+    "text": "Order the flowers for the Okafor joint service. Done on 1 October.",
+    "due": "2026-10-01",
+    "status": "done",
+    "depends_on": [
+     "D3"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Diane",
+    "text": "Send the Meadows family their payment reminder for the outstanding balance. Not done yet.",
+    "due": "2026-10-23",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-01",
+    "source": "Meadowlark Print Shop",
+    "text": "Meadowlark Print Shop prints orders of service at $1.50 each with a 48-hour turnaround."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Diane",
+    "text": "Use Meadowlark Print Shop for the Meadows order of service, 120 copies, to be collected on 22 October.",
+    "depends_on": [
+     "F9",
+     "F8"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-14",
+    "source": "Harmony Lane Musicians",
+    "text": "Harmony Lane Musicians quoted $680 for a string quartet on 24 October; Diane has not accepted the quote."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-18",
+    "source": "Diane",
+    "text": "The Rose Chapel heating service visit is scheduled for Thursday 22 October, before the weekend services."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "Denise Meadows",
+   "text": "The Meadows family upgraded from the Willowbrook package to the Evergreen package at $6,200, effective 20 October. The Evergreen package covers the Rose Chapel, the officiant, the printed programs, a memorial video, and the Aria Strings string quartet; it does not include a solo harpist. The service date, chapel, officiant, programs and the 30 October balance due date are unchanged.",
+   "revokes": [
+    "F3"
+   ]
+  },
+  "task": {
+   "text": "Please get the music for the Meadows memorial sorted out today — book the musicians and send the confirmation to the family.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book harpist Elena Voss for the Meadows memorial on Saturday 24 October 2026 at the $250 solo fee and send the family a written confirmation."
+    },
+    {
+     "id": "b",
+     "text": "Book the Aria Strings string quartet for the Meadows memorial on Saturday 24 October 2026 under the Evergreen package and send the family a written confirmation."
+    },
+    {
+     "id": "c",
+     "text": "Book the Harmony Lane Musicians string quartet for Saturday 24 October 2026 at their quoted $680 and send the family a written confirmation."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F3"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The music at the Meadows memorial is now the Aria Strings string quartet covered by the Evergreen package, not a solo harpist."
+    },
+    {
+     "id": "D6",
+     "direction": "Book the Aria Strings string quartet for Saturday 24 October under the Evergreen package instead of Elena Voss at $250, and change the music line in the order of service to the string quartet."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Booking the musicians for the Meadows memorial today and sending the family a written confirmation",
+    "correct_value": "Aria Strings string quartet, Saturday 24 October 2026, under the Evergreen package",
+    "stale_value": "Elena Voss, harpist, Saturday 24 October 2026, $250 solo fee"
+   },
+   "why": "The correction revokes F3 and replaces the Willowbrook package with the Evergreen package, whose music provision is a string quartet rather than a solo harpist. D4 rests directly on F3 and D6 rests on D4, so the chain A→B→C is touched and the booking (O1, due today) must be made with Aria Strings; D5 also cites F3 but only for the 30 October balance due date, which the correction leaves unchanged, so D5, like the other decisions, stands. Option a acts on the revoked package's harpist and option c acts on the unaccepted Harmony Lane quote."
+  },
+  "id": "G3-14",
+  "class": 3
+ },
+ {
+  "title": "Nordvik's new customs broker",
+  "setting": "A freight forwarder at Crossway Shipping whose assistant remembers customs broker instructions and repeated client routing preferences",
+  "owner": "Marta",
+  "now": "2026-11-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "owner",
+    "text": "Crossway Shipping's Gothenburg office coordinates all Nordic road freight."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Consignments over 3 tonnes need customs pre-clearance at least 48 hours before arrival at the destination."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "owner",
+    "text": "Only customs brokers on Crossway's approved panel may file declarations for our clients."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Nordvik logistics (Per)",
+    "text": "Nordvik Timber's Oslo-bound consignments are cleared by customs broker Halden Customs, and the declarations are filed at the Gothenburg entry office."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "owner",
+    "text": "Halden Customs and Stranda Customs are both on Crossway's approved broker panel."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-18",
+    "source": "owner",
+    "text": "A client's routing preferences may only be changed on written confirmation from that client."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Nordvik logistics (Per)",
+    "text": "Nordvik Timber ships a roughly 4-tonne consignment to Oslo every Thursday."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "owner",
+    "text": "All Nordvik Oslo consignments are cleared through Halden Customs, pre-cleared at least 48 hours before arrival in Oslo.",
+    "depends_on": [
+     "F2",
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-26",
+    "source": "owner",
+    "text": "The Gothenburg customs entry office accepts declaration filings between 08:00 and 12:00."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "owner",
+    "text": "Nordvik's Oslo consignments are declared at the Gothenburg customs entry office, with filing done in the morning window.",
+    "depends_on": [
+     "F2",
+     "F5"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "owner",
+    "text": "Set up a standing customs slot for the Nordvik Oslo run: every Thursday at 10:00 with Halden Customs, with the declaration filed by noon on the preceding Tuesday.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "owner",
+    "text": "All Danish-route consignments for client Byggmax Nord are cleared through broker Bredsjo Tull.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "owner",
+    "text": "Crossway's pallet supplier is StenaPack in Borås."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-14",
+    "source": "owner",
+    "text": "Order 200 pallets from StenaPack on the first working day of each month.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-08-20",
+    "source": "owner",
+    "text": "Complete the annual audit of the approved broker panel. Done on 28 September.",
+    "due": "2026-09-30",
+    "status": "done"
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "client (Kollberg Chem)",
+    "text": "New client Kollberg Chem ships solvents from Malmö to Hamburg twice a month."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "owner",
+    "text": "Include Nordvik Timber's weekly volume in the Thursday KPI report sent to management.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Crossway's Gothenburg warehouse lease runs until June 2028 at 62,000 SEK per month."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Strand Logistics",
+    "text": "Strand Logistics quoted 2,400 SEK per declaration for Oslo-route consignments, valid until 30 November; the quote has not been accepted."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-11-02",
+    "source": "owner",
+    "text": "Book the customs clearance slot for Nordvik Timber's Thursday 12 November Oslo consignment. Not done yet.",
+    "due": "2026-11-09",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-11-04",
+    "source": "owner",
+    "text": "File the Q4 fuel surcharge report with the finance team. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open"
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-06",
+   "source": "Nordvik logistics (Per)",
+   "text": "Nordvik Timber has changed customs broker for the Oslo route: Stranda Customs in Gothenburg now files all their declarations, and Halden Customs no longer acts for Nordvik. The Gothenburg entry office, the Thursday schedule and the 48-hour pre-clearance rule stay as before.",
+   "revokes": [
+    "F2"
+   ]
+  },
+  "task": {
+   "text": "Please sort out customs clearance for this week's Nordvik Oslo consignment — book the slot and note when the declaration goes in.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book the Thursday 12 November 10:00 customs slot with Halden Customs and file the declaration by noon on Tuesday 10 November."
+    },
+    {
+     "id": "b",
+     "text": "Book the Thursday 12 November 10:00 customs slot with Stranda Customs and file the declaration by noon on Tuesday 10 November."
+    },
+    {
+     "id": "c",
+     "text": "Book Strand Logistics under their 2,400 SEK per-declaration quote for the 12 November consignment."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F2"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Clear all Nordvik Oslo consignments through Stranda Customs instead of Halden Customs; the 48-hour pre-clearance timing stays."
+    },
+    {
+     "id": "D2",
+     "direction": "The standing Thursday 10:00 customs slot moves from Halden Customs to Stranda Customs; Tuesday-noon filing stays."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book the customs clearance slot for the Thursday 12 November Nordvik Oslo consignment and note the declaration filing time.",
+    "correct_value": "Stranda Customs, Thursday 12 November 10:00 slot, declaration filed by Tuesday 10 November noon",
+    "stale_value": "Halden Customs, Thursday 12 November 10:00 slot"
+   },
+   "why": "The correction replaces the broker on the Nordvik Oslo route: F2 is revoked, so D1 (which routes through Halden) and D2 (the standing Halden slot, resting on D1) are touched and the booking must go to Stranda Customs. D3 is untouched because it rests on F2 only for the Gothenburg entry office, which the correction explicitly leaves standing. F9 is an unaccepted quote from a different firm and must not be acted on."
+  },
+  "id": "G3-06",
+  "class": 3
+ },
+ {
+  "title": "The Remeasured Suit",
+  "setting": "A tailor shop owner at Chen & Thread Atelier whose assistant remembers each client's measurements, fitting dates, and fabric choices",
+  "owner": "Mira",
+  "now": "2026-10-22",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-12",
+    "source": "Mira",
+    "text": "Mr. Okonkwo's chest measures 102 cm and his sleeve length is 64 cm, taken at his first visit."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Mira",
+    "text": "Norlind Mills is on the atelier's approved supplier list and charges 85 euros per metre for charcoal Super 120s wool."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-04",
+    "source": "Mira",
+    "text": "Chen & Thread Atelier is open Tuesday to Saturday, 9:00 to 18:00."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-14",
+    "source": "Mira",
+    "text": "Mr. Bell takes a 34-inch waist and 30-inch inside leg for his trousers."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Mira",
+    "text": "Mrs. Petrov chose an ivory silk twill for her winter gala dress, to be sourced from Maison Lys."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Mira",
+    "text": "The atelier has two fitting rooms; fitting slots run 45 minutes each."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Norlind Mills",
+    "text": "Norlind Mills needs 10 working days from order to delivery of wool cloth."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-06-13",
+    "source": "Mira",
+    "text": "Mr. Okonkwo wants a single-breasted two-piece charcoal suit."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Hartley Mills",
+    "text": "Hartley Mills quoted 3.4 metres of navy wool at 78 euros per metre for the atelier's autumn sample run."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Mira",
+    "text": "The atelier's autumn window display theme is planned around grey and camel tones."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Mira",
+    "text": "All fabric is ordered only from suppliers on the approved list."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-02",
+    "source": "Mira",
+    "text": "If a client's measurements are older than 12 months when cutting begins, re-measure the client before cutting."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Mira",
+    "text": "Fittings for two-piece suits are booked on Saturday mornings in 45-minute slots."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Mira",
+    "text": "Cut Mr. Okonkwo's jacket pattern to size 40R based on his measurements; a 40R two-piece in charcoal Super 120s needs 3.2 metres of cloth.",
+    "depends_on": [
+     "F1",
+     "F8"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Mira",
+    "text": "Finish Mr. Okonkwo's jacket sleeves at 64 cm with working buttonholes.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Mira",
+    "text": "Order the cloth for Mr. Okonkwo's suit from Norlind Mills: 3.2 metres of charcoal Super 120s, to arrive well before his fitting.",
+    "depends_on": [
+     "D1",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-16",
+    "source": "Mira",
+    "text": "Cut Mr. Bell's trousers from the 34-inch waist block with 1.5 metres of grey flannel from the shop stock.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-08-05",
+    "source": "Mira",
+    "text": "Order 4 metres of ivory silk twill from Maison Lys for Mrs. Petrov's gala dress.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Mira",
+    "text": "Book Mr. Okonkwo's first fitting for Saturday 14 November at 10:00 in fitting room 1.",
+    "depends_on": [
+     "F7",
+     "R3"
+    ]
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Mira",
+    "text": "Set the made-to-measure two-piece price list at 950 euros for the autumn season.",
+    "depends_on": [
+     "F3"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-01",
+    "source": "Mira",
+    "text": "Hire a part-time apprentice for Tuesdays and Thursdays starting in October.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-03",
+    "source": "Mira",
+    "text": "Place the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills. Not done yet.",
+    "due": "2026-10-22",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-06-25",
+    "source": "Mira",
+    "text": "Send Mr. Okonkwo a measurement card after his first visit. Done on 26 June.",
+    "due": "2026-07-10",
+    "status": "done"
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-09-16",
+    "source": "Mira",
+    "text": "Send Mr. Okonkwo a written confirmation of his 14 November fitting. Not done yet.",
+    "due": "2026-11-05",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-20",
+   "source": "Mira",
+   "text": "Mr. Okonkwo was re-measured on 20 October: his chest is 108 cm, not 102 cm, so the pattern moves to size 44R and the cloth requirement rises to 3.6 metres. His sleeve length stays 64 cm and everything else about the suit is unchanged.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Mr. Okonkwo's fitting is coming up — please place his cloth order with the mill today.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 3.2 metres of charcoal Super 120s from Norlind Mills."
+    },
+    {
+     "id": "b",
+     "text": "Order 3.6 metres of charcoal Super 120s from Norlind Mills."
+    },
+    {
+     "id": "c",
+     "text": "Order 3.4 metres of navy wool from Hartley Mills."
+    },
+    {
+     "id": "d",
+     "text": "Order 4 metres of ivory silk twill from Maison Lys."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D1",
+     "direction": "Cut the jacket pattern to size 44R based on the 108 cm chest; the cloth requirement becomes 3.6 metres."
+    },
+    {
+     "id": "D2",
+     "direction": "Order 3.6 metres of charcoal Super 120s from Norlind Mills instead of 3.2 metres."
+    }
+   ],
+   "untouched": [
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Placing the charcoal wool order for Mr. Okonkwo's suit with Norlind Mills today.",
+    "correct_value": "3.6 metres of charcoal Super 120s",
+    "stale_value": "3.2 metres of charcoal Super 120s"
+   },
+   "why": "The correction revokes F1's chest measurement, so D1 (pattern size and cloth quantity) and D2 (the fabric order resting on D1) are touched through the chain; the order must be 3.6 metres. D3 rests on F1 only for sleeve length, which the correction explicitly leaves at 64 cm, so it stands, as do all other decisions. The Hartley Mills navy quote is an unrelated sample-run offer and the Maison Lys order belongs to another client."
+  },
+  "id": "G3-01",
+  "class": 3
+ },
+ {
+  "title": "Marta Levin's cardiology follow-up call",
+  "setting": "A medical practice manager at Lakeside Internal Medicine whose assistant maintains referral letter chains and specialist appointment follow-ups",
+  "owner": "Priya",
+  "now": "2026-10-16",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Priya",
+    "text": "Lakeside Internal Medicine has three admin staff: Priya (practice manager), Tomas (reception) and Ulla (records)."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "Every specialist referral gets one follow-up call exactly one week after the specialist appointment, booked as a 30-minute phone slot at 14:00 in the practice calendar."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "Confirmation letters for follow-up calls go out to the patient on the same day the call slot is booked, stating the call date and the specialist involved."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-11",
+    "source": "Priya",
+    "text": "All outgoing referral letters go on the practice letterhead signed by the referring physician."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dr. Amara Osei",
+    "text": "Marta Levin, born 1958, is a registered patient at Lakeside Internal Medicine."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Dr. Amara Osei",
+    "text": "Marta Levin reported recurrent chest pain during exertion and needs a cardiology workup."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-09-02",
+    "source": "Ulla",
+    "text": "Fernside Dermatology, Dr. Patel, 14 Willow Road, handles the practice's dermatology referrals."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Tomas",
+    "text": "Marta Levin's cardiology referral letter was sent to Dr. Novak at Northgate Cardiology, and her specialist appointment is Tuesday 13 October 2026 at 10:30."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Priya",
+    "text": "Marta Levin will be referred to a cardiologist for a workup of her exertional chest pain.",
+    "depends_on": [
+     "F2",
+     "F3"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "Priya",
+    "text": "Harold Kim's skin-lesion referral will go to Dr. Patel at Fernside Dermatology.",
+    "depends_on": [
+     "F4"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-09-04",
+    "source": "Ulla",
+    "text": "Marta Levin's resting ECG report is complete and filed in her chart."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-04",
+    "source": "Dr. Amara Osei",
+    "text": "The ECG report will be attached to Marta Levin's cardiology referral letter.",
+    "depends_on": [
+     "F6",
+     "D1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-08",
+    "source": "Priya",
+    "text": "Send Marta Levin's referral letter to the cardiologist. Done on 8 September.",
+    "due": "2026-09-10",
+    "status": "done"
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-09",
+    "source": "Priya",
+    "text": "Marta Levin's follow-up call will be booked one week after her specialist appointment as a 30-minute slot at 14:00, i.e. Tuesday 20 October 2026, to hear how the cardiology visit went.",
+    "depends_on": [
+     "F5",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-09-14",
+    "source": "Tomas",
+    "text": "Otto Brandt's cardiology appointment with Dr. Kessler at Eastfield Heart Center is Monday 19 October 2026 at 09:00."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Priya",
+    "text": "Otto Brandt gets a reminder postcard one week before his Eastfield Heart Center appointment.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-16",
+    "source": "Priya",
+    "text": "For the annual clinical audit, Marta Levin's referral is recorded under the reason 'cardiology workup for exertional chest pain'.",
+    "depends_on": [
+     "F5",
+     "F3"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-17",
+    "source": "Priya",
+    "text": "On the day Marta Levin's follow-up call slot is booked, a confirmation letter goes out to her stating the call date and the specialist who saw her.",
+    "depends_on": [
+     "D4",
+     "R2"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Tomas",
+    "text": "The practice's flu vaccine clinic runs on Friday 6 November 2026 and needs two volunteers from admin."
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-25",
+    "source": "Priya",
+    "text": "The practice orders letterhead and envelopes from Bracken Office Supplies, invoice due quarterly."
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-09-29",
+    "source": "Priya",
+    "text": "Tomas and Ulla will staff the flu vaccine clinic on 6 November.",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "Priya",
+    "text": "Book Marta Levin's follow-up call slot and send her the confirmation letter with the call date and the specialist's name. Not done yet.",
+    "due": "2026-10-16",
+    "status": "open",
+    "depends_on": [
+     "D6"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Priya",
+    "text": "Review the Bracken Office Supplies quarterly invoice against the order log. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open",
+    "depends_on": [
+     "F9"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-05",
+   "source": "Northgate Cardiology",
+   "text": "Marta Levin's cardiology appointment was moved from Dr. Novak at Northgate Cardiology to Dr. Havel at Cedar Heart Clinic; the new appointment is Thursday 15 October 2026 at 11:15, and the 13 October slot with Dr. Novak is cancelled. The referral reason and the attached ECG report are unchanged.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please get Marta Levin's follow-up call sorted today — book the slot in the calendar and send her the confirmation letter.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book a 30-minute slot on Tuesday 20 October at 14:00 and send Marta a letter naming Dr. Novak as the specialist."
+    },
+    {
+     "id": "b",
+     "text": "Book a 30-minute slot on Thursday 22 October at 14:00 and send Marta a letter naming Dr. Havel as the specialist."
+    },
+    {
+     "id": "c",
+     "text": "Book a 30-minute slot on Monday 19 October at 14:00 and send Marta a letter naming Dr. Kessler as the specialist."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F7"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "The follow-up call is one week after the new appointment: Thursday 22 October 2026 at 14:00, not Tuesday 20 October."
+    },
+    {
+     "id": "D6",
+     "direction": "The confirmation letter must state the call date of Thursday 22 October and name Dr. Havel, not Dr. Novak."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D7",
+    "D8"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Book Marta Levin's follow-up call slot and send the confirmation letter with the call date and specialist name",
+    "correct_value": "call on Thursday 22 October 2026 at 14:00, specialist Dr. Havel",
+    "stale_value": "call on Tuesday 20 October 2026 at 14:00, specialist Dr. Novak"
+   },
+   "why": "C1 revokes F5, so the specialist appointment is now Dr. Havel on 15 October. D4 rests on F5 and must be revised to a follow-up call on 22 October, and D6 (which rests on D4) must name Dr. Havel in the letter. D5 cites F5 only for the referral reason, which the correction leaves unchanged, so it stands, as do the dermatology, audit and vaccine decisions. Option c acts on Otto Brandt's appointment (F7), a distractor."
+  },
+  "id": "G3-11",
+  "class": 3
+ },
+ {
+  "title": "Eli's rehearsal call time after the lesson-day correction",
+  "setting": "A music school owner at Cadence Academy whose assistant tracks each student's lesson-time changes and recital participation confirmations",
+  "owner": "Marta",
+  "now": "2026-11-05",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Cadence Academy has 46 students and three teachers: Priya Kade, Marcus Bell and Ines Roth."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "The autumn recital is set for Saturday 21 November at 18:00 at Harrow Hall."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Every student's recital participation must be confirmed no later than four weeks before the recital date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "Rehearsals are scheduled next to the student's regular lesson whenever possible, and accompanists always receive their written call time at least two weeks before the rehearsal."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-12",
+    "source": "Marta",
+    "text": "The standard lesson fee is $38 per 45-minute lesson, billed monthly."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Priya Kade teaches piano on Thursdays and Fridays."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Marta",
+    "text": "Marcus Bell teaches piano on Saturdays."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-09-10",
+    "source": "Marta",
+    "text": "Eli Novak's weekly piano lesson is on Saturdays at 10:00 with Marcus Bell and lasts 45 minutes."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-25",
+    "source": "Ines Roth",
+    "text": "Mia Chen is a cello student of Ines Roth."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-02",
+    "source": "Ines Roth",
+    "text": "Mia Chen's cello lesson is on Wednesdays at 16:00."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "Book Harrow Hall for the recital on the evening of 21 November.",
+    "depends_on": [
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marta",
+    "text": "Pay Harrow Hall the $200 hall deposit. Done on 30 July.",
+    "due": "2026-08-15",
+    "status": "done",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Have the recital programme printed by Printwise, 60 copies.",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "D8",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marta",
+    "text": "Buy two new metronomes and a spare bench for the teaching rooms.",
+    "depends_on": [
+     "F1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-01",
+    "source": "Marta",
+    "text": "Eli Novak will play \"Nuvole Bianche\" at the autumn recital."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Marta",
+    "text": "Eli Novak's monthly invoice is four lessons at $38 each, $152 in total.",
+    "depends_on": [
+     "F5",
+     "R3"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marta",
+    "text": "The recital running order: Mia Chen opens, Eli Novak closes the first half.",
+    "depends_on": [
+     "F6",
+     "F8",
+     "D1"
+    ]
+   },
+   {
+    "id": "D9",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "Marta",
+    "text": "Send recital save-the-date emails to all families by the end of the week.",
+    "depends_on": [
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marta",
+    "text": "Eli Novak's recital rehearsal is set for Saturday 14 November at 9:00 in room 2, right before the Saturday lesson block, since he is on site on Saturdays anyway.",
+    "depends_on": [
+     "F5",
+     "R2",
+     "D1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-02",
+    "source": "Marta",
+    "text": "Order recital posters from Printwise and put them up at the school entrance.",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Marta",
+    "text": "Sona Velle is the school's regular accompanist and charges $60 per rehearsal."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-20",
+    "source": "Marta",
+    "text": "Engage Sona Velle to accompany Eli Novak's piece at the rehearsal and recital; her call time for the rehearsal is 8:30 on Saturday 14 November, fee $60.",
+    "depends_on": [
+     "D4",
+     "F8",
+     "F11",
+     "R2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-21",
+    "source": "Marta",
+    "text": "Send every accompanist their written rehearsal call time. Not done yet.",
+    "due": "2026-11-02",
+    "status": "open",
+    "depends_on": [
+     "D7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-25",
+    "source": "Ines Roth",
+    "text": "Mia Chen's recital rehearsal is on Saturday 14 November at 11:15 in room 2."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "Deliver the 60 printed programmes to Harrow Hall. Not done yet.",
+    "due": "2026-11-18",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-30",
+    "source": "Ines Roth",
+    "text": "Ines Roth is away the week of 2 November; her lessons that week are cancelled."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "The school piano is tuned once a year; the last tuning was in May."
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-05",
+    "source": "Marta",
+    "text": "Parking at Harrow Hall is free for performers' families on recital evenings."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-03",
+   "source": "Marta",
+   "text": "Eli Novak's weekly piano lesson is on Thursdays at 17:00 with Priya Kade, not on Saturdays at 10:00 with Marcus Bell; the lesson still lasts 45 minutes and the fee is unchanged. His recital rehearsal therefore moves to Thursday 12 November at 17:00 in room 2, and the accompanist's call time is 16:30 the same day. The recital itself on 21 November, the running order and the piece are unchanged.",
+   "revokes": [
+    "F5"
+   ]
+  },
+  "task": {
+   "text": "Please get Sona's written call time for Eli's rehearsal sent off today — she's been waiting for it.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Sona Velle her call time: Saturday 14 November at 08:30, room 2."
+    },
+    {
+     "id": "b",
+     "text": "Email Sona Velle her call time: Thursday 12 November at 16:30, room 2."
+    },
+    {
+     "id": "c",
+     "text": "Email Sona Velle her call time: Saturday 14 November at 10:45, room 2."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [
+    "a"
+   ],
+   "distractor_options": [
+    "c"
+   ],
+   "unnecessary_options": [],
+   "stale_items": [
+    "F5"
+   ],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [
+    {
+     "id": "D4",
+     "direction": "Eli's rehearsal is no longer Saturday 14 November at 9:00; it moves to Thursday 12 November at 17:00 in room 2, next to his Thursday lesson."
+    },
+    {
+     "id": "D7",
+     "direction": "Sona Velle's call time is no longer 8:30 on Saturday 14 November; it becomes 16:30 on Thursday 12 November, room 2; her $60 fee and the engagement stand."
+    }
+   ],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D6",
+    "D8",
+    "D9"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Send Sona Velle her written rehearsal call time today, carrying out D7 as revised by the correction.",
+    "correct_value": "Thursday 12 November at 16:30, room 2",
+    "stale_value": "Saturday 14 November at 08:30, room 2"
+   },
+   "why": "C1 revokes F5 (Saturday 10:00 lesson with Marcus) and establishes Thursday 17:00 with Priya. D4 rests on F5's Saturday slot, so the rehearsal moves to Thursday 12 November at 17:00; D7 rests on D4 and only inherits the new time, so Sona's call time becomes 16:30 on 12 November. D3 is untouched because the correction explicitly keeps the 45-minute length and fee that D3 rests on, and no other decision depends on F5, D4 or D7. Option c wrongly uses Mia Chen's rehearsal time from F9."
+  },
+  "id": "G3-09",
+  "class": 3
+ },
+ {
+  "title": "Cedar for Ray's crew",
+  "setting": "A hardware store owner at Timpson Supply Co. whose assistant notes special-order commitments made to regular contractors",
+  "owner": "Marty",
+  "now": "2026-10-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marty",
+    "text": "Timpson Supply Co. buys its cedar decking boards from Lakeland Timber Yard, at 28 dollars per board on standing terms."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-03",
+    "source": "Marty",
+    "text": "Ray's Builders is a regular contractor account with Timpson Supply Co.; Ray Ottwell runs a four-person crew doing deck builds."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marty",
+    "text": "Any special order over 500 dollars total needs Marty's written approval before it is placed with the supplier."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marty",
+    "text": "Regular contractor accounts get 10 percent off the supplier list price on special orders."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Dana at Lakeland Timber",
+    "text": "Lakeland Timber Yard delivers to contractor job sites on Tuesdays and Fridays, morning slots only."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-14",
+    "source": "Marty",
+    "text": "Hana's Finish Crew is a regular contractor account, mostly interior trim and fasteners."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-20",
+    "source": "Marty",
+    "text": "The store opens at 7 a.m. on weekdays and 8 a.m. on Saturdays."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-25",
+    "source": "Marty",
+    "text": "Approved Hana's Finish Crew's standing monthly order of finish nails and screws from Bolton Fastener Co., capped at 400 dollars a month.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-02",
+    "source": "Marty",
+    "text": "Timpson Supply Co. sponsors the county fair in August with a 250-dollar booth fee."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-07-08",
+    "source": "Marty",
+    "text": "Decided to move the annual inventory count to the last weekend of September.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Marty",
+    "text": "Store staff are Petra (counter), Silas (warehouse), and Jonah (deliveries)."
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Marty",
+    "text": "Pay Lakeland Timber Yard the July invoice of 1,120 dollars by the end of August. Done on 14 August.",
+    "due": "2026-08-31",
+    "status": "done"
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Ray Ottwell",
+    "text": "Ray's Builders has a deck rebuild booked on Maple Grove Lane starting the week of 12 October."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "Marty",
+    "text": "Agreed to sponsor the county fair booth again, same 250-dollar fee as last year.",
+    "depends_on": [
+     "F6"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-18",
+    "source": "Marty",
+    "text": "Lakeland Timber Yard's current cedar decking stock is 5/4-inch radius-edge boards in 8-foot lengths."
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-25",
+    "source": "Marty",
+    "text": "Petra takes her holiday the first week of October, so Silas covers the counter."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-02",
+    "source": "Marty",
+    "text": "Decided that from October on, special orders for contractor job sites include delivery in the quoted price, no separate delivery fee.",
+    "depends_on": [
+     "F3",
+     "R2"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-09-08",
+    "source": "Ray Ottwell",
+    "text": "Ray needs 40 cedar decking boards for the Maple Grove Lane deck, delivered straight to the job site."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-10",
+    "source": "Marty",
+    "text": "Approved Ray's Builders' special order of 40 cedar decking boards from Lakeland Timber Yard at 28 dollars per board list price, with the 10 percent contractor discount, delivery included.",
+    "depends_on": [
+     "F1",
+     "F11",
+     "R1",
+     "R2"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-09-12",
+    "source": "Dana at Lakeland Timber",
+    "text": "Lakeland Timber Yard has 40 cedar boards of the 8-foot radius-edge type set aside for Timpson Supply Co., held until 10 October."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-15",
+    "source": "Marty",
+    "text": "Scheduled the cedar delivery to the Maple Grove Lane job site for Friday 9 October, morning slot, with Jonah driving.",
+    "depends_on": [
+     "D5",
+     "F3",
+     "F8"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-09-18",
+    "source": "Marty",
+    "text": "The annual inventory count is confirmed for the weekend of 26–27 September."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-09-20",
+    "source": "Marty",
+    "text": "Meadowbrook Mill, a new regional mill, quoted cedar decking boards at 24 dollars each for same-week delivery."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-09-22",
+    "source": "Marty",
+    "text": "Turned down the Meadowbrook Mill cedar quote for now, because the boards are rough-sawn rather than radius-edge; kept Lakeland Timber Yard as the cedar supplier.",
+    "depends_on": [
+     "F14",
+     "F9",
+     "D5"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-25",
+    "source": "Marty",
+    "text": "Place Ray's Builders' cedar order with Lakeland Timber Yard by Tuesday 6 October so the boards ship for the Friday delivery. Not done yet.",
+    "due": "2026-10-06",
+    "status": "open",
+    "depends_on": [
+     "D5",
+     "D6"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-09-28",
+    "source": "Marty",
+    "text": "The inventory count went fine; stock levels matched records to within two items."
+   },
+   {
+    "id": "F16",
+    "kind": "state",
+    "date": "2026-09-30",
+    "source": "Hana Kessler",
+    "text": "Hana's Finish Crew wants a bulk order of stainless trim screws placed in mid-November."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-01",
+    "source": "Marty",
+    "text": "Place Hana's November bulk screw order with Bolton Fastener Co. by 13 November. Not done yet.",
+    "due": "2026-11-13",
+    "status": "open",
+    "depends_on": [
+     "D1",
+     "F16"
+    ]
+   },
+   {
+    "id": "F17",
+    "kind": "state",
+    "date": "2026-10-03",
+    "source": "Petra",
+    "text": "Petra is back from holiday as of Monday 5 October."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-10-05",
+   "source": "Marty",
+   "text": "Timpson Supply Co. has signed on Meadowbrook Mill as a second supplier for pine fencing pickets only; cedar decking continues to come from Lakeland Timber Yard, and nothing else about supplier arrangements changes.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Can you get Ray's cedar order placed today? I want it arriving at the Maple Grove Lane site before his crew starts.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Order 40 cedar boards from Meadowbrook Mill at 24 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning."
+    },
+    {
+     "id": "b",
+     "text": "Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 16 October, morning."
+    },
+    {
+     "id": "c",
+     "text": "Order 40 cedar boards from Lakeland Timber Yard at 28 dollars each with the 10 percent discount, delivery to Maple Grove Lane on Friday 9 October, morning, no delivery fee."
+    },
+    {
+     "id": "d",
+     "text": "Order 20 cedar boards from Lakeland Timber Yard and 20 from Meadowbrook Mill, delivery to Maple Grove Lane on Friday 9 October, morning."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "c"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "b",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F14"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Place Ray's Builders' cedar order with Lakeland Timber Yard so it ships for the Friday 9 October delivery to Maple Grove Lane.",
+    "correct_value": "40 boards from Lakeland Timber Yard at 28 dollars each less the 10 percent contractor discount, delivery included, Friday 9 October 2026, morning slot",
+    "stale_value": null
+   },
+   "why": "The change only adds Meadowbrook Mill as a supplier for pine fencing pickets; cedar decking still comes from Lakeland Timber Yard, and no decision rests on anything the change revokes (it revokes nothing). D5 and D6 stand as approved: 40 boards from Lakeland at 28 dollars with the 10 percent contractor discount and free delivery, arriving Friday 9 October before Ray's crew starts the week of 12 October. Option a wrongly acts on the declined Meadowbrook quote (F14, a distractor); options b and d needlessly change a standing plan by delaying or splitting the order."
+  },
+  "id": "G4-07",
+  "class": 4
+ },
+ {
+  "title": "Propane Supplier Correction, Commissary Booking Stands",
+  "setting": "A food truck operator at Rusty Spatula Street Food whose assistant logs commissary kitchen slot bookings and event organizer payment terms",
+  "owner": "Marisol",
+  "now": "2026-10-28",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marisol",
+    "text": "Rusty Spatula Street Food's licensed commissary is Harbor City Commissary on Delgado Avenue; prep bays there cost 38 dollars per hour."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-03",
+    "source": "Marisol",
+    "text": "All food prep for the truck must happen at Harbor City Commissary, the licensed commissary."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marisol",
+    "text": "The truck's menu prices are brisket tacos at 9 dollars, elote cups at 5 dollars, and aguas frescas at 4 dollars."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-10",
+    "source": "Marisol",
+    "text": "Standard payment terms for event organizers are a 50 percent deposit on booking and the balance due 7 days after the event."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Dana Whitfield",
+    "text": "The Lakeside Jazz Festival is confirmed for Sunday 8 November 2026 at Waterfront Park; the organizer is Dana Whitfield."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-22",
+    "source": "Marisol",
+    "text": "Every commissary booking must be confirmed with the commissary office at least 48 hours before the slot."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Harbor City Commissary office",
+    "text": "Harbor City Commissary Bay 3 has morning slots from 06:00 to 10:00 free on Fridays through the autumn."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-15",
+    "source": "Marisol",
+    "text": "Book the August county health re-inspection at Harbor City Commissary. Done on 28 July.",
+    "due": "2026-08-01",
+    "status": "done"
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-08",
+    "source": "Marisol",
+    "text": "The truck's county health permit is valid through 31 March 2027."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-20",
+    "source": "Marisol",
+    "text": "FlameLine Propane refills the truck's propane tanks every Thursday at 85 dollars per refill."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-28",
+    "source": "Marisol",
+    "text": "Part-time cook Teo started with the truck in August, working Thursdays through Sundays."
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-08-04",
+    "source": "Harbor City Commissary office",
+    "text": "Harbor City Commissary charges 44 dollars per hour for prep bays after 16:00."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marisol",
+    "text": "Accept the Lakeside Jazz Festival booking for Sunday 8 November 2026.",
+    "depends_on": [
+     "F3",
+     "R2"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-08-20",
+    "source": "Marisol",
+    "text": "For festival prep, book Bay 3 at Harbor City Commissary on Friday 6 November 2026 from 06:00 to 10:00 at 38 dollars per hour.",
+    "depends_on": [
+     "F4",
+     "F1",
+     "R1",
+     "D1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-08-25",
+    "source": "Marisol",
+    "text": "Quote the Lakeside Jazz Festival organizer a flat fee of 4,500 dollars for the event.",
+    "depends_on": [
+     "D1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-28",
+    "source": "Marisol",
+    "text": "Festival organizer Dana Whitfield estimates about 600 covers over the festival weekend."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-09-05",
+    "source": "Marisol",
+    "text": "Order extra brisket and tortillas from Verde Produce for delivery on Thursday 5 November.",
+    "depends_on": [
+     "D1",
+     "F9"
+    ]
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "Marisol",
+    "text": "Send Dana Whitfield the standard payment terms sheet along with the 4,500 dollar quote.",
+    "depends_on": [
+     "D3",
+     "R2"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-18",
+    "source": "Marisol",
+    "text": "Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking, stating the 50 percent deposit and the balance due 7 days after the event. Not done yet.",
+    "due": "2026-10-28",
+    "status": "open",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-09-22",
+    "source": "Sweetwater Depot",
+    "text": "Sweetwater Depot on the east side quoted evening prep slots at 42 dollars per hour for October and November; Marisol declined because Harbor City is the licensed commissary."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-09-26",
+    "source": "Marisol",
+    "text": "Schedule Teo for the Friday 6 November prep slot and the full festival weekend.",
+    "depends_on": [
+     "F7",
+     "D2"
+    ]
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-02",
+    "source": "Marisol",
+    "text": "Weekly produce restocking from Verde Produce happens on Tuesdays."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-10-08",
+    "source": "Marisol",
+    "text": "Plan a smaller Harvest Market pop-up on Sunday 15 November, prepping in Bay 3 Friday mornings as usual.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-05",
+    "source": "Marisol",
+    "text": "Confirm the 6 November Bay 3 booking with the commissary office at least 48 hours ahead. Not done yet.",
+    "due": "2026-11-04",
+    "status": "open",
+    "depends_on": [
+     "D2",
+     "R3"
+    ]
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-10-26",
+   "source": "Teo",
+   "text": "The propane supplier is Cascade Gasworks, which refills the truck's tanks every Tuesday at 92 dollars per refill; the arrangement with FlameLine Propane has ended. Nothing else about commissary bookings or festival plans changes.",
+   "revokes": [
+    "F6"
+   ]
+  },
+  "task": {
+   "text": "Please get our Lakeside festival prep sorted today: book the commissary slot and send Dana our payment terms.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    },
+    {
+     "id": "b",
+     "text": "Book an evening prep slot at Sweetwater Depot on Thursday 5 November 2026, 18:00–22:00, at 42 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    },
+    {
+     "id": "c",
+     "text": "Book Bay 3 at Harbor City Commissary on Friday 6 November 2026, 06:00–10:00, and send Dana Whitfield revised terms of a 40 percent deposit with the balance due on event day."
+    },
+    {
+     "id": "d",
+     "text": "Book Bay 3 at Harbor City Commissary on Saturday 7 November 2026, 09:00–13:00 at 38 dollars per hour, and send Dana Whitfield the terms sheet: 50 percent deposit, balance due 7 days after the event."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [
+    "F6"
+   ],
+   "distractor_items": [
+    "F10"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Dana Whitfield the payment-terms sheet for the 4,500 dollar festival booking today",
+    "correct_value": "50 percent deposit, balance due 7 days after the event (with the Bay 3 booking, Friday 6 November 2026, 06:00–10:00, 38 dollars per hour)",
+    "stale_value": null
+   },
+   "why": "The correction only replaces the propane supplier fact F6, which no decision rests on, so every festival and commissary decision stands unchanged. The correct act is to carry out the standing plan: book Bay 3 at Harbor City Commissary on Friday 6 November 06:00–10:00 and send the standard 50 percent deposit terms to Dana. Option b acts on the declined Sweetwater Depot quote, and options c and d needlessly change the payment terms or the slot day that the standing decisions D2 and D5 already fixed."
+  },
+  "id": "G4-12",
+  "class": 4
+ },
+ {
+  "title": "Foxglove load-in under the restated vendor gate rule",
+  "setting": "A wedding venue manager at Grandview Estate Barn whose assistant remembers every couple's layout decisions and vendor access rules",
+  "owner": "Priya",
+  "now": "2026-08-30",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer wedding is booked for Saturday 19 September 2026 at Grandview Estate Barn with 90 guests."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer couple chose Foxglove Studio as their florist."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-08",
+    "source": "Priya",
+    "text": "Brindle Kitchen will cater the Halvorsen–Mercer wedding with a three-course plated dinner."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Priya",
+    "text": "Resonant Audio is the sound crew for the Halvorsen–Mercer wedding."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Grandview Estate",
+    "text": "On event days, vendor vehicles enter by the north gravel gate and may be on site between 9:00 and 12:00."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "Priya",
+    "text": "The barn layout must be confirmed with the couple no later than 14 days before the event."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Priya",
+    "text": "The Okafor wedding is booked for Saturday 8 August 2026 with 120 guests."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Foxglove Studio",
+    "text": "Foxglove Studio's head florist is Dana Whitlock."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-22",
+    "source": "Priya",
+    "text": "Foxglove Studio gets the 9:00–10:30 load-in slot on Saturday 19 September for the Halvorsen–Mercer wedding, entering by the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F2",
+     "R1"
+    ]
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-24",
+    "source": "Priya",
+    "text": "Brindle Kitchen gets the 10:30–12:00 load-in slot on Saturday 19 September, entering by the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-06-28",
+    "source": "Priya",
+    "text": "Resonant Audio loads in from 9:00 to 10:00 on Saturday 19 September through the north gravel gate.",
+    "depends_on": [
+     "F1",
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Priya",
+    "text": "The Okafor wedding dinner will be a buffet served from the east bay of the barn.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-07-05",
+    "source": "Priya",
+    "text": "Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding. Not done yet.",
+    "due": "2026-08-30",
+    "status": "open",
+    "depends_on": [
+     "D1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-07-09",
+    "source": "Priya",
+    "text": "Lilac Row is the florist for the Okafor wedding."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-07-12",
+    "source": "Priya",
+    "text": "Lilac Row gets the 9:00–10:30 load-in slot on Saturday 8 August for the Okafor wedding, entering by the north gravel gate.",
+    "depends_on": [
+     "F5",
+     "F7",
+     "R1"
+    ]
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-07-16",
+    "source": "Priya",
+    "text": "The Halvorsen–Mercer barn layout uses eight long tables with the head table against the north wall; to be confirmed with the couple by 5 September.",
+    "depends_on": [
+     "F1",
+     "R2"
+    ]
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-07-20",
+    "source": "Priya",
+    "text": "Confirm the Lilac Row load-in slot for the Okafor wedding. Done on 2 August.",
+    "due": "2026-08-04",
+    "status": "done",
+    "depends_on": [
+     "D5"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-07-24",
+    "source": "Priya",
+    "text": "Barn Weave supplies all linen and delivers on the Friday before each event."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-07-28",
+    "source": "Priya",
+    "text": "Barn Weave delivers the Halvorsen–Mercer linen on Friday 18 September between 14:00 and 16:00.",
+    "depends_on": [
+     "F1",
+     "F8"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "Foxglove Studio",
+    "text": "Foxglove Studio's latest price list lists a 13:00 afternoon delivery slot as an available option for Saturday weddings."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-08-22",
+    "source": "Priya",
+    "text": "Confirm the barn layout with the Halvorsen–Mercer couple. Not done yet.",
+    "due": "2026-09-05",
+    "status": "open",
+    "depends_on": [
+     "D6",
+     "R2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-08-23",
+    "source": "Priya",
+    "text": "The guest parking area is being resurfaced from 1 to 3 September; guest parking moves to the meadow field that week."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "rule",
+   "date": "2026-08-25",
+   "source": "Grandview Estate",
+   "text": "Restated vendor access rule for Grandview Estate Barn: on event days, all vendor set-up happens through the north gravel gate, and vendor trucks may be on the grounds from 9 in the morning until noon. This is the same arrangement as before, put in clearer words; no load-in slot or gate assignment changes.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Can you send Foxglove their load-in confirmation for the Halvorsen wedding today, please?",
+   "options": [
+    {
+     "id": "a",
+     "text": "Email Dana Whitlock at Foxglove Studio confirming load-in on Saturday 19 September, 9:00–10:30, via the north gravel gate."
+    },
+    {
+     "id": "b",
+     "text": "Email Dana Whitlock at Foxglove Studio booking the 13:00 afternoon delivery slot on Saturday 19 September."
+    },
+    {
+     "id": "c",
+     "text": "Email Foxglove Studio the 9:00–10:30 slot and move Brindle Kitchen's load-in to 12:30–14:00 on Saturday 19 September."
+    },
+    {
+     "id": "d",
+     "text": "Email Foxglove Studio the 9:00–10:30 slot on Saturday 19 September but direct them to enter through the south garden gate."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F9"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Send Foxglove Studio the written load-in confirmation for the Halvorsen–Mercer wedding today",
+    "correct_value": "Load-in Saturday 19 September 2026, 9:00–10:30, north gravel gate",
+    "stale_value": null
+   },
+   "why": "The change only restates the vendor access rule in other words with identical terms, so no decision is touched and every load-in slot stands. The correct act is the existing plan: Foxglove loads in Saturday 19 September, 9:00–10:30, through the north gravel gate. Option b acts on Foxglove's 13:00 price-list slot (the distractor), which was never chosen for this wedding; options c and d change plans (the caterer's slot, the gate) that should stay as they are."
+  },
+  "id": "G4-05",
+  "class": 4
+ },
+ {
+  "title": "Makeup session beside a spring top-up",
+  "setting": "A private tutor running Mathnasium-style services at Scholar's Nook whose assistant tracks each family's session-package terms and schedule adjustments",
+  "owner": "Marta",
+  "now": "2026-11-09",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-02",
+    "source": "Marta",
+    "text": "Scholar's Nook runs term-time maths tutoring from the Maple Street studio; Marta owns the business and employs tutors Dana and Ben."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Priya Patel, age 12, is enrolled on a 24-session package of 60-minute sessions that runs through the autumn and winter terms."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Priya's standing slot is Tuesdays at 16:30 with tutor Dana."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "Any missed session is converted into a makeup credit that must be booked within 30 days of the missed date."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-05",
+    "source": "Marta",
+    "text": "All weekly bookings are confirmed by Monday noon of that week."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-08",
+    "source": "Marta",
+    "text": "Session length follows the family's package terms; the standard session is 60 minutes."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-06-10",
+    "source": "Marta",
+    "text": "Priya's tuition follows her standing weekly slot with Dana for the whole package period.",
+    "depends_on": [
+     "F2",
+     "F3",
+     "R3"
+    ]
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-18",
+    "source": "Marta",
+    "text": "The Okonkwo family enrolled twins Chidi and Ngozi on a shared 16-session package."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-06-20",
+    "source": "Marta",
+    "text": "The Okonkwo twins take their sessions together on Thursdays at 17:00 with Ben.",
+    "depends_on": [
+     "F4",
+     "R3"
+    ]
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-07-01",
+    "source": "Marta",
+    "text": "The studio closes for summer holidays from 20 July to 16 August 2026."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-07-02",
+    "source": "Marta",
+    "text": "All term-time schedules pause during the summer closure and resume in the week of 17 August.",
+    "depends_on": [
+     "F5"
+    ]
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-15",
+    "source": "Marta",
+    "text": "Dana takes a training course on Friday 9 October 2026, so no Friday sessions that day."
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-14",
+    "source": "Marta",
+    "text": "The Navarro family joined with a 12-session package of 60-minute sessions for their son Mateo."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-08-18",
+    "source": "Marta",
+    "text": "Mateo Navarro takes his sessions on Wednesdays at 16:00 with Dana.",
+    "depends_on": [
+     "F7",
+     "R3"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-03",
+    "source": "Marta",
+    "text": "The studio's workbook supplier is Cedar Education Supplies; orders go by email."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-09-30",
+    "source": "Marta",
+    "text": "Send the Patel family their October invoice for four sessions. Done on 2 October.",
+    "due": "2026-10-05",
+    "status": "done"
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-10-12",
+    "source": "Marta",
+    "text": "Priya's 60-minute sessions are billed at 48 pounds each under the Patel package."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-14",
+    "source": "Marta",
+    "text": "Mateo Navarro's family gets a sibling-discount rate of 45 pounds per session if his sister joins later.",
+    "depends_on": [
+     "F7"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Marta",
+    "text": "Ben covers Dana's Tuesday clients when Dana is on the October training day."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-26",
+    "source": "Priya's mother",
+    "text": "Priya will miss her Tuesday 27 October session because of a school trip."
+   },
+   {
+    "id": "D6",
+    "kind": "decision",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "Priya's missed session of 27 October becomes a makeup credit, to be booked within 30 days under the makeup rule.",
+    "depends_on": [
+     "F11",
+     "R1"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "Marta",
+    "text": "The Okonkwo twins extended their package with 90-minute sessions for the winter term."
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-10-30",
+    "source": "Marta",
+    "text": "Dana is free on Saturday mornings at the studio; the 10:00 Saturday slot is open in November."
+   },
+   {
+    "id": "D7",
+    "kind": "decision",
+    "date": "2026-11-02",
+    "source": "Marta",
+    "text": "Priya's makeup session is set for Saturday 14 November 2026 at 10:00 with Dana, 60 minutes, matching her package terms.",
+    "depends_on": [
+     "D6",
+     "F13",
+     "R3",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-11-02",
+    "source": "Marta",
+    "text": "Confirm and book Priya Patel's makeup session in the calendar by Monday 9 November. Not done yet.",
+    "due": "2026-11-09",
+    "status": "open",
+    "depends_on": [
+     "D7",
+     "R2"
+    ]
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-03",
+    "source": "Marta",
+    "text": "The studio printer needs new toner; the office supply shop on Birch Road stocks it."
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-11-04",
+    "source": "Marta",
+    "text": "Email Cedar Education Supplies the winter-term workbook order. Not done yet.",
+    "due": "2026-11-30",
+    "status": "open",
+    "depends_on": [
+     "F8"
+    ]
+   },
+   {
+    "id": "F15",
+    "kind": "state",
+    "date": "2026-11-05",
+    "source": "Marta",
+    "text": "The Patel family has 9 unused sessions left in their current 24-session package after this week."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "state",
+   "date": "2026-11-09",
+   "source": "Priya's mother",
+   "text": "The Patel family has paid for a 4-session top-up that applies to the spring term from 12 January 2027 onward; the top-up sessions are separate from the sessions remaining in the current package and do not change any November or December bookings.",
+   "revokes": []
+  },
+  "task": {
+   "text": "Please get Priya's makeup session sorted and booked in the calendar for this week.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 60 minutes."
+    },
+    {
+     "id": "b",
+     "text": "Book Priya Patel's makeup session with Dana on Saturday 14 November at 10:00, 90 minutes."
+    },
+    {
+     "id": "c",
+     "text": "Move Priya's standing slot from Tuesdays at 16:30 to Thursdays at 17:00 starting next week."
+    },
+    {
+     "id": "d",
+     "text": "Add four extra Patel sessions to the calendar on Monday evenings starting 16 November."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "a"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "b"
+   ],
+   "unnecessary_options": [
+    "c",
+    "d"
+   ],
+   "stale_items": [],
+   "distractor_items": [
+    "F12"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7"
+   ],
+   "obligations_due": [
+    "O1"
+   ],
+   "obligation_due": {
+    "id": "O1",
+    "act": "Book Priya Patel's makeup session in the calendar today",
+    "correct_value": "Saturday 14 November 2026 at 10:00 with Dana, 60 minutes",
+    "stale_value": null
+   },
+   "why": "The change only adds spring-term top-up sessions for the Patels from January 2027 and explicitly leaves all November and December bookings untouched, so every decision stands and the correct act is to book the makeup session exactly as decided on 2 November: Saturday 14 November at 10:00 with Dana, 60 minutes. Option b wrongly applies the Okonkwo twins' new 90-minute session length, option c needlessly changes the standing slot, and option d needlessly adds the spring top-up sessions to the November calendar."
+  },
+  "id": "G4-10",
+  "class": 4
+ },
+ {
+  "title": "Linen renewal on schedule",
+  "setting": "A head of procurement at Greenfield Regional Hospital whose assistant keeps minutes of vendor negotiation calls and contract renewal dates",
+  "owner": "Marta",
+  "now": "2026-11-06",
+  "items": [
+   {
+    "id": "F1",
+    "kind": "state",
+    "date": "2026-06-10",
+    "source": "Norlake sales rep",
+    "text": "Norlake Cleaning Supplies quotes a standard delivery lead time of 15 working days from order confirmation for all standing orders to the hospital."
+   },
+   {
+    "id": "F2",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Brightpath account rep",
+    "text": "The Brightpath Linen Services contract with Greenfield Regional Hospital runs until 31 December 2026, and the renewal rate agreed at last year's negotiation is $48,500 per year for the full linen service."
+   },
+   {
+    "id": "F3",
+    "kind": "state",
+    "date": "2026-06-15",
+    "source": "Brightpath account rep",
+    "text": "Dana Wells is the Brightpath Linen Services account representative handling the Greenfield Regional Hospital contract, and all renewal paperwork goes through her."
+   },
+   {
+    "id": "R1",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Every contract renewal above $10,000 per year needs three quotes on file before it is signed, but a renewal with an incumbent whose rate was negotiated within the last eighteen months counts as already quoted."
+   },
+   {
+    "id": "R2",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Minutes of every vendor negotiation call are circulated to all attendees within 48 hours of the call."
+   },
+   {
+    "id": "R3",
+    "kind": "rule",
+    "date": "2026-06-01",
+    "source": "owner",
+    "text": "Only the head of procurement signs supplier contracts for Greenfield Regional Hospital; no one else may sign on her behalf."
+   },
+   {
+    "id": "F4",
+    "kind": "state",
+    "date": "2026-06-22",
+    "source": "Medisafe dispatcher",
+    "text": "Medisafe Waste Co collects clinical waste from the hospital on Tuesday and Friday mornings, with a combined weekly volume of about 40 bins."
+   },
+   {
+    "id": "F5",
+    "kind": "state",
+    "date": "2026-06-28",
+    "source": "facilities manager",
+    "text": "The central stores room on level B holds about 2 cubic metres of spare linen, enough for roughly four days of normal ward demand."
+   },
+   {
+    "id": "F6",
+    "kind": "state",
+    "date": "2026-07-09",
+    "source": "owner",
+    "text": "The staff cafeteria coffee contract with Brewmans costs $1,150 per month and renews automatically each March."
+   },
+   {
+    "id": "D1",
+    "kind": "decision",
+    "date": "2026-08-12",
+    "source": "owner",
+    "text": "Renew the Brightpath Linen Services contract for calendar year 2027 at $48,500 per year, the rate agreed with Dana Wells, since the rate was negotiated eleven months ago and counts as already quoted.",
+    "depends_on": [
+     "F2",
+     "F3",
+     "R1"
+    ]
+   },
+   {
+    "id": "F7",
+    "kind": "state",
+    "date": "2026-08-20",
+    "source": "pharmacy lead",
+    "text": "The pharmacy's two sample fridges are serviced twice a year by PolarTech Refrigeration under a maintenance agreement."
+   },
+   {
+    "id": "D2",
+    "kind": "decision",
+    "date": "2026-09-03",
+    "source": "owner",
+    "text": "Keep Medisafe clinical waste collection as it stands, with Tuesday and Friday morning pickups, and take no action on the competitor that offered Monday-only collection.",
+    "depends_on": [
+     "F4",
+     "R1"
+    ]
+   },
+   {
+    "id": "O1",
+    "kind": "obligation",
+    "date": "2026-09-10",
+    "source": "owner",
+    "text": "Circulate the minutes of the 8 September negotiation call with Brightpath to all attendees. Done on 10 September, within the 48-hour window.",
+    "due": "2026-09-12",
+    "status": "done",
+    "depends_on": [
+     "R2",
+     "D1"
+    ]
+   },
+   {
+    "id": "F8",
+    "kind": "state",
+    "date": "2026-09-15",
+    "source": "PolarTech service manager",
+    "text": "PolarTech charges $3,200 per year for the twice-yearly fridge maintenance visits under a rolling agreement."
+   },
+   {
+    "id": "D3",
+    "kind": "decision",
+    "date": "2026-09-18",
+    "source": "owner",
+    "text": "Approve the PolarTech maintenance agreement at $3,200 per year for another two years, since it is below the $10,000 threshold that requires quotes.",
+    "depends_on": [
+     "F7",
+     "F8",
+     "R1"
+    ]
+   },
+   {
+    "id": "F9",
+    "kind": "state",
+    "date": "2026-09-26",
+    "source": "visitor desk team lead",
+    "text": "The visitor parking contract with Cityspace Parking runs to 30 June 2027 at $880 per month."
+   },
+   {
+    "id": "D4",
+    "kind": "decision",
+    "date": "2026-10-05",
+    "source": "owner",
+    "text": "Set Friday 6 November 2026 as the deadline to sign and send the Brightpath renewal paperwork for 2027 to Dana Wells, well ahead of the 31 December contract end.",
+    "depends_on": [
+     "D1",
+     "F2"
+    ]
+   },
+   {
+    "id": "F10",
+    "kind": "state",
+    "date": "2026-10-14",
+    "source": "facilities manager",
+    "text": "The hospital's annual deep-clean by an outside crew is booked for the last week of January 2027."
+   },
+   {
+    "id": "F11",
+    "kind": "state",
+    "date": "2026-10-20",
+    "source": "Cedarfresh sales rep",
+    "text": "Cedarfresh Linen submitted an unsolicited quote of $52,400 per year to take over the hospital's full linen service from January 2027."
+   },
+   {
+    "id": "D5",
+    "kind": "decision",
+    "date": "2026-10-22",
+    "source": "owner",
+    "text": "Decline the Cedarfresh Linen quote of $52,400 per year and stay with Brightpath, since the Cedarfresh price is higher than the agreed $48,500 renewal rate.",
+    "depends_on": [
+     "F11",
+     "D1",
+     "R1"
+    ]
+   },
+   {
+    "id": "F12",
+    "kind": "state",
+    "date": "2026-10-28",
+    "source": "IT helpdesk",
+    "text": "The procurement office's shared printer is leased from Officeprint at $95 per month until May 2028."
+   },
+   {
+    "id": "O2",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "owner",
+    "text": "Sign and send the Brightpath Linen renewal for 2027 at $48,500 per year to Dana Wells. Not done yet; due Friday 6 November.",
+    "due": "2026-11-06",
+    "status": "open",
+    "depends_on": [
+     "D4"
+    ]
+   },
+   {
+    "id": "O3",
+    "kind": "obligation",
+    "date": "2026-10-30",
+    "source": "owner",
+    "text": "Reconcile the Medisafe Waste Co invoices against the pickup log for the autumn quarter. Not done yet; due 15 December.",
+    "due": "2026-12-15",
+    "status": "open",
+    "depends_on": [
+     "D2"
+    ]
+   },
+   {
+    "id": "F13",
+    "kind": "state",
+    "date": "2026-11-01",
+    "source": "owner",
+    "text": "Marta's office hours on Fridays are 9:00 to 13:00, and she signs all pending contracts before lunch."
+   },
+   {
+    "id": "F14",
+    "kind": "state",
+    "date": "2026-11-02",
+    "source": "Norlake sales rep",
+    "text": "Norlake Cleaning Supplies bills the hospital $640 per month for cleaning consumables on a rolling basis."
+   }
+  ],
+  "change": {
+   "id": "C1",
+   "kind": "correction",
+   "date": "2026-11-03",
+   "source": "Norlake sales rep",
+   "text": "Correction: Norlake Cleaning Supplies' standard delivery lead time is 10 working days from order confirmation, not 15; the 15-day figure came from their old 2023 service sheet and no longer applies. Their billing and product range are unchanged. This affects only the cleaning-supplies standing order, not the linen or waste contracts.",
+   "revokes": [
+    "F1"
+   ]
+  },
+  "task": {
+   "text": "Today's Friday — please get the Brightpath linen renewal wrapped up while I'm in this morning, and send the paperwork over for me.",
+   "options": [
+    {
+     "id": "a",
+     "text": "Send Cedarfresh Linen a signed 2027 contract at $52,400 per year."
+    },
+    {
+     "id": "b",
+     "text": "Send Dana Wells the signed Brightpath 2027 renewal at $48,500 per year before lunch."
+    },
+    {
+     "id": "c",
+     "text": "Hold the renewal and launch a fresh three-quote tender for the linen service today."
+    }
+   ]
+  },
+  "truth": {
+   "correct_options": [
+    "b"
+   ],
+   "stale_options": [],
+   "distractor_options": [
+    "a"
+   ],
+   "unnecessary_options": [
+    "c"
+   ],
+   "stale_items": [
+    "F1"
+   ],
+   "distractor_items": [
+    "F11"
+   ],
+   "touched": [],
+   "untouched": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5"
+   ],
+   "obligations_due": [
+    "O2"
+   ],
+   "obligation_due": {
+    "id": "O2",
+    "act": "Sign and send the Brightpath 2027 linen renewal today, 6 November, per D4's deadline.",
+    "correct_value": "$48,500 per year to Dana Wells at Brightpath",
+    "stale_value": null
+   },
+   "why": "The change corrects only Norlake's delivery lead time (F1), which no decision rests on, directly or through other decisions; every decision about linen, waste, fridges and parking stands unchanged. The Brightpath renewal at $48,500 was decided (D1), scheduled for 6 November (D4), and Cedarfresh's $52,400 quote was already declined (D5), so the correct act is to send the signed renewal to Dana Wells. Re-running a tender would change a plan that should stay, and awarding Cedarfresh would act on the declined quote."
+  },
+  "id": "G4-09",
+  "class": 4
+ }
+]

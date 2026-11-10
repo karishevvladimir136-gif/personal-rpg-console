@@ -415,5 +415,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amendment to R1 voids main-branch weekend two-volunteer decisions (D1, D3, D4) and two-hop derivatives (D5 via D3, D10 via D4) while explicitly sparing weekday, Fairview and unrelated decisions, matching the key. Option b correctly staffs three available Saturday volunteers; F14's four-volunteer figure for the Spooktacular is a relevant-looking but inapplicable distractor driving option c. The task only permits emailing a roster now, and O3 is due today.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amendment to R1 voids main-branch weekend two-volunteer decisions (D1, D3, D4) and two-hop derivatives (D5 via D3, D10 via D4) while explicitly sparing weekday, Fairview and unrelated decisions, matching the key. Option b correctly staffs three available Saturday volunteers; F14's four-volunteer figure for the Spooktacular is a relevant-looking but inapplicable distractor driving option c. The task only permits emailing a roster now, and O3 is due today."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2652,
+    "completion_tokens": 302,
+    "reasoning_tokens": 139,
+    "cached_tokens": 256
+   },
+   "cost": 0.0117948,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2c45329bfece6658822f64760b457267330e8015e8e566b9ac341dac490ef98c"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"Option b is correct, but the touched-decision list incorrectly includes D1: its summer-only staffing decision is not altered by an amendment effective 24 October. The amendment changes ongoing main-branch weekend staffing, not completed summer sessions.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "Option b is correct, but the touched-decision list incorrectly includes D1: its summer-only staffing decision is not altered by an amendment effective 24 October. The amendment changes ongoing main-branch weekend staffing, not completed summer sessions."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2570,
+    "completion_tokens": 192,
+    "reasoning_tokens": 113,
+    "cached_tokens": 0
+   },
+   "cost": 0.0417175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2c45329bfece6658822f64760b457267330e8015e8e566b9ac341dac490ef98c"
+  }
+ }
 }

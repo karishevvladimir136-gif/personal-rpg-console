@@ -293,5 +293,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"no\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The change leaves all existing decisions untouched, so option a correctly fulfills O1. Option c explicitly holds and postpones delivery until 5 October, violating the requirement that no option allow waiting or postponement. F10 supplies the newer, relevant-looking cheaper-courier distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "no",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change leaves all existing decisions untouched, so option a correctly fulfills O1. Option c explicitly holds and postpones delivery until 5 October, violating the requirement that no option allow waiting or postponement. F10 supplies the newer, relevant-looking cheaper-courier distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2044,
+    "completion_tokens": 213,
+    "reasoning_tokens": 125,
+    "cached_tokens": 0
+   },
+   "cost": 0.0361925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aaefb0c2f7caacb32a1a4e8b82652a0acaecae4b4b00d5c8b1d90593aa39494d"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change (vitamin D backorder) explicitly leaves Eltofer and patient deliveries unaffected and is cited by no decision, so nothing is touched and option a follows cleanly from D1/D2/O1. All three options are concrete acts (book or hold-and-send) with no ask/check/wait escape. F10 (cheaper SwiftPost Tuesday run) is the newer relevant-looking distractor that could wrongly pull toward option b, though R1 fixes housebound deliveries to Friday 10:00.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change (vitamin D backorder) explicitly leaves Eltofer and patient deliveries unaffected and is cited by no decision, so nothing is touched and option a follows cleanly from D1/D2/O1. All three options are concrete acts (book or hold-and-send) with no ask/check/wait escape. F10 (cheaper SwiftPost Tuesday run) is the newer relevant-looking distractor that could wrongly pull toward option b, though R1 fixes housebound deliveries to Friday 10:00."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2128,
+    "completion_tokens": 1151,
+    "reasoning_tokens": 999,
+    "cached_tokens": 256
+   },
+   "cost": 0.0229578,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aaefb0c2f7caacb32a1a4e8b82652a0acaecae4b4b00d5c8b1d90593aa39494d"
+  }
+ }
 }

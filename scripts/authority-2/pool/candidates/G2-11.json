@@ -345,5 +345,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"C1 invalidates approvals exceeding the new cap but does not authorize automatically shortening them while retaining their start dates, so the exact revised freezes and option b are not unambiguously required. The key also incorrectly says D4 starts before 15 October: it starts on 18 October and remains valid because its five-day duration and advance notice satisfy the tightened rule.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "C1 invalidates approvals exceeding the new cap but does not authorize automatically shortening them while retaining their start dates, so the exact revised freezes and option b are not unambiguously required. The key also incorrectly says D4 starts before 15 October: it starts on 18 October and remains valid because its five-day duration and advance notice satisfy the tightened rule."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2394,
+    "completion_tokens": 266,
+    "reasoning_tokens": 162,
+    "cached_tokens": 0
+   },
+   "cost": 0.0432175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86d8c0d77b833d19f608cce1217395422d9f680949f45c9e7d6e5117d0500b18"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"C1 amends R1 with explicit grandfathering, voiding D5 and D3 (both start after 15 Oct, cut to 7 days) and reaching D6 two hops away via D3, while D1/D2/D4/D7/D8 stand — matching the key. F10 (Riya Kaur's separate membership, dated 2026-10-06) is a newer relevant-looking item untouched by the change, behind distractor option c.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "C1 amends R1 with explicit grandfathering, voiding D5 and D3 (both start after 15 Oct, cut to 7 days) and reaching D6 two hops away via D3, while D1/D2/D4/D7/D8 stand — matching the key. F10 (Riya Kaur's separate membership, dated 2026-10-06) is a newer relevant-looking item untouched by the change, behind distractor option c."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2488,
+    "completion_tokens": 290,
+    "reasoning_tokens": 145,
+    "cached_tokens": 256
+   },
+   "cost": 0.0111228,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86d8c0d77b833d19f608cce1217395422d9f680949f45c9e7d6e5117d0500b18"
+  }
+ }
 }

@@ -330,5 +330,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The amended discount rule cleanly splits decisions: signed contracts (D1, D3) stand by the amendment's own terms, unsigned post-1-December quotes (D5, D6) are re-quoted with D7 touched two hops through D6, and R2-based decisions are unaffected. The task requires sending the email now and all three options are acts. F9 is the relevant-looking distractor: it raises the long-distance rate question but confirms the standard rate applies, so option b is wrong.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amended discount rule cleanly splits decisions: signed contracts (D1, D3) stand by the amendment's own terms, unsigned post-1-December quotes (D5, D6) are re-quoted with D7 touched two hops through D6, and R2-based decisions are unaffected. The task requires sending the email now and all three options are acts. F9 is the relevant-looking distractor: it raises the long-distance rate question but confirms the standard rate applies, so option b is wrong."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2608,
+    "completion_tokens": 280,
+    "reasoning_tokens": 125,
+    "cached_tokens": 256
+   },
+   "cost": 0.0113328,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "97f84e5809b7e9da2e62bfcb7016fb0a93dabbf6878310bc08e10645e67deb4f"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"The amended rule requires Nadia’s unsigned quote to become $1,200 and Brandt’s to become $1,275, also changing D7’s budget while leaving the listed untouched decisions intact. Every option sends the email immediately. The untouched long-distance rate in F4 supplies the distractor value, although F9 itself confirms that Nadia’s move is local.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The amended rule requires Nadia’s unsigned quote to become $1,200 and Brandt’s to become $1,275, also changing D7’s budget while leaving the listed untouched decisions intact. Every option sends the email immediately. The untouched long-distance rate in F4 supplies the distractor value, although F9 itself confirms that Nadia’s move is local."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2524,
+    "completion_tokens": 573,
+    "reasoning_tokens": 469,
+    "cached_tokens": 0
+   },
+   "cost": 0.0601925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "97f84e5809b7e9da2e62bfcb7016fb0a93dabbf6878310bc08e10645e67deb4f"
+  }
+ }
 }

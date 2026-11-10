@@ -351,5 +351,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"The change amends R1 (14-day notice for CNA shifts drops to 5 days; RN rule kept), so CNA-citing decisions D2, D3, D5 are voided in the key's stated direction and D4 is touched two hops through D3, while RN-based D1/D6 and unrelated D7/D8/D9 stand. Sunday 25 October is 6 days out, so booking a Harbor CNA (b) is correct; option a applies the revoked rule and BrightPath (c) fails its own 30-day window and D9's sole-agency commitment. F9 is a newer, relevant-looking but untouched item that serves as the distractor.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "The change amends R1 (14-day notice for CNA shifts drops to 5 days; RN rule kept), so CNA-citing decisions D2, D3, D5 are voided in the key's stated direction and D4 is touched two hops through D3, while RN-based D1/D6 and unrelated D7/D8/D9 stand. Sunday 25 October is 6 days out, so booking a Harbor CNA (b) is correct; option a applies the revoked rule and BrightPath (c) fails its own 30-day window and D9's sole-agency commitment. F9 is a newer, relevant-looking but untouched item that serves as the distractor."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2549,
+    "completion_tokens": 467,
+    "reasoning_tokens": 277,
+    "cached_tokens": 256
+   },
+   "cost": 0.0139608,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "408ab4a843d015c104d8c6040256218957ebecc234bc95a3bba8b99b8c0f9d1f"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"distractor\":\"yes\",\"reasons\":\"C1 takes effect on 12 October and does not retroactively invalidate D2 or D5, which declined earlier requests under the then-valid rule. The key therefore incorrectly marks those historical refusals as void; option b and the prospective updates to D3 and D4 are supported. All options involve making or confirming a booking now, even though option a schedules later coverage.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "C1 takes effect on 12 October and does not retroactively invalidate D2 or D5, which declined earlier requests under the then-valid rule. The key therefore incorrectly marks those historical refusals as void; option b and the prospective updates to D3 and D4 are supported. All options involve making or confirming a booking now, even though option a schedules later coverage."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2463,
+    "completion_tokens": 368,
+    "reasoning_tokens": 261,
+    "cached_tokens": 0
+   },
+   "cost": 0.04918,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "408ab4a843d015c104d8c6040256218957ebecc234bc95a3bba8b99b8c0f9d1f"
+  }
+ }
 }

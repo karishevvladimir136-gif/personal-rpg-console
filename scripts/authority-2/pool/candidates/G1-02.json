@@ -353,5 +353,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F5 and reassigns the Saturday-night block to Tomas, so b is correct, a is the stale act, and c misuses Dana's second-weekend offer (F12, untouched). Touched chain is D3 (direct), D5 (via F5/D3), D7 (two hops via D3), with D1, D2, D4, D6, D8, D9 clearly standing. The due obligation O2 matches the task, which only admits sending the rota.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes F5 and reassigns the Saturday-night block to Tomas, so b is correct, a is the stale act, and c misuses Dana's second-weekend offer (F12, untouched). Touched chain is D3 (direct), D5 (via F5/D3), D7 (two hops via D3), with D1, D2, D4, D6, D8, D9 clearly standing. The due obligation O2 matches the task, which only admits sending the rota."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2660,
+    "completion_tokens": 332,
+    "reasoning_tokens": 173,
+    "cached_tokens": 0
+   },
+   "cost": 0.01296,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "adc919b4e66464f6191b18f2e71b4cf602a81de3fdae4abe6be8dcd1463853a0"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"Option b is correct, but D5 is untouched: the correction preserves Priya’s 26 September night shift and does not alter her 27 September recovery release. The key invents further Monday-morning recovery releases, whereas D5 specifies only that Sunday morning. D3 changes and D7 is touched through D3, while D5’s historical use of F5 remains valid, making this a chain scenario.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "Option b is correct, but D5 is untouched: the correction preserves Priya’s 26 September night shift and does not alter her 27 September recovery release. The key invents further Monday-morning recovery releases, whereas D5 specifies only that Sunday morning. D3 changes and D7 is touched through D3, while D5’s historical use of F5 remains valid, making this a chain scenario."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2546,
+    "completion_tokens": 315,
+    "reasoning_tokens": 200,
+    "cached_tokens": 0
+   },
+   "cost": 0.0475675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "adc919b4e66464f6191b18f2e71b4cf602a81de3fdae4abe6be8dcd1463853a0"
+  }
+ }
 }

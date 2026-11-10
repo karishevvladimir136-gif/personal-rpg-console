@@ -308,5 +308,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"C1 revokes the state fact F3, touching D1 and D4 directly and D2 and D3 by propagation, with D3 two hops away; D5 (Meridian) and D6 (chair slot) stand, and O2 is due on the task day with VerifyNow as the correct value. All four options are acts with no wait/ask escape, and option c is the unique correct act. The newer item F9 (Meridian phone-line turnaround) is untouched but tempting, matching distractor option b.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "C1 revokes the state fact F3, touching D1 and D4 directly and D2 and D3 by propagation, with D3 two hops away; D5 (Meridian) and D6 (chair slot) stand, and O2 is due on the task day with VerifyNow as the correct value. All four options are acts with no wait/ask escape, and option c is the unique correct act. The newer item F9 (Meridian phone-line turnaround) is untouched but tempting, matching distractor option b."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2268,
+    "completion_tokens": 312,
+    "reasoning_tokens": 153,
+    "cached_tokens": 256
+   },
+   "cost": 0.0107928,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1c305b4c8d324eb34c4148fbbae82b62970352b7d1acb19ec9c46f731ea3c179"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"no\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"The answer key follows from the revoked portal and turnaround facts and their stated dependencies. However, option a postpones submission until Monday, and option d postpones it until next week, violating the requirement that no option postpone action. F9 is a newer, relevant-looking Meridian fact that could wrongly steer verification to the phone line.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "no",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The answer key follows from the revoked portal and turnaround facts and their stated dependencies. However, option a postpones submission until Monday, and option d postpones it until next week, violating the requirement that no option postpone action. F9 is a newer, relevant-looking Meridian fact that could wrongly steer verification to the phone line."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2190,
+    "completion_tokens": 293,
+    "reasoning_tokens": 196,
+    "cached_tokens": 0
+   },
+   "cost": 0.0420175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1c305b4c8d324eb34c4148fbbae82b62970352b7d1acb19ec9c46f731ea3c179"
+  }
+ }
 }

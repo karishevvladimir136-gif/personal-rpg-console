@@ -315,5 +315,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"D5 adds two bales of timothy to the monthly Bellamy order, so option c does not unambiguously fulfill the usual standing order. The history also does not establish Thursday 22 October as the delivery date asserted by the key. The correction affects no decision, and F11 provides an untouched, relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "D5 adds two bales of timothy to the monthly Bellamy order, so option c does not unambiguously fulfill the usual standing order. The history also does not establish Thursday 22 October as the delivery date asserted by the key. The correction affects no decision, and F11 provides an untouched, relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2135,
+    "completion_tokens": 169,
+    "reasoning_tokens": 70,
+    "cached_tokens": 0
+   },
+   "cost": 0.03513,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "98f3c3e3d54234c5b76ce05e13ed9bca32779757fe1a2e2257d735845e935a1b"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The correction revokes only F6 (bedding supplier/schedule), which no decision or obligation rests on, so all decisions stand and the right act is the standing Bellamy order per D3, discharging O2; option b wrongly acts on the bedding change and F11's unsolicited Cedar Ridge flyer is the relevant-looking untouched distractor behind option a. Option d invents a quantity not in D3. All options are acts with no ask/wait path, and the scenario is a clean control.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The correction revokes only F6 (bedding supplier/schedule), which no decision or obligation rests on, so all decisions stand and the right act is the standing Bellamy order per D3, discharging O2; option b wrongly acts on the bedding change and F11's unsolicited Cedar Ridge flyer is the relevant-looking untouched distractor behind option a. Option d invents a quantity not in D3. All options are acts with no ask/wait path, and the scenario is a clean control."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2238,
+    "completion_tokens": 279,
+    "reasoning_tokens": 127,
+    "cached_tokens": 256
+   },
+   "cost": 0.0102078,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "98f3c3e3d54234c5b76ce05e13ed9bca32779757fe1a2e2257d735845e935a1b"
+  }
+ }
 }

@@ -330,5 +330,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The package change alters D4 and, through D4, D6, while D5 remains valid because the balance due date is explicitly unchanged. All options require immediate booking and written confirmation, and only Aria Strings matches the upgraded package. F10 is a newer, relevant-looking but unaccepted quote that supports the distractor option.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The package change alters D4 and, through D4, D6, while D5 remains valid because the balance due date is explicitly unchanged. All options require immediate booking and written confirmation, and only Aria Strings matches the upgraded package. F10 is a newer, relevant-looking but unaccepted quote that supports the distractor option."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2349,
+    "completion_tokens": 143,
+    "reasoning_tokens": 44,
+    "cached_tokens": 0
+   },
+   "cost": 0.036505,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ae188be59df748384a831d5f961b21c8f5ad8fdaf0200c9b8bcd49cf2e25c106"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction replaces F3 with a new package value: D4 rests on it directly and D6 through D4 (touched chain), while D5 cites F3 only for the unchanged balance due date and stands, matching the key exactly. F10 (the newer, unaccepted Harmony Lane quote) is a relevant-looking distractor untouched by the change. All three options are booking acts, so the task forces action.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction replaces F3 with a new package value: D4 rests on it directly and D6 through D4 (touched chain), while D5 cites F3 only for the unchanged balance due date and stands, matching the key exactly. F10 (the newer, unaccepted Harmony Lane quote) is a relevant-looking distractor untouched by the change. All three options are booking acts, so the task forces action."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2434,
+    "completion_tokens": 299,
+    "reasoning_tokens": 166,
+    "cached_tokens": 256
+   },
+   "cost": 0.0110958,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "ae188be59df748384a831d5f961b21c8f5ad8fdaf0200c9b8bcd49cf2e25c106"
+  }
+ }
 }

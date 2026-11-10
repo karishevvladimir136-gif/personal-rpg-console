@@ -320,5 +320,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The key directs a new $310 aftermarket-pump order, but R1 requires verbal customer approval logged on the order date; no such approval is established for 5 October. The selective correction otherwise fits class 3, and F9 supplies the untouched, relevant-looking distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The key directs a new $310 aftermarket-pump order, but R1 requires verbal customer approval logged on the order date; no such approval is established for 5 October. The selective correction otherwise fits class 3, and F9 supplies the untouched, relevant-looking distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2409,
+    "completion_tokens": 281,
+    "reasoning_tokens": 193,
+    "cached_tokens": 0
+   },
+   "cost": 0.044155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "afe2307d76df3f01f72dc8e5b1036456af836c9a39fb50afc6b734f83bd180f6"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction of F7 touches D3 directly and D5 through D3, while D4 cites F7 only for aspects (loaner, 08:00 drop-off) the correction explicitly preserves, matching the chain pattern. Option b is the unique correct act, and F9 (Bramwell quote) is a newer, relevant-looking but never-chosen item that serves as the distractor behind option c.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction of F7 touches D3 directly and D5 through D3, while D4 cites F7 only for aspects (loaner, 08:00 drop-off) the correction explicitly preserves, matching the chain pattern. Option b is the unique correct act, and F9 (Bramwell quote) is a newer, relevant-looking but never-chosen item that serves as the distractor behind option c."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2500,
+    "completion_tokens": 371,
+    "reasoning_tokens": 237,
+    "cached_tokens": 256
+   },
+   "cost": 0.0123738,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "afe2307d76df3f01f72dc8e5b1036456af836c9a39fb50afc6b734f83bd180f6"
+  }
+ }
 }

@@ -323,5 +323,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"C1 revokes F5, touching D3 directly, D5 directly, and D7 two hops away via D3/D5, all updated consistently (10:30 taxi, 09:00 breakfast, 08:15 start = 45 min before breakfast as in the original 06:45/07:30 gap); D2, D1, D4, D6, D8 rest on unaffected facts/rules. Option a uses the stale 09:00, option c wrongly applies Lena's 10:15 from the newer untouched F10, and O2 is due on the task day with the correct 10:30 value.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "C1 revokes F5, touching D3 directly, D5 directly, and D7 two hops away via D3/D5, all updated consistently (10:30 taxi, 09:00 breakfast, 08:15 start = 45 min before breakfast as in the original 06:45/07:30 gap); D2, D1, D4, D6, D8 rest on unaffected facts/rules. Option a uses the stale 09:00, option c wrongly applies Lena's 10:15 from the newer untouched F10, and O2 is due on the task day with the correct 10:30 value."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2284,
+    "completion_tokens": 359,
+    "reasoning_tokens": 174,
+    "cached_tokens": 0
+   },
+   "cost": 0.012237,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4a0366ba8afbfa14082fdd2c6d3c3772ed6bb15a78ad318937dbaa2efa15391a"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"Option b and the touched-decision set are correct, but the history does not establish a fixed 45-minute preparation requirement that entails Ana starting at 08:15. The revised D7 also cannot unambiguously retain Ana working alone when other staff are scheduled to start at 08:00.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "Option b and the touched-decision set are correct, but the history does not establish a fixed 45-minute preparation requirement that entails Ana starting at 08:15. The revised D7 also cannot unambiguously retain Ana working alone when other staff are scheduled to start at 08:00."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2194,
+    "completion_tokens": 210,
+    "reasoning_tokens": 118,
+    "cached_tokens": 0
+   },
+   "cost": 0.0379175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4a0366ba8afbfa14082fdd2c6d3c3772ed6bb15a78ad318937dbaa2efa15391a"
+  }
+ }
 }

@@ -373,5 +373,51 @@
   "class": 1
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"distractor\":\"yes\",\"reasons\":\"Option c is correct, but the key's downstream revisions are not unambiguously supported. D4 establishes no rule requiring a crew start 15 minutes before loading, and D5 establishes no lead time requiring Saturday ordering rather than Sunday, which still precedes Monday's loads.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "Option c is correct, but the key's downstream revisions are not unambiguously supported. D4 establishes no rule requiring a crew start 15 minutes before loading, and D5 establishes no lead time requiring Saturday ordering rather than Sunday, which still precedes Monday's loads."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2505,
+    "completion_tokens": 158,
+    "reasoning_tokens": 71,
+    "cached_tokens": 0
+   },
+   "cost": 0.039205,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ea8a8285a0040ce3974175863bfe41d30a6fbf29128e55a39465975fd64127b"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"distractor\": \"yes\", \"reasons\": \"The correction revokes state fact F7; D3 and D4 rest on it directly and D5 rests on D3 (two hops), all with the key's correct new-slot directions, while the other decisions stand. All three options are booking acts with no ask/wait alternative. F13 (the declined Nordhaul trial) is a newer, relevant-looking but untouched item backing distractor option b.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "distractor": "yes",
+    "reasons": "The correction revokes state fact F7; D3 and D4 rest on it directly and D5 rests on D3 (two hops), all with the key's correct new-slot directions, while the other decisions stand. All three options are booking acts with no ask/wait alternative. F13 (the declined Nordhaul trial) is a newer, relevant-looking but untouched item backing distractor option b."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2582,
+    "completion_tokens": 233,
+    "reasoning_tokens": 101,
+    "cached_tokens": 0
+   },
+   "cost": 0.011241,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ea8a8285a0040ce3974175863bfe41d30a6fbf29128e55a39465975fd64127b"
+  }
+ }
 }

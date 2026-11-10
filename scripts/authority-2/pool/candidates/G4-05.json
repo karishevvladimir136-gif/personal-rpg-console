@@ -299,5 +299,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The change explicitly restates the existing access arrangement without changing any slot or gate, so no decisions are touched and option a fulfills O1. Every option requires sending an email now. F9 is a newer, relevant-looking distractor: its 13:00 slot was never selected and falls outside the venue's permitted access hours.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change explicitly restates the existing access arrangement without changing any slot or gate, so no decisions are touched and option a fulfills O1. Every option requires sending an email now. F9 is a newer, relevant-looking distractor: its 13:00 slot was never selected and falls outside the venue's permitted access hours."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2232,
+    "completion_tokens": 96,
+    "reasoning_tokens": 0,
+    "cached_tokens": 0
+   },
+   "cost": 0.0326925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "eb71657a69ea0d78475fe569f1910a7ed9f65e3fa7d97869a3acb835bc792cfd"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change explicitly restates R1 with identical terms, so nothing is touched and option a (the existing plan, due today via O1) is correct; F9's 13:00 slot is a plausible newer distractor (option b), while c and d alter unrelated plans. All four options are acts, so the task forces action. No inconsistencies in the key.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change explicitly restates R1 with identical terms, so nothing is touched and option a (the existing plan, due today via O1) is correct; F9's 13:00 slot is a plausible newer distractor (option b), while c and d alter unrelated plans. All four options are acts, so the task forces action. No inconsistencies in the key."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2321,
+    "completion_tokens": 193,
+    "reasoning_tokens": 67,
+    "cached_tokens": 256
+   },
+   "cost": 0.0091668,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "eb71657a69ea0d78475fe569f1910a7ed9f65e3fa7d97869a3acb835bc792cfd"
+  }
+ }
 }

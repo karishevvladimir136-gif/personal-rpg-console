@@ -372,5 +372,51 @@
   "class": 3
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"distractor\": \"yes\", \"reasons\": \"The correction revokes F3; D2 changes directly, D3/D8 change through the chain, D5's budget rises by exactly 3,600 dollars, and D4 stands because it cites F3 only for the unchanged jar size — the signature of a chain scenario. Option b matches all corrected values, a is fully stale, and c wrongly acts on the newer but superseded-by-choice Northgate quote F12.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction revokes F3; D2 changes directly, D3/D8 change through the chain, D5's budget rises by exactly 3,600 dollars, and D4 stands because it cites F3 only for the unchanged jar size — the signature of a chain scenario. Option b matches all corrected values, a is fully stale, and c wrongly acts on the newer but superseded-by-choice Northgate quote F12."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2653,
+    "completion_tokens": 452,
+    "reasoning_tokens": 315,
+    "cached_tokens": 256
+   },
+   "cost": 0.0140478,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2c47e875ebde84244a35319ce5af206a5f766eae90fdd3f6e7a14e5441154bcd"
+  },
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"distractor\":\"yes\",\"reasons\":\"The correction requires rescheduling, but the history does not establish 28 October and 6–8 November as the uniquely required replacement dates. More importantly, the revised $28,400 jar order needs Maya's written sign-off under R1; approval of the earlier $24,800 order does not unambiguously authorize sending a signed confirmation at the increased price. The dependency structure otherwise fits class 3, with D4 relying only on unchanged jar characteristics and F12 serving as the distractor.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "distractor": "yes",
+    "reasons": "The correction requires rescheduling, but the history does not establish 28 October and 6–8 November as the uniquely required replacement dates. More importantly, the revised $28,400 jar order needs Maya's written sign-off under R1; approval of the earlier $24,800 order does not unambiguously authorize sending a signed confirmation at the increased price. The dependency structure otherwise fits class 3, with D4 relying only on unchanged jar characteristics and F12 serving as the distractor."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2566,
+    "completion_tokens": 625,
+    "reasoning_tokens": 493,
+    "cached_tokens": 0
+   },
+   "cost": 0.0633175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2c47e875ebde84244a35319ce5af206a5f766eae90fdd3f6e7a14e5441154bcd"
+  }
+ }
 }

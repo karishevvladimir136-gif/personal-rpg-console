@@ -406,5 +406,51 @@
   "class": 2
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"C1 applies 'from today' (4 October), so it does not invalidate September refusals D2 and D4 or automatically void D6's supplier switch. With no decision altered and standing-order changes expressly excluded, option a remains the right act, not c. F17's bulk discount and F18's langoustine usage are untouched, relevant-looking distractors.\"}",
+   "parsed": {
+    "truth_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "C1 applies 'from today' (4 October), so it does not invalidate September refusals D2 and D4 or automatically void D6's supplier switch. With no decision altered and standing-order changes expressly excluded, option a remains the right act, not c. F17's bulk discount and F18's langoustine usage are untouched, relevant-looking distractors."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2853,
+    "completion_tokens": 193,
+    "reasoning_tokens": 86,
+    "cached_tokens": 0
+   },
+   "cost": 0.045305,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fd85e5bc74e49aaf78074416d8fddf4aa02b7d2fb1fbe2f0a7e521e6197eb83e"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"distractor\": \"yes\", \"reasons\": \"C1 amends rule R1, voiding D2 and D4 (arrivals within the new 10:15 cutoff) and, two hops away through D4, voiding D6's monkfish switch, while D3 (10:35) and D5 (shellfish exception) stand; option c correctly confirms the full standing order to Hargrove's per O2. F17 (Brannock bulk price) and F18 (9 kg langoustines used) are relevant-looking newer facts untouched by the change that wrongly support options b and d.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "distractor": "yes",
+    "reasons": "C1 amends rule R1, voiding D2 and D4 (arrivals within the new 10:15 cutoff) and, two hops away through D4, voiding D6's monkfish switch, while D3 (10:35) and D5 (shellfish exception) stand; option c correctly confirms the full standing order to Hargrove's per O2. F17 (Brannock bulk price) and F18 (9 kg langoustines used) are relevant-looking newer facts untouched by the change that wrongly support options b and d."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2954,
+    "completion_tokens": 310,
+    "reasoning_tokens": 141,
+    "cached_tokens": 256
+   },
+   "cost": 0.0128208,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fd85e5bc74e49aaf78074416d8fddf4aa02b7d2fb1fbe2f0a7e521e6197eb83e"
+  }
+ }
 }

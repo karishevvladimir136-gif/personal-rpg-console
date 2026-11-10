@@ -336,5 +336,51 @@
   "class": 4
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"truth_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"distractor\":\"yes\",\"reasons\":\"The spring-term top-up explicitly leaves November and December bookings unchanged, so no decisions are touched and O1 requires booking option a today. Every option is an immediate scheduling act. F12 supplies a relevant-looking 90-minute duration for another family that could wrongly be applied to Priya.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The spring-term top-up explicitly leaves November and December bookings unchanged, so no decisions are touched and O1 requires booking option a today. Every option is an immediate scheduling act. F12 supplies a relevant-looking 90-minute duration for another family that could wrongly be applied to Priya."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2260,
+    "completion_tokens": 124,
+    "reasoning_tokens": 35,
+    "cached_tokens": 0
+   },
+   "cost": 0.0344425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe40c93a944046dac65d8191f08dc429c868c08188397bf3a4457038e82f12e8"
+  },
+  "kimi": {
+   "text": "{\"truth_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"distractor\": \"yes\", \"reasons\": \"The change adds spring-2027 top-up sessions and explicitly leaves November/December bookings untouched, so nothing is stale and booking the 14 Nov 10:00 60-minute makeup (option a) is correct. F12 (the Okonkwo twins' new 90-minute sessions) is a newer relevant-looking item that could wrongly be applied to Priya, matching distractor option b. All options are acts, so the task forces action.\"}",
+   "parsed": {
+    "truth_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "distractor": "yes",
+    "reasons": "The change adds spring-2027 top-up sessions and explicitly leaves November/December bookings untouched, so nothing is stale and booking the 14 Nov 10:00 60-minute makeup (option a) is correct. F12 (the Okonkwo twins' new 90-minute sessions) is a newer relevant-looking item that could wrongly be applied to Priya, matching distractor option b. All options are acts, so the task forces action."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 2372,
+    "completion_tokens": 246,
+    "reasoning_tokens": 104,
+    "cached_tokens": 256
+   },
+   "cost": 0.0101148,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "fe40c93a944046dac65d8191f08dc429c868c08188397bf3a4457038e82f12e8"
+  }
+ }
 }
