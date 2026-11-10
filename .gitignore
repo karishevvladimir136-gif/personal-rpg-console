@@ -17,3 +17,5 @@ supabase/.branches/
 # Persona memory stores and exports kept by mistake inside the repository (the default lives in the home folder)
 /persona-memory/
 /persona-memory-export/
+docs/runs/persona-tone-split-4-*.partial.json
+docs/runs/persona-tone-split-4-*.partial.json.tmp
