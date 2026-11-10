@@ -1,0 +1,2010 @@
+{
+ "stage": "persona-tone-split-5",
+ "rule": "A target candidate enters only if all three raters say validity = yes and askedness = no and their B-levels span at most one step; its level is the median of the three (B1; B2 or B3 = the middle; B4; a median of B0 enters no level). The pool takes 30 middle, 15 B1 and 15 B4 candidates, the first by hash order within each level. A clean candidate enters only if all three raters say B0; up to ten, the first by hash order. Every rating must be there and readable; a missing one keeps the candidate out. A level that cannot be filled is reported short; the rule is never relaxed to fill a quota.",
+ "quota": {
+  "B1": 15,
+  "B2–B3": 30,
+  "B4": 15,
+  "clean": 10
+ },
+ "levels": {
+  "B1": {
+   "admissible": 33,
+   "quota": 15,
+   "ids": [
+    "SCH17",
+    "TRV17",
+    "CAR05",
+    "SCH13",
+    "TRV13",
+    "MON16",
+    "MON15",
+    "TRV15",
+    "CAR17",
+    "CAR14",
+    "TRV18",
+    "CAR16",
+    "TRV16",
+    "MON17",
+    "CAR13"
+   ],
+   "short": 0,
+   "spare": [
+    "LET15",
+    "LET16",
+    "MON18",
+    "LET17",
+    "SCH16",
+    "MON05",
+    "LET13",
+    "SCH14",
+    "TRV14",
+    "TRV04",
+    "SCH15",
+    "CAR15",
+    "SCH18",
+    "LET14",
+    "CAR18",
+    "MON13",
+    "LET18",
+    "MON14"
+   ]
+  },
+  "B2–B3": {
+   "admissible": 49,
+   "quota": 30,
+   "ids": [
+    "TRV02",
+    "MON03",
+    "SCH03",
+    "MON07",
+    "CAR04",
+    "CAR06",
+    "LET05",
+    "MON10",
+    "LET12",
+    "SCH02",
+    "SCH10",
+    "TRV01",
+    "MON01",
+    "MON11",
+    "MON09",
+    "LET03",
+    "CAR12",
+    "MON08",
+    "SCH08",
+    "TRV10",
+    "TRV06",
+    "CAR02",
+    "MON06",
+    "TRV11",
+    "CAR01",
+    "SCH04",
+    "LET04",
+    "CAR03",
+    "SCH05",
+    "SCH07"
+   ],
+   "short": 0,
+   "spare": [
+    "CAR11",
+    "MON04",
+    "LET06",
+    "SCH11",
+    "LET07",
+    "LET09",
+    "TRV05",
+    "SCH12",
+    "MON02",
+    "MON12",
+    "LET10",
+    "TRV03",
+    "SCH01",
+    "LET02",
+    "LET01",
+    "SCH09",
+    "TRV09",
+    "TRV08",
+    "TRV07"
+   ]
+  },
+  "B4": {
+   "admissible": 7,
+   "quota": 15,
+   "ids": [
+    "CAR10",
+    "LET19",
+    "LET20",
+    "LET08",
+    "CAR21",
+    "SCH22",
+    "TRV20"
+   ],
+   "short": 8,
+   "spare": []
+  },
+  "clean": {
+   "admissible": 24,
+   "quota": 10,
+   "ids": [
+    "CLN09",
+    "CLN07",
+    "CLN11",
+    "CLN14",
+    "CLN04",
+    "CLN22",
+    "CLN19",
+    "CLN01",
+    "CLN05",
+    "CLN17"
+   ],
+   "short": 0,
+   "spare": [
+    "CLN06",
+    "CLN25",
+    "CLN10",
+    "CLN23",
+    "CLN03",
+    "CLN24",
+    "CLN21",
+    "CLN15",
+    "CLN18",
+    "CLN12",
+    "CLN02",
+    "CLN13",
+    "CLN16",
+    "CLN08"
+   ]
+  }
+ },
+ "admission": [
+  {
+   "id": "MON01",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "3e5c820426b5c5d40cc1e44150ae12d25f2cd85f3548b503145da6c55ff10e77",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "MON02",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d4b6152a23849f5c9f15dbbeae2d87a570e3f79cfaaa488337487c044699ea91",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON03",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "037bd2c91fac06faa0fcc3bccea2e29bf63cf00bef74c235152d530bd4896ae9",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "MON04",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "9a379e2f3b56f35e95799278082d2f3c70f5ade02dfb1ead5d019a706d24cf8a",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON05",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "783b276bd41d6d31bd587f8ae683138d055622d29f81889dc5ad8f73ffdc5b29",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON06",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "69dd5f3ec5ba7991f915a25cc5185f3dab5445928e14b6c308f0f58d39366e0f",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON07",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "10dfb2b3638d2be111d3d899a28fc333224f5d3d091f6088c2da1a2818f4f9aa",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "MON08",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "4be360f99c37fd1d37c6c4a6ec7db1c9d2670ce16f8204873458ddadf68b51d4",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON09",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "3f59b2aa51af841dde53cb0fa80435b25e84e56bbf6ddba337ccab998997f0f8",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "MON10",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "245e3bcac9e75e285173e2edafcc7ab0efe9e92fd6cbd9cbbe44ea5b72085d90",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON11",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "3e7f36dcc6dc8951b16858d94408d8cc75b463178bd3673b10ec4544c88c28e3",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "MON12",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d61f1de80e907247543d1ad9fad62ef6a882e8d54944811c758b9c6602bf84af",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "MON13",
+   "kind": "target",
+   "aim": "low",
+   "hash": "e19e840c1eb74b603e74e694b5f627964aad8d5a77d25afaa1191e5917a0be87",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON14",
+   "kind": "target",
+   "aim": "low",
+   "hash": "ff61cafe10cd6a64c19502c423c0dd403de7784f50bdb635bb6501511ef4cd92",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON15",
+   "kind": "target",
+   "aim": "low",
+   "hash": "190748a406ea817ed9daae310550a0f6f1245bbef3974292f0af239769942bd1",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON16",
+   "kind": "target",
+   "aim": "low",
+   "hash": "163f22c0be2343b03e0ba5c206815e67e67d8b076300c9f738bf3a2a3141f905",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON17",
+   "kind": "target",
+   "aim": "low",
+   "hash": "5e74df512209817179410b47e933654895bc79d66e8cc6ab058a23ec5b137cd1",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON18",
+   "kind": "target",
+   "aim": "low",
+   "hash": "7323c0e256138710391af869bc892876ad1eb8ce9d7006b2f9b09a2bff224006",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "MON19",
+   "kind": "target",
+   "aim": "high",
+   "hash": "94ec1c95553982df549dd42c4f842a397d90a69a9b4e92b710a7dc78d33c8c7d",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "MON20",
+   "kind": "target",
+   "aim": "high",
+   "hash": "4f7d427548405e654c377fa1418e402ea8b59b4979825a7a292f9a2b77321197",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "MON21",
+   "kind": "target",
+   "aim": "high",
+   "hash": "4541536be897e0e001879a2aa51d02fb785e8b8ada07f2d41bdc57f562eea2e8",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "MON22",
+   "kind": "target",
+   "aim": "high",
+   "hash": "afb0005f1d2a35df67850d7f12feefbc5d3d36f39670b7711163b03efd184560",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "MON23",
+   "kind": "target",
+   "aim": "high",
+   "hash": "7039204edd66cd0c2cc2933a18d46f012468b597b9977b74ebf904ed83179b4e",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "MON24",
+   "kind": "target",
+   "aim": "high",
+   "hash": "240815e72b0964648ae8f0df36cf66e39752132d681384e5de89344bddd01dfa",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH01",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d9f3ef06ae76a8d7a098a63c775ff8305ff5d26e56a4ff4affdbd3f80326220c",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "SCH02",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "300d6b393d0865c4196f71d6d2b4af2ec37429dcaa1eb92ac2e7035ada0df847",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "SCH03",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "10625a3f63fd36f7a5678102fe9fe9a3773b3078d680241e78eb2cddd11949ea",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH04",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "7cdb518234b5526b3f52526a535f65472ab6e4536405c54c3ef7679ceae387a2",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "SCH05",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "8cd4a0641704587bff44a3ec6f24683efa966a8edfc8b7ffd21014555c080b3f",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "SCH06",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d2ee36c52ba318411200d6aa53252b060ac7266754504bc423565c8de064fcd3",
+   "admissible": false,
+   "level": null,
+   "median": 2,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH07",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "8ce7cec17296cd9281333392c003c366de4c07d3ae752e5001c7bc5767db6e59",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH08",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "5139928e5416ed608e0d8dde061674706755295e66062c1a77eb93c24edc2663",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH09",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "eeef5fea98c21b19082eb45e25fb681444eb198e519e3480d9a1b6d703042c6b",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH10",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "3a67be57ca632f9876985ccec91fc30426782da5ba6eb9637281928e4146500d",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH11",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "9ea44a6d88b5bfa3925a5ab9ea4f78c43988537c4b510c6149bfa051624853c4",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH12",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d10f99138a52eee48e182171ad58d3ab15ad92138701f99318402aff63276b88",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "SCH13",
+   "kind": "target",
+   "aim": "low",
+   "hash": "0f63f3f3d2cd46e8b1095f5ebc086dc538013121b84f5d903a3a3c7c82cc3731",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH14",
+   "kind": "target",
+   "aim": "low",
+   "hash": "8ab98c42f161b72a341e30065507dc314e0c24f7998c1075f187f2846de9f307",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH15",
+   "kind": "target",
+   "aim": "low",
+   "hash": "b7902e75b58a79169b99cfe928552df8da6062f61138ec916353bbeec190227c",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH16",
+   "kind": "target",
+   "aim": "low",
+   "hash": "7560dc900869880f4d359843963984cb250746ac6fd7e9b4043b0a105cfd2973",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH17",
+   "kind": "target",
+   "aim": "low",
+   "hash": "00f979c8992b20bb5f77f49d5ba08ab6326d512d95c267ba5f82297c4d0b9ffa",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH18",
+   "kind": "target",
+   "aim": "low",
+   "hash": "cac9b3f19dd26926c70481a840db2cf39a8baa70b97f3527a5a315393a4c61fa",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "SCH19",
+   "kind": "target",
+   "aim": "high",
+   "hash": "d1c08cc59830c8e49fdb970bff93f12cadbd8b6781ed542d7fac15c2e2e1b172",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH20",
+   "kind": "target",
+   "aim": "high",
+   "hash": "f043fc8f9fda01e74cb1a0565c25657e3d0b86200239aa6107f67f818e15bb09",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH21",
+   "kind": "target",
+   "aim": "high",
+   "hash": "29f260194cee72b6bf3d0daef115d66720130fd5f27c05e8067306d040b326bf",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH22",
+   "kind": "target",
+   "aim": "high",
+   "hash": "c91e869f5dfd853abfd643720e4ea5ccf139704ed0bf66cd8002a30cd4837a73",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "SCH23",
+   "kind": "target",
+   "aim": "high",
+   "hash": "e7cba77f6ab8250be80e0ab1d64186ed0768e110c850811f661a2ada76685df3",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "SCH24",
+   "kind": "target",
+   "aim": "high",
+   "hash": "3ec9733a5ecc8009eaba5d8bbf34d44ce29b89c2d7ac86c4b163c1c457c12f35",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "TRV01",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "3c1d851a94eec82ac8ad36304ee1857776d50aed9c70810c47f01603dfa90221",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV02",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "02801b91fe33f1ea97b3402441a96b7cfd458a349e0ebcfb1fd42edd025beb25",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "TRV03",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d84bf4a42f7e9e0020ee0736b05b97cd444c0f37f5dc68a9936b0f40487910ce",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "TRV04",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "aa947ccb907784e335107172f75afcf4e3c23c4add47fbb0a9d0ebda2c857049",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV05",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "c538b333b816cf0ec6591a9b63193585ce402331414e7a4253ae170f7b00191f",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV06",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "585eb34f06ac124f073bcbc05079d0b1843a8f305cb2b8cee1492d3584719a61",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV07",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "f4d10424d425b2fc957a5f602992994fea41da897a1fa949a1ad92829c1489a4",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV08",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "f261226ccffb6d3617cdeab946ff9861ba57300fb6dd5d6dcc054f3e56791ede",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV09",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "f1a50fe7ededc9bde84762168b38ba0d05d95ae1a988800f17c08a8b67bddf10",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV10",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "54ce5a599f509b574e1fde582d99aea6082b2f9d3cffff7c874a91c492fc126a",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "TRV11",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "767e82b99a2d028dbeba03bd0e4486f07a0af6ca61ca5020d0b553a838d53f9d",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "TRV12",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "f9e800556d09ae01e4deec5d15ef94f2f849599662750f4ffe02fa7a5f75a075",
+   "admissible": false,
+   "level": null,
+   "median": 3,
+   "why": "B-levels span 2 steps (B3/B4/B2)"
+  },
+  {
+   "id": "TRV13",
+   "kind": "target",
+   "aim": "low",
+   "hash": "15ef2af6b043e6c65303f35d1e16b4e85df24cca8070b97776be706e8ff8a776",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV14",
+   "kind": "target",
+   "aim": "low",
+   "hash": "a081cc709e1c82f89960144dc05c252b153887669c762ec7902f7d2cb40ce9a4",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV15",
+   "kind": "target",
+   "aim": "low",
+   "hash": "1f57121499a5bcbe53e3c71330e93185981301acc0d0a64aaec20b2945ba5bc0",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV16",
+   "kind": "target",
+   "aim": "low",
+   "hash": "5a2bccf6dee0460ea22e84e2e45973f539613d56201ef14ab788c4fed164cd6d",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV17",
+   "kind": "target",
+   "aim": "low",
+   "hash": "067583dfd2667238b2aac43bdcd354cd84e9efc1e091596c4a16e32d8a13ee42",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV18",
+   "kind": "target",
+   "aim": "low",
+   "hash": "4412b683f1a0820ffc053ff833670c5654b50c6a7952c237fdfcaa867e6a6295",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "TRV19",
+   "kind": "target",
+   "aim": "high",
+   "hash": "2b39a092afcbe63038b488563e32dc14c351e8913b18670994b9fec0353dce0b",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "TRV20",
+   "kind": "target",
+   "aim": "high",
+   "hash": "e76cc9f06063f4e5f565bda271d3e2319b6bff3f368f0d63323371efa57df556",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "TRV21",
+   "kind": "target",
+   "aim": "high",
+   "hash": "066b2e96d44bc2d7dd9f95261a33b9904206916602ba6767304b3c9de9274855",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "TRV22",
+   "kind": "target",
+   "aim": "high",
+   "hash": "d4b001bd22182b61b60b1b41643e9b72f2ba982ad22b8d8e5c44cc465f128ec9",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "TRV23",
+   "kind": "target",
+   "aim": "high",
+   "hash": "ae77db0cf587cbf3f4cf3ed5c4d91b78bace5c86bb4a339365c0f2df68883fce",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "TRV24",
+   "kind": "target",
+   "aim": "high",
+   "hash": "a215e696d10c7864b4ab228b0b66ad1dda7e5a0ea24b57f92a75ddcf571faa19",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "LET01",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "ed7224f5faf6969eea2d83996b62c227396ddd2bd35ed3022a104da128a35367",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET02",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "e6c4a0c01a89f3b522dac4e7ad344692ee673abc2efd801cb885169107ce4c06",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET03",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "42f7f4342609d2e54a1539bb0b2411091a95e84bfb9936db741ec112ab83b9ec",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET04",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "7e7d5b7f426658692548d9b7e074381c3e3f7589d71a1c3824a2e0dc9a78e6e2",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET05",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "1e9a2d02ff1573f5162a8d13b2c17f4f07b194028755c24c00f3e5b61c65bc1d",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET06",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "9a87d16973cddd6e0f7d6605ec29b6a2bd176fb3ac387a0425f0f76953c1c641",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "LET07",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "b72a8ca9f716ed96b3b0484a3a5fe7e69807ac0f470c335abf237e1be924d95d",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "LET08",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "a179ab8f3cac5ca838b94b3162210c16fb33d23e8314431dbd202df58e4f45e2",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "LET09",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "b8bf0d3bf1ca5ec89ae59fd911db5fc3dd8b593c6e1414f3e5f4fdf6e01866a5",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "LET10",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d7911fc5a1797ff1013504eb642ec148f6f1bbe9a6132fa19eca5477e02d1b39",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "LET11",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "1b4f09085049a401d752c31828ef1642b7d04074b7201e40fca6e8e940bc2456",
+   "admissible": false,
+   "level": null,
+   "median": 3,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "LET12",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "290007746d61ec4f005e29b2d65387caf8dd046cb2b1dff4f9c7cfc7fe4b1918",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "LET13",
+   "kind": "target",
+   "aim": "low",
+   "hash": "88ff9bb3229bacaf4f2135dcedd1ef92181612443a3865fed62ffe12c6b10904",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET14",
+   "kind": "target",
+   "aim": "low",
+   "hash": "cd558608ac6f9002879b7515377a7bf641562b7f6bbf6c0b71dd5188f02eb91a",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET15",
+   "kind": "target",
+   "aim": "low",
+   "hash": "6e33acf84ffcc8ecb5f02c061f10f0e98aa5f69db43da7e3fe874cee0cde6ed9",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET16",
+   "kind": "target",
+   "aim": "low",
+   "hash": "721a05c14f4b607e0e52b3fa3c0114035869a90f6e457d77c5d04ab591e40ab6",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET17",
+   "kind": "target",
+   "aim": "low",
+   "hash": "754b4ec3fd222f793450723b8776404f19d029f74677f4e12bddee32cc198787",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET18",
+   "kind": "target",
+   "aim": "low",
+   "hash": "f0e848e8c35ffbb350b6de9aee24ca5c37e570ce31e871edcbd8d3e60defebcb",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "LET19",
+   "kind": "target",
+   "aim": "high",
+   "hash": "32e3d83921d1493e4d9ca9f2a057730296f757881f222cd6e6dc11ec3f2e5e63",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "LET20",
+   "kind": "target",
+   "aim": "high",
+   "hash": "5e47ca7665ad5e0abcd29fd457c93cab87c04bc157777db846f3173d151c12d1",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "LET21",
+   "kind": "target",
+   "aim": "high",
+   "hash": "de62562fedf27c56a92bed261f3e7f7c514ecf1025187a75345cff1d5ac7f20d",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "LET22",
+   "kind": "target",
+   "aim": "high",
+   "hash": "9675bf0bf52e13ce5ba540139afca7a7f5df564b920943d0588eed934596b2b6",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "LET23",
+   "kind": "target",
+   "aim": "high",
+   "hash": "eeeb7b96258f21c0e4aab1ba21411c7d8d6a8268122e5fcc24f1d9335a4d3dd6",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "LET24",
+   "kind": "target",
+   "aim": "high",
+   "hash": "4739e67cf3e640dcd33dcb950a056bb8e00398691970de055209dde8e1f4766e",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR01",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "79eb821f7cbfb9d933501c4c8a9f4b270365d7959d36d1c2ab636cf364cf0082",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "CAR02",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "619b833b5bc60e7260fe38b65a7a32f681985586c17208141ec7e7d2c3084be0",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "CAR03",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "834478f5a89d2d378d082460bf650e49d1b47fbcfc70b859cb30b7e330f45068",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "CAR04",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "12f1b507e9c7db7b3217ec06fb72b367e19c99f712242ca4bd681a549f4869e9",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "CAR05",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "0929c358b598bfddc36fcc071828c301099a5349e11337e32c51f3d55dd529a8",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR06",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "1b450454b16293f19ea7144a648f1816a5bec393f58347897814a441d91ad4ee",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "CAR07",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "d92617c1736f56c2c646069521fdebb7e909b5beb9c3420f3c5c450d26f4c66f",
+   "admissible": false,
+   "level": null,
+   "median": 3,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR08",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "e66ba5fb641a0a8815a7968e29f9fa4252b56e1897429735208084ba29197abd",
+   "admissible": false,
+   "level": null,
+   "median": 3,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR09",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "0dfd87cc97d86b044adc9eda4776f05da2844fc8704347d892e6462f1082ad94",
+   "admissible": false,
+   "level": null,
+   "median": 3,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR10",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "0aa2a0d6d59f791904a61e18e25252c2ba89ac53f7d0214bda29db9dc7097f20",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "CAR11",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "930d938ca22b16cf4f21cc36c2c19a97a6b9fe37dd222a2c9a247ce141aa1bfb",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 2,
+   "why": null
+  },
+  {
+   "id": "CAR12",
+   "kind": "target",
+   "aim": "middle",
+   "hash": "490bc5387917fabfb5e836774284db9ba6d93f55c738ce655245b004a1256fd6",
+   "admissible": true,
+   "level": "B2–B3",
+   "median": 3,
+   "why": null
+  },
+  {
+   "id": "CAR13",
+   "kind": "target",
+   "aim": "low",
+   "hash": "6555d9b8ba4c6e74128587b86dd81ab2e79ebca9afde47f62d8f7f43581a744e",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR14",
+   "kind": "target",
+   "aim": "low",
+   "hash": "33a443a0e71b509714f56458bdd8efe74a9f7521a2a89188c8d72d68bdbbb1b0",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR15",
+   "kind": "target",
+   "aim": "low",
+   "hash": "c584536041a28ac7ea05d51750314bfd0d00de49b0d841b509e289ec99193072",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR16",
+   "kind": "target",
+   "aim": "low",
+   "hash": "52212153753bfd4b0ccc4416e05a5eff7d91d5e21f7e12f3013ce8d87f0c8c04",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR17",
+   "kind": "target",
+   "aim": "low",
+   "hash": "293cbc113415e66a3fc68c36ca319d837fdc3dd290ab8cb72a4ac16ec1f4f4b6",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR18",
+   "kind": "target",
+   "aim": "low",
+   "hash": "d7be218f706ffe19d6641af80c849d1886fb2d05c0eebaf4d6a53365f9d27ae7",
+   "admissible": true,
+   "level": "B1",
+   "median": 1,
+   "why": null
+  },
+  {
+   "id": "CAR19",
+   "kind": "target",
+   "aim": "high",
+   "hash": "b19d7609da6cbe1a5a6a87144973f3ae28373f478580fb31077584e64eb79fc6",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR20",
+   "kind": "target",
+   "aim": "high",
+   "hash": "ff359650ef192087c61a1c095c3c0e67ad57c918b8fa64483045fa0a8487f362",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR21",
+   "kind": "target",
+   "aim": "high",
+   "hash": "b82e1f11aa94f71e224087a60305f90e249f9356be046794771564b4e534fb01",
+   "admissible": true,
+   "level": "B4",
+   "median": 4,
+   "why": null
+  },
+  {
+   "id": "CAR22",
+   "kind": "target",
+   "aim": "high",
+   "hash": "5503aff7846b1d4b1a82a6f5d3fc2a976c98b52db3066f9079647d47c96b5c97",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR23",
+   "kind": "target",
+   "aim": "high",
+   "hash": "fe903a9b5ea655689bfacfcde0e4b08d62834f41244ba9c760220da0432b2a8d",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CAR24",
+   "kind": "target",
+   "aim": "high",
+   "hash": "9656520c9e997d97f9bf5be8d874b7ad618c4d4ead9f5cbabd859d388b257de4",
+   "admissible": false,
+   "level": null,
+   "median": 4,
+   "why": "askedness: not all no"
+  },
+  {
+   "id": "CLN01",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "477938086179fe6cba901f0d0b6f7b1b684ba71742445d0854be91918fd24395",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN02",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "e95bae980a700aca4c724b65fbad0aadb23b12143c172be5231ad373439a4b6f",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN03",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "7e6538a848c37781da893b41cd1ae7ac4f16e9b589e00aff51473b61e783da67",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN04",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "2a4a7b320e7cecea00267b49c50ceab2dd5521845fd1d4d1b6072b70b7d56092",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN05",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "4e358c2c4b7d3493af16e5f3d9776e2c1abc9801f01b306b14dc83386e7cf2e7",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN06",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "5d983b6aa168486e952f92ff859cde7e2b0e40e63aa715664ab29387d7991afb",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN07",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "0b578296f3b724eb2b5577a1ada4958b14c525914ede9e63e1167bb1fe3d1686",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN08",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "f2b428d3e9b1b781bbd49c8ce218fc27e9a889c6c974a005c8d15b712b5476f6",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN09",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "04f6a7be7d4394b91e821aade17b67b2e2f7a9fa4d3502d58998bfc20e220412",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN10",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "644153fa5158ea39096fa6b88da7beb548c4d51c3671715b0e20dc7a67cff387",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN11",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "0e8cbf3719245056b3b4311bab3adb5ee8ddf5c64498e3d31e2c46c11c7c3fe4",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN12",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "e2d08ef42815ad1c7b7ac104645db85856039f98baf4ca68d484ce053fec598d",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN13",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "eaa2774c9fbdf7e7db36eac61775a84d7d193c0b7278aa6d43614d5a553d9efd",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN14",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "26933d580a73b624614b44aa8a7e1c832451afc1294e927e59b032f9b827cffa",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN15",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "bcf01b154627ebb31dd315f97e4535f3e0430f0a8d0f4870b1338b98e42dc49a",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN16",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "ebf58016a9da7097c212351d48d431e63d1a8518a490fa00470dd82c75aec9b0",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN17",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "580c15266ce1d7cddc8dd40cc9dda67eb330eafdaed2e2b28e0b0fb6bc0b29e4",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN18",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "bd4ede2df97283007cd9fea8a54e61535a86b7187f0b4eea4ecbbd8026656790",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN19",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "38a2f396480982edd2258877d7da3b29a072f5d1c0fc5401dcaa411d118dee31",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN20",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "b811b30c89360b541066bd6ca54446a259f7105c6e0e49556709d5531fc706da",
+   "admissible": false,
+   "level": null,
+   "median": 1,
+   "why": "B-levels B1/B2/B0"
+  },
+  {
+   "id": "CLN21",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "ac4f8fca7f8917050f0ceb0b5a5ae8276679ad396f62870a06bc280e5dbb957d",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN22",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "2ee44cf58a48c1e1bdf27c17fa5750b280a2cc4c4f2dfa8cbf26e0fcabef5771",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN23",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "6aabf7a091a143be63869d5124e58a2e99257bc8d7a6c2a657f56fb3cd983e2d",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN24",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "a115affd3a85c4cf91950e7ce3b322e9d5c64a6992f3f8778884efe2bba21a2e",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  },
+  {
+   "id": "CLN25",
+   "kind": "clean",
+   "aim": "clean",
+   "hash": "5ebc0b5e11eba2e531cfc9e7e74709b6fbe9526f423955260b599c15075f3ede",
+   "admissible": true,
+   "level": "clean",
+   "median": 0,
+   "why": null
+  }
+ ],
+ "agreement": {
+  "targets": {
+   "rated": 120,
+   "of": 120,
+   "validity": {
+    "kappa": null,
+    "items": 120,
+    "po": 1,
+    "pe": 1
+   },
+   "askedness": {
+    "kappa": 0.17424879577949182,
+    "items": 120,
+    "po": 0.8333333333333329,
+    "pe": 0.7981635802469136
+   },
+   "bNominal": {
+    "kappa": 0.6952885988170506,
+    "items": 120,
+    "po": 0.7694444444444443,
+    "pe": 0.2433641975308642
+   },
+   "bWithinOne": {
+    "kappa": 0.9931436407267739,
+    "items": 120,
+    "po": 0.9972222222222221,
+    "pe": 0.5948611111111112
+   },
+   "bLinear": {
+    "kappa": 0.8250445488417284,
+    "items": 120,
+    "po": 0.9416666666666661,
+    "pe": 0.6665817901234569
+   },
+   "bAlpha": {
+    "alpha": 0.9232580255639445,
+    "items": 120
+   },
+   "materiality": {
+    "kappa": 0.6409478975504663,
+    "items": 120,
+    "po": 0.7916666666666664,
+    "pe": 0.4197685185185185
+   },
+   "ci": {
+    "validity": {
+     "lo": null,
+     "hi": null
+    },
+    "askedness": {
+     "lo": 0.07407407407407149,
+     "hi": 0.2750287686996524
+    },
+    "bNominal": {
+     "lo": 0.6164036239299867,
+     "hi": 0.7641853190122555
+    },
+    "bWithinOne": {
+     "lo": 0.9780352980753029,
+     "hi": 1
+    },
+    "bLinear": {
+     "lo": 0.7731624047595844,
+     "hi": 0.8656807356919706
+    },
+    "bAlpha": {
+     "lo": 0.8889359128488149,
+     "hi": 0.9445159935145793
+    }
+   }
+  },
+  "clean": {
+   "rated": 25,
+   "of": 25,
+   "nominal": {
+    "kappa": 0.23469387755101673,
+    "items": 25,
+    "po": 0.96,
+    "pe": 0.9477333333333335
+   },
+   "withinOne": {
+    "kappa": 0.48630136986300937,
+    "items": 25,
+    "po": 0.9866666666666667,
+    "pe": 0.9740444444444447
+   },
+   "alpha": {
+    "alpha": 0.49297297297297293,
+    "items": 25
+   }
+  },
+  "pairs": [
+   {
+    "a": "opus",
+    "b": "deepseek",
+    "exact": 90,
+    "withinOne": 120,
+    "n": 120
+   },
+   {
+    "a": "opus",
+    "b": "glm",
+    "exact": 100,
+    "withinOne": 120,
+    "n": 120
+   },
+   {
+    "a": "deepseek",
+    "b": "glm",
+    "exact": 87,
+    "withinOne": 119,
+    "n": 120
+   }
+  ],
+  "means": {
+   "opus": 2.55,
+   "deepseek": 2.4833333333333334,
+   "glm": 2.4833333333333334
+  }
+ },
+ "disagreements": [
+  {
+   "id": "MON03",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "MON05",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "MON06",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "MON16",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "MON19",
+   "what": "askedness"
+  },
+  {
+   "id": "MON20",
+   "what": "askedness"
+  },
+  {
+   "id": "MON21",
+   "what": "askedness"
+  },
+  {
+   "id": "MON22",
+   "what": "askedness"
+  },
+  {
+   "id": "MON23",
+   "what": "askedness"
+  },
+  {
+   "id": "MON24",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH01",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH02",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH03",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH06",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH08",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH11",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH16",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "SCH19",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH20",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH21",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH23",
+   "what": "askedness"
+  },
+  {
+   "id": "SCH24",
+   "what": "askedness"
+  },
+  {
+   "id": "TRV01",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV02",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV04",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV06",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV07",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV09",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV10",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV12",
+   "what": "B-level (> 1 step)"
+  },
+  {
+   "id": "TRV13",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV14",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV17",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "TRV19",
+   "what": "askedness, B-level (1 step)"
+  },
+  {
+   "id": "TRV21",
+   "what": "askedness"
+  },
+  {
+   "id": "TRV22",
+   "what": "askedness"
+  },
+  {
+   "id": "TRV23",
+   "what": "askedness"
+  },
+  {
+   "id": "TRV24",
+   "what": "askedness"
+  },
+  {
+   "id": "LET01",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET04",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET05",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET08",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET10",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET11",
+   "what": "askedness, B-level (1 step)"
+  },
+  {
+   "id": "LET12",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET13",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET15",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET19",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET20",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "LET21",
+   "what": "askedness"
+  },
+  {
+   "id": "LET22",
+   "what": "askedness"
+  },
+  {
+   "id": "LET23",
+   "what": "askedness"
+  },
+  {
+   "id": "LET24",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR01",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR02",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR05",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR07",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR08",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR09",
+   "what": "askedness, B-level (1 step)"
+  },
+  {
+   "id": "CAR10",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR11",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR15",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR17",
+   "what": "B-level (1 step)"
+  },
+  {
+   "id": "CAR19",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR20",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR22",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR23",
+   "what": "askedness"
+  },
+  {
+   "id": "CAR24",
+   "what": "askedness"
+  },
+  {
+   "id": "CLN20",
+   "what": "B-level (> 1 step)"
+  }
+ ]
+}

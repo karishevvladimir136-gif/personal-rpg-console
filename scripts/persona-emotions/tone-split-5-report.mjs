@@ -115,8 +115,10 @@ export function readings(byPart, probes, { ledger = null, check = null, ts3 = TS
 
   // T-RATERS.
   const ag = T5.agreement(probes.candidates, probes.ratingsOf), t = ag.targets;
-  const traters = { ag, validity: t.validity.kappa, askedness: t.askedness.kappa, bWithinOne: t.bWithinOne.kappa, ok: { validity: (t.validity.kappa ?? -1) >= 0.6, askedness: (t.askedness.kappa ?? -1) >= 0.6, b: (t.bWithinOne.kappa ?? -1) >= 0.5 } };
-  traters.verdict = traters.ok.validity && traters.ok.askedness && traters.ok.b;
+  const term = (k, min) => (k === null || k === undefined ? null : k >= min);
+  const traters = { ag, validity: t.validity.kappa, askedness: t.askedness.kappa, bWithinOne: t.bWithinOne.kappa, ok: { validity: term(t.validity.kappa, 0.6), askedness: term(t.askedness.kappa, 0.6), b: term(t.bWithinOne.kappa, 0.5) } };
+  const terms = Object.values(traters.ok);
+  traters.verdict = terms.some((x) => x === false) ? false : terms.some((x) => x === null) ? null : true;
 
   // T-FALSE.
   const cleanRan = ran("clean");
@@ -168,6 +170,7 @@ const RATE = (x) => (x && x.n ? `${x.k}/${x.n} = ${P(x.rate)} ${WCI(x.ci)}` : "�
 const SHORT = (x) => (x && x.n ? `${P(x.rate)} ${WCI(x.ci)}` : "–");
 const G = (g) => (g ? `${PTS(g.point)} ${BCI(g.boot)}` : "–");
 const K2 = (x) => (x === null || x === undefined || Number.isNaN(x) ? "–" : x.toFixed(2));
+const TICK = (ok) => (ok === true ? " ✓" : ok === false ? " ✗" : " (neither)");
 const VERDICT = (v) => (v === true ? "**held**" : v === false ? "**lost**" : "**not read**");
 const quote = (s, max = 360) => { const t = String(s ?? "").replace(/\s+/g, " ").trim(); return t.length > max ? `${t.slice(0, max)}…` : t; };
 const fence = (text) => { const t = String(text ?? ""); const ticks = "`".repeat(Math.max(4, ...[...t.matchAll(/`+/g)].map((m) => m[0].length + 1))); return `${ticks}text\n${t}\n${ticks}`; };
@@ -201,7 +204,7 @@ export function reportMarkdown({ records, probes, ledger, check, model = null, i
     ["H-INV", `I(B2–B3) ${hpart(rd.hinv.parts.middle)}; I(mid) − I(B1) ${hpart(rd.hinv.parts.minusB1)}; I(mid) − I(B4) ${hpart(rd.hinv.parts.minusB4)} (the eight)`, rd.hinv.verdict],
     ["T-WORD", Object.entries(rd.tword.levels).map(([l, x]) => `${l}: old − new ${G(x)}${x.ok ? " ✓" : " ✗"} (nine ${PTS(x.nine.point)})`).join("; "), rd.tword.verdict],
     ["T-LADDER", `ρ against tone split 3 (8 families) ${K2(rd.tladder.rho3)} {${K2(rd.tladder.boot3?.lo)}…${K2(rd.tladder.boot3?.hi)}}; against tone split 4 (${rd.tladder.ts4Fams.length} families) ${K2(rd.tladder.rho4)} {${K2(rd.tladder.boot4?.lo)}…${K2(rd.tladder.boot4?.hi)}}`, rd.tladder.verdict],
-    ["T-RATERS", `validity κ ${K2(rd.traters.validity)}${rd.traters.ok.validity ? " ✓" : " ✗"}; askedness κ ${K2(rd.traters.askedness)}${rd.traters.ok.askedness ? " ✓" : " ✗"}; B-level within one step ${K2(rd.traters.bWithinOne)}${rd.traters.ok.b ? " ✓" : " ✗"} (nominal ${K2(rd.traters.ag.targets.bNominal.kappa)}, α ordinal ${K2(rd.traters.ag.targets.bAlpha.alpha)})`, rd.traters.verdict],
+    ["T-RATERS", `validity κ ${rd.traters.validity === null ? `undefined (raw agreement ${P(rd.traters.ag.targets.validity.po)} %: no variance)` : K2(rd.traters.validity)}${TICK(rd.traters.ok.validity)}; askedness κ ${K2(rd.traters.askedness)}${TICK(rd.traters.ok.askedness)}; B-level within one step ${K2(rd.traters.bWithinOne)}${TICK(rd.traters.ok.b)} (nominal ${K2(rd.traters.ag.targets.bNominal.kappa)}, α ordinal ${K2(rd.traters.ag.targets.bAlpha.alpha)})`, rd.traters.verdict],
     ["T-FALSE", rd.tfalse.gap ? `unnecessary warnings on the clean probes, invited − neutral ${G(rd.tfalse.gap)} (nine ${PTS(rd.tfalse.nine.point)}); Opus and Haiku the two highest under invited: ${rd.tfalse.topTwo ? "yes" : "no"}` : "the clean probes were not run", rd.tfalse.verdict],
   ];
   out.push("## The lines", "", "| Line | Reading | Verdict | Planner's bet |", "| --- | --- | --- | --- |", ...L.map(([k, r, v]) => `| **${k}** | ${r} | ${VERDICT(v)} | ${BETS[k]} |`), "", "The lines as frozen:", "", ...Object.entries(LINES).map(([k, v]) => `- **${k}** — ${v}`), "");

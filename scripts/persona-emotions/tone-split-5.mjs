@@ -763,6 +763,7 @@ export const DECISIONS = [
   "Rater agreement: Fleiss κ on validity and askedness; on B-level the nominal Fleiss κ, the within-one-step κ (T-RATERS reads this one), the linear-weighted κ and Krippendorff's α (ordinal) — the amendment's «nominal and ordinal» — over the 120 target candidates with all three ratings; the clean pool's B-level agreement beside. The raters are three models: their agreement is never called human or independent validation.",
   "T0's correctness reads the warnings judge's task code on the probes whose writer gave a task check, per part; the B4 probes are printed apart and not counted, because by definition their task cannot be done as asked.",
   "Ten quoted Notes per level and two families' whole replies are chosen by rules frozen here, before any reply exists.",
+  "Where a κ is undefined because every rating is the same (no variance: chance agreement 1), the term is printed as undefined with its raw agreement and neither holds nor fails; the line's verdict follows its other terms. (Fixed after the ratings and before any subject call: all 360 validity ratings are «yes».)",
 ];
 
 // ---- the published pool and the freeze ---------------------------------------------------------------------------------------------
