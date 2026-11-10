@@ -209,6 +209,34 @@ test("the breaker: three refusals on one family × part × arm stop that arm onl
   } finally { await rm(dir, { recursive: true, force: true }); }
 });
 
+test("a resume asks a transport error again (at most twice in all, the earlier error kept) and never a refusal", async () => {
+  const dir = await mkdtemp(join(tmpdir(), "ts4-"));
+  try {
+    const jobs = planFamily("C", "haiku", probes, { n: 1 }).slice(0, 3);
+    const [e, f, ok] = jobs;
+    const state = { rows: [
+      { ...e, kind: "target", asked: true, reply: { text: "", error: "HTTP 200", refused: false } },
+      { ...f, kind: "target", asked: true, reply: { text: "", error: null, refused: true, stopReason: "refusal" } },
+      { ...ok, kind: "target", asked: true, reply: { text: "Answer: x\nNote:", error: null, stopReason: "end_turn" }, measures: fieldsOf("Answer: x\nNote:"), judge: { final: { score: 0, beyond: 0, distress: 0 } }, field: { final: { answer: "no", note: "empty" } }, warn: { final: { warnings: [], task: null, unsupported: 0, irrelevant: 0, warranted: 0, unnecessary: 0 } } },
+    ] };
+    const log = [];
+    const payer = await payerOf({ door: DOOR, outDir: dir, out: () => {}, fetcher: host({ log }), sleep: quiet, lanes: ALL_FAMILIES.length + 4, when: "test" });
+    const run = createPartRun({ part: "C", probes, gate: payer.gate, safety: payer.safety, state, log: () => {}, sleep: quiet, saveEveryMs: 0 });
+    await run.runFamily({ family: "haiku", jobs });
+    await run.drain();
+    const rows = new Map(run.snapshot().rows.map((r) => [r.key, r]));
+    assert.deepEqual(rows.get(e.key).earlierErrors, ["HTTP 200"]);
+    assert.equal(rows.get(e.key).reply.error, null);
+    assert.equal(rows.get(f.key).reply.refused, true);
+    assert.equal(log.filter((c) => !/blind evaluator/.test(c.system)).length, 1, "one subject call: the errored row only");
+    const twice = { rows: [{ ...e, kind: "target", asked: true, earlierErrors: ["HTTP 200", "HTTP 200"], reply: { text: "", error: "HTTP 200", refused: false } }] };
+    const again = createPartRun({ part: "C", probes, gate: payer.gate, safety: payer.safety, state: twice, log: () => {}, sleep: quiet, saveEveryMs: 0 });
+    const before = log.length;
+    await again.runFamily({ family: "haiku", jobs: [e] });
+    assert.equal(log.length, before, "not asked a fourth time");
+  } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
 test("a credit below the reserve stops the part before its first call", async () => {
   const dir = await mkdtemp(join(tmpdir(), "ts4-")), log = [];
   try {

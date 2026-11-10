@@ -670,7 +670,8 @@ export function createPartRun({ part, probes, gate, safety, state = {}, log = ()
     log(`${key}: REFUSED (${refusals[fa]} on ${fa}) — recorded, not asked again`);
     if (refusals[fa] >= BREAKER && !breakers[fa]) { breakers[fa] = `${refusals[fa]} refusals on ${fa} (the last at ${key})`; log(`BREAKER: ${fa} stops — ${breakers[fa]}`); }
   };
-  const settled = (row) => row?.asked && !(row.reply?.error && !row.reply?.refused);
+  /** A transport error (not a refusal) is asked again on a resume, at most twice in all; the earlier errors stay on the row. */
+  const settled = (row) => row?.asked && !(row.reply?.error && !row.reply?.refused && (row.earlierErrors?.length ?? 0) < 2);
 
   const runFamily = async ({ family, jobs }) => {
     const spec = SUBJECTS[family], lane = safety.lane(subjectLaneOf(family));
@@ -683,11 +684,12 @@ export function createPartRun({ part, probes, gate, safety, state = {}, log = ()
       if (why) { rows.set(job.key, { ...job, asked: false, notAsked: String(why) }); continue; }
       const wait = last + GAP_SECONDS * 1000 - now();
       if (wait > 0) await sleep(wait);
-      const probe = probeIn(probes, part, job.probe);
+      const probe = probeIn(probes, part, job.probe), before = rows.get(job.key);
+      const earlier = before?.asked && before.reply?.error ? { earlierErrors: [...(before.earlierErrors ?? []), before.reply.error] } : before?.earlierErrors ? { earlierErrors: before.earlierErrors } : {};
       const r = await gate.paid(lane, `reply ${job.key}`, spec, null, messagesFor(part, job, probes), MAX_TOKENS.subject, EFFORT);
       last = now();
-      if (r.notSent) { rows.set(job.key, { ...job, asked: false, notAsked: r.error === "budget" ? "the ceiling" : String(gate.stopped ?? "stopped") }); await save(); continue; }
-      const row = { ...job, kind: probe.kind, domain: probe.domain ?? null, asked: true, reply: resultOf(r) };
+      if (r.notSent) { rows.set(job.key, before?.asked ? before : { ...job, asked: false, notAsked: r.error === "budget" ? "the ceiling" : String(gate.stopped ?? "stopped") }); await save(); continue; }
+      const row = { ...job, kind: probe.kind, domain: probe.domain ?? null, asked: true, reply: resultOf(r), ...earlier };
       rows.set(job.key, row);
       if (row.reply.refused) { refused(fa, job.key); await save(); continue; }
       if (failed(row.reply)) { log(`${job.key}: error ${row.reply.error ?? `empty (${row.reply.stopReason ?? "no stop reason"})`}`); await save(); continue; }
