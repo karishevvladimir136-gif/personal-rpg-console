@@ -114,3 +114,13 @@ from the 20–50-item histories of the first two stages. So, frozen before launc
 - Expected size: 2,010 arm-runs × 3–4 calls, plus one long extraction call per C run; the dry run's projection is read
   against this. Planner's time estimate from the records of the first two stages and TONE_SPLIT_4/5's throughput:
   3–4 h for simulator, sets and pool; 9–13 h for the paid runs; 12–17 h in all, with one or two background restarts.
+
+## Amendment 2026-11-10 14:5x LA — one bet added before any paid run: «decision debt» is measurable here
+The reviewer (14:46 LA) names the product's thesis: the longer an agent works, the more decisions rest on its past,
+and a missed correction costs more — «decision debt». The three tiers can test it instead of asserting it.
+- **AU8 (debt grows with length):** the gap C − A on end-to-end success and on propagation is larger at the 1,000-event
+  tier than at the 100-event tier, with the bootstrap lower bound of the difference above zero. *Planner's bet: holds —
+  but because A loses on length (retrieval misses, the change buried), not because C improves; C's absolute rate falls
+  with length too.* If the gap is flat across tiers, the «value grows with horizon» claim stays a sentence, and the
+  report says so.
+Added before the first paid family; the session reads the stage at this commit or later.
