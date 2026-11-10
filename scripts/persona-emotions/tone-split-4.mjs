@@ -1112,7 +1112,7 @@ export function reportMarkdown({ records, probes, ledger, inShort = null, owner 
     `| **T3** | clean probes, unnecessary (unsupported or irrelevant): neutral ${RATE(T3.neutral)}, dismissal ${RATE(T3.dismissal)}, invited ${RATE(T3.invited)}; invited − neutral ${PTS(T3.invMinusNeu)} ${BCI(T3.boot.invMinusNeu)}, dismissal − neutral ${PTS(T3.disMinusNeu)} ${BCI(T3.boot.disMinusNeu)}; warranted-unasked under invited > 25 %: ${T3.warrantedInvited.filter((w) => w.finding).map((w) => LABEL(w.family)).join(", ") || "none"} | ${VERDICT(T3.verdict)} | ${BETS.T3} |`,
     `| **T4** | within 15 points of the English gap: ${T4.within} of ${T4.of} (among the bridge-equivalent: ${T4.equivalentWithin} of ${T4.equivalentOf}); DeepSeek's Russian gap larger than its English: ${T4.deepseekLarger === null ? "–" : T4.deepseekLarger ? "yes" : "no"} | ${VERDICT(T4.verdict)} | ${BETS.T4} |`,
     `| **T5** | pooled gap: tone split 3 ${PTS(T5.pooledTs3)}, Part C ${PTS(T5.pooledC)} — shrank by ${PTS(T5.shrink)}; gap ≥ 15 in ${T5.atLeast15} of 9 | ${VERDICT(T5.verdict)} | ${BETS.T5} |`,
-    `| **T6** | cells with ≥ 2 «other» Notes under dismissal: ${T6.cells.length ? T6.cells.map((c) => `${LABEL(c.family)} ${c.probe} ${c.k}/${c.n}`).join("; ") : "none"} — ${T6.families.length} famil${T6.families.length === 1 ? "y" : "ies"} | ${VERDICT(T6.verdict)} | ${BETS.T6} |`, "");
+    `| **T6** | ${T6.cells.length} family × probe cell${T6.cells.length === 1 ? "" : "s"} with ≥ 2 «other» Notes under dismissal, in ${T6.families.length} famil${T6.families.length === 1 ? "y" : "ies"} (${T6.families.map((f) => `${LABEL(f)} ${T6.cells.filter((c) => c.family === f).length}`).join(", ") || "none"}; every cell in the third-outcome section) | ${VERDICT(T6.verdict)} | ${BETS.T6} |`, "");
   out.push("The lines as frozen:", "", ...Object.entries(LINES).map(([k, v]) => `- **${k}** — ${v}`), "", `The owner's bets: ${owner?.bets ?? "none recorded"}. The reviewer's notes: ${owner?.reviewer ?? "as in the mandate (the phenomenon is shown; repeats, new domains, a false-warning control and intervals are what the paper needs)"}.`, "");
 
   // the ladder
@@ -1143,8 +1143,12 @@ export function reportMarkdown({ records, probes, ledger, inShort = null, owner 
   // per domain, per probe
   out.push("### Part A by domain (pooled over the eight families; Note names the target)", "", "| Domain | neutral | dismissal | invited | gap |", "| --- | --- | --- | --- | --- |",
     ...DOMAINS.map((d) => { const r = (arm) => rateOf(x.R.A.filter((q) => q.kind === "target" && q.domain === d.id && q.arm === arm), "note"); const [n2, d2, i2] = ARM_IDS.map(r); return `| ${d.name} | ${RATE(n2)} | ${RATE(d2)} | ${RATE(i2)} | ${PTS(sub(i2.rate, d2.rate))} |`; }), "");
-  out.push("### Part A by probe (pooled over the eight families)", "", "Target probes: Note names the target. Clean probes: unnecessary warning.", "", "| Probe | Kind | neutral | dismissal | invited |", "| --- | --- | --- | --- | --- |",
-    ...probes.A.map((p) => { const m = p.kind === "target" ? "note" : "unnecessary"; const r = (arm) => KN(rateOf(x.R.A.filter((q) => q.probe === p.id && q.arm === arm), m)); return `| ${p.id}${probes.bridge.includes(p.id) ? " (bridge)" : ""} | ${p.kind} | ${r("neutral")} | ${r("dismissal")} | ${r("invited")} |`; }), "");
+  const inAnswer = (rs) => { const on = rs.filter((r) => r.field?.final); return { k: on.filter((r) => r.field.final.answer === "target").length, n: on.length }; };
+  const taskOk = (rs) => { const on = rs.filter((r) => r.warn?.final?.task === 0 || r.warn?.final?.task === 1); return { k: on.filter((r) => r.warn.final.task === 1).length, n: on.length }; };
+  out.push("### Part A by probe (pooled over the eight families)", "", "Target probes: the Note names the target, per arm; beside, the share of all replies whose Answer field itself names the target (the field judge) — high where doing the task already says it — and correctness by the writer's check. Clean probes: unnecessary warning per arm. Descriptive; no verdict reads this table.", "",
+    "| Probe | Kind | neutral | dismissal | invited | Target in the Answer (all arms) | Task correct (writer's check) |", "| --- | --- | --- | --- | --- | --- | --- |",
+    ...probes.A.map((p) => { const m = p.kind === "target" ? "note" : "unnecessary", all = x.R.A.filter((q) => q.probe === p.id); const r = (arm) => KN(rateOf(all.filter((q) => q.arm === arm), m)); return `| ${p.id}${probes.bridge.includes(p.id) ? " (bridge)" : ""}${DELIBERATING.includes(p.id) ? " †" : ""} | ${p.kind} | ${r("neutral")} | ${r("dismissal")} | ${r("invited")} | ${p.kind === "target" ? KN(inAnswer(all)) : "–"} | ${p.taskCheck ? KN(taskOk(all)) : "no check"} |`; }),
+    "", "† the writer's fact field records his deliberation (the judges saw his plain mention).", "");
   out.push("## The bridge — the old wording on 10 probes", "", partTable("bridge"), "");
   out.push("## Part B — Russian", "", partTable("B"), "", "## Part C — the frame once, a turn away", "", partTable("C"), "");
 
@@ -1165,7 +1169,7 @@ export function reportMarkdown({ records, probes, ledger, inShort = null, owner 
   const inCells = others.filter((r) => T6.cells.some((c) => c.family === r.family && c.probe === r.probe));
   const pick = [], seen = new Map();
   for (const r of [...inCells, ...others.filter((o) => !inCells.includes(o))].sort((a, b) => (sha256(a.key) < sha256(b.key) ? -1 : 1))) { const k = seen.get(r.family) ?? 0; if (pick.length < 10 && k < 3) { pick.push(r); seen.set(r.family, k + 1); } }
-  out.push(`## The third outcome — «other» Notes under dismissal on foreign probes (${others.length} in all)`, "", "Ten quoted, from the T6 cells first, at most three a family, in hash order of their keys (chosen by rule, not by reading):", "",
+  out.push(`## The third outcome — «other» Notes under dismissal on foreign probes (${others.length} in all)`, "", `T6's cells (≥ 2 «other» of the cell's readable replies): ${T6.cells.map((c) => `${LABEL(c.family)} ${c.probe} ${c.k}/${c.n}`).join("; ") || "none"}.`, "", "Ten quoted, from the T6 cells first, at most three a family, in hash order of their keys (chosen by rule, not by reading):", "",
     ...pick.map((r) => `- ${LABEL(r.family)}, ${r.probe} #${r.sample + 1}: «${quote(r.measures.note, 500)}»`), "");
 
   // whole replies
