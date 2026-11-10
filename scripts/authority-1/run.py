@@ -122,7 +122,18 @@ def run_units(gw, port, family, scenarios, repeats, spec=None, workers=WORKERS):
             if unit_path(family, f"{s['id']}-r{r}").exists():
                 continue
             jobs.append((family, s, r, str(STORES), spec))
-    log(f"{family}: {len(jobs)} units to run ({workers} workers)")
+    log(f"{family}: {len(jobs)} units to run ({workers} workers), in batches of {UNITS_PER_BATCH}")
+    for b in range(0, len(jobs), UNITS_PER_BATCH):
+        batch = jobs[b:b + UNITS_PER_BATCH]
+        if not spend_check(gw, projection(family, len(batch)), f"{family} units batch {b // UNITS_PER_BATCH + 1} ({len(batch)} units)"):
+            raise SpendCheckFailed(f"{family} units batch {b // UNITS_PER_BATCH + 1}")
+        if not _run_batch(gw, port, family, batch, workers):
+            return False
+    return not gw.stop_reason
+
+
+def _run_batch(gw, port, family, jobs, workers):
+    from authority1 import unit
     done = 0
     with pool(port, workers) as ex:
         futs = {}
@@ -211,34 +222,52 @@ def judge_family(gw, family, scen):
         for arm in ("A", "B", "C"):
             if "judge" not in u["arms"][arm]:
                 todo.append((p, arm))
-    log(f"judge {family}: {len(todo)} arm-runs to judge")
-    by_path = {}
-    with ThreadPoolExecutor(8) as ex:
-        futs = {}
-        for p, arm in todo:
-            u = by_path.setdefault(p, json.loads(p.read_text()))
-            futs[ex.submit(judge_run, gw, scen[u["scenario"]], u, arm)] = (p, arm)
-        for f in as_completed(futs):
-            p, arm = futs[f]
-            by_path[p]["arms"][arm]["judge"] = f.result()
-            if gw.stop_reason:
-                log(f"STOP during judging: {gw.stop_reason}")
-                break
-    for p, u in by_path.items():
-        p.write_text(json.dumps(u, ensure_ascii=False))
+    log(f"judge {family}: {len(todo)} arm-runs to judge, in batches of {JUDGED_PER_BATCH}")
+    for b in range(0, len(todo), JUDGED_PER_BATCH):
+        batch = todo[b:b + JUDGED_PER_BATCH]
+        need = len(batch) * (2 * 3000 * 0.5 / 1e6 + 2 * 3000 * 0.1 / 1e6 + 0.25 * 0.04)
+        if not spend_check(gw, need, f"judging {family} batch {b // JUDGED_PER_BATCH + 1} ({len(batch)} arm-runs)"):
+            raise SpendCheckFailed(f"judging {family} batch {b // JUDGED_PER_BATCH + 1}")
+        by_path = {}
+        with ThreadPoolExecutor(8) as ex:
+            futs = {}
+            for p, arm in batch:
+                u = by_path.setdefault(p, json.loads(p.read_text()))
+                futs[ex.submit(judge_run, gw, scen[u["scenario"]], u, arm)] = (p, arm)
+            for f in as_completed(futs):
+                p, arm = futs[f]
+                by_path[p]["arms"][arm]["judge"] = f.result()
+        for p, u in by_path.items():
+            p.write_text(json.dumps(u, ensure_ascii=False))
+        if gw.stop_reason:
+            log(f"STOP during judging: {gw.stop_reason}")
+            return False
     return not gw.stop_reason
 
 
 # ---- spend check ----------------------------------------------------------------------------------------------------
+# Shared-budget rule (TONE_SPLIT_4 amendment b4c6907, posted in #3 at 09:11 UTC): the key's balance minus the $200
+# reserved for mandate #4 must hold the next batch; the check runs before every batch of at most 200 calls.
+RESERVE_FOR_4 = 200.0
+UNITS_PER_BATCH = 30      # ≤ 6 calls a unit (Mem0 1, A 1, B 2, C 2) → ≤ 180 calls
+JUDGED_PER_BATCH = 60     # ≤ 3 calls an arm-run (2 Haiku + Sol referee) → ≤ 180 calls
+
+
+class SpendCheckFailed(Exception):
+    pass
+
+
 def spend_check(gw, need, label):
     c = client.credits()
-    ok = "error" not in c and c["left"] >= need + 5 and gw.spent + need <= gw.cap
+    avail = (c["left"] - RESERVE_FOR_4) if "error" not in c else None
+    ok = avail is not None and avail >= need + 5 and gw.spent + need <= gw.cap
     row = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "before": label, "credit_left": c.get("left"),
+           "reserve_for_4": RESERVE_FOR_4, "available": avail,
            "credit_error": c.get("error"), "stage_spent": round(gw.spent, 4), "projected": round(need, 2), "cap": gw.cap,
            "holds": ok}
     with (RUNS / "authority-1-spend-checks.jsonl").open("a") as f:
         f.write(json.dumps(row) + "\n")
-    log(f"spend check before {label}: credit left ${c.get('left', float('nan')):.2f}; stage spent ${gw.spent:.2f} of ${gw.cap}; projected ${need:.2f} → {'holds' if ok else 'DOES NOT HOLD'}")
+    log(f"spend check before {label}: credit left ${c.get('left', float('nan')):.2f}, less the ${RESERVE_FOR_4:.0f} reserve for #4 → ${avail if avail is not None else float('nan'):.2f}; stage spent ${gw.spent:.2f} of ${gw.cap}; projected ${need:.2f} → {'holds' if ok else 'DOES NOT HOLD'}")
     return ok
 
 
@@ -301,8 +330,12 @@ def cmd_family(a):
     if not spend_check(gw, need, f"{fam} (classes {classes})"):
         log("spend check does not hold — not starting")
         return
-    if run_units(gw, port, fam, chosen, REPEATS, spec=fam):
-        judge_family(gw, fam, scen)
+    try:
+        if run_units(gw, port, fam, chosen, REPEATS, spec=fam):
+            judge_family(gw, fam, scen)
+    except SpendCheckFailed as e:
+        log(f"SPEND CHECK FAILED before {e} — stopped; post the balance in #3")
+        return
     log(f"{fam} done; stage spent ${gw.spent:.4f}; guard {json.dumps(guard.report())[:300]}")
 
 
