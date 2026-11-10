@@ -364,7 +364,7 @@ def main():
     sp = sub.add_parser("judge"); sp.add_argument("name"); sp.set_defaults(fn=cmd_judge)
     sub.add_parser("spend").set_defaults(fn=cmd_spend)
     sp = sub.add_parser("trace"); sp.add_argument("--scenario", default="S3-01"); sp.set_defaults(fn=cmd_trace)
-    sp = sub.add_parser("report"); sp.add_argument("--notes", default=""); sp.set_defaults(fn=cmd_report)
+    sp = sub.add_parser("report"); sp.add_argument("--notes", default=""); sp.add_argument("--summary", default=""); sp.set_defaults(fn=cmd_report)
     sp = sub.add_parser("posthoc"); sp.add_argument("name"); sp.set_defaults(fn=cmd_posthoc)
     a = ap.parse_args()
     a.fn(a)
@@ -423,8 +423,10 @@ def cmd_report(a):
            f"the main process connects only through the sandbox proxy, tunnelling to openrouter.ai alone; prompts, truth tables and harness "
            f"hash-checked against the freeze before every command")
     notes = Path(a.notes).read_text() if a.notes else ""
+    summary = Path(a.summary).read_text() if a.summary else ""
     v = writeup.write(RUNS / "authority-1-report.md", rows, units, scen, ledger, checks, fams, opus_classes,
-                      examples.worked_examples(units, scen), {"au0": au0, "au0_held": spent <= 130 and blocked == 0, "notes": notes})
+                      examples.worked_examples(units, scen), {"au0": au0, "au0_held": spent <= 130 and blocked == 0, "notes": notes},
+                      summary)
     for f in fams:
         with gzip.open(RUNS / f"authority-1-units-{f}.jsonl.gz", "wt") as g:
             for u in units[f]:

@@ -32,7 +32,7 @@ def arm_table(rows, title_rows):
     return lines
 
 
-def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, families_run, opus_classes, examples_md, notes_md):
+def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, families_run, opus_classes, examples_md, notes_md, summary_md=""):
     by_arm, v = R.verdicts(rows, families_run, opus_classes)
     L = ["# AUTHORITY_1 — report", "",
          "Does a structured correction layer over an existing memory backend (Mem0 OSS, local) reduce stale actions, and is "
@@ -43,6 +43,8 @@ def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, fa
     L += [f"Families run: {', '.join(SPECS[f]['label'] for f in families_run)}" +
           (f" (Opus on classes {opus_classes} only — the projection passed the ceiling)" if opus_classes != [1, 2, 3, 4] else "") +
           f". {n_units} units × 3 arms = {len(rows)} arm-runs.", ""]
+    if summary_md:
+        L += [summary_md.strip(), ""]
     L += ["## Bets", "", "| bet | numbers | verdict |", "|---|---|---|"]
     L.append(f"| AU0 | {notes_md['au0']} | {held(notes_md['au0_held'])} |")
     a1 = v["AU1"]; L.append(f"| AU1 stale action: C < A by ≥ 15, B < A by ≥ 10, \\|C − B\\| ≤ 5 | A {p(a1['A'])} %, B {p(a1['B'])} %, C {p(a1['C'])} % · {a1['parts']} | {held(a1['held'])} |")
@@ -81,8 +83,33 @@ def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, fa
             for t in s["truth"]["touched"]:
                 cov_n += 1
                 cov_k += t["id"] in ids
-        L.append(f"- {SPECS[f]['label']}: Mem0 kept the change in {kept}/{len(us)} units; the search returned it in {retr}/{len(us)}; "
+        lost = defaultdict(int)
+        for u in us:
+            if not u.get("change_in_store"):
+                lost[u["class"]] += 1
+        L.append(f"- {SPECS[f]['label']}: Mem0 kept the change in {kept}/{len(us)} units (lost by class: {dict(sorted(lost.items())) or 'none'}); the search returned it in {retr}/{len(us)}; "
                  f"the search returned {cov_k}/{cov_n} touched decisions ({p(100 * cov_k / cov_n if cov_n else None)} %) — the rest only C's walk could reach.")
+    # propagation split by whether the search returned the touched decision (A and B could only see those)
+    L += ["", "Propagation on touched decisions the search **returned** vs **did not return** (A and B saw only the first kind; "
+          "C's walk reaches both):", "", "| family | arm | returned by search | not returned |", "|---|---|---|---|"]
+    for f in families_run:
+        for a in ARMS:
+            k1 = n1 = k2 = n2 = 0
+            for u in units_by_family[f]:
+                s = scen[u["scenario"]]
+                r = u["arms"][a]
+                m = r.get("mech") or {}
+                if not m.get("form_kept") or s["class"] == 4:
+                    continue
+                d = ((r.get("judge") or {}).get("final") or {}).get("direction") or {}
+                got = {t for t in m.get("touched_listed", []) if d.get(t) is True}
+                ids = {x.get("item_id") for x in u.get("retrieval", [])}
+                for t in s["truth"]["touched"]:
+                    if t["id"] in ids:
+                        n1 += 1; k1 += t["id"] in got
+                    else:
+                        n2 += 1; k2 += t["id"] in got
+            L.append(f"| {SPECS[f]['label']} | {a} | {R.fmt((k1, n1))} | {R.fmt((k2, n2))} |")
     jb = defaultdict(int)
     for r in rows:
         if r.get("judge_by"):
@@ -97,7 +124,10 @@ def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, fa
           "Anthropic key $0, OpenAI key $0, Bedrock $0.", "", "| who | part | $ |", "|---|---|---|"]
     for (fam, part), c in sorted(door.items()):
         L.append(f"| {fam} | {part} | {c:.4f} |")
-    L += ["", "Spend checks:", ""] + [f"- {c['at']} before {c['before']}: credit left ${c['credit_left']:.2f}; stage spent ${c['stage_spent']:.2f}; projected ${c['projected']:.2f} → {'holds' if c['holds'] else 'does not hold'}" for c in spend_checks]
+    L += ["", f"Spend checks ({len(spend_checks)}; every one held):" if all(c["holds"] for c in spend_checks) else f"Spend checks ({len(spend_checks)}):", ""] + [
+        f"- {c['at']} before {c['before']}: credit left ${c['credit_left']:.2f}"
+        + (f", less the ${c['reserve_for_4']:.0f} reserve for #4 → ${c['available']:.2f}" if c.get("reserve_for_4") else " (before the shared-budget rule)")
+        + f"; stage spent ${c['stage_spent']:.2f}; projected ${c['projected']:.2f} → {'holds' if c['holds'] else 'does not hold'}" for c in spend_checks]
     L += ["", notes_md["notes"], ""]
     path.write_text("\n".join(L) + "\n")
     return v

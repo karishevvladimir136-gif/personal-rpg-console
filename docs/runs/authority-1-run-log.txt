@@ -1,0 +1,303 @@
+08:36:45 smoke: error=None change_in_store=True spent=$0.0065
+08:36:45   A: calls=['A.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D4', 'D5'], 'touched_asked': ['D2'], 'untouched_revised': [], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': ['O1'], 'n_touched': 3, 'n_due': 1}
+08:36:45   B: calls=['B.pass', 'B.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D2', 'D4', 'D5'], 'touched_asked': [], 'untouched_revised': ['D1', 'D7'], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': [], 'n_touched': 3, 'n_due': 1}
+08:36:45   C: calls=['C.pass', 'C.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D2', 'D4', 'D5'], 'touched_asked': [], 'untouched_revised': [], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': [], 'n_touched': 3, 'n_due': 1}
+08:36:45 guard: {"blocked": [], "allowed_targets": {"127.0.0.1": 6, "127.0.0.1:43151": 6}}
+08:38:18 smoke: error=None change_in_store=True spent=$0.0133
+08:38:18   A: calls=['A.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D4', 'D5'], 'touched_asked': ['D2'], 'untouched_revised': [], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': ['O1'], 'n_touched': 3, 'n_due': 1}
+08:38:18   B: calls=['B.pass', 'B.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D2', 'D4', 'D5'], 'touched_asked': [], 'untouched_revised': [], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': [], 'n_touched': 3, 'n_due': 1}
+08:38:18   C: calls=['C.pass', 'C.act'] mech={'form_kept': True, 'action': 'b', 'correct_action': True, 'stale_action': False, 'unnecessary_action': False, 'touched_listed': ['D2', 'D4', 'D5'], 'touched_asked': [], 'untouched_revised': [], 'untouched_asked': [], 'unknown_ids': [], 'obligations_due_done': [], 'n_touched': 3, 'n_due': 1}
+08:38:18 guard: {"blocked": [], "allowed_targets": {"127.0.0.1": 6, "127.0.0.1:43151": 6}}
+08:53:28 spend check before dry run (Haiku): credit left $213.69; stage spent $0.01 of $130.0; projected $1.00 → holds
+08:53:28 haiku: 4 units to run (4 workers)
+08:53:53 haiku S4-01-r1 ingest=ok A:b B:b C:b err= spent=$0.033
+08:53:56 haiku S2-01-r1 ingest=ok A:b B:b C:b err= spent=$0.035
+08:54:04 haiku S1-01-r1 ingest=ok A:a B:a C:a err= spent=$0.038
+08:54:07 haiku S3-01-r1 ingest=ok A:b B:b C:b err= spent=$0.039
+08:54:07 judge haiku: 12 arm-runs to judge
+08:54:20 dry trace: /home/user/personal-rpg-console/docs/runs/authority-1-dry-run.md
+08:54:20 dry run done; stage spent $0.0464; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 48, "127.0.0.1:43151": 48}}
+08:57:01 spend check before deepseek (classes [1, 2, 3, 4]): credit left $213.65; stage spent $0.05 of $130.0; projected $10.60 → holds
+08:57:01 deepseek: 80 units to run (6 workers)
+08:58:18 deepseek S1-02-r1 ingest=ok A:b B:b C:b err= spent=$0.167
+08:58:29 deepseek S1-05-r1 ingest=ok A:a B:a C:a err= spent=$0.176
+08:59:06 deepseek S1-07-r1 ingest=ok A:c B:c C:c err= spent=$0.267
+08:59:12 deepseek S1-06-r1 ingest=ok A:d B:d C:d err= spent=$0.283
+08:59:19 deepseek S1-04-r1 ingest=ok A:b B:b C:b err= spent=$0.307
+08:59:49 deepseek S1-08-r1 ingest=ok A:b B:b C:b err= spent=$0.335
+08:59:55 deepseek S1-01-r1 ingest=ok A:a B:a C:a err= spent=$0.363
+08:59:58 deepseek S1-03-r1 ingest=ok A:c B:c C:c err= spent=$0.383
+09:00:34 deepseek S2-01-r1 ingest=ok A:b B:b C:b err= spent=$0.426
+09:01:00 deepseek S1-10-r1 ingest=ok A:a B:a C:a err= spent=$0.472
+09:01:06 deepseek S1-09-r1 ingest=ok A:d B:d C:d err= spent=$0.476
+09:01:50 deepseek S2-02-r1 ingest=ok A:c B:c C:c err= spent=$0.536
+09:01:52 deepseek S2-03-r1 ingest=ok A:a B:a C:a err= spent=$0.543
+09:02:30 deepseek S2-04-r1 ingest=ok A:c B:c C:c err= spent=$0.611
+09:03:06 deepseek S2-07-r1 ingest=ok A:b B:b C:b err= spent=$0.663
+09:03:57 deepseek S2-10-r1 ingest=ok A:a B:a C:a err= spent=$0.771
+09:04:14 deepseek S2-05-r1 ingest=ok A:b B:b C:b err= spent=$0.785
+09:04:22 deepseek S2-08-r1 ingest=ok A:d B:d C:d err= spent=$0.798
+09:04:45 deepseek S2-06-r1 ingest=ok A:a B:a C:a err= spent=$0.815
+09:05:00 deepseek S2-09-r1 ingest=ok A:c B:c C:c err= spent=$0.855
+09:06:23 deepseek S3-03-r1 ingest=ok A:b B:a C:a err= spent=$0.951
+09:06:33 deepseek S3-01-r1 ingest=ok A:b B:b C:b err= spent=$0.992
+09:06:35 deepseek S3-05-r1 ingest=ok A:d B:d C:d err= spent=$1.015
+09:06:36 deepseek S3-02-r1 ingest=ok A:c B:c C:c err= spent=$1.032
+09:07:01 deepseek S3-06-r1 ingest=ok A:a B:a C:a err= spent=$1.074
+09:07:40 deepseek S3-04-r1 ingest=ok A:c B:b C:b err= spent=$1.161
+09:07:48 deepseek S3-10-r1 ingest=ok A:c B:c C:c err= spent=$1.186
+09:07:49 deepseek S4-01-r1 ingest=ok A:b B:b C:b err= spent=$1.203
+09:08:01 deepseek S3-07-r1 ingest=ok A:b B:b C:b err= spent=$1.223
+09:08:20 deepseek S4-04-r1 ingest=ok A:b B:b C:b err= spent=$1.264
+09:08:22 deepseek S3-09-r1 ingest=ok A:a B:a C:a err= spent=$1.269
+09:08:22 deepseek S3-08-r1 ingest=ok A:c B:c C:c err= spent=$1.276
+09:08:35 deepseek S4-05-r1 ingest=LOST A:d B:d C:d err= spent=$1.289
+09:08:37 deepseek S4-02-r1 ingest=LOST A:a B:a C:a err= spent=$1.298
+09:09:10 deepseek S4-03-r1 ingest=ok A:c B:c C:c err= spent=$1.346
+09:09:17 deepseek S4-06-r1 ingest=ok A:a B:a C:a err= spent=$1.360
+09:09:31 deepseek S4-10-r1 ingest=ok A:c B:c C:c err= spent=$1.380
+09:09:44 deepseek S4-08-r1 ingest=ok A:b B:b C:b err= spent=$1.403
+09:10:12 deepseek S4-09-r1 ingest=LOST A:a B:a C:a err= spent=$1.434
+09:10:26 deepseek S4-07-r1 ingest=ok A:c B:c C:c err= spent=$1.463
+09:10:49 deepseek S1-02-r2 ingest=ok A:b B:b C:b err= spent=$1.489
+09:10:59 deepseek S1-01-r2 ingest=ok A:a B:a C:a err= spent=$1.536
+09:11:13 deepseek S1-04-r2 ingest=ok A:b B:b C:b err= spent=$1.592
+09:11:17 deepseek S1-03-r2 ingest=ok A:c B:c C:c err= spent=$1.596
+09:11:44 deepseek S1-05-r2 ingest=ok A:a B:a C:a err= spent=$1.629
+09:11:55 deepseek S1-07-r2 ingest=ok A:c B:c C:c err= spent=$1.639
+09:12:11 deepseek S1-08-r2 ingest=ok A:b B:b C:b err= spent=$1.656
+09:12:41 deepseek S1-06-r2 ingest=ok A:d B:d C:d err= spent=$1.717
+09:13:09 deepseek S2-02-r2 ingest=ok A:c B:c C:c err= spent=$1.790
+09:13:42 deepseek S2-01-r2 ingest=ok A:b B:b C:b err= spent=$1.823
+09:13:57 deepseek S1-10-r2 ingest=ok A:a B:a C:a err= spent=$1.860
+09:14:11 deepseek S2-03-r2 ingest=ok A:a B:a C:a err= spent=$1.874
+09:14:40 deepseek S1-09-r2 ingest=ok A:d B:d C:d err= spent=$1.914
+09:14:41 deepseek S2-04-r2 ingest=ok A:c B:c C:c err= spent=$1.929
+09:15:48 deepseek S2-08-r2 ingest=ok A:d B:d C:d err= spent=$2.017
+09:16:07 deepseek S2-07-r2 ingest=ok A:b B:b C:b err= spent=$2.050
+09:16:55 deepseek S2-05-r2 ingest=ok A:b B:b C:b err= spent=$2.137
+09:17:13 deepseek S2-09-r2 ingest=ok A:c B:c C:c err= spent=$2.156
+09:17:24 deepseek S2-10-r2 ingest=ok A:a B:a C:a err= spent=$2.168
+09:18:10 deepseek S3-02-r2 ingest=ok A:c B:c C:c err= spent=$2.244
+09:18:15 deepseek S2-06-r2 ingest=ok A:a B:a C:a err= spent=$2.252
+09:18:23 deepseek S3-03-r2 ingest=ok A:a B:a C:a err= spent=$2.263
+09:18:39 deepseek S3-01-r2 ingest=ok A:b B:b C:b err= spent=$2.293
+09:18:39 deepseek S3-05-r2 ingest=ok A:a B:d C:d err= spent=$2.298
+09:19:38 deepseek S3-08-r2 ingest=ok A:c B:c C:c err= spent=$2.452
+09:19:58 deepseek S3-09-r2 ingest=ok A:a B:a C:a err= spent=$2.477
+09:20:04 deepseek S3-06-r2 ingest=ok A:a B:a C:a err= spent=$2.491
+09:20:10 deepseek S3-07-r2 ingest=ok A:b B:b C:b err= spent=$2.534
+09:20:17 deepseek S3-10-r2 ingest=ok A:c B:c C:c err= spent=$2.543
+09:20:34 deepseek S4-04-r2 ingest=ok A:b B:b C:b err= spent=$2.572
+09:20:37 deepseek S4-01-r2 ingest=ok A:b B:b C:b err= spent=$2.585
+09:20:41 deepseek S4-02-r2 ingest=LOST A:a B:a C:a err= spent=$2.587
+09:20:44 deepseek S4-05-r2 ingest=LOST A:d B:d C:d err= spent=$2.594
+09:21:06 deepseek S4-03-r2 ingest=ok A:c B:c C:c err= spent=$2.630
+09:21:10 deepseek S4-06-r2 ingest=ok A:a B:a C:a err= spent=$2.639
+09:21:10 deepseek S4-07-r2 ingest=ok A:c B:c C:c err= spent=$2.641
+09:21:20 deepseek S4-09-r2 ingest=LOST A:a B:a C:a err= spent=$2.652
+09:21:33 deepseek S3-04-r2 ingest=ok A:- B:b C:b err= spent=$2.691
+09:21:33 deepseek S4-08-r2 ingest=ok A:b B:b C:b err= spent=$2.695
+09:22:01 deepseek S4-10-r2 ingest=ok A:c B:c C:c err= spent=$2.704
+09:22:02 judge deepseek: 240 arm-runs to judge
+09:25:13 deepseek done; stage spent $2.8337; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 963, "127.0.0.1:43151": 963}}
+09:26:43 spend check before sol (classes [1, 2, 3, 4]): credit left $360.87, less the $200 reserve for #4 → $160.87; stage spent $2.83 of $130.0; projected $23.61 → holds
+09:26:43 sol: 80 units to run (6 workers), in batches of 30
+09:26:44 spend check before sol units batch 1 (30 units): credit left $360.87, less the $200 reserve for #4 → $160.87; stage spent $2.83 of $130.0; projected $8.85 → holds
+09:27:06 sol S1-05-r1 ingest=ok A:a B:a C:a err= spent=$2.952
+09:27:08 sol S1-02-r1 ingest=ok A:b B:b C:b err= spent=$2.971
+09:27:10 sol S1-04-r1 ingest=ok A:b B:b C:b err= spent=$2.984
+09:27:11 sol S1-03-r1 ingest=ok A:c B:c C:c err= spent=$3.011
+09:27:12 sol S1-06-r1 ingest=ok A:d B:d C:d err= spent=$3.031
+09:27:20 sol S1-01-r1 ingest=ok A:a B:a C:a err= spent=$3.098
+09:27:20 sol S1-07-r1 ingest=ok A:c B:c C:c err= spent=$3.105
+09:27:27 sol S1-08-r1 ingest=ok A:b B:b C:b err= spent=$3.159
+09:27:32 sol S1-09-r1 ingest=ok A:d B:d C:d err= spent=$3.203
+09:27:36 sol S2-01-r1 ingest=ok A:b B:b C:b err= spent=$3.249
+09:27:36 sol S2-02-r1 ingest=ok A:c B:c C:c err= spent=$3.255
+09:27:40 sol S2-03-r1 ingest=ok A:a B:a C:a err= spent=$3.273
+09:27:40 sol S1-10-r1 ingest=ok A:a B:a C:a err= spent=$3.284
+09:27:49 sol S2-07-r1 ingest=ok A:b B:b C:b err= spent=$3.365
+09:27:50 sol S2-04-r1 ingest=ok A:c B:c C:c err= spent=$3.386
+09:27:56 sol S2-09-r1 ingest=ok A:c B:c C:c err= spent=$3.454
+09:27:58 sol S2-06-r1 ingest=ok A:a B:a C:a err= spent=$3.468
+09:27:58 sol S2-08-r1 ingest=ok A:d B:d C:d err= spent=$3.474
+09:27:59 sol S2-05-r1 ingest=ok A:b B:b C:b err= spent=$3.487
+09:28:13 sol S2-10-r1 ingest=ok A:a B:a C:a err= spent=$3.589
+09:28:18 sol S3-05-r1 ingest=ok A:d B:d C:d err= spent=$3.653
+09:28:18 sol S3-01-r1 ingest=ok A:b B:b C:b err= spent=$3.663
+09:28:20 sol S3-03-r1 ingest=ok A:a B:a C:a err= spent=$3.670
+09:28:27 sol S3-02-r1 ingest=ok A:c B:a C:c err= spent=$3.719
+09:28:31 sol S3-06-r1 ingest=ok A:a B:a C:a err= spent=$3.749
+09:28:34 sol S3-08-r1 ingest=ok A:c B:c C:c err= spent=$3.776
+09:28:35 sol S3-04-r1 ingest=ok A:b B:b C:b err= spent=$3.786
+09:28:44 sol S3-10-r1 ingest=ok A:c B:c C:c err= spent=$3.852
+09:28:46 sol S3-09-r1 ingest=ok A:a B:a C:a err= spent=$3.859
+09:28:54 sol S3-07-r1 ingest=ok A:b B:b C:b err= spent=$3.869
+09:28:55 spend check before sol units batch 2 (30 units): credit left $359.93, less the $200 reserve for #4 → $159.93; stage spent $3.87 of $130.0; projected $8.85 → holds
+09:29:14 posthoc deepseek: 239 arm-runs to check for substance
+09:29:14 spend check before post-hoc substance deepseek batch 1: credit left $359.74, less the $200 reserve for #4 → $159.74; stage spent $3.89 of $130.0; projected $0.24 → holds
+09:29:16 spend check before post-hoc substance deepseek batch 2: credit left $359.74, less the $200 reserve for #4 → $159.74; stage spent $3.89 of $130.0; projected $0.24 → holds
+09:29:17 sol S4-01-r1 ingest=ok A:b B:b C:b err= spent=$3.966
+09:29:17 sol S4-06-r1 ingest=ok A:a B:a C:a err= spent=$3.971
+09:29:17 sol S4-04-r1 ingest=ok A:b B:b C:b err= spent=$3.976
+09:29:19 spend check before post-hoc substance deepseek batch 3: credit left $359.74, less the $200 reserve for #4 → $159.74; stage spent $3.89 of $130.0; projected $0.24 → holds
+09:29:20 sol S4-03-r1 ingest=ok A:c B:c C:c err= spent=$3.990
+09:29:20 sol S4-02-r1 ingest=LOST A:a B:a C:a err= spent=$3.995
+09:29:22 spend check before post-hoc substance deepseek batch 4: credit left $359.74, less the $200 reserve for #4 → $159.74; stage spent $3.89 of $130.0; projected $0.24 → holds
+09:29:28 sol S4-05-r1 ingest=ok A:d B:d C:d err= spent=$4.034
+09:29:35 sol S4-07-r1 ingest=ok A:c B:c C:c err= spent=$4.087
+09:29:35 sol S4-10-r1 ingest=ok A:c B:c C:c err= spent=$4.097
+09:29:36 sol S4-08-r1 ingest=ok A:b B:b C:b err= spent=$4.103
+09:29:36 sol S4-09-r1 ingest=LOST A:a B:a C:a err= spent=$4.108
+09:29:39 posthoc deepseek done; stage spent $3.8982
+09:29:50 sol S1-02-r2 ingest=ok A:b B:b C:b err= spent=$4.202
+09:29:52 sol S1-04-r2 ingest=ok A:b B:b C:b err= spent=$4.213
+09:29:52 sol S1-01-r2 ingest=ok A:a B:a C:a err= spent=$4.225
+09:29:53 sol S1-05-r2 ingest=ok A:a B:a C:a err= spent=$4.239
+09:29:56 sol S1-03-r2 ingest=ok A:c B:c C:c err= spent=$4.256
+09:30:01 sol S1-06-r2 ingest=ok A:d B:d C:d err= spent=$4.297
+09:30:11 sol S2-01-r2 ingest=ok A:b B:b C:b err= spent=$4.382
+09:30:11 sol S1-08-r2 ingest=ok A:b B:b C:b err= spent=$4.390
+09:30:12 sol S1-09-r2 ingest=ok A:d B:d C:d err= spent=$4.401
+09:30:13 sol S1-07-r2 ingest=ok A:c B:c C:c err= spent=$4.415
+09:30:18 sol S2-02-r2 ingest=ok A:c B:c C:c err= spent=$4.456
+09:30:23 sol S1-10-r2 ingest=ok A:a B:a C:a err= spent=$4.482
+09:30:29 sol S2-03-r2 ingest=ok A:a B:a C:a err= spent=$4.559
+09:30:33 sol S2-07-r2 ingest=ok A:b B:b C:b err= spent=$4.585
+09:30:36 sol S2-04-r2 ingest=ok A:c B:c C:c err= spent=$4.629
+09:30:40 sol S2-06-r2 ingest=ok A:a B:a C:a err= spent=$4.652
+09:30:42 sol S2-08-r2 ingest=ok A:d B:d C:d err= spent=$4.664
+09:30:45 sol S2-05-r2 ingest=ok A:b B:b C:b err= spent=$4.692
+09:30:46 sol S2-09-r2 ingest=ok A:c B:c C:c err= spent=$4.699
+09:30:51 sol S2-10-r2 ingest=ok A:a B:a C:a err= spent=$4.712
+09:30:53 spend check before sol units batch 3 (20 units): credit left $359.07, less the $200 reserve for #4 → $159.07; stage spent $4.71 of $130.0; projected $5.90 → holds
+09:31:19 sol S3-06-r2 ingest=ok A:a B:a C:a err= spent=$4.838
+09:31:22 sol S3-05-r2 ingest=ok A:d B:d C:d err= spent=$4.869
+09:31:26 sol S3-03-r2 ingest=ok A:a B:a C:a err= spent=$4.889
+09:31:31 sol S3-04-r2 ingest=ok A:b B:b C:b err= spent=$4.910
+09:31:34 sol S3-02-r2 ingest=ok A:c B:a C:c err= spent=$4.944
+09:31:38 sol S3-01-r2 ingest=ok A:b B:b C:b err= spent=$4.966
+09:31:42 sol S3-08-r2 ingest=ok A:c B:c C:c err= spent=$5.001
+09:31:43 sol S3-09-r2 ingest=ok A:a B:a C:a err= spent=$5.015
+09:31:53 sol S4-03-r2 ingest=ok A:c B:c C:c err= spent=$5.073
+09:31:53 sol S3-07-r2 ingest=ok A:b B:b C:b err= spent=$5.084
+09:31:56 sol S4-04-r2 ingest=ok A:b B:b C:b err= spent=$5.094
+09:31:56 sol S3-10-r2 ingest=ok A:c B:c C:c err= spent=$5.106
+09:31:56 sol S4-02-r2 ingest=LOST A:a B:a C:a err= spent=$5.112
+09:31:59 sol S4-01-r2 ingest=ok A:b B:b C:b err= spent=$5.125
+09:32:06 sol S4-05-r2 ingest=LOST A:d B:d C:d err= spent=$5.180
+09:32:07 sol S4-06-r2 ingest=ok A:a B:a C:a err= spent=$5.184
+09:32:12 sol S4-10-r2 ingest=ok A:c B:c C:c err= spent=$5.211
+09:32:14 sol S4-07-r2 ingest=ok A:c B:c C:c err= spent=$5.216
+09:32:15 sol S4-09-r2 ingest=LOST A:a B:a C:a err= spent=$5.222
+09:32:22 sol S4-08-r2 ingest=ok A:b B:b C:b err= spent=$5.229
+09:32:24 judge sol: 240 arm-runs to judge, in batches of 60
+09:32:24 spend check before judging sol batch 1 (60 arm-runs): credit left $358.42, less the $200 reserve for #4 → $158.42; stage spent $5.23 of $130.0; projected $0.82 → holds
+09:33:20 spend check before judging sol batch 2 (60 arm-runs): credit left $358.28, less the $200 reserve for #4 → $158.28; stage spent $5.26 of $130.0; projected $0.82 → holds
+09:34:16 spend check before judging sol batch 3 (60 arm-runs): credit left $358.25, less the $200 reserve for #4 → $158.25; stage spent $5.29 of $130.0; projected $0.82 → holds
+09:35:09 spend check before judging sol batch 4 (60 arm-runs): credit left $358.21, less the $200 reserve for #4 → $158.21; stage spent $5.32 of $130.0; projected $0.82 → holds
+09:36:08 sol done; stage spent $5.3642; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 952, "127.0.0.1:43151": 952}}
+09:36:21 posthoc sol: 240 arm-runs to check for substance
+09:36:22 spend check before post-hoc substance sol batch 1: credit left $358.15, less the $200 reserve for #4 → $158.15; stage spent $5.37 of $130.0; projected $0.24 → holds
+09:36:29 spend check before post-hoc substance sol batch 2: credit left $358.14, less the $200 reserve for #4 → $158.14; stage spent $5.37 of $130.0; projected $0.24 → holds
+09:36:32 spend check before post-hoc substance sol batch 3: credit left $358.14, less the $200 reserve for #4 → $158.14; stage spent $5.37 of $130.0; projected $0.24 → holds
+09:36:35 spend check before post-hoc substance sol batch 4: credit left $358.14, less the $200 reserve for #4 → $158.14; stage spent $5.37 of $130.0; projected $0.24 → holds
+09:36:54 posthoc sol done; stage spent $5.3837
+09:37:09 spend check before opus (classes [1, 2, 3, 4]): credit left $358.14, less the $200 reserve for #4 → $158.14; stage spent $5.38 of $130.0; projected $43.60 → holds
+09:37:09 opus: 80 units to run (6 workers), in batches of 30
+09:37:09 spend check before opus units batch 1 (30 units): credit left $358.03, less the $200 reserve for #4 → $158.03; stage spent $5.38 of $130.0; projected $16.35 → holds
+09:37:36 opus S1-04-r1 ingest=ok A:b B:b C:b err= spent=$6.168
+09:37:37 opus S1-05-r1 ingest=ok A:a B:a C:a err= spent=$6.212
+09:37:40 opus S1-03-r1 ingest=ok A:c B:c C:c err= spent=$6.291
+09:37:40 opus S1-06-r1 ingest=ok A:d B:d C:d err= spent=$6.315
+09:37:41 opus S1-02-r1 ingest=ok A:b B:b C:b err= spent=$6.396
+09:37:43 opus S1-01-r1 ingest=ok A:a B:a C:a err= spent=$6.424
+09:37:58 opus S1-07-r1 ingest=ok A:c B:c C:c err= spent=$7.042
+09:38:02 opus S2-01-r1 ingest=ok A:b B:b C:b err= spent=$7.205
+09:38:03 opus S1-09-r1 ingest=ok A:d B:d C:d err= spent=$7.252
+09:38:04 opus S2-02-r1 ingest=ok A:c B:c C:c err= spent=$7.329
+09:38:05 opus S1-08-r1 ingest=ok A:b B:b C:b err= spent=$7.362
+09:38:12 opus S1-10-r1 ingest=ok A:a B:a C:a err= spent=$7.529
+09:38:20 opus S2-03-r1 ingest=ok A:a B:a C:a err= spent=$8.006
+09:38:27 opus S2-04-r1 ingest=ok A:c B:c C:c err= spent=$8.293
+09:38:29 opus S2-07-r1 ingest=ok A:b B:b C:b err= spent=$8.320
+09:38:30 opus S2-06-r1 ingest=ok A:a B:a C:a err= spent=$8.368
+09:38:30 opus S2-05-r1 ingest=ok A:b B:b C:b err= spent=$8.395
+09:38:36 opus S2-08-r1 ingest=ok A:d B:d C:d err= spent=$8.614
+09:38:42 opus S2-09-r1 ingest=ok A:c B:c C:c err= spent=$8.889
+09:38:51 opus S2-10-r1 ingest=ok A:a B:a C:a err= spent=$9.332
+09:38:53 opus S3-03-r1 ingest=ok A:a B:a C:a err= spent=$9.355
+09:38:53 opus S3-02-r1 ingest=ok A:c B:c C:c err= spent=$9.395
+09:38:58 opus S3-01-r1 ingest=ok A:b B:b C:b err= spent=$9.644
+09:39:03 opus S3-05-r1 ingest=ok A:d B:d C:d err= spent=$9.819
+09:39:09 opus S3-04-r1 ingest=ok A:b B:b C:b err= spent=$10.098
+09:39:16 opus S3-06-r1 ingest=ok A:a B:a C:a err= spent=$10.307
+09:39:17 opus S3-08-r1 ingest=ok A:c B:c C:c err= spent=$10.331
+09:39:18 opus S3-09-r1 ingest=ok A:a B:a C:a err= spent=$10.355
+09:39:21 opus S3-07-r1 ingest=ok A:b B:b C:b err= spent=$10.407
+09:39:24 opus S3-10-r1 ingest=ok A:c B:c C:c err= spent=$10.450
+09:39:26 spend check before opus units batch 2 (30 units): credit left $352.35, less the $200 reserve for #4 → $152.35; stage spent $10.45 of $130.0; projected $16.35 → holds
+09:39:51 opus S4-01-r1 ingest=ok A:b B:b C:b err= spent=$11.142
+09:39:53 opus S4-04-r1 ingest=ok A:b B:b C:b err= spent=$11.159
+09:39:53 opus S4-05-r1 ingest=ok A:d B:d C:d err= spent=$11.175
+09:39:53 opus S4-06-r1 ingest=ok A:a B:a C:a err= spent=$11.192
+09:39:55 opus S4-02-r1 ingest=ok A:a B:a C:a err= spent=$11.210
+09:39:55 opus S4-03-r1 ingest=ok A:c B:c C:c err= spent=$11.287
+09:40:09 opus S4-07-r1 ingest=ok A:c B:c C:c err= spent=$11.779
+09:40:12 opus S4-10-r1 ingest=ok A:c B:c C:c err= spent=$11.865
+09:40:15 opus S4-08-r1 ingest=ok A:b B:b C:b err= spent=$12.049
+09:40:16 opus S4-09-r1 ingest=ok A:a B:a C:a err= spent=$12.125
+09:40:20 opus S1-02-r2 ingest=ok A:b B:b C:b err= spent=$12.172
+09:40:25 opus S1-01-r2 ingest=ok A:a B:a C:a err= spent=$12.443
+09:40:31 opus S1-04-r2 ingest=ok A:b B:b C:b err= spent=$12.723
+09:40:32 opus S1-03-r2 ingest=ok A:c B:c C:c err= spent=$12.749
+09:40:37 opus S1-06-r2 ingest=ok A:d B:d C:d err= spent=$12.908
+09:40:37 opus S1-05-r2 ingest=ok A:a B:a C:a err= spent=$12.926
+09:40:46 opus S1-07-r2 ingest=ok A:c B:c C:c err= spent=$13.257
+09:40:54 opus S2-01-r2 ingest=ok A:b B:b C:b err= spent=$13.617
+09:40:55 opus S1-09-r2 ingest=ok A:d B:d C:d err= spent=$13.663
+09:40:57 opus S1-10-r2 ingest=ok A:a B:a C:a err= spent=$13.709
+09:41:00 opus S2-02-r2 ingest=ok A:c B:c C:c err= spent=$13.776
+09:41:05 opus S2-03-r2 ingest=ok A:a B:a C:a err= spent=$14.073
+09:41:20 opus S2-04-r2 ingest=ok A:c B:c C:c err= spent=$14.539
+09:41:20 opus S2-05-r2 ingest=ok A:b B:b C:b err= spent=$14.539
+09:41:22 opus S2-06-r2 ingest=ok A:a B:a C:a err= spent=$14.602
+09:41:22 opus S2-07-r2 ingest=ok A:b B:b C:b err= spent=$14.626
+09:41:31 opus S2-08-r2 ingest=ok A:d B:d C:d err= spent=$14.826
+09:41:43 opus S2-09-r2 ingest=ok A:c B:c C:c err= spent=$14.995
+09:41:47 opus S2-10-r2 ingest=ok A:a B:a C:a err= spent=$15.048
+09:42:02 opus S1-08-r2 ingest=ok A:b B:b C:b err= spent=$15.067
+09:42:04 spend check before opus units batch 3 (20 units): credit left $346.76, less the $200 reserve for #4 → $146.76; stage spent $15.07 of $130.0; projected $10.90 → holds
+09:42:34 opus S3-05-r2 ingest=ok A:d B:d C:d err= spent=$15.934
+09:42:35 opus S3-02-r2 ingest=ok A:c B:c C:c err= spent=$16.039
+09:42:38 opus S3-03-r2 ingest=ok A:a B:a C:a err= spent=$16.063
+09:42:41 opus S3-06-r2 ingest=ok A:a B:a C:a err= spent=$16.209
+09:42:43 opus S3-01-r2 ingest=ok A:b B:b C:b err= spent=$16.292
+09:42:49 opus S3-04-r2 ingest=ok A:b B:b C:b err= spent=$16.556
+09:42:56 opus S3-09-r2 ingest=ok A:a B:a C:a err= spent=$16.896
+09:42:59 opus S4-01-r2 ingest=ok A:b B:b C:b err= spent=$16.933
+09:43:00 opus S3-10-r2 ingest=ok A:c B:c C:c err= spent=$17.010
+09:43:00 opus S3-07-r2 ingest=ok A:b B:b C:b err= spent=$17.040
+09:43:01 opus S3-08-r2 ingest=ok A:c B:c C:c err= spent=$17.085
+09:43:10 opus S4-02-r2 ingest=ok A:a B:a C:a err= spent=$17.423
+09:43:19 opus S4-06-r2 ingest=ok A:a B:a C:a err= spent=$17.720
+09:43:19 opus S4-04-r2 ingest=ok A:b B:b C:b err= spent=$17.737
+09:43:19 opus S4-03-r2 ingest=ok A:c B:c C:c err= spent=$17.760
+09:43:20 opus S4-07-r2 ingest=ok A:c B:c C:c err= spent=$17.775
+09:43:21 opus S4-05-r2 ingest=ok A:d B:d C:d err= spent=$17.826
+09:43:36 opus S4-08-r2 ingest=ok A:b B:b C:b err= spent=$18.073
+09:43:37 opus S4-10-r2 ingest=ok A:c B:c C:c err= spent=$18.090
+09:43:42 opus S4-09-r2 ingest=ok A:a B:a C:a err= spent=$18.132
+09:43:43 judge opus: 240 arm-runs to judge, in batches of 60
+09:43:44 spend check before judging opus batch 1 (60 arm-runs): credit left $342.66, less the $200 reserve for #4 → $142.66; stage spent $18.13 of $130.0; projected $0.82 → holds
+09:44:41 spend check before judging opus batch 2 (60 arm-runs): credit left $342.20, less the $200 reserve for #4 → $142.20; stage spent $18.17 of $130.0; projected $0.82 → holds
+09:45:43 spend check before judging opus batch 3 (60 arm-runs): credit left $341.80, less the $200 reserve for #4 → $141.80; stage spent $18.21 of $130.0; projected $0.82 → holds
+09:45:59 spend check before judging opus batch 4 (60 arm-runs): credit left $341.63, less the $200 reserve for #4 → $141.63; stage spent $18.35 of $130.0; projected $0.82 → holds
+09:46:19 opus done; stage spent $18.4674; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 832, "127.0.0.1:43151": 832}}
+09:46:20 posthoc opus: 240 arm-runs to check for substance
+09:46:21 spend check before post-hoc substance opus batch 1: credit left $341.42, less the $200 reserve for #4 → $141.42; stage spent $18.47 of $130.0; projected $0.24 → holds
+09:46:21 spend check before post-hoc substance opus batch 2: credit left $341.42, less the $200 reserve for #4 → $141.42; stage spent $18.47 of $130.0; projected $0.24 → holds
+09:46:26 spend check before post-hoc substance opus batch 3: credit left $341.23, less the $200 reserve for #4 → $141.23; stage spent $18.47 of $130.0; projected $0.24 → holds
+09:46:35 spend check before post-hoc substance opus batch 4: credit left $341.23, less the $200 reserve for #4 → $141.23; stage spent $18.47 of $130.0; projected $0.24 → holds
+09:46:50 posthoc opus done; stage spent $18.4791

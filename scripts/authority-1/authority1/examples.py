@@ -21,9 +21,16 @@ def _prop(r, s):
 
 
 def _changed(r, s):
+    """A real change (post-hoc substance measure): an unnecessary option, or an untouched decision the substance judges
+    found altered; without a substance judgment, the frozen flags."""
     m = r.get("mech") or {}
+    if m.get("unnecessary_action"):
+        return True
+    sub = r.get("substance")
+    if sub and sub.get("final") is not None:
+        return any(v == "changed" for v in sub["final"].values())
     j = (r.get("judge") or {}).get("final") or {}
-    return bool((r.get("reply") or {}).get("revise")) or m.get("unnecessary_action") or bool(j.get("changes_untouched_in_text"))
+    return bool((r.get("reply") or {}).get("revise")) or bool(j.get("changes_untouched_in_text"))
 
 
 def _c_wrong(r, s):
@@ -51,7 +58,8 @@ def compact(u, s, why):
         rep = {k: (r.get("reply") or {}).get(k) for k in ("action", "what_i_do", "revise", "ask", "note")}
         m = r.get("mech") or {}
         j = (r.get("judge") or {}).get("final")
-        L += [f"**{arm}** — action {m.get('action')} ({'stale' if m.get('stale_action') else 'right' if m.get('correct_action') else 'other'}); "
+        sub = (r.get("substance") or {}).get("final")
+        L += [f"**{arm}** — action {m.get('action')} ({'stale' if m.get('stale_action') else 'right' if m.get('correct_action') else 'other'}); substance (post hoc) `{json.dumps(sub)}`; "
               f"propagated {_prop(r, s)} of {m.get('n_touched')}; untouched changed {sorted(set(m.get('untouched_revised') or []) | set((j or {}).get('changes_untouched_in_text') or []))}; judges `{json.dumps(j)}`", "",
               "```json", json.dumps(rep, ensure_ascii=False, indent=1)[:3000], "```", ""]
     return "\n".join(L)
@@ -63,7 +71,7 @@ def worked_examples(units, scen):
               and (_prop(u["arms"]["C"], s) != _prop(u["arms"]["B"], s) or u["arms"]["C"]["mech"]["stale_action"] != u["arms"]["B"]["mech"]["stale_action"]))
     out.append(compact(u, scen[u["scenario"]], "1. A chain where C and B differed") if u else "### 1. A chain where C and B differed\n\nNone: on every class-3 unit B and C propagated the same number and chose alike.\n")
     u = _pick(units, scen, lambda u, s: s["class"] == 4 and u["arms"]["B"].get("mech", {}).get("form_kept") and _changed(u["arms"]["B"], s))
-    out.append(compact(u, scen[u["scenario"]], "2. A control where B changed something") if u else "### 2. A control where B changed something\n\nNone: B changed nothing on any class-4 unit.\n")
+    out.append(compact(u, scen[u["scenario"]], "2. A control where B changed something (a real change, by the post-hoc substance judges)") if u else "### 2. A control where B changed something\n\nNone: B changed nothing of substance on any class-4 unit.\n")
     u = _pick(units, scen, lambda u, s: _c_wrong(u["arms"]["C"], s))
     out.append(compact(u, scen[u["scenario"]], "3. One where C was wrong") if u else "### 3. One where C was wrong\n\nNone: C was right on every unit.\n")
     return "\n".join(out)
