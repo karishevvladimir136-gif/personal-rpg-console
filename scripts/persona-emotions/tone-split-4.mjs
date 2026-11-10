@@ -945,7 +945,7 @@ export function ts3Readings(read = readText) {
     const of = (arm) => rows.filter((r) => r.family === f && r.arm === arm);
     const note = (arm) => { const on = of(arm).filter((r) => ["empty", "target", "other"].includes(TS3.noteState(r))); const k = on.filter((r) => TS3.noteState(r) === "target").length; return { k, n: on.length, rate: on.length ? k / on.length : null }; };
     const disc = (arm) => { const on = of(arm).filter((r) => typeof r.judge?.final?.score === "number"); const k = on.filter((r) => r.judge.final.score === 2).length; return { k, n: on.length, rate: on.length ? k / on.length : null }; };
-    out[f] = { dismissal: note("dismissal"), invited: note("invited"), disclosedDismissal: disc("dismissal"), disclosedInvited: disc("invited") };
+    out[f] = { neutral: note("neutral"), dismissal: note("dismissal"), invited: note("invited"), disclosedDismissal: disc("dismissal"), disclosedInvited: disc("invited") };
     out[f].gap = sub(out[f].invited.rate, out[f].dismissal.rate);
     out[f].disclosedGap = sub(out[f].disclosedInvited.rate, out[f].disclosedDismissal.rate);
   }
@@ -1068,7 +1068,15 @@ export function readings(byPart, probes, { ts3 = ts3Readings(), ledger = null, c
   const T0 = { ceilingHeld, spent, failedChecks: failedChecks.length, correctness, s3, form, distress: distress.length, refusals: refusals.length, errors: errors.length, notAsked: notAsked.length, cut: allRows.filter((r) => r.measures.cut).length,
     verdict: ceilingHeld && Object.values(correctness).every((x) => !x.n || x.rate >= 0.95 - 1e-9) && Object.values(form).every((x) => !x.n || x.k / x.n >= 0.9 - 1e-9) && distress.length === 0 };
 
-  return { cells, cellOf, gapOf, bridge, T0, T1, T2, T3, T4, T5, T6, ts3, targetStrata, cleanStrata, refusals, errors, notAsked, distress, R };
+  // descriptive: the suppression (dismissal − neutral) and the invitation (invited − neutral), Part A with the bootstrap
+  const contrasts = ALL_FAMILIES.map((f) => {
+    const d = (part, a, b) => sub(cellOf(part, f, a)?.note.rate ?? null, cellOf(part, f, b)?.note.rate ?? null);
+    const bootOf = (a, b) => { if (!A_FAMILIES.includes(f)) return null; const ca = counts("A", f, a, "note", "target"), cb = counts("A", f, b, "note", "target"); return boot(`contrast/${f}/${a}-${b}`, targetStrata, (pick) => sub(pooled(ca, pick), pooled(cb, pick))); };
+    return { family: f, ts3: { suppression: sub(ts3.families[f].dismissal.rate, ts3.families[f].neutral.rate), invitation: sub(ts3.families[f].invited.rate, ts3.families[f].neutral.rate) },
+      A: { suppression: d("A", "dismissal", "neutral"), invitation: d("A", "invited", "neutral"), bootS: bootOf("dismissal", "neutral"), bootI: bootOf("invited", "neutral") },
+      B: { suppression: d("B", "dismissal", "neutral"), invitation: d("B", "invited", "neutral") }, C: { suppression: d("C", "dismissal", "neutral"), invitation: d("C", "invited", "neutral") } };
+  });
+  return { cells, cellOf, gapOf, bridge, contrasts, T0, T1, T2, T3, T4, T5, T6, ts3, targetStrata, cleanStrata, refusals, errors, notAsked, distress, R };
 }
 const avg = (xs) => { const v = xs.filter((x) => typeof x === "number" && Number.isFinite(x)); return v.length ? v.reduce((s, x) => s + x, 0) / v.length : null; };
 
@@ -1127,6 +1135,11 @@ export function reportMarkdown({ records, probes, ledger, inShort = null, owner 
   // the gaps
   out.push("## The gap per family and part (invited − dismissal, Note names the target)", "", "| Family | Tone split 3 (EN, our probes) | Part A (foreign) | Part B (Russian) | Part C (a turn away) | Bridge label | Score-2 gaps: TS3 / A / B / C |", "| --- | --- | --- | --- | --- | --- | --- |",
     ...ALL_FAMILIES.map((f) => { const t1 = T1.rows.find((r) => r.family === f); return `| ${LABEL(f)} | ${PTS(x.ts3.families[f].gap)} | ${f === WRITER ? "author" : `${PTS(x.gapOf("A", f))} ${BCI(t1?.boot)}`} | ${PTS(x.gapOf("B", f))} | ${PTS(x.gapOf("C", f))} | ${f === WRITER ? "no bridge" : x.bridge[f].label} | ${PTS(x.ts3.families[f].disclosedGap)} / ${f === WRITER ? "–" : PTS(x.gapOf("A", f, "disclosed"))} / ${PTS(x.gapOf("B", f, "disclosed"))} / ${PTS(x.gapOf("C", f, "disclosed"))} |`; }), "");
+
+  // the two halves of the gap
+  out.push("## The two halves of the gap — suppression (dismissal − neutral) and invitation (invited − neutral)", "", "Note names the target, in points; Part A with the bootstrap over its 30 target probes. Descriptive: no verdict reads this table. Tone split 3's dismissal is the old wording; the bridge is the comparison on the same probes.", "",
+    "| Family | TS3: suppression · invitation | Part A: suppression | Part A: invitation | Part B: suppression · invitation | Part C: suppression · invitation |", "| --- | --- | --- | --- | --- | --- |",
+    ...x.contrasts.map((c) => `| ${LABEL(c.family)} | ${PTS(c.ts3.suppression)} · ${PTS(c.ts3.invitation)} | ${c.family === WRITER ? "author" : `${PTS(c.A.suppression)} ${BCI(c.A.bootS)}`} | ${c.family === WRITER ? "author" : `${PTS(c.A.invitation)} ${BCI(c.A.bootI)}`} | ${PTS(c.B.suppression)} · ${PTS(c.B.invitation)} | ${PTS(c.C.suppression)} · ${PTS(c.C.invitation)} |`), "");
 
   // per-part tables
   const partTable = (part, kind = "target") => {
