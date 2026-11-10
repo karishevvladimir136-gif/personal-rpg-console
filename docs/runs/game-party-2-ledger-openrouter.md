@@ -1,6 +1,6 @@
 # Game party 2 — the OpenRouter ledger
 
-Cap $240; spent before this run $0.0000; this run $213.1802; total $213.1802; 5007 calls.
+Cap $240; spent before this run $0.0000; this run $234.8997; total $234.8997; 5304 calls.
 
 | Session | Purpose | Model | Calls | Input (uncached) | Cache read | Cache write | Output | USD | Errors | Refusals | 429 waits |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -3510,3 +3510,153 @@ Cap $240; spent before this run $0.0000; this run $213.1802; total $213.1802; 50
 | S2-high-T2/score | hold r4 1 | anthropic/claude-haiku-5.5 | 1 | 4178 | 0 | 0 | 1434 | $0.0011 | 0 | 0 | 0 |
 | S2-high-T2/score | hold r4 2 | anthropic/claude-haiku-5.5 | 1 | 4178 | 0 | 0 | 417 | $0.0006 | 0 | 0 | 0 |
 | S2-high-T2/score | hold r4 referee | anthropic/claude-opus-5.5 | 1 | 4178 | 0 | 0 | 62 | $0.0180 | 0 | 1 | 0 |
+| S3-T1 | relay opening | anthropic/claude-sonnet-5.5 | 1 | 1311 | 0 | 0 | 1372 | $0.0163 | 0 | 0 | 0 |
+| S3-T1/Pell | player r1 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 10997 | 523 | $0.0655 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r1 | anthropic/claude-haiku-5.5 | 1 | 1859 | 0 | 0 | 61 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Bram | player r1 | openai/gpt-6.1-sol | 1 | 3 | 0 | 7270 | 94 | $0.0191 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r1 | anthropic/claude-haiku-5.5 | 1 | 1618 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r1 | deepseek/deepseek-v4-pro-0813 | 1 | 7610 | 0 | 0 | 626 | $0.0115 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r1 | anthropic/claude-haiku-5.5 | 1 | 1790 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r1 | anthropic/claude-opus-5.5 | 3 | 12 | 50236 | 103196 | 9296 | $0.8342 | 0 | 0 | 0 |
+| S3-T1 | dm r1 | anthropic/claude-haiku-5.5 | 1 | 3371 | 0 | 0 | 427 | $0.0006 | 0 | 0 | 0 |
+| S3-T1 | relay r1 | anthropic/claude-sonnet-5.5 | 1 | 2547 | 0 | 0 | 3342 | $0.0385 | 0 | 0 | 0 |
+| S3-T1 | relay r1 (Pell's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3799 | 0 | 0 | 1134 | $0.0189 | 0 | 0 | 0 |
+| S3-T1 | relay r1 (Bram's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3700 | 0 | 0 | 1039 | $0.0178 | 0 | 0 | 0 |
+| S3-T1 | relay r1 (Sefa's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3721 | 0 | 0 | 1052 | $0.0180 | 0 | 0 | 0 |
+| S3-T1/Bram | player r2 | openai/gpt-6.1-sol | 1 | 3 | 7270 | 854 | 99 | $0.0039 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r2 | anthropic/claude-haiku-5.5 | 1 | 1556 | 0 | 0 | 63 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r2 | deepseek/deepseek-v4-pro-0813 | 1 | 1063 | 7424 | 0 | 1353 | $0.0056 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r2 | anthropic/claude-haiku-5.5 | 1 | 1746 | 0 | 0 | 60 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r2 | anthropic/claude-opus-5.5 | 1 | 4 | 10997 | 1528 | 1048 | $0.0308 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r2 | anthropic/claude-haiku-5.5 | 1 | 2186 | 0 | 0 | 89 | $0.0003 | 0 | 0 | 0 |
+| S3-T1 | dm r2 | anthropic/claude-opus-5.5 | 2 | 8 | 40736 | 66107 | 8200 | $0.5078 | 0 | 0 | 0 |
+| S3-T1 | dm r2 | anthropic/claude-haiku-5.5 | 1 | 3199 | 0 | 0 | 309 | $0.0005 | 0 | 0 | 0 |
+| S3-T1 | relay r2 | anthropic/claude-sonnet-5.5 | 1 | 3093 | 0 | 0 | 2166 | $0.0278 | 0 | 0 | 0 |
+| S3-T1/Bram | player r3 | openai/gpt-6.1-sol | 1 | 3 | 8124 | 508 | 75 | $0.0028 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r3 | anthropic/claude-haiku-5.5 | 1 | 1004 | 0 | 0 | 57 | $0.0001 | 0 | 0 | 0 |
+| S3-T1 | dm r3 | anthropic/claude-opus-5.5 | 5 | 20 | 141669 | 136520 | 11907 | $0.9580 | 0 | 0 | 0 |
+| S3-T1 | dm r3 | anthropic/claude-haiku-5.5 | 2 | 5819 | 0 | 0 | 570 | $0.0009 | 0 | 0 | 0 |
+| S3-T1 | relay r3 | anthropic/claude-sonnet-5.5 | 2 | 4239 | 0 | 0 | 2523 | $0.0337 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r3 | deepseek/deepseek-v4-pro-0813 | 1 | 993 | 8192 | 0 | 451 | $0.0033 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r3 | anthropic/claude-haiku-5.5 | 1 | 1232 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r3 | anthropic/claude-opus-5.5 | 1 | 4 | 12525 | 1562 | 846 | $0.0273 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r3 | anthropic/claude-haiku-5.5 | 1 | 1694 | 0 | 0 | 65 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | relay r3 (Sefa's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 3538 | 0 | 0 | 624 | $0.0133 | 0 | 0 | 0 |
+| S3-T1 | relay r3 (Pell's screen, retold) | anthropic/claude-sonnet-5.5 | 1 | 4019 | 0 | 0 | 1128 | $0.0193 | 0 | 0 | 0 |
+| S3-T1/Bram | player r4 | openai/gpt-6.1-sol | 1 | 3 | 8632 | 494 | 102 | $0.0031 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r4 | anthropic/claude-haiku-5.5 | 1 | 1053 | 0 | 0 | 72 | $0.0001 | 0 | 0 | 0 |
+| S3-T1 | dm r4 | anthropic/claude-opus-5.5 | 5 | 20 | 124380 | 167219 | 11985 | $1.1120 | 0 | 0 | 0 |
+| S3-T1 | dm r4 | anthropic/claude-haiku-5.5 | 2 | 5558 | 0 | 0 | 632 | $0.0009 | 0 | 0 | 0 |
+| S3-T1 | relay r4 | anthropic/claude-sonnet-5.5 | 3 | 5577 | 0 | 0 | 2168 | $0.0328 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r4 | deepseek/deepseek-v4-pro-0813 | 1 | 883 | 8960 | 0 | 374 | $0.0030 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r4 | anthropic/claude-haiku-5.5 | 1 | 1164 | 0 | 0 | 67 | $0.0001 | 0 | 0 | 0 |
+| S3-T1/Pell | player r4 | anthropic/claude-opus-5.5 | 1 | 4 | 14087 | 1670 | 645 | $0.0241 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r4 | anthropic/claude-haiku-5.5 | 1 | 1936 | 0 | 0 | 71 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | relay r4 card | anthropic/claude-sonnet-5.5 | 1 | 1448 | 0 | 0 | 150 | $0.0044 | 0 | 0 | 0 |
+| S3-T1/Pell | player r4 card 1 | anthropic/claude-opus-5.5 | 4 | 16 | 65630 | 1261 | 259 | $0.0247 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r4 card | anthropic/claude-haiku-5.5 | 4 | 2070 | 0 | 0 | 243 | $0.0003 | 0 | 0 | 0 |
+| S3-T1 | dm r4 onward | anthropic/claude-opus-5.5 | 2 | 6 | 84110 | 38609 | 6630 | $0.3425 | 0 | 0 | 0 |
+| S3-T1 | dm r4 onward | anthropic/claude-haiku-5.5 | 2 | 4998 | 0 | 0 | 657 | $0.0008 | 0 | 0 | 0 |
+| S3-T1/Bram | player r5 | openai/gpt-6.1-sol | 1 | 3 | 9126 | 471 | 68 | $0.0028 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r5 | anthropic/claude-haiku-5.5 | 1 | 983 | 0 | 0 | 71 | $0.0001 | 0 | 0 | 0 |
+| S3-T1 | dm r5 | anthropic/claude-opus-5.5 | 6 | 24 | 228732 | 159592 | 12080 | $1.0959 | 0 | 0 | 0 |
+| S3-T1 | dm r5 | anthropic/claude-haiku-5.5 | 2 | 5999 | 0 | 0 | 1030 | $0.0011 | 0 | 0 | 0 |
+| S3-T1 | relay r5 | anthropic/claude-sonnet-5.5 | 3 | 7480 | 0 | 0 | 2744 | $0.0424 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r5 | deepseek/deepseek-v4-pro-0813 | 1 | 768 | 9728 | 0 | 640 | $0.0036 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r5 | anthropic/claude-haiku-5.5 | 1 | 1211 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | relay r5 card | anthropic/claude-sonnet-5.5 | 2 | 3154 | 0 | 0 | 964 | $0.0159 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r5 card 1 | deepseek/deepseek-v4-pro-0813 | 2 | 1154 | 21248 | 0 | 792 | $0.0057 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r5 card | anthropic/claude-haiku-5.5 | 3 | 3065 | 0 | 0 | 202 | $0.0004 | 0 | 0 | 0 |
+| S3-T1 | dm r5 card prose | anthropic/claude-opus-5.5 | 1 | 20435 | 0 | 29318 | 957 | $0.3354 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r5 card 2 | deepseek/deepseek-v4-pro-0813 | 1 | 1043 | 11008 | 0 | 161 | $0.0029 | 0 | 0 | 0 |
+| S3-T1 | dm r5 onward | anthropic/claude-opus-5.5 | 7 | 24 | 378656 | 97329 | 12032 | $0.8031 | 0 | 0 | 0 |
+| S3-T1 | dm r5 onward | anthropic/claude-haiku-5.5 | 6 | 17945 | 0 | 0 | 3445 | $0.0035 | 0 | 0 | 0 |
+| S3-T1/Pell | player r5 | anthropic/claude-opus-5.5 | 1 | 4 | 17018 | 689 | 890 | $0.0247 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r5 | anthropic/claude-haiku-5.5 | 1 | 1472 | 0 | 0 | 81 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r5 card 1 | anthropic/claude-opus-5.5 | 2 | 8 | 36151 | 940 | 37 | $0.0127 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r5 card | anthropic/claude-haiku-5.5 | 2 | 1102 | 0 | 0 | 122 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Bram | player r6 | openai/gpt-6.1-sol | 1 | 3 | 9597 | 666 | 158 | $0.0042 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r6 | anthropic/claude-haiku-5.5 | 1 | 1350 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r6 | anthropic/claude-opus-5.5 | 4 | 16 | 120453 | 183239 | 10274 | $1.1591 | 0 | 0 | 0 |
+| S3-T1 | relay r6 card | anthropic/claude-sonnet-5.5 | 2 | 3668 | 0 | 0 | 1277 | $0.0201 | 0 | 0 | 0 |
+| S3-T1 | relay r6 card (asked again) | anthropic/claude-sonnet-5.5 | 1 | 1347 | 0 | 0 | 335 | $0.0060 | 0 | 0 | 0 |
+| S3-T1/Bram | player r6 card 1 | openai/gpt-6.1-sol | 2 | 6 | 20907 | 527 | 17 | $0.0036 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r6 card | anthropic/claude-haiku-5.5 | 2 | 1216 | 0 | 0 | 120 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r6 onward | anthropic/claude-opus-5.5 | 6 | 20 | 336636 | 105794 | 13098 | $0.8583 | 0 | 0 | 0 |
+| S3-T1 | dm r6 onward | anthropic/claude-haiku-5.5 | 5 | 13569 | 0 | 0 | 1507 | $0.0021 | 0 | 0 | 0 |
+| S3-T1 | relay r6 | anthropic/claude-sonnet-5.5 | 3 | 7833 | 0 | 0 | 2312 | $0.0388 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r6 | deepseek/deepseek-v4-pro-0813 | 1 | 529 | 11776 | 0 | 831 | $0.0040 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r6 | anthropic/claude-haiku-5.5 | 1 | 886 | 0 | 0 | 63 | $0.0001 | 0 | 0 | 0 |
+| S3-T1 | dm r6 | anthropic/claude-haiku-5.5 | 1 | 3114 | 0 | 0 | 393 | $0.0005 | 0 | 0 | 0 |
+| S3-T1/Pell | player r6 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 20052 | 1052 | $0.1213 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r6 | anthropic/claude-haiku-5.5 | 1 | 2279 | 0 | 0 | 76 | $0.0003 | 0 | 0 | 0 |
+| S3-T1/Pell | player r6 card 1 | anthropic/claude-opus-5.5 | 2 | 8 | 41613 | 1689 | 104 | $0.0189 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r6 card | anthropic/claude-haiku-5.5 | 2 | 1760 | 0 | 0 | 119 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Bram | player r7 | openai/gpt-6.1-sol | 1 | 3 | 10790 | 487 | 161 | $0.0039 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r7 | anthropic/claude-haiku-5.5 | 1 | 1199 | 0 | 0 | 68 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r7 | anthropic/claude-opus-5.5 | 6 | 24 | 224259 | 265206 | 24826 | $1.8814 | 0 | 0 | 0 |
+| S3-T1 | dm r7 | anthropic/claude-haiku-5.5 | 2 | 7337 | 0 | 0 | 853 | $0.0012 | 0 | 0 | 0 |
+| S3-T1 | relay r7 | anthropic/claude-sonnet-5.5 | 3 | 7124 | 0 | 0 | 3445 | $0.0487 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r7 | deepseek/deepseek-v4-pro-0813 | 1 | 1076 | 12032 | 0 | 587 | $0.0041 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r7 | anthropic/claude-haiku-5.5 | 1 | 1414 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r7 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 22290 | 886 | $0.1292 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r7 | anthropic/claude-haiku-5.5 | 1 | 1317 | 0 | 0 | 74 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | relay r7 card | anthropic/claude-sonnet-5.5 | 1 | 1542 | 0 | 0 | 294 | $0.0060 | 0 | 0 | 0 |
+| S3-T1/Pell | player r7 card 1 | anthropic/claude-opus-5.5 | 2 | 8 | 45382 | 1007 | 27 | $0.0147 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r7 card | anthropic/claude-haiku-5.5 | 2 | 1184 | 0 | 0 | 124 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r7 onward | anthropic/claude-opus-5.5 | 3 | 10 | 187117 | 60103 | 6536 | $0.4687 | 0 | 0 | 0 |
+| S3-T1 | dm r7 onward | anthropic/claude-haiku-5.5 | 3 | 9239 | 0 | 0 | 2123 | $0.0020 | 0 | 0 | 0 |
+| S3-T1/Bram | player r8 | openai/gpt-6.1-sol | 1 | 3 | 11277 | 994 | 127 | $0.0049 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r8 | anthropic/claude-haiku-5.5 | 1 | 1725 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r8 | anthropic/claude-opus-5.5 | 7 | 28 | 347641 | 297624 | 20473 | $1.9805 | 0 | 0 | 0 |
+| S3-T1 | dm r8 | anthropic/claude-haiku-5.5 | 4 | 13704 | 0 | 0 | 2163 | $0.0025 | 0 | 0 | 0 |
+| S3-T1 | relay r8 | anthropic/claude-sonnet-5.5 | 3 | 6492 | 0 | 0 | 3230 | $0.0453 | 0 | 0 | 0 |
+| S3-T1 | relay r8 (asked again) | anthropic/claude-sonnet-5.5 | 1 | 2150 | 0 | 0 | 1230 | $0.0166 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r8 | deepseek/deepseek-v4-pro-0813 | 1 | 1056 | 12800 | 0 | 382 | $0.0036 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r8 | anthropic/claude-haiku-5.5 | 1 | 1385 | 0 | 0 | 64 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r8 card 1 | deepseek/deepseek-v4-pro-0813 | 4 | 1820 | 56064 | 0 | 1244 | $0.0112 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r8 card | anthropic/claude-haiku-5.5 | 6 | 4670 | 0 | 0 | 375 | $0.0007 | 0 | 0 | 0 |
+| S3-T1 | dm r8 card prose | anthropic/claude-opus-5.5 | 2 | 55235 | 72092 | 13456 | 1746 | $0.3779 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r8 card 2 | deepseek/deepseek-v4-pro-0813 | 2 | 1624 | 29184 | 0 | 1837 | $0.0098 | 0 | 0 | 0 |
+| S3-T1 | dm r8 card prose (with a press) | anthropic/claude-opus-5.5 | 1 | 27447 | 42774 | 0 | 282 | $0.1240 | 0 | 0 | 0 |
+| S3-T1 | dm r8 onward | anthropic/claude-opus-5.5 | 3 | 10 | 196564 | 63111 | 8071 | $0.5163 | 0 | 0 | 0 |
+| S3-T1 | dm r8 onward | anthropic/claude-haiku-5.5 | 2 | 4750 | 0 | 0 | 414 | $0.0007 | 0 | 0 | 0 |
+| S3-T1/Pell | player r8 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 24454 | 1267 | $0.1476 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r8 | anthropic/claude-haiku-5.5 | 1 | 2042 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Bram | player r9 | openai/gpt-6.1-sol | 1 | 3 | 12271 | 946 | 88 | $0.0045 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r9 | anthropic/claude-haiku-5.5 | 1 | 1643 | 0 | 0 | 62 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r9 | anthropic/claude-opus-5.5 | 4 | 16 | 160178 | 249111 | 9211 | $1.4744 | 0 | 0 | 0 |
+| S3-T1 | relay r9 card | anthropic/claude-sonnet-5.5 | 2 | 2841 | 0 | 0 | 575 | $0.0114 | 0 | 0 | 0 |
+| S3-T1/Bram | player r9 card 1 | openai/gpt-6.1-sol | 4 | 12 | 54128 | 684 | 56 | $0.0077 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r9 card | anthropic/claude-haiku-5.5 | 4 | 2065 | 0 | 0 | 248 | $0.0003 | 0 | 0 | 0 |
+| S3-T1 | dm r9 onward | anthropic/claude-opus-5.5 | 7 | 24 | 520408 | 146143 | 18429 | $1.2035 | 0 | 0 | 0 |
+| S3-T1 | dm r9 onward | anthropic/claude-haiku-5.5 | 5 | 14731 | 0 | 0 | 2466 | $0.0027 | 0 | 0 | 0 |
+| S3-T1 | relay r9 | anthropic/claude-sonnet-5.5 | 3 | 7165 | 0 | 0 | 2943 | $0.0438 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r9 | deepseek/deepseek-v4-pro-0813 | 1 | 864 | 15872 | 0 | 442 | $0.0039 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r9 | anthropic/claude-haiku-5.5 | 1 | 1592 | 0 | 0 | 79 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r9 | anthropic/claude-haiku-5.5 | 2 | 5217 | 0 | 0 | 460 | $0.0008 | 0 | 0 | 0 |
+| S3-T1/Pell | player r9 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 25969 | 1061 | $0.1511 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r9 | anthropic/claude-haiku-5.5 | 1 | 1822 | 0 | 0 | 66 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r9 card 1 | anthropic/claude-opus-5.5 | 3 | 12 | 79966 | 1328 | 359 | $0.0299 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r9 card | anthropic/claude-haiku-5.5 | 3 | 1711 | 0 | 0 | 186 | $0.0003 | 0 | 0 | 0 |
+| S3-T1/Bram | player r10 | openai/gpt-6.1-sol | 1 | 3 | 13901 | 549 | 144 | $0.0042 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r10 | anthropic/claude-haiku-5.5 | 1 | 1225 | 0 | 0 | 70 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r10 | anthropic/claude-opus-5.5 | 5 | 20 | 194268 | 337779 | 20749 | $2.1549 | 0 | 0 | 0 |
+| S3-T1 | dm r10 | anthropic/claude-haiku-5.5 | 3 | 8644 | 0 | 0 | 1021 | $0.0014 | 0 | 0 | 0 |
+| S3-T1 | relay r10 | anthropic/claude-sonnet-5.5 | 3 | 7892 | 0 | 0 | 2525 | $0.0410 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r10 | deepseek/deepseek-v4-pro-0813 | 1 | 1038 | 16640 | 0 | 344 | $0.0039 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r10 | anthropic/claude-haiku-5.5 | 1 | 1581 | 0 | 0 | 84 | $0.0002 | 0 | 0 | 0 |
+| S3-T1/Pell | player r10 | anthropic/claude-opus-5.5 | 1 | 4 | 0 | 28327 | 1191 | $0.1655 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r10 | anthropic/claude-haiku-5.5 | 1 | 1977 | 0 | 0 | 72 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | relay r10 card | anthropic/claude-sonnet-5.5 | 1 | 2581 | 0 | 0 | 1108 | $0.0162 | 0 | 0 | 0 |
+| S3-T1/Pell | player r10 card 1 | anthropic/claude-opus-5.5 | 2 | 8 | 58427 | 1976 | 25 | $0.0221 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Pell r10 card | anthropic/claude-haiku-5.5 | 2 | 1974 | 0 | 0 | 116 | $0.0003 | 0 | 0 | 0 |
+| S3-T1 | dm r10 onward | anthropic/claude-opus-5.5 | 2 | 6 | 139982 | 73495 | 6352 | $0.5225 | 0 | 0 | 0 |
+| S3-T1 | dm r10 onward | anthropic/claude-haiku-5.5 | 2 | 6384 | 0 | 0 | 677 | $0.0010 | 0 | 0 | 0 |
+| S3-T1/Bram | player r11 | openai/gpt-6.1-sol | 1 | 3 | 14450 | 634 | 79 | $0.0038 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Bram r11 | anthropic/claude-haiku-5.5 | 1 | 1208 | 0 | 0 | 75 | $0.0002 | 0 | 0 | 0 |
+| S3-T1 | dm r11 | anthropic/claude-opus-5.5 | 3 | 12 | 129660 | 198401 | 9250 | $1.2128 | 0 | 0 | 0 |
+| S3-T1 | dm r11 | anthropic/claude-haiku-5.5 | 1 | 3323 | 0 | 0 | 312 | $0.0005 | 0 | 0 | 0 |
+| S3-T1 | relay r11 | anthropic/claude-sonnet-5.5 | 1 | 1683 | 0 | 0 | 812 | $0.0115 | 0 | 0 | 0 |
+| S3-T1/Sefa | player r11 | deepseek/deepseek-v4-pro-0813 | 1 | 1120 | 17408 | 0 | 450 | $0.0044 | 0 | 0 | 0 |
+| S3-T1/check | check S3-T1 Sefa r11 | anthropic/claude-haiku-5.5 | 1 | 1610 | 0 | 0 | 82 | $0.0002 | 0 | 0 | 0 |

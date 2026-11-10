@@ -986,6 +986,40 @@
           "left": 26.82
         }
       }
+    },
+    {
+      "at": "2026-11-10T00:21:53.264Z",
+      "when": "after S3-T1",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1535.747053185,
+        "remaining": 14.25,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 234.8997,
+          "cap": 240,
+          "left": 5.1
+        }
+      }
+    },
+    {
+      "at": "2026-11-10T00:22:10.204Z",
+      "when": "before the scoring of S3-T1",
+      "openrouter": {
+        "totalCredits": 1550,
+        "totalUsage": 1535.751621985,
+        "remaining": 14.25,
+        "error": null
+      },
+      "ledger": {
+        "openrouter": {
+          "spent": 234.8997,
+          "cap": 240,
+          "left": 5.1
+        }
+      }
     }
   ]
 }

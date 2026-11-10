@@ -57,6 +57,10 @@ export const HAND = {
     letter: "the two letter-check hits (Sefa's and Pell's screens after round 4) are the holder's own act, not a leak: in the round the letter reached him Bram wrote «…I pass the warning to Pell, then show both of them the letter», and the DM narrated him holding it low between the three of them",
     leaks: { none: true, why: "the five hits are the shared yard seen from both scenes (Pell in the room on the gallery, Bram and Sefa by the stair): the brown dog on its taut chain with its eyes on the stranger, then on the end of the gallery, and Tobin's mallet on the hoop" },
   },
+  "S3-T1": {
+    ended: "stopped at round 11 by the owner's per-table allowance ($25): the meter refused a DM call whose worst case would pass the table's cap (spent $234.49, the call at worst $1.88, the cap $238.18), so Bram's round-11 scene failed and the table ended; 10 whole rounds were played, $21.72 at the table — the company split into three scenes from round 4, which costs more DM calls a round",
+    leaks: { none: true, why: "the two hits are one public street event seen from two scenes (Sefa and Pell in their own positions): the wagon stopping, Gorm out in the road with his lantern, the cloaked figure leaning down — and «can't hear a word over the forge», the DM's own phrase for that street's noise in each scene" },
+  },
   // Harness v5 from here on (the A7 fix of Step 1; see the report's Step 1 section).
   "S1-moderate-T1": {
     a7: "on v5 no round closed on a question or offer to one character; every hold is the rescue's own count, which the company had agreed aloud: the flask down Bram's line before the lift (r6), the heave on Sefa's count (r7, r9, r10 — Osric: «Your count. When it's his.»), and in r12 the DM's own out-of-game note (stripped from the screens) that Bram's request to Sefa waits for her player",
@@ -65,8 +69,8 @@ export const HAND = {
   },
 };
 /** The Mandate stopped at a stop condition (POLICY v1) before the tables left; null while it runs. */
-export const STOPPED = "the Mandate stopped before them at a safety-classifier stop (POLICY v1), after S2-high-T2; the ceiling would have allowed S3-T1 (≈ $25 left), not S3-T2";
-export const STOPPED_DETAIL = "on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there, and the owner's word is awaited in issue #1. S2-high-T2 is played and not scored (its section says so); S3-T1 and S3-T2 are not played";
+export const STOPPED = "S3-T2 is not played: the Mandate stopped at a safety-classifier stop (POLICY v1) after S2-high-T2, and on the owner's amendment of 2026-11-09 15:23 LA only S3-T1 was played after it, under the $240 ceiling; S3-T2 would need the ceiling raised";
+export const STOPPED_DETAIL = "on 2026-11-09, scoring S2-high-T2, the Opus referee asked to settle the two Haiku judges' disagreement on round 4's hold tags answered with a refusal (stop_reason refusal, category «cyber»). It was not asked again and not rephrased; the scoring and the Mandate stopped there. The owner's amendment of 2026-11-09 15:23 LA: S2-high-T2 stays played and unscored past round 3 (no substitute referee); S3-T1 played under the ceiling, a judge's refusal from then on leaving only its round unscored; S3-T2 not played";
 /** What a reading by hand adds to a bet's line, or decides where the mechanical reading says «read by hand». */
 export const BET_READINGS = {
   R1: { note: "both high tables were stopped by the owner's per-table allowance before round 15 (S1-high-T1 after 13 whole rounds, S1-high-T2 after 12), so «not saved by the end» reads «not freed by the cut»: in T1 Bram was still at the block alone, in T2 Bram was in the water beside Pell working his heel free" },
