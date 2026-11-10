@@ -100,3 +100,17 @@ arms on Haiku, post the traces and the cost projection in the mandate, and stop 
 above $120; otherwise go straight on (the owner's word is there). Ceiling $250; spend check before every batch of ≤ 200
 calls; 402 stops; 429 bounded; refusals recorded, never rephrased; breaker at three. Run DeepSeek, Sol, Opus; C-gold on
 the 500 tier; score AU0–AU7; write the report; post the closing comment. Nothing to main. English, briefly.»
+
+## Amendment 2026-11-10 14:3x LA — ingestion, before launch (the owner's question on time)
+Histories of 100–1,000 events through Mem0's per-add extraction would be ≈ 120,000 memory-LLM calls across 80
+scenarios and three families — days and hundreds of dollars on ingestion alone; the planner had not recomputed this
+from the 20–50-item histories of the first two stages. So, frozen before launch:
+- **Ingestion is batched**: 25 events per `add` call, in order, with each event's date in its text.
+- **The memory LLM is fixed and cheap — Claude Haiku 5.5 — for every scenario, arm and family.** This departs from
+  AUTHORITY_1/2, where the subject was also the memory LLM; it is stated in the report. Families then differ only in
+  the arms' reasoning and acts, which is what the stage measures.
+- **One ingestion per scenario**, its vector-store snapshot copied for every arm-run; ≈ 2,000 ingestion calls in all,
+  booked to «backend» in the spend by door.
+- Expected size: 2,010 arm-runs × 3–4 calls, plus one long extraction call per C run; the dry run's projection is read
+  against this. Planner's time estimate from the records of the first two stages and TONE_SPLIT_4/5's throughput:
+  3–4 h for simulator, sets and pool; 9–13 h for the paid runs; 12–17 h in all, with one or two background restarts.
