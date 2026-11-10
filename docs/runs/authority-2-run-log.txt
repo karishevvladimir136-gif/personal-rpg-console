@@ -157,3 +157,18 @@
 19:56:56 G4-08 kimi: {'truth_follows': 'yes', 'forces_act': 'yes', 'class': 4, 'distractor': 'yes', 'reasons': "The change is explicitly a restatement of R1 with unchanged terms, so nothing is touched and option a (four canoes, 13 August, Marta and Ravi per D1/D3/O1) is correct; F9's six canoes (Voyager trip) is the untouched distractor behind option b, and c gratuitously moves the date. Minor quirk: D3's 'three paddlers per canoe covers sixteen' is arithmetically off (4×3=12), but the key consistently follows the recorded decision, so the scenario is still unambiguous as written."} err=None refused=False spent=$4.195
 19:57:00 G4-04 kimi: {'truth_follows': 'yes', 'forces_act': 'yes', 'class': 4, 'distractor': 'yes', 'reasons': 'The change (vitamin D backorder) explicitly leaves Eltofer and patient deliveries unaffected and is cited by no decision, so nothing is touched and option a follows cleanly from D1/D2/O1. All three options are concrete acts (book or hold-and-send) with no ask/check/wait escape. F10 (cheaper SwiftPost Tuesday run) is the newer relevant-looking distractor that could wrongly pull toward option b, though R1 fixes housebound deliveries to Friday 10:00.'} err=None refused=False spent=$4.218
 19:57:05 admit: 17 admitted {1: 3, 2: 3, 3: 6, 4: 5}; κ {'truth_follows': (0.030769230769230826, 49), 'forces_act': (0.0, 49), 'class': (0.8912922906267332, 49), 'distractor': (1.0, 49), 'admission_mark': (0.006756756756756625, 49)}
+19:57:55 spend check before dry run (Haiku, 4 scenarios × 3 arms): credit left $275.84, less $150.00 reserved for #6 → $125.84; stage spent $4.22 of $120.0; projected $2.00 → holds
+19:57:55 haiku: 4 units to run (4 workers), in batches of 30
+19:57:55 spend check before haiku units batch 1 (4 units): credit left $275.84, less $150.00 reserved for #6 → $125.84; stage spent $4.22 of $120.0; projected $2.40 → holds
+19:58:25 haiku G1-07-r1 ingest=ok A:b B:b C:b err= spent=$4.240
+19:58:26 haiku G3-10-r1 ingest=ok A:a B:a C:a err= spent=$4.241
+19:58:28 haiku G2-06-r1 ingest=ok A:b B:b C:b err= spent=$4.242
+19:58:28 haiku G4-07-r1 ingest=ok A:c B:c C:c err= spent=$4.242
+19:58:29 judge haiku: 12 arm-runs, in batches of 60
+19:58:29 spend check before judge haiku batch 1 (12 arm-runs, ≤ 36 calls): credit left $275.80, less $150.00 reserved for #6 → $125.80; stage spent $4.24 of $120.0; projected $0.24 → holds
+19:58:44 substance haiku: 12 arm-runs, in batches of 60
+19:58:44 spend check before substance haiku batch 1 (12 arm-runs, ≤ 36 calls): credit left $275.72, less $150.00 reserved for #6 → $125.72; stage spent $4.25 of $120.0; projected $0.24 → holds
+19:58:51 obligation haiku: 12 arm-runs, in batches of 60
+19:58:51 spend check before obligation haiku batch 1 (12 arm-runs, ≤ 36 calls): credit left $275.68, less $150.00 reserved for #6 → $125.68; stage spent $4.25 of $120.0; projected $0.24 → holds
+19:59:00 dry trace: /home/user/personal-rpg-console/docs/runs/authority-2-dry-run.md
+19:59:00 dry run done; stage spent $4.2547; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 78, "127.0.0.1:43263": 78}}

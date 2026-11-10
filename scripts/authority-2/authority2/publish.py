@@ -68,7 +68,7 @@ def dry_md(path: Path, units_dir: Path, scen, ids, ledger: Path):
         u = json.loads(p.read_text())
         units[u["scenario"]] = u
     L = ["# AUTHORITY_2 — dry run (Claude Haiku 5.5, 4 scenarios × 3 arms, one repeat)", "",
-         "Outside the 720. Haiku is the subject and Mem0's LLM; judges as the stage (two Haiku passes, Kimi K3 referee by the amendment).", "",
+         "Outside the counted runs. Haiku is the subject and Mem0's LLM; judges as the stage (two Haiku passes, Kimi K3 referee by the amendment).", "",
          "| scenario | class | items | change kept / retrieved | A action / stale / distractor / propagated / obligation | B | C | C walk |",
          "|---|---|---|---|---|---|---|---|"]
     for sid in ids:
