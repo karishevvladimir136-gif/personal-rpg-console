@@ -1,0 +1,513 @@
+{
+ "id": "D05",
+ "tier": 100,
+ "class": 1,
+ "writer": "developer",
+ "title": "Greenway's donations are ready later",
+ "setting": "The volunteer coordinator of a community food bank",
+ "owner": "Rosa",
+ "org": "Eastgate Community Food Bank",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Graham Pell (treasurer)",
+   "role": "rule",
+   "text": "Any change to a confirmed order or paid booking worth $200 or more needs my OK before it goes back to the supplier."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-04",
+   "type": "instruction",
+   "from": "Joy Adeyemi (partnerships lead)",
+   "role": "rule",
+   "text": "Corporate volunteering teams are booked through me. Once a company's volunteering slot is confirmed, its date and times can't be changed without my agreement, because I deal with the company's staff team."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-05",
+   "type": "instruction",
+   "from": "Hannah Price (chair)",
+   "role": "rule",
+   "text": "Rosa arranges the volunteer shifts and the food bank van's runs, and can move them herself, as long as the volunteers are told."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-20",
+   "type": "note",
+   "from": "Rosa",
+   "role": "other",
+   "text": "The new volunteer induction packs are printed; copies are in the warehouse office."
+  },
+  {
+   "id": "e5",
+   "date": "2026-07-07",
+   "type": "email",
+   "from": "Margaret Lowe (St Aidan's Hall)",
+   "role": "fact",
+   "text": "The main hall is yours for the Christmas distribution on Saturday 12 December, 10:00 to 13:00."
+  },
+  {
+   "id": "e6",
+   "date": "2026-07-08",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e5"
+   ],
+   "record": "EV-4",
+   "text": "Booked St Aidan's Hall for the Christmas distribution on Saturday 12 December, 10:00 to 13:00."
+  },
+  {
+   "id": "e7",
+   "date": "2026-09-01",
+   "type": "email",
+   "from": "Alan Cho (Greenway Supermarket)",
+   "role": "fact",
+   "text": "Our Christmas food drive at the Fenton Road store ends on Sunday 6 December. The donations will be boxed and ready for your van at our loading bay on Tuesday 8 December from 10:00."
+  },
+  {
+   "id": "e8",
+   "date": "2026-09-03",
+   "type": "message",
+   "from": "Pete Mallon",
+   "role": "fact",
+   "text": "I can drive the van any time on Tuesday 8 December."
+  },
+  {
+   "id": "e9",
+   "date": "2026-09-04",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e7",
+    "e8"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Greenway collection: Pete will take the van from the Tanner Street warehouse at 09:30 on Tuesday 8 December and collect the food drive donations at Greenway's Fenton Road loading bay at 10:00. It is a half-hour drive."
+  },
+  {
+   "id": "e10",
+   "date": "2026-09-08",
+   "type": "message",
+   "from": "Lily Fenn",
+   "role": "fact",
+   "text": "I'm free all day on Tuesday 8 December, so put me down for whatever sorting you need."
+  },
+  {
+   "id": "e11",
+   "date": "2026-09-09",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e10"
+   ],
+   "record": "EV-2",
+   "mark": "REVISE",
+   "text": "Lily will lead the sorting of the Greenway donations at the warehouse on Tuesday 8 December from 11:00 to 13:00: Pete should be back with the van about an hour after the pick-up, and two hours is enough for the sort."
+  },
+  {
+   "id": "e12",
+   "date": "2026-09-15",
+   "type": "email",
+   "from": "Karen Doyle (Brightwell Insurance)",
+   "role": "fact",
+   "text": "Six of our staff would like to volunteer with you on Tuesday 8 December; any two-hour slot between 09:00 and 18:00 works for us."
+  },
+  {
+   "id": "e13",
+   "date": "2026-09-17",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e11",
+    "e12"
+   ],
+   "record": "EV-3",
+   "mark": "ASK",
+   "text": "Joy and I booked Brightwell Insurance's six volunteers to join Lily's sorting shift at the warehouse on Tuesday 8 December, 11:00 to 13:00. Joy has confirmed it with Karen Doyle."
+  },
+  {
+   "id": "e14",
+   "date": "2026-09-22",
+   "type": "email",
+   "from": "Alan Cho (Greenway Supermarket)",
+   "role": "fact",
+   "distractor": true,
+   "text": "Separately from the food drive: from November we'll have surplus bread for you every Friday from 16:00 at the Fenton Road loading bay."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-29",
+   "type": "quote",
+   "from": "Sian Hughes (BoxRight Packaging)",
+   "role": "fact",
+   "text": "250 flat-packed hamper boxes, $290, delivered to your warehouse on Thursday 3 December."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-30",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e15"
+   ],
+   "record": "ORD-1",
+   "text": "Ordered 250 hamper boxes from BoxRight Packaging ($290) for delivery to the Tanner Street warehouse on Thursday 3 December."
+  },
+  {
+   "id": "e17",
+   "date": "2026-10-06",
+   "type": "email",
+   "from": "Joy Adeyemi (partnerships lead)",
+   "role": "other",
+   "text": "Brightwell have confirmed their six volunteers for the sorting shift; Karen will send their names in November."
+  },
+  {
+   "id": "e18",
+   "date": "2026-10-20",
+   "type": "email",
+   "from": "Alan Cho (Greenway Supermarket)",
+   "role": "change",
+   "revokes": [
+    "e7"
+   ],
+   "text": "A change for Tuesday 8 December: our Christmas stock deliveries now have the loading bay all morning, so the food drive donations will be ready for your van from 14:00 that day, not 10:00. Same loading bay at Fenton Road."
+  },
+  {
+   "id": "e19",
+   "date": "2026-10-26",
+   "type": "email",
+   "from": "Margaret Lowe (St Aidan's Hall)",
+   "role": "other",
+   "text": "The hall keys for Saturday 12 December will be with the verger from 09:30."
+  },
+  {
+   "id": "e20",
+   "date": "2026-10-30",
+   "type": "task",
+   "from": "Rosa",
+   "role": "obligation",
+   "text": "To do: send Greenway's Fenton Road team a thank-you card by 18 December. Not done yet."
+  },
+  {
+   "id": "e21",
+   "date": "2026-11-03",
+   "type": "message",
+   "from": "Sian Hughes (BoxRight Packaging)",
+   "role": "other",
+   "text": "Your 250 hamper boxes are on our van for Thursday 3 December."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Greenway food drive collection",
+   "fields": {
+    "date": "2026-12-08",
+    "driver": "Pete Mallon",
+    "depart": "09:30",
+    "pickup": "10:00",
+    "place": "Greenway Fenton Road",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Sorting shift: Greenway donations",
+   "fields": {
+    "date": "2026-12-08",
+    "start": "11:00",
+    "end": "13:00",
+    "lead": "Lily Fenn",
+    "place": "Tanner Street warehouse",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Brightwell Insurance volunteering team",
+   "fields": {
+    "date": "2026-12-08",
+    "start": "11:00",
+    "end": "13:00",
+    "volunteers": "6",
+    "company": "Brightwell Insurance",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Christmas distribution",
+   "fields": {
+    "date": "2026-12-12",
+    "start": "10:00",
+    "end": "13:00",
+    "place": "St Aidan's Hall",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Hamper boxes",
+   "fields": {
+    "supplier": "BoxRight Packaging",
+    "quantity": "250",
+    "delivery": "2026-12-03",
+    "amount": "290",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "EV-3",
+   "fields": [
+    "date",
+    "start",
+    "end"
+   ],
+   "from": "Joy Adeyemi (partnerships lead)",
+   "rule": "e2"
+  },
+  {
+   "record": "ORD-1",
+   "fields": [
+    "quantity",
+    "delivery",
+    "amount"
+   ],
+   "from": "Graham Pell (treasurer)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Lily the day and times of the Greenway sorting shift she is leading.",
+ "expect": [
+  {
+   "record": "EV-1",
+   "field": "depart",
+   "value": "13:30",
+   "stale": [
+    "09:30"
+   ]
+  },
+  {
+   "record": "EV-1",
+   "field": "pickup",
+   "value": "14:00",
+   "stale": [
+    "10:00"
+   ]
+  },
+  {
+   "record": "EV-2",
+   "field": "start",
+   "value": "15:00",
+   "stale": [
+    "11:00"
+   ]
+  },
+  {
+   "record": "EV-2",
+   "field": "end",
+   "value": "17:00",
+   "stale": [
+    "13:00"
+   ]
+  },
+  {
+   "message_to": "Lily Fenn",
+   "regarding": "EV-2",
+   "says": [
+    "2026-12-08",
+    "15:00",
+    "17:00"
+   ],
+   "stale": [
+    "11:00",
+    "13:00"
+   ],
+   "task": true
+  }
+ ],
+ "why": "Greenway moved the collection on Tuesday 8 December from 10:00 to 14:00 (e18 revokes e7). Pete's van run is Rosa's to move (e3): he leaves the warehouse at 13:30 and picks up at 14:00 (REVISE); Lily's sort starts an hour after the pick-up and lasts two hours, so 15:00-17:00 (REVISE, two hops). Brightwell's team joins that shift, but a confirmed corporate slot can only be changed with Joy's agreement (e2): ASK. The distribution and the hamper boxes do not rest on the collection time.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "carrier bags",
+   "counterpart": "Tom Reece",
+   "org": "BoxRight Packaging",
+   "item": "paper carrier bags",
+   "unit": "packs",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ],
+   "place": "the Tanner Street warehouse"
+  },
+  {
+   "kind": "booking",
+   "topic": "church rooms",
+   "counterpart": "Derek Shaw",
+   "org": "St Aidan's Church",
+   "item": "volunteer induction evening",
+   "values": [
+    "the side room",
+    "the church kitchen",
+    "the vestry"
+   ],
+   "place": "St Aidan's Hall"
+  },
+  {
+   "kind": "order",
+   "topic": "tinned goods",
+   "counterpart": "Faye Lin",
+   "org": "Wholesale Direct",
+   "item": "tinned tomatoes",
+   "unit": "cases",
+   "values": [
+    "6",
+    "10",
+    "12"
+   ],
+   "place": "the Tanner Street warehouse"
+  },
+  {
+   "kind": "order",
+   "topic": "baby supplies",
+   "counterpart": "Neha Shah",
+   "org": "CareCo Supplies",
+   "item": "baby wipes",
+   "unit": "packs",
+   "values": [
+    "20",
+    "30",
+    "50"
+   ],
+   "place": "the warehouse office"
+  },
+  {
+   "kind": "booking",
+   "topic": "school food drives",
+   "counterpart": "Paul Grant",
+   "org": "Eastgate Primary School",
+   "item": "food drive assembly",
+   "values": [
+    "the school hall",
+    "the library",
+    "the playground"
+   ],
+   "place": "Eastgate Primary School"
+  },
+  {
+   "kind": "booking",
+   "topic": "volunteer training",
+   "counterpart": "Kate Ellis",
+   "org": "SafeStart Training",
+   "item": "food hygiene course",
+   "values": [
+    "the warehouse office",
+    "the community centre",
+    "the library meeting room"
+   ],
+   "place": "Eastgate"
+  },
+  {
+   "kind": "order",
+   "topic": "cleaning supplies",
+   "counterpart": "Mo Ahmed",
+   "org": "Brightside Cleaning Supplies",
+   "item": "floor cleaner",
+   "unit": "litres",
+   "values": [
+    "10",
+    "20",
+    "25"
+   ],
+   "place": "the Tanner Street warehouse"
+  },
+  {
+   "kind": "order",
+   "topic": "toiletries",
+   "counterpart": "Liz Moore",
+   "org": "Fresh Start Toiletries",
+   "item": "toothpaste",
+   "unit": "boxes",
+   "values": [
+    "5",
+    "8",
+    "12"
+   ],
+   "place": "the warehouse office"
+  },
+  {
+   "kind": "booking",
+   "topic": "van servicing",
+   "counterpart": "Lee Barton",
+   "org": "Dockside Garage",
+   "item": "van service",
+   "values": [
+    "the main workshop",
+    "bay 2",
+    "the tyre bay"
+   ],
+   "place": "Dockside Garage"
+  },
+  {
+   "kind": "order",
+   "topic": "fresh fruit",
+   "counterpart": "Jon Pike",
+   "org": "Orchard Wholesale",
+   "item": "apples",
+   "unit": "crates",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the Tanner Street warehouse"
+  },
+  {
+   "kind": "booking",
+   "topic": "fundraising",
+   "counterpart": "Amy Cole",
+   "org": "Eastgate Rotary Club",
+   "item": "fundraising quiz",
+   "values": [
+    "the Crown function room",
+    "the community centre",
+    "the cricket club bar"
+   ],
+   "place": "Eastgate"
+  },
+  {
+   "kind": "order",
+   "topic": "shelving",
+   "counterpart": "Ray Dunn",
+   "org": "StoreRight Shelving",
+   "item": "steel shelving units",
+   "unit": "units",
+   "values": [
+    "2",
+    "4",
+    "6"
+   ],
+   "place": "the Tanner Street warehouse"
+  }
+ ]
+}

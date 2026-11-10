@@ -1,0 +1,602 @@
+{
+ "id": "D20",
+ "tier": 1000,
+ "class": 4,
+ "writer": "developer",
+ "title": "Kinross closes in the new year",
+ "setting": "The facilities coordinator of a university department",
+ "owner": "Tomasz",
+ "org": "School of Geography, Westmere University",
+ "now": "2026-10-28",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Prof. Helen Achebe (head of school)",
+   "role": "rule",
+   "text": "Any departmental order of $1,000 or more needs my sign-off before it is placed, and so does any change to such an order once it is confirmed."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-04",
+   "type": "instruction",
+   "from": "Alan Mercer (school manager)",
+   "role": "rule",
+   "text": "Tomasz, facilities can book, move and cancel room bookings, cleaning, AV cover and deliveries, and place orders under $1,000, without checking with me, as long as the people affected are told."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-09",
+   "type": "policy",
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "role": "rule",
+   "text": "The PhD showcase is mine to schedule: once its date, room and times are set, they don't move without my agreement."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-15",
+   "type": "email",
+   "from": "Gordon Fyfe (Estates bookings)",
+   "role": "fact",
+   "text": "Kinross Lecture Theatre is free for you on Wednesday 2 December from 12:00 to 18:00, foyer included."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-17",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e4",
+    "e3"
+   ],
+   "record": "EV-1",
+   "text": "Booked Kinross Lecture Theatre and its foyer for the PhD showcase on Wednesday 2 December, 12:00 to 18:00, as Sam asked: lunch in the foyer from 12:30, talks from 13:00 to 17:00."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-22",
+   "type": "email",
+   "from": "Gordon Fyfe (Estates bookings)",
+   "role": "other",
+   "text": "Estates reminder: room bookings for the spring term open on 1 July."
+  },
+  {
+   "id": "e7",
+   "date": "2026-06-24",
+   "type": "quote",
+   "from": "Aisha Rahman (Campus Kitchens)",
+   "role": "fact",
+   "text": "Our buffet lunch is $12 a head, set out wherever you need it on campus."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-01",
+   "type": "email",
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "role": "fact",
+   "text": "We expect 60 at the showcase: 24 presenting students plus staff and guests."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-03",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e7",
+    "e8",
+    "e5"
+   ],
+   "record": "ORD-1",
+   "text": "Ordered a buffet lunch for 60 from Campus Kitchens at $12 a head ($720), set out in the Kinross foyer by 12:30 on Wednesday 2 December."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-08",
+   "type": "quote",
+   "from": "Nora Quinn (DisplayHire)",
+   "role": "fact",
+   "text": "Poster boards are $22 each for up to three days, delivered and collected."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-10",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e10",
+    "e8",
+    "e5"
+   ],
+   "record": "ORD-2",
+   "text": "Hired 24 poster boards from DisplayHire, one for each presenting student, $528, delivered to the Kinross foyer at 15:00 on Tuesday 1 December and collected on Thursday 3 December."
+  },
+  {
+   "id": "e12",
+   "date": "2026-07-15",
+   "type": "email",
+   "from": "Declan Moore (AV Services)",
+   "role": "fact",
+   "text": "I can cover the Kinross showcase on Wednesday 2 December from 12:30 to 17:30."
+  },
+  {
+   "id": "e13",
+   "date": "2026-07-16",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e12",
+    "e5"
+   ],
+   "record": "EV-2",
+   "text": "Booked Declan Moore from AV Services for the PhD showcase in Kinross Lecture Theatre on Wednesday 2 December, 12:30 to 17:30."
+  },
+  {
+   "id": "e14",
+   "date": "2026-07-17",
+   "type": "email",
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "role": "fact",
+   "text": "Could we have a welcome coffee for the new PhD students in the Geography common room on Monday 28 September at 10:00?"
+  },
+  {
+   "id": "e15",
+   "date": "2026-07-20",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e14"
+   ],
+   "text": "Booked the Geography common room for the new PhD students' welcome coffee on Monday 28 September at 10:00."
+  },
+  {
+   "id": "e16",
+   "date": "2026-07-22",
+   "type": "quote",
+   "from": "Ben Ortiz (LabFurnish)",
+   "role": "fact",
+   "text": "20 height-adjustable stools for your GIS lab: $1,240 delivered, on a weekday of your choosing from November."
+  },
+  {
+   "id": "e17",
+   "date": "2026-07-27",
+   "type": "email",
+   "from": "Prof. Helen Achebe (head of school)",
+   "role": "fact",
+   "text": "Approved: the 20 GIS lab stools from LabFurnish at $1,240."
+  },
+  {
+   "id": "e18",
+   "date": "2026-07-28",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e16",
+    "e17",
+    "e1"
+   ],
+   "record": "ORD-3",
+   "text": "Ordered the 20 GIS lab stools from LabFurnish at $1,240, as Helen approved, delivered to the GIS lab on Monday 23 November."
+  },
+  {
+   "id": "e19",
+   "date": "2026-08-05",
+   "type": "email",
+   "from": "Gordon Fyfe (Estates bookings)",
+   "role": "fact",
+   "text": "Room 2.14 is free for your external examiners' meeting on Thursday 10 December, 10:00 to 12:00."
+  },
+  {
+   "id": "e20",
+   "date": "2026-08-06",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e19"
+   ],
+   "record": "EV-3",
+   "text": "Booked Room 2.14 for the external examiners' meeting on Thursday 10 December, 10:00 to 12:00."
+  },
+  {
+   "id": "e21",
+   "date": "2026-08-19",
+   "type": "email",
+   "from": "Lou Brennan (Brightway Cleaning)",
+   "role": "fact",
+   "text": "We can deep-clean the map room on Saturday 21 November from 08:00, $340."
+  },
+  {
+   "id": "e22",
+   "date": "2026-08-20",
+   "type": "decision",
+   "from": "Tomasz",
+   "role": "decision",
+   "rests_on": [
+    "e21",
+    "e2"
+   ],
+   "record": "EV-4",
+   "text": "Booked Brightway Cleaning to deep-clean the map room on Saturday 21 November from 08:00, $340."
+  },
+  {
+   "id": "e23",
+   "date": "2026-08-27",
+   "type": "email",
+   "from": "Ben Ortiz (LabFurnish)",
+   "role": "other",
+   "text": "Your GIS lab stools are scheduled for Monday 23 November."
+  },
+  {
+   "id": "e24",
+   "date": "2026-09-09",
+   "type": "notice",
+   "from": "Tomasz",
+   "role": "other",
+   "text": "Fire alarm tests in the Geography building are every Tuesday at 09:00."
+  },
+  {
+   "id": "e25",
+   "date": "2026-09-22",
+   "type": "email",
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "role": "other",
+   "echo": true,
+   "text": "Showcase programme attached: Wednesday 2 December in Kinross Lecture Theatre, lunch in the foyer from 12:30, talks from 13:00 to 17:00, posters up all afternoon."
+  },
+  {
+   "id": "e26",
+   "date": "2026-10-01",
+   "type": "email",
+   "from": "Aisha Rahman (Campus Kitchens)",
+   "role": "other",
+   "echo": true,
+   "text": "Your buffet for 60 is on our sheet for the Kinross foyer, set out by 12:30 on Wednesday 2 December."
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-05",
+   "type": "email",
+   "from": "Nora Quinn (DisplayHire)",
+   "role": "other",
+   "text": "The 24 boards are reserved for you; our driver will ring 30 minutes before delivery."
+  },
+  {
+   "id": "e28",
+   "date": "2026-10-12",
+   "type": "notice",
+   "from": "Gordon Fyfe (Estates bookings)",
+   "role": "change",
+   "revokes": [],
+   "text": "Advance notice: Kinross Lecture Theatre and its foyer will close for new seating from Monday 4 January to Friday 12 February 2027. Estates will move any bookings in that period themselves and contact the organisers."
+  },
+  {
+   "id": "e29",
+   "date": "2026-10-15",
+   "type": "email",
+   "from": "Alan Mercer (school manager)",
+   "role": "other",
+   "text": "Please send me the facilities budget forecast by Friday 13 November."
+  },
+  {
+   "id": "e30",
+   "date": "2026-10-19",
+   "type": "email",
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "role": "fact",
+   "distractor": true,
+   "text": "Heads-up for later: the MSc dissertation fair is on Wednesday 9 December in Room 1.05, with lunch for 35 at 12:00. I'll send you the details in November."
+  },
+  {
+   "id": "e31",
+   "date": "2026-10-21",
+   "type": "message",
+   "from": "Declan Moore (AV Services)",
+   "role": "other",
+   "text": "I'll bring the roving microphones for the showcase questions."
+  },
+  {
+   "id": "e32",
+   "date": "2026-10-26",
+   "type": "task",
+   "from": "Tomasz",
+   "role": "obligation",
+   "rests_on": [
+    "e29"
+   ],
+   "text": "To do: send Alan the facilities budget forecast by Friday 13 November. Not done yet."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "PhD showcase in Kinross Lecture Theatre",
+   "fields": {
+    "date": "2026-12-02",
+    "room": "Kinross Lecture Theatre",
+    "start": "12:00",
+    "end": "18:00",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Showcase buffet lunch",
+   "fields": {
+    "supplier": "Campus Kitchens",
+    "quantity": "60",
+    "amount": "720",
+    "delivery": "2026-12-02",
+    "time": "12:30",
+    "place": "Kinross foyer",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Showcase poster boards",
+   "fields": {
+    "supplier": "DisplayHire",
+    "quantity": "24",
+    "amount": "528",
+    "delivery": "2026-12-01",
+    "collection": "2026-12-03",
+    "place": "Kinross foyer",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "AV cover for the showcase",
+   "fields": {
+    "date": "2026-12-02",
+    "start": "12:30",
+    "end": "17:30",
+    "technician": "Declan Moore",
+    "place": "Kinross Lecture Theatre",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "GIS lab stools",
+   "fields": {
+    "supplier": "LabFurnish",
+    "item": "lab stools",
+    "quantity": "20",
+    "amount": "1240",
+    "delivery": "2026-11-23",
+    "place": "GIS lab",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "External examiners' meeting",
+   "fields": {
+    "date": "2026-12-10",
+    "start": "10:00",
+    "end": "12:00",
+    "room": "Room 2.14",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Map room deep clean",
+   "fields": {
+    "date": "2026-11-21",
+    "time": "08:00",
+    "place": "map room",
+    "contractor": "Brightway Cleaning",
+    "status": "booked"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "EV-1",
+   "fields": [
+    "date",
+    "room",
+    "start",
+    "end"
+   ],
+   "from": "Dr Sam Whitford (PhD programme director)",
+   "rule": "e3"
+  },
+  {
+   "record": "ORD-3",
+   "fields": [
+    "quantity",
+    "amount",
+    "delivery"
+   ],
+   "from": "Prof. Helen Achebe (head of school)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Aisha at Campus Kitchens the final details for the PhD showcase lunch: the date, how many people and the time it needs to be set out by.",
+ "expect": [
+  {
+   "message_to": "Aisha Rahman (Campus Kitchens)",
+   "regarding": "ORD-1",
+   "says": [
+    "2026-12-02",
+    "60",
+    "12:30"
+   ],
+   "stale": [
+    "35"
+   ],
+   "task": true
+  }
+ ],
+ "why": "Estates' October notice closes Kinross Lecture Theatre and its foyer from 4 January to 12 February 2027, a new fact beside the showcase: the showcase, its lunch, boards and AV cover are all on 1 to 3 December, before the closure, and no booking of the school falls in the closed period. The plan stands as it is, so the message to Campus Kitchens carries 2 December, 60 people and 12:30; the MSc fair's lunch for 35 is a different event, and no record should change.",
+ "noise_kit": [
+  {
+   "kind": "booking",
+   "topic": "seminar rooms",
+   "counterpart": "Gordon Fyfe",
+   "org": "Estates bookings",
+   "item": "research group seminar",
+   "values": [
+    "Room 2.14",
+    "Room 1.05",
+    "the Geography common room"
+   ],
+   "place": "the Geography building"
+  },
+  {
+   "kind": "order",
+   "topic": "coffee and biscuits",
+   "counterpart": "Ravi Shah",
+   "org": "Campus Kitchens",
+   "item": "seminar coffee trays",
+   "unit": "trays",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "place": "the Geography common room"
+  },
+  {
+   "kind": "booking",
+   "topic": "AV support",
+   "counterpart": "Kit Norris",
+   "org": "AV Services",
+   "item": "lecture capture setup",
+   "values": [
+    "Room 2.14",
+    "Room 1.05",
+    "the map room"
+   ],
+   "place": "the Geography building"
+  },
+  {
+   "kind": "order",
+   "topic": "lab consumables",
+   "counterpart": "Ben Ortiz",
+   "org": "LabFurnish",
+   "item": "bench mats",
+   "unit": "mats",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ],
+   "place": "the GIS lab"
+  },
+  {
+   "kind": "order",
+   "topic": "printer paper",
+   "counterpart": "Jen Cole",
+   "org": "Campus Stores",
+   "item": "A4 printer paper",
+   "unit": "boxes",
+   "values": [
+    "5",
+    "8",
+    "10",
+    "12"
+   ],
+   "place": "the Geography office"
+  },
+  {
+   "kind": "booking",
+   "topic": "cleaning",
+   "counterpart": "Lou Brennan",
+   "org": "Brightway Cleaning",
+   "item": "office deep clean",
+   "values": [
+    "the Geography office",
+    "the GIS lab",
+    "the common room kitchen"
+   ],
+   "place": "the Geography building"
+  },
+  {
+   "kind": "order",
+   "topic": "field kit",
+   "counterpart": "Mark Dunn",
+   "org": "TerraField Supplies",
+   "item": "soil sample bags",
+   "unit": "packs",
+   "values": [
+    "10",
+    "20",
+    "40"
+   ],
+   "place": "the field equipment store"
+  },
+  {
+   "kind": "booking",
+   "topic": "minibus hire",
+   "counterpart": "Ella Price",
+   "org": "Westmere University Transport",
+   "item": "fieldwork minibus",
+   "values": [
+    "the 16-seat minibus",
+    "the 9-seat van",
+    "the 12-seat minibus"
+   ],
+   "place": "the Geography car park"
+  },
+  {
+   "kind": "order",
+   "topic": "maps and prints",
+   "counterpart": "Owen Lacey",
+   "org": "PlotPrint",
+   "item": "A0 poster prints",
+   "unit": "prints",
+   "values": [
+    "4",
+    "6",
+    "10"
+   ],
+   "place": "the Geography office"
+  },
+  {
+   "kind": "order",
+   "topic": "water",
+   "counterpart": "Dan Hope",
+   "org": "AquaPure Coolers",
+   "item": "water cooler bottles",
+   "unit": "bottles",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the Geography office"
+  },
+  {
+   "kind": "booking",
+   "topic": "visitor parking",
+   "counterpart": "Sue Grant",
+   "org": "Westmere University Parking",
+   "item": "visitor parking permits",
+   "values": [
+    "the Geography car park",
+    "the main visitor car park",
+    "the north car park"
+   ],
+   "place": "the Geography car park"
+  }
+ ]
+}

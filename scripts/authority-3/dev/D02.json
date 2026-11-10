@@ -1,0 +1,489 @@
+{
+ "id": "D02",
+ "tier": 100,
+ "class": 2,
+ "writer": "developer",
+ "title": "The loading-bay slot moves to Tuesdays",
+ "setting": "The front-desk coordinator of a small physiotherapy clinic (admin only: rooms, staff rotas, supplier orders)",
+ "owner": "Priya",
+ "org": "Harbour Court Physiotherapy",
+ "now": "2026-11-05",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Joanna Bell (practice manager)",
+   "role": "rule",
+   "text": "From now on, any change to a confirmed supplier order worth $500 or more needs my sign-off before it goes back to the supplier. Smaller orders the front desk can adjust itself (delivery day or time), as long as the supplier is told."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-04",
+   "type": "instruction",
+   "from": "Joanna Bell (practice manager)",
+   "role": "rule",
+   "text": "Priya, the front-desk rota is yours. You can move the front-desk team's shifts yourself, as long as the person is told the new details. Anything about the physiotherapists' own timetables still comes through me."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-10",
+   "type": "policy",
+   "from": "Joanna Bell (practice manager)",
+   "role": "rule",
+   "text": "Delivery rule: bulk deliveries (anything on a pallet, or more than a few boxes) come in through the loading bay at the back of Harbour Court, and we book them into our loading-bay slot on Monday mornings at 08:00, before the clinic opens at 08:30."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-22",
+   "type": "email",
+   "from": "Owen Pike (Harbour Court Management)",
+   "role": "other",
+   "text": "Welcome to Harbour Court. The loading bay is behind the building, off Mill Lane; drivers should ring the tenant they are delivering to when they arrive."
+  },
+  {
+   "id": "e5",
+   "date": "2026-08-11",
+   "type": "email",
+   "from": "Lena Ford (SafeStart Training)",
+   "role": "fact",
+   "text": "I can run your team's fire-safety training in Room 4 on Wednesday 18 November at 13:00. It takes about an hour and a half."
+  },
+  {
+   "id": "e6",
+   "date": "2026-08-12",
+   "type": "decision",
+   "from": "Priya",
+   "role": "decision",
+   "rests_on": [
+    "e5"
+   ],
+   "record": "EV-2",
+   "text": "Booked Lena Ford's fire-safety training for the whole team in Room 4 on Wednesday 18 November at 13:00."
+  },
+  {
+   "id": "e7",
+   "date": "2026-08-24",
+   "type": "quote",
+   "from": "Nell Carter (Brightline Office Supplies)",
+   "role": "fact",
+   "text": "Quote: one pallet with 20 boxes of A4 printer paper and 6 toner cartridges, $340 delivered. We can come on any weekday morning you choose."
+  },
+  {
+   "id": "e8",
+   "date": "2026-08-25",
+   "type": "decision",
+   "from": "Priya",
+   "role": "decision",
+   "rests_on": [
+    "e3",
+    "e7"
+   ],
+   "record": "ORD-1",
+   "mark": "KEEP",
+   "text": "Ordered Brightline's pallet of printer paper and toner ($340) and booked it into our Monday loading-bay slot: Monday 23 November at 08:00."
+  },
+  {
+   "id": "e9",
+   "date": "2026-08-26",
+   "type": "quote",
+   "from": "Gemma Hart (Paperwise)",
+   "role": "fact",
+   "text": "Quote: 8 boxes of paper hand towels and 6 boxes of toilet rolls, $180 delivered. Tell us which morning suits you."
+  },
+  {
+   "id": "e10",
+   "date": "2026-08-27",
+   "type": "decision",
+   "from": "Priya",
+   "role": "decision",
+   "rests_on": [
+    "e3",
+    "e9"
+   ],
+   "record": "ORD-2",
+   "mark": "REVISE",
+   "text": "Ordered the Paperwise hand towels and toilet rolls (14 boxes, $180) and booked them into our Monday loading-bay slot on Monday 7 December at 08:00."
+  },
+  {
+   "id": "e11",
+   "date": "2026-09-02",
+   "type": "email",
+   "from": "Owen Pike (Harbour Court Management)",
+   "role": "fact",
+   "distractor": true,
+   "text": "A reminder for tenants: as well as your Monday morning slots, the loading bay can be used on Friday afternoons from 14:00, by arrangement with me."
+  },
+  {
+   "id": "e12",
+   "date": "2026-09-09",
+   "type": "quote",
+   "from": "Lewis Grant (Oakline Office Furniture)",
+   "role": "fact",
+   "text": "Quote: six waiting-room chairs and a reception stool, $820, delivered flat-packed on one pallet on the morning of your choice."
+  },
+  {
+   "id": "e13",
+   "date": "2026-09-10",
+   "type": "decision",
+   "from": "Priya",
+   "role": "decision",
+   "rests_on": [
+    "e3",
+    "e12"
+   ],
+   "record": "ORD-3",
+   "mark": "ASK",
+   "text": "Ordered Oakline's six waiting-room chairs and reception stool ($820), on one pallet in our Monday loading-bay slot: Monday 14 December at 08:00."
+  },
+  {
+   "id": "e14",
+   "date": "2026-09-15",
+   "type": "message",
+   "from": "Sam Okafor",
+   "role": "fact",
+   "text": "Happy to do 07:45 starts on any weekday in December if you need someone in early to take in a delivery."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-16",
+   "type": "decision",
+   "from": "Priya",
+   "role": "decision",
+   "rests_on": [
+    "e10",
+    "e14"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Put Sam on an early start at 07:45 on Monday 7 December, so he is at the back door to take in the Paperwise delivery when it arrives at 08:00."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-24",
+   "type": "email",
+   "from": "Gemma Hart (Paperwise)",
+   "role": "other",
+   "text": "Thanks for your order. Our driver will ring your front desk from the loading bay when he arrives."
+  },
+  {
+   "id": "e17",
+   "date": "2026-10-01",
+   "type": "note",
+   "from": "Priya",
+   "role": "other",
+   "text": "The blind in Room 4 is fixed, so the fire-safety training can go ahead there."
+  },
+  {
+   "id": "e18",
+   "date": "2026-10-16",
+   "type": "email",
+   "from": "Joanna Bell (practice manager)",
+   "role": "change",
+   "revokes": [
+    "e3"
+   ],
+   "text": "A change to our delivery rule from Monday 30 November: the landlord is giving the loading bay over to the new bin collection on Monday mornings, so our bulk-delivery slot moves to Tuesday mornings at 08:00. Anything we have already booked for a Monday from 30 November onwards moves to the Tuesday of the same week, same time."
+  },
+  {
+   "id": "e19",
+   "date": "2026-10-21",
+   "type": "message",
+   "from": "Lena Ford (SafeStart Training)",
+   "role": "other",
+   "text": "All set for Wednesday 18 November at 13:00 in Room 4. I'll bring the extinguishers for the demonstration."
+  },
+  {
+   "id": "e20",
+   "date": "2026-10-27",
+   "type": "task",
+   "from": "Priya",
+   "role": "obligation",
+   "text": "To do: send Oakline the name and phone number of our delivery contact by 13 November. Not done yet."
+  },
+  {
+   "id": "e21",
+   "date": "2026-11-02",
+   "type": "note",
+   "from": "Priya",
+   "role": "other",
+   "text": "Brightline confirmed the paper and toner pallet for Monday 23 November at 08:00."
+  }
+ ],
+ "records": [
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Printer paper and toner (pallet)",
+   "fields": {
+    "supplier": "Brightline Office Supplies",
+    "delivery": "2026-11-23",
+    "time": "08:00",
+    "amount": "340",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Hand towels and toilet rolls",
+   "fields": {
+    "supplier": "Paperwise",
+    "boxes": "14",
+    "delivery": "2026-12-07",
+    "time": "08:00",
+    "amount": "180",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "Waiting-room chairs and reception stool",
+   "fields": {
+    "supplier": "Oakline Office Furniture",
+    "items": "7",
+    "delivery": "2026-12-14",
+    "time": "08:00",
+    "amount": "820",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Sam's early start for the Paperwise delivery",
+   "fields": {
+    "date": "2026-12-07",
+    "start": "07:45",
+    "staff": "Sam Okafor",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Fire-safety training",
+   "fields": {
+    "date": "2026-11-18",
+    "time": "13:00",
+    "place": "Room 4",
+    "trainer": "Lena Ford",
+    "status": "booked"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "ORD-3",
+   "fields": [
+    "delivery",
+    "time",
+    "items",
+    "amount"
+   ],
+   "from": "Joanna Bell (practice manager)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Sam the details of his early start for the Paperwise delivery: which morning, and what time he needs to be in.",
+ "expect": [
+  {
+   "record": "ORD-2",
+   "field": "delivery",
+   "value": "2026-12-08",
+   "stale": [
+    "2026-12-07"
+   ]
+  },
+  {
+   "record": "EV-1",
+   "field": "date",
+   "value": "2026-12-08",
+   "stale": [
+    "2026-12-07"
+   ]
+  },
+  {
+   "message_to": "Sam Okafor",
+   "regarding": "EV-1",
+   "says": [
+    "2026-12-08",
+    "07:45"
+   ],
+   "stale": [
+    "2026-12-07"
+   ],
+   "task": true
+  }
+ ],
+ "why": "From 30 November the bulk-delivery slot moves from Monday to Tuesday morning at 08:00, and anything booked for a Monday from that date moves to the Tuesday of the same week (e18 amends e3). The $180 Paperwise order is small enough for the front desk to move (e1), and Sam's early start follows it as a front-desk shift Priya may move (e2): both go to Tuesday 8 December, REVISE. The $820 Oakline order also falls on a Monday after 30 November, but changing it needs Joanna's sign-off (e1): ASK. The Brightline pallet on Monday 23 November comes before the new rule starts: KEEP.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "appointment cards",
+   "counterpart": "Gemma Hart",
+   "org": "Paperwise",
+   "item": "printed appointment cards",
+   "unit": "boxes",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "place": "the front desk"
+  },
+  {
+   "kind": "booking",
+   "topic": "building meeting rooms",
+   "counterpart": "Owen Pike",
+   "org": "Harbour Court Management",
+   "item": "practice meeting",
+   "values": [
+    "the first-floor meeting room",
+    "the ground-floor lounge",
+    "the roof terrace room"
+   ],
+   "place": "the shared meeting rooms"
+  },
+  {
+   "kind": "booking",
+   "topic": "staff training",
+   "counterpart": "Lena Ford",
+   "org": "SafeStart Training",
+   "item": "manual handling refresher",
+   "values": [
+    "Room 2",
+    "the staff room",
+    "the first-floor meeting room"
+   ],
+   "place": "the clinic"
+  },
+  {
+   "kind": "order",
+   "topic": "toner",
+   "counterpart": "Nell Carter",
+   "org": "Brightline Office Supplies",
+   "item": "printer toner cartridges",
+   "unit": "cartridges",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "place": "the back office"
+  },
+  {
+   "kind": "order",
+   "topic": "drinking water",
+   "counterpart": "Kim Lowe",
+   "org": "Aqua Direct",
+   "item": "water cooler bottles",
+   "unit": "bottles",
+   "values": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "reception"
+  },
+  {
+   "kind": "order",
+   "topic": "staff room coffee",
+   "counterpart": "Raj Patel",
+   "org": "Beanline Coffee",
+   "item": "coffee beans",
+   "unit": "bags",
+   "values": [
+    "3",
+    "5",
+    "8"
+   ],
+   "place": "the staff room"
+  },
+  {
+   "kind": "booking",
+   "topic": "IT support",
+   "counterpart": "Chris Dunn",
+   "org": "Northpoint IT",
+   "item": "computer maintenance visit",
+   "values": [
+    "the front desk",
+    "the back office",
+    "Room 1"
+   ],
+   "place": "the clinic"
+  },
+  {
+   "kind": "order",
+   "topic": "cleaning supplies",
+   "counterpart": "Mo Ahmed",
+   "org": "Brightside Cleaning Supplies",
+   "item": "floor cleaner",
+   "unit": "litres",
+   "values": [
+    "10",
+    "20",
+    "25"
+   ],
+   "place": "the cleaning cupboard"
+  },
+  {
+   "kind": "booking",
+   "topic": "window cleaning",
+   "counterpart": "Dale Fisher",
+   "org": "Clearview Windows",
+   "item": "window clean",
+   "values": [
+    "the front windows",
+    "the waiting-room windows",
+    "the first-floor windows"
+   ],
+   "place": "the clinic"
+  },
+  {
+   "kind": "order",
+   "topic": "uniforms",
+   "counterpart": "Amy Cole",
+   "org": "Stitchworks",
+   "item": "front-desk polo shirts",
+   "unit": "shirts",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "reception"
+  },
+  {
+   "kind": "booking",
+   "topic": "plants",
+   "counterpart": "Ivy Moss",
+   "org": "Greenleaf Plants",
+   "item": "plant care visit",
+   "values": [
+    "reception",
+    "the waiting room",
+    "the staff room"
+   ],
+   "place": "the clinic"
+  },
+  {
+   "kind": "order",
+   "topic": "stationery",
+   "counterpart": "Ben Marsh",
+   "org": "Inkwell Stationers",
+   "item": "A5 notepads",
+   "unit": "packs",
+   "values": [
+    "5",
+    "10",
+    "15"
+   ],
+   "place": "the back office"
+  }
+ ]
+}

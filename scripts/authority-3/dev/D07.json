@@ -1,0 +1,508 @@
+{
+ "id": "D07",
+ "tier": 100,
+ "class": 3,
+ "writer": "developer",
+ "title": "Fewer tables for the Rapidplay",
+ "setting": "The events assistant of a regional chess club",
+ "owner": "Wren",
+ "org": "Kingsmead Chess Club",
+ "now": "2026-11-05",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Martin Hale (treasurer)",
+   "role": "rule",
+   "text": "Any change to a confirmed club order worth $400 or more needs my sign-off before it goes back to the supplier."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-06",
+   "type": "instruction",
+   "from": "Dorothy Kemp (club chair)",
+   "role": "rule",
+   "text": "Wren sets the entry limits and arranges the equipment for club tournaments, and can change either herself; just keep the Westshire Chess Association's equipment officer informed."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-24",
+   "type": "email",
+   "from": "Gareth Lowe (Riverside Community Centre)",
+   "role": "fact",
+   "text": "The small hall is yours for the junior league home matches on Saturday afternoons this season, 14:00 to 17:30, set out with 12 tables."
+  },
+  {
+   "id": "e4",
+   "date": "2026-07-08",
+   "type": "email",
+   "from": "Gareth Lowe (Riverside Community Centre)",
+   "role": "fact",
+   "text": "Confirmed: the main hall is yours for the Winter Rapidplay on Saturday 28 November, 09:00 to 18:00. We'll set it out with 40 tables, two players to a table, and the kitchen hatch will be open for teas all day."
+  },
+  {
+   "id": "e5",
+   "date": "2026-07-09",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e4"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Set the Winter Rapidplay entry limit at 80 players, two to a table across the main hall's 40 tables, and opened entries on the club website."
+  },
+  {
+   "id": "e6",
+   "date": "2026-07-15",
+   "type": "email",
+   "from": "Helen Brook",
+   "role": "fact",
+   "text": "Happy to be chief arbiter at the Rapidplay on Saturday 28 November. I can be there from 08:30 and stay until 18:30."
+  },
+  {
+   "id": "e7",
+   "date": "2026-07-16",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e4",
+    "e6"
+   ],
+   "record": "EV-2",
+   "mark": "KEEP",
+   "text": "Booked Helen Brook as chief arbiter for the Winter Rapidplay at the Riverside on Saturday 28 November, 08:30 to 18:30: half an hour either side of our 09:00 to 18:00 hall booking."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-28",
+   "type": "email",
+   "from": "Tom Ashby (Westshire Chess Association)",
+   "role": "fact",
+   "text": "We can lend you sets and clocks for the Rapidplay free of charge. I'll drop them at the Riverside on Friday 27 November."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-29",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e8"
+   ],
+   "record": "ORD-1",
+   "mark": "REVISE",
+   "text": "Booked 40 sets and 40 clocks on loan from the Westshire Chess Association for the Rapidplay, one of each per board for our 80-player limit; Tom will drop them at the Riverside on Friday 27 November."
+  },
+  {
+   "id": "e10",
+   "date": "2026-08-12",
+   "type": "quote",
+   "from": "Rosie Bell (Fig Tree Kitchen)",
+   "role": "fact",
+   "text": "Lunch boxes are $7 each, delivered to the Riverside at 12:30 on the day."
+  },
+  {
+   "id": "e11",
+   "date": "2026-08-13",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e10"
+   ],
+   "record": "ORD-2",
+   "mark": "ASK",
+   "text": "Ordered 86 lunch boxes from Fig Tree Kitchen for Saturday 28 November at 12:30: one for each of our 80 players plus 6 for the arbiters and volunteers, $602."
+  },
+  {
+   "id": "e12",
+   "date": "2026-08-27",
+   "type": "email",
+   "from": "Neil Doyle (Ashford Chess Club)",
+   "role": "fact",
+   "text": "Our juniors can come to you for the league match on Saturday 21 November, 14:00 start, 10 boards."
+  },
+  {
+   "id": "e13",
+   "date": "2026-08-28",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e3",
+    "e12"
+   ],
+   "record": "EV-3",
+   "text": "Fixed the junior league match against Ashford for Saturday 21 November at 14:00 in the Riverside's small hall, 10 boards."
+  },
+  {
+   "id": "e14",
+   "date": "2026-09-08",
+   "type": "email",
+   "from": "Sian Pryce (The Old Bell)",
+   "role": "fact",
+   "text": "The function room is yours for the club's Christmas dinner on Friday 18 December at 19:00, for up to 40 people."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-09",
+   "type": "decision",
+   "from": "Wren",
+   "role": "decision",
+   "rests_on": [
+    "e14"
+   ],
+   "record": "EV-4",
+   "text": "Booked the Old Bell's function room for the club Christmas dinner on Friday 18 December at 19:00."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-21",
+   "type": "email",
+   "from": "Gareth Lowe (Riverside Community Centre)",
+   "role": "fact",
+   "distractor": true,
+   "text": "For your diary: the Riverside Bridge Club has the main hall on Sunday 29 November from 10:00, set out with 24 tables, so please have the Rapidplay cleared by 18:00 on the Saturday."
+  },
+  {
+   "id": "e17",
+   "date": "2026-10-02",
+   "type": "note",
+   "from": "Wren",
+   "role": "other",
+   "text": "Rapidplay entries so far: 38."
+  },
+  {
+   "id": "e18",
+   "date": "2026-10-16",
+   "type": "email",
+   "from": "Gareth Lowe (Riverside Community Centre)",
+   "role": "change",
+   "revokes": [
+    "e4"
+   ],
+   "text": "I'm sorry, I gave you the wrong layout for Saturday 28 November: with the new stage extension in place, the main hall takes 30 tables of two, not 40. Your 09:00 to 18:00 booking and the kitchen hatch are just as before."
+  },
+  {
+   "id": "e19",
+   "date": "2026-10-23",
+   "type": "message",
+   "from": "Rosie Bell (Fig Tree Kitchen)",
+   "role": "other",
+   "text": "Your lunch boxes for Saturday 28 November are in our diary."
+  },
+  {
+   "id": "e20",
+   "date": "2026-10-28",
+   "type": "note",
+   "from": "Wren",
+   "role": "other",
+   "text": "Rapidplay entries so far: 47."
+  },
+  {
+   "id": "e21",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Wren",
+   "role": "obligation",
+   "text": "To do: send Helen the Rapidplay pairing sheets by 25 November. Not done yet."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Winter Rapidplay",
+   "fields": {
+    "date": "2026-11-28",
+    "venue": "Riverside Community Centre",
+    "hall": "main hall",
+    "entry_limit": "80",
+    "status": "open"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Chief arbiter: Helen Brook",
+   "fields": {
+    "date": "2026-11-28",
+    "start": "08:30",
+    "end": "18:30",
+    "arbiter": "Helen Brook",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Junior league v Ashford",
+   "fields": {
+    "date": "2026-11-21",
+    "time": "14:00",
+    "place": "Riverside small hall",
+    "boards": "10",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Club Christmas dinner",
+   "fields": {
+    "date": "2026-12-18",
+    "time": "19:00",
+    "place": "The Old Bell function room",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Sets and clocks on loan",
+   "fields": {
+    "supplier": "Westshire Chess Association",
+    "sets": "40",
+    "clocks": "40",
+    "drop_off": "2026-11-27",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Rapidplay lunch boxes",
+   "fields": {
+    "supplier": "Fig Tree Kitchen",
+    "quantity": "86",
+    "date": "2026-11-28",
+    "time": "12:30",
+    "amount": "602",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "ORD-2",
+   "fields": [
+    "quantity",
+    "date",
+    "time",
+    "amount"
+   ],
+   "from": "Martin Hale (treasurer)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Tom Ashby our equipment request for the Winter Rapidplay now: how many sets and clocks we need, and the day he drops them at the Riverside.",
+ "expect": [
+  {
+   "record": "EV-1",
+   "field": "entry_limit",
+   "value": "60",
+   "stale": [
+    "80"
+   ]
+  },
+  {
+   "record": "ORD-1",
+   "field": "sets",
+   "value": "30",
+   "stale": [
+    "40"
+   ]
+  },
+  {
+   "record": "ORD-1",
+   "field": "clocks",
+   "value": "30",
+   "stale": [
+    "40"
+   ]
+  },
+  {
+   "message_to": "Tom Ashby (Westshire Chess Association)",
+   "regarding": "ORD-1",
+   "says": [
+    "30",
+    "2026-11-27"
+   ],
+   "stale": [
+    "40"
+   ],
+   "task": true
+  }
+ ],
+ "why": "The Riverside corrected the main hall from 40 tables to 30 (e18 corrects e4), leaving the date, the 09:00-18:00 booking and the teas standing. The entry limit, two players a table, falls to 60 and, through it, the loaned sets and clocks, one per board, fall to 30 each; both are Wren's to change (e2): REVISE, the second two hops from the correction. The 86 lunch boxes rest on the 80-player limit too, but changing a confirmed $602 order needs the treasurer's sign-off (e1): ASK. Helen's arbiter hours follow the unchanged 09:00-18:00 booking: KEEP.",
+ "noise_kit": [
+  {
+   "kind": "booking",
+   "topic": "club nights",
+   "counterpart": "Jan Murray",
+   "org": "Riverside Community Centre",
+   "item": "club night",
+   "values": [
+    "the committee room",
+    "the library room",
+    "the lounge"
+   ],
+   "place": "the Riverside"
+  },
+  {
+   "kind": "order",
+   "topic": "scoresheets",
+   "counterpart": "Kay Morris",
+   "org": "PrintPoint",
+   "item": "scoresheet pads",
+   "unit": "pads",
+   "values": [
+    "50",
+    "100",
+    "150"
+   ],
+   "place": "the club cupboard"
+  },
+  {
+   "kind": "order",
+   "topic": "teas",
+   "counterpart": "Leo Bell",
+   "org": "Fig Tree Kitchen",
+   "item": "biscuit trays",
+   "unit": "trays",
+   "values": [
+    "3",
+    "4",
+    "6"
+   ],
+   "place": "the Riverside"
+  },
+  {
+   "kind": "booking",
+   "topic": "junior coaching",
+   "counterpart": "Maya Lund",
+   "org": "Westshire Chess Association",
+   "item": "junior coaching session",
+   "values": [
+    "the committee room",
+    "Ashford Library",
+    "the library room"
+   ],
+   "place": "the Riverside"
+  },
+  {
+   "kind": "order",
+   "topic": "chess books",
+   "counterpart": "Owen Hale",
+   "org": "Gambit Books",
+   "item": "opening books",
+   "unit": "books",
+   "values": [
+    "3",
+    "5",
+    "8"
+   ],
+   "place": "the club library"
+  },
+  {
+   "kind": "order",
+   "topic": "spare pieces",
+   "counterpart": "Gail Price",
+   "org": "Rook & Pawn Supplies",
+   "item": "replacement piece sets",
+   "unit": "sets",
+   "values": [
+    "2",
+    "4",
+    "6"
+   ],
+   "place": "the club cupboard"
+  },
+  {
+   "kind": "booking",
+   "topic": "senior league",
+   "counterpart": "Rhys Doyle",
+   "org": "Ashford Chess Club",
+   "item": "senior league match",
+   "values": [
+    "the committee room",
+    "Ashford Library",
+    "the Ashford club room"
+   ],
+   "place": "Ashford"
+  },
+  {
+   "kind": "order",
+   "topic": "badges",
+   "counterpart": "Ella Stone",
+   "org": "Badge Factory",
+   "item": "club pin badges",
+   "unit": "badges",
+   "values": [
+    "25",
+    "50",
+    "100"
+   ],
+   "place": "the club cupboard"
+  },
+  {
+   "kind": "booking",
+   "topic": "committee meetings",
+   "counterpart": "Ben Pryce",
+   "org": "The Old Bell",
+   "item": "committee meeting",
+   "values": [
+    "the snug",
+    "the garden room",
+    "the back bar"
+   ],
+   "place": "The Old Bell"
+  },
+  {
+   "kind": "order",
+   "topic": "printer ink",
+   "counterpart": "Ben Marsh",
+   "org": "Inkwell Stationers",
+   "item": "printer ink cartridges",
+   "unit": "cartridges",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "place": "the club cupboard"
+  },
+  {
+   "kind": "booking",
+   "topic": "arbiter seminars",
+   "counterpart": "Paula Hart",
+   "org": "Westshire Arbiters' Forum",
+   "item": "arbiter seminar",
+   "values": [
+    "the committee room",
+    "the library room",
+    "Ashford Library"
+   ],
+   "place": "the Riverside"
+  },
+  {
+   "kind": "booking",
+   "topic": "simultaneous displays",
+   "counterpart": "Irina Volkova",
+   "org": "Kingsmead Chess Club",
+   "item": "simultaneous display",
+   "values": [
+    "the committee room",
+    "the lounge",
+    "the library room"
+   ],
+   "place": "the Riverside"
+  }
+ ]
+}

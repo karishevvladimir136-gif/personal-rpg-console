@@ -1,0 +1,647 @@
+{
+ "id": "D18",
+ "tier": 1000,
+ "class": 2,
+ "writer": "developer",
+ "title": "Fridays leave the office",
+ "setting": "The office manager of a 40-person software consultancy",
+ "owner": "Ines",
+ "org": "Kittiwake Consulting",
+ "now": "2026-11-05",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-01",
+   "type": "policy",
+   "from": "Theo Barnes (managing director)",
+   "role": "rule",
+   "text": "Office days: from June, everyone works from the office on Tuesdays and Fridays, and the rest of the week is flexible. Team lunches, client workshops and training days in the office go on a Tuesday or a Friday so people are in."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Maya Okonkwo (client director)",
+   "role": "rule",
+   "text": "Once a client workshop or training day is confirmed with the client, it is not moved without my agreement: I talk to the client first."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-05",
+   "type": "policy",
+   "from": "Sunita Rao (finance lead)",
+   "role": "rule",
+   "text": "Supplier orders of $1,500 or more need my sign-off before they are placed, and so does any change to a confirmed one."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-08",
+   "type": "instruction",
+   "from": "Theo Barnes (managing director)",
+   "role": "rule",
+   "text": "Ines can book, move or cancel internal events, room bookings and supplier orders under $1,500 herself, as long as the people involved are told."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-15",
+   "type": "email",
+   "from": "Ana Silva (Spotless Office Care)",
+   "role": "fact",
+   "text": "We can clean your floor at Calloway House on Monday and Wednesday evenings from 18:30, $240 a week."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-16",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e4"
+   ],
+   "text": "Booked Spotless Office Care to clean the office on Monday and Wednesday evenings from 18:30, $240 a week."
+  },
+  {
+   "id": "e7",
+   "date": "2026-06-22",
+   "type": "email",
+   "from": "Raj Patel (Byteworks)",
+   "role": "fact",
+   "text": "Six 14-inch developer laptops at $1,400 each, $8,400 in all, can be with you on Monday 14 December."
+  },
+  {
+   "id": "e8",
+   "date": "2026-06-29",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e7",
+    "e3"
+   ],
+   "record": "ORD-2",
+   "text": "With Sunita's sign-off, ordered six developer laptops from Byteworks for the January starters, $8,400, delivered to the office on Monday 14 December."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-06",
+   "type": "email",
+   "from": "Clara Moss (Fenwick Bank)",
+   "role": "fact",
+   "text": "We'd like the discovery workshop at your office on Friday 27 November, 10:00 to 13:00, for five of our team."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-08",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e1"
+   ],
+   "record": "EV-3",
+   "mark": "KEEP",
+   "text": "Confirmed the Fenwick Bank discovery workshop in our Boardroom on Friday 27 November, 10:00 to 13:00, an office day so our consultants are in."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-14",
+   "type": "email",
+   "from": "Erik Dahl (Halvorsen Logistics)",
+   "role": "fact",
+   "text": "Our twelve dispatchers can come to you for the training day in the first week of December; any of your office days works for us."
+  },
+  {
+   "id": "e12",
+   "date": "2026-07-16",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e11",
+    "e1"
+   ],
+   "record": "EV-2",
+   "mark": "ASK",
+   "text": "Confirmed with Erik Dahl the Halvorsen Logistics training day in our Training Room on Friday 4 December, 09:30 to 16:30, a Friday so our trainers are in the office."
+  },
+  {
+   "id": "e13",
+   "date": "2026-07-22",
+   "type": "email",
+   "from": "Gina Russo (Pepper & Thyme)",
+   "role": "fact",
+   "text": "Our Christmas buffet is $29 a head, delivered and laid out in your office kitchen at whatever time suits."
+  },
+  {
+   "id": "e14",
+   "date": "2026-07-27",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e1",
+    "e4"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Booked the team Christmas lunch for all 40 of us in the office kitchen on Friday 11 December at 12:30, an office day so everyone is in."
+  },
+  {
+   "id": "e15",
+   "date": "2026-07-28",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e14",
+    "e13"
+   ],
+   "record": "ORD-1",
+   "mark": "REVISE",
+   "text": "Ordered the Christmas lunch buffet for 40 from Pepper & Thyme at $29 a head ($1,160), delivered and laid out in the office kitchen by 12:00 on Friday 11 December, ready for the lunch."
+  },
+  {
+   "id": "e16",
+   "date": "2026-08-03",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e1"
+   ],
+   "record": "EV-4",
+   "mark": "KEEP",
+   "text": "Booked the quarterly all-hands in the Boardroom on Tuesday 8 December at 16:00, an office day."
+  },
+  {
+   "id": "e17",
+   "date": "2026-08-10",
+   "type": "email",
+   "from": "Joel Price (The Lantern Rooms)",
+   "role": "fact",
+   "distractor": true,
+   "text": "Your Christmas party is confirmed: the upstairs room at The Lantern Rooms on Friday 18 December from 19:00, for 40 guests."
+  },
+  {
+   "id": "e18",
+   "date": "2026-08-11",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e17"
+   ],
+   "record": "EV-5",
+   "text": "Booked The Lantern Rooms' upstairs room for the Kittiwake Christmas party on Friday 18 December from 19:00, 40 guests."
+  },
+  {
+   "id": "e19",
+   "date": "2026-08-17",
+   "type": "email",
+   "from": "Hannah Oakes (Greenleaf Office Plants)",
+   "role": "fact",
+   "text": "We can look after your office plants on the first Wednesday of each month, $65 a visit."
+  },
+  {
+   "id": "e20",
+   "date": "2026-08-18",
+   "type": "decision",
+   "from": "Ines",
+   "role": "decision",
+   "rests_on": [
+    "e19"
+   ],
+   "text": "Booked Greenleaf Office Plants for plant care on the first Wednesday of each month, $65 a visit."
+  },
+  {
+   "id": "e21",
+   "date": "2026-08-24",
+   "type": "email",
+   "from": "Theo Barnes (managing director)",
+   "role": "other",
+   "echo": true,
+   "text": "Quick reminder before the autumn: Tuesdays and Fridays are our office days, so please keep client sessions and team events in the office to those two days."
+  },
+  {
+   "id": "e22",
+   "date": "2026-09-07",
+   "type": "email",
+   "from": "Derek Lowe (Calloway House management)",
+   "role": "other",
+   "text": "The lifts at Calloway House are being serviced on Saturday 26 September; stairs only that day."
+  },
+  {
+   "id": "e23",
+   "date": "2026-09-14",
+   "type": "note",
+   "from": "Ines",
+   "role": "other",
+   "echo": true,
+   "text": "Updated the new-starter pack: our office days are Tuesday and Friday, and the building opens at 08:00."
+  },
+  {
+   "id": "e24",
+   "date": "2026-09-21",
+   "type": "email",
+   "from": "Erik Dahl (Halvorsen Logistics)",
+   "role": "other",
+   "text": "Looking forward to the training day. We'll send the list of attendees in November."
+  },
+  {
+   "id": "e25",
+   "date": "2026-10-05",
+   "type": "email",
+   "from": "Clara Moss (Fenwick Bank)",
+   "role": "other",
+   "text": "We'll be five for the workshop, one of us vegetarian."
+  },
+  {
+   "id": "e26",
+   "date": "2026-10-08",
+   "type": "message",
+   "from": "Gina Russo (Pepper & Thyme)",
+   "role": "other",
+   "text": "Your Christmas buffet for 40 is in our diary. Send us any dietary needs by the end of November."
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-19",
+   "type": "email",
+   "from": "Theo Barnes (managing director)",
+   "role": "change",
+   "revokes": [
+    "e1"
+   ],
+   "text": "Calloway House management is closing the building on Fridays from December to cut heating costs, so from Tuesday 1 December our office days are Tuesday and Thursday. Any internal booking in the office on a Friday from 1 December moves to the Thursday before, same times. Client bookings on those Fridays need Maya to agree a new day with the client first. Anything before December, and anything outside the office, stays as it is."
+  },
+  {
+   "id": "e28",
+   "date": "2026-10-23",
+   "type": "email",
+   "from": "Raj Patel (Byteworks)",
+   "role": "other",
+   "text": "The six laptops are on schedule for Monday 14 December."
+  },
+  {
+   "id": "e29",
+   "date": "2026-10-28",
+   "type": "email",
+   "from": "Derek Lowe (Calloway House management)",
+   "role": "other",
+   "text": "Reminder: the Calloway House fire alarm test is every Wednesday at 10:00."
+  },
+  {
+   "id": "e30",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Ines",
+   "role": "obligation",
+   "text": "To do: send Sunita the December office budget by Monday 16 November. Not done yet."
+  },
+  {
+   "id": "e31",
+   "date": "2026-11-03",
+   "type": "note",
+   "from": "Ines",
+   "role": "other",
+   "text": "Ordered a new kettle for the office kitchen; the old one has finally given up."
+  },
+  {
+   "id": "e32",
+   "date": "2026-11-04",
+   "type": "message",
+   "from": "Clara Moss (Fenwick Bank)",
+   "role": "other",
+   "text": "Could you send parking details for the workshop nearer the time? Two of us will drive."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Team Christmas lunch in the office",
+   "fields": {
+    "date": "2026-12-11",
+    "time": "12:30",
+    "place": "office kitchen",
+    "guests": "40",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Christmas lunch buffet from Pepper & Thyme",
+   "fields": {
+    "supplier": "Pepper & Thyme",
+    "item": "Christmas buffet",
+    "quantity": "40",
+    "amount": "1160",
+    "delivery": "2026-12-11",
+    "time": "12:00",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Halvorsen Logistics training day",
+   "fields": {
+    "date": "2026-12-04",
+    "start": "09:30",
+    "end": "16:30",
+    "room": "Training Room",
+    "client": "Halvorsen Logistics",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Fenwick Bank discovery workshop",
+   "fields": {
+    "date": "2026-11-27",
+    "start": "10:00",
+    "end": "13:00",
+    "room": "Boardroom",
+    "client": "Fenwick Bank",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Quarterly all-hands",
+   "fields": {
+    "date": "2026-12-08",
+    "time": "16:00",
+    "room": "Boardroom",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-5",
+   "collection": "schedule",
+   "title": "Christmas party at The Lantern Rooms",
+   "fields": {
+    "date": "2026-12-18",
+    "time": "19:00",
+    "place": "The Lantern Rooms",
+    "guests": "40",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Laptops for the January starters",
+   "fields": {
+    "supplier": "Byteworks",
+    "item": "developer laptops",
+    "quantity": "6",
+    "amount": "8400",
+    "delivery": "2026-12-14",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "EV-2",
+   "fields": [
+    "date",
+    "start",
+    "end",
+    "room"
+   ],
+   "from": "Maya Okonkwo (client director)",
+   "rule": "e2"
+  },
+  {
+   "record": "EV-3",
+   "fields": [
+    "date",
+    "start",
+    "end",
+    "room"
+   ],
+   "from": "Maya Okonkwo (client director)",
+   "rule": "e2"
+  },
+  {
+   "record": "ORD-2",
+   "fields": [
+    "quantity",
+    "amount",
+    "delivery"
+   ],
+   "from": "Sunita Rao (finance lead)",
+   "rule": "e3"
+  }
+ ],
+ "task": "Please send Gina at Pepper & Thyme the delivery details for our Christmas lunch: which day, what time and how many people.",
+ "expect": [
+  {
+   "record": "EV-1",
+   "field": "date",
+   "value": "2026-12-10",
+   "stale": [
+    "2026-12-11"
+   ]
+  },
+  {
+   "record": "ORD-1",
+   "field": "delivery",
+   "value": "2026-12-10",
+   "stale": [
+    "2026-12-11"
+   ]
+  },
+  {
+   "message_to": "Gina Russo (Pepper & Thyme)",
+   "regarding": "ORD-1",
+   "says": [
+    "2026-12-10",
+    "12:00",
+    "40"
+   ],
+   "stale": [
+    "2026-12-11"
+   ],
+   "task": true
+  }
+ ],
+ "why": "Theo's October email amends the office-days rule: from 1 December the building is closed on Fridays, internal office bookings on those Fridays move to the Thursday before at the same times, and client bookings need Maya to agree a new day. The Christmas lunch on Friday 11 December and, through it, the $1,160 Pepper & Thyme buffet move to Thursday 10 December, which Ines may do alone (e4): REVISE; the Halvorsen training day on Friday 4 December is a confirmed client booking (e2): ASK. The Fenwick workshop (27 November, before December) and the Tuesday all-hands still stand: KEEP; the Lantern Rooms party is outside the office and untouched.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "coffee",
+   "counterpart": "Leo Marsh",
+   "org": "Bean Counter Coffee",
+   "item": "coffee beans",
+   "unit": "kg",
+   "values": [
+    "3",
+    "5",
+    "8",
+    "10"
+   ],
+   "place": "the office kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "stationery",
+   "counterpart": "Jen Patel",
+   "org": "OfficeHub",
+   "item": "notebooks and pens",
+   "unit": "boxes",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "6"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "booking",
+   "topic": "building meeting rooms",
+   "counterpart": "Paul Dent",
+   "org": "Calloway House management",
+   "item": "ground-floor meeting room hire",
+   "values": [
+    "Meeting Room A",
+    "Meeting Room B",
+    "the ground-floor lounge"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "order",
+   "topic": "IT accessories",
+   "counterpart": "Raj Patel",
+   "org": "Byteworks",
+   "item": "USB-C docks",
+   "unit": "docks",
+   "values": [
+    "2",
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "order",
+   "topic": "fruit",
+   "counterpart": "Nadia Kerr",
+   "org": "FreshDesk Fruit",
+   "item": "office fruit boxes",
+   "unit": "boxes",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "place": "the office kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "recruitment",
+   "counterpart": "Priya Shah",
+   "org": "TalentBridge Recruitment",
+   "item": "candidate interview",
+   "values": [
+    "Meeting Room A",
+    "Meeting Room B",
+    "the TalentBridge office"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "order",
+   "topic": "desk plants",
+   "counterpart": "Hannah Oakes",
+   "org": "Greenleaf Office Plants",
+   "item": "desk plants",
+   "unit": "plants",
+   "values": [
+    "6",
+    "10",
+    "12"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "order",
+   "topic": "printing",
+   "counterpart": "Tom Ruiz",
+   "org": "PrintRight",
+   "item": "branded workshop packs",
+   "unit": "packs",
+   "values": [
+    "20",
+    "30",
+    "50"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "booking",
+   "topic": "client check-ins",
+   "counterpart": "Owen Hale",
+   "org": "Fenwick Bank",
+   "item": "project check-in",
+   "values": [
+    "the Fenwick Bank offices",
+    "a video call",
+    "the Fenwick Bank canteen"
+   ],
+   "place": "the Fenwick Bank offices"
+  },
+  {
+   "kind": "order",
+   "topic": "water",
+   "counterpart": "Dan Hope",
+   "org": "AquaPure Coolers",
+   "item": "water cooler bottles",
+   "unit": "bottles",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the office kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "washroom supplies",
+   "counterpart": "Ana Silva",
+   "org": "Spotless Office Care",
+   "item": "washroom supplies",
+   "unit": "cartons",
+   "values": [
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "place": "Calloway House"
+  },
+  {
+   "kind": "booking",
+   "topic": "courier collections",
+   "counterpart": "Sam Ortega",
+   "org": "CityDash Couriers",
+   "item": "courier collection",
+   "values": [
+    "the Calloway House reception",
+    "the post room",
+    "the loading bay"
+   ],
+   "place": "Calloway House"
+  }
+ ]
+}

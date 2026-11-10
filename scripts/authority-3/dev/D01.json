@@ -1,0 +1,499 @@
+{
+ "id": "D01",
+ "tier": 100,
+ "class": 1,
+ "writer": "developer",
+ "title": "The winter recital moves a week",
+ "setting": "The office manager of a community music school",
+ "owner": "Nadia",
+ "org": "Larkspur Community Music School",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Jonah Pike (bursar)",
+   "role": "rule",
+   "text": "From now on, any change to a confirmed supplier order worth $300 or more needs my sign-off before it goes back to the supplier."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-05",
+   "type": "instruction",
+   "from": "Nadia",
+   "role": "rule",
+   "text": "The office can move bookings with teachers, drivers and contractors without checking with me, as long as the person is told the new details."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-18",
+   "type": "email",
+   "from": "Pat Lowe (ChairCo Hire)",
+   "role": "fact",
+   "text": "We can deliver 30 folding chairs to the school hall for your open day on Saturday 28 November, $210 for the day."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-24",
+   "type": "email",
+   "from": "Rev. Paula Grant (Hollins Chapel)",
+   "role": "fact",
+   "text": "Hollins Chapel is yours for the winter recital on Saturday 12 December, 3:00 to 5:00 pm. The nave seats 120 and the piano will be in place."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-26",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e3"
+   ],
+   "record": "ORD-2",
+   "text": "Ordered 30 folding chairs from ChairCo Hire for the open day on Saturday 28 November, delivered to the school hall."
+  },
+  {
+   "id": "e6",
+   "date": "2026-07-02",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e4"
+   ],
+   "record": "EV-2",
+   "mark": "REVISE",
+   "text": "Booked Marco Bell to tune the Hollins Chapel piano on the morning of the winter recital, Saturday 12 December, at 9:00."
+  },
+  {
+   "id": "e7",
+   "date": "2026-07-09",
+   "type": "quote",
+   "from": "Ivy Chen (PrintHaus)",
+   "role": "fact",
+   "text": "Quote: 120 recital programmes, 8 pages, with the recital date and venue on the cover, $380, delivered Thursday 10 December."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-10",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e4",
+    "e7"
+   ],
+   "record": "ORD-1",
+   "mark": "ASK",
+   "text": "Ordered the 120 winter recital programmes from PrintHaus at $380 for Thursday 10 December, with Saturday 12 December and Hollins Chapel on the cover."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-21",
+   "type": "email",
+   "from": "Ollie Reyes",
+   "role": "fact",
+   "text": "Happy to drive the school minibus for the recital: I'd leave school at 1:30 pm and have everyone back by about 5:45 pm."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-22",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e4",
+    "e9"
+   ],
+   "record": "EV-3",
+   "mark": "REVISE",
+   "text": "Booked the school minibus with Ollie Reyes for the ensemble on the recital day, Saturday 12 December: leaving school at 13:30, back about 17:45."
+  },
+  {
+   "id": "e11",
+   "date": "2026-08-04",
+   "type": "email",
+   "from": "Gil Moreno (Strand Music)",
+   "role": "fact",
+   "text": "The hired cello can be collected from our shop on Saturdays until 5:30 pm."
+  },
+  {
+   "id": "e12",
+   "date": "2026-08-05",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e10",
+    "e11"
+   ],
+   "record": "EV-4",
+   "mark": "REVISE",
+   "text": "Ollie will stop at Strand Music on the way back from the recital run to collect the hired cello, at about 17:15 the same Saturday."
+  },
+  {
+   "id": "e13",
+   "date": "2026-08-19",
+   "type": "email",
+   "from": "Rev. Paula Grant (Hollins Chapel)",
+   "role": "fact",
+   "text": "The chapel's side room is free for your parents' evening on Thursday 14 January at 6 pm."
+  },
+  {
+   "id": "e14",
+   "date": "2026-08-20",
+   "type": "decision",
+   "from": "Nadia",
+   "role": "decision",
+   "rests_on": [
+    "e13"
+   ],
+   "record": "EV-5",
+   "text": "Booked the Hollins Chapel side room for the January parents' evening, Thursday 14 January 2027 at 18:00."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-02",
+   "type": "email",
+   "from": "Rev. Paula Grant (Hollins Chapel)",
+   "role": "fact",
+   "distractor": true,
+   "text": "A note for your diary: the chapel's carol service is on Sunday 13 December at 6 pm, and your families are very welcome."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-15",
+   "type": "message",
+   "from": "Marco Bell",
+   "role": "other",
+   "text": "Confirmed for the chapel piano at 9:00 on the recital morning. My rate is $95."
+  },
+  {
+   "id": "e17",
+   "date": "2026-09-29",
+   "type": "email",
+   "from": "Ivy Chen (PrintHaus)",
+   "role": "other",
+   "text": "Proof of the recital programme attached; please approve it by 20 November so we can print."
+  },
+  {
+   "id": "e18",
+   "date": "2026-10-20",
+   "type": "email",
+   "from": "Rev. Paula Grant (Hollins Chapel)",
+   "role": "change",
+   "revokes": [
+    "e4"
+   ],
+   "text": "I'm very sorry: the diocese needs Hollins Chapel for an ordination on Saturday 12 December, so your winter recital has to move. I have put you down for Saturday 19 December instead: same times, 3:00 to 5:00 pm, the same 120 seats and the piano in place."
+  },
+  {
+   "id": "e19",
+   "date": "2026-10-27",
+   "type": "message",
+   "from": "Gil Moreno (Strand Music)",
+   "role": "other",
+   "text": "Good news: the cello hire is extended to 31 December at no extra cost."
+  },
+  {
+   "id": "e20",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Nadia",
+   "role": "obligation",
+   "rests_on": [
+    "e17"
+   ],
+   "text": "To do: approve the PrintHaus programme proof by 20 November. Not done yet."
+  },
+  {
+   "id": "e21",
+   "date": "2026-11-03",
+   "type": "note",
+   "from": "Nadia",
+   "role": "other",
+   "text": "Open day chairs: ChairCo confirmed the delivery for 28 November."
+  }
+ ],
+ "records": [
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Winter recital programmes",
+   "fields": {
+    "supplier": "PrintHaus",
+    "quantity": "120",
+    "recital_date": "2026-12-12",
+    "delivery": "2026-12-10",
+    "amount": "380",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Open day folding chairs",
+   "fields": {
+    "supplier": "ChairCo Hire",
+    "quantity": "30",
+    "delivery": "2026-11-28",
+    "amount": "210",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Piano tuning at Hollins Chapel",
+   "fields": {
+    "date": "2026-12-12",
+    "time": "09:00",
+    "tuner": "Marco Bell",
+    "place": "Hollins Chapel",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Minibus for the recital ensemble",
+   "fields": {
+    "date": "2026-12-12",
+    "depart": "13:30",
+    "return": "17:45",
+    "driver": "Ollie Reyes",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Cello collection at Strand Music",
+   "fields": {
+    "date": "2026-12-12",
+    "time": "17:15",
+    "place": "Strand Music",
+    "driver": "Ollie Reyes",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-5",
+   "collection": "schedule",
+   "title": "Parents' evening, chapel side room",
+   "fields": {
+    "date": "2027-01-14",
+    "time": "18:00",
+    "place": "Hollins Chapel side room",
+    "status": "booked"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "ORD-1",
+   "fields": [
+    "recital_date",
+    "delivery",
+    "quantity",
+    "amount"
+   ],
+   "from": "Jonah Pike (bursar)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Ollie the minibus details for the recital run now: the date, what time he leaves school, and the cello stop on the way back.",
+ "expect": [
+  {
+   "record": "EV-2",
+   "field": "date",
+   "value": "2026-12-19",
+   "stale": [
+    "2026-12-12"
+   ]
+  },
+  {
+   "record": "EV-3",
+   "field": "date",
+   "value": "2026-12-19",
+   "stale": [
+    "2026-12-12"
+   ]
+  },
+  {
+   "record": "EV-4",
+   "field": "date",
+   "value": "2026-12-19",
+   "stale": [
+    "2026-12-12"
+   ]
+  },
+  {
+   "message_to": "Ollie Reyes",
+   "regarding": "EV-3",
+   "says": [
+    "2026-12-19",
+    "13:30"
+   ],
+   "stale": [
+    "2026-12-12"
+   ],
+   "task": true
+  }
+ ],
+ "why": "The chapel moved the recital from 12 to 19 December (e18 revokes e4). The tuning, the minibus and, through the minibus, the cello stop follow the recital and are contractor or driver bookings the office may move (e2): REVISE. The programmes are a confirmed $380 supplier order, so changing them needs the bursar's sign-off (e1): ASK. The parents' evening and the chairs do not rest on the recital date.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "copier paper",
+   "counterpart": "Tom Hart",
+   "org": "Brightline Supplies",
+   "item": "A4 copier paper",
+   "unit": "boxes",
+   "values": [
+    "6",
+    "8",
+    "10",
+    "12"
+   ],
+   "place": "the school office"
+  },
+  {
+   "kind": "order",
+   "topic": "sheet music",
+   "counterpart": "Gil Moreno",
+   "org": "Strand Music",
+   "item": "ensemble sheet music sets",
+   "unit": "sets",
+   "values": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "the music library"
+  },
+  {
+   "kind": "order",
+   "topic": "printing",
+   "counterpart": "Ivy Chen",
+   "org": "PrintHaus",
+   "item": "term newsletters",
+   "unit": "copies",
+   "values": [
+    "150",
+    "200",
+    "250"
+   ],
+   "place": "the school office"
+  },
+  {
+   "kind": "booking",
+   "topic": "chapel rooms",
+   "counterpart": "Rev. Paula Grant",
+   "org": "Hollins Chapel",
+   "item": "staff meeting",
+   "values": [
+    "the chapel side room",
+    "the vestry",
+    "the church hall"
+   ],
+   "place": "Hollins Chapel"
+  },
+  {
+   "kind": "booking",
+   "topic": "practice rooms",
+   "counterpart": "Dee Watts",
+   "org": "Larkspur Community Music School",
+   "item": "group theory class",
+   "values": [
+    "Room 2",
+    "Room 4",
+    "Room 5"
+   ],
+   "place": "the school building"
+  },
+  {
+   "kind": "order",
+   "topic": "strings",
+   "counterpart": "Mia Kaur",
+   "org": "Bowline Strings",
+   "item": "violin string sets",
+   "unit": "sets",
+   "values": [
+    "10",
+    "12",
+    "20"
+   ],
+   "place": "the music library"
+  },
+  {
+   "kind": "booking",
+   "topic": "outings",
+   "counterpart": "Ollie Reyes",
+   "org": "Larkspur Community Music School",
+   "item": "choir outing",
+   "values": [
+    "the school minibus",
+    "the hired coach",
+    "two staff cars"
+   ],
+   "place": "the school car park"
+  },
+  {
+   "kind": "order",
+   "topic": "refreshments",
+   "counterpart": "Ben Ola",
+   "org": "Corner Bakery",
+   "item": "biscuit trays",
+   "unit": "trays",
+   "values": [
+    "3",
+    "4",
+    "6"
+   ],
+   "place": "the school hall"
+  },
+  {
+   "kind": "booking",
+   "topic": "piano care",
+   "counterpart": "Marco Bell",
+   "org": "Bell Piano Services",
+   "item": "practice-room piano tuning",
+   "values": [
+    "Room 1",
+    "Room 3",
+    "the school hall"
+   ],
+   "place": "the school building"
+  },
+  {
+   "kind": "order",
+   "topic": "cleaning",
+   "counterpart": "Sara Lind",
+   "org": "Brightside Cleaning",
+   "item": "deep clean of the hall",
+   "unit": "visits",
+   "values": [
+    "1",
+    "2",
+    "3"
+   ],
+   "place": "the school hall"
+  },
+  {
+   "kind": "booking",
+   "topic": "exams",
+   "counterpart": "Hugh Price",
+   "org": "Associated Grades Board",
+   "item": "grade exam session",
+   "values": [
+    "Room 2",
+    "the school hall",
+    "Room 5"
+   ],
+   "place": "the school building"
+  }
+ ]
+}

@@ -1,0 +1,530 @@
+{
+ "id": "D06",
+ "tier": 100,
+ "class": 2,
+ "writer": "developer",
+ "title": "Quieter evenings in the Atrium",
+ "setting": "The facilities manager of a co-working space",
+ "owner": "Marcus",
+ "org": "Foundry Yard Co-working",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-01",
+   "type": "policy",
+   "from": "Elena Voss (general manager)",
+   "role": "rule",
+   "text": "Atrium evening events can run until 21:30, and the building is locked at 22:00."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Elena Voss (general manager)",
+   "role": "rule",
+   "text": "When a member has a confirmed Atrium booking, its date and times can only be changed with that member's agreement."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-04",
+   "type": "instruction",
+   "from": "Elena Voss (general manager)",
+   "role": "rule",
+   "text": "Marcus runs the house events (members' socials, open days) and the contractor bookings for them, such as security, cleaning and music. He can change those himself, as long as the contractor is told."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-08",
+   "type": "policy",
+   "from": "Elena Voss (general manager)",
+   "role": "rule",
+   "text": "Any order over $1,000, and any change to one, needs my sign-off."
+  },
+  {
+   "id": "e5",
+   "date": "2026-07-13",
+   "type": "email",
+   "from": "Tom Iles (Ledger & Line)",
+   "role": "fact",
+   "text": "We'd like the Atrium for our Founders' Night on Thursday 3 December, 18:30 to 21:30: a panel talk with drinks, no music."
+  },
+  {
+   "id": "e6",
+   "date": "2026-07-14",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e1",
+    "e5"
+   ],
+   "record": "EV-1",
+   "mark": "KEEP",
+   "text": "Confirmed the Atrium for Ledger & Line's Founders' Night on Thursday 3 December, 18:30 to 21:30 (a panel talk with drinks, no music)."
+  },
+  {
+   "id": "e7",
+   "date": "2026-07-27",
+   "type": "email",
+   "from": "Priya Raman (Lumen Studio)",
+   "role": "fact",
+   "text": "We'd love the Atrium for our studio launch party on Friday 4 December, 19:00 to 21:30, with a DJ."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-28",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e1",
+    "e7"
+   ],
+   "record": "EV-2",
+   "mark": "ASK",
+   "text": "Confirmed the Atrium for Lumen Studio's launch party with a DJ on Friday 4 December, 19:00 to 21:30."
+  },
+  {
+   "id": "e9",
+   "date": "2026-08-10",
+   "type": "email",
+   "from": "Jess Moran (Blue Hour Trio)",
+   "role": "fact",
+   "text": "We can play your members' Christmas social on Friday 11 December, for as long as the evening runs."
+  },
+  {
+   "id": "e10",
+   "date": "2026-08-11",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e1",
+    "e9"
+   ],
+   "record": "EV-3",
+   "mark": "REVISE",
+   "text": "Booked the Atrium for our members' Christmas social on Friday 11 December, 18:00 to 21:30, with the Blue Hour Trio playing."
+  },
+  {
+   "id": "e11",
+   "date": "2026-08-18",
+   "type": "quote",
+   "from": "Callum Reid (Northgate Security)",
+   "role": "fact",
+   "text": "One guard for an evening event is $32 an hour, with a minimum of three hours."
+  },
+  {
+   "id": "e12",
+   "date": "2026-08-19",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e10",
+    "e11"
+   ],
+   "record": "EV-4",
+   "mark": "REVISE",
+   "text": "Booked a Northgate Security guard for the members' Christmas social on Friday 11 December, from 17:30 to 22:00: half an hour before it starts until half an hour after it ends."
+  },
+  {
+   "id": "e13",
+   "date": "2026-09-01",
+   "type": "quote",
+   "from": "Hana Price (Workform)",
+   "role": "fact",
+   "text": "12 ergonomic desk chairs, $1,480, delivered on Wednesday 25 November."
+  },
+  {
+   "id": "e14",
+   "date": "2026-09-03",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e13",
+    "e4"
+   ],
+   "record": "ORD-1",
+   "text": "Ordered 12 desk chairs from Workform for $1,480, delivered on Wednesday 25 November. Elena signed it off."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-14",
+   "type": "email",
+   "from": "Dale Fisher (Clearview Windows)",
+   "role": "fact",
+   "text": "We can do your quarterly window clean on Saturday 21 November from 08:00."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-15",
+   "type": "decision",
+   "from": "Marcus",
+   "role": "decision",
+   "rests_on": [
+    "e15"
+   ],
+   "record": "EV-5",
+   "text": "Booked Clearview's quarterly window clean for Saturday 21 November at 08:00."
+  },
+  {
+   "id": "e17",
+   "date": "2026-09-28",
+   "type": "email",
+   "from": "Elena Voss (general manager)",
+   "role": "fact",
+   "distractor": true,
+   "text": "Heads-up: the lifts are being serviced on Saturday 12 December, 08:00 to 13:00, so the upper floors are stairs-only that morning."
+  },
+  {
+   "id": "e18",
+   "date": "2026-10-05",
+   "type": "message",
+   "from": "Priya Raman (Lumen Studio)",
+   "role": "other",
+   "text": "Invitations for our launch are out; we're expecting about 90 guests."
+  },
+  {
+   "id": "e19",
+   "date": "2026-10-08",
+   "type": "email",
+   "from": "Elena Voss (general manager)",
+   "role": "change",
+   "revokes": [
+    "e1"
+   ],
+   "text": "New rule for the Atrium, after noise complaints from the new flats next door: from Tuesday 1 December, any evening event with music (a band, a DJ or a playlist on the speakers) must finish by 20:30. Talks, workshops and other events without music can still run until 21:30, and the building is still locked at 22:00."
+  },
+  {
+   "id": "e20",
+   "date": "2026-10-26",
+   "type": "message",
+   "from": "Hana Price (Workform)",
+   "role": "other",
+   "text": "Your 12 chairs are on the van for Wednesday 25 November."
+  },
+  {
+   "id": "e21",
+   "date": "2026-10-29",
+   "type": "message",
+   "from": "Tom Iles (Ledger & Line)",
+   "role": "other",
+   "text": "We have 60 people signed up for Founders' Night on the 3rd."
+  },
+  {
+   "id": "e22",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Marcus",
+   "role": "obligation",
+   "text": "To do: return the spare key fobs to Northgate Security by 20 November. Not done yet."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Founders' Night (Ledger & Line)",
+   "fields": {
+    "date": "2026-12-03",
+    "start": "18:30",
+    "end": "21:30",
+    "place": "Atrium",
+    "member": "Ledger & Line",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Lumen Studio launch party",
+   "fields": {
+    "date": "2026-12-04",
+    "start": "19:00",
+    "end": "21:30",
+    "place": "Atrium",
+    "member": "Lumen Studio",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Members' Christmas social",
+   "fields": {
+    "date": "2026-12-11",
+    "start": "18:00",
+    "end": "21:30",
+    "place": "Atrium",
+    "music": "Blue Hour Trio",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Security guard for the Christmas social",
+   "fields": {
+    "date": "2026-12-11",
+    "start": "17:30",
+    "end": "22:00",
+    "company": "Northgate Security",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-5",
+   "collection": "schedule",
+   "title": "Quarterly window clean",
+   "fields": {
+    "date": "2026-11-21",
+    "time": "08:00",
+    "contractor": "Clearview Windows",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Desk chairs",
+   "fields": {
+    "supplier": "Workform",
+    "quantity": "12",
+    "delivery": "2026-11-25",
+    "amount": "1480",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "EV-1",
+   "fields": [
+    "date",
+    "start",
+    "end"
+   ],
+   "from": "Tom Iles (Ledger & Line)",
+   "rule": "e2"
+  },
+  {
+   "record": "EV-2",
+   "fields": [
+    "date",
+    "start",
+    "end"
+   ],
+   "from": "Priya Raman (Lumen Studio)",
+   "rule": "e2"
+  },
+  {
+   "record": "ORD-1",
+   "fields": [
+    "quantity",
+    "delivery",
+    "amount"
+   ],
+   "from": "Elena Voss (general manager)",
+   "rule": "e4"
+  }
+ ],
+ "task": "Please send Callum at Northgate Security the details for the guard at our members' Christmas social: the date and the hours we need cover.",
+ "expect": [
+  {
+   "record": "EV-3",
+   "field": "end",
+   "value": "20:30",
+   "stale": [
+    "21:30"
+   ]
+  },
+  {
+   "record": "EV-4",
+   "field": "end",
+   "value": "21:00",
+   "stale": [
+    "22:00"
+   ]
+  },
+  {
+   "message_to": "Callum Reid (Northgate Security)",
+   "regarding": "EV-4",
+   "says": [
+    "2026-12-11",
+    "17:30",
+    "21:00"
+   ],
+   "stale": [
+    "22:00"
+   ],
+   "task": true
+  }
+ ],
+ "why": "From 1 December, Atrium events with music must finish by 20:30 while events without music may still run to 21:30 (e19 amends e1). The members' Christmas social has a band and is a house event Marcus may change (e3): it now ends at 20:30 (REVISE), and the guard, booked until half an hour after the social ends, now finishes at 21:00 (REVISE, two hops). Lumen Studio's DJ launch must also finish earlier, but a member's confirmed booking needs that member's agreement (e2): ASK. Ledger & Line's Founders' Night has no music, so it keeps its 21:30 finish: KEEP.",
+ "noise_kit": [
+  {
+   "kind": "booking",
+   "topic": "security patrols",
+   "counterpart": "Sam Webb",
+   "org": "Northgate Security",
+   "item": "weekend patrol",
+   "values": [
+    "the car park",
+    "the bike store",
+    "the main entrance"
+   ],
+   "place": "the building"
+  },
+  {
+   "kind": "booking",
+   "topic": "member workshops",
+   "counterpart": "Ana Ruiz",
+   "org": "Lumen Studio",
+   "item": "client workshop",
+   "values": [
+    "Meeting Room 1",
+    "Meeting Room 3",
+    "the boardroom"
+   ],
+   "place": "the second floor"
+  },
+  {
+   "kind": "order",
+   "topic": "desk accessories",
+   "counterpart": "Joel Banks",
+   "org": "Workform",
+   "item": "monitor arms",
+   "unit": "arms",
+   "values": [
+    "6",
+    "8",
+    "12"
+   ],
+   "place": "the second floor"
+  },
+  {
+   "kind": "booking",
+   "topic": "window cleaning",
+   "counterpart": "Pat Dunne",
+   "org": "Clearview Windows",
+   "item": "skylight clean",
+   "values": [
+    "the roof lights",
+    "the stairwell windows",
+    "the kitchen windows"
+   ],
+   "place": "the building"
+  },
+  {
+   "kind": "order",
+   "topic": "coffee",
+   "counterpart": "Raj Patel",
+   "org": "Beanline Coffee",
+   "item": "coffee beans",
+   "unit": "bags",
+   "values": [
+    "4",
+    "6",
+    "10"
+   ],
+   "place": "the members' kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "printer paper",
+   "counterpart": "Nell Carter",
+   "org": "Brightline Office Supplies",
+   "item": "printer paper",
+   "unit": "boxes",
+   "values": [
+    "5",
+    "10",
+    "15"
+   ],
+   "place": "the print corner"
+  },
+  {
+   "kind": "booking",
+   "topic": "cleaning",
+   "counterpart": "Dina Kerr",
+   "org": "Sparkle & Co Cleaning",
+   "item": "deep clean",
+   "values": [
+    "the members' kitchen",
+    "the second floor",
+    "the phone booths"
+   ],
+   "place": "the building"
+  },
+  {
+   "kind": "booking",
+   "topic": "IT",
+   "counterpart": "Chris Dunn",
+   "org": "Northpoint IT",
+   "item": "Wi-Fi upgrade visit",
+   "values": [
+    "the server cupboard",
+    "the first floor",
+    "the second floor"
+   ],
+   "place": "the building"
+  },
+  {
+   "kind": "booking",
+   "topic": "pest control",
+   "counterpart": "Gary Holt",
+   "org": "Pestaway",
+   "item": "pest inspection",
+   "values": [
+    "the basement",
+    "the bin store",
+    "the members' kitchen"
+   ],
+   "place": "the building"
+  },
+  {
+   "kind": "order",
+   "topic": "plants",
+   "counterpart": "Ivy Moss",
+   "org": "Greenleaf Plants",
+   "item": "desk plants",
+   "unit": "plants",
+   "values": [
+    "8",
+    "12",
+    "20"
+   ],
+   "place": "the first floor"
+  },
+  {
+   "kind": "order",
+   "topic": "milk",
+   "counterpart": "Owen Pryce",
+   "org": "Vale Dairy",
+   "item": "milk",
+   "unit": "litres",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ],
+   "place": "the members' kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "fire alarm tests",
+   "counterpart": "Rob King",
+   "org": "Firewise Services",
+   "item": "fire alarm test",
+   "values": [
+    "the ground floor",
+    "the first floor",
+    "the second floor"
+   ],
+   "place": "the building"
+  }
+ ]
+}

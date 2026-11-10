@@ -1,0 +1,585 @@
+{
+ "id": "D12",
+ "tier": 500,
+ "class": 4,
+ "writer": "developer",
+ "title": "The Fairmile coach arrives later",
+ "setting": "The operations manager of a boutique hotel",
+ "owner": "Rosa",
+ "org": "The Linden House Hotel",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Clara Voss (owner, The Linden House Hotel)",
+   "role": "rule",
+   "text": "Once a group has signed its booking form, its dates, number of rooms and price can't be changed without the group organiser's written agreement."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Clara Voss (owner, The Linden House Hotel)",
+   "role": "rule",
+   "text": "Any order with an outside supplier over $1,000 needs my sign-off before it's placed or changed."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-05",
+   "type": "instruction",
+   "from": "Rosa",
+   "role": "rule",
+   "text": "Housekeeping rotas, room set-ups and smaller supplier bookings are the operations office's to arrange and adjust. You don't need to check with me; just make sure the people involved are told."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-10",
+   "type": "email",
+   "from": "Clara Voss (owner, The Linden House Hotel)",
+   "role": "other",
+   "text": "Fairmile Architects found us through the Leeds design awards. Let's look after them; they could become regulars."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-22",
+   "type": "contract",
+   "from": "Hannah Webb (Fairmile Architects)",
+   "role": "fact",
+   "text": "Signed group booking form: Fairmile Architects' team retreat at The Linden House Hotel, 12 rooms for the night of Thursday 19 November, dinner for 14 in the Garden Room on the Thursday at 19:30, and the Library for a workshop on Friday 20 November from 09:00 to 13:00. $3,960 in total."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-23",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e1"
+   ],
+   "record": "CL-1",
+   "text": "Entered the Fairmile Architects retreat as confirmed: 12 rooms for the night of Thursday 19 November, $3,960, organiser Hannah Webb."
+  },
+  {
+   "id": "e7",
+   "date": "2026-06-24",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e3"
+   ],
+   "record": "EV-1",
+   "text": "Booked the Garden Room for the Fairmile dinner: Thursday 19 November at 19:30, one long table for 14."
+  },
+  {
+   "id": "e8",
+   "date": "2026-06-24",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e5",
+    "e3"
+   ],
+   "record": "EV-2",
+   "text": "Booked the Library for the Fairmile workshop: Friday 20 November, 09:00 to 13:00, set boardroom-style for 14."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-01",
+   "type": "note",
+   "from": "Rosa",
+   "role": "other",
+   "text": "The Garden Room seats up to 20 at one long table."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-08",
+   "type": "email",
+   "from": "Marco Reyes (head chef)",
+   "role": "fact",
+   "text": "For the Fairmile dinner I'll do a set three-course menu. I need final numbers a week before."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-15",
+   "type": "quote",
+   "from": "Omar Siddiqui (Brightcast AV)",
+   "role": "fact",
+   "text": "Projector, screen and two microphones for the Library on Friday 20 November, set up by 08:30, $340."
+  },
+  {
+   "id": "e12",
+   "date": "2026-07-16",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e11",
+    "e8",
+    "e3"
+   ],
+   "record": "ORD-1",
+   "text": "Booked Brightcast AV for the Fairmile workshop: projector, screen and two microphones in the Library, set up by 08:30 on Friday 20 November, $340."
+  },
+  {
+   "id": "e13",
+   "date": "2026-07-20",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e6",
+    "e3"
+   ],
+   "record": "EV-3",
+   "text": "Set the housekeeping rota for Thursday 19 November: as for every group, Ivo Novak's team will have all 12 Fairmile rooms ready by 14:00, an hour before our standard 15:00 check-in."
+  },
+  {
+   "id": "e14",
+   "date": "2026-08-03",
+   "type": "email",
+   "from": "Hannah Webb (Fairmile Architects)",
+   "role": "fact",
+   "text": "Travel plan: the team is coming down together by coach from Leeds and should get to you at about 15:00 on Thursday 19 November. We're arranging the coach ourselves."
+  },
+  {
+   "id": "e15",
+   "date": "2026-08-10",
+   "type": "email",
+   "from": "Lily Wren (Wren Flowers)",
+   "role": "fact",
+   "text": "Table flowers for a dinner of 14: three low arrangements, $150, delivered by 16:00 on the day."
+  },
+  {
+   "id": "e16",
+   "date": "2026-08-12",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e15",
+    "e7",
+    "e3"
+   ],
+   "record": "ORD-2",
+   "text": "Ordered three low table arrangements from Wren Flowers for the Fairmile dinner in the Garden Room, delivered by 16:00 on Thursday 19 November, $150."
+  },
+  {
+   "id": "e17",
+   "date": "2026-08-12",
+   "type": "task",
+   "from": "Rosa",
+   "role": "obligation",
+   "text": "To do: send Fairmile the deposit invoice by Friday 14 August. Done today."
+  },
+  {
+   "id": "e18",
+   "date": "2026-09-02",
+   "type": "email",
+   "from": "Dan Hurst (Crisp Linen Services)",
+   "role": "fact",
+   "text": "Extra linen for your 12-room group: delivered on Wednesday 18 November, $180."
+  },
+  {
+   "id": "e19",
+   "date": "2026-09-03",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e18",
+    "e6",
+    "e3"
+   ],
+   "record": "ORD-3",
+   "text": "Ordered extra linen from Crisp Linen Services for the Fairmile rooms, delivered on Wednesday 18 November, $180."
+  },
+  {
+   "id": "e20",
+   "date": "2026-09-14",
+   "type": "email",
+   "from": "Rosa",
+   "role": "other",
+   "echo": true,
+   "text": "Fairmile retreat briefing for the team: all 12 rooms ready by 14:00 on Thursday 19 November, dinner for 14 in the Garden Room at 19:30, workshop in the Library on Friday 20 November from 09:00, with Brightcast set up by 08:30."
+  },
+  {
+   "id": "e21",
+   "date": "2026-09-22",
+   "type": "call",
+   "from": "Marco Reyes (head chef)",
+   "role": "other",
+   "text": "Marco rang: he's planning a winter menu with venison for the Fairmile dinner."
+  },
+  {
+   "id": "e22",
+   "date": "2026-09-30",
+   "type": "email",
+   "from": "Joyce Hartwell",
+   "role": "fact",
+   "text": "We'd love the Garden Room for our ruby anniversary dinner on Saturday 21 November at 19:00, 16 of us."
+  },
+  {
+   "id": "e23",
+   "date": "2026-10-01",
+   "type": "decision",
+   "from": "Rosa",
+   "role": "decision",
+   "rests_on": [
+    "e22",
+    "e3"
+   ],
+   "record": "EV-4",
+   "text": "Booked the Garden Room for the Hartwell anniversary dinner: Saturday 21 November at 19:00, for 16."
+  },
+  {
+   "id": "e24",
+   "date": "2026-10-08",
+   "type": "message",
+   "from": "Omar Siddiqui (Brightcast AV)",
+   "role": "other",
+   "text": "Our technician for the Library set-up will be Kev."
+  },
+  {
+   "id": "e25",
+   "date": "2026-10-15",
+   "type": "email",
+   "from": "Hannah Webb (Fairmile Architects)",
+   "role": "change",
+   "revokes": [
+    "e14"
+   ],
+   "text": "I got our travel time wrong in my August email, sorry: the coach can't leave Leeds until after lunch, so the team will get to you at about 16:30 on Thursday 19 November, not 15:00. We're still arranging the coach ourselves."
+  },
+  {
+   "id": "e26",
+   "date": "2026-10-21",
+   "type": "email",
+   "from": "Joyce Hartwell",
+   "role": "fact",
+   "distractor": true,
+   "text": "Just confirming our anniversary dinner in the Garden Room on Saturday 21 November at 19:00, 16 of us. We'll bring our own cake!"
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-28",
+   "type": "message",
+   "from": "Ivo Novak (housekeeping supervisor)",
+   "role": "other",
+   "text": "The new pillows have arrived and are in the linen room."
+  },
+  {
+   "id": "e28",
+   "date": "2026-11-02",
+   "type": "email",
+   "from": "Hannah Webb (Fairmile Architects)",
+   "role": "other",
+   "text": "Could you send me the dinner and workshop timings, and which rooms they're in, so I can put them in the team's itinerary?"
+  },
+  {
+   "id": "e29",
+   "date": "2026-11-03",
+   "type": "note",
+   "from": "Rosa",
+   "role": "other",
+   "text": "Marco has the Fairmile menu cards printed."
+  }
+ ],
+ "records": [
+  {
+   "id": "CL-1",
+   "collection": "crm",
+   "title": "Fairmile Architects retreat",
+   "fields": {
+    "organiser": "Hannah Webb",
+    "rooms": "12",
+    "night": "2026-11-19",
+    "amount": "3960",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Fairmile dinner",
+   "fields": {
+    "date": "2026-11-19",
+    "time": "19:30",
+    "room": "Garden Room",
+    "covers": "14",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Fairmile workshop",
+   "fields": {
+    "date": "2026-11-20",
+    "start": "09:00",
+    "end": "13:00",
+    "room": "Library",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Housekeeping: Fairmile rooms ready",
+   "fields": {
+    "date": "2026-11-19",
+    "ready_by": "14:00",
+    "team": "Ivo Novak",
+    "rooms": "12",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Hartwell anniversary dinner",
+   "fields": {
+    "date": "2026-11-21",
+    "time": "19:00",
+    "room": "Garden Room",
+    "covers": "16",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "AV for the Fairmile workshop",
+   "fields": {
+    "supplier": "Brightcast AV",
+    "date": "2026-11-20",
+    "setup": "08:30",
+    "amount": "340",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Fairmile dinner flowers",
+   "fields": {
+    "supplier": "Wren Flowers",
+    "quantity": "3",
+    "delivery": "2026-11-19",
+    "deliver_by": "16:00",
+    "amount": "150",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "Extra linen for the Fairmile rooms",
+   "fields": {
+    "supplier": "Crisp Linen Services",
+    "delivery": "2026-11-18",
+    "amount": "180",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "CL-1",
+   "fields": [
+    "rooms",
+    "night",
+    "amount"
+   ],
+   "from": "Hannah Webb (Fairmile Architects)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Hannah at Fairmile the times and the rooms for her team's dinner on Thursday 19 November and their workshop on Friday 20 November.",
+ "expect": [
+  {
+   "message_to": "Hannah Webb",
+   "regarding": null,
+   "says": [
+    "19:30",
+    "Garden Room",
+    "09:00",
+    "Library"
+   ],
+   "stale": [],
+   "task": true
+  }
+ ],
+ "why": "Hannah's correction moves the team's coach arrival from about 15:00 to about 16:30, but no decision rests on her August travel note: the rooms are ready by 14:00 because of the hotel's standard 15:00 check-in, and the dinner, workshop, flowers, linen and AV all follow the signed booking form. Nothing is touched and no record changes; the task is done on the plan as it stands: dinner at 19:30 in the Garden Room, workshop from 09:00 in the Library.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "linen",
+   "counterpart": "Dan Hurst",
+   "org": "Crisp Linen Services",
+   "item": "bath towel sets",
+   "unit": "sets",
+   "values": [
+    "20",
+    "30",
+    "40",
+    "50"
+   ],
+   "place": "the linen room"
+  },
+  {
+   "kind": "order",
+   "topic": "reception flowers",
+   "counterpart": "Lily Wren",
+   "org": "Wren Flowers",
+   "item": "reception flower arrangements",
+   "unit": "arrangements",
+   "values": [
+    "1",
+    "2",
+    "3"
+   ],
+   "place": "the front hall"
+  },
+  {
+   "kind": "booking",
+   "topic": "private lunches",
+   "counterpart": "Leo Carr",
+   "org": "Carr & Co Solicitors",
+   "item": "client lunch",
+   "values": [
+    "the Morning Room",
+    "the Conservatory",
+    "the Snug"
+   ],
+   "place": "The Linden House Hotel"
+  },
+  {
+   "kind": "order",
+   "topic": "wine",
+   "counterpart": "Jo Pearce",
+   "org": "Vale Drinks Wholesale",
+   "item": "cases of house red",
+   "unit": "cases",
+   "values": [
+    "6",
+    "10",
+    "12"
+   ],
+   "place": "the hotel cellar"
+  },
+  {
+   "kind": "order",
+   "topic": "breakfast",
+   "counterpart": "Tess Morgan",
+   "org": "Hillside Dairy",
+   "item": "breakfast yoghurts",
+   "unit": "crates",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "AV",
+   "counterpart": "Omar Siddiqui",
+   "org": "Brightcast AV",
+   "item": "conference sound check",
+   "values": [
+    "the Morning Room",
+    "the Conservatory",
+    "the Snug"
+   ],
+   "place": "The Linden House Hotel"
+  },
+  {
+   "kind": "order",
+   "topic": "toiletries",
+   "counterpart": "Bea Holt",
+   "org": "Pure Botanics",
+   "item": "guest toiletry kits",
+   "unit": "boxes",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ],
+   "place": "the housekeeping store"
+  },
+  {
+   "kind": "booking",
+   "topic": "maintenance",
+   "counterpart": "Gary Stubbs",
+   "org": "Stubbs Electrical",
+   "item": "boiler service",
+   "values": [
+    "the plant room",
+    "the east wing",
+    "the kitchen"
+   ],
+   "place": "The Linden House Hotel"
+  },
+  {
+   "kind": "order",
+   "topic": "coffee",
+   "counterpart": "Ollie Grant",
+   "org": "Bean There Coffee",
+   "item": "coffee beans",
+   "unit": "bags",
+   "values": [
+    "6",
+    "8",
+    "12"
+   ],
+   "place": "the kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "spa",
+   "counterpart": "Mira Patel",
+   "org": "Still Water Spa",
+   "item": "treatment room hire",
+   "values": [
+    "the Snug",
+    "the east wing suite",
+    "the Conservatory"
+   ],
+   "place": "the east wing"
+  },
+  {
+   "kind": "order",
+   "topic": "printing",
+   "counterpart": "Nell Barker",
+   "org": "Quillmark Print",
+   "item": "menu cards",
+   "unit": "copies",
+   "values": [
+    "50",
+    "100",
+    "150"
+   ],
+   "place": "the front office"
+  },
+  {
+   "kind": "booking",
+   "topic": "window cleaning",
+   "counterpart": "Joe Wren",
+   "org": "ClearView Window Cleaning",
+   "item": "window clean",
+   "values": [
+    "the front windows",
+    "the conservatory roof",
+    "the east wing windows"
+   ],
+   "place": "The Linden House Hotel"
+  }
+ ]
+}

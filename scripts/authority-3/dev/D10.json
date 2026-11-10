@@ -1,0 +1,627 @@
+{
+ "id": "D10",
+ "tier": 500,
+ "class": 2,
+ "writer": "developer",
+ "title": "Deliveries move to Wednesdays",
+ "setting": "The school business manager of a primary school (admin only)",
+ "owner": "Fiona",
+ "org": "Brook Lane Primary School",
+ "now": "2026-11-05",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Grace Adeyemi (headteacher, Brook Lane Primary School)",
+   "role": "rule",
+   "text": "Any change to a confirmed supplier order worth more than $500 must be signed off by me before it goes back to the supplier. That includes moving its delivery day."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-03",
+   "type": "instruction",
+   "from": "Fiona",
+   "role": "rule",
+   "text": "For supplier orders of $500 or less, and for visits by our regular contractors such as Pete Lowry, the office can move delivery days and visit times without checking with me, as long as the supplier or contractor is told in writing."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-09",
+   "type": "instruction",
+   "from": "Dev Sharma (site manager)",
+   "role": "rule",
+   "text": "From now on, every delivery to the school (office, classroom and kitchen) must be booked for a Tuesday between 10:00 and 11:00, when I'm on site to sign for it. Please give suppliers that slot and no other."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-18",
+   "type": "email",
+   "from": "Jo Tran (Snapwell Photography)",
+   "role": "fact",
+   "text": "We can take the class photos on Thursday 12 November from 09:00 in the hall."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-19",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e4"
+   ],
+   "record": "EV-2",
+   "text": "Booked Snapwell Photography for the class photos on Thursday 12 November from 09:00 in the hall."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-24",
+   "type": "email",
+   "from": "Lorna Pike (school cook)",
+   "role": "other",
+   "text": "The kitchen door bell is fixed, so drivers can ring it when they arrive."
+  },
+  {
+   "id": "e7",
+   "date": "2026-07-01",
+   "type": "quote",
+   "from": "Amy Rowe (Kestrel School Furniture)",
+   "role": "fact",
+   "text": "30 classroom chairs, size 4, at $38 each: $1,140 delivered."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-07",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e7",
+    "e3",
+    "e1"
+   ],
+   "record": "ORD-1",
+   "mark": "ASK",
+   "text": "With Mrs Adeyemi's sign-off, ordered 30 size-4 chairs for Year 3 from Kestrel School Furniture, $1,140, delivery booked into the Tuesday slot: Tuesday 24 November at 10:00."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-14",
+   "type": "quote",
+   "from": "Leah Grant (Classmate Displays)",
+   "role": "fact",
+   "text": "Six cork display boards, 1.2 by 0.9 metres, $420 delivered."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-15",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e3"
+   ],
+   "record": "ORD-2",
+   "mark": "REVISE",
+   "text": "Ordered six cork display boards for the hall from Classmate Displays, $420, delivery booked into the Tuesday slot: Tuesday 17 November at 10:00."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-22",
+   "type": "email",
+   "from": "Pete Lowry (Lowry Property Care)",
+   "role": "fact",
+   "text": "I can put up display boards for you any weekday afternoon after school, from 15:45. $90 for the job."
+  },
+  {
+   "id": "e12",
+   "date": "2026-07-23",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e10",
+    "e11",
+    "e2"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Booked Pete Lowry to fix the six new display boards to the hall wall on the afternoon they arrive, Tuesday 17 November, at 15:45 after school. $90."
+  },
+  {
+   "id": "e13",
+   "date": "2026-08-24",
+   "type": "email",
+   "from": "Sara Quinn (Little Movers Dance)",
+   "role": "fact",
+   "text": "Could we hire the hall on Mondays from 16:00 to 17:00 for a dance club, starting on 7 September?"
+  },
+  {
+   "id": "e14",
+   "date": "2026-08-26",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e13"
+   ],
+   "record": "CL-1",
+   "text": "Agreed a hall letting with Little Movers Dance: Mondays 16:00 to 17:00 from 7 September, $25 a session."
+  },
+  {
+   "id": "e15",
+   "date": "2026-09-02",
+   "type": "quote",
+   "from": "Sean Doyle (Inkwell Office Supplies)",
+   "role": "fact",
+   "text": "40 reams of coloured paper and 6 toner cartridges for your Christmas programmes: $310."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-03",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e15",
+    "e3"
+   ],
+   "record": "ORD-4",
+   "mark": "REVISE",
+   "text": "Ordered 40 reams of coloured paper and 6 toner cartridges from Inkwell Office Supplies for the Christmas show programmes, $310, delivery booked into the Tuesday slot: Tuesday 1 December at 10:00."
+  },
+  {
+   "id": "e17",
+   "date": "2026-09-08",
+   "type": "quote",
+   "from": "Bryn Hartley (Hartley Foods)",
+   "role": "fact",
+   "text": "Christmas lunch for 210 pupils and staff: turkey, vegetables and puddings, $940, delivered to your kitchen."
+  },
+  {
+   "id": "e18",
+   "date": "2026-09-10",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e17",
+    "e3",
+    "e1"
+   ],
+   "record": "ORD-3",
+   "mark": "KEEP",
+   "text": "With Mrs Adeyemi's sign-off, ordered the Christmas lunch food from Hartley Foods for 210, $940, delivered to the kitchen in the Tuesday slot: Tuesday 8 December at 10:00, ready for Christmas lunch on Thursday 10 December."
+  },
+  {
+   "id": "e19",
+   "date": "2026-09-15",
+   "type": "email",
+   "from": "Lorna Pike (school cook)",
+   "role": "other",
+   "text": "I've got the kitchen rota sorted for Christmas lunch week."
+  },
+  {
+   "id": "e20",
+   "date": "2026-09-21",
+   "type": "email",
+   "from": "Dev Sharma (site manager)",
+   "role": "other",
+   "echo": true,
+   "text": "Reminder to all staff: deliveries are Tuesdays only, 10:00 to 11:00, and I sign for every one of them. If a supplier asks for another day, the answer is the next Tuesday."
+  },
+  {
+   "id": "e21",
+   "date": "2026-09-29",
+   "type": "call",
+   "from": "Pete Lowry (Lowry Property Care)",
+   "role": "fact",
+   "distractor": true,
+   "text": "Pete rang: he could also look at the sticking playground gate on Thursday 19 November at 15:45, if we want him to."
+  },
+  {
+   "id": "e22",
+   "date": "2026-10-05",
+   "type": "email",
+   "from": "Kim Osei (PTA chair)",
+   "role": "fact",
+   "text": "Could the PTA have the hall for the Christmas fair on Saturday 5 December, 10:00 to 14:00?"
+  },
+  {
+   "id": "e23",
+   "date": "2026-10-06",
+   "type": "decision",
+   "from": "Fiona",
+   "role": "decision",
+   "rests_on": [
+    "e22"
+   ],
+   "record": "EV-3",
+   "text": "Booked the hall for the PTA Christmas fair, Saturday 5 December, 10:00 to 14:00."
+  },
+  {
+   "id": "e24",
+   "date": "2026-10-12",
+   "type": "email",
+   "from": "Grace Adeyemi (headteacher, Brook Lane Primary School)",
+   "role": "other",
+   "text": "Thanks for sorting the Year 3 chairs; Mrs Lane is delighted."
+  },
+  {
+   "id": "e25",
+   "date": "2026-10-15",
+   "type": "message",
+   "from": "Amy Rowe (Kestrel School Furniture)",
+   "role": "other",
+   "text": "Your 30 Year 3 chairs are made and waiting in our warehouse."
+  },
+  {
+   "id": "e26",
+   "date": "2026-10-20",
+   "type": "email",
+   "from": "Dev Sharma (site manager)",
+   "role": "change",
+   "revokes": [
+    "e3"
+   ],
+   "text": "From Monday 9 November I'll be working at our junior site on Tuesdays, so I can't sign for deliveries here that day any more. From then on, deliveries I sign for come on Wednesdays instead, in the same 10:00 to 11:00 slot: anything already booked for a Tuesday from 10 November onwards should come the next day, Wednesday, at the same time. Kitchen food deliveries aren't affected: Lorna will sign for those at the kitchen door, so they stay on Tuesdays."
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-27",
+   "type": "email",
+   "from": "Kim Osei (PTA chair)",
+   "role": "other",
+   "text": "The PTA has all the fair stalls sorted. Thank you for the hall!"
+  },
+  {
+   "id": "e28",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Fiona",
+   "role": "obligation",
+   "text": "To do: send the Christmas fair risk assessment to the PTA by Friday 27 November. Not done yet."
+  },
+  {
+   "id": "e29",
+   "date": "2026-11-03",
+   "type": "email",
+   "from": "Lorna Pike (school cook)",
+   "role": "other",
+   "text": "Hartley Foods have confirmed the Christmas lunch quantities with me."
+  }
+ ],
+ "records": [
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Year 3 classroom chairs",
+   "fields": {
+    "supplier": "Kestrel School Furniture",
+    "quantity": "30",
+    "amount": "1140",
+    "delivery": "2026-11-24",
+    "time": "10:00",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Hall display boards",
+   "fields": {
+    "supplier": "Classmate Displays",
+    "quantity": "6",
+    "amount": "420",
+    "delivery": "2026-11-17",
+    "time": "10:00",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "Christmas lunch food",
+   "fields": {
+    "supplier": "Hartley Foods",
+    "covers": "210",
+    "amount": "940",
+    "delivery": "2026-12-08",
+    "time": "10:00",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-4",
+   "collection": "orders",
+   "title": "Paper and toner for the Christmas programmes",
+   "fields": {
+    "supplier": "Inkwell Office Supplies",
+    "amount": "310",
+    "delivery": "2026-12-01",
+    "time": "10:00",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Display boards fitted in the hall",
+   "fields": {
+    "contractor": "Pete Lowry",
+    "date": "2026-11-17",
+    "time": "15:45",
+    "place": "hall",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Class photos",
+   "fields": {
+    "supplier": "Snapwell Photography",
+    "date": "2026-11-12",
+    "time": "09:00",
+    "place": "hall",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "PTA Christmas fair",
+   "fields": {
+    "date": "2026-12-05",
+    "start": "10:00",
+    "end": "14:00",
+    "place": "hall",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "CL-1",
+   "collection": "crm",
+   "title": "Little Movers Dance hall letting",
+   "fields": {
+    "contact": "Sara Quinn",
+    "day": "Monday",
+    "time": "16:00",
+    "rate": "25",
+    "status": "active"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "ORD-1",
+   "fields": [
+    "delivery",
+    "time",
+    "quantity",
+    "amount"
+   ],
+   "from": "Grace Adeyemi (headteacher)",
+   "rule": "e1"
+  },
+  {
+   "record": "ORD-3",
+   "fields": [
+    "delivery",
+    "time",
+    "covers",
+    "amount"
+   ],
+   "from": "Grace Adeyemi (headteacher)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Pete Lowry the day and time to come in and put up the new display boards in the hall.",
+ "expect": [
+  {
+   "record": "ORD-2",
+   "field": "delivery",
+   "value": "2026-11-18",
+   "stale": [
+    "2026-11-17"
+   ]
+  },
+  {
+   "record": "EV-1",
+   "field": "date",
+   "value": "2026-11-18",
+   "stale": [
+    "2026-11-17"
+   ]
+  },
+  {
+   "record": "ORD-4",
+   "field": "delivery",
+   "value": "2026-12-02",
+   "stale": [
+    "2026-12-01"
+   ]
+  },
+  {
+   "message_to": "Pete Lowry",
+   "regarding": "EV-1",
+   "says": [
+    "2026-11-18",
+    "15:45"
+   ],
+   "stale": [
+    "2026-11-17"
+   ],
+   "task": true
+  }
+ ],
+ "why": "Dev's amendment moves the deliveries he signs for from Tuesdays to Wednesdays from 10 November (the next day, same time) but leaves kitchen food deliveries on Tuesdays. The display boards (17 to 18 November) and the paper and toner (1 to 2 December) are orders of $500 or less the office may move: REVISE; Pete fixes the boards on the afternoon they arrive, so his visit moves to Wednesday 18 November at 15:45 (REVISE, two hops from the rule), and that is what he is told. The $1,140 chairs must move from 24 November, but a change to an order over $500 needs Mrs Adeyemi's sign-off (ASK); the Hartley Foods Christmas lunch is a kitchen food delivery and stays on Tuesday 8 December (KEEP).",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "copier paper",
+   "counterpart": "Sean Doyle",
+   "org": "Inkwell Office Supplies",
+   "item": "A4 copier paper",
+   "unit": "boxes",
+   "values": [
+    "5",
+    "8",
+    "10",
+    "12"
+   ],
+   "place": "the school office"
+  },
+  {
+   "kind": "order",
+   "topic": "art supplies",
+   "counterpart": "Mel Fraser",
+   "org": "Rainbow Art Supplies",
+   "item": "poster paint sets",
+   "unit": "sets",
+   "values": [
+    "10",
+    "15",
+    "20"
+   ],
+   "place": "the art cupboard"
+  },
+  {
+   "kind": "booking",
+   "topic": "dance tasters",
+   "counterpart": "Sara Quinn",
+   "org": "Little Movers Dance",
+   "item": "dance taster session",
+   "values": [
+    "the studio room",
+    "the library corner",
+    "the music room"
+   ],
+   "place": "Brook Lane Primary School"
+  },
+  {
+   "kind": "order",
+   "topic": "cleaning",
+   "counterpart": "Rita Hale",
+   "org": "Sparkle Cleaning Supplies",
+   "item": "hand towel packs",
+   "unit": "cases",
+   "values": [
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "the caretaker's store"
+  },
+  {
+   "kind": "booking",
+   "topic": "photos",
+   "counterpart": "Jo Tran",
+   "org": "Snapwell Photography",
+   "item": "leavers' photo session",
+   "values": [
+    "the library",
+    "the playground",
+    "the studio room"
+   ],
+   "place": "Brook Lane Primary School"
+  },
+  {
+   "kind": "order",
+   "topic": "library books",
+   "counterpart": "Owen Price",
+   "org": "Pageturn Books",
+   "item": "reading scheme books",
+   "unit": "packs",
+   "values": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "the library"
+  },
+  {
+   "kind": "booking",
+   "topic": "music lessons",
+   "counterpart": "Hugh Mills",
+   "org": "Westvale Music Service",
+   "item": "recorder lessons",
+   "values": [
+    "the music room",
+    "the studio room",
+    "Room 6"
+   ],
+   "place": "the music room"
+  },
+  {
+   "kind": "order",
+   "topic": "PE kit",
+   "counterpart": "Lia Brooks",
+   "org": "Sportwise",
+   "item": "bean bags and cones",
+   "unit": "sets",
+   "values": [
+    "2",
+    "3",
+    "4"
+   ],
+   "place": "the PE store"
+  },
+  {
+   "kind": "booking",
+   "topic": "PTA meetings",
+   "counterpart": "Kim Osei",
+   "org": "Brook Lane PTA",
+   "item": "PTA committee meeting",
+   "values": [
+    "the staff room",
+    "the library",
+    "the studio room"
+   ],
+   "place": "Brook Lane Primary School"
+  },
+  {
+   "kind": "order",
+   "topic": "printing",
+   "counterpart": "Nell Barker",
+   "org": "Quillmark Print",
+   "item": "newsletter copies",
+   "unit": "copies",
+   "values": [
+    "200",
+    "250",
+    "300"
+   ],
+   "place": "the school office"
+  },
+  {
+   "kind": "booking",
+   "topic": "trips",
+   "counterpart": "Ray Dunn",
+   "org": "Dunn's Coaches",
+   "item": "class trip coach",
+   "values": [
+    "the front gate",
+    "the side gate",
+    "the church car park"
+   ],
+   "place": "the front gate"
+  },
+  {
+   "kind": "order",
+   "topic": "garden club",
+   "counterpart": "Iris Lowe",
+   "org": "Greenhill Nursery",
+   "item": "planters for the garden club",
+   "unit": "trays",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the school garden"
+  }
+ ]
+}

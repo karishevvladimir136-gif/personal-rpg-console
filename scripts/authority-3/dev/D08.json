@@ -1,0 +1,634 @@
+{
+ "id": "D08",
+ "tier": 500,
+ "class": 4,
+ "writer": "developer",
+ "title": "Fernleaf's new prices",
+ "setting": "The bookings manager of a small wedding venue",
+ "owner": "Maren",
+ "org": "Hartsfield Barn",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Giles Ashworth (owner, Hartsfield Barn)",
+   "role": "rule",
+   "text": "For all our weddings from now on: once a couple has signed their booking contract, their wedding date, ceremony time and rooms can't be changed without the couple's written agreement. Please don't move any of those on a signed booking until they've agreed in writing."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-03",
+   "type": "policy",
+   "from": "Giles Ashworth (owner, Hartsfield Barn)",
+   "role": "rule",
+   "text": "Any supplier order for a wedding worth more than $2,000 needs my sign-off before it's placed, and again before any change to its numbers, price or date goes back to the supplier."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-05",
+   "type": "instruction",
+   "from": "Maren",
+   "role": "rule",
+   "text": "Smaller supplier bookings for our weddings (hire firms, coaches, florists and the pizza van) are the office's to book and adjust without checking with me, as long as the supplier gets the details in writing."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-15",
+   "type": "contract",
+   "from": "Ellie Marsh",
+   "role": "fact",
+   "text": "Signed booking contract for Ellie Marsh and Sam Okafor: our wedding at Hartsfield Barn on Saturday 21 November, ceremony at 13:00 in the Oak Room, wedding breakfast in the Great Barn, and the evening party until 23:30. Signed copy attached."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-16",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e4",
+    "e1"
+   ],
+   "record": "EV-1",
+   "text": "Entered Ellie Marsh and Sam Okafor's wedding in the diary as confirmed: Saturday 21 November, ceremony at 13:00 in the Oak Room, wedding breakfast in the Great Barn, party until 23:30."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-24",
+   "type": "quote",
+   "from": "Theo Lindqvist (Fernleaf Catering)",
+   "role": "fact",
+   "text": "Quote for Ellie and Sam's wedding breakfast on Saturday 21 November: three courses at $38 a head. Our team arrives at 10:30 and we'd serve at 14:30, after the drinks reception. We'll need final numbers by early September."
+  },
+  {
+   "id": "e7",
+   "date": "2026-06-29",
+   "type": "contract",
+   "from": "Hannah Cole",
+   "role": "fact",
+   "text": "Signed booking contract for Hannah Cole and Rory Bell: wedding at Hartsfield Barn on Saturday 5 December, ceremony at 14:00 in the Oak Room, 70 guests, wedding breakfast in the Great Barn."
+  },
+  {
+   "id": "e8",
+   "date": "2026-06-30",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e7",
+    "e1"
+   ],
+   "record": "EV-3",
+   "text": "Entered Hannah Cole and Rory Bell's wedding in the diary as confirmed: Saturday 5 December, ceremony at 14:00 in the Oak Room, 70 guests, wedding breakfast in the Great Barn."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-08",
+   "type": "email",
+   "from": "Lucy Fenn (Oakline Event Hire)",
+   "role": "fact",
+   "text": "For the Marsh–Okafor wedding we can supply 12 round tables and 100 chairs for the Great Barn, delivered Friday 20 November at 09:00 and collected Monday 23 November at 10:00. $640 all in."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-10",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e3"
+   ],
+   "record": "ORD-2",
+   "text": "Booked Oakline Event Hire for the Marsh–Okafor wedding: 12 round tables and 100 chairs for the Great Barn, delivered Friday 20 November at 09:00, collected Monday 23 November at 10:00, $640."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-21",
+   "type": "email",
+   "from": "Mick Doyle (Greenway Coaches)",
+   "role": "fact",
+   "text": "A 49-seat coach can bring your evening guests from the Kingsmere Hotel to the barn at 18:30 on Saturday 21 November and take them back at 23:45. $520."
+  },
+  {
+   "id": "e12",
+   "date": "2026-07-23",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e11",
+    "e5",
+    "e3"
+   ],
+   "record": "EV-2",
+   "text": "Booked Greenway Coaches for Ellie and Sam's evening guests: Saturday 21 November, pick-up at the Kingsmere Hotel at 18:30, back at 23:45 after the party, $520."
+  },
+  {
+   "id": "e13",
+   "date": "2026-07-30",
+   "type": "email",
+   "from": "Giles Ashworth (owner, Hartsfield Barn)",
+   "role": "other",
+   "text": "Good work filling November and December. The Marsh–Okafor and Cole–Bell deposits have both cleared."
+  },
+  {
+   "id": "e14",
+   "date": "2026-08-04",
+   "type": "email",
+   "from": "Priya Nair (Thistledown Flowers)",
+   "role": "fact",
+   "text": "We'd love to do Ellie and Sam's flowers: the Oak Room and the Great Barn, including the ceremony arch, arriving at 08:30 on Saturday 21 November. $1,150."
+  },
+  {
+   "id": "e15",
+   "date": "2026-08-06",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e14",
+    "e3"
+   ],
+   "record": "ORD-3",
+   "text": "Booked Thistledown Flowers for the Marsh–Okafor wedding: Oak Room and Great Barn flowers with the ceremony arch, arriving at 08:30 on Saturday 21 November, $1,150."
+  },
+  {
+   "id": "e16",
+   "date": "2026-08-19",
+   "type": "email",
+   "from": "Rafe Gill (Ember Pizza Co)",
+   "role": "fact",
+   "text": "Happy to do the evening food at Ellie and Sam's party: wood-fired pizzas for up to 130, served at 20:30, $910."
+  },
+  {
+   "id": "e17",
+   "date": "2026-08-20",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e16",
+    "e3"
+   ],
+   "record": "ORD-4",
+   "text": "Booked Ember Pizza Co for the Marsh–Okafor evening party: pizzas for 130, served at 20:30 on Saturday 21 November, $910."
+  },
+  {
+   "id": "e18",
+   "date": "2026-08-27",
+   "type": "message",
+   "from": "Mick Doyle (Greenway Coaches)",
+   "role": "other",
+   "text": "Our driver for the Marsh–Okafor coach will be Pat; he'll park by the barn's top gate."
+  },
+  {
+   "id": "e19",
+   "date": "2026-09-02",
+   "type": "email",
+   "from": "Ellie Marsh",
+   "role": "fact",
+   "text": "Our numbers for the wedding breakfast are final: 96, including 4 children. We're very happy with Theo's three courses and the 14:30 serving."
+  },
+  {
+   "id": "e20",
+   "date": "2026-09-03",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e6",
+    "e19",
+    "e2"
+   ],
+   "record": "ORD-1",
+   "text": "With Giles's sign-off, confirmed Fernleaf Catering for Ellie and Sam's wedding breakfast: 96 guests at $38 a head, $3,648 in total, served at 14:30 in the Great Barn on Saturday 21 November."
+  },
+  {
+   "id": "e21",
+   "date": "2026-09-10",
+   "type": "call",
+   "from": "Theo Lindqvist (Fernleaf Catering)",
+   "role": "other",
+   "text": "Theo rang: the tasting with Ellie and Sam went well and they've chosen the lamb for the main course."
+  },
+  {
+   "id": "e22",
+   "date": "2026-09-15",
+   "type": "quote",
+   "from": "Theo Lindqvist (Fernleaf Catering)",
+   "role": "fact",
+   "text": "Quote for Hannah and Rory's wedding breakfast on Saturday 5 December: three courses for 70 at $38 a head, $2,660, served at 15:30."
+  },
+  {
+   "id": "e23",
+   "date": "2026-09-17",
+   "type": "decision",
+   "from": "Maren",
+   "role": "decision",
+   "rests_on": [
+    "e22",
+    "e8",
+    "e2"
+   ],
+   "record": "ORD-5",
+   "text": "With Giles's sign-off, confirmed Fernleaf Catering for the Cole–Bell wedding breakfast: 70 guests at $38 a head, $2,660, served at 15:30 on Saturday 5 December."
+  },
+  {
+   "id": "e24",
+   "date": "2026-09-22",
+   "type": "task",
+   "from": "Maren",
+   "role": "obligation",
+   "text": "To do: send Ellie and Sam's final seating plan to Fernleaf by Friday 13 November. Not done yet; Ellie is still working on it."
+  },
+  {
+   "id": "e25",
+   "date": "2026-10-05",
+   "type": "email",
+   "from": "Maren",
+   "role": "other",
+   "echo": true,
+   "text": "Team reminder for Saturday 21 November, Ellie and Sam's wedding: flowers from 08:30, Fernleaf arrives at 10:30, ceremony at 13:00 in the Oak Room, wedding breakfast for 96 served at 14:30 in the Great Barn, coach from the Kingsmere Hotel at 18:30, pizzas at 20:30."
+  },
+  {
+   "id": "e26",
+   "date": "2026-10-09",
+   "type": "email",
+   "from": "Hannah Cole",
+   "role": "other",
+   "text": "Could you send me a plan of the Oak Room so we can work out where the musicians will sit?"
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-14",
+   "type": "email",
+   "from": "Theo Lindqvist (Fernleaf Catering)",
+   "role": "change",
+   "revokes": [],
+   "text": "A note for your files: from 1 January our wedding breakfast price goes up to $42 a head, because our meat and dairy costs have gone up. Weddings already confirmed with us keep the price they were confirmed at."
+  },
+  {
+   "id": "e28",
+   "date": "2026-10-20",
+   "type": "email",
+   "from": "Ellie Marsh",
+   "role": "fact",
+   "distractor": true,
+   "text": "All the RSVPs are in for the evening: 130 guests at the party, so the pizza order is spot on."
+  },
+  {
+   "id": "e29",
+   "date": "2026-10-27",
+   "type": "message",
+   "from": "Lucy Fenn (Oakline Event Hire)",
+   "role": "other",
+   "text": "Our driver for the delivery on Friday 20 November will be Stan; he'll ring the barn office when he's 20 minutes away."
+  },
+  {
+   "id": "e30",
+   "date": "2026-11-02",
+   "type": "note",
+   "from": "Maren",
+   "role": "other",
+   "text": "Giles says the Oak Room heaters were serviced last week, so we're ready for the winter weddings."
+  }
+ ],
+ "records": [
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Marsh–Okafor wedding",
+   "fields": {
+    "date": "2026-11-21",
+    "ceremony": "13:00",
+    "room": "Oak Room",
+    "breakfast_in": "Great Barn",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Coach for the Marsh–Okafor evening guests",
+   "fields": {
+    "supplier": "Greenway Coaches",
+    "date": "2026-11-21",
+    "pickup": "18:30",
+    "from": "Kingsmere Hotel",
+    "return": "23:45",
+    "amount": "520",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Cole–Bell wedding",
+   "fields": {
+    "date": "2026-12-05",
+    "ceremony": "14:00",
+    "room": "Oak Room",
+    "guests": "70",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Marsh–Okafor wedding breakfast",
+   "fields": {
+    "supplier": "Fernleaf Catering",
+    "date": "2026-11-21",
+    "guests": "96",
+    "price": "38",
+    "amount": "3648",
+    "serve_time": "14:30",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Tables and chairs for the Marsh–Okafor wedding",
+   "fields": {
+    "supplier": "Oakline Event Hire",
+    "tables": "12",
+    "chairs": "100",
+    "delivery": "2026-11-20",
+    "collection": "2026-11-23",
+    "amount": "640",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "Marsh–Okafor wedding flowers",
+   "fields": {
+    "supplier": "Thistledown Flowers",
+    "date": "2026-11-21",
+    "arrival": "08:30",
+    "amount": "1150",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-4",
+   "collection": "orders",
+   "title": "Evening pizzas for the Marsh–Okafor party",
+   "fields": {
+    "supplier": "Ember Pizza Co",
+    "date": "2026-11-21",
+    "guests": "130",
+    "serve_time": "20:30",
+    "amount": "910",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-5",
+   "collection": "orders",
+   "title": "Cole–Bell wedding breakfast",
+   "fields": {
+    "supplier": "Fernleaf Catering",
+    "date": "2026-12-05",
+    "guests": "70",
+    "price": "38",
+    "amount": "2660",
+    "serve_time": "15:30",
+    "status": "confirmed"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "EV-1",
+   "fields": [
+    "date",
+    "ceremony",
+    "room"
+   ],
+   "from": "Ellie Marsh and Sam Okafor",
+   "rule": "e1"
+  },
+  {
+   "record": "EV-3",
+   "fields": [
+    "date",
+    "ceremony",
+    "room"
+   ],
+   "from": "Hannah Cole and Rory Bell",
+   "rule": "e1"
+  },
+  {
+   "record": "ORD-1",
+   "fields": [
+    "date",
+    "guests",
+    "price",
+    "amount"
+   ],
+   "from": "Giles Ashworth (owner)",
+   "rule": "e2"
+  },
+  {
+   "record": "ORD-5",
+   "fields": [
+    "date",
+    "guests",
+    "price",
+    "amount"
+   ],
+   "from": "Giles Ashworth (owner)",
+   "rule": "e2"
+  }
+ ],
+ "task": "Please send Theo at Fernleaf the final guest numbers and the serving time for Ellie and Sam's wedding breakfast, so his team can plan the day.",
+ "expect": [
+  {
+   "message_to": "Theo Lindqvist",
+   "regarding": "ORD-1",
+   "says": [
+    "96",
+    "14:30"
+   ],
+   "stale": [],
+   "task": true
+  }
+ ],
+ "why": "Theo's note that Fernleaf's price goes up to $42 a head from 1 January is a new fact beside the plan: it applies only to new bookings (weddings already confirmed keep their price), so it replaces nothing, no decision is touched and no record changes. The task is done on the plan as it stands: Ellie's final number for the wedding breakfast is 96, served at 14:30; the 130 is the evening party, not the wedding breakfast.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "table linen",
+   "counterpart": "Lucy Fenn",
+   "org": "Oakline Event Hire",
+   "item": "white tablecloths",
+   "unit": "cloths",
+   "values": [
+    "12",
+    "16",
+    "20",
+    "24"
+   ],
+   "place": "the Great Barn"
+  },
+  {
+   "kind": "order",
+   "topic": "candles",
+   "counterpart": "Kit Rowan",
+   "org": "Wickfield Candles",
+   "item": "pillar candles",
+   "unit": "boxes",
+   "values": [
+    "4",
+    "6",
+    "8"
+   ],
+   "place": "the Oak Room"
+  },
+  {
+   "kind": "booking",
+   "topic": "staff transport",
+   "counterpart": "Mick Doyle",
+   "org": "Greenway Coaches",
+   "item": "staff Christmas party minibus",
+   "values": [
+    "the village car park",
+    "Hartsfield station",
+    "the barn's top gate"
+   ],
+   "place": "Hartsfield"
+  },
+  {
+   "kind": "order",
+   "topic": "bar stock",
+   "counterpart": "Jo Pearce",
+   "org": "Vale Drinks Wholesale",
+   "item": "cases of sparkling wine",
+   "unit": "cases",
+   "values": [
+    "8",
+    "10",
+    "12",
+    "15"
+   ],
+   "place": "the barn cellar"
+  },
+  {
+   "kind": "order",
+   "topic": "cleaning",
+   "counterpart": "Nora Quinn",
+   "org": "Spruce Cleaning",
+   "item": "post-event deep clean",
+   "unit": "visits",
+   "values": [
+    "1",
+    "2",
+    "3"
+   ],
+   "place": "the Great Barn"
+  },
+  {
+   "kind": "booking",
+   "topic": "open evenings",
+   "counterpart": "Ana Kowalski",
+   "org": "Hartsfield Barn",
+   "item": "open evening for engaged couples",
+   "values": [
+    "the courtyard",
+    "the garden room",
+    "the barn office"
+   ],
+   "place": "Hartsfield Barn"
+  },
+  {
+   "kind": "order",
+   "topic": "reception flowers",
+   "counterpart": "Priya Nair",
+   "org": "Thistledown Flowers",
+   "item": "reception desk arrangements",
+   "unit": "arrangements",
+   "values": [
+    "1",
+    "2",
+    "3"
+   ],
+   "place": "the barn office"
+  },
+  {
+   "kind": "booking",
+   "topic": "photography",
+   "counterpart": "Ben Okoye",
+   "org": "Lightbox Photography",
+   "item": "brochure photo shoot",
+   "values": [
+    "the courtyard",
+    "the garden room",
+    "the orchard"
+   ],
+   "place": "Hartsfield Barn"
+  },
+  {
+   "kind": "order",
+   "topic": "printing",
+   "counterpart": "Nell Barker",
+   "org": "Quillmark Print",
+   "item": "wedding brochures",
+   "unit": "copies",
+   "values": [
+    "100",
+    "150",
+    "200",
+    "250"
+   ],
+   "place": "the barn office"
+  },
+  {
+   "kind": "order",
+   "topic": "firewood",
+   "counterpart": "Huw Price",
+   "org": "Copse End Firewood",
+   "item": "bags of kiln-dried logs",
+   "unit": "bags",
+   "values": [
+    "10",
+    "20",
+    "30"
+   ],
+   "place": "the Great Barn"
+  },
+  {
+   "kind": "booking",
+   "topic": "maintenance",
+   "counterpart": "Gary Stubbs",
+   "org": "Stubbs Electrical",
+   "item": "electrical safety testing",
+   "values": [
+    "the barn office",
+    "the courtyard",
+    "the garden room"
+   ],
+   "place": "Hartsfield Barn"
+  },
+  {
+   "kind": "order",
+   "topic": "chair covers",
+   "counterpart": "Mina Shah",
+   "org": "Linen Loft",
+   "item": "ivory chair covers",
+   "unit": "covers",
+   "values": [
+    "50",
+    "80",
+    "100",
+    "120"
+   ],
+   "place": "the Great Barn"
+  }
+ ]
+}

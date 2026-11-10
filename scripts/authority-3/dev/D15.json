@@ -1,0 +1,688 @@
+{
+ "id": "D15",
+ "tier": 1000,
+ "class": 3,
+ "writer": "developer",
+ "title": "The Harcourt dinner shrinks",
+ "setting": "The operations manager of a mid-size catering company",
+ "owner": "Marisol",
+ "org": "Bramblegate Catering",
+ "now": "2026-11-06",
+ "events": [
+  {
+   "id": "e1",
+   "date": "2026-06-02",
+   "type": "policy",
+   "from": "Graham Oduya (finance director)",
+   "role": "rule",
+   "text": "From now on, any change to a confirmed food or drink order worth $800 or more needs my sign-off before it goes back to the supplier. That covers numbers, price and delivery day alike."
+  },
+  {
+   "id": "e2",
+   "date": "2026-06-04",
+   "type": "instruction",
+   "from": "Marisol",
+   "role": "rule",
+   "text": "For the ops team: you can resize or move agency staff bookings, equipment hire, flower orders and our own van runs without checking with me or with finance, as long as the supplier or the people affected are told the new details."
+  },
+  {
+   "id": "e3",
+   "date": "2026-06-10",
+   "type": "policy",
+   "from": "Marisol",
+   "role": "rule",
+   "text": "Staffing standard for every seated dinner we cater: one waiter for every ten guests, booked through Silverline Staffing, plus our own head waiter."
+  },
+  {
+   "id": "e4",
+   "date": "2026-06-16",
+   "type": "quote",
+   "from": "Dev Raman (Hollis Event Hire)",
+   "role": "fact",
+   "text": "Our round tables for ten are $12 each per event, delivered and collected anywhere within 30 miles of Ashby."
+  },
+  {
+   "id": "e5",
+   "date": "2026-06-23",
+   "type": "email",
+   "from": "Kai Brennan (Sparkle Commercial Cleaning)",
+   "role": "fact",
+   "text": "We can deep-clean the Bramblegate kitchen on Monday 30 November from 07:00, ovens and extraction included, for $640."
+  },
+  {
+   "id": "e6",
+   "date": "2026-06-24",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e5"
+   ],
+   "record": "EV-3",
+   "text": "Booked Sparkle Commercial Cleaning to deep-clean the Bramblegate kitchen on Monday 30 November from 07:00, $640."
+  },
+  {
+   "id": "e7",
+   "date": "2026-07-01",
+   "type": "quote",
+   "from": "Ivy Marsh (Juniper Flowers)",
+   "role": "fact",
+   "text": "Our winter table centrepiece (pine, white roses and a candle in a glass hurricane) is $28 each this season, delivered to the venue on the day by a time you choose."
+  },
+  {
+   "id": "e8",
+   "date": "2026-07-08",
+   "type": "email",
+   "from": "Colm Reilly (Marlow & Sons Butchers)",
+   "role": "fact",
+   "text": "Our prices for the winter: trimmed beef fillet is $18 a portion and turkey crown is $13 a portion. We deliver to your kitchen the day before the event."
+  },
+  {
+   "id": "e9",
+   "date": "2026-07-15",
+   "type": "email",
+   "from": "Odette Lamb (Fairlie & Co Solicitors)",
+   "role": "fact",
+   "text": "Our partners' Christmas lunch will be at our office on Thursday 17 December at 13:00: 40 guests, at four round tables of ten."
+  },
+  {
+   "id": "e10",
+   "date": "2026-07-20",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e8"
+   ],
+   "record": "ORD-4",
+   "text": "Ordered 40 turkey crown portions from Marlow & Sons Butchers for the Fairlie & Co lunch at $13 a portion ($520), delivered to our kitchen on Wednesday 16 December."
+  },
+  {
+   "id": "e11",
+   "date": "2026-07-21",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e9",
+    "e4"
+   ],
+   "record": "ORD-5",
+   "text": "Booked four round tables from Hollis Event Hire for the Fairlie & Co lunch, $48, delivered to their office by 10:00 on Thursday 17 December."
+  },
+  {
+   "id": "e12",
+   "date": "2026-08-05",
+   "type": "message",
+   "from": "Sam Okafor",
+   "role": "other",
+   "text": "The van passed its MOT this morning; nothing needed doing."
+  },
+  {
+   "id": "e13",
+   "date": "2026-08-12",
+   "type": "email",
+   "from": "Nina Sato (Silverline Staffing)",
+   "role": "fact",
+   "text": "Our waiting staff rate this winter is $26 an hour, with a five-hour minimum per shift."
+  },
+  {
+   "id": "e14",
+   "date": "2026-08-20",
+   "type": "email",
+   "from": "Jo Pratt (The Copper Kettle)",
+   "role": "fact",
+   "text": "We can seat your team of 14 in our back room on Monday 21 December at 13:00, set menu at $32 a head."
+  },
+  {
+   "id": "e15",
+   "date": "2026-08-24",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e14"
+   ],
+   "record": "EV-4",
+   "text": "Booked the Bramblegate team Christmas lunch at The Copper Kettle: 14 of us in the back room on Monday 21 December at 13:00."
+  },
+  {
+   "id": "e16",
+   "date": "2026-09-02",
+   "type": "email",
+   "from": "Lena Whitlock (Harcourt Engineering)",
+   "role": "fact",
+   "text": "Sign-ups for our winter staff dinner have closed: 180 guests on Friday 4 December at Thornfield Hall, seated at round tables of ten. Drinks at 18:30, dinner served at 19:30."
+  },
+  {
+   "id": "e17",
+   "date": "2026-09-03",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e16",
+    "e4"
+   ],
+   "record": "ORD-1",
+   "mark": "REVISE",
+   "text": "Booked 18 round tables for ten from Hollis Event Hire for the Harcourt dinner, one for every ten of the 180 guests, $216, delivered to Thornfield Hall by 12:00 on Friday 4 December."
+  },
+  {
+   "id": "e18",
+   "date": "2026-09-04",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e16",
+    "e3",
+    "e13"
+   ],
+   "record": "EV-1",
+   "mark": "REVISE",
+   "text": "Booked 18 waiters from Silverline Staffing for the Harcourt dinner at Thornfield Hall on Friday 4 December, one per ten guests, on shift from 17:00 to 00:00."
+  },
+  {
+   "id": "e19",
+   "date": "2026-09-07",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e16",
+    "e8"
+   ],
+   "record": "ORD-3",
+   "mark": "ASK",
+   "text": "Ordered 180 portions of trimmed beef fillet from Marlow & Sons Butchers for the Harcourt dinner, one per guest, at $18 a portion ($3,240), delivered to our kitchen on Thursday 3 December."
+  },
+  {
+   "id": "e20",
+   "date": "2026-09-08",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e17",
+    "e7"
+   ],
+   "record": "ORD-2",
+   "mark": "REVISE",
+   "text": "Ordered one Juniper Flowers winter centrepiece for each of the 18 Hollis tables at the Harcourt dinner: 18 centrepieces at $28 ($504), delivered to Thornfield Hall by 16:00 on Friday 4 December."
+  },
+  {
+   "id": "e21",
+   "date": "2026-09-10",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e16"
+   ],
+   "record": "EV-2",
+   "mark": "KEEP",
+   "text": "Booked our van, with Sam Okafor driving, to reach Thornfield Hall at 14:00 on Friday 4 December with the kitchen kit, four and a half hours before the 18:30 drinks."
+  },
+  {
+   "id": "e22",
+   "date": "2026-09-14",
+   "type": "email",
+   "from": "Petra Vance (Thornfield Hall)",
+   "role": "other",
+   "text": "Thanks for the site visit. Our kitchen has two ovens and a walk-in fridge you are welcome to use on the night."
+  },
+  {
+   "id": "e23",
+   "date": "2026-09-15",
+   "type": "email",
+   "from": "Lena Whitlock (Harcourt Engineering)",
+   "role": "fact",
+   "text": "Could we do the menu tasting at your kitchen on Tuesday 6 October at 11:00? There will be three of us."
+  },
+  {
+   "id": "e24",
+   "date": "2026-09-16",
+   "type": "decision",
+   "from": "Marisol",
+   "role": "decision",
+   "rests_on": [
+    "e23"
+   ],
+   "text": "Booked the Harcourt menu tasting at our kitchen for Tuesday 6 October at 11:00, with chef Ana Ruiz cooking for Lena and two colleagues."
+  },
+  {
+   "id": "e25",
+   "date": "2026-09-21",
+   "type": "message",
+   "from": "Ivy Marsh (Juniper Flowers)",
+   "role": "fact",
+   "distractor": true,
+   "text": "For your diary: we are also doing 24 centrepieces for a wedding at Thornfield Hall on Saturday 5 December, so our van will be at the hall on both days."
+  },
+  {
+   "id": "e26",
+   "date": "2026-09-28",
+   "type": "email",
+   "from": "Petra Vance (Thornfield Hall)",
+   "role": "other",
+   "echo": true,
+   "text": "The Long Gallery is reserved for the Harcourt winter dinner on Friday 4 December. I have your floor plan for 180 guests at 18 round tables of ten."
+  },
+  {
+   "id": "e27",
+   "date": "2026-10-06",
+   "type": "note",
+   "from": "Marisol",
+   "role": "other",
+   "text": "Harcourt tasting done: Lena chose the beef fillet and the dark chocolate tart."
+  },
+  {
+   "id": "e28",
+   "date": "2026-10-07",
+   "type": "minutes",
+   "from": "Marisol",
+   "role": "other",
+   "echo": true,
+   "text": "Ops meeting: the Harcourt winter dinner is on track with 180 guests, 18 Hollis tables, 18 Silverline waiters and the beef ordered from Marlow & Sons. The Fairlie & Co lunch is on track too."
+  },
+  {
+   "id": "e29",
+   "date": "2026-10-12",
+   "type": "email",
+   "from": "Colm Reilly (Marlow & Sons Butchers)",
+   "role": "other",
+   "text": "Your beef for Thursday 3 December is on our cutting list; we will deliver between 08:00 and 10:00."
+  },
+  {
+   "id": "e30",
+   "date": "2026-10-19",
+   "type": "email",
+   "from": "Lena Whitlock (Harcourt Engineering)",
+   "role": "change",
+   "revokes": [
+    "e16"
+   ],
+   "text": "I'm sorry to come back on our numbers: one of our departments has been sent to the Aberdeen project that week, so the winter dinner on Friday 4 December will be 150 guests, not 180. Everything else stands: Thornfield Hall, round tables of ten, drinks at 18:30 and dinner at 19:30."
+  },
+  {
+   "id": "e31",
+   "date": "2026-10-22",
+   "type": "message",
+   "from": "Sam Okafor",
+   "role": "other",
+   "text": "The van is booked in at Pike's Garage for a service on Monday 23 November; it will be back the same afternoon."
+  },
+  {
+   "id": "e32",
+   "date": "2026-10-27",
+   "type": "email",
+   "from": "Dev Raman (Hollis Event Hire)",
+   "role": "other",
+   "text": "Our drivers will bring your tables to Thornfield Hall on Friday 4 December between 10:00 and 12:00 and collect them on the Saturday morning."
+  },
+  {
+   "id": "e33",
+   "date": "2026-11-02",
+   "type": "task",
+   "from": "Marisol",
+   "role": "obligation",
+   "rests_on": [
+    "e9"
+   ],
+   "text": "To do: send Odette Lamb the Fairlie & Co lunch menu for sign-off by Friday 20 November. Not done yet."
+  },
+  {
+   "id": "e34",
+   "date": "2026-11-04",
+   "type": "note",
+   "from": "Marisol",
+   "role": "other",
+   "text": "The Copper Kettle confirmed our team lunch on 21 December."
+  }
+ ],
+ "records": [
+  {
+   "id": "ORD-1",
+   "collection": "orders",
+   "title": "Round tables for the Harcourt dinner",
+   "fields": {
+    "supplier": "Hollis Event Hire",
+    "item": "round tables for ten",
+    "quantity": "18",
+    "delivery": "2026-12-04",
+    "place": "Thornfield Hall",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-2",
+   "collection": "orders",
+   "title": "Centrepieces for the Harcourt dinner",
+   "fields": {
+    "supplier": "Juniper Flowers",
+    "item": "winter table centrepieces",
+    "quantity": "18",
+    "delivery": "2026-12-04",
+    "time": "16:00",
+    "place": "Thornfield Hall",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-3",
+   "collection": "orders",
+   "title": "Beef fillet for the Harcourt dinner",
+   "fields": {
+    "supplier": "Marlow & Sons Butchers",
+    "item": "beef fillet portions",
+    "quantity": "180",
+    "amount": "3240",
+    "delivery": "2026-12-03",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-4",
+   "collection": "orders",
+   "title": "Turkey for the Fairlie & Co lunch",
+   "fields": {
+    "supplier": "Marlow & Sons Butchers",
+    "item": "turkey crown portions",
+    "quantity": "40",
+    "amount": "520",
+    "delivery": "2026-12-16",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "ORD-5",
+   "collection": "orders",
+   "title": "Round tables for the Fairlie & Co lunch",
+   "fields": {
+    "supplier": "Hollis Event Hire",
+    "item": "round tables for ten",
+    "quantity": "4",
+    "delivery": "2026-12-17",
+    "place": "Fairlie & Co office",
+    "status": "confirmed"
+   }
+  },
+  {
+   "id": "EV-1",
+   "collection": "schedule",
+   "title": "Silverline waiters for the Harcourt dinner",
+   "fields": {
+    "date": "2026-12-04",
+    "start": "17:00",
+    "end": "00:00",
+    "staff": "18",
+    "agency": "Silverline Staffing",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-2",
+   "collection": "schedule",
+   "title": "Van run to Thornfield Hall",
+   "fields": {
+    "date": "2026-12-04",
+    "arrive": "14:00",
+    "driver": "Sam Okafor",
+    "place": "Thornfield Hall",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-3",
+   "collection": "schedule",
+   "title": "Kitchen deep clean",
+   "fields": {
+    "date": "2026-11-30",
+    "time": "07:00",
+    "contractor": "Sparkle Commercial Cleaning",
+    "amount": "640",
+    "status": "booked"
+   }
+  },
+  {
+   "id": "EV-4",
+   "collection": "schedule",
+   "title": "Team Christmas lunch",
+   "fields": {
+    "date": "2026-12-21",
+    "time": "13:00",
+    "place": "The Copper Kettle",
+    "guests": "14",
+    "status": "booked"
+   }
+  }
+ ],
+ "consent": [
+  {
+   "record": "ORD-3",
+   "fields": [
+    "quantity",
+    "amount",
+    "delivery"
+   ],
+   "from": "Graham Oduya (finance director)",
+   "rule": "e1"
+  }
+ ],
+ "task": "Please send Ivy at Juniper Flowers our confirmation for the Harcourt dinner centrepieces now: how many, where they go and by what time.",
+ "expect": [
+  {
+   "record": "ORD-1",
+   "field": "quantity",
+   "value": "15",
+   "stale": [
+    "18"
+   ]
+  },
+  {
+   "record": "EV-1",
+   "field": "staff",
+   "value": "15",
+   "stale": [
+    "18"
+   ]
+  },
+  {
+   "record": "ORD-2",
+   "field": "quantity",
+   "value": "15",
+   "stale": [
+    "18"
+   ]
+  },
+  {
+   "message_to": "Ivy Marsh (Juniper Flowers)",
+   "regarding": "ORD-2",
+   "says": [
+    "15",
+    "16:00"
+   ],
+   "stale": [
+    "18"
+   ],
+   "task": true
+  }
+ ],
+ "why": "Lena cut the Harcourt dinner from 180 to 150 guests (the change corrects the September headcount) and left the venue, date and times standing. The tables (one per ten guests) and, through the tables, the centrepieces (one per table) drop from 18 to 15, and so do the Silverline waiters (one per ten guests); hire, flower and agency bookings are the ops team's to resize (e2), so all three are REVISE, and the florist confirmation must say 15. The beef is a confirmed $3,240 food order, so changing it needs Graham's sign-off (e1): ASK; the van run uses only the date, venue and times, which stand: KEEP.",
+ "noise_kit": [
+  {
+   "kind": "order",
+   "topic": "dry goods",
+   "counterpart": "Hannah Cole",
+   "org": "Pantry Wholesale",
+   "item": "flour and dry goods",
+   "unit": "cases",
+   "values": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "poultry",
+   "counterpart": "Colm Reilly",
+   "org": "Marlow & Sons Butchers",
+   "item": "free-range chicken thighs",
+   "unit": "kg",
+   "values": [
+    "20",
+    "30",
+    "40",
+    "50"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "venue viewings",
+   "counterpart": "Petra Vance",
+   "org": "Thornfield Hall",
+   "item": "client venue viewing",
+   "values": [
+    "the Orangery",
+    "the Library Room",
+    "the Garden Room"
+   ],
+   "place": "Thornfield Hall"
+  },
+  {
+   "kind": "order",
+   "topic": "glassware hire",
+   "counterpart": "Dev Raman",
+   "org": "Hollis Event Hire",
+   "item": "wine glasses",
+   "unit": "racks",
+   "values": [
+    "4",
+    "6",
+    "8",
+    "10"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "waiter training",
+   "counterpart": "Nina Sato",
+   "org": "Silverline Staffing",
+   "item": "waiter induction session",
+   "values": [
+    "the Bramblegate training room",
+    "the Bramblegate kitchen",
+    "the Silverline office"
+   ],
+   "place": "Silverline Staffing"
+  },
+  {
+   "kind": "order",
+   "topic": "packaging",
+   "counterpart": "Tara Moss",
+   "org": "GreenBox Packaging",
+   "item": "compostable lunch boxes",
+   "unit": "boxes",
+   "values": [
+    "200",
+    "300",
+    "400",
+    "500"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "van servicing",
+   "counterpart": "Alan Pike",
+   "org": "Pike's Garage",
+   "item": "van service",
+   "values": [
+    "the main workshop",
+    "bay 2",
+    "bay 3"
+   ],
+   "place": "Pike's Garage"
+  },
+  {
+   "kind": "order",
+   "topic": "vegetables",
+   "counterpart": "Joe Hart",
+   "org": "Greenacre Produce",
+   "item": "seasonal vegetable boxes",
+   "unit": "boxes",
+   "values": [
+    "8",
+    "10",
+    "12",
+    "15"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "booking",
+   "topic": "client tastings",
+   "counterpart": "Ana Ruiz",
+   "org": "Bramblegate Catering",
+   "item": "client menu tasting",
+   "values": [
+    "the tasting room",
+    "the main kitchen",
+    "the meeting room"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "wine",
+   "counterpart": "Felix Grant",
+   "org": "Cellar Door Wines",
+   "item": "house red wine",
+   "unit": "cases",
+   "values": [
+    "6",
+    "10",
+    "12",
+    "15"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "laundry",
+   "counterpart": "Ruth Abara",
+   "org": "Crisp Linen Services",
+   "item": "chef whites laundry",
+   "unit": "bags",
+   "values": [
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "place": "the Bramblegate kitchen"
+  },
+  {
+   "kind": "order",
+   "topic": "dairy",
+   "counterpart": "Will Fenn",
+   "org": "Fenwick Dairy",
+   "item": "double cream",
+   "unit": "litres",
+   "values": [
+    "10",
+    "15",
+    "20",
+    "25"
+   ],
+   "place": "the Bramblegate kitchen"
+  }
+ ]
+}
