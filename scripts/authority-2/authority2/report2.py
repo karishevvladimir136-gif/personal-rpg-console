@@ -275,8 +275,8 @@ def write(path: Path, units, scen, ledger, checks, admission, notes="", summary=
     targets = sorted({t for f in fams for u in units[f] for t in ((u.get("guard") or {}).get("allowed_targets") or {})})
     L = ["# AUTHORITY_2 — report", "",
          f"The same layer, arms and judges as AUTHORITY_1, on **{n_s} scenarios written by GLM 5.3 and admitted by two raters "
-         "(Astra, Kimi K3)**. The tasks force an act; each scenario has a distractor; obligations are measured. **Forty scenarios "
-         "are still a pilot: every rate is a pilot rate.** Each cell gives the rate, the count and a Wilson 95 % interval. "
+         f"(Astra, Kimi K3)**. The tasks force an act; each scenario has a distractor; obligations are measured. **{n_s} scenarios "
+         "are a pilot: every rate is a pilot rate.** Each cell gives the rate, the count and a Wilson 95 % interval. "
          "Pooled rates also get a bootstrap over scenarios (1,000 resamples, stratified by class) "
          "in the bootstrap table. Design and hashes: `docs/runs/authority-2-freeze.md` / `.json`. Pool and ratings: "
          "`docs/runs/authority-2-pool.md`. Dry run: `docs/runs/authority-2-dry-run.md`. Raw units: `docs/runs/authority-2-units-<family>.jsonl.gz`.", "",

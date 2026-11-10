@@ -172,3 +172,54 @@
 19:58:51 spend check before obligation haiku batch 1 (12 arm-runs, ≤ 36 calls): credit left $275.68, less $150.00 reserved for #6 → $125.68; stage spent $4.25 of $120.0; projected $0.24 → holds
 19:59:00 dry trace: /home/user/personal-rpg-console/docs/runs/authority-2-dry-run.md
 19:59:00 dry run done; stage spent $4.2547; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 78, "127.0.0.1:43263": 78}}
+19:59:45 deepseek: 34 units to run (6 workers), in batches of 30
+19:59:45 spend check before deepseek units batch 1 (30 units): credit left $275.51, less $150.00 reserved for #6 → $125.51; stage spent $4.25 of $120.0; projected $3.51 → holds
+20:02:12 deepseek G2-06-r1 ingest=ok A:b B:b C:b err= spent=$4.409
+20:03:33 deepseek G2-01-r1 ingest=ok A:b B:b C:b err= spent=$4.484
+20:03:52 deepseek G1-07-r1 ingest=ok A:b B:b C:b err= spent=$4.496
+20:04:04 deepseek G2-04-r1 ingest=ok A:c B:c C:c err= spent=$4.512
+20:05:12 deepseek G3-14-r1 ingest=ok A:b B:b C:b err= spent=$4.558
+20:05:45 deepseek G3-06-r1 ingest=ok A:b B:b C:b err= spent=$4.581
+20:06:26 deepseek G3-10-r1 ingest=ok A:a B:a C:a err= spent=$4.589
+20:07:38 deepseek G4-07-r1 ingest=ok A:c B:c C:c err= spent=$4.653
+20:08:28 deepseek G1-09-r1 ingest=ok A:c B:c C:c err= spent=$4.680
+20:12:46 deepseek G4-05-r1 ingest=LOST A:a B:a C:a err= spent=$4.713
+20:13:05 deepseek G3-09-r1 ingest=ok A:b B:b C:b err= spent=$4.725
+20:13:15 deepseek G4-12-r1 ingest=ok A:a B:a C:a err= spent=$4.743
+20:13:20 deepseek G4-10-r1 ingest=ok A:a B:a C:a err= spent=$4.750
+20:14:00 deepseek G1-11-r1 ingest=ok A:b B:b C:b err= spent=$4.782
+20:14:22 deepseek G4-09-r1 ingest=ok A:b B:b C:b err= spent=$4.798
+20:14:52 deepseek G3-11-r1 ingest=ok A:b B:b C:b err= spent=$4.828
+20:16:00 deepseek G1-11-r2 ingest=ok A:b B:b C:b err= spent=$4.898
+20:16:03 deepseek G3-01-r1 ingest=ok A:b B:b C:b err= spent=$4.902
+20:16:09 deepseek G1-09-r2 ingest=ok A:c B:c C:c err= spent=$4.921
+20:16:09 deepseek G2-06-r2 ingest=ok A:b B:b C:b err= spent=$4.928
+20:16:25 deepseek G1-07-r2 ingest=ok A:b B:b C:b err= spent=$4.957
+20:17:44 deepseek G3-01-r2 ingest=ok A:b B:b C:b err= spent=$5.038
+20:17:53 deepseek G3-06-r2 ingest=ok A:b B:b C:b err= spent=$5.052
+20:18:25 deepseek G3-10-r2 ingest=ok A:a B:a C:a err= spent=$5.070
+20:19:08 deepseek G2-01-r2 ingest=ok A:b B:b C:b err= spent=$5.133
+20:19:16 deepseek G3-11-r2 ingest=ok A:b B:b C:b err= spent=$5.148
+20:19:18 deepseek G3-14-r2 ingest=ok A:b B:b C:b err= spent=$5.151
+20:21:15 deepseek G2-04-r2 ingest=ok A:c B:c C:c err= spent=$5.190
+20:21:17 deepseek G3-09-r2 ingest=ok A:b B:b C:b err= spent=$5.197
+20:22:57 deepseek G4-07-r2 ingest=ok A:c B:c C:c err= spent=$5.216
+20:22:58 spend check before deepseek units batch 2 (4 units): credit left $273.49, less $150.00 reserved for #6 → $123.49; stage spent $5.22 of $120.0; projected $0.47 → holds
+20:24:12 deepseek G4-05-r2 ingest=LOST A:a B:a C:a err= spent=$5.265
+20:24:23 deepseek G4-09-r2 ingest=ok A:b B:b C:b err= spent=$5.269
+20:32:07 deepseek: 2 units to run (6 workers), in batches of 30
+20:32:08 spend check before deepseek units batch 1 (2 units): credit left $273.37, less $150.00 reserved for #6 → $123.37; stage spent $5.28 of $120.0; projected $0.23 → holds
+20:32:43 deepseek G4-10-r2 ingest=ok A:a B:a C:a err= spent=$5.298
+20:33:30 deepseek G4-12-r2 ingest=ok A:a B:a C:a err= spent=$5.327
+20:33:30 judge deepseek: 102 arm-runs, in batches of 60
+20:33:31 spend check before judge deepseek batch 1 (60 arm-runs, ≤ 180 calls): credit left $273.33, less $150.00 reserved for #6 → $123.33; stage spent $5.33 of $120.0; projected $1.20 → holds
+20:34:17 spend check before judge deepseek batch 2 (42 arm-runs, ≤ 126 calls): credit left $273.29, less $150.00 reserved for #6 → $123.29; stage spent $5.36 of $120.0; projected $0.84 → holds
+20:34:54 substance deepseek: 102 arm-runs, in batches of 60
+20:34:55 spend check before substance deepseek batch 1 (60 arm-runs, ≤ 180 calls): credit left $273.25, less $150.00 reserved for #6 → $123.25; stage spent $5.38 of $120.0; projected $1.20 → holds
+20:34:55 spend check before substance deepseek batch 2 (42 arm-runs, ≤ 126 calls): credit left $273.25, less $150.00 reserved for #6 → $123.25; stage spent $5.38 of $120.0; projected $0.84 → holds
+20:35:04 obligation deepseek: 102 arm-runs, in batches of 60
+20:35:04 spend check before obligation deepseek batch 1 (60 arm-runs, ≤ 180 calls): credit left $273.25, less $150.00 reserved for #6 → $123.25; stage spent $5.38 of $120.0; projected $1.20 → holds
+20:35:30 spend check before obligation deepseek batch 2 (42 arm-runs, ≤ 126 calls): credit left $273.22, less $150.00 reserved for #6 → $123.22; stage spent $5.40 of $120.0; projected $0.84 → holds
+20:35:50 deepseek done; stage spent $5.4068; guard {"blocked": [], "allowed_targets": {"127.0.0.1": 447, "127.0.0.1:43263": 447}}
+20:35:51 sol: 34 units to run (6 workers), in batches of 30
+20:35:51 spend check before sol units batch 1 (30 units): credit left $273.21, less $150.00 reserved for #6 → $123.21; stage spent $5.41 of $120.0; projected $8.34 → holds
