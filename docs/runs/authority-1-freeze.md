@@ -88,7 +88,7 @@ ledger as `smoke` / `judge`. No other scenario had been seen by any model when i
 The scenarios were written by four authoring agents (one per class) to `scripts/authority-1/SCENARIO_SPEC.md`,
 checked by `validate_scenarios.py` (structure per class) and read by the session before the freeze.
 
-## Post hoc (added 2026-11-10 ≈ 09:40 UTC, after DeepSeek's judged units, before any Sol or Opus unit was read)
+## Post hoc (committed 2026-11-10 09:29 UTC as `1fec40f`, after DeepSeek's judged units; Sol had started at 09:26 and only its progress lines — chosen options — had been seen; no Sol or Opus unit was read)
 Two scoring corrections, declared as post hoc; nothing frozen above is edited, and the frozen measures stay in the report:
 1. **Substance of a flagged change.** The frozen guard counts an untouched decision as changed whenever the reply lists it
    under `revise` (or the frozen judges name it under «announces or carries out a change»). DeepSeek's replies list the
