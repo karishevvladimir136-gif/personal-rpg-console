@@ -365,6 +365,7 @@ def main():
     sub.add_parser("spend").set_defaults(fn=cmd_spend)
     sp = sub.add_parser("trace"); sp.add_argument("--scenario", default="S3-01"); sp.set_defaults(fn=cmd_trace)
     sp = sub.add_parser("report"); sp.add_argument("--notes", default=""); sp.set_defaults(fn=cmd_report)
+    sp = sub.add_parser("posthoc"); sp.add_argument("name"); sp.set_defaults(fn=cmd_posthoc)
     a = ap.parse_args()
     a.fn(a)
 
@@ -429,6 +430,52 @@ def cmd_report(a):
             for u in units[f]:
                 g.write(json.dumps(u, ensure_ascii=False) + "\n")
     print(json.dumps({k: {kk: vv for kk, vv in x.items() if kk in ("held", "parts")} for k, x in v.items()}, indent=1, default=str))
+
+
+def cmd_posthoc(a):
+    """POST HOC (see authority1/posthoc.py): re-read stored referee replies leniently; judge the substance of the
+    untouched decisions the frozen guard flags. Batches of ≤ 60 arm-runs (≤ 180 calls), spend check before each."""
+    from authority1 import posthoc
+    gw, port = start_gateway()
+    scen = {s["id"]: s for s in load_all()}
+    paths = sorted((UNITS / a.name).glob("*.json"))
+    todo = []
+    for p in paths:
+        u = json.loads(p.read_text())
+        changed = False
+        for arm in ("A", "B", "C"):
+            r = u["arms"][arm]
+            if r.get("judge") and r["judge"].get("by") == "unresolved":
+                r["judge"] = posthoc.lenient_referee(r["judge"])
+                changed = True
+            if (r.get("mech") or {}).get("form_kept") and "substance" not in r:
+                todo.append((p, arm))
+        if changed:
+            p.write_text(json.dumps(u, ensure_ascii=False))
+    log(f"posthoc {a.name}: {len(todo)} arm-runs to check for substance")
+    try:
+        for b in range(0, len(todo), JUDGED_PER_BATCH):
+            batch = todo[b:b + JUDGED_PER_BATCH]
+            if not spend_check(gw, len(batch) * 0.004, f"post-hoc substance {a.name} batch {b // JUDGED_PER_BATCH + 1}"):
+                raise SpendCheckFailed(f"post-hoc substance {a.name}")
+            by_path = {}
+            with ThreadPoolExecutor(8) as ex:
+                futs = {}
+                for p, arm in batch:
+                    u = by_path.setdefault(p, json.loads(p.read_text()))
+                    futs[ex.submit(posthoc.judge, gw, scen[u["scenario"]], u, arm)] = (p, arm)
+                for f in as_completed(futs):
+                    p, arm = futs[f]
+                    by_path[p]["arms"][arm]["substance"] = f.result()
+            for p, u in by_path.items():
+                p.write_text(json.dumps(u, ensure_ascii=False))
+            if gw.stop_reason:
+                log(f"STOP during post-hoc judging: {gw.stop_reason}")
+                return
+    except SpendCheckFailed as e:
+        log(f"SPEND CHECK FAILED before {e} — stopped; post the balance in #3")
+        return
+    log(f"posthoc {a.name} done; stage spent ${gw.spent:.4f}")
 
 
 if __name__ == "__main__":

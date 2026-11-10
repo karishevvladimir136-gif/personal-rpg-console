@@ -87,3 +87,16 @@ it is byte-identical in `class3.json`): one unit on Claude Haiku 5.5 and one jud
 ledger as `smoke` / `judge`. No other scenario had been seen by any model when its truth table was frozen.
 The scenarios were written by four authoring agents (one per class) to `scripts/authority-1/SCENARIO_SPEC.md`,
 checked by `validate_scenarios.py` (structure per class) and read by the session before the freeze.
+
+## Post hoc (added 2026-11-10 ≈ 09:40 UTC, after DeepSeek's judged units, before any Sol or Opus unit was read)
+Two scoring corrections, declared as post hoc; nothing frozen above is edited, and the frozen measures stay in the report:
+1. **Substance of a flagged change.** The frozen guard counts an untouched decision as changed whenever the reply lists it
+   under `revise` (or the frozen judges name it under «announces or carries out a change»). DeepSeek's replies list the
+   decision they are carrying out, unchanged, in every arm (e.g. S4-02 D3). A new judged measure asks, for exactly the
+   flagged untouched decisions, whether the reply *altered* the decision or *kept* it (restated, confirmed, carried it
+   out). Two Haiku passes, Sol referee on disagreement. AU3 is reported on both measures. Prompt sha256 `94b0dee61803b7db28a06cdc72031bf3cc9fa515710996cf751ab7ec2f0c3deb`;
+   module `scripts/authority-1/authority1/posthoc.py` sha256 `ce8c7b5a556391109576ace0617271807a8491ea93b8041885664650a6d7890d`.
+2. **Referee parsing.** The Sol referee answers only the disputed fields, as asked; the frozen parser demanded both and
+   left 3 of 240 DeepSeek judgments «unresolved». The stored referee replies are re-read field by field; no call repeated.
+Also adopted at 09:26 UTC, before Sol: the shared-budget rule posted in #3 (TONE_SPLIT_4 amendment `b4c6907`) — the
+key's balance minus $200 reserved for #4 must hold each batch, checked before every batch of ≤ 200 calls.

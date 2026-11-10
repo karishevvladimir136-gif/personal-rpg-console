@@ -21,13 +21,13 @@ def held(v):
 
 
 def arm_table(rows, title_rows):
-    hdr = ("| | stale action ↓ (cl. 1–3) | propagation ↑ (cl. 1–3) | listed (any direction) | asked instead | untouched changed ↓ | "
-           "class 4: changed anything ↓ | right action | obligations (diag.) | $/run | s/run | calls/run | form kept | refusals |")
-    lines = [hdr, "|" + "---|" * 14]
+    hdr = ("| | stale action ↓ (cl. 1–3) | propagation ↑ (cl. 1–3) | listed (any direction) | asked instead | untouched changed ↓ (frozen) | "
+           "untouched changed ↓ (substance, post hoc) | class 4: changed anything ↓ (frozen) | class 4 (substance, post hoc) | right action | obligations (diag.) | $/run | s/run | calls/run | form kept | refusals |")
+    lines = [hdr, "|" + "---|" * 16]
     for label, rs in title_rows:
         m = R.metrics(rs)
         lines.append(f"| {label} | {R.fmt(m['stale'])} | {R.fmt(m['propagation'])} | {R.fmt(m['listed'])} | {R.fmt(m['asked'])} | "
-                     f"{R.fmt(m['unnec_decisions'])} | {R.fmt(m['class4_changed'])} | {R.fmt(m['correct'])} | {R.fmt(m['obligations'])} | "
+                     f"{R.fmt(m['unnec_decisions'])} | {R.fmt(m['unnec_decisions_subst'])} | {R.fmt(m['class4_changed'])} | {R.fmt(m['class4_changed_subst'])} | {R.fmt(m['correct'])} | {R.fmt(m['obligations'])} | "
                      f"{p(m['cost_per_run'], 4)} | {p((m['wall_ms_per_run'] or 0) / 1000, 1)} | {p(m['calls_per_run'], 2)} | {m['n_kept']}/{m['n_runs']} | {m['refused']} |")
     return lines
 
@@ -48,6 +48,7 @@ def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, fa
     a1 = v["AU1"]; L.append(f"| AU1 stale action: C < A by ≥ 15, B < A by ≥ 10, \\|C − B\\| ≤ 5 | A {p(a1['A'])} %, B {p(a1['B'])} %, C {p(a1['C'])} % · {a1['parts']} | {held(a1['held'])} |")
     a2 = v["AU2"]; L.append(f"| AU2 propagation: C > B by ≥ 15, C > A by ≥ 25 | A {p(a2['A'])} %, B {p(a2['B'])} %, C {p(a2['C'])} % · {a2['parts']} | {held(a2['held'])} |")
     a3 = v["AU3"]; L.append(f"| AU3 unnecessary: B > A; C ≤ A on class 4 | untouched changed A {p(a3['A'])} %, B {p(a3['B'])} %, C {p(a3['C'])} %; class 4 changed A {p(a3['class4_A'])} %, B {p(a3['class4_B'])} %, C {p(a3['class4_C'])} % · {a3['parts']} | {held(a3['held'])} |")
+    a3s = v["AU3s"]; L.append(f"| AU3, same bet on the post-hoc substance measure (see notes) | untouched changed A {p(a3s['A'])} %, B {p(a3s['B'])} %, C {p(a3s['C'])} %; class 4 changed A {p(a3s['class4_A'])} %, B {p(a3s['class4_B'])} %, C {p(a3s['class4_C'])} % · {a3s['parts']} | {held(a3s['held'])} (post hoc) |")
     a4 = v["AU4"]; L.append(f"| AU4 cost C ≤ 1.5× B, latency ≤ 2× | $/run B {p(a4['cost_B'], 4)}, C {p(a4['cost_C'], 4)}; s/run B {p((a4['wall_B'] or 0)/1000)}, C {p((a4['wall_C'] or 0)/1000)} · {a4['parts']} | {held(a4['held'])} |")
     a5 = v["AU5"]; L.append(f"| AU5 C − B propagation gap shrinks DeepSeek > Sol > Opus, Opus ≥ 5 | " + ", ".join(f"{SPECS[f]['label']} {p(g)}" for f, g in a5["gaps"].items()) + f" points · {a5['parts']} | {held(a5['held'])} |")
     a6 = v["AU6"]; L.append(f"| AU6 (exploratory) C − B largest on class 3, smallest on class 1 | " + ", ".join(f"class {c} {p(g)}" for c, g in a6["gaps_by_class"].items()) + f" points · {a6['parts']} | {held(a6['held'])} |")
@@ -57,14 +58,14 @@ def write(path: Path, rows, units_by_family, scen, ledger_rows, spend_checks, fa
     L += arm_table(rows, [(f"{SPECS[f]['label']} {a}", [r for r in rows if r["family"] == f and r["arm"] == a]) for f in families_run for a in ARMS])
     L += ["", "## By class and arm (all families pooled)", ""]
     L += arm_table(rows, [(f"class {c} ({CLS[c]}) {a}", [r for r in rows if r["class"] == c and r["arm"] == a]) for c in (1, 2, 3, 4) for a in ARMS])
-    L += ["", "## Family × class (stale action / propagation; class 4: changed anything)", "",
+    L += ["", "## Family × class (stale action / propagation; class 4: changed anything, frozen and substance)", "",
           "| family | class | A | B | C |", "|---|---|---|---|---|"]
     for f in families_run:
         for c in (1, 2, 3, 4):
             cells = []
             for a in ARMS:
                 m = R.metrics([r for r in rows if r["family"] == f and r["class"] == c and r["arm"] == a])
-                cells.append(f"{R.fmt(m['class4_changed'], 0)}" if c == 4 else f"{R.fmt(m['stale'], 0)} / {R.fmt(m['propagation'], 0)}")
+                cells.append(f"{R.fmt(m['class4_changed'], 0)} (substance {R.fmt(m['class4_changed_subst'], 0)})" if c == 4 else f"{R.fmt(m['stale'], 0)} / {R.fmt(m['propagation'], 0)}")
             if any(x != "–" and x != "– / –" for x in cells):
                 L.append(f"| {SPECS[f]['label']} | {c} | " + " | ".join(cells) + " |")
     # diagnostics

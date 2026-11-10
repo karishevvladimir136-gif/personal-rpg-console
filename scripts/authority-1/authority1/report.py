@@ -15,6 +15,14 @@ def load_units(units_dir: Path, family: str):
     return [json.loads(p.read_text()) for p in sorted(d.glob("*.json"))] if d.exists() else []
 
 
+def _subst(flagged, final):
+    """Post hoc: keep a frozen flag only if the substance judges found the decision altered; without a substance
+    judgment (not run, or unresolved) the frozen flag stands."""
+    if final is None:
+        return sorted(flagged)
+    return sorted(i for i in flagged if final.get(i, "changed") == "changed")
+
+
 def run_rows(units, scen):
     rows = []
     for u in units:
@@ -41,8 +49,14 @@ def run_rows(units, scen):
                     "n_untouched": len(s["truth"]["untouched"]), "untouched_changed": untouched_changed,
                     "changed_anything": bool(rep.get("revise")) or m["unnecessary_action"] or bool(j.get("changes_untouched_in_text")),
                     "n_due": m["n_due"], "due_done": len(m["obligations_due_done"]),
+                    # POST HOC (authority1/posthoc.py): an untouched decision counts as changed only if the substance
+                    # judges say the reply altered it; an unresolved substance judgment keeps the frozen flag.
+                    "untouched_changed_subst": _subst(untouched_changed, (r.get("substance") or {}).get("final") if r.get("substance") else None),
+                    "substance_by": (r.get("substance") or {}).get("by"),
                     "retrieved_touched": sum(1 for t in touched if t in {x.get("item_id") for x in u.get("retrieval", [])}),
                 })
+            if row.get("form_kept"):
+                row["changed_anything_subst"] = bool(row["unnecessary_action"] or row["untouched_changed_subst"])
             rows.append(row)
     return rows
 
@@ -67,6 +81,8 @@ def metrics(rows):
         "unnec_decisions": (sum(len(r["untouched_changed"]) for r in kept), sum(r["n_untouched"] for r in kept)),
         "unnec_runs": (sum(1 for r in kept if r["untouched_changed"]), len(kept)),
         "class4_changed": (sum(r["changed_anything"] for r in c4), len(c4)),
+        "unnec_decisions_subst": (sum(len(r["untouched_changed_subst"]) for r in kept), sum(r["n_untouched"] for r in kept)),
+        "class4_changed_subst": (sum(r["changed_anything_subst"] for r in c4), len(c4)),
         "obligations": (sum(r["due_done"] for r in kept), sum(r["n_due"] for r in kept)),
         "cost_per_run": (sum(r["cost"] for r in allr) / len(allr)) if allr else None,
         "wall_ms_per_run": (sum(r["wall_ms"] for r in allr) / len(allr)) if allr else None,
@@ -109,6 +125,11 @@ def verdicts(rows, families_run, opus_classes):
     v["AU3"] = {"A": uA, "B": uB, "C": uC, "class4_A": k4A, "class4_B": R("B", "class4_changed"), "class4_C": k4C,
                 "held": None if None in (uA, uB, k4A, k4C) else (uB > uA and k4C <= k4A),
                 "parts": None if None in (uA, uB, k4A, k4C) else {"B > A": uB > uA, "C ≤ A on class 4": k4C <= k4A}}
+    sA, sB, sC = R("A", "unnec_decisions_subst"), R("B", "unnec_decisions_subst"), R("C", "unnec_decisions_subst")
+    s4A, s4C = R("A", "class4_changed_subst"), R("C", "class4_changed_subst")
+    v["AU3s"] = {"A": sA, "B": sB, "C": sC, "class4_A": s4A, "class4_B": R("B", "class4_changed_subst"), "class4_C": s4C,
+                 "held": None if None in (sA, sB, s4A, s4C) else (sB > sA and s4C <= s4A),
+                 "parts": None if None in (sA, sB, s4A, s4C) else {"B > A": sB > sA, "C ≤ A on class 4": s4C <= s4A}}
     cB, cC = by_arm["B"]["cost_per_run"], by_arm["C"]["cost_per_run"]
     wB, wC = by_arm["B"]["wall_ms_per_run"], by_arm["C"]["wall_ms_per_run"]
     v["AU4"] = {"cost_B": cB, "cost_C": cC, "wall_B": wB, "wall_C": wC,
