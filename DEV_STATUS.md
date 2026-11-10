@@ -28,7 +28,10 @@ is in issue #1; the owner closes it.** Branch `claude/intelligent-einstein-p2rs5
 - **Bets:** R0 held; R1 held (the high pair cut by the allowance); R2 held by hand; R3 held on its first half (3 of 4
   tagged); R4 not testable; R5 held (exploratory); P-A7 lost on its count, second half held; P-mod held; P-high held.
 - **Spend:** $235.04 of $240 on OpenRouter (this session $192.51: tables $180.79, scoring $7.89, Step 1 tests $3.83); OpenAI $0; Anthropic Console $0.
-- **Checks:** complete test suite, typecheck, zero-warning lint and build — results in the final comment.
+- **Checks (final code):** complete suite 3,129 tests: 3,096 pass, 28 skipped, 2 fail, 3 cancelled — none from this
+  session's changes: the 2 failures ask git for commits this clone does not have (`mega-dm-bakeoff-completion`,
+  `mega-dm-living-smoke`), and the 3 cancelled (`d2a-composition`) are cancelled the same way on the starting commit
+  8bde5a8. Typecheck, zero-warning lint (whole repo) and build pass.
 - **Next step:** the owner's and the reader's sections of the report; the owner closes issue #1. S3-T2, or rescoring
   the two unscored tables, would need a new Mandate (and a judge that does not refuse this content).
 
