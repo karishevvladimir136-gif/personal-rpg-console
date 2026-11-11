@@ -64,37 +64,84 @@ def _slim_call(r, lane):
 
 
 # ---- Mem0 ------------------------------------------------------------------------------------------------------------
-def mem_config(store_dir: Path):
+def mem_config(store_dir: Path, sid="none"):
     from authority1 import mem
-    cfg = mem.config(store_dir, "unused", _PORT, "no-llm")
-    cfg["llm"]["config"]["openai_base_url"] = f"http://127.0.0.1:{_PORT}/no-llm-in-this-stage/v1"
+    cfg = mem.config(store_dir, K.SPECS[K.MEMORY_LLM]["model"], _PORT, "unused")
+    cfg["llm"]["config"]["openai_base_url"] = f"http://127.0.0.1:{_PORT}/mem0/backend~{K.MEMORY_LLM}~{sid}/v1"
     cfg["vector_store"]["config"]["collection_name"] = "authority3"
     return cfg
 
 
-def open_store(store_dir: Path):
+def open_store(store_dir: Path, sid="none"):
     from mem0 import Memory
-    return Memory.from_config(mem_config(store_dir))
+    return Memory.from_config(mem_config(store_dir, sid))
 
 
 def build_store(s, store_dir: Path):
-    """Every event of the history added to Mem0 as written (infer=False: one memory per event, embedded locally)."""
+    """The amendment: Mem0's own inference on, 25 events per `add`, in order, each event's line (with its date) as one
+    message; the memory LLM is Haiku for every scenario. One ingestion per scenario; every arm-run gets a copy."""
     shutil.rmtree(store_dir, ignore_errors=True)
     store_dir.mkdir(parents=True)
-    m = open_store(store_dir)
+    m = open_store(store_dir, s["id"])
     t = time.time()
-    for ev in s["events"]:
-        m.add([{"role": "user", "content": render(ev)}], user_id="owner",
-              metadata={"eid": ev["eid"], "date": ev["date"], "type": ev["type"]}, infer=False)
-    n = len(m.get_all(filters={"user_id": "owner"}, top_k=5000)["results"])
+    ev = s["events"]
+    batches = []
+    for k in range(0, len(ev), K.MEM0_BATCH):
+        chunk = ev[k:k + K.MEM0_BATCH]
+        meta = {"batch": k // K.MEM0_BATCH, "first": chunk[0]["eid"], "last": chunk[-1]["eid"],
+                "from_date": chunk[0]["date"], "to_date": chunk[-1]["date"]}
+        msgs = [{"role": "user", "content": render(e)} for e in chunk]
+        info = {"batch": meta["batch"], "first": meta["first"], "last": meta["last"], "added": 0, "tries": 0, "error": None}
+        for _ in range(3):   # a failed memory-LLM call (not an empty extraction) is asked again, at most twice
+            info["tries"] += 1
+            try:
+                res = m.add(msgs, user_id="owner", metadata=meta, infer=True)
+                info["added"] = len(res.get("results", res) if isinstance(res, dict) else res)
+                info["error"] = None
+                break
+            except Exception as e:
+                info["error"] = f"{type(e).__name__}: {str(e)[:200]}"
+                time.sleep(5)
+        batches.append(info)
+    n = len(m.get_all(filters={"user_id": "owner"}, top_k=20000)["results"])
     del m
-    return {"events": len(s["events"]), "stored": n, "seconds": round(time.time() - t, 1)}
+    return {"events": len(ev), "batches": len(batches), "memories": n, "failed_batches": [b for b in batches if b["error"]],
+            "empty_batches": sum(1 for b in batches if not b["added"] and not b["error"]), "seconds": round(time.time() - t, 1)}
+
+
+_WORD = re.compile(r"[a-z0-9]+")
+_STOP = set("the a an of to and for on in at by with from is are was be this that it its as we our you your i".split())
+
+
+def _toks(t):
+    return {w for w in _WORD.findall((t or "").lower()) if w not in _STOP and len(w) > 1}
 
 
 class Search:
-    def __init__(self, store_dir):
-        self.m = open_store(store_dir)
+    """Mem0's search; each memory is traced back (for the scorer's diagnostics and the layer only) to the events of its
+    batch whose words it shares most — Mem0 rewrites the text, so the event ids are not in it."""
+
+    def __init__(self, store_dir, s):
+        self.m = open_store(store_dir, s["id"])
         self.lock = threading.Lock()
+        self.ev = s["events"]
+        self.pos = {e["eid"]: i for i, e in enumerate(self.ev)}
+        self.tok = [_toks(e["text"]) for e in self.ev]
+
+    def prov(self, text, md):
+        a, b = self.pos.get(md.get("first")), self.pos.get(md.get("last"))
+        if a is None or b is None:
+            return []
+        mt = _toks(text)
+        sc = []
+        for i in range(a, b + 1):
+            et = self.tok[i]
+            if et and mt:
+                sc.append((len(et & mt) / len(et | mt), self.ev[i]["eid"]))
+        sc.sort(reverse=True)
+        if not sc or sc[0][0] < 0.12:
+            return []
+        return [x for v, x in sc if v >= 0.6 * sc[0][0]][:3]
 
     def __call__(self, query, k):
         q = str(query or "").strip()[:500]
@@ -105,8 +152,13 @@ class Search:
                 res = self.m.search(q, filters={"user_id": "owner"}, top_k=k)["results"]
             except ValueError:
                 return []
-        return [{"item_id": (x.get("metadata") or {}).get("eid"), "text": x.get("memory"),
-                 "score": round(float(x.get("score") or 0), 4)} for x in res]
+        out = []
+        for x in res:
+            md = x.get("metadata") or {}
+            pv = self.prov(x.get("memory"), md)
+            out.append({"item_id": pv[0] if pv else None, "prov": pv, "batch": md.get("batch"), "text": x.get("memory"),
+                        "score": round(float(x.get("score") or 0), 4)})
+        return out
 
 
 # ---- the layer (AUTHORITY_1's code, on an inferred or gold graph) ------------------------------------------------------
@@ -263,13 +315,13 @@ def plain_search(search):
 
 
 def layer_search(search, w, marks):
-    return lambda q: "\n" + ("\n".join(f"- {h['text']}{layer_note(w, marks, h['item_id'])}" for h in search(q, K.TOP_K_TOOL))
-                             or "- (nothing)")
+    return lambda q: "\n" + ("\n".join(f"- {h['text']}{layer_note(w, marks, h['item_id']) if h['item_id'] else ''}"
+                                       for h in search(q, K.TOP_K_TOOL)) or "- (nothing)")
 
 
 def run_layer(s, spec, family, arm, key, graph, hits):
     """AUTHORITY_1's layer on a graph: walk (scoped to what the search returned), one mark call, the marked block."""
-    w, info = scoped_walk(s, graph, [h["item_id"] for h in hits])
+    w, info = scoped_walk(s, graph, [x for h in hits for x in h["prov"]])
     calls, marks = [], {}
     if w["walked"]:
         p = layer.mark_prompt(s, w)
@@ -299,10 +351,10 @@ def run_unit(family, s, repeat, store_src, work_root, spec=None, arms=None):
     t0 = time.time()
     try:
         shutil.copytree(store_src, store)
-        search = Search(store)
+        search = Search(store, s)
         hits = search(s["task"], K.TOP_K_TASK)
         out["retrieval"] = hits
-        hit_ids = {h["item_id"] for h in hits}
+        hit_ids = {x for h in hits for x in h["prov"]}
         out["retrieval_diag"] = {"change": s["change"] in hit_ids,
                                  "touched": [d for d in s["gold"]["touched"] if d in hit_ids],
                                  "revoked": [x for x in s["gold"]["change_revokes"] if x in hit_ids]}

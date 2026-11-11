@@ -32,6 +32,10 @@ JUDGE_REASONING = {"effort": "low", "exclude": True}
 MAX_TOKENS = {"turn": 6000, "pass": 20000, "extract": 20000, "mark": 8000, "judge": 2000, "write": 32000, "rate": 12000}
 REPAIR_ROUNDS = 2
 
+# ---- the backend (amendment 1860392, before launch) ----------------------------------------------------------------------
+MEMORY_LLM = "haiku"          # Mem0's own LLM, fixed for every scenario, arm and family
+MEM0_BATCH = 25               # events per Mem0 `add` (inference on), in order; one ingestion per scenario
+
 # ---- the bench's knobs (tuned on the developer set only; frozen with the spec) ----------------------------------------
 TIERS = {100: 100, 500: 500, 1000: 1000}         # events per history
 TOP_K_TASK = 10                                   # the search on the task text, shown before the first turn

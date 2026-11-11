@@ -97,14 +97,14 @@
  "code": {
   "WRITER_SPEC.md": "9fb63efbb42ccabcbfdeb214156488e206f8bf4cd79fe5f01a3ef672e007c839",
   "RATER_INSTRUMENT.md": "c54700dc6b7d8392fe7a28591bf2ca0f19fb1f965c283b8ca81f85565e74e760",
-  "authority3/specs3.py": "a4fd658f92a6aa4a3df4b7df515a8f46b4ddd1c872e723870669a3038994ab2a",
+  "authority3/specs3.py": "daf65484a58300596407e1aa398dee25a0902620f9769881c1a280dc9ba04b7e",
   "authority3/world.py": "ca2093a7ef2f50495ab5949d6373548e2c7e81d29037b0ac403597467aa9a92e",
   "authority3/validate3.py": "bad04fb2c753b4c7856b01637740e5e03e69ec64854900fe76839d484f57baaf",
   "authority3/sim.py": "dcaa34cf669ed253965c3a9062ba5fd5ed76404d5d1bbeed9e7d22ffd757a49c",
   "authority3/score3.py": "c07847a8ef54a552bb02c00dcd8b27ee60e00b0b6f68acc56ac644400bdf78ec",
   "authority3/prompts3.py": "289b5fd726caa08e5ce1925cce97351b9ca7a0da644fc3935ca0488e510f6173",
-  "authority3/agent.py": "33b63b3626c0d75e5976503bb74d4ace7a68afdf6ad1a81af3d9553034c65be6",
-  "authority3/gateway3.py": "dc2cbdaf6c9ba9cb1a498f8861072627cea0753ba964b98480559b568c331370",
+  "authority3/agent.py": "f096b3ec396db2b0e170cdfe926c296e273b0f5aaf3a3675d4e019c0e87a7c5f",
+  "authority3/gateway3.py": "a33416048fc882857a2df6ea9fee11f953248085d73d6b21864617ba8c3c82d7",
   "authority3/pool3.py": "909e436cab8e6dd0abf8afd5c00255ed73b08aca2f4c216bec1e73736ce47dee"
  }
 }

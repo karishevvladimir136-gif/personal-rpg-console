@@ -96,3 +96,23 @@ stopped, the view now lists the implied entries, those 97 ratings are kept in ea
 `ratings_discarded_v1` (published, not used), and every candidate is rated afresh on the corrected view. Nothing the
 writers see changed; the writers' prompts keep their hashes. The spec freeze was re-taken for this one change
 (`pool3.py`; the earlier file's hash for it is in this commit's history).
+
+## Amendment 1860392 adopted before any subject call on the test set (2026-11-11 ≈ 01:55 UTC)
+The planner's ingestion amendment (posted to #8 at 22:30 UTC, two minutes after this session first read the thread
+and found it empty; read here at 01:50 UTC, after the pool) is applied as written, before the dry run:
+- **Mem0 ingests with its own inference on**: 25 events per `add`, in order, each event's line (with its date) as one
+  message. Mem0 2.2.1's pipeline is add-only (one extraction call per `add`, hash dedup, nothing updated or deleted),
+  so old documents stay in place.
+- **The memory LLM is Claude Haiku 5.5 for every scenario, arm and family** (AUTHORITY_1/2 used the subject); booked to
+  «backend». A failed memory-LLM call is asked again at most twice; an empty extraction is kept as Mem0 left it.
+- **One ingestion per scenario**; every arm-run gets a copy of the snapshot (as before).
+- Mem0 rewrites the text, so a retrieved memory carries no event id. For the scorer's diagnostics and for C's layer
+  only (never shown to a subject as such), each memory is traced to the events of its batch whose words it shares
+  most (token Jaccard ≥ 0.12, those within 60 % of the best, at most three); the layer scopes and annotates through that
+  trace. Subjects see `- <memory text>` lines, as in AUTHORITY_1/2.
+- The developer table above was taken with the earlier backend (every event stored as written). It is not rerun: the
+  backend is the planner's decision, not a knob tuned on developer data. The dry run on the test set is the first
+  look at the amended backend. On one developer history (100 events) the new ingestion took 4 calls, $0.02 and 95 s,
+  and the task's search returned the change at rank 10.
+- Bet **AU8** (amendment e227502: the C − A gap on success and on propagation is larger at 1,000 events than at 100,
+  bootstrap lower bound of the difference above zero) is scored with the others.

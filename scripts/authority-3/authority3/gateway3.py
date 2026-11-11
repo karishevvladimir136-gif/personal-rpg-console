@@ -18,6 +18,8 @@ import threading
 from authority1.gateway import Gateway
 from authority1.specs import worst_cost
 
+MEM0_MAX_TOKENS = 8000
+
 
 def _chars(messages):
     n = 0
@@ -78,6 +80,15 @@ class Gateway3(Gateway):
                                 for i, v in enumerate(vecs)]
                         return self._send(200, {"object": "list", "data": data, "model": body.get("model"),
                                                 "usage": {"prompt_tokens": 0, "total_tokens": 0}})
+                    m = re.fullmatch(r"/mem0/([a-z]+)~([a-z]+)~([^/]+)/v1/chat/completions", self.path)
+                    if m:
+                        # Mem0's own memory-LLM call, as Mem0 built it (the amendment: Haiku for every scenario)
+                        fam, spec, key = m.group(1), m.group(2), m.group(3)
+                        r = gw.call(spec, body["messages"], family=fam, arm="mem0", lane="mem0", key=key,
+                                    max_tokens=MEM0_MAX_TOKENS, response_format=body.get("response_format"))
+                        if r.get("text") is not None and not r.get("refused"):
+                            return self._send(200, r["raw_openai"])
+                        return self._send(400, {"error": {"message": r.get("stopped") or r.get("error") or "refused", "type": "gateway"}})
                     if self.path == "/llm":
                         r = gw.call(body["spec"], body["messages"], family=body["family"], arm=body["arm"],
                                     lane=body["lane"], key=body["key"], max_tokens=body.get("max_tokens"),

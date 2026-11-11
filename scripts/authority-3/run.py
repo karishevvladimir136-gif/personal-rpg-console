@@ -198,17 +198,37 @@ def built(which, ids=None):
 
 
 def cmd_stores(a):
+    """One ingestion per scenario (the amendment): Mem0 with inference on, 25 events per add, Haiku as its LLM. Scenarios
+    go in groups of ≤ 200 memory-LLM calls, with a spend check before each group."""
     gw, port = start_gateway()
     from authority3 import agent
-    ss = built(a.set)
+    ss = built(a.set, set(a.ids.split(",")) if a.ids else None)
     STORES[a.set].mkdir(parents=True, exist_ok=True)
-    jobs = [(s, str(STORES[a.set] / s["id"])) for s in ss if a.force or not (STORES[a.set] / s["id"] / "done.json").exists()]
-    log(f"stores {a.set}: {len(jobs)} to build")
+    todo = [s for s in ss if a.force or not (STORES[a.set] / s["id"] / "done.json").exists()]
+    log(f"stores {a.set}: {len(todo)} to build")
+    groups, cur, n = [], [], 0
+    for s in todo:
+        nb = -(-len(s["events"]) // K.MEM0_BATCH)
+        if cur and n + nb > 200:
+            groups.append(cur)
+            cur, n = [], 0
+        cur.append(s)
+        n += nb
+    if cur:
+        groups.append(cur)
     with ProcessPoolExecutor(max_workers=a.workers, mp_context=mp.get_context("spawn"), initializer=agent.init_worker,
                              initargs=(port,)) as ex:
-        for sid, info in ex.map(agent.build_store_job, jobs):
-            (STORES[a.set] / sid / "done.json").write_text(json.dumps(info))
-            log(f"store {sid}: {info}")
+        for gi, g in enumerate(groups, 1):
+            nb = sum(-(-len(s["events"]) // K.MEM0_BATCH) for s in g)
+            if not spend_check(gw, nb * 0.006, f"ingestion group {gi}/{len(groups)} ({len(g)} scenarios, ≤ {3 * nb} memory-LLM calls)"):
+                raise SystemExit("spend check does not hold")
+            for sid, info in ex.map(agent.build_store_job, [(s, str(STORES[a.set] / s["id"])) for s in g]):
+                (STORES[a.set] / sid / "done.json").write_text(json.dumps(info))
+                log(f"store {sid}: {info['events']} events, {info['batches']} batches → {info['memories']} memories; "
+                    f"failed {len(info['failed_batches'])}, empty {info['empty_batches']}; {info['seconds']} s; spent ${gw.spent:.3f}")
+            if gw.stop_reason:
+                log(f"STOP: {gw.stop_reason}")
+                return
 
 
 # ---- the pool ----------------------------------------------------------------------------------------------------------
@@ -847,6 +867,7 @@ def main():
     sub.add_parser("check").set_defaults(fn=cmd_check)
     sp = sub.add_parser("build"); sp.add_argument("set"); sp.set_defaults(fn=cmd_build)
     sp = sub.add_parser("stores"); sp.add_argument("set"); sp.add_argument("--workers", type=int, default=4)
+    sp.add_argument("--ids", default="")
     sp.add_argument("--force", action="store_true"); sp.set_defaults(fn=cmd_stores)
     sp = sub.add_parser("units"); sp.add_argument("set"); sp.add_argument("family"); sp.add_argument("--arms", default="A,B,Bp,C")
     sp.add_argument("--ids", default=""); sp.add_argument("--repeats", type=int, default=1); sp.add_argument("--tag", default="")
