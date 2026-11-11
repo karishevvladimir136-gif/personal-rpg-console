@@ -194,7 +194,7 @@ export function partB(rows) {
 }
 
 // ---- the report ----------------------------------------------------------------------------------------------------------------------
-export function reportMarkdown({ A, B, C, ledger, freeze, provenance }) {
+export function reportMarkdown({ A, B, ledger, freeze }) {
   const L = [];
   const credit = ledger.runs.flatMap((r) => r.checks ?? []).filter((c) => c.credit !== undefined).at(-1);
   const spent = credit ? Math.max(credit.byCredit, credit.ledger ?? 0) : null;

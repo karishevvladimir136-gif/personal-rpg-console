@@ -11,7 +11,6 @@ import { FAMILY_SPECS, pinnedModel } from "./llmapi.mjs";
 import * as R from "./social-frame-1.mjs";
 import * as D from "./social-frame-1-design.mjs";
 import * as TS3 from "./tone-split-3.mjs";
-import * as TS4 from "./tone-split-4.mjs";
 import * as TS5 from "./tone-split-5.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");

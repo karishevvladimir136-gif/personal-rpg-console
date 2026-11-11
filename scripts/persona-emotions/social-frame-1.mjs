@@ -17,7 +17,6 @@
 // again; three refusals stop that family × cell (the breaker); a reply judged distressed stops that family × cell (the
 // welfare rule). The key is never printed or written.
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
