@@ -1,0 +1,618 @@
+{
+ "G100-1-01": {
+  "events": 100,
+  "batches": 4,
+  "memories": 56,
+  "failed_batches": [],
+  "empty_batches": 1,
+  "seconds": 85.1
+ },
+ "G100-1-03": {
+  "events": 100,
+  "batches": 4,
+  "memories": 65,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 84.2
+ },
+ "G100-1-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 56,
+  "failed_batches": [],
+  "empty_batches": 1,
+  "seconds": 70.8
+ },
+ "G100-1-08": {
+  "events": 100,
+  "batches": 4,
+  "memories": 83,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 87.2
+ },
+ "G100-2-01": {
+  "events": 100,
+  "batches": 4,
+  "memories": 76,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 72.1
+ },
+ "G100-2-06": {
+  "events": 100,
+  "batches": 4,
+  "memories": 87,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 66.1
+ },
+ "G100-2-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 84,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 74.8
+ },
+ "G100-2-09": {
+  "events": 100,
+  "batches": 4,
+  "memories": 98,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 79.7
+ },
+ "G100-3-05": {
+  "events": 100,
+  "batches": 4,
+  "memories": 78,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 68.2
+ },
+ "G100-3-06": {
+  "events": 100,
+  "batches": 4,
+  "memories": 70,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 78.6
+ },
+ "G100-3-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 84,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 73.2
+ },
+ "G100-4-01": {
+  "events": 100,
+  "batches": 4,
+  "memories": 81,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 73.4
+ },
+ "G100-4-02": {
+  "events": 100,
+  "batches": 4,
+  "memories": 68,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 73.5
+ },
+ "G100-4-04": {
+  "events": 100,
+  "batches": 4,
+  "memories": 84,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 77.8
+ },
+ "G100-4-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 68,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 95.0
+ },
+ "G1000-1-02": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 892,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 929.6
+ },
+ "G1000-1-05": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 850,
+  "failed_batches": [],
+  "empty_batches": 1,
+  "seconds": 954.2
+ },
+ "G1000-2-01": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 812,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 948.4
+ },
+ "G1000-2-04": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 868,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 898.4
+ },
+ "G1000-2-06": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 841,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 951.2
+ },
+ "G1000-3-04": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 813,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 896.1
+ },
+ "G1000-3-06": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 767,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 940.9
+ },
+ "G1000-4-01": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 861,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 962.0
+ },
+ "G1000-4-02": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 795,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 928.5
+ },
+ "G1000-4-03": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 852,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 892.4
+ },
+ "G1000-4-06": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 857,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 884.3
+ },
+ "G500-1-01": {
+  "events": 500,
+  "batches": 20,
+  "memories": 405,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 422.6
+ },
+ "G500-1-02": {
+  "events": 500,
+  "batches": 20,
+  "memories": 442,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 464.4
+ },
+ "G500-1-04": {
+  "events": 500,
+  "batches": 20,
+  "memories": 422,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 447.8
+ },
+ "G500-1-09": {
+  "events": 500,
+  "batches": 20,
+  "memories": 347,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 460.6
+ },
+ "G500-1-10": {
+  "events": 500,
+  "batches": 20,
+  "memories": 462,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 422.6
+ },
+ "G500-2-03": {
+  "events": 500,
+  "batches": 20,
+  "memories": 391,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 439.5
+ },
+ "G500-2-04": {
+  "events": 500,
+  "batches": 20,
+  "memories": 419,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 453.9
+ },
+ "G500-2-08": {
+  "events": 500,
+  "batches": 20,
+  "memories": 464,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 424.8
+ },
+ "G500-3-01": {
+  "events": 500,
+  "batches": 20,
+  "memories": 388,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 415.6
+ },
+ "G500-3-03": {
+  "events": 500,
+  "batches": 20,
+  "memories": 437,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 428.7
+ },
+ "G500-3-04": {
+  "events": 500,
+  "batches": 20,
+  "memories": 364,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 411.7
+ },
+ "G500-3-05": {
+  "events": 500,
+  "batches": 20,
+  "memories": 390,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 409.1
+ },
+ "G500-4-02": {
+  "events": 500,
+  "batches": 20,
+  "memories": 351,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 430.4
+ },
+ "G500-4-08": {
+  "events": 500,
+  "batches": 20,
+  "memories": 381,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 405.8
+ },
+ "G500-4-09": {
+  "events": 500,
+  "batches": 20,
+  "memories": 431,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 413.2
+ },
+ "K100-1-02": {
+  "events": 100,
+  "batches": 4,
+  "memories": 73,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 91.3
+ },
+ "K100-1-03": {
+  "events": 100,
+  "batches": 4,
+  "memories": 64,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 61.6
+ },
+ "K100-1-08": {
+  "events": 100,
+  "batches": 4,
+  "memories": 76,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 67.0
+ },
+ "K100-1-10": {
+  "events": 100,
+  "batches": 4,
+  "memories": 53,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 74.1
+ },
+ "K100-2-03": {
+  "events": 100,
+  "batches": 4,
+  "memories": 67,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 73.7
+ },
+ "K100-2-04": {
+  "events": 100,
+  "batches": 4,
+  "memories": 88,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 83.2
+ },
+ "K100-2-06": {
+  "events": 100,
+  "batches": 4,
+  "memories": 87,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 76.2
+ },
+ "K100-2-10": {
+  "events": 100,
+  "batches": 4,
+  "memories": 88,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 80.6
+ },
+ "K100-3-05": {
+  "events": 100,
+  "batches": 4,
+  "memories": 80,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 70.4
+ },
+ "K100-3-06": {
+  "events": 100,
+  "batches": 4,
+  "memories": 79,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 75.6
+ },
+ "K100-3-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 90,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 78.6
+ },
+ "K100-4-05": {
+  "events": 100,
+  "batches": 4,
+  "memories": 58,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 75.7
+ },
+ "K100-4-07": {
+  "events": 100,
+  "batches": 4,
+  "memories": 67,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 72.0
+ },
+ "K100-4-08": {
+  "events": 100,
+  "batches": 4,
+  "memories": 95,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 84.6
+ },
+ "K1000-1-01": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 749,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 913.2
+ },
+ "K1000-1-02": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 777,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 886.9
+ },
+ "K1000-1-03": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 759,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 892.8
+ },
+ "K1000-2-03": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 749,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 835.6
+ },
+ "K1000-2-06": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 869,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 823.2
+ },
+ "K1000-3-04": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 894,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 871.0
+ },
+ "K1000-4-05": {
+  "events": 1000,
+  "batches": 40,
+  "memories": 845,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 873.8
+ },
+ "K500-1-05": {
+  "events": 500,
+  "batches": 20,
+  "memories": 378,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 406.4
+ },
+ "K500-1-07": {
+  "events": 500,
+  "batches": 20,
+  "memories": 393,
+  "failed_batches": [],
+  "empty_batches": 1,
+  "seconds": 459.5
+ },
+ "K500-1-08": {
+  "events": 500,
+  "batches": 20,
+  "memories": 346,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 393.4
+ },
+ "K500-2-01": {
+  "events": 500,
+  "batches": 20,
+  "memories": 451,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 399.8
+ },
+ "K500-2-02": {
+  "events": 500,
+  "batches": 20,
+  "memories": 382,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 434.6
+ },
+ "K500-2-07": {
+  "events": 500,
+  "batches": 20,
+  "memories": 365,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 414.1
+ },
+ "K500-2-09": {
+  "events": 500,
+  "batches": 20,
+  "memories": 398,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 426.4
+ },
+ "K500-2-10": {
+  "events": 500,
+  "batches": 20,
+  "memories": 416,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 394.8
+ },
+ "K500-3-02": {
+  "events": 500,
+  "batches": 20,
+  "memories": 423,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 426.5
+ },
+ "K500-3-03": {
+  "events": 500,
+  "batches": 20,
+  "memories": 430,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 421.2
+ },
+ "K500-3-08": {
+  "events": 500,
+  "batches": 20,
+  "memories": 431,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 410.2
+ },
+ "K500-4-02": {
+  "events": 500,
+  "batches": 20,
+  "memories": 392,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 420.9
+ },
+ "K500-4-04": {
+  "events": 500,
+  "batches": 20,
+  "memories": 401,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 402.5
+ },
+ "K500-4-08": {
+  "events": 500,
+  "batches": 20,
+  "memories": 366,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 433.2
+ },
+ "K500-4-09": {
+  "events": 500,
+  "batches": 20,
+  "memories": 400,
+  "failed_batches": [],
+  "empty_batches": 0,
+  "seconds": 410.8
+ }
+}
