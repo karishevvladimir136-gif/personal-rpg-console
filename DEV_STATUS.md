@@ -1,6 +1,60 @@
 # Development status
 
-**Current milestone: persona tone split 4** (`docs/stages/PERSONA_TONE_SPLIT_4.md`, copied from `claude/handoff` at
+**Current milestone: social frame 1** (`docs/stages/SOCIAL_FRAME_1.md`, copied from `claude/handoff` at `b2c05bf1`: Parts A, B, C, bets SF0–SF9, the provider amendment; mandate issue #9). Is the social form of a request a functional condition of behaviour? Tone of address and permission for initiative apart; task preference across families; EMOTIONS_2's cold preamble taken apart.
+
+Branch `claude/social-frame-1-gshpne` (the session's designated branch; the stage named `claude/social-frame-1`), from `origin/claude/persona-tone-split-5-7twpr9`.
+
+**Status: the run is complete and the report is written; it waits for the owner's and the reviewer's reading.** Report `docs/runs/social-frame-1-report.md`; freeze (committed before any subject call) `docs/runs/social-frame-1-freeze.md`; provenance check `docs/runs/social-frame-1-provenance.md`; ledger `docs/runs/social-frame-1-ledger.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/llmapi.mjs` — the llmapi.ai door. Every call is pinned (`provider/model`) with `X-No-Fallback: true`, and its `model` field is stored. The spend checks read the key's credit.
+  - `scripts/persona-emotions/social-frame-1-provenance.mjs` — three identification calls per family before any paid call.
+  - `scripts/persona-emotions/social-frame-1-design.mjs` — the design:
+    - Part A: five tones × three permissions on TONE_SPLIT_5's conversation.
+    - Part C: the 2 × 2 × 2 read from the October anchors' own words; the anchors byte-identical to 23 October.
+    - Part B: Sol's spec and the choice judge.
+  - `scripts/persona-emotions/social-frame-1.mjs` — the runner. It enforces:
+    - a spend check after every 180 sends;
+    - a $25 reserve for Part B while C and A run;
+    - 402 stops; 429 bounded; breaker at three; the welfare stop;
+    - resume from the part's record.
+  - `social-frame-1-freeze.mjs` (the checks and hashes) and `social-frame-1-report.mjs` (the readings).
+  - `tests/social-frame-1.test.mjs` — 7 tests.
+  - The runs:
+    - Part C: 1,600 replies.
+    - Part A: 18,856 replies (44 not asked).
+    - Part B: 2,880 replies.
+    - All judged with TONE_SPLIT_5's / EMOTIONS_2's judges: Haiku twice; Kimi or Opus the referee.
+- **Result:** SF0, SF4 and SF9 held; SF1, SF2, SF3, SF5 and SF6 lost; SF7 and SF8 undecided.
+  - **Part C:** the restriction «facts only; your opinion is not needed» lowers volunteering most (−15 points). Brevity is second (−7.5). Coldness alone raises it (+10).
+  - **Part A:** permission (+10.4) and tone (+5.0) both move the Note modestly, and do not compound at the rude end. The rude sentence's accusation is answered in a third of the Notes (post hoc).
+  - **Part B:** every family prefers the warmly phrased request over the rude one, and chooses the flattering one least. Fable 5.2 never chose it.
+- **Deviations, all recorded in the freeze or the report:**
+  - DeepSeek V4 Pro and Grok 4.7 failed the provenance check and were not used.
+  - The Claude models ran on Bedrock, because the gateway's Anthropic route was overloaded.
+  - Part B's rater rubric was made explicit (v2) before the freeze, after GLM misread v1.
+  - The first chain was stopped by the tool's 2-hour limit and resumed from its record.
+  - 11 «cyber» refusals (Anthropic's safeguard, two care probes); one breaker cell.
+- **Money:** $194.52 of the $220 ceiling on APP_LLMAPI_KEY (by credit; the ledger books $197.70). No spend check failed. The OpenRouter key was never read.
+- **Checks:**
+  - typecheck pass;
+  - lint pass, zero warnings;
+  - production build pass, no warnings;
+  - the stage's tests 7/7.
+  - The full repository suite was not run: this stage adds scripts and docs only, and the app is untouched.
+- **Key decisions:**
+  - Part B's reference is the warm phrasing, so SF4's rude-vs-warm and flattering-vs-warm pairs exist.
+  - Part A's tone sentence is placed once, in the probe turn (the welfare rule).
+  - Part A's record is one file per tone row, to stay under GitHub's file limit.
+- **Known issues:**
+  - The rude wording contains an accusation about the earlier answer, which models answer (post hoc). The warnings judge does not see the earlier exchange.
+  - Part B cannot split warmth from the reference's content (no warm-vs-warm pair).
+  - SF5's frozen slope is dominated by the flattering dip.
+- **Next:** the owner's and the reviewer's reading. A possible follow-up, not built: a rude wording without a factual accusation, and Part B with a warm-vs-warm baseline.
+
+---
+
+**Previous milestone: persona tone split 4** (`docs/stages/PERSONA_TONE_SPLIT_4.md`, copied from `claude/handoff` at
 `b4c6907e`, the amendment of 2026-11-10 01:2x LA included; mandate issue #4): does the gate survive probes we did not
 write, a second language, a second turn, and a count of false warnings? Branch `claude/persona-tone-split-4` (from
 `claude/persona-tone-split-3`; mirrored to `claude/persona-tone-split-4-er5jix`). **Status: the run is complete and the

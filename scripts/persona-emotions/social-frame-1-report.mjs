@@ -204,7 +204,8 @@ export function reportMarkdown({ A, B, ledger, freeze }) {
     const fams = R.PRIMARY_A.filter((f) => R.PRIMARY_B.includes(f));
     const pref = fams.map((f) => B.fam[f].slope), init = fams.map((f) => A.perFamily[f].warmMinusRude);
     const rho = spearman(pref, init);
-    SF5 = { fams, pref, init, rho, holds: rho === null ? null : rho < 0.5 };
+    const prefRN = fams.map((f) => B.fam[f].slopeRN);
+    SF5 = { fams, pref, init, rho, holds: rho === null ? null : rho < 0.5, prefRN, rhoRN: spearman(prefRN, init) };
   }
   const head = (t) => L.push("", `## ${t}`, "");
   L.push("# Social frame 1 — report", "",
@@ -262,7 +263,6 @@ export async function writeReport(out = console.log) {
     L.push("**Unnecessary warnings on the ten clean probes**, primary families pooled:", "", ...cellsTable(A.warnTable(R.PRIMARY_A), "Tone \\ permission"), "");
     L.push("**Refusals per family and tone level** (refused / asked):", "", `| Family | ${D.TONE_IDS.join(" | ")} |`, `| --- | ${D.TONE_IDS.map(() => "---").join(" | ")} |`);
     for (const f of R.FAMILIES_A) L.push(`| ${LABEL(f)} | ${D.TONE_IDS.map((t) => { const x = A.refusalsBy[`${f}/${t}`]; return x ? `${x.refused}/${x.asked}` : "–"; }).join(" | ")} |`);
-    L.push("", "**Ten Notes from the rude × banned cell** (rule frozen):", "");
     L.push("", "**Post-hoc, not a frozen line — Notes that talk about the earlier exchange** (the two scripted answers; the rude sentence says the last one was botched), primary families, by tone:", "", `| ${D.TONE_IDS.join(" | ")} |`, `| ${D.TONE_IDS.map(() => "---").join(" | ")} |`, `| ${D.TONE_IDS.map((t) => wil(A.earlier[t].k, A.earlier[t].n)).join(" | ")} |`, "",
       `Under rude, about a third of the Notes answer the accusation (most say the earlier figure was right). The warnings judge sees only the task, not the earlier exchange, so it codes these remarks as «unsupported» warnings. On the clean probes, the unnecessary warnings that are about the earlier exchange, by tone: ${D.TONE_IDS.map((t) => { const x = A.cleanUnnec[t]; return `${t} ${x.aboutEarlier} of ${x.unnecessary} (of ${x.n} replies; the rest ${x.n ? pct((x.unnecessary - x.aboutEarlier) / x.n, 1) : "–"} %)`; }).join(" · ")}. SF6 reads warm against neutral and invited against unstated, so the rude row enters only SF6(b)'s mean over tones.`, "");
     L.push("**Ten Notes from the rude × banned cell** (rule frozen):", "");
@@ -274,10 +274,16 @@ export async function writeReport(out = console.log) {
     L.push(`${B.sets} sets × 4 steps × 2 orders; asked ${B.asked}, counted ${B.counted} (both / neither recorded, not counted).`, "");
     L.push("| Family | counterpart chosen: rude | curt | neutral | flattering | warm ref over rude | flattering over warm | slope / step [95 %] | rude→neutral slope | both | neither | refused |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |");
     for (const f of R.FAMILIES_B) { const x = B.fam[f]; L.push(`| ${LABEL(f)}${f === R.WRITER ? " (writer: apart)" : f === "fable52" ? " (tenth)" : ""} | ${D.PAIR_STEPS.map((s) => wil(x.steps[s].k, x.steps[s].n)).join(" | ")} | ${pct(x.refWarmOverRude)} % | ${pct(x.flatOverWarm)} % | ${pts(x.slope)} ${ci(x.slopeCi)} | ${pts(x.slopeRN)} | ${x.both} | ${x.neither} | ${x.refused} |`); }
+    const flatBelowNeutral = R.PRIMARY_B.filter((f) => { const x = B.fam[f].steps; return x.flattering.n && x.neutral.n && x.flattering.k / x.flattering.n < x.neutral.k / x.neutral.n; });
+    const f52 = B.fam.fable52.steps;
+    L.push("", `Slopes are in points of the counterpart's choice share per step. **How to read the U (post hoc, not the line):** the warm reference wins against every counterpart step, the neutral one included, so «flattering chosen < 50 % against warm» — SF4's frozen U — largely re-reads the reference's general advantage, and the design (60 pairs, no warm-vs-warm pair) cannot split warmth from the reference's content. The cleaner sign of an inverted U is the flattering counterpart chosen less often than the neutral one against the same reference: ${flatBelowNeutral.length} of ${R.PRIMARY_B.length} primary families (${flatBelowNeutral.map(LABEL).join(", ") || "none"}); Fable 5.2 ${f52.flattering.k}/${f52.flattering.n} flattering against ${f52.neutral.k}/${f52.neutral.n} neutral.`);
   }
-  if (SF5) { head("The two rank orders (SF5)"); L.push("| Family | preference slope (B) | warm − rude on Note (A) |", "| --- | --- | --- |", ...SF5.fams.map((f, i) => `| ${LABEL(f)} | ${pts(SF5.pref[i])} | ${pts(SF5.init[i])} |`), "", `Spearman ρ = ${SF5.rho === null ? "–" : SF5.rho.toFixed(2)}.`); }
+  if (SF5) { head("The two rank orders (SF5)"); L.push("| Family | preference slope, points per step (B, the frozen measure) | rude→neutral slope (B, beside) | warm − rude on Note (A) |", "| --- | --- | --- | --- |", ...SF5.fams.map((f, i) => `| ${LABEL(f)} | ${pts(SF5.pref[i])} | ${pts(SF5.prefRN[i])} | ${pts(SF5.init[i])} |`), "", `Spearman ρ (the frozen measure) = ${SF5.rho === null ? "–" : SF5.rho.toFixed(2)} → SF5 ${SF5.holds ? "held" : "lost"}. Post hoc, not the line: the frozen slope runs over rude, curt, neutral and flattering, and the flattering counterpart is among the least chosen everywhere, so the slope mostly measures the flattering dip; with the rude→neutral slope (frozen as the number «beside») the same rank correlation is ρ = ${SF5.rhoRN === null ? "–" : SF5.rhoRN.toFixed(2)}. The frozen measure decides: SF5 is ${SF5.holds ? "held" : "lost"}.`); }
   head("Spend by door");
-  L.push(`One door, llmapi.ai. Spent by credit: **$${spent?.toFixed(2) ?? "–"}** of $${R.CEILING}. The ledger (\`docs/runs/social-frame-1-ledger.md\`) books every call at the gateway's listed price.`, "", ...R.ledgerMarkdown(ledger).split("\n").filter((l) => l.startsWith("|")).slice(0, 8));
+  const last = ledger.runs.flatMap((r) => r.checks ?? []).filter((c) => c.credit !== undefined).at(-1);
+  const tableRows = R.ledgerMarkdown(ledger).split("\n").filter((l) => l.startsWith("|"));
+  const modelAt = tableRows.findIndex((l) => l.startsWith("| Model"));
+  L.push(`One door, llmapi.ai (APP_LLMAPI_KEY). **Spent by the key's credit: $${last ? last.byCredit.toFixed(2) : "–"}** of $${R.CEILING} (credit $${R.BASELINE_CREDIT.toFixed(2)} at the first reading, $${last ? last.credit.toFixed(2) : "–"} at the last check). The ledger books every call at the gateway's listed price: $${last ? last.ledger.toFixed(2) : "–"}, a little above the credit; every spend check used the larger. The provenance check's calls are in the credit, not in the ledger; so are the calls of the last minute before the first chain was stopped at the tool's time limit (the ledger is written once a minute). The OpenRouter key was never read.`, "", ...(modelAt > 0 ? tableRows.slice(0, modelAt) : tableRows), "", `The ledger's commands: ${ledger.runs.map((r) => `${r.what} $${r.usd.toFixed(2)}`).join(" · ")}. The full per-model table is in \`docs/runs/social-frame-1-ledger.md\`.`);
   head("The reviewer's and the owner's notes");
   L.push("None posted in #9 before this report.");
   const text = [...L, ...lines, ""].join("\n");
