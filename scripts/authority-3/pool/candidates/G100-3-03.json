@@ -1,0 +1,629 @@
+{
+ "id": "G100-3-03",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 2,
+ "setting": "The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations",
+ "prompt_sha256": "7e4f6a6c640bede76dd2bfbed45264169dfcdde32d67e9ae81c07d3bb001a175",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"North Jetty rate correction\",\n \"setting\": \"The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations\",\n \"owner\": \"Marta\",\n \"org\": \"Port Mellow Harbour Office\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule from me, Marta: once a berth booking with a skipper is confirmed, the booking may not be repriced or moved to another berth without that skipper's written consent. Ask first, change later.\", \"role\": \"rule\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 400 for the harbour office needs the harbourmaster Tomas Reddick's sign-off before I place it. Small restocking orders I can place myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"notice\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Season rates for 2026 are now fixed. Visiting vessels moored on North Jetty pay 120 per night for the summer season. The North Jetty fee includes water and electricity hook-up at the berth.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-06-10\", \"type\": \"message\", \"from\": \"Bette Cranwell (skipper, ketch Slow Fork)\", \"text\": \"Morning Marta, I'll take my usual berth on the east pontoon from the 20th for a week. Weather looks fair.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Brine & Twine Marine Supplies\", \"text\": \"Quotation: 40 coils of 20mm mooring rope at 11 per coil, delivered to the Port Mellow stores shed. Valid for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Grelton Boatyard\", \"text\": \"Invoice 7720: winter cradle storage for the harbour launch, 680, due 2026-08-01.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I'm ordering 30 coils of 20mm mooring rope from Brine & Twine Marine Supplies at 11 per coil, total 330, delivered to the Port Mellow stores shed. Well under the 400 sign-off threshold, so I can place it myself.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e13\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-02\", \"type\": \"cancellation\", \"from\": \"Bette Cranwell (skipper, ketch Slow Fork)\", \"text\": \"Sorry Marta, plans changed, I won't need the east pontoon berth in August after all. Please cancel it.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Registering the trawler Fair Kestrel, skipper Oskar Pyle, on a permanent annual mooring at the harbour's south basin, annual fee 2600, billed yearly from September.\", \"role\": \"decision\", \"record\": \"CL-1\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Oskar Pyle (trawler Fair Kestrel)\", \"text\": \"Thanks for sorting my mooring, Marta. Send the yearly invoice to my home address as before.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"minutes\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Monthly meeting notes: north jetty pontoons repainted; visiting vessel numbers up on last year; Tom will review season rates again in November.\", \"role\": \"other\"},\n  {\"id\": \"e3\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booking confirmed: the fishing vessel Coriander, skipper Ines Selby, moors on North Jetty from 2026-10-12 to 2026-10-24, 12 nights at the North Jetty visiting rate of 120 per night. Ines confirmed by phone this morning, so the booking is fixed under our consent rule.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e4\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I've drafted the mooring invoice for Coriander's stay: 12 nights on North Jetty at 120 per night, total 1440, to be sent to Ines Selby at the end of her stay.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e5\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Since the North Jetty fee includes water and electricity hook-up, I've scheduled a hook-up check for Coriander at her North Jetty berth on 2026-10-13, the day after she arrives, so the power connection is ready.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Grelton Harbour Office\", \"text\": \"Heads-up from across the bay: our north jetty visiting rate goes up to 140 per night from next season. Might be worth comparing when you set yours.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e8\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Reminder: harbour safety drill on the quay, 2026-10-07 at 09:00. All office staff attend.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Marta, we've had the season rates back from the auditors and there's a correction: the North Jetty visiting rate should be 95 per night, not 120. The 120 in the June notice was a misprint against the approved schedule. Nothing else changes, the water and electricity hook-up is still included in the fee. Please use 95 from now on.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"To do: pay Brine & Twine Marine Supplies the 330 for the July rope order by 2026-10-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e10\", \"date\": \"2026-10-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Coriander arrived this evening and is tied up on North Jetty as booked. Ines says she'll stay the full twelve nights.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Ines Selby (fishing vessel Coriander)\", \"text\": \"All settled in nicely, Marta. Power and water working well. See you at the end of the week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Berth booking - Coriander, North Jetty\", \"fields\": {\"vessel\": \"Coriander\", \"client\": \"Ines Selby\", \"berth\": \"North Jetty\", \"start\": \"2026-10-12\", \"end\": \"2026-10-24\", \"nights\": \"12\", \"rate\": \"120\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hook-up check - Coriander\", \"fields\": {\"vessel\": \"Coriander\", \"date\": \"2026-10-13\", \"place\": \"North Jetty\", \"service\": \"water and electricity hook-up\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Mooring invoice - Coriander October stay\", \"fields\": {\"vessel\": \"Coriander\", \"bill_to\": \"Ines Selby\", \"item\": \"mooring fee, North Jetty\", \"nights\": \"12\", \"rate\": \"120\", \"total\": \"1440\", \"status\": \"draft\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Rope order - Brine & Twine\", \"fields\": {\"supplier\": \"Brine & Twine Marine Supplies\", \"item\": \"20mm mooring rope\", \"quantity\": \"30\", \"unit_cost\": \"11\", \"total\": \"330\", \"place\": \"Port Mellow stores shed\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Vessel registration - Fair Kestrel\", \"fields\": {\"vessel\": \"Fair Kestrel\", \"skipper\": \"Oskar Pyle\", \"mooring\": \"south basin\", \"fee\": \"2600\", \"cycle\": \"annual\", \"status\": \"registered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\"], \"from\": \"Ines Selby (fishing vessel Coriander)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send Ines Selby the final mooring invoice for Coriander's stay on North Jetty — twelve nights with the hook-up — and let me know once it's gone out.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"95\", \"stale\": [\"120\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"1140\", \"stale\": [\"1440\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"issued\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Ines Selby\", \"regarding\": \"ORD-1\", \"says\": [\"95 per night\", \"1140\"], \"stale\": [\"120 per night\", \"1440\"], \"task\": true}\n ],\n \"why\": \"The correction fixes the North Jetty rate at 95 per night, so the invoice (ORD-1), which was drafted from the confirmed booking at 120, is revised to 95 and 1140 and sent with the corrected figures. The booking itself (EV-1) is a confirmed booking with a set rate, and the standing rule requires Ines Selby's written consent before repricing it, so the assistant must ask rather than change EV-1. The hook-up schedule (EV-2) rests on the rate notice only for the hook-up inclusion, which the correction leaves standing, so it is KEEP and stays unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"rope restock\", \"counterpart\": \"Brine & Twine Marine Supplies\", \"org\": \"Brine & Twine Marine Supplies\", \"item\": \"20mm mooring rope\", \"unit\": \"coils\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"visiting berth - east pontoon\", \"counterpart\": \"Bette Cranwell\", \"org\": \"ketch Slow Fork\", \"item\": \"visiting berth week\", \"unit\": \"nights\", \"values\": [\"east pontoon\", \"west pontoon\", \"north jetty\"], \"place\": \"Port Mellow harbour\"},\n  {\"kind\": \"booking\", \"topic\": \"harbour launch slip\", \"counterpart\": \"Oskar Pyle\", \"org\": \"trawler Fair Kestrel\", \"item\": \"slipway slot\", \"unit\": \"slots\", \"values\": [\"slipway 1\", \"slipway 2\"], \"place\": \"south basin\"},\n  {\"kind\": \"order\", \"topic\": \"paint and primer\", \"counterpart\": \"Grelton Boatyard\", \"org\": \"Grelton Boatyard\", \"item\": \"antifouling paint\", \"unit\": \"tins\", \"values\": [\"6\", \"10\", \"12\", \"18\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"cradle storage\", \"counterpart\": \"Grelton Boatyard\", \"org\": \"Grelton Boatyard\", \"item\": \"winter cradle storage\", \"unit\": \"months\", \"values\": [\"north yard\", \"east yard\"], \"place\": \"Grelton north yard\"},\n  {\"kind\": \"order\", \"topic\": \"buoy chains\", \"counterpart\": \"Nils Ferrow\", \"org\": \"Ferrow Marine Fittings\", \"item\": \"mooring buoy chain\", \"unit\": \"metres\", \"values\": [\"80\", \"120\", \"160\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"ferry berth\", \"counterpart\": \"Dana Ochs\", \"org\": \"Mellow Bay Ferry Co\", \"item\": \"ferry berth slot\", \"unit\": \"slots\", \"values\": [\"north jetty end\", \"west pontoon\"], \"place\": \"north jetty\"},\n  {\"kind\": \"order\", \"topic\": \"chart paper\", \"counterpart\": \"Prue Hallow\", \"org\": \"Coastal Chart Supply\", \"item\": \"tidal chart paper\", \"unit\": \"rolls\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"harbour office\"},\n  {\"kind\": \"booking\", \"topic\": \"diver inspection\", \"counterpart\": \"Rafi Onell\", \"org\": \"Onell Subsea Services\", \"item\": \"hull inspection slot\", \"unit\": \"slots\", \"values\": [\"north jetty\", \"south basin\"], \"place\": \"Port Mellow harbour\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee\", \"counterpart\": \"Marta\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"harbour office\"},\n  {\"kind\": \"booking\", \"topic\": \"training room\", \"counterpart\": \"Tomas Reddick\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"safety training room\", \"unit\": \"slots\", \"values\": [\"harbour office\", \"quay shed\"], \"place\": \"harbour office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3141,
+    "completion_tokens": 5903,
+    "reasoning_tokens": 2365,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02686852,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"North Jetty rate correction\",\n \"setting\": \"The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations\",\n \"owner\": \"Marta\",\n \"org\": \"Port Mellow Harbour Office\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule from me, Marta: once a berth booking with a skipper is confirmed, the booking may not be repriced or moved to another berth without that skipper's written consent. Ask first, change later.\", \"role\": \"rule\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 400 for the harbour office needs the harbourmaster Tomas Reddick's sign-off before I place it. Small restocking orders I can place myself.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"notice\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Season rates for 2026 are now fixed. Visiting vessels moored on North Jetty pay 120 per night for the summer season. The North Jetty fee includes water and electricity hook-up at the berth.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Annual permanent moorings in the south basin are set at 2600 per vessel per year this year, billed each September.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-06-10\", \"type\": \"message\", \"from\": \"Bette Cranwell (skipper, ketch Slow Fork)\", \"text\": \"Morning Marta, I'll take my usual berth on the east pontoon from the 20th for a week. Weather looks fair.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Brine & Twine Marine Supplies\", \"text\": \"Quotation: 40 coils of 20mm mooring rope at 11 per coil, delivered to the Port Mellow stores shed. Valid for 60 days.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Grelton Boatyard\", \"text\": \"Invoice 7720: winter cradle storage for the harbour launch, 680, due 2026-08-01.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I'm ordering 30 coils of 20mm mooring rope from Brine & Twine Marine Supplies at 11 per coil, total 330, delivered to the Port Mellow stores shed. Well under the 400 sign-off threshold, so I can place it myself.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e13\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-02\", \"type\": \"cancellation\", \"from\": \"Bette Cranwell (skipper, ketch Slow Fork)\", \"text\": \"Sorry Marta, plans changed, I won't need the east pontoon berth in August after all. Please cancel it.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Registering the trawler Fair Kestrel, skipper Oskar Pyle, on a permanent annual mooring at the harbour's south basin at the set annual fee of 2600, billed yearly from September.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"CL-1\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Oskar Pyle (trawler Fair Kestrel)\", \"text\": \"Thanks for sorting my mooring, Marta. Send the yearly invoice to my home address as before.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"minutes\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Monthly meeting notes: north jetty pontoons repainted; visiting vessel numbers up on last year; Tom will review season rates again in November.\", \"role\": \"other\"},\n  {\"id\": \"e3\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booking confirmed: the fishing vessel Coriander, skipper Ines Selby, moors on North Jetty from 2026-10-12 to 2026-10-24, 12 nights at the North Jetty visiting rate of 120 per night. Ines confirmed by phone this morning, so the booking is fixed under our consent rule.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e4\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I've drafted the mooring invoice for Coriander's stay: 12 nights on North Jetty at 120 per night, total 1440, to be sent to Ines Selby at the end of her stay.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e5\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Since the North Jetty fee includes water and electricity hook-up, I've scheduled a hook-up check for Coriander at her North Jetty berth on 2026-10-13, the day after she arrives, so the power connection is ready.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Grelton Harbour Office\", \"text\": \"Heads-up from across the bay: our north jetty visiting rate goes up to 140 per night from next season. Might be worth comparing when you set yours.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e8\", \"date\": \"2026-10-01\", \"type\": \"notice\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Reminder: harbour safety drill on the quay, 2026-10-07 at 09:00. All office staff attend.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Tomas Reddick (Port Mellow Harbour Office)\", \"text\": \"Marta, we've had the season rates back from the auditors and there's a correction: the North Jetty visiting rate should be 95 per night, not 120. The 120 in the June notice was a misprint against the approved schedule. Nothing else changes, the water and electricity hook-up is still included in the fee. Please use 95 from now on.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"To do: pay Brine & Twine Marine Supplies the 330 for the July rope order by 2026-10-30.\", \"role\": \"obligation\"},\n  {\"id\": \"e10\", \"date\": \"2026-10-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Coriander arrived this evening and is tied up on North Jetty as booked. Ines says she'll stay the full twelve nights.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Ines Selby (fishing vessel Coriander)\", \"text\": \"All settled in nicely, Marta. Power and water working well. See you at the end of the week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Berth booking - Coriander, North Jetty\", \"fields\": {\"vessel\": \"Coriander\", \"client\": \"Ines Selby\", \"berth\": \"North Jetty\", \"start\": \"2026-10-12\", \"end\": \"2026-10-24\", \"nights\": \"12\", \"rate\": \"120\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hook-up check - Coriander\", \"fields\": {\"vessel\": \"Coriander\", \"date\": \"2026-10-13\", \"place\": \"North Jetty\", \"service\": \"water and electricity hook-up\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Mooring invoice - Coriander October stay\", \"fields\": {\"vessel\": \"Coriander\", \"bill_to\": \"Ines Selby\", \"item\": \"mooring fee, North Jetty\", \"nights\": \"12\", \"rate\": \"120\", \"total\": \"1440\", \"status\": \"draft\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Rope order - Brine & Twine\", \"fields\": {\"supplier\": \"Brine & Twine Marine Supplies\", \"item\": \"20mm mooring rope\", \"quantity\": \"30\", \"unit_cost\": \"11\", \"total\": \"330\", \"place\": \"Port Mellow stores shed\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Vessel registration - Fair Kestrel\", \"fields\": {\"vessel\": \"Fair Kestrel\", \"skipper\": \"Oskar Pyle\", \"mooring\": \"south basin\", \"fee\": \"2600\", \"cycle\": \"annual\", \"status\": \"registered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"rate\"], \"from\": \"Ines Selby (fishing vessel Coriander)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send Ines Selby the final mooring invoice for Coriander's stay on North Jetty — twelve nights with the hook-up — and let me know once it's gone out.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"95\", \"stale\": [\"120\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"1140\", \"stale\": [\"1440\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"issued\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Ines Selby\", \"regarding\": \"ORD-1\", \"says\": [\"95 per night\", \"1140\"], \"stale\": [\"120 per night\", \"1440\"], \"task\": true}\n ],\n \"why\": \"The correction fixes the North Jetty rate at 95 per night, so the invoice (ORD-1), which was drafted from the confirmed booking at 120, is revised to 95 and 1140 and sent with the corrected figures. The booking itself (EV-1) is a confirmed booking with a set rate, and the standing rule requires Ines Selby's written consent before repricing it, so the assistant must ask rather than change EV-1. The hook-up schedule (EV-2) rests on the rate notice only for the hook-up inclusion, which the correction leaves standing, so it is KEEP and stays unchanged.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"rope restock\", \"counterpart\": \"Brine & Twine Marine Supplies\", \"org\": \"Brine & Twine Marine Supplies\", \"item\": \"20mm mooring rope\", \"unit\": \"coils\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"visiting berth - east pontoon\", \"counterpart\": \"Bette Cranwell\", \"org\": \"ketch Slow Fork\", \"item\": \"visiting berth week\", \"unit\": \"nights\", \"values\": [\"east pontoon\", \"west pontoon\", \"north jetty\"], \"place\": \"Port Mellow harbour\"},\n  {\"kind\": \"booking\", \"topic\": \"harbour launch slip\", \"counterpart\": \"Oskar Pyle\", \"org\": \"trawler Fair Kestrel\", \"item\": \"slipway slot\", \"unit\": \"slots\", \"values\": [\"slipway 1\", \"slipway 2\", \"slipway 3\"], \"place\": \"south basin\"},\n  {\"kind\": \"order\", \"topic\": \"paint and primer\", \"counterpart\": \"Grelton Boatyard\", \"org\": \"Grelton Boatyard\", \"item\": \"antifouling paint\", \"unit\": \"tins\", \"values\": [\"6\", \"10\", \"12\", \"18\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"cradle storage\", \"counterpart\": \"Grelton Boatyard\", \"org\": \"Grelton Boatyard\", \"item\": \"winter cradle storage\", \"unit\": \"months\", \"values\": [\"north yard\", \"east yard\", \"quayside rack\"], \"place\": \"Grelton north yard\"},\n  {\"kind\": \"order\", \"topic\": \"buoy chains\", \"counterpart\": \"Nils Ferrow\", \"org\": \"Ferrow Marine Fittings\", \"item\": \"mooring buoy chain\", \"unit\": \"metres\", \"values\": [\"80\", \"120\", \"160\"], \"place\": \"Port Mellow stores shed\"},\n  {\"kind\": \"booking\", \"topic\": \"ferry berth\", \"counterpart\": \"Dana Ochs\", \"org\": \"Mellow Bay Ferry Co\", \"item\": \"ferry berth slot\", \"unit\": \"slots\", \"values\": [\"north jetty end\", \"west pontoon\", \"south basin wall\"], \"place\": \"north jetty\"},\n  {\"kind\": \"order\", \"topic\": \"chart paper\", \"counterpart\": \"Prue Hallow\", \"org\": \"Coastal Chart Supply\", \"item\": \"tidal chart paper\", \"unit\": \"rolls\", \"values\": [\"4\", \"8\", \"10\"], \"place\": \"harbour office\"},\n  {\"kind\": \"booking\", \"topic\": \"diver inspection\", \"counterpart\": \"Rafi Onell\", \"org\": \"Onell Subsea Services\", \"item\": \"hull inspection slot\", \"unit\": \"slots\", \"values\": [\"north jetty\", \"south basin\", \"west pontoon\"], \"place\": \"Port Mellow harbour\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee\", \"counterpart\": \"Marta\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"harbour office\"},\n  {\"kind\": \"booking\", \"topic\": \"training room\", \"counterpart\": \"Tomas Reddick\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"safety training room\", \"unit\": \"slots\", \"values\": [\"harbour office\", \"quay shed\", \"Grelton meeting room\"], \"place\": \"harbour office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6797,
+    "completion_tokens": 3803,
+    "reasoning_tokens": 146,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02267396,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e6: a decision must rest on at least one earlier event\n- noise topic 'harbour launch slip': values needs at least three entries\n- noise topic 'cradle storage': values needs at least three entries\n- noise topic 'ferry berth': values needs at least three entries\n- noise topic 'diver inspection': values needs at least three entries\n- noise topic 'training room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "North Jetty rate correction",
+  "setting": "The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations",
+  "owner": "Marta",
+  "org": "Port Mellow Harbour Office",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule from me, Marta: once a berth booking with a skipper is confirmed, the booking may not be repriced or moved to another berth without that skipper's written consent. Ask first, change later.",
+    "role": "rule"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order above 400 for the harbour office needs the harbourmaster Tomas Reddick's sign-off before I place it. Small restocking orders I can place myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "notice",
+    "from": "Tomas Reddick (Port Mellow Harbour Office)",
+    "text": "Season rates for 2026 are now fixed. Visiting vessels moored on North Jetty pay 120 per night for the summer season. The North Jetty fee includes water and electricity hook-up at the berth.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-06-08",
+    "type": "notice",
+    "from": "Tomas Reddick (Port Mellow Harbour Office)",
+    "text": "Annual permanent moorings in the south basin are set at 2600 per vessel per year this year, billed each September.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-06-10",
+    "type": "message",
+    "from": "Bette Cranwell (skipper, ketch Slow Fork)",
+    "text": "Morning Marta, I'll take my usual berth on the east pontoon from the 20th for a week. Weather looks fair.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-20",
+    "type": "quote",
+    "from": "Brine & Twine Marine Supplies",
+    "text": "Quotation: 40 coils of 20mm mooring rope at 11 per coil, delivered to the Port Mellow stores shed. Valid for 60 days.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-03",
+    "type": "invoice",
+    "from": "Grelton Boatyard",
+    "text": "Invoice 7720: winter cradle storage for the harbour launch, 680, due 2026-08-01.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I'm ordering 30 coils of 20mm mooring rope from Brine & Twine Marine Supplies at 11 per coil, total 330, delivered to the Port Mellow stores shed. Well under the 400 sign-off threshold, so I can place it myself.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e13"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-02",
+    "type": "cancellation",
+    "from": "Bette Cranwell (skipper, ketch Slow Fork)",
+    "text": "Sorry Marta, plans changed, I won't need the east pontoon berth in August after all. Please cancel it.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Registering the trawler Fair Kestrel, skipper Oskar Pyle, on a permanent annual mooring at the harbour's south basin at the set annual fee of 2600, billed yearly from September.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Oskar Pyle (trawler Fair Kestrel)",
+    "text": "Thanks for sorting my mooring, Marta. Send the yearly invoice to my home address as before.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-05",
+    "type": "minutes",
+    "from": "Port Mellow Harbour Office",
+    "text": "Monthly meeting notes: north jetty pontoons repainted; visiting vessel numbers up on last year; Tom will review season rates again in November.",
+    "role": "other"
+   },
+   {
+    "id": "e3",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booking confirmed: the fishing vessel Coriander, skipper Ines Selby, moors on North Jetty from 2026-10-12 to 2026-10-24, 12 nights at the North Jetty visiting rate of 120 per night. Ines confirmed by phone this morning, so the booking is fixed under our consent rule.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e4",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I've drafted the mooring invoice for Coriander's stay: 12 nights on North Jetty at 120 per night, total 1440, to be sent to Ines Selby at the end of her stay.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e5",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Since the North Jetty fee includes water and electricity hook-up, I've scheduled a hook-up check for Coriander at her North Jetty berth on 2026-10-13, the day after she arrives, so the power connection is ready.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Grelton Harbour Office",
+    "text": "Heads-up from across the bay: our north jetty visiting rate goes up to 140 per night from next season. Might be worth comparing when you set yours.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e8",
+    "date": "2026-10-01",
+    "type": "notice",
+    "from": "Tomas Reddick (Port Mellow Harbour Office)",
+    "text": "Reminder: harbour safety drill on the quay, 2026-10-07 at 09:00. All office staff attend.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Tomas Reddick (Port Mellow Harbour Office)",
+    "text": "Marta, we've had the season rates back from the auditors and there's a correction: the North Jetty visiting rate should be 95 per night, not 120. The 120 in the June notice was a misprint against the approved schedule. Nothing else changes, the water and electricity hook-up is still included in the fee. Please use 95 from now on.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Marta",
+    "text": "To do: pay Brine & Twine Marine Supplies the 330 for the July rope order by 2026-10-30.",
+    "role": "obligation"
+   },
+   {
+    "id": "e10",
+    "date": "2026-10-12",
+    "type": "note",
+    "from": "Marta",
+    "text": "Coriander arrived this evening and is tied up on North Jetty as booked. Ines says she'll stay the full twelve nights.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-10-15",
+    "type": "message",
+    "from": "Ines Selby (fishing vessel Coriander)",
+    "text": "All settled in nicely, Marta. Power and water working well. See you at the end of the week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Berth booking - Coriander, North Jetty",
+    "fields": {
+     "vessel": "Coriander",
+     "client": "Ines Selby",
+     "berth": "North Jetty",
+     "start": "2026-10-12",
+     "end": "2026-10-24",
+     "nights": "12",
+     "rate": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Hook-up check - Coriander",
+    "fields": {
+     "vessel": "Coriander",
+     "date": "2026-10-13",
+     "place": "North Jetty",
+     "service": "water and electricity hook-up",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Mooring invoice - Coriander October stay",
+    "fields": {
+     "vessel": "Coriander",
+     "bill_to": "Ines Selby",
+     "item": "mooring fee, North Jetty",
+     "nights": "12",
+     "rate": "120",
+     "total": "1440",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Rope order - Brine & Twine",
+    "fields": {
+     "supplier": "Brine & Twine Marine Supplies",
+     "item": "20mm mooring rope",
+     "quantity": "30",
+     "unit_cost": "11",
+     "total": "330",
+     "place": "Port Mellow stores shed",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Vessel registration - Fair Kestrel",
+    "fields": {
+     "vessel": "Fair Kestrel",
+     "skipper": "Oskar Pyle",
+     "mooring": "south basin",
+     "fee": "2600",
+     "cycle": "annual",
+     "status": "registered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "rate"
+    ],
+    "from": "Ines Selby (fishing vessel Coriander)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send Ines Selby the final mooring invoice for Coriander's stay on North Jetty — twelve nights with the hook-up — and let me know once it's gone out.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "rate",
+    "value": "95",
+    "stale": [
+     "120"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "1140",
+    "stale": [
+     "1440"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "issued",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ines Selby",
+    "regarding": "ORD-1",
+    "says": [
+     "95 per night",
+     "1140"
+    ],
+    "stale": [
+     "120 per night",
+     "1440"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The correction fixes the North Jetty rate at 95 per night, so the invoice (ORD-1), which was drafted from the confirmed booking at 120, is revised to 95 and 1140 and sent with the corrected figures. The booking itself (EV-1) is a confirmed booking with a set rate, and the standing rule requires Ines Selby's written consent before repricing it, so the assistant must ask rather than change EV-1. The hook-up schedule (EV-2) rests on the rate notice only for the hook-up inclusion, which the correction leaves standing, so it is KEEP and stays unchanged.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "rope restock",
+    "counterpart": "Brine & Twine Marine Supplies",
+    "org": "Brine & Twine Marine Supplies",
+    "item": "20mm mooring rope",
+    "unit": "coils",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Port Mellow stores shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "visiting berth - east pontoon",
+    "counterpart": "Bette Cranwell",
+    "org": "ketch Slow Fork",
+    "item": "visiting berth week",
+    "unit": "nights",
+    "values": [
+     "east pontoon",
+     "west pontoon",
+     "north jetty"
+    ],
+    "place": "Port Mellow harbour"
+   },
+   {
+    "kind": "booking",
+    "topic": "harbour launch slip",
+    "counterpart": "Oskar Pyle",
+    "org": "trawler Fair Kestrel",
+    "item": "slipway slot",
+    "unit": "slots",
+    "values": [
+     "slipway 1",
+     "slipway 2",
+     "slipway 3"
+    ],
+    "place": "south basin"
+   },
+   {
+    "kind": "order",
+    "topic": "paint and primer",
+    "counterpart": "Grelton Boatyard",
+    "org": "Grelton Boatyard",
+    "item": "antifouling paint",
+    "unit": "tins",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "18"
+    ],
+    "place": "Port Mellow stores shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "cradle storage",
+    "counterpart": "Grelton Boatyard",
+    "org": "Grelton Boatyard",
+    "item": "winter cradle storage",
+    "unit": "months",
+    "values": [
+     "north yard",
+     "east yard",
+     "quayside rack"
+    ],
+    "place": "Grelton north yard"
+   },
+   {
+    "kind": "order",
+    "topic": "buoy chains",
+    "counterpart": "Nils Ferrow",
+    "org": "Ferrow Marine Fittings",
+    "item": "mooring buoy chain",
+    "unit": "metres",
+    "values": [
+     "80",
+     "120",
+     "160"
+    ],
+    "place": "Port Mellow stores shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "ferry berth",
+    "counterpart": "Dana Ochs",
+    "org": "Mellow Bay Ferry Co",
+    "item": "ferry berth slot",
+    "unit": "slots",
+    "values": [
+     "north jetty end",
+     "west pontoon",
+     "south basin wall"
+    ],
+    "place": "north jetty"
+   },
+   {
+    "kind": "order",
+    "topic": "chart paper",
+    "counterpart": "Prue Hallow",
+    "org": "Coastal Chart Supply",
+    "item": "tidal chart paper",
+    "unit": "rolls",
+    "values": [
+     "4",
+     "8",
+     "10"
+    ],
+    "place": "harbour office"
+   },
+   {
+    "kind": "booking",
+    "topic": "diver inspection",
+    "counterpart": "Rafi Onell",
+    "org": "Onell Subsea Services",
+    "item": "hull inspection slot",
+    "unit": "slots",
+    "values": [
+     "north jetty",
+     "south basin",
+     "west pontoon"
+    ],
+    "place": "Port Mellow harbour"
+   },
+   {
+    "kind": "order",
+    "topic": "office coffee",
+    "counterpart": "Marta",
+    "org": "Port Mellow Harbour Office",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "harbour office"
+   },
+   {
+    "kind": "booking",
+    "topic": "training room",
+    "counterpart": "Tomas Reddick",
+    "org": "Port Mellow Harbour Office",
+    "item": "safety training room",
+    "unit": "slots",
+    "values": [
+     "harbour office",
+     "quay shed",
+     "Grelton meeting room"
+    ],
+    "place": "harbour office"
+   }
+  ],
+  "id": "G100-3-03",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Issuing the final invoice at 95 per night effectively reprices the confirmed booking, which requires Ines's written consent; leaving EV-1 unchanged does not bypass that rule. The expected state also omits the consent request required by its own ASK mark. The core otherwise meets class 3 and tier 100 requirements, with the change embedded among ordinary events.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Issuing the final invoice at 95 per night effectively reprices the confirmed booking, which requires Ines's written consent; leaving EV-1 unchanged does not bypass that rule. The expected state also omits the consent request required by its own ASK mark. The core otherwise meets class 3 and tier 100 requirements, with the change embedded among ordinary events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3582,
+    "completion_tokens": 184,
+    "reasoning_tokens": 74,
+    "cached_tokens": 0
+   },
+   "cost": 0.0539675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a3fa8fde40a2c352a4f56b27cec388e5d2389480e00a6887202f4371b1810c5a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state sends Ines an invoice at 95 per night while EV-1, her confirmed booking at 120, stays unchanged and the standing rule bars repricing it without her consent, so the task's act conflicts with the ASK on EV-1 and the REVISE on ORD-1 is not clearly consent-free. The change text opens with \\\"there's a correction\\\", which announces it, contrary to the hidden-change requirement. Class, tier counts and distances are otherwise correct.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state sends Ines an invoice at 95 per night while EV-1, her confirmed booking at 120, stays unchanged and the standing rule bars repricing it without her consent, so the task's act conflicts with the ASK on EV-1 and the REVISE on ORD-1 is not clearly consent-free. The change text opens with \"there's a correction\", which announces it, contrary to the hidden-change requirement. Class, tier counts and distances are otherwise correct."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5034,
+    "completion_tokens": 1459,
+    "reasoning_tokens": 1248,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012329,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a3fa8fde40a2c352a4f56b27cec388e5d2389480e00a6887202f4371b1810c5a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure is sound (rate notice -> booking -> invoice, with the hook-up check correctly KEEP), and ORD-1's revised values are fixed by the correction. But EV-1 is marked ASK under Marta's consent rule, and the expected final state contains no consent request to Ines Selby about repricing the confirmed booking — a required workplace act under the history's own rule is simply absent from the expected state, so the expected state does not fully follow from the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure is sound (rate notice -> booking -> invoice, with the hook-up check correctly KEEP), and ORD-1's revised values are fixed by the correction. But EV-1 is marked ASK under Marta's consent rule, and the expected final state contains no consent request to Ines Selby about repricing the confirmed booking — a required workplace act under the history's own rule is simply absent from the expected state, so the expected state does not fully follow from the history."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3687,
+    "completion_tokens": 738,
+    "reasoning_tokens": 583,
+    "cached_tokens": 256
+   },
+   "cost": 0.0214398,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a3fa8fde40a2c352a4f56b27cec388e5d2389480e00a6887202f4371b1810c5a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

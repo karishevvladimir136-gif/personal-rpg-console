@@ -1,0 +1,601 @@
+{
+ "id": "G500-1-01",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 0,
+ "setting": "The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices",
+ "prompt_sha256": "dab9a9f2b457e2495e648993df2060a9374d973bb03f3b0d1f8814b712c273f0",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Oakhurst autumn run rescheduled\",\n  \"setting\": \"The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices\",\n  \"owner\": \"Maureen\",\n  \"org\": \"Ashfield Allotment Society\",\n  \"now\": \"2026-10-01\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee standing rule: once a booking at Cornwell Village Hall is confirmed, its date or room may only be changed with the consent of the hall manager, Rita Nash.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee finance rule: any supplier order over 300 pounds needs the chair's sign-off before it is placed. Orders at or below that amount I can place myself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Confirming our autumn delivery run: the Oakhurst van reaches Ashfield on Monday 5 October 2026, with Colin driving. Our own van, no courier involved.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee agreed this year's plot rents: 35 pounds for a full plot, 17.50 pounds for a half plot, unchanged from last year.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"message\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Waiting list stands at 9 households. Tom Whitley is at the top, waiting since February.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Quote for bamboo canes: 1.10 pounds each, any quantity, delivered to the Ashfield site.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"cancellation\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Miriam Hale has withdrawn from the waiting list, so we are down to 8 households.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Standing down the courier arrangement for the autumn seed delivery: Oakhurst brings it on their own van with Colin on the 5 October run, so no courier booking is needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Placing our autumn bulk order with Oakhurst Seeds: 120 packs of Arran seed potato at 2.40 pounds a pack, 288 pounds in total, within my limit, to arrive with their 5 October van run.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"The hall is free on Wednesday mornings through October; hire is 40 pounds a morning.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the seed potato collection day on Wednesday 7 October, two days after the Oakhurst delivery, 10:00 to 12:00. Members collect their packs there.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e9\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Harborough Mutual\", \"text\": \"Your site insurance renewal falls due on 1 September; premium unchanged at 210 pounds.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Rent invoices for 2026 go out as agreed: 35 pounds for a full plot, 17.50 pounds for a half plot, payment due 30 September.\", \"role\": \"decision\", \"rests_on\": [\"e4\"]},\n    {\"id\": \"e14\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Offered plot 14B to Tom Whitley, first on the waiting list, at the standard 35 pounds full-plot rent.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"CL-1\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Ordered 200 bamboo canes from Fernbrook Supplies at Gordon's quoted 1.10 pounds each, 220 pounds total, for delivery to the Ashfield site.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"invoice\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Invoice OK-4471 for 288 pounds, 120 packs of Arran seed potato. Payment terms: 14 days after delivery.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the AGM on Saturday 14 November, evening slot, as Rita offered.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"task\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"To do: pay Oakhurst invoice OK-4471 within 14 days of the seed delivery.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-30\", \"type\": \"call\", \"from\": \"Marta Kovač (Fieldside Contractors)\", \"text\": \"Called about the rotavator service; can take a slot on the upper field any Tuesday.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Looking forward to seeing you on the autumn run on Monday 5 October — Colin will bring the seed potatoes straight to the Ashfield site.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Jim Aldous (plot 6)\", \"text\": \"Question: is the half-plot rent 17.50 pounds again this year?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Your 200 canes were delivered to the Ashfield site on 8 September; invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"September committee minutes: rents confirmed, plot 14B offered, seed collection day set for 7 October at the hall.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Your green manure seed mix ships separately by courier on Monday 12 October — that one does not come on our van run.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"A change to our autumn schedule: the Oakhurst van run will now reach Ashfield on Monday 19 October instead of 5 October. Colin apologises for the shift; everything else about the run stays the same.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"Just confirming your bookings: the seed potato collection morning on Wednesday 7 October and the AGM on Saturday 14 November.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Tom Whitley\", \"text\": \"Happy to take plot 14B — will the shared compost deliveries still come to the store shed?\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"October tomorrow: check the Oakhurst seed order details are right, then send the members their collection notice.\", \"role\": \"note\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Oakhurst bulk seed potato order\", \"fields\": {\"supplier\": \"Oakhurst Seeds\", \"item\": \"Arran seed potato packs\", \"quantity\": \"120\", \"unit_price\": \"2.40\", \"delivery_date\": \"2026-10-05\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn delivery method\", \"fields\": {\"method\": \"Oakhurst own van\", \"driver\": \"Colin\", \"courier\": \"not needed\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Fernbrook canes order\", \"fields\": {\"supplier\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"quantity\": \"200\", \"delivery_date\": \"2026-09-08\", \"status\": \"delivered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Seed potato collection day\", \"fields\": {\"date\": \"2026-10-07\", \"place\": \"Cornwell Village Hall\", \"time\": \"10:00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"AGM 2026\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Cornwell Village Hall\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Plot offer - 14B\", \"fields\": {\"name\": \"Tom Whitley\", \"plot\": \"14B\", \"rent\": \"35\", \"status\": \"offered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rita Nash (Cornwell Village Hall)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"It's October — can you check our Oakhurst seed order is in order and then send the members their seed potato collection notice with the dates? Rita will expect to hear from us about the hall in good time.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-05\"], \"task\": true},\n    {\"message_to\": \"Ashfield Allotment Society members\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-19\", \"2026-10-21\", \"Cornwell Village Hall\"], \"stale\": [\"2026-10-05\", \"2026-10-07\"], \"task\": true}\n  ],\n  \"why\": \"The change (Priya's 18 September email) revokes the 5 October delivery fact; the new run date is 19 October. The bulk order ORD-1 (e9) rests on that fact, so its delivery_date is REVISE and the member notice must carry the new arrival and collection dates. The hall booking EV-1 (e11) rests on the order and so is two hops from the fact, but its date is protected by Rita Nash's consent rule, so the assistant must ask her rather than change EV-1. The courier decision ORD-2 (e8) rests on the same fact but only uses the standing part of it (Oakhurst's own van with Colin), so it is KEEP, and all other records are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"compost restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"peat-free compost\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"green manure mix\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"green manure seed mix\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"hall small room\", \"counterpart\": \"Rita Nash\", \"org\": \"Cornwell Village Hall\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"small meeting room\", \"main hall\"], \"place\": \"Cornwell Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"canes\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"unit\": \"bundles\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"water butts\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"water butt\", \"unit\": \"units\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"rotavator service\", \"counterpart\": \"Marta Kovač\", \"org\": \"Fieldside Contractors\", \"item\": \"rotavator slot\", \"unit\": \"\", \"values\": [\"upper field\", \"lower field\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"school plot tours\", \"counterpart\": \"Anna Bell\", \"org\": \"Cornwell Primary School\", \"item\": \"plot tour\", \"unit\": \"\", \"values\": [\"plot 1\", \"community plot\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"order\", \"topic\": \"garden fleece\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"garden fleece\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"manure deliveries\", \"counterpart\": \"Bill Fraser\", \"org\": \"Hollow Lane Farm\", \"item\": \"manure drop\", \"unit\": \"\", \"values\": [\"upper gate\", \"lower gate\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"waiting-list viewings\", \"counterpart\": \"Sue Pym\", \"org\": \"Ashfield Allotment Society\", \"item\": \"plot viewing\", \"unit\": \"\", \"values\": [\"plot 7\", \"plot 14B\", \"plot 22\"], \"place\": \"Ashfield site\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3198,
+    "completion_tokens": 10417,
+    "reasoning_tokens": 6468,
+    "cached_tokens": 0
+   },
+   "cost": 0.050312,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Oakhurst autumn run rescheduled\",\n  \"setting\": \"The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices\",\n  \"owner\": \"Maureen\",\n  \"org\": \"Ashfield Allotment Society\",\n  \"now\": \"2026-10-01\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee standing rule: once a booking at Cornwell Village Hall is confirmed, its date or room may only be changed with the consent of the hall manager, Rita Nash.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee finance rule: any supplier order over 300 pounds needs the chair's sign-off before it is placed. Orders at or below that amount I can place myself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Confirming our autumn delivery run: the Oakhurst van reaches Ashfield on Monday 5 October 2026, with Colin driving. Our own van, no courier involved.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee agreed this year's plot rents: 35 pounds for a full plot, 17.50 pounds for a half plot, unchanged from last year.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"message\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Waiting list stands at 9 households. Tom Whitley is at the top, waiting since February.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Quote for bamboo canes: 1.10 pounds each, any quantity, delivered to the Ashfield site.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"cancellation\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Miriam Hale has withdrawn from the waiting list, so we are down to 8 households.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Standing down the courier arrangement for the autumn seed delivery: Oakhurst brings it on their own van with Colin on the 5 October run, so no courier booking is needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Placing our autumn bulk order with Oakhurst Seeds: 120 packs of Arran seed potato at 2.40 pounds a pack, 288 pounds in total, within my limit, to arrive with their 5 October van run.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"The hall is free on Wednesday mornings through October; hire is 40 pounds a morning.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the seed potato collection day on Wednesday 7 October, two days after the Oakhurst delivery, 10:00 to 12:00. Members collect their packs there.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e9\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Harborough Mutual\", \"text\": \"Your site insurance renewal falls due on 1 September; premium unchanged at 210 pounds.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Rent invoices for 2026 go out as agreed: 35 pounds for a full plot, 17.50 pounds for a half plot, payment due 30 September.\", \"role\": \"decision\", \"rests_on\": [\"e4\"]},\n    {\"id\": \"e14\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Offered plot 14B to Tom Whitley, first on the waiting list, at the standard 35 pounds full-plot rent.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"CL-1\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Ordered 200 bamboo canes from Fernbrook Supplies at Gordon's quoted 1.10 pounds each, 220 pounds total, for delivery to the Ashfield site.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"invoice\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Invoice OK-4471 for 288 pounds, 120 packs of Arran seed potato. Payment terms: 14 days after delivery.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the AGM on Saturday 14 November, evening slot, as Rita offered.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"task\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"To do: pay Oakhurst invoice OK-4471 within 14 days of the seed delivery.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-30\", \"type\": \"call\", \"from\": \"Marta Kovač (Fieldside Contractors)\", \"text\": \"Called about the rotavator service; can take a slot on the upper field any Tuesday.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Looking forward to seeing you on the autumn run on Monday 5 October — Colin will bring the seed potatoes straight to the Ashfield site.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Jim Aldous (plot 6)\", \"text\": \"Question: is the half-plot rent 17.50 pounds again this year?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Your 200 canes were delivered to the Ashfield site on 8 September; invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"September committee minutes: rents confirmed, plot 14B offered, seed collection day set for 7 October at the hall.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Your green manure seed mix ships separately by courier on Monday 12 October — that one does not come on our van run.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"A change to our autumn schedule: the Oakhurst van run will now reach Ashfield on Monday 19 October instead of 5 October. Colin apologises for the shift; everything else about the run stays the same.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"Just confirming your bookings: the seed potato collection morning on Wednesday 7 October and the AGM on Saturday 14 November.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Tom Whitley\", \"text\": \"Happy to take plot 14B — will the shared compost deliveries still come to the store shed?\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"October tomorrow: check the Oakhurst seed order details are right, then send the members their collection notice.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Oakhurst bulk seed potato order\", \"fields\": {\"supplier\": \"Oakhurst Seeds\", \"item\": \"Arran seed potato packs\", \"quantity\": \"120\", \"unit_price\": \"2.40\", \"delivery_date\": \"2026-10-05\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn delivery method\", \"fields\": {\"method\": \"Oakhurst own van\", \"driver\": \"Colin\", \"courier\": \"not needed\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Fernbrook canes order\", \"fields\": {\"supplier\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"quantity\": \"200\", \"delivery_date\": \"2026-09-08\", \"status\": \"delivered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Seed potato collection day\", \"fields\": {\"date\": \"2026-10-07\", \"place\": \"Cornwell Village Hall\", \"time\": \"10:00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"AGM 2026\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Cornwell Village Hall\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Plot offer - 14B\", \"fields\": {\"name\": \"Tom Whitley\", \"plot\": \"14B\", \"rent\": \"35\", \"status\": \"offered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rita Nash (Cornwell Village Hall)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"It's October — can you check our Oakhurst seed order is in order and then send the members their seed potato collection notice with the dates? Rita will expect to hear from us about the hall in good time.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-05\"], \"task\": true},\n    {\"message_to\": \"Ashfield Allotment Society members\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-19\", \"2026-10-21\", \"Cornwell Village Hall\"], \"stale\": [\"2026-10-05\", \"2026-10-07\"], \"task\": true}\n  ],\n  \"why\": \"The change (Priya's 18 September email) revokes the 5 October delivery fact; the new run date is 19 October. The bulk order ORD-1 (e9) rests on that fact, so its delivery_date is REVISE and the member notice must carry the new arrival and collection dates. The hall booking EV-1 (e11) rests on the order and so is two hops from the fact, but its date is protected by Rita Nash's consent rule, so the assistant must ask her rather than change EV-1. The courier decision ORD-2 (e8) rests on the same fact but only uses the standing part of it (Oakhurst's own van with Colin), so it is KEEP, and all other records are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"compost restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"peat-free compost\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"green manure mix\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"green manure seed mix\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"hall small room\", \"counterpart\": \"Rita Nash\", \"org\": \"Cornwell Village Hall\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"small meeting room\", \"main hall\"], \"place\": \"Cornwell Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"canes\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"unit\": \"bundles\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"water butts\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"water butt\", \"unit\": \"units\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"rotavator service\", \"counterpart\": \"Marta Kovač\", \"org\": \"Fieldside Contractors\", \"item\": \"rotavator slot\", \"unit\": \"\", \"values\": [\"upper field\", \"lower field\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"school plot tours\", \"counterpart\": \"Anna Bell\", \"org\": \"Cornwell Primary School\", \"item\": \"plot tour\", \"unit\": \"\", \"values\": [\"plot 1\", \"community plot\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"order\", \"topic\": \"garden fleece\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"garden fleece\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"manure deliveries\", \"counterpart\": \"Bill Fraser\", \"org\": \"Hollow Lane Farm\", \"item\": \"manure drop\", \"unit\": \"\", \"values\": [\"upper gate\", \"lower gate\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"waiting-list viewings\", \"counterpart\": \"Sue Pym\", \"org\": \"Ashfield Allotment Society\", \"item\": \"plot viewing\", \"unit\": \"\", \"values\": [\"plot 7\", \"plot 14B\", \"plot 22\"], \"place\": \"Ashfield site\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7205,
+    "completion_tokens": 3957,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02392276,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e28: role «note» not in ['change', 'decision', 'fact', 'obligation', 'other', 'rule']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Oakhurst autumn run rescheduled\",\n  \"setting\": \"The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices\",\n  \"owner\": \"Maureen\",\n  \"org\": \"Ashfield Allotment Society\",\n  \"now\": \"2026-10-01\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee standing rule: once a booking at Cornwell Village Hall is confirmed, its date or room may only be changed with the consent of the hall manager, Rita Nash.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee finance rule: any supplier order over 300 pounds needs the chair's sign-off before it is placed. Orders at or below that amount I can place myself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Confirming our autumn delivery run: the Oakhurst van reaches Ashfield on Monday 5 October 2026, with Colin driving. Our own van, no courier involved.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Committee agreed this year's plot rents: 35 pounds for a full plot, 17.50 pounds for a half plot, unchanged from last year.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"message\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Waiting list stands at 9 households. Tom Whitley is at the top, waiting since February.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Quote for bamboo canes: 1.10 pounds each, any quantity, delivered to the Ashfield site.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"cancellation\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"Miriam Hale has withdrawn from the waiting list, so we are down to 8 households.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Standing down the courier arrangement for the autumn seed delivery: Oakhurst brings it on their own van with Colin on the 5 October run, so no courier booking is needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Placing our autumn bulk order with Oakhurst Seeds: 120 packs of Arran seed potato at 2.40 pounds a pack, 288 pounds in total, within my limit, to arrive with their 5 October van run.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"The hall is free on Wednesday mornings through October; hire is 40 pounds a morning.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the seed potato collection day on Wednesday 7 October, two days after the Oakhurst delivery, 10:00 to 12:00. Members collect their packs there.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e9\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Harborough Mutual\", \"text\": \"Your site insurance renewal falls due on 1 September; premium unchanged at 210 pounds.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Rent invoices for 2026 go out as agreed: 35 pounds for a full plot, 17.50 pounds for a half plot, payment due 30 September.\", \"role\": \"decision\", \"rests_on\": [\"e4\"]},\n    {\"id\": \"e14\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Offered plot 14B to Tom Whitley, first on the waiting list, at the standard 35 pounds full-plot rent.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"CL-1\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Ordered 200 bamboo canes from Fernbrook Supplies at Gordon's quoted 1.10 pounds each, 220 pounds total, for delivery to the Ashfield site.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"invoice\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Invoice OK-4471 for 288 pounds, 120 packs of Arran seed potato. Payment terms: 14 days after delivery.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"Booked Cornwell Village Hall for the AGM on Saturday 14 November, evening slot, as Rita offered.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"task\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"To do: pay Oakhurst invoice OK-4471 within 14 days of the seed delivery.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-30\", \"type\": \"call\", \"from\": \"Marta Kovač (Fieldside Contractors)\", \"text\": \"Called about the rotavator service; can take a slot on the upper field any Tuesday.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Looking forward to seeing you on the autumn run on Monday 5 October — Colin will bring the seed potatoes straight to the Ashfield site.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Jim Aldous (plot 6)\", \"text\": \"Question: is the half-plot rent 17.50 pounds again this year?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Gordon Pike (Fernbrook Supplies)\", \"text\": \"Your 200 canes were delivered to the Ashfield site on 8 September; invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Sue Pym (Ashfield Allotment Society)\", \"text\": \"September committee minutes: rents confirmed, plot 14B offered, seed collection day set for 7 October at the hall.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"Your green manure seed mix ships separately by courier on Monday 12 October — that one does not come on our van run.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Oakhurst Seeds)\", \"text\": \"A change to our autumn schedule: the Oakhurst van run will now reach Ashfield on Monday 19 October instead of 5 October. Colin apologises for the shift; everything else about the run stays the same.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Rita Nash (Cornwell Village Hall)\", \"text\": \"Just confirming your bookings: the seed potato collection morning on Wednesday 7 October and the AGM on Saturday 14 November.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Tom Whitley\", \"text\": \"Happy to take plot 14B — will the shared compost deliveries still come to the store shed?\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"note\", \"from\": \"Maureen Ellis (Ashfield Allotment Society)\", \"text\": \"October tomorrow: check the Oakhurst seed order details are right, then send the members their collection notice.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Oakhurst bulk seed potato order\", \"fields\": {\"supplier\": \"Oakhurst Seeds\", \"item\": \"Arran seed potato packs\", \"quantity\": \"120\", \"unit_price\": \"2.40\", \"delivery_date\": \"2026-10-05\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn delivery method\", \"fields\": {\"method\": \"Oakhurst own van\", \"driver\": \"Colin\", \"courier\": \"not needed\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Fernbrook canes order\", \"fields\": {\"supplier\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"quantity\": \"200\", \"delivery_date\": \"2026-09-08\", \"status\": \"delivered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Seed potato collection day\", \"fields\": {\"date\": \"2026-10-07\", \"place\": \"Cornwell Village Hall\", \"time\": \"10:00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"AGM 2026\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Cornwell Village Hall\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Plot offer - 14B\", \"fields\": {\"name\": \"Tom Whitley\", \"plot\": \"14B\", \"rent\": \"35\", \"status\": \"offered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rita Nash (Cornwell Village Hall)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"It's October — can you check our Oakhurst seed order is in order and then send the members their seed potato collection notice with the dates? Rita will expect to hear from us about the hall in good time.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-05\"], \"task\": true},\n    {\"message_to\": \"Ashfield Allotment Society members\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-19\", \"2026-10-21\", \"Cornwell Village Hall\"], \"stale\": [\"2026-10-05\", \"2026-10-07\"], \"task\": true}\n  ],\n  \"why\": \"The change (Priya's 18 September email) revokes the 5 October delivery fact; the new run date is 19 October. The bulk order ORD-1 (e9) rests on that fact, so its delivery_date is REVISE and the member notice must carry the new arrival and collection dates. The hall booking EV-1 (e11) rests on the order and so is two hops from the fact, but its date is protected by Rita Nash's consent rule, so the assistant must ask her rather than change EV-1. The courier decision ORD-2 (e8) rests on the same fact but only uses the standing part of it (Oakhurst's own van with Colin), so it is KEEP, and all other records are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"compost restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"peat-free compost\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"green manure mix\", \"counterpart\": \"Priya Nair\", \"org\": \"Oakhurst Seeds\", \"item\": \"green manure seed mix\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"hall small room\", \"counterpart\": \"Rita Nash\", \"org\": \"Cornwell Village Hall\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"small meeting room\", \"main hall\", \"kitchen annex\"], \"place\": \"Cornwell Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"canes\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"bamboo canes\", \"unit\": \"bundles\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"water butts\", \"counterpart\": \"Gordon Pike\", \"org\": \"Fernbrook Supplies\", \"item\": \"water butt\", \"unit\": \"units\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"rotavator service\", \"counterpart\": \"Marta Kovač\", \"org\": \"Fieldside Contractors\", \"item\": \"rotavator slot\", \"unit\": \"\", \"values\": [\"upper field\", \"lower field\", \"orchard strip\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"school plot tours\", \"counterpart\": \"Anna Bell\", \"org\": \"Cornwell Primary School\", \"item\": \"plot tour\", \"unit\": \"\", \"values\": [\"plot 1\", \"community plot\", \"pond corner\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"order\", \"topic\": \"garden fleece\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"garden fleece\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Nadia Roos\", \"org\": \"Harborough Twine & Netting\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ashfield store shed\"},\n    {\"kind\": \"booking\", \"topic\": \"manure deliveries\", \"counterpart\": \"Bill Fraser\", \"org\": \"Hollow Lane Farm\", \"item\": \"manure drop\", \"unit\": \"\", \"values\": [\"upper gate\", \"lower gate\", \"store yard\"], \"place\": \"Ashfield site\"},\n    {\"kind\": \"booking\", \"topic\": \"waiting-list viewings\", \"counterpart\": \"Sue Pym\", \"org\": \"Ashfield Allotment Society\", \"item\": \"plot viewing\", \"unit\": \"\", \"values\": [\"plot 7\", \"plot 14B\", \"plot 22\"], \"place\": \"Ashfield site\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 11243,
+    "completion_tokens": 3977,
+    "reasoning_tokens": 10,
+    "cached_tokens": 7168
+   },
+   "cost": 0.02506748,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'hall small room': values needs at least three entries\n- noise topic 'rotavator service': values needs at least three entries\n- noise topic 'school plot tours': values needs at least three entries\n- noise topic 'manure deliveries': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Oakhurst autumn run rescheduled",
+  "setting": "The treasurer at Ashfield Allotment Society whose assistant tracks plot rents, waiting lists, and seed-order invoices",
+  "owner": "Maureen",
+  "org": "Ashfield Allotment Society",
+  "now": "2026-10-01",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Committee standing rule: once a booking at Cornwell Village Hall is confirmed, its date or room may only be changed with the consent of the hall manager, Rita Nash.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Committee finance rule: any supplier order over 300 pounds needs the chair's sign-off before it is placed. Orders at or below that amount I can place myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Priya Nair (Oakhurst Seeds)",
+    "text": "Confirming our autumn delivery run: the Oakhurst van reaches Ashfield on Monday 5 October 2026, with Colin driving. Our own van, no courier involved.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-14",
+    "type": "note",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Committee agreed this year's plot rents: 35 pounds for a full plot, 17.50 pounds for a half plot, unchanged from last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "message",
+    "from": "Sue Pym (Ashfield Allotment Society)",
+    "text": "Waiting list stands at 9 households. Tom Whitley is at the top, waiting since February.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Gordon Pike (Fernbrook Supplies)",
+    "text": "Quote for bamboo canes: 1.10 pounds each, any quantity, delivered to the Ashfield site.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-30",
+    "type": "cancellation",
+    "from": "Sue Pym (Ashfield Allotment Society)",
+    "text": "Miriam Hale has withdrawn from the waiting list, so we are down to 8 households.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Standing down the courier arrangement for the autumn seed delivery: Oakhurst brings it on their own van with Colin on the 5 October run, so no courier booking is needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Placing our autumn bulk order with Oakhurst Seeds: 120 packs of Arran seed potato at 2.40 pounds a pack, 288 pounds in total, within my limit, to arrive with their 5 October van run.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Rita Nash (Cornwell Village Hall)",
+    "text": "The hall is free on Wednesday mornings through October; hire is 40 pounds a morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Booked Cornwell Village Hall for the seed potato collection day on Wednesday 7 October, two days after the Oakhurst delivery, 10:00 to 12:00. Members collect their packs there.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e9",
+     "e10"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-28",
+    "type": "letter",
+    "from": "Harborough Mutual",
+    "text": "Your site insurance renewal falls due on 1 September; premium unchanged at 210 pounds.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Rent invoices for 2026 go out as agreed: 35 pounds for a full plot, 17.50 pounds for a half plot, payment due 30 September.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Offered plot 14B to Tom Whitley, first on the waiting list, at the standard 35 pounds full-plot rent.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Ordered 200 bamboo canes from Fernbrook Supplies at Gordon's quoted 1.10 pounds each, 220 pounds total, for delivery to the Ashfield site.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-14",
+    "type": "invoice",
+    "from": "Priya Nair (Oakhurst Seeds)",
+    "text": "Invoice OK-4471 for 288 pounds, 120 packs of Arran seed potato. Payment terms: 14 days after delivery.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "Booked Cornwell Village Hall for the AGM on Saturday 14 November, evening slot, as Rita offered.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-28",
+    "type": "task",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "To do: pay Oakhurst invoice OK-4471 within 14 days of the seed delivery.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-30",
+    "type": "call",
+    "from": "Marta Kovač (Fieldside Contractors)",
+    "text": "Called about the rotavator service; can take a slot on the upper field any Tuesday.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Priya Nair (Oakhurst Seeds)",
+    "text": "Looking forward to seeing you on the autumn run on Monday 5 October — Colin will bring the seed potatoes straight to the Ashfield site.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Jim Aldous (plot 6)",
+    "text": "Question: is the half-plot rent 17.50 pounds again this year?",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Gordon Pike (Fernbrook Supplies)",
+    "text": "Your 200 canes were delivered to the Ashfield site on 8 September; invoice attached.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Sue Pym (Ashfield Allotment Society)",
+    "text": "September committee minutes: rents confirmed, plot 14B offered, seed collection day set for 7 October at the hall.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Priya Nair (Oakhurst Seeds)",
+    "text": "Your green manure seed mix ships separately by courier on Monday 12 October — that one does not come on our van run.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Priya Nair (Oakhurst Seeds)",
+    "text": "A change to our autumn schedule: the Oakhurst van run will now reach Ashfield on Monday 19 October instead of 5 October. Colin apologises for the shift; everything else about the run stays the same.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-23",
+    "type": "email",
+    "from": "Rita Nash (Cornwell Village Hall)",
+    "text": "Just confirming your bookings: the seed potato collection morning on Wednesday 7 October and the AGM on Saturday 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-26",
+    "type": "message",
+    "from": "Tom Whitley",
+    "text": "Happy to take plot 14B — will the shared compost deliveries still come to the store shed?",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-30",
+    "type": "note",
+    "from": "Maureen Ellis (Ashfield Allotment Society)",
+    "text": "October tomorrow: check the Oakhurst seed order details are right, then send the members their collection notice.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Oakhurst bulk seed potato order",
+    "fields": {
+     "supplier": "Oakhurst Seeds",
+     "item": "Arran seed potato packs",
+     "quantity": "120",
+     "unit_price": "2.40",
+     "delivery_date": "2026-10-05",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Autumn delivery method",
+    "fields": {
+     "method": "Oakhurst own van",
+     "driver": "Colin",
+     "courier": "not needed",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Fernbrook canes order",
+    "fields": {
+     "supplier": "Fernbrook Supplies",
+     "item": "bamboo canes",
+     "quantity": "200",
+     "delivery_date": "2026-09-08",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Seed potato collection day",
+    "fields": {
+     "date": "2026-10-07",
+     "place": "Cornwell Village Hall",
+     "time": "10:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "AGM 2026",
+    "fields": {
+     "date": "2026-11-14",
+     "place": "Cornwell Village Hall",
+     "time": "19:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Plot offer - 14B",
+    "fields": {
+     "name": "Tom Whitley",
+     "plot": "14B",
+     "rent": "35",
+     "status": "offered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Rita Nash (Cornwell Village Hall)",
+    "rule": "e1"
+   }
+  ],
+  "task": "It's October — can you check our Oakhurst seed order is in order and then send the members their seed potato collection notice with the dates? Rita will expect to hear from us about the hall in good time.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "delivery_date",
+    "value": "2026-10-19",
+    "stale": [
+     "2026-10-05"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ashfield Allotment Society members",
+    "regarding": "ORD-1",
+    "says": [
+     "2026-10-19",
+     "2026-10-21",
+     "Cornwell Village Hall"
+    ],
+    "stale": [
+     "2026-10-05",
+     "2026-10-07"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change (Priya's 18 September email) revokes the 5 October delivery fact; the new run date is 19 October. The bulk order ORD-1 (e9) rests on that fact, so its delivery_date is REVISE and the member notice must carry the new arrival and collection dates. The hall booking EV-1 (e11) rests on the order and so is two hops from the fact, but its date is protected by Rita Nash's consent rule, so the assistant must ask her rather than change EV-1. The courier decision ORD-2 (e8) rests on the same fact but only uses the standing part of it (Oakhurst's own van with Colin), so it is KEEP, and all other records are untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "compost restock",
+    "counterpart": "Priya Nair",
+    "org": "Oakhurst Seeds",
+    "item": "peat-free compost",
+    "unit": "bags",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Ashfield store shed"
+   },
+   {
+    "kind": "order",
+    "topic": "green manure mix",
+    "counterpart": "Priya Nair",
+    "org": "Oakhurst Seeds",
+    "item": "green manure seed mix",
+    "unit": "kg",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Ashfield store shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "hall small room",
+    "counterpart": "Rita Nash",
+    "org": "Cornwell Village Hall",
+    "item": "small meeting room",
+    "unit": "",
+    "values": [
+     "small meeting room",
+     "main hall",
+     "kitchen annex"
+    ],
+    "place": "Cornwell Village Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "canes",
+    "counterpart": "Gordon Pike",
+    "org": "Fernbrook Supplies",
+    "item": "bamboo canes",
+    "unit": "bundles",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Ashfield store shed"
+   },
+   {
+    "kind": "order",
+    "topic": "water butts",
+    "counterpart": "Gordon Pike",
+    "org": "Fernbrook Supplies",
+    "item": "water butt",
+    "unit": "units",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Ashfield site"
+   },
+   {
+    "kind": "booking",
+    "topic": "rotavator service",
+    "counterpart": "Marta Kovač",
+    "org": "Fieldside Contractors",
+    "item": "rotavator slot",
+    "unit": "",
+    "values": [
+     "upper field",
+     "lower field",
+     "orchard strip"
+    ],
+    "place": "Ashfield site"
+   },
+   {
+    "kind": "booking",
+    "topic": "school plot tours",
+    "counterpart": "Anna Bell",
+    "org": "Cornwell Primary School",
+    "item": "plot tour",
+    "unit": "",
+    "values": [
+     "plot 1",
+     "community plot",
+     "pond corner"
+    ],
+    "place": "Ashfield site"
+   },
+   {
+    "kind": "order",
+    "topic": "garden fleece",
+    "counterpart": "Nadia Roos",
+    "org": "Harborough Twine & Netting",
+    "item": "garden fleece",
+    "unit": "rolls",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Ashfield store shed"
+   },
+   {
+    "kind": "order",
+    "topic": "work gloves",
+    "counterpart": "Nadia Roos",
+    "org": "Harborough Twine & Netting",
+    "item": "work gloves",
+    "unit": "pairs",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Ashfield store shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "manure deliveries",
+    "counterpart": "Bill Fraser",
+    "org": "Hollow Lane Farm",
+    "item": "manure drop",
+    "unit": "",
+    "values": [
+     "upper gate",
+     "lower gate",
+     "store yard"
+    ],
+    "place": "Ashfield site"
+   },
+   {
+    "kind": "booking",
+    "topic": "waiting-list viewings",
+    "counterpart": "Sue Pym",
+    "org": "Ashfield Allotment Society",
+    "item": "plot viewing",
+    "unit": "",
+    "values": [
+     "plot 7",
+     "plot 14B",
+     "plot 22"
+    ],
+    "place": "Ashfield site"
+   }
+  ],
+  "id": "G500-1-01",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

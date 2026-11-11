@@ -1,0 +1,602 @@
+{
+ "id": "G100-3-05",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 4,
+ "setting": "The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability",
+ "prompt_sha256": "b0399124e8a042f5afcc549e2c50dc84959e7ab5aff37415d5886823ba06d1a1",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The Gloaming tech week room shuffle\",\n  \"setting\": \"The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability\",\n  \"owner\": \"Priya\",\n  \"org\": \"Littlewick Playhouse\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing note for the production file: no confirmed rehearsal that involves our visiting director may be moved to another date or another room without Marcus Vane agreeing to it first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"House policy at Littlewick Playhouse: after any Main Stage resurfacing, no stage combat and no heavy scenery moves on that stage until the new surface is fully cured, whatever else changes in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Priya, the 'Gloaming' cast list is fixed at eight, and all eight are free for rehearsal weeks beginning 12 and 19 October.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Layout reminder for the file: the Main Stage is our only full-size stage; the Rehearsal Room sits above the box office and takes the full cast seated but no scenery.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Priya, I'll be in residence at Littlewick from 6 October. Keep the Act II work in mornings where you can, and I'd like a proper blocking run before tech.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Nell Harper (Bramble Stage Supplies)\", \"text\": \"Quote for gaff tape: 4.20 per roll on boxes of any size, delivery to the Rehearsal Room store within a week.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 24 rolls of gaff tape from Bramble Stage Supplies at 4.20 a roll, delivered to the Rehearsal Room store.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Friends-of-the-theatre newsletter copy is ready for your check whenever you have a moment.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Notes on Act II attached. The knife fight needs a proper fight call before tech, and the sit-down should be the whole cast.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-21\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Draft rehearsal plan for 'The Gloaming': Act II sit-down pencilled on the Main Stage, Wednesday 14 October at 19:00, cast only.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Heads up, Priya: the Main Stage will be closed all day on Wednesday 14 October for floor resurfacing. The new surface cures over the following week, so nothing sharp, no combat and no heavy scenery on that stage until 21 October.\", \"role\": \"fact\", \"ends\": \"2026-10-21\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Because the Main Stage is shut on the 14th for the resurfacing, I've moved the Act II sit-down to the Rehearsal Room, still Wednesday 14 October at 19:00, cast only.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled Marcus's Act II blocking run in the Rehearsal Room on Thursday 15 October, 10:00 to 13:00, so the company stays in one room that week while the stage works finish. It's a morning slot, as he asked.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Fight call for the Act II knife work set for Saturday 17 October at 14:00 in the Rehearsal Room, keeping all combat off the Main Stage until the new floor is cured on 21 October.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-3\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marion Key (Costumes)\", \"text\": \"Wardrobe fittings list for 'The Gloaming' attached; I'll take the Green Room for fittings on the afternoons of tech week.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Production meeting minutes: 'Gloaming' opens 24 October; tech week 12 to 18 October; Priya to hold the rehearsal schedule; Theo to manage the stage works.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-16\", \"type\": \"notice\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Fire drill notice: the building drill will run at 11:00 on Tuesday 6 October; all rooms including the Rehearsal Room must be cleared for twenty minutes.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: chase Harriet at Peak Print about the 'Gloaming' programme proofs by 5 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Good news, Priya: the contractors can do the floor resurfacing in one overnight session on Sunday 11 October, so the Main Stage is open as usual from Monday 12 October and there is no closure on the 14th. The cure period is unchanged, though: keep combat and heavy scenery off the stage until the 21st, as per your house policy.\", \"role\": \"change\", \"revokes\": [\"e11\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Reminder: the youth theatre has the Rehearsal Room on Tuesday 6 October evening, and the room's heater is being serviced on the 14th, so it'll be a bit chilly in there that evening.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Looking forward to tech week, Priya. I'll see you Thursday for the blocking run, and let's make the sit-down on Wednesday a full-cast one.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Box office report: 'The Gloaming' has sold 210 seats so far across the run.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"The Gloaming - Act II sit-down\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"19:00\", \"place\": \"Rehearsal Room\", \"attendees\": \"8\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"The Gloaming - Act II blocking run\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"10:00\", \"place\": \"Rehearsal Room\", \"led_by\": \"Marcus Vane\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"The Gloaming - fight call (knife work)\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"14:00\", \"place\": \"Rehearsal Room\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Gaff tape - Bramble Stage Supplies\", \"fields\": {\"item\": \"Gaff tape\", \"quantity\": \"24\", \"unit_cost\": \"4.20\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"place\", \"date\"], \"from\": \"Marcus Vane\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you sort out tech week for me? Wednesday's Act II sit-down should be on the Main Stage - please put that right in the schedule - and then message Marcus about Thursday's blocking run: ask whether he'd like it on the stage too, and confirm the time with him.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"Main Stage\", \"stale\": [\"Rehearsal Room\"], \"task\": true},\n    {\"message_to\": \"Marcus Vane\", \"regarding\": \"EV-2\", \"says\": [\"Main Stage is open from 12 October\", \"Act II blocking run, Thursday 15 October, 10:00\", \"ask whether the blocking run should move to the Main Stage\"], \"stale\": [\"Main Stage closed on 14 October\"], \"task\": true}\n  ],\n  \"why\": \"The correction (e19) cancels only the 14 October Main Stage closure, so the sit-down (EV-1), moved off the stage purely because of that closure, reverts to the Main Stage with no one's consent needed. The blocking run (EV-2) was placed in the Rehearsal Room only as a knock-on of that move and involves the director, so under the e1 rule the assistant must ask Marcus Vane rather than change the record. The fight call (EV-3) rests on the curing restriction, which the correction explicitly leaves standing until 21 October, so it stays in the Rehearsal Room; the gaff tape order is untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Rosin restock\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"rosin\", \"unit\": \"tin\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rehearsal Room store\"},\n    {\"kind\": \"booking\", \"topic\": \"Youth theatre workshops\", \"counterpart\": \"Dot Fenn\", \"org\": \"Littlewick Youth Theatre\", \"item\": \"youth theatre workshop\", \"values\": [\"Rehearsal Room\", \"Green Room\"], \"place\": \"Rehearsal Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Rigging checks\", \"counterpart\": \"Theo Brand\", \"org\": \"Littlewick Playhouse facilities\", \"item\": \"rigging inspection\", \"values\": [\"Main Stage\", \"Grid above Main Stage\"], \"place\": \"Main Stage\"},\n    {\"kind\": \"order\", \"topic\": \"Stage blood\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"stage blood\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"props store\"},\n    {\"kind\": \"booking\", \"topic\": \"Front-of-house meetings\", \"counterpart\": \"Ruth Iyengar\", \"org\": \"Littlewick Playhouse\", \"item\": \"FOH team meeting\", \"values\": [\"Green Room\", \"Rehearsal Room\"], \"place\": \"Green Room\"},\n    {\"kind\": \"order\", \"topic\": \"Refreshments\", \"counterpart\": \"Sam Okafor\", \"org\": \"Corner Deli\", \"item\": \"coffee and biscuits\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\"], \"place\": \"Green Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Scenery move windows\", \"counterpart\": \"Theo Brand\", \"org\": \"Littlewick Playhouse facilities\", \"item\": \"scenery move window\", \"values\": [\"Main Stage\", \"Loading bay\"], \"place\": \"Main Stage\"},\n    {\"kind\": \"order\", \"topic\": \"Batteries\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"AA batteries\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"tech box\"},\n    {\"kind\": \"booking\", \"topic\": \"Wardrobe fittings\", \"counterpart\": \"Marion Key\", \"org\": \"Costumes\", \"item\": \"costume fitting\", \"values\": [\"Green Room\", \"Rehearsal Room\"], \"place\": \"Green Room\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Glen Sweep\", \"org\": \"Wick Cleaning Co\", \"item\": \"floor cleaner\", \"unit\": \"bottle\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"Rehearsal Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Schools matinee briefings\", \"counterpart\": \"Ruth Iyengar\", \"org\": \"Littlewick Playhouse\", \"item\": \"schools briefing\", \"values\": [\"Stalls\", \"Green Room\"], \"place\": \"Stalls\"},\n    {\"kind\": \"order\", \"topic\": \"Programme paper\", \"counterpart\": \"Harriet Bloom\", \"org\": \"Peak Print\", \"item\": \"programme paper\", \"unit\": \"ream\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"box office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3140,
+    "completion_tokens": 8997,
+    "reasoning_tokens": 5518,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04048072,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The Gloaming tech week room shuffle\",\n  \"setting\": \"The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability\",\n  \"owner\": \"Priya\",\n  \"org\": \"Littlewick Playhouse\",\n  \"now\": \"2026-10-08\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing note for the production file: no confirmed rehearsal that involves our visiting director may be moved to another date or another room without Marcus Vane agreeing to it first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"House policy at Littlewick Playhouse: after any Main Stage resurfacing, no stage combat and no heavy scenery moves on that stage until the new surface is fully cured, whatever else changes in the schedule.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Priya, the 'Gloaming' cast list is fixed at eight, and all eight are free for rehearsal weeks beginning 12 and 19 October.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-25\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Layout reminder for the file: the Main Stage is our only full-size stage; the Rehearsal Room sits above the box office and takes the full cast seated but no scenery.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Priya, I'll be in residence at Littlewick from 6 October. Keep the Act II work in mornings where you can, and I'd like a proper blocking run before tech.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Nell Harper (Bramble Stage Supplies)\", \"text\": \"Quote for gaff tape: 4.20 per roll on boxes of any size, delivery to the Rehearsal Room store within a week.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 24 rolls of gaff tape from Bramble Stage Supplies at 4.20 a roll, delivered to the Rehearsal Room store.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Friends-of-the-theatre newsletter copy is ready for your check whenever you have a moment.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Notes on Act II attached. The knife fight needs a proper fight call before tech, and the sit-down should be the whole cast.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-21\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Draft rehearsal plan for 'The Gloaming': Act II sit-down pencilled on the Main Stage, Wednesday 14 October at 19:00, cast only.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Heads up, Priya: the Main Stage will be closed all day on Wednesday 14 October for floor resurfacing. The new surface cures over the following week, so nothing sharp, no combat and no heavy scenery on that stage until 21 October.\", \"role\": \"fact\", \"ends\": \"2026-10-21\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Because the Main Stage is shut on the 14th for the resurfacing, I've moved the Act II sit-down to the Rehearsal Room, still Wednesday 14 October at 19:00, cast only.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled Marcus's Act II blocking run in the Rehearsal Room on Thursday 15 October, 10:00 to 13:00, so the company stays in one room that week while the stage works finish. It's a morning slot, as he asked.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Fight call for the Act II knife work set for Saturday 17 October at 14:00 in the Rehearsal Room, keeping all combat off the Main Stage until the new floor is cured on 21 October.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marion Key (Costumes)\", \"text\": \"Wardrobe fittings list for 'The Gloaming' attached; I'll take the Green Room for fittings on the afternoons of tech week.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Production meeting minutes: 'Gloaming' opens 24 October; tech week 12 to 18 October; Priya to hold the rehearsal schedule; Theo to manage the stage works.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-16\", \"type\": \"notice\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Fire drill notice: the building drill will run at 11:00 on Tuesday 6 October; all rooms including the Rehearsal Room must be cleared for twenty minutes.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: chase Harriet at Peak Print about the 'Gloaming' programme proofs by 5 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Good news, Priya: the contractors can do the floor resurfacing in one overnight session on Sunday 11 October, so the Main Stage is open as usual from Monday 12 October and there is no closure on the 14th. The cure period is unchanged, though: keep combat and heavy scenery off the stage until the 21st, as per your house policy.\", \"role\": \"change\", \"revokes\": [\"e11\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Theo Brand (Littlewick Playhouse facilities)\", \"text\": \"Reminder: the youth theatre has the Rehearsal Room on Tuesday 6 October evening, and the room's heater is being serviced on the 14th, so it'll be a bit chilly in there that evening.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marcus Vane\", \"text\": \"Looking forward to tech week, Priya. I'll see you Thursday for the blocking run, and let's make the sit-down on Wednesday a full-cast one.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Ruth Iyengar (Littlewick Playhouse)\", \"text\": \"Box office report: 'The Gloaming' has sold 210 seats so far across the run.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"The Gloaming - Act II sit-down\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"19:00\", \"place\": \"Rehearsal Room\", \"attendees\": \"8\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"The Gloaming - Act II blocking run\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"10:00\", \"place\": \"Rehearsal Room\", \"led_by\": \"Marcus Vane\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"The Gloaming - fight call (knife work)\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"14:00\", \"place\": \"Rehearsal Room\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Gaff tape - Bramble Stage Supplies\", \"fields\": {\"item\": \"Gaff tape\", \"quantity\": \"24\", \"unit_cost\": \"4.20\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"place\", \"date\"], \"from\": \"Marcus Vane\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you sort out tech week for me? Wednesday's Act II sit-down should be on the Main Stage - please put that right in the schedule - and then message Marcus about Thursday's blocking run: ask whether he'd like it on the stage too, and confirm the time with him.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"Main Stage\", \"stale\": [\"Rehearsal Room\"], \"task\": true},\n    {\"message_to\": \"Marcus Vane\", \"regarding\": \"EV-2\", \"says\": [\"Main Stage is open from 12 October\", \"Act II blocking run, Thursday 15 October, 10:00\", \"ask whether the blocking run should move to the Main Stage\"], \"stale\": [\"Main Stage closed on 14 October\"], \"task\": true}\n  ],\n  \"why\": \"The correction (e19) cancels only the 14 October Main Stage closure, so the sit-down (EV-1), moved off the stage purely because of that closure, reverts to the Main Stage with no one's consent needed. The blocking run (EV-2) was placed in the Rehearsal Room only as a knock-on of that move and involves the director, so under the e1 rule the assistant must ask Marcus Vane rather than change the record. The fight call (EV-3) rests on the curing restriction, which the correction explicitly leaves standing until 21 October, so it is KEEP and stays in the Rehearsal Room; the gaff tape order is untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Rosin restock\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"rosin\", \"unit\": \"tin\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rehearsal Room store\"},\n    {\"kind\": \"booking\", \"topic\": \"Youth theatre workshops\", \"counterpart\": \"Dot Fenn\", \"org\": \"Littlewick Youth Theatre\", \"item\": \"youth theatre workshop\", \"values\": [\"Rehearsal Room\", \"Green Room\", \"Stalls\"], \"place\": \"Rehearsal Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Rigging checks\", \"counterpart\": \"Theo Brand\", \"org\": \"Littlewick Playhouse facilities\", \"item\": \"rigging inspection\", \"values\": [\"Main Stage\", \"Grid above Main Stage\", \"Loading bay\"], \"place\": \"Main Stage\"},\n    {\"kind\": \"order\", \"topic\": \"Stage blood\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"stage blood\", \"unit\": \"bottle\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"props store\"},\n    {\"kind\": \"booking\", \"topic\": \"Front-of-house meetings\", \"counterpart\": \"Ruth Iyengar\", \"org\": \"Littlewick Playhouse\", \"item\": \"FOH team meeting\", \"values\": [\"Green Room\", \"Rehearsal Room\", \"Stalls foyer\"], \"place\": \"Green Room\"},\n    {\"kind\": \"order\", \"topic\": \"Refreshments\", \"counterpart\": \"Sam Okafor\", \"org\": \"Corner Deli\", \"item\": \"coffee and biscuits\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"10\"], \"place\": \"Green Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Scenery move windows\", \"counterpart\": \"Theo Brand\", \"org\": \"Littlewick Playhouse facilities\", \"item\": \"scenery move window\", \"values\": [\"Main Stage\", \"Loading bay\", \"Grid above Main Stage\"], \"place\": \"Main Stage\"},\n    {\"kind\": \"order\", \"topic\": \"Batteries\", \"counterpart\": \"Nell Harper\", \"org\": \"Bramble Stage Supplies\", \"item\": \"AA batteries\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"tech box\"},\n    {\"kind\": \"booking\", \"topic\": \"Wardrobe fittings\", \"counterpart\": \"Marion Key\", \"org\": \"Costumes\", \"item\": \"costume fitting\", \"values\": [\"Green Room\", \"Rehearsal Room\", \"Dressing room 2\"], \"place\": \"Green Room\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Glen Sweep\", \"org\": \"Wick Cleaning Co\", \"item\": \"floor cleaner\", \"unit\": \"bottle\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"Rehearsal Room\"},\n    {\"kind\": \"booking\", \"topic\": \"Schools matinee briefings\", \"counterpart\": \"Ruth Iyengar\", \"org\": \"Littlewick Playhouse\", \"item\": \"schools briefing\", \"values\": [\"Stalls\", \"Green Room\", \"Rehearsal Room\"], \"place\": \"Stalls\"},\n    {\"kind\": \"order\", \"topic\": \"Programme paper\", \"counterpart\": \"Harriet Bloom\", \"org\": \"Peak Print\", \"item\": \"programme paper\", \"unit\": \"ream\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"box office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6792,
+    "completion_tokens": 3587,
+    "reasoning_tokens": 66,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02171656,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e14']\n- class 3: a decision citing the corrected fact for an aspect the correction leaves standing must be KEEP\n- noise topic 'Youth theatre workshops': values needs at least three entries\n- noise topic 'Rigging checks': values needs at least three entries\n- noise topic 'Front-of-house meetings': values needs at least three entries\n- noise topic 'Scenery move windows': values needs at least three entries\n- noise topic 'Wardrobe fittings': values needs at least three entries\n- noise topic 'Schools matinee briefings': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The Gloaming tech week room shuffle",
+  "setting": "The theatre stage manager at Littlewick Playhouse whose assistant keeps rehearsal schedules, cue sheets, and cast availability",
+  "owner": "Priya",
+  "org": "Littlewick Playhouse",
+  "now": "2026-10-08",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing note for the production file: no confirmed rehearsal that involves our visiting director may be moved to another date or another room without Marcus Vane agreeing to it first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Priya",
+    "text": "House policy at Littlewick Playhouse: after any Main Stage resurfacing, no stage combat and no heavy scenery moves on that stage until the new surface is fully cured, whatever else changes in the schedule.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Ruth Iyengar (Littlewick Playhouse)",
+    "text": "Priya, the 'Gloaming' cast list is fixed at eight, and all eight are free for rehearsal weeks beginning 12 and 19 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-25",
+    "type": "note",
+    "from": "Priya",
+    "text": "Layout reminder for the file: the Main Stage is our only full-size stage; the Rehearsal Room sits above the box office and takes the full cast seated but no scenery.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Marcus Vane",
+    "text": "Priya, I'll be in residence at Littlewick from 6 October. Keep the Act II work in mornings where you can, and I'd like a proper blocking run before tech.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-15",
+    "type": "quote",
+    "from": "Nell Harper (Bramble Stage Supplies)",
+    "text": "Quote for gaff tape: 4.20 per roll on boxes of any size, delivery to the Rehearsal Room store within a week.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered 24 rolls of gaff tape from Bramble Stage Supplies at 4.20 a roll, delivered to the Rehearsal Room store.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Ruth Iyengar (Littlewick Playhouse)",
+    "text": "Friends-of-the-theatre newsletter copy is ready for your check whenever you have a moment.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Marcus Vane",
+    "text": "Notes on Act II attached. The knife fight needs a proper fight call before tech, and the sit-down should be the whole cast.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-21",
+    "type": "note",
+    "from": "Priya",
+    "text": "Draft rehearsal plan for 'The Gloaming': Act II sit-down pencilled on the Main Stage, Wednesday 14 October at 19:00, cast only.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-30",
+    "type": "email",
+    "from": "Theo Brand (Littlewick Playhouse facilities)",
+    "text": "Heads up, Priya: the Main Stage will be closed all day on Wednesday 14 October for floor resurfacing. The new surface cures over the following week, so nothing sharp, no combat and no heavy scenery on that stage until 21 October.",
+    "role": "fact",
+    "ends": "2026-10-21"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Because the Main Stage is shut on the 14th for the resurfacing, I've moved the Act II sit-down to the Rehearsal Room, still Wednesday 14 October at 19:00, cast only.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e10"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-03",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Scheduled Marcus's Act II blocking run in the Rehearsal Room on Thursday 15 October, 10:00 to 13:00, so the company stays in one room that week while the stage works finish. It's a morning slot, as he asked.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Fight call for the Act II knife work set for Saturday 17 October at 14:00 in the Rehearsal Room, keeping all combat off the Main Stage until the new floor is cured on 21 October.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e2"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Marion Key (Costumes)",
+    "text": "Wardrobe fittings list for 'The Gloaming' attached; I'll take the Green Room for fittings on the afternoons of tech week.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Ruth Iyengar (Littlewick Playhouse)",
+    "text": "Production meeting minutes: 'Gloaming' opens 24 October; tech week 12 to 18 October; Priya to hold the rehearsal schedule; Theo to manage the stage works.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-16",
+    "type": "notice",
+    "from": "Theo Brand (Littlewick Playhouse facilities)",
+    "text": "Fire drill notice: the building drill will run at 11:00 on Tuesday 6 October; all rooms including the Rehearsal Room must be cleared for twenty minutes.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do: chase Harriet at Peak Print about the 'Gloaming' programme proofs by 5 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Theo Brand (Littlewick Playhouse facilities)",
+    "text": "Good news, Priya: the contractors can do the floor resurfacing in one overnight session on Sunday 11 October, so the Main Stage is open as usual from Monday 12 October and there is no closure on the 14th. The cure period is unchanged, though: keep combat and heavy scenery off the stage until the 21st, as per your house policy.",
+    "role": "change",
+    "revokes": [
+     "e11"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Theo Brand (Littlewick Playhouse facilities)",
+    "text": "Reminder: the youth theatre has the Rehearsal Room on Tuesday 6 October evening, and the room's heater is being serviced on the 14th, so it'll be a bit chilly in there that evening.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Marcus Vane",
+    "text": "Looking forward to tech week, Priya. I'll see you Thursday for the blocking run, and let's make the sit-down on Wednesday a full-cast one.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-06",
+    "type": "note",
+    "from": "Ruth Iyengar (Littlewick Playhouse)",
+    "text": "Box office report: 'The Gloaming' has sold 210 seats so far across the run.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "The Gloaming - Act II sit-down",
+    "fields": {
+     "date": "2026-10-14",
+     "time": "19:00",
+     "place": "Rehearsal Room",
+     "attendees": "8",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "The Gloaming - Act II blocking run",
+    "fields": {
+     "date": "2026-10-15",
+     "time": "10:00",
+     "place": "Rehearsal Room",
+     "led_by": "Marcus Vane",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "The Gloaming - fight call (knife work)",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "14:00",
+     "place": "Rehearsal Room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Gaff tape - Bramble Stage Supplies",
+    "fields": {
+     "item": "Gaff tape",
+     "quantity": "24",
+     "unit_cost": "4.20",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "place",
+     "date"
+    ],
+    "from": "Marcus Vane",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you sort out tech week for me? Wednesday's Act II sit-down should be on the Main Stage - please put that right in the schedule - and then message Marcus about Thursday's blocking run: ask whether he'd like it on the stage too, and confirm the time with him.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "place",
+    "value": "Main Stage",
+    "stale": [
+     "Rehearsal Room"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marcus Vane",
+    "regarding": "EV-2",
+    "says": [
+     "Main Stage is open from 12 October",
+     "Act II blocking run, Thursday 15 October, 10:00",
+     "ask whether the blocking run should move to the Main Stage"
+    ],
+    "stale": [
+     "Main Stage closed on 14 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The correction (e19) cancels only the 14 October Main Stage closure, so the sit-down (EV-1), moved off the stage purely because of that closure, reverts to the Main Stage with no one's consent needed. The blocking run (EV-2) was placed in the Rehearsal Room only as a knock-on of that move and involves the director, so under the e1 rule the assistant must ask Marcus Vane rather than change the record. The fight call (EV-3) rests on the curing restriction, which the correction explicitly leaves standing until 21 October, so it is KEEP and stays in the Rehearsal Room; the gaff tape order is untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Rosin restock",
+    "counterpart": "Nell Harper",
+    "org": "Bramble Stage Supplies",
+    "item": "rosin",
+    "unit": "tin",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Rehearsal Room store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Youth theatre workshops",
+    "counterpart": "Dot Fenn",
+    "org": "Littlewick Youth Theatre",
+    "item": "youth theatre workshop",
+    "values": [
+     "Rehearsal Room",
+     "Green Room",
+     "Stalls"
+    ],
+    "place": "Rehearsal Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Rigging checks",
+    "counterpart": "Theo Brand",
+    "org": "Littlewick Playhouse facilities",
+    "item": "rigging inspection",
+    "values": [
+     "Main Stage",
+     "Grid above Main Stage",
+     "Loading bay"
+    ],
+    "place": "Main Stage"
+   },
+   {
+    "kind": "order",
+    "topic": "Stage blood",
+    "counterpart": "Nell Harper",
+    "org": "Bramble Stage Supplies",
+    "item": "stage blood",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "props store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Front-of-house meetings",
+    "counterpart": "Ruth Iyengar",
+    "org": "Littlewick Playhouse",
+    "item": "FOH team meeting",
+    "values": [
+     "Green Room",
+     "Rehearsal Room",
+     "Stalls foyer"
+    ],
+    "place": "Green Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Refreshments",
+    "counterpart": "Sam Okafor",
+    "org": "Corner Deli",
+    "item": "coffee and biscuits",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "Green Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Scenery move windows",
+    "counterpart": "Theo Brand",
+    "org": "Littlewick Playhouse facilities",
+    "item": "scenery move window",
+    "values": [
+     "Main Stage",
+     "Loading bay",
+     "Grid above Main Stage"
+    ],
+    "place": "Main Stage"
+   },
+   {
+    "kind": "order",
+    "topic": "Batteries",
+    "counterpart": "Nell Harper",
+    "org": "Bramble Stage Supplies",
+    "item": "AA batteries",
+    "unit": "pack",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "tech box"
+   },
+   {
+    "kind": "booking",
+    "topic": "Wardrobe fittings",
+    "counterpart": "Marion Key",
+    "org": "Costumes",
+    "item": "costume fitting",
+    "values": [
+     "Green Room",
+     "Rehearsal Room",
+     "Dressing room 2"
+    ],
+    "place": "Green Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Glen Sweep",
+    "org": "Wick Cleaning Co",
+    "item": "floor cleaner",
+    "unit": "bottle",
+    "values": [
+     "3",
+     "5",
+     "6"
+    ],
+    "place": "Rehearsal Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Schools matinee briefings",
+    "counterpart": "Ruth Iyengar",
+    "org": "Littlewick Playhouse",
+    "item": "schools briefing",
+    "values": [
+     "Stalls",
+     "Green Room",
+     "Rehearsal Room"
+    ],
+    "place": "Stalls"
+   },
+   {
+    "kind": "order",
+    "topic": "Programme paper",
+    "counterpart": "Harriet Bloom",
+    "org": "Peak Print",
+    "item": "programme paper",
+    "unit": "ream",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "box office"
+   }
+  ],
+  "id": "G100-3-05",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The EV-1 REVISE mark is contestable: the e1 rule covers any confirmed rehearsal involving the visiting director, EV-1 is confirmed, and Marcus's e21 email shows he cares about the Wednesday sit-down, so moving it may need his consent (ASK), not a plain REVISE. The rest of the structure (chain, KEEP on EV-3, distance, counts, hidden change) holds up.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The EV-1 REVISE mark is contestable: the e1 rule covers any confirmed rehearsal involving the visiting director, EV-1 is confirmed, and Marcus's e21 email shows he cares about the Wednesday sit-down, so moving it may need his consent (ASK), not a plain REVISE. The rest of the structure (chain, KEEP on EV-3, distance, counts, hidden change) holds up."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4975,
+    "completion_tokens": 2568,
+    "reasoning_tokens": 2370,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017815,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fec1696a10cd429158bddd1e499c17b61c03bbe475dc0f753e25ba3fe242ebd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The correction revokes only the 14 October closure (A); EV-1 (B) rests on it and reverts to the Main Stage with no consent needed (cast-only, so e1 does not apply), EV-2 (C) rests on EV-1 not on A directly and involves Marcus, so e1 requires asking rather than changing it, and EV-3 (D) cites the cure restriction that e19 explicitly leaves standing, so KEEP is right. Consent map matches rule e1, and the gaff tape order is untouched. Counts (22 core events, 4 decisions), the change's 10-day distance with later core events, and its mid-history placement all meet the requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The correction revokes only the 14 October closure (A); EV-1 (B) rests on it and reverts to the Main Stage with no consent needed (cast-only, so e1 does not apply), EV-2 (C) rests on EV-1 not on A directly and involves Marcus, so e1 requires asking rather than changing it, and EV-3 (D) cites the cure restriction that e19 explicitly leaves standing, so KEEP is right. Consent map matches rule e1, and the gaff tape order is untouched. Counts (22 core events, 4 decisions), the change's 10-day distance with later core events, and its mid-history placement all meet the requirements."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3550,
+    "completion_tokens": 451,
+    "reasoning_tokens": 247,
+    "cached_tokens": 256
+   },
+   "cost": 0.0167238,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fec1696a10cd429158bddd1e499c17b61c03bbe475dc0f753e25ba3fe242ebd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"no\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task requires workplace action, but it explicitly identifies the sit-down's room as needing correction and supplies the replacement, hinting at the change rather than leaving it to be discovered. The expected state, chain structure, tier counts and timing, and placement of the change otherwise satisfy the requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "no",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task requires workplace action, but it explicitly identifies the sit-down's room as needing correction and supplies the replacement, hinting at the change rather than leaving it to be discovered. The expected state, chain structure, tier counts and timing, and placement of the change otherwise satisfy the requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3461,
+    "completion_tokens": 483,
+    "reasoning_tokens": 388,
+    "cached_tokens": 0
+   },
+   "cost": 0.067405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2fec1696a10cd429158bddd1e499c17b61c03bbe475dc0f753e25ba3fe242ebd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

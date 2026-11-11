@@ -1,0 +1,663 @@
+{
+ "id": "G100-2-07",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 6,
+ "setting": "The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders",
+ "prompt_sha256": "9fa875fbec75b1503885851e8e56f545f821f0a2c16acf04cd5d5da024086a36",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Copper Kettle sign-off threshold raised\",\n  \"setting\": \"The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders\",\n  \"owner\": \"Marta\",\n  \"org\": \"Copper Kettle Café\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Ravi Sharma (Bramble Roasters)\", \"text\": \"Confirming our standing details: espresso beans at 6 dollars a kilo, delivered to the café kitchen; orders placed by Tuesday arrive that Friday.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule from today: every supplier order over 200 dollars needs Priya Nair's written sign-off before it is confirmed. No exceptions.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"For catering clients: a booking is only marked confirmed once the client has approved the final menu and price in writing, and a confirmed booking is never moved or repriced without the client's written agreement.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Price list as agreed: spiced pear syrup 155 dollars a case of 10 kg, vanilla syrup 40 dollars a bottle; we deliver to the café within three working days.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Reminder: fire drill on 18 June at 7 a.m. before we open, everyone to the car park.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 40 kg of espresso beans from Bramble Roasters at 240 dollars for the summer; it was over 200 dollars so Priya signed off the same day and the order is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Sam Petrie (Dell Dairy)\", \"text\": \"Our milk run stays Tuesdays and Fridays, 95 dollars a week for four crates, delivered to the café kitchen before 7 a.m.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-14\", \"type\": \"quote\", \"from\": \"Mel Fong (Oakleaf Paper)\", \"text\": \"Quote for winter stock: 35 dollars per box of 200 takeaway cups, 5 percent off on orders over six boxes, delivery to the store cupboard.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The back room seats 25 at a push, 20 comfortably; community groups can book it free on weekday mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Stroller Club coffee morning into the back room every Thursday at 9:30, free of charge as a community booking, starting this week.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Studio)\", \"text\": \"We'd love a catered evening at the café for our design team on Friday 6 November, around 40 people, budget in the region of 650 dollars. Can you put something together?\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Banking update, agreed with Marta at the September review: from 10 October the sign-off threshold for supplier orders rises from 200 to 500 dollars. The new bank account's approval workflow makes the smaller checks unnecessary. Orders already confirmed keep their sign-off on file.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e13\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Good news, we have plenty of spiced pear syrup in stock for early November delivery if you want to place the order this week.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed the order with Harrow Foods for the Northgate evening: two cases of spiced pear syrup at 155 dollars each, 310 dollars in total, delivery 2 November. It's over 200 dollars, so I've left it waiting for Priya's sign-off before we call it confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e11\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Menu draft for Northgate: spiced pear cordial made with the Harrow syrup, plus autumn platters; works out at 640 dollars for 40 guests, inside their 650-dollar budget.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the Northgate Studio Harvest evening as a provisional booking for Friday 6 November at 7 p.m. in the front room, 40 guests, the cordial and autumn platter menu at 640 dollars, resting on the Harrow syrup order — we'll confirm once Dana approves the final menu.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e14\", \"e15\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered eight boxes of winter cups from Oakleaf Paper, 280 dollars after the bulk discount; that's over 200 dollars so it waits for Priya's sign-off before confirmation.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"ORD-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 60 kg of Christmas blend from Bramble Roasters for the festive menu, 560 dollars, delivery 13 November; it's well over the limit, so Priya's sign-off is required before we confirm it.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Heads up for your planning: from 1 December our spiced pear syrup cases go up to 170 dollars each under the new price list. Everything ordered before then stays at the current price.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Ravi Sharma (Bramble Roasters)\", \"text\": \"Your bean delivery will arrive Thursday 29 October as usual, straight to the café kitchen.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Lena Okafor\", \"text\": \"Could I swap my Saturday opening shift with Tom next week? He's fine with it.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-25\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Don't forget to pay the Harrow invoice by 5 November once the syrup order is settled.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Summer espresso beans\", \"fields\": {\"supplier\": \"Bramble Roasters\", \"item\": \"espresso beans 40 kg\", \"amount\": \"240\", \"order_date\": \"2026-07-10\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Spiced pear syrup for Northgate evening\", \"fields\": {\"supplier\": \"Harrow Foods\", \"item\": \"spiced pear syrup 2 cases\", \"amount\": \"310\", \"order_date\": \"2026-10-14\", \"delivery_date\": \"2026-11-02\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Christmas blend beans\", \"fields\": {\"supplier\": \"Bramble Roasters\", \"item\": \"Christmas blend 60 kg\", \"amount\": \"560\", \"order_date\": \"2026-10-20\", \"delivery_date\": \"2026-11-13\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Winter takeaway cups\", \"fields\": {\"supplier\": \"Oakleaf Paper\", \"item\": \"winter cups 8 boxes\", \"amount\": \"280\", \"order_date\": \"2026-10-19\", \"delivery_date\": \"2026-11-06\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Stroller Club coffee mornings\", \"fields\": {\"day\": \"Thursday\", \"time\": \"09:30\", \"place\": \"back room\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Northgate Studio Harvest evening\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"19:00\", \"place\": \"front room\", \"guests\": \"40\", \"menu\": \"spiced pear cordial and autumn platters\", \"total\": \"640\", \"status\": \"provisional\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"status\", \"menu\", \"total\"], \"from\": \"Dana Whitfield (Northgate Studio)\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Today, please wrap up the Northgate evening: get the Harrow syrup order sorted out and send Dana at Northgate the confirmation for Friday 6 November with the menu and the total.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending Priya sign-off\"], \"task\": true},\n    {\"record\": \"ORD-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending Priya sign-off\"]},\n    {\"message_to\": \"Dana Whitfield (Northgate Studio)\", \"regarding\": \"EV-2\", \"says\": [\"2026-11-06\", \"40\", \"spiced pear cordial and autumn platters\", \"640\"], \"stale\": [\"pending Priya sign-off\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email raises the sign-off threshold from 200 to 500 dollars from 10 October, so the Harrow syrup order (310 dollars) and the Oakleaf cup order (280 dollars), both placed after that date, no longer need her sign-off and should be confirmed outright. The Christmas blend order (560 dollars) still exceeds the new threshold and the July bean order is already signed off, so both keep their pending/confirmed state. The Northgate evening rests on the Harrow order two hops from the amended rule, but the catering rule requires Dana's written approval of the final menu before the booking is confirmed, so the assistant must ask her rather than change EV-2 itself; the December syrup price rise is a distractor that leaves the current 310-dollar order untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"espresso bean restock\", \"counterpart\": \"Ravi Sharma\", \"org\": \"Bramble Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"vanilla syrup restock\", \"counterpart\": \"Bev Cole\", \"org\": \"Harrow Foods\", \"item\": \"vanilla syrup\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"milk delivery\", \"counterpart\": \"Sam Petrie\", \"org\": \"Dell Dairy\", \"item\": \"milk crates\", \"unit\": \"crate\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"takeaway cup restock\", \"counterpart\": \"Mel Fong\", \"org\": \"Oakleaf Paper\", \"item\": \"takeaway cups\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"pastry restock\", \"counterpart\": \"Tomas Ruiz\", \"org\": \"Ruiz Bakery\", \"item\": \"croissant trays\", \"unit\": \"tray\", \"values\": [\"3\", \"4\", \"6\"], \"place\": \"café counter\"},\n    {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Asha Devi\", \"org\": \"Fernwhistle Tea\", \"item\": \"loose tea\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"5\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Gus Hale\", \"org\": \"Squeaky Supply\", \"item\": \"sanitiser\", \"unit\": \"litre\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"book club evening\", \"counterpart\": \"June Park\", \"org\": \"Hillside Book Club\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\"], \"place\": \"back room\"},\n    {\"kind\": \"booking\", \"topic\": \"bookkeeping session\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Bookkeeping\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\"], \"place\": \"back room\"},\n    {\"kind\": \"booking\", \"topic\": \"client working session\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Studio\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\"], \"place\": \"front room\"},\n    {\"kind\": \"booking\", \"topic\": \"musician night\", \"counterpart\": \"Owen Bly\", \"org\": \"Bly Performing\", \"item\": \"performance slot\", \"unit\": \"slot\", \"values\": [\"Friday evening\", \"Saturday evening\"], \"place\": \"front room\"},\n    {\"kind\": \"booking\", \"topic\": \"supplier van run\", \"counterpart\": \"Lena Okafor\", \"org\": \"Copper Kettle staff\", \"item\": \"van booking\", \"unit\": \"run\", \"values\": [\"market run\", \"bank run\", \"depot run\"], \"place\": \"café car park\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3140,
+    "completion_tokens": 13028,
+    "reasoning_tokens": 9286,
+    "cached_tokens": 3072
+   },
+   "cost": 0.05821712,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Copper Kettle sign-off threshold raised\",\n  \"setting\": \"The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders\",\n  \"owner\": \"Marta\",\n  \"org\": \"Copper Kettle Café\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"email\", \"from\": \"Ravi Sharma (Bramble Roasters)\", \"text\": \"Confirming our standing details: espresso beans at 6 dollars a kilo, delivered to the café kitchen; orders placed by Tuesday arrive that Friday.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"House rule from today: every supplier order over 200 dollars needs Priya Nair's written sign-off before it is confirmed. No exceptions.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"For catering clients: a booking is only marked confirmed once the client has approved the final menu and price in writing, and a confirmed booking is never moved or repriced without the client's written agreement.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Price list as agreed: spiced pear syrup 155 dollars a case of 10 kg, vanilla syrup 40 dollars a bottle; we deliver to the café within three working days.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Reminder: fire drill on 18 June at 7 a.m. before we open, everyone to the car park.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 40 kg of espresso beans from Bramble Roasters at 240 dollars for the summer; it was over 200 dollars so Priya signed off the same day and the order is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Sam Petrie (Dell Dairy)\", \"text\": \"Our milk run stays Tuesdays and Fridays, 95 dollars a week for four crates, delivered to the café kitchen before 7 a.m.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-14\", \"type\": \"quote\", \"from\": \"Mel Fong (Oakleaf Paper)\", \"text\": \"Quote for winter stock: 35 dollars per box of 200 takeaway cups, 5 percent off on orders over six boxes, delivery to the store cupboard.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The back room seats 25 at a push, 20 comfortably; community groups can book it free on weekday mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Stroller Club coffee morning into the back room every Thursday at 9:30, free of charge as a community booking, starting this week.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Studio)\", \"text\": \"We'd love a catered evening at the café for our design team on Friday 6 November, around 40 people, budget in the region of 650 dollars. Can you put something together?\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Banking update, agreed with Marta at the September review: from 10 October the sign-off threshold for supplier orders rises from 200 to 500 dollars. The new bank account's approval workflow makes the smaller checks unnecessary. Orders already confirmed keep their sign-off on file.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e13\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Good news, we have plenty of spiced pear syrup in stock for early November delivery if you want to place the order this week.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed the order with Harrow Foods for the Northgate evening: two cases of spiced pear syrup at 155 dollars each, 310 dollars in total, delivery 2 November. It's over 200 dollars, so I've left it waiting for Priya's sign-off before we call it confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e11\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Menu draft for Northgate: spiced pear cordial made with the Harrow syrup, plus autumn platters; works out at 640 dollars for 40 guests, inside their 650-dollar budget.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-17\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the Northgate Studio Harvest evening as a provisional booking for Friday 6 November at 7 p.m. in the front room, 40 guests, the cordial and autumn platter menu at 640 dollars, resting on the Harrow syrup order — we'll confirm once Dana approves the final menu.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e14\", \"e15\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered eight boxes of winter cups from Oakleaf Paper, 280 dollars after the bulk discount; that's over 200 dollars so it waits for Priya's sign-off before confirmation.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e2\"], \"record\": \"ORD-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 60 kg of Christmas blend from Bramble Roasters for the festive menu, 560 dollars, delivery 13 November; it's well over the limit, so Priya's sign-off is required before we confirm it.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Bev Cole (Harrow Foods)\", \"text\": \"Heads up for your planning: from 1 December our spiced pear syrup cases go up to 170 dollars each under the new price list. Everything ordered before then stays at the current price.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Ravi Sharma (Bramble Roasters)\", \"text\": \"Your bean delivery will arrive Thursday 29 October as usual, straight to the café kitchen.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Lena Okafor\", \"text\": \"Could I swap my Saturday opening shift with Tom next week? He's fine with it.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-25\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Don't forget to pay the Harrow invoice by 5 November once the syrup order is settled.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Summer espresso beans\", \"fields\": {\"supplier\": \"Bramble Roasters\", \"item\": \"espresso beans 40 kg\", \"amount\": \"240\", \"order_date\": \"2026-07-10\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Spiced pear syrup for Northgate evening\", \"fields\": {\"supplier\": \"Harrow Foods\", \"item\": \"spiced pear syrup 2 cases\", \"amount\": \"310\", \"order_date\": \"2026-10-14\", \"delivery_date\": \"2026-11-02\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Christmas blend beans\", \"fields\": {\"supplier\": \"Bramble Roasters\", \"item\": \"Christmas blend 60 kg\", \"amount\": \"560\", \"order_date\": \"2026-10-20\", \"delivery_date\": \"2026-11-13\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Winter takeaway cups\", \"fields\": {\"supplier\": \"Oakleaf Paper\", \"item\": \"winter cups 8 boxes\", \"amount\": \"280\", \"order_date\": \"2026-10-19\", \"delivery_date\": \"2026-11-06\", \"status\": \"pending Priya sign-off\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Stroller Club coffee mornings\", \"fields\": {\"day\": \"Thursday\", \"time\": \"09:30\", \"place\": \"back room\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Northgate Studio Harvest evening\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"19:00\", \"place\": \"front room\", \"guests\": \"40\", \"menu\": \"spiced pear cordial and autumn platters\", \"total\": \"640\", \"status\": \"provisional\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"status\", \"menu\", \"total\"], \"from\": \"Dana Whitfield (Northgate Studio)\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Today, please wrap up the Northgate evening: get the Harrow syrup order sorted out and send Dana at Northgate the confirmation for Friday 6 November with the menu and the total.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending Priya sign-off\"], \"task\": true},\n    {\"record\": \"ORD-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending Priya sign-off\"]},\n    {\"message_to\": \"Dana Whitfield (Northgate Studio)\", \"regarding\": \"EV-2\", \"says\": [\"2026-11-06\", \"40\", \"spiced pear cordial and autumn platters\", \"640\"], \"stale\": [\"pending Priya sign-off\"], \"task\": true}\n  ],\n  \"why\": \"Priya's email raises the sign-off threshold from 200 to 500 dollars from 10 October, so the Harrow syrup order (310 dollars) and the Oakleaf cup order (280 dollars), both placed after that date, no longer need her sign-off and should be confirmed outright. The Christmas blend order (560 dollars) still exceeds the new threshold and the July bean order is already signed off, so both keep their pending/confirmed state. The Northgate evening rests on the Harrow order two hops from the amended rule, but the catering rule requires Dana's written approval of the final menu before the booking is confirmed, so the assistant must ask her rather than change EV-2 itself; the December syrup price rise is a distractor that leaves the current 310-dollar order untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"espresso bean restock\", \"counterpart\": \"Ravi Sharma\", \"org\": \"Bramble Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"vanilla syrup restock\", \"counterpart\": \"Bev Cole\", \"org\": \"Harrow Foods\", \"item\": \"vanilla syrup\", \"unit\": \"bottle\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"milk delivery\", \"counterpart\": \"Sam Petrie\", \"org\": \"Dell Dairy\", \"item\": \"milk crates\", \"unit\": \"crate\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"takeaway cup restock\", \"counterpart\": \"Mel Fong\", \"org\": \"Oakleaf Paper\", \"item\": \"takeaway cups\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"pastry restock\", \"counterpart\": \"Tomas Ruiz\", \"org\": \"Ruiz Bakery\", \"item\": \"croissant trays\", \"unit\": \"tray\", \"values\": [\"3\", \"4\", \"6\"], \"place\": \"café counter\"},\n    {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Asha Devi\", \"org\": \"Fernwhistle Tea\", \"item\": \"loose tea\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"5\"], \"place\": \"café kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Gus Hale\", \"org\": \"Squeaky Supply\", \"item\": \"sanitiser\", \"unit\": \"litre\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"book club evening\", \"counterpart\": \"June Park\", \"org\": \"Hillside Book Club\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\", \"window table\"], \"place\": \"back room\"},\n    {\"kind\": \"booking\", \"topic\": \"bookkeeping session\", \"counterpart\": \"Priya Nair\", \"org\": \"Nair Bookkeeping\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\", \"corner booth\"], \"place\": \"back room\"},\n    {\"kind\": \"booking\", \"topic\": \"client working session\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Studio\", \"item\": \"room booking\", \"unit\": \"room\", \"values\": [\"back room\", \"front room\", \"window table\"], \"place\": \"front room\"},\n    {\"kind\": \"booking\", \"topic\": \"musician night\", \"counterpart\": \"Owen Bly\", \"org\": \"Bly Performing\", \"item\": \"performance slot\", \"unit\": \"slot\", \"values\": [\"Friday evening\", \"Saturday evening\", \"Sunday afternoon\"], \"place\": \"front room\"},\n    {\"kind\": \"booking\", \"topic\": \"supplier van run\", \"counterpart\": \"Lena Okafor\", \"org\": \"Copper Kettle staff\", \"item\": \"van booking\", \"unit\": \"run\", \"values\": [\"market run\", \"bank run\", \"depot run\"], \"place\": \"café car park\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6970,
+    "completion_tokens": 3768,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02276216,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'book club evening': values needs at least three entries\n- noise topic 'bookkeeping session': values needs at least three entries\n- noise topic 'client working session': values needs at least three entries\n- noise topic 'musician night': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Copper Kettle sign-off threshold raised",
+  "setting": "The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders",
+  "owner": "Marta",
+  "org": "Copper Kettle Café",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "email",
+    "from": "Ravi Sharma (Bramble Roasters)",
+    "text": "Confirming our standing details: espresso beans at 6 dollars a kilo, delivered to the café kitchen; orders placed by Tuesday arrive that Friday.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "House rule from today: every supplier order over 200 dollars needs Priya Nair's written sign-off before it is confirmed. No exceptions.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "For catering clients: a booking is only marked confirmed once the client has approved the final menu and price in writing, and a confirmed booking is never moved or repriced without the client's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Bev Cole (Harrow Foods)",
+    "text": "Price list as agreed: spiced pear syrup 155 dollars a case of 10 kg, vanilla syrup 40 dollars a bottle; we deliver to the café within three working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Reminder: fire drill on 18 June at 7 a.m. before we open, everyone to the car park.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 40 kg of espresso beans from Bramble Roasters at 240 dollars for the summer; it was over 200 dollars so Priya signed off the same day and the order is confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Sam Petrie (Dell Dairy)",
+    "text": "Our milk run stays Tuesdays and Fridays, 95 dollars a week for four crates, delivered to the café kitchen before 7 a.m.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-14",
+    "type": "quote",
+    "from": "Mel Fong (Oakleaf Paper)",
+    "text": "Quote for winter stock: 35 dollars per box of 200 takeaway cups, 5 percent off on orders over six boxes, delivery to the store cupboard.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Marta",
+    "text": "The back room seats 25 at a push, 20 comfortably; community groups can book it free on weekday mornings.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Stroller Club coffee morning into the back room every Thursday at 9:30, free of charge as a community booking, starting this week.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Dana Whitfield (Northgate Studio)",
+    "text": "We'd love a catered evening at the café for our design team on Friday 6 November, around 40 people, budget in the region of 650 dollars. Can you put something together?",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Banking update, agreed with Marta at the September review: from 10 October the sign-off threshold for supplier orders rises from 200 to 500 dollars. The new bank account's approval workflow makes the smaller checks unnecessary. Orders already confirmed keep their sign-off on file.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e13",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Bev Cole (Harrow Foods)",
+    "text": "Good news, we have plenty of spiced pear syrup in stock for early November delivery if you want to place the order this week.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Placed the order with Harrow Foods for the Northgate evening: two cases of spiced pear syrup at 155 dollars each, 310 dollars in total, delivery 2 November. It's over 200 dollars, so I've left it waiting for Priya's sign-off before we call it confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e11",
+     "e2"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-16",
+    "type": "note",
+    "from": "Marta",
+    "text": "Menu draft for Northgate: spiced pear cordial made with the Harrow syrup, plus autumn platters; works out at 640 dollars for 40 guests, inside their 650-dollar budget.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-17",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up the Northgate Studio Harvest evening as a provisional booking for Friday 6 November at 7 p.m. in the front room, 40 guests, the cordial and autumn platter menu at 640 dollars, resting on the Harrow syrup order — we'll confirm once Dana approves the final menu.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e14",
+     "e15",
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-19",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered eight boxes of winter cups from Oakleaf Paper, 280 dollars after the bulk discount; that's over 200 dollars so it waits for Priya's sign-off before confirmation.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e2"
+    ],
+    "record": "ORD-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 60 kg of Christmas blend from Bramble Roasters for the festive menu, 560 dollars, delivery 13 November; it's well over the limit, so Priya's sign-off is required before we confirm it.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-21",
+    "type": "email",
+    "from": "Bev Cole (Harrow Foods)",
+    "text": "Heads up for your planning: from 1 December our spiced pear syrup cases go up to 170 dollars each under the new price list. Everything ordered before then stays at the current price.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-23",
+    "type": "email",
+    "from": "Ravi Sharma (Bramble Roasters)",
+    "text": "Your bean delivery will arrive Thursday 29 October as usual, straight to the café kitchen.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-24",
+    "type": "message",
+    "from": "Lena Okafor",
+    "text": "Could I swap my Saturday opening shift with Tom next week? He's fine with it.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-25",
+    "type": "task",
+    "from": "Marta",
+    "text": "Don't forget to pay the Harrow invoice by 5 November once the syrup order is settled.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Summer espresso beans",
+    "fields": {
+     "supplier": "Bramble Roasters",
+     "item": "espresso beans 40 kg",
+     "amount": "240",
+     "order_date": "2026-07-10",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Spiced pear syrup for Northgate evening",
+    "fields": {
+     "supplier": "Harrow Foods",
+     "item": "spiced pear syrup 2 cases",
+     "amount": "310",
+     "order_date": "2026-10-14",
+     "delivery_date": "2026-11-02",
+     "status": "pending Priya sign-off"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Christmas blend beans",
+    "fields": {
+     "supplier": "Bramble Roasters",
+     "item": "Christmas blend 60 kg",
+     "amount": "560",
+     "order_date": "2026-10-20",
+     "delivery_date": "2026-11-13",
+     "status": "pending Priya sign-off"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Winter takeaway cups",
+    "fields": {
+     "supplier": "Oakleaf Paper",
+     "item": "winter cups 8 boxes",
+     "amount": "280",
+     "order_date": "2026-10-19",
+     "delivery_date": "2026-11-06",
+     "status": "pending Priya sign-off"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Stroller Club coffee mornings",
+    "fields": {
+     "day": "Thursday",
+     "time": "09:30",
+     "place": "back room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Northgate Studio Harvest evening",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "19:00",
+     "place": "front room",
+     "guests": "40",
+     "menu": "spiced pear cordial and autumn platters",
+     "total": "640",
+     "status": "provisional"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "status",
+     "menu",
+     "total"
+    ],
+    "from": "Dana Whitfield (Northgate Studio)",
+    "rule": "e3"
+   }
+  ],
+  "task": "Today, please wrap up the Northgate evening: get the Harrow syrup order sorted out and send Dana at Northgate the confirmation for Friday 6 November with the menu and the total.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending Priya sign-off"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-4",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending Priya sign-off"
+    ]
+   },
+   {
+    "message_to": "Dana Whitfield (Northgate Studio)",
+    "regarding": "EV-2",
+    "says": [
+     "2026-11-06",
+     "40",
+     "spiced pear cordial and autumn platters",
+     "640"
+    ],
+    "stale": [
+     "pending Priya sign-off"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's email raises the sign-off threshold from 200 to 500 dollars from 10 October, so the Harrow syrup order (310 dollars) and the Oakleaf cup order (280 dollars), both placed after that date, no longer need her sign-off and should be confirmed outright. The Christmas blend order (560 dollars) still exceeds the new threshold and the July bean order is already signed off, so both keep their pending/confirmed state. The Northgate evening rests on the Harrow order two hops from the amended rule, but the catering rule requires Dana's written approval of the final menu before the booking is confirmed, so the assistant must ask her rather than change EV-2 itself; the December syrup price rise is a distractor that leaves the current 310-dollar order untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "espresso bean restock",
+    "counterpart": "Ravi Sharma",
+    "org": "Bramble Roasters",
+    "item": "espresso beans",
+    "unit": "kg",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "vanilla syrup restock",
+    "counterpart": "Bev Cole",
+    "org": "Harrow Foods",
+    "item": "vanilla syrup",
+    "unit": "bottle",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "milk delivery",
+    "counterpart": "Sam Petrie",
+    "org": "Dell Dairy",
+    "item": "milk crates",
+    "unit": "crate",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "takeaway cup restock",
+    "counterpart": "Mel Fong",
+    "org": "Oakleaf Paper",
+    "item": "takeaway cups",
+    "unit": "box",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "pastry restock",
+    "counterpart": "Tomas Ruiz",
+    "org": "Ruiz Bakery",
+    "item": "croissant trays",
+    "unit": "tray",
+    "values": [
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "café counter"
+   },
+   {
+    "kind": "order",
+    "topic": "tea restock",
+    "counterpart": "Asha Devi",
+    "org": "Fernwhistle Tea",
+    "item": "loose tea",
+    "unit": "kg",
+    "values": [
+     "2",
+     "4",
+     "5"
+    ],
+    "place": "café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Gus Hale",
+    "org": "Squeaky Supply",
+    "item": "sanitiser",
+    "unit": "litre",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "book club evening",
+    "counterpart": "June Park",
+    "org": "Hillside Book Club",
+    "item": "room booking",
+    "unit": "room",
+    "values": [
+     "back room",
+     "front room",
+     "window table"
+    ],
+    "place": "back room"
+   },
+   {
+    "kind": "booking",
+    "topic": "bookkeeping session",
+    "counterpart": "Priya Nair",
+    "org": "Nair Bookkeeping",
+    "item": "room booking",
+    "unit": "room",
+    "values": [
+     "back room",
+     "front room",
+     "corner booth"
+    ],
+    "place": "back room"
+   },
+   {
+    "kind": "booking",
+    "topic": "client working session",
+    "counterpart": "Dana Whitfield",
+    "org": "Northgate Studio",
+    "item": "room booking",
+    "unit": "room",
+    "values": [
+     "back room",
+     "front room",
+     "window table"
+    ],
+    "place": "front room"
+   },
+   {
+    "kind": "booking",
+    "topic": "musician night",
+    "counterpart": "Owen Bly",
+    "org": "Bly Performing",
+    "item": "performance slot",
+    "unit": "slot",
+    "values": [
+     "Friday evening",
+     "Saturday evening",
+     "Sunday afternoon"
+    ],
+    "place": "front room"
+   },
+   {
+    "kind": "booking",
+    "topic": "supplier van run",
+    "counterpart": "Lena Okafor",
+    "org": "Copper Kettle staff",
+    "item": "van booking",
+    "unit": "run",
+    "values": [
+     "market run",
+     "bank run",
+     "depot run"
+    ],
+    "place": "café car park"
+   }
+  ],
+  "id": "G100-2-07",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-2 requires Dana's written approval, but the expected state specifies only a message containing booking details, not a consent request, so it does not unambiguously encode the ASK outcome. The cup order also contradicts its quote: eight boxes at $35 with a 5% discount cost $266, not $280, undermining the requirement that everything else remain unchanged.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-2 requires Dana's written approval, but the expected state specifies only a message containing booking details, not a consent request, so it does not unambiguously encode the ASK outcome. The cup order also contradicts its quote: eight boxes at $35 with a 5% discount cost $266, not $280, undermining the requirement that everything else remain unchanged."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3524,
+    "completion_tokens": 224,
+    "reasoning_tokens": 111,
+    "cached_tokens": 0
+   },
+   "cost": 0.0552425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9c9ea36d44b3096f4ece052d395989d4284934f34c01982ade33cb14dbbc102a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state has the assistant send Dana a 'confirmation' of EV-2 with the menu and total, but the history's catering rule and the consent map require Dana's written approval before EV-2's status, menu, or total is confirmed, and e16 says 'we'll confirm once Dana approves.' The correct act is to ask Dana, so the expected message contradicts its own ASK mark, and its 'stale' annotations on the message are unexplained. The class, tier, and hiding of the change are otherwise sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state has the assistant send Dana a 'confirmation' of EV-2 with the menu and total, but the history's catering rule and the consent map require Dana's written approval before EV-2's status, menu, or total is confirmed, and e16 says 'we'll confirm once Dana approves.' The correct act is to ask Dana, so the expected message contradicts its own ASK mark, and its 'stale' annotations on the message are unexplained. The class, tier, and hiding of the change are otherwise sound."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5112,
+    "completion_tokens": 1825,
+    "reasoning_tokens": 1603,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014237,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9c9ea36d44b3096f4ece052d395989d4284934f34c01982ade33cb14dbbc102a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The threshold amendment (200→500 from 10 Oct) cleanly voids sign-off for the 310-dollar and 280-dollar orders (REVISE) while the 560-dollar order still stands under the amended rule (KEEP), and the catering rule forces an ASK to Dana for EV-2. Tier counts (22 core events, 6 decisions, change 20 days before the task day with 26 later events) are met, and the change sits as an unremarkable email mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The threshold amendment (200→500 from 10 Oct) cleanly voids sign-off for the 310-dollar and 280-dollar orders (REVISE) while the 560-dollar order still stands under the amended rule (KEEP), and the catering rule forces an ASK to Dana for EV-2. Tier counts (22 core events, 6 decisions, change 20 days before the task day with 26 later events) are met, and the change sits as an unremarkable email mid-history."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3640,
+    "completion_tokens": 510,
+    "reasoning_tokens": 353,
+    "cached_tokens": 256
+   },
+   "cost": 0.0178788,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9c9ea36d44b3096f4ece052d395989d4284934f34c01982ade33cb14dbbc102a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

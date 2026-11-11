@@ -1,0 +1,632 @@
+{
+ "id": "G100-1-02",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 1,
+ "setting": "The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences",
+ "prompt_sha256": "5317cf1e4a3fb351cdb0ca1e192662772f2bd1db0be23d3b8f5b735f11b24cb0",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Sugarwharf box price correction\",\n  \"setting\": \"The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences\",\n  \"owner\": \"Rosa\",\n  \"org\": \"Marigold Bakery\",\n  \"now\": \"2026-08-24\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Rosa\", \"text\": \"Keep the supplier records tidy: every standing order we place goes into the orders file the same day, with the price and quantity we actually agreed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Rosa\", \"text\": \"Any supplier order that comes to more than 150 in total needs Marco's written sign-off before we confirm it. He co-owns the bakery with me and watches the cash.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Rosa\", \"text\": \"Once a client booking is confirmed, we never re-price it or move it without the client's own agreement. Wedding clients especially must be asked first.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Priya Nair (Sugarwharf Packaging)\", \"text\": \"Quoted price for our 8-inch cake boxes: 1.80 per box, lead time ten working days, price holds through the autumn. Same gold-ribbon style as last year.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-06\", \"type\": \"note\", \"from\": \"Rosa\", \"text\": \"Reminder to myself: the cream order from Cloudhill Dairy switches to the Tuesday run next month.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Rosa\", \"text\": \"For weddings we always use the gold-ribbon boxes, never the plain ones.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Rosa\", \"text\": \"Placed the big Sugarwharf Packaging order: 400 of the 8-inch gold-ribbon boxes at the quoted 1.80 each, so 720 in total. Marco signed off on it in writing since it is well over 150. Lead time ten days.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Rosa\", \"text\": \"Booked the Hallen wedding cake for 5 September: June Hallen, delivery to the boathouse at Fernvale Park, 30 of the 8-inch gold-ribbon boxes, and we charge the boxes through at cost on the booking, 30 at 1.80 is 54 added to her order.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marta Wexford (Petit Wexford Café)\", \"text\": \"Loved the lemon tartlets again. Same again for the long weekend please.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"note\", \"from\": \"Rosa\", \"text\": \"Fernvale Park only takes deliveries before 09:00 on Saturdays, so plan the wedding run early.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Rosa\", \"text\": \"Placed the small restock order with Sugarwharf Packaging: 60 of the 8-inch boxes at the quoted 1.80 each, 108 in total, under the sign-off limit so no need to bother Marco.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair (Sugarwharf Packaging)\", \"text\": \"Cupcake liners are 4.50 per pack of 100 if you want to add any to a future order.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Rosa\", \"text\": \"Drafted a monthly supply quote for Petit Wexford Café on Linden Row: 200 of the 8-inch boxes a month at the quoted 1.80 each, so 360 a month, starting September if they say yes.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-25\", \"type\": \"task\", \"from\": \"Rosa\", \"text\": \"Pay the Sugarwharf invoice for the big box order by 10 August.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-02\", \"type\": \"email\", \"from\": \"June Hallen\", \"text\": \"So excited for the 5th of September! The boathouse at Fernvale Park will be ready from 8am.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Priya Nair (Sugarwharf Packaging)\", \"text\": \"Apologies for the mix-up on paperwork our side: the price on the 8-inch gold-ribbon boxes is 2.10 per box from this month onwards. The 1.80 figure was from last season's sheet and no longer applies. Lead time is still ten working days.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e17\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Rosa\", \"text\": \"Bank holiday Monday: shop opens at 10 instead of 8.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Priya Nair (Sugarwharf Packaging)\", \"text\": \"Quick heads-up: the large 12-inch presentation boxes have gone up to 2.35 each.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Priya Nair (Sugarwharf Packaging)\", \"text\": \"Your big box order arrives on 28 August at the Linden Row shop.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-22\", \"type\": \"task\", \"from\": \"Rosa\", \"text\": \"Send Marco the month-end supplier totals before the 31st.\", \"role\": \"obligation\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-23\", \"type\": \"message\", \"from\": \"Marco\", \"text\": \"Loving the new pistachio croissants, keep them on the counter.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Sugarwharf 8-inch gold-ribbon boxes, bulk order\", \"fields\": {\"supplier\": \"Sugarwharf Packaging\", \"item\": \"8-inch gold-ribbon cake boxes\", \"quantity\": \"400\", \"unit_price\": \"1.80\", \"total\": \"720\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Sugarwharf 8-inch boxes, shop restock\", \"fields\": {\"supplier\": \"Sugarwharf Packaging\", \"item\": \"8-inch cake boxes\", \"quantity\": \"60\", \"unit_price\": \"1.80\", \"total\": \"108\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hallen wedding cake delivery\", \"fields\": {\"date\": \"2026-09-05\", \"client\": \"June Hallen\", \"place\": \"Boathouse, Fernvale Park\", \"box_count\": \"30\", \"box_charge\": \"54\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Petit Wexford Café monthly box supply\", \"fields\": {\"client\": \"Petit Wexford Café\", \"item\": \"8-inch cake boxes\", \"monthly_quantity\": \"200\", \"unit_price\": \"1.80\", \"monthly_total\": \"360\", \"status\": \"draft\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"box_charge\"], \"from\": \"June Hallen\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Marco wants the Sugarwharf orders closed out today. Please bring the order files up to date with the correct box totals and send him the numbers.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"2.10\", \"stale\": [\"1.80\"], \"task\": true},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"840\", \"stale\": [\"720\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"unit_price\", \"value\": \"2.10\", \"stale\": [\"1.80\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"total\", \"value\": \"126\", \"stale\": [\"108\"], \"task\": true},\n    {\"record\": \"CL-1\", \"field\": \"unit_price\", \"value\": \"2.10\", \"stale\": [\"1.80\"]},\n    {\"record\": \"CL-1\", \"field\": \"monthly_total\", \"value\": \"420\", \"stale\": [\"360\"]},\n    {\"message_to\": \"Marco\", \"regarding\": \"ORD-1\", \"says\": [\"2.10\", \"840\"], \"stale\": [\"1.80\", \"720\"], \"task\": true},\n    {\"message_to\": \"June Hallen\", \"regarding\": \"EV-1\", \"says\": [\"2.10\", \"63\"], \"stale\": [\"54\"], \"task\": true}\n  ],\n  \"why\": \"The change revokes the 1.80 box price, so the orders and the Wexford quote must be re-priced to 2.10 and their totals recomputed (REVISE). The Hallen booking re-prices a confirmed client booking, which under Rosa's policy needs June Hallen's consent first, so EV-1 keeps its old charge and only a consent request goes out. The 12-inch distractor price of 2.35 and the unchanged lead times, quantities and delivery date must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cupcake liners restock\", \"counterpart\": \"Priya Nair\", \"org\": \"Sugarwharf Packaging\", \"item\": \"cupcake liners\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Parchment sheets\", \"counterpart\": \"Priya Nair\", \"org\": \"Sugarwharf Packaging\", \"item\": \"parchment baking sheets\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Cream delivery\", \"counterpart\": \"Owen Bhatt\", \"org\": \"Cloudhill Dairy\", \"item\": \"double cream\", \"unit\": \"litres\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Butter order\", \"counterpart\": \"Owen Bhatt\", \"org\": \"Cloudhill Dairy\", \"item\": \"salted butter\", \"unit\": \"kilos\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Berry order\", \"counterpart\": \"Lena Marsh\", \"org\": \"Hollowbrook Farms\", \"item\": \"mixed berries\", \"unit\": \"kilos\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Chocolate couverture\", \"counterpart\": \"Tomás Reyes\", \"org\": \"Verano Chocolate\", \"item\": \"dark couverture\", \"unit\": \"kilos\", \"values\": [\"3\", \"5\", \"7\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"booking\", \"topic\": \"Counter tastings\", \"counterpart\": \"Marta Wexford\", \"org\": \"Petit Wexford Café\", \"item\": \"counter tasting table\", \"unit\": \"\", \"values\": [\"front counter\", \"window bay\", \"back room\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"booking\", \"topic\": \"Van run to Fernvale Park\", \"counterpart\": \"June Hallen\", \"org\": \"Fernvale Park\", \"item\": \"delivery van slot\", \"unit\": \"\", \"values\": [\"boathouse gate\", \"main gate\", \"north lodge\"], \"place\": \"Fernvale Park\"},\n    {\"kind\": \"booking\", \"topic\": \"Market stall pitch\", \"counterpart\": \"Sally Prynne\", \"org\": \"Ashcott Market\", \"item\": \"weekend market stall\", \"unit\": \"\", \"values\": [\"pitch 4\", \"pitch 7\", \"pitch 12\"], \"place\": \"Ashcott Market square\"},\n    {\"kind\": \"booking\", \"topic\": \"Kitchen deep clean\", \"counterpart\": \"Viktor Hald\", \"org\": \"Brightworks Cleaning\", \"item\": \"kitchen cleaning slot\", \"unit\": \"\", \"values\": [\"Monday evening\", \"Wednesday evening\", \"Sunday morning\"], \"place\": \"Linden Row shop\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee beans for the counter\", \"counterpart\": \"Amina Cole\", \"org\": \"Redhook Roasters\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Linden Row shop\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3147,
+    "completion_tokens": 6376,
+    "reasoning_tokens": 2992,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02895812,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Sugarwharf box price correction",
+  "setting": "The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences",
+  "owner": "Rosa",
+  "org": "Marigold Bakery",
+  "now": "2026-08-24",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Rosa",
+    "text": "Keep the supplier records tidy: every standing order we place goes into the orders file the same day, with the price and quantity we actually agreed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Rosa",
+    "text": "Any supplier order that comes to more than 150 in total needs Marco's written sign-off before we confirm it. He co-owns the bakery with me and watches the cash.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Rosa",
+    "text": "Once a client booking is confirmed, we never re-price it or move it without the client's own agreement. Wedding clients especially must be asked first.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Priya Nair (Sugarwharf Packaging)",
+    "text": "Quoted price for our 8-inch cake boxes: 1.80 per box, lead time ten working days, price holds through the autumn. Same gold-ribbon style as last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-06",
+    "type": "note",
+    "from": "Rosa",
+    "text": "Reminder to myself: the cream order from Cloudhill Dairy switches to the Tuesday run next month.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Rosa",
+    "text": "For weddings we always use the gold-ribbon boxes, never the plain ones.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Rosa",
+    "text": "Placed the big Sugarwharf Packaging order: 400 of the 8-inch gold-ribbon boxes at the quoted 1.80 each, so 720 in total. Marco signed off on it in writing since it is well over 150. Lead time ten days.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Rosa",
+    "text": "Booked the Hallen wedding cake for 5 September: June Hallen, delivery to the boathouse at Fernvale Park, 30 of the 8-inch gold-ribbon boxes, and we charge the boxes through at cost on the booking, 30 at 1.80 is 54 added to her order.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Marta Wexford (Petit Wexford Café)",
+    "text": "Loved the lemon tartlets again. Same again for the long weekend please.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "note",
+    "from": "Rosa",
+    "text": "Fernvale Park only takes deliveries before 09:00 on Saturdays, so plan the wedding run early.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Rosa",
+    "text": "Placed the small restock order with Sugarwharf Packaging: 60 of the 8-inch boxes at the quoted 1.80 each, 108 in total, under the sign-off limit so no need to bother Marco.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Nair (Sugarwharf Packaging)",
+    "text": "Cupcake liners are 4.50 per pack of 100 if you want to add any to a future order.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Rosa",
+    "text": "Drafted a monthly supply quote for Petit Wexford Café on Linden Row: 200 of the 8-inch boxes a month at the quoted 1.80 each, so 360 a month, starting September if they say yes.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-25",
+    "type": "task",
+    "from": "Rosa",
+    "text": "Pay the Sugarwharf invoice for the big box order by 10 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-02",
+    "type": "email",
+    "from": "June Hallen",
+    "text": "So excited for the 5th of September! The boathouse at Fernvale Park will be ready from 8am.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Priya Nair (Sugarwharf Packaging)",
+    "text": "Apologies for the mix-up on paperwork our side: the price on the 8-inch gold-ribbon boxes is 2.10 per box from this month onwards. The 1.80 figure was from last season's sheet and no longer applies. Lead time is still ten working days.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-14",
+    "type": "note",
+    "from": "Rosa",
+    "text": "Bank holiday Monday: shop opens at 10 instead of 8.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Priya Nair (Sugarwharf Packaging)",
+    "text": "Quick heads-up: the large 12-inch presentation boxes have gone up to 2.35 each.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Priya Nair (Sugarwharf Packaging)",
+    "text": "Your big box order arrives on 28 August at the Linden Row shop.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-22",
+    "type": "task",
+    "from": "Rosa",
+    "text": "Send Marco the month-end supplier totals before the 31st.",
+    "role": "obligation"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-23",
+    "type": "message",
+    "from": "Marco",
+    "text": "Loving the new pistachio croissants, keep them on the counter.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Sugarwharf 8-inch gold-ribbon boxes, bulk order",
+    "fields": {
+     "supplier": "Sugarwharf Packaging",
+     "item": "8-inch gold-ribbon cake boxes",
+     "quantity": "400",
+     "unit_price": "1.80",
+     "total": "720",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Sugarwharf 8-inch boxes, shop restock",
+    "fields": {
+     "supplier": "Sugarwharf Packaging",
+     "item": "8-inch cake boxes",
+     "quantity": "60",
+     "unit_price": "1.80",
+     "total": "108",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Hallen wedding cake delivery",
+    "fields": {
+     "date": "2026-09-05",
+     "client": "June Hallen",
+     "place": "Boathouse, Fernvale Park",
+     "box_count": "30",
+     "box_charge": "54",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Petit Wexford Café monthly box supply",
+    "fields": {
+     "client": "Petit Wexford Café",
+     "item": "8-inch cake boxes",
+     "monthly_quantity": "200",
+     "unit_price": "1.80",
+     "monthly_total": "360",
+     "status": "draft"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "box_charge"
+    ],
+    "from": "June Hallen",
+    "rule": "e3"
+   }
+  ],
+  "task": "Marco wants the Sugarwharf orders closed out today. Please bring the order files up to date with the correct box totals and send him the numbers.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "unit_price",
+    "value": "2.10",
+    "stale": [
+     "1.80"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "840",
+    "stale": [
+     "720"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "unit_price",
+    "value": "2.10",
+    "stale": [
+     "1.80"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "total",
+    "value": "126",
+    "stale": [
+     "108"
+    ],
+    "task": true
+   },
+   {
+    "record": "CL-1",
+    "field": "unit_price",
+    "value": "2.10",
+    "stale": [
+     "1.80"
+    ]
+   },
+   {
+    "record": "CL-1",
+    "field": "monthly_total",
+    "value": "420",
+    "stale": [
+     "360"
+    ]
+   },
+   {
+    "message_to": "Marco",
+    "regarding": "ORD-1",
+    "says": [
+     "2.10",
+     "840"
+    ],
+    "stale": [
+     "1.80",
+     "720"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "June Hallen",
+    "regarding": "EV-1",
+    "says": [
+     "2.10",
+     "63"
+    ],
+    "stale": [
+     "54"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change revokes the 1.80 box price, so the orders and the Wexford quote must be re-priced to 2.10 and their totals recomputed (REVISE). The Hallen booking re-prices a confirmed client booking, which under Rosa's policy needs June Hallen's consent first, so EV-1 keeps its old charge and only a consent request goes out. The 12-inch distractor price of 2.35 and the unchanged lead times, quantities and delivery date must not be touched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Cupcake liners restock",
+    "counterpart": "Priya Nair",
+    "org": "Sugarwharf Packaging",
+    "item": "cupcake liners",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Parchment sheets",
+    "counterpart": "Priya Nair",
+    "org": "Sugarwharf Packaging",
+    "item": "parchment baking sheets",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Cream delivery",
+    "counterpart": "Owen Bhatt",
+    "org": "Cloudhill Dairy",
+    "item": "double cream",
+    "unit": "litres",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Butter order",
+    "counterpart": "Owen Bhatt",
+    "org": "Cloudhill Dairy",
+    "item": "salted butter",
+    "unit": "kilos",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Berry order",
+    "counterpart": "Lena Marsh",
+    "org": "Hollowbrook Farms",
+    "item": "mixed berries",
+    "unit": "kilos",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Chocolate couverture",
+    "counterpart": "Tomás Reyes",
+    "org": "Verano Chocolate",
+    "item": "dark couverture",
+    "unit": "kilos",
+    "values": [
+     "3",
+     "5",
+     "7"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Counter tastings",
+    "counterpart": "Marta Wexford",
+    "org": "Petit Wexford Café",
+    "item": "counter tasting table",
+    "unit": "",
+    "values": [
+     "front counter",
+     "window bay",
+     "back room"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Van run to Fernvale Park",
+    "counterpart": "June Hallen",
+    "org": "Fernvale Park",
+    "item": "delivery van slot",
+    "unit": "",
+    "values": [
+     "boathouse gate",
+     "main gate",
+     "north lodge"
+    ],
+    "place": "Fernvale Park"
+   },
+   {
+    "kind": "booking",
+    "topic": "Market stall pitch",
+    "counterpart": "Sally Prynne",
+    "org": "Ashcott Market",
+    "item": "weekend market stall",
+    "unit": "",
+    "values": [
+     "pitch 4",
+     "pitch 7",
+     "pitch 12"
+    ],
+    "place": "Ashcott Market square"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kitchen deep clean",
+    "counterpart": "Viktor Hald",
+    "org": "Brightworks Cleaning",
+    "item": "kitchen cleaning slot",
+    "unit": "",
+    "values": [
+     "Monday evening",
+     "Wednesday evening",
+     "Sunday morning"
+    ],
+    "place": "Linden Row shop"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee beans for the counter",
+    "counterpart": "Amina Cole",
+    "org": "Redhook Roasters",
+    "item": "coffee beans",
+    "unit": "kilos",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Linden Row shop"
+   }
+  ],
+  "id": "G100-1-02",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new price applies 'from this month onwards,' so it does not unambiguously reprice orders already agreed in June and July; the recordkeeping rule requires the prices actually agreed. Consequently, revising both orders and requesting a higher Hallen charge are not justified without clarification about retroactive applicability. The expected outbox also omits ORD-2's numbers despite the task requesting the Sugarwharf order totals.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new price applies 'from this month onwards,' so it does not unambiguously reprice orders already agreed in June and July; the recordkeeping rule requires the prices actually agreed. Consequently, revising both orders and requesting a higher Hallen charge are not justified without clarification about retroactive applicability. The expected outbox also omits ORD-2's numbers despite the task requesting the Sugarwharf order totals."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3382,
+    "completion_tokens": 227,
+    "reasoning_tokens": 107,
+    "cached_tokens": 0
+   },
+   "cost": 0.0536175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "19b6af58aac7aab0d4b164d766559cf17f50d485c0d994e5ade917a89c140816",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The class-1 structure holds: e4's 1.80 price is revoked by e16, EV-1 is two hops away via e7, and the EV-1 consent map matches rule e3. The expected state is not fully unambiguous, though, because raising ORD-1 to 840 is a larger order over 150 that rule e2 seems to require Marco's written sign-off for, and rule e1 ties the record to the price actually agreed (1.80) rather than a later supplier correction. The change's wording ('no longer applies') is somewhat explicit, but it sits among routine events with later events after it, so it counts as hidden.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The class-1 structure holds: e4's 1.80 price is revoked by e16, EV-1 is two hops away via e7, and the EV-1 consent map matches rule e3. The expected state is not fully unambiguous, though, because raising ORD-1 to 840 is a larger order over 150 that rule e2 seems to require Marco's written sign-off for, and rule e1 ties the record to the price actually agreed (1.80) rather than a later supplier correction. The change's wording ('no longer applies') is somewhat explicit, but it sits among routine events with later events after it, so it counts as hidden."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4786,
+    "completion_tokens": 1788,
+    "reasoning_tokens": 1534,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013726,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "19b6af58aac7aab0d4b164d766559cf17f50d485c0d994e5ade917a89c140816",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The price revocation cleanly propagates: ORD-1/ORD-2/CL-1 re-price to 2.10 with correct recomputed totals, EV-1 stays unchanged with a consent request to June Hallen per Rosa's policy, and the 2.35 twelve-inch distractor is properly excluded. The task (close out the Sugarwharf orders and send Marco the numbers) forces record changes and messages without naming the correction. Counts (21 core events, 4 decisions), the 12-day gap, 21 later events, and the change sitting as ordinary event 79 of 100 all satisfy tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The price revocation cleanly propagates: ORD-1/ORD-2/CL-1 re-price to 2.10 with correct recomputed totals, EV-1 stays unchanged with a consent request to June Hallen per Rosa's policy, and the 2.35 twelve-inch distractor is properly excluded. The task (close out the Sugarwharf orders and send Marco the numbers) forces record changes and messages without naming the correction. Counts (21 core events, 4 decisions), the 12-day gap, 21 later events, and the change sitting as ordinary event 79 of 100 all satisfy tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3468,
+    "completion_tokens": 388,
+    "reasoning_tokens": 203,
+    "cached_tokens": 0
+   },
+   "cost": 0.016224,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "19b6af58aac7aab0d4b164d766559cf17f50d485c0d994e5ade917a89c140816",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

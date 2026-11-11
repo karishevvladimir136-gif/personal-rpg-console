@@ -1,0 +1,509 @@
+{
+ "id": "G100-1-10",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 9,
+ "setting": "The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings",
+ "prompt_sha256": "09289a8ca2cdc2a61e5644c3f4b62c86c202a9accf5ed06f2c79699068b8bbd5",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Longford Autumn Regatta date change\",\n \"setting\": \"The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings\",\n \"owner\": \"Sam\",\n \"org\": \"Riverton Rowing Club\",\n \"now\": \"2026-09-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Sam (Club Secretary)\", \"text\": \"Standing rule for the season: any change to a crew listed in a confirmed regatta entry must be agreed with our head coach Marta before it is sent to the race committee.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"This year's Longford Autumn Regatta will be raced on Saturday 19 September 2026 at Kestrel Lake. Entries close on 1 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"Club policy: any amendment to a confirmed supplier order worth more than £100 needs my written approval before it goes to the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marta (Head Coach)\", \"text\": \"For the Longford Autumn Regatta I expect about 90 people from our side on the day, rowers and supporters together. Riverbank Catering quoted £6.80 per head for their buffet.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Entered our Senior VIII in the Longford Autumn Regatta on Saturday 19 September 2026 at Kestrel Lake, as the committee notice set out. Entry confirmed before the 1 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Reminder: Tuesday and Thursday evening outings continue through the summer; the erg room is booked 18:30 to 20:00.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered regatta-day catering from Riverbank Catering: 90 covers at £6.80 per head, total £612, delivered to the Kestrel Lake boathouse on regatta day, Saturday 19 September 2026.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Jonah Field (Membership)\", \"text\": \"Three new members joined in July; their details have been added to the membership roll. Nothing needed from you.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Halden Vehicle Hire\", \"text\": \"Quote for trailer and tow vehicle hire: £95 per day including insurance, subject to availability on the requested date.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered 60 participation medals from Ardent Trophies, engraved with 'Longford Autumn Regatta - Kestrel Lake', one per finishing crew member, no dates on the engraving.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Booked the club trailer and a tow vehicle from Halden Vehicle Hire for Saturday 19 September 2026, the day of our confirmed regatta entry, at their quoted £95 day rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"To-do: pay the Riverbank Catering deposit of £150 by 20 September 2026 so the regatta-day order stands.\", \"role\": \"obligation\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Race details for 19 September: racing starts at 09:00 at Kestrel Lake, boating from the north bank. Crews should arrive 90 minutes before their first race.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatee Committee)\", \"text\": \"Important: the Longford Autumn Regatta has been moved to Saturday 26 September 2026 because of flood works on the original weekend. The venue is unchanged, still Kestrel Lake, and all accepted entries carry over automatically to the new date.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Riverbank Catering\", \"text\": \"Just to let you know, our price for 2026 event buffets is now £7.20 per head. Everything else about your booking stays the same.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Can you make sure the trailer lights are checked before we tow to the regatta? The boathouse keyholder can let the mechanic in any weekday morning.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Longford Autumn Regatta - Senior VIII entry\", \"fields\": {\"event\": \"Longford Autumn Regatta\", \"date\": \"2026-09-19\", \"venue\": \"Kestrel Lake\", \"crew\": \"Senior VIII\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trailer and tow vehicle hire - regatta day\", \"fields\": {\"date\": \"2026-09-19\", \"item\": \"trailer and tow vehicle\", \"supplier\": \"Halden Vehicle Hire\", \"cost\": \"95\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Regatta-day catering - Riverbank Catering\", \"fields\": {\"supplier\": \"Riverbank Catering\", \"delivery_date\": \"2026-09-19\", \"place\": \"Kestrel Lake boathouse\", \"covers\": \"90\", \"amount\": \"612\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Participation medals - Ardent Trophies\", \"fields\": {\"supplier\": \"Ardent Trophies\", \"item\": \"engraved medals\", \"engraving\": \"Longford Autumn Regatta - Kestrel Lake\", \"quantity\": \"60\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"delivery_date\"], \"from\": \"Priya Nair (Treasurer)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please confirm our Senior VIII entry for the Longford Autumn Regatta with the race secretary and get our regatta-day arrangements lined up.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"message_to\": \"Moira Bell (Longford Regatta Committee)\", \"regarding\": \"EV-1\", \"says\": [\"Senior VIII\", \"2026-09-26\"], \"stale\": [\"2026-09-19\"], \"task\": true}\n ],\n \"why\": \"The regatta's move from 19 to 26 September makes the entry date (EV-1) and the trailer hire (EV-2) stale; both are directly or one hop from the entry decision and need nobody's consent, so they are REVISE. The catering order (ORD-1) is two hops from the original notice and its delivery date can only be amended with the treasurer's written approval under the club policy, so it is ASK and stays unchanged with a consent request. The medal order (ORD-2) cites the regatta notice only for the event name and venue, which the change leaves standing, so it is KEEP. The distractor is the caterer's new per-head price, which is irrelevant to the date change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Riverbank Catering\", \"item\": \"tea, coffee and biscuits\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Riverton boathouse kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"erg room sessions\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"erg room slot\", \"unit\": \"session\", \"values\": [\"main hall\", \"upstairs room\", \"gym annex\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"order\", \"topic\": \"launch fuel\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"petrol for the safety launch\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Kestrel Lake jetty\"},\n  {\"kind\": \"booking\", \"topic\": \"junior coaching runs\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"coaching launch on the water\", \"unit\": \"session\", \"values\": [\"Kestrel Lake north bank\", \"Kestrel Lake weir reach\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"blade tape and grips\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"handle grips and blade tape\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Riverton boathouse store\"},\n  {\"kind\": \"booking\", \"topic\": \"committee meetings\", \"counterpart\": \"Jonah Field\", \"org\": \"Riverton Rowing Club\", \"item\": \"meeting room\", \"unit\": \"meeting\", \"values\": [\"clubroom\", \"upstairs room\", \"riverside lounge\"], \"place\": \"Riverton clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"buoy repairs\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"replacement course buoys\", \"unit\": \"buoys\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Kestrel Lake course\"},\n  {\"kind\": \"booking\", \"topic\": \"safety boat hire\", \"counterpart\": \"Ines Ward\", \"org\": \"Halden Vehicle Hire\", \"item\": \"safety boat with driver\", \"unit\": \"day\", \"values\": [\"Kestrel Lake north bank\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"first aid restock\", \"counterpart\": \"Ruth Meyer\", \"org\": \"Streamline Medical Supplies\", \"item\": \"first aid kit refills\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"booking\", \"topic\": \"learn-to-row courses\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"beginner boat slot\", \"unit\": \"session\", \"values\": [\"Kestrel Lake weir reach\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3143,
+    "completion_tokens": 6553,
+    "reasoning_tokens": 3588,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02973132,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Longford Autumn Regatta date change\",\n \"setting\": \"The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings\",\n \"owner\": \"Sam\",\n \"org\": \"Riverton Rowing Club\",\n \"now\": \"2026-09-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Sam (Club Secretary)\", \"text\": \"Standing rule for the season: any change to a crew listed in a confirmed regatta entry must be agreed with our head coach Marta before it is sent to the race committee.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"This year's Longford Autumn Regatta will be raced on Saturday 19 September 2026 at Kestrel Lake. Entries close on 1 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"Club policy: any amendment to a confirmed supplier order worth more than £100 needs my written approval before it goes to the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marta (Head Coach)\", \"text\": \"For the Longford Autumn Regatta I expect about 90 people from our side on the day, rowers and supporters together. Riverbank Catering quoted £6.80 per head for their buffet.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Entered our Senior VIII in the Longford Autumn Regatta on Saturday 19 September 2026 at Kestrel Lake, as the committee notice set out. Entry confirmed before the 1 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Reminder: Tuesday and Thursday evening outings continue through the summer; the erg room is booked 18:30 to 20:00.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered regatta-day catering from Riverbank Catering: 90 covers at £6.80 per head, total £612, delivered to the Kestrel Lake boathouse on regatta day, Saturday 19 September 2026.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Jonah Field (Membership)\", \"text\": \"Three new members joined in July; their details have been added to the membership roll. Nothing needed from you.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Halden Vehicle Hire\", \"text\": \"Quote for trailer and tow vehicle hire: £95 per day including insurance, subject to availability on the requested date.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered 60 participation medals from Ardent Trophies, engraved with 'Longford Autumn Regatta - Kestrel Lake', one per finishing crew member, no dates on the engraving.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Booked the club trailer and a tow vehicle from Halden Vehicle Hire for Saturday 19 September 2026, the day of our confirmed regatta entry, at their quoted £95 day rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"To-do: pay the Riverbank Catering deposit of £150 by 20 September 2026 so the regatta-day order stands.\", \"role\": \"obligation\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Race details for 19 September: racing starts at 09:00 at Kestrel Lake, boating from the north bank. Crews should arrive 90 minutes before their first race.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Important: the Longford Autumn Regatta has been moved to Saturday 26 September 2026 because of flood works on the original weekend. The venue is unchanged, still Kestrel Lake, and all accepted entries carry over automatically to the new date.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Riverbank Catering\", \"text\": \"Just to let you know, our price for 2026 event buffets is now £7.20 per head. Everything else about your booking stays the same.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Can you make sure the trailer lights are checked before we tow to the regatta? The boathouse keyholder can let the mechanic in any weekday morning.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Nora Kelly (OarCraft Supplies)\", \"text\": \"Thanks for your continued custom — just confirming we now deliver to the Riverton boathouse store on the first Wednesday of each month.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Sam\", \"text\": \"Boat booking note: the club's two quad sculls are reserved for the masters group on weekend mornings through the summer; the Senior VIII has priority on the first VIII at all other times.\", \"role\": \"rule\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-18\", \"type\": \"call\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Quick call: Moira confirmed that trailer parking at Kestrel Lake is on the north bank field, and that crews must display their entry number on the windscreen.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Jonah Field (Membership)\", \"text\": \"Two junior members have moved up to the senior squad, so the Senior VIII training group is now eleven strong. Marta is picking the race crew from that group.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-13\", \"type\": \"email\", \"from\": \"Ardent Trophies\", \"text\": \"Your medal order is engraved and ready; we will post it this week, so it arrives well before the regatta. Please let us know if anything needs to change.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Longford Autumn Regatta - Senior VIII entry\", \"fields\": {\"event\": \"Longford Autumn Regatta\", \"date\": \"2026-09-19\", \"venue\": \"Kestrel Lake\", \"crew\": \"Senior VIII\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trailer and tow vehicle hire - regatta day\", \"fields\": {\"date\": \"2026-09-19\", \"item\": \"trailer and tow vehicle\", \"supplier\": \"Halden Vehicle Hire\", \"cost\": \"95\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Regatta-day catering - Riverbank Catering\", \"fields\": {\"supplier\": \"Riverbank Catering\", \"delivery_date\": \"2026-09-19\", \"place\": \"Kestrel Lake boathouse\", \"covers\": \"90\", \"amount\": \"612\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Participation medals - Ardent Trophies\", \"fields\": {\"supplier\": \"Ardent Trophies\", \"item\": \"engraved medals\", \"engraving\": \"Longford Autumn Regatta - Kestrel Lake\", \"quantity\": \"60\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"delivery_date\"], \"from\": \"Priya Nair (Treasurer)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please confirm our Senior VIII entry for the Longford Autumn Regatta with the race secretary and get our regatta-day arrangements lined up.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"message_to\": \"Moira Bell (Longford Regatta Committee)\", \"regarding\": \"EV-1\", \"says\": [\"Senior VIII\", \"2026-09-26\"], \"stale\": [\"2026-09-19\"], \"task\": true}\n ],\n \"why\": \"The regatta's move from 19 to 26 September makes the entry date (EV-1) and the trailer hire (EV-2) stale; both follow from the entry decision and need nobody's consent, so they are REVISE. The catering order (ORD-1) is two hops from the original notice and its delivery date can only be amended with the treasurer's written approval under the club policy, so it is ASK and stays unchanged with a consent request. The medal order (ORD-2) cites the regatta notice only for the event name and venue, which the change leaves standing, so it is KEEP. The distractor is the caterer's new per-head price, which is irrelevant to the date change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Riverbank Catering\", \"item\": \"tea, coffee and biscuits\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Riverton boathouse kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"erg room sessions\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"erg room slot\", \"unit\": \"session\", \"values\": [\"main hall\", \"upstairs room\", \"gym annex\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"order\", \"topic\": \"launch fuel\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"petrol for the safety launch\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Kestrel Lake jetty\"},\n  {\"kind\": \"booking\", \"topic\": \"junior coaching runs\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"coaching launch on the water\", \"unit\": \"session\", \"values\": [\"Kestrel Lake north bank\", \"Kestrel Lake weir reach\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"blade tape and grips\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"handle grips and blade tape\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Riverton boathouse store\"},\n  {\"kind\": \"booking\", \"topic\": \"committee meetings\", \"counterpart\": \"Jonah Field\", \"org\": \"Riverton Rowing Club\", \"item\": \"meeting room\", \"unit\": \"meeting\", \"values\": [\"clubroom\", \"upstairs room\", \"riverside lounge\"], \"place\": \"Riverton clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"buoy repairs\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"replacement course buoys\", \"unit\": \"buoys\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Kestrel Lake course\"},\n  {\"kind\": \"booking\", \"topic\": \"safety boat hire\", \"counterpart\": \"Ines Ward\", \"org\": \"Halden Vehicle Hire\", \"item\": \"safety boat with driver\", \"unit\": \"day\", \"values\": [\"Kestrel Lake north bank\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"first aid restock\", \"counterpart\": \"Ruth Meyer\", \"org\": \"Streamline Medical Supplies\", \"item\": \"first aid kit refills\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"booking\", \"topic\": \"learn-to-row courses\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"beginner boat slot\", \"unit\": \"session\", \"values\": [\"Kestrel Lake weir reach\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6154,
+    "completion_tokens": 3483,
+    "reasoning_tokens": 127,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02036576,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 16 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Longford Autumn Regatta date change\",\n \"setting\": \"The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings\",\n \"owner\": \"Sam\",\n \"org\": \"Riverton Rowing Club\",\n \"now\": \"2026-09-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Sam (Club Secretary)\", \"text\": \"Standing rule for the season: any change to a crew listed in a confirmed regatta entry must be agreed with our head coach Marta before it is sent to the race committee.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"notice\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"This year's Longford Autumn Regatta will be raced on Saturday 19 September 2026 at Kestrel Lake. Entries close on 1 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"Club policy: any amendment to a confirmed supplier order worth more than £100 needs my written approval before it goes to the supplier.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marta (Head Coach)\", \"text\": \"For the Longford Autumn Regatta I expect about 90 people from our side on the day, rowers and supporters together. Riverbank Catering quoted £6.80 per head for their buffet.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Nora Kelly (OarCraft Supplies)\", \"text\": \"Thanks for your continued custom — just confirming we now deliver to the Riverton boathouse store on the first Wednesday of each month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Entered our Senior VIII in the Longford Autumn Regatta on Saturday 19 September 2026 at Kestrel Lake, as the committee notice set out. Entry confirmed before the 1 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Sam\", \"text\": \"Boat booking note: the club's two quad sculls are reserved for the masters group on weekend mornings through the summer; the Senior VIII has priority on the first VIII at all other times.\", \"role\": \"rule\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Reminder: Tuesday and Thursday evening outings continue through the summer; the erg room is booked 18:30 to 20:00.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-18\", \"type\": \"call\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Quick call: Moira confirmed that trailer parking at Kestrel Lake is on the north bank field, and that crews must display their entry number on the windscreen.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered regatta-day catering from Riverbank Catering: 90 covers at £6.80 per head, total £612, delivered to the Kestrel Lake boathouse on regatta day, Saturday 19 September 2026.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Jonah Field (Membership)\", \"text\": \"Three new members joined in July; their details have been added to the membership roll. Nothing needed from you.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Halden Vehicle Hire\", \"text\": \"Quote for trailer and tow vehicle hire: £95 per day including insurance, subject to availability on the requested date.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Ordered 60 participation medals from Ardent Trophies, engraved with 'Longford Autumn Regatta - Kestrel Lake', one per finishing crew member, no dates on the engraving.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Sam\", \"text\": \"Booked the club trailer and a tow vehicle from Halden Vehicle Hire for Saturday 19 September 2026, the day of our confirmed regatta entry, at their quoted £95 day rate.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Priya Nair (Treasurer)\", \"text\": \"To-do: pay the Riverbank Catering deposit of £150 by 20 September 2026 so the regatta-day order stands.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Jonah Field (Membership)\", \"text\": \"Two junior members have moved up to the senior squad, so the Senior VIII training group is now eleven strong. Marta is picking the race crew from that group.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Race details for 19 September: racing starts at 09:00 at Kestrel Lake, boating from the north bank. Crews should arrive 90 minutes before their first race.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Moira Bell (Longford Regatta Committee)\", \"text\": \"Important: the Longford Autumn Regatta has been moved to Saturday 26 September 2026 because of flood works on the original weekend. The venue is unchanged, still Kestrel Lake, and all accepted entries carry over automatically to the new date.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Riverbank Catering\", \"text\": \"Just to let you know, our price for 2026 event buffets is now £7.20 per head. Everything else about your booking stays the same.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-12\", \"type\": \"message\", \"from\": \"Marta (Head Coach)\", \"text\": \"Can you make sure the trailer lights are checked before we tow to the regatta? The boathouse keyholder can let the mechanic in any weekday morning.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-13\", \"type\": \"email\", \"from\": \"Ardent Trophies\", \"text\": \"Your medal order is engraved and ready; we will post it this week, so it arrives well before the regatta. Please let us know if anything needs to change.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Longford Autumn Regatta - Senior VIII entry\", \"fields\": {\"event\": \"Longford Autumn Regatta\", \"date\": \"2026-09-19\", \"venue\": \"Kestrel Lake\", \"crew\": \"Senior VIII\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Trailer and tow vehicle hire - regatta day\", \"fields\": {\"date\": \"2026-09-19\", \"item\": \"trailer and tow vehicle\", \"supplier\": \"Halden Vehicle Hire\", \"cost\": \"95\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Regatta-day catering - Riverbank Catering\", \"fields\": {\"supplier\": \"Riverbank Catering\", \"delivery_date\": \"2026-09-19\", \"place\": \"Kestrel Lake boathouse\", \"covers\": \"90\", \"amount\": \"612\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Participation medals - Ardent Trophies\", \"fields\": {\"supplier\": \"Ardent Trophies\", \"item\": \"engraved medals\", \"engraving\": \"Longford Autumn Regatta - Kestrel Lake\", \"quantity\": \"60\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"delivery_date\"], \"from\": \"Priya Nair (Treasurer)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please confirm our Senior VIII entry for the Longford Autumn Regatta with the race secretary and get our regatta-day arrangements lined up.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-09-26\", \"stale\": [\"2026-09-19\"], \"task\": true},\n  {\"message_to\": \"Moira Bell (Longford Regatta Committee)\", \"regarding\": \"EV-1\", \"says\": [\"Senior VIII\", \"2026-09-26\"], \"stale\": [\"2026-09-19\"], \"task\": true}\n ],\n \"why\": \"The regatta's move from 19 to 26 September makes the entry date (EV-1) and the trailer hire (EV-2) stale; both follow from the entry decision and need nobody's consent, so they are REVISE. The catering order (ORD-1) is two hops from the original notice and its delivery date can only be amended with the treasurer's written approval under the club policy, so it is ASK and stays unchanged with a consent request. The medal order (ORD-2) cites the regatta notice only for the event name and venue, which the change leaves standing, so it is KEEP. The distractor is the caterer's new per-head price, which is irrelevant to the date change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Riverbank Catering\", \"item\": \"tea, coffee and biscuits\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Riverton boathouse kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"erg room sessions\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"erg room slot\", \"unit\": \"session\", \"values\": [\"main hall\", \"upstairs room\", \"gym annex\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"order\", \"topic\": \"launch fuel\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"petrol for the safety launch\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Kestrel Lake jetty\"},\n  {\"kind\": \"booking\", \"topic\": \"junior coaching runs\", \"counterpart\": \"Marta (Head Coach)\", \"org\": \"Riverton Rowing Club\", \"item\": \"coaching launch on the water\", \"unit\": \"session\", \"values\": [\"Kestrel Lake north bank\", \"Kestrel Lake weir reach\", \"Riverton river stretch\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"blade tape and grips\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"handle grips and blade tape\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Riverton boathouse store\"},\n  {\"kind\": \"booking\", \"topic\": \"committee meetings\", \"counterpart\": \"Jonah Field\", \"org\": \"Riverton Rowing Club\", \"item\": \"meeting room\", \"unit\": \"meeting\", \"values\": [\"clubroom\", \"upstairs room\", \"riverside lounge\"], \"place\": \"Riverton clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"buoy repairs\", \"counterpart\": \"Peter Voss\", \"org\": \"Kestrel Marine Fuels\", \"item\": \"replacement course buoys\", \"unit\": \"buoys\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Kestrel Lake course\"},\n  {\"kind\": \"booking\", \"topic\": \"safety boat hire\", \"counterpart\": \"Ines Ward\", \"org\": \"Halden Vehicle Hire\", \"item\": \"safety boat with driver\", \"unit\": \"day\", \"values\": [\"Kestrel Lake north bank\", \"Riverton river stretch\", \"Kestrel Lake weir reach\"], \"place\": \"Kestrel Lake\"},\n  {\"kind\": \"order\", \"topic\": \"first aid restock\", \"counterpart\": \"Ruth Meyer\", \"org\": \"Streamline Medical Supplies\", \"item\": \"first aid kit refills\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Riverton boathouse\"},\n  {\"kind\": \"booking\", \"topic\": \"learn-to-row courses\", \"counterpart\": \"Nora Kelly\", \"org\": \"OarCraft Supplies\", \"item\": \"beginner boat slot\", \"unit\": \"session\", \"values\": [\"Kestrel Lake weir reach\", \"Riverton river stretch\", \"Kestrel Lake north bank\"], \"place\": \"Kestrel Lake\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9587,
+    "completion_tokens": 3389,
+    "reasoning_tokens": 17,
+    "cached_tokens": 6144
+   },
+   "cost": 0.02132924,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e17 is dated before e16)\n- noise topic 'safety boat hire': values needs at least three entries\n- noise topic 'learn-to-row courses': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Longford Autumn Regatta date change",
+  "setting": "The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings",
+  "owner": "Sam",
+  "org": "Riverton Rowing Club",
+  "now": "2026-09-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Sam (Club Secretary)",
+    "text": "Standing rule for the season: any change to a crew listed in a confirmed regatta entry must be agreed with our head coach Marta before it is sent to the race committee.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "notice",
+    "from": "Moira Bell (Longford Regatta Committee)",
+    "text": "This year's Longford Autumn Regatta will be raced on Saturday 19 September 2026 at Kestrel Lake. Entries close on 1 September 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "policy",
+    "from": "Priya Nair (Treasurer)",
+    "text": "Club policy: any amendment to a confirmed supplier order worth more than £100 needs my written approval before it goes to the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Marta (Head Coach)",
+    "text": "For the Longford Autumn Regatta I expect about 90 people from our side on the day, rowers and supporters together. Riverbank Catering quoted £6.80 per head for their buffet.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Nora Kelly (OarCraft Supplies)",
+    "text": "Thanks for your continued custom — just confirming we now deliver to the Riverton boathouse store on the first Wednesday of each month.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Sam",
+    "text": "Entered our Senior VIII in the Longford Autumn Regatta on Saturday 19 September 2026 at Kestrel Lake, as the committee notice set out. Entry confirmed before the 1 September closing date.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-02",
+    "type": "note",
+    "from": "Sam",
+    "text": "Boat booking note: the club's two quad sculls are reserved for the masters group on weekend mornings through the summer; the Senior VIII has priority on the first VIII at all other times.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-03",
+    "type": "message",
+    "from": "Marta (Head Coach)",
+    "text": "Reminder: Tuesday and Thursday evening outings continue through the summer; the erg room is booked 18:30 to 20:00.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-18",
+    "type": "call",
+    "from": "Moira Bell (Longford Regatta Committee)",
+    "text": "Quick call: Moira confirmed that trailer parking at Kestrel Lake is on the north bank field, and that crews must display their entry number on the windscreen.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Sam",
+    "text": "Ordered regatta-day catering from Riverbank Catering: 90 covers at £6.80 per head, total £612, delivered to the Kestrel Lake boathouse on regatta day, Saturday 19 September 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Jonah Field (Membership)",
+    "text": "Three new members joined in July; their details have been added to the membership roll. Nothing needed from you.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-24",
+    "type": "quote",
+    "from": "Halden Vehicle Hire",
+    "text": "Quote for trailer and tow vehicle hire: £95 per day including insurance, subject to availability on the requested date.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Sam",
+    "text": "Ordered 60 participation medals from Ardent Trophies, engraved with 'Longford Autumn Regatta - Kestrel Lake', one per finishing crew member, no dates on the engraving.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-06",
+    "type": "decision",
+    "from": "Sam",
+    "text": "Booked the club trailer and a tow vehicle from Halden Vehicle Hire for Saturday 19 September 2026, the day of our confirmed regatta entry, at their quoted £95 day rate.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "task",
+    "from": "Priya Nair (Treasurer)",
+    "text": "To-do: pay the Riverbank Catering deposit of £150 by 20 September 2026 so the regatta-day order stands.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-20",
+    "type": "message",
+    "from": "Jonah Field (Membership)",
+    "text": "Two junior members have moved up to the senior squad, so the Senior VIII training group is now eleven strong. Marta is picking the race crew from that group.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-30",
+    "type": "email",
+    "from": "Moira Bell (Longford Regatta Committee)",
+    "text": "Race details for 19 September: racing starts at 09:00 at Kestrel Lake, boating from the north bank. Crews should arrive 90 minutes before their first race.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Moira Bell (Longford Regatta Committee)",
+    "text": "Important: the Longford Autumn Regatta has been moved to Saturday 26 September 2026 because of flood works on the original weekend. The venue is unchanged, still Kestrel Lake, and all accepted entries carry over automatically to the new date.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Riverbank Catering",
+    "text": "Just to let you know, our price for 2026 event buffets is now £7.20 per head. Everything else about your booking stays the same.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-12",
+    "type": "message",
+    "from": "Marta (Head Coach)",
+    "text": "Can you make sure the trailer lights are checked before we tow to the regatta? The boathouse keyholder can let the mechanic in any weekday morning.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-13",
+    "type": "email",
+    "from": "Ardent Trophies",
+    "text": "Your medal order is engraved and ready; we will post it this week, so it arrives well before the regatta. Please let us know if anything needs to change.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Longford Autumn Regatta - Senior VIII entry",
+    "fields": {
+     "event": "Longford Autumn Regatta",
+     "date": "2026-09-19",
+     "venue": "Kestrel Lake",
+     "crew": "Senior VIII",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Trailer and tow vehicle hire - regatta day",
+    "fields": {
+     "date": "2026-09-19",
+     "item": "trailer and tow vehicle",
+     "supplier": "Halden Vehicle Hire",
+     "cost": "95",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Regatta-day catering - Riverbank Catering",
+    "fields": {
+     "supplier": "Riverbank Catering",
+     "delivery_date": "2026-09-19",
+     "place": "Kestrel Lake boathouse",
+     "covers": "90",
+     "amount": "612",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Participation medals - Ardent Trophies",
+    "fields": {
+     "supplier": "Ardent Trophies",
+     "item": "engraved medals",
+     "engraving": "Longford Autumn Regatta - Kestrel Lake",
+     "quantity": "60",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "delivery_date"
+    ],
+    "from": "Priya Nair (Treasurer)",
+    "rule": "e3"
+   }
+  ],
+  "task": "Please confirm our Senior VIII entry for the Longford Autumn Regatta with the race secretary and get our regatta-day arrangements lined up.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-09-26",
+    "stale": [
+     "2026-09-19"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "date",
+    "value": "2026-09-26",
+    "stale": [
+     "2026-09-19"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Moira Bell (Longford Regatta Committee)",
+    "regarding": "EV-1",
+    "says": [
+     "Senior VIII",
+     "2026-09-26"
+    ],
+    "stale": [
+     "2026-09-19"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The regatta's move from 19 to 26 September makes the entry date (EV-1) and the trailer hire (EV-2) stale; both follow from the entry decision and need nobody's consent, so they are REVISE. The catering order (ORD-1) is two hops from the original notice and its delivery date can only be amended with the treasurer's written approval under the club policy, so it is ASK and stays unchanged with a consent request. The medal order (ORD-2) cites the regatta notice only for the event name and venue, which the change leaves standing, so it is KEEP. The distractor is the caterer's new per-head price, which is irrelevant to the date change.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "tea and coffee restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Riverbank Catering",
+    "item": "tea, coffee and biscuits",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Riverton boathouse kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "erg room sessions",
+    "counterpart": "Marta (Head Coach)",
+    "org": "Riverton Rowing Club",
+    "item": "erg room slot",
+    "unit": "session",
+    "values": [
+     "main hall",
+     "upstairs room",
+     "gym annex"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "order",
+    "topic": "launch fuel",
+    "counterpart": "Peter Voss",
+    "org": "Kestrel Marine Fuels",
+    "item": "petrol for the safety launch",
+    "unit": "litres",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Kestrel Lake jetty"
+   },
+   {
+    "kind": "booking",
+    "topic": "junior coaching runs",
+    "counterpart": "Marta (Head Coach)",
+    "org": "Riverton Rowing Club",
+    "item": "coaching launch on the water",
+    "unit": "session",
+    "values": [
+     "Kestrel Lake north bank",
+     "Kestrel Lake weir reach",
+     "Riverton river stretch"
+    ],
+    "place": "Kestrel Lake"
+   },
+   {
+    "kind": "order",
+    "topic": "blade tape and grips",
+    "counterpart": "Nora Kelly",
+    "org": "OarCraft Supplies",
+    "item": "handle grips and blade tape",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Riverton boathouse store"
+   },
+   {
+    "kind": "booking",
+    "topic": "committee meetings",
+    "counterpart": "Jonah Field",
+    "org": "Riverton Rowing Club",
+    "item": "meeting room",
+    "unit": "meeting",
+    "values": [
+     "clubroom",
+     "upstairs room",
+     "riverside lounge"
+    ],
+    "place": "Riverton clubhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "buoy repairs",
+    "counterpart": "Peter Voss",
+    "org": "Kestrel Marine Fuels",
+    "item": "replacement course buoys",
+    "unit": "buoys",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Kestrel Lake course"
+   },
+   {
+    "kind": "booking",
+    "topic": "safety boat hire",
+    "counterpart": "Ines Ward",
+    "org": "Halden Vehicle Hire",
+    "item": "safety boat with driver",
+    "unit": "day",
+    "values": [
+     "Kestrel Lake north bank",
+     "Riverton river stretch",
+     "Kestrel Lake weir reach"
+    ],
+    "place": "Kestrel Lake"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid restock",
+    "counterpart": "Ruth Meyer",
+    "org": "Streamline Medical Supplies",
+    "item": "first aid kit refills",
+    "unit": "kits",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "learn-to-row courses",
+    "counterpart": "Nora Kelly",
+    "org": "OarCraft Supplies",
+    "item": "beginner boat slot",
+    "unit": "session",
+    "values": [
+     "Kestrel Lake weir reach",
+     "Riverton river stretch",
+     "Kestrel Lake north bank"
+    ],
+    "place": "Kestrel Lake"
+   }
+  ],
+  "id": "G100-1-10",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [
+  "events must be listed in date order (e17 is dated before e4)"
+ ],
+ "valid": false
+}

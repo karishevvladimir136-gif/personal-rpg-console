@@ -1,0 +1,676 @@
+{
+ "id": "G500-1-05",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 4,
+ "setting": "A violin maker at Ferrand Strings whose assistant keeps commission specs, tonewood inventory, and delivery promises",
+ "prompt_sha256": "593c0ba32fbcfff593a3e810be1a9345abe514d355d2b06439db1e04ab3e08fe",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Delayed Spruce Billets\",\n \"setting\": \"A violin maker at Ferrand Strings whose assistant keeps commission specs, tonewood inventory, and delivery promises\",\n \"owner\": \"Marta\",\n \"org\": \"Ferrand Strings\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: a delivery date promised to a client on a confirmed commission may not be moved without the client's written agreement. Always ask the client first, never shift a promised date on your own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: any tonewood or parts order above 900 euros needs Mira Voss's sign-off before it is placed. Mira keeps the workshop accounts.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Workshop inventory check: six flame maple rib sets on the shelf, ebony fingerboards running low, plenty of boxwood pegs.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Good news on maple: flame maple rib sets are at 210 euros per set this season, and we can ship within a week of any order.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"I would like to commission a violin from Ferrand Strings. My budget is around 9500 euros, and I am hoping for delivery in early November, ahead of the winter concert season.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"To add to my commission request: I love the Guarneri model, and I would prefer a warm amber varnish rather than anything too red.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"We have set aside 12 sets of European spruce soundboard billets for Ferrand Strings. They will arrive on Friday 4 September, and the price stays 480 euros per set, held through the end of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed Priya Raman's violin commission at 9500 euros with a promised delivery date of 2026-11-06. The spruce arriving on 4 September leaves a full graduation, varnishing and curing run before early November, so the date is safe.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed the order with Holtz Timber for the 12 sets of spruce soundboard billets at 480 euros per set, 5760 euros in total, expected delivery 2026-09-04.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-11\", \"type\": \"email\", \"from\": \"Mira Voss\", \"text\": \"Sign-off given for the 5760 euro spruce order to Holtz Timber. The accounts can carry it.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the bench room for the soundboard graduation week, 7 to 11 September, starting the moment the spruce billets arrive on 4 September.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 8 flame maple rib sets from Holtz Timber at 210 euros per set, 1680 euros in total, for delivery by the end of July to top up the shelf.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Mira Voss\", \"text\": \"Approved the 1680 euro maple rib order as well. Both tonewood orders are now cleared.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added a repeat stock order with Holtz Timber for 4 more spruce soundboard billet sets at the held price of 480 euros per set, to sit on the shelf for future commissions. No fixed delivery date needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"quote\", \"from\": \"Anouk Pelt (Pelt Case Works)\", \"text\": \"Quotation for oblong violin cases at 340 euros each, valid for three months.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-01\", \"type\": \"invoice\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Invoice H-2280 for 8 flame maple rib sets, 1680 euros, due in 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the bench room for the varnish retouch session on Priya's violin for 2026-09-28, which leaves five weeks of curing before the promised 2026-11-06 delivery.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-08\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Workshop minutes: drying room humidity checks twice a week through the autumn; bench room bookings take priority over walk-in repairs in September.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned apprentice Tomas Lind to assist with the soundboard graduation week starting 7 September in the bench room.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Note to self: Tomas is at his bow-making course from 24 to 28 August, so he is back well before the graduation week in September.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ravi Mehta (Corvus Strings)\", \"text\": \"String sets are at 46 euros each this quarter, delivered within three days of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-24\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Holtz Timber invoice H-2291 for the spruce order, 5760 euros, by 2026-09-01.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Confirming that your 12 sets of spruce soundboard billets leave us this week and will arrive on Friday 4 September, as agreed.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"The maple rib sets were delivered on 31 July as planned. Glad the shelf is topped up.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Open studio day at Ferrand Strings on 3 October, ten until four. Front showroom and drying room open to visitors.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-19\", \"type\": \"cancellation\", \"from\": \"Theo Marner\", \"text\": \"Theo Marner has cancelled his bow rehair slot booked for 26 September; he will rebook in the spring.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Some bad news, I'm afraid: the drying kiln at our Bavaria yard was down for two weeks, so the 12 sets of spruce soundboard billets we set aside for you could not be finished in time. They now ship next Monday and will arrive on Thursday 8 October. The price and everything else on your account are unaffected.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Your box of spruce linings and corner blocks went out today and should reach you on 20 October. That is the small sundries box, separate from the big tonewood.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"Hello Marta, how is my violin coming along? The orchestra has asked me to confirm the date I can collect it.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Mira Voss\", \"text\": \"Accounts note: the Holtz Timber invoices for the maple and the spruce order are both settled. Nothing outstanding with them.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Raman violin commission\", \"fields\": {\"client\": \"Priya Raman\", \"instrument\": \"violin\", \"model\": \"Guarneri\", \"price\": \"9500\", \"delivery_date\": \"2026-11-06\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Spruce soundboard billets from Holtz Timber\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"spruce soundboard billets\", \"quantity\": \"12\", \"unit_price\": \"480\", \"expected_delivery\": \"2026-09-04\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Flame maple rib sets from Holtz Timber\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"flame maple rib sets\", \"quantity\": \"8\", \"unit_price\": \"210\", \"expected_delivery\": \"2026-07-31\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Spruce stock repeat order for the shelf\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"spruce soundboard billets\", \"quantity\": \"4\", \"unit_price\": \"480\", \"purpose\": \"shelf stock\", \"status\": \"open\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Soundboard graduation week\", \"fields\": {\"start\": \"2026-09-07\", \"end\": \"2026-09-11\", \"place\": \"bench room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Varnish retouch session - Priya Raman violin\", \"fields\": {\"date\": \"2026-09-28\", \"place\": \"bench room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tomas Lind - graduation assist\", \"fields\": {\"date\": \"2026-09-07\", \"person\": \"Tomas Lind\", \"place\": \"bench room\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"delivery_date\"], \"from\": \"Priya Raman\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please book the bench-room slot for the final set-up week of Priya Raman's violin, and send her a short note with the delivery date we can honestly promise her.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"expected_delivery\", \"value\": \"2026-10-08\", \"stale\": [\"2026-09-04\"]},\n  {\"record\": \"EV-1\", \"field\": \"start\", \"value\": \"2026-10-12\", \"stale\": [\"2026-09-07\"]},\n  {\"record\": \"EV-1\", \"field\": \"end\", \"value\": \"2026-10-16\", \"stale\": [\"2026-09-11\"]},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-10-26\", \"stale\": [\"2026-09-28\"]},\n  {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-12\", \"stale\": [\"2026-09-07\"]},\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Final set-up week - Priya Raman violin\", \"start\": \"2026-11-25\", \"end\": \"2026-11-27\", \"place\": \"bench room\", \"status\": \"booked\"}, \"stale\": {\"start\": [\"2026-11-03\"], \"end\": [\"2026-11-05\"]}, \"task\": true},\n  {\"message_to\": \"Priya Raman\", \"regarding\": \"CL-1\", \"says\": [\"2026-11-27\", \"ask her agreement to move the promised delivery date\"], \"stale\": [\"2026-11-06\"], \"task\": true}\n ],\n \"why\": \"Holtz's email of 7 October revokes the 4 September spruce arrival, so the order record, the graduation week, the varnish retouch and Tomas's assignment (all resting on that fact, some two hops away) must move to dates that follow the 8 October arrival, while the shelf-stock spruce order is KEEP because it used only the price, which the delay leaves standing. Priya's commission delivery date is protected by the consent rule e1, so the assistant must ask her about 2026-11-27 rather than change CL-1, and the set-up booking and the message to her are the task's own acts at the end of the chain. The 20 October linings box is a distractor and ORD-2, ORD-3, CL-1 stay untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"fingerboard restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"ebony fingerboards\", \"unit\": \"piece\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"peg set restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"boxwood peg sets\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"bridge blank restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"maple bridge blanks\", \"unit\": \"piece\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"string restocking\", \"counterpart\": \"Ravi Mehta\", \"org\": \"Corvus Strings\", \"item\": \"string sets\", \"unit\": \"set\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"rosin restocking\", \"counterpart\": \"Ravi Mehta\", \"org\": \"Corvus Strings\", \"item\": \"rosin cakes\", \"unit\": \"cake\", \"values\": [\"12\", \"24\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"case restocking\", \"counterpart\": \"Anouk Pelt\", \"org\": \"Pelt Case Works\", \"item\": \"oblong violin cases\", \"unit\": \"case\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"front showroom\"},\n  {\"kind\": \"order\", \"topic\": \"tool restocking\", \"counterpart\": \"Pim Oster\", \"org\": \"FeinTool\", \"item\": \"scraper blades\", \"unit\": \"pack\", \"values\": [\"4\", \"8\"], \"place\": \"tool cabinet\"},\n  {\"kind\": \"booking\", \"topic\": \"pupil trial mornings\", \"counterpart\": \"Iris Halden\", \"org\": \"Verrone Music School\", \"item\": \"trial violin mornings\", \"values\": [\"bench room\", \"front showroom\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"timber delivery slots\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"delivery slot for timber\", \"values\": [\"workshop yard\", \"side alley\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"client fitting visits\", \"counterpart\": \"Priya Raman\", \"org\": \"Priya Raman (private)\", \"item\": \"fitting visit\", \"values\": [\"front showroom\", \"bench room\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"varnish curing checks\", \"counterpart\": \"Marta\", \"org\": \"Ferrand Strings\", \"item\": \"curing check\", \"values\": [\"drying room\", \"bench room\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"catalogue photography days\", \"counterpart\": \"Bea Simon\", \"org\": \"Simon Foto\", \"item\": \"photography session\", \"values\": [\"front showroom\", \"workshop yard\"], \"place\": \"workshop\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3196,
+    "completion_tokens": 12742,
+    "reasoning_tokens": 8249,
+    "cached_tokens": 0
+   },
+   "cost": 0.0605392,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Delayed Spruce Billets\",\n \"setting\": \"A violin maker at Ferrand Strings whose assistant keeps commission specs, tonewood inventory, and delivery promises\",\n \"owner\": \"Marta\",\n \"org\": \"Ferrand Strings\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: a delivery date promised to a client on a confirmed commission may not be moved without the client's written agreement. Always ask the client first, never shift a promised date on your own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: any tonewood or parts order above 900 euros needs Mira Voss's sign-off before it is placed. Mira keeps the workshop accounts.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Workshop inventory check: six flame maple rib sets on the shelf, ebony fingerboards running low, plenty of boxwood pegs.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-16\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Good news on maple: flame maple rib sets are at 210 euros per set this season, and we can ship within a week of any order.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"I would like to commission a violin from Ferrand Strings. My budget is around 9500 euros, and I am hoping for delivery in early November, ahead of the winter concert season.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"To add to my commission request: I love the Guarneri model, and I would prefer a warm amber varnish rather than anything too red.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"We have set aside 12 sets of European spruce soundboard billets for Ferrand Strings. They will arrive on Friday 4 September, and the price stays 480 euros per set, held through the end of the year.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed Priya Raman's violin commission at 9500 euros with a promised delivery date of 2026-11-06. The spruce arriving on 4 September leaves a full graduation, varnishing and curing run before early November, so the date is safe.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed the order with Holtz Timber for the 12 sets of spruce soundboard billets at 480 euros per set, 5760 euros in total, expected delivery 2026-09-04.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-11\", \"type\": \"email\", \"from\": \"Mira Voss\", \"text\": \"Sign-off given for the 5760 euro spruce order to Holtz Timber. The accounts can carry it.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the bench room for the soundboard graduation week, 7 to 11 September, starting the moment the spruce billets arrive on 4 September.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 8 flame maple rib sets from Holtz Timber at 210 euros per set, 1680 euros in total, for delivery by the end of July to top up the shelf.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Mira Voss\", \"text\": \"Approved the 1680 euro maple rib order as well. Both tonewood orders are now cleared.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added a repeat stock order with Holtz Timber for 4 more spruce soundboard billet sets at the held price of 480 euros per set, to sit on the shelf for future commissions. No fixed delivery date needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"quote\", \"from\": \"Anouk Pelt (Pelt Case Works)\", \"text\": \"Quotation for oblong violin cases at 340 euros each, valid for three months.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-01\", \"type\": \"invoice\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Invoice H-2280 for 8 flame maple rib sets, 1680 euros, due in 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the bench room for the varnish retouch session on Priya's violin for 2026-09-28, which leaves five weeks of curing before the promised 2026-11-06 delivery.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-08\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Workshop minutes: drying room humidity checks twice a week through the autumn; bench room bookings take priority over walk-in repairs in September.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned apprentice Tomas Lind to assist with the soundboard graduation week starting 7 September in the bench room.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Note to self: Tomas is at his bow-making course from 24 to 28 August, so he is back well before the graduation week in September.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ravi Mehta (Corvus Strings)\", \"text\": \"String sets are at 46 euros each this quarter, delivered within three days of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-24\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Holtz Timber invoice H-2291 for the spruce order, 5760 euros, by 2026-09-01.\", \"role\": \"obligation\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Confirming that your 12 sets of spruce soundboard billets leave us this week and will arrive on Friday 4 September, as agreed.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"The maple rib sets were delivered on 31 July as planned. Glad the shelf is topped up.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Open studio day at Ferrand Strings on 3 October, ten until four. Front showroom and drying room open to visitors.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-19\", \"type\": \"cancellation\", \"from\": \"Theo Marner\", \"text\": \"Theo Marner has cancelled his bow rehair slot booked for 26 September; he will rebook in the spring.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Some bad news, I'm afraid: the drying kiln at our Bavaria yard was down for two weeks, so the 12 sets of spruce soundboard billets we set aside for you could not be finished in time. They now ship next Monday and will arrive on Thursday 8 October. The price and everything else on your account are unaffected.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Lena Brandt (Holtz Timber)\", \"text\": \"Your box of spruce linings and corner blocks went out today and should reach you on 20 October. That is the small sundries box, separate from the big tonewood.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"Hello Marta, how is my violin coming along? The orchestra has asked me to confirm the date I can collect it.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Mira Voss\", \"text\": \"Accounts note: the Holtz Timber invoices for the maple and the spruce order are both settled. Nothing outstanding with them.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Raman violin commission\", \"fields\": {\"client\": \"Priya Raman\", \"instrument\": \"violin\", \"model\": \"Guarneri\", \"price\": \"9500\", \"delivery_date\": \"2026-11-06\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Spruce soundboard billets from Holtz Timber\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"spruce soundboard billets\", \"quantity\": \"12\", \"unit_price\": \"480\", \"expected_delivery\": \"2026-09-04\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Flame maple rib sets from Holtz Timber\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"flame maple rib sets\", \"quantity\": \"8\", \"unit_price\": \"210\", \"expected_delivery\": \"2026-07-31\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Spruce stock repeat order for the shelf\", \"fields\": {\"supplier\": \"Holtz Timber\", \"item\": \"spruce soundboard billets\", \"quantity\": \"4\", \"unit_price\": \"480\", \"purpose\": \"shelf stock\", \"status\": \"open\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Soundboard graduation week\", \"fields\": {\"start\": \"2026-09-07\", \"end\": \"2026-09-11\", \"place\": \"bench room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Varnish retouch session - Priya Raman violin\", \"fields\": {\"date\": \"2026-09-28\", \"place\": \"bench room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tomas Lind - graduation assist\", \"fields\": {\"date\": \"2026-09-07\", \"person\": \"Tomas Lind\", \"place\": \"bench room\", \"status\": \"assigned\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"delivery_date\"], \"from\": \"Priya Raman\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please book the bench-room slot for the final set-up week of Priya Raman's violin, and send her a short note with the delivery date we can honestly promise her.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"expected_delivery\", \"value\": \"2026-10-08\", \"stale\": [\"2026-09-04\"]},\n  {\"record\": \"EV-1\", \"field\": \"start\", \"value\": \"2026-10-12\", \"stale\": [\"2026-09-07\"]},\n  {\"record\": \"EV-1\", \"field\": \"end\", \"value\": \"2026-10-16\", \"stale\": [\"2026-09-11\"]},\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-10-26\", \"stale\": [\"2026-09-28\"]},\n  {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-12\", \"stale\": [\"2026-09-07\"]},\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Final set-up week - Priya Raman violin\", \"start\": \"2026-11-25\", \"end\": \"2026-11-27\", \"place\": \"bench room\", \"status\": \"booked\"}, \"stale\": {\"start\": [\"2026-11-03\"], \"end\": [\"2026-11-05\"]}, \"task\": true},\n  {\"message_to\": \"Priya Raman\", \"regarding\": \"CL-1\", \"says\": [\"2026-11-27\", \"ask her agreement to move the promised delivery date\"], \"stale\": [\"2026-11-06\"], \"task\": true}\n ],\n \"why\": \"Holtz's email of 7 October revokes the 4 September spruce arrival, so the order record, the graduation week, the varnish retouch and Tomas's assignment (all resting on that fact, some two hops away) must move to dates that follow the 8 October arrival, while the shelf-stock spruce order is KEEP because it used only the price, which the delay leaves standing. Priya's commission delivery date is protected by the consent rule e1, so the assistant must ask her about 2026-11-27 rather than change CL-1, and the set-up booking and the message to her are the task's own acts at the end of the chain. The 20 October linings box is a distractor and ORD-2, ORD-3, CL-1 stay untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"fingerboard restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"ebony fingerboards\", \"unit\": \"piece\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"peg set restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"boxwood peg sets\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"6\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"bridge blank restocking\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"maple bridge blanks\", \"unit\": \"piece\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"workshop yard\"},\n  {\"kind\": \"order\", \"topic\": \"string restocking\", \"counterpart\": \"Ravi Mehta\", \"org\": \"Corvus Strings\", \"item\": \"string sets\", \"unit\": \"set\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"rosin restocking\", \"counterpart\": \"Ravi Mehta\", \"org\": \"Corvus Strings\", \"item\": \"rosin cakes\", \"unit\": \"cake\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"case restocking\", \"counterpart\": \"Anouk Pelt\", \"org\": \"Pelt Case Works\", \"item\": \"oblong violin cases\", \"unit\": \"case\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"front showroom\"},\n  {\"kind\": \"order\", \"topic\": \"tool restocking\", \"counterpart\": \"Pim Oster\", \"org\": \"FeinTool\", \"item\": \"scraper blades\", \"unit\": \"pack\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"tool cabinet\"},\n  {\"kind\": \"booking\", \"topic\": \"pupil trial mornings\", \"counterpart\": \"Iris Halden\", \"org\": \"Verrone Music School\", \"item\": \"trial violin mornings\", \"values\": [\"bench room\", \"front showroom\", \"workshop yard\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"timber delivery slots\", \"counterpart\": \"Lena Brandt\", \"org\": \"Holtz Timber\", \"item\": \"delivery slot for timber\", \"values\": [\"workshop yard\", \"side alley\", \"rear yard\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"client fitting visits\", \"counterpart\": \"Priya Raman\", \"org\": \"Priya Raman (private)\", \"item\": \"fitting visit\", \"values\": [\"front showroom\", \"bench room\", \"drying room\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"varnish curing checks\", \"counterpart\": \"Marta\", \"org\": \"Ferrand Strings\", \"item\": \"curing check\", \"values\": [\"drying room\", \"bench room\", \"front showroom\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"catalogue photography days\", \"counterpart\": \"Bea Simon\", \"org\": \"Simon Foto\", \"item\": \"photography session\", \"values\": [\"front showroom\", \"workshop yard\", \"bench room\"], \"place\": \"workshop\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7827,
+    "completion_tokens": 4530,
+    "reasoning_tokens": 9,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02731476,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'rosin restocking': values needs at least three entries\n- noise topic 'tool restocking': values needs at least three entries\n- noise topic 'pupil trial mornings': values needs at least three entries\n- noise topic 'timber delivery slots': values needs at least three entries\n- noise topic 'client fitting visits': values needs at least three entries\n- noise topic 'varnish curing checks': values needs at least three entries\n- noise topic 'catalogue photography days': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Delayed Spruce Billets",
+  "setting": "A violin maker at Ferrand Strings whose assistant keeps commission specs, tonewood inventory, and delivery promises",
+  "owner": "Marta",
+  "org": "Ferrand Strings",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the workshop: a delivery date promised to a client on a confirmed commission may not be moved without the client's written agreement. Always ask the client first, never shift a promised date on your own.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: any tonewood or parts order above 900 euros needs Mira Voss's sign-off before it is placed. Mira keeps the workshop accounts.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Marta",
+    "text": "Workshop inventory check: six flame maple rib sets on the shelf, ebony fingerboards running low, plenty of boxwood pegs.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-16",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "Good news on maple: flame maple rib sets are at 210 euros per set this season, and we can ship within a week of any order.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Priya Raman",
+    "text": "I would like to commission a violin from Ferrand Strings. My budget is around 9500 euros, and I am hoping for delivery in early November, ahead of the winter concert season.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-24",
+    "type": "email",
+    "from": "Priya Raman",
+    "text": "To add to my commission request: I love the Guarneri model, and I would prefer a warm amber varnish rather than anything too red.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "We have set aside 12 sets of European spruce soundboard billets for Ferrand Strings. They will arrive on Friday 4 September, and the price stays 480 euros per set, held through the end of the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed Priya Raman's violin commission at 9500 euros with a promised delivery date of 2026-11-06. The spruce arriving on 4 September leaves a full graduation, varnishing and curing run before early November, so the date is safe.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e7"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Placed the order with Holtz Timber for the 12 sets of spruce soundboard billets at 480 euros per set, 5760 euros in total, expected delivery 2026-09-04.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-11",
+    "type": "email",
+    "from": "Mira Voss",
+    "text": "Sign-off given for the 5760 euro spruce order to Holtz Timber. The accounts can carry it.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the bench room for the soundboard graduation week, 7 to 11 September, starting the moment the spruce billets arrive on 4 September.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 8 flame maple rib sets from Holtz Timber at 210 euros per set, 1680 euros in total, for delivery by the end of July to top up the shelf.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Mira Voss",
+    "text": "Approved the 1680 euro maple rib order as well. Both tonewood orders are now cleared.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Added a repeat stock order with Holtz Timber for 4 more spruce soundboard billet sets at the held price of 480 euros per set, to sit on the shelf for future commissions. No fixed delivery date needed.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-28",
+    "type": "quote",
+    "from": "Anouk Pelt (Pelt Case Works)",
+    "text": "Quotation for oblong violin cases at 340 euros each, valid for three months.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-01",
+    "type": "invoice",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "Invoice H-2280 for 8 flame maple rib sets, 1680 euros, due in 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the bench room for the varnish retouch session on Priya's violin for 2026-09-28, which leaves five weeks of curing before the promised 2026-11-06 delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e8"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-08",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Workshop minutes: drying room humidity checks twice a week through the autumn; bench room bookings take priority over walk-in repairs in September.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assigned apprentice Tomas Lind to assist with the soundboard graduation week starting 7 September in the bench room.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-15",
+    "type": "email",
+    "from": "Marta",
+    "text": "Note to self: Tomas is at his bow-making course from 24 to 28 August, so he is back well before the graduation week in September.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Ravi Mehta (Corvus Strings)",
+    "text": "String sets are at 46 euros each this quarter, delivered within three days of ordering.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-24",
+    "type": "task",
+    "from": "Marta",
+    "text": "Pay the Holtz Timber invoice H-2291 for the spruce order, 5760 euros, by 2026-09-01.",
+    "role": "obligation"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "Confirming that your 12 sets of spruce soundboard billets leave us this week and will arrive on Friday 4 September, as agreed.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "The maple rib sets were delivered on 31 July as planned. Glad the shelf is topped up.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-12",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Open studio day at Ferrand Strings on 3 October, ten until four. Front showroom and drying room open to visitors.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-19",
+    "type": "cancellation",
+    "from": "Theo Marner",
+    "text": "Theo Marner has cancelled his bow rehair slot booked for 26 September; he will rebook in the spring.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "Some bad news, I'm afraid: the drying kiln at our Bavaria yard was down for two weeks, so the 12 sets of spruce soundboard billets we set aside for you could not be finished in time. They now ship next Monday and will arrive on Thursday 8 October. The price and everything else on your account are unaffected.",
+    "role": "change",
+    "revokes": [
+     "e7"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Lena Brandt (Holtz Timber)",
+    "text": "Your box of spruce linings and corner blocks went out today and should reach you on 20 October. That is the small sundries box, separate from the big tonewood.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Priya Raman",
+    "text": "Hello Marta, how is my violin coming along? The orchestra has asked me to confirm the date I can collect it.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "note",
+    "from": "Mira Voss",
+    "text": "Accounts note: the Holtz Timber invoices for the maple and the spruce order are both settled. Nothing outstanding with them.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Priya Raman violin commission",
+    "fields": {
+     "client": "Priya Raman",
+     "instrument": "violin",
+     "model": "Guarneri",
+     "price": "9500",
+     "delivery_date": "2026-11-06",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Spruce soundboard billets from Holtz Timber",
+    "fields": {
+     "supplier": "Holtz Timber",
+     "item": "spruce soundboard billets",
+     "quantity": "12",
+     "unit_price": "480",
+     "expected_delivery": "2026-09-04",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Flame maple rib sets from Holtz Timber",
+    "fields": {
+     "supplier": "Holtz Timber",
+     "item": "flame maple rib sets",
+     "quantity": "8",
+     "unit_price": "210",
+     "expected_delivery": "2026-07-31",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Spruce stock repeat order for the shelf",
+    "fields": {
+     "supplier": "Holtz Timber",
+     "item": "spruce soundboard billets",
+     "quantity": "4",
+     "unit_price": "480",
+     "purpose": "shelf stock",
+     "status": "open"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Soundboard graduation week",
+    "fields": {
+     "start": "2026-09-07",
+     "end": "2026-09-11",
+     "place": "bench room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Varnish retouch session - Priya Raman violin",
+    "fields": {
+     "date": "2026-09-28",
+     "place": "bench room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Tomas Lind - graduation assist",
+    "fields": {
+     "date": "2026-09-07",
+     "person": "Tomas Lind",
+     "place": "bench room",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "delivery_date"
+    ],
+    "from": "Priya Raman",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please book the bench-room slot for the final set-up week of Priya Raman's violin, and send her a short note with the delivery date we can honestly promise her.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "expected_delivery",
+    "value": "2026-10-08",
+    "stale": [
+     "2026-09-04"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "start",
+    "value": "2026-10-12",
+    "stale": [
+     "2026-09-07"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "end",
+    "value": "2026-10-16",
+    "stale": [
+     "2026-09-11"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "date",
+    "value": "2026-10-26",
+    "stale": [
+     "2026-09-28"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "date",
+    "value": "2026-10-12",
+    "stale": [
+     "2026-09-07"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "title": "Final set-up week - Priya Raman violin",
+     "start": "2026-11-25",
+     "end": "2026-11-27",
+     "place": "bench room",
+     "status": "booked"
+    },
+    "stale": {
+     "start": [
+      "2026-11-03"
+     ],
+     "end": [
+      "2026-11-05"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Priya Raman",
+    "regarding": "CL-1",
+    "says": [
+     "2026-11-27",
+     "ask her agreement to move the promised delivery date"
+    ],
+    "stale": [
+     "2026-11-06"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Holtz's email of 7 October revokes the 4 September spruce arrival, so the order record, the graduation week, the varnish retouch and Tomas's assignment (all resting on that fact, some two hops away) must move to dates that follow the 8 October arrival, while the shelf-stock spruce order is KEEP because it used only the price, which the delay leaves standing. Priya's commission delivery date is protected by the consent rule e1, so the assistant must ask her about 2026-11-27 rather than change CL-1, and the set-up booking and the message to her are the task's own acts at the end of the chain. The 20 October linings box is a distractor and ORD-2, ORD-3, CL-1 stay untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "fingerboard restocking",
+    "counterpart": "Lena Brandt",
+    "org": "Holtz Timber",
+    "item": "ebony fingerboards",
+    "unit": "piece",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "workshop yard"
+   },
+   {
+    "kind": "order",
+    "topic": "peg set restocking",
+    "counterpart": "Lena Brandt",
+    "org": "Holtz Timber",
+    "item": "boxwood peg sets",
+    "unit": "set",
+    "values": [
+     "3",
+     "5",
+     "6"
+    ],
+    "place": "workshop yard"
+   },
+   {
+    "kind": "order",
+    "topic": "bridge blank restocking",
+    "counterpart": "Lena Brandt",
+    "org": "Holtz Timber",
+    "item": "maple bridge blanks",
+    "unit": "piece",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "workshop yard"
+   },
+   {
+    "kind": "order",
+    "topic": "string restocking",
+    "counterpart": "Ravi Mehta",
+    "org": "Corvus Strings",
+    "item": "string sets",
+    "unit": "set",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "rosin restocking",
+    "counterpart": "Ravi Mehta",
+    "org": "Corvus Strings",
+    "item": "rosin cakes",
+    "unit": "cake",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "case restocking",
+    "counterpart": "Anouk Pelt",
+    "org": "Pelt Case Works",
+    "item": "oblong violin cases",
+    "unit": "case",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "front showroom"
+   },
+   {
+    "kind": "order",
+    "topic": "tool restocking",
+    "counterpart": "Pim Oster",
+    "org": "FeinTool",
+    "item": "scraper blades",
+    "unit": "pack",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "tool cabinet"
+   },
+   {
+    "kind": "booking",
+    "topic": "pupil trial mornings",
+    "counterpart": "Iris Halden",
+    "org": "Verrone Music School",
+    "item": "trial violin mornings",
+    "values": [
+     "bench room",
+     "front showroom",
+     "workshop yard"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "timber delivery slots",
+    "counterpart": "Lena Brandt",
+    "org": "Holtz Timber",
+    "item": "delivery slot for timber",
+    "values": [
+     "workshop yard",
+     "side alley",
+     "rear yard"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "client fitting visits",
+    "counterpart": "Priya Raman",
+    "org": "Priya Raman (private)",
+    "item": "fitting visit",
+    "values": [
+     "front showroom",
+     "bench room",
+     "drying room"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "varnish curing checks",
+    "counterpart": "Marta",
+    "org": "Ferrand Strings",
+    "item": "curing check",
+    "values": [
+     "drying room",
+     "bench room",
+     "front showroom"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "catalogue photography days",
+    "counterpart": "Bea Simon",
+    "org": "Simon Foto",
+    "item": "photography session",
+    "values": [
+     "front showroom",
+     "workshop yard",
+     "bench room"
+    ],
+    "place": "workshop"
+   }
+  ],
+  "id": "G500-1-05",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

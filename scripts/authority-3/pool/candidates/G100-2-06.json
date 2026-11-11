@@ -1,0 +1,623 @@
+{
+ "id": "G100-2-06",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 5,
+ "setting": "A physiotherapist at Cornerstone Physio whose assistant tracks treatment plans, insurance approvals, and session bookings",
+ "prompt_sha256": "e9562b1ad986d6ac91eed6e4537d396cc5484ddf5dc6071babf0923f4bb2c57b",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Approval threshold raised at Cornerstone Physio\",\n  \"setting\": \"A physiotherapist at Cornerstone Physio whose assistant tracks treatment plans, insurance approvals, and session bookings\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Cornerstone Physio\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Cornerstone Physio has three treatment rooms. Room 2 doubles as the overflow room for extra blocks and standby slots.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"Confirming that I am the case manager at Aldermere Health Insurance for all Cornerstone treatment-plan approvals. Requests reach me by email at my office address.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule at Cornerstone: a client's confirmed session slot may never be moved without that client's written agreement. Front desk must check with the client first, always.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Katya Lind\", \"text\": \"Just to repeat what I said at my last visit: Thursday 17:00 is the only slot that works for me, because of my shifts. Please keep me there if at all possible.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule: any extension of a client's treatment plan beyond 8 sessions needs prior written approval from Marta Vine at Aldermere Health Insurance before we confirm further sessions. Extensions of 8 or fewer sessions can be confirmed in-house.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"letter\", \"from\": \"Dr Sanjay Rao (Riverside Orthopaedics)\", \"text\": \"Following Tomas Weber's knee surgery review, I recommend an extension of his physiotherapy plan by 10 further sessions at Cornerstone Physio, starting late July.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Priya Raman's shoulder plan needs an extension of 9 sessions after her re-assessment today.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"I extended Priya Raman's shoulder plan by 9 sessions and confirmed them. Marta Vine at Aldermere had already granted written approval for the 9-session extension, so the approval rule was satisfied. Her slot stays Wednesday 10:00.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-28\", \"type\": \"quote\", \"from\": \"Lena Falke (SportTape Wholesale)\", \"text\": \"Quote for kinesiology tape: 6 EUR per roll on standing orders of 40 rolls or more, delivered to Cornerstone Physio reception.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 40 rolls of kinesiology tape from Lena Falke at SportTape Wholesale at the quoted 6 EUR per roll, delivered to reception.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 2 is free for extension blocks on Tuesdays and Thursdays between 15:00 and 17:00 for the rest of the year.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Katya Lind's plan needs an 11-session extension. Because Aldermere's approval for the extension had not yet come through under the beyond-8 rule, I could not keep her confirmed slot in the approved block; with Katya's written agreement I moved her confirmed Thursday 17:00 slot to a Tuesday 07:00 standby slot in Room 2 while we wait.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Tomas Weber's 10-session post-surgery extension is booked: Thursday 15:30 in Room 2, as Dr Rao recommended and as the room allows. Because 10 sessions is beyond 8 and Marta Vine's approval is still outstanding, I set the block's status to pending insurer approval and no confirmations went out.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\", \"e11\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-27\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Since Tomas Weber's ten Thursday 15:30 extension sessions are still pending insurer approval, I kept the whole block out of the reminder list and marked his schedule block as provisional so the front desk treats it as unconfirmed.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"Weekly reminder: please send me any new confirmed blocks by Friday so I can update the printed room plan.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-10\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To-do: renew the clinic liability insurance before 2026-11-01.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"message\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"The waiting area magazines are a mess again, I'll sort them out this week. Also someone left a jacket in Room 1.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"For your records: Aldermere has raised its per-session reimbursement rate for physiotherapy from 48 EUR to 51 EUR for all plans, backdated to 2026-08-01.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"A reminder on limits: Aldermere caps acupuncture add-ons at 6 sessions per plan year, and extensions of an acupuncture block still need case-by-case approval from my office. Physiotherapy sessions are unaffected by this note.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"quote\", \"from\": \"Ivo Brandt (NeatLine Laundry)\", \"text\": \"Autumn quote: 14 EUR per towel bundle for weekly collection, same as last quarter.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"Good news: Cornerstone's new group contract with Aldermere took effect this week. From today, 2026-10-08, extensions of up to 12 sessions per treatment plan no longer need prior written approval from my office - you can confirm them in-house. Beyond 12 sessions I still need to sign off first. Approvals already granted stay valid as they are.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"Could you check whether any blocks in Room 2 should go on the printed plan for November? I'm printing next week's room plan on Friday.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Jonas Reiter (Cornerstone Physio)\", \"text\": \"Reminder: the home-visit van needs its service booked before the end of the month.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Priya Raman - shoulder plan extension\", \"fields\": {\"client\": \"Priya Raman\", \"weekday\": \"Wednesday\", \"time\": \"10:00\", \"sessions\": \"9\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Tomas Weber - knee plan extension\", \"fields\": {\"client\": \"Tomas Weber\", \"weekday\": \"Thursday\", \"time\": \"15:30\", \"room\": \"Room 2\", \"sessions\": \"10\", \"status\": \"pending insurer approval\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Katya Lind - plan extension block\", \"fields\": {\"client\": \"Katya Lind\", \"weekday\": \"Tuesday\", \"time\": \"07:00\", \"room\": \"Room 2\", \"sessions\": \"11\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tomas Weber - extension block (reminders)\", \"fields\": {\"client\": \"Tomas Weber\", \"weekday\": \"Thursday\", \"time\": \"15:30\", \"room\": \"Room 2\", \"status\": \"provisional\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Kinesiology tape restock\", \"fields\": {\"supplier\": \"SportTape Wholesale\", \"item\": \"kinesiology tape rolls\", \"quantity\": \"40\", \"unit_cost_eur\": \"6\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"weekday\", \"time\"], \"from\": \"Katya Lind\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Tomas Weber has asked me again when his extension sessions finally get confirmed. Please confirm his ten-session extension in the system and send him the schedule for the weeks ahead.\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending insurer approval\"], \"task\": true},\n    {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"provisional\"]},\n    {\"message_to\": \"Tomas Weber\", \"regarding\": \"EV-2\", \"says\": [\"confirmed\", \"Thursday 15:30\", \"Room 2\"], \"stale\": [\"pending insurer approval\", \"awaiting insurer approval\"], \"task\": true}\n  ],\n  \"why\": \"The amendment raises the in-house confirmation threshold from 8 to 12 sessions, so Tomas's 10-session extension (EV-2) and its reminder block (EV-4, two hops via the booking decision) no longer need Marta's approval and should be confirmed. Katya's 11-session extension is also covered now, but moving her confirmed slot back to Thursday would need her written agreement under the client-consent rule, so the assistant must ask, not act (EV-3 stays). Priya's extension was already approved and is unchanged (KEEP), and no other record moves. The acupuncture note is a distractor about a different programme.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Kinesiology tape restock\", \"counterpart\": \"Lena Falke\", \"org\": \"SportTape Wholesale\", \"item\": \"kinesiology tape rolls\", \"unit\": \"rolls\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"Cornerstone Physio reception\"},\n    {\"kind\": \"booking\", \"topic\": \"Room 2 team huddle\", \"counterpart\": \"Farah Osman\", \"org\": \"Cornerstone Physio\", \"item\": \"weekly team huddle\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Staff room\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"booking\", \"topic\": \"Aldermere case review call room\", \"counterpart\": \"Marta Vine\", \"org\": \"Aldermere Health Insurance\", \"item\": \"monthly case review call\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Meeting nook\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"order\", \"topic\": \"Towel bundles\", \"counterpart\": \"Ivo Brandt\", \"org\": \"NeatLine Laundry\", \"item\": \"towel bundles\", \"unit\": \"bundles\", \"values\": [\"12\", \"16\", \"20\", \"24\"], \"place\": \"treatment rooms cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"Cold pack restock\", \"counterpart\": \"Ravi Chand\", \"org\": \"PolarMed Supplies\", \"item\": \"reusable cold packs\", \"unit\": \"packs\", \"values\": [\"25\", \"40\", \"50\"], \"place\": \"storage shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Small-group Pilates class\", \"counterpart\": \"Nadia\", \"org\": \"Cornerstone Physio\", \"item\": \"small-group Pilates class\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"order\", \"topic\": \"A4 paper\", \"counterpart\": \"Mia Torres\", \"org\": \"Greenleaf Office\", \"item\": \"A4 paper boxes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"Home-visit rounds van\", \"counterpart\": \"Jonas Reiter\", \"org\": \"Cornerstone Physio\", \"item\": \"home-visit rounds\", \"unit\": \"\", \"values\": [\"van A\", \"van B\"], \"place\": \"patient home visits\"},\n    {\"kind\": \"order\", \"topic\": \"Hand sanitiser\", \"counterpart\": \"Ravi Chand\", \"org\": \"PolarMed Supplies\", \"item\": \"hand sanitiser bottles\", \"unit\": \"bottles\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"reception counter\"},\n    {\"kind\": \"booking\", \"topic\": \"Student clinic hours\", \"counterpart\": \"Dr Ilsa Pech\", \"org\": \"Northgate College\", \"item\": \"student placement clinic hours\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Cornerstone Physio\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3142,
+    "completion_tokens": 7784,
+    "reasoning_tokens": 4187,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03514632,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Approval threshold raised at Cornerstone Physio\",\n  \"setting\": \"A physiotherapist at Cornerstone Physio whose assistant tracks treatment plans, insurance approvals, and session bookings\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Cornerstone Physio\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Cornerstone Physio has three treatment rooms. Room 2 doubles as the overflow room for extra blocks and standby slots.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"Confirming that I am the case manager at Aldermere Health Insurance for all Cornerstone treatment-plan approvals. Requests reach me by email at my office address.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule at Cornerstone: a client's confirmed session slot may never be moved without that client's written agreement. Front desk must check with the client first, always.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Katya Lind\", \"text\": \"Just to repeat what I said at my last visit: Thursday 17:00 is the only slot that works for me, because of my shifts. Please keep me there if at all possible.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule: any extension of a client's treatment plan beyond 8 sessions needs prior written approval from Marta Vine at Aldermere Health Insurance before we confirm further sessions. Extensions of 8 or fewer sessions can be confirmed in-house.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"letter\", \"from\": \"Dr Sanjay Rao (Riverside Orthopaedics)\", \"text\": \"Following Tomas Weber's knee surgery review, I recommend an extension of his physiotherapy plan by 10 further sessions at Cornerstone Physio, starting late July.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Priya Raman's shoulder plan needs an extension of 9 sessions after her re-assessment today.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"I extended Priya Raman's shoulder plan by 9 sessions and confirmed them. Marta Vine at Aldermere had already granted written approval for the 9-session extension, so the approval rule was satisfied. Her slot stays Wednesday 10:00.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-28\", \"type\": \"quote\", \"from\": \"Lena Falke (SportTape Wholesale)\", \"text\": \"Quote for kinesiology tape: 6 EUR per roll on standing orders of 40 rolls or more, delivered to Cornerstone Physio reception.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 40 rolls of kinesiology tape from Lena Falke at SportTape Wholesale at the quoted 6 EUR per roll, delivered to reception.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Room 2 is free for extension blocks on Tuesdays and Thursdays between 15:00 and 17:00 for the rest of the year.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Katya Lind's plan needs an 11-session extension. Because Aldermere's approval for the extension had not yet come through under the beyond-8 rule, I could not keep her confirmed slot in the approved block; with Katya's written agreement I moved her confirmed Thursday 17:00 slot to a Tuesday 07:00 standby slot in Room 2 while we wait.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e4\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Tomas Weber's 10-session post-surgery extension is booked: Thursday 15:30 in Room 2, as Dr Rao recommended and as the room allows. Because 10 sessions is beyond 8 and Marta Vine's approval is still outstanding, I set the block's status to pending insurer approval and no confirmations went out.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\", \"e11\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-27\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Since Tomas Weber's ten Thursday 15:30 extension sessions are still pending insurer approval, I kept the whole block out of the reminder list and marked his schedule block as provisional so the front desk treats it as unconfirmed.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"Weekly reminder: please send me any new confirmed blocks by Friday so I can update the printed room plan.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-10\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To-do: renew the clinic liability insurance before 2026-11-01.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"message\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"The waiting area magazines are a mess again, I'll sort them out this week. Also someone left a jacket in Room 1.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"For your records: Aldermere has raised its per-session reimbursement rate for physiotherapy from 48 EUR to 51 EUR for all plans, backdated to 2026-08-01.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"A reminder on limits: Aldermere caps acupuncture add-ons at 6 sessions per plan year, and extensions of an acupuncture block still need case-by-case approval from my office. Physiotherapy sessions are unaffected by this note.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"quote\", \"from\": \"Ivo Brandt (NeatLine Laundry)\", \"text\": \"Autumn quote: 14 EUR per towel bundle for weekly collection, same as last quarter.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Marta Vine (Aldermere Health Insurance)\", \"text\": \"Good news: Cornerstone's new group contract with Aldermere took effect this week. From today, 2026-10-08, extensions of up to 12 sessions per treatment plan no longer need prior written approval from my office - you can confirm them in-house. Beyond 12 sessions I still need to sign off first. Approvals already granted stay valid as they are.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Farah Osman (Cornerstone Physio front desk)\", \"text\": \"Could you check whether any blocks in Room 2 should go on the printed plan for November? I'm printing next week's room plan on Friday.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Jonas Reiter (Cornerstone Physio)\", \"text\": \"Reminder: the home-visit van needs its service booked before the end of the month.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Priya Raman - shoulder plan extension\", \"fields\": {\"client\": \"Priya Raman\", \"weekday\": \"Wednesday\", \"time\": \"10:00\", \"sessions\": \"9\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Tomas Weber - knee plan extension\", \"fields\": {\"client\": \"Tomas Weber\", \"weekday\": \"Thursday\", \"time\": \"15:30\", \"room\": \"Room 2\", \"sessions\": \"10\", \"status\": \"pending insurer approval\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Katya Lind - plan extension block\", \"fields\": {\"client\": \"Katya Lind\", \"weekday\": \"Tuesday\", \"time\": \"07:00\", \"room\": \"Room 2\", \"sessions\": \"11\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tomas Weber - extension block (reminders)\", \"fields\": {\"client\": \"Tomas Weber\", \"weekday\": \"Thursday\", \"time\": \"15:30\", \"room\": \"Room 2\", \"status\": \"provisional\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Kinesiology tape restock\", \"fields\": {\"supplier\": \"SportTape Wholesale\", \"item\": \"kinesiology tape rolls\", \"quantity\": \"40\", \"unit_cost_eur\": \"6\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"weekday\", \"time\"], \"from\": \"Katya Lind\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Tomas Weber has asked me again when his extension sessions finally get confirmed. Please confirm his ten-session extension in the system and send him the schedule for the weeks ahead.\",\n  \"expect\": [\n    {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending insurer approval\"], \"task\": true},\n    {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"provisional\"]},\n    {\"message_to\": \"Tomas Weber\", \"regarding\": \"EV-2\", \"says\": [\"confirmed\", \"Thursday 15:30\", \"Room 2\"], \"stale\": [\"pending insurer approval\", \"awaiting insurer approval\"], \"task\": true}\n  ],\n  \"why\": \"The amendment raises the in-house confirmation threshold from 8 to 12 sessions, so Tomas's 10-session extension (EV-2) and its reminder block (EV-4, two hops via the booking decision) no longer need Marta's approval and should be confirmed. Katya's 11-session extension is also covered now, but moving her confirmed slot back to Thursday would need her written agreement under the client-consent rule, so the assistant must ask, not act (EV-3 stays). Priya's extension was already approved and is unchanged (KEEP), and no other record moves. The acupuncture note is a distractor about a different programme.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Kinesiology tape restock\", \"counterpart\": \"Lena Falke\", \"org\": \"SportTape Wholesale\", \"item\": \"kinesiology tape rolls\", \"unit\": \"rolls\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"Cornerstone Physio reception\"},\n    {\"kind\": \"booking\", \"topic\": \"Room 2 team huddle\", \"counterpart\": \"Farah Osman\", \"org\": \"Cornerstone Physio\", \"item\": \"weekly team huddle\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Staff room\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"booking\", \"topic\": \"Aldermere case review call room\", \"counterpart\": \"Marta Vine\", \"org\": \"Aldermere Health Insurance\", \"item\": \"monthly case review call\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Meeting nook\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"order\", \"topic\": \"Towel bundles\", \"counterpart\": \"Ivo Brandt\", \"org\": \"NeatLine Laundry\", \"item\": \"towel bundles\", \"unit\": \"bundles\", \"values\": [\"12\", \"16\", \"20\", \"24\"], \"place\": \"treatment rooms cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"Cold pack restock\", \"counterpart\": \"Ravi Chand\", \"org\": \"PolarMed Supplies\", \"item\": \"reusable cold packs\", \"unit\": \"packs\", \"values\": [\"25\", \"40\", \"50\"], \"place\": \"storage shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Small-group Pilates class\", \"counterpart\": \"Nadia\", \"org\": \"Cornerstone Physio\", \"item\": \"small-group Pilates class\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Staff room\"], \"place\": \"Cornerstone Physio\"},\n    {\"kind\": \"order\", \"topic\": \"A4 paper\", \"counterpart\": \"Mia Torres\", \"org\": \"Greenleaf Office\", \"item\": \"A4 paper boxes\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"Home-visit rounds van\", \"counterpart\": \"Jonas Reiter\", \"org\": \"Cornerstone Physio\", \"item\": \"home-visit rounds\", \"unit\": \"\", \"values\": [\"van A\", \"van B\", \"bus slot\"], \"place\": \"patient home visits\"},\n    {\"kind\": \"order\", \"topic\": \"Hand sanitiser\", \"counterpart\": \"Ravi Chand\", \"org\": \"PolarMed Supplies\", \"item\": \"hand sanitiser bottles\", \"unit\": \"bottles\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"reception counter\"},\n    {\"kind\": \"booking\", \"topic\": \"Student clinic hours\", \"counterpart\": \"Dr Ilsa Pech\", \"org\": \"Northgate College\", \"item\": \"student placement clinic hours\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Staff room\"], \"place\": \"Cornerstone Physio\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6816,
+    "completion_tokens": 3609,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02184696,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Small-group Pilates class': values needs at least three entries\n- noise topic 'Home-visit rounds van': values needs at least three entries\n- noise topic 'Student clinic hours': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Approval threshold raised at Cornerstone Physio",
+  "setting": "A physiotherapist at Cornerstone Physio whose assistant tracks treatment plans, insurance approvals, and session bookings",
+  "owner": "Nadia",
+  "org": "Cornerstone Physio",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Cornerstone Physio has three treatment rooms. Room 2 doubles as the overflow room for extra blocks and standby slots.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Marta Vine (Aldermere Health Insurance)",
+    "text": "Confirming that I am the case manager at Aldermere Health Insurance for all Cornerstone treatment-plan approvals. Requests reach me by email at my office address.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Standing rule at Cornerstone: a client's confirmed session slot may never be moved without that client's written agreement. Front desk must check with the client first, always.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Katya Lind",
+    "text": "Just to repeat what I said at my last visit: Thursday 17:00 is the only slot that works for me, because of my shifts. Please keep me there if at all possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Standing rule: any extension of a client's treatment plan beyond 8 sessions needs prior written approval from Marta Vine at Aldermere Health Insurance before we confirm further sessions. Extensions of 8 or fewer sessions can be confirmed in-house.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "letter",
+    "from": "Dr Sanjay Rao (Riverside Orthopaedics)",
+    "text": "Following Tomas Weber's knee surgery review, I recommend an extension of his physiotherapy plan by 10 further sessions at Cornerstone Physio, starting late July.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Priya Raman's shoulder plan needs an extension of 9 sessions after her re-assessment today.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "I extended Priya Raman's shoulder plan by 9 sessions and confirmed them. Marta Vine at Aldermere had already granted written approval for the 9-session extension, so the approval rule was satisfied. Her slot stays Wednesday 10:00.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e7",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-28",
+    "type": "quote",
+    "from": "Lena Falke (SportTape Wholesale)",
+    "text": "Quote for kinesiology tape: 6 EUR per roll on standing orders of 40 rolls or more, delivered to Cornerstone Physio reception.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 40 rolls of kinesiology tape from Lena Falke at SportTape Wholesale at the quoted 6 EUR per roll, delivered to reception.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Room 2 is free for extension blocks on Tuesdays and Thursdays between 15:00 and 17:00 for the rest of the year.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Katya Lind's plan needs an 11-session extension. Because Aldermere's approval for the extension had not yet come through under the beyond-8 rule, I could not keep her confirmed slot in the approved block; with Katya's written agreement I moved her confirmed Thursday 17:00 slot to a Tuesday 07:00 standby slot in Room 2 while we wait.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e4",
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Tomas Weber's 10-session post-surgery extension is booked: Thursday 15:30 in Room 2, as Dr Rao recommended and as the room allows. Because 10 sessions is beyond 8 and Marta Vine's approval is still outstanding, I set the block's status to pending insurer approval and no confirmations went out.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e6",
+     "e11",
+     "e2"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-27",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Since Tomas Weber's ten Thursday 15:30 extension sessions are still pending insurer approval, I kept the whole block out of the reminder list and marked his schedule block as provisional so the front desk treats it as unconfirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Farah Osman (Cornerstone Physio front desk)",
+    "text": "Weekly reminder: please send me any new confirmed blocks by Friday so I can update the printed room plan.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-10",
+    "type": "task",
+    "from": "Nadia",
+    "text": "To-do: renew the clinic liability insurance before 2026-11-01.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-12",
+    "type": "message",
+    "from": "Farah Osman (Cornerstone Physio front desk)",
+    "text": "The waiting area magazines are a mess again, I'll sort them out this week. Also someone left a jacket in Room 1.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marta Vine (Aldermere Health Insurance)",
+    "text": "For your records: Aldermere has raised its per-session reimbursement rate for physiotherapy from 48 EUR to 51 EUR for all plans, backdated to 2026-08-01.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Marta Vine (Aldermere Health Insurance)",
+    "text": "A reminder on limits: Aldermere caps acupuncture add-ons at 6 sessions per plan year, and extensions of an acupuncture block still need case-by-case approval from my office. Physiotherapy sessions are unaffected by this note.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-15",
+    "type": "quote",
+    "from": "Ivo Brandt (NeatLine Laundry)",
+    "text": "Autumn quote: 14 EUR per towel bundle for weekly collection, same as last quarter.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Marta Vine (Aldermere Health Insurance)",
+    "text": "Good news: Cornerstone's new group contract with Aldermere took effect this week. From today, 2026-10-08, extensions of up to 12 sessions per treatment plan no longer need prior written approval from my office - you can confirm them in-house. Beyond 12 sessions I still need to sign off first. Approvals already granted stay valid as they are.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Farah Osman (Cornerstone Physio front desk)",
+    "text": "Could you check whether any blocks in Room 2 should go on the printed plan for November? I'm printing next week's room plan on Friday.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Jonas Reiter (Cornerstone Physio)",
+    "text": "Reminder: the home-visit van needs its service booked before the end of the month.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Priya Raman - shoulder plan extension",
+    "fields": {
+     "client": "Priya Raman",
+     "weekday": "Wednesday",
+     "time": "10:00",
+     "sessions": "9",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Tomas Weber - knee plan extension",
+    "fields": {
+     "client": "Tomas Weber",
+     "weekday": "Thursday",
+     "time": "15:30",
+     "room": "Room 2",
+     "sessions": "10",
+     "status": "pending insurer approval"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Katya Lind - plan extension block",
+    "fields": {
+     "client": "Katya Lind",
+     "weekday": "Tuesday",
+     "time": "07:00",
+     "room": "Room 2",
+     "sessions": "11",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Tomas Weber - extension block (reminders)",
+    "fields": {
+     "client": "Tomas Weber",
+     "weekday": "Thursday",
+     "time": "15:30",
+     "room": "Room 2",
+     "status": "provisional"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Kinesiology tape restock",
+    "fields": {
+     "supplier": "SportTape Wholesale",
+     "item": "kinesiology tape rolls",
+     "quantity": "40",
+     "unit_cost_eur": "6",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "weekday",
+     "time"
+    ],
+    "from": "Katya Lind",
+    "rule": "e3"
+   }
+  ],
+  "task": "Tomas Weber has asked me again when his extension sessions finally get confirmed. Please confirm his ten-session extension in the system and send him the schedule for the weeks ahead.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending insurer approval"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-4",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "provisional"
+    ]
+   },
+   {
+    "message_to": "Tomas Weber",
+    "regarding": "EV-2",
+    "says": [
+     "confirmed",
+     "Thursday 15:30",
+     "Room 2"
+    ],
+    "stale": [
+     "pending insurer approval",
+     "awaiting insurer approval"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amendment raises the in-house confirmation threshold from 8 to 12 sessions, so Tomas's 10-session extension (EV-2) and its reminder block (EV-4, two hops via the booking decision) no longer need Marta's approval and should be confirmed. Katya's 11-session extension is also covered now, but moving her confirmed slot back to Thursday would need her written agreement under the client-consent rule, so the assistant must ask, not act (EV-3 stays). Priya's extension was already approved and is unchanged (KEEP), and no other record moves. The acupuncture note is a distractor about a different programme.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Kinesiology tape restock",
+    "counterpart": "Lena Falke",
+    "org": "SportTape Wholesale",
+    "item": "kinesiology tape rolls",
+    "unit": "rolls",
+    "values": [
+     "30",
+     "40",
+     "50",
+     "60"
+    ],
+    "place": "Cornerstone Physio reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "Room 2 team huddle",
+    "counterpart": "Farah Osman",
+    "org": "Cornerstone Physio",
+    "item": "weekly team huddle",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Staff room"
+    ],
+    "place": "Cornerstone Physio"
+   },
+   {
+    "kind": "booking",
+    "topic": "Aldermere case review call room",
+    "counterpart": "Marta Vine",
+    "org": "Aldermere Health Insurance",
+    "item": "monthly case review call",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Meeting nook"
+    ],
+    "place": "Cornerstone Physio"
+   },
+   {
+    "kind": "order",
+    "topic": "Towel bundles",
+    "counterpart": "Ivo Brandt",
+    "org": "NeatLine Laundry",
+    "item": "towel bundles",
+    "unit": "bundles",
+    "values": [
+     "12",
+     "16",
+     "20",
+     "24"
+    ],
+    "place": "treatment rooms cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "Cold pack restock",
+    "counterpart": "Ravi Chand",
+    "org": "PolarMed Supplies",
+    "item": "reusable cold packs",
+    "unit": "packs",
+    "values": [
+     "25",
+     "40",
+     "50"
+    ],
+    "place": "storage shelf"
+   },
+   {
+    "kind": "booking",
+    "topic": "Small-group Pilates class",
+    "counterpart": "Nadia",
+    "org": "Cornerstone Physio",
+    "item": "small-group Pilates class",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Staff room"
+    ],
+    "place": "Cornerstone Physio"
+   },
+   {
+    "kind": "order",
+    "topic": "A4 paper",
+    "counterpart": "Mia Torres",
+    "org": "Greenleaf Office",
+    "item": "A4 paper boxes",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Home-visit rounds van",
+    "counterpart": "Jonas Reiter",
+    "org": "Cornerstone Physio",
+    "item": "home-visit rounds",
+    "unit": "",
+    "values": [
+     "van A",
+     "van B",
+     "bus slot"
+    ],
+    "place": "patient home visits"
+   },
+   {
+    "kind": "order",
+    "topic": "Hand sanitiser",
+    "counterpart": "Ravi Chand",
+    "org": "PolarMed Supplies",
+    "item": "hand sanitiser bottles",
+    "unit": "bottles",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "reception counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "Student clinic hours",
+    "counterpart": "Dr Ilsa Pech",
+    "org": "Northgate College",
+    "item": "student placement clinic hours",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Staff room"
+    ],
+    "place": "Cornerstone Physio"
+   }
+  ],
+  "id": "G100-2-06",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-3 is marked ASK and the writer says Katya must be asked, but the expected final state omits any consent request. Moreover, the history requires consent before moving her slot, not that a move must be proposed when the approval threshold changes, so ASK is not unambiguously required by this Tomas-only task.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-3 is marked ASK and the writer says Katya must be asked, but the expected final state omits any consent request. Moreover, the history requires consent before moving her slot, not that a move must be proposed when the approval threshold changes, so ASK is not unambiguously required by this Tomas-only task."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3604,
+    "completion_tokens": 263,
+    "reasoning_tokens": 161,
+    "cached_tokens": 0
+   },
+   "cost": 0.0581925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1d8f69d008e2e681c679f1e6020cfd5f75168bde80604b6301fbdd3311140750",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e21 amends the 8-session rule to 12, voiding the approval basis for e13 and e14 (REVISE) and e12 (ASK, since moving Katya back needs her consent under e3), while e8 stands under the 'approvals stay valid' clause (KEEP). The core has 23 events, 5 decisions, the change is 12 days before the task day with two events after it, and it is an ordinary-looking email among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e21 amends the 8-session rule to 12, voiding the approval basis for e13 and e14 (REVISE) and e12 (ASK, since moving Katya back needs her consent under e3), while e8 stands under the 'approvals stay valid' clause (KEEP). The core has 23 events, 5 decisions, the change is 12 days before the task day with two events after it, and it is an ordinary-looking email among routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5373,
+    "completion_tokens": 1587,
+    "reasoning_tokens": 1388,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013308,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1d8f69d008e2e681c679f1e6020cfd5f75168bde80604b6301fbdd3311140750",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment (e21) raises the in-house threshold to 12, so Tomas's 10-session EV-2 and its dependent EV-4 (two hops) become REVISE to confirmed, Katya's EV-3 stays via ASK under the client-consent rule e3, and Priya's already-approved EV-1 is a valid KEEP. The task requires confirming and messaging without naming the change; the change sits at event 91/100 with 9 later events, and tier counts (23 core events, 5 decisions, 12-day gap) all fit.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment (e21) raises the in-house threshold to 12, so Tomas's 10-session EV-2 and its dependent EV-4 (two hops) become REVISE to confirmed, Katya's EV-3 stays via ASK under the client-consent rule e3, and Priya's already-approved EV-1 is a valid KEEP. The task requires confirming and messaging without naming the change; the change sits at event 91/100 with 9 later events, and tier counts (23 core events, 5 decisions, 12-day gap) all fit."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3720,
+    "completion_tokens": 354,
+    "reasoning_tokens": 177,
+    "cached_tokens": 256
+   },
+   "cost": 0.0157788,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1d8f69d008e2e681c679f1e6020cfd5f75168bde80604b6301fbdd3311140750",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

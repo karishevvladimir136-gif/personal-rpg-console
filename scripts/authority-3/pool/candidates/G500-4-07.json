@@ -1,0 +1,636 @@
+{
+ "id": "G500-4-07",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 6,
+ "setting": "The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters",
+ "prompt_sha256": "f806ba6e7ef64d328b9a9ecf3fd0650196af264f311802591b44e7bf63f2ced4",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Willowmere flu clinic confirmation\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Fiona\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule at Willowmere: any supplier order over 500 pounds needs Dr Ameen's sign-off before it is placed. Keep to it even when we are in a hurry for seasonal stock.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule: the clinical staffing rota for any weekend clinic belongs to Dr Ameen. Nothing about who staffs a clinic changes without his agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirming our conversation: community health bookings at Rosewood get the daytime community rate of 45 pounds per hour for the Main Hall. That rate is held for you for the autumn season.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Clinically I'd like this year's flu clinics in October rather than September, so we are vaccinating closer to peak season. Aim for mid-October for the main session.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Quote Q-8841: quadrivalent flu vaccine, 2.80 pounds per dose, minimum order 100 doses, delivery to Willowmere GP Surgery within 5 working days of the order date.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"Last autumn we used 380 doses at the main session. Our at-risk register has grown, so plan for about 400 doses this year.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Main Hall is free on Saturdays in October. It seats 200 and has level access from the car park entrance, which worked well for your patients last year.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"I can do Saturday sessions in October, mornings preferred. I'd want two practice nurses alongside me for a big session.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"policy\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Annual flu recall policy: at-risk patients on the register receive a recall letter with the session date at least three weeks before the clinic. Letters use template FL-2 and go out in one batch.\", \"role\": \"rule\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Tom Bright (Stationery Direct)\", \"text\": \"Quote for DL envelopes: 9.50 pounds per box of 500, delivered to the surgery within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Mid-October works. Saturday 17 October is the target date for the main flu clinic. Let's keep it in the morning, 09:00 to 13:00, like last year.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Rosewood Community Hall Main Hall for the flu clinic, Saturday 17 October 2026, 09:00 to 13:00, at the community rate of 45 pounds per hour. I've told Gina we'll confirm final numbers in early October.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\", \"e11\"], \"record\": \"EV-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-07\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Approving the vaccine order at 2.80 pounds per dose. 400 doses comes to 1,120 pounds, which is over our 500 pound order limit, so my sign-off stands as that approval.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-08\", \"type\": \"order\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Order confirmation M-3312 from Willowmere GP Surgery: 400 doses quadrivalent flu vaccine at 2.80 pounds per dose, total 1,120 pounds, delivery on 12 October 2026 to Willowmere GP Surgery.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"For 17 October I can staff it with nurses Adeola and Beth. We'd run three vaccination stations plus a floater from 09:00 to 13:00.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-16\", \"type\": \"minutes\", \"from\": \"Fiona\", \"text\": \"Practice meeting: the rota for the 17 October flu clinic is Priya leading, with nurses Adeola and Beth, three stations plus a floater, 09:00 to 13:00. Dr Ameen agreed the staffing.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\", \"e15\"], \"record\": \"EV-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"At-risk register currently stands at 240 patients to be recalled for the October flu clinic.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-24\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Prepare the flu recall batch: 240 at-risk patients, template FL-2, inviting them to the clinic on Saturday 17 October, 09:00 to 13:00 at Rosewood Community Hall. Hold as draft until I release it.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e12\", \"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"order\", \"from\": \"Stationery Direct\", \"text\": \"Order SD-77 from Willowmere GP Surgery: 5 boxes of 1000 DL envelopes at 19.00 pounds per box, total 95.00 pounds, delivered within 3 working days.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e18\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Reminder of your booking: Main Hall, Saturday 17 October, 09:00 to 13:00, community rate 45 pounds per hour. The level-access entrance from the car park will be open from 08:30.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"Could we book a short staff refresher on using the anaphylaxis kits before the clinic? An hour in early October would do, somewhere small at the surgery or the hall.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Small Annexe at Rosewood is available on Thursday 8 October, 17:00 to 18:00, at 30 pounds for the hour. Happy to hold it for your refresher.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Small Annexe at Rosewood Community Hall for the staff refresher, Thursday 8 October, 17:00 to 18:00, 30 pounds. Priya to run the anaphylaxis kit session.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e22\"], \"record\": \"EV-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Vaccine delivery is confirmed for 12 October per Medisave's schedule. Everything for the 17th stands as planned.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-09\", \"type\": \"letter\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Recall letters released: 240 letters sent to at-risk patients inviting them to the flu clinic on Saturday 17 October, 09:00 to 13:00, Rosewood Community Hall Main Hall.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"CL-1\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirmation of your autumn bookings as they stand: Main Hall Saturday 17 October 09:00 to 13:00 at the community rate of 45 pounds per hour, and Small Annexe Thursday 8 October 17:00 to 18:00 at 30 pounds. Nothing else needed from you until the final headcount.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"A heads-up about the hall: the kitchen refurbishment finishes in October, so from 1 October the kitchen is back in use and the car park charge goes up to 3 pounds per car on event days. Patients can still park on the road for free if they prefer.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Nurse Adeola\", \"text\": \"Reminder for my records: on the 17th I'm on station two and bringing the spare anaphylaxis kit from the surgery.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"For anyone asking: our standard evening and commercial rate for the Main Hall is 65 pounds per hour, and the Small Annexe is 40 pounds an hour outside community bookings. Community health bookings keep their own agreed rates.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"All good on my side for the 17th. Staffing stays exactly as agreed: Priya, Adeola and Beth, three stations plus a floater.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Delivery M-3312 remains on schedule for 12 October: 400 doses of quadrivalent flu vaccine to Willowmere GP Surgery.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn flu clinic — Main Hall\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:00\", \"end\": \"13:00\", \"place\": \"Rosewood Community Hall — Main Hall\", \"rate\": \"45 per hour\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flu clinic staffing rota\", \"fields\": {\"date\": \"2026-10-17\", \"staff\": \"Priya, Adeola, Beth\", \"stations\": \"3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff refresher — anaphylaxis kits\", \"fields\": {\"date\": \"2026-10-08\", \"start\": \"17:00\", \"end\": \"18:00\", \"place\": \"Rosewood Community Hall — Small Annexe\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order\", \"fields\": {\"supplier\": \"Medisave Medical Supplies\", \"item\": \"quadrivalent flu vaccine\", \"quantity\": \"400\", \"amount\": \"1120\", \"delivery_date\": \"2026-10-12\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"DL envelope order\", \"fields\": {\"supplier\": \"Stationery Direct\", \"item\": \"DL envelopes\", \"quantity\": \"5000\", \"amount\": \"95\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Flu recall batch 2026\", \"fields\": {\"patients\": \"240\", \"template\": \"FL-2\", \"clinic_date\": \"2026-10-17\", \"status\": \"sent\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"staff\", \"stations\"], \"from\": \"Dr Ameen\", \"rule\": \"e2\"}\n ],\n \"task\": \"The flu clinic is coming up on the 17th — please send Gina at Rosewood Community Hall our final confirmation of the booking with all the details, and mark the clinic entry in the schedule as confirmed.\",\n \"expect\": [\n  {\"message_to\": \"Gina Hale (Rosewood Community Hall)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:00\", \"13:00\", \"Main Hall\", \"45 per hour\"], \"stale\": [\"65 per hour\", \"Small Annexe\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Gina's September email only adds new facts about the kitchen and parking, which touch no decision in the plan. The right act is to confirm the existing booking on its own terms — 17 October, 09:00–13:00, Main Hall, community rate 45 pounds per hour — and set EV-1 to confirmed. The 65 pounds per hour commercial rate and the Small Annexe are relevant-looking distractors that must not appear; the staffing rota (EV-2) stays exactly as agreed under Dr Ameen's rule, and nothing else changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Willowmere GP Surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"phlebotomy clinic\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"weekly blood-test clinic\", \"values\": [\"Small Annexe\", \"Committee Room\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"patient group meeting\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"patient participation group\", \"values\": [\"Committee Room\", \"Main Hall\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"district nurse vehicle\", \"counterpart\": \"Marta Cole\", \"org\": \"Bramble Fleet Hire\", \"item\": \"pool car for home visits\", \"values\": [\"Pool Car A\", \"Pool Car B\", \"Pool Car C\"], \"place\": \"Willowmere surgery car park\"},\n  {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"sharps bins\", \"unit\": \"units\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Willowmere GP surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"midwife clinic room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"antenatal clinic room\", \"values\": [\"Room 2\", \"Room 4\"], \"place\": \"Willowmere GP Surgery\"},\n  {\"kind\": \"order\", \"topic\": \"vacutainers\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"blood collection tubes\", \"unit\": \"boxes\", \"values\": [\"30\", \"50\", \"70\"], \"place\": \"Willowmere GP Surgery phlebotomy room\"},\n  {\"kind\": \"booking\", \"topic\": \"health visitor drop-in\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"baby weigh-in drop-in\", \"values\": [\"Small Annexe\", \"Foyer\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"appointment cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"weekly practice meeting\", \"values\": [\"Room 1\", \"Room 3\"], \"place\": \"Willowmere GP Surgery\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3204,
+    "completion_tokens": 6441,
+    "reasoning_tokens": 2013,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02925096,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Willowmere flu clinic confirmation\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Fiona\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule at Willowmere: any supplier order over 500 pounds needs Dr Ameen's sign-off before it is placed. Keep to it even when we are in a hurry for seasonal stock.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule: the clinical staffing rota for any weekend clinic belongs to Dr Ameen. Nothing about who staffs a clinic changes without his agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirming our conversation: community health bookings at Rosewood get the daytime community rate of 45 pounds per hour for the Main Hall. That rate is held for you for the autumn season.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Clinically I'd like this year's flu clinics in October rather than September, so we are vaccinating closer to peak season. Aim for mid-October for the main session.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Quote Q-8841: quadrivalent flu vaccine, 2.80 pounds per dose, minimum order 100 doses, delivery to Willowmere GP Surgery within 5 working days of the order date.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"Last autumn we used 380 doses at the main session. Our at-risk register has grown, so plan for about 400 doses this year.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Main Hall is free on Saturdays in October. It seats 200 and has level access from the car park entrance, which worked well for your patients last year.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"I can do Saturday sessions in October, mornings preferred. I'd want two practice nurses alongside me for a big session.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"policy\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Annual flu recall policy: at-risk patients on the register receive a recall letter with the session date at least three weeks before the clinic. Letters use template FL-2 and go out in one batch.\", \"role\": \"rule\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Tom Bright (Stationery Direct)\", \"text\": \"Quote for DL envelopes: 9.50 pounds per box of 500, delivered to the surgery within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Mid-October works. Saturday 17 October is the target date for the main flu clinic. Let's keep it in the morning, 09:00 to 13:00, like last year.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Rosewood Community Hall Main Hall for the flu clinic, Saturday 17 October 2026, 09:00 to 13:00, at the community rate of 45 pounds per hour. I've told Gina we'll confirm final numbers in early October.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\", \"e11\"], \"record\": \"EV-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-07\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Approving the vaccine order at 2.80 pounds per dose. 400 doses comes to 1,120 pounds, which is over our 500 pound order limit, so my sign-off stands as that approval.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-08\", \"type\": \"invoice\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Order confirmation M-3312 from Willowmere GP Surgery: 400 doses quadrivalent flu vaccine at 2.80 pounds per dose, total 1,120 pounds, delivery on 12 October 2026 to Willowmere GP Surgery.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"For 17 October I can staff it with nurses Adeola and Beth. We'd run three vaccination stations plus a floater from 09:00 to 13:00.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-16\", \"type\": \"minutes\", \"from\": \"Fiona\", \"text\": \"Practice meeting: the rota for the 17 October flu clinic is Priya leading, with nurses Adeola and Beth, three stations plus a floater, 09:00 to 13:00. Dr Ameen agreed the staffing.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\", \"e15\"], \"record\": \"EV-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"At-risk register currently stands at 240 patients to be recalled for the October flu clinic.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-24\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Prepare the flu recall batch: 240 at-risk patients, template FL-2, inviting them to the clinic on Saturday 17 October, 09:00 to 13:00 at Rosewood Community Hall. Hold as draft until I release it.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e12\", \"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"invoice\", \"from\": \"Stationery Direct\", \"text\": \"Order SD-77 from Willowmere GP Surgery: 5 boxes of 1000 DL envelopes at 19.00 pounds per box, total 95.00 pounds, delivered within 3 working days.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e18\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Reminder of your booking: Main Hall, Saturday 17 October, 09:00 to 13:00, community rate 45 pounds per hour. The level-access entrance from the car park will be open from 08:30.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"Could we book a short staff refresher on using the anaphylaxis kits before the clinic? An hour in early October would do, somewhere small at the surgery or the hall.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Small Annexe at Rosewood is available on Thursday 8 October, 17:00 to 18:00, at 30 pounds for the hour. Happy to hold it for your refresher.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Small Annexe at Rosewood Community Hall for the staff refresher, Thursday 8 October, 17:00 to 18:00, 30 pounds. Priya to run the anaphylaxis kit session.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e22\"], \"record\": \"EV-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Vaccine delivery is confirmed for 12 October per Medisave's schedule. Everything for the 17th stands as planned.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-09\", \"type\": \"letter\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Recall letters released: 240 letters sent to at-risk patients inviting them to the flu clinic on Saturday 17 October, 09:00 to 13:00, Rosewood Community Hall Main Hall.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"CL-1\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirmation of your autumn bookings as they stand: Main Hall Saturday 17 October 09:00 to 13:00 at the community rate of 45 pounds per hour, and Small Annexe Thursday 8 October 17:00 to 18:00 at 30 pounds. Nothing else needed from you until the final headcount.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"A heads-up about the hall: the kitchen refurbishment finishes in October, so from 1 October the kitchen is back in use and the car park charge goes up to 3 pounds per car on event days. Patients can still park on the road for free if they prefer.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Nurse Adeola\", \"text\": \"Reminder for my records: on the 17th I'm on station two and bringing the spare anaphylaxis kit from the surgery.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"For anyone asking: our standard evening and commercial rate for the Main Hall is 65 pounds per hour, and the Small Annexe is 40 pounds an hour outside community bookings. Community health bookings keep their own agreed rates.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"All good on my side for the 17th. Staffing stays exactly as agreed: Priya, Adeola and Beth, three stations plus a floater.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Delivery M-3312 remains on schedule for 12 October: 400 doses of quadrivalent flu vaccine to Willowmere GP Surgery.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn flu clinic — Main Hall\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:00\", \"end\": \"13:00\", \"place\": \"Rosewood Community Hall — Main Hall\", \"rate\": \"45 per hour\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flu clinic staffing rota\", \"fields\": {\"date\": \"2026-10-17\", \"staff\": \"Priya, Adeola, Beth\", \"stations\": \"3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff refresher — anaphylaxis kits\", \"fields\": {\"date\": \"2026-10-08\", \"start\": \"17:00\", \"end\": \"18:00\", \"place\": \"Rosewood Community Hall — Small Annexe\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order\", \"fields\": {\"supplier\": \"Medisave Medical Supplies\", \"item\": \"quadrivalent flu vaccine\", \"quantity\": \"400\", \"amount\": \"1120\", \"delivery_date\": \"2026-10-12\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"DL envelope order\", \"fields\": {\"supplier\": \"Stationery Direct\", \"item\": \"DL envelopes\", \"quantity\": \"5000\", \"amount\": \"95\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Flu recall batch 2026\", \"fields\": {\"patients\": \"240\", \"template\": \"FL-2\", \"clinic_date\": \"2026-10-17\", \"status\": \"sent\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"staff\", \"stations\"], \"from\": \"Dr Ameen\", \"rule\": \"e2\"}\n ],\n \"task\": \"The flu clinic is coming up on the 17th — please send Gina at Rosewood Community Hall our final confirmation of the booking with all the details, and mark the clinic entry in the schedule as confirmed.\",\n \"expect\": [\n  {\"message_to\": \"Gina Hale (Rosewood Community Hall)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:00\", \"13:00\", \"Main Hall\", \"45 per hour\"], \"stale\": [\"65 per hour\", \"Small Annexe\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Gina's September email only adds new facts about the kitchen and parking, which touch no decision in the plan. The right act is to confirm the existing booking on its own terms — 17 October, 09:00–13:00, Main Hall, community rate 45 pounds per hour — and set EV-1 to confirmed. The 65 pounds per hour commercial rate and the Small Annexe are relevant-looking distractors that must not appear; the staffing rota (EV-2) stays exactly as agreed under Dr Ameen's rule, and nothing else changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Willowmere GP Surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"phlebotomy clinic\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"weekly blood-test clinic\", \"values\": [\"Small Annexe\", \"Committee Room\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"patient group meeting\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"patient participation group\", \"values\": [\"Committee Room\", \"Main Hall\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"district nurse vehicle\", \"counterpart\": \"Marta Cole\", \"org\": \"Bramble Fleet Hire\", \"item\": \"pool car for home visits\", \"values\": [\"Pool Car A\", \"Pool Car B\", \"Pool Car C\"], \"place\": \"Willowmere surgery car park\"},\n  {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"sharps bins\", \"unit\": \"units\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Willowmere GP surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"midwife clinic room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"antenatal clinic room\", \"values\": [\"Room 2\", \"Room 4\"], \"place\": \"Willowmere GP Surgery\"},\n  {\"kind\": \"order\", \"topic\": \"vacutainers\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"blood collection tubes\", \"unit\": \"boxes\", \"values\": [\"30\", \"50\", \"70\"], \"place\": \"Willowmere GP Surgery phlebotomy room\"},\n  {\"kind\": \"booking\", \"topic\": \"health visitor drop-in\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"baby weigh-in drop-in\", \"values\": [\"Small Annexe\", \"Foyer\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"appointment cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"weekly practice meeting\", \"values\": [\"Room 1\", \"Room 3\"], \"place\": \"Willowmere GP Surgery\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7772,
+    "completion_tokens": 4428,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.026716,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e14: type «order» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\n- e19: type «order» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Willowmere flu clinic confirmation\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Fiona\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule at Willowmere: any supplier order over 500 pounds needs Dr Ameen's sign-off before it is placed. Keep to it even when we are in a hurry for seasonal stock.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing rule: the clinical staffing rota for any weekend clinic belongs to Dr Ameen. Nothing about who staffs a clinic changes without his agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirming our conversation: community health bookings at Rosewood get the daytime community rate of 45 pounds per hour for the Main Hall. That rate is held for you for the autumn season.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Clinically I'd like this year's flu clinics in October rather than September, so we are vaccinating closer to peak season. Aim for mid-October for the main session.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Quote Q-8841: quadrivalent flu vaccine, 2.80 pounds per dose, minimum order 100 doses, delivery to Willowmere GP Surgery within 5 working days of the order date.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"Last autumn we used 380 doses at the main session. Our at-risk register has grown, so plan for about 400 doses this year.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Main Hall is free on Saturdays in October. It seats 200 and has level access from the car park entrance, which worked well for your patients last year.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-23\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"I can do Saturday sessions in October, mornings preferred. I'd want two practice nurses alongside me for a big session.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"policy\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Annual flu recall policy: at-risk patients on the register receive a recall letter with the session date at least three weeks before the clinic. Letters use template FL-2 and go out in one batch.\", \"role\": \"rule\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Tom Bright (Stationery Direct)\", \"text\": \"Quote for DL envelopes: 9.50 pounds per box of 500, delivered to the surgery within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Mid-October works. Saturday 17 October is the target date for the main flu clinic. Let's keep it in the morning, 09:00 to 13:00, like last year.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Rosewood Community Hall Main Hall for the flu clinic, Saturday 17 October 2026, 09:00 to 13:00, at the community rate of 45 pounds per hour. I've told Gina we'll confirm final numbers in early October.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\", \"e11\"], \"record\": \"EV-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-07\", \"type\": \"email\", \"from\": \"Dr Ameen\", \"text\": \"Approving the vaccine order at 2.80 pounds per dose. 400 doses comes to 1,120 pounds, which is over our 500 pound order limit, so my sign-off stands as that approval.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-08\", \"type\": \"invoice\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Order confirmation M-3312 from Willowmere GP Surgery: 400 doses quadrivalent flu vaccine at 2.80 pounds per dose, total 1,120 pounds, delivery on 12 October 2026 to Willowmere GP Surgery.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"For 17 October I can staff it with nurses Adeola and Beth. We'd run three vaccination stations plus a floater from 09:00 to 13:00.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-16\", \"type\": \"minutes\", \"from\": \"Fiona\", \"text\": \"Practice meeting: the rota for the 17 October flu clinic is Priya leading, with nurses Adeola and Beth, three stations plus a floater, 09:00 to 13:00. Dr Ameen agreed the staffing.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\", \"e15\"], \"record\": \"EV-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"At-risk register currently stands at 240 patients to be recalled for the October flu clinic.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-24\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Prepare the flu recall batch: 240 at-risk patients, template FL-2, inviting them to the clinic on Saturday 17 October, 09:00 to 13:00 at Rosewood Community Hall. Hold as draft until I release it.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e12\", \"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"invoice\", \"from\": \"Stationery Direct\", \"text\": \"Order SD-77 from Willowmere GP Surgery: 5 boxes of 1000 DL envelopes at 19.00 pounds per box, total 95.00 pounds, delivered within 3 working days.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e18\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Reminder of your booking: Main Hall, Saturday 17 October, 09:00 to 13:00, community rate 45 pounds per hour. The level-access entrance from the car park will be open from 08:30.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Nurse Priya\", \"text\": \"Could we book a short staff refresher on using the anaphylaxis kits before the clinic? An hour in early October would do, somewhere small at the surgery or the hall.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"The Small Annexe at Rosewood is available on Thursday 8 October, 17:00 to 18:00, at 30 pounds for the hour. Happy to hold it for your refresher.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Booked: Small Annexe at Rosewood Community Hall for the staff refresher, Thursday 8 October, 17:00 to 18:00, 30 pounds. Priya to run the anaphylaxis kit session.\", \"role\": \"decision\", \"rests_on\": [\"e21\", \"e22\"], \"record\": \"EV-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"Vaccine delivery is confirmed for 12 October per Medisave's schedule. Everything for the 17th stands as planned.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-09\", \"type\": \"letter\", \"from\": \"Willowmere GP Surgery\", \"text\": \"Recall letters released: 240 letters sent to at-risk patients inviting them to the flu clinic on Saturday 17 October, 09:00 to 13:00, Rosewood Community Hall Main Hall.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"CL-1\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"Confirmation of your autumn bookings as they stand: Main Hall Saturday 17 October 09:00 to 13:00 at the community rate of 45 pounds per hour, and Small Annexe Thursday 8 October 17:00 to 18:00 at 30 pounds. Nothing else needed from you until the final headcount.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"A heads-up about the hall: the kitchen refurbishment finishes in October, so from 1 October the kitchen is back in use and the car park charge goes up to 3 pounds per car on event days. Patients can still park on the road for free if they prefer.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e28\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Nurse Adeola\", \"text\": \"Reminder for my records: on the 17th I'm on station two and bringing the spare anaphylaxis kit from the surgery.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Gina Hale (Rosewood Community Hall)\", \"text\": \"For anyone asking: our standard evening and commercial rate for the Main Hall is 65 pounds per hour, and the Small Annexe is 40 pounds an hour outside community bookings. Community health bookings keep their own agreed rates.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Dr Ameen\", \"text\": \"All good on my side for the 17th. Staffing stays exactly as agreed: Priya, Adeola and Beth, three stations plus a floater.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Medisave Medical Supplies\", \"text\": \"Delivery M-3312 remains on schedule for 12 October: 400 doses of quadrivalent flu vaccine to Willowmere GP Surgery.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn flu clinic — Main Hall\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"09:00\", \"end\": \"13:00\", \"place\": \"Rosewood Community Hall — Main Hall\", \"rate\": \"45 per hour\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Flu clinic staffing rota\", \"fields\": {\"date\": \"2026-10-17\", \"staff\": \"Priya, Adeola, Beth\", \"stations\": \"3\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Staff refresher — anaphylaxis kits\", \"fields\": {\"date\": \"2026-10-08\", \"start\": \"17:00\", \"end\": \"18:00\", \"place\": \"Rosewood Community Hall — Small Annexe\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order\", \"fields\": {\"supplier\": \"Medisave Medical Supplies\", \"item\": \"quadrivalent flu vaccine\", \"quantity\": \"400\", \"amount\": \"1120\", \"delivery_date\": \"2026-10-12\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"DL envelope order\", \"fields\": {\"supplier\": \"Stationery Direct\", \"item\": \"DL envelopes\", \"quantity\": \"5000\", \"amount\": \"95\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Flu recall batch 2026\", \"fields\": {\"patients\": \"240\", \"template\": \"FL-2\", \"clinic_date\": \"2026-10-17\", \"status\": \"sent\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"staff\", \"stations\"], \"from\": \"Dr Ameen\", \"rule\": \"e2\"}\n ],\n \"task\": \"The flu clinic is coming up on the 17th — please send Gina at Rosewood Community Hall our final confirmation of the booking with all the details, and mark the clinic entry in the schedule as confirmed.\",\n \"expect\": [\n  {\"message_to\": \"Gina Hale (Rosewood Community Hall)\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-17\", \"09:00\", \"13:00\", \"Main Hall\", \"45 per hour\"], \"stale\": [\"65 per hour\", \"Small Annexe\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Gina's September email only adds new facts about the kitchen and parking, which touch no decision in the plan. The right act is to confirm the existing booking on its own terms — 17 October, 09:00–13:00, Main Hall, community rate 45 pounds per hour — and set EV-1 to confirmed. The 65 pounds per hour commercial rate and the Small Annexe are relevant-looking distractors that must not appear; the staffing rota (EV-2) stays exactly as agreed under Dr Ameen's rule, and nothing else changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Willowmere GP Surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"phlebotomy clinic\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"weekly blood-test clinic\", \"values\": [\"Small Annexe\", \"Committee Room\", \"Foyer\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"patient group meeting\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"patient participation group\", \"values\": [\"Committee Room\", \"Main Hall\", \"Small Annexe\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"district nurse vehicle\", \"counterpart\": \"Marta Cole\", \"org\": \"Bramble Fleet Hire\", \"item\": \"pool car for home visits\", \"values\": [\"Pool Car A\", \"Pool Car B\", \"Pool Car C\"], \"place\": \"Willowmere surgery car park\"},\n  {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"sharps bins\", \"unit\": \"units\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Willowmere GP surgery treatment room\"},\n  {\"kind\": \"booking\", \"topic\": \"midwife clinic room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"antenatal clinic room\", \"values\": [\"Room 2\", \"Room 4\", \"Room 5\"], \"place\": \"Willowmere GP Surgery\"},\n  {\"kind\": \"order\", \"topic\": \"vacutainers\", \"counterpart\": \"Ravi Menon\", \"org\": \"Medisave Medical Supplies\", \"item\": \"blood collection tubes\", \"unit\": \"boxes\", \"values\": [\"30\", \"50\", \"70\"], \"place\": \"Willowmere GP Surgery phlebotomy room\"},\n  {\"kind\": \"booking\", \"topic\": \"health visitor drop-in\", \"counterpart\": \"Gina Hale\", \"org\": \"Rosewood Community Hall\", \"item\": \"baby weigh-in drop-in\", \"values\": [\"Small Annexe\", \"Foyer\", \"Committee Room\"], \"place\": \"Rosewood Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Tom Bright\", \"org\": \"Stationery Direct\", \"item\": \"appointment cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Willowmere GP Surgery reception\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Dr Ameen\", \"org\": \"Willowmere GP Surgery\", \"item\": \"weekly practice meeting\", \"values\": [\"Room 1\", \"Room 3\", \"Room 6\"], \"place\": \"Willowmere GP Surgery\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12307,
+    "completion_tokens": 4463,
+    "reasoning_tokens": 11,
+    "cached_tokens": 7744
+   },
+   "cost": 0.02803884,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'phlebotomy clinic': values needs at least three entries\n- noise topic 'patient group meeting': values needs at least three entries\n- noise topic 'midwife clinic room': values needs at least three entries\n- noise topic 'health visitor drop-in': values needs at least three entries\n- noise topic 'staff meeting room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Willowmere flu clinic confirmation",
+  "setting": "The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters",
+  "owner": "Fiona",
+  "org": "Willowmere GP Surgery",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Fiona",
+    "text": "Standing rule at Willowmere: any supplier order over 500 pounds needs Dr Ameen's sign-off before it is placed. Keep to it even when we are in a hurry for seasonal stock.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Fiona",
+    "text": "Standing rule: the clinical staffing rota for any weekend clinic belongs to Dr Ameen. Nothing about who staffs a clinic changes without his agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "Confirming our conversation: community health bookings at Rosewood get the daytime community rate of 45 pounds per hour for the Main Hall. That rate is held for you for the autumn season.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "message",
+    "from": "Dr Ameen",
+    "text": "Clinically I'd like this year's flu clinics in October rather than September, so we are vaccinating closer to peak season. Aim for mid-October for the main session.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Medisave Medical Supplies",
+    "text": "Quote Q-8841: quadrivalent flu vaccine, 2.80 pounds per dose, minimum order 100 doses, delivery to Willowmere GP Surgery within 5 working days of the order date.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "note",
+    "from": "Fiona",
+    "text": "Last autumn we used 380 doses at the main session. Our at-risk register has grown, so plan for about 400 doses this year.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "The Main Hall is free on Saturdays in October. It seats 200 and has level access from the car park entrance, which worked well for your patients last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-23",
+    "type": "email",
+    "from": "Nurse Priya",
+    "text": "I can do Saturday sessions in October, mornings preferred. I'd want two practice nurses alongside me for a big session.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-26",
+    "type": "policy",
+    "from": "Willowmere GP Surgery",
+    "text": "Annual flu recall policy: at-risk patients on the register receive a recall letter with the session date at least three weeks before the clinic. Letters use template FL-2 and go out in one batch.",
+    "role": "rule"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Tom Bright (Stationery Direct)",
+    "text": "Quote for DL envelopes: 9.50 pounds per box of 500, delivered to the surgery within 3 working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Dr Ameen",
+    "text": "Mid-October works. Saturday 17 October is the target date for the main flu clinic. Let's keep it in the morning, 09:00 to 13:00, like last year.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e7"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Fiona",
+    "text": "Booked: Rosewood Community Hall Main Hall for the flu clinic, Saturday 17 October 2026, 09:00 to 13:00, at the community rate of 45 pounds per hour. I've told Gina we'll confirm final numbers in early October.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e7",
+     "e11"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-07",
+    "type": "email",
+    "from": "Dr Ameen",
+    "text": "Approving the vaccine order at 2.80 pounds per dose. 400 doses comes to 1,120 pounds, which is over our 500 pound order limit, so my sign-off stands as that approval.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-08",
+    "type": "invoice",
+    "from": "Medisave Medical Supplies",
+    "text": "Order confirmation M-3312 from Willowmere GP Surgery: 400 doses quadrivalent flu vaccine at 2.80 pounds per dose, total 1,120 pounds, delivery on 12 October 2026 to Willowmere GP Surgery.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Nurse Priya",
+    "text": "For 17 October I can staff it with nurses Adeola and Beth. We'd run three vaccination stations plus a floater from 09:00 to 13:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-16",
+    "type": "minutes",
+    "from": "Fiona",
+    "text": "Practice meeting: the rota for the 17 October flu clinic is Priya leading, with nurses Adeola and Beth, three stations plus a floater, 09:00 to 13:00. Dr Ameen agreed the staffing.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e8",
+     "e15"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-21",
+    "type": "note",
+    "from": "Fiona",
+    "text": "At-risk register currently stands at 240 patients to be recalled for the October flu clinic.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-24",
+    "type": "instruction",
+    "from": "Fiona",
+    "text": "Prepare the flu recall batch: 240 at-risk patients, template FL-2, inviting them to the clinic on Saturday 17 October, 09:00 to 13:00 at Rosewood Community Hall. Hold as draft until I release it.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e12",
+     "e17"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-28",
+    "type": "invoice",
+    "from": "Stationery Direct",
+    "text": "Order SD-77 from Willowmere GP Surgery: 5 boxes of 1000 DL envelopes at 19.00 pounds per box, total 95.00 pounds, delivered within 3 working days.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e18"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "Reminder of your booking: Main Hall, Saturday 17 October, 09:00 to 13:00, community rate 45 pounds per hour. The level-access entrance from the car park will be open from 08:30.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Nurse Priya",
+    "text": "Could we book a short staff refresher on using the anaphylaxis kits before the clinic? An hour in early October would do, somewhere small at the surgery or the hall.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-15",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "The Small Annexe at Rosewood is available on Thursday 8 October, 17:00 to 18:00, at 30 pounds for the hour. Happy to hold it for your refresher.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Fiona",
+    "text": "Booked: Small Annexe at Rosewood Community Hall for the staff refresher, Thursday 8 October, 17:00 to 18:00, 30 pounds. Priya to run the anaphylaxis kit session.",
+    "role": "decision",
+    "rests_on": [
+     "e21",
+     "e22"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-02",
+    "type": "message",
+    "from": "Dr Ameen",
+    "text": "Vaccine delivery is confirmed for 12 October per Medisave's schedule. Everything for the 17th stands as planned.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-09",
+    "type": "letter",
+    "from": "Willowmere GP Surgery",
+    "text": "Recall letters released: 240 letters sent to at-risk patients inviting them to the flu clinic on Saturday 17 October, 09:00 to 13:00, Rosewood Community Hall Main Hall.",
+    "role": "decision",
+    "rests_on": [
+     "e18"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "Confirmation of your autumn bookings as they stand: Main Hall Saturday 17 October 09:00 to 13:00 at the community rate of 45 pounds per hour, and Small Annexe Thursday 8 October 17:00 to 18:00 at 30 pounds. Nothing else needed from you until the final headcount.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "A heads-up about the hall: the kitchen refurbishment finishes in October, so from 1 October the kitchen is back in use and the car park charge goes up to 3 pounds per car on event days. Patients can still park on the road for free if they prefer.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Nurse Adeola",
+    "text": "Reminder for my records: on the 17th I'm on station two and bringing the spare anaphylaxis kit from the surgery.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Gina Hale (Rosewood Community Hall)",
+    "text": "For anyone asking: our standard evening and commercial rate for the Main Hall is 65 pounds per hour, and the Small Annexe is 40 pounds an hour outside community bookings. Community health bookings keep their own agreed rates.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Dr Ameen",
+    "text": "All good on my side for the 17th. Staffing stays exactly as agreed: Priya, Adeola and Beth, three stations plus a floater.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Medisave Medical Supplies",
+    "text": "Delivery M-3312 remains on schedule for 12 October: 400 doses of quadrivalent flu vaccine to Willowmere GP Surgery.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn flu clinic — Main Hall",
+    "fields": {
+     "date": "2026-10-17",
+     "start": "09:00",
+     "end": "13:00",
+     "place": "Rosewood Community Hall — Main Hall",
+     "rate": "45 per hour",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Flu clinic staffing rota",
+    "fields": {
+     "date": "2026-10-17",
+     "staff": "Priya, Adeola, Beth",
+     "stations": "3",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Staff refresher — anaphylaxis kits",
+    "fields": {
+     "date": "2026-10-08",
+     "start": "17:00",
+     "end": "18:00",
+     "place": "Rosewood Community Hall — Small Annexe",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Flu vaccine order",
+    "fields": {
+     "supplier": "Medisave Medical Supplies",
+     "item": "quadrivalent flu vaccine",
+     "quantity": "400",
+     "amount": "1120",
+     "delivery_date": "2026-10-12",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "DL envelope order",
+    "fields": {
+     "supplier": "Stationery Direct",
+     "item": "DL envelopes",
+     "quantity": "5000",
+     "amount": "95",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Flu recall batch 2026",
+    "fields": {
+     "patients": "240",
+     "template": "FL-2",
+     "clinic_date": "2026-10-17",
+     "status": "sent"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "staff",
+     "stations"
+    ],
+    "from": "Dr Ameen",
+    "rule": "e2"
+   }
+  ],
+  "task": "The flu clinic is coming up on the 17th — please send Gina at Rosewood Community Hall our final confirmation of the booking with all the details, and mark the clinic entry in the schedule as confirmed.",
+  "expect": [
+   {
+    "message_to": "Gina Hale (Rosewood Community Hall)",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-17",
+     "09:00",
+     "13:00",
+     "Main Hall",
+     "45 per hour"
+    ],
+    "stale": [
+     "65 per hour",
+     "Small Annexe"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: Gina's September email only adds new facts about the kitchen and parking, which touch no decision in the plan. The right act is to confirm the existing booking on its own terms — 17 October, 09:00–13:00, Main Hall, community rate 45 pounds per hour — and set EV-1 to confirmed. The 65 pounds per hour commercial rate and the Small Annexe are relevant-looking distractors that must not appear; the staffing rota (EV-2) stays exactly as agreed under Dr Ameen's rule, and nothing else changes.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "gloves restock",
+    "counterpart": "Ravi Menon",
+    "org": "Medisave Medical Supplies",
+    "item": "nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Willowmere GP Surgery treatment room"
+   },
+   {
+    "kind": "booking",
+    "topic": "phlebotomy clinic",
+    "counterpart": "Gina Hale",
+    "org": "Rosewood Community Hall",
+    "item": "weekly blood-test clinic",
+    "values": [
+     "Small Annexe",
+     "Committee Room",
+     "Foyer"
+    ],
+    "place": "Rosewood Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "patient group meeting",
+    "counterpart": "Gina Hale",
+    "org": "Rosewood Community Hall",
+    "item": "patient participation group",
+    "values": [
+     "Committee Room",
+     "Main Hall",
+     "Small Annexe"
+    ],
+    "place": "Rosewood Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper",
+    "counterpart": "Tom Bright",
+    "org": "Stationery Direct",
+    "item": "A4 printer paper",
+    "unit": "reams",
+    "values": [
+     "15",
+     "25",
+     "35"
+    ],
+    "place": "Willowmere GP Surgery reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "district nurse vehicle",
+    "counterpart": "Marta Cole",
+    "org": "Bramble Fleet Hire",
+    "item": "pool car for home visits",
+    "values": [
+     "Pool Car A",
+     "Pool Car B",
+     "Pool Car C"
+    ],
+    "place": "Willowmere surgery car park"
+   },
+   {
+    "kind": "order",
+    "topic": "sharps bins",
+    "counterpart": "Ravi Menon",
+    "org": "Medisave Medical Supplies",
+    "item": "sharps bins",
+    "unit": "units",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Willowmere GP surgery treatment room"
+   },
+   {
+    "kind": "booking",
+    "topic": "midwife clinic room",
+    "counterpart": "Dr Ameen",
+    "org": "Willowmere GP Surgery",
+    "item": "antenatal clinic room",
+    "values": [
+     "Room 2",
+     "Room 4",
+     "Room 5"
+    ],
+    "place": "Willowmere GP Surgery"
+   },
+   {
+    "kind": "order",
+    "topic": "vacutainers",
+    "counterpart": "Ravi Menon",
+    "org": "Medisave Medical Supplies",
+    "item": "blood collection tubes",
+    "unit": "boxes",
+    "values": [
+     "30",
+     "50",
+     "70"
+    ],
+    "place": "Willowmere GP Surgery phlebotomy room"
+   },
+   {
+    "kind": "booking",
+    "topic": "health visitor drop-in",
+    "counterpart": "Gina Hale",
+    "org": "Rosewood Community Hall",
+    "item": "baby weigh-in drop-in",
+    "values": [
+     "Small Annexe",
+     "Foyer",
+     "Committee Room"
+    ],
+    "place": "Rosewood Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "appointment cards",
+    "counterpart": "Tom Bright",
+    "org": "Stationery Direct",
+    "item": "appointment cards",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Willowmere GP Surgery reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting room",
+    "counterpart": "Dr Ameen",
+    "org": "Willowmere GP Surgery",
+    "item": "weekly practice meeting",
+    "values": [
+     "Room 1",
+     "Room 3",
+     "Room 6"
+    ],
+    "place": "Willowmere GP Surgery"
+   }
+  ],
+  "id": "G500-4-07",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

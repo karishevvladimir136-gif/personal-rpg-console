@@ -1,0 +1,614 @@
+{
+ "id": "G500-4-06",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 5,
+ "setting": "A bespoke tailor at Nakamura & Thread whose assistant keeps measurement records, fittings diaries, and fabric orders",
+ "prompt_sha256": "b08cb6012e09493c64fe51bfa46d3dbdbc45d92c67399d0e9b3d0ed7dead052d",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Flannel price correction beside a wedding suit plan\",\n  \"setting\": \"A bespoke tailor at Nakamura & Thread whose assistant keeps measurement records, fittings diaries, and fabric orders\",\n  \"owner\": \"Ken\",\n  \"org\": \"Nakamura & Thread\",\n  \"now\": \"2026-10-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Standing policy: once a client fitting is confirmed in the diary, its date or time may only be changed with that client's agreement. Never move a confirmed fitting on our side alone.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Any fabric or trim order over 600 pounds total needs sign-off from Mira Feld, our bookkeeper, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Current price list from Halden Fabrics: Cavalier grey flannel is 46 pounds per metre, Lomond navy twill is 68 pounds per metre. Both in stock in good quantity.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Theo Marsden\", \"text\": \"Theo Marsden here. Wedding is 24 October 2026. My measurements from the last suit Ken made: chest 40, waist 34, sleeve 25. Drop-waist charcoal two-piece as discussed.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Petra Lund (Brandt Silks)\", \"text\": \"Brandt Silks quote: silk lining, navy, 38 pounds per metre for orders this quarter.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Marta Kewes (Pemberton Wool)\", \"text\": \"Pemberton Wool: charcoal super 130s suiting is 75 pounds per metre, available in 3 metre lengths.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Booked Theo Marsden's first fitting for 18 July at 11:00 in the Fitting Room, based on his measurements and the October wedding date.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"EV-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Greta Ono (client)\", \"text\": \"Greta Ono: could you press and repair my grey flannel coat? Any weekday morning works.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 6 metres of navy silk lining from Brandt Silks at 38 pounds per metre for Theo Marsden's suit, 228 pounds total, well under the 600 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Liam Deverell (client)\", \"text\": \"Liam Deverell: I'd like a tweed field coat cut in the autumn. No rush.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"call\", \"from\": \"Theo Marsden\", \"text\": \"Called in for the canvas fitting. Drape looks right through the chest; Ken will cut the jacket proper next and we will baste it in late August.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-21\", \"type\": \"note\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Workshop open Tuesday to Saturday, 9:00 to 18:00. Fittings only in the Fitting Room at the front of the shop.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 3.6 metres of charcoal super 130s suiting from Pemberton Wool at 75 pounds per metre, 270 pounds total, for Liam Deverell's tweed field coat trial.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Sam Brice (Brice Buttons)\", \"text\": \"Brice Buttons: natural horn buttons, 24 ligne, 1.20 pounds each; smoked MOP buttons 2.40 pounds each.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Assigned apprentice Luca Beni to prepare the baste jacket for Theo Marsden ahead of the baste fitting.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"CL-1\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta Kewes (Pemberton Wool)\", \"text\": \"Reminder: autumn delivery slots fill up; charcoal super 130s still 75 pounds per metre.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Confirming your account terms with Halden Fabrics: Cavalier grey flannel at 46 pounds per metre remains our current price, Lomond navy twill at 68 pounds per metre.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Booked Theo Marsden's baste fitting for 18 September at 14:00 in the Fitting Room; confirmed with Theo by phone.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\", \"e12\"], \"record\": \"EV-2\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Nora Vashti (client)\", \"text\": \"Nora Vashti: please move my trouser fitting to the following week.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Small correction to our price list: Cavalier grey flannel is now 52 pounds per metre, effective from this week. Lomond navy twill stays at 68 pounds per metre. Apologies for any confusion.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 40 natural horn buttons at 24 ligne from Brice Buttons at 1.20 pounds each, 48 pounds total, for Theo Marsden's suit.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Petra Lund (Brandt Silks)\", \"text\": \"Heads up from Brandt Silks: our navy silk lining goes to 41 pounds per metre for new orders placed after 1 November.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Theo Marsden\", \"text\": \"Baste fitting went well. For the final fitting I'm free in the weeks of 19 October or 26 October; mornings or early afternoons both fine. Wedding is 24 October, so the earlier the better.\", \"role\": \"fact\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Workshop minutes: Theo's suit on track, lining and buttons received, buttonholes to be worked in the first October week.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Luca Beni\", \"text\": \"Luca: buttonholes finished on Theo's jacket; it hangs ready for the final fitting and pressing.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-03\", \"type\": \"task\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"To-do: confirm final fitting date with Theo and get the suit pressed before the wedding on 24 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Greta Ono (client)\", \"text\": \"Greta Ono: the coat repair looks wonderful, thank you. Invoice when convenient.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Mira Feld\", \"text\": \"Mira: October invoices ready to send; nothing pending sign-off this week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Theo Marsden first fitting\", \"fields\": {\"client\": \"Theo Marsden\", \"date\": \"2026-07-18\", \"time\": \"11:00\", \"place\": \"Fitting Room\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Theo Marsden baste fitting\", \"fields\": {\"client\": \"Theo Marsden\", \"date\": \"2026-09-18\", \"time\": \"14:00\", \"place\": \"Fitting Room\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Theo Marsden wedding suit\", \"fields\": {\"client\": \"Theo Marsden\", \"garment\": \"Charcoal two-piece wedding suit\", \"wedding_date\": \"2026-10-24\", \"assigned_to\": \"Luca Beni\", \"status\": \"in progress\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Navy silk lining\", \"fields\": {\"supplier\": \"Brandt Silks\", \"item\": \"Navy silk lining\", \"quantity\": \"6\", \"unit\": \"metre\", \"unit_price\": \"38\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Horn buttons\", \"fields\": {\"supplier\": \"Brice Buttons\", \"item\": \"Natural horn buttons 24 ligne\", \"quantity\": \"40\", \"unit_price\": \"1.20\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Charcoal super 130s suiting\", \"fields\": {\"supplier\": \"Pemberton Wool\", \"item\": \"Charcoal super 130s suiting\", \"quantity\": \"3.6\", \"unit\": \"metre\", \"unit_price\": \"75\", \"status\": \"delivered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Theo Marsden\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Theo's suit is ready apart from the final fitting. Please book his final fitting for 20 October at 15:00 in the Fitting Room and send him a confirmation with the date and time.\",\n  \"expect\": [\n    {\"create\": \"schedule\", \"fields\": {\"client\": \"Theo Marsden\", \"garment\": \"Final fitting wedding suit\", \"date\": \"2026-10-20\", \"time\": \"15:00\", \"place\": \"Fitting Room\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-10-26\"]}, \"task\": true},\n    {\"message_to\": \"Theo Marsden\", \"regarding\": null, \"says\": [\"final fitting\", \"20 October 2026\", \"15:00\", \"Fitting Room\"], \"stale\": [\"26 October\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the Halden Fabrics email of 18 September corrects the Cavalier grey flannel price to 52 pounds per metre, but no decision ever rested on that price, so no record or mark changes and every existing record stays exactly as it is. The Brandt Silks lining price note (25 September) is a distractor: the lining was already bought and delivered at 38 pounds, and it is not the value to act on. The task is simply to book Theo Marsden's final fitting on 20 October at 15:00 per the standing plan and confirm it with him, staying well before the 24 October wedding.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Thread restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Halden Fabrics\", \"item\": \"Sewing thread spools\", \"unit\": \"spool\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"order\", \"topic\": \"Silk lining restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Brandt Silks\", \"item\": \"Silk lining\", \"unit\": \"metre\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"booking\", \"topic\": \"Fitting Room slots\", \"counterpart\": \"Nora Vashti\", \"org\": \"Private client\", \"item\": \"Garment fitting\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\", \"Workshop\"], \"place\": \"Fitting Room\"},\n    {\"kind\": \"order\", \"topic\": \"Button stock\", \"counterpart\": \"Sam Brice\", \"org\": \"Brice Buttons\", \"item\": \"Horn buttons\", \"unit\": \"button\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"booking\", \"topic\": \"Pressing appointments\", \"counterpart\": \"Greta Ono\", \"org\": \"Private client\", \"item\": \"Coat pressing appointment\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\"], \"place\": \"Fitting Room\"},\n    {\"kind\": \"order\", \"topic\": \"Canvas and interlining\", \"counterpart\": \"Marta Kewes\", \"org\": \"Pemberton Wool\", \"item\": \"Horsehair canvas\", \"unit\": \"metre\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"booking\", \"topic\": \"Wedding party consultations\", \"counterpart\": \"Liam Deverell\", \"org\": \"Private client\", \"item\": \"Consultation\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\"], \"place\": \"Front Room\"},\n    {\"kind\": \"order\", \"topic\": \"Chalk and basting supplies\", \"counterpart\": \"Nils Faber\", \"org\": \"Tailor's Notions Co\", \"item\": \"Tailor's chalk boxes\", \"unit\": \"box\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"booking\", \"topic\": \"Alteration pickups\", \"counterpart\": \"Ruth Tanaka\", \"org\": \"Private client\", \"item\": \"Alteration pickup\", \"unit\": \"\", \"values\": [\"Front Room\", \"Workshop\"], \"place\": \"Front Room\"},\n    {\"kind\": \"order\", \"topic\": \"Hangers and garment bags\", \"counterpart\": \"Owen Pike\", \"org\": \"Pike Display Ltd\", \"item\": \"Garment bags\", \"unit\": \"bag\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Workshop stores\"},\n    {\"kind\": \"booking\", \"topic\": \"Measurement sessions\", \"counterpart\": \"Theo Marsden\", \"org\": \"Private client\", \"item\": \"Measurement session\", \"unit\": \"\", \"values\": [\"Fitting Room\"], \"place\": \"Fitting Room\"},\n    {\"kind\": \"order\", \"topic\": \"Machine needles\", \"counterpart\": \"Nils Faber\", \"org\": \"Tailor's Notions Co\", \"item\": \"Machine needles\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Workshop stores\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3209,
+    "completion_tokens": 5902,
+    "reasoning_tokens": 1874,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02688636,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Flannel price correction beside a wedding suit plan\",\n \"setting\": \"A bespoke tailor at Nakamura & Thread whose assistant keeps measurement records, fittings diaries, and fabric orders\",\n \"owner\": \"Ken\",\n \"org\": \"Nakamura & Thread\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Standing policy: once a client fitting is confirmed in the diary, its date or time may only be changed with that client's agreement. Never move a confirmed fitting on our side alone.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Any fabric or trim order over 600 pounds total needs sign-off from Mira Feld, our bookkeeper, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Current price list from Halden Fabrics: Cavalier grey flannel is 46 pounds per metre, Lomond navy twill is 68 pounds per metre. Both in stock in good quantity.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Theo Marsden\", \"text\": \"Theo Marsden here. Wedding is 24 October 2026. My measurements from the last suit Ken made: chest 40, waist 34, sleeve 25. Drop-waist charcoal two-piece as discussed.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Petra Lund (Brandt Silks)\", \"text\": \"Brandt Silks quote: silk lining, navy, 38 pounds per metre for orders this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Marta Kewes (Pemberton Wool)\", \"text\": \"Pemberton Wool: charcoal super 130s suiting is 75 pounds per metre, available in 3 metre lengths.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Booked Theo Marsden's first fitting for 18 July at 11:00 in the Fitting Room, based on his measurements and the October wedding date.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Greta Ono (client)\", \"text\": \"Greta Ono: could you press and repair my grey flannel coat? Any weekday morning works.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 6 metres of navy silk lining from Brandt Silks at 38 pounds per metre for Theo Marsden's suit, 228 pounds total, well under the 600 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Liam Deverell (client)\", \"text\": \"Liam Deverell: I'd like a tweed field coat cut in the autumn. No rush.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"call\", \"from\": \"Theo Marsden\", \"text\": \"Called in for the canvas fitting. Drape looks right through the chest; Ken will cut the jacket proper next and we will baste it in late August.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-21\", \"type\": \"note\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Workshop open Tuesday to Saturday, 9:00 to 18:00. Fittings only in the Fitting Room at the front of the shop.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 3.6 metres of charcoal super 130s suiting from Pemberton Wool at 75 pounds per metre, 270 pounds total, for Liam Deverell's tweed field coat trial.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Sam Brice (Brice Buttons)\", \"text\": \"Brice Buttons: natural horn buttons, 24 ligne, 1.20 pounds each; smoked MOP buttons 2.40 pounds each.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Assigned apprentice Luca Beni to prepare the baste jacket for Theo Marsden ahead of the baste fitting.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"CL-1\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta Kewes (Pemberton Wool)\", \"text\": \"Reminder: autumn delivery slots fill up; charcoal super 130s still 75 pounds per metre.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Confirming your account terms with Halden Fabrics: Cavalier grey flannel at 46 pounds per metre remains our current price, Lomond navy twill at 68 pounds per metre.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Booked Theo Marsden's baste fitting for 18 September at 14:00 in the Fitting Room; confirmed with Theo by phone.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\", \"e12\"], \"record\": \"EV-2\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Nora Vashti (client)\", \"text\": \"Nora Vashti: please move my trouser fitting to the following week.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Halden Fabrics)\", \"text\": \"Small correction to our price list: Cavalier grey flannel is now 52 pounds per metre, effective from this week. Lomond navy twill stays at 68 pounds per metre. Apologies for any confusion.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Ordered 40 natural horn buttons at 24 ligne from Brice Buttons at 1.20 pounds each, 48 pounds total, for Theo Marsden's suit.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Petra Lund (Brandt Silks)\", \"text\": \"Heads up from Brandt Silks: our navy silk lining goes to 41 pounds per metre for new orders placed after 1 November.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Theo Marsden\", \"text\": \"Baste fitting went well. For the final fitting I'm free in the weeks of 19 October or 26 October; mornings or early afternoons both fine. Wedding is 24 October, so the earlier the better.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"Workshop minutes: Theo's suit on track, lining and buttons received, buttonholes to be worked in the first October week.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Luca Beni\", \"text\": \"Luca: buttonholes finished on Theo's jacket; it hangs ready for the final fitting and pressing.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-03\", \"type\": \"task\", \"from\": \"Ken (Nakamura & Thread)\", \"text\": \"To-do: confirm final fitting date with Theo and get the suit pressed before the wedding on 24 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Greta Ono (client)\", \"text\": \"Greta Ono: the coat repair looks wonderful, thank you. Invoice when convenient.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Mira Feld\", \"text\": \"Mira: October invoices ready to send; nothing pending sign-off this week.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Theo Marsden first fitting\", \"fields\": {\"client\": \"Theo Marsden\", \"date\": \"2026-07-18\", \"time\": \"11:00\", \"place\": \"Fitting Room\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Theo Marsden baste fitting\", \"fields\": {\"client\": \"Theo Marsden\", \"date\": \"2026-09-18\", \"time\": \"14:00\", \"place\": \"Fitting Room\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Theo Marsden wedding suit\", \"fields\": {\"client\": \"Theo Marsden\", \"garment\": \"Charcoal two-piece wedding suit\", \"wedding_date\": \"2026-10-24\", \"assigned_to\": \"Luca Beni\", \"status\": \"in progress\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Navy silk lining\", \"fields\": {\"supplier\": \"Brandt Silks\", \"item\": \"Navy silk lining\", \"quantity\": \"6\", \"unit\": \"metre\", \"unit_price\": \"38\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Horn buttons\", \"fields\": {\"supplier\": \"Brice Buttons\", \"item\": \"Natural horn buttons 24 ligne\", \"quantity\": \"40\", \"unit_price\": \"1.20\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Charcoal super 130s suiting\", \"fields\": {\"supplier\": \"Pemberton Wool\", \"item\": \"Charcoal super 130s suiting\", \"quantity\": \"3.6\", \"unit\": \"metre\", \"unit_price\": \"75\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Theo Marsden\", \"rule\": \"e1\"}\n ],\n \"task\": \"Theo's suit is ready apart from the final fitting. Please book his final fitting for 20 October at 15:00 in the Fitting Room and send him a confirmation with the date and time.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"client\": \"Theo Marsden\", \"garment\": \"Final fitting wedding suit\", \"date\": \"2026-10-20\", \"time\": \"15:00\", \"place\": \"Fitting Room\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-10-26\"]}, \"task\": true},\n  {\"message_to\": \"Theo Marsden\", \"regarding\": null, \"says\": [\"final fitting\", \"20 October 2026\", \"15:00\", \"Fitting Room\"], \"stale\": [\"26 October\"], \"task\": true}\n ],\n \"why\": \"This is a control: the Halden Fabrics email of 18 September corrects the Cavalier grey flannel price to 52 pounds per metre, but no decision ever rested on that price, so no record or mark changes and every existing record stays exactly as it is. The Brandt Silks lining price note (25 September) is a distractor: the lining was already bought and delivered at 38 pounds, and it is not the value to act on. The task is simply to book Theo Marsden's final fitting on 20 October at 15:00 per the standing plan and confirm it with him, staying well before the 24 October wedding.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Thread restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Halden Fabrics\", \"item\": \"Sewing thread spools\", \"unit\": \"spool\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"order\", \"topic\": \"Silk lining restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Brandt Silks\", \"item\": \"Silk lining\", \"unit\": \"metre\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Fitting Room slots\", \"counterpart\": \"Nora Vashti\", \"org\": \"Private client\", \"item\": \"Garment fitting\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\", \"Workshop\"], \"place\": \"Fitting Room\"},\n  {\"kind\": \"order\", \"topic\": \"Button stock\", \"counterpart\": \"Sam Brice\", \"org\": \"Brice Buttons\", \"item\": \"Horn buttons\", \"unit\": \"button\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Pressing appointments\", \"counterpart\": \"Greta Ono\", \"org\": \"Private client\", \"item\": \"Coat pressing appointment\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\", \"Workshop\"], \"place\": \"Fitting Room\"},\n  {\"kind\": \"order\", \"topic\": \"Canvas and interlining\", \"counterpart\": \"Marta Kewes\", \"org\": \"Pemberton Wool\", \"item\": \"Horsehair canvas\", \"unit\": \"metre\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Wedding party consultations\", \"counterpart\": \"Liam Deverell\", \"org\": \"Private client\", \"item\": \"Consultation\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\", \"Workshop\"], \"place\": \"Front Room\"},\n  {\"kind\": \"order\", \"topic\": \"Chalk and basting supplies\", \"counterpart\": \"Nils Faber\", \"org\": \"Tailor's Notions Co\", \"item\": \"Tailor's chalk boxes\", \"unit\": \"box\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Alteration pickups\", \"counterpart\": \"Ruth Tanaka\", \"org\": \"Private client\", \"item\": \"Alteration pickup\", \"unit\": \"\", \"values\": [\"Front Room\", \"Fitting Room\", \"Workshop\"], \"place\": \"Front Room\"},\n  {\"kind\": \"order\", \"topic\": \"Hangers and garment bags\", \"counterpart\": \"Owen Pike\", \"org\": \"Pike Display Ltd\", \"item\": \"Garment bags\", \"unit\": \"bag\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Workshop stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Measurement sessions\", \"counterpart\": \"Theo Marsden\", \"org\": \"Private client\", \"item\": \"Measurement session\", \"unit\": \"\", \"values\": [\"Fitting Room\", \"Front Room\", \"Workshop\"], \"place\": \"Fitting Room\"},\n  {\"kind\": \"order\", \"topic\": \"Machine needles\", \"counterpart\": \"Nils Faber\", \"org\": \"Tailor's Notions Co\", \"item\": \"Machine needles\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Workshop stores\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7325,
+    "completion_tokens": 4039,
+    "reasoning_tokens": 7,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0243786,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Pressing appointments': values needs at least three entries\n- noise topic 'Wedding party consultations': values needs at least three entries\n- noise topic 'Alteration pickups': values needs at least three entries\n- noise topic 'Measurement sessions': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flannel price correction beside a wedding suit plan",
+  "setting": "A bespoke tailor at Nakamura & Thread whose assistant keeps measurement records, fittings diaries, and fabric orders",
+  "owner": "Ken",
+  "org": "Nakamura & Thread",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Standing policy: once a client fitting is confirmed in the diary, its date or time may only be changed with that client's agreement. Never move a confirmed fitting on our side alone.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Any fabric or trim order over 600 pounds total needs sign-off from Mira Feld, our bookkeeper, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Dana Ortiz (Halden Fabrics)",
+    "text": "Current price list from Halden Fabrics: Cavalier grey flannel is 46 pounds per metre, Lomond navy twill is 68 pounds per metre. Both in stock in good quantity.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Theo Marsden",
+    "text": "Theo Marsden here. Wedding is 24 October 2026. My measurements from the last suit Ken made: chest 40, waist 34, sleeve 25. Drop-waist charcoal two-piece as discussed.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Petra Lund (Brandt Silks)",
+    "text": "Brandt Silks quote: silk lining, navy, 38 pounds per metre for orders this quarter.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-17",
+    "type": "email",
+    "from": "Marta Kewes (Pemberton Wool)",
+    "text": "Pemberton Wool: charcoal super 130s suiting is 75 pounds per metre, available in 3 metre lengths.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Booked Theo Marsden's first fitting for 18 July at 11:00 in the Fitting Room, based on his measurements and the October wedding date.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Greta Ono (client)",
+    "text": "Greta Ono: could you press and repair my grey flannel coat? Any weekday morning works.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Ordered 6 metres of navy silk lining from Brandt Silks at 38 pounds per metre for Theo Marsden's suit, 228 pounds total, well under the 600 pound sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Liam Deverell (client)",
+    "text": "Liam Deverell: I'd like a tweed field coat cut in the autumn. No rush.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-16",
+    "type": "call",
+    "from": "Theo Marsden",
+    "text": "Called in for the canvas fitting. Drape looks right through the chest; Ken will cut the jacket proper next and we will baste it in late August.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-21",
+    "type": "note",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Workshop open Tuesday to Saturday, 9:00 to 18:00. Fittings only in the Fitting Room at the front of the shop.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Ordered 3.6 metres of charcoal super 130s suiting from Pemberton Wool at 75 pounds per metre, 270 pounds total, for Liam Deverell's tweed field coat trial.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Sam Brice (Brice Buttons)",
+    "text": "Brice Buttons: natural horn buttons, 24 ligne, 1.20 pounds each; smoked MOP buttons 2.40 pounds each.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Assigned apprentice Luca Beni to prepare the baste jacket for Theo Marsden ahead of the baste fitting.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marta Kewes (Pemberton Wool)",
+    "text": "Reminder: autumn delivery slots fill up; charcoal super 130s still 75 pounds per metre.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Dana Ortiz (Halden Fabrics)",
+    "text": "Confirming your account terms with Halden Fabrics: Cavalier grey flannel at 46 pounds per metre remains our current price, Lomond navy twill at 68 pounds per metre.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Booked Theo Marsden's baste fitting for 18 September at 14:00 in the Fitting Room; confirmed with Theo by phone.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1",
+     "e12"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Nora Vashti (client)",
+    "text": "Nora Vashti: please move my trouser fitting to the following week.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Dana Ortiz (Halden Fabrics)",
+    "text": "Small correction to our price list: Cavalier grey flannel is now 52 pounds per metre, effective from this week. Lomond navy twill stays at 68 pounds per metre. Apologies for any confusion.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Ordered 40 natural horn buttons at 24 ligne from Brice Buttons at 1.20 pounds each, 48 pounds total, for Theo Marsden's suit.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Petra Lund (Brandt Silks)",
+    "text": "Heads up from Brandt Silks: our navy silk lining goes to 41 pounds per metre for new orders placed after 1 November.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Theo Marsden",
+    "text": "Baste fitting went well. For the final fitting I'm free in the weeks of 19 October or 26 October; mornings or early afternoons both fine. Wedding is 24 October, so the earlier the better.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-30",
+    "type": "minutes",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "Workshop minutes: Theo's suit on track, lining and buttons received, buttonholes to be worked in the first October week.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Luca Beni",
+    "text": "Luca: buttonholes finished on Theo's jacket; it hangs ready for the final fitting and pressing.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-03",
+    "type": "task",
+    "from": "Ken (Nakamura & Thread)",
+    "text": "To-do: confirm final fitting date with Theo and get the suit pressed before the wedding on 24 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Greta Ono (client)",
+    "text": "Greta Ono: the coat repair looks wonderful, thank you. Invoice when convenient.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Mira Feld",
+    "text": "Mira: October invoices ready to send; nothing pending sign-off this week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Theo Marsden first fitting",
+    "fields": {
+     "client": "Theo Marsden",
+     "date": "2026-07-18",
+     "time": "11:00",
+     "place": "Fitting Room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Theo Marsden baste fitting",
+    "fields": {
+     "client": "Theo Marsden",
+     "date": "2026-09-18",
+     "time": "14:00",
+     "place": "Fitting Room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Theo Marsden wedding suit",
+    "fields": {
+     "client": "Theo Marsden",
+     "garment": "Charcoal two-piece wedding suit",
+     "wedding_date": "2026-10-24",
+     "assigned_to": "Luca Beni",
+     "status": "in progress"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Navy silk lining",
+    "fields": {
+     "supplier": "Brandt Silks",
+     "item": "Navy silk lining",
+     "quantity": "6",
+     "unit": "metre",
+     "unit_price": "38",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Horn buttons",
+    "fields": {
+     "supplier": "Brice Buttons",
+     "item": "Natural horn buttons 24 ligne",
+     "quantity": "40",
+     "unit_price": "1.20",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Charcoal super 130s suiting",
+    "fields": {
+     "supplier": "Pemberton Wool",
+     "item": "Charcoal super 130s suiting",
+     "quantity": "3.6",
+     "unit": "metre",
+     "unit_price": "75",
+     "status": "delivered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Theo Marsden",
+    "rule": "e1"
+   }
+  ],
+  "task": "Theo's suit is ready apart from the final fitting. Please book his final fitting for 20 October at 15:00 in the Fitting Room and send him a confirmation with the date and time.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "client": "Theo Marsden",
+     "garment": "Final fitting wedding suit",
+     "date": "2026-10-20",
+     "time": "15:00",
+     "place": "Fitting Room",
+     "status": "booked"
+    },
+    "stale": {
+     "date": [
+      "2026-10-26"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Theo Marsden",
+    "regarding": null,
+    "says": [
+     "final fitting",
+     "20 October 2026",
+     "15:00",
+     "Fitting Room"
+    ],
+    "stale": [
+     "26 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the Halden Fabrics email of 18 September corrects the Cavalier grey flannel price to 52 pounds per metre, but no decision ever rested on that price, so no record or mark changes and every existing record stays exactly as it is. The Brandt Silks lining price note (25 September) is a distractor: the lining was already bought and delivered at 38 pounds, and it is not the value to act on. The task is simply to book Theo Marsden's final fitting on 20 October at 15:00 per the standing plan and confirm it with him, staying well before the 24 October wedding.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Thread restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Halden Fabrics",
+    "item": "Sewing thread spools",
+    "unit": "spool",
+    "values": [
+     "12",
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "order",
+    "topic": "Silk lining restock",
+    "counterpart": "Petra Lund",
+    "org": "Brandt Silks",
+    "item": "Silk lining",
+    "unit": "metre",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fitting Room slots",
+    "counterpart": "Nora Vashti",
+    "org": "Private client",
+    "item": "Garment fitting",
+    "unit": "",
+    "values": [
+     "Fitting Room",
+     "Front Room",
+     "Workshop"
+    ],
+    "place": "Fitting Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Button stock",
+    "counterpart": "Sam Brice",
+    "org": "Brice Buttons",
+    "item": "Horn buttons",
+    "unit": "button",
+    "values": [
+     "25",
+     "50",
+     "75",
+     "100"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Pressing appointments",
+    "counterpart": "Greta Ono",
+    "org": "Private client",
+    "item": "Coat pressing appointment",
+    "unit": "",
+    "values": [
+     "Fitting Room",
+     "Front Room",
+     "Workshop"
+    ],
+    "place": "Fitting Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Canvas and interlining",
+    "counterpart": "Marta Kewes",
+    "org": "Pemberton Wool",
+    "item": "Horsehair canvas",
+    "unit": "metre",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Wedding party consultations",
+    "counterpart": "Liam Deverell",
+    "org": "Private client",
+    "item": "Consultation",
+    "unit": "",
+    "values": [
+     "Fitting Room",
+     "Front Room",
+     "Workshop"
+    ],
+    "place": "Front Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Chalk and basting supplies",
+    "counterpart": "Nils Faber",
+    "org": "Tailor's Notions Co",
+    "item": "Tailor's chalk boxes",
+    "unit": "box",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Alteration pickups",
+    "counterpart": "Ruth Tanaka",
+    "org": "Private client",
+    "item": "Alteration pickup",
+    "unit": "",
+    "values": [
+     "Front Room",
+     "Fitting Room",
+     "Workshop"
+    ],
+    "place": "Front Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Hangers and garment bags",
+    "counterpart": "Owen Pike",
+    "org": "Pike Display Ltd",
+    "item": "Garment bags",
+    "unit": "bag",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Workshop stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Measurement sessions",
+    "counterpart": "Theo Marsden",
+    "org": "Private client",
+    "item": "Measurement session",
+    "unit": "",
+    "values": [
+     "Fitting Room",
+     "Front Room",
+     "Workshop"
+    ],
+    "place": "Fitting Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Machine needles",
+    "counterpart": "Nils Faber",
+    "org": "Tailor's Notions Co",
+    "item": "Machine needles",
+    "unit": "pack",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Workshop stores"
+   }
+  ],
+  "id": "G500-4-06",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

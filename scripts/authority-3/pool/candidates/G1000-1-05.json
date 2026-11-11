@@ -1,0 +1,673 @@
+{
+ "id": "G1000-1-05",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 1,
+ "idx": 4,
+ "setting": "A hair salon owner at Fringe Benefits whose assistant maintains colour formulas, client histories, and chair bookings",
+ "prompt_sha256": "d88df7d71129786faadf6d9a5d8b04a3a00d9cba473e3b80a1fdbfee55306b42",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Studio rate rise before the autumn masterclass\",\n  \"setting\": \"A hair salon owner at Fringe Benefits whose assistant maintains colour formulas, client histories, and chair bookings\",\n  \"owner\": \"Marta\",\n  \"org\": \"Fringe Benefits\",\n  \"now\": \"2026-10-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at the salon: any change to a price that clients have already been quoted or advertised to them for a class, demo or event needs Nadia Bhatt's written agreement first. Nadia is our head educator and owns client-facing pricing.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: supplier orders above 400 in total must have sign-off from Priya Adeyemi, our finance lead, before we send them.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: a confirmed client appointment may only be moved to another date, time or chair once the client has agreed.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Nadia Bhatt\", \"text\": \"Team update: the summer campaign went well, twelve new colour clients this month. Let's keep the formula cards tidy in the back office binder.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Rowan Pike (Kestrel Hair Supply)\", \"text\": \"Price list from Kestrel Hair Supply: 9% cream developer at 18 per litre, delivered on Thursdays. Lead time is one week.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta placed the monthly restock with Kestrel Hair Supply: 6 litres of 9% cream developer at 18 per litre, delivered to the salon back room.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder: the salon closes at 18:00 on weekdays and 16:00 on Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Loomest Textiles\", \"text\": \"Quote from Loomest Textiles: salon towels at 12 each for orders of 30 or more, delivery in ten days.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Theo Marsh\", \"text\": \"Theo Marsh confirmed he has joined as colour assistant and is available Tuesdays to Saturdays from 10:00.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta booked Ines Okafor in for a root retouch on 2026-10-15 at 14:00, chair 2, with Theo on hand to finish the blow-dry.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"CL-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta put together a towel order with Loomest Textiles: 40 towels at 12 each, 480 in total. Since that is above 400, it waits for Priya Adeyemi's sign-off before sending.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-22\", \"type\": \"letter\", \"from\": \"Harbourline Insurance\", \"text\": \"Renewal letter from Harbourline Insurance for the salon policy, due 2026-08-31.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-29\", \"type\": \"minutes\", \"from\": \"Nadia Bhatt\", \"text\": \"Minutes of the team meeting: plan an autumn balayage masterclass and a silver-and-toners clinic off-site, plus a bridal demo. Marta to find a venue with backwash access.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Fenwick Market office\", \"text\": \"Fenwick Market confirmed our pop-up trim stall runs on Saturdays in September, 10:00 to 14:00, pitch fee 25 per week.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Kelda Voss (Bramble House)\", \"text\": \"Kelda Voss at Bramble House wrote: our ground-floor workshop studio is free on October Saturdays, seats 12 with the backwash row included, at 45 per hour for the rest of the season.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta booked the Bramble House workshop studio for the balayage masterclass on Saturday 17 October, 09:30 to 12:30 — 3 hours at the 45 per hour rate, 135 budgeted — and announced it to the client list as a confirmed event.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Following the masterclass booking, Marta also booked the same Bramble House studio for the silver-and-toners clinic on Saturday 24 October, 10:00 to 12:00 — 2 hours at 45 per hour, 90 budgeted.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta set a 20 ticket for the Vale bridal colour demo on the evening of Saturday 17 October at the Bramble House studio, priced to cover the studio's share of the day's costs. The ticket price was announced to the Vale clients.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta opened the masterclass seat list at 12 seats, matching the Bramble House studio's capacity for the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e16\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Kelda Voss (Bramble House)\", \"text\": \"Confirmation from Bramble House: the workshop studio is reserved for you on Saturday 17 October 09:30 to 12:30 and Saturday 24 October 10:00 to 12:00, billed at 45 per hour as agreed. Backwash row included.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-31\", \"type\": \"email\", \"from\": \"Ines Okafor\", \"text\": \"Client email: Is the balayage masterclass suitable for fine hair? Looking forward to the October events.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-05\", \"type\": \"quote\", \"from\": \"Alder Packaging\", \"text\": \"Quote from Alder Packaging: salon foil rolls at 21 per box of six, delivery within a week.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Budget check for autumn training: Bramble House studio at 45 an hour — masterclass 135, silver clinic 90. Budget lines all set.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-16\", \"type\": \"cancellation\", \"from\": \"Alder Packaging\", \"text\": \"Alder Packaging cancelled the sample batch of tint brushes; nothing was owed.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Kelda Voss (Bramble House)\", \"text\": \"Hi Marta, a quick note from Bramble House. Our costs went up this autumn, so the workshop studio is now 65 per hour for all bookings, including the October ones already pencilled in. Seats, hours and the backwash setup are unchanged.\", \"role\": \"change\", \"revokes\": [\"e15\"]},\n    {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Kelda Voss (Bramble House)\", \"text\": \"By the way, if the workshop studio ever feels tight, our Loft room upstairs takes small groups at 58 per hour — just say the word and I'll pencil you in.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e27\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Rowan Pike (Kestrel Hair Supply)\", \"text\": \"Heads-up from Kestrel Hair Supply: from 1 November the 9% cream developer goes up to 19 per litre.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-28\", \"type\": \"message\", \"from\": \"Nadia Bhatt\", \"text\": \"Nadia's message: I've got four models lined up for the masterclass demo pieces. Send me the final headcount when the seat list closes.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-30\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: pay Bramble House the studio deposit for Saturday 17 October by 10 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta scheduled Theo's colour-theory training sessions for Saturdays in October, 10:00 to 16:00, in the salon training corner.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-5\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-03\", \"type\": \"invoice\", \"from\": \"Rowan Pike (Kestrel Hair Supply)\", \"text\": \"Invoice from Kestrel Hair Supply for the June developer order: 6 litres at 18 per litre, 108 due.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Theo Marsh\", \"text\": \"Note from Theo: backwash station 3 drains slowly; booking it for maintenance this month.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Balayage masterclass\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"09:30\", \"place\": \"Bramble House studio\", \"hours\": \"3\", \"rate\": \"45\", \"budget\": \"135\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Silver and toners clinic\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"10:00\", \"place\": \"Bramble House studio\", \"hours\": \"2\", \"rate\": \"45\", \"budget\": \"90\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Vale bridal colour demo\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"18:00\", \"place\": \"Bramble House studio\", \"ticket_price\": \"20\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Masterclass seat list\", \"fields\": {\"event\": \"Balayage masterclass\", \"seats\": \"12\", \"status\": \"open\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Theo colour-theory training\", \"fields\": {\"staff\": \"Theo\", \"day\": \"Saturday\", \"time\": \"10:00-16:00\", \"status\": \"scheduled\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Towel order\", \"fields\": {\"supplier\": \"Loomest Textiles\", \"item\": \"salon towels\", \"quantity\": \"40\", \"amount\": \"480\", \"status\": \"pending\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Developer restock\", \"fields\": {\"supplier\": \"Kestrel Hair Supply\", \"item\": \"9% cream developer\", \"quantity\": \"6\", \"unit\": \"litres\", \"amount\": \"108\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Ines Okafor root retouch\", \"fields\": {\"client\": \"Ines Okafor\", \"service\": \"root retouch\", \"date\": \"2026-10-15\", \"time\": \"14:00\", \"chair\": \"2\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"ticket_price\"], \"from\": \"Nadia Bhatt\", \"rule\": \"e1\"},\n    {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ines Okafor\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you lock in the masterclass with Bramble House please? Send Kelda our confirmation for Saturday 17 October with the studio hours we hold and the total we'll be paying, so she can send the deposit invoice.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"rate\", \"value\": \"65\", \"stale\": [\"45\"]},\n    {\"record\": \"EV-1\", \"field\": \"budget\", \"value\": \"195\", \"stale\": [\"135\"]},\n    {\"record\": \"EV-2\", \"field\": \"rate\", \"value\": \"65\", \"stale\": [\"45\"]},\n    {\"record\": \"EV-2\", \"field\": \"budget\", \"value\": \"130\", \"stale\": [\"90\"]},\n    {\"message_to\": \"Kelda Voss (Bramble House)\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 17 October\", \"3 hours\", \"195\"], \"stale\": [\"135\", \"45\"], \"task\": true}\n  ],\n  \"why\": \"Kelda's email raises the studio rate from 45 to 65 per hour for the October bookings, so the internal rate and budget fields on the masterclass and the silver clinic records should be revised directly (65 and 195/130). The Vale demo's 20 ticket is client-facing and rests on the day's studio costs, so it may only change with Nadia's consent and the record stays as it is. The seat cap of 12 uses the studio's capacity, which the rate rise explicitly leaves standing, so EV-4 and all other records stay untouched; the task's confirmation message must carry the revised total of 195, not 135.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Developer restock\", \"counterpart\": \"Rowan Pike\", \"org\": \"Kestrel Hair Supply\", \"item\": \"9% cream developer\", \"unit\": \"litres\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Fringe Benefits back room\"},\n    {\"kind\": \"booking\", \"topic\": \"Model practice evenings\", \"counterpart\": \"Kelda Voss\", \"org\": \"Bramble House\", \"item\": \"backwash row for model practice\", \"unit\": \"\", \"values\": [\"Bramble House backwash row\", \"Bramble House ground-floor room\", \"Bramble House courtyard\"], \"place\": \"Bramble House\"},\n    {\"kind\": \"order\", \"topic\": \"Towel top-up\", \"counterpart\": \"Devon Ault\", \"org\": \"Loomest Textiles\", \"item\": \"salon towels\", \"unit\": \"towels\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Fringe Benefits laundry\"},\n    {\"kind\": \"order\", \"topic\": \"Foil rolls\", \"counterpart\": \"Sam Iyer\", \"org\": \"Alder Packaging\", \"item\": \"salon foil rolls\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Fringe Benefits colour room\"},\n    {\"kind\": \"booking\", \"topic\": \"Team colour review\", \"counterpart\": \"Nadia Bhatt\", \"org\": \"Fringe Benefits\", \"item\": \"training corner for colour review\", \"unit\": \"\", \"values\": [\"training corner\", \"coloring room\", \"staff room\"], \"place\": \"Fringe Benefits\"},\n    {\"kind\": \"order\", \"topic\": \"Retail shampoo stock\", \"counterpart\": \"Mira Solano\", \"org\": \"Basin & Bloom\", \"item\": \"sulphate-free shampoo bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\", \"48\"], \"place\": \"Fringe Benefits retail shelf\"},\n    {\"kind\": \"booking\", \"topic\": \"Market pop-up stall\", \"counterpart\": \"Gil Hartley\", \"org\": \"Fenwick Market office\", \"item\": \"pop-up trim stall pitch\", \"unit\": \"\", \"values\": [\"pitch 4\", \"pitch 7\", \"pitch 9\"], \"place\": \"Fenwick Market\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea supplies\", \"counterpart\": \"Petra Noon\", \"org\": \"Copperleaf Roasters\", \"item\": \"coffee beans and tea bags\", \"unit\": \"kilos\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Fringe Benefits staff room\"},\n    {\"kind\": \"booking\", \"topic\": \"Bridal trial slots\", \"counterpart\": \"Nadia Bhatt\", \"org\": \"Fringe Benefits\", \"item\": \"bridal trial appointments\", \"unit\": \"\", \"values\": [\"chair 1\", \"chair 3\", \"chair 4\"], \"place\": \"Fringe Benefits\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Owen Frisk\", \"org\": \"SudsyWorks\", \"item\": \"backwash cleaner\", \"unit\": \"bottles\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Fringe Benefits backwash area\"},\n    {\"kind\": \"booking\", \"topic\": \"Glow Academy van\", \"counterpart\": \"Rae Kimura\", \"org\": \"Glow Academy\", \"item\": \"academy van for supply runs\", \"unit\": \"\", \"values\": [\"van A morning\", \"van B afternoon\", \"van A afternoon\"], \"place\": \"Glow Academy depot\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 12334,
+    "reasoning_tokens": 7716,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05517456,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Studio rate rise before the autumn masterclass",
+  "setting": "A hair salon owner at Fringe Benefits whose assistant maintains colour formulas, client histories, and chair bookings",
+  "owner": "Marta",
+  "org": "Fringe Benefits",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at the salon: any change to a price that clients have already been quoted or advertised to them for a class, demo or event needs Nadia Bhatt's written agreement first. Nadia is our head educator and owns client-facing pricing.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: supplier orders above 400 in total must have sign-off from Priya Adeyemi, our finance lead, before we send them.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: a confirmed client appointment may only be moved to another date, time or chair once the client has agreed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Nadia Bhatt",
+    "text": "Team update: the summer campaign went well, twelve new colour clients this month. Let's keep the formula cards tidy in the back office binder.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Rowan Pike (Kestrel Hair Supply)",
+    "text": "Price list from Kestrel Hair Supply: 9% cream developer at 18 per litre, delivered on Thursdays. Lead time is one week.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-27",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta placed the monthly restock with Kestrel Hair Supply: 6 litres of 9% cream developer at 18 per litre, delivered to the salon back room.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-30",
+    "type": "note",
+    "from": "Marta",
+    "text": "Reminder: the salon closes at 18:00 on weekdays and 16:00 on Saturdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Loomest Textiles",
+    "text": "Quote from Loomest Textiles: salon towels at 12 each for orders of 30 or more, delivery in ten days.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Theo Marsh",
+    "text": "Theo Marsh confirmed he has joined as colour assistant and is available Tuesdays to Saturdays from 10:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta booked Ines Okafor in for a root retouch on 2026-10-15 at 14:00, chair 2, with Theo on hand to finish the blow-dry.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta put together a towel order with Loomest Textiles: 40 towels at 12 each, 480 in total. Since that is above 400, it waits for Priya Adeyemi's sign-off before sending.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e8"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-22",
+    "type": "letter",
+    "from": "Harbourline Insurance",
+    "text": "Renewal letter from Harbourline Insurance for the salon policy, due 2026-08-31.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-29",
+    "type": "minutes",
+    "from": "Nadia Bhatt",
+    "text": "Minutes of the team meeting: plan an autumn balayage masterclass and a silver-and-toners clinic off-site, plus a bridal demo. Marta to find a venue with backwash access.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Fenwick Market office",
+    "text": "Fenwick Market confirmed our pop-up trim stall runs on Saturdays in September, 10:00 to 14:00, pitch fee 25 per week.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Kelda Voss (Bramble House)",
+    "text": "Kelda Voss at Bramble House wrote: our ground-floor workshop studio is free on October Saturdays, seats 12 with the backwash row included, at 45 per hour for the rest of the season.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta booked the Bramble House workshop studio for the balayage masterclass on Saturday 17 October, 09:30 to 12:30 — 3 hours at the 45 per hour rate, 135 budgeted — and announced it to the client list as a confirmed event.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Following the masterclass booking, Marta also booked the same Bramble House studio for the silver-and-toners clinic on Saturday 24 October, 10:00 to 12:00 — 2 hours at 45 per hour, 90 budgeted.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta set a 20 ticket for the Vale bridal colour demo on the evening of Saturday 17 October at the Bramble House studio, priced to cover the studio's share of the day's costs. The ticket price was announced to the Vale clients.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e1"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta opened the masterclass seat list at 12 seats, matching the Bramble House studio's capacity for the workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e15",
+     "e16"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Kelda Voss (Bramble House)",
+    "text": "Confirmation from Bramble House: the workshop studio is reserved for you on Saturday 17 October 09:30 to 12:30 and Saturday 24 October 10:00 to 12:00, billed at 45 per hour as agreed. Backwash row included.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-31",
+    "type": "email",
+    "from": "Ines Okafor",
+    "text": "Client email: Is the balayage masterclass suitable for fine hair? Looking forward to the October events.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-05",
+    "type": "quote",
+    "from": "Alder Packaging",
+    "text": "Quote from Alder Packaging: salon foil rolls at 21 per box of six, delivery within a week.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "note",
+    "from": "Marta",
+    "text": "Budget check for autumn training: Bramble House studio at 45 an hour — masterclass 135, silver clinic 90. Budget lines all set.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-16",
+    "type": "cancellation",
+    "from": "Alder Packaging",
+    "text": "Alder Packaging cancelled the sample batch of tint brushes; nothing was owed.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Kelda Voss (Bramble House)",
+    "text": "Hi Marta, a quick note from Bramble House. Our costs went up this autumn, so the workshop studio is now 65 per hour for all bookings, including the October ones already pencilled in. Seats, hours and the backwash setup are unchanged.",
+    "role": "change",
+    "revokes": [
+     "e15"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Kelda Voss (Bramble House)",
+    "text": "By the way, if the workshop studio ever feels tight, our Loft room upstairs takes small groups at 58 per hour — just say the word and I'll pencil you in.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-26",
+    "type": "email",
+    "from": "Rowan Pike (Kestrel Hair Supply)",
+    "text": "Heads-up from Kestrel Hair Supply: from 1 November the 9% cream developer goes up to 19 per litre.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-28",
+    "type": "message",
+    "from": "Nadia Bhatt",
+    "text": "Nadia's message: I've got four models lined up for the masterclass demo pieces. Send me the final headcount when the seat list closes.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-30",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: pay Bramble House the studio deposit for Saturday 17 October by 10 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta scheduled Theo's colour-theory training sessions for Saturdays in October, 10:00 to 16:00, in the salon training corner.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-03",
+    "type": "invoice",
+    "from": "Rowan Pike (Kestrel Hair Supply)",
+    "text": "Invoice from Kestrel Hair Supply for the June developer order: 6 litres at 18 per litre, 108 due.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-05",
+    "type": "note",
+    "from": "Theo Marsh",
+    "text": "Note from Theo: backwash station 3 drains slowly; booking it for maintenance this month.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Balayage masterclass",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "09:30",
+     "place": "Bramble House studio",
+     "hours": "3",
+     "rate": "45",
+     "budget": "135",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Silver and toners clinic",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "10:00",
+     "place": "Bramble House studio",
+     "hours": "2",
+     "rate": "45",
+     "budget": "90",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Vale bridal colour demo",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "18:00",
+     "place": "Bramble House studio",
+     "ticket_price": "20",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Masterclass seat list",
+    "fields": {
+     "event": "Balayage masterclass",
+     "seats": "12",
+     "status": "open"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Theo colour-theory training",
+    "fields": {
+     "staff": "Theo",
+     "day": "Saturday",
+     "time": "10:00-16:00",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Towel order",
+    "fields": {
+     "supplier": "Loomest Textiles",
+     "item": "salon towels",
+     "quantity": "40",
+     "amount": "480",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Developer restock",
+    "fields": {
+     "supplier": "Kestrel Hair Supply",
+     "item": "9% cream developer",
+     "quantity": "6",
+     "unit": "litres",
+     "amount": "108",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Ines Okafor root retouch",
+    "fields": {
+     "client": "Ines Okafor",
+     "service": "root retouch",
+     "date": "2026-10-15",
+     "time": "14:00",
+     "chair": "2",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "ticket_price"
+    ],
+    "from": "Nadia Bhatt",
+    "rule": "e1"
+   },
+   {
+    "record": "CL-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Ines Okafor",
+    "rule": "e3"
+   }
+  ],
+  "task": "Can you lock in the masterclass with Bramble House please? Send Kelda our confirmation for Saturday 17 October with the studio hours we hold and the total we'll be paying, so she can send the deposit invoice.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "rate",
+    "value": "65",
+    "stale": [
+     "45"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "budget",
+    "value": "195",
+    "stale": [
+     "135"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "rate",
+    "value": "65",
+    "stale": [
+     "45"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "budget",
+    "value": "130",
+    "stale": [
+     "90"
+    ]
+   },
+   {
+    "message_to": "Kelda Voss (Bramble House)",
+    "regarding": "EV-1",
+    "says": [
+     "Saturday 17 October",
+     "3 hours",
+     "195"
+    ],
+    "stale": [
+     "135",
+     "45"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Kelda's email raises the studio rate from 45 to 65 per hour for the October bookings, so the internal rate and budget fields on the masterclass and the silver clinic records should be revised directly (65 and 195/130). The Vale demo's 20 ticket is client-facing and rests on the day's studio costs, so it may only change with Nadia's consent and the record stays as it is. The seat cap of 12 uses the studio's capacity, which the rate rise explicitly leaves standing, so EV-4 and all other records stay untouched; the task's confirmation message must carry the revised total of 195, not 135.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Developer restock",
+    "counterpart": "Rowan Pike",
+    "org": "Kestrel Hair Supply",
+    "item": "9% cream developer",
+    "unit": "litres",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Fringe Benefits back room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Model practice evenings",
+    "counterpart": "Kelda Voss",
+    "org": "Bramble House",
+    "item": "backwash row for model practice",
+    "unit": "",
+    "values": [
+     "Bramble House backwash row",
+     "Bramble House ground-floor room",
+     "Bramble House courtyard"
+    ],
+    "place": "Bramble House"
+   },
+   {
+    "kind": "order",
+    "topic": "Towel top-up",
+    "counterpart": "Devon Ault",
+    "org": "Loomest Textiles",
+    "item": "salon towels",
+    "unit": "towels",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Fringe Benefits laundry"
+   },
+   {
+    "kind": "order",
+    "topic": "Foil rolls",
+    "counterpart": "Sam Iyer",
+    "org": "Alder Packaging",
+    "item": "salon foil rolls",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Fringe Benefits colour room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Team colour review",
+    "counterpart": "Nadia Bhatt",
+    "org": "Fringe Benefits",
+    "item": "training corner for colour review",
+    "unit": "",
+    "values": [
+     "training corner",
+     "coloring room",
+     "staff room"
+    ],
+    "place": "Fringe Benefits"
+   },
+   {
+    "kind": "order",
+    "topic": "Retail shampoo stock",
+    "counterpart": "Mira Solano",
+    "org": "Basin & Bloom",
+    "item": "sulphate-free shampoo bottles",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Fringe Benefits retail shelf"
+   },
+   {
+    "kind": "booking",
+    "topic": "Market pop-up stall",
+    "counterpart": "Gil Hartley",
+    "org": "Fenwick Market office",
+    "item": "pop-up trim stall pitch",
+    "unit": "",
+    "values": [
+     "pitch 4",
+     "pitch 7",
+     "pitch 9"
+    ],
+    "place": "Fenwick Market"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee and tea supplies",
+    "counterpart": "Petra Noon",
+    "org": "Copperleaf Roasters",
+    "item": "coffee beans and tea bags",
+    "unit": "kilos",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Fringe Benefits staff room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Bridal trial slots",
+    "counterpart": "Nadia Bhatt",
+    "org": "Fringe Benefits",
+    "item": "bridal trial appointments",
+    "unit": "",
+    "values": [
+     "chair 1",
+     "chair 3",
+     "chair 4"
+    ],
+    "place": "Fringe Benefits"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Owen Frisk",
+    "org": "SudsyWorks",
+    "item": "backwash cleaner",
+    "unit": "bottles",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "Fringe Benefits backwash area"
+   },
+   {
+    "kind": "booking",
+    "topic": "Glow Academy van",
+    "counterpart": "Rae Kimura",
+    "org": "Glow Academy",
+    "item": "academy van for supply runs",
+    "unit": "",
+    "values": [
+     "van A morning",
+     "van B afternoon",
+     "van A afternoon"
+    ],
+    "place": "Glow Academy depot"
+   }
+  ],
+  "id": "G1000-1-05",
+  "tier": 1000,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

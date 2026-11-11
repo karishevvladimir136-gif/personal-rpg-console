@@ -1,0 +1,617 @@
+{
+ "id": "G100-1-01",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 0,
+ "setting": "A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes",
+ "prompt_sha256": "5cd51bf3ac33598780fc802d7a3aee840c52c66836f8611f85c26fce6ff8f7e4",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Relisted custody hearing\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Every client intake note goes into the case file within 24 hours of the first meeting, with the client's full name, matter type and opposing party.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Standing rule for my calendar: before I change the date, time or courtroom of any confirmed hearing entry in a client matter, that client must agree in writing first. No exceptions, even if the court moves things.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any disbursement over 400 dollars from client funds needs the client's email approval before I commit to it. Office card spending is fine without.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Intake summary from my first meeting: I am Meredith Merrow, seeking a final custody order for my two children; opposing party is my ex-husband Robert Merrow.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e5\", \"date\": \"2026-09-10\", \"type\": \"letter\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. The final custody hearing is fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse. All parties notified.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Lena Marsh (freelance interpreter)\", \"text\": \"Confirming my rates for Spanish interpreting: 95 dollars an hour. I am available for bookings any weekday between 2 and 20 November if you need me for a hearing.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Put the Merrow final custody hearing on the calendar as confirmed: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, under case MR-2026-118. Meredith has been told the date is fixed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked interpreter Lena Marsh for the Merrow hearing on Thursday 5 November, from 09:30, four hours at her rate of 95 dollars an hour, since she confirmed she is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Lena is travelling in from out of town for the Merrow hearing, so I booked her a single room at the Station Hotel in Hartwell for the night of Wednesday 4 November, 118 dollars, paid on the office card rather than client funds.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered four certified copies of the Merrow financial bundle from Hartwell Print & Copy, delivery to the filing desk at the Hartwell County Courthouse, 96 dollars on the office card.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-25\", \"type\": \"quote\", \"from\": \"Hartwell Print & Copy\", \"text\": \"Quote for the four certified copies at 24 dollars each, 96 dollars total, ready within five working days of order.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Okafor v Okafor, case MR-2026-204. Case management conference fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e13\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Added the Okafor case management conference to the calendar: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, marked confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder to self: the Merrow position statement must be filed by Thursday 22 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Thank you for taking my case. Do I need to bring anything with me to the hearing? Also, will there be someone to interpret for Robert's mother?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Meredith, yes, Lena Marsh will interpret for Robert's mother at the hearing, and I will send you a list of documents to bring.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. Please note the final custody hearing listed for 10:00 on Thursday 5 November 2026 in Courtroom 4B has been relisted due to judicial availability. It will now be heard at 14:00 on Thursday 19 November 2026 in Courtroom 2A, Hartwell County Courthouse. All parties have been notified of the new listing.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Court clerk (Hartwell County Court)\", \"text\": \"Confirming the courtroom booking for case MR-2026-118: Courtroom 2A is reserved for your matter at 14:00 on Thursday 19 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Meredith Merrow\", \"text\": \"Hi Nadia, just checking the hearing is definitely on for the fifth? I want to book the day off work.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-24\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Hartwell Print invoice for the certified copies by 30 October.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Merrow final custody hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-118\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Interpreter — Merrow hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"09:30\", \"person\": \"Lena Marsh\", \"hours\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Okafor case management conference\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-204\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreter hotel — Station Hotel\", \"fields\": {\"guest\": \"Lena Marsh\", \"night\": \"2026-11-04\", \"amount\": \"118\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified bundle copies — Hartwell Print & Copy\", \"fields\": {\"copies\": \"4\", \"delivery\": \"Hartwell County Courthouse filing desk\", \"amount\": \"96\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Meredith Merrow\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Meredith just messaged to check the hearing is on. Please send her a note confirming the date, time and courtroom for her final custody hearing, and sort out the interpreter side so everything matches.\",\n  \"expect\": [\n    {\"message_to\": \"Meredith Merrow\", \"regarding\": \"EV-1\", \"says\": [\"Thursday 19 November 2026\", \"14:00\", \"Courtroom 2A, Hartwell County Courthouse\"], \"stale\": [\"Thursday 5 November\", \"10:00\", \"Courtroom 4B\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-19\", \"stale\": [\"2026-11-05\"]},\n    {\"record\": \"EV-2\", \"field\": \"time\", \"value\": \"13:30\", \"stale\": [\"09:30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"night\", \"value\": \"2026-11-18\", \"stale\": [\"2026-11-04\"]}\n  ],\n  \"why\": \"The relisting email revokes the original hearing fact, so the calendar entry EV-1 is stale, but rule e2 requires Meredith's written agreement before any confirmed hearing entry is changed, so EV-1 must stay as it is and the assistant must ask her rather than edit it — though it can and should tell her the correct new details in its reply. The interpreter booking (EV-2) and Lena's hotel night (ORD-1, one step further down the chain from the old date) carry no consent protection, so they should be updated to 19 November. The certified copies order (ORD-2) rests only on the courthouse filing desk, which the relisting leaves standing, so it is KEEP, and the Okafor conference in the same old slot is an untouched distractor that must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Office supplies\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"copy paper reams\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Team meeting room\", \"counterpart\": \"Sofia Kern\", \"org\": \"Hartwell Business Centre\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 5\", \"Room 7\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bundle binding\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"spiral binding\", \"unit\": \"bundles\", \"values\": [\"3\", \"5\", \"8\", \"12\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Client conference slots\", \"counterpart\": \"Dale Morgan\", \"org\": \"Hartwell Business Centre\", \"item\": \"conference room booking\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 3\", \"Room 4\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Process server runs\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"same-day document delivery\", \"unit\": \"deliveries\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Transcript orders\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Courtroom overflow video link\", \"counterpart\": \"Iris Vale\", \"org\": \"Hartwell County Court IT\", \"item\": \"video link slot\", \"unit\": \"\", \"values\": [\"Courtroom 2A annex\", \"Courtroom 6 side room\", \"Library viewing room\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Refreshments for client meetings\", \"counterpart\": \"Bo Lin\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry trays\", \"unit\": \"trays\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Archive box pickups\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"van slot for archive boxes\", \"unit\": \"\", \"values\": [\"loading bay A\", \"loading bay B\", \"rear courtyard\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"order\", \"topic\": \"Certified copy top-ups\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"certified document copies\", \"unit\": \"copies\", \"values\": [\"2\", \"4\", \"6\", \"10\"], \"place\": \"Hartwell County Courthouse filing desk\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3145,
+    "completion_tokens": 8422,
+    "reasoning_tokens": 4957,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03795772,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Relisted custody hearing\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Every client intake note goes into the case file within 24 hours of the first meeting, with the client's full name, matter type and opposing party.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Standing rule for my calendar: before I change the date, time or courtroom of any confirmed hearing entry in a client matter, that client must agree in writing first. No exceptions, even if the court moves things.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any disbursement over 400 dollars from client funds needs the client's email approval before I commit to it. Office card spending is fine without.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Just confirming my details for the file after our call: I am Meredith Merrow, the custody matter against my ex-husband Robert Merrow, and the hearing is set for Thursday 5 November in Courtroom 4B.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e5\", \"date\": \"2026-09-10\", \"type\": \"letter\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. The final custody hearing is fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse. All parties notified.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Lena Marsh (freelance interpreter)\", \"text\": \"Confirming my rates for Spanish interpreting: 95 dollars an hour. I am available for bookings any weekday between 2 and 20 November if you need me for a hearing.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Put the Merrow final custody hearing on the calendar as confirmed: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, under case MR-2026-118. Meredith has been told the date is fixed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked interpreter Lena Marsh for the Merrow hearing on Thursday 5 November, from 09:30, four hours at her rate of 95 dollars an hour, since she confirmed she is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Lena is travelling in from out of town for the Merrow hearing, so I booked her a single room at the Station Hotel in Hartwell for the night of Wednesday 4 November, 118 dollars, paid on the office card rather than client funds.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered four certified copies of the Merrow financial bundle from Hartwell Print & Copy, delivery to the filing desk at the Hartwell County Courthouse, 96 dollars on the office card.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-25\", \"type\": \"quote\", \"from\": \"Hartwell Print & Copy\", \"text\": \"Quote for the four certified copies at 24 dollars each, 96 dollars total, ready within five working days of order.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Okafor v Okafor, case MR-2026-204. Case management conference fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e13\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Added the Okafor case management conference to the calendar: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, marked confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder to self: the Merrow position statement must be filed by Thursday 22 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Thank you for taking my case. Do I need to bring anything with me to the hearing? Also, will there be someone to interpret for Robert's mother?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Meredith, yes, Lena Marsh will interpret for Robert's mother at the hearing, and I will send you a list of documents to bring.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. Please note the final custody hearing listed for 10:00 on Thursday 5 November 2026 in Courtroom 4B has been relisted due to judicial availability. It will now be heard at 14:00 on Thursday 19 November 2026 in Courtroom 2A, Hartwell County Courthouse. All parties have been notified of the new listing.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Court clerk (Hartwell County Court)\", \"text\": \"Confirming the courtroom booking for case MR-2026-118: Courtroom 2A is reserved for your matter at 14:00 on Thursday 19 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Meredith Merrow\", \"text\": \"Hi Nadia, just checking the hearing is definitely on for the fifth? I want to book the day off work.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-24\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Hartwell Print invoice for the certified copies by 30 October.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Merrow final custody hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-118\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Interpreter — Merrow hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"09:30\", \"person\": \"Lena Marsh\", \"hours\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Okafor case management conference\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-204\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreter hotel — Station Hotel\", \"fields\": {\"guest\": \"Lena Marsh\", \"night\": \"2026-11-04\", \"amount\": \"118\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified bundle copies — Hartwell Print & Copy\", \"fields\": {\"copies\": \"4\", \"delivery\": \"Hartwell County Courthouse filing desk\", \"amount\": \"96\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Meredith Merrow\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Meredith just messaged to check the hearing is on. Please send her a note confirming the date, time and courtroom for her final custody hearing, and sort out the interpreter side so everything matches.\",\n  \"expect\": [\n    {\"message_to\": \"Meredith Merrow\", \"regarding\": \"EV-1\", \"says\": [\"Thursday 19 November 2026\", \"14:00\", \"Courtroom 2A, Hartwell County Courthouse\"], \"stale\": [\"Thursday 5 November\", \"10:00\", \"Courtroom 4B\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-19\", \"stale\": [\"2026-11-05\"]},\n    {\"record\": \"EV-2\", \"field\": \"time\", \"value\": \"13:30\", \"stale\": [\"09:30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"night\", \"value\": \"2026-11-18\", \"stale\": [\"2026-11-04\"]}\n  ],\n  \"why\": \"The relisting email revokes the original hearing fact, so the calendar entry EV-1 is stale, but rule e2 requires Meredith's written agreement before any confirmed hearing entry is changed, so EV-1 must stay as it is and the assistant must ask her rather than edit it — though it can and should tell her the correct new details in its reply. The interpreter booking (EV-2) and Lena's hotel night (ORD-1, one step further down the chain from the old date) carry no consent protection, so they should be updated to 19 November. The certified copies order (ORD-2) rests only on the courthouse filing desk, which the relisting leaves standing, so it is KEEP, and the Okafor conference in the same old slot is an untouched distractor that must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Office supplies\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"copy paper reams\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Team meeting room\", \"counterpart\": \"Sofia Kern\", \"org\": \"Hartwell Business Centre\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 5\", \"Room 7\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bundle binding\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"spiral binding\", \"unit\": \"bundles\", \"values\": [\"3\", \"5\", \"8\", \"12\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Client conference slots\", \"counterpart\": \"Dale Morgan\", \"org\": \"Hartwell Business Centre\", \"item\": \"conference room booking\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 3\", \"Room 4\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Process server runs\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"same-day document delivery\", \"unit\": \"deliveries\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Transcript orders\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Courtroom overflow video link\", \"counterpart\": \"Iris Vale\", \"org\": \"Hartwell County Court IT\", \"item\": \"video link slot\", \"unit\": \"\", \"values\": [\"Courtroom 2A annex\", \"Courtroom 6 side room\", \"Library viewing room\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Refreshments for client meetings\", \"counterpart\": \"Bo Lin\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry trays\", \"unit\": \"trays\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Archive box pickups\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"van slot for archive boxes\", \"unit\": \"\", \"values\": [\"loading bay A\", \"loading bay B\", \"rear courtyard\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"order\", \"topic\": \"Certified copy top-ups\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"certified document copies\", \"unit\": \"copies\", \"values\": [\"2\", \"4\", \"6\", \"10\"], \"place\": \"Hartwell County Courthouse filing desk\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6655,
+    "completion_tokens": 3633,
+    "reasoning_tokens": 157,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02172716,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e4: an echo must come after the revoked event and before the change\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Relisted custody hearing\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Every client intake note goes into the case file within 24 hours of the first meeting, with the client's full name, matter type and opposing party.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Standing rule for my calendar: before I change the date, time or courtroom of any confirmed hearing entry in a client matter, that client must agree in writing first. No exceptions, even if the court moves things.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-20\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any disbursement over 400 dollars from client funds needs the client's email approval before I commit to it. Office card spending is fine without.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-09-10\", \"type\": \"letter\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. The final custody hearing is fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse. All parties notified.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Lena Marsh (freelance interpreter)\", \"text\": \"Confirming my rates for Spanish interpreting: 95 dollars an hour. I am available for bookings any weekday between 2 and 20 November if you need me for a hearing.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-13\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Just confirming my details for the file after our call: I am Meredith Merrow, the custody matter against my ex-husband Robert Merrow, and the hearing is set for Thursday 5 November in Courtroom 4B.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e7\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Put the Merrow final custody hearing on the calendar as confirmed: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, under case MR-2026-118. Meredith has been told the date is fixed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked interpreter Lena Marsh for the Merrow hearing on Thursday 5 November, from 09:30, four hours at her rate of 95 dollars an hour, since she confirmed she is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Lena is travelling in from out of town for the Merrow hearing, so I booked her a single room at the Station Hotel in Hartwell for the night of Wednesday 4 November, 118 dollars, paid on the office card rather than client funds.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered four certified copies of the Merrow financial bundle from Hartwell Print & Copy, delivery to the filing desk at the Hartwell County Courthouse, 96 dollars on the office card.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-25\", \"type\": \"quote\", \"from\": \"Hartwell Print & Copy\", \"text\": \"Quote for the four certified copies at 24 dollars each, 96 dollars total, ready within five working days of order.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Okafor v Okafor, case MR-2026-204. Case management conference fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e13\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Added the Okafor case management conference to the calendar: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, marked confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"EV-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder to self: the Merrow position statement must be filed by Thursday 22 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Meredith Merrow\", \"text\": \"Thank you for taking my case. Do I need to bring anything with me to the hearing? Also, will there be someone to interpret for Robert's mother?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Meredith, yes, Lena Marsh will interpret for Robert's mother at the hearing, and I will send you a list of documents to bring.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Hartwell County Court listings office\", \"text\": \"Re: Merrow v Merrow, case MR-2026-118. Please note the final custody hearing listed for 10:00 on Thursday 5 November 2026 in Courtroom 4B has been relisted due to judicial availability. It will now be heard at 14:00 on Thursday 19 November 2026 in Courtroom 2A, Hartwell County Courthouse. All parties have been notified of the new listing.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Court clerk (Hartwell County Court)\", \"text\": \"Confirming the courtroom booking for case MR-2026-118: Courtroom 2A is reserved for your matter at 14:00 on Thursday 19 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Meredith Merrow\", \"text\": \"Hi Nadia, just checking the hearing is definitely on for the fifth? I want to book the day off work.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-24\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Hartwell Print invoice for the certified copies by 30 October.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Merrow final custody hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-118\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Interpreter — Merrow hearing\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"09:30\", \"person\": \"Lena Marsh\", \"hours\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Okafor case management conference\", \"fields\": {\"date\": \"2026-11-05\", \"time\": \"10:00\", \"place\": \"Courtroom 4B, Hartwell County Courthouse\", \"case\": \"MR-2026-204\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreter hotel — Station Hotel\", \"fields\": {\"guest\": \"Lena Marsh\", \"night\": \"2026-11-04\", \"amount\": \"118\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified bundle copies — Hartwell Print & Copy\", \"fields\": {\"copies\": \"4\", \"delivery\": \"Hartwell County Courthouse filing desk\", \"amount\": \"96\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Meredith Merrow\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Meredith just messaged to check the hearing is on. Please send her a note confirming the date, time and courtroom for her final custody hearing, and sort out the interpreter side so everything matches.\",\n  \"expect\": [\n    {\"message_to\": \"Meredith Merrow\", \"regarding\": \"EV-1\", \"says\": [\"Thursday 19 November 2026\", \"14:00\", \"Courtroom 2A, Hartwell County Courthouse\"], \"stale\": [\"Thursday 5 November\", \"10:00\", \"Courtroom 4B\"], \"task\": true},\n    {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-19\", \"stale\": [\"2026-11-05\"]},\n    {\"record\": \"EV-2\", \"field\": \"time\", \"value\": \"13:30\", \"stale\": [\"09:30\"]},\n    {\"record\": \"ORD-1\", \"field\": \"night\", \"value\": \"2026-11-18\", \"stale\": [\"2026-11-04\"]}\n  ],\n  \"why\": \"The relisting email revokes the original hearing fact, so the calendar entry EV-1 is stale, but rule e2 requires Meredith's written agreement before any confirmed hearing entry is changed, so EV-1 must stay as it is and the assistant must ask her rather than edit it — though it can and should tell her the correct new details in its reply. The interpreter booking (EV-2) and Lena's hotel night (ORD-1, one step further down the chain from the old date) carry no consent protection, so they should be updated to 19 November. The certified copies order (ORD-2) rests only on the courthouse filing desk, which the relisting leaves standing, so it is KEEP, and the Okafor conference in the same old slot is an untouched distractor that must not be touched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Office supplies\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"copy paper reams\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Team meeting room\", \"counterpart\": \"Sofia Kern\", \"org\": \"Hartwell Business Centre\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 5\", \"Room 7\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Bundle binding\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"spiral binding\", \"unit\": \"bundles\", \"values\": [\"3\", \"5\", \"8\", \"12\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Client conference slots\", \"counterpart\": \"Dale Morgan\", \"org\": \"Hartwell Business Centre\", \"item\": \"conference room booking\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 3\", \"Room 4\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Process server runs\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"same-day document delivery\", \"unit\": \"deliveries\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Transcript orders\", \"counterpart\": \"Gil Hahn\", \"org\": \"Hartwell Office Depot\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"booking\", \"topic\": \"Courtroom overflow video link\", \"counterpart\": \"Iris Vale\", \"org\": \"Hartwell County Court IT\", \"item\": \"video link slot\", \"unit\": \"\", \"values\": [\"Courtroom 2A annex\", \"Courtroom 6 side room\", \"Library viewing room\"], \"place\": \"Hartwell County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"Refreshments for client meetings\", \"counterpart\": \"Bo Lin\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry trays\", \"unit\": \"trays\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Business Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"Archive box pickups\", \"counterpart\": \"Rex Holden\", \"org\": \"Holden Courier\", \"item\": \"van slot for archive boxes\", \"unit\": \"\", \"values\": [\"loading bay A\", \"loading bay B\", \"rear courtyard\"], \"place\": \"Hartwell Family Law office\"},\n    {\"kind\": \"order\", \"topic\": \"Certified copy top-ups\", \"counterpart\": \"Pia Wren\", \"org\": \"Hartwell Print & Copy\", \"item\": \"certified document copies\", \"unit\": \"copies\", \"values\": [\"2\", \"4\", \"6\", \"10\"], \"place\": \"Hartwell County Courthouse filing desk\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10193,
+    "completion_tokens": 3583,
+    "reasoning_tokens": 107,
+    "cached_tokens": 6592
+   },
+   "cost": 0.02252052,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e5 is dated before e4)\n- e4: an echo must come after the revoked event and before the change\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Relisted custody hearing",
+  "setting": "A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes",
+  "owner": "Nadia",
+  "org": "Hartwell Family Law",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Every client intake note goes into the case file within 24 hours of the first meeting, with the client's full name, matter type and opposing party.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Standing rule for my calendar: before I change the date, time or courtroom of any confirmed hearing entry in a client matter, that client must agree in writing first. No exceptions, even if the court moves things.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-20",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Any disbursement over 400 dollars from client funds needs the client's email approval before I commit to it. Office card spending is fine without.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-09-10",
+    "type": "letter",
+    "from": "Hartwell County Court listings office",
+    "text": "Re: Merrow v Merrow, case MR-2026-118. The final custody hearing is fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse. All parties notified.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Lena Marsh (freelance interpreter)",
+    "text": "Confirming my rates for Spanish interpreting: 95 dollars an hour. I am available for bookings any weekday between 2 and 20 November if you need me for a hearing.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-09-13",
+    "type": "email",
+    "from": "Meredith Merrow",
+    "text": "Just confirming my details for the file after our call: I am Meredith Merrow, the custody matter against my ex-husband Robert Merrow, and the hearing is set for Thursday 5 November in Courtroom 4B.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e7",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Put the Merrow final custody hearing on the calendar as confirmed: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, under case MR-2026-118. Meredith has been told the date is fixed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked interpreter Lena Marsh for the Merrow hearing on Thursday 5 November, from 09:30, four hours at her rate of 95 dollars an hour, since she confirmed she is free that day.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Lena is travelling in from out of town for the Merrow hearing, so I booked her a single room at the Station Hotel in Hartwell for the night of Wednesday 4 November, 118 dollars, paid on the office card rather than client funds.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered four certified copies of the Merrow financial bundle from Hartwell Print & Copy, delivery to the filing desk at the Hartwell County Courthouse, 96 dollars on the office card.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-25",
+    "type": "quote",
+    "from": "Hartwell Print & Copy",
+    "text": "Quote for the four certified copies at 24 dollars each, 96 dollars total, ready within five working days of order.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-10-02",
+    "type": "notice",
+    "from": "Hartwell County Court listings office",
+    "text": "Re: Okafor v Okafor, case MR-2026-204. Case management conference fixed for Thursday 5 November 2026 at 10:00 in Courtroom 4B, Hartwell County Courthouse.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e13",
+    "date": "2026-10-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Added the Okafor case management conference to the calendar: Thursday 5 November at 10:00 in Courtroom 4B at the Hartwell County Courthouse, marked confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-06",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Reminder to self: the Merrow position statement must be filed by Thursday 22 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Meredith Merrow",
+    "text": "Thank you for taking my case. Do I need to bring anything with me to the hearing? Also, will there be someone to interpret for Robert's mother?",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Nadia",
+    "text": "Meredith, yes, Lena Marsh will interpret for Robert's mother at the hearing, and I will send you a list of documents to bring.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Hartwell County Court listings office",
+    "text": "Re: Merrow v Merrow, case MR-2026-118. Please note the final custody hearing listed for 10:00 on Thursday 5 November 2026 in Courtroom 4B has been relisted due to judicial availability. It will now be heard at 14:00 on Thursday 19 November 2026 in Courtroom 2A, Hartwell County Courthouse. All parties have been notified of the new listing.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-18",
+    "type": "email",
+    "from": "Court clerk (Hartwell County Court)",
+    "text": "Confirming the courtroom booking for case MR-2026-118: Courtroom 2A is reserved for your matter at 14:00 on Thursday 19 November 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-20",
+    "type": "message",
+    "from": "Meredith Merrow",
+    "text": "Hi Nadia, just checking the hearing is definitely on for the fifth? I want to book the day off work.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-24",
+    "type": "task",
+    "from": "Nadia",
+    "text": "Pay the Hartwell Print invoice for the certified copies by 30 October.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Merrow final custody hearing",
+    "fields": {
+     "date": "2026-11-05",
+     "time": "10:00",
+     "place": "Courtroom 4B, Hartwell County Courthouse",
+     "case": "MR-2026-118",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Interpreter — Merrow hearing",
+    "fields": {
+     "date": "2026-11-05",
+     "time": "09:30",
+     "person": "Lena Marsh",
+     "hours": "4",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Okafor case management conference",
+    "fields": {
+     "date": "2026-11-05",
+     "time": "10:00",
+     "place": "Courtroom 4B, Hartwell County Courthouse",
+     "case": "MR-2026-204",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Interpreter hotel — Station Hotel",
+    "fields": {
+     "guest": "Lena Marsh",
+     "night": "2026-11-04",
+     "amount": "118",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Certified bundle copies — Hartwell Print & Copy",
+    "fields": {
+     "copies": "4",
+     "delivery": "Hartwell County Courthouse filing desk",
+     "amount": "96",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Meredith Merrow",
+    "rule": "e2"
+   }
+  ],
+  "task": "Meredith just messaged to check the hearing is on. Please send her a note confirming the date, time and courtroom for her final custody hearing, and sort out the interpreter side so everything matches.",
+  "expect": [
+   {
+    "message_to": "Meredith Merrow",
+    "regarding": "EV-1",
+    "says": [
+     "Thursday 19 November 2026",
+     "14:00",
+     "Courtroom 2A, Hartwell County Courthouse"
+    ],
+    "stale": [
+     "Thursday 5 November",
+     "10:00",
+     "Courtroom 4B"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "date",
+    "value": "2026-11-19",
+    "stale": [
+     "2026-11-05"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "time",
+    "value": "13:30",
+    "stale": [
+     "09:30"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "night",
+    "value": "2026-11-18",
+    "stale": [
+     "2026-11-04"
+    ]
+   }
+  ],
+  "why": "The relisting email revokes the original hearing fact, so the calendar entry EV-1 is stale, but rule e2 requires Meredith's written agreement before any confirmed hearing entry is changed, so EV-1 must stay as it is and the assistant must ask her rather than edit it — though it can and should tell her the correct new details in its reply. The interpreter booking (EV-2) and Lena's hotel night (ORD-1, one step further down the chain from the old date) carry no consent protection, so they should be updated to 19 November. The certified copies order (ORD-2) rests only on the courthouse filing desk, which the relisting leaves standing, so it is KEEP, and the Okafor conference in the same old slot is an untouched distractor that must not be touched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Office supplies",
+    "counterpart": "Gil Hahn",
+    "org": "Hartwell Office Depot",
+    "item": "copy paper reams",
+    "unit": "reams",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Hartwell Family Law office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Team meeting room",
+    "counterpart": "Sofia Kern",
+    "org": "Hartwell Business Centre",
+    "item": "small meeting room",
+    "unit": "",
+    "values": [
+     "Room 2",
+     "Room 5",
+     "Room 7"
+    ],
+    "place": "Hartwell Business Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Bundle binding",
+    "counterpart": "Pia Wren",
+    "org": "Hartwell Print & Copy",
+    "item": "spiral binding",
+    "unit": "bundles",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Hartwell Family Law office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Client conference slots",
+    "counterpart": "Dale Morgan",
+    "org": "Hartwell Business Centre",
+    "item": "conference room booking",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 3",
+     "Room 4"
+    ],
+    "place": "Hartwell Business Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Process server runs",
+    "counterpart": "Rex Holden",
+    "org": "Holden Courier",
+    "item": "same-day document delivery",
+    "unit": "deliveries",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Hartwell County Courthouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Transcript orders",
+    "counterpart": "Gil Hahn",
+    "org": "Hartwell Office Depot",
+    "item": "toner cartridges",
+    "unit": "cartridges",
+    "values": [
+     "1",
+     "2",
+     "4"
+    ],
+    "place": "Hartwell Family Law office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Courtroom overflow video link",
+    "counterpart": "Iris Vale",
+    "org": "Hartwell County Court IT",
+    "item": "video link slot",
+    "unit": "",
+    "values": [
+     "Courtroom 2A annex",
+     "Courtroom 6 side room",
+     "Library viewing room"
+    ],
+    "place": "Hartwell County Courthouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Refreshments for client meetings",
+    "counterpart": "Bo Lin",
+    "org": "Fairway Catering",
+    "item": "coffee and pastry trays",
+    "unit": "trays",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Hartwell Business Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "Archive box pickups",
+    "counterpart": "Rex Holden",
+    "org": "Holden Courier",
+    "item": "van slot for archive boxes",
+    "unit": "",
+    "values": [
+     "loading bay A",
+     "loading bay B",
+     "rear courtyard"
+    ],
+    "place": "Hartwell Family Law office"
+   },
+   {
+    "kind": "order",
+    "topic": "Certified copy top-ups",
+    "counterpart": "Pia Wren",
+    "org": "Hartwell Print & Copy",
+    "item": "certified document copies",
+    "unit": "copies",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "Hartwell County Courthouse filing desk"
+   }
+  ],
+  "id": "G100-1-01",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state omits the required request for Meredith's written consent to change EV-1. The interpreter's original 09:30 booking does not unambiguously establish a standing 30-minute lead time that fixes the new time at 13:30. The hearing-to-interpreter-to-hotel chain, alongside ORD-2 retaining an unaffected aspect of the original fact, fits class 3.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state omits the required request for Meredith's written consent to change EV-1. The interpreter's original 09:30 booking does not unambiguously establish a standing 30-minute lead time that fixes the new time at 13:30. The hearing-to-interpreter-to-hotel chain, alongside ORD-2 retaining an unaffected aspect of the original fact, fits class 3."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3328,
+    "completion_tokens": 381,
+    "reasoning_tokens": 264,
+    "cached_tokens": 0
+   },
+   "cost": 0.0606425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cb5127f6ef47205e65d738842fac82740505edffa5ccb57b1bc506e0124146f1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The EV-2 time of 13:30 is inferred from the old 09:30-for-10:00 pattern rather than fixed by the history, so the expected value is not uniquely determined. It is also unclear whether Nadia's e2 consent rule, which covers confirmed hearing entries, extends to the interpreter booking EV-2. Tier counts (20 core events, 5 decisions, change 12 days before the task, 3 core events after it), class 1 structure, and the hidden change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The EV-2 time of 13:30 is inferred from the old 09:30-for-10:00 pattern rather than fixed by the history, so the expected value is not uniquely determined. It is also unclear whether Nadia's e2 consent rule, which covers confirmed hearing entries, extends to the interpreter booking EV-2. Tier counts (20 core events, 5 decisions, change 12 days before the task, 3 core events after it), class 1 structure, and the hidden change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4705,
+    "completion_tokens": 2377,
+    "reasoning_tokens": 2160,
+    "cached_tokens": 0
+   },
+   "cost": 0.001659,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cb5127f6ef47205e65d738842fac82740505edffa5ccb57b1bc506e0124146f1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The relisting revokes the hearing fact; EV-1 is consent-protected by rule e2 (consent map matches), so it stays and the reply carries the new details, while EV-2 and ORD-1 (two hops via e8) are unprotected REVISEs and ORD-2/EV-3 correctly stand. The 13:30 interpreter time is an inference (30 minutes before the 14:00 hearing, mirroring the original 09:30-before-10:00 booking) rather than a literally stated value, but it is the only reasonable reading. Counts, timing (change 12 days before task day, 8 later events) and concealment all meet spec.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The relisting revokes the hearing fact; EV-1 is consent-protected by rule e2 (consent map matches), so it stays and the reply carries the new details, while EV-2 and ORD-1 (two hops via e8) are unprotected REVISEs and ORD-2/EV-3 correctly stand. The 13:30 interpreter time is an inference (30 minutes before the 14:00 hearing, mirroring the original 09:30-before-10:00 booking) rather than a literally stated value, but it is the only reasonable reading. Counts, timing (change 12 days before task day, 8 later events) and concealment all meet spec."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3431,
+    "completion_tokens": 746,
+    "reasoning_tokens": 541,
+    "cached_tokens": 0
+   },
+   "cost": 0.021483,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cb5127f6ef47205e65d738842fac82740505edffa5ccb57b1bc506e0124146f1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,635 @@
+{
+ "id": "G500-3-02",
+ "writer": "glm",
+ "tier": 500,
+ "class": 3,
+ "idx": 1,
+ "setting": "The practice administrator at Southbank Legal Aid whose assistant manages case referrals, court deadlines, and interpreter bookings",
+ "prompt_sha256": "fc23aca2b22dd59fbac5e364882b7fc47bc54a78ef331fdcdd6582e1749dcd76",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Interpreter weekday shift\",\n \"setting\": \"The practice administrator at Southbank Legal Aid whose assistant manages case referrals, court deadlines, and interpreter bookings\",\n \"owner\": \"Mireille\",\n \"org\": \"Southbank Legal Aid\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"Reminder of our house rule: before any confirmed appointment with a client is moved to a different day, the supervising solicitor Priya Nair must agree in advance. No exceptions, even for small moves.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Confirming our arrangement: Rosa Betancourt will cover Southbank Legal Aid for Spanish interpretation every Tuesday through the end of December, at 85 dollars per hour. She is happy to take recurring Tuesday bookings for your case files.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Mireille\", \"text\": \"New intake: Anita Patel, Spanish-speaking client facing an unlawful eviction. Her case needs an interpreter for all preparation sessions.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"For the Patel file we should hold weekly preparation sessions with an interpreter present, so please build that into the schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Rosa Betancourt through WordBridge Interpreting as our standing Spanish interpreter on Tuesdays at 85 dollars per hour, to cover the autumn caseload including the weekly client preparation sessions.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Scheduled the Patel preparation sessions with Rosa at 10:00 in Room 2, following her standing Tuesday slot at 85 dollars per hour; the first series of sessions was confirmed with the client as confirmed appointments.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Assigned Rosa Betancourt to translate the Spanish correspondence in the Vega file at her usual rate of 85 dollars per hour, as and when documents come in, with no fixed day.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Opened a client record for Anita Patel to track the unlawful eviction matter and her interpretation needs.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Ordered 40 lever-arch folders from Cedar Supplies for the transcript archive, delivered to the Southbank Legal Aid office.\", \"role\": \"decision\", \"record\": \"ORD-3\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-24\", \"type\": \"policy\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"House rule on spending: any single booking or purchase above 600 dollars needs finance sign-off from Priya Nair before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Femi Adeyemi (Cedar Supplies)\", \"text\": \"Quotation for archive supplies: lever-arch folders at 3.20 dollars each on repeat orders, delivery within five working days.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Just confirming that Rosa Betancourt's Tuesday cover for Southbank Legal Aid continues as arranged through December at 85 dollars per hour. Nothing needed from you.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Room 3 at the Southbank Legal Aid office for the monthly community outreach clinic for the rest of the year.\", \"role\": \"decision\", \"record\": \"EV-3\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Invoice for Spanish interpretation hours supplied by Rosa Betancourt during July and August at 85 dollars per hour, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"task\", \"from\": \"Mireille\", \"text\": \"To do: pay the WordBridge Interpreting invoice for Rosa's July and August hours by 15 September 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"Case meeting minutes: the Patel eviction matter will be prepared through weekly interpreted sessions; the hearing bundle is to be compiled by the administrator.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"The court has listed the Patel hearing for 24 November 2026. Please make sure preparation and reminders work back from that date.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"A heads-up about Rosa Betancourt: from 1 October she will no longer cover Tuesdays for Southbank Legal Aid, as she has family commitments that day. She will cover Thursdays instead. Everything else stays the same - Spanish language and her rate of 85 dollars per hour are unchanged.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-09-26\", \"type\": \"reminder\", \"from\": \"Mireille\", \"text\": \"Routine reminder: court deadline tracker to be updated for all open matters this month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"For your reference, our standard rate for Spanish interpretation rises to 95 dollars per hour for new bookings placed from October onwards.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Rosa Betancourt (WordBridge Interpreting)\", \"text\": \"Happy to keep working on the Southbank files, including the Vega translations and the eviction case.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Set up deadline reminders on the Patel client record counting back from the hearing date of 24 November 2026, with the final bundle deadline in mid-November.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Marta Oliveira, our Portuguese interpreter, is available on Thursdays at 80 dollars per hour if you ever need Portuguese cover.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Anita Patel\", \"text\": \"Thank you for the preparation sessions so far. I will keep attending as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"task\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"To do: the Patel hearing bundle must reach the court by 10 November 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing Spanish interpreter booking - Rosa Betancourt\", \"fields\": {\"agency\": \"WordBridge Interpreting\", \"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"weekday\": \"Tuesday\", \"rate\": \"85\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Vega file translation - Rosa Betancourt\", \"fields\": {\"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"task\": \"document translation\", \"rate\": \"85\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Archive folders - Cedar Supplies\", \"fields\": {\"supplier\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"quantity\": \"40\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Patel eviction preparation session\", \"fields\": {\"client\": \"Anita Patel\", \"date\": \"2026-10-27\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monthly community outreach clinic\", \"fields\": {\"date\": \"2026-11-07\", \"time\": \"14:00\", \"place\": \"Room 3\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Anita Patel - unlawful eviction\", \"fields\": {\"client\": \"Anita Patel\", \"matter\": \"unlawful eviction\", \"hearing_date\": \"2026-11-24\", \"language\": \"Spanish\", \"status\": \"open\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}\n ],\n \"task\": \"Rosa is staying with us through the autumn, so please set up the next Patel prep session with her at the usual 10:00 slot and send Priya the plan.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"weekday\", \"value\": \"Thursday\", \"stale\": [\"Tuesday\"]},\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Patel eviction preparation session\", \"client\": \"Anita Patel\", \"date\": \"2026-10-29\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-10-27\"]}, \"task\": true},\n  {\"message_to\": \"Priya Nair\", \"regarding\": \"EV-1\", \"says\": [\"Rosa Betancourt now covers Thursdays\", \"move the Patel session from Tuesday 27 October to Thursday 29 October\"], \"stale\": [\"Rosa covers Tuesdays\", \"session stays on Tuesday 27 October\"], \"task\": true}\n ],\n \"why\": \"The change corrects the fact that Rosa covers Tuesdays: she now covers Thursdays, with language and rate unchanged. ORD-1 (the standing Tuesday slot, one hop from the fact) is revised to Thursday, while EV-1 (the confirmed Tuesday Patel session, two hops via the standing booking) may only be moved with Priya Nair's consent under the house rule, so it stays as it is with a consent request. ORD-2 is marked KEEP because it rests on Rosa's language and rate, which the correction leaves standing. The task books the next session on Thursday 29 October and informs Priya rather than acting on the stale Tuesday value or the distractor's 95-dollar rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"telephone interpreting minutes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"WordBridge Interpreting\", \"item\": \"telephone interpreting minutes\", \"unit\": \"minutes\", \"values\": [\"60\", \"90\", \"120\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"team meeting rooms\", \"counterpart\": \"Priya Nair\", \"org\": \"Southbank Legal Aid\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"archive folders\", \"counterpart\": \"Femi Adeyemi\", \"org\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"booking\", \"topic\": \"duty desk slots\", \"counterpart\": \"Helen Osei\", \"org\": \"Southbank Legal Aid\", \"item\": \"duty desk slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Room 1\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Ling Wu\", \"org\": \"Riverside Couriers\", \"item\": \"document courier runs\", \"unit\": \"runs\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"community outreach table\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"outreach table\", \"unit\": \"space\", \"values\": [\"Hall A\", \"Side room\"], \"place\": \"Harbour Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Tomas Reed\", \"org\": \"Kettle and Crumb\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"sign language interpreter slots\", \"counterpart\": \"Yuki Tanaka\", \"org\": \"WordBridge Interpreting\", \"item\": \"BSL interpreter slot\", \"unit\": \"slot\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Nadia Kaur\", \"org\": \"Office Pantry Direct\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"student law clinic\", \"counterpart\": \"Owen Frost\", \"org\": \"Riverbend University Law Society\", \"item\": \"student clinic slot\", \"unit\": \"room\", \"values\": [\"Room 4\", \"Room 2\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"bottled water for outreach\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"bottled water\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"outreach store\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3194,
+    "completion_tokens": 9219,
+    "reasoning_tokens": 5477,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04146016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Interpreter weekday shift\",\n \"setting\": \"The practice administrator at Southbank Legal Aid whose assistant manages case referrals, court deadlines, and interpreter bookings\",\n \"owner\": \"Mireille\",\n \"org\": \"Southbank Legal Aid\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"Reminder of our house rule: before any confirmed appointment with a client is moved to a different day, the supervising solicitor Priya Nair must agree in advance. No exceptions, even for small moves.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Confirming our arrangement: Rosa Betancourt will cover Southbank Legal Aid for Spanish interpretation every Tuesday through the end of December, at 85 dollars per hour. She is happy to take recurring Tuesday bookings for your case files.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Mireille\", \"text\": \"New intake: Anita Patel, Spanish-speaking client facing an unlawful eviction. Her case needs an interpreter for all preparation sessions.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"For the Patel file we should hold weekly preparation sessions with an interpreter present, so please build that into the schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Rosa Betancourt through WordBridge Interpreting as our standing Spanish interpreter on Tuesdays at 85 dollars per hour, to cover the autumn caseload including the weekly client preparation sessions.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Scheduled the Patel preparation sessions with Rosa at 10:00 in Room 2, following her standing Tuesday slot at 85 dollars per hour; the first series of sessions was confirmed with the client as confirmed appointments.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Assigned Rosa Betancourt to translate the Spanish correspondence in the Vega file at her usual rate of 85 dollars per hour, as and when documents come in, with no fixed day.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Opened a client record for Anita Patel to track the unlawful eviction matter and her interpretation needs.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Ordered 40 lever-arch folders from Cedar Supplies for the transcript archive, delivered to the Southbank Legal Aid office.\", \"role\": \"decision\", \"record\": \"ORD-3\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-24\", \"type\": \"policy\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"House rule on spending: any single booking or purchase above 600 dollars needs finance sign-off from Priya Nair before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Femi Adeyemi (Cedar Supplies)\", \"text\": \"Quotation for archive supplies: lever-arch folders at 3.20 dollars each on repeat orders, delivery within five working days.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Just confirming that Rosa Betancourt's Tuesday cover for Southbank Legal Aid continues as arranged through December at 85 dollars per hour. Nothing needed from you.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Room 3 at the Southbank Legal Aid office for the monthly community outreach clinic for the rest of the year.\", \"role\": \"decision\", \"record\": \"EV-3\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Invoice for Spanish interpretation hours supplied by Rosa Betancourt during July and August at 85 dollars per hour, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"task\", \"from\": \"Mireille\", \"text\": \"To do: pay the WordBridge Interpreting invoice for Rosa's July and August hours by 15 September 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"email\", \"from\": \"Ling Wu (Riverside Couriers)\", \"text\": \"Our courier pickup window from Southbank Legal Aid is moving from 16:00 to 15:30 from next week. No action needed, this is just for your records.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"Case meeting minutes: the Patel eviction matter will be prepared through weekly interpreted sessions; the hearing bundle is to be compiled by the administrator.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"The court has listed the Patel hearing for 24 November 2026. Please make sure preparation and reminders work back from that date.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"A heads-up about Rosa Betancourt: from 1 October she will no longer cover Tuesdays for Southbank Legal Aid, as she has family commitments that day. She will cover Thursdays instead. Everything else stays the same - Spanish language and her rate of 85 dollars per hour are unchanged.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mireille\", \"text\": \"Routine reminder: court deadline tracker to be updated for all open matters this month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"For your reference, our standard rate for Spanish interpretation rises to 95 dollars per hour for new bookings placed from October onwards.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"call\", \"from\": \"Grace Mensah (Harbour Community Centre)\", \"text\": \"Called to say the outreach clinic can use the side room on clinic days if Room 3 is ever unavailable. No booking change requested.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Rosa Betancourt (WordBridge Interpreting)\", \"text\": \"Happy to keep working on the Southbank files, including the Vega translations and the eviction case.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Set up deadline reminders on the Patel client record counting back from the hearing date of 24 November 2026, with the final bundle deadline in mid-November.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"notice\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"Notice to all staff: the office will close early at 15:00 on Friday 13 November 2026 for a fire inspection.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Marta Oliveira, our Portuguese interpreter, is available on Thursdays at 80 dollars per hour if you ever need Portuguese cover.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Anita Patel\", \"text\": \"Thank you for the preparation sessions so far. I will keep attending as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"task\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"To do: the Patel hearing bundle must reach the court by 10 November 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing Spanish interpreter booking - Rosa Betancourt\", \"fields\": {\"agency\": \"WordBridge Interpreting\", \"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"weekday\": \"Tuesday\", \"rate\": \"85\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Vega file translation - Rosa Betancourt\", \"fields\": {\"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"task\": \"document translation\", \"rate\": \"85\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Archive folders - Cedar Supplies\", \"fields\": {\"supplier\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"quantity\": \"40\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Patel eviction preparation session\", \"fields\": {\"client\": \"Anita Patel\", \"date\": \"2026-10-27\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monthly community outreach clinic\", \"fields\": {\"date\": \"2026-11-07\", \"time\": \"14:00\", \"place\": \"Room 3\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Anita Patel - unlawful eviction\", \"fields\": {\"client\": \"Anita Patel\", \"matter\": \"unlawful eviction\", \"hearing_date\": \"2026-11-24\", \"language\": \"Spanish\", \"status\": \"open\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}\n ],\n \"task\": \"Rosa is staying with us through the autumn, so please set up the next Patel prep session with her at the usual 10:00 slot and send Priya the plan.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"weekday\", \"value\": \"Thursday\", \"stale\": [\"Tuesday\"]},\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Patel eviction preparation session\", \"client\": \"Anita Patel\", \"date\": \"2026-10-29\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-10-27\"]}, \"task\": true},\n  {\"message_to\": \"Priya Nair\", \"regarding\": \"EV-1\", \"says\": [\"Rosa Betancourt now covers Thursdays\", \"move the Patel session from Tuesday 27 October to Thursday 29 October\"], \"stale\": [\"Rosa covers Tuesdays\", \"session stays on Tuesday 27 October\"], \"task\": true}\n ],\n \"why\": \"The change corrects the fact that Rosa covers Tuesdays: she now covers Thursdays, with language and rate unchanged. ORD-1 (the standing Tuesday slot, one hop from the fact) is revised to Thursday, while EV-1 (the confirmed Tuesday Patel session, two hops via the standing booking) may only be moved with Priya Nair's consent under the house rule, so it stays as it is with a consent request. ORD-2 is marked KEEP because it rests on Rosa's language and rate, which the correction leaves standing. The task books the next session on Thursday 29 October and informs Priya rather than acting on the stale Tuesday value or the distractor's 95-dollar rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"telephone interpreting minutes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"WordBridge Interpreting\", \"item\": \"telephone interpreting minutes\", \"unit\": \"minutes\", \"values\": [\"60\", \"90\", \"120\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"team meeting rooms\", \"counterpart\": \"Priya Nair\", \"org\": \"Southbank Legal Aid\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"archive folders\", \"counterpart\": \"Femi Adeyemi\", \"org\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"booking\", \"topic\": \"duty desk slots\", \"counterpart\": \"Helen Osei\", \"org\": \"Southbank Legal Aid\", \"item\": \"duty desk slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Room 1\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Ling Wu\", \"org\": \"Riverside Couriers\", \"item\": \"document courier runs\", \"unit\": \"runs\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"community outreach table\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"outreach table\", \"unit\": \"space\", \"values\": [\"Hall A\", \"Side room\"], \"place\": \"Harbour Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Tomas Reed\", \"org\": \"Kettle and Crumb\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"sign language interpreter slots\", \"counterpart\": \"Yuki Tanaka\", \"org\": \"WordBridge Interpreting\", \"item\": \"BSL interpreter slot\", \"unit\": \"slot\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Nadia Kaur\", \"org\": \"Office Pantry Direct\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"student law clinic\", \"counterpart\": \"Owen Frost\", \"org\": \"Riverbend University Law Society\", \"item\": \"student clinic slot\", \"unit\": \"room\", \"values\": [\"Room 4\", \"Room 2\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"bottled water for outreach\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"bottled water\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"outreach store\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7038,
+    "completion_tokens": 4007,
+    "reasoning_tokens": 28,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02390896,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 25 events; need 28–55\n- e19: type «reminder» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Interpreter weekday shift\",\n \"setting\": \"The practice administrator at Southbank Legal Aid whose assistant manages case referrals, court deadlines, and interpreter bookings\",\n \"owner\": \"Mireille\",\n \"org\": \"Southbank Legal Aid\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"Reminder of our house rule: before any confirmed appointment with a client is moved to a different day, the supervising solicitor Priya Nair must agree in advance. No exceptions, even for small moves.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Confirming our arrangement: Rosa Betancourt will cover Southbank Legal Aid for Spanish interpretation every Tuesday through the end of December, at 85 dollars per hour. She is happy to take recurring Tuesday bookings for your case files.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-07-03\", \"type\": \"note\", \"from\": \"Mireille\", \"text\": \"New intake: Anita Patel, Spanish-speaking client facing an unlawful eviction. Her case needs an interpreter for all preparation sessions.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"For the Patel file we should hold weekly preparation sessions with an interpreter present, so please build that into the schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Rosa Betancourt through WordBridge Interpreting as our standing Spanish interpreter on Tuesdays at 85 dollars per hour, to cover the autumn caseload including the weekly client preparation sessions.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Scheduled the Patel preparation sessions with Rosa at 10:00 in Room 2, following her standing Tuesday slot at 85 dollars per hour; the first series of sessions was confirmed with the client as confirmed appointments.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Assigned Rosa Betancourt to translate the Spanish correspondence in the Vega file at her usual rate of 85 dollars per hour, as and when documents come in, with no fixed day.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Opened a client record for Anita Patel to track the unlawful eviction matter and her interpretation needs.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e29\", \"date\": \"2026-07-21\", \"type\": \"minutes\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"Practice meeting minutes: the transcript archive is overflowing and we need a bulk order of lever-arch folders for the Southbank Legal Aid office to reorganise the case files.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Ordered 40 lever-arch folders from Cedar Supplies for the transcript archive, delivered to the Southbank Legal Aid office.\", \"role\": \"decision\", \"rests_on\": [\"e29\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-24\", \"type\": \"policy\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"House rule on spending: any single booking or purchase above 600 dollars needs finance sign-off from Priya Nair before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Femi Adeyemi (Cedar Supplies)\", \"text\": \"Quotation for archive supplies: lever-arch folders at 3.20 dollars each on repeat orders, delivery within five working days.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Just confirming that Rosa Betancourt's Tuesday cover for Southbank Legal Aid continues as arranged through December at 85 dollars per hour. Nothing needed from you.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e30\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Grace Mensah (Harbour Community Centre)\", \"text\": \"Confirming our agreement: Southbank Legal Aid will run a community outreach clinic on the first Saturday afternoon of each month for the rest of the year, based at the Southbank Legal Aid office.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Booked Room 3 at the Southbank Legal Aid office for the monthly community outreach clinic for the rest of the year.\", \"role\": \"decision\", \"rests_on\": [\"e30\"], \"record\": \"EV-3\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"invoice\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Invoice for Spanish interpretation hours supplied by Rosa Betancourt during July and August at 85 dollars per hour, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"task\", \"from\": \"Mireille\", \"text\": \"To do: pay the WordBridge Interpreting invoice for Rosa's July and August hours by 15 September 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"email\", \"from\": \"Ling Wu (Riverside Couriers)\", \"text\": \"Our courier pickup window from Southbank Legal Aid is moving from 16:00 to 15:30 from next week. No action needed, this is just for your records.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"Case meeting minutes: the Patel eviction matter will be prepared through weekly interpreted sessions; the hearing bundle is to be compiled by the administrator.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"The court has listed the Patel hearing for 24 November 2026. Please make sure preparation and reminders work back from that date.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"A heads-up about Rosa Betancourt: from 1 October she will no longer cover Tuesdays for Southbank Legal Aid, as she has family commitments that day. She will cover Thursdays instead. Everything else stays the same - Spanish language and her rate of 85 dollars per hour are unchanged.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e19\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mireille\", \"text\": \"Routine reminder: court deadline tracker to be updated for all open matters this month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"For your reference, our standard rate for Spanish interpretation rises to 95 dollars per hour for new bookings placed from October onwards.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"call\", \"from\": \"Grace Mensah (Harbour Community Centre)\", \"text\": \"Called to say the outreach clinic can use the side room on clinic days if Room 3 is ever unavailable. No booking change requested.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Rosa Betancourt (WordBridge Interpreting)\", \"text\": \"Happy to keep working on the Southbank files, including the Vega translations and the eviction case.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Mireille\", \"text\": \"Set up deadline reminders on the Patel client record counting back from the hearing date of 24 November 2026, with the final bundle deadline in mid-November.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"CL-1\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"notice\", \"from\": \"Helen Osei (Southbank Legal Aid)\", \"text\": \"Notice to all staff: the office will close early at 15:00 on Friday 13 November 2026 for a fire inspection.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Dana Whitfield (WordBridge Interpreting)\", \"text\": \"Marta Oliveira, our Portuguese interpreter, is available on Thursdays at 80 dollars per hour if you ever need Portuguese cover.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Anita Patel\", \"text\": \"Thank you for the preparation sessions so far. I will keep attending as scheduled.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"task\", \"from\": \"Priya Nair (Southbank Legal Aid)\", \"text\": \"To do: the Patel hearing bundle must reach the court by 10 November 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing Spanish interpreter booking - Rosa Betancourt\", \"fields\": {\"agency\": \"WordBridge Interpreting\", \"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"weekday\": \"Tuesday\", \"rate\": \"85\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Vega file translation - Rosa Betancourt\", \"fields\": {\"interpreter\": \"Rosa Betancourt\", \"language\": \"Spanish\", \"task\": \"document translation\", \"rate\": \"85\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Archive folders - Cedar Supplies\", \"fields\": {\"supplier\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"quantity\": \"40\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Patel eviction preparation session\", \"fields\": {\"client\": \"Anita Patel\", \"date\": \"2026-10-27\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monthly community outreach clinic\", \"fields\": {\"date\": \"2026-11-07\", \"time\": \"14:00\", \"place\": \"Room 3\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Anita Patel - unlawful eviction\", \"fields\": {\"client\": \"Anita Patel\", \"matter\": \"unlawful eviction\", \"hearing_date\": \"2026-11-24\", \"language\": \"Spanish\", \"status\": \"open\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}\n ],\n \"task\": \"Rosa is staying with us through the autumn, so please set up the next Patel prep session with her at the usual 10:00 slot and send Priya the plan.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"weekday\", \"value\": \"Thursday\", \"stale\": [\"Tuesday\"]},\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Patel eviction preparation session\", \"client\": \"Anita Patel\", \"date\": \"2026-10-29\", \"time\": \"10:00\", \"place\": \"Room 2\", \"interpreter\": \"Rosa Betancourt\", \"status\": \"booked\"}, \"stale\": {\"date\": [\"2026-10-27\"]}, \"task\": true},\n  {\"message_to\": \"Priya Nair\", \"regarding\": \"EV-1\", \"says\": [\"Rosa Betancourt now covers Thursdays\", \"move the Patel session from Tuesday 27 October to Thursday 29 October\"], \"stale\": [\"Rosa covers Tuesdays\", \"session stays on Tuesday 27 October\"], \"task\": true}\n ],\n \"why\": \"The change corrects the fact that Rosa covers Tuesdays: she now covers Thursdays, with language and rate unchanged. ORD-1 (the standing Tuesday slot, one hop from the fact) is revised to Thursday, while EV-1 (the confirmed Tuesday Patel session, two hops via the standing booking) may only be moved with Priya Nair's consent under the house rule, so it stays as it is with a consent request. ORD-2 is marked KEEP because it rests on Rosa's language and rate, which the correction leaves standing. The task books the next session on Thursday 29 October and informs Priya rather than acting on the stale Tuesday value or the distractor's 95-dollar rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"telephone interpreting minutes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"WordBridge Interpreting\", \"item\": \"telephone interpreting minutes\", \"unit\": \"minutes\", \"values\": [\"60\", \"90\", \"120\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"team meeting rooms\", \"counterpart\": \"Priya Nair\", \"org\": \"Southbank Legal Aid\", \"item\": \"meeting room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 3\", \"Room 4\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"archive folders\", \"counterpart\": \"Femi Adeyemi\", \"org\": \"Cedar Supplies\", \"item\": \"lever-arch folders\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"booking\", \"topic\": \"duty desk slots\", \"counterpart\": \"Helen Osei\", \"org\": \"Southbank Legal Aid\", \"item\": \"duty desk slot\", \"unit\": \"slot\", \"values\": [\"Front desk\", \"Room 1\", \"Room 4\"], \"place\": \"Southbank Legal Aid office\"},\n  {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Ling Wu\", \"org\": \"Riverside Couriers\", \"item\": \"document courier runs\", \"unit\": \"runs\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"booking\", \"topic\": \"community outreach table\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"outreach table\", \"unit\": \"space\", \"values\": [\"Hall A\", \"Side room\", \"Front lobby\"], \"place\": \"Harbour Community Centre\"},\n  {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Tomas Reed\", \"org\": \"Kettle and Crumb\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"sign language interpreter slots\", \"counterpart\": \"Yuki Tanaka\", \"org\": \"WordBridge Interpreting\", \"item\": \"BSL interpreter slot\", \"unit\": \"slot\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Nadia Kaur\", \"org\": \"Office Pantry Direct\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"student law clinic\", \"counterpart\": \"Owen Frost\", \"org\": \"Riverbend University Law Society\", \"item\": \"student clinic slot\", \"unit\": \"room\", \"values\": [\"Room 4\", \"Room 2\", \"Room 1\"], \"place\": \"Southbank Legal Aid\"},\n  {\"kind\": \"order\", \"topic\": \"bottled water for outreach\", \"counterpart\": \"Grace Mensah\", \"org\": \"Harbour Community Centre\", \"item\": \"bottled water\", \"unit\": \"cases\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"outreach store\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 11152,
+    "completion_tokens": 4438,
+    "reasoning_tokens": 246,
+    "cached_tokens": 6976
+   },
+   "cost": 0.02718736,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e9: a decision must rest on at least one earlier event\n- e13: a decision must rest on at least one earlier event\n- noise topic 'team meeting rooms': values needs at least three entries\n- noise topic 'duty desk slots': values needs at least three entries\n- noise topic 'community outreach table': values needs at least three entries\n- noise topic 'sign language interpreter slots': values needs at least three entries\n- noise topic 'student law clinic': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Interpreter weekday shift",
+  "setting": "The practice administrator at Southbank Legal Aid whose assistant manages case referrals, court deadlines, and interpreter bookings",
+  "owner": "Mireille",
+  "org": "Southbank Legal Aid",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Helen Osei (Southbank Legal Aid)",
+    "text": "Reminder of our house rule: before any confirmed appointment with a client is moved to a different day, the supervising solicitor Priya Nair must agree in advance. No exceptions, even for small moves.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "Confirming our arrangement: Rosa Betancourt will cover Southbank Legal Aid for Spanish interpretation every Tuesday through the end of December, at 85 dollars per hour. She is happy to take recurring Tuesday bookings for your case files.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-07-03",
+    "type": "note",
+    "from": "Mireille",
+    "text": "New intake: Anita Patel, Spanish-speaking client facing an unlawful eviction. Her case needs an interpreter for all preparation sessions.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Priya Nair (Southbank Legal Aid)",
+    "text": "For the Patel file we should hold weekly preparation sessions with an interpreter present, so please build that into the schedule.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Booked Rosa Betancourt through WordBridge Interpreting as our standing Spanish interpreter on Tuesdays at 85 dollars per hour, to cover the autumn caseload including the weekly client preparation sessions.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Scheduled the Patel preparation sessions with Rosa at 10:00 in Room 2, following her standing Tuesday slot at 85 dollars per hour; the first series of sessions was confirmed with the client as confirmed appointments.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Assigned Rosa Betancourt to translate the Spanish correspondence in the Vega file at her usual rate of 85 dollars per hour, as and when documents come in, with no fixed day.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Opened a client record for Anita Patel to track the unlawful eviction matter and her interpretation needs.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e29",
+    "date": "2026-07-21",
+    "type": "minutes",
+    "from": "Priya Nair (Southbank Legal Aid)",
+    "text": "Practice meeting minutes: the transcript archive is overflowing and we need a bulk order of lever-arch folders for the Southbank Legal Aid office to reorganise the case files.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Ordered 40 lever-arch folders from Cedar Supplies for the transcript archive, delivered to the Southbank Legal Aid office.",
+    "role": "decision",
+    "rests_on": [
+     "e29"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-24",
+    "type": "policy",
+    "from": "Helen Osei (Southbank Legal Aid)",
+    "text": "House rule on spending: any single booking or purchase above 600 dollars needs finance sign-off from Priya Nair before it is confirmed.",
+    "role": "rule"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-05",
+    "type": "quote",
+    "from": "Femi Adeyemi (Cedar Supplies)",
+    "text": "Quotation for archive supplies: lever-arch folders at 3.20 dollars each on repeat orders, delivery within five working days.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "Just confirming that Rosa Betancourt's Tuesday cover for Southbank Legal Aid continues as arranged through December at 85 dollars per hour. Nothing needed from you.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Grace Mensah (Harbour Community Centre)",
+    "text": "Confirming our agreement: Southbank Legal Aid will run a community outreach clinic on the first Saturday afternoon of each month for the rest of the year, based at the Southbank Legal Aid office.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Booked Room 3 at the Southbank Legal Aid office for the monthly community outreach clinic for the rest of the year.",
+    "role": "decision",
+    "rests_on": [
+     "e30"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-28",
+    "type": "invoice",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "Invoice for Spanish interpretation hours supplied by Rosa Betancourt during July and August at 85 dollars per hour, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-02",
+    "type": "task",
+    "from": "Mireille",
+    "text": "To do: pay the WordBridge Interpreting invoice for Rosa's July and August hours by 15 September 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-04",
+    "type": "email",
+    "from": "Ling Wu (Riverside Couriers)",
+    "text": "Our courier pickup window from Southbank Legal Aid is moving from 16:00 to 15:30 from next week. No action needed, this is just for your records.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-10",
+    "type": "minutes",
+    "from": "Priya Nair (Southbank Legal Aid)",
+    "text": "Case meeting minutes: the Patel eviction matter will be prepared through weekly interpreted sessions; the hearing bundle is to be compiled by the administrator.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Priya Nair (Southbank Legal Aid)",
+    "text": "The court has listed the Patel hearing for 24 November 2026. Please make sure preparation and reminders work back from that date.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "A heads-up about Rosa Betancourt: from 1 October she will no longer cover Tuesdays for Southbank Legal Aid, as she has family commitments that day. She will cover Thursdays instead. Everything else stays the same - Spanish language and her rate of 85 dollars per hour are unchanged.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-26",
+    "type": "note",
+    "from": "Mireille",
+    "text": "Routine reminder: court deadline tracker to be updated for all open matters this month.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "For your reference, our standard rate for Spanish interpretation rises to 95 dollars per hour for new bookings placed from October onwards.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-05",
+    "type": "call",
+    "from": "Grace Mensah (Harbour Community Centre)",
+    "text": "Called to say the outreach clinic can use the side room on clinic days if Room 3 is ever unavailable. No booking change requested.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-06",
+    "type": "message",
+    "from": "Rosa Betancourt (WordBridge Interpreting)",
+    "text": "Happy to keep working on the Southbank files, including the Vega translations and the eviction case.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-09",
+    "type": "decision",
+    "from": "Mireille",
+    "text": "Set up deadline reminders on the Patel client record counting back from the hearing date of 24 November 2026, with the final bundle deadline in mid-November.",
+    "role": "decision",
+    "rests_on": [
+     "e17"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-12",
+    "type": "notice",
+    "from": "Helen Osei (Southbank Legal Aid)",
+    "text": "Notice to all staff: the office will close early at 15:00 on Friday 13 November 2026 for a fire inspection.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Dana Whitfield (WordBridge Interpreting)",
+    "text": "Marta Oliveira, our Portuguese interpreter, is available on Thursdays at 80 dollars per hour if you ever need Portuguese cover.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Anita Patel",
+    "text": "Thank you for the preparation sessions so far. I will keep attending as scheduled.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-18",
+    "type": "task",
+    "from": "Priya Nair (Southbank Legal Aid)",
+    "text": "To do: the Patel hearing bundle must reach the court by 10 November 2026.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing Spanish interpreter booking - Rosa Betancourt",
+    "fields": {
+     "agency": "WordBridge Interpreting",
+     "interpreter": "Rosa Betancourt",
+     "language": "Spanish",
+     "weekday": "Tuesday",
+     "rate": "85",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Vega file translation - Rosa Betancourt",
+    "fields": {
+     "interpreter": "Rosa Betancourt",
+     "language": "Spanish",
+     "task": "document translation",
+     "rate": "85",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Archive folders - Cedar Supplies",
+    "fields": {
+     "supplier": "Cedar Supplies",
+     "item": "lever-arch folders",
+     "quantity": "40",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Patel eviction preparation session",
+    "fields": {
+     "client": "Anita Patel",
+     "date": "2026-10-27",
+     "time": "10:00",
+     "place": "Room 2",
+     "interpreter": "Rosa Betancourt",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Monthly community outreach clinic",
+    "fields": {
+     "date": "2026-11-07",
+     "time": "14:00",
+     "place": "Room 3",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Anita Patel - unlawful eviction",
+    "fields": {
+     "client": "Anita Patel",
+     "matter": "unlawful eviction",
+     "hearing_date": "2026-11-24",
+     "language": "Spanish",
+     "status": "open"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Priya Nair",
+    "rule": "e1"
+   }
+  ],
+  "task": "Rosa is staying with us through the autumn, so please set up the next Patel prep session with her at the usual 10:00 slot and send Priya the plan.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "weekday",
+    "value": "Thursday",
+    "stale": [
+     "Tuesday"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "title": "Patel eviction preparation session",
+     "client": "Anita Patel",
+     "date": "2026-10-29",
+     "time": "10:00",
+     "place": "Room 2",
+     "interpreter": "Rosa Betancourt",
+     "status": "booked"
+    },
+    "stale": {
+     "date": [
+      "2026-10-27"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Priya Nair",
+    "regarding": "EV-1",
+    "says": [
+     "Rosa Betancourt now covers Thursdays",
+     "move the Patel session from Tuesday 27 October to Thursday 29 October"
+    ],
+    "stale": [
+     "Rosa covers Tuesdays",
+     "session stays on Tuesday 27 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change corrects the fact that Rosa covers Tuesdays: she now covers Thursdays, with language and rate unchanged. ORD-1 (the standing Tuesday slot, one hop from the fact) is revised to Thursday, while EV-1 (the confirmed Tuesday Patel session, two hops via the standing booking) may only be moved with Priya Nair's consent under the house rule, so it stays as it is with a consent request. ORD-2 is marked KEEP because it rests on Rosa's language and rate, which the correction leaves standing. The task books the next session on Thursday 29 October and informs Priya rather than acting on the stale Tuesday value or the distractor's 95-dollar rate.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "telephone interpreting minutes",
+    "counterpart": "Dana Whitfield",
+    "org": "WordBridge Interpreting",
+    "item": "telephone interpreting minutes",
+    "unit": "minutes",
+    "values": [
+     "60",
+     "90",
+     "120"
+    ],
+    "place": "Southbank Legal Aid"
+   },
+   {
+    "kind": "booking",
+    "topic": "team meeting rooms",
+    "counterpart": "Priya Nair",
+    "org": "Southbank Legal Aid",
+    "item": "meeting room",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "Room 4"
+    ],
+    "place": "Southbank Legal Aid office"
+   },
+   {
+    "kind": "order",
+    "topic": "archive folders",
+    "counterpart": "Femi Adeyemi",
+    "org": "Cedar Supplies",
+    "item": "lever-arch folders",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Southbank Legal Aid office"
+   },
+   {
+    "kind": "booking",
+    "topic": "duty desk slots",
+    "counterpart": "Helen Osei",
+    "org": "Southbank Legal Aid",
+    "item": "duty desk slot",
+    "unit": "slot",
+    "values": [
+     "Front desk",
+     "Room 1",
+     "Room 4"
+    ],
+    "place": "Southbank Legal Aid office"
+   },
+   {
+    "kind": "order",
+    "topic": "courier runs",
+    "counterpart": "Ling Wu",
+    "org": "Riverside Couriers",
+    "item": "document courier runs",
+    "unit": "runs",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Southbank Legal Aid"
+   },
+   {
+    "kind": "booking",
+    "topic": "community outreach table",
+    "counterpart": "Grace Mensah",
+    "org": "Harbour Community Centre",
+    "item": "outreach table",
+    "unit": "space",
+    "values": [
+     "Hall A",
+     "Side room",
+     "Front lobby"
+    ],
+    "place": "Harbour Community Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee supplies",
+    "counterpart": "Tomas Reed",
+    "org": "Kettle and Crumb",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "staff kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "sign language interpreter slots",
+    "counterpart": "Yuki Tanaka",
+    "org": "WordBridge Interpreting",
+    "item": "BSL interpreter slot",
+    "unit": "slot",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Southbank Legal Aid"
+   },
+   {
+    "kind": "order",
+    "topic": "printer toner",
+    "counterpart": "Nadia Kaur",
+    "org": "Office Pantry Direct",
+    "item": "printer toner",
+    "unit": "cartridges",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "student law clinic",
+    "counterpart": "Owen Frost",
+    "org": "Riverbend University Law Society",
+    "item": "student clinic slot",
+    "unit": "room",
+    "values": [
+     "Room 4",
+     "Room 2",
+     "Room 1"
+    ],
+    "place": "Southbank Legal Aid"
+   },
+   {
+    "kind": "order",
+    "topic": "bottled water for outreach",
+    "counterpart": "Grace Mensah",
+    "org": "Harbour Community Centre",
+    "item": "bottled water",
+    "unit": "cases",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "outreach store"
+   }
+  ],
+  "id": "G500-3-02",
+  "tier": 500,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

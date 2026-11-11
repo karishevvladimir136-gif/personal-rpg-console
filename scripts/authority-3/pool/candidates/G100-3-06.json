@@ -1,0 +1,616 @@
+{
+ "id": "G100-3-06",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 5,
+ "setting": "A bookshop owner at Second Chapter Books whose assistant tracks special orders, supplier accounts, and book-club schedules",
+ "prompt_sha256": "ea1d83c3ac024e6da56938a152a757227ead16e3f77b794a30c5e78d82ab6641",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The Salt Harvester price rise\",\n  \"setting\": \"A bookshop owner at Second Chapter Books whose assistant tracks special orders, supplier accounts, and book-club schedules\",\n  \"owner\": \"Maya\",\n  \"org\": \"Second Chapter Books\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a special order has been confirmed with a customer, the price on that customer order may not be changed without the customer's written agreement. If our cost moves, we ask the customer first and only then update their quote.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Trade terms for Second Chapter Books: custom-printed hardcover editions from Lakeside Press are 18.50 per copy, minimum run of 20 copies, with a three-week lead time from the date we receive the purchase order.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Shop routine: the counter stationery and gift-wrap restock goes out to Carden Wholesale by the first Monday of each month, standing order, no sign-off needed.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"The Harborne Book Circle would love 25 hardcover copies of The Salt Harvester by Alden Voss for our autumn season. Priya Nair here is the contact for the order.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the special order for the Harborne Book Circle: 25 hardcover copies of The Salt Harvester from Lakeside Press at their 18.50 per-copy trade price, which comes to 462.50 in total. Order left pending until we confirm the customer price.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed the customer side with Priya Nair: the Harborne Book Circle pays 24.00 per copy for their 25 hardcovers of The Salt Harvester, 600.00 in total, priced off the 462.50 Lakeside cost. Per shop policy the customer price is fixed once confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Harborne Book Circle's discussion evening on The Salt Harvester for Thursday 12 November at 19:00 in the shop's back room, counting back three weeks from Lakeside Press's lead time so the copies arrive with time to spare.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tomas Beck (Fenwick Paper Co)\", \"text\": \"Quote for the winter window display posters: 120 by 80 cm, 4.20 each, delivery to Second Chapter Books within ten days of order.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Staff note: Saturday storytelling for kids moves to 10:30 from September; Rhiannon will run it.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Twenty-two members confirmed so far for the November discussion; a few guests may join, we will keep the count at 25 copies.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-03\", \"type\": \"invoice\", \"from\": \"Carden Wholesale\", \"text\": \"Monthly stationery and gift-wrap restock invoice: 96.40, due within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Rhiannon (staff)\", \"text\": \"Poetry night attendance was 18 on Wednesday, back room worked well, same setup next month please.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Reminder that our three-week lead time applies to any hardcover run ordered from October onwards; get your purchase orders in early for autumn titles.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Price update from Lakeside Press: with paper costs up, custom-printed hardcover editions are now 21.50 per copy, effective immediately for all new purchase orders. Lead time stays at three weeks. Any orders placed from today use the new rate.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e15\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"For your shelf: the paperback edition of The Salt Harvester is available to trade order from Lakeside at 18.50 per copy if any of your other reading groups prefer softcovers.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e16\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do this month: place the Lakeside Press order for the Harborne circle's Salt Harvester copies so they land well before the November discussion.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Looking forward to the discussion on the 12th, could we put out the green armchairs in a circle as usual?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lakeside Press – The Salt Harvester hardcovers\", \"fields\": {\"supplier\": \"Lakeside Press\", \"item\": \"The Salt Harvester hardcover\", \"quantity\": \"25\", \"unit_price\": \"18.50\", \"total\": \"462.50\", \"status\": \"pending\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harborne Book Circle – Salt Harvester set\", \"fields\": {\"customer\": \"Priya Nair\", \"book\": \"The Salt Harvester\", \"copies\": \"25\", \"price\": \"24.00\", \"total\": \"600.00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harborne Book Circle discussion – The Salt Harvester\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Second Chapter Books back room\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"price\", \"total\"], \"from\": \"Priya Nair (Harborne Book Circle)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you place the Lakeside Press order for the Harborne Book Circle's 25 copies of The Salt Harvester today? Send Dev the purchase order and let me know the final numbers.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"21.50\", \"stale\": [\"18.50\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"537.50\", \"stale\": [\"462.50\"]},\n    {\"message_to\": \"Dev Ramaswamy (Lakeside Press)\", \"regarding\": \"ORD-1\", \"says\": [\"21.50\", \"25\"], \"stale\": [\"18.50\"], \"task\": true}\n  ],\n  \"why\": \"Lakeside's new rate of 21.50 per hardcover replaces the 18.50 figure, so the pending supplier order ORD-1 (which rests on that price) must be revised to 537.50 total and the purchase order sent at the new rate. The customer order CL-1 is one hop further down the chain and its price rests on the old cost, but under Maya's standing rule the confirmed customer price can only change with Priya Nair's written agreement, so it stays as it is with a consent request. The November discussion booking EV-1 relies only on the three-week lead time, which the price rise leaves standing, so it is KEEP and unchanged; the 18.50 paperback offer in the 13 October email is a distractor, not the trade price to order on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"bookplate labels\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"personalised bookplate labels\", \"unit\": \"sheets\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"order\", \"topic\": \"promotional bookmarks\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"printed bookmarks\", \"unit\": \"packs\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"Second Chapter Books counter\"},\n    {\"kind\": \"booking\", \"topic\": \"poetry night\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"back room for Wednesday poetry night\", \"unit\": \"\", \"values\": [\"back room\", \"front window bay\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"stationery restock\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"stationery and gift-wrap restock\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"kids storytelling\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"storytelling corner for Saturday sessions\", \"unit\": \"\", \"values\": [\"children's corner\", \"back room\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"window posters\", \"counterpart\": \"Tomas Beck\", \"org\": \"Fenwick Paper Co\", \"item\": \"window display posters\", \"unit\": \"posters\", \"values\": [\"6\", \"10\", \"12\", \"15\"], \"place\": \"Second Chapter Books front window\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Ines Duarte\", \"org\": \"Mill Row Roasters\", \"item\": \"café coffee beans\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"Second Chapter Books café counter\"},\n    {\"kind\": \"booking\", \"topic\": \"author signing\", \"counterpart\": \"Colin Bright\", \"org\": \"Bright Literary Agency\", \"item\": \"signing table slot\", \"unit\": \"\", \"values\": [\"front table\", \"back room\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"carrier bags\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"reading group room hire\", \"counterpart\": \"Priya Nair\", \"org\": \"Harborne Book Circle\", \"item\": \"room hire for extra circle sessions\", \"unit\": \"\", \"values\": [\"back room\", \"reading nook\"], \"place\": \"Second Chapter Books\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3141,
+    "completion_tokens": 5370,
+    "reasoning_tokens": 2422,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02452332,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The Salt Harvester price rise\",\n  \"setting\": \"A bookshop owner at Second Chapter Books whose assistant tracks special orders, supplier accounts, and book-club schedules\",\n  \"owner\": \"Maya\",\n  \"org\": \"Second Chapter Books\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a special order has been confirmed with a customer, the price on that customer order may not be changed without the customer's written agreement. If our cost moves, we ask the customer first and only then update their quote.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Trade terms for Second Chapter Books: custom-printed hardcover editions from Lakeside Press are 18.50 per copy, minimum run of 20 copies, with a three-week lead time from the date we receive the purchase order.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Shop routine: the counter stationery and gift-wrap restock goes out to Carden Wholesale by the first Monday of each month, standing order, no sign-off needed.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"The Harborne Book Circle would love 25 hardcover copies of The Salt Harvester by Alden Voss for our autumn season. Priya Nair here is the contact for the order.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-06\", \"type\": \"call\", \"from\": \"Colin Bright (Bright Literary Agency)\", \"text\": \"Quick call: Alden Voss's paperback tour may add a Cardiff stop in November; I will send signing details if it firms up.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the special order for the Harborne Book Circle: 25 hardcover copies of The Salt Harvester from Lakeside Press at their 18.50 per-copy trade price, which comes to 462.50 in total. Order left pending until we confirm the customer price.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed the customer side with Priya Nair: the Harborne Book Circle pays 24.00 per copy for their 25 hardcovers of The Salt Harvester, 600.00 in total, priced off the 462.50 Lakeside cost. Per shop policy the customer price is fixed once confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Harborne Book Circle's discussion evening on The Salt Harvester for Thursday 12 November at 19:00 in the shop's back room, counting back three weeks from Lakeside Press's lead time so the copies arrive with time to spare.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-30\", \"type\": \"invoice\", \"from\": \"Mill Row Roasters\", \"text\": \"Coffee beans invoice for the café counter: 62.80 for 9 kg, paid from the float as usual.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tomas Beck (Fenwick Paper Co)\", \"text\": \"Quote for the winter window display posters: 120 by 80 cm, 4.20 each, delivery to Second Chapter Books within ten days of order.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Staff note: Saturday storytelling for kids moves to 10:30 from September; Rhiannon will run it.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Ines Duarte (Mill Row Roasters)\", \"text\": \"Autumn blend now available at the same trade rate as the summer one; we will swap it into your next standing delivery unless you say otherwise.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Twenty-two members confirmed so far for the November discussion; a few guests may join, we will keep the count at 25 copies.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-03\", \"type\": \"invoice\", \"from\": \"Carden Wholesale\", \"text\": \"Monthly stationery and gift-wrap restock invoice: 96.40, due within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Rhiannon (staff)\", \"text\": \"Poetry night attendance was 18 on Wednesday, back room worked well, same setup next month please.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Colin Bright (Bright Literary Agency)\", \"text\": \"The extra Cardiff signing stop is off, but Alden Voss is still happy to sign stock if you send copies over with a return label.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Reminder that our three-week lead time applies to any hardcover run ordered from October onwards; get your purchase orders in early for autumn titles.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Price update from Lakeside Press: with paper costs up, custom-printed hardcover editions are now 21.50 per copy, effective immediately for all new purchase orders. Lead time stays at three weeks. Any orders placed from today use the new rate.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e15\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"For your shelf: the paperback edition of The Salt Harvester is available to trade order from Lakeside at 18.50 per copy if any of your other reading groups prefer softcovers.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e22\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Rhiannon (staff)\", \"text\": \"Kids storytelling went well, 14 little ones on Saturday; could we order a few more floor cushions on the next Carden restock?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do this month: place the Lakeside Press order for the Harborne circle's Salt Harvester copies so they land well before the November discussion.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Looking forward to the discussion on the 12th, could we put out the green armchairs in a circle as usual?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lakeside Press – The Salt Harvester hardcovers\", \"fields\": {\"supplier\": \"Lakeside Press\", \"item\": \"The Salt Harvester hardcover\", \"quantity\": \"25\", \"unit_price\": \"18.50\", \"total\": \"462.50\", \"status\": \"pending\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harborne Book Circle – Salt Harvester set\", \"fields\": {\"customer\": \"Priya Nair\", \"book\": \"The Salt Harvester\", \"copies\": \"25\", \"price\": \"24.00\", \"total\": \"600.00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harborne Book Circle discussion – The Salt Harvester\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Second Chapter Books back room\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"price\", \"total\"], \"from\": \"Priya Nair (Harborne Book Circle)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you place the Lakeside Press order for the Harborne Book Circle's 25 copies of The Salt Harvester today? Send Dev the purchase order and let me know the final numbers.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"21.50\", \"stale\": [\"18.50\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"537.50\", \"stale\": [\"462.50\"]},\n    {\"message_to\": \"Dev Ramaswamy (Lakeside Press)\", \"regarding\": \"ORD-1\", \"says\": [\"21.50\", \"25\"], \"stale\": [\"18.50\"], \"task\": true}\n  ],\n  \"why\": \"Lakeside's new rate of 21.50 per hardcover replaces the 18.50 figure, so the pending supplier order ORD-1 (which rests on that price) must be revised to 537.50 total and the purchase order sent at the new rate. The customer order CL-1 is one hop further down the chain and its price rests on the old cost, but under Maya's standing rule the confirmed customer price can only change with Priya Nair's written agreement, so it stays as it is with a consent request. The November discussion booking EV-1 relies only on the three-week lead time, which the price rise leaves standing, so it is KEEP and unchanged; the 18.50 paperback offer in the 13 October email is a distractor, not the trade price to order on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"bookplate labels\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"personalised bookplate labels\", \"unit\": \"sheets\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"order\", \"topic\": \"promotional bookmarks\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"printed bookmarks\", \"unit\": \"packs\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"Second Chapter Books counter\"},\n    {\"kind\": \"booking\", \"topic\": \"poetry night\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"back room for Wednesday poetry night\", \"unit\": \"\", \"values\": [\"back room\", \"front window bay\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"stationery restock\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"stationery and gift-wrap restock\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"kids storytelling\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"storytelling corner for Saturday sessions\", \"unit\": \"\", \"values\": [\"children's corner\", \"back room\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"window posters\", \"counterpart\": \"Tomas Beck\", \"org\": \"Fenwick Paper Co\", \"item\": \"window display posters\", \"unit\": \"posters\", \"values\": [\"6\", \"10\", \"12\", \"15\"], \"place\": \"Second Chapter Books front window\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Ines Duarte\", \"org\": \"Mill Row Roasters\", \"item\": \"café coffee beans\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"Second Chapter Books café counter\"},\n    {\"kind\": \"booking\", \"topic\": \"author signing\", \"counterpart\": \"Colin Bright\", \"org\": \"Bright Literary Agency\", \"item\": \"signing table slot\", \"unit\": \"\", \"values\": [\"front table\", \"back room\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"carrier bags\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"reading group room hire\", \"counterpart\": \"Priya Nair\", \"org\": \"Harborne Book Circle\", \"item\": \"room hire for extra circle sessions\", \"unit\": \"\", \"values\": [\"back room\", \"reading nook\"], \"place\": \"Second Chapter Books\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6135,
+    "completion_tokens": 3361,
+    "reasoning_tokens": 43,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01980236,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 17 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The Salt Harvester price rise\",\n  \"setting\": \"A bookshop owner at Second Chapter Books whose assistant tracks special orders, supplier accounts, and book-club schedules\",\n  \"owner\": \"Maya\",\n  \"org\": \"Second Chapter Books\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a special order has been confirmed with a customer, the price on that customer order may not be changed without the customer's written agreement. If our cost moves, we ask the customer first and only then update their quote.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Trade terms for Second Chapter Books: custom-printed hardcover editions from Lakeside Press are 18.50 per copy, minimum run of 20 copies, with a three-week lead time from the date we receive the purchase order.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Shop routine: the counter stationery and gift-wrap restock goes out to Carden Wholesale by the first Monday of each month, standing order, no sign-off needed.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"The Harborne Book Circle would love 25 hardcover copies of The Salt Harvester by Alden Voss for our autumn season. Priya Nair here is the contact for the order.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-06\", \"type\": \"call\", \"from\": \"Colin Bright (Bright Literary Agency)\", \"text\": \"Quick call: Alden Voss's paperback tour may add a Cardiff stop in November; I will send signing details if it firms up.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up the special order for the Harborne Book Circle: 25 hardcover copies of The Salt Harvester from Lakeside Press at their 18.50 per-copy trade price, which comes to 462.50 in total. Order left pending until we confirm the customer price.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed the customer side with Priya Nair: the Harborne Book Circle pays 24.00 per copy for their 25 hardcovers of The Salt Harvester, 600.00 in total, priced off the 462.50 Lakeside cost. Per shop policy the customer price is fixed once confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Harborne Book Circle's discussion evening on The Salt Harvester for Thursday 12 November at 19:00 in the shop's back room, counting back three weeks from Lakeside Press's lead time so the copies arrive with time to spare.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-30\", \"type\": \"invoice\", \"from\": \"Mill Row Roasters\", \"text\": \"Coffee beans invoice for the café counter: 62.80 for 9 kg, paid from the float as usual.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tomas Beck (Fenwick Paper Co)\", \"text\": \"Quote for the winter window display posters: 120 by 80 cm, 4.20 each, delivery to Second Chapter Books within ten days of order.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-09\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered the winter window display posters from Fenwick Paper Co at their quoted 4.20 each: twelve 120 by 80 cm posters for the front window, 50.40 in total, to be delivered within ten days.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Staff note: Saturday storytelling for kids moves to 10:30 from September; Rhiannon will run it.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Ines Duarte (Mill Row Roasters)\", \"text\": \"Autumn blend now available at the same trade rate as the summer one; we will swap it into your next standing delivery unless you say otherwise.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Twenty-two members confirmed so far for the November discussion; a few guests may join, we will keep the count at 25 copies.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-03\", \"type\": \"invoice\", \"from\": \"Carden Wholesale\", \"text\": \"Monthly stationery and gift-wrap restock invoice: 96.40, due within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Rhiannon (staff)\", \"text\": \"Poetry night attendance was 18 on Wednesday, back room worked well, same setup next month please.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Colin Bright (Bright Literary Agency)\", \"text\": \"The extra Cardiff signing stop is off, but Alden Voss is still happy to sign stock if you send copies over with a return label.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Reminder that our three-week lead time applies to any hardcover run ordered from October onwards; get your purchase orders in early for autumn titles.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"Price update from Lakeside Press: with paper costs up, custom-printed hardcover editions are now 21.50 per copy, effective immediately for all new purchase orders. Lead time stays at three weeks. Any orders placed from today use the new rate.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e15\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Dev Ramaswamy (Lakeside Press)\", \"text\": \"For your shelf: the paperback edition of The Salt Harvester is available to trade order from Lakeside at 18.50 per copy if any of your other reading groups prefer softcovers.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e22\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Rhiannon (staff)\", \"text\": \"Kids storytelling went well, 14 little ones on Saturday; could we order a few more floor cushions on the next Carden restock?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-15\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do this month: place the Lakeside Press order for the Harborne circle's Salt Harvester copies so they land well before the November discussion.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya Nair (Harborne Book Circle)\", \"text\": \"Looking forward to the discussion on the 12th, could we put out the green armchairs in a circle as usual?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lakeside Press – The Salt Harvester hardcovers\", \"fields\": {\"supplier\": \"Lakeside Press\", \"item\": \"The Salt Harvester hardcover\", \"quantity\": \"25\", \"unit_price\": \"18.50\", \"total\": \"462.50\", \"status\": \"pending\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Fenwick Paper Co – winter window posters\", \"fields\": {\"supplier\": \"Fenwick Paper Co\", \"item\": \"window display posters 120x80\", \"quantity\": \"12\", \"unit_price\": \"4.20\", \"total\": \"50.40\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harborne Book Circle – Salt Harvester set\", \"fields\": {\"customer\": \"Priya Nair\", \"book\": \"The Salt Harvester\", \"copies\": \"25\", \"price\": \"24.00\", \"total\": \"600.00\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harborne Book Circle discussion – The Salt Harvester\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Second Chapter Books back room\", \"status\": \"booked\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"price\", \"total\"], \"from\": \"Priya Nair (Harborne Book Circle)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Can you place the Lakeside Press order for the Harborne Book Circle's 25 copies of The Salt Harvester today? Send Dev the purchase order and let me know the final numbers.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"21.50\", \"stale\": [\"18.50\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"537.50\", \"stale\": [\"462.50\"]},\n    {\"message_to\": \"Dev Ramaswamy (Lakeside Press)\", \"regarding\": \"ORD-1\", \"says\": [\"21.50\", \"25\"], \"stale\": [\"18.50\"], \"task\": true}\n  ],\n  \"why\": \"Lakeside's new rate of 21.50 per hardcover replaces the 18.50 figure, so the pending supplier order ORD-1 (which rests on that price) must be revised to 537.50 total and the purchase order sent at the new rate. The customer order CL-1 is one hop further down the chain and its price rests on the old cost, but under Maya's standing rule the confirmed customer price can only change with Priya Nair's written agreement, so it stays as it is with a consent request. The November discussion booking EV-1 relies only on the three-week lead time, which the price rise leaves standing, so it is KEEP and unchanged; the Fenwick poster order ORD-2 is untouched, and the 18.50 paperback offer in the 13 October email is a distractor, not the trade price to order on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"bookplate labels\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"personalised bookplate labels\", \"unit\": \"sheets\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"order\", \"topic\": \"promotional bookmarks\", \"counterpart\": \"Dev Ramaswamy\", \"org\": \"Lakeside Press\", \"item\": \"printed bookmarks\", \"unit\": \"packs\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"Second Chapter Books counter\"},\n    {\"kind\": \"booking\", \"topic\": \"poetry night\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"Wednesday poetry night\", \"unit\": \"\", \"values\": [\"back room\", \"front window bay\", \"reading nook\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"stationery restock\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"stationery and gift-wrap restock\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"kids storytelling\", \"counterpart\": \"Rhiannon (staff)\", \"org\": \"Second Chapter Books\", \"item\": \"Saturday storytelling session\", \"unit\": \"\", \"values\": [\"children's corner\", \"back room\", \"front window bay\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"window posters\", \"counterpart\": \"Tomas Beck\", \"org\": \"Fenwick Paper Co\", \"item\": \"window display posters\", \"unit\": \"posters\", \"values\": [\"6\", \"10\", \"12\", \"15\"], \"place\": \"Second Chapter Books front window\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Ines Duarte\", \"org\": \"Mill Row Roasters\", \"item\": \"café coffee beans\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"Second Chapter Books café counter\"},\n    {\"kind\": \"booking\", \"topic\": \"author signing\", \"counterpart\": \"Colin Bright\", \"org\": \"Bright Literary Agency\", \"item\": \"stock signing slot\", \"unit\": \"\", \"values\": [\"front table\", \"back room\", \"reading nook\"], \"place\": \"Second Chapter Books\"},\n    {\"kind\": \"order\", \"topic\": \"carrier bags\", \"counterpart\": \"Marta Voss\", \"org\": \"Carden Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Second Chapter Books stockroom\"},\n    {\"kind\": \"booking\", \"topic\": \"reading group room hire\", \"counterpart\": \"Priya Nair\", \"org\": \"Harborne Book Circle\", \"item\": \"extra circle session\", \"unit\": \"\", \"values\": [\"back room\", \"reading nook\", \"children's corner\"], \"place\": \"Second Chapter Books\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9555,
+    "completion_tokens": 3582,
+    "reasoning_tokens": 54,
+    "cached_tokens": 6080
+   },
+   "cost": 0.0222066,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: 3 decisions; need 4–10\n- noise topic 'poetry night': values needs at least three entries\n- noise topic 'kids storytelling': values needs at least three entries\n- noise topic 'author signing': values needs at least three entries\n- noise topic 'reading group room hire': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The Salt Harvester price rise",
+  "setting": "A bookshop owner at Second Chapter Books whose assistant tracks special orders, supplier accounts, and book-club schedules",
+  "owner": "Maya",
+  "org": "Second Chapter Books",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule for the shop: once a special order has been confirmed with a customer, the price on that customer order may not be changed without the customer's written agreement. If our cost moves, we ask the customer first and only then update their quote.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Dev Ramaswamy (Lakeside Press)",
+    "text": "Trade terms for Second Chapter Books: custom-printed hardcover editions from Lakeside Press are 18.50 per copy, minimum run of 20 copies, with a three-week lead time from the date we receive the purchase order.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Shop routine: the counter stationery and gift-wrap restock goes out to Carden Wholesale by the first Monday of each month, standing order, no sign-off needed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Priya Nair (Harborne Book Circle)",
+    "text": "The Harborne Book Circle would love 25 hardcover copies of The Salt Harvester by Alden Voss for our autumn season. Priya Nair here is the contact for the order.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-06",
+    "type": "call",
+    "from": "Colin Bright (Bright Literary Agency)",
+    "text": "Quick call: Alden Voss's paperback tour may add a Cardiff stop in November; I will send signing details if it firms up.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set up the special order for the Harborne Book Circle: 25 hardcover copies of The Salt Harvester from Lakeside Press at their 18.50 per-copy trade price, which comes to 462.50 in total. Order left pending until we confirm the customer price.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Confirmed the customer side with Priya Nair: the Harborne Book Circle pays 24.00 per copy for their 25 hardcovers of The Salt Harvester, 600.00 in total, priced off the 462.50 Lakeside cost. Per shop policy the customer price is fixed once confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Harborne Book Circle's discussion evening on The Salt Harvester for Thursday 12 November at 19:00 in the shop's back room, counting back three weeks from Lakeside Press's lead time so the copies arrive with time to spare.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-30",
+    "type": "invoice",
+    "from": "Mill Row Roasters",
+    "text": "Coffee beans invoice for the café counter: 62.80 for 9 kg, paid from the float as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Tomas Beck (Fenwick Paper Co)",
+    "text": "Quote for the winter window display posters: 120 by 80 cm, 4.20 each, delivery to Second Chapter Books within ten days of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-09",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered the winter window display posters from Fenwick Paper Co at their quoted 4.20 each: twelve 120 by 80 cm posters for the front window, 50.40 in total, to be delivered within ten days.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-14",
+    "type": "note",
+    "from": "Maya",
+    "text": "Staff note: Saturday storytelling for kids moves to 10:30 from September; Rhiannon will run it.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Ines Duarte (Mill Row Roasters)",
+    "text": "Autumn blend now available at the same trade rate as the summer one; we will swap it into your next standing delivery unless you say otherwise.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-27",
+    "type": "email",
+    "from": "Priya Nair (Harborne Book Circle)",
+    "text": "Twenty-two members confirmed so far for the November discussion; a few guests may join, we will keep the count at 25 copies.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-03",
+    "type": "invoice",
+    "from": "Carden Wholesale",
+    "text": "Monthly stationery and gift-wrap restock invoice: 96.40, due within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-16",
+    "type": "message",
+    "from": "Rhiannon (staff)",
+    "text": "Poetry night attendance was 18 on Wednesday, back room worked well, same setup next month please.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Colin Bright (Bright Literary Agency)",
+    "text": "The extra Cardiff signing stop is off, but Alden Voss is still happy to sign stock if you send copies over with a return label.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Dev Ramaswamy (Lakeside Press)",
+    "text": "Reminder that our three-week lead time applies to any hardcover run ordered from October onwards; get your purchase orders in early for autumn titles.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Dev Ramaswamy (Lakeside Press)",
+    "text": "Price update from Lakeside Press: with paper costs up, custom-printed hardcover editions are now 21.50 per copy, effective immediately for all new purchase orders. Lead time stays at three weeks. Any orders placed from today use the new rate.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Dev Ramaswamy (Lakeside Press)",
+    "text": "For your shelf: the paperback edition of The Salt Harvester is available to trade order from Lakeside at 18.50 per copy if any of your other reading groups prefer softcovers.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-15",
+    "type": "message",
+    "from": "Rhiannon (staff)",
+    "text": "Kids storytelling went well, 14 little ones on Saturday; could we order a few more floor cushions on the next Carden restock?",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-15",
+    "type": "task",
+    "from": "Maya",
+    "text": "To-do this month: place the Lakeside Press order for the Harborne circle's Salt Harvester copies so they land well before the November discussion.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Priya Nair (Harborne Book Circle)",
+    "text": "Looking forward to the discussion on the 12th, could we put out the green armchairs in a circle as usual?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Lakeside Press – The Salt Harvester hardcovers",
+    "fields": {
+     "supplier": "Lakeside Press",
+     "item": "The Salt Harvester hardcover",
+     "quantity": "25",
+     "unit_price": "18.50",
+     "total": "462.50",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Fenwick Paper Co – winter window posters",
+    "fields": {
+     "supplier": "Fenwick Paper Co",
+     "item": "window display posters 120x80",
+     "quantity": "12",
+     "unit_price": "4.20",
+     "total": "50.40",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harborne Book Circle – Salt Harvester set",
+    "fields": {
+     "customer": "Priya Nair",
+     "book": "The Salt Harvester",
+     "copies": "25",
+     "price": "24.00",
+     "total": "600.00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Harborne Book Circle discussion – The Salt Harvester",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "19:00",
+     "place": "Second Chapter Books back room",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "price",
+     "total"
+    ],
+    "from": "Priya Nair (Harborne Book Circle)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you place the Lakeside Press order for the Harborne Book Circle's 25 copies of The Salt Harvester today? Send Dev the purchase order and let me know the final numbers.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "unit_price",
+    "value": "21.50",
+    "stale": [
+     "18.50"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "537.50",
+    "stale": [
+     "462.50"
+    ]
+   },
+   {
+    "message_to": "Dev Ramaswamy (Lakeside Press)",
+    "regarding": "ORD-1",
+    "says": [
+     "21.50",
+     "25"
+    ],
+    "stale": [
+     "18.50"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Lakeside's new rate of 21.50 per hardcover replaces the 18.50 figure, so the pending supplier order ORD-1 (which rests on that price) must be revised to 537.50 total and the purchase order sent at the new rate. The customer order CL-1 is one hop further down the chain and its price rests on the old cost, but under Maya's standing rule the confirmed customer price can only change with Priya Nair's written agreement, so it stays as it is with a consent request. The November discussion booking EV-1 relies only on the three-week lead time, which the price rise leaves standing, so it is KEEP and unchanged; the Fenwick poster order ORD-2 is untouched, and the 18.50 paperback offer in the 13 October email is a distractor, not the trade price to order on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "bookplate labels",
+    "counterpart": "Dev Ramaswamy",
+    "org": "Lakeside Press",
+    "item": "personalised bookplate labels",
+    "unit": "sheets",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "Second Chapter Books stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "promotional bookmarks",
+    "counterpart": "Dev Ramaswamy",
+    "org": "Lakeside Press",
+    "item": "printed bookmarks",
+    "unit": "packs",
+    "values": [
+     "20",
+     "35",
+     "50"
+    ],
+    "place": "Second Chapter Books counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "poetry night",
+    "counterpart": "Rhiannon (staff)",
+    "org": "Second Chapter Books",
+    "item": "Wednesday poetry night",
+    "unit": "",
+    "values": [
+     "back room",
+     "front window bay",
+     "reading nook"
+    ],
+    "place": "Second Chapter Books"
+   },
+   {
+    "kind": "order",
+    "topic": "stationery restock",
+    "counterpart": "Marta Voss",
+    "org": "Carden Wholesale",
+    "item": "stationery and gift-wrap restock",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Second Chapter Books stockroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "kids storytelling",
+    "counterpart": "Rhiannon (staff)",
+    "org": "Second Chapter Books",
+    "item": "Saturday storytelling session",
+    "unit": "",
+    "values": [
+     "children's corner",
+     "back room",
+     "front window bay"
+    ],
+    "place": "Second Chapter Books"
+   },
+   {
+    "kind": "order",
+    "topic": "window posters",
+    "counterpart": "Tomas Beck",
+    "org": "Fenwick Paper Co",
+    "item": "window display posters",
+    "unit": "posters",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "15"
+    ],
+    "place": "Second Chapter Books front window"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Ines Duarte",
+    "org": "Mill Row Roasters",
+    "item": "café coffee beans",
+    "unit": "kg",
+    "values": [
+     "4",
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "Second Chapter Books café counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "author signing",
+    "counterpart": "Colin Bright",
+    "org": "Bright Literary Agency",
+    "item": "stock signing slot",
+    "unit": "",
+    "values": [
+     "front table",
+     "back room",
+     "reading nook"
+    ],
+    "place": "Second Chapter Books"
+   },
+   {
+    "kind": "order",
+    "topic": "carrier bags",
+    "counterpart": "Marta Voss",
+    "org": "Carden Wholesale",
+    "item": "paper carrier bags",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Second Chapter Books stockroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "reading group room hire",
+    "counterpart": "Priya Nair",
+    "org": "Harborne Book Circle",
+    "item": "extra circle session",
+    "unit": "",
+    "values": [
+     "back room",
+     "reading nook",
+     "children's corner"
+    ],
+    "place": "Second Chapter Books"
+   }
+  ],
+  "id": "G100-3-06",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected final state omits the consent request for CL-1 required by the stated ASK mark, Maya's cost-change rule, and the writer's reasoning. The supplier price and total are correct, and the chain structure, tier requirements, and change placement otherwise fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected final state omits the consent request for CL-1 required by the stated ASK mark, Maya's cost-change rule, and the writer's reasoning. The supplier price and total are correct, and the chain structure, tier requirements, and change placement otherwise fit."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3390,
+    "completion_tokens": 213,
+    "reasoning_tokens": 122,
+    "cached_tokens": 0
+   },
+   "cost": 0.0530175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "965cd4096a18dd9478be414b25134f06ecae9ce120e2a49041732c605f743eef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e14 revokes the fact e2 (the 18.50 trade price), which is the stale-fact pattern of class 1: e5 is REVISE, and e6 is ASK two hops away via e5. The writer's intended class 3 is a poor fit because e14 is a price revocation rather than a correction, though the structure also partly matches a chain. The expected state, marks, consent map, tier counts and hidden placement all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e14 revokes the fact e2 (the 18.50 trade price), which is the stale-fact pattern of class 1: e5 is REVISE, and e6 is ASK two hops away via e5. The writer's intended class 3 is a poor fit because e14 is a price revocation rather than a correction, though the structure also partly matches a chain. The expected state, marks, consent map, tier counts and hidden placement all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4859,
+    "completion_tokens": 2128,
+    "reasoning_tokens": 1931,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015499,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "965cd4096a18dd9478be414b25134f06ecae9ce120e2a49041732c605f743eef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is well formed: the price correction touches ORD-1 (REVISE to 21.50/537.50), CL-1 one hop further (ASK under Maya's written-consent rule, correctly left unchanged since the task doesn't require repricing the confirmed customer order), and EV-1 (KEEP, resting only on the unchanged three-week lead time); the 18.50 paperback email is a clean distractor. Tier 100 fits: 23 core events, 4 decisions, change 12 days before the task day with 5 events after. Minor looseness: the writer's reasoning mentions a consent request to Priya that isn't in the expected state, but nothing in the task forces changing CL-1, so the expected state is still correct.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is well formed: the price correction touches ORD-1 (REVISE to 21.50/537.50), CL-1 one hop further (ASK under Maya's written-consent rule, correctly left unchanged since the task doesn't require repricing the confirmed customer order), and EV-1 (KEEP, resting only on the unchanged three-week lead time); the 18.50 paperback email is a clean distractor. Tier 100 fits: 23 core events, 4 decisions, change 12 days before the task day with 5 events after. Minor looseness: the writer's reasoning mentions a consent request to Priya that isn't in the expected state, but nothing in the task forces changing CL-1, so the expected state is still correct."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3484,
+    "completion_tokens": 921,
+    "reasoning_tokens": 706,
+    "cached_tokens": 256
+   },
+   "cost": 0.0235758,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "965cd4096a18dd9478be414b25134f06ecae9ce120e2a49041732c605f743eef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

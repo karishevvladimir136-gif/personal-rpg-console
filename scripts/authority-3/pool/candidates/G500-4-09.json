@@ -1,0 +1,621 @@
+{
+ "id": "G500-4-09",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 8,
+ "setting": "The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts",
+ "prompt_sha256": "4e41b04777b551598ad3b3e5333381dda83615332ad10896966fe00e1678b6c4",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Merch split correction beside a gig plan\",\n \"setting\": \"The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts\",\n \"owner\": \"Priya\",\n \"org\": \"The Foundry Arts Centre\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule for me and the team: once a gig is confirmed, its date or venue may only be changed with the promoter's written agreement first. No exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing rule: any supplier order totalling more than 500 needs sign-off from Sam Okafor, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Ben Ash (Fernhall AV)\", \"text\": \"Fernhall AV can supply the compact lighting rig for a night at The Foundry for 350, crewed and set. The quote stands until 1 September.\", \"role\": \"fact\", \"ends\": \"2026-09-01\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"The Glass Meridian are free for a Saturday show at The Foundry. Our fee is 1800 plus 15 guest tickets. Saturday 24 October would work well for the tour routing.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"One more term for the Glass Meridian night: the merch split is 80/20 in the band's favour, capped at 400 for the venue.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I've placed a hold on the Main Hall for Saturday 24 October for Rooke Live's Glass Meridian show at the quoted fee of 1800. Nothing signed yet.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Marta Quinn (Northgate Provisions)\", \"text\": \"Northgate Provisions rider catering runs at 3.80 per head, minimum 40 covers, covering drinks and platters. Prices hold to 30 September.\", \"role\": \"fact\", \"ends\": \"2026-09-30\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Harriet Wren (Wren & Co)\", \"text\": \"Wren & Co would like to enquire about a private hire evening in November. Please pass this to Priya rather than booking anything.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed: the Glass Meridian play the Main Hall on Saturday 24 October, doors 19:30, fee 1800 plus 15 guests, capacity 320. The hold becomes a confirmed booking.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"contract\", \"from\": \"Priya\", \"text\": \"Promoter contract sent to Rory Vale at Rooke Live for the Glass Meridian night: 1800 fee, Saturday 24 October, Main Hall, doors 19:30. Filed on the Rooke Live client record.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Dana Whitlock (Sable Hollow)\", \"text\": \"Sable Hollow can support the 24 October date. Our fee is 250 and we'd play a 30-minute set. We bring our own guitars but need the house backline.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Sable Hollow as support for the Glass Meridian night: 30-minute set at 20:15, fee 250, house backline provided.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Glass Meridian rider for the 24th: 60 still waters, 24 beers, and fruit platters for 12 in the green room. Nothing exotic.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Rider order placed with Northgate Provisions for the Glass Meridian night: 60 still waters, 24 beers, fruit platters for 12, total 480. Under the 500 threshold, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e7\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Hired the Fernhall AV compact lighting rig for the Glass Meridian night on 24 October at the quoted 350.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e9\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Marcus Ferreira is assigned as sound tech for the Glass Meridian show, with load-in from 15:00 on the 24th.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: October programme run-through. Main Hall gigs proceeding; box office to prepare advance sales links.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Ticket prices for the Glass Meridian night agreed at 22 advance and 26 on the door.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"invoice\", \"from\": \"Marta Quinn (Northgate Provisions)\", \"text\": \"Northgate Provisions invoice for the August bar restock: 612, due 18 September.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: pay the Northgate Provisions restock invoice of 612 by 18 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Just confirming the terms for the 24th as they stand: fee 1800, doors 19:30, and the merch split at 80/20 in the band's favour, capped at 400.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-26\", \"type\": \"cancellation\", \"from\": \"Alan Bright (Harborough Youth Choir)\", \"text\": \"Harborough Youth Choir must cancel their hold on Rehearsal Room 2 for 14 November. Apologies, numbers dropped.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Small thing from my June note about merch: the split should read 75/25 in the band's favour, capped at 350. My earlier figures were wrong, sorry. Everything else for the 24th is as agreed.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Gig prep run-through: Glass Meridian on 24 October fully on plan — rider ordered, lighting hired, Marcus on sound, Sable Hollow supporting at 20:15.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Dana Whitlock (Sable Hollow)\", \"text\": \"Hey! We've been writing some new material, so we're planning a 45-minute set on the 24th if that's OK with you. Really looking forward to it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Tomas Reid (Foundry ops)\", \"text\": \"Loading Bay 2 is free 15:00 to 17:00 on 24 October for the Glass Meridian get-in. Bay 1 is blocked by the set build that day.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"To-do before the 21st: send Rory the final running order for the 24th and get the loading bay slot booked.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Ticket check: 180 of 320 sold for the Glass Meridian night. Pace is good for a 320-capacity Main Hall.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Glass Meridian — Main Hall\", \"fields\": {\"date\": \"2026-10-24\", \"venue\": \"Main Hall\", \"doors\": \"19:30\", \"fee\": \"1800\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sable Hollow support set\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"20:15\", \"set_length\": \"30\", \"fee\": \"250\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Sound tech — Glass Meridian\", \"fields\": {\"date\": \"2026-10-24\", \"staff\": \"Marcus Ferreira\", \"load_in\": \"15:00\", \"status\": \"assigned\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lantern Sessions folk night\", \"fields\": {\"date\": \"2026-11-07\", \"venue\": \"Studio Theatre\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Glass Meridian rider — Northgate Provisions\", \"fields\": {\"supplier\": \"Northgate Provisions\", \"item\": \"rider package (60 still waters, 24 beers, fruit platters for 12)\", \"quantity\": \"1\", \"amount\": \"480\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Fernhall AV lighting rig — 24 October\", \"fields\": {\"supplier\": \"Fernhall AV\", \"item\": \"compact lighting rig with crew\", \"quantity\": \"1\", \"amount\": \"350\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Rooke Live — Glass Meridian\", \"fields\": {\"promoter\": \"Rory Vale\", \"organisation\": \"Rooke Live\", \"fee\": \"1800\", \"date\": \"2026-10-24\", \"status\": \"contracted\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"venue\"], \"from\": \"Rory Vale (Rooke Live)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you send Rory at Rooke Live the final running order for Saturday the 24th — doors 19:30, Sable Hollow on at 20:15 for their half hour, Glass Meridian on at 21:00 — and book loading Bay 2 from 15:00 that afternoon? Marcus is on sound as planned.\",\n \"expect\": [\n  {\"message_to\": \"Rory Vale (Rooke Live)\", \"regarding\": \"EV-1\", \"says\": [\"doors 19:30\", \"Sable Hollow 20:15\", \"30-minute set\", \"Glass Meridian 21:00\"], \"stale\": [\"45-minute set\", \"45 minutes\"], \"task\": true},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Bay 2 loading bay\", \"time\": \"15:00\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true}\n ],\n \"why\": \"This is a control: the merch-split correction (e23) revokes a fact no decision rests on, so no record changes and no decision carries a mark. The task is carried out on the plan as it stands: a running-order message to Rory Vale with the agreed times (19:30 doors, 20:15 support with the booked 30-minute set, 21:00 headliners) and a new schedule record for the Bay 2 loading slot at 15:00 on 24 October. Dana's 45-minute set message is a distractor the assistant must not act on, since the confirmed booking is 30 minutes and nothing has changed it.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Bar restock\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"mixed case ale\", \"unit\": \"case\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Rooke Live showcase nights\", \"counterpart\": \"Rory Vale\", \"org\": \"Rooke Live\", \"item\": \"showcase slot\", \"unit\": \"\", \"values\": [\"Studio Theatre\", \"Main Hall\", \"Rehearsal Room 2\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Rider water top-ups\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"still water 500ml\", \"unit\": \"bottle\", \"values\": [\"24\", \"36\", \"48\", \"72\"], \"place\": \"Main Hall green room\"},\n  {\"kind\": \"booking\", \"topic\": \"Lantern Sessions\", \"counterpart\": \"Iris Bell\", \"org\": \"Lantern Folk Club\", \"item\": \"folk night slot\", \"unit\": \"\", \"values\": [\"Studio Theatre\", \"Meeting Room 1\", \"Rehearsal Room 2\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Nadia Fenn\", \"org\": \"Ferndale Hygiene\", \"item\": \"floor cleaner\", \"unit\": \"litre\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"back corridor store\"},\n  {\"kind\": \"booking\", \"topic\": \"Wren & Co team evenings\", \"counterpart\": \"Harriet Wren\", \"org\": \"Wren & Co\", \"item\": \"team evening room\", \"unit\": \"\", \"values\": [\"Meeting Room 1\", \"Meeting Room 2\", \"Studio Theatre\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Flyer printing\", \"counterpart\": \"Kofi Mensah\", \"org\": \"Ridgeline Print\", \"item\": \"A3 flyers\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Youth choir rehearsals\", \"counterpart\": \"Alan Bright\", \"org\": \"Harborough Youth Choir\", \"item\": \"rehearsal slot\", \"unit\": \"\", \"values\": [\"Rehearsal Room 1\", \"Rehearsal Room 2\", \"Studio Theatre\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee beans\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"coffee beans 1kg\", \"unit\": \"bag\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Main Hall bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Fernhall AV storage days\", \"counterpart\": \"Ben Ash\", \"org\": \"Fernhall AV\", \"item\": \"equipment storage\", \"unit\": \"\", \"values\": [\"Bay 1\", \"Bay 2\"], \"place\": \"service yard\"},\n  {\"kind\": \"order\", \"topic\": \"Tech consumables\", \"counterpart\": \"Ben Ash\", \"org\": \"Fernhall AV\", \"item\": \"AA batteries\", \"unit\": \"pack\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"tech store\"},\n  {\"kind\": \"booking\", \"topic\": \"Board meetings\", \"counterpart\": \"Sam Okafor\", \"org\": \"Foundry Finance\", \"item\": \"board meeting room\", \"unit\": \"\", \"values\": [\"Meeting Room 2\", \"Meeting Room 1\"], \"place\": \"The Foundry Arts Centre\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3209,
+    "completion_tokens": 10601,
+    "reasoning_tokens": 6398,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04756196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Merch split correction beside a gig plan\",\n \"setting\": \"The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts\",\n \"owner\": \"Priya\",\n \"org\": \"The Foundry Arts Centre\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule for me and the team: once a gig is confirmed, its date or venue may only be changed with the promoter's written agreement first. No exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing rule: any supplier order totalling more than 500 needs sign-off from Sam Okafor, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Ben Ash (Fernhall AV)\", \"text\": \"Fernhall AV can supply the compact lighting rig for a night at The Foundry for 350, crewed and set. The quote stands until 1 September.\", \"role\": \"fact\", \"ends\": \"2026-09-01\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"The Glass Meridian are free for a Saturday show at The Foundry. Our fee is 1800 plus 15 guest tickets. Saturday 24 October would work well for the tour routing.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"One more term for the Glass Meridian night: the merch split is 80/20 in the band's favour, capped at 400 for the venue.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I've placed a hold on the Main Hall for Saturday 24 October for Rooke Live's Glass Meridian show at the quoted fee of 1800. Nothing signed yet.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Marta Quinn (Northgate Provisions)\", \"text\": \"Northgate Provisions rider catering runs at 3.80 per head, minimum 40 covers, covering drinks and platters. Prices hold to 30 September.\", \"role\": \"fact\", \"ends\": \"2026-09-30\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Harriet Wren (Wren & Co)\", \"text\": \"Wren & Co would like to enquire about a private hire evening in November. Please pass this to Priya rather than booking anything.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed: the Glass Meridian play the Main Hall on Saturday 24 October, doors 19:30, fee 1800 plus 15 guests, capacity 320. The hold becomes a confirmed booking.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"contract\", \"from\": \"Priya\", \"text\": \"Promoter contract sent to Rory Vale at Rooke Live for the Glass Meridian night: 1800 fee, Saturday 24 October, Main Hall, doors 19:30. Filed on the Rooke Live client record.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Dana Whitlock (Sable Hollow)\", \"text\": \"Sable Hollow can support the 24 October date. Our fee is 250 and we'd play a 30-minute set. We bring our own guitars but need the house backline.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Sable Hollow as support for the Glass Meridian night: 30-minute set at 20:15, fee 250, house backline provided.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e9\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Glass Meridian rider for the 24th: 60 still waters, 24 beers, and fruit platters for 12 in the green room. Nothing exotic.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Rider order placed with Northgate Provisions for the Glass Meridian night: 60 still waters, 24 beers, fruit platters for 12, total 480. Under the 500 threshold, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e7\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Hired the Fernhall AV compact lighting rig for the Glass Meridian night on 24 October at the quoted 350.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e9\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Marcus Ferreira is assigned as sound tech for the Glass Meridian show, with load-in from 15:00 on the 24th.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-26\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: October programme run-through. Main Hall gigs proceeding; box office to prepare advance sales links.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Ticket prices for the Glass Meridian night agreed at 22 advance and 26 on the door.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"invoice\", \"from\": \"Marta Quinn (Northgate Provisions)\", \"text\": \"Northgate Provisions invoice for the August bar restock: 612, due 18 September.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-20\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: pay the Northgate Provisions restock invoice of 612 by 18 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Just confirming the terms for the 24th as they stand: fee 1800, doors 19:30, and the merch split at 80/20 in the band's favour, capped at 400.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-26\", \"type\": \"cancellation\", \"from\": \"Alan Bright (Harborough Youth Choir)\", \"text\": \"Harborough Youth Choir must cancel their hold on Rehearsal Room 2 for 14 November. Apologies, numbers dropped.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Rory Vale (Rooke Live)\", \"text\": \"Small thing from my June note about merch: the split should read 75/25 in the band's favour, capped at 350. My earlier figures were wrong, sorry. Everything else for the 24th is as agreed.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Gig prep run-through: Glass Meridian on 24 October fully on plan — rider ordered, lighting hired, Marcus on sound, Sable Hollow supporting at 20:15.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Dana Whitlock (Sable Hollow)\", \"text\": \"Hey! We've been writing some new material, so we're planning a 45-minute set on the 24th if that's OK with you. Really looking forward to it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Tomas Reid (Foundry ops)\", \"text\": \"Loading Bay 2 is free 15:00 to 17:00 on 24 October for the Glass Meridian get-in. Bay 1 is blocked by the set build that day.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"To-do before the 21st: send Rory the final running order for the 24th and get the loading bay slot booked.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Ticket check: 180 of 320 sold for the Glass Meridian night. Pace is good for a 320-capacity Main Hall.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Glass Meridian — Main Hall\", \"fields\": {\"date\": \"2026-10-24\", \"venue\": \"Main Hall\", \"doors\": \"19:30\", \"fee\": \"1800\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sable Hollow support set\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"20:15\", \"set_length\": \"30\", \"fee\": \"250\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Sound tech — Glass Meridian\", \"fields\": {\"date\": \"2026-10-24\", \"staff\": \"Marcus Ferreira\", \"load_in\": \"15:00\", \"status\": \"assigned\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lantern Sessions folk night\", \"fields\": {\"date\": \"2026-11-07\", \"venue\": \"Studio Theatre\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Glass Meridian rider — Northgate Provisions\", \"fields\": {\"supplier\": \"Northgate Provisions\", \"item\": \"rider package (60 still waters, 24 beers, fruit platters for 12)\", \"quantity\": \"1\", \"amount\": \"480\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Fernhall AV lighting rig — 24 October\", \"fields\": {\"supplier\": \"Fernhall AV\", \"item\": \"compact lighting rig with crew\", \"quantity\": \"1\", \"amount\": \"350\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Rooke Live — Glass Meridian\", \"fields\": {\"promoter\": \"Rory Vale\", \"organisation\": \"Rooke Live\", \"fee\": \"1800\", \"date\": \"2026-10-24\", \"status\": \"contracted\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"venue\"], \"from\": \"Rory Vale (Rooke Live)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you send Rory at Rooke Live the final running order for Saturday the 24th — doors 19:30, Sable Hollow on at 20:15 for their half hour, Glass Meridian on at 21:00 — and book loading Bay 2 from 15:00 that afternoon? Marcus is on sound as planned.\",\n \"expect\": [\n  {\"message_to\": \"Rory Vale (Rooke Live)\", \"regarding\": \"EV-1\", \"says\": [\"doors 19:30\", \"Sable Hollow 20:15\", \"30-minute set\", \"Glass Meridian 21:00\"], \"stale\": [\"45-minute set\", \"45 minutes\"], \"task\": true},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Bay 2 loading bay\", \"time\": \"15:00\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true}\n ],\n \"why\": \"This is a control: the merch-split correction (e23) revokes a fact no decision rests on, so no record changes and no decision carries a mark. The task is carried out on the plan as it stands: a running-order message to Rory Vale with the agreed times (19:30 doors, 20:15 support with the booked 30-minute set, 21:00 headliners) and a new schedule record for the Bay 2 loading slot at 15:00 on 24 October. Dana's 45-minute set message is a distractor the assistant must not act on, since the confirmed booking is 30 minutes and nothing has changed it.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Bar restock\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"mixed case ale\", \"unit\": \"case\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Rooke Live showcase nights\", \"counterpart\": \"Rory Vale\", \"org\": \"Rooke Live\", \"item\": \"showcase slot\", \"unit\": \"\", \"values\": [\"Studio Theatre\", \"Main Hall\", \"Rehearsal Room 2\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Rider water top-ups\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"still water 500ml\", \"unit\": \"bottle\", \"values\": [\"24\", \"36\", \"48\", \"72\"], \"place\": \"Main Hall green room\"},\n  {\"kind\": \"booking\", \"topic\": \"Lantern Sessions\", \"counterpart\": \"Iris Bell\", \"org\": \"Lantern Folk Club\", \"item\": \"folk night slot\", \"unit\": \"\", \"values\": [\"Studio Theatre\", \"Meeting Room 1\", \"Rehearsal Room 2\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Nadia Fenn\", \"org\": \"Ferndale Hygiene\", \"item\": \"floor cleaner\", \"unit\": \"litre\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"back corridor store\"},\n  {\"kind\": \"booking\", \"topic\": \"Wren & Co team evenings\", \"counterpart\": \"Harriet Wren\", \"org\": \"Wren & Co\", \"item\": \"team evening room\", \"unit\": \"\", \"values\": [\"Meeting Room 1\", \"Meeting Room 2\", \"Studio Theatre\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Flyer printing\", \"counterpart\": \"Kofi Mensah\", \"org\": \"Ridgeline Print\", \"item\": \"A3 flyers\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Youth choir rehearsals\", \"counterpart\": \"Alan Bright\", \"org\": \"Harborough Youth Choir\", \"item\": \"rehearsal slot\", \"unit\": \"\", \"values\": [\"Rehearsal Room 1\", \"Rehearsal Room 2\", \"Studio Theatre\"], \"place\": \"The Foundry Arts Centre\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee beans\", \"counterpart\": \"Marta Quinn\", \"org\": \"Northgate Provisions\", \"item\": \"coffee beans 1kg\", \"unit\": \"bag\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Main Hall bar\"},\n  {\"kind\": \"booking\", \"topic\": \"Fernhall AV storage days\", \"counterpart\": \"Ben Ash\", \"org\": \"Fernhall AV\", \"item\": \"equipment storage\", \"unit\": \"\", \"values\": [\"Bay 1\", \"Bay 2\", \"Rehearsal Room 2\"], \"place\": \"service yard\"},\n  {\"kind\": \"order\", \"topic\": \"Tech consumables\", \"counterpart\": \"Ben Ash\", \"org\": \"Fernhall AV\", \"item\": \"AA batteries\", \"unit\": \"pack\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"tech store\"},\n  {\"kind\": \"booking\", \"topic\": \"Board meetings\", \"counterpart\": \"Sam Okafor\", \"org\": \"Foundry Finance\", \"item\": \"board meeting room\", \"unit\": \"\", \"values\": [\"Meeting Room 2\", \"Meeting Room 1\", \"Studio Theatre\"], \"place\": \"The Foundry Arts Centre\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7472,
+    "completion_tokens": 4224,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0253984,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Fernhall AV storage days': values needs at least three entries\n- noise topic 'Board meetings': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Merch split correction beside a gig plan",
+  "setting": "The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts",
+  "owner": "Priya",
+  "org": "The Foundry Arts Centre",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule for me and the team: once a gig is confirmed, its date or venue may only be changed with the promoter's written agreement first. No exceptions.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Standing rule: any supplier order totalling more than 500 needs sign-off from Sam Okafor, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Ben Ash (Fernhall AV)",
+    "text": "Fernhall AV can supply the compact lighting rig for a night at The Foundry for 350, crewed and set. The quote stands until 1 September.",
+    "role": "fact",
+    "ends": "2026-09-01"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "The Glass Meridian are free for a Saturday show at The Foundry. Our fee is 1800 plus 15 guest tickets. Saturday 24 October would work well for the tour routing.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "One more term for the Glass Meridian night: the merch split is 80/20 in the band's favour, capped at 400 for the venue.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I've placed a hold on the Main Hall for Saturday 24 October for Rooke Live's Glass Meridian show at the quoted fee of 1800. Nothing signed yet.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Marta Quinn (Northgate Provisions)",
+    "text": "Northgate Provisions rider catering runs at 3.80 per head, minimum 40 covers, covering drinks and platters. Prices hold to 30 September.",
+    "role": "fact",
+    "ends": "2026-09-30"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Harriet Wren (Wren & Co)",
+    "text": "Wren & Co would like to enquire about a private hire evening in November. Please pass this to Priya rather than booking anything.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed: the Glass Meridian play the Main Hall on Saturday 24 October, doors 19:30, fee 1800 plus 15 guests, capacity 320. The hold becomes a confirmed booking.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-15",
+    "type": "contract",
+    "from": "Priya",
+    "text": "Promoter contract sent to Rory Vale at Rooke Live for the Glass Meridian night: 1800 fee, Saturday 24 October, Main Hall, doors 19:30. Filed on the Rooke Live client record.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Dana Whitlock (Sable Hollow)",
+    "text": "Sable Hollow can support the 24 October date. Our fee is 250 and we'd play a 30-minute set. We bring our own guitars but need the house backline.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked Sable Hollow as support for the Glass Meridian night: 30-minute set at 20:15, fee 250, house backline provided.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "Glass Meridian rider for the 24th: 60 still waters, 24 beers, and fruit platters for 12 in the green room. Nothing exotic.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Rider order placed with Northgate Provisions for the Glass Meridian night: 60 still waters, 24 beers, fruit platters for 12, total 480. Under the 500 threshold, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e7",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Hired the Fernhall AV compact lighting rig for the Glass Meridian night on 24 October at the quoted 350.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e9"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Marcus Ferreira is assigned as sound tech for the Glass Meridian show, with load-in from 15:00 on the 24th.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-26",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Staff meeting notes: October programme run-through. Main Hall gigs proceeding; box office to prepare advance sales links.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "Ticket prices for the Glass Meridian night agreed at 22 advance and 26 on the door.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "invoice",
+    "from": "Marta Quinn (Northgate Provisions)",
+    "text": "Northgate Provisions invoice for the August bar restock: 612, due 18 September.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-20",
+    "type": "task",
+    "from": "Priya",
+    "text": "To-do: pay the Northgate Provisions restock invoice of 612 by 18 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-26",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "Just confirming the terms for the 24th as they stand: fee 1800, doors 19:30, and the merch split at 80/20 in the band's favour, capped at 400.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-26",
+    "type": "cancellation",
+    "from": "Alan Bright (Harborough Youth Choir)",
+    "text": "Harborough Youth Choir must cancel their hold on Rehearsal Room 2 for 14 November. Apologies, numbers dropped.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Rory Vale (Rooke Live)",
+    "text": "Small thing from my June note about merch: the split should read 75/25 in the band's favour, capped at 350. My earlier figures were wrong, sorry. Everything else for the 24th is as agreed.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-08",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Gig prep run-through: Glass Meridian on 24 October fully on plan — rider ordered, lighting hired, Marcus on sound, Sable Hollow supporting at 20:15.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Dana Whitlock (Sable Hollow)",
+    "text": "Hey! We've been writing some new material, so we're planning a 45-minute set on the 24th if that's OK with you. Really looking forward to it.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Tomas Reid (Foundry ops)",
+    "text": "Loading Bay 2 is free 15:00 to 17:00 on 24 October for the Glass Meridian get-in. Bay 1 is blocked by the set build that day.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Priya",
+    "text": "To-do before the 21st: send Rory the final running order for the 24th and get the loading bay slot booked.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Priya",
+    "text": "Ticket check: 180 of 320 sold for the Glass Meridian night. Pace is good for a 320-capacity Main Hall.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Glass Meridian — Main Hall",
+    "fields": {
+     "date": "2026-10-24",
+     "venue": "Main Hall",
+     "doors": "19:30",
+     "fee": "1800",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Sable Hollow support set",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "20:15",
+     "set_length": "30",
+     "fee": "250",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Sound tech — Glass Meridian",
+    "fields": {
+     "date": "2026-10-24",
+     "staff": "Marcus Ferreira",
+     "load_in": "15:00",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Lantern Sessions folk night",
+    "fields": {
+     "date": "2026-11-07",
+     "venue": "Studio Theatre",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Glass Meridian rider — Northgate Provisions",
+    "fields": {
+     "supplier": "Northgate Provisions",
+     "item": "rider package (60 still waters, 24 beers, fruit platters for 12)",
+     "quantity": "1",
+     "amount": "480",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Fernhall AV lighting rig — 24 October",
+    "fields": {
+     "supplier": "Fernhall AV",
+     "item": "compact lighting rig with crew",
+     "quantity": "1",
+     "amount": "350",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Rooke Live — Glass Meridian",
+    "fields": {
+     "promoter": "Rory Vale",
+     "organisation": "Rooke Live",
+     "fee": "1800",
+     "date": "2026-10-24",
+     "status": "contracted"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "venue"
+    ],
+    "from": "Rory Vale (Rooke Live)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you send Rory at Rooke Live the final running order for Saturday the 24th — doors 19:30, Sable Hollow on at 20:15 for their half hour, Glass Meridian on at 21:00 — and book loading Bay 2 from 15:00 that afternoon? Marcus is on sound as planned.",
+  "expect": [
+   {
+    "message_to": "Rory Vale (Rooke Live)",
+    "regarding": "EV-1",
+    "says": [
+     "doors 19:30",
+     "Sable Hollow 20:15",
+     "30-minute set",
+     "Glass Meridian 21:00"
+    ],
+    "stale": [
+     "45-minute set",
+     "45 minutes"
+    ],
+    "task": true
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-10-24",
+     "place": "Bay 2 loading bay",
+     "time": "15:00",
+     "status": "booked"
+    },
+    "stale": {},
+    "task": true
+   }
+  ],
+  "why": "This is a control: the merch-split correction (e23) revokes a fact no decision rests on, so no record changes and no decision carries a mark. The task is carried out on the plan as it stands: a running-order message to Rory Vale with the agreed times (19:30 doors, 20:15 support with the booked 30-minute set, 21:00 headliners) and a new schedule record for the Bay 2 loading slot at 15:00 on 24 October. Dana's 45-minute set message is a distractor the assistant must not act on, since the confirmed booking is 30 minutes and nothing has changed it.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Bar restock",
+    "counterpart": "Marta Quinn",
+    "org": "Northgate Provisions",
+    "item": "mixed case ale",
+    "unit": "case",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Main Hall bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "Rooke Live showcase nights",
+    "counterpart": "Rory Vale",
+    "org": "Rooke Live",
+    "item": "showcase slot",
+    "unit": "",
+    "values": [
+     "Studio Theatre",
+     "Main Hall",
+     "Rehearsal Room 2"
+    ],
+    "place": "The Foundry Arts Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Rider water top-ups",
+    "counterpart": "Marta Quinn",
+    "org": "Northgate Provisions",
+    "item": "still water 500ml",
+    "unit": "bottle",
+    "values": [
+     "24",
+     "36",
+     "48",
+     "72"
+    ],
+    "place": "Main Hall green room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Lantern Sessions",
+    "counterpart": "Iris Bell",
+    "org": "Lantern Folk Club",
+    "item": "folk night slot",
+    "unit": "",
+    "values": [
+     "Studio Theatre",
+     "Meeting Room 1",
+     "Rehearsal Room 2"
+    ],
+    "place": "The Foundry Arts Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Nadia Fenn",
+    "org": "Ferndale Hygiene",
+    "item": "floor cleaner",
+    "unit": "litre",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "back corridor store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Wren & Co team evenings",
+    "counterpart": "Harriet Wren",
+    "org": "Wren & Co",
+    "item": "team evening room",
+    "unit": "",
+    "values": [
+     "Meeting Room 1",
+     "Meeting Room 2",
+     "Studio Theatre"
+    ],
+    "place": "The Foundry Arts Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Flyer printing",
+    "counterpart": "Kofi Mensah",
+    "org": "Ridgeline Print",
+    "item": "A3 flyers",
+    "unit": "pack",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Youth choir rehearsals",
+    "counterpart": "Alan Bright",
+    "org": "Harborough Youth Choir",
+    "item": "rehearsal slot",
+    "unit": "",
+    "values": [
+     "Rehearsal Room 1",
+     "Rehearsal Room 2",
+     "Studio Theatre"
+    ],
+    "place": "The Foundry Arts Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee beans",
+    "counterpart": "Marta Quinn",
+    "org": "Northgate Provisions",
+    "item": "coffee beans 1kg",
+    "unit": "bag",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "Main Hall bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fernhall AV storage days",
+    "counterpart": "Ben Ash",
+    "org": "Fernhall AV",
+    "item": "equipment storage",
+    "unit": "",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Rehearsal Room 2"
+    ],
+    "place": "service yard"
+   },
+   {
+    "kind": "order",
+    "topic": "Tech consumables",
+    "counterpart": "Ben Ash",
+    "org": "Fernhall AV",
+    "item": "AA batteries",
+    "unit": "pack",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "tech store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Board meetings",
+    "counterpart": "Sam Okafor",
+    "org": "Foundry Finance",
+    "item": "board meeting room",
+    "unit": "",
+    "values": [
+     "Meeting Room 2",
+     "Meeting Room 1",
+     "Studio Theatre"
+    ],
+    "place": "The Foundry Arts Centre"
+   }
+  ],
+  "id": "G500-4-09",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

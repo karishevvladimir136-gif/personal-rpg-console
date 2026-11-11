@@ -1,0 +1,717 @@
+{
+ "id": "G500-1-04",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 3,
+ "setting": "The operations lead at Meadowbrook Care Home whose assistant coordinates shift rotas, medication audits, and family enquiries",
+ "prompt_sha256": "a252d2691f491cf621d820678c0365bb4e870f71bc0a6050d2e350cf827ef748",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Willow Bank rate rise before audit week\",\n \"setting\": \"The operations lead at Meadowbrook Care Home whose assistant coordinates shift rotas, medication audits, and family enquiries\",\n \"owner\": \"Denise\",\n \"org\": \"Meadowbrook Care Home\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Denise\", \"text\": \"Standing instruction: once an event that residents' families have been invited to is confirmed, any change to its date, staffing level or cost needs the written consent of Priya Nair, our activities coordinator, before we make it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Denise\", \"text\": \"Meadowbrook policy: any supplier order over 500 pounds needs sign-off from Marta Kowalski, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"Meadowbrook currently has 34 residents and a day shift of 8 carers. Sam Bright is the keyworker for Mr Ade Okafor in Room 12.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Care Quality Commission\", \"text\": \"We will carry out a medication audit at Meadowbrook Care Home from Monday 12 October to Friday 16 October 2026, with a particular focus on the night medication rounds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Happy to confirm our terms for the coming contract year: agency carers supplied to Meadowbrook are charged at 22 pounds per hour for all shifts from July 2026 through March 2027. I, Renata Ellis, will be your dedicated supervisor contact and you can reach me on my direct line on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"The garden works finish on 28 June, so the conservatory will be free for afternoon activities from 1 July onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I replied to Helen Okafor about her father Ade Okafor's mobility plan, logged the enquiry in our CRM, and asked his keyworker Sam Bright to update her every fortnight.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"Just chasing the June laundry invoice - payment would be appreciated by the end of the week.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"The conservatory is free again, so I booked it for Priya's residents' film afternoon every Wednesday at 2pm, starting 15 July.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"With Marta's sign-off, as the order is over the 500 pound threshold, I booked Willow Bank Agency for night cover during the CQC medication audit week, Monday 12 to Friday 16 October: two agency carers per night on 8-hour shifts, 80 hours in total at their 22 pounds per hour rate, coming to 1,760 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e5\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-17\", \"type\": \"notice\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Annual confirmation for your files: your hourly rate of 22 pounds per agency carer remains in place for the 2026-27 contract year, and Renata Ellis remains your supervisor contact.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e12\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I set the autumn agency cover plan: 360 hours of Willow Bank agency cover between September and December 2026, including the audit-week nights, budgeted at their 22 pounds per hour rate, a total of 7,920 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the family open day for Saturday 24 October 2026 in the main lounge and garden, staffed with 3 Willow Bank agency carers for the afternoon at their 22 pounds per hour rate, costed within the autumn cover plan budget. Since families are being invited, any later change to the date, staffing or cost goes through Priya first. Invitations went out this week.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e12\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I asked Renata Ellis, our Willow Bank supervisor contact, to supervise the shadowing of the night shifts during the audit week and to co-sign the medication audit log each night.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dr Anne Wray (Chiropody)\", \"text\": \"Reminder that my clinic at Meadowbrook is on the last Tuesday of each month - next visit 25 August.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I ordered two extra medication trolleys from Care Supply Co for 430 pounds - under the 500 pound threshold, so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-07\", \"type\": \"email\", \"from\": \"Sam Bright\", \"text\": \"The hairdresser will now come every Tuesday morning instead of Thursdays, in case anyone asks at reception.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Helen Okafor\", \"text\": \"Thank you for the update on Dad's mobility plan - the fortnightly notes from Sam are very reassuring.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Some news from our side: because of the National Living Wage increase, from 1 October 2026 our agency carer rate for Meadowbrook rises to 26 pounds per hour. This replaces the 22 pounds per hour rate quoted in June for the remainder of the contract year. Everything else stands - I remain your supervisor contact and your booking terms are otherwise unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e20\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Bright Lane Staffing\", \"text\": \"Following our call, we can supply agency carers to Meadowbrook at 24 pounds per hour for autumn cover if you need extra capacity.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Sam Bright\", \"text\": \"Could we sort out holiday cover for my shifts in November when you get a chance?\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the internal medication spot-checks for the week of Monday 5 October 2026, run by our own senior carers ahead of the CQC visit.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Marta Kowalski\", \"text\": \"Please make sure September supplier invoices are coded and passed to me by Friday 9 October.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-04\", \"type\": \"note\", \"from\": \"Priya Nair\", \"text\": \"Autumn newsletter drafted - it reminds families about the open day on Saturday 24 October and the Wednesday film afternoons.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Please send September's timesheets back to me signed by the end of next week.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Woody Harnby (Greenedge Grounds)\", \"text\": \"Quote for the summer hedge trimming and lawn care: 180 pounds per monthly visit.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-07-02\", \"type\": \"call\", \"from\": \"Priya Nair\", \"text\": \"Call with Priya about the summer barbecue - agreed we keep it small this year, residents and staff only, no agency cover needed.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-07-21\", \"type\": \"invoice\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"July laundry invoice: 96 bags collected and returned, 312 pounds.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Denise\", \"text\": \"Pay Willow Bank's September invoice by 30 September as usual.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Denise\", \"text\": \"Staff meeting minutes: night rota gaps covered by Willow Bank agency carers; audit preparation to begin in September; Priya confirmed the open day planning is under way.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-15\", \"type\": \"cancellation\", \"from\": \"Tom Fielding (Meadowbrook minibus)\", \"text\": \"The minibus trip to the garden centre on 18 September is cancelled because of the weather forecast.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly film afternoon\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"14:00\", \"place\": \"conservatory\", \"status\": \"recurring\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Family open day\", \"fields\": {\"date\": \"2026-10-24\", \"staffing\": \"3\", \"rate\": \"22\", \"place\": \"main lounge and garden\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn agency cover plan\", \"fields\": {\"period\": \"2026-09-01 to 2026-12-31\", \"hours\": \"360\", \"rate\": \"22\", \"budget\": \"7920\", \"status\": \"approved\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Audit week night shadowing\", \"fields\": {\"date\": \"2026-10-12\", \"supervisor\": \"Renata Ellis\", \"task\": \"night medication audit shadowing\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Internal medication spot-checks\", \"fields\": {\"date\": \"2026-10-05\", \"owner\": \"senior carers\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Agency night cover, CQC audit week\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"week\": \"2026-10-12\", \"hours\": \"80\", \"rate\": \"22\", \"total\": \"1760\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Medication trolleys\", \"fields\": {\"supplier\": \"Care Supply Co\", \"item\": \"medication trolleys\", \"total\": \"430\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helen Okafor enquiry\", \"fields\": {\"person\": \"Helen Okafor\", \"regarding\": \"Ade Okafor mobility plan\", \"owner\": \"Sam Bright\", \"status\": \"open\"}}\n ],\n \"consent\": [{\"record\": \"EV-2\", \"fields\": [\"date\", \"staffing\", \"rate\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}],\n \"task\": \"Renata asked me to confirm our extra weekend cover. Please book one Willow Bank agency carer for the night shifts on Saturday 17 and Sunday 18 October (eight hours each) at our agreed hourly rate, and send Renata the confirmation with the total cost.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"item\": \"agency night cover 2026-10-17 to 2026-10-18\", \"hours\": \"16\", \"rate\": \"26\", \"total\": \"416\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"22\"], \"total\": [\"352\", \"384\"]}, \"task\": true},\n  {\"message_to\": \"Renata Ellis (Willow Bank Agency)\", \"regarding\": null, \"says\": [\"Saturday 17 and Sunday 18 October\", \"16 hours\", \"26 pounds per hour\", \"total 416 pounds\"], \"stale\": [\"22 pounds per hour\", \"24 pounds per hour\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"ORD-3\", \"field\": \"total\", \"value\": \"2080\", \"stale\": [\"1760\"]},\n  {\"record\": \"EV-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"EV-3\", \"field\": \"budget\", \"value\": \"9360\", \"stale\": [\"7920\"]}\n ],\n \"why\": \"The change replaces the June fact that Willow Bank carers cost 22 pounds per hour with a rate of 26 pounds from 1 October. The audit-week booking (ORD-3) and the autumn cover plan (EV-3) rest on that price, so their rate and totals are revised to the new figures; the open day (EV-2) is two hops away but is a confirmed family event whose cost field needs Priya's consent under the standing rule, so it must stay unchanged with a consent request. The Renata-supervisor decision (EV-4) is only KEEP because the new rate leaves the supervisor arrangement standing, and everything else stays as it is. The task books the extra audit-weekend nights at the current agreed rate of 26 pounds (16 hours, 416 pounds) and confirms that to Renata, ignoring both the stale 22 and Bright Lane's 24-pound quote.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Agency day-shift cover\", \"counterpart\": \"Renata Ellis\", \"org\": \"Willow Bank Agency\", \"item\": \"day-shift agency carer\", \"unit\": \"shifts\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Family visiting slots\", \"counterpart\": \"Priya Nair\", \"org\": \"Meadowbrook Care Home\", \"item\": \"visiting slot\", \"values\": [\"main lounge\", \"conservatory\", \"garden room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Chiropody clinic\", \"counterpart\": \"Dr Anne Wray\", \"org\": \"Wray Footcare\", \"item\": \"chiropody clinic\", \"values\": [\"conservatory\", \"activity room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Laundry collection\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Bramble Linen Ltd\", \"item\": \"laundry collection\", \"unit\": \"bags\", \"values\": [\"80\", \"90\", \"96\", \"110\", \"120\"], \"place\": \"Meadowbrook laundry\"},\n  {\"kind\": \"order\", \"topic\": \"Blister pack wallets\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Rosefield Pharmacy\", \"item\": \"blister pack wallets\", \"unit\": \"packs\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"treatment room\"},\n  {\"kind\": \"order\", \"topic\": \"Kitchen groceries\", \"counterpart\": \"Mo Iqbal\", \"org\": \"Freshfield Foods\", \"item\": \"fruit and veg box\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Meadowbrook kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Grace Lin\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"disinfectant\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Minibus outings\", \"counterpart\": \"Tom Fielding\", \"org\": \"Meadowbrook minibus\", \"item\": \"minibus outing\", \"values\": [\"seaside\", \"garden centre\", \"theatre\"], \"place\": \"Meadowbrook front drive\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training sessions\", \"counterpart\": \"Marta Kowalski\", \"org\": \"Meadowbrook Care Home\", \"item\": \"training session\", \"values\": [\"main lounge\", \"activity room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Dean Ross\", \"org\": \"Papertrail Supplies\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Meadowbrook office\"},\n  {\"kind\": \"order\", \"topic\": \"Incontinence supplies\", \"counterpart\": \"Fatima Noor\", \"org\": \"Softcare Hygiene\", \"item\": \"disposable pads\", \"unit\": \"cases\", \"values\": [\"5\", \"7\", \"9\", \"12\"], \"place\": \"Meadowbrook store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Grounds maintenance visits\", \"counterpart\": \"Woody Harnby\", \"org\": \"Greenedge Grounds\", \"item\": \"grounds visit\", \"values\": [\"front garden\", \"back garden\"], \"place\": \"Meadowbrook grounds\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3197,
+    "completion_tokens": 10987,
+    "reasoning_tokens": 6309,
+    "cached_tokens": 0
+   },
+   "cost": 0.0528186,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Willow Bank rate rise before audit week\",\n \"setting\": \"The operations lead at Meadowbrook Care Home whose assistant coordinates shift rotas, medication audits, and family enquiries\",\n \"owner\": \"Denise\",\n \"org\": \"Meadowbrook Care Home\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Denise\", \"text\": \"Standing instruction: once an event that residents' families have been invited to is confirmed, any change to its date, staffing level or cost needs the written consent of Priya Nair, our activities coordinator, before we make it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Denise\", \"text\": \"Meadowbrook policy: any supplier order over 500 pounds needs sign-off from Marta Kowalski, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"Meadowbrook currently has 34 residents and a day shift of 8 carers. Sam Bright is the keyworker for Mr Ade Okafor in Room 12.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Care Quality Commission\", \"text\": \"We will carry out a medication audit at Meadowbrook Care Home from Monday 12 October to Friday 16 October 2026, with a particular focus on the night medication rounds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Happy to confirm our terms for the coming contract year: agency carers supplied to Meadowbrook are charged at 22 pounds per hour for all shifts from July 2026 through March 2027. I, Renata Ellis, will be your dedicated supervisor contact and you can reach me on my direct line on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"The garden works finish on 28 June, so the conservatory will be free for afternoon activities from 1 July onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I replied to Helen Okafor about her father Ade Okafor's mobility plan, logged the enquiry in our CRM, and asked his keyworker Sam Bright to update her every fortnight.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"Just chasing the June laundry invoice - payment would be appreciated by the end of the week.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"The conservatory is free again, so I booked it for Priya's residents' film afternoon every Wednesday at 2pm, starting 15 July.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"With Marta's sign-off, as the order is over the 500 pound threshold, I booked Willow Bank Agency for night cover during the CQC medication audit week, Monday 12 to Friday 16 October: two agency carers per night on 8-hour shifts, 80 hours in total at their 22 pounds per hour rate, coming to 1,760 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e5\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-17\", \"type\": \"notice\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Annual confirmation for your files: your hourly rate of 22 pounds per agency carer remains in place for the 2026-27 contract year, and Renata Ellis remains your supervisor contact.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e12\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I set the autumn agency cover plan: 360 hours of Willow Bank agency cover between September and December 2026, including the audit-week nights, budgeted at their 22 pounds per hour rate, a total of 7,920 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the family open day for Saturday 24 October 2026 in the main lounge and garden, staffed with 3 Willow Bank agency carers for the afternoon at their 22 pounds per hour rate, costed within the autumn cover plan budget. Since families are being invited, any later change to the date, staffing or cost goes through Priya first. Invitations went out this week.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e12\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I asked Renata Ellis, our Willow Bank supervisor contact, to supervise the shadowing of the night shifts during the audit week and to co-sign the medication audit log each night.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dr Anne Wray (Chiropody)\", \"text\": \"Reminder that my clinic at Meadowbrook is on the last Tuesday of each month - next visit 25 August.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I ordered two extra medication trolleys from Care Supply Co for 430 pounds - under the 500 pound threshold, so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-07\", \"type\": \"email\", \"from\": \"Sam Bright\", \"text\": \"The hairdresser will now come every Tuesday morning instead of Thursdays, in case anyone asks at reception.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Helen Okafor\", \"text\": \"Thank you for the update on Dad's mobility plan - the fortnightly notes from Sam are very reassuring.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Some news from our side: because of the National Living Wage increase, from 1 October 2026 our agency carer rate for Meadowbrook rises to 26 pounds per hour. This replaces the 22 pounds per hour rate quoted in June for the remainder of the contract year. Everything else stands - I remain your supervisor contact and your booking terms are otherwise unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e20\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Bright Lane Staffing\", \"text\": \"Following our call, we can supply agency carers to Meadowbrook at 24 pounds per hour for autumn cover if you need extra capacity.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Sam Bright\", \"text\": \"Could we sort out holiday cover for my shifts in November when you get a chance?\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the internal medication spot-checks for the week of Monday 5 October 2026, run by our own senior carers ahead of the CQC visit.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Marta Kowalski\", \"text\": \"Please make sure September supplier invoices are coded and passed to me by Friday 9 October.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Please send September's timesheets back to me signed by the end of next week.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-04\", \"type\": \"note\", \"from\": \"Priya Nair\", \"text\": \"Autumn newsletter drafted - it reminds families about the open day on Saturday 24 October and the Wednesday film afternoons.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Woody Harnby (Greenedge Grounds)\", \"text\": \"Quote for the summer hedge trimming and lawn care: 180 pounds per monthly visit.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-07-02\", \"type\": \"call\", \"from\": \"Priya Nair\", \"text\": \"Call with Priya about the summer barbecue - agreed we keep it small this year, residents and staff only, no agency cover needed.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-07-21\", \"type\": \"invoice\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"July laundry invoice: 96 bags collected and returned, 312 pounds.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Denise\", \"text\": \"Pay Willow Bank's September invoice by 30 September as usual.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Denise\", \"text\": \"Staff meeting minutes: night rota gaps covered by Willow Bank agency carers; audit preparation to begin in September; Priya confirmed the open day planning is under way.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-15\", \"type\": \"cancellation\", \"from\": \"Tom Fielding (Meadowbrook minibus)\", \"text\": \"The minibus trip to the garden centre on 18 September is cancelled because of the weather forecast.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly film afternoon\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"14:00\", \"place\": \"conservatory\", \"status\": \"recurring\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Family open day\", \"fields\": {\"date\": \"2026-10-24\", \"staffing\": \"3\", \"rate\": \"22\", \"place\": \"main lounge and garden\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn agency cover plan\", \"fields\": {\"period\": \"2026-09-01 to 2026-12-31\", \"hours\": \"360\", \"rate\": \"22\", \"budget\": \"7920\", \"status\": \"approved\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Audit week night shadowing\", \"fields\": {\"date\": \"2026-10-12\", \"supervisor\": \"Renata Ellis\", \"task\": \"night medication audit shadowing\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Internal medication spot-checks\", \"fields\": {\"date\": \"2026-10-05\", \"owner\": \"senior carers\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Agency night cover, CQC audit week\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"week\": \"2026-10-12\", \"hours\": \"80\", \"rate\": \"22\", \"total\": \"1760\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Medication trolleys\", \"fields\": {\"supplier\": \"Care Supply Co\", \"item\": \"medication trolleys\", \"total\": \"430\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helen Okafor enquiry\", \"fields\": {\"person\": \"Helen Okafor\", \"regarding\": \"Ade Okafor mobility plan\", \"owner\": \"Sam Bright\", \"status\": \"open\"}}\n ],\n \"consent\": [{\"record\": \"EV-2\", \"fields\": [\"date\", \"staffing\", \"rate\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}],\n \"task\": \"Renata asked me to confirm our extra weekend cover. Please book one Willow Bank agency carer for the night shifts on Saturday 17 and Sunday 18 October (eight hours each) at our agreed hourly rate, and send Renata the confirmation with the total cost.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"item\": \"agency night cover 2026-10-17 to 2026-10-18\", \"hours\": \"16\", \"rate\": \"26\", \"total\": \"416\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"22\"], \"total\": [\"352\", \"384\"]}, \"task\": true},\n  {\"message_to\": \"Renata Ellis (Willow Bank Agency)\", \"regarding\": null, \"says\": [\"Saturday 17 and Sunday 18 October\", \"16 hours\", \"26 pounds per hour\", \"total 416 pounds\"], \"stale\": [\"22 pounds per hour\", \"24 pounds per hour\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"ORD-3\", \"field\": \"total\", \"value\": \"2080\", \"stale\": [\"1760\"]},\n  {\"record\": \"EV-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"EV-3\", \"field\": \"budget\", \"value\": \"9360\", \"stale\": [\"7920\"]}\n ],\n \"why\": \"The change replaces the June fact that Willow Bank carers cost 22 pounds per hour with a rate of 26 pounds from 1 October. The audit-week booking (ORD-3) and the autumn cover plan (EV-3) rest on that price, so their rate and totals are revised to the new figures; the open day (EV-2) is two hops away but is a confirmed family event whose cost field needs Priya's consent under the standing rule, so it must stay unchanged with a consent request. The Renata-supervisor decision (EV-4) is only KEEP because the new rate leaves the supervisor arrangement standing, and everything else stays as it is. The task books the extra audit-weekend nights at the current agreed rate of 26 pounds (16 hours, 416 pounds) and confirms that to Renata, ignoring both the stale 22 and Bright Lane's 24-pound quote.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Agency day-shift cover\", \"counterpart\": \"Renata Ellis\", \"org\": \"Willow Bank Agency\", \"item\": \"day-shift agency carer\", \"unit\": \"shifts\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Family visiting slots\", \"counterpart\": \"Priya Nair\", \"org\": \"Meadowbrook Care Home\", \"item\": \"visiting slot\", \"values\": [\"main lounge\", \"conservatory\", \"garden room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Chiropody clinic\", \"counterpart\": \"Dr Anne Wray\", \"org\": \"Wray Footcare\", \"item\": \"chiropody clinic\", \"values\": [\"conservatory\", \"activity room\", \"garden room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Laundry collection\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Bramble Linen Ltd\", \"item\": \"laundry collection\", \"unit\": \"bags\", \"values\": [\"80\", \"90\", \"96\", \"110\", \"120\"], \"place\": \"Meadowbrook laundry\"},\n  {\"kind\": \"order\", \"topic\": \"Blister pack wallets\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Rosefield Pharmacy\", \"item\": \"blister pack wallets\", \"unit\": \"packs\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"treatment room\"},\n  {\"kind\": \"order\", \"topic\": \"Kitchen groceries\", \"counterpart\": \"Mo Iqbal\", \"org\": \"Freshfield Foods\", \"item\": \"fruit and veg box\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Meadowbrook kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Grace Lin\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"disinfectant\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Minibus outings\", \"counterpart\": \"Tom Fielding\", \"org\": \"Meadowbrook minibus\", \"item\": \"minibus outing\", \"values\": [\"seaside\", \"garden centre\", \"theatre\"], \"place\": \"Meadowbrook front drive\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training sessions\", \"counterpart\": \"Marta Kowalski\", \"org\": \"Meadowbrook Care Home\", \"item\": \"training session\", \"values\": [\"main lounge\", \"activity room\", \"conservatory\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Dean Ross\", \"org\": \"Papertrail Supplies\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Meadowbrook office\"},\n  {\"kind\": \"order\", \"topic\": \"Incontinence supplies\", \"counterpart\": \"Fatima Noor\", \"org\": \"Softcare Hygiene\", \"item\": \"disposable pads\", \"unit\": \"cases\", \"values\": [\"5\", \"7\", \"9\", \"12\"], \"place\": \"Meadowbrook store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Grounds maintenance visits\", \"counterpart\": \"Woody Harnby\", \"org\": \"Greenedge Grounds\", \"item\": \"grounds visit\", \"values\": [\"front garden\", \"back garden\", \"car park borders\"], \"place\": \"Meadowbrook grounds\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7966,
+    "completion_tokens": 4800,
+    "reasoning_tokens": 108,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02869736,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e25 is dated before e24)\n- noise topic 'Chiropody clinic': values needs at least three entries\n- noise topic 'Staff training sessions': values needs at least three entries\n- noise topic 'Grounds maintenance visits': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Willow Bank rate rise before audit week\",\n \"setting\": \"The operations lead at Meadowbrook Care Home whose assistant coordinates shift rotas, medication audits, and family enquiries\",\n \"owner\": \"Denise\",\n \"org\": \"Meadowbrook Care Home\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Denise\", \"text\": \"Standing instruction: once an event that residents' families have been invited to is confirmed, any change to its date, staffing level or cost needs the written consent of Priya Nair, our activities coordinator, before we make it.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Denise\", \"text\": \"Meadowbrook policy: any supplier order over 500 pounds needs sign-off from Marta Kowalski, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"Meadowbrook currently has 34 residents and a day shift of 8 carers. Sam Bright is the keyworker for Mr Ade Okafor in Room 12.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Care Quality Commission\", \"text\": \"We will carry out a medication audit at Meadowbrook Care Home from Monday 12 October to Friday 16 October 2026, with a particular focus on the night medication rounds.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Woody Harnby (Greenedge Grounds)\", \"text\": \"Quote for the summer hedge trimming and lawn care: 180 pounds per monthly visit.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Happy to confirm our terms for the coming contract year: agency carers supplied to Meadowbrook are charged at 22 pounds per hour for all shifts from July 2026 through March 2027. I, Renata Ellis, will be your dedicated supervisor contact and you can reach me on my direct line on weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"note\", \"from\": \"Denise\", \"text\": \"The garden works finish on 28 June, so the conservatory will be free for afternoon activities from 1 July onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I replied to Helen Okafor about her father Ade Okafor's mobility plan, logged the enquiry in our CRM, and asked his keyworker Sam Bright to update her every fortnight.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"Just chasing the June laundry invoice - payment would be appreciated by the end of the week.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"call\", \"from\": \"Priya Nair\", \"text\": \"Call with Priya about the summer barbecue - agreed we keep it small this year, residents and staff only, no agency cover needed.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"The conservatory is free again, so I booked it for Priya's residents' film afternoon every Wednesday at 2pm, starting 15 July.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"With Marta's sign-off, as the order is over the 500 pound threshold, I booked Willow Bank Agency for night cover during the CQC medication audit week, Monday 12 to Friday 16 October: two agency carers per night on 8-hour shifts, 80 hours in total at their 22 pounds per hour rate, coming to 1,760 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e6\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-17\", \"type\": \"notice\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Annual confirmation for your files: your hourly rate of 22 pounds per agency carer remains in place for the 2026-27 contract year, and Renata Ellis remains your supervisor contact.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-21\", \"type\": \"invoice\", \"from\": \"Nadia Petrov (Bramble Linen Ltd)\", \"text\": \"July laundry invoice: 96 bags collected and returned, 312 pounds.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I set the autumn agency cover plan: 360 hours of Willow Bank agency cover between September and December 2026, including the audit-week nights, budgeted at their 22 pounds per hour rate, a total of 7,920 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e12\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the family open day for Saturday 24 October 2026 in the main lounge and garden, staffed with 3 Willow Bank agency carers for the afternoon at their 22 pounds per hour rate, costed within the autumn cover plan budget. Since families are being invited, any later change to the date, staffing or cost goes through Priya first. Invitations went out this week.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e15\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Denise\", \"text\": \"Pay Willow Bank's September invoice by 30 September as usual.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I asked Renata Ellis, our Willow Bank supervisor contact, to supervise the shadowing of the night shifts during the audit week and to co-sign the medication audit log each night.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dr Anne Wray (Chiropody)\", \"text\": \"Reminder that my clinic at Meadowbrook is on the last Tuesday of each month - next visit 25 August.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Denise\", \"text\": \"Staff meeting minutes: night rota gaps covered by Willow Bank agency carers; audit preparation to begin in September; Priya confirmed the open day planning is under way.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I ordered two extra medication trolleys from Care Supply Co for 430 pounds - under the 500 pound threshold, so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-07\", \"type\": \"email\", \"from\": \"Sam Bright\", \"text\": \"The hairdresser will now come every Tuesday morning instead of Thursdays, in case anyone asks at reception.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Helen Okafor\", \"text\": \"Thank you for the update on Dad's mobility plan - the fortnightly notes from Sam are very reassuring.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"cancellation\", \"from\": \"Tom Fielding (Meadowbrook minibus)\", \"text\": \"The minibus trip to the garden centre on 18 September is cancelled because of the weather forecast.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Some news from our side: because of the National Living Wage increase, from 1 October 2026 our agency carer rate for Meadowbrook rises to 26 pounds per hour. This replaces the 22 pounds per hour rate quoted in June for the remainder of the contract year. Everything else stands - I remain your supervisor contact and your booking terms are otherwise unchanged.\", \"role\": \"change\", \"revokes\": [\"e6\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Bright Lane Staffing\", \"text\": \"Following our call, we can supply agency carers to Meadowbrook at 24 pounds per hour for autumn cover if you need extra capacity.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Sam Bright\", \"text\": \"Could we sort out holiday cover for my shifts in November when you get a chance?\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Denise\", \"text\": \"I scheduled the internal medication spot-checks for the week of Monday 5 October 2026, run by our own senior carers ahead of the CQC visit.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Marta Kowalski\", \"text\": \"Please make sure September supplier invoices are coded and passed to me by Friday 9 October.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Renata Ellis (Willow Bank Agency)\", \"text\": \"Please send September's timesheets back to me signed by the end of next week.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-04\", \"type\": \"note\", \"from\": \"Priya Nair\", \"text\": \"Autumn newsletter drafted - it reminds families about the open day on Saturday 24 October and the Wednesday film afternoons.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly film afternoon\", \"fields\": {\"day\": \"Wednesday\", \"time\": \"14:00\", \"place\": \"conservatory\", \"status\": \"recurring\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Family open day\", \"fields\": {\"date\": \"2026-10-24\", \"staffing\": \"3\", \"rate\": \"22\", \"place\": \"main lounge and garden\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn agency cover plan\", \"fields\": {\"period\": \"2026-09-01 to 2026-12-31\", \"hours\": \"360\", \"rate\": \"22\", \"budget\": \"7920\", \"status\": \"approved\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Audit week night shadowing\", \"fields\": {\"date\": \"2026-10-12\", \"supervisor\": \"Renata Ellis\", \"task\": \"night medication audit shadowing\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Internal medication spot-checks\", \"fields\": {\"date\": \"2026-10-05\", \"owner\": \"senior carers\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Agency night cover, CQC audit week\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"week\": \"2026-10-12\", \"hours\": \"80\", \"rate\": \"22\", \"total\": \"1760\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Medication trolleys\", \"fields\": {\"supplier\": \"Care Supply Co\", \"item\": \"medication trolleys\", \"total\": \"430\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helen Okafor enquiry\", \"fields\": {\"person\": \"Helen Okafor\", \"regarding\": \"Ade Okafor mobility plan\", \"owner\": \"Sam Bright\", \"status\": \"open\"}}\n ],\n \"consent\": [{\"record\": \"EV-2\", \"fields\": [\"date\", \"staffing\", \"rate\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}],\n \"task\": \"Renata asked me to confirm our extra weekend cover. Please book one Willow Bank agency carer for the night shifts on Saturday 17 and Sunday 18 October (eight hours each) at our agreed hourly rate, and send Renata the confirmation with the total cost.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Willow Bank Agency\", \"item\": \"agency night cover 2026-10-17 to 2026-10-18\", \"hours\": \"16\", \"rate\": \"26\", \"total\": \"416\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"22\"], \"total\": [\"352\", \"384\"]}, \"task\": true},\n  {\"message_to\": \"Renata Ellis (Willow Bank Agency)\", \"regarding\": null, \"says\": [\"Saturday 17 and Sunday 18 October\", \"16 hours\", \"26 pounds per hour\", \"total 416 pounds\"], \"stale\": [\"22 pounds per hour\", \"24 pounds per hour\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"ORD-3\", \"field\": \"total\", \"value\": \"2080\", \"stale\": [\"1760\"]},\n  {\"record\": \"EV-3\", \"field\": \"rate\", \"value\": \"26\", \"stale\": [\"22\"]},\n  {\"record\": \"EV-3\", \"field\": \"budget\", \"value\": \"9360\", \"stale\": [\"7920\"]}\n ],\n \"why\": \"The change replaces the June fact that Willow Bank carers cost 22 pounds per hour with a rate of 26 pounds from 1 October. The audit-week booking (ORD-3) and the autumn cover plan (EV-3) rest on that price, so their rate and totals are revised to the new figures; the open day (EV-2) is two hops away but is a confirmed family event whose cost field needs Priya's consent under the standing rule, so it must stay unchanged with a consent request. The Renata-supervisor decision (EV-4) is only KEEP because the new rate leaves the supervisor arrangement standing, and everything else stays as it is. The task books the extra audit-weekend nights at the current agreed rate of 26 pounds (16 hours, 416 pounds) and confirms that to Renata, ignoring both the stale 22 and Bright Lane's 24-pound quote.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Agency day-shift cover\", \"counterpart\": \"Renata Ellis\", \"org\": \"Willow Bank Agency\", \"item\": \"day-shift agency carer\", \"unit\": \"shifts\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Family visiting slots\", \"counterpart\": \"Priya Nair\", \"org\": \"Meadowbrook Care Home\", \"item\": \"visiting slot\", \"values\": [\"main lounge\", \"conservatory\", \"garden room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"Chiropody clinic\", \"counterpart\": \"Dr Anne Wray\", \"org\": \"Wray Footcare\", \"item\": \"chiropody clinic\", \"values\": [\"conservatory\", \"activity room\", \"garden room\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Laundry collection\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Bramble Linen Ltd\", \"item\": \"laundry collection\", \"unit\": \"bags\", \"values\": [\"80\", \"90\", \"96\", \"110\", \"120\"], \"place\": \"Meadowbrook laundry\"},\n  {\"kind\": \"order\", \"topic\": \"Blister pack wallets\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Rosefield Pharmacy\", \"item\": \"blister pack wallets\", \"unit\": \"packs\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"treatment room\"},\n  {\"kind\": \"order\", \"topic\": \"Kitchen groceries\", \"counterpart\": \"Mo Iqbal\", \"org\": \"Freshfield Foods\", \"item\": \"fruit and veg box\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Meadowbrook kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Grace Lin\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"disinfectant\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Minibus outings\", \"counterpart\": \"Tom Fielding\", \"org\": \"Meadowbrook minibus\", \"item\": \"minibus outing\", \"values\": [\"seaside\", \"garden centre\", \"theatre\"], \"place\": \"Meadowbrook front drive\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training sessions\", \"counterpart\": \"Marta Kowalski\", \"org\": \"Meadowbrook Care Home\", \"item\": \"training session\", \"values\": [\"main lounge\", \"activity room\", \"conservatory\"], \"place\": \"Meadowbrook Care Home\"},\n  {\"kind\": \"order\", \"topic\": \"Office stationery\", \"counterpart\": \"Dean Ross\", \"org\": \"Papertrail Supplies\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Meadowbrook office\"},\n  {\"kind\": \"order\", \"topic\": \"Incontinence supplies\", \"counterpart\": \"Fatima Noor\", \"org\": \"Softcare Hygiene\", \"item\": \"disposable pads\", \"unit\": \"cases\", \"values\": [\"5\", \"7\", \"9\", \"12\"], \"place\": \"Meadowbrook store room\"},\n  {\"kind\": \"booking\", \"topic\": \"Grounds maintenance visits\", \"counterpart\": \"Woody Harnby\", \"org\": \"Greenedge Grounds\", \"item\": \"grounds visit\", \"values\": [\"front garden\", \"back garden\", \"car park borders\"], \"place\": \"Meadowbrook grounds\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12703,
+    "completion_tokens": 5389,
+    "reasoning_tokens": 697,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03792076,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e26 is dated before e25)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Willow Bank rate rise before audit week",
+  "setting": "The operations lead at Meadowbrook Care Home whose assistant coordinates shift rotas, medication audits, and family enquiries",
+  "owner": "Denise",
+  "org": "Meadowbrook Care Home",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Denise",
+    "text": "Standing instruction: once an event that residents' families have been invited to is confirmed, any change to its date, staffing level or cost needs the written consent of Priya Nair, our activities coordinator, before we make it.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Denise",
+    "text": "Meadowbrook policy: any supplier order over 500 pounds needs sign-off from Marta Kowalski, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "note",
+    "from": "Denise",
+    "text": "Meadowbrook currently has 34 residents and a day shift of 8 carers. Sam Bright is the keyworker for Mr Ade Okafor in Room 12.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "letter",
+    "from": "Care Quality Commission",
+    "text": "We will carry out a medication audit at Meadowbrook Care Home from Monday 12 October to Friday 16 October 2026, with a particular focus on the night medication rounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Woody Harnby (Greenedge Grounds)",
+    "text": "Quote for the summer hedge trimming and lawn care: 180 pounds per monthly visit.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Renata Ellis (Willow Bank Agency)",
+    "text": "Happy to confirm our terms for the coming contract year: agency carers supplied to Meadowbrook are charged at 22 pounds per hour for all shifts from July 2026 through March 2027. I, Renata Ellis, will be your dedicated supervisor contact and you can reach me on my direct line on weekdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-19",
+    "type": "note",
+    "from": "Denise",
+    "text": "The garden works finish on 28 June, so the conservatory will be free for afternoon activities from 1 July onwards.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I replied to Helen Okafor about her father Ade Okafor's mobility plan, logged the enquiry in our CRM, and asked his keyworker Sam Bright to update her every fortnight.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Nadia Petrov (Bramble Linen Ltd)",
+    "text": "Just chasing the June laundry invoice - payment would be appreciated by the end of the week.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "call",
+    "from": "Priya Nair",
+    "text": "Call with Priya about the summer barbecue - agreed we keep it small this year, residents and staff only, no agency cover needed.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Denise",
+    "text": "The conservatory is free again, so I booked it for Priya's residents' film afternoon every Wednesday at 2pm, starting 15 July.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Denise",
+    "text": "With Marta's sign-off, as the order is over the 500 pound threshold, I booked Willow Bank Agency for night cover during the CQC medication audit week, Monday 12 to Friday 16 October: two agency carers per night on 8-hour shifts, 80 hours in total at their 22 pounds per hour rate, coming to 1,760 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4",
+     "e6"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-17",
+    "type": "notice",
+    "from": "Renata Ellis (Willow Bank Agency)",
+    "text": "Annual confirmation for your files: your hourly rate of 22 pounds per agency carer remains in place for the 2026-27 contract year, and Renata Ellis remains your supervisor contact.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-21",
+    "type": "invoice",
+    "from": "Nadia Petrov (Bramble Linen Ltd)",
+    "text": "July laundry invoice: 96 bags collected and returned, 312 pounds.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I set the autumn agency cover plan: 360 hours of Willow Bank agency cover between September and December 2026, including the audit-week nights, budgeted at their 22 pounds per hour rate, a total of 7,920 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e12"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I scheduled the family open day for Saturday 24 October 2026 in the main lounge and garden, staffed with 3 Willow Bank agency carers for the afternoon at their 22 pounds per hour rate, costed within the autumn cover plan budget. Since families are being invited, any later change to the date, staffing or cost goes through Priya first. Invitations went out this week.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e15"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-11",
+    "type": "task",
+    "from": "Denise",
+    "text": "Pay Willow Bank's September invoice by 30 September as usual.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I asked Renata Ellis, our Willow Bank supervisor contact, to supervise the shadowing of the night shifts during the audit week and to co-sign the medication audit log each night.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Dr Anne Wray (Chiropody)",
+    "text": "Reminder that my clinic at Meadowbrook is on the last Tuesday of each month - next visit 25 August.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-28",
+    "type": "minutes",
+    "from": "Denise",
+    "text": "Staff meeting minutes: night rota gaps covered by Willow Bank agency carers; audit preparation to begin in September; Priya confirmed the open day planning is under way.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I ordered two extra medication trolleys from Care Supply Co for 430 pounds - under the 500 pound threshold, so no finance sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-07",
+    "type": "email",
+    "from": "Sam Bright",
+    "text": "The hairdresser will now come every Tuesday morning instead of Thursdays, in case anyone asks at reception.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Helen Okafor",
+    "text": "Thank you for the update on Dad's mobility plan - the fortnightly notes from Sam are very reassuring.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-15",
+    "type": "cancellation",
+    "from": "Tom Fielding (Meadowbrook minibus)",
+    "text": "The minibus trip to the garden centre on 18 September is cancelled because of the weather forecast.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Renata Ellis (Willow Bank Agency)",
+    "text": "Some news from our side: because of the National Living Wage increase, from 1 October 2026 our agency carer rate for Meadowbrook rises to 26 pounds per hour. This replaces the 22 pounds per hour rate quoted in June for the remainder of the contract year. Everything else stands - I remain your supervisor contact and your booking terms are otherwise unchanged.",
+    "role": "change",
+    "revokes": [
+     "e6"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-24",
+    "type": "quote",
+    "from": "Bright Lane Staffing",
+    "text": "Following our call, we can supply agency carers to Meadowbrook at 24 pounds per hour for autumn cover if you need extra capacity.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-26",
+    "type": "message",
+    "from": "Sam Bright",
+    "text": "Could we sort out holiday cover for my shifts in November when you get a chance?",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-29",
+    "type": "decision",
+    "from": "Denise",
+    "text": "I scheduled the internal medication spot-checks for the week of Monday 5 October 2026, run by our own senior carers ahead of the CQC visit.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Marta Kowalski",
+    "text": "Please make sure September supplier invoices are coded and passed to me by Friday 9 October.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Renata Ellis (Willow Bank Agency)",
+    "text": "Please send September's timesheets back to me signed by the end of next week.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-04",
+    "type": "note",
+    "from": "Priya Nair",
+    "text": "Autumn newsletter drafted - it reminds families about the open day on Saturday 24 October and the Wednesday film afternoons.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Weekly film afternoon",
+    "fields": {
+     "day": "Wednesday",
+     "time": "14:00",
+     "place": "conservatory",
+     "status": "recurring"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Family open day",
+    "fields": {
+     "date": "2026-10-24",
+     "staffing": "3",
+     "rate": "22",
+     "place": "main lounge and garden",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Autumn agency cover plan",
+    "fields": {
+     "period": "2026-09-01 to 2026-12-31",
+     "hours": "360",
+     "rate": "22",
+     "budget": "7920",
+     "status": "approved"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Audit week night shadowing",
+    "fields": {
+     "date": "2026-10-12",
+     "supervisor": "Renata Ellis",
+     "task": "night medication audit shadowing",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Internal medication spot-checks",
+    "fields": {
+     "date": "2026-10-05",
+     "owner": "senior carers",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Agency night cover, CQC audit week",
+    "fields": {
+     "supplier": "Willow Bank Agency",
+     "week": "2026-10-12",
+     "hours": "80",
+     "rate": "22",
+     "total": "1760",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Medication trolleys",
+    "fields": {
+     "supplier": "Care Supply Co",
+     "item": "medication trolleys",
+     "total": "430",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Helen Okafor enquiry",
+    "fields": {
+     "person": "Helen Okafor",
+     "regarding": "Ade Okafor mobility plan",
+     "owner": "Sam Bright",
+     "status": "open"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "staffing",
+     "rate"
+    ],
+    "from": "Priya Nair",
+    "rule": "e1"
+   }
+  ],
+  "task": "Renata asked me to confirm our extra weekend cover. Please book one Willow Bank agency carer for the night shifts on Saturday 17 and Sunday 18 October (eight hours each) at our agreed hourly rate, and send Renata the confirmation with the total cost.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Willow Bank Agency",
+     "item": "agency night cover 2026-10-17 to 2026-10-18",
+     "hours": "16",
+     "rate": "26",
+     "total": "416",
+     "status": "booked"
+    },
+    "stale": {
+     "rate": [
+      "22"
+     ],
+     "total": [
+      "352",
+      "384"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Renata Ellis (Willow Bank Agency)",
+    "regarding": null,
+    "says": [
+     "Saturday 17 and Sunday 18 October",
+     "16 hours",
+     "26 pounds per hour",
+     "total 416 pounds"
+    ],
+    "stale": [
+     "22 pounds per hour",
+     "24 pounds per hour"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "rate",
+    "value": "26",
+    "stale": [
+     "22"
+    ]
+   },
+   {
+    "record": "ORD-3",
+    "field": "total",
+    "value": "2080",
+    "stale": [
+     "1760"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "rate",
+    "value": "26",
+    "stale": [
+     "22"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "budget",
+    "value": "9360",
+    "stale": [
+     "7920"
+    ]
+   }
+  ],
+  "why": "The change replaces the June fact that Willow Bank carers cost 22 pounds per hour with a rate of 26 pounds from 1 October. The audit-week booking (ORD-3) and the autumn cover plan (EV-3) rest on that price, so their rate and totals are revised to the new figures; the open day (EV-2) is two hops away but is a confirmed family event whose cost field needs Priya's consent under the standing rule, so it must stay unchanged with a consent request. The Renata-supervisor decision (EV-4) is only KEEP because the new rate leaves the supervisor arrangement standing, and everything else stays as it is. The task books the extra audit-weekend nights at the current agreed rate of 26 pounds (16 hours, 416 pounds) and confirms that to Renata, ignoring both the stale 22 and Bright Lane's 24-pound quote.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Agency day-shift cover",
+    "counterpart": "Renata Ellis",
+    "org": "Willow Bank Agency",
+    "item": "day-shift agency carer",
+    "unit": "shifts",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Meadowbrook Care Home"
+   },
+   {
+    "kind": "booking",
+    "topic": "Family visiting slots",
+    "counterpart": "Priya Nair",
+    "org": "Meadowbrook Care Home",
+    "item": "visiting slot",
+    "values": [
+     "main lounge",
+     "conservatory",
+     "garden room"
+    ],
+    "place": "Meadowbrook Care Home"
+   },
+   {
+    "kind": "booking",
+    "topic": "Chiropody clinic",
+    "counterpart": "Dr Anne Wray",
+    "org": "Wray Footcare",
+    "item": "chiropody clinic",
+    "values": [
+     "conservatory",
+     "activity room",
+     "garden room"
+    ],
+    "place": "Meadowbrook Care Home"
+   },
+   {
+    "kind": "order",
+    "topic": "Laundry collection",
+    "counterpart": "Nadia Petrov",
+    "org": "Bramble Linen Ltd",
+    "item": "laundry collection",
+    "unit": "bags",
+    "values": [
+     "80",
+     "90",
+     "96",
+     "110",
+     "120"
+    ],
+    "place": "Meadowbrook laundry"
+   },
+   {
+    "kind": "order",
+    "topic": "Blister pack wallets",
+    "counterpart": "Yusuf Adeyemi",
+    "org": "Rosefield Pharmacy",
+    "item": "blister pack wallets",
+    "unit": "packs",
+    "values": [
+     "40",
+     "50",
+     "60",
+     "70"
+    ],
+    "place": "treatment room"
+   },
+   {
+    "kind": "order",
+    "topic": "Kitchen groceries",
+    "counterpart": "Mo Iqbal",
+    "org": "Freshfield Foods",
+    "item": "fruit and veg box",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Meadowbrook kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Grace Lin",
+    "org": "Halo Cleaning Supplies",
+    "item": "disinfectant",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "cleaning store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Minibus outings",
+    "counterpart": "Tom Fielding",
+    "org": "Meadowbrook minibus",
+    "item": "minibus outing",
+    "values": [
+     "seaside",
+     "garden centre",
+     "theatre"
+    ],
+    "place": "Meadowbrook front drive"
+   },
+   {
+    "kind": "booking",
+    "topic": "Staff training sessions",
+    "counterpart": "Marta Kowalski",
+    "org": "Meadowbrook Care Home",
+    "item": "training session",
+    "values": [
+     "main lounge",
+     "activity room",
+     "conservatory"
+    ],
+    "place": "Meadowbrook Care Home"
+   },
+   {
+    "kind": "order",
+    "topic": "Office stationery",
+    "counterpart": "Dean Ross",
+    "org": "Papertrail Supplies",
+    "item": "printer paper",
+    "unit": "reams",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Meadowbrook office"
+   },
+   {
+    "kind": "order",
+    "topic": "Incontinence supplies",
+    "counterpart": "Fatima Noor",
+    "org": "Softcare Hygiene",
+    "item": "disposable pads",
+    "unit": "cases",
+    "values": [
+     "5",
+     "7",
+     "9",
+     "12"
+    ],
+    "place": "Meadowbrook store room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Grounds maintenance visits",
+    "counterpart": "Woody Harnby",
+    "org": "Greenedge Grounds",
+    "item": "grounds visit",
+    "values": [
+     "front garden",
+     "back garden",
+     "car park borders"
+    ],
+    "place": "Meadowbrook grounds"
+   }
+  ],
+  "id": "G500-1-04",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

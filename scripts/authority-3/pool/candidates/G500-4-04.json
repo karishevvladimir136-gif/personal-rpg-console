@@ -1,0 +1,627 @@
+{
+ "id": "G500-4-04",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 3,
+ "setting": "The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings",
+ "prompt_sha256": "1ed919026598d37cb0727f5c9490f796bded2a20f4387756f55db3c0873b1c35",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Riverton Rowing Club autumn regatta entries\",\n  \"setting\": \"The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings\",\n  \"owner\": \"Freya\",\n  \"org\": \"Riverton Rowing Club\",\n  \"now\": \"2026-10-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Freya\", \"text\": \"Standing instruction from the committee: once a regatta entry is confirmed, the boat, crew or race date on that booking may only be changed with the Captain, Idris, agreeing first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Freya\", \"text\": \"Club rule: any order above 300 pounds needs the treasurer's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"The Wyndham Regatta 2026 will be held on Saturday 17 October. Entry fee is 36 pounds per four and entries close on 2 October.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Freya\", \"text\": \"Boat availability note: the quad Heron and the double Swift are both in service and free for club racing through the autumn.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"Kestrel Trailers quotes 120 pounds for a local tow to a one-day regatta within 40 miles, driver included.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Harbour Lights Catering\", \"text\": \"Harbour Lights Catering quotes 210 pounds for a regatta-day picnic for 30 people, delivered to the venue.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Entered the mixed four at the Wyndham Regatta on 17 October and paid the 36 pounds entry fee as instructed by the committee.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Booked the quad Heron for the morning of the Wyndham Regatta on 17 October so the mixed four can race.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Crew for the four at Wyndham is confirmed: Priya, Sam, Aled and Rachel. We are all free on 17 October.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Ordered the trailer from Kestrel Trailers for the Wyndham Regatta tow on 17 October at their quoted 120 pounds, under the 300 pound limit so no treasurer sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Sam Osei\", \"text\": \"Great that the Wyndham entry is in. I'll bring the club flag and the gazebo on the day.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-02\", \"type\": \"notice\", \"from\": \"Pellow Head Committee\", \"text\": \"The Pellow Head race 2026 will be held on Saturday 7 November. Entry fee is 20 pounds per double and entries close on 30 October.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-06\", \"type\": \"note\", \"from\": \"Aled Hughes\", \"text\": \"The double Swift has been serviced and is in good repair, ready for the autumn head races.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Rachel Voss\", \"text\": \"Two of my blades have loose collars. I'll drop them at the boathouse this week for repair.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"From 1 September our local regatta tow rate goes up to 135 pounds. Everything already confirmed stays at its booked price.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Scheduled the Sunday club rows through the autumn in the quad Heron, weekly at 09:00, since both boats are available.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"minutes\", \"from\": \"Freya\", \"text\": \"Committee minutes: autumn finances healthy; regatta entries proceeding as planned; new members welcome evening set for October.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Assigned Aled as the trailer driver for the Wyndham Regatta tow on 17 October, following on from the Kestrel trailer order already placed.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Booked Harbour Lights Catering for the regatta-day picnic on 17 October at their quoted 210 pounds, under the 300 pound limit so no treasurer sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-05\", \"type\": \"note\", \"from\": \"Freya\", \"text\": \"New boathouse key codes issued to all racing members. Old codes stop working at the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Racing at Wyndham will run over the 1500 metre downstream course as usual.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Entry received for Riverton Rowing Club, mixed four, fee 36 pounds paid, race day Saturday 17 October. Confirmation follows with the draw in early October.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"Reminder: the trailer's licence disc expires at the end of October, so make sure the towing vehicle documents are in order for any November trips.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Good news for regatta day: we will run a free shuttle bus between the Harrow Field car park and the boating area every 20 minutes from 08:00 on 17 October. No booking needed, just turn up.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Racing at the Wyndham Regatta starts at 09:30 on 17 October; crews should be at the boating area an hour before their race.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Idris Morgan\", \"text\": \"By the way, the Wyndham entry fee for an eight is 48 pounds if we ever want to field one. Could be worth thinking about next season.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Freya\", \"text\": \"Reminder to all crews: Wyndham entries close tomorrow, 2 October.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Wyndham Regatta entries are now closed. The draw will be published next week.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-04\", \"type\": \"message\", \"from\": \"Mira Kovač\", \"text\": \"Tomas and I would love to race the double at the Pellow Head on 7 November if the club can enter us.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Tomas Lind\", \"text\": \"Both Mira and I hold valid racing licences and we are free on 7 November. The Swift double would suit us well.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Wyndham Regatta entry, mixed four\", \"fields\": {\"event\": \"Wyndham Regatta\", \"date\": \"2026-10-17\", \"amount\": \"36\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Heron, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"08:30\", \"boat\": \"Heron\", \"crew\": \"Priya, Sam, Aled, Rachel\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Kestrel trailer tow, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"counterparty\": \"Kestrel Trailers\", \"amount\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sunday club rows\", \"fields\": {\"day\": \"Sunday\", \"time\": \"09:00\", \"boat\": \"Heron\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harbour Lights picnic, regatta day\", \"fields\": {\"date\": \"2026-10-17\", \"counterparty\": \"Harbour Lights Catering\", \"amount\": \"210\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Trailer duty, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"task\": \"trailer driver\", \"assigned\": \"Aled Hughes\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"boat\", \"crew\"], \"from\": \"Idris Morgan\", \"rule\": \"e1\"},\n    {\"record\": \"ORD-1\", \"fields\": [\"event\", \"date\"], \"from\": \"Idris Morgan\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Mira and Tomas are keen for the Pellow Head on 7 November. Please enter them in the double at 20 pounds, book the Swift for that morning, and order the trailer from Kestrel for that day as well.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"event\": \"Pellow Head\", \"date\": \"2026-11-07\", \"counterparty\": \"Pellow Head Committee\", \"item\": \"double entry, Mira Kovač and Tomas Lind\", \"amount\": \"20\", \"status\": \"confirmed\"}, \"stale\": {\"amount\": [\"48\"]}, \"task\": true},\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-07\", \"time\": \"08:30\", \"boat\": \"Swift\", \"crew\": \"Mira Kovač, Tomas Lind\", \"event\": \"Pellow Head\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true},\n    {\"create\": \"orders\", \"fields\": {\"date\": \"2026-11-07\", \"counterparty\": \"Kestrel Trailers\", \"item\": \"trailer tow, Pellow Head\", \"amount\": \"135\", \"status\": \"confirmed\"}, \"stale\": {\"amount\": [\"120\"]}, \"task\": true}\n  ],\n  \"why\": \"The change (the free shuttle bus announcement) is a new fact beside the topic: no decision rests on it, so no decision is touched, no record is marked, and every existing record must stay exactly as it is. The task simply carries out the plan as it stands: a new Pellow Head double entry at 20 pounds (not the distractor 48 pounds eights fee), a Swift booking, and a Kestrel trailer tow at the current 135 pound rate rather than the old 120 pounds booked for October.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Bailer sponges restock\", \"counterpart\": \"Nia Frost\", \"org\": \"Riverside Marine Supplies\", \"item\": \"bailer sponges\", \"unit\": \"packs\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"order\", \"topic\": \"Tea and coffee for the boathouse\", \"counterpart\": \"Marta Silva\", \"org\": \"Hilltop Wholesale\", \"item\": \"tea and coffee supplies\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"7\"], \"place\": \"Riverton boathouse kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Erg room slot for circuit training\", \"counterpart\": \"Jonah Reed\", \"org\": \"Riverton Leisure Centre\", \"item\": \"erg room\", \"unit\": \"slot\", \"values\": [\"Main hall\", \"Studio 2\", \"Upstairs room\"], \"place\": \"Riverton Leisure Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Slide cleaning kits\", \"counterpart\": \"Peter Vaughn\", \"org\": \"Oarsmith Care Ltd\", \"item\": \"slide cleaning kits\", \"unit\": \"kits\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Boat trailer parking bays\", \"counterpart\": \"Ruth Bell\", \"org\": \"Kestrel Trailers\", \"item\": \"trailer parking bay\", \"unit\": \"bay\", \"values\": [\"North bay\", \"Riverside bay\", \"Yard bay\"], \"place\": \"Kestrel Trailers yard\"},\n    {\"kind\": \"order\", \"topic\": \"Race numbers and pins\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sportswear\", \"item\": \"race number pins\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Launch safety cover for training rows\", \"counterpart\": \"Theo Marsh\", \"org\": \"Riverton Rowing Club\", \"item\": \"safety launch\", \"unit\": \"session\", \"values\": [\"River stretch A\", \"River stretch B\"], \"place\": \"Riverton river\"},\n    {\"kind\": \"order\", \"topic\": \"Waterproof seat covers\", \"counterpart\": \"Marta Silva\", \"org\": \"Hilltop Wholesale\", \"item\": \"waterproof seat covers\", \"unit\": \"covers\", \"values\": [\"6\", \"9\", \"12\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Committee room for monthly meetings\", \"counterpart\": \"Jonah Reed\", \"org\": \"Riverton Leisure Centre\", \"item\": \"committee room\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 3\", \"Lounge\"], \"place\": \"Riverton Leisure Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Engine oil for the launch\", \"counterpart\": \"Nia Frost\", \"org\": \"Riverside Marine Supplies\", \"item\": \"outboard engine oil\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Riverton boathouse\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3207,
+    "completion_tokens": 7888,
+    "reasoning_tokens": 3843,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03562196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Riverton Rowing Club autumn regatta entries\",\n  \"setting\": \"The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings\",\n  \"owner\": \"Freya\",\n  \"org\": \"Riverton Rowing Club\",\n  \"now\": \"2026-10-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Freya\", \"text\": \"Standing instruction from the committee: once a regatta entry is confirmed, the boat, crew or race date on that booking may only be changed with the Captain, Idris, agreeing first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Freya\", \"text\": \"Club rule: any order above 300 pounds needs the treasurer's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"The Wyndham Regatta 2026 will be held on Saturday 17 October. Entry fee is 36 pounds per four and entries close on 2 October.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Freya\", \"text\": \"Boat availability note: the quad Heron and the double Swift are both in service and free for club racing through the autumn.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"Kestrel Trailers quotes 120 pounds for a local tow to a one-day regatta within 40 miles, driver included.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Harbour Lights Catering\", \"text\": \"Harbour Lights Catering quotes 210 pounds for a regatta-day picnic for 30 people, delivered to the venue.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Entered the mixed four at the Wyndham Regatta on 17 October and paid the 36 pounds entry fee as instructed by the committee.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Booked the quad Heron for the morning of the Wyndham Regatta on 17 October so the mixed four can race.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Crew for the four at Wyndham is confirmed: Priya, Sam, Aled and Rachel. We are all free on 17 October.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Ordered the trailer from Kestrel Trailers for the Wyndham Regatta tow on 17 October at their quoted 120 pounds, under the 300 pound limit so no treasurer sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-20\", \"type\": \"message\", \"from\": \"Sam Osei\", \"text\": \"Great that the Wyndham entry is in. I'll bring the club flag and the gazebo on the day.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-02\", \"type\": \"notice\", \"from\": \"Pellow Head Committee\", \"text\": \"The Pellow Head race 2026 will be held on Saturday 7 November. Entry fee is 20 pounds per double and entries close on 30 October.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-06\", \"type\": \"note\", \"from\": \"Aled Hughes\", \"text\": \"The double Swift has been serviced and is in good repair, ready for the autumn head races.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Rachel Voss\", \"text\": \"Two of my blades have loose collars. I'll drop them at the boathouse this week for repair.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"From 1 September our local regatta tow rate goes up to 135 pounds. Everything already confirmed stays at its booked price.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Scheduled the Sunday club rows through the autumn in the quad Heron, weekly at 09:00, since both boats are available.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"minutes\", \"from\": \"Freya\", \"text\": \"Committee minutes: autumn finances healthy; regatta entries proceeding as planned; new members welcome evening set for October.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Assigned Aled as the trailer driver for the Wyndham Regatta tow on 17 October, following on from the Kestrel trailer order already placed.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Freya\", \"text\": \"Booked Harbour Lights Catering for the regatta-day picnic on 17 October at their quoted 210 pounds, under the 300 pound limit so no treasurer sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-05\", \"type\": \"note\", \"from\": \"Freya\", \"text\": \"New boathouse key codes issued to all racing members. Old codes stop working at the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Racing at Wyndham will run over the 1500 metre downstream course as usual.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Entry received for Riverton Rowing Club, mixed four, fee 36 pounds paid, race day Saturday 17 October. Confirmation follows with the draw in early October.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Ruth Bell (Kestrel Trailers)\", \"text\": \"Reminder: the trailer's licence disc expires at the end of October, so make sure the towing vehicle documents are in order for any November trips.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Good news for regatta day: we will run a free shuttle bus between the Harrow Field car park and the boating area every 20 minutes from 08:00 on 17 October. No booking needed, just turn up.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Racing at the Wyndham Regatta starts at 09:30 on 17 October; crews should be at the boating area an hour before their race.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Idris Morgan\", \"text\": \"By the way, the Wyndham entry fee for an eight is 48 pounds if we ever want to field one. Could be worth thinking about next season.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Freya\", \"text\": \"Reminder to all crews: Wyndham entries close tomorrow, 2 October.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Wyndham Regatta Committee\", \"text\": \"Wyndham Regatta entries are now closed. The draw will be published next week.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-04\", \"type\": \"message\", \"from\": \"Mira Kovač\", \"text\": \"Tomas and I would love to race the double at the Pellow Head on 7 November if the club can enter us.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Tomas Lind\", \"text\": \"Both Mira and I hold valid racing licences and we are free on 7 November. The Swift double would suit us well.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Wyndham Regatta entry, mixed four\", \"fields\": {\"event\": \"Wyndham Regatta\", \"date\": \"2026-10-17\", \"amount\": \"36\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Heron, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"08:30\", \"boat\": \"Heron\", \"crew\": \"Priya, Sam, Aled, Rachel\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Kestrel trailer tow, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"counterparty\": \"Kestrel Trailers\", \"amount\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sunday club rows\", \"fields\": {\"day\": \"Sunday\", \"time\": \"09:00\", \"boat\": \"Heron\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harbour Lights picnic, regatta day\", \"fields\": {\"date\": \"2026-10-17\", \"counterparty\": \"Harbour Lights Catering\", \"amount\": \"210\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Trailer duty, Wyndham Regatta\", \"fields\": {\"date\": \"2026-10-17\", \"task\": \"trailer driver\", \"assigned\": \"Aled Hughes\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"boat\", \"crew\"], \"from\": \"Idris Morgan\", \"rule\": \"e1\"},\n    {\"record\": \"ORD-1\", \"fields\": [\"event\", \"date\"], \"from\": \"Idris Morgan\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Mira and Tomas are keen for the Pellow Head on 7 November. Please enter them in the double at 20 pounds, book the Swift for that morning, and order the trailer from Kestrel for that day as well.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"event\": \"Pellow Head\", \"date\": \"2026-11-07\", \"counterparty\": \"Pellow Head Committee\", \"item\": \"double entry, Mira Kovač and Tomas Lind\", \"amount\": \"20\", \"status\": \"confirmed\"}, \"stale\": {\"amount\": [\"48\"]}, \"task\": true},\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-07\", \"time\": \"08:30\", \"boat\": \"Swift\", \"crew\": \"Mira Kovač, Tomas Lind\", \"event\": \"Pellow Head\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true},\n    {\"create\": \"orders\", \"fields\": {\"date\": \"2026-11-07\", \"counterparty\": \"Kestrel Trailers\", \"item\": \"trailer tow, Pellow Head\", \"amount\": \"135\", \"status\": \"confirmed\"}, \"stale\": {\"amount\": [\"120\"]}, \"task\": true}\n  ],\n  \"why\": \"The change (the free shuttle bus announcement) is a new fact beside the topic: no decision rests on it, so no decision is touched, no record is marked, and every existing record must stay exactly as it is. The task simply carries out the plan as it stands: a new Pellow Head double entry at 20 pounds (not the distractor 48 pounds eights fee), a Swift booking, and a Kestrel trailer tow at the current 135 pound rate rather than the old 120 pounds booked for October.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Bailer sponges restock\", \"counterpart\": \"Nia Frost\", \"org\": \"Riverside Marine Supplies\", \"item\": \"bailer sponges\", \"unit\": \"packs\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"order\", \"topic\": \"Tea and coffee for the boathouse\", \"counterpart\": \"Marta Silva\", \"org\": \"Hilltop Wholesale\", \"item\": \"tea and coffee supplies\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"7\"], \"place\": \"Riverton boathouse kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Erg room slot for circuit training\", \"counterpart\": \"Jonah Reed\", \"org\": \"Riverton Leisure Centre\", \"item\": \"erg room\", \"unit\": \"slot\", \"values\": [\"Main hall\", \"Studio 2\", \"Upstairs room\"], \"place\": \"Riverton Leisure Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Slide cleaning kits\", \"counterpart\": \"Peter Vaughn\", \"org\": \"Oarsmith Care Ltd\", \"item\": \"slide cleaning kits\", \"unit\": \"kits\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Boat trailer parking bays\", \"counterpart\": \"Ruth Bell\", \"org\": \"Kestrel Trailers\", \"item\": \"trailer parking bay\", \"unit\": \"bay\", \"values\": [\"North bay\", \"Riverside bay\", \"Yard bay\"], \"place\": \"Kestrel Trailers yard\"},\n    {\"kind\": \"booking\", \"topic\": \"Trailer washdown slot after race days\", \"counterpart\": \"Ruth Bell\", \"org\": \"Kestrel Trailers\", \"item\": \"trailer washdown bay\", \"unit\": \"slot\", \"values\": [\"Wash bay 1\", \"Wash bay 2\", \"Yard standpipe\"], \"place\": \"Kestrel Trailers yard\"},\n    {\"kind\": \"order\", \"topic\": \"Race numbers and pins\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sportswear\", \"item\": \"race number pins\", \"unit\": \"boxes\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Launch safety cover for training rows\", \"counterpart\": \"Theo Marsh\", \"org\": \"Riverton Rowing Club\", \"item\": \"safety launch\", \"unit\": \"session\", \"values\": [\"River stretch A\", \"River stretch B\", \"River mouth loop\"], \"place\": \"Riverton river\"},\n    {\"kind\": \"order\", \"topic\": \"Waterproof seat covers\", \"counterpart\": \"Marta Silva\", \"org\": \"Hilltop Wholesale\", \"item\": \"waterproof seat covers\", \"unit\": \"covers\", \"values\": [\"6\", \"9\", \"12\"], \"place\": \"Riverton boathouse\"},\n    {\"kind\": \"booking\", \"topic\": \"Committee room for monthly meetings\", \"counterpart\": \"Jonah Reed\", \"org\": \"Riverton Leisure Centre\", \"item\": \"committee room\", \"unit\": \"room\", \"values\": [\"Room 1\", \"Room 3\", \"Lounge\"], \"place\": \"Riverton Leisure Centre\"},\n    {\"kind\": \"order\", \"topic\": \"Engine oil for the launch\", \"counterpart\": \"Nia Frost\", \"org\": \"Riverside Marine Supplies\", \"item\": \"outboard engine oil\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Riverton boathouse\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7323,
+    "completion_tokens": 4226,
+    "reasoning_tokens": 88,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0251986,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Launch safety cover for training rows': values needs at least three entries\n- noise_kit: at least three topics must share a counterpart, organisation or place with the core events (found 2)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Riverton Rowing Club autumn regatta entries",
+  "setting": "The club secretary of Riverton Rowing Club whose assistant maintains membership rolls, regatta entries, and boat bookings",
+  "owner": "Freya",
+  "org": "Riverton Rowing Club",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Freya",
+    "text": "Standing instruction from the committee: once a regatta entry is confirmed, the boat, crew or race date on that booking may only be changed with the Captain, Idris, agreeing first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Freya",
+    "text": "Club rule: any order above 300 pounds needs the treasurer's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "notice",
+    "from": "Wyndham Regatta Committee",
+    "text": "The Wyndham Regatta 2026 will be held on Saturday 17 October. Entry fee is 36 pounds per four and entries close on 2 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "note",
+    "from": "Freya",
+    "text": "Boat availability note: the quad Heron and the double Swift are both in service and free for club racing through the autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-22",
+    "type": "quote",
+    "from": "Ruth Bell (Kestrel Trailers)",
+    "text": "Kestrel Trailers quotes 120 pounds for a local tow to a one-day regatta within 40 miles, driver included.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-30",
+    "type": "quote",
+    "from": "Harbour Lights Catering",
+    "text": "Harbour Lights Catering quotes 210 pounds for a regatta-day picnic for 30 people, delivered to the venue.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Entered the mixed four at the Wyndham Regatta on 17 October and paid the 36 pounds entry fee as instructed by the committee.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Booked the quad Heron for the morning of the Wyndham Regatta on 17 October so the mixed four can race.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Crew for the four at Wyndham is confirmed: Priya, Sam, Aled and Rachel. We are all free on 17 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Ordered the trailer from Kestrel Trailers for the Wyndham Regatta tow on 17 October at their quoted 120 pounds, under the 300 pound limit so no treasurer sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-20",
+    "type": "message",
+    "from": "Sam Osei",
+    "text": "Great that the Wyndham entry is in. I'll bring the club flag and the gazebo on the day.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-02",
+    "type": "notice",
+    "from": "Pellow Head Committee",
+    "text": "The Pellow Head race 2026 will be held on Saturday 7 November. Entry fee is 20 pounds per double and entries close on 30 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-06",
+    "type": "note",
+    "from": "Aled Hughes",
+    "text": "The double Swift has been serviced and is in good repair, ready for the autumn head races.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Rachel Voss",
+    "text": "Two of my blades have loose collars. I'll drop them at the boathouse this week for repair.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Ruth Bell (Kestrel Trailers)",
+    "text": "From 1 September our local regatta tow rate goes up to 135 pounds. Everything already confirmed stays at its booked price.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Scheduled the Sunday club rows through the autumn in the quad Heron, weekly at 09:00, since both boats are available.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-25",
+    "type": "minutes",
+    "from": "Freya",
+    "text": "Committee minutes: autumn finances healthy; regatta entries proceeding as planned; new members welcome evening set for October.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Assigned Aled as the trailer driver for the Wyndham Regatta tow on 17 October, following on from the Kestrel trailer order already placed.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Freya",
+    "text": "Booked Harbour Lights Catering for the regatta-day picnic on 17 October at their quoted 210 pounds, under the 300 pound limit so no treasurer sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-05",
+    "type": "note",
+    "from": "Freya",
+    "text": "New boathouse key codes issued to all racing members. Old codes stop working at the end of September.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-08",
+    "type": "notice",
+    "from": "Wyndham Regatta Committee",
+    "text": "Racing at Wyndham will run over the 1500 metre downstream course as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Wyndham Regatta Committee",
+    "text": "Entry received for Riverton Rowing Club, mixed four, fee 36 pounds paid, race day Saturday 17 October. Confirmation follows with the draw in early October.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Ruth Bell (Kestrel Trailers)",
+    "text": "Reminder: the trailer's licence disc expires at the end of October, so make sure the towing vehicle documents are in order for any November trips.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Wyndham Regatta Committee",
+    "text": "Good news for regatta day: we will run a free shuttle bus between the Harrow Field car park and the boating area every 20 minutes from 08:00 on 17 October. No booking needed, just turn up.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "notice",
+    "from": "Wyndham Regatta Committee",
+    "text": "Racing at the Wyndham Regatta starts at 09:30 on 17 October; crews should be at the boating area an hour before their race.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Idris Morgan",
+    "text": "By the way, the Wyndham entry fee for an eight is 48 pounds if we ever want to field one. Could be worth thinking about next season.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "message",
+    "from": "Freya",
+    "text": "Reminder to all crews: Wyndham entries close tomorrow, 2 October.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "notice",
+    "from": "Wyndham Regatta Committee",
+    "text": "Wyndham Regatta entries are now closed. The draw will be published next week.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-04",
+    "type": "message",
+    "from": "Mira Kovač",
+    "text": "Tomas and I would love to race the double at the Pellow Head on 7 November if the club can enter us.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Tomas Lind",
+    "text": "Both Mira and I hold valid racing licences and we are free on 7 November. The Swift double would suit us well.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Wyndham Regatta entry, mixed four",
+    "fields": {
+     "event": "Wyndham Regatta",
+     "date": "2026-10-17",
+     "amount": "36",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Heron, Wyndham Regatta",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "08:30",
+     "boat": "Heron",
+     "crew": "Priya, Sam, Aled, Rachel",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Kestrel trailer tow, Wyndham Regatta",
+    "fields": {
+     "date": "2026-10-17",
+     "counterparty": "Kestrel Trailers",
+     "amount": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Sunday club rows",
+    "fields": {
+     "day": "Sunday",
+     "time": "09:00",
+     "boat": "Heron",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Harbour Lights picnic, regatta day",
+    "fields": {
+     "date": "2026-10-17",
+     "counterparty": "Harbour Lights Catering",
+     "amount": "210",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Trailer duty, Wyndham Regatta",
+    "fields": {
+     "date": "2026-10-17",
+     "task": "trailer driver",
+     "assigned": "Aled Hughes",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "boat",
+     "crew"
+    ],
+    "from": "Idris Morgan",
+    "rule": "e1"
+   },
+   {
+    "record": "ORD-1",
+    "fields": [
+     "event",
+     "date"
+    ],
+    "from": "Idris Morgan",
+    "rule": "e1"
+   }
+  ],
+  "task": "Mira and Tomas are keen for the Pellow Head on 7 November. Please enter them in the double at 20 pounds, book the Swift for that morning, and order the trailer from Kestrel for that day as well.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "event": "Pellow Head",
+     "date": "2026-11-07",
+     "counterparty": "Pellow Head Committee",
+     "item": "double entry, Mira Kovač and Tomas Lind",
+     "amount": "20",
+     "status": "confirmed"
+    },
+    "stale": {
+     "amount": [
+      "48"
+     ]
+    },
+    "task": true
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-07",
+     "time": "08:30",
+     "boat": "Swift",
+     "crew": "Mira Kovač, Tomas Lind",
+     "event": "Pellow Head",
+     "status": "booked"
+    },
+    "stale": {},
+    "task": true
+   },
+   {
+    "create": "orders",
+    "fields": {
+     "date": "2026-11-07",
+     "counterparty": "Kestrel Trailers",
+     "item": "trailer tow, Pellow Head",
+     "amount": "135",
+     "status": "confirmed"
+    },
+    "stale": {
+     "amount": [
+      "120"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The change (the free shuttle bus announcement) is a new fact beside the topic: no decision rests on it, so no decision is touched, no record is marked, and every existing record must stay exactly as it is. The task simply carries out the plan as it stands: a new Pellow Head double entry at 20 pounds (not the distractor 48 pounds eights fee), a Swift booking, and a Kestrel trailer tow at the current 135 pound rate rather than the old 120 pounds booked for October.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Bailer sponges restock",
+    "counterpart": "Nia Frost",
+    "org": "Riverside Marine Supplies",
+    "item": "bailer sponges",
+    "unit": "packs",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "order",
+    "topic": "Tea and coffee for the boathouse",
+    "counterpart": "Marta Silva",
+    "org": "Hilltop Wholesale",
+    "item": "tea and coffee supplies",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "7"
+    ],
+    "place": "Riverton boathouse kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Erg room slot for circuit training",
+    "counterpart": "Jonah Reed",
+    "org": "Riverton Leisure Centre",
+    "item": "erg room",
+    "unit": "slot",
+    "values": [
+     "Main hall",
+     "Studio 2",
+     "Upstairs room"
+    ],
+    "place": "Riverton Leisure Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Slide cleaning kits",
+    "counterpart": "Peter Vaughn",
+    "org": "Oarsmith Care Ltd",
+    "item": "slide cleaning kits",
+    "unit": "kits",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "Boat trailer parking bays",
+    "counterpart": "Ruth Bell",
+    "org": "Kestrel Trailers",
+    "item": "trailer parking bay",
+    "unit": "bay",
+    "values": [
+     "North bay",
+     "Riverside bay",
+     "Yard bay"
+    ],
+    "place": "Kestrel Trailers yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Trailer washdown slot after race days",
+    "counterpart": "Ruth Bell",
+    "org": "Kestrel Trailers",
+    "item": "trailer washdown bay",
+    "unit": "slot",
+    "values": [
+     "Wash bay 1",
+     "Wash bay 2",
+     "Yard standpipe"
+    ],
+    "place": "Kestrel Trailers yard"
+   },
+   {
+    "kind": "order",
+    "topic": "Race numbers and pins",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Sportswear",
+    "item": "race number pins",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "Launch safety cover for training rows",
+    "counterpart": "Theo Marsh",
+    "org": "Riverton Rowing Club",
+    "item": "safety launch",
+    "unit": "session",
+    "values": [
+     "River stretch A",
+     "River stretch B",
+     "River mouth loop"
+    ],
+    "place": "Riverton river"
+   },
+   {
+    "kind": "order",
+    "topic": "Waterproof seat covers",
+    "counterpart": "Marta Silva",
+    "org": "Hilltop Wholesale",
+    "item": "waterproof seat covers",
+    "unit": "covers",
+    "values": [
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "Riverton boathouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "Committee room for monthly meetings",
+    "counterpart": "Jonah Reed",
+    "org": "Riverton Leisure Centre",
+    "item": "committee room",
+    "unit": "room",
+    "values": [
+     "Room 1",
+     "Room 3",
+     "Lounge"
+    ],
+    "place": "Riverton Leisure Centre"
+   },
+   {
+    "kind": "order",
+    "topic": "Engine oil for the launch",
+    "counterpart": "Nia Frost",
+    "org": "Riverside Marine Supplies",
+    "item": "outboard engine oil",
+    "unit": "litres",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Riverton boathouse"
+   }
+  ],
+  "id": "G500-4-04",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

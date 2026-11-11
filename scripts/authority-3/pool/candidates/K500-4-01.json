@@ -1,0 +1,554 @@
+{
+ "id": "K500-4-01",
+ "writer": "kimi",
+ "tier": 500,
+ "class": 4,
+ "idx": 0,
+ "setting": "Membership secretary at Harbourview Rowing Club, a 150-member rowing club",
+ "prompt_sha256": "5039c7732bcc002d506b9972c41e4f2b738d5cbf9a673b0de0a5d8a8ed284ea8",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Open day catering and the 2027 price list\",\n \"setting\": \"Membership secretary at Harbourview Rowing Club, a 150-member rowing club\",\n \"owner\": \"Fiona\",\n \"org\": \"Harbourview Rowing Club\",\n \"now\": \"2026-10-21\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing instruction for the club office: any supplier order over £250 must have treasurer Martin Hale's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Fiona\", \"text\": \"Standing rule agreed with the committee: once a club event booking is confirmed in the event schedule, its date or place may not be changed without committee chair Sandra Pell's consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Thanks for asking about catering. Our 2026 buffet rate is £12 per head, delivery included to Harbourview Rowing Club's boathouse.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"message\", \"from\": \"Pete Colley\", \"text\": \"Yes, I can drive the safety launch for the club's open day on Saturday 14 November 2026, happy to help out all morning.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"Checked the board: Bay 2 in the boathouse is free on Saturday 14 November 2026, so you can use it for the open day rigging demos.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Nora Venn (head coach)\", \"text\": \"For the open day I can run two taster sessions on the water, one mid-morning and one before lunch, with two experienced members alongside.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-20\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"Open day registrations are at 38 and still trickling in; plan catering for around 40 attendees on 14 November.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Sent the July membership renewal reminders to all 150 members of Harbourview Rowing Club; 112 have renewed so far.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked Bay 2 in the boathouse for the open day rigging demos on Saturday 14 November 2026, since Alan confirmed the bay is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked the safety launch with Pete Colley as driver for the open day on Saturday 14 November 2026, covering the morning sessions.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-27\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Scheduled two taster sessions on the water with Nora Venn for the open day on 14 November 2026, one at 10:30 and one at 11:30.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Sam Adey (Printwell)\", \"text\": \"Quote for Harbourview Rowing Club: 100 colour open day flyers, £85 total, ready within a week of artwork approval.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Ordered 100 open day flyers from Printwell at £85; under the £250 threshold so no treasurer sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-10\", \"type\": \"minutes\", \"from\": \"Sandra Pell (committee chair)\", \"text\": \"Committee minutes: open day planning on track for 14 November; Fiona to handle bookings, catering and volunteer rota.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"invoice\", \"from\": \"Sam Adey (Printwell)\", \"text\": \"Invoice PW-118: 100 open day flyers for Harbourview Rowing Club, £85, paid by bank transfer today.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"The clubroom is free on Saturday 21 November 2026 if you want it for the autumn prizegiving evening.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked the clubroom for the autumn prizegiving evening on Saturday 21 November 2026, 19:00 start, as Alan confirmed it is free.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Ordered catering for the open day on Saturday 14 November 2026 from Marina Café: 40 covers at £12 per head, £480 total, delivered to the boathouse by 10:00. Martin Hale signed off the order as it is over £250.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Thank you, we have your catering order for Harbourview Rowing Club's open day on the books and will confirm the details nearer the time.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-04\", \"type\": \"message\", \"from\": \"Fiona\", \"text\": \"Reminder to the volunteer group: gate duty rota for the open day goes out next week; we need two people on the gate from 09:30.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Fiona\", \"text\": \"Chase the 38 outstanding membership renewals by 30 September 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Just confirming your open day order as it stands: 40 covers at £12 per head for Saturday 14 November 2026, delivery to the boathouse by 10:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"notice\", \"from\": \"Nora Venn (head coach)\", \"text\": \"Winter training timetable is pinned up in the clubhouse: ergo sessions Tuesday and Thursday evenings from 6 October.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Heads-up for our regulars: Marina Café's new price list starts on 1 January 2027, when the buffet rate goes to £13.50 per head. Everything booked for 2026 keeps this year's pricing, of course.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Nora Venn (head coach)\", \"text\": \"Quick call with Nora: taster sessions for the open day confirmed at 10:30 and 11:30, two experienced members helping on each.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Quote for your committee to consider: club Christmas dinner, 60 covers at £11.50 per head, evening of Saturday 12 December 2026.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Fiona\", \"text\": \"Do the final headcount check for the open day by 31 October 2026 before locking the catering numbers.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"Boathouse gate code changed this week; the new code is on the noticeboard, tell your open day volunteers to check it on the morning.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Open day rigging demos\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Bay 2, boathouse\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Safety launch cover for open day\", \"fields\": {\"date\": \"2026-11-14\", \"driver\": \"Pete Colley\", \"place\": \"Club pontoon\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Open day taster sessions\", \"fields\": {\"date\": \"2026-11-14\", \"coach\": \"Nora Venn\", \"sessions\": \"2\", \"times\": \"10:30 and 11:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Autumn prizegiving evening\", \"fields\": {\"date\": \"2026-11-21\", \"place\": \"Clubroom\", \"time\": \"19:00\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Open day catering, Marina Café\", \"fields\": {\"supplier\": \"Marina Café\", \"date\": \"2026-11-14\", \"covers\": \"40\", \"rate\": \"12\", \"total\": \"480\", \"delivery\": \"Boathouse by 10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Open day flyers, Printwell\", \"fields\": {\"supplier\": \"Printwell\", \"copies\": \"100\", \"total\": \"85\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Sandra Pell (committee chair)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Jill at Marina Café a note confirming our open day catering order — 40 covers at £12 a head for Saturday 14 November, delivered to the boathouse by 10:00 — so everything is locked in.\",\n \"expect\": [\n  {\"message_to\": \"Jill Tran (Marina Café)\", \"regarding\": \"ORD-1\", \"says\": [\"40\", \"12\", \"2026-11-14\"], \"stale\": [\"13.50\", \"11.50\", \"60\"], \"task\": true}\n ],\n \"why\": \"The only change is Marina Café's 2027 price list, which starts on 1 January 2026's successor year and leaves every 2026 booking untouched, so no decision is touched and every record stays as decided. The Christmas dinner quote (60 covers, £11.50) is a distractor about a different event. The task is simply to confirm the standing open day order as it stands: 40 covers at £12 a head for 14 November 2026.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"sandwich platters for regatta days\", \"counterpart\": \"Jill Tran\", \"org\": \"Marina Café\", \"item\": \"sandwich platter\", \"unit\": \"platter\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Clubhouse kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"safety launch for Saturday regattas\", \"counterpart\": \"Pete Colley\", \"org\": \"Harbourview Rowing Club\", \"item\": \"safety launch\", \"values\": [\"Bay 1\", \"Bay 3\", \"Club pontoon\", \"Marina slipway\"], \"place\": \"Club pontoon\"},\n  {\"kind\": \"order\", \"topic\": \"newsletter printing\", \"counterpart\": \"Sam Adey\", \"org\": \"Printwell\", \"item\": \"club newsletter\", \"unit\": \"copy\", \"values\": [\"100\", \"150\", \"200\", \"120\"], \"place\": \"Club office\"},\n  {\"kind\": \"booking\", \"topic\": \"clubroom for committee meetings\", \"counterpart\": \"Alan Bew\", \"org\": \"Harbourview Rowing Club\", \"item\": \"clubroom\", \"values\": [\"Clubroom\", \"Committee room\", \"Bar area\"], \"place\": \"Clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"erg spare parts\", \"counterpart\": \"Gil Mason\", \"org\": \"Oarlock Supplies\", \"item\": \"erg monitor battery pack\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Boathouse\"},\n  {\"kind\": \"booking\", \"topic\": \"boat trailer hire for away regattas\", \"counterpart\": \"Tessa Bright\", \"org\": \"Bright Trailer Hire\", \"item\": \"boat trailer\", \"values\": [\"Single trailer\", \"Double trailer\"], \"place\": \"Club yard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Pat Nolan\", \"org\": \"Harbour Stores\", \"item\": \"cleaning supplies box\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Clubhouse store\"},\n  {\"kind\": \"booking\", \"topic\": \"physio room for members\", \"counterpart\": \"Lena Marsh\", \"org\": \"Riverside Physio\", \"item\": \"treatment room\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Riverside Physio clinic\"},\n  {\"kind\": \"order\", \"topic\": \"launch fuel\", \"counterpart\": \"Don Pearce\", \"org\": \"Marina Fuels\", \"item\": \"outboard fuel\", \"unit\": \"can\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Boathouse fuel locker\"},\n  {\"kind\": \"order\", \"topic\": \"medal engraving\", \"counterpart\": \"Ruth Vane\", \"org\": \"Trophy Cabin\", \"item\": \"regatta medal\", \"unit\": \"medal\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Club office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3245,
+    "completion_tokens": 6821,
+    "reasoning_tokens": 3114,
+    "cached_tokens": 0
+   },
+   "cost": 0.11205,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Open day catering and the 2027 price list\",\n \"setting\": \"Membership secretary at Harbourview Rowing Club, a 150-member rowing club\",\n \"owner\": \"Fiona\",\n \"org\": \"Harbourview Rowing Club\",\n \"now\": \"2026-10-21\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Fiona\", \"text\": \"Standing instruction for the club office: any supplier order over £250 must have treasurer Martin Hale's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Fiona\", \"text\": \"Standing rule agreed with the committee: once a club event booking is confirmed in the event schedule, its date or place may not be changed without committee chair Sandra Pell's consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Thanks for asking about catering. Our 2026 buffet rate is £12 per head, delivery included to Harbourview Rowing Club's boathouse.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"message\", \"from\": \"Pete Colley\", \"text\": \"Yes, I can drive the safety launch for the club's open day on Saturday 14 November 2026, happy to help out all morning.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"Checked the board: Bay 2 in the boathouse is free on Saturday 14 November 2026, so you can use it for the open day rigging demos.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Nora Venn (head coach)\", \"text\": \"For the open day I can run two taster sessions on the water, one mid-morning and one before lunch, with two experienced members alongside.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-20\", \"type\": \"note\", \"from\": \"Fiona\", \"text\": \"Open day registrations are at 38 and still trickling in; plan catering for around 40 attendees on 14 November.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Fiona\", \"text\": \"Sent the July membership renewal reminders to all 150 members of Harbourview Rowing Club; 112 have renewed so far.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked Bay 2 in the boathouse for the open day rigging demos on Saturday 14 November 2026, since Alan confirmed the bay is free that day.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked the safety launch with Pete Colley as driver for the open day on Saturday 14 November 2026, covering the morning sessions.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-27\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Scheduled two taster sessions on the water with Nora Venn for the open day on 14 November 2026, one at 10:30 and one at 11:30.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Sam Adey (Printwell)\", \"text\": \"Quote for Harbourview Rowing Club: 100 colour open day flyers, £85 total, ready within a week of artwork approval.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Ordered 100 open day flyers from Printwell at £85; under the £250 threshold so no treasurer sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-10\", \"type\": \"minutes\", \"from\": \"Sandra Pell (committee chair)\", \"text\": \"Committee minutes: open day planning on track for 14 November; Fiona to handle bookings, catering and volunteer rota.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"invoice\", \"from\": \"Sam Adey (Printwell)\", \"text\": \"Invoice PW-118: 100 open day flyers for Harbourview Rowing Club, £85, paid by bank transfer today.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-17\", \"type\": \"email\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"The clubroom is free on Saturday 21 November 2026 if you want it for the autumn prizegiving evening.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Booked the clubroom for the autumn prizegiving evening on Saturday 21 November 2026, 19:00 start, as Alan confirmed it is free.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Fiona\", \"text\": \"Ordered catering for the open day on Saturday 14 November 2026 from Marina Café: 40 covers at £12 per head, £480 total, delivered to the boathouse by 10:00. Martin Hale signed off the order as it is over £250.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Thank you, we have your catering order for Harbourview Rowing Club's open day on the books and will confirm the details nearer the time.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-04\", \"type\": \"message\", \"from\": \"Fiona\", \"text\": \"Reminder to the volunteer group: gate duty rota for the open day goes out next week; we need two people on the gate from 09:30.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Fiona\", \"text\": \"Chase the 38 outstanding membership renewals by 30 September 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Just confirming your open day order as it stands: 40 covers at £12 per head for Saturday 14 November 2026, delivery to the boathouse by 10:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"notice\", \"from\": \"Nora Venn (head coach)\", \"text\": \"Winter training timetable is pinned up in the clubhouse: ergo sessions Tuesday and Thursday evenings from 6 October.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Heads-up for our regulars: Marina Café's new price list starts on 1 January 2027, when the buffet rate goes to £13.50 per head. Everything booked for 2026 keeps this year's pricing, of course.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Nora Venn (head coach)\", \"text\": \"Quick call with Nora: taster sessions for the open day confirmed at 10:30 and 11:30, two experienced members helping on each.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Jill Tran (Marina Café)\", \"text\": \"Quote for your committee to consider: club Christmas dinner, 60 covers at £11.50 per head, evening of Saturday 12 December 2026.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Fiona\", \"text\": \"Do the final headcount check for the open day by 31 October 2026 before locking the catering numbers.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"message\", \"from\": \"Alan Bew (club caretaker)\", \"text\": \"Boathouse gate code changed this week; the new code is on the noticeboard, tell your open day volunteers to check it on the morning.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Open day rigging demos\", \"fields\": {\"date\": \"2026-11-14\", \"place\": \"Bay 2, boathouse\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Safety launch cover for open day\", \"fields\": {\"date\": \"2026-11-14\", \"driver\": \"Pete Colley\", \"place\": \"Club pontoon\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Open day taster sessions\", \"fields\": {\"date\": \"2026-11-14\", \"coach\": \"Nora Venn\", \"sessions\": \"2\", \"times\": \"10:30 and 11:30\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Autumn prizegiving evening\", \"fields\": {\"date\": \"2026-11-21\", \"place\": \"Clubroom\", \"time\": \"19:00\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Open day catering, Marina Café\", \"fields\": {\"supplier\": \"Marina Café\", \"date\": \"2026-11-14\", \"covers\": \"40\", \"rate\": \"12\", \"total\": \"480\", \"delivery\": \"Boathouse by 10:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Open day flyers, Printwell\", \"fields\": {\"supplier\": \"Printwell\", \"copies\": \"100\", \"total\": \"85\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\"], \"from\": \"Sandra Pell (committee chair)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Jill at Marina Café a note confirming our open day catering order — 40 covers at £12 a head for Saturday 14 November, delivered to the boathouse by 10:00 — so everything is locked in.\",\n \"expect\": [\n  {\"message_to\": \"Jill Tran (Marina Café)\", \"regarding\": \"ORD-1\", \"says\": [\"40\", \"12\", \"2026-11-14\"], \"stale\": [\"13.50\", \"11.50\", \"60\"], \"task\": true}\n ],\n \"why\": \"The only change is Marina Café's 2027 price list, which starts on 1 January 2027 and leaves every 2026 booking untouched, so no decision is touched and every record stays as decided. The Christmas dinner quote (60 covers, £11.50) is a distractor about a different event. The task is simply to confirm the standing open day order as it stands: 40 covers at £12 a head for 14 November 2026.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"sandwich platters for regatta days\", \"counterpart\": \"Jill Tran\", \"org\": \"Marina Café\", \"item\": \"sandwich platter\", \"unit\": \"platter\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Clubhouse kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"safety launch for Saturday regattas\", \"counterpart\": \"Pete Colley\", \"org\": \"Harbourview Rowing Club\", \"item\": \"safety launch\", \"values\": [\"Bay 1\", \"Bay 3\", \"Club pontoon\", \"Marina slipway\"], \"place\": \"Club pontoon\"},\n  {\"kind\": \"order\", \"topic\": \"newsletter printing\", \"counterpart\": \"Sam Adey\", \"org\": \"Printwell\", \"item\": \"club newsletter\", \"unit\": \"copy\", \"values\": [\"100\", \"150\", \"200\", \"120\"], \"place\": \"Club office\"},\n  {\"kind\": \"booking\", \"topic\": \"clubroom for committee meetings\", \"counterpart\": \"Alan Bew\", \"org\": \"Harbourview Rowing Club\", \"item\": \"clubroom\", \"values\": [\"Clubroom\", \"Committee room\", \"Bar area\"], \"place\": \"Clubhouse\"},\n  {\"kind\": \"order\", \"topic\": \"erg spare parts\", \"counterpart\": \"Gil Mason\", \"org\": \"Oarlock Supplies\", \"item\": \"erg monitor battery pack\", \"unit\": \"pack\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Boathouse\"},\n  {\"kind\": \"booking\", \"topic\": \"boat trailer hire for away regattas\", \"counterpart\": \"Tessa Bright\", \"org\": \"Bright Trailer Hire\", \"item\": \"boat trailer\", \"values\": [\"Single trailer\", \"Double trailer\", \"Quad trailer\"], \"place\": \"Club yard\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies restock\", \"counterpart\": \"Pat Nolan\", \"org\": \"Harbour Stores\", \"item\": \"cleaning supplies box\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Clubhouse store\"},\n  {\"kind\": \"booking\", \"topic\": \"physio room for members\", \"counterpart\": \"Lena Marsh\", \"org\": \"Riverside Physio\", \"item\": \"treatment room\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Riverside Physio clinic\"},\n  {\"kind\": \"order\", \"topic\": \"launch fuel\", \"counterpart\": \"Don Pearce\", \"org\": \"Marina Fuels\", \"item\": \"outboard fuel\", \"unit\": \"can\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Boathouse fuel locker\"},\n  {\"kind\": \"order\", \"topic\": \"medal engraving\", \"counterpart\": \"Ruth Vane\", \"org\": \"Trophy Cabin\", \"item\": \"regatta medal\", \"unit\": \"medal\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Club office\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7036,
+    "completion_tokens": 3713,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0685086,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'boat trailer hire for away regattas': values needs at least three entries\n- noise topic 'physio room for members': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Open day catering and the 2027 price list",
+  "setting": "Membership secretary at Harbourview Rowing Club, a 150-member rowing club",
+  "owner": "Fiona",
+  "org": "Harbourview Rowing Club",
+  "now": "2026-10-21",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Fiona",
+    "text": "Standing instruction for the club office: any supplier order over £250 must have treasurer Martin Hale's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Fiona",
+    "text": "Standing rule agreed with the committee: once a club event booking is confirmed in the event schedule, its date or place may not be changed without committee chair Sandra Pell's consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Jill Tran (Marina Café)",
+    "text": "Thanks for asking about catering. Our 2026 buffet rate is £12 per head, delivery included to Harbourview Rowing Club's boathouse.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "message",
+    "from": "Pete Colley",
+    "text": "Yes, I can drive the safety launch for the club's open day on Saturday 14 November 2026, happy to help out all morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Alan Bew (club caretaker)",
+    "text": "Checked the board: Bay 2 in the boathouse is free on Saturday 14 November 2026, so you can use it for the open day rigging demos.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-10",
+    "type": "message",
+    "from": "Nora Venn (head coach)",
+    "text": "For the open day I can run two taster sessions on the water, one mid-morning and one before lunch, with two experienced members alongside.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-20",
+    "type": "note",
+    "from": "Fiona",
+    "text": "Open day registrations are at 38 and still trickling in; plan catering for around 40 attendees on 14 November.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Fiona",
+    "text": "Sent the July membership renewal reminders to all 150 members of Harbourview Rowing Club; 112 have renewed so far.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Booked Bay 2 in the boathouse for the open day rigging demos on Saturday 14 November 2026, since Alan confirmed the bay is free that day.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Booked the safety launch with Pete Colley as driver for the open day on Saturday 14 November 2026, covering the morning sessions.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-27",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Scheduled two taster sessions on the water with Nora Venn for the open day on 14 November 2026, one at 10:30 and one at 11:30.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Sam Adey (Printwell)",
+    "text": "Quote for Harbourview Rowing Club: 100 colour open day flyers, £85 total, ready within a week of artwork approval.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Ordered 100 open day flyers from Printwell at £85; under the £250 threshold so no treasurer sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-10",
+    "type": "minutes",
+    "from": "Sandra Pell (committee chair)",
+    "text": "Committee minutes: open day planning on track for 14 November; Fiona to handle bookings, catering and volunteer rota.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-14",
+    "type": "invoice",
+    "from": "Sam Adey (Printwell)",
+    "text": "Invoice PW-118: 100 open day flyers for Harbourview Rowing Club, £85, paid by bank transfer today.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-17",
+    "type": "email",
+    "from": "Alan Bew (club caretaker)",
+    "text": "The clubroom is free on Saturday 21 November 2026 if you want it for the autumn prizegiving evening.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Booked the clubroom for the autumn prizegiving evening on Saturday 21 November 2026, 19:00 start, as Alan confirmed it is free.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Fiona",
+    "text": "Ordered catering for the open day on Saturday 14 November 2026 from Marina Café: 40 covers at £12 per head, £480 total, delivered to the boathouse by 10:00. Martin Hale signed off the order as it is over £250.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e7",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Jill Tran (Marina Café)",
+    "text": "Thank you, we have your catering order for Harbourview Rowing Club's open day on the books and will confirm the details nearer the time.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-04",
+    "type": "message",
+    "from": "Fiona",
+    "text": "Reminder to the volunteer group: gate duty rota for the open day goes out next week; we need two people on the gate from 09:30.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-08",
+    "type": "task",
+    "from": "Fiona",
+    "text": "Chase the 38 outstanding membership renewals by 30 September 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Jill Tran (Marina Café)",
+    "text": "Just confirming your open day order as it stands: 40 covers at £12 per head for Saturday 14 November 2026, delivery to the boathouse by 10:00.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-18",
+    "type": "notice",
+    "from": "Nora Venn (head coach)",
+    "text": "Winter training timetable is pinned up in the clubhouse: ergo sessions Tuesday and Thursday evenings from 6 October.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Jill Tran (Marina Café)",
+    "text": "Heads-up for our regulars: Marina Café's new price list starts on 1 January 2027, when the buffet rate goes to £13.50 per head. Everything booked for 2026 keeps this year's pricing, of course.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-02",
+    "type": "call",
+    "from": "Nora Venn (head coach)",
+    "text": "Quick call with Nora: taster sessions for the open day confirmed at 10:30 and 11:30, two experienced members helping on each.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Jill Tran (Marina Café)",
+    "text": "Quote for your committee to consider: club Christmas dinner, 60 covers at £11.50 per head, evening of Saturday 12 December 2026.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-12",
+    "type": "task",
+    "from": "Fiona",
+    "text": "Do the final headcount check for the open day by 31 October 2026 before locking the catering numbers.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "message",
+    "from": "Alan Bew (club caretaker)",
+    "text": "Boathouse gate code changed this week; the new code is on the noticeboard, tell your open day volunteers to check it on the morning.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Open day rigging demos",
+    "fields": {
+     "date": "2026-11-14",
+     "place": "Bay 2, boathouse",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Safety launch cover for open day",
+    "fields": {
+     "date": "2026-11-14",
+     "driver": "Pete Colley",
+     "place": "Club pontoon",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Open day taster sessions",
+    "fields": {
+     "date": "2026-11-14",
+     "coach": "Nora Venn",
+     "sessions": "2",
+     "times": "10:30 and 11:30",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Autumn prizegiving evening",
+    "fields": {
+     "date": "2026-11-21",
+     "place": "Clubroom",
+     "time": "19:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Open day catering, Marina Café",
+    "fields": {
+     "supplier": "Marina Café",
+     "date": "2026-11-14",
+     "covers": "40",
+     "rate": "12",
+     "total": "480",
+     "delivery": "Boathouse by 10:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Open day flyers, Printwell",
+    "fields": {
+     "supplier": "Printwell",
+     "copies": "100",
+     "total": "85",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Sandra Pell (committee chair)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Jill at Marina Café a note confirming our open day catering order — 40 covers at £12 a head for Saturday 14 November, delivered to the boathouse by 10:00 — so everything is locked in.",
+  "expect": [
+   {
+    "message_to": "Jill Tran (Marina Café)",
+    "regarding": "ORD-1",
+    "says": [
+     "40",
+     "12",
+     "2026-11-14"
+    ],
+    "stale": [
+     "13.50",
+     "11.50",
+     "60"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The only change is Marina Café's 2027 price list, which starts on 1 January 2027 and leaves every 2026 booking untouched, so no decision is touched and every record stays as decided. The Christmas dinner quote (60 covers, £11.50) is a distractor about a different event. The task is simply to confirm the standing open day order as it stands: 40 covers at £12 a head for 14 November 2026.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "sandwich platters for regatta days",
+    "counterpart": "Jill Tran",
+    "org": "Marina Café",
+    "item": "sandwich platter",
+    "unit": "platter",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Clubhouse kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "safety launch for Saturday regattas",
+    "counterpart": "Pete Colley",
+    "org": "Harbourview Rowing Club",
+    "item": "safety launch",
+    "values": [
+     "Bay 1",
+     "Bay 3",
+     "Club pontoon",
+     "Marina slipway"
+    ],
+    "place": "Club pontoon"
+   },
+   {
+    "kind": "order",
+    "topic": "newsletter printing",
+    "counterpart": "Sam Adey",
+    "org": "Printwell",
+    "item": "club newsletter",
+    "unit": "copy",
+    "values": [
+     "100",
+     "150",
+     "200",
+     "120"
+    ],
+    "place": "Club office"
+   },
+   {
+    "kind": "booking",
+    "topic": "clubroom for committee meetings",
+    "counterpart": "Alan Bew",
+    "org": "Harbourview Rowing Club",
+    "item": "clubroom",
+    "values": [
+     "Clubroom",
+     "Committee room",
+     "Bar area"
+    ],
+    "place": "Clubhouse"
+   },
+   {
+    "kind": "order",
+    "topic": "erg spare parts",
+    "counterpart": "Gil Mason",
+    "org": "Oarlock Supplies",
+    "item": "erg monitor battery pack",
+    "unit": "pack",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Boathouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "boat trailer hire for away regattas",
+    "counterpart": "Tessa Bright",
+    "org": "Bright Trailer Hire",
+    "item": "boat trailer",
+    "values": [
+     "Single trailer",
+     "Double trailer",
+     "Quad trailer"
+    ],
+    "place": "Club yard"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies restock",
+    "counterpart": "Pat Nolan",
+    "org": "Harbour Stores",
+    "item": "cleaning supplies box",
+    "unit": "box",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Clubhouse store"
+   },
+   {
+    "kind": "booking",
+    "topic": "physio room for members",
+    "counterpart": "Lena Marsh",
+    "org": "Riverside Physio",
+    "item": "treatment room",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Riverside Physio clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "launch fuel",
+    "counterpart": "Don Pearce",
+    "org": "Marina Fuels",
+    "item": "outboard fuel",
+    "unit": "can",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Boathouse fuel locker"
+   },
+   {
+    "kind": "order",
+    "topic": "medal engraving",
+    "counterpart": "Ruth Vane",
+    "org": "Trophy Cabin",
+    "item": "regatta medal",
+    "unit": "medal",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Club office"
+   }
+  ],
+  "id": "K500-4-01",
+  "tier": 500,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true
+}

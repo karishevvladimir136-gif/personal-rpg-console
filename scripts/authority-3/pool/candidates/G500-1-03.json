@@ -1,0 +1,646 @@
+{
+ "id": "G500-1-03",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 2,
+ "setting": "A bed-and-breakfast owner at Thistledown House whose assistant handles room bookings, breakfast preferences, and payment records",
+ "prompt_sha256": "317f3990277ba5b27d3095d74f24736d802e619c916a12ccb2ec1aa40b73105b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Cedar Room reopens early\",\n \"setting\": \"A bed-and-breakfast owner at Thistledown House whose assistant handles room bookings, breakfast preferences, and payment records\",\n \"owner\": \"Nell\",\n \"org\": \"Thistledown House B&B\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Nell\", \"text\": \"Standing house rule: never change a confirmed guest's room, dates, or price once the booking is made. Ask the guest first and wait for their yes before touching anything.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Nell\", \"text\": \"House policy: any confirmed arrangement with an outside group — room, venue in the house, or dates — may only be changed after the group's named contact has agreed in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nell\", \"text\": \"Standing instruction: weekly breakfast orders go to Harbury Fine Foods by Thursday noon for the following week.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Devlin Hart (Harbury Fine Foods)\", \"text\": \"Quotation for Thistledown House: breakfast basket at £6.20 per guest per morning, free delivery to the house on Tuesdays and Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"letter\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Booking confirmation for the replumbing of the Cedar Room at Thistledown House: the room will be out of service from Monday 12 October to Friday 30 October 2026 inclusive. No guests and no furniture left in the room during those dates; we will need access from 8am each working day.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Set up the standing breakfast order with Harbury Fine Foods: six breakfast baskets delivered every Tuesday and Friday at £6.20 per basket, following the Thursday-noon ordering rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Carol Prew\", \"text\": \"Loved our stay in the Garden Room — we'll be back to book again for September.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"text\": \"We'd like to book our autumn weekend at Thistledown House again: arriving Saturday 24 October, leaving Monday 26 October, about 14 members with two mornings of breakfast. We'd love the Cedar Room for the quilt display again, as last year.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Marked the Cedar Room out of service on the house calendar for the whole Bramwell replumbing job, Monday 12 October to Friday 30 October inclusive; furniture from the room moved to the attic for the duration.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Graham Kendal (Kendal Walking Club)\", \"text\": \"We'd like three nights, Wednesday 14 to Saturday 17 October, four walkers, any two rooms — the Cedar Room would be fine if it's free.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Booked the Kendal Walking Club into the Rose Room and the Ivy Room for 14–17 October; the Cedar Room is out of service that week for the replumbing, so it was not offered.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"policy\", \"from\": \"Nell\", \"text\": \"House policy: check-in from 4pm, breakfast served 8:00 to 9:30am.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Rita Tansey\", \"text\": \"Peter and I would like to come back for three nights, Tuesday 20 to Friday 23 October. We loved the Cedar Room last time, but any room with a bath would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Booked Rita and Peter Tansey into the Ivy Room for 20–23 October, since the Cedar Room is out of service for the whole of that period under the Bramwell schedule.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"text\": \"Confirming our autumn weekend: 14 quilters, arriving Saturday 24 October, leaving Monday 26 October, breakfast both mornings, and the display as discussed.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Confirmed the Harbury Quilters' Guild weekend for 24–26 October: because the Cedar Room is blocked out to the end of the month for the replumbing, the quilt display was moved to the dining room; eight members lodged at the house and six at the Green Man.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Placed the breakfast order with Harbury Fine Foods for the Guild weekend: eight breakfast baskets on Saturday 24 and Sunday 25 October, in addition to the standing order, ordered by the Thursday-noon rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e16\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"call\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Called to say his crew will be two people, and they will need the Elm Court side door for access while the job is on.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Nell\", \"text\": \"To do by the end of September: print the autumn welcome folders with the room list and house policies.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-25\", \"type\": \"invoice\", \"from\": \"Devlin Hart (Harbury Fine Foods)\", \"text\": \"Invoice for July breakfast deliveries to Thistledown House: £186.00, paid in full.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-01\", \"type\": \"cancellation\", \"from\": \"Greg Moran\", \"text\": \"Sorry, we have to cancel our booking for 12–14 September. Please refund the deposit.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-05\", \"type\": \"quote\", \"from\": \"Ada Simms (Weald Firewood)\", \"text\": \"Quotation: one load of kiln-dried logs delivered to Thistledown House for £95, next delivery round on 6 October.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-07\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Ordered one load of kiln-dried logs from Weald Firewood at £95, delivery on 6 October.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-10\", \"type\": \"letter\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Confirming our schedule for the Cedar Room replumbing: 12 to 30 October, crew on site from 8am on Monday 12 October. Everything as agreed in our June letter.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Good news — the parts for the Cedar Room job arrived early, so we'll be finished by Monday 19 October and the room will be back in service from the morning of Tuesday 20 October. Everything else on the job is as agreed.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Separate job note: the Ivy Room radiator swap is confirmed for 27–29 October, so the Ivy Room will be out of service for those three nights.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Nell\", \"text\": \"Autumn checklist: rooms all set for the October guests, welcome folders to print this week, firewood arriving tomorrow.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Priya Henderson\", \"text\": \"It's Saskia's hen weekend and we'd love the Cedar Room at Thistledown House for two nights, arriving Friday 23 October. Just the one room, with breakfast for four each morning. Could you confirm?\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"minutes\", \"from\": \"Nell\", \"text\": \"House minutes: linen delivery moves to Wednesdays for October; firewood delivery confirmed for 6 October; check the room list before printing the welcome folders.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly breakfast order\", \"fields\": {\"item\": \"Breakfast basket\", \"quantity\": \"6\", \"frequency\": \"Tuesdays and Fridays\", \"supplier\": \"Harbury Fine Foods\", \"status\": \"active\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Quilters' Guild weekend breakfasts\", \"fields\": {\"item\": \"Breakfast basket\", \"quantity\": \"8\", \"delivery_dates\": \"2026-10-24 and 2026-10-25\", \"supplier\": \"Harbury Fine Foods\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Autumn firewood\", \"fields\": {\"item\": \"Kiln-dried logs\", \"quantity\": \"1\", \"delivery_date\": \"2026-10-06\", \"supplier\": \"Weald Firewood\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cedar Room closure — replumbing\", \"fields\": {\"room\": \"Cedar Room\", \"start\": \"2026-10-12\", \"end\": \"2026-10-30\", \"reason\": \"Replumbing (Bramwell Heating)\", \"status\": \"blocked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbury Quilters' Guild weekend\", \"fields\": {\"arrival\": \"2026-10-24\", \"departure\": \"2026-10-26\", \"venue\": \"Dining Room\", \"guests\": \"8\", \"contact\": \"Marion Bale\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tansey stay\", \"fields\": {\"guest\": \"Rita and Peter Tansey\", \"room\": \"Ivy Room\", \"arrival\": \"2026-10-20\", \"departure\": \"2026-10-23\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Kendal Walking Club stay\", \"fields\": {\"rooms\": \"Rose Room and Ivy Room\", \"arrival\": \"2026-10-14\", \"departure\": \"2026-10-17\", \"guests\": \"4\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"room\", \"arrival\", \"departure\"], \"from\": \"Rita and Peter Tansey (guests)\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"venue\", \"arrival\", \"departure\"], \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Priya Henderson has been in touch about Saskia's hen weekend — she wants the Cedar Room for two nights, arriving Friday 23 October, with breakfast for four each morning. Please go ahead and book it for her and send her a confirmation.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"end\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-30\"], \"task\": true},\n  {\"create\": \"schedule\", \"fields\": {\"room\": \"Cedar Room\", \"guest\": \"Priya Henderson\", \"arrival\": \"2026-10-23\", \"departure\": \"2026-10-25\", \"guests\": \"4\", \"status\": \"confirmed\"}, \"stale\": {\"room\": [\"Ivy Room\", \"Rose Room\"]}, \"task\": true},\n  {\"message_to\": \"Priya Henderson\", \"regarding\": null, \"says\": [\"Cedar Room booked\", \"arrival Friday 23 October 2026\", \"two nights, departing Sunday 25 October\", \"breakfast for four each morning\"], \"stale\": [\"Cedar Room is out of service until 30 October\", \"Cedar Room closed until 30 October\"], \"task\": true}\n ],\n \"why\": \"Owen Bramwell's email shortens the Cedar Room closure to 19 October, so the block record EV-1 must be revised (end 2026-10-19) and the hen-weekend booking of 23–25 October in the Cedar Room becomes possible. The Tansey rooming (EV-3) and the Guild display venue (EV-2, two hops from the change via the block decision) both need their guests' consent under the house rules and must stay as they are with a consent request. The Kendal stay (14–17 Oct) and the Guild breakfast order use only parts of the plan the change leaves standing, so they are KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Breakfast basket top-ups\", \"counterpart\": \"Devlin Hart\", \"org\": \"Harbury Fine Foods\", \"item\": \"breakfast basket\", \"unit\": \"baskets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Thistledown House kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Guild committee meetings\", \"counterpart\": \"Marion Bale\", \"org\": \"Harbury Quilters' Guild\", \"item\": \"committee meeting room\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Cedar Room\", \"Garden Room\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"booking\", \"topic\": \"Plumber van parking\", \"counterpart\": \"Owen Bramwell\", \"org\": \"Bramwell Heating\", \"item\": \"van parking slot\", \"unit\": \"\", \"values\": [\"Elm Court\", \"Back Lane\", \"Yard\"], \"place\": \"Thistledown House yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Kendal club return stays\", \"counterpart\": \"Graham Kendal\", \"org\": \"Kendal Walking Club\", \"item\": \"room nights\", \"unit\": \"\", \"values\": [\"Rose Room\", \"Ivy Room\", \"Cedar Room\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"order\", \"topic\": \"Firewood top-ups\", \"counterpart\": \"Ada Simms\", \"org\": \"Weald Firewood\", \"item\": \"kiln-dried logs\", \"unit\": \"loads\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Thistledown House wood store\"},\n  {\"kind\": \"order\", \"topic\": \"Bath toiletries restock\", \"counterpart\": \"Prudence Carr\", \"org\": \"Preen Wholesale\", \"item\": \"guest toiletry set\", \"unit\": \"sets\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Thistledown House linen store\"},\n  {\"kind\": \"booking\", \"topic\": \"Harbury ramblers lunches\", \"counterpart\": \"Ted Fenn\", \"org\": \"Harbury Ramblers\", \"item\": \"lunch table booking\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Garden Room\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"order\", \"topic\": \"Bed linen laundry\", \"counterpart\": \"Bea Trent\", \"org\": \"Softwash Laundry\", \"item\": \"laundry bag\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Thistledown House utility room\"},\n  {\"kind\": \"booking\", \"topic\": \"Green Man overflow rooms\", \"counterpart\": \"Harry Voss\", \"org\": \"The Green Man\", \"item\": \"overflow rooms\", \"unit\": \"\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Harbury village\"},\n  {\"kind\": \"order\", \"topic\": \"Milk and eggs delivery\", \"counterpart\": \"Susan Okafor\", \"org\": \"Ringfield Farm\", \"item\": \"milk crate\", \"unit\": \"crates\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Thistledown House kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Choir evening rehearsals\", \"counterpart\": \"Lydia Marsh\", \"org\": \"Weald Singers\", \"item\": \"rehearsal room\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Garden Room\"], \"place\": \"Thistledown House\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 14102,
+    "reasoning_tokens": 9670,
+    "cached_tokens": 0
+   },
+   "cost": 0.0665288,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Cedar Room reopens early\",\n \"setting\": \"A bed-and-breakfast owner at Thistledown House whose assistant handles room bookings, breakfast preferences, and payment records\",\n \"owner\": \"Nell\",\n \"org\": \"Thistledown House B&B\",\n \"now\": \"2026-10-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Nell\", \"text\": \"Standing house rule: never change a confirmed guest's room, dates, or price once the booking is made. Ask the guest first and wait for their yes before touching anything.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Nell\", \"text\": \"House policy: any confirmed arrangement with an outside group — room, venue in the house, or dates — may only be changed after the group's named contact has agreed in writing.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nell\", \"text\": \"Standing instruction: weekly breakfast orders go to Harbury Fine Foods by Thursday noon for the following week.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Devlin Hart (Harbury Fine Foods)\", \"text\": \"Quotation for Thistledown House: breakfast basket at £6.20 per guest per morning, free delivery to the house on Tuesdays and Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"letter\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Booking confirmation for the replumbing of the Cedar Room at Thistledown House: the room will be out of service from Monday 12 October to Friday 30 October 2026 inclusive. No guests and no furniture left in the room during those dates; we will need access from 8am each working day.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Set up the standing breakfast order with Harbury Fine Foods: six breakfast baskets delivered every Tuesday and Friday at £6.20 per basket, following the Thursday-noon ordering rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Carol Prew\", \"text\": \"Loved our stay in the Garden Room — we'll be back to book again for September.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"text\": \"We'd like to book our autumn weekend at Thistledown House again: arriving Saturday 24 October, leaving Monday 26 October, about 14 members with two mornings of breakfast. We'd love the Cedar Room for the quilt display again, as last year.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Marked the Cedar Room out of service on the house calendar for the whole Bramwell replumbing job, Monday 12 October to Friday 30 October inclusive; furniture from the room moved to the attic for the duration.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Graham Kendal (Kendal Walking Club)\", \"text\": \"We'd like three nights, Wednesday 14 to Saturday 17 October, four walkers, any two rooms — the Cedar Room would be fine if it's free.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Booked the Kendal Walking Club into the Rose Room and the Ivy Room for 14–17 October; the Cedar Room is out of service that week for the replumbing, so it was not offered.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e10\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"policy\", \"from\": \"Nell\", \"text\": \"House policy: check-in from 4pm, breakfast served 8:00 to 9:30am.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Rita Tansey\", \"text\": \"Peter and I would like to come back for three nights, Tuesday 20 to Friday 23 October. We loved the Cedar Room last time, but any room with a bath would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Booked Rita and Peter Tansey into the Ivy Room for 20–23 October, since the Cedar Room is out of service for the whole of that period under the Bramwell schedule.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"text\": \"Confirming our autumn weekend: 14 quilters, arriving Saturday 24 October, leaving Monday 26 October, breakfast both mornings, and the display as discussed.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Confirmed the Harbury Quilters' Guild weekend for 24–26 October: because the Cedar Room is blocked out to the end of the month for the replumbing, the quilt display was moved to the dining room; eight members lodged at the house and six at the Green Man.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Placed the breakfast order with Harbury Fine Foods for the Guild weekend: eight breakfast baskets on Saturday 24 and Sunday 25 October, in addition to the standing order, ordered by the Thursday-noon rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e16\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"call\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Called to say his crew will be two people, and they will need the Elm Court side door for access while the job is on.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Nell\", \"text\": \"To do by the end of September: print the autumn welcome folders with the room list and house policies.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-25\", \"type\": \"invoice\", \"from\": \"Devlin Hart (Harbury Fine Foods)\", \"text\": \"Invoice for July breakfast deliveries to Thistledown House: £186.00, paid in full.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-01\", \"type\": \"cancellation\", \"from\": \"Greg Moran\", \"text\": \"Sorry, we have to cancel our booking for 12–14 September. Please refund the deposit.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-05\", \"type\": \"quote\", \"from\": \"Ada Simms (Weald Firewood)\", \"text\": \"Quotation: one load of kiln-dried logs delivered to Thistledown House for £95, next delivery round on 6 October.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-07\", \"type\": \"decision\", \"from\": \"Nell\", \"text\": \"Ordered one load of kiln-dried logs from Weald Firewood at £95, delivery on 6 October.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-10\", \"type\": \"letter\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Confirming our schedule for the Cedar Room replumbing: 12 to 30 October, crew on site from 8am on Monday 12 October. Everything as agreed in our June letter.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Good news — the parts for the Cedar Room job arrived early, so we'll be finished by Monday 19 October and the room will be back in service from the morning of Tuesday 20 October. Everything else on the job is as agreed.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Owen Bramwell (Bramwell Heating)\", \"text\": \"Separate job note: the Ivy Room radiator swap is confirmed for 27–29 October, so the Ivy Room will be out of service for those three nights.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Nell\", \"text\": \"Autumn checklist: rooms all set for the October guests, welcome folders to print this week, firewood arriving tomorrow.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Priya Henderson\", \"text\": \"It's Saskia's hen weekend and we'd love the Cedar Room at Thistledown House for two nights, arriving Friday 23 October. Just the one room, with breakfast for four each morning. Could you confirm?\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"minutes\", \"from\": \"Nell\", \"text\": \"House minutes: linen delivery moves to Wednesdays for October; firewood delivery confirmed for 6 October; check the room list before printing the welcome folders.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly breakfast order\", \"fields\": {\"item\": \"Breakfast basket\", \"quantity\": \"6\", \"frequency\": \"Tuesdays and Fridays\", \"supplier\": \"Harbury Fine Foods\", \"status\": \"active\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Quilters' Guild weekend breakfasts\", \"fields\": {\"item\": \"Breakfast basket\", \"quantity\": \"8\", \"delivery_dates\": \"2026-10-24 and 2026-10-25\", \"supplier\": \"Harbury Fine Foods\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Autumn firewood\", \"fields\": {\"item\": \"Kiln-dried logs\", \"quantity\": \"1\", \"delivery_date\": \"2026-10-06\", \"supplier\": \"Weald Firewood\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cedar Room closure — replumbing\", \"fields\": {\"room\": \"Cedar Room\", \"start\": \"2026-10-12\", \"end\": \"2026-10-30\", \"reason\": \"Replumbing (Bramwell Heating)\", \"status\": \"blocked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbury Quilters' Guild weekend\", \"fields\": {\"arrival\": \"2026-10-24\", \"departure\": \"2026-10-26\", \"venue\": \"Dining Room\", \"guests\": \"8\", \"contact\": \"Marion Bale\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tansey stay\", \"fields\": {\"guest\": \"Rita and Peter Tansey\", \"room\": \"Ivy Room\", \"arrival\": \"2026-10-20\", \"departure\": \"2026-10-23\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Kendal Walking Club stay\", \"fields\": {\"rooms\": \"Rose Room and Ivy Room\", \"arrival\": \"2026-10-14\", \"departure\": \"2026-10-17\", \"guests\": \"4\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"room\", \"arrival\", \"departure\"], \"from\": \"Rita and Peter Tansey (guests)\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"venue\", \"arrival\", \"departure\"], \"from\": \"Marion Bale (Harbury Quilters' Guild)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Priya Henderson has been in touch about Saskia's hen weekend — she wants the Cedar Room for two nights, arriving Friday 23 October, with breakfast for four each morning. Please go ahead and book it for her and send her a confirmation.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"end\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-30\"], \"task\": true},\n  {\"create\": \"schedule\", \"fields\": {\"room\": \"Cedar Room\", \"guest\": \"Priya Henderson\", \"arrival\": \"2026-10-23\", \"departure\": \"2026-10-25\", \"guests\": \"4\", \"status\": \"confirmed\"}, \"stale\": {\"room\": [\"Ivy Room\", \"Rose Room\"]}, \"task\": true},\n  {\"message_to\": \"Priya Henderson\", \"regarding\": null, \"says\": [\"Cedar Room booked\", \"arrival Friday 23 October 2026\", \"two nights, departing Sunday 25 October\", \"breakfast for four each morning\"], \"stale\": [\"Cedar Room is out of service until 30 October\", \"Cedar Room closed until 30 October\"], \"task\": true}\n ],\n \"why\": \"Owen Bramwell's email shortens the Cedar Room closure to 19 October, so the block record EV-1 must be revised (end 2026-10-19) and the hen-weekend booking of 23–25 October in the Cedar Room becomes possible. The Tansey rooming (EV-3) and the Guild display venue (EV-2, two hops from the change via the block decision) both need their guests' consent under the house rules and must stay as they are with a consent request. The Kendal stay (14–17 Oct) and the Guild breakfast order use only parts of the plan the change leaves standing, so they are KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Breakfast basket top-ups\", \"counterpart\": \"Devlin Hart\", \"org\": \"Harbury Fine Foods\", \"item\": \"breakfast basket\", \"unit\": \"baskets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Thistledown House kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Guild committee meetings\", \"counterpart\": \"Marion Bale\", \"org\": \"Harbury Quilters' Guild\", \"item\": \"committee meeting room\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Cedar Room\", \"Garden Room\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"booking\", \"topic\": \"Plumber van parking\", \"counterpart\": \"Owen Bramwell\", \"org\": \"Bramwell Heating\", \"item\": \"van parking slot\", \"unit\": \"\", \"values\": [\"Elm Court\", \"Back Lane\", \"Yard\"], \"place\": \"Thistledown House yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Kendal club return stays\", \"counterpart\": \"Graham Kendal\", \"org\": \"Kendal Walking Club\", \"item\": \"room nights\", \"unit\": \"\", \"values\": [\"Rose Room\", \"Ivy Room\", \"Cedar Room\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"order\", \"topic\": \"Firewood top-ups\", \"counterpart\": \"Ada Simms\", \"org\": \"Weald Firewood\", \"item\": \"kiln-dried logs\", \"unit\": \"loads\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Thistledown House wood store\"},\n  {\"kind\": \"order\", \"topic\": \"Bath toiletries restock\", \"counterpart\": \"Prudence Carr\", \"org\": \"Preen Wholesale\", \"item\": \"guest toiletry set\", \"unit\": \"sets\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Thistledown House linen store\"},\n  {\"kind\": \"booking\", \"topic\": \"Harbury ramblers lunches\", \"counterpart\": \"Ted Fenn\", \"org\": \"Harbury Ramblers\", \"item\": \"lunch table booking\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Garden Room\", \"Sun Porch\"], \"place\": \"Thistledown House\"},\n  {\"kind\": \"order\", \"topic\": \"Bed linen laundry\", \"counterpart\": \"Bea Trent\", \"org\": \"Softwash Laundry\", \"item\": \"laundry bag\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Thistledown House utility room\"},\n  {\"kind\": \"booking\", \"topic\": \"Green Man overflow rooms\", \"counterpart\": \"Harry Voss\", \"org\": \"The Green Man\", \"item\": \"overflow rooms\", \"unit\": \"\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Harbury village\"},\n  {\"kind\": \"order\", \"topic\": \"Milk and eggs delivery\", \"counterpart\": \"Susan Okafor\", \"org\": \"Ringfield Farm\", \"item\": \"milk crate\", \"unit\": \"crates\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Thistledown House kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Choir evening rehearsals\", \"counterpart\": \"Lydia Marsh\", \"org\": \"Weald Singers\", \"item\": \"rehearsal room\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Garden Room\", \"Sun Porch\"], \"place\": \"Thistledown House\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7693,
+    "completion_tokens": 4441,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02673556,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Harbury ramblers lunches': values needs at least three entries\n- noise topic 'Choir evening rehearsals': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Cedar Room reopens early",
+  "setting": "A bed-and-breakfast owner at Thistledown House whose assistant handles room bookings, breakfast preferences, and payment records",
+  "owner": "Nell",
+  "org": "Thistledown House B&B",
+  "now": "2026-10-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Nell",
+    "text": "Standing house rule: never change a confirmed guest's room, dates, or price once the booking is made. Ask the guest first and wait for their yes before touching anything.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Nell",
+    "text": "House policy: any confirmed arrangement with an outside group — room, venue in the house, or dates — may only be changed after the group's named contact has agreed in writing.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Nell",
+    "text": "Standing instruction: weekly breakfast orders go to Harbury Fine Foods by Thursday noon for the following week.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Devlin Hart (Harbury Fine Foods)",
+    "text": "Quotation for Thistledown House: breakfast basket at £6.20 per guest per morning, free delivery to the house on Tuesdays and Fridays.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "letter",
+    "from": "Owen Bramwell (Bramwell Heating)",
+    "text": "Booking confirmation for the replumbing of the Cedar Room at Thistledown House: the room will be out of service from Monday 12 October to Friday 30 October 2026 inclusive. No guests and no furniture left in the room during those dates; we will need access from 8am each working day.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Set up the standing breakfast order with Harbury Fine Foods: six breakfast baskets delivered every Tuesday and Friday at £6.20 per basket, following the Thursday-noon ordering rule.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Carol Prew",
+    "text": "Loved our stay in the Garden Room — we'll be back to book again for September.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Marion Bale (Harbury Quilters' Guild)",
+    "text": "We'd like to book our autumn weekend at Thistledown House again: arriving Saturday 24 October, leaving Monday 26 October, about 14 members with two mornings of breakfast. We'd love the Cedar Room for the quilt display again, as last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Marked the Cedar Room out of service on the house calendar for the whole Bramwell replumbing job, Monday 12 October to Friday 30 October inclusive; furniture from the room moved to the attic for the duration.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Graham Kendal (Kendal Walking Club)",
+    "text": "We'd like three nights, Wednesday 14 to Saturday 17 October, four walkers, any two rooms — the Cedar Room would be fine if it's free.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Booked the Kendal Walking Club into the Rose Room and the Ivy Room for 14–17 October; the Cedar Room is out of service that week for the replumbing, so it was not offered.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e10"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "policy",
+    "from": "Nell",
+    "text": "House policy: check-in from 4pm, breakfast served 8:00 to 9:30am.",
+    "role": "rule"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Rita Tansey",
+    "text": "Peter and I would like to come back for three nights, Tuesday 20 to Friday 23 October. We loved the Cedar Room last time, but any room with a bath would suit us.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Booked Rita and Peter Tansey into the Ivy Room for 20–23 October, since the Cedar Room is out of service for the whole of that period under the Bramwell schedule.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e13"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Marion Bale (Harbury Quilters' Guild)",
+    "text": "Confirming our autumn weekend: 14 quilters, arriving Saturday 24 October, leaving Monday 26 October, breakfast both mornings, and the display as discussed.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Confirmed the Harbury Quilters' Guild weekend for 24–26 October: because the Cedar Room is blocked out to the end of the month for the replumbing, the quilt display was moved to the dining room; eight members lodged at the house and six at the Green Man.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e9"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Placed the breakfast order with Harbury Fine Foods for the Guild weekend: eight breakfast baskets on Saturday 24 and Sunday 25 October, in addition to the standing order, ordered by the Thursday-noon rule.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e16"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-14",
+    "type": "call",
+    "from": "Owen Bramwell (Bramwell Heating)",
+    "text": "Called to say his crew will be two people, and they will need the Elm Court side door for access while the job is on.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-20",
+    "type": "message",
+    "from": "Nell",
+    "text": "To do by the end of September: print the autumn welcome folders with the room list and house policies.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-25",
+    "type": "invoice",
+    "from": "Devlin Hart (Harbury Fine Foods)",
+    "text": "Invoice for July breakfast deliveries to Thistledown House: £186.00, paid in full.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-01",
+    "type": "cancellation",
+    "from": "Greg Moran",
+    "text": "Sorry, we have to cancel our booking for 12–14 September. Please refund the deposit.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-05",
+    "type": "quote",
+    "from": "Ada Simms (Weald Firewood)",
+    "text": "Quotation: one load of kiln-dried logs delivered to Thistledown House for £95, next delivery round on 6 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-07",
+    "type": "decision",
+    "from": "Nell",
+    "text": "Ordered one load of kiln-dried logs from Weald Firewood at £95, delivery on 6 October.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-10",
+    "type": "letter",
+    "from": "Owen Bramwell (Bramwell Heating)",
+    "text": "Confirming our schedule for the Cedar Room replumbing: 12 to 30 October, crew on site from 8am on Monday 12 October. Everything as agreed in our June letter.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Owen Bramwell (Bramwell Heating)",
+    "text": "Good news — the parts for the Cedar Room job arrived early, so we'll be finished by Monday 19 October and the room will be back in service from the morning of Tuesday 20 October. Everything else on the job is as agreed.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Owen Bramwell (Bramwell Heating)",
+    "text": "Separate job note: the Ivy Room radiator swap is confirmed for 27–29 October, so the Ivy Room will be out of service for those three nights.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "note",
+    "from": "Nell",
+    "text": "Autumn checklist: rooms all set for the October guests, welcome folders to print this week, firewood arriving tomorrow.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-03",
+    "type": "email",
+    "from": "Priya Henderson",
+    "text": "It's Saskia's hen weekend and we'd love the Cedar Room at Thistledown House for two nights, arriving Friday 23 October. Just the one room, with breakfast for four each morning. Could you confirm?",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-05",
+    "type": "minutes",
+    "from": "Nell",
+    "text": "House minutes: linen delivery moves to Wednesdays for October; firewood delivery confirmed for 6 October; check the room list before printing the welcome folders.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing weekly breakfast order",
+    "fields": {
+     "item": "Breakfast basket",
+     "quantity": "6",
+     "frequency": "Tuesdays and Fridays",
+     "supplier": "Harbury Fine Foods",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Quilters' Guild weekend breakfasts",
+    "fields": {
+     "item": "Breakfast basket",
+     "quantity": "8",
+     "delivery_dates": "2026-10-24 and 2026-10-25",
+     "supplier": "Harbury Fine Foods",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Autumn firewood",
+    "fields": {
+     "item": "Kiln-dried logs",
+     "quantity": "1",
+     "delivery_date": "2026-10-06",
+     "supplier": "Weald Firewood",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Cedar Room closure — replumbing",
+    "fields": {
+     "room": "Cedar Room",
+     "start": "2026-10-12",
+     "end": "2026-10-30",
+     "reason": "Replumbing (Bramwell Heating)",
+     "status": "blocked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harbury Quilters' Guild weekend",
+    "fields": {
+     "arrival": "2026-10-24",
+     "departure": "2026-10-26",
+     "venue": "Dining Room",
+     "guests": "8",
+     "contact": "Marion Bale",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Tansey stay",
+    "fields": {
+     "guest": "Rita and Peter Tansey",
+     "room": "Ivy Room",
+     "arrival": "2026-10-20",
+     "departure": "2026-10-23",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Kendal Walking Club stay",
+    "fields": {
+     "rooms": "Rose Room and Ivy Room",
+     "arrival": "2026-10-14",
+     "departure": "2026-10-17",
+     "guests": "4",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "room",
+     "arrival",
+     "departure"
+    ],
+    "from": "Rita and Peter Tansey (guests)",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "venue",
+     "arrival",
+     "departure"
+    ],
+    "from": "Marion Bale (Harbury Quilters' Guild)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Priya Henderson has been in touch about Saskia's hen weekend — she wants the Cedar Room for two nights, arriving Friday 23 October, with breakfast for four each morning. Please go ahead and book it for her and send her a confirmation.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "end",
+    "value": "2026-10-19",
+    "stale": [
+     "2026-10-30"
+    ],
+    "task": true
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "room": "Cedar Room",
+     "guest": "Priya Henderson",
+     "arrival": "2026-10-23",
+     "departure": "2026-10-25",
+     "guests": "4",
+     "status": "confirmed"
+    },
+    "stale": {
+     "room": [
+      "Ivy Room",
+      "Rose Room"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Priya Henderson",
+    "regarding": null,
+    "says": [
+     "Cedar Room booked",
+     "arrival Friday 23 October 2026",
+     "two nights, departing Sunday 25 October",
+     "breakfast for four each morning"
+    ],
+    "stale": [
+     "Cedar Room is out of service until 30 October",
+     "Cedar Room closed until 30 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Owen Bramwell's email shortens the Cedar Room closure to 19 October, so the block record EV-1 must be revised (end 2026-10-19) and the hen-weekend booking of 23–25 October in the Cedar Room becomes possible. The Tansey rooming (EV-3) and the Guild display venue (EV-2, two hops from the change via the block decision) both need their guests' consent under the house rules and must stay as they are with a consent request. The Kendal stay (14–17 Oct) and the Guild breakfast order use only parts of the plan the change leaves standing, so they are KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Breakfast basket top-ups",
+    "counterpart": "Devlin Hart",
+    "org": "Harbury Fine Foods",
+    "item": "breakfast basket",
+    "unit": "baskets",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Thistledown House kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Guild committee meetings",
+    "counterpart": "Marion Bale",
+    "org": "Harbury Quilters' Guild",
+    "item": "committee meeting room",
+    "unit": "",
+    "values": [
+     "Dining Room",
+     "Cedar Room",
+     "Garden Room"
+    ],
+    "place": "Thistledown House"
+   },
+   {
+    "kind": "booking",
+    "topic": "Plumber van parking",
+    "counterpart": "Owen Bramwell",
+    "org": "Bramwell Heating",
+    "item": "van parking slot",
+    "unit": "",
+    "values": [
+     "Elm Court",
+     "Back Lane",
+     "Yard"
+    ],
+    "place": "Thistledown House yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kendal club return stays",
+    "counterpart": "Graham Kendal",
+    "org": "Kendal Walking Club",
+    "item": "room nights",
+    "unit": "",
+    "values": [
+     "Rose Room",
+     "Ivy Room",
+     "Cedar Room"
+    ],
+    "place": "Thistledown House"
+   },
+   {
+    "kind": "order",
+    "topic": "Firewood top-ups",
+    "counterpart": "Ada Simms",
+    "org": "Weald Firewood",
+    "item": "kiln-dried logs",
+    "unit": "loads",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Thistledown House wood store"
+   },
+   {
+    "kind": "order",
+    "topic": "Bath toiletries restock",
+    "counterpart": "Prudence Carr",
+    "org": "Preen Wholesale",
+    "item": "guest toiletry set",
+    "unit": "sets",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Thistledown House linen store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Harbury ramblers lunches",
+    "counterpart": "Ted Fenn",
+    "org": "Harbury Ramblers",
+    "item": "lunch table booking",
+    "unit": "",
+    "values": [
+     "Dining Room",
+     "Garden Room",
+     "Sun Porch"
+    ],
+    "place": "Thistledown House"
+   },
+   {
+    "kind": "order",
+    "topic": "Bed linen laundry",
+    "counterpart": "Bea Trent",
+    "org": "Softwash Laundry",
+    "item": "laundry bag",
+    "unit": "bags",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Thistledown House utility room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Green Man overflow rooms",
+    "counterpart": "Harry Voss",
+    "org": "The Green Man",
+    "item": "overflow rooms",
+    "unit": "",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Harbury village"
+   },
+   {
+    "kind": "order",
+    "topic": "Milk and eggs delivery",
+    "counterpart": "Susan Okafor",
+    "org": "Ringfield Farm",
+    "item": "milk crate",
+    "unit": "crates",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Thistledown House kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Choir evening rehearsals",
+    "counterpart": "Lydia Marsh",
+    "org": "Weald Singers",
+    "item": "rehearsal room",
+    "unit": "",
+    "values": [
+     "Dining Room",
+     "Garden Room",
+     "Sun Porch"
+    ],
+    "place": "Thistledown House"
+   }
+  ],
+  "id": "G500-1-03",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

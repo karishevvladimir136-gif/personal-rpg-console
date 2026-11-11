@@ -1,0 +1,740 @@
+{
+ "id": "G1000-2-02",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 2,
+ "idx": 1,
+ "setting": "The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations",
+ "prompt_sha256": "55415dc848bb76931e576b7d01129ee85bc807b5600413c0abf0d1e30c6ee001",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Pontoon C winter rate brought forward\",\n \"setting\": \"The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations\",\n \"owner\": \"Marta\",\n \"org\": \"Port Mellow Harbour Office\",\n \"now\": \"2026-11-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"Marta, the standing fee schedule for visitor berths: on Pontoon C the summer rate is 3.90 per metre per night and runs until 30 November; from 1 December the winter rate of 2.80 per metre per night applies. Please apply it exactly as written on every visitor account.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"One more standing rule: once a visitor's berth booking is confirmed, no change to its dates, berth or rate may be made without the skipper's written agreement. A radio confirmation read back to the office counts as written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Hello Marta, Kestrel is a 10-metre sloop. I'd like a Pontoon C berth from 3 November to 15 November this year while I do some work in Port Mellow. Can you book me in?\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Kestrel details from the file: sloop, 10 metres, home port Crosshaven, registration PM-2214, skipper and sole contact Ines Faraday.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Noel Pike (c/y Bramble)\", \"text\": \"Marta, Bramble here, a 12-metre cutter. Pencil me in on Pontoon C from 20 to 30 November please, provisional for now while I confirm crew numbers.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"letter\", \"from\": \"Roscoe Bell (barge Pearl of Lune)\", \"text\": \"Dear harbour office, the Pearl of Lune, a 15-metre barge, will pass through Port Mellow from 2 to 10 December. We would like a sheltered berth for those dates and understand the winter rate applies then.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"For planning: the boatyard crane is available on Tuesday and Thursday mornings from now until the winter lay-up, booked through the office as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"call\", \"from\": \"Greta Ahn (Mellow Fuel Barge)\", \"text\": \"Diesel at the fuel barge is 1.45 a litre this month; passing that on for the office notice board.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Visitor fees, current season: Pontoon C summer rate 3.90 per metre per night, in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.\", \"echo\": true, \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Hanna Boyle (Mellow Primary School)\", \"text\": \"Hello, we'd like to bring the class for a pontoon walkway visit again this autumn. Could you suggest a couple of weekday mornings?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Tomas Reed (Harbour Supplies Ltd)\", \"text\": \"Quotation for the harbour office: deck paint at 4.00 per litre in 20-litre drums, delivered to the boatyard store within a week of order.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Renewed Kestrel's vessel registration for the year: sloop, 10 metres, skipper Ines Faraday, registration PM-2214, pontoon preference noted.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Gil Ferro (Mellow Pilot Service)\", \"text\": \"Marta, the pilot boat will need her usual Thursday mooring on the north side of the quay through the autumn. Please keep those slots free.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Confirmed with Ines Faraday by radio and in writing: Kestrel is booked on Pontoon C from 3 November to 15 November, 10 metres, charged at the summer visitor rate of 3.90 per metre per night as the fee schedule sets for November.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-06\", \"type\": \"invoice\", \"from\": \"Marta\", \"text\": \"Issued the berth account for Kestrel's November stay on Pontoon C: 12 nights, 10 metres, at 3.90 per metre per night, total 468.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-6\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Noel, I've entered Bramble as a provisional booking on Pontoon C from 20 to 30 November, 12 metres, at the summer rate of 3.90 per metre per night. I'll confirm it once you know your crew numbers.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-6\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Roscoe, confirmed: the Pearl of Lune has the Fish Quay berth from 2 to 10 December, 15 metres, at the winter rate of 2.80 per metre per night that begins on 1 December.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e6\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-26\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Marina Wholesale)\", \"text\": \"Quote for the harbour office: mooring fenders at 11.00 each, delivery to the harbour store within two weeks.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Noel Pike (c/y Bramble)\", \"text\": \"Still confirming crew for November, Marta — leave Bramble's berth as it stands for now.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Ines, booked as requested: Kestrel on Pontoon C from 1 to 8 October, 10 metres, at the summer rate of 3.90 per metre per night.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Ordered 60 litres of deck paint from Harbour Supplies Ltd at the quoted 4.00 per litre, total 240, for delivery to the boatyard store.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-7\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"Tomas Reed (Harbour Supplies Ltd)\", \"text\": \"Invoice for the deck paint order: 60 litres at 4.00, total 240, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Booked crane pad 1 for Kestrel's lift-out on Thursday 12 November at 09:00, agreed with Ines Faraday; the crane runs Tuesday and Thursday mornings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-7\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Autumn notice to berth holders: the summer visitor rate of 3.90 per metre per night on Pontoon C remains in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.\", \"echo\": true, \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Arrived on Pontoon C for the October stay, Marta — all straightforward, see you in November for the longer one.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Piotr Vos (FV Sanderling)\", \"text\": \"Marta, the Sanderling, a 14-metre trawler, needs a winter berth from 1 November through to the end of March. Anything on the quay would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Weekly office minutes: assigned Quay B5 to FV Sanderling for the winter, 1 November to 31 March, agreed with Piotr Vos by phone.\", \"role\": \"decision\", \"rests_on\": [\"e26\"], \"record\": \"EV-8\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"From next week the harbour office opens 08:00 to 16:00 on weekdays; the weekend duty phone stays as it is.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"Marta, the Pontoon C deck repairs were approved this morning and the contractor starts on the 19th, so the summer season on Pontoon C closes early. Treat the summer rate of 3.90 per metre per night as ending Thursday 15 October: from Friday 16 October the winter rate of 2.80 per metre per night applies on Pontoon C. Please bring any open accounts for stays from 16 October into line with the winter rate when you next work them, and rate any bookings still to come accordingly.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Piotr Vos (FV Sanderling)\", \"text\": \"Thanks for sorting the winter berth on Quay B5, Marta. We'll settle the first month's dues when we're alongside.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Harriet Vane (Millbrook Marina)\", \"text\": \"Hello Port Mellow, just to let you know our visitor pontoon rate is 4.20 per metre per night this season if you need overflow berthing across the channel. Happy to take any vessels you can't fit.\", \"distractor\": true, \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"To do: pay the Harbour Supplies paint invoice of 240 by 14 November.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-03\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Marta, arrived Tuesday 3 November and tied up on Pontoon C. Please send me the final berth account for this stay whenever it's ready and I'll settle before I leave on the 15th.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Kestrel vessel registration\", \"fields\": {\"vessel\": \"Kestrel\", \"length_m\": \"10\", \"skipper\": \"Ines Faraday\", \"registration\": \"PM-2214\", \"status\": \"active\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kestrel — Pontoon C, November stay\", \"fields\": {\"vessel\": \"Kestrel\", \"berth\": \"Pontoon C\", \"start\": \"2026-11-03\", \"end\": \"2026-11-15\", \"rate\": \"3.90\", \"total_fee\": \"468\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-6\", \"collection\": \"orders\", \"title\": \"Kestrel berth account, November\", \"fields\": {\"vessel\": \"Kestrel\", \"nights\": \"12\", \"metres\": \"10\", \"rate\": \"3.90\", \"amount\": \"468\", \"status\": \"issued\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Bramble — Pontoon C, provisional November\", \"fields\": {\"vessel\": \"Bramble\", \"berth\": \"Pontoon C\", \"start\": \"2026-11-20\", \"end\": \"2026-11-30\", \"rate\": \"3.90\", \"total_fee\": \"468\", \"status\": \"provisional\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Pearl of Lune — Fish Quay, December\", \"fields\": {\"vessel\": \"Pearl of Lune\", \"berth\": \"Fish Quay\", \"start\": \"2026-12-02\", \"end\": \"2026-12-10\", \"rate\": \"2.80\", \"total_fee\": \"336\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Kestrel — Pontoon C, October stay\", \"fields\": {\"vessel\": \"Kestrel\", \"berth\": \"Pontoon C\", \"start\": \"2026-10-01\", \"end\": \"2026-10-08\", \"rate\": \"3.90\", \"total_fee\": \"273\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-7\", \"collection\": \"orders\", \"title\": \"Deck paint order, Harbour Supplies\", \"fields\": {\"supplier\": \"Harbour Supplies Ltd\", \"item\": \"deck paint\", \"quantity\": \"60\", \"unit\": \"litres\", \"amount\": \"240\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Crane slot — Kestrel lift-out\", \"fields\": {\"vessel\": \"Kestrel\", \"slot\": \"crane pad 1\", \"date\": \"2026-11-12\", \"time\": \"09:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-8\", \"collection\": \"schedule\", \"title\": \"FV Sanderling — Quay B5, winter\", \"fields\": {\"vessel\": \"FV Sanderling\", \"berth\": \"Quay B5\", \"start\": \"2026-11-01\", \"end\": \"2027-03-31\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"rate\", \"total_fee\"], \"from\": \"Ines Faraday\", \"rule\": \"e2\"}\n ],\n \"task\": \"Ines is settling up before she leaves on the 15th — please send her the final berth account for Kestrel's November stay on Pontoon C and mark the account as sent.\",\n \"expect\": [\n  {\"record\": \"ORD-6\", \"field\": \"rate\", \"value\": \"2.80\", \"stale\": [\"3.90\", \"4.20\"], \"task\": true},\n  {\"record\": \"ORD-6\", \"field\": \"amount\", \"value\": \"336\", \"stale\": [\"468\"], \"task\": true},\n  {\"record\": \"ORD-6\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"issued\"], \"task\": true},\n  {\"record\": \"EV-6\", \"field\": \"rate\", \"value\": \"2.80\", \"stale\": [\"3.90\"]},\n  {\"record\": \"EV-6\", \"field\": \"total_fee\", \"value\": \"336\", \"stale\": [\"468\"]},\n  {\"message_to\": \"Ines Faraday\", \"regarding\": \"ORD-6\", \"says\": [\"336\", \"2.80\", \"12 nights\", \"10 metres\"], \"stale\": [\"468\", \"3.90\", \"4.20\"], \"task\": true}\n ],\n \"why\": \"The harbourmaster's 20 October email amends the fee schedule: the winter rate of 2.80 applies on Pontoon C from 16 October, so every November stay re-rates. Kestrel's November account (ORD-6, two hops from the rule via the booking) and Bramble's provisional booking (EV-6) are REVISE — the clerk computes them and no one's consent is needed, so they go to 2.80 and 336. Kestrel's confirmed booking EV-3 is also touched, but its rate and total are protected by the skipper-consent rule, so it stays as it is with a consent request to Ines (ASK). Pearl of Lune's December stay and Kestrel's October stay were already at rates the amendment leaves standing (KEEP), and the 4.20 figure is a neighbouring marina's offer, not Port Mellow's rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"diesel restocking\", \"counterpart\": \"Greta Ahn\", \"org\": \"Mellow Fuel Barge\", \"item\": \"diesel\", \"unit\": \"litres\", \"values\": [\"200\", \"300\", \"450\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"booking\", \"topic\": \"school pontoon visits\", \"counterpart\": \"Hanna Boyle\", \"org\": \"Mellow Primary School\", \"item\": \"pontoon walkway visit\", \"unit\": \"\", \"values\": [\"walkway east\", \"walkway west\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"order\", \"topic\": \"mooring rope\", \"counterpart\": \"Tomas Reed\", \"org\": \"Harbour Supplies Ltd\", \"item\": \"mooring rope\", \"unit\": \"metres\", \"values\": [\"50\", \"80\", \"120\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"trawler crew berths\", \"counterpart\": \"Piotr Vos\", \"org\": \"FV Sanderling\", \"item\": \"crew berth\", \"unit\": \"\", \"values\": [\"Quay B5\", \"Quay B6\"], \"place\": \"Fish Quay\"},\n  {\"kind\": \"order\", \"topic\": \"fenders\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Marina Wholesale\", \"item\": \"mooring fenders\", \"unit\": \"units\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"booking\", \"topic\": \"crane slots\", \"counterpart\": \"Ines Faraday\", \"org\": \"s/y Kestrel\", \"item\": \"lift-out slot\", \"unit\": \"\", \"values\": [\"crane pad 1\", \"crane pad 2\"], \"place\": \"boatyard\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee\", \"counterpart\": \"Colleen Marsh\", \"org\": \"Mellow Provisions\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"harbour office\"},\n  {\"kind\": \"order\", \"topic\": \"tidal charts\", \"counterpart\": \"Ravi Shah\", \"org\": \"Nautical Print Co\", \"item\": \"tidal charts\", \"unit\": \"sheets\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"harbour office\"},\n  {\"kind\": \"order\", \"topic\": \"antifouling paint\", \"counterpart\": \"Tomas Reed\", \"org\": \"Harbour Supplies Ltd\", \"item\": \"antifouling paint\", \"unit\": \"litres\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"pilot boat mooring\", \"counterpart\": \"Gil Ferro\", \"org\": \"Mellow Pilot Service\", \"item\": \"pilot boat mooring\", \"unit\": \"\", \"values\": [\"quay north\", \"quay south\"], \"place\": \"Fish Quay\"},\n  {\"kind\": \"order\", \"topic\": \"lifejacket servicing\", \"counterpart\": \"Nadia Kim\", \"org\": \"Servex Marine\", \"item\": \"lifejacket servicing\", \"unit\": \"units\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"office meeting room\", \"counterpart\": \"Eileen Rudd\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"harbour office\", \"wheelhouse room\"], \"place\": \"harbour office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3201,
+    "completion_tokens": 16975,
+    "reasoning_tokens": 11687,
+    "cached_tokens": 3136
+   },
+   "cost": 0.07559636,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Pontoon C winter rate brought forward\",\n \"setting\": \"The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations\",\n \"owner\": \"Marta\",\n \"org\": \"Port Mellow Harbour Office\",\n \"now\": \"2026-11-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"Marta, the standing fee schedule for visitor berths: on Pontoon C the summer rate is 3.90 per metre per night and runs until 30 November; from 1 December the winter rate of 2.80 per metre per night applies. Please apply it exactly as written on every visitor account.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"One more standing rule: once a visitor's berth booking is confirmed, no change to its dates, berth or rate may be made without the skipper's written agreement. A radio confirmation read back to the office counts as written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Hello Marta, Kestrel is a 10-metre sloop. I'd like a Pontoon C berth from 3 November to 15 November this year while I do some work in Port Mellow. Can you book me in?\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Kestrel details from the file: sloop, 10 metres, home port Crosshaven, registration PM-2214, skipper and sole contact Ines Faraday.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Noel Pike (c/y Bramble)\", \"text\": \"Marta, Bramble here, a 12-metre cutter. Pencil me in on Pontoon C from 20 to 30 November please, provisional for now while I confirm crew numbers.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"letter\", \"from\": \"Roscoe Bell (barge Pearl of Lune)\", \"text\": \"Dear harbour office, the Pearl of Lune, a 15-metre barge, will pass through Port Mellow from 2 to 10 December. We would like a sheltered berth for those dates and understand the winter rate applies then.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"For planning: the boatyard crane is available on Tuesday and Thursday mornings from now until the winter lay-up, booked through the office as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"call\", \"from\": \"Greta Ahn (Mellow Fuel Barge)\", \"text\": \"Diesel at the fuel barge is 1.45 a litre this month; passing that on for the office notice board.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Visitor fees, current season: Pontoon C summer rate 3.90 per metre per night, in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.\", \"echo\": true, \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Hanna Boyle (Mellow Primary School)\", \"text\": \"Hello, we'd like to bring the class for a pontoon walkway visit again this autumn. Could you suggest a couple of weekday mornings?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Tomas Reed (Harbour Supplies Ltd)\", \"text\": \"Quotation for the harbour office: deck paint at 4.00 per litre in 20-litre drums, delivered to the boatyard store within a week of order.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Renewed Kestrel's vessel registration for the year: sloop, 10 metres, skipper Ines Faraday, registration PM-2214, pontoon preference noted.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Gil Ferro (Mellow Pilot Service)\", \"text\": \"Marta, the pilot boat will need her usual Thursday mooring on the north side of the quay through the autumn. Please keep those slots free.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Confirmed with Ines Faraday by radio and in writing: Kestrel is booked on Pontoon C from 3 November to 15 November, 10 metres, charged at the summer visitor rate of 3.90 per metre per night as the fee schedule sets for November.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-06\", \"type\": \"invoice\", \"from\": \"Marta\", \"text\": \"Issued the berth account for Kestrel's November stay on Pontoon C: 12 nights, 10 metres, at 3.90 per metre per night, total 468.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-6\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Noel, I've entered Bramble as a provisional booking on Pontoon C from 20 to 30 November, 12 metres, at the summer rate of 3.90 per metre per night. I'll confirm it once you know your crew numbers.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-6\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Roscoe, confirmed: the Pearl of Lune has the Fish Quay berth from 2 to 10 December, 15 metres, at the winter rate of 2.80 per metre per night that begins on 1 December.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e6\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-26\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Marina Wholesale)\", \"text\": \"Quote for the harbour office: mooring fenders at 11.00 each, delivery to the harbour store within two weeks.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Noel Pike (c/y Bramble)\", \"text\": \"Still confirming crew for November, Marta — leave Bramble's berth as it stands for now.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Ines, booked as requested: Kestrel on Pontoon C from 1 to 8 October, 10 metres, at the summer rate of 3.90 per metre per night.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"EV-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Ordered 60 litres of deck paint from Harbour Supplies Ltd at the quoted 4.00 per litre, total 240, for delivery to the boatyard store.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-7\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"Tomas Reed (Harbour Supplies Ltd)\", \"text\": \"Invoice for the deck paint order: 60 litres at 4.00, total 240, payable within 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Booked crane pad 1 for Kestrel's lift-out on Thursday 12 November at 09:00, agreed with Ines Faraday; the crane runs Tuesday and Thursday mornings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-7\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"Autumn notice to berth holders: the summer visitor rate of 3.90 per metre per night on Pontoon C remains in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.\", \"echo\": true, \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Arrived on Pontoon C for the October stay, Marta — all straightforward, see you in November for the longer one.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Piotr Vos (FV Sanderling)\", \"text\": \"Marta, the Sanderling, a 14-metre trawler, needs a winter berth from 1 November through to the end of March. Anything on the quay would suit us.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Weekly office minutes: assigned Quay B5 to FV Sanderling for the winter, 1 November to 31 March, agreed with Piotr Vos by phone.\", \"role\": \"decision\", \"rests_on\": [\"e26\"], \"record\": \"EV-8\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"notice\", \"from\": \"Port Mellow Harbour Office\", \"text\": \"From next week the harbour office opens 08:00 to 16:00 on weekdays; the weekend duty phone stays as it is.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Eileen Rudd (Port Mellow Harbour Office)\", \"text\": \"Marta, the Pontoon C deck repairs were approved this morning and the contractor starts on the 19th, so the summer season on Pontoon C closes early. Treat the summer rate of 3.90 per metre per night as ending Thursday 15 October: from Friday 16 October the winter rate of 2.80 per metre per night applies on Pontoon C. Please bring any open accounts for stays from 16 October into line with the winter rate when you next work them, and rate any bookings still to come accordingly.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Piotr Vos (FV Sanderling)\", \"text\": \"Thanks for sorting the winter berth on Quay B5, Marta. We'll settle the first month's dues when we're alongside.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Harriet Vane (Millbrook Marina)\", \"text\": \"Hello Port Mellow, just to let you know our visitor pontoon rate is 4.20 per metre per night this season if you need overflow berthing across the channel. Happy to take any vessels you can't fit.\", \"distractor\": true, \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"To do: pay the Harbour Supplies paint invoice of 240 by 14 November.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-03\", \"type\": \"email\", \"from\": \"Ines Faraday (s/y Kestrel)\", \"text\": \"Marta, arrived Tuesday 3 November and tied up on Pontoon C. Please send me the final berth account for this stay whenever it's ready and I'll settle before I leave on the 15th.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Kestrel vessel registration\", \"fields\": {\"vessel\": \"Kestrel\", \"length_m\": \"10\", \"skipper\": \"Ines Faraday\", \"registration\": \"PM-2214\", \"status\": \"active\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kestrel — Pontoon C, November stay\", \"fields\": {\"vessel\": \"Kestrel\", \"berth\": \"Pontoon C\", \"start\": \"2026-11-03\", \"end\": \"2026-11-15\", \"rate\": \"3.90\", \"total_fee\": \"468\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-6\", \"collection\": \"orders\", \"title\": \"Kestrel berth account, November\", \"fields\": {\"vessel\": \"Kestrel\", \"nights\": \"12\", \"metres\": \"10\", \"rate\": \"3.90\", \"amount\": \"468\", \"status\": \"issued\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Bramble — Pontoon C, provisional November\", \"fields\": {\"vessel\": \"Bramble\", \"berth\": \"Pontoon C\", \"start\": \"2026-11-20\", \"end\": \"2026-11-30\", \"rate\": \"3.90\", \"total_fee\": \"468\", \"status\": \"provisional\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Pearl of Lune — Fish Quay, December\", \"fields\": {\"vessel\": \"Pearl of Lune\", \"berth\": \"Fish Quay\", \"start\": \"2026-12-02\", \"end\": \"2026-12-10\", \"rate\": \"2.80\", \"total_fee\": \"336\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Kestrel — Pontoon C, October stay\", \"fields\": {\"vessel\": \"Kestrel\", \"berth\": \"Pontoon C\", \"start\": \"2026-10-01\", \"end\": \"2026-10-08\", \"rate\": \"3.90\", \"total_fee\": \"273\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-7\", \"collection\": \"orders\", \"title\": \"Deck paint order, Harbour Supplies\", \"fields\": {\"supplier\": \"Harbour Supplies Ltd\", \"item\": \"deck paint\", \"quantity\": \"60\", \"unit\": \"litres\", \"amount\": \"240\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Crane slot — Kestrel lift-out\", \"fields\": {\"vessel\": \"Kestrel\", \"slot\": \"crane pad 1\", \"date\": \"2026-11-12\", \"time\": \"09:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-8\", \"collection\": \"schedule\", \"title\": \"FV Sanderling — Quay B5, winter\", \"fields\": {\"vessel\": \"FV Sanderling\", \"berth\": \"Quay B5\", \"start\": \"2026-11-01\", \"end\": \"2027-03-31\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"rate\", \"total_fee\"], \"from\": \"Ines Faraday\", \"rule\": \"e2\"}\n ],\n \"task\": \"Ines is settling up before she leaves on the 15th — please send her the final berth account for Kestrel's November stay on Pontoon C and mark the account as sent.\",\n \"expect\": [\n  {\"record\": \"ORD-6\", \"field\": \"rate\", \"value\": \"2.80\", \"stale\": [\"3.90\", \"4.20\"], \"task\": true},\n  {\"record\": \"ORD-6\", \"field\": \"amount\", \"value\": \"336\", \"stale\": [\"468\"], \"task\": true},\n  {\"record\": \"ORD-6\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"issued\"], \"task\": true},\n  {\"record\": \"EV-6\", \"field\": \"rate\", \"value\": \"2.80\", \"stale\": [\"3.90\"]},\n  {\"record\": \"EV-6\", \"field\": \"total_fee\", \"value\": \"336\", \"stale\": [\"468\"]},\n  {\"message_to\": \"Ines Faraday\", \"regarding\": \"ORD-6\", \"says\": [\"336\", \"2.80\", \"12 nights\", \"10 metres\"], \"stale\": [\"468\", \"3.90\", \"4.20\"], \"task\": true}\n ],\n \"why\": \"The harbourmaster's 20 October email amends the fee schedule: the winter rate of 2.80 applies on Pontoon C from 16 October, so every November stay re-rates. Kestrel's November account (ORD-6, two hops from the rule via the booking) and Bramble's provisional booking (EV-6) are REVISE — the clerk computes them and no one's consent is needed, so they go to 2.80 and 336. Kestrel's confirmed booking EV-3 is also touched, but its rate and total are protected by the skipper-consent rule, so it stays as it is with a consent request to Ines (ASK). Pearl of Lune's December stay and Kestrel's October stay were already at rates the amendment leaves standing (KEEP), and the 4.20 figure is a neighbouring marina's offer, not Port Mellow's rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"diesel restocking\", \"counterpart\": \"Greta Ahn\", \"org\": \"Mellow Fuel Barge\", \"item\": \"diesel\", \"unit\": \"litres\", \"values\": [\"200\", \"300\", \"450\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"booking\", \"topic\": \"school pontoon visits\", \"counterpart\": \"Hanna Boyle\", \"org\": \"Mellow Primary School\", \"item\": \"pontoon walkway visit\", \"unit\": \"\", \"values\": [\"walkway east\", \"walkway west\", \"walkway north\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"order\", \"topic\": \"mooring rope\", \"counterpart\": \"Tomas Reed\", \"org\": \"Harbour Supplies Ltd\", \"item\": \"mooring rope\", \"unit\": \"metres\", \"values\": [\"50\", \"80\", \"120\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"trawler crew berths\", \"counterpart\": \"Piotr Vos\", \"org\": \"FV Sanderling\", \"item\": \"crew berth\", \"unit\": \"\", \"values\": [\"Quay B5\", \"Quay B6\", \"Quay B7\"], \"place\": \"Fish Quay\"},\n  {\"kind\": \"order\", \"topic\": \"fenders\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Marina Wholesale\", \"item\": \"mooring fenders\", \"unit\": \"units\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Pontoon C\"},\n  {\"kind\": \"booking\", \"topic\": \"crane slots\", \"counterpart\": \"Ines Faraday\", \"org\": \"s/y Kestrel\", \"item\": \"lift-out slot\", \"unit\": \"\", \"values\": [\"crane pad 1\", \"crane pad 2\", \"crane pad 3\"], \"place\": \"boatyard\"},\n  {\"kind\": \"order\", \"topic\": \"office coffee\", \"counterpart\": \"Colleen Marsh\", \"org\": \"Mellow Provisions\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"harbour office\"},\n  {\"kind\": \"order\", \"topic\": \"tidal charts\", \"counterpart\": \"Ravi Shah\", \"org\": \"Nautical Print Co\", \"item\": \"tidal charts\", \"unit\": \"sheets\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"harbour office\"},\n  {\"kind\": \"order\", \"topic\": \"antifouling paint\", \"counterpart\": \"Tomas Reed\", \"org\": \"Harbour Supplies Ltd\", \"item\": \"antifouling paint\", \"unit\": \"litres\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"pilot boat mooring\", \"counterpart\": \"Gil Ferro\", \"org\": \"Mellow Pilot Service\", \"item\": \"pilot boat mooring\", \"unit\": \"\", \"values\": [\"quay north\", \"quay south\", \"quay east\"], \"place\": \"Fish Quay\"},\n  {\"kind\": \"order\", \"topic\": \"lifejacket servicing\", \"counterpart\": \"Nadia Kim\", \"org\": \"Servex Marine\", \"item\": \"lifejacket servicing\", \"unit\": \"units\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"boatyard store\"},\n  {\"kind\": \"booking\", \"topic\": \"office meeting room\", \"counterpart\": \"Eileen Rudd\", \"org\": \"Port Mellow Harbour Office\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"harbour office\", \"wheelhouse room\", \"boatyard portacabin\"], \"place\": \"harbour office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 8598,
+    "completion_tokens": 5329,
+    "reasoning_tokens": 11,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0318368,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'school pontoon visits': values needs at least three entries\n- noise topic 'trawler crew berths': values needs at least three entries\n- noise topic 'crane slots': values needs at least three entries\n- noise topic 'pilot boat mooring': values needs at least three entries\n- noise topic 'office meeting room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Pontoon C winter rate brought forward",
+  "setting": "The harbourmaster's clerk at Port Mellow whose assistant records berth bookings, mooring fees, and vessel registrations",
+  "owner": "Marta",
+  "org": "Port Mellow Harbour Office",
+  "now": "2026-11-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Eileen Rudd (Port Mellow Harbour Office)",
+    "text": "Marta, the standing fee schedule for visitor berths: on Pontoon C the summer rate is 3.90 per metre per night and runs until 30 November; from 1 December the winter rate of 2.80 per metre per night applies. Please apply it exactly as written on every visitor account.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Eileen Rudd (Port Mellow Harbour Office)",
+    "text": "One more standing rule: once a visitor's berth booking is confirmed, no change to its dates, berth or rate may be made without the skipper's written agreement. A radio confirmation read back to the office counts as written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Ines Faraday (s/y Kestrel)",
+    "text": "Hello Marta, Kestrel is a 10-metre sloop. I'd like a Pontoon C berth from 3 November to 15 November this year while I do some work in Port Mellow. Can you book me in?",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Kestrel details from the file: sloop, 10 metres, home port Crosshaven, registration PM-2214, skipper and sole contact Ines Faraday.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Noel Pike (c/y Bramble)",
+    "text": "Marta, Bramble here, a 12-metre cutter. Pencil me in on Pontoon C from 20 to 30 November please, provisional for now while I confirm crew numbers.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "letter",
+    "from": "Roscoe Bell (barge Pearl of Lune)",
+    "text": "Dear harbour office, the Pearl of Lune, a 15-metre barge, will pass through Port Mellow from 2 to 10 December. We would like a sheltered berth for those dates and understand the winter rate applies then.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "email",
+    "from": "Eileen Rudd (Port Mellow Harbour Office)",
+    "text": "For planning: the boatyard crane is available on Tuesday and Thursday mornings from now until the winter lay-up, booked through the office as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-27",
+    "type": "call",
+    "from": "Greta Ahn (Mellow Fuel Barge)",
+    "text": "Diesel at the fuel barge is 1.45 a litre this month; passing that on for the office notice board.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "notice",
+    "from": "Port Mellow Harbour Office",
+    "text": "Visitor fees, current season: Pontoon C summer rate 3.90 per metre per night, in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.",
+    "echo": true,
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Hanna Boyle (Mellow Primary School)",
+    "text": "Hello, we'd like to bring the class for a pontoon walkway visit again this autumn. Could you suggest a couple of weekday mornings?",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "quote",
+    "from": "Tomas Reed (Harbour Supplies Ltd)",
+    "text": "Quotation for the harbour office: deck paint at 4.00 per litre in 20-litre drums, delivered to the boatyard store within a week of order.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "note",
+    "from": "Marta",
+    "text": "Renewed Kestrel's vessel registration for the year: sloop, 10 metres, skipper Ines Faraday, registration PM-2214, pontoon preference noted.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-30",
+    "type": "email",
+    "from": "Gil Ferro (Mellow Pilot Service)",
+    "text": "Marta, the pilot boat will need her usual Thursday mooring on the north side of the quay through the autumn. Please keep those slots free.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Marta",
+    "text": "Confirmed with Ines Faraday by radio and in writing: Kestrel is booked on Pontoon C from 3 November to 15 November, 10 metres, charged at the summer visitor rate of 3.90 per metre per night as the fee schedule sets for November.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-06",
+    "type": "invoice",
+    "from": "Marta",
+    "text": "Issued the berth account for Kestrel's November stay on Pontoon C: 12 nights, 10 metres, at 3.90 per metre per night, total 468.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "ORD-6",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Marta",
+    "text": "Noel, I've entered Bramble as a provisional booking on Pontoon C from 20 to 30 November, 12 metres, at the summer rate of 3.90 per metre per night. I'll confirm it once you know your crew numbers.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "EV-6",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marta",
+    "text": "Roscoe, confirmed: the Pearl of Lune has the Fish Quay berth from 2 to 10 December, 15 metres, at the winter rate of 2.80 per metre per night that begins on 1 December.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e6"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-26",
+    "type": "quote",
+    "from": "Dana Ortiz (Marina Wholesale)",
+    "text": "Quote for the harbour office: mooring fenders at 11.00 each, delivery to the harbour store within two weeks.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-28",
+    "type": "message",
+    "from": "Noel Pike (c/y Bramble)",
+    "text": "Still confirming crew for November, Marta — leave Bramble's berth as it stands for now.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Marta",
+    "text": "Ines, booked as requested: Kestrel on Pontoon C from 1 to 8 October, 10 metres, at the summer rate of 3.90 per metre per night.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "EV-5",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-10",
+    "type": "task",
+    "from": "Marta",
+    "text": "Ordered 60 litres of deck paint from Harbour Supplies Ltd at the quoted 4.00 per litre, total 240, for delivery to the boatyard store.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-7"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "invoice",
+    "from": "Tomas Reed (Harbour Supplies Ltd)",
+    "text": "Invoice for the deck paint order: 60 litres at 4.00, total 240, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-18",
+    "type": "note",
+    "from": "Marta",
+    "text": "Booked crane pad 1 for Kestrel's lift-out on Thursday 12 November at 09:00, agreed with Ines Faraday; the crane runs Tuesday and Thursday mornings.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e7"
+    ],
+    "record": "EV-7"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-25",
+    "type": "notice",
+    "from": "Port Mellow Harbour Office",
+    "text": "Autumn notice to berth holders: the summer visitor rate of 3.90 per metre per night on Pontoon C remains in force until 30 November. The winter rate of 2.80 per metre per night begins 1 December.",
+    "echo": true,
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Ines Faraday (s/y Kestrel)",
+    "text": "Arrived on Pontoon C for the October stay, Marta — all straightforward, see you in November for the longer one.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Piotr Vos (FV Sanderling)",
+    "text": "Marta, the Sanderling, a 14-metre trawler, needs a winter berth from 1 November through to the end of March. Anything on the quay would suit us.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-08",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Weekly office minutes: assigned Quay B5 to FV Sanderling for the winter, 1 November to 31 March, agreed with Piotr Vos by phone.",
+    "role": "decision",
+    "rests_on": [
+     "e26"
+    ],
+    "record": "EV-8"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-12",
+    "type": "notice",
+    "from": "Port Mellow Harbour Office",
+    "text": "From next week the harbour office opens 08:00 to 16:00 on weekdays; the weekend duty phone stays as it is.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Eileen Rudd (Port Mellow Harbour Office)",
+    "text": "Marta, the Pontoon C deck repairs were approved this morning and the contractor starts on the 19th, so the summer season on Pontoon C closes early. Treat the summer rate of 3.90 per metre per night as ending Thursday 15 October: from Friday 16 October the winter rate of 2.80 per metre per night applies on Pontoon C. Please bring any open accounts for stays from 16 October into line with the winter rate when you next work them, and rate any bookings still to come accordingly.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-24",
+    "type": "message",
+    "from": "Piotr Vos (FV Sanderling)",
+    "text": "Thanks for sorting the winter berth on Quay B5, Marta. We'll settle the first month's dues when we're alongside.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Harriet Vane (Millbrook Marina)",
+    "text": "Hello Port Mellow, just to let you know our visitor pontoon rate is 4.20 per metre per night this season if you need overflow berthing across the channel. Happy to take any vessels you can't fit.",
+    "distractor": true,
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-02",
+    "type": "note",
+    "from": "Marta",
+    "text": "To do: pay the Harbour Supplies paint invoice of 240 by 14 November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-11-03",
+    "type": "email",
+    "from": "Ines Faraday (s/y Kestrel)",
+    "text": "Marta, arrived Tuesday 3 November and tied up on Pontoon C. Please send me the final berth account for this stay whenever it's ready and I'll settle before I leave on the 15th.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Kestrel vessel registration",
+    "fields": {
+     "vessel": "Kestrel",
+     "length_m": "10",
+     "skipper": "Ines Faraday",
+     "registration": "PM-2214",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Kestrel — Pontoon C, November stay",
+    "fields": {
+     "vessel": "Kestrel",
+     "berth": "Pontoon C",
+     "start": "2026-11-03",
+     "end": "2026-11-15",
+     "rate": "3.90",
+     "total_fee": "468",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-6",
+    "collection": "orders",
+    "title": "Kestrel berth account, November",
+    "fields": {
+     "vessel": "Kestrel",
+     "nights": "12",
+     "metres": "10",
+     "rate": "3.90",
+     "amount": "468",
+     "status": "issued"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Bramble — Pontoon C, provisional November",
+    "fields": {
+     "vessel": "Bramble",
+     "berth": "Pontoon C",
+     "start": "2026-11-20",
+     "end": "2026-11-30",
+     "rate": "3.90",
+     "total_fee": "468",
+     "status": "provisional"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Pearl of Lune — Fish Quay, December",
+    "fields": {
+     "vessel": "Pearl of Lune",
+     "berth": "Fish Quay",
+     "start": "2026-12-02",
+     "end": "2026-12-10",
+     "rate": "2.80",
+     "total_fee": "336",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Kestrel — Pontoon C, October stay",
+    "fields": {
+     "vessel": "Kestrel",
+     "berth": "Pontoon C",
+     "start": "2026-10-01",
+     "end": "2026-10-08",
+     "rate": "3.90",
+     "total_fee": "273",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-7",
+    "collection": "orders",
+    "title": "Deck paint order, Harbour Supplies",
+    "fields": {
+     "supplier": "Harbour Supplies Ltd",
+     "item": "deck paint",
+     "quantity": "60",
+     "unit": "litres",
+     "amount": "240",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Crane slot — Kestrel lift-out",
+    "fields": {
+     "vessel": "Kestrel",
+     "slot": "crane pad 1",
+     "date": "2026-11-12",
+     "time": "09:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-8",
+    "collection": "schedule",
+    "title": "FV Sanderling — Quay B5, winter",
+    "fields": {
+     "vessel": "FV Sanderling",
+     "berth": "Quay B5",
+     "start": "2026-11-01",
+     "end": "2027-03-31",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "rate",
+     "total_fee"
+    ],
+    "from": "Ines Faraday",
+    "rule": "e2"
+   }
+  ],
+  "task": "Ines is settling up before she leaves on the 15th — please send her the final berth account for Kestrel's November stay on Pontoon C and mark the account as sent.",
+  "expect": [
+   {
+    "record": "ORD-6",
+    "field": "rate",
+    "value": "2.80",
+    "stale": [
+     "3.90",
+     "4.20"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-6",
+    "field": "amount",
+    "value": "336",
+    "stale": [
+     "468"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-6",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "issued"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-6",
+    "field": "rate",
+    "value": "2.80",
+    "stale": [
+     "3.90"
+    ]
+   },
+   {
+    "record": "EV-6",
+    "field": "total_fee",
+    "value": "336",
+    "stale": [
+     "468"
+    ]
+   },
+   {
+    "message_to": "Ines Faraday",
+    "regarding": "ORD-6",
+    "says": [
+     "336",
+     "2.80",
+     "12 nights",
+     "10 metres"
+    ],
+    "stale": [
+     "468",
+     "3.90",
+     "4.20"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The harbourmaster's 20 October email amends the fee schedule: the winter rate of 2.80 applies on Pontoon C from 16 October, so every November stay re-rates. Kestrel's November account (ORD-6, two hops from the rule via the booking) and Bramble's provisional booking (EV-6) are REVISE — the clerk computes them and no one's consent is needed, so they go to 2.80 and 336. Kestrel's confirmed booking EV-3 is also touched, but its rate and total are protected by the skipper-consent rule, so it stays as it is with a consent request to Ines (ASK). Pearl of Lune's December stay and Kestrel's October stay were already at rates the amendment leaves standing (KEEP), and the 4.20 figure is a neighbouring marina's offer, not Port Mellow's rate.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "diesel restocking",
+    "counterpart": "Greta Ahn",
+    "org": "Mellow Fuel Barge",
+    "item": "diesel",
+    "unit": "litres",
+    "values": [
+     "200",
+     "300",
+     "450"
+    ],
+    "place": "Pontoon C"
+   },
+   {
+    "kind": "booking",
+    "topic": "school pontoon visits",
+    "counterpart": "Hanna Boyle",
+    "org": "Mellow Primary School",
+    "item": "pontoon walkway visit",
+    "unit": "",
+    "values": [
+     "walkway east",
+     "walkway west",
+     "walkway north"
+    ],
+    "place": "Pontoon C"
+   },
+   {
+    "kind": "order",
+    "topic": "mooring rope",
+    "counterpart": "Tomas Reed",
+    "org": "Harbour Supplies Ltd",
+    "item": "mooring rope",
+    "unit": "metres",
+    "values": [
+     "50",
+     "80",
+     "120"
+    ],
+    "place": "boatyard store"
+   },
+   {
+    "kind": "booking",
+    "topic": "trawler crew berths",
+    "counterpart": "Piotr Vos",
+    "org": "FV Sanderling",
+    "item": "crew berth",
+    "unit": "",
+    "values": [
+     "Quay B5",
+     "Quay B6",
+     "Quay B7"
+    ],
+    "place": "Fish Quay"
+   },
+   {
+    "kind": "order",
+    "topic": "fenders",
+    "counterpart": "Dana Ortiz",
+    "org": "Marina Wholesale",
+    "item": "mooring fenders",
+    "unit": "units",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "Pontoon C"
+   },
+   {
+    "kind": "booking",
+    "topic": "crane slots",
+    "counterpart": "Ines Faraday",
+    "org": "s/y Kestrel",
+    "item": "lift-out slot",
+    "unit": "",
+    "values": [
+     "crane pad 1",
+     "crane pad 2",
+     "crane pad 3"
+    ],
+    "place": "boatyard"
+   },
+   {
+    "kind": "order",
+    "topic": "office coffee",
+    "counterpart": "Colleen Marsh",
+    "org": "Mellow Provisions",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "harbour office"
+   },
+   {
+    "kind": "order",
+    "topic": "tidal charts",
+    "counterpart": "Ravi Shah",
+    "org": "Nautical Print Co",
+    "item": "tidal charts",
+    "unit": "sheets",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "harbour office"
+   },
+   {
+    "kind": "order",
+    "topic": "antifouling paint",
+    "counterpart": "Tomas Reed",
+    "org": "Harbour Supplies Ltd",
+    "item": "antifouling paint",
+    "unit": "litres",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "boatyard store"
+   },
+   {
+    "kind": "booking",
+    "topic": "pilot boat mooring",
+    "counterpart": "Gil Ferro",
+    "org": "Mellow Pilot Service",
+    "item": "pilot boat mooring",
+    "unit": "",
+    "values": [
+     "quay north",
+     "quay south",
+     "quay east"
+    ],
+    "place": "Fish Quay"
+   },
+   {
+    "kind": "order",
+    "topic": "lifejacket servicing",
+    "counterpart": "Nadia Kim",
+    "org": "Servex Marine",
+    "item": "lifejacket servicing",
+    "unit": "units",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "boatyard store"
+   },
+   {
+    "kind": "booking",
+    "topic": "office meeting room",
+    "counterpart": "Eileen Rudd",
+    "org": "Port Mellow Harbour Office",
+    "item": "meeting room",
+    "unit": "",
+    "values": [
+     "harbour office",
+     "wheelhouse room",
+     "boatyard portacabin"
+    ],
+    "place": "harbour office"
+   }
+  ],
+  "id": "G1000-2-02",
+  "tier": 1000,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

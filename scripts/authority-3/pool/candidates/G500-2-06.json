@@ -1,0 +1,719 @@
+{
+ "id": "G500-2-06",
+ "writer": "glm",
+ "tier": 500,
+ "class": 2,
+ "idx": 5,
+ "setting": "The duty manager at Parkside Swimming Pool whose assistant tracks lane bookings, swimming-lesson registers, and maintenance checks",
+ "prompt_sha256": "70dad4aa5355a4ddd53b75d45d6d86ec62d28822908eefaa4e15e961375a9c23",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Club lane rate rise at Parkside Pool\",\n \"setting\": \"The duty manager at Parkside Swimming Pool whose assistant tracks lane bookings, swimming-lesson registers, and maintenance checks\",\n \"owner\": \"Priya\",\n \"org\": \"Parkside Swimming Pool\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Every lane booking, lesson register entry and maintenance check goes into the duty manager's system on the same day it happens. Nothing waits until the end of the week.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Club lane hire at Parkside is charged at 18 pounds per lane per hour. Every quote, booking confirmation and invoice sent to a swim club must use this rate.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"No price or rate on a club's confirmed booking may be changed without that club's coach agreeing first. This applies to every club we deal with.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Any maintenance order above 250 pounds needs Tom Reilly's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Sam\", \"text\": \"The main pool holds eight lanes. Lanes 1 and 2 have shallow steps and are kept for lessons on weekday mornings; the pool is quietest before 08:00 on weekdays, which suits the weekly maintenance check.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Confirming that Parkside's main pool will host the county gala on Saturday 14 November 2026. The small pool stays open to the public as usual that day.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Marta Kovač (Otters Masters)\", \"text\": \"Otters Masters would like our usual Thursday 8pm slot, three lanes, for a November block of four sessions on 5, 12, 19 and 26 November.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Ben Osei (Seahorses Swim Club)\", \"text\": \"Seahorses would like Tuesdays 7:00 to 8:30pm, two lanes, through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"Nova Swim Club wants Wednesdays 7 to 8pm, two lanes, for a September to October block of nine sessions starting 2 September.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Clearline Pool Supplies\", \"text\": \"Quote for six drums of chlorine at 40 pounds per drum, delivered to the Parkside plant room.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered six drums of chlorine from Clearline at 240 pounds in total - under the 250 pound limit, so no sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e10\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Clearline Pool Supplies\", \"text\": \"Chlorine drums delivered to the plant room. Thanks for the order.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Nova Swim Club's September to October block: Wednesdays 7 to 8pm, two lanes, at 18 pounds per lane per hour, nine sessions from 2 September to 28 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"Thanks - Nova confirms the Wednesday evening block. See you in September.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"call\", \"from\": \"Sam\", \"text\": \"Called in a report: the lane ropes on lanes 3 and 4 are fraying. Clearline quoted 420 pounds to replace the full set.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Placed the lane rope replacement order with Clearline for 420 pounds, with Tom Reilly's sign-off as the amount is above 250 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e15\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Sign-off given for the lane rope order. Keep the invoice with the plant maintenance file.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the weekly maintenance check for Mondays at 07:00 from 7 September onwards, assigned to Sam, since the pool is quietest before 08:00 on weekdays.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-5\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Ben Osei (Seahorses Swim Club)\", \"text\": \"Our numbers are up this season - we'll keep the two Tuesday lanes right through the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: autumn lesson registers filling up; gala planning starts next month; small pool boiler service booked.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"The block is going well. We'll talk about winter slots nearer the time.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Seahorses' October block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 6, 13, 20 and 27 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked extra lifeguard cover for the county gala day on Saturday 14 November, 09:00 to 17:00, assigned to Jordan.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-6\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Otters Masters' November block: Thursdays 8 to 9pm, three lanes, at 18 pounds per lane per hour, sessions on 5, 12, 19 and 26 November.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Seahorses' November block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 3, 10, 17 and 24 November.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e8\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Prepared Otters Masters' invoice for their November block: four sessions, three lanes, one hour each, at 18 pounds per lane per hour, giving 216 pounds in total. Saved as a draft ready to send.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Autumn reminder for all staff: club lane hire stands at 18 pounds per lane per hour. Quotes and invoices to clubs must use this figure.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Priya - following the council's energy review, club lane hire at Parkside rises to 22 pounds per lane per hour from 1 November 2026. The old 18 pound rate still applies to bookings for sessions taking place before 1 November. The rule that a club's coach must agree before any price on a confirmed booking is changed still stands. Please bring the club paperwork in line.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Send Otters Masters their November invoice by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Dana - one-off lane rental for the county gala weekend is 20 pounds per lane per hour. That's separate from the club block rate and only covers the gala weekend.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Marta Kovač (Otters Masters)\", \"text\": \"Otters are all set for the November Thursdays. Please send the invoice over whenever it's ready.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-27\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: gala prep on track, setup begins Friday 13 November; lesson registers checked; small pool boiler service completed.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Sam\", \"text\": \"Monday checks going well. The new lane ropes on lanes 3 and 4 are in and bedded in.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-01\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Pool open as normal this week. Gala setup begins Friday 13 November; the main pool closes for the gala on Saturday 14 November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Nova Swim Club - Sep/Oct block\", \"fields\": {\"first_session\": \"2026-09-02\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Otters Masters - November block\", \"fields\": {\"first_session\": \"2026-11-05\", \"time\": \"20:00\", \"lanes\": \"3\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Seahorses - November block\", \"fields\": {\"first_session\": \"2026-11-03\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Seahorses - October block\", \"fields\": {\"first_session\": \"2026-10-06\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Weekly maintenance check\", \"fields\": {\"weekday\": \"Monday\", \"time\": \"07:00\", \"assignee\": \"Sam\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"County gala lifeguard cover\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:00\", \"assignee\": \"Jordan\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Otters Masters - November invoice\", \"fields\": {\"club\": \"Otters Masters\", \"sessions\": \"4\", \"lanes\": \"3\", \"rate\": \"18\", \"total\": \"216\", \"status\": \"draft\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lane rope replacement\", \"fields\": {\"supplier\": \"Clearline Pool Supplies\", \"amount\": \"420\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Chlorine restock\", \"fields\": {\"supplier\": \"Clearline Pool Supplies\", \"amount\": \"240\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"rate\", \"total\"], \"from\": \"Ben Osei\", \"rule\": \"e3\"}\n ],\n \"task\": \"It's time to bill Otters Masters for their November block - please send Marta the invoice and mark it as sent.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"rate\", \"value\": \"22\", \"stale\": [\"18\"]},\n  {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"22\", \"stale\": [\"18\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"264\", \"stale\": [\"216\"]},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Marta Kovač (Otters Masters)\", \"regarding\": \"ORD-1\", \"says\": [\"22 pounds per lane per hour\", \"264\"], \"stale\": [\"18 pounds per lane per hour\", \"216\"], \"task\": true}\n ],\n \"why\": \"The rate rise to 22 pounds applies to sessions from 1 November 2026, so the Otters November booking (EV-2) and the invoice built on it (ORD-1, two hops from the rule) must be revised to 22 and 264 and the invoice sent - no consent is needed for those fields. Seahorses' November block (EV-3) is equally affected, but its rate sits behind Ben Osei's consent under the coach-consent rule, so it must stay as it is with a consent request. Nova's Sep/Oct block and Seahorses' October block fall entirely before 1 November, so they keep the 18 pound rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"chlorine restock\", \"counterpart\": \"Sam\", \"org\": \"Clearline Pool Supplies\", \"item\": \"chlorine drums\", \"unit\": \"drum\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"plant room\"},\n  {\"kind\": \"order\", \"topic\": \"lane rope spares\", \"counterpart\": \"Sam\", \"org\": \"Clearline Pool Supplies\", \"item\": \"lane rope sections\", \"unit\": \"section\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"club committee meetings\", \"counterpart\": \"Dana Ellis\", \"org\": \"Nova Swim Club\", \"item\": \"staff room for committee meetings\", \"unit\": \"\", \"values\": [\"staff room\", \"training room\", \"poolside seating\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"booking\", \"topic\": \"aqua fitness sessions\", \"counterpart\": \"Marta Kovač\", \"org\": \"Otters Masters\", \"item\": \"small pool for aqua fitness\", \"unit\": \"\", \"values\": [\"small pool\", \"main pool shallow end\", \"small pool and cafe area\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"first-aid restock\", \"counterpart\": \"Nina Bell\", \"org\": \"MediCab Supplies\", \"item\": \"first-aid kits\", \"unit\": \"kit\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"reception store\"},\n  {\"kind\": \"booking\", \"topic\": \"school swimming lessons\", \"counterpart\": \"Mr Iqbal\", \"org\": \"Lakeside Primary School\", \"item\": \"main pool lanes for school lessons\", \"unit\": \"\", \"values\": [\"lanes 1-2\", \"lanes 1-3\", \"small pool\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"poolside cleaning supplies\", \"counterpart\": \"Nina Bell\", \"org\": \"BrightClean Supplies\", \"item\": \"cleaning solution\", \"unit\": \"case\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"council training days\", \"counterpart\": \"Tom Reilly\", \"org\": \"council finance office\", \"item\": \"training room for staff training\", \"unit\": \"\", \"values\": [\"training room\", \"staff room\", \"cafe area\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"laundry service\", \"counterpart\": \"Nina Bell\", \"org\": \"LinenLoop\", \"item\": \"towel bundles\", \"unit\": \"bundle\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"reception store\"},\n  {\"kind\": \"booking\", \"topic\": \"lifeguard training\", \"counterpart\": \"Sam\", \"org\": \"Parkside Swimming Pool\", \"item\": \"main pool for lifeguard drills\", \"unit\": \"\", \"values\": [\"lanes 7-8\", \"lanes 6-8\", \"small pool\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"vending restock\", \"counterpart\": \"Nina Bell\", \"org\": \"SnackCo\", \"item\": \"vending machine stock\", \"unit\": \"box\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"cafe area\"},\n  {\"kind\": \"booking\", \"topic\": \"parent-and-toddler swim\", \"counterpart\": \"Nina Bell\", \"org\": \"Parkside Toddlers group\", \"item\": \"small pool for toddler sessions\", \"unit\": \"\", \"values\": [\"small pool\", \"small pool and cafe area\"], \"place\": \"Parkside Swimming Pool\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3197,
+    "completion_tokens": 13048,
+    "reasoning_tokens": 8366,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05831196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Club lane rate rise at Parkside Pool\",\n \"setting\": \"The duty manager at Parkside Swimming Pool whose assistant tracks lane bookings, swimming-lesson registers, and maintenance checks\",\n \"owner\": \"Priya\",\n \"org\": \"Parkside Swimming Pool\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Every lane booking, lesson register entry and maintenance check goes into the duty manager's system on the same day it happens. Nothing waits until the end of the week.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Club lane hire at Parkside is charged at 18 pounds per lane per hour. Every quote, booking confirmation and invoice sent to a swim club must use this rate.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"No price or rate on a club's confirmed booking may be changed without that club's coach agreeing first. This applies to every club we deal with.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Any maintenance order above 250 pounds needs Tom Reilly's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Sam\", \"text\": \"The main pool holds eight lanes. Lanes 1 and 2 have shallow steps and are kept for lessons on weekday mornings; the pool is quietest before 08:00 on weekdays, which suits the weekly maintenance check.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Confirming that Parkside's main pool will host the county gala on Saturday 14 November 2026. The small pool stays open to the public as usual that day.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"email\", \"from\": \"Marta Kovač (Otters Masters)\", \"text\": \"Otters Masters would like our usual Thursday 8pm slot, three lanes, for a November block of four sessions on 5, 12, 19 and 26 November.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Ben Osei (Seahorses Swim Club)\", \"text\": \"Seahorses would like Tuesdays 7:00 to 8:30pm, two lanes, through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"Nova Swim Club wants Wednesdays 7 to 8pm, two lanes, for a September to October block of nine sessions starting 2 September.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"quote\", \"from\": \"Clearline Pool Supplies\", \"text\": \"Quote for six drums of chlorine at 40 pounds per drum, delivered to the Parkside plant room.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered six drums of chlorine from Clearline at 240 pounds in total - under the 250 pound limit, so no sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e10\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Clearline Pool Supplies\", \"text\": \"Chlorine drums delivered to the plant room. Thanks for the order.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Nova Swim Club's September to October block: Wednesdays 7 to 8pm, two lanes, at 18 pounds per lane per hour, nine sessions from 2 September to 28 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"Thanks - Nova confirms the Wednesday evening block. See you in September.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"call\", \"from\": \"Sam\", \"text\": \"Called in a report: the lane ropes on lanes 3 and 4 are fraying. Clearline quoted 420 pounds to replace the full set.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Placed the lane rope replacement order with Clearline for 420 pounds, with Tom Reilly's sign-off as the amount is above 250 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e15\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Sign-off given for the lane rope order. Keep the invoice with the plant maintenance file.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the weekly maintenance check for Mondays at 07:00 from 7 September onwards, assigned to Sam, since the pool is quietest before 08:00 on weekdays.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-5\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Ben Osei (Seahorses Swim Club)\", \"text\": \"Our numbers are up this season - we'll keep the two Tuesday lanes right through the autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: autumn lesson registers filling up; gala planning starts next month; small pool boiler service booked.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Dana Ellis (Nova Swim Club)\", \"text\": \"The block is going well. We'll talk about winter slots nearer the time.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Seahorses' October block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 6, 13, 20 and 27 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e8\"], \"record\": \"EV-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked extra lifeguard cover for the county gala day on Saturday 14 November, 09:00 to 17:00, assigned to Jordan.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-6\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Otters Masters' November block: Thursdays 8 to 9pm, three lanes, at 18 pounds per lane per hour, sessions on 5, 12, 19 and 26 November.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed Seahorses' November block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 3, 10, 17 and 24 November.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e8\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Prepared Otters Masters' invoice for their November block: four sessions, three lanes, one hour each, at 18 pounds per lane per hour, giving 216 pounds in total. Saved as a draft ready to send.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Autumn reminder for all staff: club lane hire stands at 18 pounds per lane per hour. Quotes and invoices to clubs must use this figure.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Tom Reilly (council finance)\", \"text\": \"Priya - following the council's energy review, club lane hire at Parkside rises to 22 pounds per lane per hour from 1 November 2026. The old 18 pound rate still applies to bookings for sessions taking place before 1 November. The rule that a club's coach must agree before any price on a confirmed booking is changed still stands. Please bring the club paperwork in line.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Send Otters Masters their November invoice by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Dana - one-off lane rental for the county gala weekend is 20 pounds per lane per hour. That's separate from the club block rate and only covers the gala weekend.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Marta Kovač (Otters Masters)\", \"text\": \"Otters are all set for the November Thursdays. Please send the invoice over whenever it's ready.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-27\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: gala prep on track, setup begins Friday 13 November; lesson registers checked; small pool boiler service completed.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Sam\", \"text\": \"Monday checks going well. The new lane ropes on lanes 3 and 4 are in and bedded in.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-01\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Pool open as normal this week. Gala setup begins Friday 13 November; the main pool closes for the gala on Saturday 14 November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Nova Swim Club - Sep/Oct block\", \"fields\": {\"first_session\": \"2026-09-02\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Otters Masters - November block\", \"fields\": {\"first_session\": \"2026-11-05\", \"time\": \"20:00\", \"lanes\": \"3\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Seahorses - November block\", \"fields\": {\"first_session\": \"2026-11-03\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Seahorses - October block\", \"fields\": {\"first_session\": \"2026-10-06\", \"time\": \"19:00\", \"lanes\": \"2\", \"rate\": \"18\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Weekly maintenance check\", \"fields\": {\"weekday\": \"Monday\", \"time\": \"07:00\", \"assignee\": \"Sam\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"County gala lifeguard cover\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:00\", \"assignee\": \"Jordan\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Otters Masters - November invoice\", \"fields\": {\"club\": \"Otters Masters\", \"sessions\": \"4\", \"lanes\": \"3\", \"rate\": \"18\", \"total\": \"216\", \"status\": \"draft\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lane rope replacement\", \"fields\": {\"supplier\": \"Clearline Pool Supplies\", \"amount\": \"420\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Chlorine restock\", \"fields\": {\"supplier\": \"Clearline Pool Supplies\", \"amount\": \"240\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-3\", \"fields\": [\"rate\"], \"from\": \"Ben Osei\", \"rule\": \"e3\"}\n ],\n \"task\": \"It's time to bill Otters Masters for their November block - please send Marta the invoice and mark it as sent.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"rate\", \"value\": \"22\", \"stale\": [\"18\"]},\n  {\"record\": \"ORD-1\", \"field\": \"rate\", \"value\": \"22\", \"stale\": [\"18\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"264\", \"stale\": [\"216\"]},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"Marta Kovač (Otters Masters)\", \"regarding\": \"ORD-1\", \"says\": [\"22 pounds per lane per hour\", \"264\"], \"stale\": [\"18 pounds per lane per hour\", \"216\"], \"task\": true}\n ],\n \"why\": \"The rate rise to 22 pounds applies to sessions from 1 November 2026, so the Otters November booking (EV-2) and the invoice built on it (ORD-1, two hops from the rule) must be revised to 22 and 264 and the invoice sent - no consent is needed for those fields. Seahorses' November block (EV-3) is equally affected, but its rate sits behind Ben Osei's consent under the coach-consent rule, so it must stay as it is with a consent request. Nova's Sep/Oct block and Seahorses' October block fall entirely before 1 November, so they keep the 18 pound rate.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"chlorine restock\", \"counterpart\": \"Sam\", \"org\": \"Clearline Pool Supplies\", \"item\": \"chlorine drums\", \"unit\": \"drum\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"plant room\"},\n  {\"kind\": \"order\", \"topic\": \"lane rope spares\", \"counterpart\": \"Sam\", \"org\": \"Clearline Pool Supplies\", \"item\": \"lane rope sections\", \"unit\": \"section\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"club committee meetings\", \"counterpart\": \"Dana Ellis\", \"org\": \"Nova Swim Club\", \"item\": \"staff room for committee meetings\", \"unit\": \"\", \"values\": [\"staff room\", \"training room\", \"poolside seating\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"booking\", \"topic\": \"aqua fitness sessions\", \"counterpart\": \"Marta Kovač\", \"org\": \"Otters Masters\", \"item\": \"small pool for aqua fitness\", \"unit\": \"\", \"values\": [\"small pool\", \"main pool shallow end\", \"small pool and cafe area\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"first-aid restock\", \"counterpart\": \"Nina Bell\", \"org\": \"MediCab Supplies\", \"item\": \"first-aid kits\", \"unit\": \"kit\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"reception store\"},\n  {\"kind\": \"booking\", \"topic\": \"school swimming lessons\", \"counterpart\": \"Mr Iqbal\", \"org\": \"Lakeside Primary School\", \"item\": \"main pool lanes for school lessons\", \"unit\": \"\", \"values\": [\"lanes 1-2\", \"lanes 1-3\", \"small pool\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"poolside cleaning supplies\", \"counterpart\": \"Nina Bell\", \"org\": \"BrightClean Supplies\", \"item\": \"cleaning solution\", \"unit\": \"case\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"council training days\", \"counterpart\": \"Tom Reilly\", \"org\": \"council finance office\", \"item\": \"training room for staff training\", \"unit\": \"\", \"values\": [\"training room\", \"staff room\", \"cafe area\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"laundry service\", \"counterpart\": \"Nina Bell\", \"org\": \"LinenLoop\", \"item\": \"towel bundles\", \"unit\": \"bundle\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"reception store\"},\n  {\"kind\": \"booking\", \"topic\": \"lifeguard training\", \"counterpart\": \"Sam\", \"org\": \"Parkside Swimming Pool\", \"item\": \"main pool for lifeguard drills\", \"unit\": \"\", \"values\": [\"lanes 7-8\", \"lanes 6-8\", \"small pool\"], \"place\": \"Parkside Swimming Pool\"},\n  {\"kind\": \"order\", \"topic\": \"vending restock\", \"counterpart\": \"Nina Bell\", \"org\": \"SnackCo\", \"item\": \"vending machine stock\", \"unit\": \"box\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"cafe area\"},\n  {\"kind\": \"booking\", \"topic\": \"parent-and-toddler swim\", \"counterpart\": \"Nina Bell\", \"org\": \"Parkside Toddlers group\", \"item\": \"small pool for toddler sessions\", \"unit\": \"\", \"values\": [\"small pool\", \"small pool and cafe area\", \"main pool shallow end\"], \"place\": \"Parkside Swimming Pool\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7945,
+    "completion_tokens": 4738,
+    "reasoning_tokens": 53,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02839516,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- consent on EV-3: fields must be a non-empty subset of the record's fields\n- noise topic 'parent-and-toddler swim': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Club lane rate rise at Parkside Pool",
+  "setting": "The duty manager at Parkside Swimming Pool whose assistant tracks lane bookings, swimming-lesson registers, and maintenance checks",
+  "owner": "Priya",
+  "org": "Parkside Swimming Pool",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Every lane booking, lesson register entry and maintenance check goes into the duty manager's system on the same day it happens. Nothing waits until the end of the week.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Club lane hire at Parkside is charged at 18 pounds per lane per hour. Every quote, booking confirmation and invoice sent to a swim club must use this rate.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "No price or rate on a club's confirmed booking may be changed without that club's coach agreeing first. This applies to every club we deal with.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Any maintenance order above 250 pounds needs Tom Reilly's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Sam",
+    "text": "The main pool holds eight lanes. Lanes 1 and 2 have shallow steps and are kept for lessons on weekday mornings; the pool is quietest before 08:00 on weekdays, which suits the weekly maintenance check.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Tom Reilly (council finance)",
+    "text": "Confirming that Parkside's main pool will host the county gala on Saturday 14 November 2026. The small pool stays open to the public as usual that day.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "email",
+    "from": "Marta Kovač (Otters Masters)",
+    "text": "Otters Masters would like our usual Thursday 8pm slot, three lanes, for a November block of four sessions on 5, 12, 19 and 26 November.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Ben Osei (Seahorses Swim Club)",
+    "text": "Seahorses would like Tuesdays 7:00 to 8:30pm, two lanes, through the autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Dana Ellis (Nova Swim Club)",
+    "text": "Nova Swim Club wants Wednesdays 7 to 8pm, two lanes, for a September to October block of nine sessions starting 2 September.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "quote",
+    "from": "Clearline Pool Supplies",
+    "text": "Quote for six drums of chlorine at 40 pounds per drum, delivered to the Parkside plant room.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered six drums of chlorine from Clearline at 240 pounds in total - under the 250 pound limit, so no sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e10"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Clearline Pool Supplies",
+    "text": "Chlorine drums delivered to the plant room. Thanks for the order.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-17",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed Nova Swim Club's September to October block: Wednesdays 7 to 8pm, two lanes, at 18 pounds per lane per hour, nine sessions from 2 September to 28 October.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e9"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Dana Ellis (Nova Swim Club)",
+    "text": "Thanks - Nova confirms the Wednesday evening block. See you in September.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-28",
+    "type": "call",
+    "from": "Sam",
+    "text": "Called in a report: the lane ropes on lanes 3 and 4 are fraying. Clearline quoted 420 pounds to replace the full set.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Placed the lane rope replacement order with Clearline for 420 pounds, with Tom Reilly's sign-off as the amount is above 250 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e15"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Tom Reilly (council finance)",
+    "text": "Sign-off given for the lane rope order. Keep the invoice with the plant maintenance file.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Scheduled the weekly maintenance check for Mondays at 07:00 from 7 September onwards, assigned to Sam, since the pool is quietest before 08:00 on weekdays.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-25",
+    "type": "message",
+    "from": "Ben Osei (Seahorses Swim Club)",
+    "text": "Our numbers are up this season - we'll keep the two Tuesday lanes right through the autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-03",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Staff meeting notes: autumn lesson registers filling up; gala planning starts next month; small pool boiler service booked.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Dana Ellis (Nova Swim Club)",
+    "text": "The block is going well. We'll talk about winter slots nearer the time.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed Seahorses' October block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 6, 13, 20 and 27 October.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e8"
+    ],
+    "record": "EV-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked extra lifeguard cover for the county gala day on Saturday 14 November, 09:00 to 17:00, assigned to Jordan.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-28",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed Otters Masters' November block: Thursdays 8 to 9pm, three lanes, at 18 pounds per lane per hour, sessions on 5, 12, 19 and 26 November.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e7"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-29",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed Seahorses' November block: Tuesdays 7:00 to 8:30pm, two lanes, at 18 pounds per lane per hour, sessions on 3, 10, 17 and 24 November.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3",
+     "e8"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Prepared Otters Masters' invoice for their November block: four sessions, three lanes, one hour each, at 18 pounds per lane per hour, giving 216 pounds in total. Saved as a draft ready to send.",
+    "role": "decision",
+    "rests_on": [
+     "e24"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Priya",
+    "text": "Autumn reminder for all staff: club lane hire stands at 18 pounds per lane per hour. Quotes and invoices to clubs must use this figure.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Tom Reilly (council finance)",
+    "text": "Priya - following the council's energy review, club lane hire at Parkside rises to 22 pounds per lane per hour from 1 November 2026. The old 18 pound rate still applies to bookings for sessions taking place before 1 November. The rule that a club's coach must agree before any price on a confirmed booking is changed still stands. Please bring the club paperwork in line.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-16",
+    "type": "task",
+    "from": "Priya",
+    "text": "Send Otters Masters their November invoice by 31 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Priya",
+    "text": "Dana - one-off lane rental for the county gala weekend is 20 pounds per lane per hour. That's separate from the club block rate and only covers the gala weekend.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-22",
+    "type": "email",
+    "from": "Marta Kovač (Otters Masters)",
+    "text": "Otters are all set for the November Thursdays. Please send the invoice over whenever it's ready.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-27",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Staff meeting notes: gala prep on track, setup begins Friday 13 November; lesson registers checked; small pool boiler service completed.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-30",
+    "type": "message",
+    "from": "Sam",
+    "text": "Monday checks going well. The new lane ropes on lanes 3 and 4 are in and bedded in.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-11-01",
+    "type": "notice",
+    "from": "Priya",
+    "text": "Pool open as normal this week. Gala setup begins Friday 13 November; the main pool closes for the gala on Saturday 14 November.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Nova Swim Club - Sep/Oct block",
+    "fields": {
+     "first_session": "2026-09-02",
+     "time": "19:00",
+     "lanes": "2",
+     "rate": "18",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Otters Masters - November block",
+    "fields": {
+     "first_session": "2026-11-05",
+     "time": "20:00",
+     "lanes": "3",
+     "rate": "18",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Seahorses - November block",
+    "fields": {
+     "first_session": "2026-11-03",
+     "time": "19:00",
+     "lanes": "2",
+     "rate": "18",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Seahorses - October block",
+    "fields": {
+     "first_session": "2026-10-06",
+     "time": "19:00",
+     "lanes": "2",
+     "rate": "18",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Weekly maintenance check",
+    "fields": {
+     "weekday": "Monday",
+     "time": "07:00",
+     "assignee": "Sam",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "County gala lifeguard cover",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "09:00",
+     "assignee": "Jordan",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Otters Masters - November invoice",
+    "fields": {
+     "club": "Otters Masters",
+     "sessions": "4",
+     "lanes": "3",
+     "rate": "18",
+     "total": "216",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Lane rope replacement",
+    "fields": {
+     "supplier": "Clearline Pool Supplies",
+     "amount": "420",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Chlorine restock",
+    "fields": {
+     "supplier": "Clearline Pool Supplies",
+     "amount": "240",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "rate"
+    ],
+    "from": "Ben Osei",
+    "rule": "e3"
+   }
+  ],
+  "task": "It's time to bill Otters Masters for their November block - please send Marta the invoice and mark it as sent.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "rate",
+    "value": "22",
+    "stale": [
+     "18"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "rate",
+    "value": "22",
+    "stale": [
+     "18"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "264",
+    "stale": [
+     "216"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marta Kovač (Otters Masters)",
+    "regarding": "ORD-1",
+    "says": [
+     "22 pounds per lane per hour",
+     "264"
+    ],
+    "stale": [
+     "18 pounds per lane per hour",
+     "216"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The rate rise to 22 pounds applies to sessions from 1 November 2026, so the Otters November booking (EV-2) and the invoice built on it (ORD-1, two hops from the rule) must be revised to 22 and 264 and the invoice sent - no consent is needed for those fields. Seahorses' November block (EV-3) is equally affected, but its rate sits behind Ben Osei's consent under the coach-consent rule, so it must stay as it is with a consent request. Nova's Sep/Oct block and Seahorses' October block fall entirely before 1 November, so they keep the 18 pound rate.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "chlorine restock",
+    "counterpart": "Sam",
+    "org": "Clearline Pool Supplies",
+    "item": "chlorine drums",
+    "unit": "drum",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "plant room"
+   },
+   {
+    "kind": "order",
+    "topic": "lane rope spares",
+    "counterpart": "Sam",
+    "org": "Clearline Pool Supplies",
+    "item": "lane rope sections",
+    "unit": "section",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "plant room"
+   },
+   {
+    "kind": "booking",
+    "topic": "club committee meetings",
+    "counterpart": "Dana Ellis",
+    "org": "Nova Swim Club",
+    "item": "staff room for committee meetings",
+    "unit": "",
+    "values": [
+     "staff room",
+     "training room",
+     "poolside seating"
+    ],
+    "place": "Parkside Swimming Pool"
+   },
+   {
+    "kind": "booking",
+    "topic": "aqua fitness sessions",
+    "counterpart": "Marta Kovač",
+    "org": "Otters Masters",
+    "item": "small pool for aqua fitness",
+    "unit": "",
+    "values": [
+     "small pool",
+     "main pool shallow end",
+     "small pool and cafe area"
+    ],
+    "place": "Parkside Swimming Pool"
+   },
+   {
+    "kind": "order",
+    "topic": "first-aid restock",
+    "counterpart": "Nina Bell",
+    "org": "MediCab Supplies",
+    "item": "first-aid kits",
+    "unit": "kit",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "reception store"
+   },
+   {
+    "kind": "booking",
+    "topic": "school swimming lessons",
+    "counterpart": "Mr Iqbal",
+    "org": "Lakeside Primary School",
+    "item": "main pool lanes for school lessons",
+    "unit": "",
+    "values": [
+     "lanes 1-2",
+     "lanes 1-3",
+     "small pool"
+    ],
+    "place": "Parkside Swimming Pool"
+   },
+   {
+    "kind": "order",
+    "topic": "poolside cleaning supplies",
+    "counterpart": "Nina Bell",
+    "org": "BrightClean Supplies",
+    "item": "cleaning solution",
+    "unit": "case",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "plant room"
+   },
+   {
+    "kind": "booking",
+    "topic": "council training days",
+    "counterpart": "Tom Reilly",
+    "org": "council finance office",
+    "item": "training room for staff training",
+    "unit": "",
+    "values": [
+     "training room",
+     "staff room",
+     "cafe area"
+    ],
+    "place": "Parkside Swimming Pool"
+   },
+   {
+    "kind": "order",
+    "topic": "laundry service",
+    "counterpart": "Nina Bell",
+    "org": "LinenLoop",
+    "item": "towel bundles",
+    "unit": "bundle",
+    "values": [
+     "20",
+     "35",
+     "50"
+    ],
+    "place": "reception store"
+   },
+   {
+    "kind": "booking",
+    "topic": "lifeguard training",
+    "counterpart": "Sam",
+    "org": "Parkside Swimming Pool",
+    "item": "main pool for lifeguard drills",
+    "unit": "",
+    "values": [
+     "lanes 7-8",
+     "lanes 6-8",
+     "small pool"
+    ],
+    "place": "Parkside Swimming Pool"
+   },
+   {
+    "kind": "order",
+    "topic": "vending restock",
+    "counterpart": "Nina Bell",
+    "org": "SnackCo",
+    "item": "vending machine stock",
+    "unit": "box",
+    "values": [
+     "6",
+     "10",
+     "14"
+    ],
+    "place": "cafe area"
+   },
+   {
+    "kind": "booking",
+    "topic": "parent-and-toddler swim",
+    "counterpart": "Nina Bell",
+    "org": "Parkside Toddlers group",
+    "item": "small pool for toddler sessions",
+    "unit": "",
+    "values": [
+     "small pool",
+     "small pool and cafe area",
+     "main pool shallow end"
+    ],
+    "place": "Parkside Swimming Pool"
+   }
+  ],
+  "id": "G500-2-06",
+  "tier": 500,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

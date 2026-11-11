@@ -1,0 +1,604 @@
+{
+ "id": "G100-3-02",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 1,
+ "setting": "A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules",
+ "prompt_sha256": "08d31567683844504d8cd50cba43b693d34912ec45e9dac1fb724349b4ffb7d0",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Nordvik open day moved\",\n \"setting\": \"A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules\",\n \"owner\": \"Mira\",\n \"org\": \"Studio Fenn\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing practice for the studio: every client brief gets logged in the CRM within a day, and invoices go out no later than seven days after a delivery is completed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-18\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Studio policy on client deliverables: once a deliverable date is confirmed with a client, moving it needs written sign-off from that client's marketing director. For Nordvik Transport the marketing director is Ingrid Nordvik; their project contact Lars Haug can request changes but cannot approve them himself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Confirming our terms for studio work: we need approved proofs seven full days before the delivery date, and all deliveries come to Studio Fenn in Oslo. My direct line is open weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Just to confirm the details for our rebrand launch: the depot open day at our Borre site is on Friday 20 November, and we expect around 300 guests. The new visual identity should be everywhere on site that day.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-09-18\", \"type\": \"quote\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Quote for the Nordvik brochure run: 400 A4 brochures on 170g silk, 12 900 kroner total, with approved proofs needed seven days before the agreed delivery date.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Placing the print order with Halden Print: 400 A4 brochures for the Nordvik rebrand, delivery to Studio Fenn on Friday 13 November, one week ahead of the open day at the Borre depot, per Tove's quote and the seven-day proof lead time.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 350 branded tote bags from Ines Falk at Vestfold Merch, one per expected guest plus spares for the roughly 300 visitors at the Nordvik open day, delivered to the studio on 10 November.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booking two of us for on-site branding support at the Nordvik depot in Borre on Friday 20 November, setting up signage and handing out brochures at the open day.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Scheduling the brochure proof review with the Nordvik team in Studio A on Friday 6 November at 10:00, exactly seven days before the Halden Print delivery on 13 November so Tove gets approved proofs in time.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked photographer Nils Bru for a studio shoot of new website imagery on Friday 30 October, full day at Studio Fenn.\", \"role\": \"decision\", \"record\": \"EV-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Invoice schedule for Nordvik: 30 percent (3 870 kroner) on placing the brochure order, the remainder after the open day deliverables are completed.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Petter Aas (Bryggen Bakery)\", \"text\": \"Could we get the autumn menu refreshed with the new headline font? Nothing urgent, sometime in October works.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-10-06\", \"type\": \"call\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Called to check on the brochure drafts; happy with the cover direction, asked for the route-map page to stay simple.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Studio Fenn\", \"text\": \"Weekly standup: Nordvik artwork at final stages, Bryggen Bakery menu refresh queued, tote bag proofs approved at Vestfold Merch.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: pay the Halden Print deposit of 3 870 kroner by 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Our press line has good availability through mid-November, so the Nordvik brochure run is easy to fit in whenever your proofs are ready.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Quick update from our side: the depot open day is moving to Friday 27 November, a week later than planned, because of construction work at the Borre site. Same programme and same guest numbers, just the later date. Ingrid is aware.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Also noting our staff preview of the new identity is set for Thursday 12 November at the Borre depot, in case you want photos of it for the case study.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-24\", \"type\": \"minutes\", \"from\": \"Studio Fenn\", \"text\": \"Weekly standup: Nordvik brochure artwork 90 percent done, website shoot prep for Friday, deposit payment to Halden Print still open.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-25\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Route-map page for the Nordvik brochure simplified after Lars's call; ready for final proofing.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Nordvik open day - on-site branding support\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"09:00\", \"place\": \"Borre depot\", \"people\": \"Mira and Sofia\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Nordvik brochure proof review\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"room\": \"Studio A\", \"project\": \"Nordvik rebrand\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Website imagery photo shoot\", \"fields\": {\"date\": \"2026-10-30\", \"time\": \"09:00\", \"room\": \"Studio Fenn\", \"client\": \"Studio Fenn website\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Halden Print - Nordvik brochure print run\", \"fields\": {\"supplier\": \"Halden Print\", \"item\": \"A4 brochures\", \"quantity\": \"400\", \"delivery_date\": \"2026-11-13\", \"delivery_place\": \"Studio Fenn\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Vestfold Merch - branded tote bags\", \"fields\": {\"supplier\": \"Vestfold Merch\", \"item\": \"Tote bags with Nordvik print\", \"quantity\": \"350\", \"delivery_date\": \"2026-11-10\", \"delivery_place\": \"Studio Fenn\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"delivery_date\"], \"from\": \"Ingrid Nordvik (Nordvik Transport)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Ingrid Nordvik (Nordvik Transport)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you get the Nordvik brochure printing organised: set up the proof review with the team and confirm the delivery date with Tove at Halden Print?\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-13\", \"stale\": [\"2026-11-06\"], \"task\": true},\n  {\"message_to\": \"Tove Lie (Halden Print)\", \"regarding\": \"ORD-3\", \"says\": [\"2026-11-20\"], \"stale\": [\"2026-11-13\"], \"task\": true}\n ],\n \"why\": \"Lars's email moves the open day from 20 to 27 November, which shifts the brochure delivery (ORD-3, seven days before launch) to 20 November and the internal proof review (EV-2, seven days before delivery) to 13 November. EV-2 is internal, so the assistant revises it directly and tells Tove the new delivery date. ORD-3 and EV-1 are confirmed client deliverables, so under Mira's policy (e2) their dates may only move with Ingrid Nordvik's written sign-off; the assistant must ask her rather than change the records, and Lars's email alone is not that sign-off. The tote bag order (ORD-4) rests only on the guest count of about 300, which the change leaves standing, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"business cards\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"business cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"poster prints\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"A2 poster prints\", \"unit\": \"copies\", \"values\": [\"50\", \"150\", \"300\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"press check visit\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"press check visit\", \"unit\": \"\", \"values\": [\"press hall\", \"reception meeting room\"], \"place\": \"Halden Print\"},\n  {\"kind\": \"booking\", \"topic\": \"Nordvik project meeting\", \"counterpart\": \"Lars Haug\", \"org\": \"Nordvik Transport\", \"item\": \"project meeting\", \"unit\": \"\", \"values\": [\"depot meeting room\", \"Borre depot canteen\"], \"place\": \"Borre depot\"},\n  {\"kind\": \"order\", \"topic\": \"tote bag restock\", \"counterpart\": \"Ines Falk\", \"org\": \"Vestfold Merch\", \"item\": \"tote bags\", \"unit\": \"units\", \"values\": [\"100\", \"200\", \"350\", \"500\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"paper stock\", \"counterpart\": \"Nora Sten\", \"org\": \"Fjord Paper\", \"item\": \"A3 silk paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"studio room\", \"counterpart\": \"Sofia Lund\", \"org\": \"Studio Fenn\", \"item\": \"internal working session\", \"unit\": \"\", \"values\": [\"Studio A\", \"Studio B\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"menu print run\", \"counterpart\": \"Petter Aas\", \"org\": \"Bryggen Bakery\", \"item\": \"menu cards\", \"unit\": \"copies\", \"values\": [\"200\", \"400\", \"800\"], \"place\": \"Bryggen Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"client workshop\", \"counterpart\": \"June Halvorsen\", \"org\": \"Kvist Architecture\", \"item\": \"brand workshop\", \"unit\": \"\", \"values\": [\"Kvist project space\", \"Studio Fenn meeting room\"], \"place\": \"Kvist Architecture\"},\n  {\"kind\": \"booking\", \"topic\": \"courier van slot\", \"counterpart\": \"Rikard Vee\", \"org\": \"Vee Logistics\", \"item\": \"van pickup slot\", \"unit\": \"\", \"values\": [\"morning van\", \"afternoon van\"], \"place\": \"Oslo pickup\"},\n  {\"kind\": \"order\", \"topic\": \"ink restock\", \"counterpart\": \"Sofia Lund\", \"org\": \"Studio Fenn\", \"item\": \"ink cartridges\", \"unit\": \"packs\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Studio Fenn\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3139,
+    "completion_tokens": 7998,
+    "reasoning_tokens": 4630,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03608372,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Nordvik open day moved\",\n \"setting\": \"A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules\",\n \"owner\": \"Mira\",\n \"org\": \"Studio Fenn\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing practice for the studio: every client brief gets logged in the CRM within a day, and invoices go out no later than seven days after a delivery is completed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-18\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Studio policy on client deliverables: once a deliverable date is confirmed with a client, moving it needs written sign-off from that client's marketing director. For Nordvik Transport the marketing director is Ingrid Nordvik; their project contact Lars Haug can request changes but cannot approve them himself.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Confirming our terms for studio work: we need approved proofs seven full days before the delivery date, and all deliveries come to Studio Fenn in Oslo. My direct line is open weekdays.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Just to confirm the details for our rebrand launch: the depot open day at our Borre site is on Friday 20 November, and we expect around 300 guests. The new visual identity should be everywhere on site that day.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-09-18\", \"type\": \"quote\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Quote for the Nordvik brochure run: 400 A4 brochures on 170g silk, 12 900 kroner total, with approved proofs needed seven days before the agreed delivery date.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Placing the print order with Halden Print: 400 A4 brochures for the Nordvik rebrand, delivery to Studio Fenn on Friday 13 November, one week ahead of the open day at the Borre depot, per Tove's quote and the seven-day proof lead time.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 350 branded tote bags from Ines Falk at Vestfold Merch, one per expected guest plus spares for the roughly 300 visitors at the Nordvik open day, delivered to the studio on 10 November.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booking two of us for on-site branding support at the Nordvik depot in Borre on Friday 20 November, setting up signage and handing out brochures at the open day.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Scheduling the brochure proof review with the Nordvik team in Studio A on Friday 6 November at 10:00, exactly seven days before the Halden Print delivery on 13 November so Tove gets approved proofs in time.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked photographer Nils Bru for a studio shoot of new website imagery on Friday 30 October, full day at Studio Fenn.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Invoice schedule for Nordvik: 30 percent (3 870 kroner) on placing the brochure order, the remainder after the open day deliverables are completed.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Petter Aas (Bryggen Bakery)\", \"text\": \"Could we get the autumn menu refreshed with the new headline font? Nothing urgent, sometime in October works.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-10-06\", \"type\": \"call\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Called to check on the brochure drafts; happy with the cover direction, asked for the route-map page to stay simple.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-08\", \"type\": \"minutes\", \"from\": \"Studio Fenn\", \"text\": \"Weekly standup: Nordvik artwork at final stages, Bryggen Bakery menu refresh queued, tote bag proofs approved at Vestfold Merch.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-14\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: pay the Halden Print deposit of 3 870 kroner by 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Tove Lie (Halden Print)\", \"text\": \"Our press line has good availability through mid-November, so the Nordvik brochure run is easy to fit in whenever your proofs are ready.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Quick update from our side: the depot open day is moving to Friday 27 November, a week later than planned, because of construction work at the Borre site. Same programme and same guest numbers, just the later date. Ingrid is aware.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Lars Haug (Nordvik Transport)\", \"text\": \"Also noting our staff preview of the new identity is set for Thursday 12 November at the Borre depot, in case you want photos of it for the case study.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-24\", \"type\": \"minutes\", \"from\": \"Studio Fenn\", \"text\": \"Weekly standup: Nordvik brochure artwork 90 percent done, website shoot prep for Friday, deposit payment to Halden Print still open.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-25\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Route-map page for the Nordvik brochure simplified after Lars's call; ready for final proofing.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Nordvik open day - on-site branding support\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"09:00\", \"place\": \"Borre depot\", \"people\": \"Mira and Sofia\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Nordvik brochure proof review\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"room\": \"Studio A\", \"project\": \"Nordvik rebrand\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Website imagery photo shoot\", \"fields\": {\"date\": \"2026-10-30\", \"time\": \"09:00\", \"room\": \"Studio Fenn\", \"client\": \"Studio Fenn website\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Halden Print - Nordvik brochure print run\", \"fields\": {\"supplier\": \"Halden Print\", \"item\": \"A4 brochures\", \"quantity\": \"400\", \"delivery_date\": \"2026-11-13\", \"delivery_place\": \"Studio Fenn\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Vestfold Merch - branded tote bags\", \"fields\": {\"supplier\": \"Vestfold Merch\", \"item\": \"Tote bags with Nordvik print\", \"quantity\": \"350\", \"delivery_date\": \"2026-11-10\", \"delivery_place\": \"Studio Fenn\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-3\", \"fields\": [\"delivery_date\"], \"from\": \"Ingrid Nordvik (Nordvik Transport)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Ingrid Nordvik (Nordvik Transport)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you get the Nordvik brochure printing organised: set up the proof review with the team and confirm the delivery date with Tove at Halden Print?\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"date\", \"value\": \"2026-11-13\", \"stale\": [\"2026-11-06\"], \"task\": true},\n  {\"message_to\": \"Tove Lie (Halden Print)\", \"regarding\": \"ORD-3\", \"says\": [\"2026-11-20\"], \"stale\": [\"2026-11-13\"], \"task\": true}\n ],\n \"why\": \"Lars's email moves the open day from 20 to 27 November, which shifts the brochure delivery (ORD-3, seven days before launch) to 20 November and the internal proof review (EV-2, seven days before delivery) to 13 November. EV-2 is internal, so the assistant revises it directly and tells Tove the new delivery date. ORD-3 and EV-1 are confirmed client deliverables, so under Mira's policy (e2) their dates may only move with Ingrid Nordvik's written sign-off; the assistant must ask her rather than change the records, and Lars's email alone is not that sign-off. The tote bag order (ORD-4) rests only on the guest count of about 300, which the change leaves standing, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"business cards\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"business cards\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"poster prints\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"A2 poster prints\", \"unit\": \"copies\", \"values\": [\"50\", \"150\", \"300\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"press check visit\", \"counterpart\": \"Tove Lie\", \"org\": \"Halden Print\", \"item\": \"press check visit\", \"unit\": \"\", \"values\": [\"press hall\", \"reception meeting room\", \"sample review corner\"], \"place\": \"Halden Print\"},\n  {\"kind\": \"booking\", \"topic\": \"Nordvik project meeting\", \"counterpart\": \"Lars Haug\", \"org\": \"Nordvik Transport\", \"item\": \"project meeting\", \"unit\": \"\", \"values\": [\"depot meeting room\", \"Borre depot canteen\", \"site office cabin\"], \"place\": \"Borre depot\"},\n  {\"kind\": \"order\", \"topic\": \"tote bag restock\", \"counterpart\": \"Ines Falk\", \"org\": \"Vestfold Merch\", \"item\": \"tote bags\", \"unit\": \"units\", \"values\": [\"100\", \"200\", \"350\", \"500\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"paper stock\", \"counterpart\": \"Nora Sten\", \"org\": \"Fjord Paper\", \"item\": \"A3 silk paper\", \"unit\": \"reams\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"studio room\", \"counterpart\": \"Sofia Lund\", \"org\": \"Studio Fenn\", \"item\": \"internal working session\", \"unit\": \"\", \"values\": [\"Studio A\", \"Studio B\", \"breakout corner\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"menu print run\", \"counterpart\": \"Petter Aas\", \"org\": \"Bryggen Bakery\", \"item\": \"menu cards\", \"unit\": \"copies\", \"values\": [\"200\", \"400\", \"800\"], \"place\": \"Bryggen Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"client workshop\", \"counterpart\": \"June Halvorsen\", \"org\": \"Kvist Architecture\", \"item\": \"brand workshop\", \"unit\": \"\", \"values\": [\"Kvist project space\", \"Studio Fenn meeting room\", \"Kvist model workshop\"], \"place\": \"Kvist Architecture\"},\n  {\"kind\": \"booking\", \"topic\": \"courier van slot\", \"counterpart\": \"Rikard Vee\", \"org\": \"Vee Logistics\", \"item\": \"van pickup slot\", \"unit\": \"\", \"values\": [\"morning van\", \"midday van\", \"afternoon van\"], \"place\": \"Oslo pickup\"},\n  {\"kind\": \"order\", \"topic\": \"ink restock\", \"counterpart\": \"Sofia Lund\", \"org\": \"Studio Fenn\", \"item\": \"ink cartridges\", \"unit\": \"packs\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Studio Fenn\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6626,
+    "completion_tokens": 3422,
+    "reasoning_tokens": 18,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02075816,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e10: a decision must rest on at least one earlier event\n- noise topic 'press check visit': values needs at least three entries\n- noise topic 'Nordvik project meeting': values needs at least three entries\n- noise topic 'studio room': values needs at least three entries\n- noise topic 'client workshop': values needs at least three entries\n- noise topic 'courier van slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Nordvik open day moved",
+  "setting": "A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules",
+  "owner": "Mira",
+  "org": "Studio Fenn",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Standing practice for the studio: every client brief gets logged in the CRM within a day, and invoices go out no later than seven days after a delivery is completed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-18",
+    "type": "policy",
+    "from": "Mira",
+    "text": "Studio policy on client deliverables: once a deliverable date is confirmed with a client, moving it needs written sign-off from that client's marketing director. For Nordvik Transport the marketing director is Ingrid Nordvik; their project contact Lars Haug can request changes but cannot approve them himself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Tove Lie (Halden Print)",
+    "text": "Confirming our terms for studio work: we need approved proofs seven full days before the delivery date, and all deliveries come to Studio Fenn in Oslo. My direct line is open weekdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Lars Haug (Nordvik Transport)",
+    "text": "Just to confirm the details for our rebrand launch: the depot open day at our Borre site is on Friday 20 November, and we expect around 300 guests. The new visual identity should be everywhere on site that day.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-09-18",
+    "type": "quote",
+    "from": "Tove Lie (Halden Print)",
+    "text": "Quote for the Nordvik brochure run: 400 A4 brochures on 170g silk, 12 900 kroner total, with approved proofs needed seven days before the agreed delivery date.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-09-21",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Placing the print order with Halden Print: 400 A4 brochures for the Nordvik rebrand, delivery to Studio Fenn on Friday 13 November, one week ahead of the open day at the Borre depot, per Tove's quote and the seven-day proof lead time.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5",
+     "e3"
+    ],
+    "record": "ORD-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-09-21",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 350 branded tote bags from Ines Falk at Vestfold Merch, one per expected guest plus spares for the roughly 300 visitors at the Nordvik open day, delivered to the studio on 10 November.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booking two of us for on-site branding support at the Nordvik depot in Borre on Friday 20 November, setting up signage and handing out brochures at the open day.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-23",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Scheduling the brochure proof review with the Nordvik team in Studio A on Friday 6 November at 10:00, exactly seven days before the Halden Print delivery on 13 November so Tove gets approved proofs in time.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-25",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked photographer Nils Bru for a studio shoot of new website imagery on Friday 30 October, full day at Studio Fenn.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-26",
+    "type": "note",
+    "from": "Mira",
+    "text": "Invoice schedule for Nordvik: 30 percent (3 870 kroner) on placing the brochure order, the remainder after the open day deliverables are completed.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Petter Aas (Bryggen Bakery)",
+    "text": "Could we get the autumn menu refreshed with the new headline font? Nothing urgent, sometime in October works.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-10-06",
+    "type": "call",
+    "from": "Lars Haug (Nordvik Transport)",
+    "text": "Called to check on the brochure drafts; happy with the cover direction, asked for the route-map page to stay simple.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-08",
+    "type": "minutes",
+    "from": "Studio Fenn",
+    "text": "Weekly standup: Nordvik artwork at final stages, Bryggen Bakery menu refresh queued, tote bag proofs approved at Vestfold Merch.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-14",
+    "type": "task",
+    "from": "Mira",
+    "text": "To-do: pay the Halden Print deposit of 3 870 kroner by 30 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Tove Lie (Halden Print)",
+    "text": "Our press line has good availability through mid-November, so the Nordvik brochure run is easy to fit in whenever your proofs are ready.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Lars Haug (Nordvik Transport)",
+    "text": "Quick update from our side: the depot open day is moving to Friday 27 November, a week later than planned, because of construction work at the Borre site. Same programme and same guest numbers, just the later date. Ingrid is aware.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-23",
+    "type": "email",
+    "from": "Lars Haug (Nordvik Transport)",
+    "text": "Also noting our staff preview of the new identity is set for Thursday 12 November at the Borre depot, in case you want photos of it for the case study.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-24",
+    "type": "minutes",
+    "from": "Studio Fenn",
+    "text": "Weekly standup: Nordvik brochure artwork 90 percent done, website shoot prep for Friday, deposit payment to Halden Print still open.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-25",
+    "type": "note",
+    "from": "Mira",
+    "text": "Route-map page for the Nordvik brochure simplified after Lars's call; ready for final proofing.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Nordvik open day - on-site branding support",
+    "fields": {
+     "date": "2026-11-20",
+     "time": "09:00",
+     "place": "Borre depot",
+     "people": "Mira and Sofia",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Nordvik brochure proof review",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "10:00",
+     "room": "Studio A",
+     "project": "Nordvik rebrand",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Website imagery photo shoot",
+    "fields": {
+     "date": "2026-10-30",
+     "time": "09:00",
+     "room": "Studio Fenn",
+     "client": "Studio Fenn website",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Halden Print - Nordvik brochure print run",
+    "fields": {
+     "supplier": "Halden Print",
+     "item": "A4 brochures",
+     "quantity": "400",
+     "delivery_date": "2026-11-13",
+     "delivery_place": "Studio Fenn",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Vestfold Merch - branded tote bags",
+    "fields": {
+     "supplier": "Vestfold Merch",
+     "item": "Tote bags with Nordvik print",
+     "quantity": "350",
+     "delivery_date": "2026-11-10",
+     "delivery_place": "Studio Fenn",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-3",
+    "fields": [
+     "delivery_date"
+    ],
+    "from": "Ingrid Nordvik (Nordvik Transport)",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Ingrid Nordvik (Nordvik Transport)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Can you get the Nordvik brochure printing organised: set up the proof review with the team and confirm the delivery date with Tove at Halden Print?",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "date",
+    "value": "2026-11-13",
+    "stale": [
+     "2026-11-06"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Tove Lie (Halden Print)",
+    "regarding": "ORD-3",
+    "says": [
+     "2026-11-20"
+    ],
+    "stale": [
+     "2026-11-13"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Lars's email moves the open day from 20 to 27 November, which shifts the brochure delivery (ORD-3, seven days before launch) to 20 November and the internal proof review (EV-2, seven days before delivery) to 13 November. EV-2 is internal, so the assistant revises it directly and tells Tove the new delivery date. ORD-3 and EV-1 are confirmed client deliverables, so under Mira's policy (e2) their dates may only move with Ingrid Nordvik's written sign-off; the assistant must ask her rather than change the records, and Lars's email alone is not that sign-off. The tote bag order (ORD-4) rests only on the guest count of about 300, which the change leaves standing, so it is KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "business cards",
+    "counterpart": "Tove Lie",
+    "org": "Halden Print",
+    "item": "business cards",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "poster prints",
+    "counterpart": "Tove Lie",
+    "org": "Halden Print",
+    "item": "A2 poster prints",
+    "unit": "copies",
+    "values": [
+     "50",
+     "150",
+     "300"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "booking",
+    "topic": "press check visit",
+    "counterpart": "Tove Lie",
+    "org": "Halden Print",
+    "item": "press check visit",
+    "unit": "",
+    "values": [
+     "press hall",
+     "reception meeting room",
+     "sample review corner"
+    ],
+    "place": "Halden Print"
+   },
+   {
+    "kind": "booking",
+    "topic": "Nordvik project meeting",
+    "counterpart": "Lars Haug",
+    "org": "Nordvik Transport",
+    "item": "project meeting",
+    "unit": "",
+    "values": [
+     "depot meeting room",
+     "Borre depot canteen",
+     "site office cabin"
+    ],
+    "place": "Borre depot"
+   },
+   {
+    "kind": "order",
+    "topic": "tote bag restock",
+    "counterpart": "Ines Falk",
+    "org": "Vestfold Merch",
+    "item": "tote bags",
+    "unit": "units",
+    "values": [
+     "100",
+     "200",
+     "350",
+     "500"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "paper stock",
+    "counterpart": "Nora Sten",
+    "org": "Fjord Paper",
+    "item": "A3 silk paper",
+    "unit": "reams",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "booking",
+    "topic": "studio room",
+    "counterpart": "Sofia Lund",
+    "org": "Studio Fenn",
+    "item": "internal working session",
+    "unit": "",
+    "values": [
+     "Studio A",
+     "Studio B",
+     "breakout corner"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "menu print run",
+    "counterpart": "Petter Aas",
+    "org": "Bryggen Bakery",
+    "item": "menu cards",
+    "unit": "copies",
+    "values": [
+     "200",
+     "400",
+     "800"
+    ],
+    "place": "Bryggen Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "client workshop",
+    "counterpart": "June Halvorsen",
+    "org": "Kvist Architecture",
+    "item": "brand workshop",
+    "unit": "",
+    "values": [
+     "Kvist project space",
+     "Studio Fenn meeting room",
+     "Kvist model workshop"
+    ],
+    "place": "Kvist Architecture"
+   },
+   {
+    "kind": "booking",
+    "topic": "courier van slot",
+    "counterpart": "Rikard Vee",
+    "org": "Vee Logistics",
+    "item": "van pickup slot",
+    "unit": "",
+    "values": [
+     "morning van",
+     "midday van",
+     "afternoon van"
+    ],
+    "place": "Oslo pickup"
+   },
+   {
+    "kind": "order",
+    "topic": "ink restock",
+    "counterpart": "Sofia Lund",
+    "org": "Studio Fenn",
+    "item": "ink cartridges",
+    "unit": "packs",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Studio Fenn"
+   }
+  ],
+  "id": "G100-3-02",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state confirms 20 November with Tove despite the stated need for Ingrid's written approval, and omits the required consent requests. Moving the proof review to 13 November while delivery remains confirmed for 13 November violates the seven-day proof lead time. The history also describes delivery one week before the original open day without unambiguously requiring that offset to remain fixed.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state confirms 20 November with Tove despite the stated need for Ingrid's written approval, and omits the required consent requests. Moving the proof review to 13 November while delivery remains confirmed for 13 November violates the seven-day proof lead time. The history also describes delivery one week before the original open day without unambiguously requiring that offset to remain fixed."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3216,
+    "completion_tokens": 207,
+    "reasoning_tokens": 95,
+    "cached_tokens": 0
+   },
+   "cost": 0.0505425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0ff17340071c604f50e6f9c83606099e395144edfda8418fd4d7051ac9ba979b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state has the assistant message Tove the new delivery date for ORD-3 (2026-11-20), but the scenario marks ORD-3 as ASK under Mira's rule e2, which requires Ingrid Nordvik's written sign-off before its delivery date moves, and Lars's email is not that sign-off. The task's own request to 'confirm the delivery date with Tove' therefore conflicts with the consent requirement, so the expected state and the marks contradict each other. The structure (chain via e4→e6→e9, KEEP for e7), the tier counts and the hidden change all check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state has the assistant message Tove the new delivery date for ORD-3 (2026-11-20), but the scenario marks ORD-3 as ASK under Mira's rule e2, which requires Ingrid Nordvik's written sign-off before its delivery date moves, and Lars's email is not that sign-off. The task's own request to 'confirm the delivery date with Tove' therefore conflicts with the consent requirement, so the expected state and the marks contradict each other. The structure (chain via e4→e6→e9, KEEP for e7), the tier counts and the hidden change all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4608,
+    "completion_tokens": 1663,
+    "reasoning_tokens": 1412,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012923,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0ff17340071c604f50e6f9c83606099e395144edfda8418fd4d7051ac9ba979b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is sound: e4 (open day) → e6/ORD-3 (delivery) → e9/EV-2 (proof review), with ORD-4 kept via the unchanged guest count; arithmetic (20 Nov delivery, 13 Nov proof) is fixed by the history, and e2 cleanly splits internal EV-2 (REVISE) from client-confirmed dates (ASK). Counts (20 core, 5 decisions), change distance (6 days, 3 core events after), and concealment (event 95 of 100) all meet tier 100. The only minor wrinkle — confirming 20 Nov to Tove while ORD-3's own date change awaits Ingrid's consent — is defensible since informing the supplier is not changing the record.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is sound: e4 (open day) → e6/ORD-3 (delivery) → e9/EV-2 (proof review), with ORD-4 kept via the unchanged guest count; arithmetic (20 Nov delivery, 13 Nov proof) is fixed by the history, and e2 cleanly splits internal EV-2 (REVISE) from client-confirmed dates (ASK). Counts (20 core, 5 decisions), change distance (6 days, 3 core events after), and concealment (event 95 of 100) all meet tier 100. The only minor wrinkle — confirming 20 Nov to Tove while ORD-3's own date change awaits Ingrid's consent — is defensible since informing the supplier is not changing the record."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3339,
+    "completion_tokens": 872,
+    "reasoning_tokens": 655,
+    "cached_tokens": 256
+   },
+   "cost": 0.0224058,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0ff17340071c604f50e6f9c83606099e395144edfda8418fd4d7051ac9ba979b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,652 @@
+{
+ "id": "G100-1-07",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 6,
+ "setting": "A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions",
+ "prompt_sha256": "c15bf7019144840673e5c8cef18035b625f7d90f155c9636c0606e45e0b8d058",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Barn closure\",\n  \"setting\": \"A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Ivory Lane Events\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for all weddings: once a couple has confirmed a booking, the venue or the date may not be changed without that couple's written agreement first. Always ask them before touching either.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any supplier order above £5,000 needs Priya's sign-off before it is placed. Priya is our finance lead.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Mira (bride)\", \"text\": \"Guest list update: 112 confirmed guests for the wedding. Tobias and I are happy with that number.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"letter\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"We can offer the Harvest Barn for Saturday 14 November 2026. Hire is £2,400 for the day, it seats 120, the exposed oak beams can take rigging for lights, and the main doorway suits a large floral arch. Looking forward to hosting the wedding.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Wedding menu quote: £34 per head for the three-course wedding breakfast, delivered and served on site.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Harvest Barn at Coldmoor Farm for Mira and Tobias's wedding on Saturday 14 November 2026 at the £2,400 hire fee, after Mira and Tobias confirmed they wanted it. The couple confirmed the venue.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the wedding breakfast from Fairway Catering for the 112 confirmed guests at £34 a head, served at Coldmoor Farm on 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Lumen Rig's fairy-light rig for £640, mounted on the Harvest Barn's oak beams, since Colm confirmed the beams can take rigging.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered Bloom & Stem's ceremony arch at £310, styled for the Harvest Barn's main doorway as described in Colm's letter.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 120 chair covers from Linen Lane at £420, matching the Harvest Barn's 120-seat capacity.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a block of 18 rooms at the Rowan Hotel for two nights around the wedding, enough for the 112 guests travelling from out of town.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-12\", \"type\": \"email\", \"from\": \"Sam Okafor (Lumen Rig)\", \"text\": \"Confirming the fairy-light rig booking for 14 November. We'll bring our beam-mounting kit as discussed.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Yara Selim (Bloom & Stem)\", \"text\": \"Ceremony arch quote: £310 including seasonal blooms and setup. Placement can be adjusted to suit the doorway.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: Mira chose ivory and sage as the colour scheme for the day. No changes to numbers or suppliers.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Planning meeting recap: wedding on 14 November 2026 at Coldmoor Farm, Fairway catering for 112, Lumen Rig lights on the beams, Bloom & Stem arch at the main doorway, 120 chair covers. All confirmed.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder: pay Coldmoor Farm the remaining £1,400 hire balance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"Bad news, I'm afraid. The recent storm damaged the Harvest Barn roof and the barn is closed for repairs through the winter. For Saturday 14 November we can host the wedding in the Orchard Marquee instead, on the same date and the same £2,400 hire fee, seating 120. Please note the marquee has a freestanding truss frame, so nothing can be rigged from beams, and its entrance is a flat arch on the north side of the marquee. Sorry for the disruption.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Grace Ho (Linen Lane)\", \"text\": \"The 120 chair covers are packed and will be dispatched a few days before the wedding. Just confirm the delivery address closer to the date.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Rosa Pike (Ashcombe Grange)\", \"text\": \"Following up on your enquiry: our Ballroom is still free on 14 November, seats 150, hire £2,900, and it includes a ceiling lighting rail and a grand entrance arch. Happy to hold it for a week if that helps.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Mira (bride)\", \"text\": \"Counting down to the big day! Tobias says hello. Let us know if you need anything else from us.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-26\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Confirm the final headcount with Fairway Catering by 2 November 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mira & Tobias wedding\", \"fields\": {\"couple\": \"Mira & Tobias\", \"date\": \"2026-11-14\", \"venue\": \"Harvest Barn, Coldmoor Farm\", \"hire_fee\": \"2400\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Guest hotel block\", \"fields\": {\"place\": \"Rowan Hotel\", \"rooms\": \"18\", \"nights\": \"2\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering wedding breakfast\", \"fields\": {\"item\": \"Wedding breakfast catering\", \"guests\": \"112\", \"unit_price\": \"34\", \"delivery_place\": \"Coldmoor Farm\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lumen Rig fairy-light rig\", \"fields\": {\"item\": \"Fairy-light rig\", \"spec\": \"beam-mounted\", \"venue_area\": \"Harvest Barn\", \"amount\": \"640\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Bloom & Stem ceremony arch\", \"fields\": {\"item\": \"Ceremony arch flowers\", \"placement\": \"Harvest Barn main doorway\", \"amount\": \"310\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Linen Lane chair covers\", \"fields\": {\"item\": \"Chair covers\", \"quantity\": \"120\", \"amount\": \"420\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"venue\"], \"from\": \"Mira & Tobias\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please get Mira and Tobias's wedding on 14 November at Coldmoor Farm completely squared away — make sure the venue, the lighting rig and the florist are all properly set up, and keep the couple in the loop about anything they need to hear.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"spec\", \"value\": \"freestanding truss frame\", \"stale\": [\"beam-mounted\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"venue_area\", \"value\": \"Orchard Marquee\", \"stale\": [\"Harvest Barn\"]},\n    {\"record\": \"ORD-3\", \"field\": \"placement\", \"value\": \"north-side flat arch entrance\", \"stale\": [\"Harvest Barn main doorway\"], \"task\": true},\n    {\"message_to\": \"Mira & Tobias\", \"regarding\": \"EV-1\", \"says\": [\"Orchard Marquee\", \"14 November\", \"2400\"], \"stale\": [\"Harvest Barn\", \"Ashcombe Grange\"], \"task\": true}\n  ],\n  \"why\": \"The change closes the Harvest Barn but leaves the date, the £2,400 fee and the 120-seat capacity standing, offering the Orchard Marquee on the same terms. The venue on EV-1 can only be changed with the couple's written agreement under the standing rule, so the assistant must ask Mira and Tobias rather than act. The rigging order (beam-mounted) and the arch placement (barn doorway) were made for barn-specific fixing and are revised directly to the marquee's truss frame and north-side entrance. The catering order (date and headcount stand) and the chair covers (capacity 120 stands) are KEEP, and the hotel block and every other record stay untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Fairway canapé restock\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"canapé platters\", \"unit\": \"tray\", \"values\": [\"12\", \"20\", \"30\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Coldmoor meeting rooms\", \"counterpart\": \"Colm Frey\", \"org\": \"Coldmoor Farm\", \"item\": \"planning meetings\", \"unit\": \"\", \"values\": [\"Walled Garden room\", \"Bothy room\"], \"place\": \"Coldmoor Farm\"},\n    {\"kind\": \"order\", \"topic\": \"Lumen Rig uplighters\", \"counterpart\": \"Sam Okafor\", \"org\": \"Lumen Rig\", \"item\": \"uplighters\", \"unit\": \"unit\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"order\", \"topic\": \"Linen Lane runners\", \"counterpart\": \"Grace Ho\", \"org\": \"Linen Lane\", \"item\": \"table runners\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Rowan Hotel guest rooms\", \"counterpart\": \"Anette Byron\", \"org\": \"Rowan Hotel\", \"item\": \"guest rooms\", \"unit\": \"\", \"values\": [\"Block A\", \"Block B\"], \"place\": \"Rowan Hotel\"},\n    {\"kind\": \"order\", \"topic\": \"Bloom & Stem weekly flowers\", \"counterpart\": \"Yara Selim\", \"org\": \"Bloom & Stem\", \"item\": \"table posies\", \"unit\": \"bunch\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Fairway tasting sessions\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"menu tastings\", \"unit\": \"\", \"values\": [\"Tasting Room A\", \"Tasting Room B\"], \"place\": \"Fairway Catering\"},\n    {\"kind\": \"order\", \"topic\": \"Glassware restock\", \"counterpart\": \"Marcus Webb\", \"org\": \"Vinery Glass\", \"item\": \"wine glasses\", \"unit\": \"case\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Ashcombe Grange viewings\", \"counterpart\": \"Rosa Pike\", \"org\": \"Ashcombe Grange\", \"item\": \"venue viewings\", \"unit\": \"\", \"values\": [\"Ballroom\", \"Terrace Suite\"], \"place\": \"Ashcombe Grange\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Hana Cole\", \"org\": \"Paperwhistle Press\", \"item\": \"invitation card packs\", \"unit\": \"pack\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Cargo van booking\", \"counterpart\": \"Leo Marsh\", \"org\": \"Ivory Lane Logistics\", \"item\": \"cargo van\", \"unit\": \"\", \"values\": [\"Van 1\", \"Van 2\"], \"place\": \"Ivory Lane Events yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3140,
+    "completion_tokens": 9956,
+    "reasoning_tokens": 6447,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04470032,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Barn closure\",\n  \"setting\": \"A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Ivory Lane Events\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for all weddings: once a couple has confirmed a booking, the venue or the date may not be changed without that couple's written agreement first. Always ask them before touching either.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any supplier order above £5,000 needs Priya's sign-off before it is placed. Priya is our finance lead.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Mira (bride)\", \"text\": \"Guest list update: 112 confirmed guests for the wedding. Tobias and I are happy with that number.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"letter\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"We can offer the Harvest Barn for Saturday 14 November 2026. Hire is £2,400 for the day, it seats 120, the exposed oak beams can take rigging for lights, and the main doorway suits a large floral arch. Looking forward to hosting the wedding.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Wedding menu quote: £34 per head for the three-course wedding breakfast, delivered and served on site.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Harvest Barn at Coldmoor Farm for Mira and Tobias's wedding on Saturday 14 November 2026 at the £2,400 hire fee, after Mira and Tobias confirmed they wanted it. The couple confirmed the venue.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the wedding breakfast from Fairway Catering for the 112 confirmed guests at £34 a head, served at Coldmoor Farm on 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Lumen Rig's fairy-light rig for £640, mounted on the Harvest Barn's oak beams, since Colm confirmed the beams can take rigging.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered Bloom & Stem's ceremony arch at £310, styled for the Harvest Barn's main doorway as described in Colm's letter.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e4\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 120 chair covers from Linen Lane at £420, matching the Harvest Barn's 120-seat capacity.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a block of 18 rooms at the Rowan Hotel for two nights around the wedding, enough for the 112 guests travelling from out of town.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-12\", \"type\": \"email\", \"from\": \"Sam Okafor (Lumen Rig)\", \"text\": \"Confirming the fairy-light rig booking for 14 November. We'll bring our beam-mounting kit as discussed.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Yara Selim (Bloom & Stem)\", \"text\": \"Ceremony arch quote: £310 including seasonal blooms and setup. Placement can be adjusted to suit the doorway.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: Mira chose ivory and sage as the colour scheme for the day. No changes to numbers or suppliers.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Planning meeting recap: wedding on 14 November 2026 at Coldmoor Farm, Fairway catering for 112, Lumen Rig lights on the beams, Bloom & Stem arch at the main doorway, 120 chair covers. All confirmed.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder: pay Coldmoor Farm the remaining £1,400 hire balance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"Bad news, I'm afraid. The recent storm damaged the Harvest Barn roof and the barn is closed for repairs through the winter. For Saturday 14 November we can host the wedding in the Orchard Marquee instead, on the same date and the same £2,400 hire fee, seating 120. Please note the marquee has a freestanding truss frame, so nothing can be rigged from beams, and its entrance is a flat arch on the north side of the marquee. Sorry for the disruption.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Grace Ho (Linen Lane)\", \"text\": \"The 120 chair covers are packed and will be dispatched a few days before the wedding. Just confirm the delivery address closer to the date.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Rosa Pike (Ashcombe Grange)\", \"text\": \"Following up on your enquiry: our Ballroom is still free on 14 November, seats 150, hire £2,900, and it includes a ceiling lighting rail and a grand entrance arch. Happy to hold it for a week if that helps.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Mira (bride)\", \"text\": \"Counting down to the big day! Tobias says hello. Let us know if you need anything else from us.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Confirm the final headcount with Fairway Catering by 2 November 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mira & Tobias wedding\", \"fields\": {\"couple\": \"Mira & Tobias\", \"date\": \"2026-11-14\", \"venue\": \"Harvest Barn, Coldmoor Farm\", \"hire_fee\": \"2400\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Guest hotel block\", \"fields\": {\"place\": \"Rowan Hotel\", \"rooms\": \"18\", \"nights\": \"2\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering wedding breakfast\", \"fields\": {\"item\": \"Wedding breakfast catering\", \"guests\": \"112\", \"unit_price\": \"34\", \"delivery_place\": \"Coldmoor Farm\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lumen Rig fairy-light rig\", \"fields\": {\"item\": \"Fairy-light rig\", \"spec\": \"beam-mounted\", \"venue_area\": \"Harvest Barn\", \"amount\": \"640\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Bloom & Stem ceremony arch\", \"fields\": {\"item\": \"Ceremony arch flowers\", \"placement\": \"Harvest Barn main doorway\", \"amount\": \"310\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Linen Lane chair covers\", \"fields\": {\"item\": \"Chair covers\", \"quantity\": \"120\", \"amount\": \"420\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"venue\"], \"from\": \"Mira & Tobias\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please get Mira and Tobias's wedding on 14 November at Coldmoor Farm completely squared away — make sure the venue, the lighting rig and the florist are all properly set up, and keep the couple in the loop about anything they need to hear.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"spec\", \"value\": \"freestanding truss frame\", \"stale\": [\"beam-mounted\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"venue_area\", \"value\": \"Orchard Marquee\", \"stale\": [\"Harvest Barn\"]},\n    {\"record\": \"ORD-3\", \"field\": \"placement\", \"value\": \"north-side flat arch entrance\", \"stale\": [\"Harvest Barn main doorway\"], \"task\": true},\n    {\"message_to\": \"Mira & Tobias\", \"regarding\": \"EV-1\", \"says\": [\"Orchard Marquee\", \"14 November\", \"2400\"], \"stale\": [\"Harvest Barn\", \"Ashcombe Grange\"], \"task\": true}\n  ],\n  \"why\": \"The change closes the Harvest Barn but leaves the date, the £2,400 fee and the 120-seat capacity standing, offering the Orchard Marquee on the same terms. The venue on EV-1 can only be changed with the couple's written agreement under the standing rule, so the assistant must ask Mira and Tobias rather than act. The rigging order (beam-mounted) and the arch placement (barn doorway) were made for barn-specific fixing and are revised directly to the marquee's truss frame and north-side entrance. The catering order (date and headcount stand) and the chair covers (capacity 120 stands) are KEEP, and the hotel block and every other record stay untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Fairway canapé restock\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"canapé platters\", \"unit\": \"tray\", \"values\": [\"12\", \"20\", \"30\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Coldmoor meeting rooms\", \"counterpart\": \"Colm Frey\", \"org\": \"Coldmoor Farm\", \"item\": \"planning meetings\", \"unit\": \"\", \"values\": [\"Walled Garden room\", \"Bothy room\"], \"place\": \"Coldmoor Farm\"},\n    {\"kind\": \"order\", \"topic\": \"Lumen Rig uplighters\", \"counterpart\": \"Sam Okafor\", \"org\": \"Lumen Rig\", \"item\": \"uplighters\", \"unit\": \"unit\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"order\", \"topic\": \"Linen Lane runners\", \"counterpart\": \"Grace Ho\", \"org\": \"Linen Lane\", \"item\": \"table runners\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Rowan Hotel guest rooms\", \"counterpart\": \"Anette Byron\", \"org\": \"Rowan Hotel\", \"item\": \"guest rooms\", \"unit\": \"\", \"values\": [\"Block A\", \"Block B\"], \"place\": \"Rowan Hotel\"},\n    {\"kind\": \"order\", \"topic\": \"Bloom & Stem weekly flowers\", \"counterpart\": \"Yara Selim\", \"org\": \"Bloom & Stem\", \"item\": \"table posies\", \"unit\": \"bunch\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Fairway tasting sessions\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"menu tastings\", \"unit\": \"\", \"values\": [\"Tasting Room A\", \"Tasting Room B\"], \"place\": \"Fairway Catering\"},\n    {\"kind\": \"order\", \"topic\": \"Glassware restock\", \"counterpart\": \"Marcus Webb\", \"org\": \"Vinery Glass\", \"item\": \"wine glasses\", \"unit\": \"case\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Ashcombe Grange viewings\", \"counterpart\": \"Rosa Pike\", \"org\": \"Ashcombe Grange\", \"item\": \"venue viewings\", \"unit\": \"\", \"values\": [\"Ballroom\", \"Terrace Suite\"], \"place\": \"Ashcombe Grange\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Hana Cole\", \"org\": \"Paperwhistle Press\", \"item\": \"invitation card packs\", \"unit\": \"pack\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Cargo van booking\", \"counterpart\": \"Leo Marsh\", \"org\": \"Ivory Lane Logistics\", \"item\": \"cargo van\", \"unit\": \"\", \"values\": [\"Van 1\", \"Van 2\"], \"place\": \"Ivory Lane Events yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6776,
+    "completion_tokens": 3580,
+    "reasoning_tokens": 71,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02166336,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e19: date 2026-10-20 must be ISO within 2026-06-01..now (2026-10-12)\n- e20: date 2026-10-24 must be ISO within 2026-06-01..now (2026-10-12)\n- e21: date 2026-10-26 must be ISO within 2026-06-01..now (2026-10-12)\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Barn closure\",\n  \"setting\": \"A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions\",\n  \"owner\": \"Nadia\",\n  \"org\": \"Ivory Lane Events\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for all weddings: once a couple has confirmed a booking, the venue or the date may not be changed without that couple's written agreement first. Always ask them before touching either.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Any supplier order above £5,000 needs Priya's sign-off before it is placed. Priya is our finance lead.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Mira (bride)\", \"text\": \"Guest list update: 112 confirmed guests for the wedding. Tobias and I are happy with that number.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-14\", \"type\": \"letter\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"We can offer the Harvest Barn for Saturday 14 November 2026. Hire is £2,400 for the day, it seats 120, the exposed oak beams can take rigging for lights, and the main doorway suits a large floral arch. Looking forward to hosting the wedding.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Wedding menu quote: £34 per head for the three-course wedding breakfast, delivered and served on site.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Harvest Barn at Coldmoor Farm for Mira and Tobias's wedding on Saturday 14 November 2026 at the £2,400 hire fee, after Mira and Tobias confirmed they wanted it. The couple confirmed the venue.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the wedding breakfast from Fairway Catering for the 112 confirmed guests at £34 a head, served at the booked Coldmoor Farm venue on 14 November 2026.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"For the booked Coldmoor Farm wedding venue, booked Lumen Rig's fairy-light rig for £640, mounted on the Harvest Barn's oak beams as the venue letter described.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered Bloom & Stem's ceremony arch at £310, styled for the Harvest Barn's main doorway at the booked Coldmoor Farm venue.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 120 chair covers from Linen Lane at £420, matching the Harvest Barn's 120-seat capacity.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-4\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a block of 18 rooms at the Rowan Hotel for two nights around the wedding, enough for the 112 guests travelling from out of town.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-12\", \"type\": \"email\", \"from\": \"Sam Okafor (Lumen Rig)\", \"text\": \"Confirming the fairy-light rig booking for 14 November. We'll bring our beam-mounting kit as discussed.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"quote\", \"from\": \"Yara Selim (Bloom & Stem)\", \"text\": \"Ceremony arch quote: £310 including seasonal blooms and setup. Placement can be adjusted to suit the doorway.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: Mira chose ivory and sage as the colour scheme for the day. No changes to numbers or suppliers.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Planning meeting recap: wedding on 14 November 2026 at Coldmoor Farm, Fairway catering for 112, Lumen Rig lights on the beams, Bloom & Stem arch at the main doorway, 120 chair covers. All confirmed.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Reminder: pay Coldmoor Farm the remaining £1,400 hire balance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Colm Frey (Coldmoor Farm)\", \"text\": \"Bad news, I'm afraid. The recent storm damaged the Harvest Barn roof and the barn is closed for repairs through the winter. For Saturday 14 November we can host the wedding in the Orchard Marquee instead, on the same date and the same £2,400 hire fee, seating 120. Please note the marquee has a freestanding truss frame, so nothing can be rigged from beams, and its entrance is a flat arch on the north side of the marquee. Sorry for the disruption.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Grace Ho (Linen Lane)\", \"text\": \"The 120 chair covers are packed and will be dispatched a few days before the wedding. Just confirm the delivery address closer to the date.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Rosa Pike (Ashcombe Grange)\", \"text\": \"Following up on your enquiry: our Ballroom is still free on 14 November, seats 150, hire £2,900, and it includes a ceiling lighting rail and a grand entrance arch. Happy to hold it for a week if that helps.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Mira (bride)\", \"text\": \"Counting down to the big day! Tobias says hello. Let us know if you need anything else from us.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Confirm the final headcount with Fairway Catering by 2 November 2026.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mira & Tobias wedding\", \"fields\": {\"couple\": \"Mira & Tobias\", \"date\": \"2026-11-14\", \"venue\": \"Harvest Barn, Coldmoor Farm\", \"hire_fee\": \"2400\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Guest hotel block\", \"fields\": {\"place\": \"Rowan Hotel\", \"rooms\": \"18\", \"nights\": \"2\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering wedding breakfast\", \"fields\": {\"item\": \"Wedding breakfast catering\", \"guests\": \"112\", \"unit_price\": \"34\", \"delivery_place\": \"Coldmoor Farm\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Lumen Rig fairy-light rig\", \"fields\": {\"item\": \"Fairy-light rig\", \"spec\": \"beam-mounted\", \"venue_area\": \"Harvest Barn\", \"amount\": \"640\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Bloom & Stem ceremony arch\", \"fields\": {\"item\": \"Ceremony arch flowers\", \"placement\": \"Harvest Barn main doorway\", \"amount\": \"310\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Linen Lane chair covers\", \"fields\": {\"item\": \"Chair covers\", \"quantity\": \"120\", \"amount\": \"420\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"venue\"], \"from\": \"Mira & Tobias\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please get Mira and Tobias's wedding on 14 November at Coldmoor Farm completely squared away — make sure the venue, the lighting rig and the florist are all properly set up, and keep the couple in the loop about anything they need to hear.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"spec\", \"value\": \"freestanding truss frame\", \"stale\": [\"beam-mounted\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"venue_area\", \"value\": \"Orchard Marquee\", \"stale\": [\"Harvest Barn\"]},\n    {\"record\": \"ORD-3\", \"field\": \"placement\", \"value\": \"north-side flat arch entrance\", \"stale\": [\"Harvest Barn main doorway\"], \"task\": true},\n    {\"message_to\": \"Mira & Tobias\", \"regarding\": \"EV-1\", \"says\": [\"Orchard Marquee\", \"14 November\", \"2400\"], \"stale\": [\"Harvest Barn\", \"Ashcombe Grange\"], \"task\": true}\n  ],\n  \"why\": \"The change closes the Harvest Barn but leaves the date, the £2,400 fee and the 120-seat capacity standing, offering the Orchard Marquee on the same terms. The venue on EV-1 can only be changed with the couple's written agreement under the standing rule, so the assistant must ask Mira and Tobias rather than act. The rigging order and the arch placement (both resting on the venue booking, which rests on the revoked letter — two hops) were made for barn-specific fixing and are revised to the marquee's truss frame and north-side entrance. The catering order (date and headcount stand) and the chair covers (capacity 120 stands) are KEEP, and the hotel block and every other record stay untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Fairway canapé restock\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"canapé platters\", \"unit\": \"tray\", \"values\": [\"12\", \"20\", \"30\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Coldmoor meeting rooms\", \"counterpart\": \"Colm Frey\", \"org\": \"Coldmoor Farm\", \"item\": \"planning meetings\", \"unit\": \"\", \"values\": [\"Walled Garden room\", \"Bothy room\", \"Dairy room\"], \"place\": \"Coldmoor Farm\"},\n    {\"kind\": \"order\", \"topic\": \"Lumen Rig uplighters\", \"counterpart\": \"Sam Okafor\", \"org\": \"Lumen Rig\", \"item\": \"uplighters\", \"unit\": \"unit\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"order\", \"topic\": \"Linen Lane runners\", \"counterpart\": \"Grace Ho\", \"org\": \"Linen Lane\", \"item\": \"table runners\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Rowan Hotel guest rooms\", \"counterpart\": \"Anette Byron\", \"org\": \"Rowan Hotel\", \"item\": \"guest rooms\", \"unit\": \"\", \"values\": [\"Block A\", \"Block B\", \"Block C\"], \"place\": \"Rowan Hotel\"},\n    {\"kind\": \"order\", \"topic\": \"Bloom & Stem weekly flowers\", \"counterpart\": \"Yara Selim\", \"org\": \"Bloom & Stem\", \"item\": \"table posies\", \"unit\": \"bunch\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Fairway tasting sessions\", \"counterpart\": \"Dana\", \"org\": \"Fairway Catering\", \"item\": \"menu tastings\", \"unit\": \"\", \"values\": [\"Tasting Room A\", \"Tasting Room B\", \"Chef's Table\"], \"place\": \"Fairway Catering\"},\n    {\"kind\": \"order\", \"topic\": \"Glassware restock\", \"counterpart\": \"Marcus Webb\", \"org\": \"Vinery Glass\", \"item\": \"wine glasses\", \"unit\": \"case\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Ivory Lane Events kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"Ashcombe Grange viewings\", \"counterpart\": \"Rosa Pike\", \"org\": \"Ashcombe Grange\", \"item\": \"venue viewings\", \"unit\": \"\", \"values\": [\"Ballroom\", \"Terrace Suite\", \"Orangery\"], \"place\": \"Ashcombe Grange\"},\n    {\"kind\": \"order\", \"topic\": \"Stationery restock\", \"counterpart\": \"Hana Cole\", \"org\": \"Paperwhistle Press\", \"item\": \"invitation card packs\", \"unit\": \"pack\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Ivory Lane Events office\"},\n    {\"kind\": \"booking\", \"topic\": \"Cargo van booking\", \"counterpart\": \"Leo Marsh\", \"org\": \"Ivory Lane Logistics\", \"item\": \"cargo van\", \"unit\": \"\", \"values\": [\"Van 1\", \"Van 2\", \"Van 3\"], \"place\": \"Ivory Lane Events yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10417,
+    "completion_tokens": 3636,
+    "reasoning_tokens": 96,
+    "cached_tokens": 6720
+   },
+   "cost": 0.0229214,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- at least one REVISE or ASK decision must be two hops from what the change revokes\n- noise topic 'Coldmoor meeting rooms': values needs at least three entries\n- noise topic 'Rowan Hotel guest rooms': values needs at least three entries\n- noise topic 'Fairway tasting sessions': values needs at least three entries\n- noise topic 'Ashcombe Grange viewings': values needs at least three entries\n- noise topic 'Cargo van booking': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Harvest Barn closure",
+  "setting": "A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions",
+  "owner": "Nadia",
+  "org": "Ivory Lane Events",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing rule for all weddings: once a couple has confirmed a booking, the venue or the date may not be changed without that couple's written agreement first. Always ask them before touching either.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Any supplier order above £5,000 needs Priya's sign-off before it is placed. Priya is our finance lead.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Mira (bride)",
+    "text": "Guest list update: 112 confirmed guests for the wedding. Tobias and I are happy with that number.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-14",
+    "type": "letter",
+    "from": "Colm Frey (Coldmoor Farm)",
+    "text": "We can offer the Harvest Barn for Saturday 14 November 2026. Hire is £2,400 for the day, it seats 120, the exposed oak beams can take rigging for lights, and the main doorway suits a large floral arch. Looking forward to hosting the wedding.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Wedding menu quote: £34 per head for the three-course wedding breakfast, delivered and served on site.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Harvest Barn at Coldmoor Farm for Mira and Tobias's wedding on Saturday 14 November 2026 at the £2,400 hire fee, after Mira and Tobias confirmed they wanted it. The couple confirmed the venue.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered the wedding breakfast from Fairway Catering for the 112 confirmed guests at £34 a head, served at the booked Coldmoor Farm venue on 14 November 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-27",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "For the booked Coldmoor Farm wedding venue, booked Lumen Rig's fairy-light rig for £640, mounted on the Harvest Barn's oak beams as the venue letter described.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered Bloom & Stem's ceremony arch at £310, styled for the Harvest Barn's main doorway at the booked Coldmoor Farm venue.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 120 chair covers from Linen Lane at £420, matching the Harvest Barn's 120-seat capacity.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-4",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked a block of 18 rooms at the Rowan Hotel for two nights around the wedding, enough for the 112 guests travelling from out of town.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-12",
+    "type": "email",
+    "from": "Sam Okafor (Lumen Rig)",
+    "text": "Confirming the fairy-light rig booking for 14 November. We'll bring our beam-mounting kit as discussed.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "quote",
+    "from": "Yara Selim (Bloom & Stem)",
+    "text": "Ceremony arch quote: £310 including seasonal blooms and setup. Placement can be adjusted to suit the doorway.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-05",
+    "type": "call",
+    "from": "Nadia",
+    "text": "Call note: Mira chose ivory and sage as the colour scheme for the day. No changes to numbers or suppliers.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-02",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Planning meeting recap: wedding on 14 November 2026 at Coldmoor Farm, Fairway catering for 112, Lumen Rig lights on the beams, Bloom & Stem arch at the main doorway, 120 chair covers. All confirmed.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-15",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Reminder: pay Coldmoor Farm the remaining £1,400 hire balance by 31 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Colm Frey (Coldmoor Farm)",
+    "text": "Bad news, I'm afraid. The recent storm damaged the Harvest Barn roof and the barn is closed for repairs through the winter. For Saturday 14 November we can host the wedding in the Orchard Marquee instead, on the same date and the same £2,400 hire fee, seating 120. Please note the marquee has a freestanding truss frame, so nothing can be rigged from beams, and its entrance is a flat arch on the north side of the marquee. Sorry for the disruption.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Grace Ho (Linen Lane)",
+    "text": "The 120 chair covers are packed and will be dispatched a few days before the wedding. Just confirm the delivery address closer to the date.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Rosa Pike (Ashcombe Grange)",
+    "text": "Following up on your enquiry: our Ballroom is still free on 14 November, seats 150, hire £2,900, and it includes a ceiling lighting rail and a grand entrance arch. Happy to hold it for a week if that helps.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Mira (bride)",
+    "text": "Counting down to the big day! Tobias says hello. Let us know if you need anything else from us.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-10",
+    "type": "task",
+    "from": "Nadia",
+    "text": "Confirm the final headcount with Fairway Catering by 2 November 2026.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Mira & Tobias wedding",
+    "fields": {
+     "couple": "Mira & Tobias",
+     "date": "2026-11-14",
+     "venue": "Harvest Barn, Coldmoor Farm",
+     "hire_fee": "2400",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Guest hotel block",
+    "fields": {
+     "place": "Rowan Hotel",
+     "rooms": "18",
+     "nights": "2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fairway Catering wedding breakfast",
+    "fields": {
+     "item": "Wedding breakfast catering",
+     "guests": "112",
+     "unit_price": "34",
+     "delivery_place": "Coldmoor Farm",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Lumen Rig fairy-light rig",
+    "fields": {
+     "item": "Fairy-light rig",
+     "spec": "beam-mounted",
+     "venue_area": "Harvest Barn",
+     "amount": "640",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Bloom & Stem ceremony arch",
+    "fields": {
+     "item": "Ceremony arch flowers",
+     "placement": "Harvest Barn main doorway",
+     "amount": "310",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Linen Lane chair covers",
+    "fields": {
+     "item": "Chair covers",
+     "quantity": "120",
+     "amount": "420",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "venue"
+    ],
+    "from": "Mira & Tobias",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please get Mira and Tobias's wedding on 14 November at Coldmoor Farm completely squared away — make sure the venue, the lighting rig and the florist are all properly set up, and keep the couple in the loop about anything they need to hear.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "spec",
+    "value": "freestanding truss frame",
+    "stale": [
+     "beam-mounted"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "venue_area",
+    "value": "Orchard Marquee",
+    "stale": [
+     "Harvest Barn"
+    ]
+   },
+   {
+    "record": "ORD-3",
+    "field": "placement",
+    "value": "north-side flat arch entrance",
+    "stale": [
+     "Harvest Barn main doorway"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Mira & Tobias",
+    "regarding": "EV-1",
+    "says": [
+     "Orchard Marquee",
+     "14 November",
+     "2400"
+    ],
+    "stale": [
+     "Harvest Barn",
+     "Ashcombe Grange"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change closes the Harvest Barn but leaves the date, the £2,400 fee and the 120-seat capacity standing, offering the Orchard Marquee on the same terms. The venue on EV-1 can only be changed with the couple's written agreement under the standing rule, so the assistant must ask Mira and Tobias rather than act. The rigging order and the arch placement (both resting on the venue booking, which rests on the revoked letter — two hops) were made for barn-specific fixing and are revised to the marquee's truss frame and north-side entrance. The catering order (date and headcount stand) and the chair covers (capacity 120 stands) are KEEP, and the hotel block and every other record stay untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Fairway canapé restock",
+    "counterpart": "Dana",
+    "org": "Fairway Catering",
+    "item": "canapé platters",
+    "unit": "tray",
+    "values": [
+     "12",
+     "20",
+     "30"
+    ],
+    "place": "Ivory Lane Events kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Coldmoor meeting rooms",
+    "counterpart": "Colm Frey",
+    "org": "Coldmoor Farm",
+    "item": "planning meetings",
+    "unit": "",
+    "values": [
+     "Walled Garden room",
+     "Bothy room",
+     "Dairy room"
+    ],
+    "place": "Coldmoor Farm"
+   },
+   {
+    "kind": "order",
+    "topic": "Lumen Rig uplighters",
+    "counterpart": "Sam Okafor",
+    "org": "Lumen Rig",
+    "item": "uplighters",
+    "unit": "unit",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "order",
+    "topic": "Linen Lane runners",
+    "counterpart": "Grace Ho",
+    "org": "Linen Lane",
+    "item": "table runners",
+    "unit": "pack",
+    "values": [
+     "10",
+     "15",
+     "25"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Rowan Hotel guest rooms",
+    "counterpart": "Anette Byron",
+    "org": "Rowan Hotel",
+    "item": "guest rooms",
+    "unit": "",
+    "values": [
+     "Block A",
+     "Block B",
+     "Block C"
+    ],
+    "place": "Rowan Hotel"
+   },
+   {
+    "kind": "order",
+    "topic": "Bloom & Stem weekly flowers",
+    "counterpart": "Yara Selim",
+    "org": "Bloom & Stem",
+    "item": "table posies",
+    "unit": "bunch",
+    "values": [
+     "6",
+     "10",
+     "14"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fairway tasting sessions",
+    "counterpart": "Dana",
+    "org": "Fairway Catering",
+    "item": "menu tastings",
+    "unit": "",
+    "values": [
+     "Tasting Room A",
+     "Tasting Room B",
+     "Chef's Table"
+    ],
+    "place": "Fairway Catering"
+   },
+   {
+    "kind": "order",
+    "topic": "Glassware restock",
+    "counterpart": "Marcus Webb",
+    "org": "Vinery Glass",
+    "item": "wine glasses",
+    "unit": "case",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Ivory Lane Events kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Ashcombe Grange viewings",
+    "counterpart": "Rosa Pike",
+    "org": "Ashcombe Grange",
+    "item": "venue viewings",
+    "unit": "",
+    "values": [
+     "Ballroom",
+     "Terrace Suite",
+     "Orangery"
+    ],
+    "place": "Ashcombe Grange"
+   },
+   {
+    "kind": "order",
+    "topic": "Stationery restock",
+    "counterpart": "Hana Cole",
+    "org": "Paperwhistle Press",
+    "item": "invitation card packs",
+    "unit": "pack",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Cargo van booking",
+    "counterpart": "Leo Marsh",
+    "org": "Ivory Lane Logistics",
+    "item": "cargo van",
+    "unit": "",
+    "values": [
+     "Van 1",
+     "Van 2",
+     "Van 3"
+    ],
+    "place": "Ivory Lane Events yard"
+   }
+  ],
+  "id": "G100-1-07",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes e4, and the touched decisions follow the class-1 pattern: e6 (ASK) and e10 (KEEP) rest directly on it, and e8 and e9 (REVISE) sit two hops away through e6. The tier counts, the 10-day gap before the task day, the four core events after the change, and the routine-style email all check out. The only blemish is that the message's stale list includes Ashcombe Grange, an unbooked distractor that the couple's records never reference.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes e4, and the touched decisions follow the class-1 pattern: e6 (ASK) and e10 (KEEP) rest directly on it, and e8 and e9 (REVISE) sit two hops away through e6. The tier counts, the 10-day gap before the task day, the four core events after the change, and the routine-style email all check out. The only blemish is that the message's stale list includes Ashcombe Grange, an unbooked distractor that the couple's records never reference."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5172,
+    "completion_tokens": 2420,
+    "reasoning_tokens": 2206,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017272,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e4423ff506bae0ec90cf367e8106c328ae4f2ecac02d31fe7b87dd1b808772c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The marquee is only an offered replacement pending the couple's written agreement, so moving supplier arrangements there is not an unambiguous required action before consent. The venue's freestanding truss frame also does not establish an agreed replacement lighting specification. The dependency structure fits class 3: the venue booking and downstream supplier decisions are affected, while the chair-cover decision directly cites the original letter's unchanged capacity.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The marquee is only an offered replacement pending the couple's written agreement, so moving supplier arrangements there is not an unambiguous required action before consent. The venue's freestanding truss frame also does not establish an agreed replacement lighting specification. The dependency structure fits class 3: the venue booking and downstream supplier decisions are affected, while the chair-cover decision directly cites the original letter's unchanged capacity."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3463,
+    "completion_tokens": 417,
+    "reasoning_tokens": 300,
+    "cached_tokens": 0
+   },
+   "cost": 0.06413,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e4423ff506bae0ec90cf367e8106c328ae4f2ecac02d31fe7b87dd1b808772c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked barn letter propagates cleanly: EV-1 venue change requires the couple's consent under e1 (ASK), ORD-2/ORD-3 get marquee-specific values fixed by the change itself (REVISE, two hops), and date/headcount/capacity standing make ORD-1, ORD-4 and EV-2 KEEP. The task is generic (venue, rig, florist, keep couple in the loop) yet forces workplace action without naming the change. Tier 100 fits: 21 core events, 6 decisions, change 10 days before the task day with 10 events after it, placed at event 90 as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked barn letter propagates cleanly: EV-1 venue change requires the couple's consent under e1 (ASK), ORD-2/ORD-3 get marquee-specific values fixed by the change itself (REVISE, two hops), and date/headcount/capacity standing make ORD-1, ORD-4 and EV-2 KEEP. The task is generic (venue, rig, florist, keep couple in the loop) yet forces workplace action without naming the change. Tier 100 fits: 21 core events, 6 decisions, change 10 days before the task day with 10 events after it, placed at event 90 as an ordinary email."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3573,
+    "completion_tokens": 552,
+    "reasoning_tokens": 356,
+    "cached_tokens": 0
+   },
+   "cost": 0.018999,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e4423ff506bae0ec90cf367e8106c328ae4f2ecac02d31fe7b87dd1b808772c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,641 @@
+{
+ "id": "G1000-1-04",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 1,
+ "idx": 3,
+ "setting": "The bursar at Halloway College whose assistant administers fee invoices, scholarship records, and supplier payments",
+ "prompt_sha256": "91945ad58a43b1034fe56a939169157ff5aa21c2fce195e88ac8f47b6563c0e3",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Brightmop rate rise\",\n  \"setting\": \"The bursar at Halloway College whose assistant administers fee invoices, scholarship records, and supplier payments\",\n  \"owner\": \"Miles\",\n  \"org\": \"Halloway College\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya Raman (finance lead)\", \"text\": \"Bursary office policy from this term: any amendment to a confirmed supplier order that changes the total by more than £500 needs my written agreement before it goes through. Please treat this as standing.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Miles\", \"text\": \"Standing rule for scholarships: stipends are paid on the first day of each full term month, and no change to an award or a stipend may be made without the Master's approval.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Miles\", \"text\": \"Routine for the bursary: fee invoices go out in the first week of each full term, and supplier payments are run on the last working day of the month.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Six new scholars joined this term; the bursary files have been updated with their details.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Quotation: we will clean the North Quad, staircases 1 to 4 and the bursary office from 1 September 2026 to 31 August 2027 for £1,240 per month, attending Monday, Wednesday and Friday mornings from 07:00. Certificate of insurance enclosed.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Marsh (Fernleigh Catering)\", \"text\": \"We can host dinners in the Old Hall at £22 per head for 2026-27, minimum 20 guests, kitchen staff included.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Marcus Bell (Kestrel Stationery)\", \"text\": \"Exam booklets are 42p each for orders over 2,000; delivery to the bursary office within three weeks.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Ines Ward (Gable Grocers)\", \"text\": \"Butter supplied at £4.10 per kilo and tea at £6.50 per kilo for the buttery this term.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"letter\", \"from\": \"Dr A. Kerr (Master)\", \"text\": \"The Master confirms Michaelmas fees at £9,850 per boarder, with 62 boarders expected.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"The Aldwick Scholarship for 2026-27 is awarded to Tilly Sheridan at £650 per term, paid on the first day of each full term month as usual.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"call\", \"from\": \"Dr A. Kerr (Master)\", \"text\": \"The Master asked that the scholarship award letters go out before 20 July.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Signed the year's cleaning contract with Brightmop at £1,240 a month covering the North Quad, staircases 1 to 4 and the bursary office, from 1 September 2026 to 31 August 2027.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Set the cleaning schedule with Brightmop: attendances Monday, Wednesday and Friday mornings at 07:00 covering the North Quad and the bursary office.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-18\", \"type\": \"letter\", \"from\": \"Miles\", \"text\": \"Letter to Tilly Sheridan confirming the Aldwick Scholarship at £650 per term for 2026-27.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Issued the Michaelmas fee invoices at £9,850 per boarder for the 62 boarders in the first week of term.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e3\"]},\n    {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Ordered 4,000 exam booklets from Kestrel Stationery at 42p each, £1,680 in total, for the January mock examinations.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Public liability certificate renewed to 31 August 2027 — filing copy attached.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Miles\", \"text\": \"Bursary team meeting: fee invoices issued on time; scholarship letters out; cleaning contract signed at £1,240 a month; booklet order placed.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Hope the first weeks of term went well — just confirming the North Quad and offices cleaning continues at £1,240 a month as contracted.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e20\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Room inspection list for the North Quad staircases is attached; nothing for the bursary to action this week.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-16\", \"type\": \"note\", \"from\": \"Miles\", \"text\": \"Budget note: the cleaning line is running at £1,240 a month as contracted through to August 2027.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Booked Brightmop's half-term deep clean of the North Quad for Tuesday 20 October at their package price of three-quarters of the monthly rate, £930.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Booked the scholars' dinner with Fernleigh Catering for Tuesday 17 November in the Old Hall, 24 guests at £22 a head.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Asked Nadia Cooke to reconcile the Kestrel Stationery statement and the October supplier payments by 6 November.\", \"role\": \"decision\", \"rests_on\": [\"e16\"]},\n    {\"id\": \"e25\", \"date\": \"2026-10-06\", \"type\": \"notice\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Fire drill on Wednesday 14 October at 10:00; all staff to assemble in the main court.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Following this autumn's wage review, our monthly rate for the North Quad and offices contract will be £1,400 from 1 November. One-off deep cleans are charged at three-quarters of the monthly rate, and the Monday, Wednesday and Friday mornings at 07:00 stay as they are. Apologies for the short notice — happy to talk it through.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Miles\", \"text\": \"Pay Brightmop's October invoice of £1,240 by Friday 30 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"If it's useful, we can add a monthly interior window clean for the North Quad at £180 a month from January — just say the word.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya Raman (finance lead)\", \"text\": \"Reminder to have the half-term supplier paperwork ready for the finance meeting on Monday 26 October.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Deep clean of the North Quad completed this morning — invoice to follow shortly.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"cancellation\", \"from\": \"Lena Marsh (Fernleigh Catering)\", \"text\": \"The October port tasting in the Small Parlour is cancelled; the November dinner in the Old Hall is unaffected.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Kestrel statement shows the booklet order correctly; I'll have the reconciliation done by 6 November as asked.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-25\", \"type\": \"note\", \"from\": \"Miles\", \"text\": \"Chasing Brightmop's invoice for the deep clean; also need to confirm November's cleaning payment with Sam.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Annual cleaning contract\", \"fields\": {\"supplier\": \"Brightmop Cleaning\", \"service\": \"North Quad and offices cleaning\", \"monthly_amount\": \"1240\", \"start\": \"2026-09-01\", \"end\": \"2027-08-31\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Half-term deep clean\", \"fields\": {\"supplier\": \"Brightmop Cleaning\", \"service\": \"Half-term deep clean, North Quad\", \"date\": \"2026-10-20\", \"amount\": \"930\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Exam booklet order\", \"fields\": {\"supplier\": \"Kestrel Stationery\", \"item\": \"exam booklets\", \"quantity\": \"4000\", \"unit_price\": \"0.42\", \"total\": \"1680\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cleaning schedule\", \"fields\": {\"area\": \"North Quad and offices\", \"days\": \"Mon/Wed/Fri\", \"time\": \"07:00\", \"start\": \"2026-09-01\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Scholars' dinner\", \"fields\": {\"date\": \"2026-11-17\", \"place\": \"Old Hall\", \"headcount\": \"24\", \"cost_per_head\": \"22\", \"status\": \"booked\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Aldwick Scholarship\", \"fields\": {\"student\": \"Tilly Sheridan\", \"award\": \"Aldwick Scholarship\", \"stipend_per_term\": \"650\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"monthly_amount\"], \"from\": \"Priya Raman\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Sam's deep-clean invoice has arrived and he's chasing what we'll be paying for November's cleaning — please sort out the Brightmop paperwork on our side and confirm to Sam what November's payment will be.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"amount\", \"value\": \"1050\", \"stale\": [\"930\"]},\n    {\"message_to\": \"Sam Voss\", \"regarding\": \"ORD-1\", \"says\": [\"1400\"], \"stale\": [\"1240\", \"180\"], \"task\": true}\n  ],\n  \"why\": \"The change raises Brightmop's monthly rate from £1,240 to £1,400 from 1 November and prices one-off deep cleans at three-quarters of the monthly rate. ORD-1's monthly amount is a consent field under Priya's rule (the change exceeds £500 over the contract), so it must stay at £1,240 with a consent request rather than be edited; ORD-2's deep clean moves only £930 to £1,050, below the threshold, so it is revised directly. EV-1 uses only the days and times the change leaves standing, so it is KEEP, and everything else stays as it is. The task's confirmation to Sam must quote £1,400, not the stale £1,240, and not the distractor £180 window-clean figure.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"floor cleaner restock\", \"counterpart\": \"Sam Voss\", \"org\": \"Brightmop Cleaning\", \"item\": \"floor cleaning concentrate\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Bursary stores\"},\n    {\"kind\": \"order\", \"topic\": \"bin liners\", \"counterpart\": \"Sam Voss\", \"org\": \"Brightmop Cleaning\", \"item\": \"bin liners\", \"unit\": \"rolls\", \"values\": [\"30\", \"50\", \"70\"], \"place\": \"Bursary stores\"},\n    {\"kind\": \"booking\", \"topic\": \"catering room bookings\", \"counterpart\": \"Lena Marsh\", \"org\": \"Fernleigh Catering\", \"item\": \"supper room\", \"unit\": \"\", \"values\": [\"Old Hall\", \"Small Parlour\", \"Buttery\"], \"place\": \"Old Hall quadrangle\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Lena Marsh\", \"org\": \"Fernleigh Catering\", \"item\": \"fairtrade coffee beans\", \"unit\": \"kg\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Buttery kitchen\"},\n    {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Marcus Bell\", \"org\": \"Kestrel Stationery\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"20\", \"30\", \"45\"], \"place\": \"Bursary office\"},\n    {\"kind\": \"order\", \"topic\": \"toner cartridges\", \"counterpart\": \"Marcus Bell\", \"org\": \"Kestrel Stationery\", \"item\": \"toner cartridges\", \"unit\": \"packs\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Bursary office\"},\n    {\"kind\": \"booking\", \"topic\": \"finance committee room\", \"counterpart\": \"Priya Raman\", \"org\": \"Halloway College\", \"item\": \"committee meeting room\", \"unit\": \"\", \"values\": [\"Old Library\", \"Bursary office\", \"Senior Common Room\"], \"place\": \"Main court\"},\n    {\"kind\": \"booking\", \"topic\": \"invigilation briefing\", \"counterpart\": \"Priya Raman\", \"org\": \"Halloway College\", \"item\": \"briefing room\", \"unit\": \"\", \"values\": [\"Old Library\", \"Lecture Room 2\"], \"place\": \"Main court\"},\n    {\"kind\": \"booking\", \"topic\": \"minibus for school visits\", \"counterpart\": \"Nadia Cooke\", \"org\": \"Halloway College\", \"item\": \"college minibus\", \"unit\": \"\", \"values\": [\"College minibus 1\", \"College minibus 2\"], \"place\": \"Main gate\"},\n    {\"kind\": \"order\", \"topic\": \"laundry weeks\", \"counterpart\": \"Ravi Shah\", \"org\": \"Nordwell Laundry\", \"item\": \"laundry service\", \"unit\": \"weeks\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Linens store\"},\n    {\"kind\": \"booking\", \"topic\": \"sculling outings\", \"counterpart\": \"Toby Grant\", \"org\": \"Halloway Boathouse\", \"item\": \"boat slot\", \"unit\": \"\", \"values\": [\"Boathouse slipway\", \"River jetty\"], \"place\": \"Boathouse\"},\n    {\"kind\": \"order\", \"topic\": \"pantry restock\", \"counterpart\": \"Ines Ward\", \"org\": \"Gable Grocers\", \"item\": \"crackers and biscuits\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Buttery kitchen\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3202,
+    "completion_tokens": 14083,
+    "reasoning_tokens": 9761,
+    "cached_tokens": 3136
+   },
+   "cost": 0.06287296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Brightmop rate rise\",\n \"setting\": \"The bursar at Halloway College whose assistant administers fee invoices, scholarship records, and supplier payments\",\n \"owner\": \"Miles\",\n \"org\": \"Halloway College\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya Raman (finance lead)\", \"text\": \"Bursary office policy from this term: any amendment to a confirmed supplier order that changes the total by more than £500 needs my written agreement before it goes through. Please treat this as standing.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Miles\", \"text\": \"Standing rule for scholarships: stipends are paid on the first day of each full term month, and no change to an award or a stipend may be made without the Master's approval.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"instruction\", \"from\": \"Miles\", \"text\": \"Routine for the bursary: fee invoices go out in the first week of each full term, and supplier payments are run on the last working day of the month.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Six new scholars joined this term; the bursary files have been updated with their details.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Quotation: we will clean the North Quad, staircases 1 to 4 and the bursary office from 1 September 2026 to 31 August 2027 for £1,240 per month, attending Monday, Wednesday and Friday mornings from 07:00. Certificate of insurance enclosed.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Lena Marsh (Fernleigh Catering)\", \"text\": \"We can host dinners in the Old Hall at £22 per head for 2026-27, minimum 20 guests, kitchen staff included.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Marcus Bell (Kestrel Stationery)\", \"text\": \"Exam booklets are 42p each for orders over 2,000; delivery to the bursary office within three weeks.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"quote\", \"from\": \"Ines Ward (Gable Grocers)\", \"text\": \"Butter supplied at £4.10 per kilo and tea at £6.50 per kilo for the buttery this term.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-03\", \"type\": \"letter\", \"from\": \"Dr A. Kerr (Master)\", \"text\": \"The Master confirms Michaelmas fees at £9,850 per boarder, with 62 boarders expected.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"The Aldwick Scholarship for 2026-27 is awarded to Tilly Sheridan at £650 per term, paid on the first day of each full term month as usual.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"call\", \"from\": \"Dr A. Kerr (Master)\", \"text\": \"The Master asked that the scholarship award letters go out before 20 July.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Signed the year's cleaning contract with Brightmop at £1,240 a month covering the North Quad, staircases 1 to 4 and the bursary office, from 1 September 2026 to 31 August 2027.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Set the cleaning schedule with Brightmop: attendances Monday, Wednesday and Friday mornings at 07:00 covering the North Quad and the bursary office.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-18\", \"type\": \"letter\", \"from\": \"Miles\", \"text\": \"Letter to Tilly Sheridan confirming the Aldwick Scholarship at £650 per term for 2026-27.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Issued the Michaelmas fee invoices at £9,850 per boarder for the 62 boarders in the first week of term.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e3\"]},\n  {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Ordered 4,000 exam booklets from Kestrel Stationery at 42p each, £1,680 in total, for the January mock examinations.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Public liability certificate renewed to 31 August 2027 — filing copy attached.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"minutes\", \"from\": \"Miles\", \"text\": \"Bursary team meeting: fee invoices issued on time; scholarship letters out; cleaning contract signed at £1,240 a month; booklet order placed.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Hope the first weeks of term went well — just confirming the North Quad and offices cleaning continues at £1,240 a month as contracted.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Room inspection list for the North Quad staircases is attached; nothing for the bursary to action this week.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-16\", \"type\": \"note\", \"from\": \"Miles\", \"text\": \"Budget note: the cleaning line is running at £1,240 a month as contracted through to August 2027.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Booked Brightmop's half-term deep clean of the North Quad for Tuesday 20 October at their package price of three-quarters of the monthly rate, £930.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Booked the scholars' dinner with Fernleigh Catering for Tuesday 17 November in the Old Hall, 24 guests at £22 a head.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Miles\", \"text\": \"Asked Nadia Cooke to reconcile the Kestrel Stationery statement and the October supplier payments by 6 November.\", \"role\": \"decision\", \"rests_on\": [\"e16\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-06\", \"type\": \"notice\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Fire drill on Wednesday 14 October at 10:00; all staff to assemble in the main court.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Following this autumn's wage review, our monthly rate for the North Quad and offices contract will be £1,400 from 1 November. One-off deep cleans are charged at three-quarters of the monthly rate, and the Monday, Wednesday and Friday mornings at 07:00 stay as they are. Apologies for the short notice — happy to talk it through.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Miles\", \"text\": \"Pay Brightmop's October invoice of £1,240 by Friday 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"If it's useful, we can add a monthly interior window clean for the North Quad at £180 a month from January — just say the word.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya Raman (finance lead)\", \"text\": \"Reminder to have the half-term supplier paperwork ready for the finance meeting on Monday 26 October.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sam Voss (Brightmop Cleaning)\", \"text\": \"Deep clean of the North Quad completed this morning — invoice to follow shortly.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-22\", \"type\": \"cancellation\", \"from\": \"Lena Marsh (Fernleigh Catering)\", \"text\": \"The October port tasting in the Small Parlour is cancelled; the November dinner in the Old Hall is unaffected.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-24\", \"type\": \"message\", \"from\": \"Nadia Cooke (registrar)\", \"text\": \"Kestrel statement shows the booklet order correctly; I'll have the reconciliation done by 6 November as asked.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-25\", \"type\": \"note\", \"from\": \"Miles\", \"text\": \"Chasing Brightmop's invoice for the deep clean; also need to confirm November's cleaning payment with Sam.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Annual cleaning contract\", \"fields\": {\"supplier\": \"Brightmop Cleaning\", \"service\": \"North Quad and offices cleaning\", \"monthly_amount\": \"1240\", \"start\": \"2026-09-01\", \"end\": \"2027-08-31\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Half-term deep clean\", \"fields\": {\"supplier\": \"Brightmop Cleaning\", \"service\": \"Half-term deep clean, North Quad\", \"date\": \"2026-10-20\", \"amount\": \"930\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Exam booklet order\", \"fields\": {\"supplier\": \"Kestrel Stationery\", \"item\": \"exam booklets\", \"quantity\": \"4000\", \"unit_price\": \"0.42\", \"total\": \"1680\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Cleaning schedule\", \"fields\": {\"area\": \"North Quad and offices\", \"days\": \"Mon/Wed/Fri\", \"time\": \"07:00\", \"start\": \"2026-09-01\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Scholars' dinner\", \"fields\": {\"date\": \"2026-11-17\", \"place\": \"Old Hall\", \"headcount\": \"24\", \"cost_per_head\": \"22\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Aldwick Scholarship\", \"fields\": {\"student\": \"Tilly Sheridan\", \"award\": \"Aldwick Scholarship\", \"stipend_per_term\": \"650\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"monthly_amount\"], \"from\": \"Priya Raman\", \"rule\": \"e1\"}\n ],\n \"task\": \"Sam's deep-clean invoice has arrived and he's chasing what we'll be paying for November's cleaning — please sort out the Brightmop paperwork on our side and confirm to Sam what November's payment will be.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"amount\", \"value\": \"1050\", \"stale\": [\"930\"]},\n  {\"message_to\": \"Sam Voss\", \"regarding\": \"ORD-1\", \"says\": [\"1400\"], \"stale\": [\"1240\", \"180\"], \"task\": true}\n ],\n \"why\": \"The change raises Brightmop's monthly rate from £1,240 to £1,400 from 1 November and prices one-off deep cleans at three-quarters of the monthly rate. ORD-1's monthly amount is a consent field under Priya's rule (the change exceeds £500 over the contract), so it must stay at £1,240 with a consent request rather than be edited; ORD-2's deep clean moves only £930 to £1,050, below the threshold, so it is revised directly. EV-1 uses only the days and times the change leaves standing, so it is KEEP, and everything else stays as it is. The task's confirmation to Sam must quote £1,400, not the stale £1,240, and not the distractor £180 window-clean figure.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"floor cleaner restock\", \"counterpart\": \"Sam Voss\", \"org\": \"Brightmop Cleaning\", \"item\": \"floor cleaning concentrate\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Bursary stores\"},\n  {\"kind\": \"order\", \"topic\": \"bin liners\", \"counterpart\": \"Sam Voss\", \"org\": \"Brightmop Cleaning\", \"item\": \"bin liners\", \"unit\": \"rolls\", \"values\": [\"30\", \"50\", \"70\"], \"place\": \"Bursary stores\"},\n  {\"kind\": \"booking\", \"topic\": \"catering room bookings\", \"counterpart\": \"Lena Marsh\", \"org\": \"Fernleigh Catering\", \"item\": \"supper room\", \"unit\": \"\", \"values\": [\"Old Hall\", \"Small Parlour\", \"Buttery\"], \"place\": \"Old Hall quadrangle\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Lena Marsh\", \"org\": \"Fernleigh Catering\", \"item\": \"fairtrade coffee beans\", \"unit\": \"kg\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Buttery kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Marcus Bell\", \"org\": \"Kestrel Stationery\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"20\", \"30\", \"45\"], \"place\": \"Bursary office\"},\n  {\"kind\": \"order\", \"topic\": \"toner cartridges\", \"counterpart\": \"Marcus Bell\", \"org\": \"Kestrel Stationery\", \"item\": \"toner cartridges\", \"unit\": \"packs\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Bursary office\"},\n  {\"kind\": \"booking\", \"topic\": \"finance committee room\", \"counterpart\": \"Priya Raman\", \"org\": \"Halloway College\", \"item\": \"committee meeting room\", \"unit\": \"\", \"values\": [\"Old Library\", \"Bursary office\", \"Senior Common Room\"], \"place\": \"Main court\"},\n  {\"kind\": \"booking\", \"topic\": \"invigilation briefing\", \"counterpart\": \"Priya Raman\", \"org\": \"Halloway College\", \"item\": \"briefing room\", \"unit\": \"\", \"values\": [\"Old Library\", \"Lecture Room 2\", \"Senior Common Room\"], \"place\": \"Main court\"},\n  {\"kind\": \"booking\", \"topic\": \"minibus for school visits\", \"counterpart\": \"Nadia Cooke\", \"org\": \"Halloway College\", \"item\": \"college minibus\", \"unit\": \"\", \"values\": [\"College minibus 1\", \"College minibus 2\", \"College minibus 3\"], \"place\": \"Main gate\"},\n  {\"kind\": \"order\", \"topic\": \"laundry weeks\", \"counterpart\": \"Ravi Shah\", \"org\": \"Nordwell Laundry\", \"item\": \"laundry service\", \"unit\": \"weeks\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Linens store\"},\n  {\"kind\": \"booking\", \"topic\": \"sculling outings\", \"counterpart\": \"Toby Grant\", \"org\": \"Halloway Boathouse\", \"item\": \"boat slot\", \"unit\": \"\", \"values\": [\"Boathouse slipway\", \"River jetty\", \"Upstream boathard\"], \"place\": \"Boathouse\"},\n  {\"kind\": \"order\", \"topic\": \"pantry restock\", \"counterpart\": \"Ines Ward\", \"org\": \"Gable Grocers\", \"item\": \"crackers and biscuits\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Buttery kitchen\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7600,
+    "completion_tokens": 4324,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0260176,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'invigilation briefing': values needs at least three entries\n- noise topic 'minibus for school visits': values needs at least three entries\n- noise topic 'sculling outings': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Brightmop rate rise",
+  "setting": "The bursar at Halloway College whose assistant administers fee invoices, scholarship records, and supplier payments",
+  "owner": "Miles",
+  "org": "Halloway College",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya Raman (finance lead)",
+    "text": "Bursary office policy from this term: any amendment to a confirmed supplier order that changes the total by more than £500 needs my written agreement before it goes through. Please treat this as standing.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Miles",
+    "text": "Standing rule for scholarships: stipends are paid on the first day of each full term month, and no change to an award or a stipend may be made without the Master's approval.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "instruction",
+    "from": "Miles",
+    "text": "Routine for the bursary: fee invoices go out in the first week of each full term, and supplier payments are run on the last working day of the month.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Nadia Cooke (registrar)",
+    "text": "Six new scholars joined this term; the bursary files have been updated with their details.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "Quotation: we will clean the North Quad, staircases 1 to 4 and the bursary office from 1 September 2026 to 31 August 2027 for £1,240 per month, attending Monday, Wednesday and Friday mornings from 07:00. Certificate of insurance enclosed.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Lena Marsh (Fernleigh Catering)",
+    "text": "We can host dinners in the Old Hall at £22 per head for 2026-27, minimum 20 guests, kitchen staff included.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Marcus Bell (Kestrel Stationery)",
+    "text": "Exam booklets are 42p each for orders over 2,000; delivery to the bursary office within three weeks.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "quote",
+    "from": "Ines Ward (Gable Grocers)",
+    "text": "Butter supplied at £4.10 per kilo and tea at £6.50 per kilo for the buttery this term.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-03",
+    "type": "letter",
+    "from": "Dr A. Kerr (Master)",
+    "text": "The Master confirms Michaelmas fees at £9,850 per boarder, with 62 boarders expected.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Miles",
+    "text": "The Aldwick Scholarship for 2026-27 is awarded to Tilly Sheridan at £650 per term, paid on the first day of each full term month as usual.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "call",
+    "from": "Dr A. Kerr (Master)",
+    "text": "The Master asked that the scholarship award letters go out before 20 July.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Signed the year's cleaning contract with Brightmop at £1,240 a month covering the North Quad, staircases 1 to 4 and the bursary office, from 1 September 2026 to 31 August 2027.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Set the cleaning schedule with Brightmop: attendances Monday, Wednesday and Friday mornings at 07:00 covering the North Quad and the bursary office.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-18",
+    "type": "letter",
+    "from": "Miles",
+    "text": "Letter to Tilly Sheridan confirming the Aldwick Scholarship at £650 per term for 2026-27.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Issued the Michaelmas fee invoices at £9,850 per boarder for the 62 boarders in the first week of term.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e3"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Ordered 4,000 exam booklets from Kestrel Stationery at 42p each, £1,680 in total, for the January mock examinations.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "Public liability certificate renewed to 31 August 2027 — filing copy attached.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-28",
+    "type": "minutes",
+    "from": "Miles",
+    "text": "Bursary team meeting: fee invoices issued on time; scholarship letters out; cleaning contract signed at £1,240 a month; booklet order placed.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "Hope the first weeks of term went well — just confirming the North Quad and offices cleaning continues at £1,240 a month as contracted.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Nadia Cooke (registrar)",
+    "text": "Room inspection list for the North Quad staircases is attached; nothing for the bursary to action this week.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-16",
+    "type": "note",
+    "from": "Miles",
+    "text": "Budget note: the cleaning line is running at £1,240 a month as contracted through to August 2027.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-23",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Booked Brightmop's half-term deep clean of the North Quad for Tuesday 20 October at their package price of three-quarters of the monthly rate, £930.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-29",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Booked the scholars' dinner with Fernleigh Catering for Tuesday 17 November in the Old Hall, 24 guests at £22 a head.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Miles",
+    "text": "Asked Nadia Cooke to reconcile the Kestrel Stationery statement and the October supplier payments by 6 November.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-06",
+    "type": "notice",
+    "from": "Nadia Cooke (registrar)",
+    "text": "Fire drill on Wednesday 14 October at 10:00; all staff to assemble in the main court.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "Following this autumn's wage review, our monthly rate for the North Quad and offices contract will be £1,400 from 1 November. One-off deep cleans are charged at three-quarters of the monthly rate, and the Monday, Wednesday and Friday mornings at 07:00 stay as they are. Apologies for the short notice — happy to talk it through.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-10",
+    "type": "task",
+    "from": "Miles",
+    "text": "Pay Brightmop's October invoice of £1,240 by Friday 30 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "If it's useful, we can add a monthly interior window clean for the North Quad at £180 a month from January — just say the word.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Priya Raman (finance lead)",
+    "text": "Reminder to have the half-term supplier paperwork ready for the finance meeting on Monday 26 October.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Sam Voss (Brightmop Cleaning)",
+    "text": "Deep clean of the North Quad completed this morning — invoice to follow shortly.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-22",
+    "type": "cancellation",
+    "from": "Lena Marsh (Fernleigh Catering)",
+    "text": "The October port tasting in the Small Parlour is cancelled; the November dinner in the Old Hall is unaffected.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-24",
+    "type": "message",
+    "from": "Nadia Cooke (registrar)",
+    "text": "Kestrel statement shows the booklet order correctly; I'll have the reconciliation done by 6 November as asked.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-25",
+    "type": "note",
+    "from": "Miles",
+    "text": "Chasing Brightmop's invoice for the deep clean; also need to confirm November's cleaning payment with Sam.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Annual cleaning contract",
+    "fields": {
+     "supplier": "Brightmop Cleaning",
+     "service": "North Quad and offices cleaning",
+     "monthly_amount": "1240",
+     "start": "2026-09-01",
+     "end": "2027-08-31",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Half-term deep clean",
+    "fields": {
+     "supplier": "Brightmop Cleaning",
+     "service": "Half-term deep clean, North Quad",
+     "date": "2026-10-20",
+     "amount": "930",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Exam booklet order",
+    "fields": {
+     "supplier": "Kestrel Stationery",
+     "item": "exam booklets",
+     "quantity": "4000",
+     "unit_price": "0.42",
+     "total": "1680",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Cleaning schedule",
+    "fields": {
+     "area": "North Quad and offices",
+     "days": "Mon/Wed/Fri",
+     "time": "07:00",
+     "start": "2026-09-01",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Scholars' dinner",
+    "fields": {
+     "date": "2026-11-17",
+     "place": "Old Hall",
+     "headcount": "24",
+     "cost_per_head": "22",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Aldwick Scholarship",
+    "fields": {
+     "student": "Tilly Sheridan",
+     "award": "Aldwick Scholarship",
+     "stipend_per_term": "650",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "monthly_amount"
+    ],
+    "from": "Priya Raman",
+    "rule": "e1"
+   }
+  ],
+  "task": "Sam's deep-clean invoice has arrived and he's chasing what we'll be paying for November's cleaning — please sort out the Brightmop paperwork on our side and confirm to Sam what November's payment will be.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "amount",
+    "value": "1050",
+    "stale": [
+     "930"
+    ]
+   },
+   {
+    "message_to": "Sam Voss",
+    "regarding": "ORD-1",
+    "says": [
+     "1400"
+    ],
+    "stale": [
+     "1240",
+     "180"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change raises Brightmop's monthly rate from £1,240 to £1,400 from 1 November and prices one-off deep cleans at three-quarters of the monthly rate. ORD-1's monthly amount is a consent field under Priya's rule (the change exceeds £500 over the contract), so it must stay at £1,240 with a consent request rather than be edited; ORD-2's deep clean moves only £930 to £1,050, below the threshold, so it is revised directly. EV-1 uses only the days and times the change leaves standing, so it is KEEP, and everything else stays as it is. The task's confirmation to Sam must quote £1,400, not the stale £1,240, and not the distractor £180 window-clean figure.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "floor cleaner restock",
+    "counterpart": "Sam Voss",
+    "org": "Brightmop Cleaning",
+    "item": "floor cleaning concentrate",
+    "unit": "litres",
+    "values": [
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Bursary stores"
+   },
+   {
+    "kind": "order",
+    "topic": "bin liners",
+    "counterpart": "Sam Voss",
+    "org": "Brightmop Cleaning",
+    "item": "bin liners",
+    "unit": "rolls",
+    "values": [
+     "30",
+     "50",
+     "70"
+    ],
+    "place": "Bursary stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "catering room bookings",
+    "counterpart": "Lena Marsh",
+    "org": "Fernleigh Catering",
+    "item": "supper room",
+    "unit": "",
+    "values": [
+     "Old Hall",
+     "Small Parlour",
+     "Buttery"
+    ],
+    "place": "Old Hall quadrangle"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Lena Marsh",
+    "org": "Fernleigh Catering",
+    "item": "fairtrade coffee beans",
+    "unit": "kg",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Buttery kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper",
+    "counterpart": "Marcus Bell",
+    "org": "Kestrel Stationery",
+    "item": "A4 printer paper",
+    "unit": "reams",
+    "values": [
+     "20",
+     "30",
+     "45"
+    ],
+    "place": "Bursary office"
+   },
+   {
+    "kind": "order",
+    "topic": "toner cartridges",
+    "counterpart": "Marcus Bell",
+    "org": "Kestrel Stationery",
+    "item": "toner cartridges",
+    "unit": "packs",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Bursary office"
+   },
+   {
+    "kind": "booking",
+    "topic": "finance committee room",
+    "counterpart": "Priya Raman",
+    "org": "Halloway College",
+    "item": "committee meeting room",
+    "unit": "",
+    "values": [
+     "Old Library",
+     "Bursary office",
+     "Senior Common Room"
+    ],
+    "place": "Main court"
+   },
+   {
+    "kind": "booking",
+    "topic": "invigilation briefing",
+    "counterpart": "Priya Raman",
+    "org": "Halloway College",
+    "item": "briefing room",
+    "unit": "",
+    "values": [
+     "Old Library",
+     "Lecture Room 2",
+     "Senior Common Room"
+    ],
+    "place": "Main court"
+   },
+   {
+    "kind": "booking",
+    "topic": "minibus for school visits",
+    "counterpart": "Nadia Cooke",
+    "org": "Halloway College",
+    "item": "college minibus",
+    "unit": "",
+    "values": [
+     "College minibus 1",
+     "College minibus 2",
+     "College minibus 3"
+    ],
+    "place": "Main gate"
+   },
+   {
+    "kind": "order",
+    "topic": "laundry weeks",
+    "counterpart": "Ravi Shah",
+    "org": "Nordwell Laundry",
+    "item": "laundry service",
+    "unit": "weeks",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Linens store"
+   },
+   {
+    "kind": "booking",
+    "topic": "sculling outings",
+    "counterpart": "Toby Grant",
+    "org": "Halloway Boathouse",
+    "item": "boat slot",
+    "unit": "",
+    "values": [
+     "Boathouse slipway",
+     "River jetty",
+     "Upstream boathard"
+    ],
+    "place": "Boathouse"
+   },
+   {
+    "kind": "order",
+    "topic": "pantry restock",
+    "counterpart": "Ines Ward",
+    "org": "Gable Grocers",
+    "item": "crackers and biscuits",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Buttery kitchen"
+   }
+  ],
+  "id": "G1000-1-04",
+  "tier": 1000,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

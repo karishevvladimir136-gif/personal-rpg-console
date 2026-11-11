@@ -280,6 +280,8 @@ def cmd_write(a):
     gw, _ = start_gateway(embed=False)
     CAND.mkdir(parents=True, exist_ok=True)
     slots = [s for s in plan() if not (CAND / f"{s['id']}.json").exists() and (not a.writer or s["writer"] == a.writer)]
+    if a.only:
+        slots = [s for s in slots if s["id"] in set(a.only.split(","))]
     log(f"write: {len(slots)} candidates to write")
     per = {"glm": 0.12, "kimi": 0.35}
     for b in range(0, len(slots), 60):
@@ -319,7 +321,12 @@ def cmd_rate(a):
     check_authority1()
     _stub_embedder()
     gw, _ = start_gateway(embed=False)
-    recs = {p.stem: json.loads(p.read_text()) for p in sorted(CAND.glob("*.json"))}
+    recs = {}
+    for p in sorted(CAND.glob("*.json")):
+        try:
+            recs[p.stem] = json.loads(p.read_text())
+        except Exception:
+            log(f"{p.name}: not readable yet; skipped")
     todo = [(cid, x) for cid, r in recs.items() if r["valid"] for x in raters_for(r)
             if not ((r.get("ratings") or {}).get(x) or {}).get("parsed")
             and len(((r.get("ratings") or {}).get(x) or {}).get("tries", [])) < 3]
@@ -840,7 +847,7 @@ def main():
     sub.add_parser("spend").set_defaults(fn=cmd_spend)
     sub.add_parser("settings").set_defaults(fn=cmd_settings)
     sp = sub.add_parser("write"); sp.add_argument("--threads", type=int, default=12); sp.add_argument("--writer", default="")
-    sp.set_defaults(fn=cmd_write)
+    sp.add_argument("--only", default=""); sp.set_defaults(fn=cmd_write)
     sp = sub.add_parser("rate"); sp.add_argument("--threads", type=int, default=12); sp.set_defaults(fn=cmd_rate)
     sub.add_parser("admit").set_defaults(fn=cmd_admit)
     sp = sub.add_parser("judge"); sp.add_argument("set"); sp.add_argument("family"); sp.add_argument("--tag", default="")

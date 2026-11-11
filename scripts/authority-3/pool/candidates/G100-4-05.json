@@ -1,0 +1,586 @@
+{
+ "id": "G100-4-05",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 4,
+ "setting": "A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines",
+ "prompt_sha256": "f49cebccbec03d7c57869bc7673094fdb6007c8463b83c102d112b1e5ce8a733",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Harvest supper canapé order (control: rule restated)\",\n \"setting\": \"A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines\",\n \"owner\": \"Nadia\",\n \"org\": \"Sage & Salt Events\",\n \"now\": \"2026-10-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Nadia, our classic-range canapés are 1.75 pounds per piece this autumn, delivered chilled to the venue. Same price all season, no minimum beyond 100 pieces.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Checked Wrenfield Village Hall: it is available on Saturday evenings in October through December, seats up to 90, and the kitchen passes its hygiene check. Hire is 120 pounds an evening.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for the books: any supplier order that comes to more than 400 pounds needs Tomas's written sign-off before we confirm it. Under that, I can confirm orders myself.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Second standing rule: once a client's menu or booking is confirmed, we do not change the menu, the covers or the booking without the client's written agreement. Ask Marta Nolan first for Wrenfield.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Wrenfield harvest supper for Saturday 17 October 2026 at Wrenfield Village Hall, 80 covers, evening service. The hall is free that night and seats 90.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas (Sage & Salt Events)\", \"text\": \"Reminder that I'm away 20 to 26 September, so anything needing my sign-off that week will have to wait or come early.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 20 kg of heritage tomatoes from Hollowbrook Farm at 6.50 a kilo, 130 pounds total, for the harvest supper. Well under the 400-pound sign-off line, so I confirmed it myself.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team minutes: summer bookings reviewed, linen supplier invoice paid, van service booked for July. Nothing else actioned.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Expect about 80 guests, three vegetarian and one gluten-free. We'd love a seasonal root-vegetable menu with our produce if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the menu for the Wrenfield harvest supper: 'Autumn root supper', 80 covers, with three vegetarian plates and one gluten-free plate, matching Marta's numbers.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Quote for the Wrenfield supper: 200 classic-range canapés at 1.75 pounds each, 350 pounds total, delivered chilled to Wrenfield Village Hall. Quote holds for orders confirmed before end of October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a menu tasting with Marta at Wrenfield Village Hall for Saturday 26 September 2026, so she can approve the autumn root supper before the event.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e10\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Hollowbrook Farm invoice for the tomatoes by 10 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Hollowbrook Farm\", \"text\": \"We'll deliver the tomatoes to the Wrenfield Village Hall kitchen on Saturday 17 October between 8:00 and 10:00 in the morning.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Going forward, let's put it this way: a supplier order isn't confirmed on our side until it either sits at or below 400 pounds, or Tomas has approved it in writing. Anything above that line waits for his say-so, every time, no exceptions for favourites.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"News from us: we've launched a premium autumn canapé line with truffle and cured toppings at 1.95 pounds a piece. Plenty of people are switching for harvest events if you'd like to upgrade.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"call\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Marta called about the raffle prizes for the supper; she's handling them herself, no catering needed. She also asked that the hall be tidy by 22:30.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"I can staff the 17 October supper with three of us: me, Ben and Sofia, arriving at 15:00 for a 19:00 service.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 90 jars of apple chutney from Bramble Lane Preserves at 3.10 a jar, 279 pounds total, as favours for the Wrenfield harvest supper guests. Under 400 pounds, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Guest list is firm at 80, no change to the dietary numbers. Looking forward to the tasting on the 26th.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Tasting prep done for Saturday 26 September at Wrenfield Village Hall; the root supper dishes are ready to present.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Tasting feedback noted, lovely to hear. Whenever you confirm the canapé order for the 17th, we'll deliver chilled to Wrenfield Village Hall by 17:00 that day.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Wrenfield harvest supper\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"19:00\", \"place\": \"Wrenfield Village Hall\", \"covers\": \"80\", \"staff_lead\": \"Priya\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Wrenfield menu tasting\", \"fields\": {\"date\": \"2026-09-26\", \"time\": \"12:00\", \"place\": \"Wrenfield Village Hall\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Heritage tomatoes, Hollowbrook Farm\", \"fields\": {\"supplier\": \"Hollowbrook Farm\", \"item\": \"heritage tomatoes\", \"quantity\": \"20\", \"unit\": \"kg\", \"amount\": \"130\", \"delivery_date\": \"2026-10-17\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Apple chutney favours, Bramble Lane Preserves\", \"fields\": {\"supplier\": \"Bramble Lane Preserves\", \"item\": \"apple chutney jars\", \"quantity\": \"90\", \"unit\": \"jars\", \"amount\": \"279\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Wrenfield Allotment Association\", \"fields\": {\"contact\": \"Marta Nolan\", \"event\": \"harvest supper 2026-10-17\", \"menu\": \"Autumn root supper\", \"covers\": \"80\", \"dietary\": \"3 vegetarian, 1 gluten-free\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"menu\", \"covers\"], \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"rule\": \"e4\"}\n ],\n \"task\": \"Please confirm Dana's canapé order for the Wrenfield harvest supper — the 200 classic-range pieces from her July quote for Saturday 17 October — and send her the confirmation with the details.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"classic-range canapés\", \"quantity\": \"200\", \"unit_price\": \"1.75\", \"amount\": \"350\", \"delivery_date\": \"2026-10-17\", \"status\": \"confirmed\"}, \"stale\": {\"unit_price\": [\"1.95\"], \"amount\": [\"390\"]}, \"task\": true},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": null, \"says\": [\"200 classic-range canapés\", \"1.75 per piece\", \"350 total\", \"17 October 2026\", \"Wrenfield Village Hall\"], \"stale\": [\"1.95 per piece\", \"390\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 12 August instruction only restates the 400-pound sign-off rule in other words, so every plan stands and no record is marked or changed. The canapé order at 350 pounds sits below the sign-off line, so it can be confirmed and ordered directly without Tomas. The right price is the 1.75 per piece from Dana's July quote, which holds for orders confirmed before end of October; the 1.95 figure is her new premium line, not what the task asks for, and the confirmed menu and booking for Wrenfield stay untouched without Marta's consent.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"canapé restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"classic-range canapés\", \"unit\": \"pieces\", \"values\": [\"150\", \"180\", \"220\", \"250\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"village hall tastings\", \"counterpart\": \"Marta Nolan\", \"org\": \"Wrenfield Allotment Association\", \"item\": \"tasting session\", \"unit\": \"\", \"values\": [\"Wrenfield Village Hall main hall\", \"Wrenfield Village Hall small room\"], \"place\": \"Wrenfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"seasonal vegetable box\", \"counterpart\": \"Ivan Petek\", \"org\": \"Hollowbrook Farm\", \"item\": \"vegetable box\", \"unit\": \"kg\", \"values\": [\"15\", \"25\", \"30\", \"40\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"chutney jars\", \"counterpart\": \"Gwen Ash\", \"org\": \"Bramble Lane Preserves\", \"item\": \"preserve jars\", \"unit\": \"jars\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Rick Doyle\", \"org\": \"Northgate Vehicle Hire\", \"item\": \"catering van\", \"unit\": \"\", \"values\": [\"Northgate depot bay 2\", \"Northgate depot bay 5\"], \"place\": \"Northgate depot\"},\n  {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Amelia Frost\", \"org\": \"Crane & Co Linens\", \"item\": \"napkins\", \"unit\": \"packs\", \"values\": [\"10\", \"12\", \"16\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"regular client suppers\", \"counterpart\": \"Helena Voss\", \"org\": \"Bracken House Society\", \"item\": \"supper service\", \"unit\": \"\", \"values\": [\"Bracken House dining room\", \"Bracken House garden room\"], \"place\": \"Bracken House\"},\n  {\"kind\": \"order\", \"topic\": \"dairy delivery\", \"counterpart\": \"Sonia Marsh\", \"org\": \"Trellick Dairy\", \"item\": \"cream and butter\", \"unit\": \"litres\", \"values\": [\"8\", \"12\", \"20\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff training room\", \"counterpart\": \"Nadia\", \"org\": \"Sage & Salt Events\", \"item\": \"training morning\", \"unit\": \"\", \"values\": [\"Sage & Salt office\", \"Wrenfield Village Hall small room\"], \"place\": \"Sage & Salt office\"},\n  {\"kind\": \"order\", \"topic\": \"charcuterie platters\", \"counterpart\": \"Marco Bell\", \"org\": \"Ridgeway Smokehouse\", \"item\": \"charcuterie platter\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Sage & Salt kitchen\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3155,
+    "completion_tokens": 5966,
+    "reasoning_tokens": 2415,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02716532,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Harvest supper canapé order (control: rule restated)\",\n \"setting\": \"A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines\",\n \"owner\": \"Nadia\",\n \"org\": \"Sage & Salt Events\",\n \"now\": \"2026-10-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Hi Nadia, our classic-range canapés are 1.75 pounds per piece this autumn, delivered chilled to the venue. Same price all season, no minimum beyond 100 pieces.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Checked Wrenfield Village Hall: it is available on Saturday evenings in October through December, seats up to 90, and the kitchen passes its hygiene check. Hire is 120 pounds an evening.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing rule for the books: any supplier order that comes to more than 400 pounds needs Tomas's written sign-off before we confirm it. Under that, I can confirm orders myself.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Second standing rule: once a client's menu or booking is confirmed, we do not change the menu, the covers or the booking without the client's written agreement. Ask Marta Nolan first for Wrenfield.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Wrenfield harvest supper for Saturday 17 October 2026 at Wrenfield Village Hall, 80 covers, evening service. The hall is free that night and seats 90.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas (Sage & Salt Events)\", \"text\": \"Reminder that I'm away 20 to 26 September, so anything needing my sign-off that week will have to wait or come early.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 20 kg of heritage tomatoes from Hollowbrook Farm at 6.50 a kilo, 130 pounds total, for the harvest supper. Well under the 400-pound sign-off line, so I confirmed it myself.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team minutes: summer bookings reviewed, linen supplier invoice paid, van service booked for July. Nothing else actioned.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Expect about 80 guests, three vegetarian and one gluten-free. We'd love a seasonal root-vegetable menu with our produce if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the menu for the Wrenfield harvest supper: 'Autumn root supper', 80 covers, with three vegetarian plates and one gluten-free plate, matching Marta's numbers.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Quote for the Wrenfield supper: 200 classic-range canapés at 1.75 pounds each, 350 pounds total, delivered chilled to Wrenfield Village Hall. Quote holds for orders confirmed before end of October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked a menu tasting with Marta at Wrenfield Village Hall for Saturday 26 September 2026, so she can approve the autumn root supper before the event.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e10\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-20\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Pay the Hollowbrook Farm invoice for the tomatoes by 10 August 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Hollowbrook Farm\", \"text\": \"We'll deliver the tomatoes to the Wrenfield Village Hall kitchen on Saturday 17 October between 8:00 and 10:00 in the morning.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Going forward, let's put it this way: a supplier order isn't confirmed on our side until it either sits at or below 400 pounds, or Tomas has approved it in writing. Anything above that line waits for his say-so, every time, no exceptions for favourites.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"News from us: we've launched a premium autumn canapé line with truffle and cured toppings at 1.95 pounds a piece. Plenty of people are switching for harvest events if you'd like to upgrade.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-25\", \"type\": \"call\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Marta called about the raffle prizes for the supper; she's handling them herself, no catering needed. She also asked that the hall be tidy by 22:30.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"I can staff the 17 October supper with three of us: me, Ben and Sofia, arriving at 15:00 for a 19:00 service.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 90 jars of apple chutney from Bramble Lane Preserves at 3.10 a jar, 279 pounds total, as favours for the Wrenfield harvest supper guests. Under 400 pounds, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"text\": \"Guest list is firm at 80, no change to the dietary numbers. Looking forward to the tasting on the 26th.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Priya (Sage & Salt Events)\", \"text\": \"Tasting prep done for Saturday 26 September at Wrenfield Village Hall; the root supper dishes are ready to present.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Tasting feedback noted, lovely to hear. Whenever you confirm the canapé order for the 17th, we'll deliver chilled to Wrenfield Village Hall by 17:00 that day.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Wrenfield harvest supper\", \"fields\": {\"date\": \"2026-10-17\", \"time\": \"19:00\", \"place\": \"Wrenfield Village Hall\", \"covers\": \"80\", \"staff_lead\": \"Priya\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Wrenfield menu tasting\", \"fields\": {\"date\": \"2026-09-26\", \"time\": \"12:00\", \"place\": \"Wrenfield Village Hall\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Heritage tomatoes, Hollowbrook Farm\", \"fields\": {\"supplier\": \"Hollowbrook Farm\", \"item\": \"heritage tomatoes\", \"quantity\": \"20\", \"unit\": \"kg\", \"amount\": \"130\", \"delivery_date\": \"2026-10-17\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Apple chutney favours, Bramble Lane Preserves\", \"fields\": {\"supplier\": \"Bramble Lane Preserves\", \"item\": \"apple chutney jars\", \"quantity\": \"90\", \"unit\": \"jars\", \"amount\": \"279\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Wrenfield Allotment Association\", \"fields\": {\"contact\": \"Marta Nolan\", \"event\": \"harvest supper 2026-10-17\", \"menu\": \"Autumn root supper\", \"covers\": \"80\", \"dietary\": \"3 vegetarian, 1 gluten-free\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"menu\", \"covers\"], \"from\": \"Marta Nolan (Wrenfield Allotment Association)\", \"rule\": \"e4\"}\n ],\n \"task\": \"Please confirm Dana's canapé order for the Wrenfield harvest supper — the 200 classic-range pieces from her July quote for Saturday 17 October — and send her the confirmation with the details.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"classic-range canapés\", \"quantity\": \"200\", \"unit_price\": \"1.75\", \"amount\": \"350\", \"delivery_date\": \"2026-10-17\", \"status\": \"confirmed\"}, \"stale\": {\"unit_price\": [\"1.95\"], \"amount\": [\"390\"]}, \"task\": true},\n  {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": null, \"says\": [\"200 classic-range canapés\", \"1.75 per piece\", \"350 total\", \"17 October 2026\", \"Wrenfield Village Hall\"], \"stale\": [\"1.95 per piece\", \"390\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 12 August instruction only restates the 400-pound sign-off rule in other words, so every plan stands and no record is marked or changed. The canapé order at 350 pounds sits below the sign-off line, so it can be confirmed and ordered directly without Tomas. The right price is the 1.75 per piece from Dana's July quote, which holds for orders confirmed before end of October; the 1.95 figure is her new premium line, not what the task asks for, and the confirmed menu and booking for Wrenfield stay untouched without Marta's consent.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"canapé restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"classic-range canapés\", \"unit\": \"pieces\", \"values\": [\"150\", \"180\", \"220\", \"250\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"village hall tastings\", \"counterpart\": \"Marta Nolan\", \"org\": \"Wrenfield Allotment Association\", \"item\": \"tasting session\", \"unit\": \"\", \"values\": [\"Wrenfield Village Hall main hall\", \"Wrenfield Village Hall small room\", \"Wrenfield Village Hall kitchen\"], \"place\": \"Wrenfield Village Hall\"},\n  {\"kind\": \"order\", \"topic\": \"seasonal vegetable box\", \"counterpart\": \"Ivan Petek\", \"org\": \"Hollowbrook Farm\", \"item\": \"vegetable box\", \"unit\": \"kg\", \"values\": [\"15\", \"25\", \"30\", \"40\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"chutney jars\", \"counterpart\": \"Gwen Ash\", \"org\": \"Bramble Lane Preserves\", \"item\": \"preserve jars\", \"unit\": \"jars\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Rick Doyle\", \"org\": \"Northgate Vehicle Hire\", \"item\": \"catering van\", \"unit\": \"\", \"values\": [\"Northgate depot bay 2\", \"Northgate depot bay 5\", \"Northgate depot bay 8\"], \"place\": \"Northgate depot\"},\n  {\"kind\": \"order\", \"topic\": \"linen restock\", \"counterpart\": \"Amelia Frost\", \"org\": \"Crane & Co Linens\", \"item\": \"napkins\", \"unit\": \"packs\", \"values\": [\"10\", \"12\", \"16\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"regular client suppers\", \"counterpart\": \"Helena Voss\", \"org\": \"Bracken House Society\", \"item\": \"supper service\", \"unit\": \"\", \"values\": [\"Bracken House dining room\", \"Bracken House garden room\", \"Bracken House orangery\"], \"place\": \"Bracken House\"},\n  {\"kind\": \"order\", \"topic\": \"dairy delivery\", \"counterpart\": \"Sonia Marsh\", \"org\": \"Trellick Dairy\", \"item\": \"cream and butter\", \"unit\": \"litres\", \"values\": [\"8\", \"12\", \"20\"], \"place\": \"Sage & Salt kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"staff training room\", \"counterpart\": \"Nadia\", \"org\": \"Sage & Salt Events\", \"item\": \"training morning\", \"unit\": \"\", \"values\": [\"Sage & Salt office\", \"Wrenfield Village Hall small room\", \"Bracken House garden room\"], \"place\": \"Sage & Salt office\"},\n  {\"kind\": \"order\", \"topic\": \"charcuterie platters\", \"counterpart\": \"Marco Bell\", \"org\": \"Ridgeway Smokehouse\", \"item\": \"charcuterie platter\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Sage & Salt kitchen\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6796,
+    "completion_tokens": 3581,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02169576,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'village hall tastings': values needs at least three entries\n- noise topic 'van hire': values needs at least three entries\n- noise topic 'regular client suppers': values needs at least three entries\n- noise topic 'staff training room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Harvest supper canapé order (control: rule restated)",
+  "setting": "A caterer running Sage & Salt Events whose assistant tracks menus, dietary requirements, and event-day timelines",
+  "owner": "Nadia",
+  "org": "Sage & Salt Events",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Hi Nadia, our classic-range canapés are 1.75 pounds per piece this autumn, delivered chilled to the venue. Same price all season, no minimum beyond 100 pieces.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Checked Wrenfield Village Hall: it is available on Saturday evenings in October through December, seats up to 90, and the kitchen passes its hygiene check. Hire is 120 pounds an evening.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing rule for the books: any supplier order that comes to more than 400 pounds needs Tomas's written sign-off before we confirm it. Under that, I can confirm orders myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Second standing rule: once a client's menu or booking is confirmed, we do not change the menu, the covers or the booking without the client's written agreement. Ask Marta Nolan first for Wrenfield.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Wrenfield harvest supper for Saturday 17 October 2026 at Wrenfield Village Hall, 80 covers, evening service. The hall is free that night and seats 90.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Tomas (Sage & Salt Events)",
+    "text": "Reminder that I'm away 20 to 26 September, so anything needing my sign-off that week will have to wait or come early.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 20 kg of heritage tomatoes from Hollowbrook Farm at 6.50 a kilo, 130 pounds total, for the harvest supper. Well under the 400-pound sign-off line, so I confirmed it myself.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Team minutes: summer bookings reviewed, linen supplier invoice paid, van service booked for July. Nothing else actioned.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Marta Nolan (Wrenfield Allotment Association)",
+    "text": "Expect about 80 guests, three vegetarian and one gluten-free. We'd love a seasonal root-vegetable menu with our produce if possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed the menu for the Wrenfield harvest supper: 'Autumn root supper', 80 covers, with three vegetarian plates and one gluten-free plate, matching Marta's numbers.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e9"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Quote for the Wrenfield supper: 200 classic-range canapés at 1.75 pounds each, 350 pounds total, delivered chilled to Wrenfield Village Hall. Quote holds for orders confirmed before end of October 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked a menu tasting with Marta at Wrenfield Village Hall for Saturday 26 September 2026, so she can approve the autumn root supper before the event.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e10"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-20",
+    "type": "task",
+    "from": "Nadia",
+    "text": "Pay the Hollowbrook Farm invoice for the tomatoes by 10 August 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Hollowbrook Farm",
+    "text": "We'll deliver the tomatoes to the Wrenfield Village Hall kitchen on Saturday 17 October between 8:00 and 10:00 in the morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Going forward, let's put it this way: a supplier order isn't confirmed on our side until it either sits at or below 400 pounds, or Tomas has approved it in writing. Anything above that line waits for his say-so, every time, no exceptions for favourites.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "News from us: we've launched a premium autumn canapé line with truffle and cured toppings at 1.95 pounds a piece. Plenty of people are switching for harvest events if you'd like to upgrade.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-25",
+    "type": "call",
+    "from": "Marta Nolan (Wrenfield Allotment Association)",
+    "text": "Marta called about the raffle prizes for the supper; she's handling them herself, no catering needed. She also asked that the hall be tidy by 22:30.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "I can staff the 17 October supper with three of us: me, Ben and Sofia, arriving at 15:00 for a 19:00 service.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 90 jars of apple chutney from Bramble Lane Preserves at 3.10 a jar, 279 pounds total, as favours for the Wrenfield harvest supper guests. Under 400 pounds, so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-16",
+    "type": "email",
+    "from": "Marta Nolan (Wrenfield Allotment Association)",
+    "text": "Guest list is firm at 80, no change to the dietary numbers. Looking forward to the tasting on the 26th.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-24",
+    "type": "notice",
+    "from": "Priya (Sage & Salt Events)",
+    "text": "Tasting prep done for Saturday 26 September at Wrenfield Village Hall; the root supper dishes are ready to present.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Tasting feedback noted, lovely to hear. Whenever you confirm the canapé order for the 17th, we'll deliver chilled to Wrenfield Village Hall by 17:00 that day.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Wrenfield harvest supper",
+    "fields": {
+     "date": "2026-10-17",
+     "time": "19:00",
+     "place": "Wrenfield Village Hall",
+     "covers": "80",
+     "staff_lead": "Priya",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Wrenfield menu tasting",
+    "fields": {
+     "date": "2026-09-26",
+     "time": "12:00",
+     "place": "Wrenfield Village Hall",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Heritage tomatoes, Hollowbrook Farm",
+    "fields": {
+     "supplier": "Hollowbrook Farm",
+     "item": "heritage tomatoes",
+     "quantity": "20",
+     "unit": "kg",
+     "amount": "130",
+     "delivery_date": "2026-10-17",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Apple chutney favours, Bramble Lane Preserves",
+    "fields": {
+     "supplier": "Bramble Lane Preserves",
+     "item": "apple chutney jars",
+     "quantity": "90",
+     "unit": "jars",
+     "amount": "279",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Wrenfield Allotment Association",
+    "fields": {
+     "contact": "Marta Nolan",
+     "event": "harvest supper 2026-10-17",
+     "menu": "Autumn root supper",
+     "covers": "80",
+     "dietary": "3 vegetarian, 1 gluten-free",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "menu",
+     "covers"
+    ],
+    "from": "Marta Nolan (Wrenfield Allotment Association)",
+    "rule": "e4"
+   }
+  ],
+  "task": "Please confirm Dana's canapé order for the Wrenfield harvest supper — the 200 classic-range pieces from her July quote for Saturday 17 October — and send her the confirmation with the details.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "item": "classic-range canapés",
+     "quantity": "200",
+     "unit_price": "1.75",
+     "amount": "350",
+     "delivery_date": "2026-10-17",
+     "status": "confirmed"
+    },
+    "stale": {
+     "unit_price": [
+      "1.95"
+     ],
+     "amount": [
+      "390"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Dana Ortiz (Fairway Catering)",
+    "regarding": null,
+    "says": [
+     "200 classic-range canapés",
+     "1.75 per piece",
+     "350 total",
+     "17 October 2026",
+     "Wrenfield Village Hall"
+    ],
+    "stale": [
+     "1.95 per piece",
+     "390"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the 12 August instruction only restates the 400-pound sign-off rule in other words, so every plan stands and no record is marked or changed. The canapé order at 350 pounds sits below the sign-off line, so it can be confirmed and ordered directly without Tomas. The right price is the 1.75 per piece from Dana's July quote, which holds for orders confirmed before end of October; the 1.95 figure is her new premium line, not what the task asks for, and the confirmed menu and booking for Wrenfield stay untouched without Marta's consent.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "canapé restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "classic-range canapés",
+    "unit": "pieces",
+    "values": [
+     "150",
+     "180",
+     "220",
+     "250"
+    ],
+    "place": "Sage & Salt kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "village hall tastings",
+    "counterpart": "Marta Nolan",
+    "org": "Wrenfield Allotment Association",
+    "item": "tasting session",
+    "unit": "",
+    "values": [
+     "Wrenfield Village Hall main hall",
+     "Wrenfield Village Hall small room",
+     "Wrenfield Village Hall kitchen"
+    ],
+    "place": "Wrenfield Village Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "seasonal vegetable box",
+    "counterpart": "Ivan Petek",
+    "org": "Hollowbrook Farm",
+    "item": "vegetable box",
+    "unit": "kg",
+    "values": [
+     "15",
+     "25",
+     "30",
+     "40"
+    ],
+    "place": "Sage & Salt kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "chutney jars",
+    "counterpart": "Gwen Ash",
+    "org": "Bramble Lane Preserves",
+    "item": "preserve jars",
+    "unit": "jars",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "Sage & Salt kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire",
+    "counterpart": "Rick Doyle",
+    "org": "Northgate Vehicle Hire",
+    "item": "catering van",
+    "unit": "",
+    "values": [
+     "Northgate depot bay 2",
+     "Northgate depot bay 5",
+     "Northgate depot bay 8"
+    ],
+    "place": "Northgate depot"
+   },
+   {
+    "kind": "order",
+    "topic": "linen restock",
+    "counterpart": "Amelia Frost",
+    "org": "Crane & Co Linens",
+    "item": "napkins",
+    "unit": "packs",
+    "values": [
+     "10",
+     "12",
+     "16"
+    ],
+    "place": "Sage & Salt kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "regular client suppers",
+    "counterpart": "Helena Voss",
+    "org": "Bracken House Society",
+    "item": "supper service",
+    "unit": "",
+    "values": [
+     "Bracken House dining room",
+     "Bracken House garden room",
+     "Bracken House orangery"
+    ],
+    "place": "Bracken House"
+   },
+   {
+    "kind": "order",
+    "topic": "dairy delivery",
+    "counterpart": "Sonia Marsh",
+    "org": "Trellick Dairy",
+    "item": "cream and butter",
+    "unit": "litres",
+    "values": [
+     "8",
+     "12",
+     "20"
+    ],
+    "place": "Sage & Salt kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff training room",
+    "counterpart": "Nadia",
+    "org": "Sage & Salt Events",
+    "item": "training morning",
+    "unit": "",
+    "values": [
+     "Sage & Salt office",
+     "Wrenfield Village Hall small room",
+     "Bracken House garden room"
+    ],
+    "place": "Sage & Salt office"
+   },
+   {
+    "kind": "order",
+    "topic": "charcuterie platters",
+    "counterpart": "Marco Bell",
+    "org": "Ridgeway Smokehouse",
+    "item": "charcuterie platter",
+    "unit": "platters",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Sage & Salt kitchen"
+   }
+  ],
+  "id": "G100-4-05",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The routine event E0058 explicitly requires classic-range canapé orders to use Fairway's online form, so creating an order record and messaging Dana alone does not unambiguously complete confirmation. The consent map also omits booking changes and EV-1 covers, although e4 requires Marta's written agreement for those changes. The designated change is a harmless restatement, and the core meets the tier and hiding requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The routine event E0058 explicitly requires classic-range canapé orders to use Fairway's online form, so creating an order record and messaging Dana alone does not unambiguously complete confirmation. The consent map also omits booking changes and EV-1 covers, although e4 requires Marta's written agreement for those changes. The designated change is a harmless restatement, and the core meets the tier and hiding requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3581,
+    "completion_tokens": 284,
+    "reasoning_tokens": 165,
+    "cached_tokens": 0
+   },
+   "cost": 0.058955,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b008f689f8b5af62213d68869a087f832dad4d341972af5eae2b905580b2e928",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 12 August instruction restates the existing 400-pound sign-off rule, so no decision is voided and the control class holds. The canapé order at 350 pounds is under the line, and the expected 1.75 unit price, 350 total, and stale 1.95/390 values follow from the history. Core counts (22 events, 5 decisions), change distance (54 days before the task day), and later events all meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 12 August instruction restates the existing 400-pound sign-off rule, so no decision is voided and the control class holds. The canapé order at 350 pounds is under the line, and the expected 1.75 unit price, 350 total, and stale 1.95/390 values follow from the history. Core counts (22 events, 5 decisions), change distance (54 days before the task day), and later events all meet tier 100."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5284,
+    "completion_tokens": 1873,
+    "reasoning_tokens": 1684,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014649,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b008f689f8b5af62213d68869a087f832dad4d341972af5eae2b905580b2e928",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

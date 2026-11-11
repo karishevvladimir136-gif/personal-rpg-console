@@ -1,0 +1,662 @@
+{
+ "id": "G500-1-08",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 7,
+ "setting": "The studio manager at Kiln & Clay Pottery whose assistant records class enrolments, firing schedules, and member subscriptions",
+ "prompt_sha256": "065eac098b20f4cfa82420d879eb5bbfdd4a6495865ba24c03bd156b53ee015e",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Cormorant kiln outage moves the autumn firing calendar\",\n  \"setting\": \"The studio manager at Kiln & Clay Pottery whose assistant records class enrolments, firing schedules, and member subscriptions\",\n  \"owner\": \"Maren\",\n  \"org\": \"Kiln & Clay Pottery\",\n  \"now\": \"2026-09-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: a confirmed session with an outside instructor is never moved to another date without that instructor's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: any supplier order over 300 dollars needs Rowan's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Recap of the kiln room for the new assistant: the big gas kiln is the Cormorant, fires to cone 10, about 40 cubic feet. The two electric kilns are called Heron and Sandpiper.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Membership count as of June: 86 active members, and Tuesday evenings are our busiest slot.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"I can teach my soda-fired tumblers session at the studio on any Thursday in October, evenings preferred. Just tell me which date suits the firing schedule.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Current price list: cone 10 pyrometric cones, 60 dollars per box of 50; frit and colourants priced per kilo. Delivery to Kiln & Clay within two weeks of order.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Good news: the flue work on the Cormorant will finish on 6 October. From 8 October the Cormorant is free for firings right through the autumn, so you can plan your October wood-ash firing and member slots on it.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the beginner wheel course with Davu Okafor: six Tuesday evenings from Tuesday 6 October, in the main studio, using the Heron electric kiln for bisque. Demand from the membership list made this worth running.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Davu Okafor\", \"text\": \"Happy with the Tuesday rate we discussed. I'll bring my own tools. See you on the 6th of October.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered three boxes of cone 10 large pyrometric cones from Clayline Supply for the Cormorant, 180 dollars in total. The Cormorant fires to cone 10, so that's the grade we stock.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the wood-ash glaze firing on the Cormorant for Wednesday 14 October, loading on Tuesday 13 October. Twelve members signed up. The Cormorant is free from 8 October, so the 14th fits.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-17\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Scheduled the kiln-opening and pickup evening for the Friday after the wood-ash firing, Friday 16 October at 18:30 in the courtyard, so members can collect their pots straight from the kiln.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Petra Lange will run her soda-fired tumblers session on the Cormorant on Thursday 15 October, 18:00 to 21:00, right between the loading and the opening. She confirmed by phone that the 15th works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Set the glaze-mixing evening for the wood-ash firing group for Friday 9 October at 18:00 in the glaze lab, so the ash glazes are ready before loading on the 13th. Recipe as usual.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Opened six member firing slots on the Cormorant for the week of 19 October, the first full week after the flue work is finished. Booked on a first-come basis.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-7\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Moved the stoneware clay subscription with Northside Clay up to the 10-box monthly tier at 340 dollars, starting with the October delivery. Rowan signed off since it is above 300 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Confirming again: flue work wraps up on 6 October and the Cormorant will be warm and ready for your 14 October wood-ash firing. No need to change anything on your side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-09\", \"type\": \"cancellation\", \"from\": \"Maren\", \"text\": \"Cancelled the summer raku demonstration in the courtyard that was pencilled in; not enough sign-ups.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"September staff meeting notes: wheel room practice slots running well, clay stock healthy, autumn firing calendar set for the Cormorant, courtyard to be swept before the opening evening.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Bad news, Maren. When we opened up the flue we found the burners on the Cormorant are worse than we thought, so they have to be replaced. The kiln is out of service from 8 October to 25 October, and firings can resume from Monday 26 October. Everything else stays the same — it will still fire to cone 10. I can fit your wood-ash firing in for Wednesday 28 October with loading on Tuesday the 27th, if that works for your group.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n    {\"id\": \"e21\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Renata Cole\", \"text\": \"Hi, I'd love one of the member firing slots on the Cormorant in October. How do I book one?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-20\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"To do: renew the courtyard public liability insurance before 30 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Another thing for your diary: the Heron electric kiln will be switched off for element replacement on 20 to 22 October. The Sandpiper stays available if you need electric firing that week.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"Looking forward to the 15th. Should participants bring two leather-hard tumblers each, or three?\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Glaze recipe for the wood-ash firing: two parts sieved wood ash, one part feldspar, one part ball clay. Mix on the 9th.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Your three boxes of cone 10 cones ship on 6 October and should reach you the same week. Invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Tomas Elvey\", \"text\": \"Could I get a locker in the changing area for the autumn term? Happy to pay the small fee.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Wood-ash glaze firing\", \"fields\": {\"date\": \"2026-10-14\", \"loading_date\": \"2026-10-13\", \"kiln\": \"Cormorant\", \"participants\": \"12\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Soda-fired tumblers session\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"18:00\", \"instructor\": \"Petra Lange\", \"participants\": \"8\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kiln opening and pickup evening\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"18:30\", \"place\": \"Courtyard\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Beginner wheel course\", \"fields\": {\"start_date\": \"2026-10-06\", \"weekday\": \"Tuesday\", \"instructor\": \"Davu Okafor\", \"place\": \"Main studio\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Glaze-mixing evening (wood-ash firing)\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"18:00\", \"place\": \"Glaze lab\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Cormorant member firing slots\", \"fields\": {\"week_start\": \"2026-10-19\", \"slots\": \"6\", \"kiln\": \"Cormorant\", \"status\": \"open\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cone 10 pyrometric cones\", \"fields\": {\"supplier\": \"Clayline Supply\", \"item\": \"Cone 10 pyrometric cones\", \"quantity\": \"3\", \"amount\": \"180\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Stoneware clay subscription\", \"fields\": {\"supplier\": \"Northside Clay\", \"tier\": \"10-box monthly\", \"amount\": \"340\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Petra Lange\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Before the autumn rush, please send the wood-ash firing group their confirmed dates for the firing and the kiln-opening evening, tidy up the firing calendar, and check in with Petra about her session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-28\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"loading_date\", \"value\": \"2026-10-27\", \"stale\": [\"2026-10-13\"], \"task\": true},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-30\", \"stale\": [\"2026-10-16\"], \"task\": true},\n    {\"record\": \"EV-7\", \"field\": \"week_start\", \"value\": \"2026-10-26\", \"stale\": [\"2026-10-19\"], \"task\": true},\n    {\"message_to\": \"wood-ash firing group\", \"regarding\": \"EV-1\", \"says\": [\"firing on Wednesday 28 October\", \"loading on Tuesday 27 October\", \"kiln-opening and pickup evening on Friday 30 October\"], \"stale\": [\"14 October\", \"16 October\"], \"task\": true}\n  ],\n  \"why\": \"Ivo's email ends the Cormorant's availability from 8 October and puts it out of service until 25 October, so every October plan built on the kiln is stale: the wood-ash firing (REVISE, 28/27 October as Ivo offered), the opening evening (REVISE via the firing, Friday 30 October), and the member slot week (REVISE to the week of 26 October). Petra's tumblers session also sits on the dead dates but rule e1 forbids moving a confirmed instructor session without her consent, so it is ASK and its record must stay unchanged. The cone order and the glaze-mixing evening rest on the revoked fact or on the firing but only use parts the burner replacement leaves standing (cone 10 rating, no kiln needed), so they are KEEP, and the wheel course and clay subscription are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cone restock\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"pyrometric cones\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Glaze chemicals\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"frit and colourants\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"Glaze lab\"},\n    {\"kind\": \"order\", \"topic\": \"Clay delivery\", \"counterpart\": \"Owen Pike\", \"org\": \"Northside Clay\", \"item\": \"stoneware clay\", \"unit\": \"10 kg bags\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Clay store\"},\n    {\"kind\": \"booking\", \"topic\": \"Raku nights\", \"counterpart\": \"Petra Lange\", \"org\": \"Petra Lange Studio\", \"item\": \"raku kiln yard session\", \"unit\": \"session\", \"values\": [\"Kiln yard\", \"Courtyard\", \"Upper terrace\"], \"place\": \"Kiln yard\"},\n    {\"kind\": \"booking\", \"topic\": \"Wheel room practice\", \"counterpart\": \"Davu Okafor\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"wheel room practice slot\", \"unit\": \"slot\", \"values\": [\"Wheel room\", \"Back studio\", \"Courtyard\"], \"place\": \"Wheel room\"},\n    {\"kind\": \"booking\", \"topic\": \"Kiln inspections\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln inspection visit\", \"unit\": \"visit\", \"values\": [\"Kiln room\", \"Cormorant bay\", \"Glaze lab\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Kiln shelves\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln shelves\", \"unit\": \"shelves\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee for the studio\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Kitchenette\"},\n    {\"kind\": \"booking\", \"topic\": \"Members' open studio\", \"counterpart\": \"Renata Cole\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"open studio evening\", \"unit\": \"evening\", \"values\": [\"Main studio\", \"Back studio\", \"Courtyard\"], \"place\": \"Main studio\"},\n    {\"kind\": \"order\", \"topic\": \"Packaging\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"bubble wrap\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"6\", \"8\"], \"place\": \"Office\"},\n    {\"kind\": \"booking\", \"topic\": \"School clay visits\", \"counterpart\": \"Bea Nkemdirim\", \"org\": \"Marsh Lane School\", \"item\": \"children's clay session\", \"unit\": \"session\", \"values\": [\"Main studio\", \"Courtyard\"], \"place\": \"Main studio\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3199,
+    "completion_tokens": 11626,
+    "reasoning_tokens": 7225,
+    "cached_tokens": 0
+   },
+   "cost": 0.055633,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Cormorant kiln outage moves the autumn firing calendar\",\n  \"setting\": \"The studio manager at Kiln & Clay Pottery whose assistant records class enrolments, firing schedules, and member subscriptions\",\n  \"owner\": \"Maren\",\n  \"org\": \"Kiln & Clay Pottery\",\n  \"now\": \"2026-09-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: a confirmed session with an outside instructor is never moved to another date without that instructor's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: any supplier order over 300 dollars needs Rowan's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Recap of the kiln room for the new assistant: the big gas kiln is the Cormorant, fires to cone 10, about 40 cubic feet. The two electric kilns are called Heron and Sandpiper.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Membership count as of June: 86 active members, and Tuesday evenings are our busiest slot.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"I can teach my soda-fired tumblers session at the studio on any Thursday in October, evenings preferred. Just tell me which date suits the firing schedule.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Current price list: cone 10 pyrometric cones, 60 dollars per box of 50; frit and colourants priced per kilo. Delivery to Kiln & Clay within two weeks of order.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Good news: the flue work on the Cormorant will finish on 6 October. From 8 October the Cormorant is free for firings right through the autumn, so you can plan your October wood-ash firing and member slots on it.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the beginner wheel course with Davu Okafor: six Tuesday evenings from Tuesday 6 October, in the main studio, using the Heron electric kiln for bisque. Demand from the membership list made this worth running.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Davu Okafor\", \"text\": \"Happy with the Tuesday rate we discussed. I'll bring my own tools. See you on the 6th of October.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered three boxes of cone 10 large pyrometric cones from Clayline Supply for the Cormorant, 180 dollars in total. The Cormorant fires to cone 10, so that's the grade we stock.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the wood-ash glaze firing on the Cormorant for Wednesday 14 October, loading on Tuesday 13 October. Twelve members signed up. The Cormorant is free from 8 October, so the 14th fits.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-17\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Scheduled the kiln-opening and pickup evening for the Friday after the wood-ash firing, Friday 16 October at 18:30 in the courtyard, so members can collect their pots straight from the kiln.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Petra Lange will run her soda-fired tumblers session on the Cormorant on Thursday 15 October, 18:00 to 21:00, right between the loading and the opening. She confirmed by phone that the 15th works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Set the glaze-mixing evening for the wood-ash firing group for Friday 9 October at 18:00 in the glaze lab, so the ash glazes are ready before loading on the 13th. Recipe as usual.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Opened six member firing slots on the Cormorant for the week of 19 October, the first full week after the flue work is finished. Booked on a first-come basis.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-7\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Moved the stoneware clay subscription with Northside Clay up to the 10-box monthly tier at 340 dollars, starting with the October delivery. Rowan signed off since it is above 300 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Confirming again: flue work wraps up on 6 October and the Cormorant will be warm and ready for your 14 October wood-ash firing. No need to change anything on your side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Reminder for whoever runs the front desk: courtyard keys live in the grey drawer, and the folding tables for pickup evenings are stored above the clay store.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-12\", \"type\": \"cancellation\", \"from\": \"Maren\", \"text\": \"Cancelled the summer raku demonstration in the courtyard that was pencilled in; not enough sign-ups.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"September staff meeting notes: wheel room practice slots running well, clay stock healthy, autumn firing calendar set for the Cormorant, courtyard to be swept before the opening evening.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Bad news, Maren. When we opened up the flue we found the burners on the Cormorant are worse than we thought, so they have to be replaced. The kiln is out of service from 8 October to 25 October, and firings can resume from Monday 26 October. Everything else stays the same — it will still fire to cone 10. I can fit your wood-ash firing in for Wednesday 28 October with loading on Tuesday the 27th, if that works for your group.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Renata Cole\", \"text\": \"Hi, I'd love one of the member firing slots on the Cormorant in October. How do I book one?\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"To do: renew the courtyard public liability insurance before 30 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Another thing for your diary: the Heron electric kiln will be switched off for element replacement on 20 to 22 October. The Sandpiper stays available if you need electric firing that week.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"Looking forward to the 15th. Should participants bring two leather-hard tumblers each, or three?\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Glaze recipe for the wood-ash firing: two parts sieved wood ash, one part feldspar, one part ball clay. Mix on the 9th.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Your three boxes of cone 10 cones ship on 6 October and should reach you the same week. Invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Tomas Elvey\", \"text\": \"Could I get a locker in the changing area for the autumn term? Happy to pay the small fee.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Wood-ash glaze firing\", \"fields\": {\"date\": \"2026-10-14\", \"loading_date\": \"2026-10-13\", \"kiln\": \"Cormorant\", \"participants\": \"12\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Soda-fired tumblers session\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"18:00\", \"instructor\": \"Petra Lange\", \"participants\": \"8\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kiln opening and pickup evening\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"18:30\", \"place\": \"Courtyard\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Beginner wheel course\", \"fields\": {\"start_date\": \"2026-10-06\", \"weekday\": \"Tuesday\", \"instructor\": \"Davu Okafor\", \"place\": \"Main studio\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Glaze-mixing evening (wood-ash firing)\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"18:00\", \"place\": \"Glaze lab\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Cormorant member firing slots\", \"fields\": {\"week_start\": \"2026-10-19\", \"slots\": \"6\", \"kiln\": \"Cormorant\", \"status\": \"open\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cone 10 pyrometric cones\", \"fields\": {\"supplier\": \"Clayline Supply\", \"item\": \"Cone 10 pyrometric cones\", \"quantity\": \"3\", \"amount\": \"180\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Stoneware clay subscription\", \"fields\": {\"supplier\": \"Northside Clay\", \"tier\": \"10-box monthly\", \"amount\": \"340\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Petra Lange\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Before the autumn rush, please send the wood-ash firing group their confirmed dates for the firing and the kiln-opening evening, tidy up the firing calendar, and check in with Petra about her session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-28\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"loading_date\", \"value\": \"2026-10-27\", \"stale\": [\"2026-10-13\"], \"task\": true},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-30\", \"stale\": [\"2026-10-16\"], \"task\": true},\n    {\"record\": \"EV-7\", \"field\": \"week_start\", \"value\": \"2026-10-26\", \"stale\": [\"2026-10-19\"], \"task\": true},\n    {\"message_to\": \"wood-ash firing group\", \"regarding\": \"EV-1\", \"says\": [\"firing on Wednesday 28 October\", \"loading on Tuesday 27 October\", \"kiln-opening and pickup evening on Friday 30 October\"], \"stale\": [\"14 October\", \"16 October\"], \"task\": true}\n  ],\n  \"why\": \"Ivo's email ends the Cormorant's availability from 8 October and puts it out of service until 25 October, so every October plan built on the kiln is stale: the wood-ash firing (REVISE, 28/27 October as Ivo offered), the opening evening (REVISE via the firing, Friday 30 October), and the member slot week (REVISE to the week of 26 October). Petra's tumblers session also sits on the dead dates but rule e1 forbids moving a confirmed instructor session without her consent, so it is ASK and its record must stay unchanged. The cone order and the glaze-mixing evening rest on the revoked fact or on the firing but only use parts the burner replacement leaves standing (cone 10 rating, no kiln needed), so they are KEEP, and the wheel course and clay subscription are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cone restock\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"pyrometric cones\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Glaze chemicals\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"frit and colourants\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"Glaze lab\"},\n    {\"kind\": \"order\", \"topic\": \"Clay delivery\", \"counterpart\": \"Owen Pike\", \"org\": \"Northside Clay\", \"item\": \"stoneware clay\", \"unit\": \"10 kg bags\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Clay store\"},\n    {\"kind\": \"booking\", \"topic\": \"Raku nights\", \"counterpart\": \"Petra Lange\", \"org\": \"Petra Lange Studio\", \"item\": \"raku kiln yard session\", \"unit\": \"session\", \"values\": [\"Kiln yard\", \"Courtyard\", \"Upper terrace\"], \"place\": \"Kiln yard\"},\n    {\"kind\": \"booking\", \"topic\": \"Wheel room practice\", \"counterpart\": \"Davu Okafor\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"wheel room practice slot\", \"unit\": \"slot\", \"values\": [\"Wheel room\", \"Back studio\", \"Courtyard\"], \"place\": \"Wheel room\"},\n    {\"kind\": \"booking\", \"topic\": \"Kiln inspections\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln inspection visit\", \"unit\": \"visit\", \"values\": [\"Kiln room\", \"Cormorant bay\", \"Glaze lab\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Kiln shelves\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln shelves\", \"unit\": \"shelves\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee for the studio\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Kitchenette\"},\n    {\"kind\": \"booking\", \"topic\": \"Members' open studio\", \"counterpart\": \"Renata Cole\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"open studio evening\", \"unit\": \"evening\", \"values\": [\"Main studio\", \"Back studio\", \"Courtyard\"], \"place\": \"Main studio\"},\n    {\"kind\": \"order\", \"topic\": \"Packaging\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"bubble wrap\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"6\", \"8\"], \"place\": \"Office\"},\n    {\"kind\": \"booking\", \"topic\": \"School clay visits\", \"counterpart\": \"Bea Nkemdirim\", \"org\": \"Marsh Lane School\", \"item\": \"children's clay session\", \"unit\": \"session\", \"values\": [\"Main studio\", \"Courtyard\"], \"place\": \"Main studio\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7646,
+    "completion_tokens": 4507,
+    "reasoning_tokens": 34,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02696016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 27 events; need 28–55\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Cormorant kiln outage moves the autumn firing calendar\",\n  \"setting\": \"The studio manager at Kiln & Clay Pottery whose assistant records class enrolments, firing schedules, and member subscriptions\",\n  \"owner\": \"Maren\",\n  \"org\": \"Kiln & Clay Pottery\",\n  \"now\": \"2026-09-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: a confirmed session with an outside instructor is never moved to another date without that instructor's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing studio rule: any supplier order over 300 dollars needs Rowan's sign-off before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Recap of the kiln room for the new assistant: the big gas kiln is the Cormorant, fires to cone 10, about 40 cubic feet. The two electric kilns are called Heron and Sandpiper.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Membership count as of June: 86 active members, and Tuesday evenings are our busiest slot.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"I can teach my soda-fired tumblers session at the studio on any Thursday in October, evenings preferred. Just tell me which date suits the firing schedule.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Current price list: cone 10 pyrometric cones, 60 dollars per box of 50; frit and colourants priced per kilo. Delivery to Kiln & Clay within two weeks of order.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Good news: the flue work on the Cormorant will finish on 6 October. From 8 October the Cormorant is free for firings right through the autumn, so you can plan your October wood-ash firing and member slots on it.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the beginner wheel course with Davu Okafor: six Tuesday evenings from Tuesday 6 October, in the main studio, using the Heron electric kiln for bisque. Demand from the membership list made this worth running.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-5\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Davu Okafor\", \"text\": \"Happy with the Tuesday rate we discussed. I'll bring my own tools. See you on the 6th of October.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Ordered three boxes of cone 10 large pyrometric cones from Clayline Supply for the Cormorant, 180 dollars in total. The Cormorant fires to cone 10, so that's the grade we stock.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-15\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Booked the wood-ash glaze firing on the Cormorant for Wednesday 14 October, loading on Tuesday 13 October. Twelve members signed up. The Cormorant is free from 8 October, so the 14th fits.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-17\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Scheduled the kiln-opening and pickup evening for the Friday after the wood-ash firing, Friday 16 October at 18:30 in the courtyard, so members can collect their pots straight from the kiln.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Petra Lange will run her soda-fired tumblers session on the Cormorant on Thursday 15 October, 18:00 to 21:00, right between the loading and the opening. She confirmed by phone that the 15th works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Set the glaze-mixing evening for the wood-ash firing group for Friday 9 October at 18:00 in the glaze lab, so the ash glazes are ready before loading on the 13th. Recipe as usual.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Opened six member firing slots on the Cormorant for the week of 19 October, the first full week after the flue work is finished. Booked on a first-come basis.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-7\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Maren\", \"text\": \"Moved the stoneware clay subscription with Northside Clay up to the 10-box monthly tier at 340 dollars, starting with the October delivery. Rowan signed off since it is above 300 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Confirming again: flue work wraps up on 6 October and the Cormorant will be warm and ready for your 14 October wood-ash firing. No need to change anything on your side.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Reminder for whoever runs the front desk: courtyard keys live in the grey drawer, and the folding tables for pickup evenings are stored above the clay store.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-12\", \"type\": \"cancellation\", \"from\": \"Maren\", \"text\": \"Cancelled the summer raku demonstration in the courtyard that was pencilled in; not enough sign-ups.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"minutes\", \"from\": \"Maren\", \"text\": \"September staff meeting notes: wheel room practice slots running well, clay stock healthy, autumn firing calendar set for the Cormorant, courtyard to be swept before the opening evening.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Bad news, Maren. When we opened up the flue we found the burners on the Cormorant are worse than we thought, so they have to be replaced. The kiln is out of service from 8 October to 25 October, and firings can resume from Monday 26 October. Everything else stays the same — it will still fire to cone 10. I can fit your wood-ash firing in for Wednesday 28 October with loading on Tuesday the 27th, if that works for your group.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Renata Cole\", \"text\": \"Hi, I'd love one of the member firing slots on the Cormorant in October. How do I book one?\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"task\", \"from\": \"Maren\", \"text\": \"To do: renew the courtyard public liability insurance before 30 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Ivo Brankic (Brankic Kiln Services)\", \"text\": \"Another thing for your diary: the Heron electric kiln will be switched off for element replacement on 20 to 22 October. The Sandpiper stays available if you need electric firing that week.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Petra Lange\", \"text\": \"Looking forward to the 15th. Should participants bring two leather-hard tumblers each, or three?\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Glaze recipe for the wood-ash firing: two parts sieved wood ash, one part feldspar, one part ball clay. Mix on the 9th.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Marta Vance (Clayline Supply)\", \"text\": \"Your three boxes of cone 10 cones ship on 6 October and should reach you the same week. Invoice attached.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-27\", \"type\": \"email\", \"from\": \"Tomas Elvey\", \"text\": \"Could I get a locker in the changing area for the autumn term? Happy to pay the small fee.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Wood-ash glaze firing\", \"fields\": {\"date\": \"2026-10-14\", \"loading_date\": \"2026-10-13\", \"kiln\": \"Cormorant\", \"participants\": \"12\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Soda-fired tumblers session\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"18:00\", \"instructor\": \"Petra Lange\", \"participants\": \"8\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kiln opening and pickup evening\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"18:30\", \"place\": \"Courtyard\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Beginner wheel course\", \"fields\": {\"start_date\": \"2026-10-06\", \"weekday\": \"Tuesday\", \"instructor\": \"Davu Okafor\", \"place\": \"Main studio\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Glaze-mixing evening (wood-ash firing)\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"18:00\", \"place\": \"Glaze lab\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Cormorant member firing slots\", \"fields\": {\"week_start\": \"2026-10-19\", \"slots\": \"6\", \"kiln\": \"Cormorant\", \"status\": \"open\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cone 10 pyrometric cones\", \"fields\": {\"supplier\": \"Clayline Supply\", \"item\": \"Cone 10 pyrometric cones\", \"quantity\": \"3\", \"amount\": \"180\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Stoneware clay subscription\", \"fields\": {\"supplier\": \"Northside Clay\", \"tier\": \"10-box monthly\", \"amount\": \"340\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Petra Lange\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Before the autumn rush, please send the wood-ash firing group their confirmed dates for the firing and the kiln-opening evening, tidy up the firing calendar, and check in with Petra about her session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-28\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"loading_date\", \"value\": \"2026-10-27\", \"stale\": [\"2026-10-13\"], \"task\": true},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-10-30\", \"stale\": [\"2026-10-16\"], \"task\": true},\n    {\"record\": \"EV-7\", \"field\": \"week_start\", \"value\": \"2026-10-26\", \"stale\": [\"2026-10-19\"], \"task\": true},\n    {\"message_to\": \"wood-ash firing group\", \"regarding\": \"EV-1\", \"says\": [\"firing on Wednesday 28 October\", \"loading on Tuesday 27 October\", \"kiln-opening and pickup evening on Friday 30 October\"], \"stale\": [\"14 October\", \"16 October\"], \"task\": true}\n  ],\n  \"why\": \"Ivo's email ends the Cormorant's availability from 8 October and puts it out of service until 25 October, so every October plan built on the kiln is stale: the wood-ash firing (REVISE, 28/27 October as Ivo offered), the opening evening (REVISE via the firing, Friday 30 October), and the member slot week (REVISE to the week of 26 October). Petra's tumblers session also sits on the dead dates but rule e1 forbids moving a confirmed instructor session without her consent, so it is ASK and its record must stay unchanged. The cone order and the glaze-mixing evening rest on the revoked fact or on the firing but only use parts the burner replacement leaves standing (cone 10 rating, no kiln needed), so they are KEEP, and the wheel course and clay subscription are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Cone restock\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"pyrometric cones\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Glaze chemicals\", \"counterpart\": \"Marta Vance\", \"org\": \"Clayline Supply\", \"item\": \"frit and colourants\", \"unit\": \"kg\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"Glaze lab\"},\n    {\"kind\": \"order\", \"topic\": \"Clay delivery\", \"counterpart\": \"Owen Pike\", \"org\": \"Northside Clay\", \"item\": \"stoneware clay\", \"unit\": \"10 kg bags\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Clay store\"},\n    {\"kind\": \"booking\", \"topic\": \"Raku nights\", \"counterpart\": \"Petra Lange\", \"org\": \"Petra Lange Studio\", \"item\": \"raku kiln yard session\", \"unit\": \"session\", \"values\": [\"Kiln yard\", \"Courtyard\", \"Upper terrace\"], \"place\": \"Kiln yard\"},\n    {\"kind\": \"booking\", \"topic\": \"Wheel room practice\", \"counterpart\": \"Davu Okafor\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"wheel room practice slot\", \"unit\": \"slot\", \"values\": [\"Wheel room\", \"Back studio\", \"Courtyard\"], \"place\": \"Wheel room\"},\n    {\"kind\": \"booking\", \"topic\": \"Kiln inspections\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln inspection visit\", \"unit\": \"visit\", \"values\": [\"Kiln room\", \"Cormorant bay\", \"Glaze lab\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Kiln shelves\", \"counterpart\": \"Ivo Brankic\", \"org\": \"Brankic Kiln Services\", \"item\": \"kiln shelves\", \"unit\": \"shelves\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Kiln room\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee for the studio\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Kitchenette\"},\n    {\"kind\": \"booking\", \"topic\": \"Members' open studio\", \"counterpart\": \"Renata Cole\", \"org\": \"Kiln & Clay Pottery\", \"item\": \"open studio evening\", \"unit\": \"evening\", \"values\": [\"Main studio\", \"Back studio\", \"Courtyard\"], \"place\": \"Main studio\"},\n    {\"kind\": \"order\", \"topic\": \"Packaging\", \"counterpart\": \"Hana Ilyas\", \"org\": \"Corner Provisions\", \"item\": \"bubble wrap\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"6\", \"8\"], \"place\": \"Office\"},\n    {\"kind\": \"booking\", \"topic\": \"School clay visits\", \"counterpart\": \"Bea Nkemdirim\", \"org\": \"Marsh Lane School\", \"item\": \"children's clay session\", \"unit\": \"session\", \"values\": [\"Main studio\", \"Courtyard\", \"Back studio\"], \"place\": \"Main studio\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12162,
+    "completion_tokens": 4486,
+    "reasoning_tokens": 9,
+    "cached_tokens": 7616
+   },
+   "cost": 0.02808296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'School clay visits': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Cormorant kiln outage moves the autumn firing calendar",
+  "setting": "The studio manager at Kiln & Clay Pottery whose assistant records class enrolments, firing schedules, and member subscriptions",
+  "owner": "Maren",
+  "org": "Kiln & Clay Pottery",
+  "now": "2026-09-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing studio rule: a confirmed session with an outside instructor is never moved to another date without that instructor's agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing studio rule: any supplier order over 300 dollars needs Rowan's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-11",
+    "type": "email",
+    "from": "Ivo Brankic (Brankic Kiln Services)",
+    "text": "Recap of the kiln room for the new assistant: the big gas kiln is the Cormorant, fires to cone 10, about 40 cubic feet. The two electric kilns are called Heron and Sandpiper.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-24",
+    "type": "note",
+    "from": "Maren",
+    "text": "Membership count as of June: 86 active members, and Tuesday evenings are our busiest slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Petra Lange",
+    "text": "I can teach my soda-fired tumblers session at the studio on any Thursday in October, evenings preferred. Just tell me which date suits the firing schedule.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-14",
+    "type": "quote",
+    "from": "Marta Vance (Clayline Supply)",
+    "text": "Current price list: cone 10 pyrometric cones, 60 dollars per box of 50; frit and colourants priced per kilo. Delivery to Kiln & Clay within two weeks of order.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Ivo Brankic (Brankic Kiln Services)",
+    "text": "Good news: the flue work on the Cormorant will finish on 6 October. From 8 October the Cormorant is free for firings right through the autumn, so you can plan your October wood-ash firing and member slots on it.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-02",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Booked the beginner wheel course with Davu Okafor: six Tuesday evenings from Tuesday 6 October, in the main studio, using the Heron electric kiln for bisque. Demand from the membership list made this worth running.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Davu Okafor",
+    "text": "Happy with the Tuesday rate we discussed. I'll bring my own tools. See you on the 6th of October.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Ordered three boxes of cone 10 large pyrometric cones from Clayline Supply for the Cormorant, 180 dollars in total. The Cormorant fires to cone 10, so that's the grade we stock.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-15",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Booked the wood-ash glaze firing on the Cormorant for Wednesday 14 October, loading on Tuesday 13 October. Twelve members signed up. The Cormorant is free from 8 October, so the 14th fits.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-17",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Scheduled the kiln-opening and pickup evening for the Friday after the wood-ash firing, Friday 16 October at 18:30 in the courtyard, so members can collect their pots straight from the kiln.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Petra Lange will run her soda-fired tumblers session on the Cormorant on Thursday 15 October, 18:00 to 21:00, right between the loading and the opening. She confirmed by phone that the 15th works.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-26",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Set the glaze-mixing evening for the wood-ash firing group for Friday 9 October at 18:00 in the glaze lab, so the ash glazes are ready before loading on the 13th. Recipe as usual.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Opened six member firing slots on the Cormorant for the week of 19 October, the first full week after the flue work is finished. Booked on a first-come basis.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-7",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-03",
+    "type": "decision",
+    "from": "Maren",
+    "text": "Moved the stoneware clay subscription with Northside Clay up to the 10-box monthly tier at 340 dollars, starting with the October delivery. Rowan signed off since it is above 300 dollars.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Ivo Brankic (Brankic Kiln Services)",
+    "text": "Confirming again: flue work wraps up on 6 October and the Cormorant will be warm and ready for your 14 October wood-ash firing. No need to change anything on your side.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-08",
+    "type": "note",
+    "from": "Maren",
+    "text": "Reminder for whoever runs the front desk: courtyard keys live in the grey drawer, and the folding tables for pickup evenings are stored above the clay store.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-12",
+    "type": "cancellation",
+    "from": "Maren",
+    "text": "Cancelled the summer raku demonstration in the courtyard that was pencilled in; not enough sign-ups.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-12",
+    "type": "minutes",
+    "from": "Maren",
+    "text": "September staff meeting notes: wheel room practice slots running well, clay stock healthy, autumn firing calendar set for the Cormorant, courtyard to be swept before the opening evening.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Ivo Brankic (Brankic Kiln Services)",
+    "text": "Bad news, Maren. When we opened up the flue we found the burners on the Cormorant are worse than we thought, so they have to be replaced. The kiln is out of service from 8 October to 25 October, and firings can resume from Monday 26 October. Everything else stays the same — it will still fire to cone 10. I can fit your wood-ash firing in for Wednesday 28 October with loading on Tuesday the 27th, if that works for your group.",
+    "role": "change",
+    "revokes": [
+     "e7"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Renata Cole",
+    "text": "Hi, I'd love one of the member firing slots on the Cormorant in October. How do I book one?",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-20",
+    "type": "task",
+    "from": "Maren",
+    "text": "To do: renew the courtyard public liability insurance before 30 November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Ivo Brankic (Brankic Kiln Services)",
+    "text": "Another thing for your diary: the Heron electric kiln will be switched off for element replacement on 20 to 22 October. The Sandpiper stays available if you need electric firing that week.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Petra Lange",
+    "text": "Looking forward to the 15th. Should participants bring two leather-hard tumblers each, or three?",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-26",
+    "type": "note",
+    "from": "Maren",
+    "text": "Glaze recipe for the wood-ash firing: two parts sieved wood ash, one part feldspar, one part ball clay. Mix on the 9th.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-27",
+    "type": "email",
+    "from": "Marta Vance (Clayline Supply)",
+    "text": "Your three boxes of cone 10 cones ship on 6 October and should reach you the same week. Invoice attached.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-27",
+    "type": "email",
+    "from": "Tomas Elvey",
+    "text": "Could I get a locker in the changing area for the autumn term? Happy to pay the small fee.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Wood-ash glaze firing",
+    "fields": {
+     "date": "2026-10-14",
+     "loading_date": "2026-10-13",
+     "kiln": "Cormorant",
+     "participants": "12",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Soda-fired tumblers session",
+    "fields": {
+     "date": "2026-10-15",
+     "time": "18:00",
+     "instructor": "Petra Lange",
+     "participants": "8",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Kiln opening and pickup evening",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "18:30",
+     "place": "Courtyard",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Beginner wheel course",
+    "fields": {
+     "start_date": "2026-10-06",
+     "weekday": "Tuesday",
+     "instructor": "Davu Okafor",
+     "place": "Main studio",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Glaze-mixing evening (wood-ash firing)",
+    "fields": {
+     "date": "2026-10-09",
+     "time": "18:00",
+     "place": "Glaze lab",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Cormorant member firing slots",
+    "fields": {
+     "week_start": "2026-10-19",
+     "slots": "6",
+     "kiln": "Cormorant",
+     "status": "open"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Cone 10 pyrometric cones",
+    "fields": {
+     "supplier": "Clayline Supply",
+     "item": "Cone 10 pyrometric cones",
+     "quantity": "3",
+     "amount": "180",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Stoneware clay subscription",
+    "fields": {
+     "supplier": "Northside Clay",
+     "tier": "10-box monthly",
+     "amount": "340",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Petra Lange",
+    "rule": "e1"
+   }
+  ],
+  "task": "Before the autumn rush, please send the wood-ash firing group their confirmed dates for the firing and the kiln-opening evening, tidy up the firing calendar, and check in with Petra about her session.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-28",
+    "stale": [
+     "2026-10-14"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "loading_date",
+    "value": "2026-10-27",
+    "stale": [
+     "2026-10-13"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-3",
+    "field": "date",
+    "value": "2026-10-30",
+    "stale": [
+     "2026-10-16"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-7",
+    "field": "week_start",
+    "value": "2026-10-26",
+    "stale": [
+     "2026-10-19"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "wood-ash firing group",
+    "regarding": "EV-1",
+    "says": [
+     "firing on Wednesday 28 October",
+     "loading on Tuesday 27 October",
+     "kiln-opening and pickup evening on Friday 30 October"
+    ],
+    "stale": [
+     "14 October",
+     "16 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Ivo's email ends the Cormorant's availability from 8 October and puts it out of service until 25 October, so every October plan built on the kiln is stale: the wood-ash firing (REVISE, 28/27 October as Ivo offered), the opening evening (REVISE via the firing, Friday 30 October), and the member slot week (REVISE to the week of 26 October). Petra's tumblers session also sits on the dead dates but rule e1 forbids moving a confirmed instructor session without her consent, so it is ASK and its record must stay unchanged. The cone order and the glaze-mixing evening rest on the revoked fact or on the firing but only use parts the burner replacement leaves standing (cone 10 rating, no kiln needed), so they are KEEP, and the wheel course and clay subscription are untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Cone restock",
+    "counterpart": "Marta Vance",
+    "org": "Clayline Supply",
+    "item": "pyrometric cones",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "Kiln room"
+   },
+   {
+    "kind": "order",
+    "topic": "Glaze chemicals",
+    "counterpart": "Marta Vance",
+    "org": "Clayline Supply",
+    "item": "frit and colourants",
+    "unit": "kg",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "15"
+    ],
+    "place": "Glaze lab"
+   },
+   {
+    "kind": "order",
+    "topic": "Clay delivery",
+    "counterpart": "Owen Pike",
+    "org": "Northside Clay",
+    "item": "stoneware clay",
+    "unit": "10 kg bags",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Clay store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Raku nights",
+    "counterpart": "Petra Lange",
+    "org": "Petra Lange Studio",
+    "item": "raku kiln yard session",
+    "unit": "session",
+    "values": [
+     "Kiln yard",
+     "Courtyard",
+     "Upper terrace"
+    ],
+    "place": "Kiln yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Wheel room practice",
+    "counterpart": "Davu Okafor",
+    "org": "Kiln & Clay Pottery",
+    "item": "wheel room practice slot",
+    "unit": "slot",
+    "values": [
+     "Wheel room",
+     "Back studio",
+     "Courtyard"
+    ],
+    "place": "Wheel room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kiln inspections",
+    "counterpart": "Ivo Brankic",
+    "org": "Brankic Kiln Services",
+    "item": "kiln inspection visit",
+    "unit": "visit",
+    "values": [
+     "Kiln room",
+     "Cormorant bay",
+     "Glaze lab"
+    ],
+    "place": "Kiln room"
+   },
+   {
+    "kind": "order",
+    "topic": "Kiln shelves",
+    "counterpart": "Ivo Brankic",
+    "org": "Brankic Kiln Services",
+    "item": "kiln shelves",
+    "unit": "shelves",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Kiln room"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee for the studio",
+    "counterpart": "Hana Ilyas",
+    "org": "Corner Provisions",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Kitchenette"
+   },
+   {
+    "kind": "booking",
+    "topic": "Members' open studio",
+    "counterpart": "Renata Cole",
+    "org": "Kiln & Clay Pottery",
+    "item": "open studio evening",
+    "unit": "evening",
+    "values": [
+     "Main studio",
+     "Back studio",
+     "Courtyard"
+    ],
+    "place": "Main studio"
+   },
+   {
+    "kind": "order",
+    "topic": "Packaging",
+    "counterpart": "Hana Ilyas",
+    "org": "Corner Provisions",
+    "item": "bubble wrap",
+    "unit": "rolls",
+    "values": [
+     "3",
+     "5",
+     "6",
+     "8"
+    ],
+    "place": "Office"
+   },
+   {
+    "kind": "booking",
+    "topic": "School clay visits",
+    "counterpart": "Bea Nkemdirim",
+    "org": "Marsh Lane School",
+    "item": "children's clay session",
+    "unit": "session",
+    "values": [
+     "Main studio",
+     "Courtyard",
+     "Back studio"
+    ],
+    "place": "Main studio"
+   }
+  ],
+  "id": "G500-1-08",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

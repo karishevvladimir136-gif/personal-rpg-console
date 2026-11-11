@@ -1,0 +1,676 @@
+{
+ "id": "G500-4-05",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 4,
+ "setting": "The office manager at Kestrel Accountants, a six-person firm, whose assistant handles client onboarding and deadline calendars",
+ "prompt_sha256": "e64aff167f166ec26c6eeeeaaba8fef4be05134e06f41f444563eff20f60c1ea",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Kestrel kickoff rule restated\",\n \"setting\": \"The office manager at Kestrel Accountants, a six-person firm, whose assistant handles client onboarding and deadline calendars\",\n \"owner\": \"Priya\",\n \"org\": \"Kestrel Accountants\",\n \"now\": \"2026-09-18\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing practice for onboarding: every new-client kickoff session is booked in Meeting Room 2, starts no earlier than 10:00, and any kickoff booking longer than two hours needs Martin's sign-off before it goes in the calendar.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Once a kickoff date has been confirmed with a client, we do not move or reschedule it without that client's written consent. If a client needs a change, ask them first and wait for their agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Jonah Beck (Harbor Logistics)\", \"text\": \"We've signed the engagement letter for Harbor Logistics. We're 14 staff and would like the onboarding kickoff in the first half of July. Jonah Beck is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Room notes: Meeting Room 2 seats 8 and has the big screen for presentations; Room 1 only seats 4 and has no screen.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Harbor Logistics onboarding kickoff for Thursday 9 July, 10:00 to 12:00 in Meeting Room 2. That's a two-hour slot at the earliest allowed start, so no extra sign-off is needed, and the room seats the whole team with the screen for the presentation.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"HMRC deadlines digest\", \"text\": \"Reminder: quarterly payroll filings for our employer clients fall due on 7 August 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Put a payroll filing prep block in the calendar for Monday 3 August, 09:00 to 12:00 in Room 1, so the filings due on the 7th are ready ahead of time.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Tessa Grant (Bright Nursery)\", \"text\": \"Bright Nursery is on board. The only date our people can all make is 21 July, and because we're covering payroll and VAT in one go we'd need a good three hours. Tessa Grant is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"call\", \"from\": \"Martin\", \"text\": \"Spoke with Martin about the long Bright Nursery session: he's happy for a kickoff longer than two hours on the 21st, so we can book it.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Bright Nursery onboarding kickoff for Tuesday 21 July, 10:00 to 13:00 in Meeting Room 2, confirmed with Tessa Grant. It's a three-hour session, which runs past the two-hour line, so Martin approved it before it went in.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\", \"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Opened the onboarding tracker for Harbor Logistics, assigned to Nell as the junior in charge of the checklist, 12 steps, status active.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Nell\", \"text\": \"Stationery order arrived, we're stocked on envelopes and letterheads for a while.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"HMRC deadlines digest\", \"text\": \"VAT returns for two quarterly clients are due by 31 August 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Blocked out Monday 31 August, 09:00 to 13:00 in Room 1, for the VAT returns due that day.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-4\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-07\", \"type\": \"quote\", \"from\": \"Bramble Print\", \"text\": \"Bramble Print quote: printed welcome folders for new clients at 2.40 each, any quantity over 25.\", \"role\": \"other\", \"distractor\": false},\n  {\"id\": \"e16\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 50 welcome folders from Bramble Print at the quoted 2.40 each for the onboarding packs.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-14\", \"type\": \"invoice\", \"from\": \"Bramble Print\", \"text\": \"Invoice from Bramble Print for 50 welcome folders, 120.00 total, payment terms 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Jonah Beck (Harbor Logistics)\", \"text\": \"The kickoff went well. Could we do a first review session in late September, morning, with the same setup as last time?\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Opened the onboarding tracker for Bright Nursery, assigned to Nell, 12 steps, status active.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-05\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: pay the Bramble Print folder invoice of 120.00 by 20 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Nell\", \"text\": \"Bramble Print invoice paid on 14 August, all settled.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Harbor Logistics first review session for Friday 25 September, 10:00 to 11:30 in Meeting Room 2, same room and morning slot as their kickoff, confirmed with Jonah Beck.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e1\", \"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Martin\", \"text\": \"From now on every onboarding pack should include the new confidentiality leaflet alongside the welcome folder.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team minutes: payroll filings all submitted on time; Nell to keep both client trackers moving; nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Tessa Grant (Bright Nursery)\", \"text\": \"Quick note that we're happy with how the onboarding is going, no changes needed on our side.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"email\", \"from\": \"Martin\", \"text\": \"Priya, just to confirm our onboarding practice in writing so there's no doubt: all new-client kickoff sessions are held in Meeting Room 2, they can't start before 10:00, and any kickoff running over two hours needs my approval before it's booked. Same as it's always been.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e27\", \"date\": \"2026-09-06\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Calendar notice: Harbor Logistics review session on 25 September, Meeting Room 2, 10:00 to 11:30, confirmed with the client.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Ravi Shah (Fernwood Dental)\", \"text\": \"Fernwood Dental has signed the engagement letter. For the onboarding kickoff we could do Tuesday 29 September or Thursday 1 October, and we'd need around two hours. Five of us would attend. Ravi Shah is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Nell\", \"text\": \"Idea for future kickoffs: what if we tried 90-minute sessions instead, so Meeting Room 2 frees up earlier in the day? Just a thought for when we're planning.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ravi Shah (Fernwood Dental)\", \"text\": \"If possible we'd prefer the 29 September date for the kickoff, we're all free that morning.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-16\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: chase Jonah Beck for review session agenda items by 22 September.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harbor Logistics onboarding kickoff\", \"fields\": {\"date\": \"2026-07-09\", \"time\": \"10:00\", \"end\": \"12:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Quarterly payroll filing prep\", \"fields\": {\"date\": \"2026-08-03\", \"time\": \"09:00\", \"end\": \"12:00\", \"place\": \"Room 1\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Bright Nursery onboarding kickoff\", \"fields\": {\"date\": \"2026-07-21\", \"time\": \"10:00\", \"end\": \"13:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"VAT returns work block\", \"fields\": {\"date\": \"2026-08-31\", \"time\": \"09:00\", \"end\": \"13:00\", \"place\": \"Room 1\", \"status\": \"done\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Harbor Logistics first review session\", \"fields\": {\"date\": \"2026-09-25\", \"time\": \"10:00\", \"end\": \"11:30\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbor Logistics onboarding tracker\", \"fields\": {\"client\": \"Harbor Logistics\", \"contact\": \"Jonah Beck\", \"owner\": \"Nell\", \"steps\": \"12\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Bright Nursery onboarding tracker\", \"fields\": {\"client\": \"Bright Nursery\", \"contact\": \"Tessa Grant\", \"owner\": \"Nell\", \"steps\": \"12\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Welcome folders from Bramble Print\", \"fields\": {\"supplier\": \"Bramble Print\", \"item\": \"printed welcome folders\", \"quantity\": \"50\", \"unit_price\": \"2.40\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Jonah Beck (Harbor Logistics)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-3\", \"fields\": [\"date\", \"time\"], \"from\": \"Tessa Grant (Bright Nursery)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-5\", \"fields\": [\"date\", \"time\"], \"from\": \"Jonah Beck (Harbor Logistics)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Fernwood Dental has just signed with us. Please set up their onboarding kickoff and send Ravi Shah the confirmed details.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Fernwood Dental onboarding kickoff\", \"date\": \"2026-09-29\", \"time\": \"10:00\", \"end\": \"12:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}, \"stale\": {\"end\": [\"11:30\"], \"place\": [\"Room 1\"]}, \"task\": true},\n  {\"message_to\": \"Ravi Shah (Fernwood Dental)\", \"regarding\": null, \"says\": [\"Tuesday 29 September\", \"10:00 to 12:00\", \"Meeting Room 2\"], \"stale\": [\"90 minutes\", \"1 October\"], \"task\": true}\n ],\n \"why\": \"This is a control: Martin's email merely restates the standing kickoff rule in other words and revokes nothing, so every existing decision, record and consent arrangement stays exactly as it is. The task is carried out beside the change on the plan as it stands: a new confirmed kickoff for Fernwood Dental on 29 September, 10:00 to 12:00 in Meeting Room 2 under the restated rule, with a confirmation to Ravi Shah. The distractor (Nell's 90-minute suggestion) is not a rule and must not shorten the session, and the client's stated need of about two hours stands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Letterhead restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"printed letterhead\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Envelope restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"windowed envelopes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekly team stand-up\", \"counterpart\": \"Nell\", \"org\": \"Kestrel Accountants\", \"item\": \"weekly team stand-up\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Client tax review meetings\", \"counterpart\": \"Jonah Beck\", \"org\": \"Harbor Logistics\", \"item\": \"tax review meeting\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Nursery payroll check-ins\", \"counterpart\": \"Tessa Grant\", \"org\": \"Bright Nursery\", \"item\": \"payroll check-in\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Confidentiality leaflet reprints\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"confidentiality leaflets\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Software training sessions\", \"counterpart\": \"Marcus Bell\", \"org\": \"Ledgerline Software\", \"item\": \"software training session\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee and milk delivery\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Rowan Fresh Supplies\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Kestrel kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"External auditor visits\", \"counterpart\": \"Helena Frost\", \"org\": \"Frost Audit Partners\", \"item\": \"audit fieldwork visit\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Shredder paper sacks\", \"counterpart\": \"Pat Nolan\", \"org\": \"Greenway Office Recycling\", \"item\": \"paper sacks\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"10\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Marketing planning sessions\", \"counterpart\": \"Nell\", \"org\": \"Kestrel Accountants\", \"item\": \"marketing planning session\", \"values\": [\"Room 1\", \"Meeting Room 2\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Toner restock\", \"counterpart\": \"Ruth Meyer\", \"org\": \"Corbett Office Supplies\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Kestrel office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3214,
+    "completion_tokens": 7484,
+    "reasoning_tokens": 3089,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03385416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Kestrel kickoff rule restated\",\n \"setting\": \"The office manager at Kestrel Accountants, a six-person firm, whose assistant handles client onboarding and deadline calendars\",\n \"owner\": \"Priya\",\n \"org\": \"Kestrel Accountants\",\n \"now\": \"2026-09-18\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing practice for onboarding: every new-client kickoff session is booked in Meeting Room 2, starts no earlier than 10:00, and any kickoff booking longer than two hours needs Martin's sign-off before it goes in the calendar.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Once a kickoff date has been confirmed with a client, we do not move or reschedule it without that client's written consent. If a client needs a change, ask them first and wait for their agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Jonah Beck (Harbor Logistics)\", \"text\": \"We've signed the engagement letter for Harbor Logistics. We're 14 staff and would like the onboarding kickoff in the first half of July. Jonah Beck is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Room notes: Meeting Room 2 seats 8 and has the big screen for presentations; Room 1 only seats 4 and has no screen.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Harbor Logistics onboarding kickoff for Thursday 9 July, 10:00 to 12:00 in Meeting Room 2. That's a two-hour slot at the earliest allowed start, so no extra sign-off is needed, and the room seats the whole team with the screen for the presentation.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"HMRC deadlines digest\", \"text\": \"Reminder: quarterly payroll filings for our employer clients fall due on 7 August 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Put a payroll filing prep block in the calendar for Monday 3 August, 09:00 to 12:00 in Room 1, so the filings due on the 7th are ready ahead of time.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Tessa Grant (Bright Nursery)\", \"text\": \"Bright Nursery is on board. The only date our people can all make is 21 July, and because we're covering payroll and VAT in one go we'd need a good three hours. Tessa Grant is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"call\", \"from\": \"Martin\", \"text\": \"Spoke with Martin about the long Bright Nursery session: he's happy for a kickoff longer than two hours on the 21st, so we can book it.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Bright Nursery onboarding kickoff for Tuesday 21 July, 10:00 to 13:00 in Meeting Room 2, confirmed with Tessa Grant. It's a three-hour session, which runs past the two-hour line, so Martin approved it before it went in.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\", \"e9\"], \"record\": \"EV-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Opened the onboarding tracker for Harbor Logistics, assigned to Nell as the junior in charge of the checklist, 12 steps, status active.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Nell\", \"text\": \"Stationery order arrived, we're stocked on envelopes and letterheads for a while.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"HMRC deadlines digest\", \"text\": \"VAT returns for two quarterly clients are due by 31 August 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Blocked out Monday 31 August, 09:00 to 13:00 in Room 1, for the VAT returns due that day.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-4\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-07\", \"type\": \"quote\", \"from\": \"Bramble Print\", \"text\": \"Bramble Print quote: printed welcome folders for new clients at 2.40 each, any quantity over 25.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 50 welcome folders from Bramble Print at the quoted 2.40 each for the onboarding packs.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-14\", \"type\": \"invoice\", \"from\": \"Bramble Print\", \"text\": \"Invoice from Bramble Print for 50 welcome folders, 120.00 total, payment terms 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Jonah Beck (Harbor Logistics)\", \"text\": \"The kickoff went well. Could we do a first review session in late September, morning, with the same setup as last time?\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Opened the onboarding tracker for Bright Nursery, assigned to Nell, 12 steps, status active.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-05\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: pay the Bramble Print folder invoice of 120.00 by 20 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Nell\", \"text\": \"Bramble Print invoice paid on 14 August, all settled.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the Harbor Logistics first review session for Friday 25 September, 10:00 to 11:30 in Meeting Room 2, same room and morning slot as their kickoff, confirmed with Jonah Beck.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e1\", \"e4\"], \"record\": \"EV-5\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Martin\", \"text\": \"From now on every onboarding pack should include the new confidentiality leaflet alongside the welcome folder.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team minutes: payroll filings all submitted on time; Nell to keep both client trackers moving; nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Tessa Grant (Bright Nursery)\", \"text\": \"Quick note that we're happy with how the onboarding is going, no changes needed on our side.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"email\", \"from\": \"Martin\", \"text\": \"Priya, just to confirm our onboarding practice in writing so there's no doubt: all new-client kickoff sessions are held in Meeting Room 2, they can't start before 10:00, and any kickoff running over two hours needs my approval before it's booked. Same as it's always been.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e27\", \"date\": \"2026-09-06\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Calendar notice: Harbor Logistics review session on 25 September, Meeting Room 2, 10:00 to 11:30, confirmed with the client.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Ravi Shah (Fernwood Dental)\", \"text\": \"Fernwood Dental has signed the engagement letter. For the onboarding kickoff we could do Tuesday 29 September or Thursday 1 October, and we'd need around two hours. Five of us would attend. Ravi Shah is your contact.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Nell\", \"text\": \"Idea for future kickoffs: what if we tried 90-minute sessions instead, so Meeting Room 2 frees up earlier in the day? Just a thought for when we're planning.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ravi Shah (Fernwood Dental)\", \"text\": \"If possible we'd prefer the 29 September date for the kickoff, we're all free that morning.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-09-16\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: chase Jonah Beck for review session agenda items by 22 September.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harbor Logistics onboarding kickoff\", \"fields\": {\"date\": \"2026-07-09\", \"time\": \"10:00\", \"end\": \"12:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Quarterly payroll filing prep\", \"fields\": {\"date\": \"2026-08-03\", \"time\": \"09:00\", \"end\": \"12:00\", \"place\": \"Room 1\", \"status\": \"done\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Bright Nursery onboarding kickoff\", \"fields\": {\"date\": \"2026-07-21\", \"time\": \"10:00\", \"end\": \"13:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"VAT returns work block\", \"fields\": {\"date\": \"2026-08-31\", \"time\": \"09:00\", \"end\": \"13:00\", \"place\": \"Room 1\", \"status\": \"done\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Harbor Logistics first review session\", \"fields\": {\"date\": \"2026-09-25\", \"time\": \"10:00\", \"end\": \"11:30\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbor Logistics onboarding tracker\", \"fields\": {\"client\": \"Harbor Logistics\", \"contact\": \"Jonah Beck\", \"owner\": \"Nell\", \"steps\": \"12\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Bright Nursery onboarding tracker\", \"fields\": {\"client\": \"Bright Nursery\", \"contact\": \"Tessa Grant\", \"owner\": \"Nell\", \"steps\": \"12\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Welcome folders from Bramble Print\", \"fields\": {\"supplier\": \"Bramble Print\", \"item\": \"printed welcome folders\", \"quantity\": \"50\", \"unit_price\": \"2.40\", \"status\": \"delivered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Jonah Beck (Harbor Logistics)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-3\", \"fields\": [\"date\", \"time\"], \"from\": \"Tessa Grant (Bright Nursery)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-5\", \"fields\": [\"date\", \"time\"], \"from\": \"Jonah Beck (Harbor Logistics)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Fernwood Dental has just signed with us. Please set up their onboarding kickoff and send Ravi Shah the confirmed details.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Fernwood Dental onboarding kickoff\", \"date\": \"2026-09-29\", \"time\": \"10:00\", \"end\": \"12:00\", \"place\": \"Meeting Room 2\", \"status\": \"confirmed\"}, \"stale\": {\"end\": [\"11:30\"], \"place\": [\"Room 1\"]}, \"task\": true},\n  {\"message_to\": \"Ravi Shah (Fernwood Dental)\", \"regarding\": null, \"says\": [\"Tuesday 29 September\", \"10:00 to 12:00\", \"Meeting Room 2\"], \"stale\": [\"90 minutes\", \"1 October\"], \"task\": true}\n ],\n \"why\": \"This is a control: Martin's email merely restates the standing kickoff rule in other words and revokes nothing, so every existing decision, record and consent arrangement stays exactly as it is. The task is carried out beside the change on the plan as it stands: a new confirmed kickoff for Fernwood Dental on 29 September, 10:00 to 12:00 in Meeting Room 2 under the restated rule, with a confirmation to Ravi Shah. The distractor (Nell's 90-minute suggestion) is not a rule and must not shorten the session, and the client's stated need of about two hours stands.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Letterhead restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"printed letterhead\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Envelope restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"windowed envelopes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekly team stand-up\", \"counterpart\": \"Nell\", \"org\": \"Kestrel Accountants\", \"item\": \"weekly team stand-up\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Client tax review meetings\", \"counterpart\": \"Jonah Beck\", \"org\": \"Harbor Logistics\", \"item\": \"tax review meeting\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Nursery payroll check-ins\", \"counterpart\": \"Tessa Grant\", \"org\": \"Bright Nursery\", \"item\": \"payroll check-in\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Confidentiality leaflet reprints\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Bramble Print\", \"item\": \"confidentiality leaflets\", \"unit\": \"packs\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Software training sessions\", \"counterpart\": \"Marcus Bell\", \"org\": \"Ledgerline Software\", \"item\": \"software training session\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee and milk delivery\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Rowan Fresh Supplies\", \"item\": \"coffee beans\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Kestrel kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"External auditor visits\", \"counterpart\": \"Helena Frost\", \"org\": \"Frost Audit Partners\", \"item\": \"audit fieldwork visit\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Shredder paper sacks\", \"counterpart\": \"Pat Nolan\", \"org\": \"Greenway Office Recycling\", \"item\": \"paper sacks\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"10\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"booking\", \"topic\": \"Marketing planning sessions\", \"counterpart\": \"Nell\", \"org\": \"Kestrel Accountants\", \"item\": \"marketing planning session\", \"values\": [\"Room 1\", \"Meeting Room 2\", \"breakout nook\"], \"place\": \"Kestrel office\"},\n  {\"kind\": \"order\", \"topic\": \"Toner restock\", \"counterpart\": \"Ruth Meyer\", \"org\": \"Corbett Office Supplies\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Kestrel office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7732,
+    "completion_tokens": 4455,
+    "reasoning_tokens": 31,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0267788,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Weekly team stand-up': values needs at least three entries\n- noise topic 'Client tax review meetings': values needs at least three entries\n- noise topic 'Nursery payroll check-ins': values needs at least three entries\n- noise topic 'Software training sessions': values needs at least three entries\n- noise topic 'External auditor visits': values needs at least three entries\n- noise topic 'Marketing planning sessions': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Kestrel kickoff rule restated",
+  "setting": "The office manager at Kestrel Accountants, a six-person firm, whose assistant handles client onboarding and deadline calendars",
+  "owner": "Priya",
+  "org": "Kestrel Accountants",
+  "now": "2026-09-18",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing practice for onboarding: every new-client kickoff session is booked in Meeting Room 2, starts no earlier than 10:00, and any kickoff booking longer than two hours needs Martin's sign-off before it goes in the calendar.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Once a kickoff date has been confirmed with a client, we do not move or reschedule it without that client's written consent. If a client needs a change, ask them first and wait for their agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Jonah Beck (Harbor Logistics)",
+    "text": "We've signed the engagement letter for Harbor Logistics. We're 14 staff and would like the onboarding kickoff in the first half of July. Jonah Beck is your contact.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Priya",
+    "text": "Room notes: Meeting Room 2 seats 8 and has the big screen for presentations; Room 1 only seats 4 and has no screen.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-11",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the Harbor Logistics onboarding kickoff for Thursday 9 July, 10:00 to 12:00 in Meeting Room 2. That's a two-hour slot at the earliest allowed start, so no extra sign-off is needed, and the room seats the whole team with the screen for the presentation.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "HMRC deadlines digest",
+    "text": "Reminder: quarterly payroll filings for our employer clients fall due on 7 August 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Put a payroll filing prep block in the calendar for Monday 3 August, 09:00 to 12:00 in Room 1, so the filings due on the 7th are ready ahead of time.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-17",
+    "type": "email",
+    "from": "Tessa Grant (Bright Nursery)",
+    "text": "Bright Nursery is on board. The only date our people can all make is 21 July, and because we're covering payroll and VAT in one go we'd need a good three hours. Tessa Grant is your contact.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "call",
+    "from": "Martin",
+    "text": "Spoke with Martin about the long Bright Nursery session: he's happy for a kickoff longer than two hours on the 21st, so we can book it.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the Bright Nursery onboarding kickoff for Tuesday 21 July, 10:00 to 13:00 in Meeting Room 2, confirmed with Tessa Grant. It's a three-hour session, which runs past the two-hour line, so Martin approved it before it went in.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e8",
+     "e9"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Opened the onboarding tracker for Harbor Logistics, assigned to Nell as the junior in charge of the checklist, 12 steps, status active.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Nell",
+    "text": "Stationery order arrived, we're stocked on envelopes and letterheads for a while.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "HMRC deadlines digest",
+    "text": "VAT returns for two quarterly clients are due by 31 August 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Blocked out Monday 31 August, 09:00 to 13:00 in Room 1, for the VAT returns due that day.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-07",
+    "type": "quote",
+    "from": "Bramble Print",
+    "text": "Bramble Print quote: printed welcome folders for new clients at 2.40 each, any quantity over 25.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered 50 welcome folders from Bramble Print at the quoted 2.40 each for the onboarding packs.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-14",
+    "type": "invoice",
+    "from": "Bramble Print",
+    "text": "Invoice from Bramble Print for 50 welcome folders, 120.00 total, payment terms 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-16",
+    "type": "email",
+    "from": "Jonah Beck (Harbor Logistics)",
+    "text": "The kickoff went well. Could we do a first review session in late September, morning, with the same setup as last time?",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Opened the onboarding tracker for Bright Nursery, assigned to Nell, 12 steps, status active.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-05",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do: pay the Bramble Print folder invoice of 120.00 by 20 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Nell",
+    "text": "Bramble Print invoice paid on 14 August, all settled.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the Harbor Logistics first review session for Friday 25 September, 10:00 to 11:30 in Meeting Room 2, same room and morning slot as their kickoff, confirmed with Jonah Beck.",
+    "role": "decision",
+    "rests_on": [
+     "e18",
+     "e1",
+     "e4"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-26",
+    "type": "email",
+    "from": "Martin",
+    "text": "From now on every onboarding pack should include the new confidentiality leaflet alongside the welcome folder.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-01",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Team minutes: payroll filings all submitted on time; Nell to keep both client trackers moving; nothing else raised.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Tessa Grant (Bright Nursery)",
+    "text": "Quick note that we're happy with how the onboarding is going, no changes needed on our side.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-04",
+    "type": "email",
+    "from": "Martin",
+    "text": "Priya, just to confirm our onboarding practice in writing so there's no doubt: all new-client kickoff sessions are held in Meeting Room 2, they can't start before 10:00, and any kickoff running over two hours needs my approval before it's booked. Same as it's always been.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-06",
+    "type": "notice",
+    "from": "Priya",
+    "text": "Calendar notice: Harbor Logistics review session on 25 September, Meeting Room 2, 10:00 to 11:30, confirmed with the client.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Ravi Shah (Fernwood Dental)",
+    "text": "Fernwood Dental has signed the engagement letter. For the onboarding kickoff we could do Tuesday 29 September or Thursday 1 October, and we'd need around two hours. Five of us would attend. Ravi Shah is your contact.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-10",
+    "type": "message",
+    "from": "Nell",
+    "text": "Idea for future kickoffs: what if we tried 90-minute sessions instead, so Meeting Room 2 frees up earlier in the day? Just a thought for when we're planning.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Ravi Shah (Fernwood Dental)",
+    "text": "If possible we'd prefer the 29 September date for the kickoff, we're all free that morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-16",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do: chase Jonah Beck for review session agenda items by 22 September.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Harbor Logistics onboarding kickoff",
+    "fields": {
+     "date": "2026-07-09",
+     "time": "10:00",
+     "end": "12:00",
+     "place": "Meeting Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Quarterly payroll filing prep",
+    "fields": {
+     "date": "2026-08-03",
+     "time": "09:00",
+     "end": "12:00",
+     "place": "Room 1",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Bright Nursery onboarding kickoff",
+    "fields": {
+     "date": "2026-07-21",
+     "time": "10:00",
+     "end": "13:00",
+     "place": "Meeting Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "VAT returns work block",
+    "fields": {
+     "date": "2026-08-31",
+     "time": "09:00",
+     "end": "13:00",
+     "place": "Room 1",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Harbor Logistics first review session",
+    "fields": {
+     "date": "2026-09-25",
+     "time": "10:00",
+     "end": "11:30",
+     "place": "Meeting Room 2",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harbor Logistics onboarding tracker",
+    "fields": {
+     "client": "Harbor Logistics",
+     "contact": "Jonah Beck",
+     "owner": "Nell",
+     "steps": "12",
+     "status": "active"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Bright Nursery onboarding tracker",
+    "fields": {
+     "client": "Bright Nursery",
+     "contact": "Tessa Grant",
+     "owner": "Nell",
+     "steps": "12",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Welcome folders from Bramble Print",
+    "fields": {
+     "supplier": "Bramble Print",
+     "item": "printed welcome folders",
+     "quantity": "50",
+     "unit_price": "2.40",
+     "status": "delivered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Jonah Beck (Harbor Logistics)",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-3",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Tessa Grant (Bright Nursery)",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-5",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Jonah Beck (Harbor Logistics)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Fernwood Dental has just signed with us. Please set up their onboarding kickoff and send Ravi Shah the confirmed details.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "title": "Fernwood Dental onboarding kickoff",
+     "date": "2026-09-29",
+     "time": "10:00",
+     "end": "12:00",
+     "place": "Meeting Room 2",
+     "status": "confirmed"
+    },
+    "stale": {
+     "end": [
+      "11:30"
+     ],
+     "place": [
+      "Room 1"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Ravi Shah (Fernwood Dental)",
+    "regarding": null,
+    "says": [
+     "Tuesday 29 September",
+     "10:00 to 12:00",
+     "Meeting Room 2"
+    ],
+    "stale": [
+     "90 minutes",
+     "1 October"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: Martin's email merely restates the standing kickoff rule in other words and revokes nothing, so every existing decision, record and consent arrangement stays exactly as it is. The task is carried out beside the change on the plan as it stands: a new confirmed kickoff for Fernwood Dental on 29 September, 10:00 to 12:00 in Meeting Room 2 under the restated rule, with a confirmation to Ravi Shah. The distractor (Nell's 90-minute suggestion) is not a rule and must not shorten the session, and the client's stated need of about two hours stands.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Letterhead restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Bramble Print",
+    "item": "printed letterhead",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "order",
+    "topic": "Envelope restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Bramble Print",
+    "item": "windowed envelopes",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Weekly team stand-up",
+    "counterpart": "Nell",
+    "org": "Kestrel Accountants",
+    "item": "weekly team stand-up",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Client tax review meetings",
+    "counterpart": "Jonah Beck",
+    "org": "Harbor Logistics",
+    "item": "tax review meeting",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Nursery payroll check-ins",
+    "counterpart": "Tessa Grant",
+    "org": "Bright Nursery",
+    "item": "payroll check-in",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "order",
+    "topic": "Confidentiality leaflet reprints",
+    "counterpart": "Dana Ortiz",
+    "org": "Bramble Print",
+    "item": "confidentiality leaflets",
+    "unit": "packs",
+    "values": [
+     "6",
+     "12",
+     "24"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Software training sessions",
+    "counterpart": "Marcus Bell",
+    "org": "Ledgerline Software",
+    "item": "software training session",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee and milk delivery",
+    "counterpart": "Sam Whitfield",
+    "org": "Rowan Fresh Supplies",
+    "item": "coffee beans",
+    "unit": "bags",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Kestrel kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "External auditor visits",
+    "counterpart": "Helena Frost",
+    "org": "Frost Audit Partners",
+    "item": "audit fieldwork visit",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "order",
+    "topic": "Shredder paper sacks",
+    "counterpart": "Pat Nolan",
+    "org": "Greenway Office Recycling",
+    "item": "paper sacks",
+    "unit": "rolls",
+    "values": [
+     "3",
+     "5",
+     "10"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Marketing planning sessions",
+    "counterpart": "Nell",
+    "org": "Kestrel Accountants",
+    "item": "marketing planning session",
+    "values": [
+     "Room 1",
+     "Meeting Room 2",
+     "breakout nook"
+    ],
+    "place": "Kestrel office"
+   },
+   {
+    "kind": "order",
+    "topic": "Toner restock",
+    "counterpart": "Ruth Meyer",
+    "org": "Corbett Office Supplies",
+    "item": "printer toner",
+    "unit": "cartridges",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Kestrel office"
+   }
+  ],
+  "id": "G500-4-05",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

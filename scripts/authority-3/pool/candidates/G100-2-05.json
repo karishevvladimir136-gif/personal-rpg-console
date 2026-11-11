@@ -1,0 +1,579 @@
+{
+ "id": "G100-2-05",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 4,
+ "setting": "The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts",
+ "prompt_sha256": "0fec2112989a97b4791b1b5842ea261d2fbd55b0b0bcedf526c7c7dc98389207",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Rider allowance cut after finance review\",\n  \"setting\": \"The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts\",\n  \"owner\": \"Nadia\",\n  \"org\": \"The Foundry Arts Centre\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Note for the file: The Foundry Arts Centre runs two performance spaces, the Main Hall (capacity 300) and the smaller Loft, plus the Back Room and Studio 2 for hire.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Mara Voss (Voss Live)\", \"text\": \"Hi Nadia, I'd love to play your Main Hall on Friday 13 November 2026. Our fee is 1800 pounds. Let me know if that works and I'll get the contract signed.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"House rule for promoter gigs: every confirmed gig with an external promoter carries a house rider allowance of 400 pounds. Any rider order above 400 pounds needs written sign-off from Sinead Okoye, our finance lead, before it is placed. And never reschedule a confirmed promoter gig without that promoter's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Booking policy: every confirmed booking goes into the schedule within one working day of confirmation, and the 20 percent deposit invoice goes out the same week.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Bruno Kellner (Cellar Drinks Co)\", \"text\": \"Current rider price list: still water 9 pounds a case, cola and lemonade 12 pounds a case, tonic 10 pounds a case, and the mixed rider crate for a 300-cap room works out at 330 pounds delivered.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Mara Voss live in the Main Hall on Friday 13 November 2026, fee 1800 pounds, with the standard house rider allowance of 400 pounds per the house rule. Contract sent and deposit invoiced.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tom Reilly (Kite & Anchor)\", \"text\": \"Nadia, we'd like to book our autumn showcase at The Foundry on Saturday 24 October 2026. Usual deal, Main Hall if it's free.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Kite & Anchor autumn showcase in the Main Hall for Saturday 24 October 2026 and entered it in the schedule the same day with the deposit invoiced, per booking policy.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Bruno Kellner (Cellar Drinks Co)\", \"text\": \"Quote for a full rider package for a 300-capacity show: 330 pounds delivered, covering water, mixers and soft drinks for the night.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tom Reilly (Kite & Anchor)\", \"text\": \"Nadia, we need to move the showcase. Happy to confirm in writing that Saturday 7 November 2026 works for us instead.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Moved the Kite & Anchor showcase from Saturday 24 October to Saturday 7 November 2026 in the Main Hall, with Tom Reilly's written consent on file as the house rule requires.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e8\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the full rider package from Cellar Drinks Co for the Mara Voss gig on 13 November, at Bruno's quoted 330 pounds delivered, which sits inside the 400 pound house allowance, so no sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e9\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Dela Adeyemi (Tonka Roots)\", \"text\": \"Hi Nadia, Tonka Roots can do Friday 27 November 2026 in the Main Hall. Our fee is 1500 pounds. Please confirm the rider terms when you send the contract.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Tonka Roots live in the Main Hall on Friday 27 November 2026, fee 1500 pounds, rider allowance set at the standard 400 pounds from the house rule. Deposit invoiced.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e3\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sinead Okoye\", \"text\": \"Nadia, the finance review of rider spending is nearly done. Expect an outcome early next week, likely touching the per-gig allowance.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Sinead Okoye\", \"text\": \"Outcome of the finance review, effective 15 September: the house rider allowance for promoter gigs is now 250 pounds, and any rider order above 250 pounds needs my written sign-off before it is placed. Nothing else changes, so you still need the promoter's written consent before moving any confirmed gig. Please apply the new figure going forward.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Mara Voss (Voss Live)\", \"text\": \"Nadia, a heads-up from our agent: Voss Live has capped our rider requests at 300 pounds per show for this tour, so please keep ours within that when you plan the night.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"To-do: send Mara Voss her final rider confirmation for the 13 November gig, stating the house allowance and what the Cellar Drinks order covers, by Friday 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"Nadia, I'm free for the Mara Voss show on 13 November. I'll come in for load-in at 4pm and run sound for the whole night.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-20\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Weekly ops notes: deposits for all three autumn gigs invoiced and paid, water restock for the bar delivered, and the Loft heater still needs a service before the life drawing class returns.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mara Voss live - Main Hall\", \"fields\": {\"date\": \"2026-11-13\", \"room\": \"Main Hall\", \"promoter\": \"Mara Voss\", \"fee\": \"1800\", \"rider_allowance\": \"400\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kite & Anchor autumn showcase\", \"fields\": {\"date\": \"2026-11-07\", \"room\": \"Main Hall\", \"promoter\": \"Kite & Anchor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tonka Roots live - Main Hall\", \"fields\": {\"date\": \"2026-11-27\", \"room\": \"Main Hall\", \"promoter\": \"Dela Adeyemi\", \"fee\": \"1500\", \"rider_allowance\": \"400\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rider package - Cellar Drinks Co\", \"fields\": {\"supplier\": \"Cellar Drinks Co\", \"item\": \"full rider package\", \"amount\": \"330\", \"for_gig\": \"EV-1\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"amount\", \"status\"], \"from\": \"Sinead Okoye\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you send Mara Voss her final rider confirmation for the gig on Friday 13 November? It should state the house rider allowance we're offering her and confirm the Cellar Drinks order for the night.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"rider_allowance\", \"value\": \"250\", \"stale\": [\"400\"]},\n    {\"record\": \"EV-3\", \"field\": \"rider_allowance\", \"value\": \"250\", \"stale\": [\"400\"]},\n    {\"message_to\": \"Mara Voss\", \"regarding\": \"EV-1\", \"says\": [\"250\"], \"stale\": [\"400\", \"300\"], \"task\": true}\n  ],\n  \"why\": \"Sinead's amendment replaces the 400 pound rider allowance with 250 pounds from 15 September while leaving the promoter-consent term standing. The two gig records that cited the rule directly (EV-1 and EV-3) still show 400 and must be revised to 250, and the task's message to Mara must carry the new 250 figure, not the stale 400 or her agent's 300. ORD-1 (330 pounds, ordered under the old cap, resting two hops from the rule via the Mara booking) now exceeds the new threshold, so changing it needs Sinead's consent and it stays as it is with a consent request; the Kite & Anchor reschedule used only the unchanged consent term, so EV-2 is untouched and KEEP.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Bottled water restock\", \"counterpart\": \"Bruno Kellner\", \"org\": \"Cellar Drinks Co\", \"item\": \"still water cases\", \"unit\": \"cases\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall bar\"},\n    {\"kind\": \"order\", \"topic\": \"Glassware top-up\", \"counterpart\": \"Bruno Kellner\", \"org\": \"Cellar Drinks Co\", \"item\": \"wine glass crates\", \"unit\": \"crates\", \"values\": [\"3\", \"5\", \"10\"], \"place\": \"Main Hall bar\"},\n    {\"kind\": \"booking\", \"topic\": \"Open-mic night\", \"counterpart\": \"Tom Reilly\", \"org\": \"Kite & Anchor\", \"item\": \"room hire\", \"values\": [\"Back Room\", \"Loft\", \"Main Hall\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"booking\", \"topic\": \"Band rehearsals\", \"counterpart\": \"Dela Adeyemi\", \"org\": \"Tonka Roots\", \"item\": \"rehearsal slot\", \"values\": [\"Studio 2\", \"Loft\", \"Back Room\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"order\", \"topic\": \"Gaffer tape\", \"counterpart\": \"Fen Whittaker\", \"org\": \"Stage Supply Ltd\", \"item\": \"gaffer tape rolls\", \"unit\": \"rolls\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Loft store\"},\n    {\"kind\": \"order\", \"topic\": \"Batteries\", \"counterpart\": \"Fen Whittaker\", \"org\": \"Stage Supply Ltd\", \"item\": \"AA battery packs\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"tech cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"Board meetings\", \"counterpart\": \"Sinead Okoye\", \"org\": \"The Foundry Arts Centre\", \"item\": \"meeting room\", \"values\": [\"Office\", \"Loft\", \"Back Room\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"booking\", \"topic\": \"Yoga classes\", \"counterpart\": \"Hanna Boyd\", \"org\": \"Foundry Community Group\", \"item\": \"studio hire\", \"values\": [\"Studio 2\", \"Back Room\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea\", \"counterpart\": \"Marta Cruz\", \"org\": \"Bean There Wholesale\", \"item\": \"coffee bean bags\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"green room\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Marta Cruz\", \"org\": \"Bean There Wholesale\", \"item\": \"paper towel packs\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Loft store\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3141,
+    "completion_tokens": 10309,
+    "reasoning_tokens": 6986,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04625492,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Rider allowance cut after finance review\",\n  \"setting\": \"The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts\",\n  \"owner\": \"Nadia\",\n  \"org\": \"The Foundry Arts Centre\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Note for the file: The Foundry Arts Centre runs two performance spaces, the Main Hall (capacity 300) and the smaller Loft, plus the Back Room and Studio 2 for hire.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Mara Voss (Voss Live)\", \"text\": \"Hi Nadia, I'd love to play your Main Hall on Friday 13 November 2026. Our fee is 1800 pounds. Let me know if that works and I'll get the contract signed.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"House rule for promoter gigs: every confirmed gig with an external promoter carries a house rider allowance of 400 pounds. Any rider order above 400 pounds needs written sign-off from Sinead Okoye, our finance lead, before it is placed. And never reschedule a confirmed promoter gig without that promoter's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Booking policy: every confirmed booking goes into the schedule within one working day of confirmation, and the 20 percent deposit invoice goes out the same week.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Bruno Kellner (Cellar Drinks Co)\", \"text\": \"Current rider price list: still water 9 pounds a case, cola and lemonade 12 pounds a case, tonic 10 pounds a case, and the mixed rider crate for a 300-cap room works out at 330 pounds delivered.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Mara Voss live in the Main Hall on Friday 13 November 2026, fee 1800 pounds, with the standard house rider allowance of 400 pounds per the house rule. Contract sent and deposit invoiced.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Tom Reilly (Kite & Anchor)\", \"text\": \"Nadia, we'd like to book our autumn showcase at The Foundry on Saturday 24 October 2026. Usual deal, Main Hall if it's free.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Kite & Anchor autumn showcase in the Main Hall for Saturday 24 October 2026 and entered it in the schedule the same day with the deposit invoiced, per booking policy.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Bruno Kellner (Cellar Drinks Co)\", \"text\": \"Quote for a full rider package for a 300-capacity show: 330 pounds delivered, covering water, mixers and soft drinks for the night.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Tom Reilly (Kite & Anchor)\", \"text\": \"Nadia, we need to move the showcase. Happy to confirm in writing that Saturday 7 November 2026 works for us instead.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Moved the Kite & Anchor showcase from Saturday 24 October to Saturday 7 November 2026 in the Main Hall, with Tom Reilly's written consent on file as the house rule requires.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e8\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered the full rider package from Cellar Drinks Co for the Mara Voss gig on 13 November, at Bruno's quoted 330 pounds delivered, which sits inside the 400 pound house allowance on her booking, so no sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e9\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Dela Adeyemi (Tonka Roots)\", \"text\": \"Hi Nadia, Tonka Roots can do Friday 27 November 2026 in the Main Hall. Our fee is 1500 pounds. Please confirm the rider terms when you send the contract.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Tonka Roots live in the Main Hall on Friday 27 November 2026, fee 1500 pounds, rider allowance set at the standard 400 pounds from the house rule. Deposit invoiced.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e3\", \"e1\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Sinead Okoye\", \"text\": \"Nadia, the finance review of rider spending is nearly done. Expect an outcome early next week, likely touching the per-gig allowance.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Sinead Okoye\", \"text\": \"Outcome of the finance review, effective 15 September: the house rider allowance for promoter gigs is now 250 pounds, and any rider order above 250 pounds needs my written sign-off before it is placed. Nothing else changes, so you still need the promoter's written consent before moving any confirmed gig. Please apply the new figure going forward.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Mara Voss (Voss Live)\", \"text\": \"Nadia, a heads-up from our agent: Voss Live has capped our rider requests at 300 pounds per show for this tour, so please keep ours within that when you plan the night.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"To-do: send Mara Voss her final rider confirmation for the 13 November gig, stating the house allowance and what the Cellar Drinks order covers, by Friday 30 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"Nadia, I'm free for the Mara Voss show on 13 November. I'll come in for load-in at 4pm and run sound for the whole night.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-20\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Weekly ops notes: deposits for all three autumn gigs invoiced and paid, water restock for the bar delivered, and the Loft heater still needs a service before the life drawing class returns.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mara Voss live - Main Hall\", \"fields\": {\"date\": \"2026-11-13\", \"room\": \"Main Hall\", \"promoter\": \"Mara Voss\", \"fee\": \"1800\", \"rider_allowance\": \"400\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kite & Anchor autumn showcase\", \"fields\": {\"date\": \"2026-11-07\", \"room\": \"Main Hall\", \"promoter\": \"Kite & Anchor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Tonka Roots live - Main Hall\", \"fields\": {\"date\": \"2026-11-27\", \"room\": \"Main Hall\", \"promoter\": \"Dela Adeyemi\", \"fee\": \"1500\", \"rider_allowance\": \"400\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rider package - Cellar Drinks Co\", \"fields\": {\"supplier\": \"Cellar Drinks Co\", \"item\": \"full rider package\", \"amount\": \"330\", \"for_gig\": \"EV-1\", \"status\": \"confirmed\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"amount\", \"status\"], \"from\": \"Sinead Okoye\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you send Mara Voss her final rider confirmation for the gig on Friday 13 November? It should state the house rider allowance we're offering her and confirm the Cellar Drinks order for the night.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"rider_allowance\", \"value\": \"250\", \"stale\": [\"400\"]},\n    {\"record\": \"EV-3\", \"field\": \"rider_allowance\", \"value\": \"250\", \"stale\": [\"400\"]},\n    {\"message_to\": \"Mara Voss\", \"regarding\": \"EV-1\", \"says\": [\"250\"], \"stale\": [\"400\", \"300\"], \"task\": true}\n  ],\n  \"why\": \"Sinead's amendment replaces the 400 pound rider allowance with 250 pounds from 15 September while leaving the promoter-consent term standing. The two gig records that cited the rule directly (EV-1 and EV-3) still show 400 and must be revised to 250, and the task's message to Mara must carry the new 250 figure, not the stale 400 or her agent's 300. ORD-1 (330 pounds, ordered under the old cap on the Mara booking, two hops from the rule via that booking) now exceeds the new threshold, so changing it needs Sinead's consent and it stays as it is with a consent request; the Kite & Anchor reschedule used only the unchanged consent term, so EV-2 is untouched and KEEP.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Bottled water restock\", \"counterpart\": \"Bruno Kellner\", \"org\": \"Cellar Drinks Co\", \"item\": \"still water cases\", \"unit\": \"cases\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Main Hall bar\"},\n    {\"kind\": \"order\", \"topic\": \"Glassware top-up\", \"counterpart\": \"Bruno Kellner\", \"org\": \"Cellar Drinks Co\", \"item\": \"wine glass crates\", \"unit\": \"crates\", \"values\": [\"3\", \"5\", \"10\"], \"place\": \"Main Hall bar\"},\n    {\"kind\": \"booking\", \"topic\": \"Open-mic night\", \"counterpart\": \"Tom Reilly\", \"org\": \"Kite & Anchor\", \"item\": \"room hire\", \"values\": [\"Back Room\", \"Loft\", \"Main Hall\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"booking\", \"topic\": \"Band rehearsals\", \"counterpart\": \"Dela Adeyemi\", \"org\": \"Tonka Roots\", \"item\": \"rehearsal slot\", \"values\": [\"Studio 2\", \"Loft\", \"Back Room\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"order\", \"topic\": \"Gaffer tape\", \"counterpart\": \"Fen Whittaker\", \"org\": \"Stage Supply Ltd\", \"item\": \"gaffer tape rolls\", \"unit\": \"rolls\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Loft store\"},\n    {\"kind\": \"order\", \"topic\": \"Batteries\", \"counterpart\": \"Fen Whittaker\", \"org\": \"Stage Supply Ltd\", \"item\": \"AA battery packs\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"tech cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"Board meetings\", \"counterpart\": \"Sinead Okoye\", \"org\": \"The Foundry Arts Centre\", \"item\": \"meeting room\", \"values\": [\"Office\", \"Loft\", \"Back Room\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"booking\", \"topic\": \"Yoga classes\", \"counterpart\": \"Hanna Boyd\", \"org\": \"Foundry Community Group\", \"item\": \"studio hire\", \"values\": [\"Studio 2\", \"Back Room\", \"Loft\"], \"place\": \"The Foundry\"},\n    {\"kind\": \"order\", \"topic\": \"Coffee and tea\", \"counterpart\": \"Marta Cruz\", \"org\": \"Bean There Wholesale\", \"item\": \"coffee bean bags\", \"unit\": \"bags\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"green room\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Marta Cruz\", \"org\": \"Bean There Wholesale\", \"item\": \"paper towel packs\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Loft store\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6528,
+    "completion_tokens": 3437,
+    "reasoning_tokens": 109,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02068696,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- at least one REVISE or ASK decision must be two hops from what the change revokes\n- noise topic 'Yoga classes': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Rider allowance cut after finance review",
+  "setting": "The events coordinator at The Foundry Arts Centre whose assistant manages gig bookings, rider requests, and promoter contracts",
+  "owner": "Nadia",
+  "org": "The Foundry Arts Centre",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Note for the file: The Foundry Arts Centre runs two performance spaces, the Main Hall (capacity 300) and the smaller Loft, plus the Back Room and Studio 2 for hire.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Mara Voss (Voss Live)",
+    "text": "Hi Nadia, I'd love to play your Main Hall on Friday 13 November 2026. Our fee is 1800 pounds. Let me know if that works and I'll get the contract signed.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "House rule for promoter gigs: every confirmed gig with an external promoter carries a house rider allowance of 400 pounds. Any rider order above 400 pounds needs written sign-off from Sinead Okoye, our finance lead, before it is placed. And never reschedule a confirmed promoter gig without that promoter's written consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Booking policy: every confirmed booking goes into the schedule within one working day of confirmation, and the 20 percent deposit invoice goes out the same week.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Bruno Kellner (Cellar Drinks Co)",
+    "text": "Current rider price list: still water 9 pounds a case, cola and lemonade 12 pounds a case, tonic 10 pounds a case, and the mixed rider crate for a 300-cap room works out at 330 pounds delivered.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed Mara Voss live in the Main Hall on Friday 13 November 2026, fee 1800 pounds, with the standard house rider allowance of 400 pounds per the house rule. Contract sent and deposit invoiced.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Tom Reilly (Kite & Anchor)",
+    "text": "Nadia, we'd like to book our autumn showcase at The Foundry on Saturday 24 October 2026. Usual deal, Main Hall if it's free.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Kite & Anchor autumn showcase in the Main Hall for Saturday 24 October 2026 and entered it in the schedule the same day with the deposit invoiced, per booking policy.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "quote",
+    "from": "Bruno Kellner (Cellar Drinks Co)",
+    "text": "Quote for a full rider package for a 300-capacity show: 330 pounds delivered, covering water, mixers and soft drinks for the night.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Tom Reilly (Kite & Anchor)",
+    "text": "Nadia, we need to move the showcase. Happy to confirm in writing that Saturday 7 November 2026 works for us instead.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Moved the Kite & Anchor showcase from Saturday 24 October to Saturday 7 November 2026 in the Main Hall, with Tom Reilly's written consent on file as the house rule requires.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e8",
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered the full rider package from Cellar Drinks Co for the Mara Voss gig on 13 November, at Bruno's quoted 330 pounds delivered, which sits inside the 400 pound house allowance on her booking, so no sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e9"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Dela Adeyemi (Tonka Roots)",
+    "text": "Hi Nadia, Tonka Roots can do Friday 27 November 2026 in the Main Hall. Our fee is 1500 pounds. Please confirm the rider terms when you send the contract.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed Tonka Roots live in the Main Hall on Friday 27 November 2026, fee 1500 pounds, rider allowance set at the standard 400 pounds from the house rule. Deposit invoiced.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e3",
+     "e1"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Sinead Okoye",
+    "text": "Nadia, the finance review of rider spending is nearly done. Expect an outcome early next week, likely touching the per-gig allowance.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Sinead Okoye",
+    "text": "Outcome of the finance review, effective 15 September: the house rider allowance for promoter gigs is now 250 pounds, and any rider order above 250 pounds needs my written sign-off before it is placed. Nothing else changes, so you still need the promoter's written consent before moving any confirmed gig. Please apply the new figure going forward.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Mara Voss (Voss Live)",
+    "text": "Nadia, a heads-up from our agent: Voss Live has capped our rider requests at 300 pounds per show for this tour, so please keep ours within that when you plan the night.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-05",
+    "type": "note",
+    "from": "Nadia",
+    "text": "To-do: send Mara Voss her final rider confirmation for the 13 November gig, stating the house allowance and what the Cellar Drinks order covers, by Friday 30 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Priya Raman",
+    "text": "Nadia, I'm free for the Mara Voss show on 13 November. I'll come in for load-in at 4pm and run sound for the whole night.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-20",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Weekly ops notes: deposits for all three autumn gigs invoiced and paid, water restock for the bar delivered, and the Loft heater still needs a service before the life drawing class returns.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Mara Voss live - Main Hall",
+    "fields": {
+     "date": "2026-11-13",
+     "room": "Main Hall",
+     "promoter": "Mara Voss",
+     "fee": "1800",
+     "rider_allowance": "400",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kite & Anchor autumn showcase",
+    "fields": {
+     "date": "2026-11-07",
+     "room": "Main Hall",
+     "promoter": "Kite & Anchor",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Tonka Roots live - Main Hall",
+    "fields": {
+     "date": "2026-11-27",
+     "room": "Main Hall",
+     "promoter": "Dela Adeyemi",
+     "fee": "1500",
+     "rider_allowance": "400",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Rider package - Cellar Drinks Co",
+    "fields": {
+     "supplier": "Cellar Drinks Co",
+     "item": "full rider package",
+     "amount": "330",
+     "for_gig": "EV-1",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "amount",
+     "status"
+    ],
+    "from": "Sinead Okoye",
+    "rule": "e3"
+   }
+  ],
+  "task": "Can you send Mara Voss her final rider confirmation for the gig on Friday 13 November? It should state the house rider allowance we're offering her and confirm the Cellar Drinks order for the night.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "rider_allowance",
+    "value": "250",
+    "stale": [
+     "400"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "rider_allowance",
+    "value": "250",
+    "stale": [
+     "400"
+    ]
+   },
+   {
+    "message_to": "Mara Voss",
+    "regarding": "EV-1",
+    "says": [
+     "250"
+    ],
+    "stale": [
+     "400",
+     "300"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Sinead's amendment replaces the 400 pound rider allowance with 250 pounds from 15 September while leaving the promoter-consent term standing. The two gig records that cited the rule directly (EV-1 and EV-3) still show 400 and must be revised to 250, and the task's message to Mara must carry the new 250 figure, not the stale 400 or her agent's 300. ORD-1 (330 pounds, ordered under the old cap on the Mara booking, two hops from the rule via that booking) now exceeds the new threshold, so changing it needs Sinead's consent and it stays as it is with a consent request; the Kite & Anchor reschedule used only the unchanged consent term, so EV-2 is untouched and KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Bottled water restock",
+    "counterpart": "Bruno Kellner",
+    "org": "Cellar Drinks Co",
+    "item": "still water cases",
+    "unit": "cases",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Main Hall bar"
+   },
+   {
+    "kind": "order",
+    "topic": "Glassware top-up",
+    "counterpart": "Bruno Kellner",
+    "org": "Cellar Drinks Co",
+    "item": "wine glass crates",
+    "unit": "crates",
+    "values": [
+     "3",
+     "5",
+     "10"
+    ],
+    "place": "Main Hall bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "Open-mic night",
+    "counterpart": "Tom Reilly",
+    "org": "Kite & Anchor",
+    "item": "room hire",
+    "values": [
+     "Back Room",
+     "Loft",
+     "Main Hall"
+    ],
+    "place": "The Foundry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Band rehearsals",
+    "counterpart": "Dela Adeyemi",
+    "org": "Tonka Roots",
+    "item": "rehearsal slot",
+    "values": [
+     "Studio 2",
+     "Loft",
+     "Back Room"
+    ],
+    "place": "The Foundry"
+   },
+   {
+    "kind": "order",
+    "topic": "Gaffer tape",
+    "counterpart": "Fen Whittaker",
+    "org": "Stage Supply Ltd",
+    "item": "gaffer tape rolls",
+    "unit": "rolls",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Loft store"
+   },
+   {
+    "kind": "order",
+    "topic": "Batteries",
+    "counterpart": "Fen Whittaker",
+    "org": "Stage Supply Ltd",
+    "item": "AA battery packs",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "tech cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Board meetings",
+    "counterpart": "Sinead Okoye",
+    "org": "The Foundry Arts Centre",
+    "item": "meeting room",
+    "values": [
+     "Office",
+     "Loft",
+     "Back Room"
+    ],
+    "place": "The Foundry"
+   },
+   {
+    "kind": "booking",
+    "topic": "Yoga classes",
+    "counterpart": "Hanna Boyd",
+    "org": "Foundry Community Group",
+    "item": "studio hire",
+    "values": [
+     "Studio 2",
+     "Back Room",
+     "Loft"
+    ],
+    "place": "The Foundry"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee and tea",
+    "counterpart": "Marta Cruz",
+    "org": "Bean There Wholesale",
+    "item": "coffee bean bags",
+    "unit": "bags",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "green room"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Marta Cruz",
+    "org": "Bean There Wholesale",
+    "item": "paper towel packs",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Loft store"
+   }
+  ],
+  "id": "G100-2-05",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment applies going forward from 15 September, so it does not unambiguously revise allowances on previously confirmed bookings or require approval for ORD-1, already placed on 2 September. The stated rule requires sign-off before placing an above-threshold order, not for any change to its amount or status as the consent map specifies. The expected state also omits the consent request claimed by the ASK mark and writer's reasoning.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment applies going forward from 15 September, so it does not unambiguously revise allowances on previously confirmed bookings or require approval for ORD-1, already placed on 2 September. The stated rule requires sign-off before placing an above-threshold order, not for any change to its amount or status as the consent map specifies. The expected state also omits the consent request claimed by the ASK mark and writer's reasoning."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3427,
+    "completion_tokens": 211,
+    "reasoning_tokens": 88,
+    "cached_tokens": 0
+   },
+   "cost": 0.05338,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e62a84af4578e6505ecff8b8d265babd40c3ea818f13337c8f30aa1e873bd685",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state treats EV-3 as REVISE to 250, but EV-3 was confirmed on 12 September, before the amendment's stated effective date of 15 September, and the amendment says only to apply the new figure 'going forward', so the mark is ambiguous. The core meets the tier counts (20 events, 5 decisions, change 36 days before the task day with 4 core events after it), and the change reads as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state treats EV-3 as REVISE to 250, but EV-3 was confirmed on 12 September, before the amendment's stated effective date of 15 September, and the amendment says only to apply the new figure 'going forward', so the mark is ambiguous. The core meets the tier counts (20 events, 5 decisions, change 36 days before the task day with 4 core events after it), and the change reads as an ordinary email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5026,
+    "completion_tokens": 1802,
+    "reasoning_tokens": 1607,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014036,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e62a84af4578e6505ecff8b8d265babd40c3ea818f13337c8f30aa1e873bd685",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment of the house rule cleanly voids the 400-pound allowance on EV-1 and EV-3 (REVISE to 250), pushes ORD-1 (330) over the new 250 sign-off threshold so it needs Sinead's consent (ASK), and leaves the Kite & Anchor reschedule standing since it rests only on the unchanged promoter-consent term (KEEP); the consent map and the 250-not-400/300 message all follow. Minor caveat: the expected final state omits any consent-request entry for ORD-1, so the ASK action itself is not scored, and 'apply going forward' is mildly loose about pre-existing bookings, but the intended reading is clear. Tier 100 counts (20 core events, 5 decisions, change 36 days before the task day with 4 later core events) are met, and the change sits as an ordinary mid-history email with 24 events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment of the house rule cleanly voids the 400-pound allowance on EV-1 and EV-3 (REVISE to 250), pushes ORD-1 (330) over the new 250 sign-off threshold so it needs Sinead's consent (ASK), and leaves the Kite & Anchor reschedule standing since it rests only on the unchanged promoter-consent term (KEEP); the consent map and the 250-not-400/300 message all follow. Minor caveat: the expected final state omits any consent-request entry for ORD-1, so the ASK action itself is not scored, and 'apply going forward' is mildly loose about pre-existing bookings, but the intended reading is clear. Tier 100 counts (20 core events, 5 decisions, change 36 days before the task day with 4 later core events) are met, and the change sits as an ordinary mid-history email with 24 events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3538,
+    "completion_tokens": 1581,
+    "reasoning_tokens": 1331,
+    "cached_tokens": 256
+   },
+   "cost": 0.0336378,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "e62a84af4578e6505ecff8b8d265babd40c3ea818f13337c8f30aa1e873bd685",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,626 @@
+{
+ "id": "G500-1-06",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 5,
+ "setting": "The front-desk clerk at Ironworks Gym whose assistant manages memberships, class bookings, and personal-trainer schedules",
+ "prompt_sha256": "597866a91852f1f05f5711006edd0fbafa4ef3c88e3923e9380d0530fad73aa2",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Marco's new rate\",\n  \"setting\": \"The front-desk clerk at Ironworks Gym whose assistant manages memberships, class bookings, and personal-trainer schedules\",\n  \"owner\": \"Priya\",\n  \"org\": \"Ironworks Gym\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing rule at Ironworks Gym: any change to a confirmed client booking — date, time, trainer or price — needs the client's own agreement first. Ask them, get a yes, then change the record. Unconfirmed packages in draft or pending can be adjusted freely.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: any supplier order over 500 dollars needs sign-off from Marta Voss, our finance lead, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia here. Just confirming I can take personal-training clients Monday and Wednesday mornings, 7 to 11, from July onwards.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Reminder to the desk team: membership renewal notices go out on the first of each month.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I put Nadia Petrov's Monday and Wednesday morning slots, 7:00 to 11:00, into the trainer schedule for July onward.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sam Udall (Fresh Linen Co)\", \"text\": \"Fresh Linen Co quote: gym towels at 3 dollars each for orders of 100 or more, delivered to Ironworks Gym on Millbrook Street.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered 150 gym towels from Fresh Linen Co at 3 dollars each — 450 dollars in total, so no finance sign-off needed — for delivery to the front desk.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"The Ironworks autumn open day will be Saturday 26 September 2026, all day at the gym.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"letter\", \"from\": \"Brighton Physio\", \"text\": \"Brighton Physio referring two members to us for post-injury conditioning work; please coordinate schedules.\", \"role\": \"other\"},\n    {\"id\": \"e10\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked Studio 1 for the open-day intro workshops on 26 September, two sessions at 10:00 and 14:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-5\"},\n    {\"id\": \"e11\", \"date\": \"2026-08-10\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: pay the Fresh Linen Co invoice for the towel order by 30 August.\", \"role\": \"obligation\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"call\", \"from\": \"Priya\", \"text\": \"Called Marta Voss about the autumn budget; she confirmed the towel invoice was paid in full.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Ravi Chandra (Spin Bikes Ltd)\", \"text\": \"Spin Bikes Ltd notice: Studio 3 will be closed for bike servicing the week of 12–16 October; spin classes move to Studio 2 that week.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco Reyes here. For all new personal-training clients my rate is 55 dollars per session, and I'm available Tuesdays and Thursdays 18:00 to 21:00 from now on.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I set up a personal-training package for Dana Whitfield with Marco Reyes: 10 sessions at his 55-dollar rate, Tuesday evenings, marked pending until Dana pays the deposit.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Tomás Ibarra wanted the same deal as Dana, so I booked him 12 sessions with Marco Reyes at the same 55 dollars per session, Thursdays, and confirmed it with him in writing.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Confirmation sent to Tomás Ibarra: 12 personal-training sessions with Marco Reyes, Thursdays at 18:00, at 55 dollars per session. His booking stands as confirmed.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting minutes: demand for personal training is up; Marco and Nadia's books are filling. Open day went well, 40 new membership leads.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Hi Priya, quick heads-up from Marco: my costs went up, so from this month my session rate is 65 dollars per session. Everything else stays the same — I'm still on Tuesdays and Thursdays, 18:00 to 21:00.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Marco Reyes' Tuesday and Thursday evening slots, 18:00 to 21:00, into the trainer schedule for November so members can book against them.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco's Saturday-morning bootcamp is unaffected by any pricing changes on the personal-training side — the drop-in price for bootcamp stays 55 dollars, no booking needed.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia: the kettlebell class has been packed, so the cap on that class is raised to 16 people from November.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the schedule: the Tuesday kettlebell class capacity is now 16, per Nadia's note.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-6\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Desk reminder: October membership stats are due to Marta by the end of the month.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Elena Kovacs came by the front desk asking about starting personal training with Marco in November, Tuesday evenings if possible.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Open-day prep: put up the posters in the lobby and Studio 1 by 20 September.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-12\", \"type\": \"invoice\", \"from\": \"Sam Udall (Fresh Linen Co)\", \"text\": \"Fresh Linen Co invoice 1042: 150 towels at 3 dollars, total 450 dollars, paid.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Dana Whitfield\", \"text\": \"Dana here — I'll pay my deposit for the Marco package this week; Tuesday evenings work great.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Tomás Ibarra\", \"text\": \"Tomás: loving the Thursday sessions with Marco, same time next week please.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"PT package — Dana Whitfield\", \"fields\": {\"client\": \"Dana Whitfield\", \"trainer\": \"Marco Reyes\", \"sessions\": \"10\", \"rate\": \"55\", \"status\": \"pending\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"PT package — Tomás Ibarra\", \"fields\": {\"client\": \"Tomás Ibarra\", \"trainer\": \"Marco Reyes\", \"sessions\": \"12\", \"rate\": \"55\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marco evening slots — November\", \"fields\": {\"trainer\": \"Marco Reyes\", \"days\": \"Tuesday, Thursday\", \"time\": \"18:00-21:00\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Nadia morning slots\", \"fields\": {\"trainer\": \"Nadia Petrov\", \"days\": \"Monday, Wednesday\", \"time\": \"07:00-11:00\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Open-day workshops\", \"fields\": {\"date\": \"2026-09-26\", \"place\": \"Studio 1\", \"status\": \"booked\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Kettlebell class\", \"fields\": {\"day\": \"Tuesday\", \"capacity\": \"16\", \"status\": \"active\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Towel order — Fresh Linen Co\", \"fields\": {\"supplier\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"quantity\": \"150\", \"amount\": \"450\", \"status\": \"paid\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"rate\"], \"from\": \"Tomás Ibarra\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Elena Kovacs is ready to start — please set up six personal-training sessions with Marco for her, Tuesday evenings in November, and send her a message confirming the price per session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"rate\", \"value\": \"65\", \"stale\": [\"55\"]},\n    {\"create\": \"schedule\", \"fields\": {\"client\": \"Elena Kovacs\", \"trainer\": \"Marco Reyes\", \"sessions\": \"6\", \"rate\": \"65\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"55\"]}, \"task\": true},\n    {\"message_to\": \"Elena Kovacs\", \"regarding\": null, \"says\": [\"65 dollars per session with Marco Reyes\"], \"stale\": [\"55 dollars per session\"], \"task\": true}\n  ],\n  \"why\": \"Marco's 10 October email raises his rate to 65 dollars, revoking the 55-dollar fact. Dana's pending package (EV-1) rests directly on it and can be repriced without consent, so it is REVISE; Tomás's confirmed package (EV-2) is two hops away and its price is protected by the client-consent rule, so the assistant must ask Tomás rather than change it. Marco's November evening slots (EV-3) rest on the revoked email but only use his unchanged availability, so KEEP. The new booking and price confirmation for Elena must use the new 65-dollar rate, not the stale 55 or the unrelated 55-dollar bootcamp drop-in.\",\n  \"noise_kit\": [\n    {\"kind\": \"booking\", \"topic\": \"Marco studio slots\", \"counterpart\": \"Marco Reyes\", \"org\": \"Ironworks Gym\", \"item\": \"Studio 2 trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n    {\"kind\": \"order\", \"topic\": \"Towel restock\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"unit\": \"towels\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Ironworks Gym front desk\"},\n    {\"kind\": \"booking\", \"topic\": \"Nadia morning PT\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"morning trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Stretch room\", \"Studio 1\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n    {\"kind\": \"order\", \"topic\": \"Protein bars\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"protein bars box\", \"unit\": \"boxes\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Ironworks Gym front desk\"},\n    {\"kind\": \"booking\", \"topic\": \"Spin classes\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"spin class session\", \"unit\": \"session\", \"values\": [\"Studio 2\", \"Studio 3\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n    {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"surface cleaner bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ironworks Gym storeroom\"},\n    {\"kind\": \"booking\", \"topic\": \"Kettlebell class\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"kettlebell class session\", \"unit\": \"session\", \"values\": [\"Studio 1\", \"Studio 2\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n    {\"kind\": \"order\", \"topic\": \"Water bottles\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"spring water cases\", \"unit\": \"cases\", \"values\": [\"15\", \"25\", \"35\", \"45\"], \"place\": \"Ironworks Gym front desk\"},\n    {\"kind\": \"booking\", \"topic\": \"Physio referrals room\", \"counterpart\": \"Dr. Amara Osei\", \"org\": \"Brighton Physio\", \"item\": \"rehab conditioning session\", \"unit\": \"session\", \"values\": [\"Stretch room\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n    {\"kind\": \"order\", \"topic\": \"Kettlebell equipment\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"kettlebell sets\", \"unit\": \"sets\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Ironworks Gym storeroom\"},\n    {\"kind\": \"booking\", \"topic\": \"Membership intro tours\", \"counterpart\": \"Marta Voss\", \"org\": \"Ironworks Gym\", \"item\": \"new-member intro tour\", \"unit\": \"tour\", \"values\": [\"Main hall\", \"Studio 1\", \"Studio 2\"], \"place\": \"Ironworks Gym, Millbrook Street\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3198,
+    "completion_tokens": 6750,
+    "reasoning_tokens": 2744,
+    "cached_tokens": 0
+   },
+   "cost": 0.0341772,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Marco's new rate\",\n \"setting\": \"The front-desk clerk at Ironworks Gym whose assistant manages memberships, class bookings, and personal-trainer schedules\",\n \"owner\": \"Priya\",\n \"org\": \"Ironworks Gym\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing rule at Ironworks Gym: any change to a confirmed client booking — date, time, trainer or price — needs the client's own agreement first. Ask them, get a yes, then change the record. Unconfirmed packages in draft or pending can be adjusted freely.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: any supplier order over 500 dollars needs sign-off from Marta Voss, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia here. Just confirming I can take personal-training clients Monday and Wednesday mornings, 7 to 11, from July onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Reminder to the desk team: membership renewal notices go out on the first of each month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I put Nadia Petrov's Monday and Wednesday morning slots, 7:00 to 11:00, into the trainer schedule for July onward.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sam Udall (Fresh Linen Co)\", \"text\": \"Fresh Linen Co quote: gym towels at 3 dollars each for orders of 100 or more, delivered to Ironworks Gym on Millbrook Street.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered 150 gym towels from Fresh Linen Co at 3 dollars each — 450 dollars in total, so no finance sign-off needed — for delivery to the front desk.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"The Ironworks autumn open day will be Saturday 26 September 2026, all day at the gym.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"letter\", \"from\": \"Brighton Physio\", \"text\": \"Brighton Physio referring two members to us for post-injury conditioning work; please coordinate schedules.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked Studio 1 for the open-day intro workshops on 26 September, two sessions at 10:00 and 14:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-5\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-10\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: pay the Fresh Linen Co invoice for the towel order by 30 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"call\", \"from\": \"Priya\", \"text\": \"Called Marta Voss about the autumn budget; she confirmed the towel invoice was paid in full.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Ravi Chandra (Spin Bikes Ltd)\", \"text\": \"Spin Bikes Ltd notice: Studio 3 will be closed for bike servicing the week of 12–16 October; spin classes move to Studio 2 that week.\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Open-day prep: put up the posters in the lobby and Studio 1 by 20 September.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco Reyes here. For all new personal-training clients my rate is 55 dollars per session, and I'm available Tuesdays and Thursdays 18:00 to 21:00 from now on.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I set up a personal-training package for Dana Whitfield with Marco Reyes: 10 sessions at his 55-dollar rate, Tuesday evenings, marked pending until Dana pays the deposit.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Tomás Ibarra wanted the same deal as Dana, so I booked him 12 sessions with Marco Reyes at the same 55 dollars per session, Thursdays, and confirmed it with him in writing.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Confirmation sent to Tomás Ibarra: 12 personal-training sessions with Marco Reyes, Thursdays at 18:00, at 55 dollars per session. His booking stands as confirmed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting minutes: demand for personal training is up; Marco and Nadia's books are filling. Open day went well, 40 new membership leads.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Hi Priya, quick heads-up from Marco: my costs went up, so from this month my session rate is 65 dollars per session. Everything else stays the same — I'm still on Tuesdays and Thursdays, 18:00 to 21:00.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Marco Reyes' Tuesday and Thursday evening slots, 18:00 to 21:00, into the trainer schedule for November so members can book against them.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco's Saturday-morning bootcamp is unaffected by any pricing changes on the personal-training side — the drop-in price for bootcamp stays 55 dollars, no booking needed.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia: the kettlebell class has been packed, so the cap on that class is raised to 16 people from November.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the schedule: the Tuesday kettlebell class capacity is now 16, per Nadia's note.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-6\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Desk reminder: October membership stats are due to Marta by the end of the month.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Elena Kovacs came by the front desk asking about starting personal training with Marco in November, Tuesday evenings if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Tomás Ibarra\", \"text\": \"Tomás: loving the Thursday sessions with Marco, same time next week please.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"PT package — Dana Whitfield\", \"fields\": {\"client\": \"Dana Whitfield\", \"trainer\": \"Marco Reyes\", \"sessions\": \"10\", \"rate\": \"55\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"PT package — Tomás Ibarra\", \"fields\": {\"client\": \"Tomás Ibarra\", \"trainer\": \"Marco Reyes\", \"sessions\": \"12\", \"rate\": \"55\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marco evening slots — November\", \"fields\": {\"trainer\": \"Marco Reyes\", \"days\": \"Tuesday, Thursday\", \"time\": \"18:00-21:00\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Nadia morning slots\", \"fields\": {\"trainer\": \"Nadia Petrov\", \"days\": \"Monday, Wednesday\", \"time\": \"07:00-11:00\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Open-day workshops\", \"fields\": {\"date\": \"2026-09-26\", \"place\": \"Studio 1\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Kettlebell class\", \"fields\": {\"day\": \"Tuesday\", \"capacity\": \"16\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Towel order — Fresh Linen Co\", \"fields\": {\"supplier\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"quantity\": \"150\", \"amount\": \"450\", \"status\": \"paid\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"rate\"], \"from\": \"Tomás Ibarra\", \"rule\": \"e1\"}\n ],\n \"task\": \"Elena Kovacs is ready to start — please set up six personal-training sessions with Marco for her, Tuesday evenings in November, and send her a message confirming the price per session.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"rate\", \"value\": \"65\", \"stale\": [\"55\"]},\n  {\"create\": \"schedule\", \"fields\": {\"client\": \"Elena Kovacs\", \"trainer\": \"Marco Reyes\", \"sessions\": \"6\", \"rate\": \"65\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"55\"]}, \"task\": true},\n  {\"message_to\": \"Elena Kovacs\", \"regarding\": null, \"says\": [\"65 dollars per session with Marco Reyes\"], \"stale\": [\"55 dollars per session\"], \"task\": true}\n ],\n \"why\": \"Marco's 10 October email raises his rate to 65 dollars, revoking the 55-dollar fact. Dana's pending package (EV-1) rests directly on it and can be repriced without consent, so it is REVISE; Tomás's confirmed package (EV-2) is two hops away and its price is protected by the client-consent rule, so the assistant must ask Tomás rather than change it. Marco's November evening slots (EV-3) rest on the revoked email but only use his unchanged availability, so KEEP. The new booking and price confirmation for Elena must use the new 65-dollar rate, not the stale 55 or the unrelated 55-dollar bootcamp drop-in.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Marco studio slots\", \"counterpart\": \"Marco Reyes\", \"org\": \"Ironworks Gym\", \"item\": \"Studio 2 trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Towel restock\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"unit\": \"towels\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Nadia morning PT\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"morning trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Stretch room\", \"Studio 1\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Protein bars\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"protein bars box\", \"unit\": \"boxes\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Spin classes\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"spin class session\", \"unit\": \"session\", \"values\": [\"Studio 2\", \"Studio 3\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"surface cleaner bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ironworks Gym storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Kettlebell class\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"kettlebell class session\", \"unit\": \"session\", \"values\": [\"Studio 1\", \"Studio 2\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Water bottles\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"spring water cases\", \"unit\": \"cases\", \"values\": [\"15\", \"25\", \"35\", \"45\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Physio referrals room\", \"counterpart\": \"Dr. Amara Osei\", \"org\": \"Brighton Physio\", \"item\": \"rehab conditioning session\", \"unit\": \"session\", \"values\": [\"Stretch room\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Kettlebell equipment\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"kettlebell sets\", \"unit\": \"sets\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Ironworks Gym storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Membership intro tours\", \"counterpart\": \"Marta Voss\", \"org\": \"Ironworks Gym\", \"item\": \"new-member intro tour\", \"unit\": \"tour\", \"values\": [\"Main hall\", \"Studio 1\", \"Studio 2\"], \"place\": \"Ironworks Gym, Millbrook Street\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7249,
+    "completion_tokens": 3887,
+    "reasoning_tokens": 35,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02367636,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e26 is dated before e25)\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Marco's new rate\",\n \"setting\": \"The front-desk clerk at Ironworks Gym whose assistant manages memberships, class bookings, and personal-trainer schedules\",\n \"owner\": \"Priya\",\n \"org\": \"Ironworks Gym\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing rule at Ironworks Gym: any change to a confirmed client booking — date, time, trainer or price — needs the client's own agreement first. Ask them, get a yes, then change the record. Unconfirmed packages in draft or pending can be adjusted freely.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule: any supplier order over 500 dollars needs sign-off from Marta Voss, our finance lead, before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia here. Just confirming I can take personal-training clients Monday and Wednesday mornings, 7 to 11, from July onwards.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Reminder to the desk team: membership renewal notices go out on the first of each month.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I put Nadia Petrov's Monday and Wednesday morning slots, 7:00 to 11:00, into the trainer schedule for July onward.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sam Udall (Fresh Linen Co)\", \"text\": \"Fresh Linen Co quote: gym towels at 3 dollars each for orders of 100 or more, delivered to Ironworks Gym on Millbrook Street.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I ordered 150 gym towels from Fresh Linen Co at 3 dollars each — 450 dollars in total, so no finance sign-off needed — for delivery to the front desk.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"The Ironworks autumn open day will be Saturday 26 September 2026, all day at the gym.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"letter\", \"from\": \"Brighton Physio\", \"text\": \"Brighton Physio referring two members to us for post-injury conditioning work; please coordinate schedules.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I booked Studio 1 for the open-day intro workshops on 26 September, two sessions at 10:00 and 14:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-5\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-10\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To-do: pay the Fresh Linen Co invoice for the towel order by 30 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"call\", \"from\": \"Priya\", \"text\": \"Called Marta Voss about the autumn budget; she confirmed the towel invoice was paid in full.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Ravi Chandra (Spin Bikes Ltd)\", \"text\": \"Spin Bikes Ltd notice: Studio 3 will be closed for bike servicing the week of 12–16 October; spin classes move to Studio 2 that week.\", \"role\": \"fact\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Open-day prep: put up the posters in the lobby and Studio 1 by 20 September.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco Reyes here. For all new personal-training clients my rate is 55 dollars per session, and I'm available Tuesdays and Thursdays 18:00 to 21:00 from now on.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I set up a personal-training package for Dana Whitfield with Marco Reyes: 10 sessions at his 55-dollar rate, Tuesday evenings, marked pending until Dana pays the deposit.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Tomás Ibarra wanted the same deal as Dana, so I booked him 12 sessions with Marco Reyes at the same 55 dollars per session, Thursdays, and confirmed it with him in writing.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Confirmation sent to Tomás Ibarra: 12 personal-training sessions with Marco Reyes, Thursdays at 18:00, at 55 dollars per session. His booking stands as confirmed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-30\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting minutes: demand for personal training is up; Marco and Nadia's books are filling. Open day went well, 40 new membership leads.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Dana Whitfield\", \"text\": \"Dana here — I'll pay my deposit for the Marco package this week; Tuesday evenings work great.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Hi Priya, quick heads-up from Marco: my costs went up, so from this month my session rate is 65 dollars per session. Everything else stays the same — I'm still on Tuesdays and Thursdays, 18:00 to 21:00.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I scheduled Marco Reyes' Tuesday and Thursday evening slots, 18:00 to 21:00, into the trainer schedule for November so members can book against them.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marco Reyes (trainer)\", \"text\": \"Marco's Saturday-morning bootcamp is unaffected by any pricing changes on the personal-training side — the drop-in price for bootcamp stays 55 dollars, no booking needed.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Nadia Petrov (trainer)\", \"text\": \"Nadia: the kettlebell class has been packed, so the cap on that class is raised to 16 people from November.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I updated the schedule: the Tuesday kettlebell class capacity is now 16, per Nadia's note.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-6\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Desk reminder: October membership stats are due to Marta by the end of the month.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-18\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Elena Kovacs came by the front desk asking about starting personal training with Marco in November, Tuesday evenings if possible.\", \"role\": \"fact\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Tomás Ibarra\", \"text\": \"Tomás: loving the Thursday sessions with Marco, same time next week please.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"PT package — Dana Whitfield\", \"fields\": {\"client\": \"Dana Whitfield\", \"trainer\": \"Marco Reyes\", \"sessions\": \"10\", \"rate\": \"55\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"PT package — Tomás Ibarra\", \"fields\": {\"client\": \"Tomás Ibarra\", \"trainer\": \"Marco Reyes\", \"sessions\": \"12\", \"rate\": \"55\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marco evening slots — November\", \"fields\": {\"trainer\": \"Marco Reyes\", \"days\": \"Tuesday, Thursday\", \"time\": \"18:00-21:00\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Nadia morning slots\", \"fields\": {\"trainer\": \"Nadia Petrov\", \"days\": \"Monday, Wednesday\", \"time\": \"07:00-11:00\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Open-day workshops\", \"fields\": {\"date\": \"2026-09-26\", \"place\": \"Studio 1\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Kettlebell class\", \"fields\": {\"day\": \"Tuesday\", \"capacity\": \"16\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Towel order — Fresh Linen Co\", \"fields\": {\"supplier\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"quantity\": \"150\", \"amount\": \"450\", \"status\": \"paid\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"rate\"], \"from\": \"Tomás Ibarra\", \"rule\": \"e1\"}\n ],\n \"task\": \"Elena Kovacs is ready to start — please set up six personal-training sessions with Marco for her, Tuesday evenings in November, and send her a message confirming the price per session.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"rate\", \"value\": \"65\", \"stale\": [\"55\"]},\n  {\"create\": \"schedule\", \"fields\": {\"client\": \"Elena Kovacs\", \"trainer\": \"Marco Reyes\", \"sessions\": \"6\", \"rate\": \"65\", \"status\": \"booked\"}, \"stale\": {\"rate\": [\"55\"]}, \"task\": true},\n  {\"message_to\": \"Elena Kovacs\", \"regarding\": null, \"says\": [\"65 dollars per session with Marco Reyes\"], \"stale\": [\"55 dollars per session\"], \"task\": true}\n ],\n \"why\": \"Marco's 5 October email raises his rate to 65 dollars, revoking the 55-dollar fact. Dana's pending package (EV-1) rests directly on it and can be repriced without consent, so it is REVISE; Tomás's confirmed package (EV-2) is two hops away and its price is protected by the client-consent rule, so the assistant must ask Tomás rather than change it. Marco's November evening slots (EV-3) rest on the revoked email but only use his unchanged availability, so KEEP. The new booking and price confirmation for Elena must use the new 65-dollar rate, not the stale 55 or the unrelated 55-dollar bootcamp drop-in.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"Marco studio slots\", \"counterpart\": \"Marco Reyes\", \"org\": \"Ironworks Gym\", \"item\": \"Studio 2 trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Towel restock\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"gym towels\", \"unit\": \"towels\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Nadia morning PT\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"morning trainer slot\", \"unit\": \"slot\", \"values\": [\"Studio 2\", \"Stretch room\", \"Studio 1\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Protein bars\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"protein bars box\", \"unit\": \"boxes\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Spin classes\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"spin class session\", \"unit\": \"session\", \"values\": [\"Studio 2\", \"Studio 3\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Sam Udall\", \"org\": \"Fresh Linen Co\", \"item\": \"surface cleaner bottles\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"Ironworks Gym storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Kettlebell class\", \"counterpart\": \"Nadia Petrov\", \"org\": \"Ironworks Gym\", \"item\": \"kettlebell class session\", \"unit\": \"session\", \"values\": [\"Studio 1\", \"Studio 2\", \"Main hall\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Water bottles\", \"counterpart\": \"Lena Cole\", \"org\": \"PeakFuel Snacks\", \"item\": \"spring water cases\", \"unit\": \"cases\", \"values\": [\"15\", \"25\", \"35\", \"45\"], \"place\": \"Ironworks Gym front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"Physio referrals room\", \"counterpart\": \"Dr. Amara Osei\", \"org\": \"Brighton Physio\", \"item\": \"rehab conditioning session\", \"unit\": \"session\", \"values\": [\"Stretch room\", \"Studio 1\", \"Mezzanine floor\"], \"place\": \"Ironworks Gym, Millbrook Street\"},\n  {\"kind\": \"order\", \"topic\": \"Kettlebell equipment\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Spin Bikes Ltd\", \"item\": \"kettlebell sets\", \"unit\": \"sets\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Ironworks Gym storeroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Membership intro tours\", \"counterpart\": \"Marta Voss\", \"org\": \"Ironworks Gym\", \"item\": \"new-member intro tour\", \"unit\": \"tour\", \"values\": [\"Main hall\", \"Studio 1\", \"Studio 2\"], \"place\": \"Ironworks Gym, Millbrook Street\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 11147,
+    "completion_tokens": 4032,
+    "reasoning_tokens": 115,
+    "cached_tokens": 7232
+   },
+   "cost": 0.02510212,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 500: the core has 27 events; need 28–55\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Marco's new rate",
+  "setting": "The front-desk clerk at Ironworks Gym whose assistant manages memberships, class bookings, and personal-trainer schedules",
+  "owner": "Priya",
+  "org": "Ironworks Gym",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Standing rule at Ironworks Gym: any change to a confirmed client booking — date, time, trainer or price — needs the client's own agreement first. Ask them, get a yes, then change the record. Unconfirmed packages in draft or pending can be adjusted freely.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule: any supplier order over 500 dollars needs sign-off from Marta Voss, our finance lead, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-14",
+    "type": "email",
+    "from": "Nadia Petrov (trainer)",
+    "text": "Nadia here. Just confirming I can take personal-training clients Monday and Wednesday mornings, 7 to 11, from July onwards.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Priya",
+    "text": "Reminder to the desk team: membership renewal notices go out on the first of each month.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I put Nadia Petrov's Monday and Wednesday morning slots, 7:00 to 11:00, into the trainer schedule for July onward.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Sam Udall (Fresh Linen Co)",
+    "text": "Fresh Linen Co quote: gym towels at 3 dollars each for orders of 100 or more, delivered to Ironworks Gym on Millbrook Street.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I ordered 150 gym towels from Fresh Linen Co at 3 dollars each — 450 dollars in total, so no finance sign-off needed — for delivery to the front desk.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Priya",
+    "text": "The Ironworks autumn open day will be Saturday 26 September 2026, all day at the gym.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "letter",
+    "from": "Brighton Physio",
+    "text": "Brighton Physio referring two members to us for post-injury conditioning work; please coordinate schedules.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-02",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I booked Studio 1 for the open-day intro workshops on 26 September, two sessions at 10:00 and 14:00.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-10",
+    "type": "task",
+    "from": "Priya",
+    "text": "To-do: pay the Fresh Linen Co invoice for the towel order by 30 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-18",
+    "type": "call",
+    "from": "Priya",
+    "text": "Called Marta Voss about the autumn budget; she confirmed the towel invoice was paid in full.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-02",
+    "type": "notice",
+    "from": "Ravi Chandra (Spin Bikes Ltd)",
+    "text": "Spin Bikes Ltd notice: Studio 3 will be closed for bike servicing the week of 12–16 October; spin classes move to Studio 2 that week.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Priya",
+    "text": "Open-day prep: put up the posters in the lobby and Studio 1 by 20 September.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Marco Reyes (trainer)",
+    "text": "Marco Reyes here. For all new personal-training clients my rate is 55 dollars per session, and I'm available Tuesdays and Thursdays 18:00 to 21:00 from now on.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I set up a personal-training package for Dana Whitfield with Marco Reyes: 10 sessions at his 55-dollar rate, Tuesday evenings, marked pending until Dana pays the deposit.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Tomás Ibarra wanted the same deal as Dana, so I booked him 12 sessions with Marco Reyes at the same 55 dollars per session, Thursdays, and confirmed it with him in writing.",
+    "role": "decision",
+    "rests_on": [
+     "e15",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-26",
+    "type": "email",
+    "from": "Priya",
+    "text": "Confirmation sent to Tomás Ibarra: 12 personal-training sessions with Marco Reyes, Thursdays at 18:00, at 55 dollars per session. His booking stands as confirmed.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-30",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Staff meeting minutes: demand for personal training is up; Marco and Nadia's books are filling. Open day went well, 40 new membership leads.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Dana Whitfield",
+    "text": "Dana here — I'll pay my deposit for the Marco package this week; Tuesday evenings work great.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Marco Reyes (trainer)",
+    "text": "Hi Priya, quick heads-up from Marco: my costs went up, so from this month my session rate is 65 dollars per session. Everything else stays the same — I'm still on Tuesdays and Thursdays, 18:00 to 21:00.",
+    "role": "change",
+    "revokes": [
+     "e14"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I scheduled Marco Reyes' Tuesday and Thursday evening slots, 18:00 to 21:00, into the trainer schedule for November so members can book against them.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Marco Reyes (trainer)",
+    "text": "Marco's Saturday-morning bootcamp is unaffected by any pricing changes on the personal-training side — the drop-in price for bootcamp stays 55 dollars, no booking needed.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Nadia Petrov (trainer)",
+    "text": "Nadia: the kettlebell class has been packed, so the cap on that class is raised to 16 people from November.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-16",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I updated the schedule: the Tuesday kettlebell class capacity is now 16, per Nadia's note.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Priya",
+    "text": "Desk reminder: October membership stats are due to Marta by the end of the month.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-18",
+    "type": "note",
+    "from": "Priya",
+    "text": "Elena Kovacs came by the front desk asking about starting personal training with Marco in November, Tuesday evenings if possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Tomás Ibarra",
+    "text": "Tomás: loving the Thursday sessions with Marco, same time next week please.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "PT package — Dana Whitfield",
+    "fields": {
+     "client": "Dana Whitfield",
+     "trainer": "Marco Reyes",
+     "sessions": "10",
+     "rate": "55",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "PT package — Tomás Ibarra",
+    "fields": {
+     "client": "Tomás Ibarra",
+     "trainer": "Marco Reyes",
+     "sessions": "12",
+     "rate": "55",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Marco evening slots — November",
+    "fields": {
+     "trainer": "Marco Reyes",
+     "days": "Tuesday, Thursday",
+     "time": "18:00-21:00",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Nadia morning slots",
+    "fields": {
+     "trainer": "Nadia Petrov",
+     "days": "Monday, Wednesday",
+     "time": "07:00-11:00",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Open-day workshops",
+    "fields": {
+     "date": "2026-09-26",
+     "place": "Studio 1",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Kettlebell class",
+    "fields": {
+     "day": "Tuesday",
+     "capacity": "16",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Towel order — Fresh Linen Co",
+    "fields": {
+     "supplier": "Fresh Linen Co",
+     "item": "gym towels",
+     "quantity": "150",
+     "amount": "450",
+     "status": "paid"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "rate"
+    ],
+    "from": "Tomás Ibarra",
+    "rule": "e1"
+   }
+  ],
+  "task": "Elena Kovacs is ready to start — please set up six personal-training sessions with Marco for her, Tuesday evenings in November, and send her a message confirming the price per session.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "rate",
+    "value": "65",
+    "stale": [
+     "55"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "client": "Elena Kovacs",
+     "trainer": "Marco Reyes",
+     "sessions": "6",
+     "rate": "65",
+     "status": "booked"
+    },
+    "stale": {
+     "rate": [
+      "55"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Elena Kovacs",
+    "regarding": null,
+    "says": [
+     "65 dollars per session with Marco Reyes"
+    ],
+    "stale": [
+     "55 dollars per session"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Marco's 5 October email raises his rate to 65 dollars, revoking the 55-dollar fact. Dana's pending package (EV-1) rests directly on it and can be repriced without consent, so it is REVISE; Tomás's confirmed package (EV-2) is two hops away and its price is protected by the client-consent rule, so the assistant must ask Tomás rather than change it. Marco's November evening slots (EV-3) rest on the revoked email but only use his unchanged availability, so KEEP. The new booking and price confirmation for Elena must use the new 65-dollar rate, not the stale 55 or the unrelated 55-dollar bootcamp drop-in.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "Marco studio slots",
+    "counterpart": "Marco Reyes",
+    "org": "Ironworks Gym",
+    "item": "Studio 2 trainer slot",
+    "unit": "slot",
+    "values": [
+     "Studio 2",
+     "Studio 1",
+     "Mezzanine floor"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   },
+   {
+    "kind": "order",
+    "topic": "Towel restock",
+    "counterpart": "Sam Udall",
+    "org": "Fresh Linen Co",
+    "item": "gym towels",
+    "unit": "towels",
+    "values": [
+     "100",
+     "150",
+     "200",
+     "250"
+    ],
+    "place": "Ironworks Gym front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Nadia morning PT",
+    "counterpart": "Nadia Petrov",
+    "org": "Ironworks Gym",
+    "item": "morning trainer slot",
+    "unit": "slot",
+    "values": [
+     "Studio 2",
+     "Stretch room",
+     "Studio 1"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   },
+   {
+    "kind": "order",
+    "topic": "Protein bars",
+    "counterpart": "Lena Cole",
+    "org": "PeakFuel Snacks",
+    "item": "protein bars box",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Ironworks Gym front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Spin classes",
+    "counterpart": "Ravi Chandra",
+    "org": "Spin Bikes Ltd",
+    "item": "spin class session",
+    "unit": "session",
+    "values": [
+     "Studio 2",
+     "Studio 3",
+     "Main hall"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Sam Udall",
+    "org": "Fresh Linen Co",
+    "item": "surface cleaner bottles",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "Ironworks Gym storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kettlebell class",
+    "counterpart": "Nadia Petrov",
+    "org": "Ironworks Gym",
+    "item": "kettlebell class session",
+    "unit": "session",
+    "values": [
+     "Studio 1",
+     "Studio 2",
+     "Main hall"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   },
+   {
+    "kind": "order",
+    "topic": "Water bottles",
+    "counterpart": "Lena Cole",
+    "org": "PeakFuel Snacks",
+    "item": "spring water cases",
+    "unit": "cases",
+    "values": [
+     "15",
+     "25",
+     "35",
+     "45"
+    ],
+    "place": "Ironworks Gym front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "Physio referrals room",
+    "counterpart": "Dr. Amara Osei",
+    "org": "Brighton Physio",
+    "item": "rehab conditioning session",
+    "unit": "session",
+    "values": [
+     "Stretch room",
+     "Studio 1",
+     "Mezzanine floor"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   },
+   {
+    "kind": "order",
+    "topic": "Kettlebell equipment",
+    "counterpart": "Ravi Chandra",
+    "org": "Spin Bikes Ltd",
+    "item": "kettlebell sets",
+    "unit": "sets",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Ironworks Gym storeroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "Membership intro tours",
+    "counterpart": "Marta Voss",
+    "org": "Ironworks Gym",
+    "item": "new-member intro tour",
+    "unit": "tour",
+    "values": [
+     "Main hall",
+     "Studio 1",
+     "Studio 2"
+    ],
+    "place": "Ironworks Gym, Millbrook Street"
+   }
+  ],
+  "id": "G500-1-06",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

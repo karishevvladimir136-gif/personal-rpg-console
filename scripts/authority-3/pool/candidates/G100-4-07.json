@@ -1,0 +1,600 @@
+{
+ "id": "G100-4-07",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 6,
+ "setting": "A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings",
+ "prompt_sha256": "356e1233878eef2d6d6b503f51295737edf1f4422f59a429895e7b75f695c010",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Haul-out at Harborline stands\",\n \"setting\": \"A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings\",\n \"owner\": \"Marta\",\n \"org\": \"Windward Sails\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: once a haul-out booking for a client's boat is confirmed, we never move it to another date or another yard without that boat owner's written agreement. The booking stays as made until they say otherwise.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 800 in total needs sign-off from Pieter, our finance lead, before it goes out. Below that I can order on my own judgement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Kestrel is a 34-foot sloop owned by Dana Ortiz. She keeps her at Harborline Marina and her best contact is her email; she is quick to reply. Dana is one of our longest-standing sail clients.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Our autumn travelift schedule for Windward Sails clients: lift slots run Mondays and Thursdays through October, hard-stand is 340 per day, and the week we can offer you opens on Monday 12 October 2026. Boats need a valid insurance certificate on file before lifting.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the seasonal haul-out for Dana Ortiz's sloop Kestrel at Harborline Marina: travelift lift on Monday 12 October 2026, five days on the hard at their daily hard-stand rate of 340. Dana knows the plan.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Fairwind Textiles (Rosa Peeters)\", \"text\": \"Quotation for Dacron sailcloth, weight 8 oz: 96 per metre, sold in 20-metre bolts. Price holds for the season.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered three 20-metre bolts of 8 oz Dacron from Fairwind Textiles at their quoted 96 per metre for the Kestrel mainsail recut. Well under the 800 sign-off line, so no need to bother Pieter.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Re-measured the mainsail as asked: luff 11.6 metres, foot 4.2 metres, leech 12.1 metres. Same numbers as two seasons ago, so use these for the recut.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel mainsail recut in the loft for Tuesday 13 October 2026, the day after the haul-out lift, using the Fairwind Dacron and Dana's measurements (luff 11.6 m, foot 4.2 m). Assigned to Tomas in the loft.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Tomas (loft)\", \"text\": \"Loft floor is clear after the summer rush. I have the Kestrel job on the board for the second week of October; nothing else booked that week so far.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-14\", \"type\": \"letter\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Yard rules reminder: every boat lifted by our travelift must have a current insurance certificate on file with the yard before the lift date. Please make sure your clients' paperwork is in order for the October week.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To do: get Dana Ortiz's insurance certificate for Kestrel to Harborline before 5 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e13\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Insurance certificate for Kestrel is attached — sent it on to the yard office myself this morning. Everything set for the lift?\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-06\", \"type\": \"notice\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"We now run a travelift service for sailmakers' clients from our own yard: lift slots available from 5 October 2026 onward at 290 per day hard-stand. We are three miles up the coast from Harborline and happy to take overflow work. Give us a call if useful.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e15\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Confirming your yard week: Kestrel is on the travelift list for Monday 12 October 2026, five days on the hard. Insurance certificate received, thank you.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"Just to flag again: our travelift still has open slots for the week of Monday 19 October 2026 at 290 per day, if any of your clients' boats need lifting. Easy to add a boat at short notice.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-13\", \"type\": \"call\", \"from\": \"Dana Ortiz\", \"text\": \"Called to say the lift went smoothly this morning and the boat is sitting on the hard. Looking forward to the recut tomorrow.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Pieter (finance)\", \"text\": \"Quarterly books look fine. Fairwind invoice for the three bolts came in as quoted. Nothing needing sign-off this month.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel seasonal haul-out\", \"fields\": {\"boat\": \"Kestrel\", \"client\": \"Dana Ortiz\", \"date\": \"2026-10-12\", \"place\": \"Harborline Marina\", \"hard_days\": \"5\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel mainsail recut\", \"fields\": {\"job\": \"mainsail recut\", \"boat\": \"Kestrel\", \"date\": \"2026-10-13\", \"assigned_to\": \"Tomas\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Dacron for Kestrel recut\", \"fields\": {\"supplier\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz\", \"bolts\": \"3\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Dana Ortiz\", \"fields\": {\"boat\": \"Kestrel\", \"marina\": \"Harborline Marina\", \"since\": \"2021\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Dana Ortiz\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please confirm the haul-out for Kestrel with Harborline Marina now — send them our confirmation of the travelift lift on Monday 12 October and the five days on the hard, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Harborline Marina\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-12\", \"5\"], \"stale\": [\"2026-10-19\", \"2026-10-05\", \"Northquay\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Northquay's notice (e14) is a new fact beside the topic, revoking nothing, so no decision carries a mark and every record stays as it stands. The task is simply to confirm the existing Harborline booking of 12 October 2026 for five hard-stand days, so the expected state is only the confirmation message and the status change on EV-1; the Northquay rates and dates (also floated by the distractor e16) must not be passed off as the plan. The consent fields on EV-1 are untouched by confirming, so no consent request is needed.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Dacron restock\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz bolts\", \"unit\": \"bolts\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"loft\"},\n  {\"kind\": \"order\", \"topic\": \"Thread and needles\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"polyester sail thread spools\", \"unit\": \"spools\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Loft table for client fittings\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"loft cutting table slot\", \"unit\": \"\", \"values\": [\"loft table A\", \"loft table B\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborline measure visits\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"measure visit at the dock\", \"unit\": \"\", \"values\": [\"dock 3\", \"dock 5\", \"dock 7\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Sliders and battens\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"mainsail cars and battens\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Van runs to the marina\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"workshop van run\", \"unit\": \"\", \"values\": [\"van AM\", \"van PM\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"UV edge tape\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"UV-resistant edge tape rolls\", \"unit\": \"rolls\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Sail repair drop-offs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"drop-off appointment\", \"unit\": \"\", \"values\": [\"loft desk\", \"dockside pickup\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Winter covers fabric\", \"counterpart\": \"Bo Lund\", \"org\": \"Northsea Canvas Co.\", \"item\": \"cover canvas metres\", \"unit\": \"metres\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Rig check appointments\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"rig inspection slot\", \"unit\": \"\", \"values\": [\"mast shed\", \"travelift bay\"], \"place\": \"Harborline Marina\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3153,
+    "completion_tokens": 4643,
+    "reasoning_tokens": 1595,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02134132,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Haul-out at Harborline stands\",\n \"setting\": \"A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings\",\n \"owner\": \"Marta\",\n \"org\": \"Windward Sails\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: once a haul-out booking for a client's boat is confirmed, we never move it to another date or another yard without that boat owner's written agreement. The booking stays as made until they say otherwise.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 800 in total needs sign-off from Pieter, our finance lead, before it goes out. Below that I can order on my own judgement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Kestrel is a 34-foot sloop owned by Dana Ortiz. She keeps her at Harborline Marina and her best contact is her email; she is quick to reply. Dana is one of our longest-standing sail clients.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Our autumn travelift schedule for Windward Sails clients: lift slots run Mondays and Thursdays through October, hard-stand is 340 per day, and the week we can offer you opens on Monday 12 October 2026. Boats need a valid insurance certificate on file before lifting.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the seasonal haul-out for Dana Ortiz's sloop Kestrel at Harborline Marina: travelift lift on Monday 12 October 2026, five days on the hard at their daily hard-stand rate of 340. Dana knows the plan.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Fairwind Textiles (Rosa Peeters)\", \"text\": \"Quotation for Dacron sailcloth, weight 8 oz: 96 per metre, sold in 20-metre bolts. Price holds for the season.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered three 20-metre bolts of 8 oz Dacron from Fairwind Textiles at their quoted 96 per metre for the Kestrel mainsail recut. Well under the 800 sign-off line, so no need to bother Pieter.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Re-measured the mainsail as asked: luff 11.6 metres, foot 4.2 metres, leech 12.1 metres. Same numbers as two seasons ago, so use these for the recut.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel mainsail recut in the loft for Tuesday 13 October 2026, the day after the haul-out lift, using the Fairwind Dacron and Dana's measurements (luff 11.6 m, foot 4.2 m). Assigned to Tomas in the loft.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Tomas (loft)\", \"text\": \"Loft floor is clear after the summer rush. I have the Kestrel job on the board for the second week of October; nothing else booked that week so far.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Workshop van service is booked for Thursday 1 October 2026, so the van is off the road that day only. For any marina runs around the haul-out week the van is free as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-14\", \"type\": \"letter\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Yard rules reminder: every boat lifted by our travelift must have a current insurance certificate on file with the yard before the lift date. Please make sure your clients' paperwork is in order for the October week.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To do: get Dana Ortiz's insurance certificate for Kestrel to Harborline before 5 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Insurance certificate for Kestrel is attached — sent it on to the yard office myself this morning. Everything set for the lift?\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-06\", \"type\": \"notice\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"We now run a travelift service for sailmakers' clients from our own yard: lift slots available from 5 October 2026 onward at 290 per day hard-stand. We are three miles up the coast from Harborline and happy to take overflow work. Give us a call if useful.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Confirming your yard week: Kestrel is on the travelift list for Monday 12 October 2026, five days on the hard. Insurance certificate received, thank you.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"Just to flag again: our travelift still has open slots for the week of Monday 19 October 2026 at 290 per day, if any of your clients' boats need lifting. Easy to add a boat at short notice.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-13\", \"type\": \"call\", \"from\": \"Dana Ortiz\", \"text\": \"Called to say the lift went smoothly this morning and the boat is sitting on the hard. Looking forward to the recut tomorrow.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Pieter (finance)\", \"text\": \"Quarterly books look fine. Fairwind invoice for the three bolts came in as quoted. Nothing needing sign-off this month.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-18\", \"type\": \"message\", \"from\": \"Tomas (loft)\", \"text\": \"Kestrel recut went well on Tuesday; sail is flaked and ready to go back on the boat. I left the Fairwind offcuts on the shelf as usual.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel seasonal haul-out\", \"fields\": {\"boat\": \"Kestrel\", \"client\": \"Dana Ortiz\", \"date\": \"2026-10-12\", \"place\": \"Harborline Marina\", \"hard_days\": \"5\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel mainsail recut\", \"fields\": {\"job\": \"mainsail recut\", \"boat\": \"Kestrel\", \"date\": \"2026-10-13\", \"assigned_to\": \"Tomas\", \"status\": \"scheduled\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Dacron for Kestrel recut\", \"fields\": {\"supplier\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz\", \"bolts\": \"3\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Dana Ortiz\", \"fields\": {\"boat\": \"Kestrel\", \"marina\": \"Harborline Marina\", \"since\": \"2021\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Dana Ortiz\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please confirm the haul-out for Kestrel with Harborline Marina now — send them our confirmation of the travelift lift on Monday 12 October and the five days on the hard, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Harborline Marina\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-12\", \"5\"], \"stale\": [\"2026-10-19\", \"2026-10-05\", \"Northquay\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Northquay's notice (e15) is a new fact beside the topic, revoking nothing, so no decision carries a mark and every record stays as it stands. The task is simply to confirm the existing Harborline booking of 12 October 2026 for five hard-stand days, so the expected state is only the confirmation message and the status change on EV-1; the Northquay rates and dates (also floated by the distractor e17) must not be passed off as the plan. The consent fields on EV-1 are untouched by confirming, so no consent request is needed.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Dacron restock\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz bolts\", \"unit\": \"bolts\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"loft\"},\n  {\"kind\": \"order\", \"topic\": \"Thread and needles\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"polyester sail thread spools\", \"unit\": \"spools\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Loft table for client fittings\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"loft cutting table slot\", \"unit\": \"\", \"values\": [\"loft table A\", \"loft table B\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborline measure visits\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"measure visit at the dock\", \"unit\": \"\", \"values\": [\"dock 3\", \"dock 5\", \"dock 7\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Sliders and battens\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"mainsail cars and battens\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Van runs to the marina\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"workshop van run\", \"unit\": \"\", \"values\": [\"van AM\", \"van PM\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"UV edge tape\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"UV-resistant edge tape rolls\", \"unit\": \"rolls\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Sail repair drop-offs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"drop-off appointment\", \"unit\": \"\", \"values\": [\"loft desk\", \"dockside pickup\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Winter covers fabric\", \"counterpart\": \"Bo Lund\", \"org\": \"Northsea Canvas Co.\", \"item\": \"cover canvas metres\", \"unit\": \"metres\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Rig check appointments\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"rig inspection slot\", \"unit\": \"\", \"values\": [\"mast shed\", \"travelift bay\"], \"place\": \"Harborline Marina\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6247,
+    "completion_tokens": 3318,
+    "reasoning_tokens": 104,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01976996,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Haul-out at Harborline stands\",\n \"setting\": \"A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings\",\n \"owner\": \"Marta\",\n \"org\": \"Windward Sails\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: once a haul-out booking for a client's boat is confirmed, we never move it to another date or another yard without that boat owner's written agreement. The booking stays as made until they say otherwise.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 800 in total needs sign-off from Pieter, our finance lead, before it goes out. Below that I can order on my own judgement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Kestrel is a 34-foot sloop owned by Dana Ortiz. She keeps her at Harborline Marina and her best contact is her email; she is quick to reply. Dana is one of our longest-standing sail clients.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Our autumn travelift schedule for Windward Sails clients: lift slots run Mondays and Thursdays through October, hard-stand is 340 per day, and the week we can offer you opens on Monday 12 October 2026. Boats need a valid insurance certificate on file before lifting.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the seasonal haul-out for Dana Ortiz's sloop Kestrel at Harborline Marina: travelift lift on Monday 12 October 2026, five days on the hard at their daily hard-stand rate of 340. Dana knows the plan.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-22\", \"type\": \"quote\", \"from\": \"Fairwind Textiles (Rosa Peeters)\", \"text\": \"Quotation for Dacron sailcloth, weight 8 oz: 96 per metre, sold in 20-metre bolts. Price holds for the season.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered three 20-metre bolts of 8 oz Dacron from Fairwind Textiles at their quoted 96 per metre for the Kestrel mainsail recut. Well under the 800 sign-off line, so no need to bother Pieter.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Re-measured the mainsail as asked: luff 11.6 metres, foot 4.2 metres, leech 12.1 metres. Same numbers as two seasons ago, so use these for the recut.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel mainsail recut in the loft for Tuesday 13 October 2026, the day after the haul-out lift, using the Fairwind Dacron and Dana's measurements (luff 11.6 m, foot 4.2 m). Assigned to Tomas in the loft.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e7\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked a dockside measure visit for Kestrel's new jib at Harborline Marina, dock 5, on Friday 28 August 2026. I will take the tape and Dana's contact details along; she keeps the boat there.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Tomas (loft)\", \"text\": \"Loft floor is clear after the summer rush. I have the Kestrel job on the board for the second week of October; nothing else booked that week so far.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Workshop van service is booked for Thursday 1 October 2026, so the van is off the road that day only. For any marina runs around the haul-out week the van is free as usual.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-14\", \"type\": \"letter\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Yard rules reminder: every boat lifted by our travelift must have a current insurance certificate on file with the yard before the lift date. Please make sure your clients' paperwork is in order for the October week.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-22\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To do: get Dana Ortiz's insurance certificate for Kestrel to Harborline before 5 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Dana Ortiz\", \"text\": \"Insurance certificate for Kestrel is attached — sent it on to the yard office myself this morning. Everything set for the lift?\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-10-06\", \"type\": \"notice\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"We now run a travelift service for sailmakers' clients from our own yard: lift slots available from 5 October 2026 onward at 290 per day hard-stand. We are three miles up the coast from Harborline and happy to take overflow work. Give us a call if useful.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e17\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Harborline Marina (yard office)\", \"text\": \"Confirming your yard week: Kestrel is on the travelift list for Monday 12 October 2026, five days on the hard. Insurance certificate received, thank you.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Northquay Boatyard (office)\", \"text\": \"Just to flag again: our travelift still has open slots for the week of Monday 19 October 2026 at 290 per day, if any of your clients' boats need lifting. Easy to add a boat at short notice.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-13\", \"type\": \"call\", \"from\": \"Dana Ortiz\", \"text\": \"Called to say the lift went smoothly this morning and the boat is sitting on the hard. Looking forward to the recut tomorrow.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Pieter (finance)\", \"text\": \"Quarterly books look fine. Fairwind invoice for the three bolts came in as quoted. Nothing needing sign-off this month.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-18\", \"type\": \"message\", \"from\": \"Tomas (loft)\", \"text\": \"Kestrel recut went well on Tuesday; sail is flaked and ready to go back on the boat. I left the Fairwind offcuts on the shelf as usual.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel seasonal haul-out\", \"fields\": {\"boat\": \"Kestrel\", \"client\": \"Dana Ortiz\", \"date\": \"2026-10-12\", \"place\": \"Harborline Marina\", \"hard_days\": \"5\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel mainsail recut\", \"fields\": {\"job\": \"mainsail recut\", \"boat\": \"Kestrel\", \"date\": \"2026-10-13\", \"assigned_to\": \"Tomas\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kestrel jib measure visit\", \"fields\": {\"job\": \"jib measure\", \"boat\": \"Kestrel\", \"date\": \"2026-08-28\", \"place\": \"Harborline Marina dock 5\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Dacron for Kestrel recut\", \"fields\": {\"supplier\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz\", \"bolts\": \"3\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Dana Ortiz\", \"fields\": {\"boat\": \"Kestrel\", \"marina\": \"Harborline Marina\", \"since\": \"2021\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Dana Ortiz\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please confirm the haul-out for Kestrel with Harborline Marina now — send them our confirmation of the travelift lift on Monday 12 October and the five days on the hard, and mark the booking confirmed on our side.\",\n \"expect\": [\n  {\"message_to\": \"Harborline Marina\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-12\", \"5\"], \"stale\": [\"2026-10-19\", \"2026-10-05\", \"Northquay\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n ],\n \"why\": \"This is a control: Northquay's notice (e16) is a new fact beside the topic, revoking nothing, so no decision carries a mark and every record stays as it stands. The task is simply to confirm the existing Harborline booking of 12 October 2026 for five hard-stand days, so the expected state is only the confirmation message and the status change on EV-1; the Northquay rates and dates (also floated by the distractor e18) must not be passed off as the plan. The consent fields on EV-1 are untouched by confirming, so no consent request is needed.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Dacron restock\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"Dacron 8 oz bolts\", \"unit\": \"bolts\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"loft\"},\n  {\"kind\": \"order\", \"topic\": \"Thread and needles\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"polyester sail thread spools\", \"unit\": \"spools\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Loft table for client fittings\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"loft cutting table slot\", \"unit\": \"\", \"values\": [\"loft table A\", \"loft table B\", \"fitting corner\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborline measure visits\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"measure visit at the dock\", \"unit\": \"\", \"values\": [\"dock 3\", \"dock 5\", \"dock 7\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Sliders and battens\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"mainsail cars and battens\", \"unit\": \"sets\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Van runs to the marina\", \"counterpart\": \"Tomas\", \"org\": \"Windward Sails\", \"item\": \"workshop van run\", \"unit\": \"\", \"values\": [\"van AM\", \"van PM\", \"van all day\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"UV edge tape\", \"counterpart\": \"Rosa Peeters\", \"org\": \"Fairwind Textiles\", \"item\": \"UV-resistant edge tape rolls\", \"unit\": \"rolls\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Sail repair drop-offs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Harborline Marina\", \"item\": \"drop-off appointment\", \"unit\": \"\", \"values\": [\"loft desk\", \"dockside pickup\", \"yard office hand-in\"], \"place\": \"Harborline Marina\"},\n  {\"kind\": \"order\", \"topic\": \"Winter covers fabric\", \"counterpart\": \"Bo Lund\", \"org\": \"Northsea Canvas Co.\", \"item\": \"cover canvas metres\", \"unit\": \"metres\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"loft\"},\n  {\"kind\": \"booking\", \"topic\": \"Rig check appointments\", \"counterpart\": \"Klara Munn\", \"org\": \"Rig & Rail Supply\", \"item\": \"rig inspection slot\", \"unit\": \"\", \"values\": [\"mast shed\", \"travelift bay\", \"hard-stand row A\"], \"place\": \"Harborline Marina\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9573,
+    "completion_tokens": 3718,
+    "reasoning_tokens": 295,
+    "cached_tokens": 6208
+   },
+   "cost": 0.02268428,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: 3 decisions; need 4–10\n- noise topic 'Loft table for client fittings': values needs at least three entries\n- noise topic 'Van runs to the marina': values needs at least three entries\n- noise topic 'Sail repair drop-offs': values needs at least three entries\n- noise topic 'Rig check appointments': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Haul-out at Harborline stands",
+  "setting": "A tailor of sails at Windward Sails whose assistant keeps boat measurements, repair jobs, and seasonal haul-out bookings",
+  "owner": "Marta",
+  "org": "Windward Sails",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the workshop: once a haul-out booking for a client's boat is confirmed, we never move it to another date or another yard without that boat owner's written agreement. The booking stays as made until they say otherwise.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order above 800 in total needs sign-off from Pieter, our finance lead, before it goes out. Below that I can order on my own judgement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "note",
+    "from": "Marta",
+    "text": "Kestrel is a 34-foot sloop owned by Dana Ortiz. She keeps her at Harborline Marina and her best contact is her email; she is quick to reply. Dana is one of our longest-standing sail clients.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Harborline Marina (yard office)",
+    "text": "Our autumn travelift schedule for Windward Sails clients: lift slots run Mondays and Thursdays through October, hard-stand is 340 per day, and the week we can offer you opens on Monday 12 October 2026. Boats need a valid insurance certificate on file before lifting.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the seasonal haul-out for Dana Ortiz's sloop Kestrel at Harborline Marina: travelift lift on Monday 12 October 2026, five days on the hard at their daily hard-stand rate of 340. Dana knows the plan.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-22",
+    "type": "quote",
+    "from": "Fairwind Textiles (Rosa Peeters)",
+    "text": "Quotation for Dacron sailcloth, weight 8 oz: 96 per metre, sold in 20-metre bolts. Price holds for the season.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered three 20-metre bolts of 8 oz Dacron from Fairwind Textiles at their quoted 96 per metre for the Kestrel mainsail recut. Well under the 800 sign-off line, so no need to bother Pieter.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Dana Ortiz",
+    "text": "Re-measured the mainsail as asked: luff 11.6 metres, foot 4.2 metres, leech 12.1 metres. Same numbers as two seasons ago, so use these for the recut.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the Kestrel mainsail recut in the loft for Tuesday 13 October 2026, the day after the haul-out lift, using the Fairwind Dacron and Dana's measurements (luff 11.6 m, foot 4.2 m). Assigned to Tomas in the loft.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e7",
+     "e8"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked a dockside measure visit for Kestrel's new jib at Harborline Marina, dock 5, on Friday 28 August 2026. I will take the tape and Dana's contact details along; she keeps the boat there.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Tomas (loft)",
+    "text": "Loft floor is clear after the summer rush. I have the Kestrel job on the board for the second week of October; nothing else booked that week so far.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Workshop van service is booked for Thursday 1 October 2026, so the van is off the road that day only. For any marina runs around the haul-out week the van is free as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-14",
+    "type": "letter",
+    "from": "Harborline Marina (yard office)",
+    "text": "Yard rules reminder: every boat lifted by our travelift must have a current insurance certificate on file with the yard before the lift date. Please make sure your clients' paperwork is in order for the October week.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-22",
+    "type": "task",
+    "from": "Marta",
+    "text": "To do: get Dana Ortiz's insurance certificate for Kestrel to Harborline before 5 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Dana Ortiz",
+    "text": "Insurance certificate for Kestrel is attached — sent it on to the yard office myself this morning. Everything set for the lift?",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-06",
+    "type": "notice",
+    "from": "Northquay Boatyard (office)",
+    "text": "We now run a travelift service for sailmakers' clients from our own yard: lift slots available from 5 October 2026 onward at 290 per day hard-stand. We are three miles up the coast from Harborline and happy to take overflow work. Give us a call if useful.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Harborline Marina (yard office)",
+    "text": "Confirming your yard week: Kestrel is on the travelift list for Monday 12 October 2026, five days on the hard. Insurance certificate received, thank you.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Northquay Boatyard (office)",
+    "text": "Just to flag again: our travelift still has open slots for the week of Monday 19 October 2026 at 290 per day, if any of your clients' boats need lifting. Easy to add a boat at short notice.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-13",
+    "type": "call",
+    "from": "Dana Ortiz",
+    "text": "Called to say the lift went smoothly this morning and the boat is sitting on the hard. Looking forward to the recut tomorrow.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Pieter (finance)",
+    "text": "Quarterly books look fine. Fairwind invoice for the three bolts came in as quoted. Nothing needing sign-off this month.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-18",
+    "type": "message",
+    "from": "Tomas (loft)",
+    "text": "Kestrel recut went well on Tuesday; sail is flaked and ready to go back on the boat. I left the Fairwind offcuts on the shelf as usual.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Kestrel seasonal haul-out",
+    "fields": {
+     "boat": "Kestrel",
+     "client": "Dana Ortiz",
+     "date": "2026-10-12",
+     "place": "Harborline Marina",
+     "hard_days": "5",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kestrel mainsail recut",
+    "fields": {
+     "job": "mainsail recut",
+     "boat": "Kestrel",
+     "date": "2026-10-13",
+     "assigned_to": "Tomas",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Kestrel jib measure visit",
+    "fields": {
+     "job": "jib measure",
+     "boat": "Kestrel",
+     "date": "2026-08-28",
+     "place": "Harborline Marina dock 5",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Dacron for Kestrel recut",
+    "fields": {
+     "supplier": "Fairwind Textiles",
+     "item": "Dacron 8 oz",
+     "bolts": "3",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Dana Ortiz",
+    "fields": {
+     "boat": "Kestrel",
+     "marina": "Harborline Marina",
+     "since": "2021",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Dana Ortiz",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please confirm the haul-out for Kestrel with Harborline Marina now — send them our confirmation of the travelift lift on Monday 12 October and the five days on the hard, and mark the booking confirmed on our side.",
+  "expect": [
+   {
+    "message_to": "Harborline Marina",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-12",
+     "5"
+    ],
+    "stale": [
+     "2026-10-19",
+     "2026-10-05",
+     "Northquay"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: Northquay's notice (e16) is a new fact beside the topic, revoking nothing, so no decision carries a mark and every record stays as it stands. The task is simply to confirm the existing Harborline booking of 12 October 2026 for five hard-stand days, so the expected state is only the confirmation message and the status change on EV-1; the Northquay rates and dates (also floated by the distractor e18) must not be passed off as the plan. The consent fields on EV-1 are untouched by confirming, so no consent request is needed.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Dacron restock",
+    "counterpart": "Rosa Peeters",
+    "org": "Fairwind Textiles",
+    "item": "Dacron 8 oz bolts",
+    "unit": "bolts",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "order",
+    "topic": "Thread and needles",
+    "counterpart": "Rosa Peeters",
+    "org": "Fairwind Textiles",
+    "item": "polyester sail thread spools",
+    "unit": "spools",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "Loft table for client fittings",
+    "counterpart": "Tomas",
+    "org": "Windward Sails",
+    "item": "loft cutting table slot",
+    "unit": "",
+    "values": [
+     "loft table A",
+     "loft table B",
+     "fitting corner"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "Harborline measure visits",
+    "counterpart": "Dana Ortiz",
+    "org": "Harborline Marina",
+    "item": "measure visit at the dock",
+    "unit": "",
+    "values": [
+     "dock 3",
+     "dock 5",
+     "dock 7"
+    ],
+    "place": "Harborline Marina"
+   },
+   {
+    "kind": "order",
+    "topic": "Sliders and battens",
+    "counterpart": "Klara Munn",
+    "org": "Rig & Rail Supply",
+    "item": "mainsail cars and battens",
+    "unit": "sets",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "Van runs to the marina",
+    "counterpart": "Tomas",
+    "org": "Windward Sails",
+    "item": "workshop van run",
+    "unit": "",
+    "values": [
+     "van AM",
+     "van PM",
+     "van all day"
+    ],
+    "place": "Harborline Marina"
+   },
+   {
+    "kind": "order",
+    "topic": "UV edge tape",
+    "counterpart": "Rosa Peeters",
+    "org": "Fairwind Textiles",
+    "item": "UV-resistant edge tape rolls",
+    "unit": "rolls",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "Sail repair drop-offs",
+    "counterpart": "Dana Ortiz",
+    "org": "Harborline Marina",
+    "item": "drop-off appointment",
+    "unit": "",
+    "values": [
+     "loft desk",
+     "dockside pickup",
+     "yard office hand-in"
+    ],
+    "place": "Harborline Marina"
+   },
+   {
+    "kind": "order",
+    "topic": "Winter covers fabric",
+    "counterpart": "Bo Lund",
+    "org": "Northsea Canvas Co.",
+    "item": "cover canvas metres",
+    "unit": "metres",
+    "values": [
+     "30",
+     "40",
+     "50",
+     "60"
+    ],
+    "place": "loft"
+   },
+   {
+    "kind": "booking",
+    "topic": "Rig check appointments",
+    "counterpart": "Klara Munn",
+    "org": "Rig & Rail Supply",
+    "item": "rig inspection slot",
+    "unit": "",
+    "values": [
+     "mast shed",
+     "travelift bay",
+     "hard-stand row A"
+    ],
+    "place": "Harborline Marina"
+   }
+  ],
+  "id": "G100-4-07",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Northquay notice (E0089) revokes no fact and amends no rule, so no decision is marked and the expected state (confirmation message plus EV-1 status change, with no consent request) follows from the history. The task requires sending a message and changing a record, and it does not name the change. The core has 21 events, 4 decisions, and the change sits 14 days before the task day with 11 events after it, which meets the tier 100 requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Northquay notice (E0089) revokes no fact and amends no rule, so no decision is marked and the expected state (confirmation message plus EV-1 status change, with no consent request) follows from the history. The task requires sending a message and changing a record, and it does not name the change. The core has 21 events, 4 decisions, and the change sits 14 days before the task day with 11 events after it, which meets the tier 100 requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4805,
+    "completion_tokens": 1361,
+    "reasoning_tokens": 1166,
+    "cached_tokens": 0
+   },
+   "cost": 0.001161,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5dc734a50f1c3a52cc961616ed1c53b1504ab51c201d875006558996dc9e68bc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history conflicts on execution dates: e19 reports the lift on 13 October and the recut planned for 14 October, whereas the booking and e21 support 12 and 13 October; the task also asks to confirm an already-completed haul-out on 20 October without explaining retrospective confirmation. Separately, the Dacron order totals 5,760, contradicting its claimed exemption from the 800 sign-off rule. Northquay's notice nevertheless changes nothing, and the core satisfies the tier and concealment requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history conflicts on execution dates: e19 reports the lift on 13 October and the recut planned for 14 October, whereas the booking and e21 support 12 and 13 October; the task also asks to confirm an already-completed haul-out on 20 October without explaining retrospective confirmation. Separately, the Dacron order totals 5,760, contradicting its claimed exemption from the 800 sign-off rule. Northquay's notice nevertheless changes nothing, and the core satisfies the tier and concealment requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3399,
+    "completion_tokens": 320,
+    "reasoning_tokens": 175,
+    "cached_tokens": 0
+   },
+   "cost": 0.05848,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5dc734a50f1c3a52cc961616ed1c53b1504ab51c201d875006558996dc9e68bc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Northquay notice is a new fact revoking nothing, and rule e1 plus the consent map correctly keep the Harborline booking (12 Oct, 5 days) as the plan; the expected confirmation message and status flip follow unambiguously. Tier 100 is met: 21 core events, 4 decisions, change 14 days before the task day with 11 events after it, and the change is an unremarkable mid-history notice, not flagged or last.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Northquay notice is a new fact revoking nothing, and rule e1 plus the consent map correctly keep the Harborline booking (12 Oct, 5 days) as the plan; the expected confirmation message and status flip follow unambiguously. Tier 100 is met: 21 core events, 4 decisions, change 14 days before the task day with 11 events after it, and the change is an unremarkable mid-history notice, not flagged or last."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3500,
+    "completion_tokens": 331,
+    "reasoning_tokens": 178,
+    "cached_tokens": 256
+   },
+   "cost": 0.0147738,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5dc734a50f1c3a52cc961616ed1c53b1504ab51c201d875006558996dc9e68bc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

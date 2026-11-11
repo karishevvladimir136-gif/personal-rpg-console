@@ -1,0 +1,649 @@
+{
+ "id": "G500-2-05",
+ "writer": "glm",
+ "tier": 500,
+ "class": 2,
+ "idx": 4,
+ "setting": "A stonemason at Carrow Restorations whose assistant holds church fabric reports, material orders, and site-visit diaries",
+ "prompt_sha256": "52a09990a9f3d9b9fa8f5c3ef8bf0a27ec5dececdec5d78cbf9bb82807e4c4e0",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Clipsham order under the raised sign-off threshold\",\n  \"setting\": \"A stonemason at Carrow Restorations whose assistant holds church fabric reports, material orders, and site-visit diaries\",\n  \"owner\": \"Tobias\",\n  \"org\": \"Carrow Restorations\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Workshop and yard are at Marleigh Yard; all stone deliveries go there unless a job needs direct-to-site.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Confirming the church is happy for Carrow Restorations to take on the fabric works at St Aldhelm's, Netherby. I am the contact for anything touching the building.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Standing rule from Mira Hall, our finance lead: any materials order over 800 pounds needs her written sign-off before we place it. No exceptions, however small the supplier or routine the purchase.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Tobias\", \"text\": \"Standing rule: once a booking with a client is confirmed in the diary, we do not move its date without that client's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote: six blocks of Bath stone, dressed, delivered to Marleigh Yard, total 1150 pounds, collection or delivery within two weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Booked the first site survey at St Aldhelm's for 24 June, meeting Rev. Peterson at the west door. Entered in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Just to confirm, I finished my college block and I am available for site works from the beginning of September onwards.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The nave is open for weekday works between 08:00 and 16:00; we can store kit in the north porch.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Placed the Bath stone order with June at Bede Stone Supplies, six blocks at 1150 pounds delivered, after Mira signed it off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Invoice for June's lime putty, 640 pounds, now paid in full. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Quote: twenty bags of hydraulic lime at 640 pounds delivered to Marleigh Yard.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Ordered twenty bags of hydraulic lime from LimeWorks at 640 pounds, well under the sign-off threshold, so it went straight out.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Reminder before the autumn works start: I still need to sign off every materials order over 800 pounds before it goes out. Send them to me first.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote for the St Aldhelm's job: Clipsham stone to face the nave south wall, 18 square metres, dressed and delivered, total 1240 pounds. This price holds for orders placed this year.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"minutes\", \"from\": \"Tobias\", \"text\": \"Site meeting minutes: the nave south wall needs full repointing in lime mortar, and the 2024 fabric report already flagged the erosion there. Works to be done in one continuous week.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tobias\", \"text\": \"Change to our ordering rules from today. Stone and lime prices keep climbing and Mira is cutting back to two days a week, so the sign-off threshold moves up from 800 pounds to 1600 pounds. Mira still signs off anything above 1600 pounds. Everything already placed stands as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Raised the Clipsham stone order for St Aldhelm's, 18 square metres at 1240 pounds from Bede Stone Supplies, and held it in the system awaiting Mira's sign-off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled and confirmed with Rev. Peterson the scaffolding put-up and second site visit at St Aldhelm's for 5 November, placed late to allow for Mira's sign-off window on the Clipsham order. The church has the date in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Could I book the last week of October off for a family trip? Happy to be on any works before or after.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled the pointing week on the nave south wall at St Aldhelm's to start 9 November, worked back from the Clipsham order going out after sign-off plus Bede's five working-day delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e15\", \"e21\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"email\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"For planning: our delivery lead time is five working days from order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Price list update: for Clipsham stone orders placed from 1 November the rate rises to 1480 pounds for 18 square metres. Anything ordered before then keeps the current price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Assigned Rowan Fitton to the pointing week at St Aldhelm's as second pair of hands, now that he is available for site works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e15\"], \"record\": \"EV-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Reminder: lime pointing needs temperatures above five degrees; fine for early November but do not let the week slip into deep autumn.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The 2024 fabric report is with the diocese; please send us your updated fabric report on the south wall works by 10 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Invoice for the June Bath stone order, 1150 pounds, settled. Nothing outstanding on your account.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"I am in the office Tuesdays and Wednesdays only from now on; send anything that needs me on those days.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-16\", \"type\": \"call\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Called to say the north porch is still free for kit storage, and to ask that we keep noise down during the 10:30 service if works overlap.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"task\", \"from\": \"Tobias\", \"text\": \"Get the updated fabric report drafted for St Aldhelm's — obligation noted for 10 November.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"St Aldhelm's Church, Netherby\", \"fields\": {\"contact\": \"Rev. Peterson\", \"works\": \"Nave south wall restoration\", \"status\": \"active\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bath stone blocks\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Bath stone blocks\", \"quantity\": \"6\", \"amount\": \"1150\", \"status\": \"placed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hydraulic lime bags\", \"fields\": {\"supplier\": \"LimeWorks\", \"item\": \"Hydraulic lime bags\", \"quantity\": \"20\", \"amount\": \"640\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Clipsham stone for St Aldhelm's\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Clipsham stone square metres\", \"quantity\": \"18\", \"amount\": \"1240\", \"signoff\": \"Mira Hall - pending\", \"status\": \"awaiting_signoff\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"St Aldhelm's scaffolding and second visit\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Nave south wall pointing week\", \"fields\": {\"date\": \"2026-11-09\", \"place\": \"St Aldhelm's Church, Netherby\", \"team\": \"Tobias and Rowan Fitton\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"First site survey St Aldhelm's\", \"fields\": {\"date\": \"2026-06-24\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"done\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rev. Peterson\", \"rule\": \"e4\"}\n  ],\n  \"task\": \"Please get the Clipsham stone order off to June at Bede Stone Supplies today, and set the pointing week in the diary to suit — I want that south wall done before it turns cold.\",\n  \"expect\": [\n    {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"awaiting_signoff\"], \"task\": true},\n    {\"record\": \"ORD-3\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"Mira Hall - pending\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-11-02\", \"stale\": [\"2026-11-09\"], \"task\": true},\n    {\"message_to\": \"June Okafor\", \"regarding\": \"ORD-3\", \"says\": [\"18 square metres of Clipsham stone\", \"1240 pounds\"], \"stale\": [\"1480 pounds\", \"awaiting Mira Hall's sign-off\"], \"task\": true}\n  ],\n  \"why\": \"The rule change (e16) raises the sign-off threshold to 1600 pounds from 2026-09-20, so the 1240-pound Clipsham order (ORD-3) no longer needs Mira's sign-off and should be placed at the quoted 1240 pounds, not the November price-list figure of 1480. The pointing week (EV-3) was dated 9 November only because of the sign-off delay, so with Bede's five-day lead time from an order placed today it moves to 2 November. EV-1 is a confirmed booking with the client and its date may only move with Rev. Peterson's consent under rule e4, so it must stay. The Bath stone order (ORD-1) was placed before the amendment, which leaves standing everything already placed, so it keeps as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"lime putty restock\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"lime putty\", \"unit\": \"buckets\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"rubble stone offcuts\", \"counterpart\": \"June Okafor\", \"org\": \"Bede Stone Supplies\", \"item\": \"rubble stone offcuts\", \"unit\": \"tonnes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"sharp sand for mortar\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"sharp sand\", \"unit\": \"tonnes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"safety goggles restock\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"safety goggles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"replacement chisels\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"replacement chisels\", \"unit\": \"sets\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"yard gravel top-up\", \"counterpart\": \"Fred Nandi\", \"org\": \"Nandi Aggregates\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"5\", \"8\", \"10\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"yard office meeting\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"meeting space\", \"values\": [\"yard office\", \"site hut\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"workshop open day tour\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"yard tour\", \"values\": [\"yard floor\", \"yard office\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"storage bay at the church\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"storage bay\", \"values\": [\"north porch\", \"tower base\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"pew clearance visit\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"clearance visit slot\", \"values\": [\"nave\", \"north aisle\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"scaffold inspection slot\", \"counterpart\": \"Priya Cole\", \"org\": \"Cole Scaffolding\", \"item\": \"scaffold inspection\", \"values\": [\"tower\", \"nave\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for runs\", \"counterpart\": \"Ali Borg\", \"org\": \"Netherby Van Hire\", \"item\": \"van\", \"values\": [\"small van\", \"flatbed\"], \"place\": \"Marleigh Yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3202,
+    "completion_tokens": 9866,
+    "reasoning_tokens": 5608,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04431816,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Clipsham order under the raised sign-off threshold\",\n  \"setting\": \"A stonemason at Carrow Restorations whose assistant holds church fabric reports, material orders, and site-visit diaries\",\n  \"owner\": \"Tobias\",\n  \"org\": \"Carrow Restorations\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Workshop and yard are at Marleigh Yard; all stone deliveries go there unless a job needs direct-to-site.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Confirming the church is happy for Carrow Restorations to take on the fabric works at St Aldhelm's, Netherby. I am the contact for anything touching the building.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Standing rule from Mira Hall, our finance lead: any materials order over 800 pounds needs her written sign-off before we place it. No exceptions, however small the supplier or routine the purchase.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Tobias\", \"text\": \"Standing rule: once a booking with a client is confirmed in the diary, we do not move its date without that client's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote: six blocks of Bath stone, dressed, delivered to Marleigh Yard, total 1150 pounds, collection or delivery within two weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Booked the first site survey at St Aldhelm's for 24 June, meeting Rev. Peterson at the west door. Entered in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Just to confirm, I finished my college block and I am available for site works from the beginning of September onwards.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The nave is open for weekday works between 08:00 and 16:00; we can store kit in the north porch.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Placed the Bath stone order with June at Bede Stone Supplies, six blocks at 1150 pounds delivered, after Mira signed it off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Invoice for June's lime putty, 640 pounds, now paid in full. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Quote: twenty bags of hydraulic lime at 640 pounds delivered to Marleigh Yard.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Ordered twenty bags of hydraulic lime from LimeWorks at 640 pounds, well under the sign-off threshold, so it went straight out.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Reminder before the autumn works start: I still need to sign off every materials order over 800 pounds before it goes out. Send them to me first.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote for the St Aldhelm's job: Clipsham stone to face the nave south wall, 18 square metres, dressed and delivered, total 1240 pounds. This price holds for orders placed this year.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"minutes\", \"from\": \"Tobias\", \"text\": \"Site meeting minutes: the nave south wall needs full repointing in lime mortar, and the 2024 fabric report already flagged the erosion there. Works to be done in one continuous week.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tobias\", \"text\": \"Change to our ordering rules from today. Stone and lime prices keep climbing and Mira is cutting back to two days a week, so the sign-off threshold moves up from 800 pounds to 1600 pounds. Mira still signs off anything above 1600 pounds. Everything already placed stands as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Raised the Clipsham stone order for St Aldhelm's, 18 square metres at 1240 pounds from Bede Stone Supplies, and held it in the system awaiting Mira's sign-off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled and confirmed with Rev. Peterson the scaffolding put-up and second site visit at St Aldhelm's for 5 November, placed late to allow for Mira's sign-off window on the Clipsham order. The church has the date in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Could I book the last week of October off for a family trip? Happy to be on any works before or after.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"For planning: our delivery lead time is five working days from order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled the pointing week on the nave south wall at St Aldhelm's to start 9 November, worked back from the Clipsham order going out after sign-off plus Bede's five working-day delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e15\", \"e20\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Price list update: for Clipsham stone orders placed from 1 November the rate rises to 1480 pounds for 18 square metres. Anything ordered before then keeps the current price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Assigned Rowan Fitton to the pointing week at St Aldhelm's as second pair of hands, now that he is available for site works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e15\"], \"record\": \"EV-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Reminder: lime pointing needs temperatures above five degrees; fine for early November but do not let the week slip into deep autumn.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The 2024 fabric report is with the diocese; please send us your updated fabric report on the south wall works by 10 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Invoice for the June Bath stone order, 1150 pounds, settled. Nothing outstanding on your account.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"I am in the office Tuesdays and Wednesdays only from now on; send anything that needs me on those days.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-16\", \"type\": \"call\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Called to say the north porch is still free for kit storage, and to ask that we keep noise down during the 10:30 service if works overlap.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"task\", \"from\": \"Tobias\", \"text\": \"Get the updated fabric report drafted for St Aldhelm's — obligation noted for 10 November.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"St Aldhelm's Church, Netherby\", \"fields\": {\"contact\": \"Rev. Peterson\", \"works\": \"Nave south wall restoration\", \"status\": \"active\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bath stone blocks\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Bath stone blocks\", \"quantity\": \"6\", \"amount\": \"1150\", \"status\": \"placed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hydraulic lime bags\", \"fields\": {\"supplier\": \"LimeWorks\", \"item\": \"Hydraulic lime bags\", \"quantity\": \"20\", \"amount\": \"640\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Clipsham stone for St Aldhelm's\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Clipsham stone square metres\", \"quantity\": \"18\", \"amount\": \"1240\", \"signoff\": \"Mira Hall - pending\", \"status\": \"awaiting_signoff\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"St Aldhelm's scaffolding and second visit\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Nave south wall pointing week\", \"fields\": {\"date\": \"2026-11-09\", \"place\": \"St Aldhelm's Church, Netherby\", \"team\": \"Tobias and Rowan Fitton\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"First site survey St Aldhelm's\", \"fields\": {\"date\": \"2026-06-24\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"done\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rev. Peterson\", \"rule\": \"e4\"}\n  ],\n  \"task\": \"Please get the Clipsham stone order off to June at Bede Stone Supplies today, and set the pointing week in the diary to suit — I want that south wall done before it turns cold.\",\n  \"expect\": [\n    {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"awaiting_signoff\"], \"task\": true},\n    {\"record\": \"ORD-3\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"Mira Hall - pending\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-11-02\", \"stale\": [\"2026-11-09\"], \"task\": true},\n    {\"message_to\": \"June Okafor\", \"regarding\": \"ORD-3\", \"says\": [\"18 square metres of Clipsham stone\", \"1240 pounds\"], \"stale\": [\"1480 pounds\", \"awaiting Mira Hall's sign-off\"], \"task\": true}\n  ],\n  \"why\": \"The rule change (e16) raises the sign-off threshold to 1600 pounds from 2026-09-20, so the 1240-pound Clipsham order (ORD-3) no longer needs Mira's sign-off and should be placed at the quoted 1240 pounds, not the November price-list figure of 1480. The pointing week (EV-3) was dated 9 November only because of the sign-off delay, so with Bede's five-day lead time from an order placed today it moves to 2 November. EV-1 is a confirmed booking with the client and its date may only move with Rev. Peterson's consent under rule e4, so it must stay. The Bath stone order (ORD-1) was placed before the amendment, which leaves standing everything already placed, so it keeps as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"lime putty restock\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"lime putty\", \"unit\": \"buckets\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"rubble stone offcuts\", \"counterpart\": \"June Okafor\", \"org\": \"Bede Stone Supplies\", \"item\": \"rubble stone offcuts\", \"unit\": \"tonnes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"sharp sand for mortar\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"sharp sand\", \"unit\": \"tonnes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"safety goggles restock\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"safety goggles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"replacement chisels\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"replacement chisels\", \"unit\": \"sets\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"yard gravel top-up\", \"counterpart\": \"Fred Nandi\", \"org\": \"Nandi Aggregates\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"5\", \"8\", \"10\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"yard office meeting\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"meeting space\", \"values\": [\"yard office\", \"site hut\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"workshop open day tour\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"yard tour\", \"values\": [\"yard floor\", \"yard office\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"storage bay at the church\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"storage bay\", \"values\": [\"north porch\", \"tower base\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"pew clearance visit\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"clearance visit slot\", \"values\": [\"nave\", \"north aisle\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"scaffold inspection slot\", \"counterpart\": \"Priya Cole\", \"org\": \"Cole Scaffolding\", \"item\": \"scaffold inspection\", \"values\": [\"tower\", \"nave\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for runs\", \"counterpart\": \"Ali Borg\", \"org\": \"Netherby Van Hire\", \"item\": \"van\", \"values\": [\"small van\", \"flatbed\"], \"place\": \"Marleigh Yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7504,
+    "completion_tokens": 4621,
+    "reasoning_tokens": 363,
+    "cached_tokens": 3200
+   },
+   "cost": 0.02719,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e20: rests_on → e21 must point to an earlier event\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Clipsham order under the raised sign-off threshold\",\n  \"setting\": \"A stonemason at Carrow Restorations whose assistant holds church fabric reports, material orders, and site-visit diaries\",\n  \"owner\": \"Tobias\",\n  \"org\": \"Carrow Restorations\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Workshop and yard are at Marleigh Yard; all stone deliveries go there unless a job needs direct-to-site.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Confirming the church is happy for Carrow Restorations to take on the fabric works at St Aldhelm's, Netherby. I am the contact for anything touching the building.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"policy\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Standing rule from Mira Hall, our finance lead: any materials order over 800 pounds needs her written sign-off before we place it. No exceptions, however small the supplier or routine the purchase.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Tobias\", \"text\": \"Standing rule: once a booking with a client is confirmed in the diary, we do not move its date without that client's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote: six blocks of Bath stone, dressed, delivered to Marleigh Yard, total 1150 pounds, collection or delivery within two weeks of order.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Booked the first site survey at St Aldhelm's for 24 June, meeting Rev. Peterson at the west door. Entered in the diary.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Just to confirm, I finished my college block and I am available for site works from the beginning of September onwards.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-17\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The nave is open for weekday works between 08:00 and 16:00; we can store kit in the north porch.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Placed the Bath stone order with June at Bede Stone Supplies, six blocks at 1150 pounds delivered, after Mira signed it off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Invoice for June's lime putty, 640 pounds, now paid in full. Thank you.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"quote\", \"from\": \"Sam Rennie (LimeWorks)\", \"text\": \"Quote: twenty bags of hydraulic lime at 640 pounds delivered to Marleigh Yard.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Ordered twenty bags of hydraulic lime from LimeWorks at 640 pounds, well under the sign-off threshold, so it went straight out.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"Reminder before the autumn works start: I still need to sign off every materials order over 800 pounds before it goes out. Send them to me first.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e14\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Quote for the St Aldhelm's job: Clipsham stone to face the nave south wall, 18 square metres, dressed and delivered, total 1240 pounds. This price holds for orders placed this year.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"minutes\", \"from\": \"Tobias\", \"text\": \"Site meeting minutes: the nave south wall needs full repointing in lime mortar, and the 2024 fabric report already flagged the erosion there. Works to be done in one continuous week.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tobias\", \"text\": \"Change to our ordering rules from today. Stone and lime prices keep climbing and Mira is cutting back to two days a week, so the sign-off threshold moves up from 800 pounds to 1600 pounds. Mira still signs off anything above 1600 pounds. Everything already placed stands as it is.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Raised the Clipsham stone order for St Aldhelm's, 18 square metres at 1240 pounds from Bede Stone Supplies, and held it in the system awaiting Mira's sign-off under the over-800 rule.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-23\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled and confirmed with Rev. Peterson the scaffolding put-up and second site visit at St Aldhelm's for 5 November, placed late to allow for Mira's sign-off window on the Clipsham order. The church has the date in writing.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e2\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Rowan Fitton\", \"text\": \"Could I book the last week of October off for a family trip? Happy to be on any works before or after.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"For planning: our delivery lead time is five working days from order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Scheduled the pointing week on the nave south wall at St Aldhelm's to start 9 November, worked back from the Clipsham order going out after sign-off plus Bede's five working-day delivery.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e15\", \"e20\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-05\", \"type\": \"quote\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Price list update: for Clipsham stone orders placed from 1 November the rate rises to 1480 pounds for 18 square metres. Anything ordered before then keeps the current price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Tobias\", \"text\": \"Assigned Rowan Fitton to the pointing week at St Aldhelm's as second pair of hands, now that he is available for site works.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e15\"], \"record\": \"EV-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Tobias\", \"text\": \"Reminder: lime pointing needs temperatures above five degrees; fine for early November but do not let the week slip into deep autumn.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"The 2024 fabric report is with the diocese; please send us your updated fabric report on the south wall works by 10 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"June Okafor (Bede Stone Supplies)\", \"text\": \"Invoice for the June Bath stone order, 1150 pounds, settled. Nothing outstanding on your account.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Mira Hall (finance lead)\", \"text\": \"I am in the office Tuesdays and Wednesdays only from now on; send anything that needs me on those days.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-16\", \"type\": \"call\", \"from\": \"Rev. Peterson (St Aldhelm's Church)\", \"text\": \"Called to say the north porch is still free for kit storage, and to ask that we keep noise down during the 10:30 service if works overlap.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"task\", \"from\": \"Tobias\", \"text\": \"Get the updated fabric report drafted for St Aldhelm's — obligation noted for 10 November.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"St Aldhelm's Church, Netherby\", \"fields\": {\"contact\": \"Rev. Peterson\", \"works\": \"Nave south wall restoration\", \"status\": \"active\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bath stone blocks\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Bath stone blocks\", \"quantity\": \"6\", \"amount\": \"1150\", \"status\": \"placed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Hydraulic lime bags\", \"fields\": {\"supplier\": \"LimeWorks\", \"item\": \"Hydraulic lime bags\", \"quantity\": \"20\", \"amount\": \"640\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Clipsham stone for St Aldhelm's\", \"fields\": {\"supplier\": \"Bede Stone Supplies\", \"item\": \"Clipsham stone square metres\", \"quantity\": \"18\", \"amount\": \"1240\", \"signoff\": \"Mira Hall - pending\", \"status\": \"awaiting_signoff\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"St Aldhelm's scaffolding and second visit\", \"fields\": {\"date\": \"2026-11-05\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Nave south wall pointing week\", \"fields\": {\"date\": \"2026-11-09\", \"place\": \"St Aldhelm's Church, Netherby\", \"team\": \"Tobias and Rowan Fitton\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"First site survey St Aldhelm's\", \"fields\": {\"date\": \"2026-06-24\", \"place\": \"St Aldhelm's Church, Netherby\", \"status\": \"done\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Rev. Peterson\", \"rule\": \"e4\"}\n  ],\n  \"task\": \"Please get the Clipsham stone order off to June at Bede Stone Supplies today, and set the pointing week in the diary to suit — I want that south wall done before it turns cold.\",\n  \"expect\": [\n    {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"awaiting_signoff\"], \"task\": true},\n    {\"record\": \"ORD-3\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"Mira Hall - pending\"]},\n    {\"record\": \"EV-3\", \"field\": \"date\", \"value\": \"2026-11-02\", \"stale\": [\"2026-11-09\"], \"task\": true},\n    {\"message_to\": \"June Okafor\", \"regarding\": \"ORD-3\", \"says\": [\"18 square metres of Clipsham stone\", \"1240 pounds\"], \"stale\": [\"1480 pounds\", \"awaiting Mira Hall's sign-off\"], \"task\": true}\n  ],\n  \"why\": \"The rule change (e16) raises the sign-off threshold to 1600 pounds from 2026-09-20, so the 1240-pound Clipsham order (ORD-3) no longer needs Mira's sign-off and should be placed at the quoted 1240 pounds, not the November price-list figure of 1480. The pointing week (EV-3) was dated 9 November only because of the sign-off delay, so with Bede's five-day lead time from an order placed today it moves to 2 November. EV-1 is a confirmed booking with the client and its date may only move with Rev. Peterson's consent under rule e4, so it must stay. The Bath stone order (ORD-1) was placed before the amendment, which leaves standing everything already placed, so it keeps as is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"lime putty restock\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"lime putty\", \"unit\": \"buckets\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"rubble stone offcuts\", \"counterpart\": \"June Okafor\", \"org\": \"Bede Stone Supplies\", \"item\": \"rubble stone offcuts\", \"unit\": \"tonnes\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"sharp sand for mortar\", \"counterpart\": \"Sam Rennie\", \"org\": \"LimeWorks\", \"item\": \"sharp sand\", \"unit\": \"tonnes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"safety goggles restock\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"safety goggles\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"replacement chisels\", \"counterpart\": \"Dana Whitcombe\", \"org\": \"Hardwears Direct\", \"item\": \"replacement chisels\", \"unit\": \"sets\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"order\", \"topic\": \"yard gravel top-up\", \"counterpart\": \"Fred Nandi\", \"org\": \"Nandi Aggregates\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"5\", \"8\", \"10\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"yard office meeting\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"meeting space\", \"values\": [\"yard office\", \"site hut\", \"workshop bench room\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"workshop open day tour\", \"counterpart\": \"Mira Hall\", \"org\": \"Carrow Restorations\", \"item\": \"yard tour\", \"values\": [\"yard floor\", \"yard office\", \"carving workshop\"], \"place\": \"Marleigh Yard\"},\n    {\"kind\": \"booking\", \"topic\": \"storage bay at the church\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"storage bay\", \"values\": [\"north porch\", \"tower base\", \"vestry lobby\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"pew clearance visit\", \"counterpart\": \"Rev. Peterson\", \"org\": \"St Aldhelm's Church\", \"item\": \"clearance visit slot\", \"values\": [\"nave\", \"north aisle\", \"south aisle\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"scaffold inspection slot\", \"counterpart\": \"Priya Cole\", \"org\": \"Cole Scaffolding\", \"item\": \"scaffold inspection\", \"values\": [\"tower\", \"nave\", \"chancel\"], \"place\": \"St Aldhelm's Church, Netherby\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for runs\", \"counterpart\": \"Ali Borg\", \"org\": \"Netherby Van Hire\", \"item\": \"van\", \"values\": [\"small van\", \"flatbed\", \"long-wheelbase van\"], \"place\": \"Marleigh Yard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 11887,
+    "completion_tokens": 4296,
+    "reasoning_tokens": 8,
+    "cached_tokens": 7488
+   },
+   "cost": 0.02700788,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'yard office meeting': values needs at least three entries\n- noise topic 'workshop open day tour': values needs at least three entries\n- noise topic 'storage bay at the church': values needs at least three entries\n- noise topic 'pew clearance visit': values needs at least three entries\n- noise topic 'scaffold inspection slot': values needs at least three entries\n- noise topic 'van hire for runs': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Clipsham order under the raised sign-off threshold",
+  "setting": "A stonemason at Carrow Restorations whose assistant holds church fabric reports, material orders, and site-visit diaries",
+  "owner": "Tobias",
+  "org": "Carrow Restorations",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Tobias",
+    "text": "Workshop and yard are at Marleigh Yard; all stone deliveries go there unless a job needs direct-to-site.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Rev. Peterson (St Aldhelm's Church)",
+    "text": "Confirming the church is happy for Carrow Restorations to take on the fabric works at St Aldhelm's, Netherby. I am the contact for anything touching the building.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "policy",
+    "from": "Mira Hall (finance lead)",
+    "text": "Standing rule from Mira Hall, our finance lead: any materials order over 800 pounds needs her written sign-off before we place it. No exceptions, however small the supplier or routine the purchase.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Tobias",
+    "text": "Standing rule: once a booking with a client is confirmed in the diary, we do not move its date without that client's agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "June Okafor (Bede Stone Supplies)",
+    "text": "Quote: six blocks of Bath stone, dressed, delivered to Marleigh Yard, total 1150 pounds, collection or delivery within two weeks of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Booked the first site survey at St Aldhelm's for 24 June, meeting Rev. Peterson at the west door. Entered in the diary.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Rowan Fitton",
+    "text": "Just to confirm, I finished my college block and I am available for site works from the beginning of September onwards.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-17",
+    "type": "email",
+    "from": "Rev. Peterson (St Aldhelm's Church)",
+    "text": "The nave is open for weekday works between 08:00 and 16:00; we can store kit in the north porch.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Placed the Bath stone order with June at Bede Stone Supplies, six blocks at 1150 pounds delivered, after Mira signed it off under the over-800 rule.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "invoice",
+    "from": "Sam Rennie (LimeWorks)",
+    "text": "Invoice for June's lime putty, 640 pounds, now paid in full. Thank you.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "quote",
+    "from": "Sam Rennie (LimeWorks)",
+    "text": "Quote: twenty bags of hydraulic lime at 640 pounds delivered to Marleigh Yard.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Ordered twenty bags of hydraulic lime from LimeWorks at 640 pounds, well under the sign-off threshold, so it went straight out.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-30",
+    "type": "email",
+    "from": "Mira Hall (finance lead)",
+    "text": "Reminder before the autumn works start: I still need to sign off every materials order over 800 pounds before it goes out. Send them to me first.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-08",
+    "type": "quote",
+    "from": "June Okafor (Bede Stone Supplies)",
+    "text": "Quote for the St Aldhelm's job: Clipsham stone to face the nave south wall, 18 square metres, dressed and delivered, total 1240 pounds. This price holds for orders placed this year.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-15",
+    "type": "minutes",
+    "from": "Tobias",
+    "text": "Site meeting minutes: the nave south wall needs full repointing in lime mortar, and the 2024 fabric report already flagged the erosion there. Works to be done in one continuous week.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Tobias",
+    "text": "Change to our ordering rules from today. Stone and lime prices keep climbing and Mira is cutting back to two days a week, so the sign-off threshold moves up from 800 pounds to 1600 pounds. Mira still signs off anything above 1600 pounds. Everything already placed stands as it is.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Raised the Clipsham stone order for St Aldhelm's, 18 square metres at 1240 pounds from Bede Stone Supplies, and held it in the system awaiting Mira's sign-off under the over-800 rule.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e3"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-23",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Scheduled and confirmed with Rev. Peterson the scaffolding put-up and second site visit at St Aldhelm's for 5 November, placed late to allow for Mira's sign-off window on the Clipsham order. The church has the date in writing.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e2"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Rowan Fitton",
+    "text": "Could I book the last week of October off for a family trip? Happy to be on any works before or after.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "June Okafor (Bede Stone Supplies)",
+    "text": "For planning: our delivery lead time is five working days from order confirmation.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-26",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Scheduled the pointing week on the nave south wall at St Aldhelm's to start 9 November, worked back from the Clipsham order going out after sign-off plus Bede's five working-day delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e15",
+     "e20"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-05",
+    "type": "quote",
+    "from": "June Okafor (Bede Stone Supplies)",
+    "text": "Price list update: for Clipsham stone orders placed from 1 November the rate rises to 1480 pounds for 18 square metres. Anything ordered before then keeps the current price.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-08",
+    "type": "decision",
+    "from": "Tobias",
+    "text": "Assigned Rowan Fitton to the pointing week at St Aldhelm's as second pair of hands, now that he is available for site works.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e15"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Tobias",
+    "text": "Reminder: lime pointing needs temperatures above five degrees; fine for early November but do not let the week slip into deep autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Rev. Peterson (St Aldhelm's Church)",
+    "text": "The 2024 fabric report is with the diocese; please send us your updated fabric report on the south wall works by 10 November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-12",
+    "type": "invoice",
+    "from": "June Okafor (Bede Stone Supplies)",
+    "text": "Invoice for the June Bath stone order, 1150 pounds, settled. Nothing outstanding on your account.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Mira Hall (finance lead)",
+    "text": "I am in the office Tuesdays and Wednesdays only from now on; send anything that needs me on those days.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-16",
+    "type": "call",
+    "from": "Rev. Peterson (St Aldhelm's Church)",
+    "text": "Called to say the north porch is still free for kit storage, and to ask that we keep noise down during the 10:30 service if works overlap.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-20",
+    "type": "task",
+    "from": "Tobias",
+    "text": "Get the updated fabric report drafted for St Aldhelm's — obligation noted for 10 November.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "St Aldhelm's Church, Netherby",
+    "fields": {
+     "contact": "Rev. Peterson",
+     "works": "Nave south wall restoration",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Bath stone blocks",
+    "fields": {
+     "supplier": "Bede Stone Supplies",
+     "item": "Bath stone blocks",
+     "quantity": "6",
+     "amount": "1150",
+     "status": "placed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Hydraulic lime bags",
+    "fields": {
+     "supplier": "LimeWorks",
+     "item": "Hydraulic lime bags",
+     "quantity": "20",
+     "amount": "640",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Clipsham stone for St Aldhelm's",
+    "fields": {
+     "supplier": "Bede Stone Supplies",
+     "item": "Clipsham stone square metres",
+     "quantity": "18",
+     "amount": "1240",
+     "signoff": "Mira Hall - pending",
+     "status": "awaiting_signoff"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "St Aldhelm's scaffolding and second visit",
+    "fields": {
+     "date": "2026-11-05",
+     "place": "St Aldhelm's Church, Netherby",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Nave south wall pointing week",
+    "fields": {
+     "date": "2026-11-09",
+     "place": "St Aldhelm's Church, Netherby",
+     "team": "Tobias and Rowan Fitton",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "First site survey St Aldhelm's",
+    "fields": {
+     "date": "2026-06-24",
+     "place": "St Aldhelm's Church, Netherby",
+     "status": "done"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Rev. Peterson",
+    "rule": "e4"
+   }
+  ],
+  "task": "Please get the Clipsham stone order off to June at Bede Stone Supplies today, and set the pointing week in the diary to suit — I want that south wall done before it turns cold.",
+  "expect": [
+   {
+    "record": "ORD-3",
+    "field": "status",
+    "value": "placed",
+    "stale": [
+     "awaiting_signoff"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "signoff",
+    "value": "not required",
+    "stale": [
+     "Mira Hall - pending"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "date",
+    "value": "2026-11-02",
+    "stale": [
+     "2026-11-09"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "June Okafor",
+    "regarding": "ORD-3",
+    "says": [
+     "18 square metres of Clipsham stone",
+     "1240 pounds"
+    ],
+    "stale": [
+     "1480 pounds",
+     "awaiting Mira Hall's sign-off"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The rule change (e16) raises the sign-off threshold to 1600 pounds from 2026-09-20, so the 1240-pound Clipsham order (ORD-3) no longer needs Mira's sign-off and should be placed at the quoted 1240 pounds, not the November price-list figure of 1480. The pointing week (EV-3) was dated 9 November only because of the sign-off delay, so with Bede's five-day lead time from an order placed today it moves to 2 November. EV-1 is a confirmed booking with the client and its date may only move with Rev. Peterson's consent under rule e4, so it must stay. The Bath stone order (ORD-1) was placed before the amendment, which leaves standing everything already placed, so it keeps as is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "lime putty restock",
+    "counterpart": "Sam Rennie",
+    "org": "LimeWorks",
+    "item": "lime putty",
+    "unit": "buckets",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "rubble stone offcuts",
+    "counterpart": "June Okafor",
+    "org": "Bede Stone Supplies",
+    "item": "rubble stone offcuts",
+    "unit": "tonnes",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "sharp sand for mortar",
+    "counterpart": "Sam Rennie",
+    "org": "LimeWorks",
+    "item": "sharp sand",
+    "unit": "tonnes",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "safety goggles restock",
+    "counterpart": "Dana Whitcombe",
+    "org": "Hardwears Direct",
+    "item": "safety goggles",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "replacement chisels",
+    "counterpart": "Dana Whitcombe",
+    "org": "Hardwears Direct",
+    "item": "replacement chisels",
+    "unit": "sets",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "order",
+    "topic": "yard gravel top-up",
+    "counterpart": "Fred Nandi",
+    "org": "Nandi Aggregates",
+    "item": "gravel",
+    "unit": "tonnes",
+    "values": [
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "yard office meeting",
+    "counterpart": "Mira Hall",
+    "org": "Carrow Restorations",
+    "item": "meeting space",
+    "values": [
+     "yard office",
+     "site hut",
+     "workshop bench room"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "workshop open day tour",
+    "counterpart": "Mira Hall",
+    "org": "Carrow Restorations",
+    "item": "yard tour",
+    "values": [
+     "yard floor",
+     "yard office",
+     "carving workshop"
+    ],
+    "place": "Marleigh Yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "storage bay at the church",
+    "counterpart": "Rev. Peterson",
+    "org": "St Aldhelm's Church",
+    "item": "storage bay",
+    "values": [
+     "north porch",
+     "tower base",
+     "vestry lobby"
+    ],
+    "place": "St Aldhelm's Church, Netherby"
+   },
+   {
+    "kind": "booking",
+    "topic": "pew clearance visit",
+    "counterpart": "Rev. Peterson",
+    "org": "St Aldhelm's Church",
+    "item": "clearance visit slot",
+    "values": [
+     "nave",
+     "north aisle",
+     "south aisle"
+    ],
+    "place": "St Aldhelm's Church, Netherby"
+   },
+   {
+    "kind": "booking",
+    "topic": "scaffold inspection slot",
+    "counterpart": "Priya Cole",
+    "org": "Cole Scaffolding",
+    "item": "scaffold inspection",
+    "values": [
+     "tower",
+     "nave",
+     "chancel"
+    ],
+    "place": "St Aldhelm's Church, Netherby"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire for runs",
+    "counterpart": "Ali Borg",
+    "org": "Netherby Van Hire",
+    "item": "van",
+    "values": [
+     "small van",
+     "flatbed",
+     "long-wheelbase van"
+    ],
+    "place": "Marleigh Yard"
+   }
+  ],
+  "id": "G500-2-05",
+  "tier": 500,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

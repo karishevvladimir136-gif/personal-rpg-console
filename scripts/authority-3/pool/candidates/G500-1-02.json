@@ -1,0 +1,636 @@
+{
+ "id": "G500-1-02",
+ "writer": "glm",
+ "tier": 500,
+ "class": 1,
+ "idx": 1,
+ "setting": "An optometrist at Clearview Eye Care whose assistant manages sight-test diaries, lens orders, and recall reminders",
+ "prompt_sha256": "b5bd482ae1a14f7378e76cac61e0c02b6d5b58a3d75814d1cfc9d0ac826d7d90",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Progressive lens price rise at Clearview\",\n \"setting\": \"An optometrist at Clearview Eye Care whose assistant manages sight-test diaries, lens orders, and recall reminders\",\n \"owner\": \"Nadia\",\n \"org\": \"Clearview Eye Care\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: once a sight-test or fitting appointment is confirmed with a client, it may only be moved or cancelled with that client's agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: where a client has paid a deposit on a confirmed package price, that price may only be changed with the client's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: any supplier order over 500 in total needs sign-off from our finance lead Priya Nair before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Clinic opening note: reception is covered by Tom Whitfield on weekdays from 08:30, testing rooms one and two are available all day, and the dispensary closes at 17:00.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab price list for Clearview Eye Care: Hi-Index progressive lenses at 145 per pair, single-vision CR-39 lenses at 38 per pair, and a standing lead time of 5 working days on all lens orders.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-09\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team meeting minutes: we will keep Harborview Optical Lab as our main lens supplier, Tom will handle recall reminders, and Priya Nair will review supplier invoices monthly.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-16\", \"type\": \"note\", \"from\": \"Tom Whitfield\", \"text\": \"Recall list note: 84 patients are due for their annual sight-test recall in November, and reminder letters will go out in October.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-24\", \"type\": \"task\", \"from\": \"Priya Nair\", \"text\": \"Pay Harborview Optical Lab invoice HV-2291 for 912 covering the July standing lens order by 2026-08-07.\", \"role\": \"obligation\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ana Pritchard asked to move her confirmed sight test from 2026-08-12, so with her agreement I have rescheduled her to 2026-08-19 at 14:30.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Nadia is on holiday from 2026-08-24 to 2026-08-28; Tom will run the diary and refer anything unusual to Priya Nair.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Tom Whitfield\", \"text\": \"Frame stock note: we are well stocked on standard frames; only the titanium range is running low.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Booking confirmation requested: Marcus Bell will come in for a full sight test on 2026-09-03 at 10:00.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-03\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Sight test outcome for Marcus Bell: he now needs progressive lenses in both eyes, Hi-Index recommended, with his usual frame style.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Placed the standing monthly order with Harborview Optical Lab for 12 pairs of single-vision CR-39 lenses at 38 per pair, as we do each month.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Quoted Marcus Bell a full package of 250: Hi-Index progressive lenses at 145 per pair from Harborview, his frame at 60, and fitting at 45.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Prepared the lens order for Marcus Bell ready to send to Harborview Optical Lab on the quoted package of 250, using the 145 per pair Hi-Index progressive lenses.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Dolores Trent\", \"text\": \"Dolores Trent writes: please go ahead with the premium lens package you described, I have paid the 60 deposit today.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-09\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Dolores Trent's package at a total price of 260, based on the 145 per pair Hi-Index progressive lenses from Harborview with anti-reflective coating, and logged her 60 deposit.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e17\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab confirms our current price list remains in force: Hi-Index progressive lenses at 145 per pair and single-vision CR-39 at 38 per pair.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Marcus Bell's fitting appointment for 2026-10-21 at 11:00, allowing for Harborview's 5 working day lead time on the lens order once it is sent.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e16\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Invoice HV-2318 for 456 covering the September standing order of single-vision CR-39 lenses, due in 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab price update: from 25 September our Hi-Index progressive lenses will be 175 per pair. Our lead times and all other prices, including single-vision CR-39 lenses, are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Tom Whitfield\", \"text\": \"Notice: the November recall reminder letters are queued to print in the first week of October.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"quote\", \"from\": \"Kira Vance (Lenstock Direct)\", \"text\": \"Lenstock Direct can supply Hi-Index progressive lenses at 165 per pair with a 7 day lead time if you would like to compare suppliers.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Tom Whitfield\", \"text\": \"Marcus Bell called asking when his glasses order will go in; I told him we would place it shortly.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Ellis May (Rowan Frame Company)\", \"text\": \"Rowan Frame Company autumn catalogue is out; our titanium range is available for restocking orders.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Reorder the contact lens trial packs from our supplier by 2026-10-30 so we do not run short.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Tom Whitfield\", \"text\": \"Dolores Trent called asking when her glasses will arrive; her order is still with the supplier.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lens order - Marcus Bell\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Hi-Index progressive lenses\", \"lens_price\": \"145\", \"frame\": \"60\", \"fitting\": \"45\", \"total\": \"250\", \"status\": \"ready\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Package - Dolores Trent\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Hi-Index progressive lenses with anti-reflective coating\", \"price\": \"260\", \"deposit\": \"60\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing order - single-vision lenses\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Single-vision CR-39 lenses\", \"quantity\": \"12\", \"unit_price\": \"38\", \"status\": \"active\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Fitting appointment - Marcus Bell\", \"fields\": {\"date\": \"2026-10-21\", \"time\": \"11:00\", \"client\": \"Marcus Bell\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sight test - Ana Pritchard\", \"fields\": {\"date\": \"2026-08-19\", \"time\": \"14:30\", \"client\": \"Ana Pritchard\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-2\", \"fields\": [\"price\"], \"from\": \"Dolores Trent\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Marcus Bell's lens order to Harborview Optical Lab today and reply to him with the final total he will pay.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"lens_price\", \"value\": \"175\", \"stale\": [\"145\", \"165\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"280\", \"stale\": [\"250\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"ready\"], \"task\": true},\n  {\"message_to\": \"Marcus Bell\", \"regarding\": \"ORD-1\", \"says\": [\"280\"], \"stale\": [\"250\", \"145\", \"165\"], \"task\": true}\n ],\n \"why\": \"The price update from Harborview makes the 145 per pair progressive lens figure stale, so Marcus's order and total must be revised to 175 and 280 before it is sent, and his message must carry the new total rather than the quoted 250 or Lenstock's 165. Dolores Trent paid a deposit on a confirmed price, so her package at 260 stays as it is and requires her consent under the deposit rule; the single-vision standing order and the fitting appointment use parts of the old fact the update leaves standing, so they are kept.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"contact lens solution\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"multi-purpose contact lens solution\", \"unit\": \"boxes\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"trial contact lens packs\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"daily trial contact lens packs\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"lens cleaning wipes\", \"counterpart\": \"Kira Vance\", \"org\": \"Lenstock Direct\", \"item\": \"lens cleaning wipes\", \"unit\": \"cartons\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Ravi Shah\", \"org\": \"PrintPost Local\", \"item\": \"printed appointment cards\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"8\"], \"place\": \"Clearview Eye Care reception\"},\n  {\"kind\": \"order\", \"topic\": \"contact lens cases\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"spare contact lens cases\", \"unit\": \"packs\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"waiting room coffee\", \"counterpart\": \"Marta Cole\", \"org\": \"Beanline Wholesale\", \"item\": \"filter coffee and tea\", \"unit\": \"cases\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Clearview Eye Care waiting room\"},\n  {\"kind\": \"order\", \"topic\": \"OCT dye supplies\", \"counterpart\": \"Dev Patel\", \"org\": \"Medisupplies Group\", \"item\": \"eye dye and OCT paper\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Clearview Eye Care testing room 1\"},\n  {\"kind\": \"order\", \"topic\": \"frame restocking\", \"counterpart\": \"Ellis May\", \"org\": \"Rowan Frame Company\", \"item\": \"titanium frame range units\", \"unit\": \"frames\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"booking\", \"topic\": \"dispensary recheck slots\", \"counterpart\": \"Tom Whitfield\", \"org\": \"Clearview Eye Care\", \"item\": \"dispensary recheck appointments\", \"unit\": \"\", \"values\": [\"Testing room 1\", \"Testing room 2\", \"Dispensary bay\"], \"place\": \"Clearview Eye Care\"},\n  {\"kind\": \"booking\", \"topic\": \"home visit runs\", \"counterpart\": \"Greta Hall\", \"org\": \"Larchwood Care Home\", \"item\": \"home sight-test visits\", \"unit\": \"\", \"values\": [\"Larchwood common room\", \"Larchwood quiet lounge\"], \"place\": \"Larchwood Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"orthoptic follow-ups\", \"counterpart\": \"Nadia\", \"org\": \"Clearview Eye Care\", \"item\": \"orthoptic follow-up appointments\", \"unit\": \"\", \"values\": [\"Testing room 1\", \"Testing room 2\"], \"place\": \"Clearview Eye Care\"},\n  {\"kind\": \"booking\", \"topic\": \"student shadowing sessions\", \"counterpart\": \"Priya Nair\", \"org\": \"Clearview Eye Care\", \"item\": \"student shadowing sessions\", \"unit\": \"\", \"values\": [\"Seminar room\", \"Testing room 2\"], \"place\": \"Clearview Eye Care\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3199,
+    "completion_tokens": 9461,
+    "reasoning_tokens": 5525,
+    "cached_tokens": 0
+   },
+   "cost": 0.046107,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Progressive lens price rise at Clearview\",\n \"setting\": \"An optometrist at Clearview Eye Care whose assistant manages sight-test diaries, lens orders, and recall reminders\",\n \"owner\": \"Nadia\",\n \"org\": \"Clearview Eye Care\",\n \"now\": \"2026-10-15\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: once a sight-test or fitting appointment is confirmed with a client, it may only be moved or cancelled with that client's agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: where a client has paid a deposit on a confirmed package price, that price may only be changed with the client's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Standing instruction: any supplier order over 500 in total needs sign-off from our finance lead Priya Nair before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Clinic opening note: reception is covered by Tom Whitfield on weekdays from 08:30, testing rooms one and two are available all day, and the dispensary closes at 17:00.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab price list for Clearview Eye Care: Hi-Index progressive lenses at 145 per pair, single-vision CR-39 lenses at 38 per pair, and a standing lead time of 5 working days on all lens orders.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-09\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Team meeting minutes: we will keep Harborview Optical Lab as our main lens supplier, Tom will handle recall reminders, and Priya Nair will review supplier invoices monthly.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-16\", \"type\": \"note\", \"from\": \"Tom Whitfield\", \"text\": \"Recall list note: 84 patients are due for their annual sight-test recall in November, and reminder letters will go out in October.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-24\", \"type\": \"task\", \"from\": \"Priya Nair\", \"text\": \"Pay Harborview Optical Lab invoice HV-2291 for 912 covering the July standing lens order by 2026-08-07.\", \"role\": \"obligation\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ana Pritchard asked to move her confirmed sight test from 2026-08-12, so with her agreement I have rescheduled her to 2026-08-19 at 14:30.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Nadia is on holiday from 2026-08-24 to 2026-08-28; Tom will run the diary and refer anything unusual to Priya Nair.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Tom Whitfield\", \"text\": \"Frame stock note: we are well stocked on standard frames; only the titanium range is running low.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Booking confirmation requested: Marcus Bell will come in for a full sight test on 2026-09-03 at 10:00.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-03\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Sight test outcome for Marcus Bell: he now needs progressive lenses in both eyes, Hi-Index recommended, with his usual frame style.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Placed the standing monthly order with Harborview Optical Lab for 12 pairs of single-vision CR-39 lenses at 38 per pair, as we do each month.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Quoted Marcus Bell a full package of 250: Hi-Index progressive lenses at 145 per pair from Harborview, his frame at 60, and fitting at 45.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Prepared the lens order for Marcus Bell ready to send to Harborview Optical Lab on the quoted package of 250, using the 145 per pair Hi-Index progressive lenses.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Dolores Trent\", \"text\": \"Dolores Trent writes: please go ahead with the premium lens package you described, I have paid the 60 deposit today.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-09\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed Dolores Trent's package at a total price of 260, based on the 145 per pair Hi-Index progressive lenses from Harborview with anti-reflective coating, and logged her 60 deposit.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e17\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab confirms our current price list remains in force: Hi-Index progressive lenses at 145 per pair and single-vision CR-39 at 38 per pair.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Marcus Bell's fitting appointment for 2026-10-21 at 11:00, allowing for Harborview's 5 working day lead time on the lens order once it is sent.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e16\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Invoice HV-2318 for 456 covering the September standing order of single-vision CR-39 lenses, due in 30 days.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Sam Royle (Harborview Optical Lab)\", \"text\": \"Harborview Optical Lab price update: from 25 September our Hi-Index progressive lenses will be 175 per pair. Our lead times and all other prices, including single-vision CR-39 lenses, are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"notice\", \"from\": \"Tom Whitfield\", \"text\": \"Notice: the November recall reminder letters are queued to print in the first week of October.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-28\", \"type\": \"quote\", \"from\": \"Kira Vance (Lenstock Direct)\", \"text\": \"Lenstock Direct can supply Hi-Index progressive lenses at 165 per pair with a 7 day lead time if you would like to compare suppliers.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Tom Whitfield\", \"text\": \"Marcus Bell called asking when his glasses order will go in; I told him we would place it shortly.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Ellis May (Rowan Frame Company)\", \"text\": \"Rowan Frame Company autumn catalogue is out; our titanium range is available for restocking orders.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"Reorder the contact lens trial packs from our supplier by 2026-10-30 so we do not run short.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Tom Whitfield\", \"text\": \"Dolores Trent called asking when her glasses will arrive; her order is still with the supplier.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client quote - Marcus Bell\", \"fields\": {\"client\": \"Marcus Bell\", \"item\": \"Hi-Index progressive lens package\", \"lens_price\": \"145\", \"total\": \"250\", \"status\": \"quoted\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Lens order - Marcus Bell\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Hi-Index progressive lenses\", \"lens_price\": \"145\", \"frame\": \"60\", \"fitting\": \"45\", \"total\": \"250\", \"status\": \"ready\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Package - Dolores Trent\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Hi-Index progressive lenses with anti-reflective coating\", \"price\": \"260\", \"deposit\": \"60\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Standing order - single-vision lenses\", \"fields\": {\"supplier\": \"Harborview Optical Lab\", \"item\": \"Single-vision CR-39 lenses\", \"quantity\": \"12\", \"unit_price\": \"38\", \"status\": \"active\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Fitting appointment - Marcus Bell\", \"fields\": {\"date\": \"2026-10-21\", \"time\": \"11:00\", \"client\": \"Marcus Bell\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Sight test - Ana Pritchard\", \"fields\": {\"date\": \"2026-08-19\", \"time\": \"14:30\", \"client\": \"Ana Pritchard\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-2\", \"fields\": [\"price\"], \"from\": \"Dolores Trent\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Marcus Bell's lens order to Harborview Optical Lab today and reply to him with the final total he will pay.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"lens_price\", \"value\": \"175\", \"stale\": [\"145\", \"165\"]},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"280\", \"stale\": [\"250\"]},\n  {\"record\": \"ORD-1\", \"field\": \"lens_price\", \"value\": \"175\", \"stale\": [\"145\", \"165\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"280\", \"stale\": [\"250\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"ready\"], \"task\": true},\n  {\"message_to\": \"Marcus Bell\", \"regarding\": \"ORD-1\", \"says\": [\"280\"], \"stale\": [\"250\", \"145\", \"165\"], \"task\": true}\n ],\n \"why\": \"The price update from Harborview makes the 145 per pair progressive lens figure stale, so Marcus's quote (CL-1), his order (ORD-1) and its total must be revised to 175 and 280 before it is sent, and his message must carry the new total rather than the quoted 250 or Lenstock's 165. Dolores Trent paid a deposit on a confirmed price, so her package at 260 stays as it is and requires her consent under the deposit rule; the single-vision standing order and the fitting appointment use parts of the old fact the update leaves standing, so they are kept.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"contact lens solution\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"multi-purpose contact lens solution\", \"unit\": \"boxes\", \"values\": [\"6\", \"12\", \"24\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"trial contact lens packs\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"daily trial contact lens packs\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"lens cleaning wipes\", \"counterpart\": \"Kira Vance\", \"org\": \"Lenstock Direct\", \"item\": \"lens cleaning wipes\", \"unit\": \"cartons\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"appointment cards\", \"counterpart\": \"Ravi Shah\", \"org\": \"PrintPost Local\", \"item\": \"printed appointment cards\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"8\"], \"place\": \"Clearview Eye Care reception\"},\n  {\"kind\": \"order\", \"topic\": \"contact lens cases\", \"counterpart\": \"Sam Royle\", \"org\": \"Harborview Optical Lab\", \"item\": \"spare contact lens cases\", \"unit\": \"packs\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"order\", \"topic\": \"waiting room coffee\", \"counterpart\": \"Marta Cole\", \"org\": \"Beanline Wholesale\", \"item\": \"filter coffee and tea\", \"unit\": \"cases\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Clearview Eye Care waiting room\"},\n  {\"kind\": \"order\", \"topic\": \"OCT dye supplies\", \"counterpart\": \"Dev Patel\", \"org\": \"Medisupplies Group\", \"item\": \"eye dye and OCT paper\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Clearview Eye Care testing room 1\"},\n  {\"kind\": \"order\", \"topic\": \"frame restocking\", \"counterpart\": \"Ellis May\", \"org\": \"Rowan Frame Company\", \"item\": \"titanium frame range units\", \"unit\": \"frames\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Clearview Eye Care dispensary\"},\n  {\"kind\": \"booking\", \"topic\": \"dispensary recheck slots\", \"counterpart\": \"Tom Whitfield\", \"org\": \"Clearview Eye Care\", \"item\": \"dispensary recheck appointments\", \"unit\": \"\", \"values\": [\"Testing room 1\", \"Testing room 2\", \"Dispensary bay\"], \"place\": \"Clearview Eye Care\"},\n  {\"kind\": \"booking\", \"topic\": \"home visit runs\", \"counterpart\": \"Greta Hall\", \"org\": \"Larchwood Care Home\", \"item\": \"home sight-test visits\", \"unit\": \"\", \"values\": [\"Larchwood common room\", \"Larchwood quiet lounge\", \"Larchwood upstairs lounge\"], \"place\": \"Larchwood Care Home\"},\n  {\"kind\": \"booking\", \"topic\": \"orthoptic follow-ups\", \"counterpart\": \"Nadia\", \"org\": \"Clearview Eye Care\", \"item\": \"orthoptic follow-up appointments\", \"unit\": \"\", \"values\": [\"Testing room 1\", \"Testing room 2\", \"Dispensary bay\"], \"place\": \"Clearview Eye Care\"},\n  {\"kind\": \"booking\", \"topic\": \"student shadowing sessions\", \"counterpart\": \"Priya Nair\", \"org\": \"Clearview Eye Care\", \"item\": \"student shadowing sessions\", \"unit\": \"\", \"values\": [\"Seminar room\", \"Testing room 2\", \"Testing room 1\"], \"place\": \"Clearview Eye Care\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7253,
+    "completion_tokens": 4249,
+    "reasoning_tokens": 144,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02527476,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e15: a touched decision must name the workplace record it set («record»)\n- e15 is REVISE: expect must set a field of None to its new value, with the stale value(s)\n- noise topic 'home visit runs': values needs at least three entries\n- noise topic 'orthoptic follow-ups': values needs at least three entries\n- noise topic 'student shadowing sessions': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Progressive lens price rise at Clearview",
+  "setting": "An optometrist at Clearview Eye Care whose assistant manages sight-test diaries, lens orders, and recall reminders",
+  "owner": "Nadia",
+  "org": "Clearview Eye Care",
+  "now": "2026-10-15",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing instruction: once a sight-test or fitting appointment is confirmed with a client, it may only be moved or cancelled with that client's agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing instruction: where a client has paid a deposit on a confirmed package price, that price may only be changed with the client's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Standing instruction: any supplier order over 500 in total needs sign-off from our finance lead Priya Nair before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Clinic opening note: reception is covered by Tom Whitfield on weekdays from 08:30, testing rooms one and two are available all day, and the dispensary closes at 17:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Sam Royle (Harborview Optical Lab)",
+    "text": "Harborview Optical Lab price list for Clearview Eye Care: Hi-Index progressive lenses at 145 per pair, single-vision CR-39 lenses at 38 per pair, and a standing lead time of 5 working days on all lens orders.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-09",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Team meeting minutes: we will keep Harborview Optical Lab as our main lens supplier, Tom will handle recall reminders, and Priya Nair will review supplier invoices monthly.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-16",
+    "type": "note",
+    "from": "Tom Whitfield",
+    "text": "Recall list note: 84 patients are due for their annual sight-test recall in November, and reminder letters will go out in October.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-24",
+    "type": "task",
+    "from": "Priya Nair",
+    "text": "Pay Harborview Optical Lab invoice HV-2291 for 912 covering the July standing lens order by 2026-08-07.",
+    "role": "obligation"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ana Pritchard asked to move her confirmed sight test from 2026-08-12, so with her agreement I have rescheduled her to 2026-08-19 at 14:30.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-12",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Nadia is on holiday from 2026-08-24 to 2026-08-28; Tom will run the diary and refer anything unusual to Priya Nair.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-14",
+    "type": "note",
+    "from": "Tom Whitfield",
+    "text": "Frame stock note: we are well stocked on standard frames; only the titanium range is running low.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Booking confirmation requested: Marcus Bell will come in for a full sight test on 2026-09-03 at 10:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-03",
+    "type": "call",
+    "from": "Nadia",
+    "text": "Sight test outcome for Marcus Bell: he now needs progressive lenses in both eyes, Hi-Index recommended, with his usual frame style.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Placed the standing monthly order with Harborview Optical Lab for 12 pairs of single-vision CR-39 lenses at 38 per pair, as we do each month.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Quoted Marcus Bell a full package of 250: Hi-Index progressive lenses at 145 per pair from Harborview, his frame at 60, and fitting at 45.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e13"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Prepared the lens order for Marcus Bell ready to send to Harborview Optical Lab on the quoted package of 250, using the 145 per pair Hi-Index progressive lenses.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Dolores Trent",
+    "text": "Dolores Trent writes: please go ahead with the premium lens package you described, I have paid the 60 deposit today.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-09",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed Dolores Trent's package at a total price of 260, based on the 145 per pair Hi-Index progressive lenses from Harborview with anti-reflective coating, and logged her 60 deposit.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e17",
+     "e2"
+    ],
+    "record": "ORD-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Sam Royle (Harborview Optical Lab)",
+    "text": "Harborview Optical Lab confirms our current price list remains in force: Hi-Index progressive lenses at 145 per pair and single-vision CR-39 at 38 per pair.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked Marcus Bell's fitting appointment for 2026-10-21 at 11:00, allowing for Harborview's 5 working day lead time on the lens order once it is sent.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e16"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "invoice",
+    "from": "Sam Royle (Harborview Optical Lab)",
+    "text": "Invoice HV-2318 for 456 covering the September standing order of single-vision CR-39 lenses, due in 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Sam Royle (Harborview Optical Lab)",
+    "text": "Harborview Optical Lab price update: from 25 September our Hi-Index progressive lenses will be 175 per pair. Our lead times and all other prices, including single-vision CR-39 lenses, are unchanged.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-24",
+    "type": "notice",
+    "from": "Tom Whitfield",
+    "text": "Notice: the November recall reminder letters are queued to print in the first week of October.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-28",
+    "type": "quote",
+    "from": "Kira Vance (Lenstock Direct)",
+    "text": "Lenstock Direct can supply Hi-Index progressive lenses at 165 per pair with a 7 day lead time if you would like to compare suppliers.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Tom Whitfield",
+    "text": "Marcus Bell called asking when his glasses order will go in; I told him we would place it shortly.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Ellis May (Rowan Frame Company)",
+    "text": "Rowan Frame Company autumn catalogue is out; our titanium range is available for restocking orders.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-09",
+    "type": "task",
+    "from": "Nadia",
+    "text": "Reorder the contact lens trial packs from our supplier by 2026-10-30 so we do not run short.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-13",
+    "type": "message",
+    "from": "Tom Whitfield",
+    "text": "Dolores Trent called asking when her glasses will arrive; her order is still with the supplier.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Client quote - Marcus Bell",
+    "fields": {
+     "client": "Marcus Bell",
+     "item": "Hi-Index progressive lens package",
+     "lens_price": "145",
+     "total": "250",
+     "status": "quoted"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Lens order - Marcus Bell",
+    "fields": {
+     "supplier": "Harborview Optical Lab",
+     "item": "Hi-Index progressive lenses",
+     "lens_price": "145",
+     "frame": "60",
+     "fitting": "45",
+     "total": "250",
+     "status": "ready"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Package - Dolores Trent",
+    "fields": {
+     "supplier": "Harborview Optical Lab",
+     "item": "Hi-Index progressive lenses with anti-reflective coating",
+     "price": "260",
+     "deposit": "60",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Standing order - single-vision lenses",
+    "fields": {
+     "supplier": "Harborview Optical Lab",
+     "item": "Single-vision CR-39 lenses",
+     "quantity": "12",
+     "unit_price": "38",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Fitting appointment - Marcus Bell",
+    "fields": {
+     "date": "2026-10-21",
+     "time": "11:00",
+     "client": "Marcus Bell",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Sight test - Ana Pritchard",
+    "fields": {
+     "date": "2026-08-19",
+     "time": "14:30",
+     "client": "Ana Pritchard",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-2",
+    "fields": [
+     "price"
+    ],
+    "from": "Dolores Trent",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Marcus Bell's lens order to Harborview Optical Lab today and reply to him with the final total he will pay.",
+  "expect": [
+   {
+    "record": "CL-1",
+    "field": "lens_price",
+    "value": "175",
+    "stale": [
+     "145",
+     "165"
+    ]
+   },
+   {
+    "record": "CL-1",
+    "field": "total",
+    "value": "280",
+    "stale": [
+     "250"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "lens_price",
+    "value": "175",
+    "stale": [
+     "145",
+     "165"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "280",
+    "stale": [
+     "250"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "ordered",
+    "stale": [
+     "ready"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marcus Bell",
+    "regarding": "ORD-1",
+    "says": [
+     "280"
+    ],
+    "stale": [
+     "250",
+     "145",
+     "165"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The price update from Harborview makes the 145 per pair progressive lens figure stale, so Marcus's quote (CL-1), his order (ORD-1) and its total must be revised to 175 and 280 before it is sent, and his message must carry the new total rather than the quoted 250 or Lenstock's 165. Dolores Trent paid a deposit on a confirmed price, so her package at 260 stays as it is and requires her consent under the deposit rule; the single-vision standing order and the fitting appointment use parts of the old fact the update leaves standing, so they are kept.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "contact lens solution",
+    "counterpart": "Sam Royle",
+    "org": "Harborview Optical Lab",
+    "item": "multi-purpose contact lens solution",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "12",
+     "24"
+    ],
+    "place": "Clearview Eye Care dispensary"
+   },
+   {
+    "kind": "order",
+    "topic": "trial contact lens packs",
+    "counterpart": "Sam Royle",
+    "org": "Harborview Optical Lab",
+    "item": "daily trial contact lens packs",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Clearview Eye Care dispensary"
+   },
+   {
+    "kind": "order",
+    "topic": "lens cleaning wipes",
+    "counterpart": "Kira Vance",
+    "org": "Lenstock Direct",
+    "item": "lens cleaning wipes",
+    "unit": "cartons",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Clearview Eye Care dispensary"
+   },
+   {
+    "kind": "order",
+    "topic": "appointment cards",
+    "counterpart": "Ravi Shah",
+    "org": "PrintPost Local",
+    "item": "printed appointment cards",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "8"
+    ],
+    "place": "Clearview Eye Care reception"
+   },
+   {
+    "kind": "order",
+    "topic": "contact lens cases",
+    "counterpart": "Sam Royle",
+    "org": "Harborview Optical Lab",
+    "item": "spare contact lens cases",
+    "unit": "packs",
+    "values": [
+     "15",
+     "30",
+     "45"
+    ],
+    "place": "Clearview Eye Care dispensary"
+   },
+   {
+    "kind": "order",
+    "topic": "waiting room coffee",
+    "counterpart": "Marta Cole",
+    "org": "Beanline Wholesale",
+    "item": "filter coffee and tea",
+    "unit": "cases",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "Clearview Eye Care waiting room"
+   },
+   {
+    "kind": "order",
+    "topic": "OCT dye supplies",
+    "counterpart": "Dev Patel",
+    "org": "Medisupplies Group",
+    "item": "eye dye and OCT paper",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Clearview Eye Care testing room 1"
+   },
+   {
+    "kind": "order",
+    "topic": "frame restocking",
+    "counterpart": "Ellis May",
+    "org": "Rowan Frame Company",
+    "item": "titanium frame range units",
+    "unit": "frames",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Clearview Eye Care dispensary"
+   },
+   {
+    "kind": "booking",
+    "topic": "dispensary recheck slots",
+    "counterpart": "Tom Whitfield",
+    "org": "Clearview Eye Care",
+    "item": "dispensary recheck appointments",
+    "unit": "",
+    "values": [
+     "Testing room 1",
+     "Testing room 2",
+     "Dispensary bay"
+    ],
+    "place": "Clearview Eye Care"
+   },
+   {
+    "kind": "booking",
+    "topic": "home visit runs",
+    "counterpart": "Greta Hall",
+    "org": "Larchwood Care Home",
+    "item": "home sight-test visits",
+    "unit": "",
+    "values": [
+     "Larchwood common room",
+     "Larchwood quiet lounge",
+     "Larchwood upstairs lounge"
+    ],
+    "place": "Larchwood Care Home"
+   },
+   {
+    "kind": "booking",
+    "topic": "orthoptic follow-ups",
+    "counterpart": "Nadia",
+    "org": "Clearview Eye Care",
+    "item": "orthoptic follow-up appointments",
+    "unit": "",
+    "values": [
+     "Testing room 1",
+     "Testing room 2",
+     "Dispensary bay"
+    ],
+    "place": "Clearview Eye Care"
+   },
+   {
+    "kind": "booking",
+    "topic": "student shadowing sessions",
+    "counterpart": "Priya Nair",
+    "org": "Clearview Eye Care",
+    "item": "student shadowing sessions",
+    "unit": "",
+    "values": [
+     "Seminar room",
+     "Testing room 2",
+     "Testing room 1"
+    ],
+    "place": "Clearview Eye Care"
+   }
+  ],
+  "id": "G500-1-02",
+  "tier": 500,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

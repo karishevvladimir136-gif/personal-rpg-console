@@ -57,6 +57,42 @@ command). Everything below was decided on the 20 developer scenarios only; no te
    cache only between calls with the same thinking settings, so C's read pays in full there.)
 4. **Spend reserve for #6** is $150 less #6's spend, taken as the larger of what #6 last reported and what the key
    shows (its fall since $280.55, less AUTHORITY_2's $12.34 and this stage's own spend).
-5. **The bare backend fails on the developer set.** Haiku, four arms, all 20: A succeeded end to end on 0 of 15
-   non-control scenarios, with a stale act on 10; B and B′ succeeded on most; C with Haiku's thinking-off index on few.
-   Arm A alone for DeepSeek, Sol and Opus on all 20: see the table below. No knob was changed after these runs.
+5. **The bare backend fails on the developer set** (rerun after the generator fix in 7; non-control = 15 scenarios
+   of classes 1–3, controls = 5):
+
+   | family · arm | end-to-end success (non-control) | controls | stale act | propagation |
+   |---|---|---|---|---|
+   | Haiku · A | 1/15 | 5/5 | 9/15 | 19/51 |
+   | Haiku · B | 7/15 | 5/5 | 5/15 | 38/51 |
+   | Haiku · B′ | 9/15 | 4/5 | 5/15 | 41/51 |
+   | Haiku · C | 4/15 | 5/5 | 8/15 | 24/51 |
+   | DeepSeek · A | 1/15 | 5/5 | 9/15 | 19/51 |
+   | Sol · A | 12/15 | 5/5 | 2/15 | 46/51 |
+   | Opus · A | 8/15 | 5/5 | 3/15 | 44/51 |
+
+   The bare backend fails on some scenarios in every family, as the stage requires. Sol searches its memory 2–13 times a run
+   and is near the ceiling in A; DeepSeek and Haiku almost never search and act on the first ten results. No knob was
+   changed for this: the tuning target was met with the knobs as first set.
+6. **Calibration for the projection:** all four arms on three developer scenarios (one per tier, class 1) for each
+   family (`devfull`); cost per unit at 100 / 500 / 1,000 events: DeepSeek $0.12 / $0.17 / $0.23, Sol $0.14 / $0.33 /
+   $0.50, Opus $0.50 / $0.81 / $1.17 (judging included).
+7. **Fixes found on developer data, before the freeze:** a noise thread's move notice could fall before the task's
+   day while its follow-up decision fell after, leaving a record that disagreed with the history (Sol rightly
+   «corrected» two such records and was scored as interfering) — the follow-up now lands the same day; the noise's
+   standing instruction no longer says a person «has moved on» (it contradicted later core e-mails); recipients match
+   through the person–organisation pairs in the history's own sender lines; a message's `regarding` tag is not
+   required; a message to a party named in a touched record is not unnecessary; the judge sees each value with the
+   record and field it belongs to; an empty search no longer ends a unit; the layer's scope takes in everything one
+   correction revokes once any of it is relevant; the writer spec asks for noise items that recur.
+8. **The developer set** was written in this session (the planner's side, with three helper agents of the same
+   family), never shown to the test writers; the test set is checked for overlap with it at the test freeze.
+
+## Amendment before admission (2026-11-11 ≈ 00:50 UTC), the rater view
+The first 97 ratings (34 candidates) were taken on a view of each candidate that listed the expected state's explicit
+entries but not the parts implied by the marks: a consent request on every ASK record, and every KEEP record left as it
+is. Astra read the missing consent requests as an omission («the expected state omits consent requests …») and marked
+candidates «no» for it; the scorer requires those requests, so the view misstated the expected state. The raters were
+stopped, the view now lists the implied entries, those 97 ratings are kept in each candidate's file as
+`ratings_discarded_v1` (published, not used), and every candidate is rated afresh on the corrected view. Nothing the
+writers see changed; the writers' prompts keep their hashes. The spec freeze was re-taken for this one change
+(`pool3.py`; the earlier file's hash for it is in this commit's history).

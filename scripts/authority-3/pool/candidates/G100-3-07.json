@@ -1,0 +1,662 @@
+{
+ "id": "G100-3-07",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 6,
+ "setting": "The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas",
+ "prompt_sha256": "b2d09f37dbf20d2b4c5cbff020dbfeddb75a9f6687420177b025f006ca4e8f46",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Flu clinic chain — delivery date correction\",\n  \"setting\": \"The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas\",\n  \"owner\": \"Priya\",\n  \"org\": \"Ashgrove Health Centre\",\n  \"now\": \"2026-10-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing plan for flu season: every clinic booking and home-visit rota is planned off Meridian Medical Supplies' confirmed vaccine delivery date, and the main flu clinic goes in the calendar for the morning after delivery.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Practice policy from Dr. Sandhu: once a clinic session or a visit rota has been confirmed to patients, its date and time may only be changed with Dr. Sandhu's agreement.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Hello Priya, I am now the account manager for Ashgrove Health Centre at Meridian Medical Supplies. Please send any vaccine or consumable queries my way.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Meridian Medical Supplies price list: flu vaccine at 6.80 per dose for practices, syringes and gloves as listed in the attached sheet.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Good news — your flu vaccine order is confirmed and will be delivered to Ashgrove Health Centre on Tuesday 3 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"The main hall at Bramley Community Hall is free on weekday mornings through November, including Wednesdays. Let me know which date you want pencilled in.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-09-20\", \"type\": \"quote\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Hire quote: main hall at Bramley Community Hall, 95 per morning session, kitchen included. Deposit due two weeks before the booking.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: the flu clinic will be run by Priya and nurse Colleen, with district nurse Aisha Rahman covering the housebound patients' afternoon round on the clinic day.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-24\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: send the housebound patients their visit letters by 20 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Bramley Community Hall main hall for the flu clinic on the morning after the Meridian vaccine delivery — Wednesday 4 November 2026, 09:30 start. Priya and Colleen to staff it.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 300 doses of flu vaccine from Meridian Medical Supplies at 6.80 per dose, as their price list sets out, for the November campaign.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya — approved the 300-dose flu vaccine order from Meridian. Dr. Sandhu.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 5000 safety syringes from MedSupply Direct for the dispensary stock.\", \"role\": \"decision\", \"record\": \"ORD-2\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the housebound patients' home-visit round for the afternoon of the flu clinic day, Wednesday 4 November 2026 at 14:00, run by district nurse Aisha Rahman. Patients will be sent letters with this date.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e10\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the nasal spray clinic at Ashgrove Primary School for Thursday 12 November 2026, morning.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Ashgrove Health Centre\", \"text\": \"Letters posted to the housebound patients confirming a home visit on Wednesday 4 November 2026 in the afternoon with district nurse Aisha Rahman for their flu vaccination.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Nurse Colleen\", \"text\": \"Colleen here — I'm free every Wednesday in November, so the clinic rota works for me.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder: reorder examination gloves for the treatment room when stock drops below twenty boxes.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Fridge temperature logs all within range this week; vaccine fridge ready for the November deliveries.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Apologies Priya — a scheduling problem at our depot. Your flu vaccine delivery cannot come on Tuesday 3 November; it will now arrive on Tuesday 10 November 2026. The order itself, supplier details and quantities are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya, when you have a moment could you check we have enough shingles vaccine stock for the over-70s clinics?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Just to confirm, your shingles vaccine shipment is unaffected by the depot changes and arrives on Tuesday 3 November 2026 as planned.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: review the volunteer refreshments list for the flu clinic once the date is settled.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-24\", \"type\": \"notice\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Reminder that the deposit for your main hall booking is due by 30 October; please arrange payment with the office.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Flu clinic — Bramley Community Hall\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"09:30\", \"place\": \"Bramley Community Hall main hall\", \"staff\": \"Priya, Colleen\", \"status\": \"draft\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Home-visit round — housebound patients\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"14:00\", \"nurse\": \"Aisha Rahman\", \"notes\": \"afternoon round for housebound flu vaccinations\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"School nasal spray clinic\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"09:00\", \"place\": \"Ashgrove Primary School\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order — Meridian\", \"fields\": {\"item\": \"flu vaccine doses\", \"quantity\": \"300\", \"supplier\": \"Meridian Medical Supplies\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Safety syringes — MedSupply Direct\", \"fields\": {\"item\": \"safety syringes\", \"quantity\": \"5000\", \"supplier\": \"MedSupply Direct\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Dr. Sandhu\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Can you send the patient confirmation for our November flu clinic to the patient mailing list this morning? Please make sure the clinic details in the system are right before it goes out.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-11\", \"stale\": [\"2026-11-04\"]},\n    {\"message_to\": \"patient mailing list\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-11\", \"Bramley Community Hall\"], \"stale\": [\"2026-11-04\"], \"task\": true}\n  ],\n  \"why\": \"The supplier email moves the vaccine delivery from 3 to 10 November. Under the standing rule the clinic runs the morning after delivery, so the hall booking (EV-1, still a draft, no patient consent needed) must be revised to Wednesday 11 November before the confirmation goes out with that date, not the stale 4 November. The housebound visit round (EV-2) rests on the clinic day but has already been confirmed to patients, so its date can only change with Dr. Sandhu's agreement — it must stay as it is with a consent request. The Meridian vaccine order (ORD-1) cites only the supplier and price, which the correction leaves standing, so it is KEEP; the school clinic and syringe order are untouched. The shingles shipment on 3 November is a distractor, not the value to act on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"nitrile examination gloves\", \"unit\": \"box\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"dressing supplies\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"sterile dressings\", \"unit\": \"pack\", \"values\": [\"100\", \"150\", \"200\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"hand sanitiser\", \"unit\": \"bottle\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"treatment room\"},\n    {\"kind\": \"booking\", \"topic\": \"baby clinic room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"baby clinic session\", \"unit\": \"\", \"values\": [\"main hall\", \"small meeting room\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"monthly staff meeting\", \"unit\": \"\", \"values\": [\"small meeting room\", \"committee room\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"syringe stock\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"safety syringes\", \"unit\": \"box\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"dispensary\"},\n    {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"sharps bins\", \"unit\": \"bin\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"dispensary\"},\n    {\"kind\": \"booking\", \"topic\": \"morning visit round\", \"counterpart\": \"Aisha Rahman\", \"org\": \"Millbrook District Nursing\", \"item\": \"morning home-visit round\", \"unit\": \"\", \"values\": [\"Millbrook Lane\", \"Cedar Close\"], \"place\": \"Millbrook estate\"},\n    {\"kind\": \"order\", \"topic\": \"health leaflets\", \"counterpart\": \"Tom Bean\", \"org\": \"PrintHouse\", \"item\": \"health advice leaflets\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"reception\"},\n    {\"kind\": \"booking\", \"topic\": \"school health checks\", \"counterpart\": \"Mrs. Boyle\", \"org\": \"Ashgrove Primary School\", \"item\": \"hearing check session\", \"unit\": \"\", \"values\": [\"school hall\", \"library\"], \"place\": \"Ashgrove Primary School\"},\n    {\"kind\": \"booking\", \"topic\": \"vaccination training\", \"counterpart\": \"Helen Marsh\", \"org\": \"County Training\", \"item\": \"vaccination technique refresher\", \"unit\": \"\", \"values\": [\"seminar room 2\", \"seminar room 3\"], \"place\": \"County Training Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"mobile clinic van\", \"counterpart\": \"Carl Nash\", \"org\": \"Community Wheels\", \"item\": \"mobile clinic van\", \"unit\": \"\", \"values\": [\"van 1\", \"van 2\"], \"place\": \"Millbrook estate car park\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3141,
+    "completion_tokens": 7746,
+    "reasoning_tokens": 4178,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03497772,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Flu clinic chain — delivery date correction\",\n  \"setting\": \"The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas\",\n  \"owner\": \"Priya\",\n  \"org\": \"Ashgrove Health Centre\",\n  \"now\": \"2026-10-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing plan for flu season: every clinic booking and home-visit rota is planned off Meridian Medical Supplies' confirmed vaccine delivery date, and the main flu clinic goes in the calendar for the morning after delivery.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Practice policy from Dr. Sandhu: once a clinic session or a visit rota has been confirmed to patients, its date and time may only be changed with Dr. Sandhu's agreement.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Hello Priya, I am now the account manager for Ashgrove Health Centre at Meridian Medical Supplies. Please send any vaccine or consumable queries my way.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Meridian Medical Supplies price list: flu vaccine at 6.80 per dose for practices, syringes and gloves as listed in the attached sheet.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Good news — your flu vaccine order is confirmed and will be delivered to Ashgrove Health Centre on Tuesday 3 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"The main hall at Bramley Community Hall is free on weekday mornings through November, including Wednesdays. Let me know which date you want pencilled in.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-09-20\", \"type\": \"quote\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Hire quote: main hall at Bramley Community Hall, 95 per morning session, kitchen included. Deposit due two weeks before the booking.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: the flu clinic will be run by Priya and nurse Colleen, with district nurse Aisha Rahman covering the housebound patients' afternoon round on the clinic day.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-24\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: send the housebound patients their visit letters by 20 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"quote\", \"from\": \"Marta Kern (MedSupply Direct)\", \"text\": \"MedSupply Direct quote: safety syringes at 12 per box of 100, sharps bins and dressings as listed, delivery to the practice within five working days.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Bramley Community Hall main hall for the flu clinic on the morning after the Meridian vaccine delivery — Wednesday 4 November 2026, 09:30 start. Priya and Colleen to staff it.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 300 doses of flu vaccine from Meridian Medical Supplies at 6.80 per dose, as their price list sets out, for the November campaign.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya — approved the 300-dose flu vaccine order from Meridian. Dr. Sandhu.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 5000 safety syringes from MedSupply Direct, going by their quote of 12 per box of 100, for the dispensary stock.\", \"role\": \"decision\", \"rests_on\": [\"e25\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the housebound patients' home-visit round for the afternoon of the flu clinic day, Wednesday 4 November 2026 at 14:00, run by district nurse Aisha Rahman. Patients will be sent letters with this date.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e10\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the nasal spray clinic at Ashgrove Primary School for Thursday 12 November 2026, morning.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Ashgrove Health Centre\", \"text\": \"Letters posted to the housebound patients confirming a home visit on Wednesday 4 November 2026 in the afternoon with district nurse Aisha Rahman for their flu vaccination.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Nurse Colleen\", \"text\": \"Colleen here — I'm free every Wednesday in November, so the clinic rota works for me.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder: reorder examination gloves for the treatment room when stock drops below twenty boxes.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Fridge temperature logs all within range this week; vaccine fridge ready for the November deliveries.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Apologies Priya — a scheduling problem at our depot. Your flu vaccine delivery cannot come on Tuesday 3 November; it will now arrive on Tuesday 10 November 2026. The order itself, supplier details and quantities are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya, when you have a moment could you check we have enough shingles vaccine stock for the over-70s clinics?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Just to confirm, your shingles vaccine shipment is unaffected by the depot changes and arrives on Tuesday 3 November 2026 as planned.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: review the volunteer refreshments list for the flu clinic once the date is settled.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-24\", \"type\": \"notice\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Reminder that the deposit for your main hall booking is due by 30 October; please arrange payment with the office.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Flu clinic — Bramley Community Hall\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"09:30\", \"place\": \"Bramley Community Hall main hall\", \"staff\": \"Priya, Colleen\", \"status\": \"draft\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Home-visit round — housebound patients\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"14:00\", \"nurse\": \"Aisha Rahman\", \"notes\": \"afternoon round for housebound flu vaccinations\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"School nasal spray clinic\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"09:00\", \"place\": \"Ashgrove Primary School\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order — Meridian\", \"fields\": {\"item\": \"flu vaccine doses\", \"quantity\": \"300\", \"supplier\": \"Meridian Medical Supplies\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Safety syringes — MedSupply Direct\", \"fields\": {\"item\": \"safety syringes\", \"quantity\": \"5000\", \"supplier\": \"MedSupply Direct\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Dr. Sandhu\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Can you send the patient confirmation for our November flu clinic to the patient mailing list this morning? Please make sure the clinic details in the system are right before it goes out.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-11\", \"stale\": [\"2026-11-04\"]},\n    {\"message_to\": \"patient mailing list\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-11\", \"Bramley Community Hall\"], \"stale\": [\"2026-11-04\"], \"task\": true}\n  ],\n  \"why\": \"The supplier email moves the vaccine delivery from 3 to 10 November. Under the standing rule the clinic runs the morning after delivery, so the hall booking (EV-1, still a draft, no patient consent needed) must be revised to Wednesday 11 November before the confirmation goes out with that date, not the stale 4 November. The housebound visit round (EV-2) rests on the clinic day but has already been confirmed to patients, so its date can only change with Dr. Sandhu's agreement — it must stay as it is with a consent request. The Meridian vaccine order (ORD-1) cites only the supplier and price, which the correction leaves standing, so it is KEEP; the school clinic and syringe order are untouched. The shingles shipment on 3 November is a distractor, not the value to act on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"nitrile examination gloves\", \"unit\": \"box\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"dressing supplies\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"sterile dressings\", \"unit\": \"pack\", \"values\": [\"100\", \"150\", \"200\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"hand sanitiser\", \"unit\": \"bottle\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"treatment room\"},\n    {\"kind\": \"booking\", \"topic\": \"baby clinic room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"baby clinic session\", \"unit\": \"\", \"values\": [\"main hall\", \"small meeting room\", \"committee room\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"monthly staff meeting\", \"unit\": \"\", \"values\": [\"small meeting room\", \"committee room\", \"main hall\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"syringe stock\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"safety syringes\", \"unit\": \"box\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"dispensary\"},\n    {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"sharps bins\", \"unit\": \"bin\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"dispensary\"},\n    {\"kind\": \"booking\", \"topic\": \"morning visit round\", \"counterpart\": \"Aisha Rahman\", \"org\": \"Millbrook District Nursing\", \"item\": \"morning home-visit round\", \"unit\": \"\", \"values\": [\"Millbrook Lane\", \"Cedar Close\", \"Rowan Street\"], \"place\": \"Millbrook estate\"},\n    {\"kind\": \"order\", \"topic\": \"health leaflets\", \"counterpart\": \"Tom Bean\", \"org\": \"PrintHouse\", \"item\": \"health advice leaflets\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"reception\"},\n    {\"kind\": \"booking\", \"topic\": \"school health checks\", \"counterpart\": \"Mrs. Boyle\", \"org\": \"Ashgrove Primary School\", \"item\": \"hearing check session\", \"unit\": \"\", \"values\": [\"school hall\", \"library\", \"gymnasium\"], \"place\": \"Ashgrove Primary School\"},\n    {\"kind\": \"booking\", \"topic\": \"vaccination training\", \"counterpart\": \"Helen Marsh\", \"org\": \"County Training\", \"item\": \"vaccination technique refresher\", \"unit\": \"\", \"values\": [\"seminar room 2\", \"seminar room 3\", \"lecture theatre\"], \"place\": \"County Training Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"mobile clinic van\", \"counterpart\": \"Carl Nash\", \"org\": \"Community Wheels\", \"item\": \"mobile clinic van\", \"unit\": \"\", \"values\": [\"van 1\", \"van 2\", \"van 3\"], \"place\": \"Millbrook estate car park\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6844,
+    "completion_tokens": 3849,
+    "reasoning_tokens": 147,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02294216,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e13: a decision must rest on at least one earlier event\n- noise topic 'baby clinic room': values needs at least three entries\n- noise topic 'staff meeting room': values needs at least three entries\n- noise topic 'morning visit round': values needs at least three entries\n- noise topic 'school health checks': values needs at least three entries\n- noise topic 'vaccination training': values needs at least three entries\n- noise topic 'mobile clinic van': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Flu clinic chain — delivery date correction\",\n  \"setting\": \"The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas\",\n  \"owner\": \"Priya\",\n  \"org\": \"Ashgrove Health Centre\",\n  \"now\": \"2026-10-28\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing plan for flu season: every clinic booking and home-visit rota is planned off Meridian Medical Supplies' confirmed vaccine delivery date, and the main flu clinic goes in the calendar for the morning after delivery.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Practice policy from Dr. Sandhu: once a clinic session or a visit rota has been confirmed to patients, its date and time may only be changed with Dr. Sandhu's agreement.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Hello Priya, I am now the account manager for Ashgrove Health Centre at Meridian Medical Supplies. Please send any vaccine or consumable queries my way.\", \"role\": \"other\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Meridian Medical Supplies price list: flu vaccine at 6.80 per dose for practices, syringes and gloves as listed in the attached sheet.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Good news — your flu vaccine order is confirmed and will be delivered to Ashgrove Health Centre on Tuesday 3 November 2026.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"The main hall at Bramley Community Hall is free on weekday mornings through November, including Wednesdays. Let me know which date you want pencilled in.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-09-20\", \"type\": \"quote\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Hire quote: main hall at Bramley Community Hall, 95 per morning session, kitchen included. Deposit due two weeks before the booking.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-09-22\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Staff meeting notes: the flu clinic will be run by Priya and nurse Colleen, with district nurse Aisha Rahman covering the housebound patients' afternoon round on the clinic day.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-24\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do: send the housebound patients their visit letters by 20 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"quote\", \"from\": \"Marta Kern (MedSupply Direct)\", \"text\": \"MedSupply Direct quote: safety syringes at 12 per box of 100, sharps bins and dressings as listed, delivery to the practice within five working days.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-27\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Bramley Community Hall main hall for the flu clinic on the morning after the Meridian vaccine delivery — Wednesday 4 November 2026, 09:30 start. Priya and Colleen to staff it.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 300 doses of flu vaccine from Meridian Medical Supplies at 6.80 per dose, as their price list sets out, for the November campaign.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya — approved the 300-dose flu vaccine order from Meridian. Dr. Sandhu.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 5000 safety syringes from MedSupply Direct, going by their quote of 12 per box of 100, for the dispensary stock.\", \"role\": \"decision\", \"rests_on\": [\"e25\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled the housebound patients' home-visit round for the afternoon of the flu clinic day, Wednesday 4 November 2026 at 14:00, run by district nurse Aisha Rahman. Patients will be sent letters with this date.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e10\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the nasal spray clinic at Ashgrove Primary School for Thursday 12 November 2026, morning.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Ashgrove Health Centre\", \"text\": \"Letters posted to the housebound patients confirming a home visit on Wednesday 4 November 2026 in the afternoon with district nurse Aisha Rahman for their flu vaccination.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-08\", \"type\": \"message\", \"from\": \"Nurse Colleen\", \"text\": \"Colleen here — I'm free every Wednesday in November, so the clinic rota works for me.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-12\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder: reorder examination gloves for the treatment room when stock drops below twenty boxes.\", \"role\": \"obligation\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-15\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Fridge temperature logs all within range this week; vaccine fridge ready for the November deliveries.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Apologies Priya — a scheduling problem at our depot. Your flu vaccine delivery cannot come on Tuesday 3 November; it will now arrive on Tuesday 10 November 2026. The order itself, supplier details and quantities are unchanged.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Dr. Sandhu (Ashgrove Health Centre)\", \"text\": \"Priya, when you have a moment could you check we have enough shingles vaccine stock for the over-70s clinics?\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sally Voss (Meridian Medical Supplies)\", \"text\": \"Just to confirm, your shingles vaccine shipment is unaffected by the depot changes and arrives on Tuesday 3 November 2026 as planned.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: review the volunteer refreshments list for the flu clinic once the date is settled.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-24\", \"type\": \"notice\", \"from\": \"Owen Pike (Bramley Community Hall)\", \"text\": \"Reminder that the deposit for your main hall booking is due by 30 October; please arrange payment with the office.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Flu clinic — Bramley Community Hall\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"09:30\", \"place\": \"Bramley Community Hall main hall\", \"staff\": \"Priya, Colleen\", \"status\": \"draft\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Home-visit round — housebound patients\", \"fields\": {\"date\": \"2026-11-04\", \"time\": \"14:00\", \"nurse\": \"Aisha Rahman\", \"notes\": \"afternoon round for housebound flu vaccinations\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"School nasal spray clinic\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"09:00\", \"place\": \"Ashgrove Primary School\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Flu vaccine order — Meridian\", \"fields\": {\"item\": \"flu vaccine doses\", \"quantity\": \"300\", \"supplier\": \"Meridian Medical Supplies\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Safety syringes — MedSupply Direct\", \"fields\": {\"item\": \"safety syringes\", \"quantity\": \"5000\", \"supplier\": \"MedSupply Direct\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Dr. Sandhu\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Can you send the patient confirmation for our November flu clinic to the patient mailing list this morning? Please make sure the clinic details in the system are right before it goes out.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-11\", \"stale\": [\"2026-11-04\"]},\n    {\"message_to\": \"patient mailing list\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-11\", \"Bramley Community Hall\"], \"stale\": [\"2026-11-04\"], \"task\": true}\n  ],\n  \"why\": \"The supplier email moves the vaccine delivery from 3 to 10 November. Under the standing rule the clinic runs the morning after delivery, so the hall booking (EV-1, still a draft, no patient consent needed) must be revised to Wednesday 11 November before the confirmation goes out with that date, not the stale 4 November. The housebound visit round (EV-2) rests on the clinic day but has already been confirmed to patients, so its date can only change with Dr. Sandhu's agreement — it must stay as it is with a consent request. The Meridian vaccine order (ORD-1) cites only the supplier and price, which the correction leaves standing, so it is KEEP; the school clinic and syringe order are untouched. The shingles shipment on 3 November is a distractor, not the value to act on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"glove restock\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"nitrile examination gloves\", \"unit\": \"box\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"dressing supplies\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"sterile dressings\", \"unit\": \"pack\", \"values\": [\"100\", \"150\", \"200\"], \"place\": \"treatment room store\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser\", \"counterpart\": \"Sally Voss\", \"org\": \"Meridian Medical Supplies\", \"item\": \"hand sanitiser\", \"unit\": \"bottle\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"treatment room\"},\n    {\"kind\": \"booking\", \"topic\": \"baby clinic room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"baby clinic session\", \"unit\": \"\", \"values\": [\"main hall\", \"small meeting room\", \"committee room\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Owen Pike\", \"org\": \"Bramley Community Hall\", \"item\": \"monthly staff meeting\", \"unit\": \"\", \"values\": [\"small meeting room\", \"committee room\", \"main hall\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"syringe stock\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"safety syringes\", \"unit\": \"box\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"dispensary\"},\n    {\"kind\": \"order\", \"topic\": \"sharps bins\", \"counterpart\": \"Marta Kern\", \"org\": \"MedSupply Direct\", \"item\": \"sharps bins\", \"unit\": \"bin\", \"values\": [\"15\", \"30\", \"45\"], \"place\": \"dispensary\"},\n    {\"kind\": \"booking\", \"topic\": \"morning visit round\", \"counterpart\": \"Aisha Rahman\", \"org\": \"Millbrook District Nursing\", \"item\": \"morning home-visit round\", \"unit\": \"\", \"values\": [\"Millbrook Lane\", \"Cedar Close\", \"Rowan Street\"], \"place\": \"Millbrook estate\"},\n    {\"kind\": \"order\", \"topic\": \"health leaflets\", \"counterpart\": \"Tom Bean\", \"org\": \"PrintHouse\", \"item\": \"health advice leaflets\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"reception\"},\n    {\"kind\": \"booking\", \"topic\": \"school health checks\", \"counterpart\": \"Mrs. Boyle\", \"org\": \"Ashgrove Primary School\", \"item\": \"hearing check session\", \"unit\": \"\", \"values\": [\"school hall\", \"library\", \"gymnasium\"], \"place\": \"Ashgrove Primary School\"},\n    {\"kind\": \"booking\", \"topic\": \"vaccination training\", \"counterpart\": \"Helen Marsh\", \"org\": \"County Training\", \"item\": \"vaccination technique refresher\", \"unit\": \"\", \"values\": [\"seminar room 2\", \"seminar room 3\", \"lecture theatre\"], \"place\": \"County Training Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"mobile clinic van\", \"counterpart\": \"Carl Nash\", \"org\": \"Community Wheels\", \"item\": \"mobile clinic van\", \"unit\": \"\", \"values\": [\"van 1\", \"van 2\", \"van 3\"], \"place\": \"Millbrook estate car park\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10591,
+    "completion_tokens": 3850,
+    "reasoning_tokens": 148,
+    "cached_tokens": 6784
+   },
+   "cost": 0.02403364,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e10 is dated before e25)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flu clinic chain — delivery date correction",
+  "setting": "The practice nurse coordinator at Ashgrove Health Centre whose assistant runs immunisation clinics and home-visit rotas",
+  "owner": "Priya",
+  "org": "Ashgrove Health Centre",
+  "now": "2026-10-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing plan for flu season: every clinic booking and home-visit rota is planned off Meridian Medical Supplies' confirmed vaccine delivery date, and the main flu clinic goes in the calendar for the morning after delivery.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Dr. Sandhu (Ashgrove Health Centre)",
+    "text": "Practice policy from Dr. Sandhu: once a clinic session or a visit rota has been confirmed to patients, its date and time may only be changed with Dr. Sandhu's agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Sally Voss (Meridian Medical Supplies)",
+    "text": "Hello Priya, I am now the account manager for Ashgrove Health Centre at Meridian Medical Supplies. Please send any vaccine or consumable queries my way.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Sally Voss (Meridian Medical Supplies)",
+    "text": "Meridian Medical Supplies price list: flu vaccine at 6.80 per dose for practices, syringes and gloves as listed in the attached sheet.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Sally Voss (Meridian Medical Supplies)",
+    "text": "Good news — your flu vaccine order is confirmed and will be delivered to Ashgrove Health Centre on Tuesday 3 November 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-09-16",
+    "type": "email",
+    "from": "Owen Pike (Bramley Community Hall)",
+    "text": "The main hall at Bramley Community Hall is free on weekday mornings through November, including Wednesdays. Let me know which date you want pencilled in.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-09-20",
+    "type": "quote",
+    "from": "Owen Pike (Bramley Community Hall)",
+    "text": "Hire quote: main hall at Bramley Community Hall, 95 per morning session, kitchen included. Deposit due two weeks before the booking.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-22",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Staff meeting notes: the flu clinic will be run by Priya and nurse Colleen, with district nurse Aisha Rahman covering the housebound patients' afternoon round on the clinic day.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-24",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do: send the housebound patients their visit letters by 20 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-26",
+    "type": "quote",
+    "from": "Marta Kern (MedSupply Direct)",
+    "text": "MedSupply Direct quote: safety syringes at 12 per box of 100, sharps bins and dressings as listed, delivery to the practice within five working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-27",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked Bramley Community Hall main hall for the flu clinic on the morning after the Meridian vaccine delivery — Wednesday 4 November 2026, 09:30 start. Priya and Colleen to staff it.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-28",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered 300 doses of flu vaccine from Meridian Medical Supplies at 6.80 per dose, as their price list sets out, for the November campaign.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Dr. Sandhu (Ashgrove Health Centre)",
+    "text": "Priya — approved the 300-dose flu vaccine order from Meridian. Dr. Sandhu.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered 5000 safety syringes from MedSupply Direct, going by their quote of 12 per box of 100, for the dispensary stock.",
+    "role": "decision",
+    "rests_on": [
+     "e25"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Scheduled the housebound patients' home-visit round for the afternoon of the flu clinic day, Wednesday 4 November 2026 at 14:00, run by district nurse Aisha Rahman. Patients will be sent letters with this date.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e10"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-05",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the nasal spray clinic at Ashgrove Primary School for Thursday 12 November 2026, morning.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-06",
+    "type": "letter",
+    "from": "Ashgrove Health Centre",
+    "text": "Letters posted to the housebound patients confirming a home visit on Wednesday 4 November 2026 in the afternoon with district nurse Aisha Rahman for their flu vaccination.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-08",
+    "type": "message",
+    "from": "Nurse Colleen",
+    "text": "Colleen here — I'm free every Wednesday in November, so the clinic rota works for me.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-12",
+    "type": "task",
+    "from": "Priya",
+    "text": "Reminder: reorder examination gloves for the treatment room when stock drops below twenty boxes.",
+    "role": "obligation"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-15",
+    "type": "note",
+    "from": "Priya",
+    "text": "Fridge temperature logs all within range this week; vaccine fridge ready for the November deliveries.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Sally Voss (Meridian Medical Supplies)",
+    "text": "Apologies Priya — a scheduling problem at our depot. Your flu vaccine delivery cannot come on Tuesday 3 November; it will now arrive on Tuesday 10 November 2026. The order itself, supplier details and quantities are unchanged.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Dr. Sandhu (Ashgrove Health Centre)",
+    "text": "Priya, when you have a moment could you check we have enough shingles vaccine stock for the over-70s clinics?",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Sally Voss (Meridian Medical Supplies)",
+    "text": "Just to confirm, your shingles vaccine shipment is unaffected by the depot changes and arrives on Tuesday 3 November 2026 as planned.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-22",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note to self: review the volunteer refreshments list for the flu clinic once the date is settled.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-24",
+    "type": "notice",
+    "from": "Owen Pike (Bramley Community Hall)",
+    "text": "Reminder that the deposit for your main hall booking is due by 30 October; please arrange payment with the office.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Flu clinic — Bramley Community Hall",
+    "fields": {
+     "date": "2026-11-04",
+     "time": "09:30",
+     "place": "Bramley Community Hall main hall",
+     "staff": "Priya, Colleen",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Home-visit round — housebound patients",
+    "fields": {
+     "date": "2026-11-04",
+     "time": "14:00",
+     "nurse": "Aisha Rahman",
+     "notes": "afternoon round for housebound flu vaccinations",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "School nasal spray clinic",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "09:00",
+     "place": "Ashgrove Primary School",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Flu vaccine order — Meridian",
+    "fields": {
+     "item": "flu vaccine doses",
+     "quantity": "300",
+     "supplier": "Meridian Medical Supplies",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Safety syringes — MedSupply Direct",
+    "fields": {
+     "item": "safety syringes",
+     "quantity": "5000",
+     "supplier": "MedSupply Direct",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Dr. Sandhu",
+    "rule": "e2"
+   }
+  ],
+  "task": "Can you send the patient confirmation for our November flu clinic to the patient mailing list this morning? Please make sure the clinic details in the system are right before it goes out.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-11",
+    "stale": [
+     "2026-11-04"
+    ]
+   },
+   {
+    "message_to": "patient mailing list",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-11",
+     "Bramley Community Hall"
+    ],
+    "stale": [
+     "2026-11-04"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The supplier email moves the vaccine delivery from 3 to 10 November. Under the standing rule the clinic runs the morning after delivery, so the hall booking (EV-1, still a draft, no patient consent needed) must be revised to Wednesday 11 November before the confirmation goes out with that date, not the stale 4 November. The housebound visit round (EV-2) rests on the clinic day but has already been confirmed to patients, so its date can only change with Dr. Sandhu's agreement — it must stay as it is with a consent request. The Meridian vaccine order (ORD-1) cites only the supplier and price, which the correction leaves standing, so it is KEEP; the school clinic and syringe order are untouched. The shingles shipment on 3 November is a distractor, not the value to act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "glove restock",
+    "counterpart": "Sally Voss",
+    "org": "Meridian Medical Supplies",
+    "item": "nitrile examination gloves",
+    "unit": "box",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "treatment room store"
+   },
+   {
+    "kind": "order",
+    "topic": "dressing supplies",
+    "counterpart": "Sally Voss",
+    "org": "Meridian Medical Supplies",
+    "item": "sterile dressings",
+    "unit": "pack",
+    "values": [
+     "100",
+     "150",
+     "200"
+    ],
+    "place": "treatment room store"
+   },
+   {
+    "kind": "order",
+    "topic": "hand sanitiser",
+    "counterpart": "Sally Voss",
+    "org": "Meridian Medical Supplies",
+    "item": "hand sanitiser",
+    "unit": "bottle",
+    "values": [
+     "30",
+     "60",
+     "90"
+    ],
+    "place": "treatment room"
+   },
+   {
+    "kind": "booking",
+    "topic": "baby clinic room",
+    "counterpart": "Owen Pike",
+    "org": "Bramley Community Hall",
+    "item": "baby clinic session",
+    "unit": "",
+    "values": [
+     "main hall",
+     "small meeting room",
+     "committee room"
+    ],
+    "place": "Bramley Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting room",
+    "counterpart": "Owen Pike",
+    "org": "Bramley Community Hall",
+    "item": "monthly staff meeting",
+    "unit": "",
+    "values": [
+     "small meeting room",
+     "committee room",
+     "main hall"
+    ],
+    "place": "Bramley Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "syringe stock",
+    "counterpart": "Marta Kern",
+    "org": "MedSupply Direct",
+    "item": "safety syringes",
+    "unit": "box",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "dispensary"
+   },
+   {
+    "kind": "order",
+    "topic": "sharps bins",
+    "counterpart": "Marta Kern",
+    "org": "MedSupply Direct",
+    "item": "sharps bins",
+    "unit": "bin",
+    "values": [
+     "15",
+     "30",
+     "45"
+    ],
+    "place": "dispensary"
+   },
+   {
+    "kind": "booking",
+    "topic": "morning visit round",
+    "counterpart": "Aisha Rahman",
+    "org": "Millbrook District Nursing",
+    "item": "morning home-visit round",
+    "unit": "",
+    "values": [
+     "Millbrook Lane",
+     "Cedar Close",
+     "Rowan Street"
+    ],
+    "place": "Millbrook estate"
+   },
+   {
+    "kind": "order",
+    "topic": "health leaflets",
+    "counterpart": "Tom Bean",
+    "org": "PrintHouse",
+    "item": "health advice leaflets",
+    "unit": "pack",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "school health checks",
+    "counterpart": "Mrs. Boyle",
+    "org": "Ashgrove Primary School",
+    "item": "hearing check session",
+    "unit": "",
+    "values": [
+     "school hall",
+     "library",
+     "gymnasium"
+    ],
+    "place": "Ashgrove Primary School"
+   },
+   {
+    "kind": "booking",
+    "topic": "vaccination training",
+    "counterpart": "Helen Marsh",
+    "org": "County Training",
+    "item": "vaccination technique refresher",
+    "unit": "",
+    "values": [
+     "seminar room 2",
+     "seminar room 3",
+     "lecture theatre"
+    ],
+    "place": "County Training Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "mobile clinic van",
+    "counterpart": "Carl Nash",
+    "org": "Community Wheels",
+    "item": "mobile clinic van",
+    "unit": "",
+    "values": [
+     "van 1",
+     "van 2",
+     "van 3"
+    ],
+    "place": "Millbrook estate car park"
+   }
+  ],
+  "id": "G100-3-07",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected final state omits the required consent request to Dr. Sandhu for moving EV-2 to 11 November. EV-2 must remain unchanged pending agreement, but leaving it unchanged without requesting consent does not satisfy its ASK mark or the writer's reasoning.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected final state omits the required consent request to Dr. Sandhu for moving EV-2 to 11 November. EV-2 must remain unchanged pending agreement, but leaving it unchanged without requesting consent does not satisfy its ASK mark or the writer's reasoning."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3361,
+    "completion_tokens": 163,
+    "reasoning_tokens": 73,
+    "cached_tokens": 0
+   },
+   "cost": 0.050155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07963b7c397d142011a45a1506d2b6e2c13cb207c2bb5a74d3a47658a15549ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: e5 is corrected, EV-1 rests directly on it (REVISE to 2026-11-11 under the morning-after rule, with no patient consent needed because it is still a draft), EV-2 rests on EV-1 and is ASK because it was already confirmed to patients under Dr. Sandhu's rule, and ORD-1 is KEEP since supplier and price stand. Core counts (24 events, 5 decisions), the 12-day gap before the task date, and the 4 core events after the change all meet tier 100, and the change is an ordinary-looking email that is not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: e5 is corrected, EV-1 rests directly on it (REVISE to 2026-11-11 under the morning-after rule, with no patient consent needed because it is still a draft), EV-2 rests on EV-1 and is ASK because it was already confirmed to patients under Dr. Sandhu's rule, and ORD-1 is KEEP since supplier and price stand. Core counts (24 events, 5 decisions), the 12-day gap before the task date, and the 4 core events after the change all meet tier 100, and the change is an ordinary-looking email that is not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4875,
+    "completion_tokens": 2008,
+    "reasoning_tokens": 1749,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014915,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07963b7c397d142011a45a1506d2b6e2c13cb207c2bb5a74d3a47658a15549ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure is sound (EV-1 REVISE to 2026-11-11, ORD-1 KEEP, EV-2 ASK), but the expected final state omits the consent request to Dr. Sandhu for EV-2's date change, even though EV-2 is marked ASK and the history says the record needs his agreement — that act should appear in the expected state. Everything else (values, distractor, untouched records, consent map) checks out, and the tier and hiding requirements are met.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure is sound (EV-1 REVISE to 2026-11-11, ORD-1 KEEP, EV-2 ASK), but the expected final state omits the consent request to Dr. Sandhu for EV-2's date change, even though EV-2 is marked ASK and the history says the record needs his agreement — that act should appear in the expected state. Everything else (values, distractor, untouched records, consent map) checks out, and the tier and hiding requirements are met."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3441,
+    "completion_tokens": 780,
+    "reasoning_tokens": 614,
+    "cached_tokens": 256
+   },
+   "cost": 0.0213318,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "07963b7c397d142011a45a1506d2b6e2c13cb207c2bb5a74d3a47658a15549ef",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

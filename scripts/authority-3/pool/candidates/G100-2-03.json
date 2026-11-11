@@ -1,0 +1,691 @@
+{
+ "id": "G100-2-03",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 2,
+ "setting": "The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters",
+ "prompt_sha256": "98cf9b26879d4c1acdc446f292f07084352acfe1c36689a096ff7189ff9e60bf",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Willowmere\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Priya\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing instruction for the whole practice: every repeat prescription request that comes in from a patient goes to Larkfield Pharmacy the same working day, no exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Practice policy from today: any supplier order over £400 must have the finance lead Marcus Bell's written sign-off before it is placed. Orders of £400 or less can go out directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Confirmed clinic sessions that Dr Hassan runs in the Annex can only be rescheduled with Dr Hassan's agreement. He sets his own clinic dates; we never move one without checking with him.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dr Hassan\", \"text\": \"Two things from me. My diabetes clinic list is back up to 9 patients, so I'd like a dedicated diabetes clinic session in the Annex in late October. And please keep my weekly physio session in the Annex on Thursdays from 2 July, up to 6 patients each time.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Dr Hassan's weekly physio session in the Annex every Thursday from 2 July, up to 6 patients, as he asked. Follows the rule that his Annex sessions are set with his agreement.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"EV-2\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Confirmation of our delivery terms: cold-chain consumables are delivered within 5 working days of a confirmed order, and we only treat an order as confirmed once the finance sign-off is attached. We hold stock ready for Willowmere.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation for Willowmere GP Surgery: full stationery restock (letterheads, prescription pads, leaflet stock) at £520 including delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Placed the stationery restock order with Medline Supplies at £520. That was over the £400 line, so it went to Marcus Bell for sign-off first, and he signed it off the same day. Order is done and delivered.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Advance notice of our winter price list: from 1 November the cold-chain consumables box set goes up from £780 to £840. Anything confirmed before then stays at the current price.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e10\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation: audiology consumables pack (ear tips, specula, batteries) at £950, delivered within 5 working days of the order going out.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"As discussed, the cold-chain consumables box set for your October order is £780. We are holding the stock for you and will dispatch within 5 working days once the order is confirmed with finance sign-off attached.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the cold-chain consumables order with Northgate Medical at £780. As it is over the £400 line it has gone to Marcus Bell for sign-off and is sitting with him; expected delivery pencilled in for 26 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the audiology consumables order with Medline Supplies at £950 per their quotation. Over the £400 line, so it is with Marcus Bell for sign-off before it can be sent; delivery expected 22 October once it goes out.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e10\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled Dr Hassan's diabetes clinic session in the Annex for 28 October, after the cold-chain consumables from Northgate are due in on 26 October. His list of 9 patients will be invited. Set with his agreement as always.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\", \"e4\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Team note following the budget review: with effect from 1 October, the finance sign-off threshold for supplier orders rises from £400 to £1000. Marcus Bell still signs off anything above £1000 before it is placed; anything at or below £1000 no longer needs his sign-off.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-07\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do by 16 October: chase up the two supply orders sitting with Marcus, the clinic rooms are waiting on them.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Reception note: the new flu leaflets have arrived, 400 copies in the store cupboard by the front desk. Recall letter templates are unchanged.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stationery restock - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Stationery restock\", \"amount\": \"520\", \"order_date\": \"2026-07-03\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cold-chain consumables - Northgate Medical\", \"fields\": {\"supplier\": \"Northgate Medical\", \"item\": \"Cold-chain consumables box set\", \"amount\": \"780\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-26\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Audiology consumables - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Audiology consumables pack\", \"amount\": \"950\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-22\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Diabetes clinic - Dr Hassan\", \"fields\": {\"date\": \"2026-10-28\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"9\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly physio session - Dr Hassan\", \"fields\": {\"date\": \"2026-10-15\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Larkfield Pharmacy - repeat prescriptions\", \"fields\": {\"contact\": \"Nadia Osei\", \"phone\": \"01632 960118\", \"frequency\": \"daily\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Dr Hassan\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please send off the two supply orders that are still sitting with Marcus, and sort out the date for Dr Hassan's diabetes clinic in the Annex.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-26\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-22\"], \"task\": true},\n  {\"message_to\": \"Dr Hassan\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-28\"], \"task\": true}\n ],\n \"why\": \"The 1 October amendment raises the sign-off threshold to £1000, so the £780 Northgate and £950 Medline orders (both citing the old £400 rule) no longer need Marcus Bell and should be sent now, updating their status and delivery dates. The diabetes clinic (EV-1) rests two hops away, on the Northgate order's old 26 October delivery, so its date can only change with Dr Hassan's consent under the standing rule — the assistant must ask, proposing 21 October, not move it. The July stationery order (ORD-1) was validly placed and signed off before the amendment, so it is KEEP and stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Glove restock\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"35\", \"50\", \"80\"], \"place\": \"treatment room store\"},\n  {\"kind\": \"order\", \"topic\": \"Printer paper\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Printer paper\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"25\", \"40\"], \"place\": \"reception cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"Annex training room\", \"counterpart\": \"Gail Munro\", \"org\": \"Redcar Training Ltd\", \"item\": \"Staff training slots\", \"unit\": \"sessions\", \"values\": [\"Annex Room 1\", \"Annex Room 2\", \"Staff meeting room\"], \"place\": \"Annex\"},\n  {\"kind\": \"order\", \"topic\": \"Reception coffee\", \"counterpart\": \"Sam Toft\", \"org\": \"Bramble Coffee Roasters\", \"item\": \"Coffee beans\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Patient transport runs\", \"counterpart\": \"Wes Adeyemi\", \"org\": \"Cedar Ride Community Transport\", \"item\": \"Minibus slots\", \"unit\": \"runs\", \"values\": [\"minibus bay A\", \"minibus bay B\", \"front forecourt\"], \"place\": \"surgery forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Pharmacy liaison meetings\", \"counterpart\": \"Nadia Osei\", \"org\": \"Larkfield Pharmacy\", \"item\": \"Liaison meetings\", \"unit\": \"meetings\", \"values\": [\"Staff meeting room\", \"Annex Room 2\", \"reception back office\"], \"place\": \"surgery\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Hettie Lang\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"Surface disinfectant\", \"unit\": \"cases\", \"values\": [\"5\", \"8\", \"12\", \"18\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Health visitor clinics\", \"counterpart\": \"Ruth Kelly\", \"org\": \"Willowmere Health Visiting Team\", \"item\": \"Baby clinic slots\", \"unit\": \"clinics\", \"values\": [\"Wellbeing Room\", \"Annex Room 1\", \"Staff meeting room\"], \"place\": \"Wellbeing Room\"},\n  {\"kind\": \"order\", \"topic\": \"Water cooler bottles\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Springvale Waters\", \"item\": \"Water bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"reception\"},\n  {\"kind\": \"order\", \"topic\": \"Vaccine fridge probes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Fridge temperature probes\", \"unit\": \"units\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vaccine fridge room\"},\n  {\"kind\": \"order\", \"topic\": \"Leaflet printing\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Patient leaflets\", \"unit\": \"bundles\", \"values\": [\"30\", \"50\", \"75\", \"100\"], \"place\": \"reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Counselling room\", \"counterpart\": \"Marta Voss\", \"org\": \"Hillfield Counselling\", \"item\": \"Counselling sessions\", \"unit\": \"sessions\", \"values\": [\"Wellbeing Room\", \"Annex Room 2\"], \"place\": \"Wellbeing Room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3139,
+    "completion_tokens": 9343,
+    "reasoning_tokens": 5912,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04200172,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Willowmere\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Priya\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing instruction for the whole practice: every repeat prescription request that comes in from a patient goes to Larkfield Pharmacy the same working day, no exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Practice policy from today: any supplier order over £400 must have the finance lead Marcus Bell's written sign-off before it is placed. Orders of £400 or less can go out directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Confirmed clinic sessions that Dr Hassan runs in the Annex can only be rescheduled with Dr Hassan's agreement. He sets his own clinic dates; we never move one without checking with him.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dr Hassan\", \"text\": \"Two things from me. My diabetes clinic list is back up to 9 patients, so I'd like a dedicated diabetes clinic session in the Annex in late October. And please keep my weekly physio session in the Annex on Thursdays from 2 July, up to 6 patients each time.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Dr Hassan's weekly physio session in the Annex every Thursday from 2 July, up to 6 patients, as he asked. Follows the rule that his Annex sessions are set with his agreement.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"EV-2\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Confirmation of our delivery terms: cold-chain consumables are delivered within 5 working days of a confirmed order, and we only treat an order as confirmed once the finance sign-off is attached. We hold stock ready for Willowmere.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation for Willowmere GP Surgery: full stationery restock (letterheads, prescription pads, leaflet stock) at £520 including delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Placed the stationery restock order with Medline Supplies at £520. That was over the £400 line, so it went to Marcus Bell for sign-off first, and he signed it off the same day. Order is done and delivered.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nadia Osei (Larkfield Pharmacy)\", \"text\": \"Just confirming our standing arrangement for repeats: send everything to my direct line at the pharmacy, 01632 960118, and I'll confirm receipt the same day. It's been working well.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Priya\", \"text\": \"Recall letter programme agreed with the partners: patients due a medication review get their recall letters on the first Monday of each month, sent from the Willowmere letterhead, with replies logged against their record.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Finance note: invoice runs are now on the 15th and the last working day of each month. Nothing changes on the order sign-off arrangements — I still handle those as per the practice policy.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up the monthly recall letter run for medication reviews on the first Monday of each month, as agreed with the partners, starting 7 September. Letters go out from the Willowmere letterhead.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Advance notice of our winter price list: from 1 November the cold-chain consumables box set goes up from £780 to £840. Anything confirmed before then stays at the current price.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e10\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation: audiology consumables pack (ear tips, specula, batteries) at £950, delivered within 5 working days of the order going out.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"As discussed, the cold-chain consumables box set for your October order is £780. We are holding the stock for you and will dispatch within 5 working days once the order is confirmed with finance sign-off attached.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the cold-chain consumables order with Northgate Medical at £780. As it is over the £400 line it has gone to Marcus Bell for sign-off and is sitting with him; expected delivery pencilled in for 26 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the audiology consumables order with Medline Supplies at £950 per their quotation. Over the £400 line, so it is with Marcus Bell for sign-off before it can be sent; delivery expected 22 October once it goes out.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e10\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled Dr Hassan's diabetes clinic session in the Annex for 28 October, after the cold-chain consumables from Northgate are due in on 26 October. His list of 9 patients will be invited. Set with his agreement as always.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\", \"e4\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Team note following the budget review: with effect from 1 October, the finance sign-off threshold for supplier orders rises from £400 to £1000. Marcus Bell still signs off anything above £1000 before it is placed; anything at or below £1000 no longer needs his sign-off.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-07\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do by 16 October: chase up the two supply orders sitting with Marcus, the clinic rooms are waiting on them.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Reception note: the new flu leaflets have arrived, 400 copies in the store cupboard by the front desk. Recall letter templates are unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-11\", \"type\": \"email\", \"from\": \"Dr Hassan\", \"text\": \"One more thing for the diary: keep the diabetes clinic to a Wednesday if you ever need to shift it, the rest of my week is full. Everything else you have set up for me is fine.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stationery restock - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Stationery restock\", \"amount\": \"520\", \"order_date\": \"2026-07-03\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cold-chain consumables - Northgate Medical\", \"fields\": {\"supplier\": \"Northgate Medical\", \"item\": \"Cold-chain consumables box set\", \"amount\": \"780\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-26\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Audiology consumables - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Audiology consumables pack\", \"amount\": \"950\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-22\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Diabetes clinic - Dr Hassan\", \"fields\": {\"date\": \"2026-10-28\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"9\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly physio session - Dr Hassan\", \"fields\": {\"date\": \"2026-10-15\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Recall letter programme - medication reviews\", \"fields\": {\"frequency\": \"first Monday monthly\", \"started\": \"2026-09-07\", \"template\": \"Willowmere letterhead\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Dr Hassan\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please send off the two supply orders that are still sitting with Marcus, and sort out the date for Dr Hassan's diabetes clinic in the Annex.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-26\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-22\"], \"task\": true},\n  {\"message_to\": \"Dr Hassan\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-28\"], \"task\": true}\n ],\n \"why\": \"The 1 October amendment raises the sign-off threshold to £1000, so the £780 Northgate and £950 Medline orders (both citing the old £400 rule) no longer need Marcus Bell and should be sent now, updating their status and delivery dates. The diabetes clinic (EV-1) rests two hops away, on the Northgate order's old 26 October delivery, so its date can only change with Dr Hassan's consent under the standing rule — the assistant must ask, proposing 21 October (a Wednesday, per his note), not move it. The July stationery order (ORD-1) was validly placed and signed off before the amendment, so it is KEEP and stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Glove restock\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"35\", \"50\", \"80\"], \"place\": \"treatment room store\"},\n  {\"kind\": \"order\", \"topic\": \"Printer paper\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Printer paper\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"25\", \"40\"], \"place\": \"reception cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"Annex training room\", \"counterpart\": \"Gail Munro\", \"org\": \"Redcar Training Ltd\", \"item\": \"Staff training slots\", \"unit\": \"sessions\", \"values\": [\"Annex Room 1\", \"Annex Room 2\", \"Staff meeting room\"], \"place\": \"Annex\"},\n  {\"kind\": \"order\", \"topic\": \"Reception coffee\", \"counterpart\": \"Sam Toft\", \"org\": \"Bramble Coffee Roasters\", \"item\": \"Coffee beans\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Patient transport runs\", \"counterpart\": \"Wes Adeyemi\", \"org\": \"Cedar Ride Community Transport\", \"item\": \"Minibus slots\", \"unit\": \"runs\", \"values\": [\"minibus bay A\", \"minibus bay B\", \"front forecourt\"], \"place\": \"surgery forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Pharmacy liaison meetings\", \"counterpart\": \"Nadia Osei\", \"org\": \"Larkfield Pharmacy\", \"item\": \"Liaison meetings\", \"unit\": \"meetings\", \"values\": [\"Staff meeting room\", \"Annex Room 2\", \"reception back office\"], \"place\": \"surgery\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Hettie Lang\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"Surface disinfectant\", \"unit\": \"cases\", \"values\": [\"5\", \"8\", \"12\", \"18\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Health visitor clinics\", \"counterpart\": \"Ruth Kelly\", \"org\": \"Willowmere Health Visiting Team\", \"item\": \"Baby clinic slots\", \"unit\": \"clinics\", \"values\": [\"Wellbeing Room\", \"Annex Room 1\", \"Staff meeting room\"], \"place\": \"Wellbeing Room\"},\n  {\"kind\": \"order\", \"topic\": \"Water cooler bottles\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Springvale Waters\", \"item\": \"Water bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"reception\"},\n  {\"kind\": \"order\", \"topic\": \"Vaccine fridge probes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Fridge temperature probes\", \"unit\": \"units\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vaccine fridge room\"},\n  {\"kind\": \"order\", \"topic\": \"Leaflet printing\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Patient leaflets\", \"unit\": \"bundles\", \"values\": [\"30\", \"50\", \"75\", \"100\"], \"place\": \"reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Counselling room\", \"counterpart\": \"Marta Voss\", \"org\": \"Hillfield Counselling\", \"item\": \"Counselling sessions\", \"unit\": \"sessions\", \"values\": [\"Wellbeing Room\", \"Annex Room 2\"], \"place\": \"Wellbeing Room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6616,
+    "completion_tokens": 3955,
+    "reasoning_tokens": 78,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02308936,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 17 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Willowmere\",\n \"setting\": \"The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters\",\n \"owner\": \"Priya\",\n \"org\": \"Willowmere GP Surgery\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing instruction for the whole practice: every repeat prescription request that comes in from a patient goes to Larkfield Pharmacy the same working day, no exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Practice policy from today: any supplier order over £400 must have the finance lead Marcus Bell's written sign-off before it is placed. Orders of £400 or less can go out directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Confirmed clinic sessions that Dr Hassan runs in the Annex can only be rescheduled with Dr Hassan's agreement. He sets his own clinic dates; we never move one without checking with him.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Dr Hassan\", \"text\": \"Two things from me. My diabetes clinic list is back up to 9 patients, so I'd like a dedicated diabetes clinic session in the Annex in late October. And please keep my weekly physio session in the Annex on Thursdays from 2 July, up to 6 patients each time.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked Dr Hassan's weekly physio session in the Annex every Thursday from 2 July, up to 6 patients, as he asked. Follows the rule that his Annex sessions are set with his agreement.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\"], \"record\": \"EV-2\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Confirmation of our delivery terms: cold-chain consumables are delivered within 5 working days of a confirmed order, and we only treat an order as confirmed once the finance sign-off is attached. We hold stock ready for Willowmere.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation for Willowmere GP Surgery: full stationery restock (letterheads, prescription pads, leaflet stock) at £520 including delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Placed the stationery restock order with Medline Supplies at £520. That was over the £400 line, so it went to Marcus Bell for sign-off first, and he signed it off the same day. Order is done and delivered.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nadia Osei (Larkfield Pharmacy)\", \"text\": \"Just confirming our standing arrangement for repeats: send everything to my direct line at the pharmacy, 01632 960118, and I'll confirm receipt the same day. It's been working well.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Priya\", \"text\": \"Recall letter programme agreed with the partners: patients due a medication review get their recall letters on the first Monday of each month, sent from the Willowmere letterhead, with replies logged against their record.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Finance note: invoice runs are now on the 15th and the last working day of each month. Nothing changes on the order sign-off arrangements — I still handle those as per the practice policy.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up the monthly recall letter run for medication reviews on the first Monday of each month, as agreed with the partners, starting 7 September. Letters go out from the Willowmere letterhead.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"Advance notice of our winter price list: from 1 November the cold-chain consumables box set goes up from £780 to £840. Anything confirmed before then stays at the current price.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e10\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Medline Supplies\", \"text\": \"Quotation: audiology consumables pack (ear tips, specula, batteries) at £950, delivered within 5 working days of the order going out.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Dana Whitfield (Northgate Medical)\", \"text\": \"As discussed, the cold-chain consumables box set for your October order is £780. We are holding the stock for you and will dispatch within 5 working days once the order is confirmed with finance sign-off attached.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the cold-chain consumables order with Northgate Medical at £780. As it is over the £400 line it has gone to Marcus Bell for sign-off and is sitting with him; expected delivery pencilled in for 26 October.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Raised the audiology consumables order with Medline Supplies at £950 per their quotation. Over the £400 line, so it is with Marcus Bell for sign-off before it can be sent; delivery expected 22 October once it goes out.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e10\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-10-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Scheduled Dr Hassan's diabetes clinic session in the Annex for 28 October, after the cold-chain consumables from Northgate are due in on 26 October. His list of 9 patients will be invited. Set with his agreement as always.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e6\", \"e4\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Priya\", \"text\": \"Team note following the budget review: with effect from 1 October, the finance sign-off threshold for supplier orders rises from £400 to £1000. Marcus Bell still signs off anything above £1000 before it is placed; anything at or below £1000 no longer needs his sign-off.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e16\", \"date\": \"2026-10-07\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do by 16 October: chase up the two supply orders sitting with Marcus, the clinic rooms are waiting on them.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Reception note: the new flu leaflets have arrived, 400 copies in the store cupboard by the front desk. Recall letter templates are unchanged.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-11\", \"type\": \"email\", \"from\": \"Dr Hassan\", \"text\": \"One more thing for the diary: keep the diabetes clinic to a Wednesday if you ever need to shift it, the rest of my week is full. Everything else you have set up for me is fine.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Stationery restock - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Stationery restock\", \"amount\": \"520\", \"order_date\": \"2026-07-03\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Cold-chain consumables - Northgate Medical\", \"fields\": {\"supplier\": \"Northgate Medical\", \"item\": \"Cold-chain consumables box set\", \"amount\": \"780\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-26\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Audiology consumables - Medline Supplies\", \"fields\": {\"supplier\": \"Medline Supplies\", \"item\": \"Audiology consumables pack\", \"amount\": \"950\", \"status\": \"awaiting sign-off\", \"expected_delivery\": \"2026-10-22\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Diabetes clinic - Dr Hassan\", \"fields\": {\"date\": \"2026-10-28\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"9\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly physio session - Dr Hassan\", \"fields\": {\"date\": \"2026-10-15\", \"place\": \"Annex\", \"practitioner\": \"Dr Hassan\", \"patients\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Recall letter programme - medication reviews\", \"fields\": {\"frequency\": \"first Monday monthly\", \"started\": \"2026-09-07\", \"template\": \"Willowmere letterhead\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\"], \"from\": \"Dr Hassan\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please send off the two supply orders that are still sitting with Marcus, and sort out the date for Dr Hassan's diabetes clinic in the Annex.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-26\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"ordered\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"expected_delivery\", \"value\": \"2026-10-19\", \"stale\": [\"2026-10-22\"], \"task\": true},\n  {\"message_to\": \"Dr Hassan\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-28\"], \"task\": true}\n ],\n \"why\": \"The 1 October amendment raises the sign-off threshold to £1000, so the £780 Northgate and £950 Medline orders (both citing the old £400 rule) no longer need Marcus Bell and should be sent now, updating their status and delivery dates. The diabetes clinic (EV-1) rests two hops away, on the Northgate order's old 26 October delivery, so its date can only change with Dr Hassan's consent under the standing rule — the assistant must ask, proposing 21 October (a Wednesday, per his note), not move it. The July stationery order (ORD-1) was validly placed and signed off before the amendment, so it is KEEP and stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Glove restock\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"20\", \"35\", \"50\", \"80\"], \"place\": \"treatment room store\"},\n  {\"kind\": \"order\", \"topic\": \"Printer paper\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Printer paper\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"25\", \"40\"], \"place\": \"reception cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"Annex training room\", \"counterpart\": \"Gail Munro\", \"org\": \"Redcar Training Ltd\", \"item\": \"Staff training slots\", \"unit\": \"sessions\", \"values\": [\"Annex Room 1\", \"Annex Room 2\", \"Staff meeting room\"], \"place\": \"Annex\"},\n  {\"kind\": \"order\", \"topic\": \"Reception coffee\", \"counterpart\": \"Sam Toft\", \"org\": \"Bramble Coffee Roasters\", \"item\": \"Coffee beans\", \"unit\": \"bags\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"staff kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"Patient transport runs\", \"counterpart\": \"Wes Adeyemi\", \"org\": \"Cedar Ride Community Transport\", \"item\": \"Minibus slots\", \"unit\": \"runs\", \"values\": [\"minibus bay A\", \"minibus bay B\", \"front forecourt\"], \"place\": \"surgery forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Pharmacy liaison meetings\", \"counterpart\": \"Nadia Osei\", \"org\": \"Larkfield Pharmacy\", \"item\": \"Liaison meetings\", \"unit\": \"meetings\", \"values\": [\"Staff meeting room\", \"Annex Room 2\", \"reception back office\"], \"place\": \"surgery\"},\n  {\"kind\": \"order\", \"topic\": \"Cleaning supplies\", \"counterpart\": \"Hettie Lang\", \"org\": \"Halo Cleaning Supplies\", \"item\": \"Surface disinfectant\", \"unit\": \"cases\", \"values\": [\"5\", \"8\", \"12\", \"18\"], \"place\": \"cleaning store\"},\n  {\"kind\": \"booking\", \"topic\": \"Health visitor clinics\", \"counterpart\": \"Ruth Kelly\", \"org\": \"Willowmere Health Visiting Team\", \"item\": \"Baby clinic slots\", \"unit\": \"clinics\", \"values\": [\"Wellbeing Room\", \"Annex Room 1\", \"Staff meeting room\"], \"place\": \"Wellbeing Room\"},\n  {\"kind\": \"order\", \"topic\": \"Water cooler bottles\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Springvale Waters\", \"item\": \"Water bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"reception\"},\n  {\"kind\": \"order\", \"topic\": \"Vaccine fridge probes\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Northgate Medical\", \"item\": \"Fridge temperature probes\", \"unit\": \"units\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"vaccine fridge room\"},\n  {\"kind\": \"order\", \"topic\": \"Leaflet printing\", \"counterpart\": \"Tom Bevan\", \"org\": \"Medline Supplies\", \"item\": \"Patient leaflets\", \"unit\": \"bundles\", \"values\": [\"30\", \"50\", \"75\", \"100\"], \"place\": \"reception\"},\n  {\"kind\": \"booking\", \"topic\": \"Counselling room\", \"counterpart\": \"Marta Voss\", \"org\": \"Hillfield Counselling\", \"item\": \"Counselling sessions\", \"unit\": \"sessions\", \"values\": [\"Wellbeing Room\", \"Annex Room 2\", \"Staff meeting room\"], \"place\": \"Wellbeing Room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10537,
+    "completion_tokens": 3889,
+    "reasoning_tokens": 7,
+    "cached_tokens": 6592
+   },
+   "cost": 0.02434852,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Counselling room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at Willowmere",
+  "setting": "The practice manager at Willowmere GP Surgery whose assistant coordinates repeat prescriptions, referrals, and recall letters",
+  "owner": "Priya",
+  "org": "Willowmere GP Surgery",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing instruction for the whole practice: every repeat prescription request that comes in from a patient goes to Larkfield Pharmacy the same working day, no exceptions.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Practice policy from today: any supplier order over £400 must have the finance lead Marcus Bell's written sign-off before it is placed. Orders of £400 or less can go out directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Confirmed clinic sessions that Dr Hassan runs in the Annex can only be rescheduled with Dr Hassan's agreement. He sets his own clinic dates; we never move one without checking with him.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Dr Hassan",
+    "text": "Two things from me. My diabetes clinic list is back up to 9 patients, so I'd like a dedicated diabetes clinic session in the Annex in late October. And please keep my weekly physio session in the Annex on Thursdays from 2 July, up to 6 patients each time.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked Dr Hassan's weekly physio session in the Annex every Thursday from 2 July, up to 6 patients, as he asked. Follows the rule that his Annex sessions are set with his agreement.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Dana Whitfield (Northgate Medical)",
+    "text": "Confirmation of our delivery terms: cold-chain consumables are delivered within 5 working days of a confirmed order, and we only treat an order as confirmed once the finance sign-off is attached. We hold stock ready for Willowmere.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Medline Supplies",
+    "text": "Quotation for Willowmere GP Surgery: full stationery restock (letterheads, prescription pads, leaflet stock) at £520 including delivery.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Placed the stationery restock order with Medline Supplies at £520. That was over the £400 line, so it went to Marcus Bell for sign-off first, and he signed it off the same day. Order is done and delivered.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e7"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Nadia Osei (Larkfield Pharmacy)",
+    "text": "Just confirming our standing arrangement for repeats: send everything to my direct line at the pharmacy, 01632 960118, and I'll confirm receipt the same day. It's been working well.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-28",
+    "type": "letter",
+    "from": "Priya",
+    "text": "Recall letter programme agreed with the partners: patients due a medication review get their recall letters on the first Monday of each month, sent from the Willowmere letterhead, with replies logged against their record.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Finance note: invoice runs are now on the 15th and the last working day of each month. Nothing changes on the order sign-off arrangements — I still handle those as per the practice policy.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-19",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Set up the monthly recall letter run for medication reviews on the first Monday of each month, as agreed with the partners, starting 7 September. Letters go out from the Willowmere letterhead.",
+    "role": "decision",
+    "rests_on": [
+     "e19"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Dana Whitfield (Northgate Medical)",
+    "text": "Advance notice of our winter price list: from 1 November the cold-chain consumables box set goes up from £780 to £840. Anything confirmed before then stays at the current price.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-24",
+    "type": "quote",
+    "from": "Medline Supplies",
+    "text": "Quotation: audiology consumables pack (ear tips, specula, batteries) at £950, delivered within 5 working days of the order going out.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Dana Whitfield (Northgate Medical)",
+    "text": "As discussed, the cold-chain consumables box set for your October order is £780. We are holding the stock for you and will dispatch within 5 working days once the order is confirmed with finance sign-off attached.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Raised the cold-chain consumables order with Northgate Medical at £780. As it is over the £400 line it has gone to Marcus Bell for sign-off and is sitting with him; expected delivery pencilled in for 26 October.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e11"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Raised the audiology consumables order with Medline Supplies at £950 per their quotation. Over the £400 line, so it is with Marcus Bell for sign-off before it can be sent; delivery expected 22 October once it goes out.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e10"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-10-01",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Scheduled Dr Hassan's diabetes clinic session in the Annex for 28 October, after the cold-chain consumables from Northgate are due in on 26 October. His list of 9 patients will be invited. Set with his agreement as always.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e6",
+     "e4",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Priya",
+    "text": "Team note following the budget review: with effect from 1 October, the finance sign-off threshold for supplier orders rises from £400 to £1000. Marcus Bell still signs off anything above £1000 before it is placed; anything at or below £1000 no longer needs his sign-off.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-07",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do by 16 October: chase up the two supply orders sitting with Marcus, the clinic rooms are waiting on them.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-10",
+    "type": "note",
+    "from": "Priya",
+    "text": "Reception note: the new flu leaflets have arrived, 400 copies in the store cupboard by the front desk. Recall letter templates are unchanged.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-11",
+    "type": "email",
+    "from": "Dr Hassan",
+    "text": "One more thing for the diary: keep the diabetes clinic to a Wednesday if you ever need to shift it, the rest of my week is full. Everything else you have set up for me is fine.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Stationery restock - Medline Supplies",
+    "fields": {
+     "supplier": "Medline Supplies",
+     "item": "Stationery restock",
+     "amount": "520",
+     "order_date": "2026-07-03",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Cold-chain consumables - Northgate Medical",
+    "fields": {
+     "supplier": "Northgate Medical",
+     "item": "Cold-chain consumables box set",
+     "amount": "780",
+     "status": "awaiting sign-off",
+     "expected_delivery": "2026-10-26"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Audiology consumables - Medline Supplies",
+    "fields": {
+     "supplier": "Medline Supplies",
+     "item": "Audiology consumables pack",
+     "amount": "950",
+     "status": "awaiting sign-off",
+     "expected_delivery": "2026-10-22"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Diabetes clinic - Dr Hassan",
+    "fields": {
+     "date": "2026-10-28",
+     "place": "Annex",
+     "practitioner": "Dr Hassan",
+     "patients": "9",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Weekly physio session - Dr Hassan",
+    "fields": {
+     "date": "2026-10-15",
+     "place": "Annex",
+     "practitioner": "Dr Hassan",
+     "patients": "6",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Recall letter programme - medication reviews",
+    "fields": {
+     "frequency": "first Monday monthly",
+     "started": "2026-09-07",
+     "template": "Willowmere letterhead",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date"
+    ],
+    "from": "Dr Hassan",
+    "rule": "e3"
+   }
+  ],
+  "task": "Please send off the two supply orders that are still sitting with Marcus, and sort out the date for Dr Hassan's diabetes clinic in the Annex.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "status",
+    "value": "ordered",
+    "stale": [
+     "awaiting sign-off"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "expected_delivery",
+    "value": "2026-10-19",
+    "stale": [
+     "2026-10-26"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "status",
+    "value": "ordered",
+    "stale": [
+     "awaiting sign-off"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "expected_delivery",
+    "value": "2026-10-19",
+    "stale": [
+     "2026-10-22"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Dr Hassan",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-21"
+    ],
+    "stale": [
+     "2026-10-28"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The 1 October amendment raises the sign-off threshold to £1000, so the £780 Northgate and £950 Medline orders (both citing the old £400 rule) no longer need Marcus Bell and should be sent now, updating their status and delivery dates. The diabetes clinic (EV-1) rests two hops away, on the Northgate order's old 26 October delivery, so its date can only change with Dr Hassan's consent under the standing rule — the assistant must ask, proposing 21 October (a Wednesday, per his note), not move it. The July stationery order (ORD-1) was validly placed and signed off before the amendment, so it is KEEP and stays as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Glove restock",
+    "counterpart": "Dana Whitfield",
+    "org": "Northgate Medical",
+    "item": "Nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "20",
+     "35",
+     "50",
+     "80"
+    ],
+    "place": "treatment room store"
+   },
+   {
+    "kind": "order",
+    "topic": "Printer paper",
+    "counterpart": "Tom Bevan",
+    "org": "Medline Supplies",
+    "item": "Printer paper",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "reception cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Annex training room",
+    "counterpart": "Gail Munro",
+    "org": "Redcar Training Ltd",
+    "item": "Staff training slots",
+    "unit": "sessions",
+    "values": [
+     "Annex Room 1",
+     "Annex Room 2",
+     "Staff meeting room"
+    ],
+    "place": "Annex"
+   },
+   {
+    "kind": "order",
+    "topic": "Reception coffee",
+    "counterpart": "Sam Toft",
+    "org": "Bramble Coffee Roasters",
+    "item": "Coffee beans",
+    "unit": "bags",
+    "values": [
+     "4",
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "staff kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "Patient transport runs",
+    "counterpart": "Wes Adeyemi",
+    "org": "Cedar Ride Community Transport",
+    "item": "Minibus slots",
+    "unit": "runs",
+    "values": [
+     "minibus bay A",
+     "minibus bay B",
+     "front forecourt"
+    ],
+    "place": "surgery forecourt"
+   },
+   {
+    "kind": "booking",
+    "topic": "Pharmacy liaison meetings",
+    "counterpart": "Nadia Osei",
+    "org": "Larkfield Pharmacy",
+    "item": "Liaison meetings",
+    "unit": "meetings",
+    "values": [
+     "Staff meeting room",
+     "Annex Room 2",
+     "reception back office"
+    ],
+    "place": "surgery"
+   },
+   {
+    "kind": "order",
+    "topic": "Cleaning supplies",
+    "counterpart": "Hettie Lang",
+    "org": "Halo Cleaning Supplies",
+    "item": "Surface disinfectant",
+    "unit": "cases",
+    "values": [
+     "5",
+     "8",
+     "12",
+     "18"
+    ],
+    "place": "cleaning store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Health visitor clinics",
+    "counterpart": "Ruth Kelly",
+    "org": "Willowmere Health Visiting Team",
+    "item": "Baby clinic slots",
+    "unit": "clinics",
+    "values": [
+     "Wellbeing Room",
+     "Annex Room 1",
+     "Staff meeting room"
+    ],
+    "place": "Wellbeing Room"
+   },
+   {
+    "kind": "order",
+    "topic": "Water cooler bottles",
+    "counterpart": "Piotr Nowak",
+    "org": "Springvale Waters",
+    "item": "Water bottles",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "order",
+    "topic": "Vaccine fridge probes",
+    "counterpart": "Dana Whitfield",
+    "org": "Northgate Medical",
+    "item": "Fridge temperature probes",
+    "unit": "units",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "vaccine fridge room"
+   },
+   {
+    "kind": "order",
+    "topic": "Leaflet printing",
+    "counterpart": "Tom Bevan",
+    "org": "Medline Supplies",
+    "item": "Patient leaflets",
+    "unit": "bundles",
+    "values": [
+     "30",
+     "50",
+     "75",
+     "100"
+    ],
+    "place": "reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "Counselling room",
+    "counterpart": "Marta Voss",
+    "org": "Hillfield Counselling",
+    "item": "Counselling sessions",
+    "unit": "sessions",
+    "values": [
+     "Wellbeing Room",
+     "Annex Room 2",
+     "Staff meeting room"
+    ],
+    "place": "Wellbeing Room"
+   }
+  ],
+  "id": "G100-2-03",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Northgate explicitly requires finance sign-off to confirm an order; changing the practice's threshold does not revoke that supplier condition. Delivery within five working days establishes a deadline, not an exact delivery date of 19 October. Neither earlier supplies nor the Wednesday constraint uniquely requires proposing 21 October rather than retaining 28 October or asking Dr Hassan for a suitable Wednesday.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Northgate explicitly requires finance sign-off to confirm an order; changing the practice's threshold does not revoke that supplier condition. Delivery within five working days establishes a deadline, not an exact delivery date of 19 October. Neither earlier supplies nor the Wednesday constraint uniquely requires proposing 21 October rather than retaining 28 October or asking Dr Hassan for a suitable Wednesday."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3532,
+    "completion_tokens": 181,
+    "reasoning_tokens": 73,
+    "cached_tokens": 0
+   },
+   "cost": 0.0531925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86cda222be68596c8e2afe3f3f6704c1f4aaa5887ee7842913ba008251f94a42",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state conflicts with Northgate's terms (e6, e11), which say an order counts as confirmed only once finance sign-off is attached, so sending ORD-2 without sign-off is not clearly the right act. The history also does not establish why the clinic must move to 21 October, since the earlier delivery date of 19 October still falls before the 28 October clinic. The structure otherwise fits class 2, with ORD-1 as KEEP, the two orders as REVISE, and the clinic as ASK under e3.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state conflicts with Northgate's terms (e6, e11), which say an order counts as confirmed only once finance sign-off is attached, so sending ORD-2 without sign-off is not clearly the right act. The history also does not establish why the clinic must move to 21 October, since the earlier delivery date of 19 October still falls before the 28 October clinic. The structure otherwise fits class 2, with ORD-1 as KEEP, the two orders as REVISE, and the clinic as ASK under e3."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5038,
+    "completion_tokens": 1965,
+    "reasoning_tokens": 1742,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014863,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86cda222be68596c8e2afe3f3f6704c1f4aaa5887ee7842913ba008251f94a42",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The £1000 threshold amendment voids the sign-off hold on the £780/£950 orders (REVISE, 5 working days from 12 Oct gives 19 Oct), the clinic date depends on the old delivery and needs Dr Hassan's consent per e3 with 21 Oct a Wednesday (ASK), and ORD-1 predates the amendment (KEEP). The task asks for orders to be sent and the clinic date sorted without mentioning the change, the change sits at event 93 with 7 events after it, and the core meets tier 100 counts and timing.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The £1000 threshold amendment voids the sign-off hold on the £780/£950 orders (REVISE, 5 working days from 12 Oct gives 19 Oct), the clinic date depends on the old delivery and needs Dr Hassan's consent per e3 with 21 Oct a Wednesday (ASK), and ORD-1 predates the amendment (KEEP). The task asks for orders to be sent and the clinic date sorted without mentioning the change, the change sits at event 93 with 7 events after it, and the core meets tier 100 counts and timing."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3609,
+    "completion_tokens": 407,
+    "reasoning_tokens": 234,
+    "cached_tokens": 256
+   },
+   "cost": 0.0162408,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "86cda222be68596c8e2afe3f3f6704c1f4aaa5887ee7842913ba008251f94a42",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

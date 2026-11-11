@@ -1,0 +1,627 @@
+{
+ "id": "G100-2-08",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 7,
+ "setting": "A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes",
+ "prompt_sha256": "5a8d8405b61199946d67a10ef4123cdfa88df0d2ba030003eee4bbed1a1b260d",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold drop at Apex School of Motoring\",\n \"setting\": \"A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes\",\n \"owner\": \"Ruth\",\n \"org\": \"Apex School of Motoring\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Apex School of Motoring runs from the Ossett depot with a fleet of five tuition cars. Ruth is the senior instructor, Marek Novak instructs part-time, and Priya Nair runs the office.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Aisha Rahman\", \"text\": \"Aisha Rahman's practical driving test is booked at Huddersfield Test Centre for 12 November 2026. The DVSA test fee is 62 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing office rules at Apex: any course or package priced above 300 pounds needs Priya Nair's sign-off before it is confirmed in the records, and no confirmed booking may be moved or rescheduled without the pupil's consent.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ruth\", \"text\": \"Pupil progress notes are shared only with the pupil themselves. They are never sent to parents, employers or insurers.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Bruno Kessler\", \"text\": \"Bruno Kessler passed his theory test and wants motorway training before his practical. The Apex motorway skills package is three sessions on the M62 for 240 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Aisha Rahman on the Pass Intensive course at 340 pounds, countersigned by Priya Nair as the rules require above 300 pounds. The course runs from 12 October 2026 at the Ossett depot.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"invoice\", \"from\": \"Priya Nair\", \"text\": \"Fuel card statement for the tuition fleet for June: 412 pounds, paid from the office account.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Bruno Kessler on the motorway skills package, three M62 sessions at 240 pounds. No sign-off was needed because the package sits below the 300 pound threshold.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Drafted a test-route assessment car hire for Bruno Kessler on 6 November 2026 at 190 pounds, to be confirmed in the records once his motorway package is settled.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Dan Whitmore\", \"text\": \"Dan Whitmore wants a ten-lesson evening series, Tuesdays at 18:00, starting in the autumn once the evenings draw in.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Moved Dan Whitmore's ten-lesson evening series to a start date of 3 November 2026, Tuesdays at 18:00. The booking is held as pending until Dan consents to the new start date, as the office rule requires.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e10\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Sue Hargreaves (Northern Motoring Supplies)\", \"text\": \"Quote for 200 pairs of L-plates and 50 roof-top novice signs: 286 pounds delivered to the Ossett depot.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marek Novak\", \"text\": \"Marek Novak is available for motorway sessions on Thursdays and Fridays through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Chloe Bennett\", \"text\": \"Chloe Bennett passed her test in August and asks about doing Pass Plus with Apex before winter.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Bruno Kessler completed session one of his motorway skills package with Marek on the M62 near Chain Bar. Sessions two and three still to schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Priya Nair\", \"text\": \"Weekly staff briefing at the Ossett depot: fleet servicing booked for October, two new pupils enrolled, nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"New office rules from today, because fuel costs have really bitten. Priya Nair's sign-off is now needed for anything priced above 180 pounds, not 300 pounds, before it is confirmed in the records. And we no longer need pupil consent to move a lesson series: that consent rule now covers practical test bookings only, and the office can reschedule lesson series itself.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Driver and Vehicle Standards Agency\", \"text\": \"Reminder: the practical test fee for the booking at Huddersfield Test Centre on 12 November 2026 remains 62 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Heads-up for the price list: the five-hour refresher course for new pupils will be priced at 185 pounds from November.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"minutes\", \"from\": \"Priya Nair\", \"text\": \"Weekly staff briefing: Marek covering the Huddersfield test-route runs, one tuition car in for a service on Thursday, nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-22\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Renew the fleet insurance before 30 November 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Aisha Rahman - Pass Intensive course\", \"fields\": {\"pupil\": \"Aisha Rahman\", \"course\": \"Pass Intensive\", \"start_date\": \"2026-10-12\", \"price\": \"340\", \"signoff\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Dan Whitmore - evening lesson series\", \"fields\": {\"pupil\": \"Dan Whitmore\", \"course\": \"Evening lesson series (10 lessons)\", \"slot\": \"Tuesdays 18:00\", \"start_date\": \"2026-11-03\", \"status\": \"pending - awaiting Dan's consent\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bruno Kessler - motorway skills package\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"item\": \"Motorway skills package (3 sessions)\", \"price\": \"240\", \"signoff\": \"none\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bruno Kessler - test-route assessment car hire\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"item\": \"Test-route assessment car hire\", \"price\": \"190\", \"date\": \"2026-11-06\", \"status\": \"draft\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bruno Kessler - progress note\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"note\": \"Theory passed; motorway session one complete on M62 near Chain Bar\", \"instructor\": \"Marek Novak\", \"updated\": \"2026-09-15\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"status\", \"signoff\"], \"from\": \"Priya Nair\", \"rule\": \"e3\"},\n  {\"record\": \"ORD-2\", \"fields\": [\"status\"], \"from\": \"Priya Nair\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please sort the diary out this morning: make Dan Whitmore's evening series a firm booking in the schedule, and deal with whatever paperwork Bruno Kessler's motorway package and assessment hire need. Then let me know where things stand.\",\n \"expect\": [\n  {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending - awaiting Dan's consent\"], \"task\": true},\n  {\"message_to\": \"Priya Nair\", \"regarding\": \"ORD-1\", \"says\": [\"Bruno Kessler motorway skills package\", \"240 pounds\", \"sign-off needed above 180 pounds\"], \"stale\": [\"no sign-off needed below 300 pounds\"], \"task\": true}\n ],\n \"why\": \"The amended rule drops the sign-off threshold to 180 pounds, so Bruno's 240 pound motorway package and the 190 pound assessment car hire now need Priya Nair's sign-off: both records stay as they are and the assistant must ask (ORD-2 is two hops from the rule through the package decision). The amendment also lifts the pupil-consent requirement for lesson series, so Dan's pending series can be confirmed directly in the schedule (REVISE). Aisha's 340 pound course needed Priya's sign-off under both the old and new thresholds, so it is KEEP, and the refresher price of 185 pounds is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"L-plates restock\", \"counterpart\": \"Sue Hargreaves\", \"org\": \"Northern Motoring Supplies\", \"item\": \"L-plates\", \"unit\": \"pairs\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Roof-top novice signs\", \"counterpart\": \"Sue Hargreaves\", \"org\": \"Northern Motoring Supplies\", \"item\": \"roof-top novice signs\", \"unit\": \"signs\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Fuel card top-up\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"fuel card top-up\", \"unit\": \"pounds\", \"values\": [\"180\", \"220\", \"260\", \"310\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Tyre replacement\", \"counterpart\": \"Dave Millward\", \"org\": \"Calder Tyres\", \"item\": \"tyres for tuition cars\", \"unit\": \"tyres\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Lesson booklet printing\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"pupil handbooks\", \"unit\": \"copies\", \"values\": [\"25\", \"40\", \"60\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Car wash vouchers\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"car wash vouchers\", \"unit\": \"vouchers\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Instructor briefing room\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"briefing room\", \"unit\": \"\", \"values\": [\"depot room 1\", \"depot room 2\", \"upstairs office\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Theory test prep classroom\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"theory prep classroom slot\", \"unit\": \"\", \"values\": [\"depot room 1\", \"depot room 2\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Test-route practice runs\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"test-route practice run\", \"unit\": \"\", \"values\": [\"Huddersfield route A\", \"Huddersfield route B\", \"Halton route\"], \"place\": \"Huddersfield\"},\n  {\"kind\": \"booking\", \"topic\": \"Fleet service bays\", \"counterpart\": \"Dave Millward\", \"org\": \"Calder Tyres\", \"item\": \"service bay slot\", \"unit\": \"\", \"values\": [\"bay 1\", \"bay 2\", \"bay 3\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee supplies\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"coffee and tea supplies\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Mock test slots\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"mock test slot\", \"unit\": \"\", \"values\": [\"Huddersfield Test Centre area\", \"Ossett ring road\"], \"place\": \"Huddersfield\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3143,
+    "completion_tokens": 9837,
+    "reasoning_tokens": 6324,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04418092,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold drop at Apex School of Motoring\",\n \"setting\": \"A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes\",\n \"owner\": \"Ruth\",\n \"org\": \"Apex School of Motoring\",\n \"now\": \"2026-10-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Apex School of Motoring runs from the Ossett depot with a fleet of five tuition cars. Ruth is the senior instructor, Marek Novak instructs part-time, and Priya Nair runs the office.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Aisha Rahman\", \"text\": \"Aisha Rahman's practical driving test is booked at Huddersfield Test Centre for 12 November 2026. The DVSA test fee is 62 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing office rules at Apex: any course or package priced above 300 pounds needs Priya Nair's sign-off before it is confirmed in the records, and no confirmed booking may be moved or rescheduled without the pupil's consent.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ruth\", \"text\": \"Pupil progress notes are shared only with the pupil themselves. They are never sent to parents, employers or insurers.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Bruno Kessler\", \"text\": \"Bruno Kessler passed his theory test and wants motorway training before his practical. The Apex motorway skills package is three sessions on the M62 for 240 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Aisha Rahman on the Pass Intensive course at 340 pounds, countersigned by Priya Nair as the rules require above 300 pounds. The course runs from 12 October 2026 at the Ossett depot.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e2\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"invoice\", \"from\": \"Priya Nair\", \"text\": \"Fuel card statement for the tuition fleet for June: 412 pounds, paid from the office account.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Bruno Kessler on the motorway skills package, three M62 sessions at 240 pounds. No sign-off was needed because the package sits below the 300 pound threshold.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Drafted a test-route assessment car hire for Bruno Kessler on 6 November 2026 at 190 pounds, to be confirmed in the records once his motorway package is settled.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Dan Whitmore\", \"text\": \"Dan Whitmore wants a ten-lesson evening series, Tuesdays at 18:00, starting in the autumn once the evenings draw in.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Moved Dan Whitmore's ten-lesson evening series to a start date of 3 November 2026, Tuesdays at 18:00. The booking is held as pending until Dan consents to the new start date, as the office rule requires.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e10\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Sue Hargreaves (Northern Motoring Supplies)\", \"text\": \"Quote for 200 pairs of L-plates and 50 roof-top novice signs: 286 pounds delivered to the Ossett depot.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Marek Novak\", \"text\": \"Marek Novak is available for motorway sessions on Thursdays and Fridays through the autumn.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Chloe Bennett\", \"text\": \"Chloe Bennett passed her test in August and asks about doing Pass Plus with Apex before winter.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Bruno Kessler completed session one of his motorway skills package with Marek on the M62 near Chain Bar. Sessions two and three still to schedule.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Priya Nair\", \"text\": \"Weekly staff briefing at the Ossett depot: fleet servicing booked for October, two new pupils enrolled, nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"New office rules from today, because fuel costs have really bitten. Priya Nair's sign-off is now needed for anything priced above 180 pounds, not 300 pounds, before it is confirmed in the records. And we no longer need pupil consent to move a lesson series: that consent rule now covers practical test bookings only, and the office can reschedule lesson series itself.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Driver and Vehicle Standards Agency\", \"text\": \"Reminder: the practical test fee for the booking at Huddersfield Test Centre on 12 November 2026 remains 62 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Heads-up for the price list: the five-hour refresher course for new pupils will be priced at 185 pounds from November.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"minutes\", \"from\": \"Priya Nair\", \"text\": \"Weekly staff briefing: Marek covering the Huddersfield test-route runs, one tuition car in for a service on Thursday, nothing else raised.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-22\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Renew the fleet insurance before 30 November 2026.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Aisha Rahman - Pass Intensive course\", \"fields\": {\"pupil\": \"Aisha Rahman\", \"course\": \"Pass Intensive\", \"start_date\": \"2026-10-12\", \"price\": \"340\", \"signoff\": \"Priya Nair\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Dan Whitmore - evening lesson series\", \"fields\": {\"pupil\": \"Dan Whitmore\", \"course\": \"Evening lesson series (10 lessons)\", \"slot\": \"Tuesdays 18:00\", \"start_date\": \"2026-11-03\", \"status\": \"pending - awaiting Dan's consent\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Bruno Kessler - motorway skills package\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"item\": \"Motorway skills package (3 sessions)\", \"price\": \"240\", \"signoff\": \"none\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bruno Kessler - test-route assessment car hire\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"item\": \"Test-route assessment car hire\", \"price\": \"190\", \"date\": \"2026-11-06\", \"status\": \"draft\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bruno Kessler - progress note\", \"fields\": {\"pupil\": \"Bruno Kessler\", \"note\": \"Theory passed; motorway session one complete on M62 near Chain Bar\", \"instructor\": \"Marek Novak\", \"updated\": \"2026-09-15\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"status\", \"signoff\"], \"from\": \"Priya Nair\", \"rule\": \"e3\"},\n  {\"record\": \"ORD-2\", \"fields\": [\"status\"], \"from\": \"Priya Nair\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please sort the diary out this morning: make Dan Whitmore's evening series a firm booking in the schedule, and deal with whatever paperwork Bruno Kessler's motorway package and assessment hire need. Then let me know where things stand.\",\n \"expect\": [\n  {\"record\": \"EV-4\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending - awaiting Dan's consent\"], \"task\": true},\n  {\"message_to\": \"Priya Nair\", \"regarding\": \"ORD-1\", \"says\": [\"Bruno Kessler motorway skills package\", \"240 pounds\", \"sign-off needed above 180 pounds\"], \"stale\": [\"no sign-off needed below 300 pounds\"], \"task\": true}\n ],\n \"why\": \"The amended rule drops the sign-off threshold to 180 pounds, so Bruno's 240 pound motorway package and the 190 pound assessment car hire now need Priya Nair's sign-off: both records stay as they are and the assistant must ask (ORD-2 is two hops from the rule through the package decision). The amendment also lifts the pupil-consent requirement for lesson series, so Dan's pending series can be confirmed directly in the schedule (REVISE). Aisha's 340 pound course needed Priya's sign-off under both the old and new thresholds, so it is KEEP, and the refresher price of 185 pounds is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"L-plates restock\", \"counterpart\": \"Sue Hargreaves\", \"org\": \"Northern Motoring Supplies\", \"item\": \"L-plates\", \"unit\": \"pairs\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Roof-top novice signs\", \"counterpart\": \"Sue Hargreaves\", \"org\": \"Northern Motoring Supplies\", \"item\": \"roof-top novice signs\", \"unit\": \"signs\", \"values\": [\"20\", \"35\", \"50\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Fuel card top-up\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"fuel card top-up\", \"unit\": \"pounds\", \"values\": [\"180\", \"220\", \"260\", \"310\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Tyre replacement\", \"counterpart\": \"Dave Millward\", \"org\": \"Calder Tyres\", \"item\": \"tyres for tuition cars\", \"unit\": \"tyres\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Lesson booklet printing\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"pupil handbooks\", \"unit\": \"copies\", \"values\": [\"25\", \"40\", \"60\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Car wash vouchers\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"car wash vouchers\", \"unit\": \"vouchers\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Instructor briefing room\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"briefing room\", \"unit\": \"\", \"values\": [\"depot room 1\", \"depot room 2\", \"upstairs office\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Theory test prep classroom\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"theory prep classroom slot\", \"unit\": \"\", \"values\": [\"depot room 1\", \"depot room 2\", \"Ossett library study room\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Test-route practice runs\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"test-route practice run\", \"unit\": \"\", \"values\": [\"Huddersfield route A\", \"Huddersfield route B\", \"Halton route\"], \"place\": \"Huddersfield\"},\n  {\"kind\": \"booking\", \"topic\": \"Fleet service bays\", \"counterpart\": \"Dave Millward\", \"org\": \"Calder Tyres\", \"item\": \"service bay slot\", \"unit\": \"\", \"values\": [\"bay 1\", \"bay 2\", \"bay 3\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee supplies\", \"counterpart\": \"Priya Nair\", \"org\": \"Apex School of Motoring\", \"item\": \"coffee and tea supplies\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Ossett depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Mock test slots\", \"counterpart\": \"Marek Novak\", \"org\": \"Apex School of Motoring\", \"item\": \"mock test slot\", \"unit\": \"\", \"values\": [\"Huddersfield Test Centre area\", \"Ossett ring road\", \"Halton test route\"], \"place\": \"Huddersfield\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6714,
+    "completion_tokens": 3533,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02136976,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Theory test prep classroom': values needs at least three entries\n- noise topic 'Mock test slots': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold drop at Apex School of Motoring",
+  "setting": "A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes",
+  "owner": "Ruth",
+  "org": "Apex School of Motoring",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Apex School of Motoring runs from the Ossett depot with a fleet of five tuition cars. Ruth is the senior instructor, Marek Novak instructs part-time, and Priya Nair runs the office.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Aisha Rahman",
+    "text": "Aisha Rahman's practical driving test is booked at Huddersfield Test Centre for 12 November 2026. The DVSA test fee is 62 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Standing office rules at Apex: any course or package priced above 300 pounds needs Priya Nair's sign-off before it is confirmed in the records, and no confirmed booking may be moved or rescheduled without the pupil's consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Ruth",
+    "text": "Pupil progress notes are shared only with the pupil themselves. They are never sent to parents, employers or insurers.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Bruno Kessler",
+    "text": "Bruno Kessler passed his theory test and wants motorway training before his practical. The Apex motorway skills package is three sessions on the M62 for 240 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked Aisha Rahman on the Pass Intensive course at 340 pounds, countersigned by Priya Nair as the rules require above 300 pounds. The course runs from 12 October 2026 at the Ossett depot.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e2",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "invoice",
+    "from": "Priya Nair",
+    "text": "Fuel card statement for the tuition fleet for June: 412 pounds, paid from the office account.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked Bruno Kessler on the motorway skills package, three M62 sessions at 240 pounds. No sign-off was needed because the package sits below the 300 pound threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Drafted a test-route assessment car hire for Bruno Kessler on 6 November 2026 at 190 pounds, to be confirmed in the records once his motorway package is settled.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "ORD-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-04",
+    "type": "message",
+    "from": "Dan Whitmore",
+    "text": "Dan Whitmore wants a ten-lesson evening series, Tuesdays at 18:00, starting in the autumn once the evenings draw in.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Moved Dan Whitmore's ten-lesson evening series to a start date of 3 November 2026, Tuesdays at 18:00. The booking is held as pending until Dan consents to the new start date, as the office rule requires.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e10"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "Sue Hargreaves (Northern Motoring Supplies)",
+    "text": "Quote for 200 pairs of L-plates and 50 roof-top novice signs: 286 pounds delivered to the Ossett depot.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Marek Novak",
+    "text": "Marek Novak is available for motorway sessions on Thursdays and Fridays through the autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Chloe Bennett",
+    "text": "Chloe Bennett passed her test in August and asks about doing Pass Plus with Apex before winter.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-15",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Bruno Kessler completed session one of his motorway skills package with Marek on the M62 near Chain Bar. Sessions two and three still to schedule.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-28",
+    "type": "minutes",
+    "from": "Priya Nair",
+    "text": "Weekly staff briefing at the Ossett depot: fleet servicing booked for October, two new pupils enrolled, nothing else raised.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Ruth",
+    "text": "New office rules from today, because fuel costs have really bitten. Priya Nair's sign-off is now needed for anything priced above 180 pounds, not 300 pounds, before it is confirmed in the records. And we no longer need pupil consent to move a lesson series: that consent rule now covers practical test bookings only, and the office can reschedule lesson series itself.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Driver and Vehicle Standards Agency",
+    "text": "Reminder: the practical test fee for the booking at Huddersfield Test Centre on 12 November 2026 remains 62 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Heads-up for the price list: the five-hour refresher course for new pupils will be priced at 185 pounds from November.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "minutes",
+    "from": "Priya Nair",
+    "text": "Weekly staff briefing: Marek covering the Huddersfield test-route runs, one tuition car in for a service on Thursday, nothing else raised.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-22",
+    "type": "task",
+    "from": "Ruth",
+    "text": "Renew the fleet insurance before 30 November 2026.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Aisha Rahman - Pass Intensive course",
+    "fields": {
+     "pupil": "Aisha Rahman",
+     "course": "Pass Intensive",
+     "start_date": "2026-10-12",
+     "price": "340",
+     "signoff": "Priya Nair",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Dan Whitmore - evening lesson series",
+    "fields": {
+     "pupil": "Dan Whitmore",
+     "course": "Evening lesson series (10 lessons)",
+     "slot": "Tuesdays 18:00",
+     "start_date": "2026-11-03",
+     "status": "pending - awaiting Dan's consent"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Bruno Kessler - motorway skills package",
+    "fields": {
+     "pupil": "Bruno Kessler",
+     "item": "Motorway skills package (3 sessions)",
+     "price": "240",
+     "signoff": "none",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bruno Kessler - test-route assessment car hire",
+    "fields": {
+     "pupil": "Bruno Kessler",
+     "item": "Test-route assessment car hire",
+     "price": "190",
+     "date": "2026-11-06",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Bruno Kessler - progress note",
+    "fields": {
+     "pupil": "Bruno Kessler",
+     "note": "Theory passed; motorway session one complete on M62 near Chain Bar",
+     "instructor": "Marek Novak",
+     "updated": "2026-09-15",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "status",
+     "signoff"
+    ],
+    "from": "Priya Nair",
+    "rule": "e3"
+   },
+   {
+    "record": "ORD-2",
+    "fields": [
+     "status"
+    ],
+    "from": "Priya Nair",
+    "rule": "e3"
+   }
+  ],
+  "task": "Please sort the diary out this morning: make Dan Whitmore's evening series a firm booking in the schedule, and deal with whatever paperwork Bruno Kessler's motorway package and assessment hire need. Then let me know where things stand.",
+  "expect": [
+   {
+    "record": "EV-4",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending - awaiting Dan's consent"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Nair",
+    "regarding": "ORD-1",
+    "says": [
+     "Bruno Kessler motorway skills package",
+     "240 pounds",
+     "sign-off needed above 180 pounds"
+    ],
+    "stale": [
+     "no sign-off needed below 300 pounds"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amended rule drops the sign-off threshold to 180 pounds, so Bruno's 240 pound motorway package and the 190 pound assessment car hire now need Priya Nair's sign-off: both records stay as they are and the assistant must ask (ORD-2 is two hops from the rule through the package decision). The amendment also lifts the pupil-consent requirement for lesson series, so Dan's pending series can be confirmed directly in the schedule (REVISE). Aisha's 340 pound course needed Priya's sign-off under both the old and new thresholds, so it is KEEP, and the refresher price of 185 pounds is a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "L-plates restock",
+    "counterpart": "Sue Hargreaves",
+    "org": "Northern Motoring Supplies",
+    "item": "L-plates",
+    "unit": "pairs",
+    "values": [
+     "100",
+     "150",
+     "200",
+     "250"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Roof-top novice signs",
+    "counterpart": "Sue Hargreaves",
+    "org": "Northern Motoring Supplies",
+    "item": "roof-top novice signs",
+    "unit": "signs",
+    "values": [
+     "20",
+     "35",
+     "50"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Fuel card top-up",
+    "counterpart": "Priya Nair",
+    "org": "Apex School of Motoring",
+    "item": "fuel card top-up",
+    "unit": "pounds",
+    "values": [
+     "180",
+     "220",
+     "260",
+     "310"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Tyre replacement",
+    "counterpart": "Dave Millward",
+    "org": "Calder Tyres",
+    "item": "tyres for tuition cars",
+    "unit": "tyres",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Lesson booklet printing",
+    "counterpart": "Priya Nair",
+    "org": "Apex School of Motoring",
+    "item": "pupil handbooks",
+    "unit": "copies",
+    "values": [
+     "25",
+     "40",
+     "60"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Car wash vouchers",
+    "counterpart": "Priya Nair",
+    "org": "Apex School of Motoring",
+    "item": "car wash vouchers",
+    "unit": "vouchers",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Instructor briefing room",
+    "counterpart": "Priya Nair",
+    "org": "Apex School of Motoring",
+    "item": "briefing room",
+    "unit": "",
+    "values": [
+     "depot room 1",
+     "depot room 2",
+     "upstairs office"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Theory test prep classroom",
+    "counterpart": "Marek Novak",
+    "org": "Apex School of Motoring",
+    "item": "theory prep classroom slot",
+    "unit": "",
+    "values": [
+     "depot room 1",
+     "depot room 2",
+     "Ossett library study room"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Test-route practice runs",
+    "counterpart": "Marek Novak",
+    "org": "Apex School of Motoring",
+    "item": "test-route practice run",
+    "unit": "",
+    "values": [
+     "Huddersfield route A",
+     "Huddersfield route B",
+     "Halton route"
+    ],
+    "place": "Huddersfield"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fleet service bays",
+    "counterpart": "Dave Millward",
+    "org": "Calder Tyres",
+    "item": "service bay slot",
+    "unit": "",
+    "values": [
+     "bay 1",
+     "bay 2",
+     "bay 3"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee supplies",
+    "counterpart": "Priya Nair",
+    "org": "Apex School of Motoring",
+    "item": "coffee and tea supplies",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Ossett depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Mock test slots",
+    "counterpart": "Marek Novak",
+    "org": "Apex School of Motoring",
+    "item": "mock test slot",
+    "unit": "",
+    "values": [
+     "Huddersfield Test Centre area",
+     "Ossett ring road",
+     "Halton test route"
+    ],
+    "place": "Huddersfield"
+   }
+  ],
+  "id": "G100-2-08",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state omits the required sign-off request to Priya for ORD-2, despite its ASK mark and its 190-pound price exceeding the new threshold. Also, the rule effective 'from today' does not unambiguously require retrospective approval of Bruno's already-confirmed, partly completed motorway package.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state omits the required sign-off request to Priya for ORD-2, despite its ASK mark and its 190-pound price exceeding the new threshold. Also, the rule effective 'from today' does not unambiguously require retrospective approval of Bruno's already-confirmed, partly completed motorway package."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3412,
+    "completion_tokens": 170,
+    "reasoning_tokens": 71,
+    "cached_tokens": 0
+   },
+   "cost": 0.0511425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1774cdc40da9e120fbdcd809300cc38712cf0958697f9db21c71a4c5a26b1fc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e17) amends the sign-off threshold and the lesson-series consent rule, so ORD-1 and ORD-2 become ASK, Aisha's EV-1 stays KEEP because 340 pounds needed sign-off under both thresholds, and EV-4 becomes REVISE, which matches the expected state. The core has 21 events, 4 decisions, the change is 21 days before the task day with 4 core events after it, and it is an ordinary dated note with no 'correction' label. The consent map is slightly loose, since the rule cited (e3) governs booking moves and the sign-off requirement rather than a consent for these fields, but this does not change the marks.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e17) amends the sign-off threshold and the lesson-series consent rule, so ORD-1 and ORD-2 become ASK, Aisha's EV-1 stays KEEP because 340 pounds needed sign-off under both thresholds, and EV-4 becomes REVISE, which matches the expected state. The core has 21 events, 4 decisions, the change is 21 days before the task day with 4 core events after it, and it is an ordinary dated note with no 'correction' label. The consent map is slightly loose, since the rule cited (e3) governs booking moves and the sign-off requirement rather than a consent for these fields, but this does not change the marks."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4971,
+    "completion_tokens": 1686,
+    "reasoning_tokens": 1411,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013401,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1774cdc40da9e120fbdcd809300cc38712cf0958697f9db21c71a4c5a26b1fc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment to e3 cleanly splits the citing decisions: e8/e9 lose their sign-off rationale at the new 180 threshold (ASK), e11's consent blocker is lifted for lesson series (REVISE, value fixed by e11), and e6 holds under both thresholds (KEEP). ORD-2 stays draft because e9 gates it on the motorway package being settled, so the only live ask is ORD-1; the 185 refresher is a non-citing distractor. Tier counts, change placement (event 92/100, 21 days before the task day, 8 later events) and concealment all meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment to e3 cleanly splits the citing decisions: e8/e9 lose their sign-off rationale at the new 180 threshold (ASK), e11's consent blocker is lifted for lesson series (REVISE, value fixed by e11), and e6 holds under both thresholds (KEEP). ORD-2 stays draft because e9 gates it on the motorway package being settled, so the only live ask is ORD-1; the 185 refresher is a non-citing distractor. Tier counts, change placement (event 92/100, 21 days before the task day, 8 later events) and concealment all meet tier 100."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3501,
+    "completion_tokens": 2272,
+    "reasoning_tokens": 2082,
+    "cached_tokens": 256
+   },
+   "cost": 0.0438918,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f1774cdc40da9e120fbdcd809300cc38712cf0958697f9db21c71a4c5a26b1fc",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

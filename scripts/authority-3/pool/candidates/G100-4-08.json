@@ -1,0 +1,571 @@
+{
+ "id": "G100-4-08",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 7,
+ "setting": "The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover",
+ "prompt_sha256": "4723027d8b63338e6a432b7e6d9de5e57d433bb2dbb7f66a28f217137101d93d",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Parents' evening plans after a restated booking rule\",\n \"setting\": \"The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover\",\n \"owner\": \"Nora\",\n \"org\": \"Elmshurst Prep\",\n \"now\": \"2026-09-24\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule for me: once a parent meeting is confirmed with families, the date may not be changed without the class teacher's written agreement. Booking a new parent meeting in the first place needs no one's sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The Main Hall at Elmshurst Prep seats 80 people and is free on weekday evenings after 17:30. The Small Hall seats 40.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Marcus Bell (Ridgeline Stationery)\", \"text\": \"Quotation: exercise workbooks for Elmshurst Prep at 2.40 pounds per copy, 250 copies, delivered to the school office.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule: any school order above 500 pounds needs the bursar, Gerald Fenn, to sign off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Sandhu\", \"text\": \"I can cover Year 3 on the mornings of the autumn science outings, Tuesdays and Thursdays.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Helen Ward (Cotswold Coaches)\", \"text\": \"Quote for Elmshurst Prep: 49-seat coach at 380 pounds per day, driver included, pickup at the school gate.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Book the Year 5 parents' evening for Thursday 15 October 2026 at 18:00 in the Main Hall, which seats the whole year's families. Confirmed with families in this week's letter.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"task\", \"from\": \"Nora\", \"text\": \"Place the workbook order with Ridgeline Stationery: 250 copies at 2.40 pounds, total 600 pounds, delivered to the school office by 18 September.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-16\", \"type\": \"note\", \"from\": \"Gerald Fenn\", \"text\": \"Gerald here - I have signed off the 600 pounds workbook order.\", \"role\": \"other\", \"rests_on\": [\"e8\"]},\n  {\"id\": \"e10\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Put Priya Sandhu down as staff cover for the Year 3 autumn science outings on Tuesday mornings, 6 October and 13 October 2026, 08:30 to 12:00.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Book Cotswold Coaches for the Year 6 geography field trip on Wednesday 21 October 2026, one 49-seat coach at 380 pounds, pickup at the school gate at 08:45.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Tom Ashworth\", \"text\": \"Peripatetic music tutor, starting weekly trumpet lessons at Elmshurst Prep from September, 32 pounds per half-hour lesson, invoiced termly.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Add Tom Ashworth to our contacts as a music tutor at 32 pounds per half-hour lesson from September 2026.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"CL-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Diane Okoye\", \"text\": \"Year 6 class teacher here - the 21 October field trip date works for me and my consent forms go out in September.\", \"role\": \"other\", \"rests_on\": [\"e11\"]},\n  {\"id\": \"e15\", \"date\": \"2026-07-06\", \"type\": \"minutes\", \"from\": \"Nora\", \"text\": \"Staff meeting minutes: the parent meeting calendar stands as booked; the Year 5 evening is fixed for 15 October and any later change needs the class teacher's agreement per the standing rule.\", \"role\": \"other\", \"rests_on\": [\"e1\", \"e7\"]},\n  {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Reminder to self: chase consent forms for the Year 6 trip by 2 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marcus Bell (Ridgeline Stationery)\", \"text\": \"Your workbook order will reach the school office on 17 September as agreed.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"notice\", \"from\": \"Nora\", \"text\": \"Note for the files: setting down again how we run parent meetings. A meeting that has already gone out to families is treated as fixed, and its date can only be altered if the class teacher agrees in writing. Scheduling a fresh parent meeting is simply something I do myself. Same as before, just wanted it in plain words.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e19\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Diane Okoye\", \"text\": \"Heads-up - the Small Hall is having its lights replaced, so anything we had pictured there seats more like 30 than 40 until half term.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Helen Ward (Cotswold Coaches)\", \"text\": \"Confirming the 49-seat coach for 21 October 2026, pickup at the school gate at 08:45.\", \"role\": \"other\", \"rests_on\": [\"e11\"]},\n  {\"id\": \"e21\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Year 4 will need their curriculum talk for parents arranged before half term - I will ask for it shortly.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The Main Hall is free on the evening of Tuesday 6 October 2026 after 17:30.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 5 parents' evening\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"group\": \"Year 5\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff cover - Year 3 science outings\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"08:30\", \"cover\": \"Priya Sandhu\", \"group\": \"Year 3\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Workbook order - Ridgeline Stationery\", \"fields\": {\"supplier\": \"Ridgeline Stationery\", \"item\": \"exercise workbooks\", \"quantity\": \"250\", \"amount\": \"600\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Coach hire - Year 6 field trip\", \"fields\": {\"supplier\": \"Cotswold Coaches\", \"date\": \"2026-10-21\", \"amount\": \"380\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Tom Ashworth - music tutor\", \"fields\": {\"name\": \"Tom Ashworth\", \"service\": \"trumpet lessons\", \"rate\": \"32\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Diane Okoye\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please arrange the Year 4 curriculum talk for parents: book the Main Hall on Tuesday 6 October at 18:00 and send a note to the Year 4 class teacher confirming it.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"group\": \"Year 4\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true},\n  {\"message_to\": \"Year 4 class teacher\", \"regarding\": null, \"says\": [\"Year 4 curriculum talk on Tuesday 6 October 2026 at 18:00 in the Main Hall\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"This is a control: the 8 September notice restates the parent-meeting rule in other words and revokes nothing, so no existing plan is touched and every record stays exactly as booked. The task is a fresh booking (not a move of a confirmed meeting), so no consent is needed under either wording of the rule; the assistant should simply create the Year 4 talk record for 6 October in the Main Hall and confirm with the Year 4 teacher, leaving EV-1, EV-2, ORD-1, ORD-2 and CL-1 untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"paper restock\", \"counterpart\": \"Marcus Bell\", \"org\": \"Ridgeline Stationery\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"school office\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Gerald Fenn\", \"org\": \"Elmshurst Prep\", \"item\": \"staff meeting slot\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Small Hall\", \"library\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"booking\", \"topic\": \"science outing transport\", \"counterpart\": \"Helen Ward\", \"org\": \"Cotswold Coaches\", \"item\": \"minibus\", \"unit\": \"\", \"values\": [\"school gate\", \"Main Hall forecourt\"], \"place\": \"school gate\"},\n  {\"kind\": \"order\", \"topic\": \"first aid supplies\", \"counterpart\": \"Sally Ng\", \"org\": \"Brightcross Supplies\", \"item\": \"plaster packs\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"medical room\"},\n  {\"kind\": \"booking\", \"topic\": \"music lesson room\", \"counterpart\": \"Tom Ashworth\", \"org\": \"Elmshurst Prep\", \"item\": \"practice room\", \"unit\": \"\", \"values\": [\"Small Hall annex\", \"music room\", \"library corner\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"order\", \"topic\": \"library books\", \"counterpart\": \"Ruth Ellery\", \"org\": \"Pagefold Books\", \"item\": \"reading scheme books\", \"unit\": \"sets\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"library\"},\n  {\"kind\": \"booking\", \"topic\": \"sports fixture pitch\", \"counterpart\": \"Coach Bennett\", \"org\": \"Elmshurst Prep\", \"item\": \"games pitch\", \"unit\": \"\", \"values\": [\"top field\", \"bottom field\"], \"place\": \"top field\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ana Pires\", \"org\": \"Clearview Hygiene\", \"item\": \"floor cleaner\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"caretaker store\"},\n  {\"kind\": \"booking\", \"topic\": \"governors meeting\", \"counterpart\": \"Gerald Fenn\", \"org\": \"Elmshurst Prep\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Main Hall\", \"staff room\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"order\", \"topic\": \"art supplies\", \"counterpart\": \"Kim Ravel\", \"org\": \"Palettecraft\", \"item\": \"poster paint\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"art room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3161,
+    "completion_tokens": 3995,
+    "reasoning_tokens": 766,
+    "cached_tokens": 3072
+   },
+   "cost": 0.01850132,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Parents' evening plans after a restated booking rule\",\n \"setting\": \"The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover\",\n \"owner\": \"Nora\",\n \"org\": \"Elmshurst Prep\",\n \"now\": \"2026-09-24\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule for me: once a parent meeting is confirmed with families, the date may not be changed without the class teacher's written agreement. Booking a new parent meeting in the first place needs no one's sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The Main Hall at Elmshurst Prep seats 80 people and is free on weekday evenings after 17:30. The Small Hall seats 40.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Marcus Bell (Ridgeline Stationery)\", \"text\": \"Quotation: exercise workbooks for Elmshurst Prep at 2.40 pounds per copy, 250 copies, delivered to the school office.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule: any school order above 500 pounds needs the bursar, Gerald Fenn, to sign off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Sandhu\", \"text\": \"I can cover Year 3 on the mornings of the autumn science outings, Tuesdays and Thursdays.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Helen Ward (Cotswold Coaches)\", \"text\": \"Quote for Elmshurst Prep: 49-seat coach at 380 pounds per day, driver included, pickup at the school gate.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Book the Year 5 parents' evening for Thursday 15 October 2026 at 18:00 in the Main Hall, which seats the whole year's families. Confirmed with families in this week's letter.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"task\", \"from\": \"Nora\", \"text\": \"Place the workbook order with Ridgeline Stationery: 250 copies at 2.40 pounds, total 600 pounds, delivered to the school office by 18 September.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-16\", \"type\": \"note\", \"from\": \"Gerald Fenn\", \"text\": \"Gerald here - I have signed off the 600 pounds workbook order.\", \"role\": \"other\", \"rests_on\": [\"e8\"]},\n  {\"id\": \"e10\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Put Priya Sandhu down as staff cover for the Year 3 autumn science outings on Tuesday mornings, 6 October and 13 October 2026, 08:30 to 12:00.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Book Cotswold Coaches for the Year 6 geography field trip on Wednesday 21 October 2026, one 49-seat coach at 380 pounds, pickup at the school gate at 08:45.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Tom Ashworth\", \"text\": \"Peripatetic music tutor, starting weekly trumpet lessons at Elmshurst Prep from September, 32 pounds per half-hour lesson, invoiced termly.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Add Tom Ashworth to our contacts as a music tutor at 32 pounds per half-hour lesson from September 2026.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"CL-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Diane Okoye\", \"text\": \"Year 6 class teacher here - the 21 October field trip date works for me and my consent forms go out in September.\", \"role\": \"other\", \"rests_on\": [\"e11\"]},\n  {\"id\": \"e15\", \"date\": \"2026-07-06\", \"type\": \"minutes\", \"from\": \"Nora\", \"text\": \"Staff meeting minutes: the parent meeting calendar stands as booked; the Year 5 evening is fixed for 15 October and any later change needs the class teacher's agreement per the standing rule.\", \"role\": \"other\", \"rests_on\": [\"e1\", \"e7\"]},\n  {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Reminder to self: chase consent forms for the Year 6 trip by 2 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marcus Bell (Ridgeline Stationery)\", \"text\": \"Your workbook order will reach the school office on 17 September as agreed.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"notice\", \"from\": \"Nora\", \"text\": \"Note for the files: setting down again how we run parent meetings. A meeting that has already gone out to families is treated as fixed, and its date can only be altered if the class teacher agrees in writing. Scheduling a fresh parent meeting is simply something I do myself. Same as before, just wanted it in plain words.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e19\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Diane Okoye\", \"text\": \"Heads-up - the Small Hall is having its lights replaced, so anything we had pictured there seats more like 30 than 40 until half term.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Helen Ward (Cotswold Coaches)\", \"text\": \"Confirming the 49-seat coach for 21 October 2026, pickup at the school gate at 08:45.\", \"role\": \"other\", \"rests_on\": [\"e11\"]},\n  {\"id\": \"e21\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Nora\", \"text\": \"Year 4 will need their curriculum talk for parents arranged before half term - I will ask for it shortly.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The Main Hall is free on the evening of Tuesday 6 October 2026 after 17:30.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Year 5 parents' evening\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"group\": \"Year 5\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Staff cover - Year 3 science outings\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"08:30\", \"cover\": \"Priya Sandhu\", \"group\": \"Year 3\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Workbook order - Ridgeline Stationery\", \"fields\": {\"supplier\": \"Ridgeline Stationery\", \"item\": \"exercise workbooks\", \"quantity\": \"250\", \"amount\": \"600\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Coach hire - Year 6 field trip\", \"fields\": {\"supplier\": \"Cotswold Coaches\", \"date\": \"2026-10-21\", \"amount\": \"380\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Tom Ashworth - music tutor\", \"fields\": {\"name\": \"Tom Ashworth\", \"service\": \"trumpet lessons\", \"rate\": \"32\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Diane Okoye\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please arrange the Year 4 curriculum talk for parents: book the Main Hall on Tuesday 6 October at 18:00 and send a note to the Year 4 class teacher confirming it.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"18:00\", \"place\": \"Main Hall\", \"group\": \"Year 4\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true},\n  {\"message_to\": \"Year 4 class teacher\", \"regarding\": null, \"says\": [\"Year 4 curriculum talk on Tuesday 6 October 2026 at 18:00 in the Main Hall\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"This is a control: the 8 September notice restates the parent-meeting rule in other words and revokes nothing, so no existing plan is touched and every record stays exactly as booked. The task is a fresh booking (not a move of a confirmed meeting), so no consent is needed under either wording of the rule; the assistant should simply create the Year 4 talk record for 6 October in the Main Hall and confirm with the Year 4 teacher, leaving EV-1, EV-2, ORD-1, ORD-2 and CL-1 untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"paper restock\", \"counterpart\": \"Marcus Bell\", \"org\": \"Ridgeline Stationery\", \"item\": \"A4 printer paper\", \"unit\": \"reams\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"school office\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Gerald Fenn\", \"org\": \"Elmshurst Prep\", \"item\": \"staff meeting slot\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Small Hall\", \"library\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"booking\", \"topic\": \"science outing transport\", \"counterpart\": \"Helen Ward\", \"org\": \"Cotswold Coaches\", \"item\": \"minibus\", \"unit\": \"\", \"values\": [\"school gate\", \"Main Hall forecourt\", \"side entrance\"], \"place\": \"school gate\"},\n  {\"kind\": \"order\", \"topic\": \"first aid supplies\", \"counterpart\": \"Sally Ng\", \"org\": \"Brightcross Supplies\", \"item\": \"plaster packs\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"medical room\"},\n  {\"kind\": \"booking\", \"topic\": \"music lesson room\", \"counterpart\": \"Tom Ashworth\", \"org\": \"Elmshurst Prep\", \"item\": \"practice room\", \"unit\": \"\", \"values\": [\"Small Hall annex\", \"music room\", \"library corner\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"order\", \"topic\": \"library books\", \"counterpart\": \"Ruth Ellery\", \"org\": \"Pagefold Books\", \"item\": \"reading scheme books\", \"unit\": \"sets\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"library\"},\n  {\"kind\": \"booking\", \"topic\": \"sports fixture pitch\", \"counterpart\": \"Coach Bennett\", \"org\": \"Elmshurst Prep\", \"item\": \"games pitch\", \"unit\": \"\", \"values\": [\"top field\", \"bottom field\", \"netball court\"], \"place\": \"top field\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Ana Pires\", \"org\": \"Clearview Hygiene\", \"item\": \"floor cleaner\", \"unit\": \"bottles\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"caretaker store\"},\n  {\"kind\": \"booking\", \"topic\": \"governors meeting\", \"counterpart\": \"Gerald Fenn\", \"org\": \"Elmshurst Prep\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Main Hall\", \"staff room\", \"library\"], \"place\": \"Elmshurst Prep\"},\n  {\"kind\": \"order\", \"topic\": \"art supplies\", \"counterpart\": \"Kim Ravel\", \"org\": \"Palettecraft\", \"item\": \"poster paint\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"art room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6464,
+    "completion_tokens": 3245,
+    "reasoning_tokens": 4,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01975256,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'science outing transport': values needs at least three entries\n- noise topic 'sports fixture pitch': values needs at least three entries\n- noise topic 'governors meeting': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Parents' evening plans after a restated booking rule",
+  "setting": "The headmistress's PA at Elmshurst Prep whose assistant manages parent meetings, school-trip consents, and staff cover",
+  "owner": "Nora",
+  "org": "Elmshurst Prep",
+  "now": "2026-09-24",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Nora",
+    "text": "Standing rule for me: once a parent meeting is confirmed with families, the date may not be changed without the class teacher's written agreement. Booking a new parent meeting in the first place needs no one's sign-off.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "note",
+    "from": "Nora",
+    "text": "The Main Hall at Elmshurst Prep seats 80 people and is free on weekday evenings after 17:30. The Small Hall seats 40.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Marcus Bell (Ridgeline Stationery)",
+    "text": "Quotation: exercise workbooks for Elmshurst Prep at 2.40 pounds per copy, 250 copies, delivered to the school office.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nora",
+    "text": "Standing rule: any school order above 500 pounds needs the bursar, Gerald Fenn, to sign off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Sandhu",
+    "text": "I can cover Year 3 on the mornings of the autumn science outings, Tuesdays and Thursdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Helen Ward (Cotswold Coaches)",
+    "text": "Quote for Elmshurst Prep: 49-seat coach at 380 pounds per day, driver included, pickup at the school gate.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Nora",
+    "text": "Book the Year 5 parents' evening for Thursday 15 October 2026 at 18:00 in the Main Hall, which seats the whole year's families. Confirmed with families in this week's letter.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-15",
+    "type": "task",
+    "from": "Nora",
+    "text": "Place the workbook order with Ridgeline Stationery: 250 copies at 2.40 pounds, total 600 pounds, delivered to the school office by 18 September.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-16",
+    "type": "note",
+    "from": "Gerald Fenn",
+    "text": "Gerald here - I have signed off the 600 pounds workbook order.",
+    "role": "other",
+    "rests_on": [
+     "e8"
+    ]
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Nora",
+    "text": "Put Priya Sandhu down as staff cover for the Year 3 autumn science outings on Tuesday mornings, 6 October and 13 October 2026, 08:30 to 12:00.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Nora",
+    "text": "Book Cotswold Coaches for the Year 6 geography field trip on Wednesday 21 October 2026, one 49-seat coach at 380 pounds, pickup at the school gate at 08:45.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Tom Ashworth",
+    "text": "Peripatetic music tutor, starting weekly trumpet lessons at Elmshurst Prep from September, 32 pounds per half-hour lesson, invoiced termly.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Nora",
+    "text": "Add Tom Ashworth to our contacts as a music tutor at 32 pounds per half-hour lesson from September 2026.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Diane Okoye",
+    "text": "Year 6 class teacher here - the 21 October field trip date works for me and my consent forms go out in September.",
+    "role": "other",
+    "rests_on": [
+     "e11"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-06",
+    "type": "minutes",
+    "from": "Nora",
+    "text": "Staff meeting minutes: the parent meeting calendar stands as booked; the Year 5 evening is fixed for 15 October and any later change needs the class teacher's agreement per the standing rule.",
+    "role": "other",
+    "rests_on": [
+     "e1",
+     "e7"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Nora",
+    "text": "Reminder to self: chase consent forms for the Year 6 trip by 2 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marcus Bell (Ridgeline Stationery)",
+    "text": "Your workbook order will reach the school office on 17 September as agreed.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-08",
+    "type": "notice",
+    "from": "Nora",
+    "text": "Note for the files: setting down again how we run parent meetings. A meeting that has already gone out to families is treated as fixed, and its date can only be altered if the class teacher agrees in writing. Scheduling a fresh parent meeting is simply something I do myself. Same as before, just wanted it in plain words.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Diane Okoye",
+    "text": "Heads-up - the Small Hall is having its lights replaced, so anything we had pictured there seats more like 30 than 40 until half term.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Helen Ward (Cotswold Coaches)",
+    "text": "Confirming the 49-seat coach for 21 October 2026, pickup at the school gate at 08:45.",
+    "role": "other",
+    "rests_on": [
+     "e11"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Nora",
+    "text": "Year 4 will need their curriculum talk for parents arranged before half term - I will ask for it shortly.",
+    "role": "obligation"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-21",
+    "type": "note",
+    "from": "Nora",
+    "text": "The Main Hall is free on the evening of Tuesday 6 October 2026 after 17:30.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Year 5 parents' evening",
+    "fields": {
+     "date": "2026-10-15",
+     "time": "18:00",
+     "place": "Main Hall",
+     "group": "Year 5",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Staff cover - Year 3 science outings",
+    "fields": {
+     "date": "2026-10-06",
+     "time": "08:30",
+     "cover": "Priya Sandhu",
+     "group": "Year 3",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Workbook order - Ridgeline Stationery",
+    "fields": {
+     "supplier": "Ridgeline Stationery",
+     "item": "exercise workbooks",
+     "quantity": "250",
+     "amount": "600",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Coach hire - Year 6 field trip",
+    "fields": {
+     "supplier": "Cotswold Coaches",
+     "date": "2026-10-21",
+     "amount": "380",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Tom Ashworth - music tutor",
+    "fields": {
+     "name": "Tom Ashworth",
+     "service": "trumpet lessons",
+     "rate": "32",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Diane Okoye",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please arrange the Year 4 curriculum talk for parents: book the Main Hall on Tuesday 6 October at 18:00 and send a note to the Year 4 class teacher confirming it.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-10-06",
+     "time": "18:00",
+     "place": "Main Hall",
+     "group": "Year 4",
+     "status": "booked"
+    },
+    "stale": {},
+    "task": true
+   },
+   {
+    "message_to": "Year 4 class teacher",
+    "regarding": null,
+    "says": [
+     "Year 4 curriculum talk on Tuesday 6 October 2026 at 18:00 in the Main Hall"
+    ],
+    "stale": [],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the 8 September notice restates the parent-meeting rule in other words and revokes nothing, so no existing plan is touched and every record stays exactly as booked. The task is a fresh booking (not a move of a confirmed meeting), so no consent is needed under either wording of the rule; the assistant should simply create the Year 4 talk record for 6 October in the Main Hall and confirm with the Year 4 teacher, leaving EV-1, EV-2, ORD-1, ORD-2 and CL-1 untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "paper restock",
+    "counterpart": "Marcus Bell",
+    "org": "Ridgeline Stationery",
+    "item": "A4 printer paper",
+    "unit": "reams",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "school office"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting room",
+    "counterpart": "Gerald Fenn",
+    "org": "Elmshurst Prep",
+    "item": "staff meeting slot",
+    "unit": "",
+    "values": [
+     "Main Hall",
+     "Small Hall",
+     "library"
+    ],
+    "place": "Elmshurst Prep"
+   },
+   {
+    "kind": "booking",
+    "topic": "science outing transport",
+    "counterpart": "Helen Ward",
+    "org": "Cotswold Coaches",
+    "item": "minibus",
+    "unit": "",
+    "values": [
+     "school gate",
+     "Main Hall forecourt",
+     "side entrance"
+    ],
+    "place": "school gate"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid supplies",
+    "counterpart": "Sally Ng",
+    "org": "Brightcross Supplies",
+    "item": "plaster packs",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "25"
+    ],
+    "place": "medical room"
+   },
+   {
+    "kind": "booking",
+    "topic": "music lesson room",
+    "counterpart": "Tom Ashworth",
+    "org": "Elmshurst Prep",
+    "item": "practice room",
+    "unit": "",
+    "values": [
+     "Small Hall annex",
+     "music room",
+     "library corner"
+    ],
+    "place": "Elmshurst Prep"
+   },
+   {
+    "kind": "order",
+    "topic": "library books",
+    "counterpart": "Ruth Ellery",
+    "org": "Pagefold Books",
+    "item": "reading scheme books",
+    "unit": "sets",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "library"
+   },
+   {
+    "kind": "booking",
+    "topic": "sports fixture pitch",
+    "counterpart": "Coach Bennett",
+    "org": "Elmshurst Prep",
+    "item": "games pitch",
+    "unit": "",
+    "values": [
+     "top field",
+     "bottom field",
+     "netball court"
+    ],
+    "place": "top field"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Ana Pires",
+    "org": "Clearview Hygiene",
+    "item": "floor cleaner",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "caretaker store"
+   },
+   {
+    "kind": "booking",
+    "topic": "governors meeting",
+    "counterpart": "Gerald Fenn",
+    "org": "Elmshurst Prep",
+    "item": "meeting room",
+    "unit": "",
+    "values": [
+     "Main Hall",
+     "staff room",
+     "library"
+    ],
+    "place": "Elmshurst Prep"
+   },
+   {
+    "kind": "order",
+    "topic": "art supplies",
+    "counterpart": "Kim Ravel",
+    "org": "Palettecraft",
+    "item": "poster paint",
+    "unit": "litres",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "art room"
+   }
+  ],
+  "id": "G100-4-08",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected booking and message follow, but the consent map does not match the stated rule: e1 requires agreement for date changes, not time changes. It also assigns consent for the Year 5 meeting to Diane Okoye, who is identified only as the Year 6 class teacher.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected booking and message follow, but the consent map does not match the stated rule: e1 requires agreement for date changes, not time changes. It also assigns consent for the Year 5 meeting to Diane Okoye, who is identified only as the Year 6 class teacher."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3310,
+    "completion_tokens": 149,
+    "reasoning_tokens": 55,
+    "cached_tokens": 0
+   },
+   "cost": 0.0488175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "03097217a5d7236b735c1cc40d82c83f0d5565f5d506fc0382fcdc09a2300e63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The consent map names Diane Okoye as the party whose consent covers EV-1, but e14 identifies her as the Year 6 class teacher, so the map does not match the history's rules. The rest checks out: the 8 September notice revokes nothing, the Year 4 booking on 6 October is free, and the counts and distance meet tier 100. The map error is the only defect, and it should be fixed or the consent attribution clarified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map names Diane Okoye as the party whose consent covers EV-1, but e14 identifies her as the Year 6 class teacher, so the map does not match the history's rules. The rest checks out: the 8 September notice revokes nothing, the Year 4 booking on 6 October is free, and the counts and distance meet tier 100. The map error is the only defect, and it should be fixed or the consent attribution clarified."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4741,
+    "completion_tokens": 1338,
+    "reasoning_tokens": 1144,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011431,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "03097217a5d7236b735c1cc40d82c83f0d5565f5d506fc0382fcdc09a2300e63",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,638 @@
+{
+ "id": "G500-3-05",
+ "writer": "glm",
+ "tier": 500,
+ "class": 3,
+ "idx": 4,
+ "setting": "The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences",
+ "prompt_sha256": "672724a2984482d0121eee6c18098734a2afb877a4c7d20ea1bd9399f3f8c86a",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Flour delivery slips a day\",\n \"setting\": \"The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences\",\n \"owner\": \"Priya\",\n \"org\": \"Marigold Bakery\",\n \"now\": \"2026-11-04\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing house rule: every custom cake is baked the day after its main ingredients arrive, and picked up by the customer the day after it is baked.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing house rule: a pickup date that has already been confirmed with a customer may only be changed with that customer's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Current price list for Marigold Bakery: almond flour at 12.50 per kg, marzipan at 14.00 per kg, caster sugar at 1.80 per kg. Contact Marco Feld for all orders.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Lena Brandt\", \"text\": \"Lena here, confirming I can work weekends through the autumn, apart from the last weekend of September.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Julia Roth\", \"text\": \"Please cancel my daughter's birthday cake for 3 July, we are travelling after all. Sorry for the short notice.\", \"role\": \"other\", \"distractor\": false},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Weekly planning notes: keep Saturday mornings for market prep, order packaging on the first Monday of each month.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Just so you know, our summer shutdown runs the week of 10 August; no deliveries that week, so plan your flour orders around it.\", \"role\": \"fact\", \"ends\": \"2026-08-16\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Oven service completed, both decks running fine after the thermostat fix.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Client notes: Wei Chen is a repeat customer, loves hazelnut praline. Her parents' 40th wedding anniversary party is Saturday 14 November, roughly 40 guests.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up a client card for Wei Chen recording her favourite flavours and the November anniversary party, so we remember her preferences.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"For the August Blossom Box, please add a dozen macarons to the usual assortment; we will pay the difference on the next invoice.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"Happy to confirm the monthly Blossom Box for the hotel at 240 per month, as discussed.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Put the monthly Blossom Box for Hotel Lune on standing order at 240 per month, starting September.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-31\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Redesign the display menu board before the autumn menu launches in mid-September.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Nadia Roth (PackRight)\", \"text\": \"Quote for Marigold Bakery: white cake boxes with window at 0.85 per box, delivery within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Order 500 white cake boxes with window from PackRight at 0.85 each, delivered to the bakery.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-22\", \"type\": \"quote\", \"from\": \"Elif Duman (Cacao Verge)\", \"text\": \"Quote: dark couverture at 18.40 per kg for autumn, minimum order 5 kg.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Wei Chen\", \"text\": \"Confirming the details for my parents' anniversary: 40 guests, two tiers, hazelnut praline and chocolate, with pale gold decoration.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Order confirmation for Marigold Bakery: 20 kg almond flour and 8 kg marzipan, delivery to the bakery on Tuesday 10 November. We will bring it in our own van.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Add 5 kg of almond flour to the Bramble Mill order, at the usual 12.50 per kg, for the extra praline work this month.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e19\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Ben Ott (window cleaning)\", \"text\": \"I will come by on the first Tuesday of each month around 8:00, as before.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The ingredients arrive Tuesday 10 November, so we bake Wei Chen's two-tier hazelnut praline anniversary cake on Wednesday 11 November.\", \"role\": \"decision\", \"rests_on\": [\"e19\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed with Wei Chen that she picks the cake up on Thursday 12 November at 10:00, the day after the bake, as we always do.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Delivery schedule reminder: your almond flour and marzipan will reach you on Tuesday 10 November as planned. See you then.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"New routine: keep Friday afternoons free of baking for admin, invoicing and planning.\", \"role\": \"rule\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Bad news about your flour order: our mill run has shifted by a day, so the almond flour and marzipan will now reach you on Wednesday 11 November instead of Tuesday. Everything else on the order stays the same.\", \"role\": \"change\", \"revokes\": [\"e19\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"For the November Blossom Box, please include the pumpkin tartlets if you can spare them.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Separate note: your caster sugar will be delivered on Thursday 12 November, on the sugar run.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-27\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Reminder: fire extinguisher inspection at the bakery on 6 November.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-30\", \"type\": \"notice\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"Save the date: our winter menu tasting at Hotel Lune on Thursday 19 November. We would love Marigold Bakery to bring a small selection.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-11-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Schedule the chocolate truffle class for Saturday 21 November at 14:00 in the front room, with Lena assisting.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Invoice attached for the flour and marzipan order, total 340. Payment terms as usual.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-03\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Pay the Bramble Mill invoice by 10 November, before the anniversary rush.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client card - Wei Chen\", \"fields\": {\"name\": \"Wei Chen\", \"favourite_flavour\": \"hazelnut praline\", \"event\": \"parents 40th anniversary, 2026-11-14, 40 guests\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing order - Hotel Lune Blossom Box\", \"fields\": {\"item\": \"Blossom Box assortment\", \"monthly_price\": \"240\", \"counterparty\": \"Sofia Kern (Hotel Lune)\", \"status\": \"active\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"PackRight cake boxes\", \"fields\": {\"item\": \"white cake boxes with window\", \"quantity\": \"500\", \"unit_price\": \"0.85\", \"supplier\": \"PackRight\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Mill extra almond flour\", \"fields\": {\"item\": \"almond flour\", \"quantity\": \"5\", \"unit\": \"kg\", \"unit_price\": \"12.50\", \"supplier\": \"Bramble Mill\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Bake - Chen anniversary cake\", \"fields\": {\"date\": \"2026-11-11\", \"item\": \"two-tier hazelnut praline anniversary cake\", \"baker\": \"Priya\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Pickup - Chen anniversary cake\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"10:00\", \"customer\": \"Wei Chen\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Chocolate truffle class\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"14:00\", \"room\": \"front room\", \"assistant\": \"Lena\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Wei Chen\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you sort out Wei Chen's anniversary cake? Please make sure the schedule is right for the bake and the pickup, and send her a message with her pickup details.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-12\", \"stale\": [\"2026-11-11\"]},\n  {\"message_to\": \"Wei Chen\", \"regarding\": \"EV-2\", \"says\": [\"pickup date 2026-11-13\", \"asking her agreement to move the pickup from 12 November to 13 November\", \"same time 10:00\"], \"stale\": [\"2026-11-12\"], \"task\": true}\n ],\n \"why\": \"The corrected delivery (Wednesday 11 November) cascades down the chain: the bake (EV-1) must move to 12 November, which is a plain schedule fix with no consent needed (REVISE), and the confirmed pickup (EV-2) must then move to Friday 13 November, which under Priya's rule requires Wei Chen's written agreement, so the assistant should ask rather than change it (ASK). The extra almond flour order (ORD-2) keeps only the supplier and price from the original delivery note, which the correction leaves standing, so it stays as it is (KEEP). The distractor sugar delivery on 12 November and the echo confirming 10 November both look current and must not be acted on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"almond flour top-up\", \"counterpart\": \"Marco Feld\", \"org\": \"Bramble Mill\", \"item\": \"almond flour\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Marigold Bakery back door\"},\n  {\"kind\": \"order\", \"topic\": \"marzipan restock\", \"counterpart\": \"Marco Feld\", \"org\": \"Bramble Mill\", \"item\": \"marzipan\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Marigold Bakery back door\"},\n  {\"kind\": \"booking\", \"topic\": \"hotel tasting room\", \"counterpart\": \"Sofia Kern\", \"org\": \"Hotel Lune\", \"item\": \"tasting room slot\", \"unit\": \"\", \"values\": [\"tasting room\", \"garden room\"], \"place\": \"Hotel Lune\"},\n  {\"kind\": \"order\", \"topic\": \"cake boxes\", \"counterpart\": \"Nadia Roth\", \"org\": \"PackRight\", \"item\": \"white cake boxes\", \"unit\": \"box\", \"values\": [\"100\", \"200\", \"300\", \"500\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"order\", \"topic\": \"couverture chocolate\", \"counterpart\": \"Elif Duman\", \"org\": \"Cacao Verge\", \"item\": \"dark couverture\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop slot\", \"counterpart\": \"Lena Brandt\", \"org\": \"Marigold Bakery\", \"item\": \"workshop session\", \"unit\": \"\", \"values\": [\"front room\", \"back room\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"order\", \"topic\": \"butter delivery\", \"counterpart\": \"Sam Petit\", \"org\": \"Green Dairy Co\", \"item\": \"unsalted butter\", \"unit\": \"kg\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Ravi Moon\", \"org\": \"Speedy Vans\", \"item\": \"small van\", \"unit\": \"\", \"values\": [\"morning slot\", \"afternoon slot\"], \"place\": \"Riverside district\"},\n  {\"kind\": \"order\", \"topic\": \"strawberries\", \"counterpart\": \"Ana Vogel\", \"org\": \"Meadow Farm\", \"item\": \"strawberries\", \"unit\": \"kg\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"market stall\", \"counterpart\": \"Tom Rees\", \"org\": \"Riverside Market\", \"item\": \"stall pitch\", \"unit\": \"\", \"values\": [\"pitch A\", \"pitch B\"], \"place\": \"Riverside Market\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Luca Ferraro\", \"org\": \"Bean There Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marigold Bakery\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 10566,
+    "reasoning_tokens": 6391,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04739536,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Flour delivery slips a day\",\n \"setting\": \"The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences\",\n \"owner\": \"Priya\",\n \"org\": \"Marigold Bakery\",\n \"now\": \"2026-11-04\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing house rule: every custom cake is baked the day after its main ingredients arrive, and picked up by the customer the day after it is baked.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing house rule: a pickup date that has already been confirmed with a customer may only be changed with that customer's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Current price list for Marigold Bakery: almond flour at 12.50 per kg, marzipan at 14.00 per kg, caster sugar at 1.80 per kg. Contact Marco Feld for all orders.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Lena Brandt\", \"text\": \"Lena here, confirming I can work weekends through the autumn, apart from the last weekend of September.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Julia Roth\", \"text\": \"Please cancel my daughter's birthday cake for 3 July, we are travelling after all. Sorry for the short notice.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Weekly planning notes: keep Saturday mornings for market prep, order packaging on the first Monday of each month.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Just so you know, our summer shutdown runs the week of 10 August; no deliveries that week, so plan your flour orders around it.\", \"role\": \"fact\", \"ends\": \"2026-08-16\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Oven service completed, both decks running fine after the thermostat fix.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Client notes: Wei Chen is a repeat customer, loves hazelnut praline. Her parents' 40th wedding anniversary party is Saturday 14 November, roughly 40 guests.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Set up a client card for Wei Chen recording her favourite flavours and the November anniversary party, so we remember her preferences.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"CL-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"For the August Blossom Box, please add a dozen macarons to the usual assortment; we will pay the difference on the next invoice.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"Happy to confirm the monthly Blossom Box for the hotel at 240 per month, as discussed.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-24\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Put the monthly Blossom Box for Hotel Lune on standing order at 240 per month, starting September.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-31\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Redesign the display menu board before the autumn menu launches in mid-September.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Nadia Roth (PackRight)\", \"text\": \"Quote for Marigold Bakery: white cake boxes with window at 0.85 per box, delivery within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Order 500 white cake boxes with window from PackRight at 0.85 each, delivered to the bakery.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-22\", \"type\": \"quote\", \"from\": \"Elif Duman (Cacao Verge)\", \"text\": \"Quote: dark couverture at 18.40 per kg for autumn, minimum order 5 kg.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Wei Chen\", \"text\": \"Confirming the details for my parents' anniversary: 40 guests, two tiers, hazelnut praline and chocolate, with pale gold decoration.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Order confirmation for Marigold Bakery: 20 kg almond flour and 8 kg marzipan, delivery to the bakery on Tuesday 10 November. We will bring it in our own van.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Add 5 kg of almond flour to the Bramble Mill order, at the usual 12.50 per kg, for the extra praline work this month.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e19\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Ben Ott (window cleaning)\", \"text\": \"I will come by on the first Tuesday of each month around 8:00, as before.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The ingredients arrive Tuesday 10 November, so we bake Wei Chen's two-tier hazelnut praline anniversary cake on Wednesday 11 November.\", \"role\": \"decision\", \"rests_on\": [\"e19\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed with Wei Chen that she picks the cake up on Thursday 12 November at 10:00, the day after the bake, as we always do.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e2\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Delivery schedule reminder: your almond flour and marzipan will reach you on Tuesday 10 November as planned. See you then.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-10-14\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"New routine: keep Friday afternoons free of baking for admin, invoicing and planning.\", \"role\": \"rule\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Bad news about your flour order: our mill run has shifted by a day, so the almond flour and marzipan will now reach you on Wednesday 11 November instead of Tuesday. Everything else on the order stays the same.\", \"role\": \"change\", \"revokes\": [\"e19\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"For the November Blossom Box, please include the pumpkin tartlets if you can spare them.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Separate note: your caster sugar will be delivered on Thursday 12 November, on the sugar run.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-27\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Reminder: fire extinguisher inspection at the bakery on 6 November.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-30\", \"type\": \"notice\", \"from\": \"Sofia Kern (Hotel Lune)\", \"text\": \"Save the date: our winter menu tasting at Hotel Lune on Thursday 19 November. We would love Marigold Bakery to bring a small selection.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-11-01\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Schedule the chocolate truffle class for Saturday 21 November at 14:00 in the front room, with Lena assisting.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"email\", \"from\": \"Marco Feld (Bramble Mill)\", \"text\": \"Invoice attached for the flour and marzipan order, total 340. Payment terms as usual.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-03\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Pay the Bramble Mill invoice by 10 November, before the anniversary rush.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Client card - Wei Chen\", \"fields\": {\"name\": \"Wei Chen\", \"favourite_flavour\": \"hazelnut praline\", \"event\": \"parents 40th anniversary, 2026-11-14, 40 guests\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing order - Hotel Lune Blossom Box\", \"fields\": {\"item\": \"Blossom Box assortment\", \"monthly_price\": \"240\", \"counterparty\": \"Sofia Kern (Hotel Lune)\", \"status\": \"active\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"PackRight cake boxes\", \"fields\": {\"item\": \"white cake boxes with window\", \"quantity\": \"500\", \"unit_price\": \"0.85\", \"supplier\": \"PackRight\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Mill extra almond flour\", \"fields\": {\"item\": \"almond flour\", \"quantity\": \"5\", \"unit\": \"kg\", \"unit_price\": \"12.50\", \"supplier\": \"Bramble Mill\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Bake - Chen anniversary cake\", \"fields\": {\"date\": \"2026-11-11\", \"item\": \"two-tier hazelnut praline anniversary cake\", \"baker\": \"Priya\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Pickup - Chen anniversary cake\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"10:00\", \"customer\": \"Wei Chen\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Chocolate truffle class\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"14:00\", \"room\": \"front room\", \"assistant\": \"Lena\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Wei Chen\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you sort out Wei Chen's anniversary cake? Please make sure the schedule is right for the bake and the pickup, and send her a message with her pickup details.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-12\", \"stale\": [\"2026-11-11\"]},\n  {\"message_to\": \"Wei Chen\", \"regarding\": \"EV-2\", \"says\": [\"pickup date 2026-11-13\", \"asking her agreement to move the pickup from 12 November to 13 November\", \"same time 10:00\"], \"stale\": [\"2026-11-12\"], \"task\": true}\n ],\n \"why\": \"The corrected delivery (Wednesday 11 November) cascades down the chain: the bake (EV-1) must move to 12 November, which is a plain schedule fix with no consent needed (REVISE), and the confirmed pickup (EV-2) must then move to Friday 13 November, which under Priya's rule requires Wei Chen's written agreement, so the assistant should ask rather than change it (ASK). The extra almond flour order (ORD-2) keeps only the supplier and price from the original delivery note, which the correction leaves standing, so it stays as it is (KEEP). The distractor sugar delivery on 12 November and the echo confirming 10 November both look current and must not be acted on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"almond flour top-up\", \"counterpart\": \"Marco Feld\", \"org\": \"Bramble Mill\", \"item\": \"almond flour\", \"unit\": \"kg\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Marigold Bakery back door\"},\n  {\"kind\": \"order\", \"topic\": \"marzipan restock\", \"counterpart\": \"Marco Feld\", \"org\": \"Bramble Mill\", \"item\": \"marzipan\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Marigold Bakery back door\"},\n  {\"kind\": \"booking\", \"topic\": \"hotel tasting room\", \"counterpart\": \"Sofia Kern\", \"org\": \"Hotel Lune\", \"item\": \"tasting room slot\", \"unit\": \"\", \"values\": [\"tasting room\", \"garden room\", \"terrace room\"], \"place\": \"Hotel Lune\"},\n  {\"kind\": \"order\", \"topic\": \"cake boxes\", \"counterpart\": \"Nadia Roth\", \"org\": \"PackRight\", \"item\": \"white cake boxes\", \"unit\": \"box\", \"values\": [\"100\", \"200\", \"300\", \"500\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"order\", \"topic\": \"couverture chocolate\", \"counterpart\": \"Elif Duman\", \"org\": \"Cacao Verge\", \"item\": \"dark couverture\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop slot\", \"counterpart\": \"Lena Brandt\", \"org\": \"Marigold Bakery\", \"item\": \"workshop session\", \"unit\": \"\", \"values\": [\"front room\", \"back room\", \"shop floor\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"order\", \"topic\": \"butter delivery\", \"counterpart\": \"Sam Petit\", \"org\": \"Green Dairy Co\", \"item\": \"unsalted butter\", \"unit\": \"kg\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Ravi Moon\", \"org\": \"Speedy Vans\", \"item\": \"small van\", \"unit\": \"\", \"values\": [\"morning slot\", \"afternoon slot\", \"evening slot\"], \"place\": \"Riverside district\"},\n  {\"kind\": \"order\", \"topic\": \"strawberries\", \"counterpart\": \"Ana Vogel\", \"org\": \"Meadow Farm\", \"item\": \"strawberries\", \"unit\": \"kg\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Marigold Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"market stall\", \"counterpart\": \"Tom Rees\", \"org\": \"Riverside Market\", \"item\": \"stall pitch\", \"unit\": \"\", \"values\": [\"pitch A\", \"pitch B\", \"pitch C\"], \"place\": \"Riverside Market\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Luca Ferraro\", \"org\": \"Bean There Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marigold Bakery\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7461,
+    "completion_tokens": 4186,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02528876,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'hotel tasting room': values needs at least three entries\n- noise topic 'workshop slot': values needs at least three entries\n- noise topic 'van hire': values needs at least three entries\n- noise topic 'market stall': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flour delivery slips a day",
+  "setting": "The owner of Marigold Bakery, a two-person patisserie, whose assistant remembers custom cake orders and repeat-customer preferences",
+  "owner": "Priya",
+  "org": "Marigold Bakery",
+  "now": "2026-11-04",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Standing house rule: every custom cake is baked the day after its main ingredients arrive, and picked up by the customer the day after it is baked.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Standing house rule: a pickup date that has already been confirmed with a customer may only be changed with that customer's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Current price list for Marigold Bakery: almond flour at 12.50 per kg, marzipan at 14.00 per kg, caster sugar at 1.80 per kg. Contact Marco Feld for all orders.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "message",
+    "from": "Lena Brandt",
+    "text": "Lena here, confirming I can work weekends through the autumn, apart from the last weekend of September.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Julia Roth",
+    "text": "Please cancel my daughter's birthday cake for 3 July, we are travelling after all. Sorry for the short notice.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-26",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Weekly planning notes: keep Saturday mornings for market prep, order packaging on the first Monday of each month.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Just so you know, our summer shutdown runs the week of 10 August; no deliveries that week, so plan your flour orders around it.",
+    "role": "fact",
+    "ends": "2026-08-16"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-08",
+    "type": "note",
+    "from": "Priya",
+    "text": "Oven service completed, both decks running fine after the thermostat fix.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-14",
+    "type": "note",
+    "from": "Priya",
+    "text": "Client notes: Wei Chen is a repeat customer, loves hazelnut praline. Her parents' 40th wedding anniversary party is Saturday 14 November, roughly 40 guests.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Set up a client card for Wei Chen recording her favourite flavours and the November anniversary party, so we remember her preferences.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Sofia Kern (Hotel Lune)",
+    "text": "For the August Blossom Box, please add a dozen macarons to the usual assortment; we will pay the difference on the next invoice.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Sofia Kern (Hotel Lune)",
+    "text": "Happy to confirm the monthly Blossom Box for the hotel at 240 per month, as discussed.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-24",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Put the monthly Blossom Box for Hotel Lune on standing order at 240 per month, starting September.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-31",
+    "type": "task",
+    "from": "Priya",
+    "text": "Redesign the display menu board before the autumn menu launches in mid-September.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-08",
+    "type": "quote",
+    "from": "Nadia Roth (PackRight)",
+    "text": "Quote for Marigold Bakery: white cake boxes with window at 0.85 per box, delivery within a week of ordering.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Order 500 white cake boxes with window from PackRight at 0.85 each, delivered to the bakery.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-22",
+    "type": "quote",
+    "from": "Elif Duman (Cacao Verge)",
+    "text": "Quote: dark couverture at 18.40 per kg for autumn, minimum order 5 kg.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-24",
+    "type": "message",
+    "from": "Wei Chen",
+    "text": "Confirming the details for my parents' anniversary: 40 guests, two tiers, hazelnut praline and chocolate, with pale gold decoration.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Order confirmation for Marigold Bakery: 20 kg almond flour and 8 kg marzipan, delivery to the bakery on Tuesday 10 November. We will bring it in our own van.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-05",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Add 5 kg of almond flour to the Bramble Mill order, at the usual 12.50 per kg, for the extra praline work this month.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e19"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Ben Ott (window cleaning)",
+    "text": "I will come by on the first Tuesday of each month around 8:00, as before.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "The ingredients arrive Tuesday 10 November, so we bake Wei Chen's two-tier hazelnut praline anniversary cake on Wednesday 11 November.",
+    "role": "decision",
+    "rests_on": [
+     "e19",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-09",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed with Wei Chen that she picks the cake up on Thursday 12 November at 10:00, the day after the bake, as we always do.",
+    "role": "decision",
+    "rests_on": [
+     "e22",
+     "e2"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Delivery schedule reminder: your almond flour and marzipan will reach you on Tuesday 10 November as planned. See you then.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-14",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "New routine: keep Friday afternoons free of baking for admin, invoicing and planning.",
+    "role": "rule"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Bad news about your flour order: our mill run has shifted by a day, so the almond flour and marzipan will now reach you on Wednesday 11 November instead of Tuesday. Everything else on the order stays the same.",
+    "role": "change",
+    "revokes": [
+     "e19"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-22",
+    "type": "email",
+    "from": "Sofia Kern (Hotel Lune)",
+    "text": "For the November Blossom Box, please include the pumpkin tartlets if you can spare them.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Separate note: your caster sugar will be delivered on Thursday 12 November, on the sugar run.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-27",
+    "type": "notice",
+    "from": "Priya",
+    "text": "Reminder: fire extinguisher inspection at the bakery on 6 November.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-30",
+    "type": "notice",
+    "from": "Sofia Kern (Hotel Lune)",
+    "text": "Save the date: our winter menu tasting at Hotel Lune on Thursday 19 November. We would love Marigold Bakery to bring a small selection.",
+    "role": "fact"
+   },
+   {
+    "id": "e31",
+    "date": "2026-11-01",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Schedule the chocolate truffle class for Saturday 21 November at 14:00 in the front room, with Lena assisting.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-02",
+    "type": "email",
+    "from": "Marco Feld (Bramble Mill)",
+    "text": "Invoice attached for the flour and marzipan order, total 340. Payment terms as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-11-03",
+    "type": "task",
+    "from": "Priya",
+    "text": "Pay the Bramble Mill invoice by 10 November, before the anniversary rush.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Client card - Wei Chen",
+    "fields": {
+     "name": "Wei Chen",
+     "favourite_flavour": "hazelnut praline",
+     "event": "parents 40th anniversary, 2026-11-14, 40 guests",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing order - Hotel Lune Blossom Box",
+    "fields": {
+     "item": "Blossom Box assortment",
+     "monthly_price": "240",
+     "counterparty": "Sofia Kern (Hotel Lune)",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "PackRight cake boxes",
+    "fields": {
+     "item": "white cake boxes with window",
+     "quantity": "500",
+     "unit_price": "0.85",
+     "supplier": "PackRight",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bramble Mill extra almond flour",
+    "fields": {
+     "item": "almond flour",
+     "quantity": "5",
+     "unit": "kg",
+     "unit_price": "12.50",
+     "supplier": "Bramble Mill",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Bake - Chen anniversary cake",
+    "fields": {
+     "date": "2026-11-11",
+     "item": "two-tier hazelnut praline anniversary cake",
+     "baker": "Priya",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Pickup - Chen anniversary cake",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "10:00",
+     "customer": "Wei Chen",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Chocolate truffle class",
+    "fields": {
+     "date": "2026-11-21",
+     "time": "14:00",
+     "room": "front room",
+     "assistant": "Lena",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Wei Chen",
+    "rule": "e2"
+   }
+  ],
+  "task": "Can you sort out Wei Chen's anniversary cake? Please make sure the schedule is right for the bake and the pickup, and send her a message with her pickup details.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-12",
+    "stale": [
+     "2026-11-11"
+    ]
+   },
+   {
+    "message_to": "Wei Chen",
+    "regarding": "EV-2",
+    "says": [
+     "pickup date 2026-11-13",
+     "asking her agreement to move the pickup from 12 November to 13 November",
+     "same time 10:00"
+    ],
+    "stale": [
+     "2026-11-12"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The corrected delivery (Wednesday 11 November) cascades down the chain: the bake (EV-1) must move to 12 November, which is a plain schedule fix with no consent needed (REVISE), and the confirmed pickup (EV-2) must then move to Friday 13 November, which under Priya's rule requires Wei Chen's written agreement, so the assistant should ask rather than change it (ASK). The extra almond flour order (ORD-2) keeps only the supplier and price from the original delivery note, which the correction leaves standing, so it stays as it is (KEEP). The distractor sugar delivery on 12 November and the echo confirming 10 November both look current and must not be acted on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "almond flour top-up",
+    "counterpart": "Marco Feld",
+    "org": "Bramble Mill",
+    "item": "almond flour",
+    "unit": "kg",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Marigold Bakery back door"
+   },
+   {
+    "kind": "order",
+    "topic": "marzipan restock",
+    "counterpart": "Marco Feld",
+    "org": "Bramble Mill",
+    "item": "marzipan",
+    "unit": "kg",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Marigold Bakery back door"
+   },
+   {
+    "kind": "booking",
+    "topic": "hotel tasting room",
+    "counterpart": "Sofia Kern",
+    "org": "Hotel Lune",
+    "item": "tasting room slot",
+    "unit": "",
+    "values": [
+     "tasting room",
+     "garden room",
+     "terrace room"
+    ],
+    "place": "Hotel Lune"
+   },
+   {
+    "kind": "order",
+    "topic": "cake boxes",
+    "counterpart": "Nadia Roth",
+    "org": "PackRight",
+    "item": "white cake boxes",
+    "unit": "box",
+    "values": [
+     "100",
+     "200",
+     "300",
+     "500"
+    ],
+    "place": "Marigold Bakery"
+   },
+   {
+    "kind": "order",
+    "topic": "couverture chocolate",
+    "counterpart": "Elif Duman",
+    "org": "Cacao Verge",
+    "item": "dark couverture",
+    "unit": "kg",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Marigold Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "workshop slot",
+    "counterpart": "Lena Brandt",
+    "org": "Marigold Bakery",
+    "item": "workshop session",
+    "unit": "",
+    "values": [
+     "front room",
+     "back room",
+     "shop floor"
+    ],
+    "place": "Marigold Bakery"
+   },
+   {
+    "kind": "order",
+    "topic": "butter delivery",
+    "counterpart": "Sam Petit",
+    "org": "Green Dairy Co",
+    "item": "unsalted butter",
+    "unit": "kg",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Marigold Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire",
+    "counterpart": "Ravi Moon",
+    "org": "Speedy Vans",
+    "item": "small van",
+    "unit": "",
+    "values": [
+     "morning slot",
+     "afternoon slot",
+     "evening slot"
+    ],
+    "place": "Riverside district"
+   },
+   {
+    "kind": "order",
+    "topic": "strawberries",
+    "counterpart": "Ana Vogel",
+    "org": "Meadow Farm",
+    "item": "strawberries",
+    "unit": "kg",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Marigold Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "market stall",
+    "counterpart": "Tom Rees",
+    "org": "Riverside Market",
+    "item": "stall pitch",
+    "unit": "",
+    "values": [
+     "pitch A",
+     "pitch B",
+     "pitch C"
+    ],
+    "place": "Riverside Market"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Luca Ferraro",
+    "org": "Bean There Roasters",
+    "item": "espresso beans",
+    "unit": "kg",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Marigold Bakery"
+   }
+  ],
+  "id": "G500-3-05",
+  "tier": 500,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

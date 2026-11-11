@@ -1,0 +1,582 @@
+{
+ "id": "G500-4-03",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 2,
+ "setting": "A veterinary surgeon at Foxglove Animal Clinic whose assistant records consultations, vaccination schedules, and medicine stock",
+ "prompt_sha256": "6a9073efab18b8e2b0f81120a458a6b42e716af08b1287279e911acc73f15709",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Booster clinic and vaccine order (control: scanner correction)\",\n \"setting\": \"A veterinary surgeon at Foxglove Animal Clinic whose assistant records consultations, vaccination schedules, and medicine stock\",\n \"owner\": \"Priya\",\n \"org\": \"Foxglove Animal Clinic\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Medicine stock is counted on the first Monday of each month, and the count is written into the stock book before anything is reordered.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Any supplier order above 1500 pounds needs the practice manager Sam Oyelaran's written sign-off before it is placed. Orders below that I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-24\", \"type\": \"letter\", \"from\": \"Borough of Milford\", \"text\": \"The annual clinical waste collection contract is renewed for twelve months from 1 July; bins are emptied on Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Dave Ferris (Ferris Maintenance)\", \"text\": \"The waiting-room ceiling fan has been repaired and the invoice for 140 pounds is enclosed.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-08-19\", \"type\": \"notice\", \"from\": \"Sam Oyelaran\", \"text\": \"Reminder: the annual fire drill for the whole clinic is booked for the morning of Thursday 10 September.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-09-02\", \"type\": \"quote\", \"from\": \"Lena Poole (NovaVet Supplies)\", \"text\": \"Quotation: cat flu vaccine at 9.40 pounds per dose for orders placed between now and 30 November, delivery within five working days to Foxglove Animal Clinic.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Gary Nash (Milford Community Hall)\", \"text\": \"The main hall is free on Saturday 24 October; hire fee is 80 pounds for the morning, and we can confirm on receipt of a booking note.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Heads-up: the microchip scanner at our Brackton annex is out of service after it was dropped. If you visit us in the next few weeks, please bring the clinic's spare scanner unit along.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I have placed our autumn order with NovaVet Supplies: 200 doses of cat flu vaccine at 9.40 pounds a dose, 1880 pounds in total, after Sam's written sign-off for going over the 1500 pound threshold. Delivery to the clinic.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-11\", \"type\": \"message\", \"from\": \"Tom Dean\", \"text\": \"Just to confirm I'm free on Saturdays through October if you need me for any weekend clinics.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked: autumn booster clinic on Saturday 24 October, 09:00 to 13:00, in the main hall at Milford Community Hall (the 80 pound morning hire), with Tom running it since he is free on October Saturdays.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e10\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-14\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Once an appointment is confirmed in the client book, it may only be moved or cancelled with that client's own agreement, never just on our side.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ffion Marsh\", \"text\": \"The puppy party works best with a limit of ten puppies, and the downstairs room here at the clinic is free on Saturday afternoons if you want to run one in November.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-16\", \"type\": \"quote\", \"from\": \"Owen Bright (Ridgeway Wholesalers)\", \"text\": \"Flea treatment packs at 3.10 pounds each on our standing terms, delivery to Foxglove Animal Clinic in three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The November puppy party is booked for Saturday 7 November at 14:00 in the clinic's downstairs room, with ten puppy places, matching the room and the ten-puppy limit Ffion described.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 60 flea treatment packs from Ridgeway Wholesalers at 3.10 pounds each, 186 pounds in total, well under the sign-off threshold, so no approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Quick reminder before your autumn visits: our annex scanner is still out of service, so do remember to bring your spare microchip scanner unit when you come to Brackton.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Tom Dean will run the booster clinic on Saturday 24 October at Milford Community Hall, and I will cover the consults back at the clinic that morning.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e11\"], \"record\": \"EV-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Good news: our annex scanner has been repaired and is back in service as of today, freshly calibrated. No need to bring your spare unit on your Brackton visits any more.\", \"role\": \"change\", \"revokes\": [\"e8\"]},\n  {\"id\": \"e20\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Ada Wren\", \"text\": \"Could Bertie (my spaniel) have his annual booster at the clinic? Tuesday 27 October in the morning would suit me best.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed with Ada Wren: Bertie's annual booster is booked at the clinic on Tuesday 27 October at 10:30.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"CL-1\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Vetrico Ltd\", \"text\": \"Special for October: cat flu vaccine at 8.90 pounds per dose for any order placed with us this month, delivery to your clinic within a week.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Confirming our next microchipping session at the Brackton annex on Tuesday 20 October; we expect around fifteen animals.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the mobile van for the microchipping session at the Brackton annex on Tuesday 20 October, expecting around fifteen animals.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-3\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Sam Oyelaran\", \"text\": \"To do: pay NovaVet Supplies invoice IN-4412 for the autumn vaccine order by 20 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-09\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team meeting: October Saturday rota agreed; the booster clinic on the 24th is on track and the puppy party flyers have gone to the printer.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Huw Ellis (Tregaron Farm)\", \"text\": \"Thanks for the farm visit last week, all the dogs are up to date now.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-11\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: check the fridge temperature logs before the new vaccine delivery arrives.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Autumn cat flu vaccine order\", \"fields\": {\"item\": \"cat flu vaccine doses\", \"quantity\": \"200\", \"unit_price\": \"9.40\", \"supplier\": \"NovaVet Supplies\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Flea treatment packs order\", \"fields\": {\"item\": \"flea treatment packs\", \"quantity\": \"60\", \"unit_price\": \"3.10\", \"supplier\": \"Ridgeway Wholesalers\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn booster clinic\", \"fields\": {\"date\": \"2026-10-24\", \"start\": \"09:00\", \"end\": \"13:00\", \"place\": \"Milford Community Hall, main hall\", \"staff\": \"Tom Dean\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"November puppy party\", \"fields\": {\"date\": \"2026-11-07\", \"start\": \"14:00\", \"place\": \"Foxglove Animal Clinic, downstairs room\", \"places\": \"10\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Brackton annex microchipping session\", \"fields\": {\"date\": \"2026-10-20\", \"place\": \"Brackton annex\", \"vehicle\": \"mobile van\", \"expected_animals\": \"15\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bertie - annual booster\", \"fields\": {\"client\": \"Ada Wren\", \"pet\": \"Bertie\", \"date\": \"2026-10-27\", \"time\": \"10:30\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ada Wren\", \"rule\": \"e12\"}\n ],\n \"task\": \"Please place our next cat flu vaccine order with NovaVet Supplies — 120 doses at the price we agreed with them — and send the Milford Community Hall office a confirmation of our booster clinic booking for Saturday the 24th, nine to one in the main hall.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"item\": \"cat flu vaccine doses\", \"quantity\": \"120\", \"unit_price\": \"9.40\", \"supplier\": \"NovaVet Supplies\", \"status\": \"ordered\"}, \"stale\": {\"unit_price\": [\"8.90\"], \"supplier\": [\"Vetrico Ltd\"]}, \"task\": true},\n  {\"message_to\": \"Milford Community Hall office\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 24 October\", \"09:00 to 13:00\", \"main hall\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"This is a control: the change only corrects the out-of-service Brackton annex scanner, a fact no decision rests on, so no record may be altered and no decision is marked. The task is carried out on the standing plan: a new 120-dose order with NovaVet at the agreed 9.40 pounds (the Vetrico October offer of 8.90 is a distractor that must not be used), and a confirmation message to the hall for the already-booked booster clinic on Saturday 24 October. All existing records, including the confirmed client appointment protected by Ada Wren's consent, stay exactly as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Rabies vaccine restock\", \"counterpart\": \"Lena Poole\", \"org\": \"NovaVet Supplies\", \"item\": \"rabies vaccine doses\", \"unit\": \"doses\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Puppy check mornings\", \"counterpart\": \"Gary Nash\", \"org\": \"Milford Community Hall\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"small meeting room\", \"main hall\", \"kitchen annex\"], \"place\": \"Milford Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"Brackton annex clinics\", \"counterpart\": \"Marta Kline\", \"org\": \"Brackton Pet Rescue\", \"item\": \"annex floor space\", \"unit\": \"\", \"values\": [\"annex floor\", \"back room\", \"yard tent\"], \"place\": \"Brackton annex\"},\n  {\"kind\": \"order\", \"topic\": \"Flea treatment restock\", \"counterpart\": \"Owen Bright\", \"org\": \"Ridgeway Wholesalers\", \"item\": \"flea treatment packs\", \"unit\": \"packs\", \"values\": [\"20\", \"30\", \"50\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Dog kibble\", \"counterpart\": \"Sara Villanueva\", \"org\": \"Harmon Pet Foods\", \"item\": \"dog kibble sacks\", \"unit\": \"sacks\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Nurse training days\", \"counterpart\": \"Tom Dean\", \"org\": \"Foxglove Animal Clinic\", \"item\": \"downstairs room\", \"unit\": \"\", \"values\": [\"downstairs room\", \"consulting room 2\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Nitrile gloves\", \"counterpart\": \"Nadia Ford\", \"org\": \"CleanCo Medical\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Cat neutering van runs\", \"counterpart\": \"Ffion Marsh\", \"org\": \"Foxglove Animal Clinic\", \"item\": \"mobile van\", \"unit\": \"\", \"values\": [\"mobile van\", \"mobile van with driver\"], \"place\": \"Ridgeway district\"},\n  {\"kind\": \"order\", \"topic\": \"Syringes\", \"counterpart\": \"Lena Poole\", \"org\": \"NovaVet Supplies\", \"item\": \"syringes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Farm visit slots\", \"counterpart\": \"Huw Ellis\", \"org\": \"Tregaron Farm\", \"item\": \"farm parking spot\", \"unit\": \"\", \"values\": [\"farm track\", \"upper barn\", \"yard\"], \"place\": \"Tregaron Farm\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3208,
+    "completion_tokens": 10057,
+    "reasoning_tokens": 6160,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04516696,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Booster clinic and vaccine order (control: scanner correction)\",\n \"setting\": \"A veterinary surgeon at Foxglove Animal Clinic whose assistant records consultations, vaccination schedules, and medicine stock\",\n \"owner\": \"Priya\",\n \"org\": \"Foxglove Animal Clinic\",\n \"now\": \"2026-10-12\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Medicine stock is counted on the first Monday of each month, and the count is written into the stock book before anything is reordered.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Any supplier order above 1500 pounds needs the practice manager Sam Oyelaran's written sign-off before it is placed. Orders below that I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-24\", \"type\": \"letter\", \"from\": \"Borough of Milford\", \"text\": \"The annual clinical waste collection contract is renewed for twelve months from 1 July; bins are emptied on Thursdays.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-15\", \"type\": \"letter\", \"from\": \"Dave Ferris (Ferris Maintenance)\", \"text\": \"The waiting-room ceiling fan has been repaired and the invoice for 140 pounds is enclosed.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-08-19\", \"type\": \"notice\", \"from\": \"Sam Oyelaran\", \"text\": \"Reminder: the annual fire drill for the whole clinic is booked for the morning of Thursday 10 September.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-09-02\", \"type\": \"quote\", \"from\": \"Lena Poole (NovaVet Supplies)\", \"text\": \"Quotation: cat flu vaccine at 9.40 pounds per dose for orders placed between now and 30 November, delivery within five working days to Foxglove Animal Clinic.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Gary Nash (Milford Community Hall)\", \"text\": \"The main hall is free on Saturday 24 October; hire fee is 80 pounds for the morning, and we can confirm on receipt of a booking note.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Heads-up: the microchip scanner at our Brackton annex is out of service after it was dropped. If you visit us in the next few weeks, please bring the clinic's spare scanner unit along.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"I have placed our autumn order with NovaVet Supplies: 200 doses of cat flu vaccine at 9.40 pounds a dose, 1880 pounds in total, after Sam's written sign-off for going over the 1500 pound threshold. Delivery to the clinic.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-11\", \"type\": \"message\", \"from\": \"Tom Dean\", \"text\": \"Just to confirm I'm free on Saturdays through October if you need me for any weekend clinics.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked: autumn booster clinic on Saturday 24 October, 09:00 to 13:00, in the main hall at Milford Community Hall (the 80 pound morning hire), with Tom running it since he is free on October Saturdays.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e10\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-14\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Once an appointment is confirmed in the client book, it may only be moved or cancelled with that client's own agreement, never just on our side.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Ffion Marsh\", \"text\": \"The puppy party works best with a limit of ten puppies, and the downstairs room here at the clinic is free on Saturday afternoons if you want to run one in November.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-16\", \"type\": \"quote\", \"from\": \"Owen Bright (Ridgeway Wholesalers)\", \"text\": \"Flea treatment packs at 3.10 pounds each on our standing terms, delivery to Foxglove Animal Clinic in three working days.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"The November puppy party is booked for Saturday 7 November at 14:00 in the clinic's downstairs room, with ten puppy places, matching the room and the ten-puppy limit Ffion described.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Ordered 60 flea treatment packs from Ridgeway Wholesalers at 3.10 pounds each, 186 pounds in total, well under the sign-off threshold, so no approval needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Quick reminder before your autumn visits: our annex scanner is still out of service, so do remember to bring your spare microchip scanner unit when you come to Brackton.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Tom Dean will run the booster clinic on Saturday 24 October at Milford Community Hall, and I will cover the consults back at the clinic that morning.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e11\"], \"record\": \"EV-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Good news: our annex scanner has been repaired and is back in service as of today, freshly calibrated. No need to bring your spare unit on your Brackton visits any more.\", \"role\": \"change\", \"revokes\": [\"e8\"]},\n  {\"id\": \"e20\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Ada Wren\", \"text\": \"Could Bertie (my spaniel) have his annual booster at the clinic? Tuesday 27 October in the morning would suit me best.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Confirmed with Ada Wren: Bertie's annual booster is booked at the clinic on Tuesday 27 October at 10:30.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"CL-1\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Vetrico Ltd\", \"text\": \"Special for October: cat flu vaccine at 8.90 pounds per dose for any order placed with us this month, delivery to your clinic within a week.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Marta Kline (Brackton Pet Rescue)\", \"text\": \"Confirming our next microchipping session at the Brackton annex on Tuesday 20 October; we expect around fifteen animals.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Booked the mobile van for the microchipping session at the Brackton annex on Tuesday 20 October, expecting around fifteen animals.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-3\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Sam Oyelaran\", \"text\": \"To do: pay NovaVet Supplies invoice IN-4412 for the autumn vaccine order by 20 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-09\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Team meeting: October Saturday rota agreed; the booster clinic on the 24th is on track and the puppy party flyers have gone to the printer.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Huw Ellis (Tregaron Farm)\", \"text\": \"Thanks for the farm visit last week, all the dogs are up to date now.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-11\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note to self: check the fridge temperature logs before the new vaccine delivery arrives.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Autumn cat flu vaccine order\", \"fields\": {\"item\": \"cat flu vaccine doses\", \"quantity\": \"200\", \"unit_price\": \"9.40\", \"supplier\": \"NovaVet Supplies\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Flea treatment packs order\", \"fields\": {\"item\": \"flea treatment packs\", \"quantity\": \"60\", \"unit_price\": \"3.10\", \"supplier\": \"Ridgeway Wholesalers\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn booster clinic\", \"fields\": {\"date\": \"2026-10-24\", \"start\": \"09:00\", \"end\": \"13:00\", \"place\": \"Milford Community Hall, main hall\", \"staff\": \"Tom Dean\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"November puppy party\", \"fields\": {\"date\": \"2026-11-07\", \"start\": \"14:00\", \"place\": \"Foxglove Animal Clinic, downstairs room\", \"places\": \"10\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Brackton annex microchipping session\", \"fields\": {\"date\": \"2026-10-20\", \"place\": \"Brackton annex\", \"vehicle\": \"mobile van\", \"expected_animals\": \"15\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bertie - annual booster\", \"fields\": {\"client\": \"Ada Wren\", \"pet\": \"Bertie\", \"date\": \"2026-10-27\", \"time\": \"10:30\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ada Wren\", \"rule\": \"e12\"}\n ],\n \"task\": \"Please place our next cat flu vaccine order with NovaVet Supplies — 120 doses at the price we agreed with them — and send the Milford Community Hall office a confirmation of our booster clinic booking for Saturday the 24th, nine to one in the main hall.\",\n \"expect\": [\n  {\"create\": \"orders\", \"fields\": {\"item\": \"cat flu vaccine doses\", \"quantity\": \"120\", \"unit_price\": \"9.40\", \"supplier\": \"NovaVet Supplies\", \"status\": \"ordered\"}, \"stale\": {\"unit_price\": [\"8.90\"], \"supplier\": [\"Vetrico Ltd\"]}, \"task\": true},\n  {\"message_to\": \"Milford Community Hall office\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 24 October\", \"09:00 to 13:00\", \"main hall\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"This is a control: the change only corrects the out-of-service Brackton annex scanner, a fact no decision rests on, so no record may be altered and no decision is marked. The task is carried out on the standing plan: a new 120-dose order with NovaVet at the agreed 9.40 pounds (the Vetrico October offer of 8.90 is a distractor that must not be used), and a confirmation message to the hall for the already-booked booster clinic on Saturday 24 October. All existing records, including the confirmed client appointment protected by Ada Wren's consent, stay exactly as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Rabies vaccine restock\", \"counterpart\": \"Lena Poole\", \"org\": \"NovaVet Supplies\", \"item\": \"rabies vaccine doses\", \"unit\": \"doses\", \"values\": [\"40\", \"60\", \"80\", \"100\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Puppy check mornings\", \"counterpart\": \"Gary Nash\", \"org\": \"Milford Community Hall\", \"item\": \"small meeting room\", \"unit\": \"\", \"values\": [\"small meeting room\", \"main hall\", \"kitchen annex\"], \"place\": \"Milford Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"Brackton annex clinics\", \"counterpart\": \"Marta Kline\", \"org\": \"Brackton Pet Rescue\", \"item\": \"annex floor space\", \"unit\": \"\", \"values\": [\"annex floor\", \"back room\", \"yard tent\"], \"place\": \"Brackton annex\"},\n  {\"kind\": \"order\", \"topic\": \"Flea treatment restock\", \"counterpart\": \"Owen Bright\", \"org\": \"Ridgeway Wholesalers\", \"item\": \"flea treatment packs\", \"unit\": \"packs\", \"values\": [\"20\", \"30\", \"50\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Dog kibble\", \"counterpart\": \"Sara Villanueva\", \"org\": \"Harmon Pet Foods\", \"item\": \"dog kibble sacks\", \"unit\": \"sacks\", \"values\": [\"10\", \"15\", \"25\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Nurse training days\", \"counterpart\": \"Tom Dean\", \"org\": \"Foxglove Animal Clinic\", \"item\": \"downstairs room\", \"unit\": \"\", \"values\": [\"downstairs room\", \"consulting room 2\", \"staff room\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Nitrile gloves\", \"counterpart\": \"Nadia Ford\", \"org\": \"CleanCo Medical\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Cat neutering van runs\", \"counterpart\": \"Ffion Marsh\", \"org\": \"Foxglove Animal Clinic\", \"item\": \"mobile van\", \"unit\": \"\", \"values\": [\"mobile van\", \"mobile van with driver\", \"mobile van with trailer\"], \"place\": \"Ridgeway district\"},\n  {\"kind\": \"order\", \"topic\": \"Syringes\", \"counterpart\": \"Lena Poole\", \"org\": \"NovaVet Supplies\", \"item\": \"syringes\", \"unit\": \"boxes\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Foxglove Animal Clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Farm visit slots\", \"counterpart\": \"Huw Ellis\", \"org\": \"Tregaron Farm\", \"item\": \"farm parking spot\", \"unit\": \"\", \"values\": [\"farm track\", \"upper barn\", \"yard\"], \"place\": \"Tregaron Farm\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7166,
+    "completion_tokens": 3907,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0235752,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Nurse training days': values needs at least three entries\n- noise topic 'Cat neutering van runs': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Booster clinic and vaccine order (control: scanner correction)",
+  "setting": "A veterinary surgeon at Foxglove Animal Clinic whose assistant records consultations, vaccination schedules, and medicine stock",
+  "owner": "Priya",
+  "org": "Foxglove Animal Clinic",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Medicine stock is counted on the first Monday of each month, and the count is written into the stock book before anything is reordered.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Any supplier order above 1500 pounds needs the practice manager Sam Oyelaran's written sign-off before it is placed. Orders below that I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-24",
+    "type": "letter",
+    "from": "Borough of Milford",
+    "text": "The annual clinical waste collection contract is renewed for twelve months from 1 July; bins are emptied on Thursdays.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-15",
+    "type": "letter",
+    "from": "Dave Ferris (Ferris Maintenance)",
+    "text": "The waiting-room ceiling fan has been repaired and the invoice for 140 pounds is enclosed.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-08-19",
+    "type": "notice",
+    "from": "Sam Oyelaran",
+    "text": "Reminder: the annual fire drill for the whole clinic is booked for the morning of Thursday 10 September.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-09-02",
+    "type": "quote",
+    "from": "Lena Poole (NovaVet Supplies)",
+    "text": "Quotation: cat flu vaccine at 9.40 pounds per dose for orders placed between now and 30 November, delivery within five working days to Foxglove Animal Clinic.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Gary Nash (Milford Community Hall)",
+    "text": "The main hall is free on Saturday 24 October; hire fee is 80 pounds for the morning, and we can confirm on receipt of a booking note.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Marta Kline (Brackton Pet Rescue)",
+    "text": "Heads-up: the microchip scanner at our Brackton annex is out of service after it was dropped. If you visit us in the next few weeks, please bring the clinic's spare scanner unit along.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "I have placed our autumn order with NovaVet Supplies: 200 doses of cat flu vaccine at 9.40 pounds a dose, 1880 pounds in total, after Sam's written sign-off for going over the 1500 pound threshold. Delivery to the clinic.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-11",
+    "type": "message",
+    "from": "Tom Dean",
+    "text": "Just to confirm I'm free on Saturdays through October if you need me for any weekend clinics.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked: autumn booster clinic on Saturday 24 October, 09:00 to 13:00, in the main hall at Milford Community Hall (the 80 pound morning hire), with Tom running it since he is free on October Saturdays.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e10"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-14",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Once an appointment is confirmed in the client book, it may only be moved or cancelled with that client's own agreement, never just on our side.",
+    "role": "rule"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Ffion Marsh",
+    "text": "The puppy party works best with a limit of ten puppies, and the downstairs room here at the clinic is free on Saturday afternoons if you want to run one in November.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-16",
+    "type": "quote",
+    "from": "Owen Bright (Ridgeway Wholesalers)",
+    "text": "Flea treatment packs at 3.10 pounds each on our standing terms, delivery to Foxglove Animal Clinic in three working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-17",
+    "type": "decision",
+    "from": "Priya",
+    "text": "The November puppy party is booked for Saturday 7 November at 14:00 in the clinic's downstairs room, with ten puppy places, matching the room and the ten-puppy limit Ffion described.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-19",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Ordered 60 flea treatment packs from Ridgeway Wholesalers at 3.10 pounds each, 186 pounds in total, well under the sign-off threshold, so no approval needed.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e14"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Marta Kline (Brackton Pet Rescue)",
+    "text": "Quick reminder before your autumn visits: our annex scanner is still out of service, so do remember to bring your spare microchip scanner unit when you come to Brackton.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Tom Dean will run the booster clinic on Saturday 24 October at Milford Community Hall, and I will cover the consults back at the clinic that morning.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e11"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Marta Kline (Brackton Pet Rescue)",
+    "text": "Good news: our annex scanner has been repaired and is back in service as of today, freshly calibrated. No need to bring your spare unit on your Brackton visits any more.",
+    "role": "change",
+    "revokes": [
+     "e8"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Ada Wren",
+    "text": "Could Bertie (my spaniel) have his annual booster at the clinic? Tuesday 27 October in the morning would suit me best.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Confirmed with Ada Wren: Bertie's annual booster is booked at the clinic on Tuesday 27 October at 10:30.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Vetrico Ltd",
+    "text": "Special for October: cat flu vaccine at 8.90 pounds per dose for any order placed with us this month, delivery to your clinic within a week.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-03",
+    "type": "email",
+    "from": "Marta Kline (Brackton Pet Rescue)",
+    "text": "Confirming our next microchipping session at the Brackton annex on Tuesday 20 October; we expect around fifteen animals.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-06",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Booked the mobile van for the microchipping session at the Brackton annex on Tuesday 20 October, expecting around fifteen animals.",
+    "role": "decision",
+    "rests_on": [
+     "e23"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Sam Oyelaran",
+    "text": "To do: pay NovaVet Supplies invoice IN-4412 for the autumn vaccine order by 20 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-09",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Team meeting: October Saturday rota agreed; the booster clinic on the 24th is on track and the puppy party flyers have gone to the printer.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Huw Ellis (Tregaron Farm)",
+    "text": "Thanks for the farm visit last week, all the dogs are up to date now.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-11",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note to self: check the fridge temperature logs before the new vaccine delivery arrives.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Autumn cat flu vaccine order",
+    "fields": {
+     "item": "cat flu vaccine doses",
+     "quantity": "200",
+     "unit_price": "9.40",
+     "supplier": "NovaVet Supplies",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Flea treatment packs order",
+    "fields": {
+     "item": "flea treatment packs",
+     "quantity": "60",
+     "unit_price": "3.10",
+     "supplier": "Ridgeway Wholesalers",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn booster clinic",
+    "fields": {
+     "date": "2026-10-24",
+     "start": "09:00",
+     "end": "13:00",
+     "place": "Milford Community Hall, main hall",
+     "staff": "Tom Dean",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "November puppy party",
+    "fields": {
+     "date": "2026-11-07",
+     "start": "14:00",
+     "place": "Foxglove Animal Clinic, downstairs room",
+     "places": "10",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Brackton annex microchipping session",
+    "fields": {
+     "date": "2026-10-20",
+     "place": "Brackton annex",
+     "vehicle": "mobile van",
+     "expected_animals": "15",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Bertie - annual booster",
+    "fields": {
+     "client": "Ada Wren",
+     "pet": "Bertie",
+     "date": "2026-10-27",
+     "time": "10:30",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Ada Wren",
+    "rule": "e12"
+   }
+  ],
+  "task": "Please place our next cat flu vaccine order with NovaVet Supplies — 120 doses at the price we agreed with them — and send the Milford Community Hall office a confirmation of our booster clinic booking for Saturday the 24th, nine to one in the main hall.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "item": "cat flu vaccine doses",
+     "quantity": "120",
+     "unit_price": "9.40",
+     "supplier": "NovaVet Supplies",
+     "status": "ordered"
+    },
+    "stale": {
+     "unit_price": [
+      "8.90"
+     ],
+     "supplier": [
+      "Vetrico Ltd"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Milford Community Hall office",
+    "regarding": "EV-1",
+    "says": [
+     "Saturday 24 October",
+     "09:00 to 13:00",
+     "main hall"
+    ],
+    "stale": [],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change only corrects the out-of-service Brackton annex scanner, a fact no decision rests on, so no record may be altered and no decision is marked. The task is carried out on the standing plan: a new 120-dose order with NovaVet at the agreed 9.40 pounds (the Vetrico October offer of 8.90 is a distractor that must not be used), and a confirmation message to the hall for the already-booked booster clinic on Saturday 24 October. All existing records, including the confirmed client appointment protected by Ada Wren's consent, stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Rabies vaccine restock",
+    "counterpart": "Lena Poole",
+    "org": "NovaVet Supplies",
+    "item": "rabies vaccine doses",
+    "unit": "doses",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Puppy check mornings",
+    "counterpart": "Gary Nash",
+    "org": "Milford Community Hall",
+    "item": "small meeting room",
+    "unit": "",
+    "values": [
+     "small meeting room",
+     "main hall",
+     "kitchen annex"
+    ],
+    "place": "Milford Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "Brackton annex clinics",
+    "counterpart": "Marta Kline",
+    "org": "Brackton Pet Rescue",
+    "item": "annex floor space",
+    "unit": "",
+    "values": [
+     "annex floor",
+     "back room",
+     "yard tent"
+    ],
+    "place": "Brackton annex"
+   },
+   {
+    "kind": "order",
+    "topic": "Flea treatment restock",
+    "counterpart": "Owen Bright",
+    "org": "Ridgeway Wholesalers",
+    "item": "flea treatment packs",
+    "unit": "packs",
+    "values": [
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "Dog kibble",
+    "counterpart": "Sara Villanueva",
+    "org": "Harmon Pet Foods",
+    "item": "dog kibble sacks",
+    "unit": "sacks",
+    "values": [
+     "10",
+     "15",
+     "25"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Nurse training days",
+    "counterpart": "Tom Dean",
+    "org": "Foxglove Animal Clinic",
+    "item": "downstairs room",
+    "unit": "",
+    "values": [
+     "downstairs room",
+     "consulting room 2",
+     "staff room"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "Nitrile gloves",
+    "counterpart": "Nadia Ford",
+    "org": "CleanCo Medical",
+    "item": "nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Cat neutering van runs",
+    "counterpart": "Ffion Marsh",
+    "org": "Foxglove Animal Clinic",
+    "item": "mobile van",
+    "unit": "",
+    "values": [
+     "mobile van",
+     "mobile van with driver",
+     "mobile van with trailer"
+    ],
+    "place": "Ridgeway district"
+   },
+   {
+    "kind": "order",
+    "topic": "Syringes",
+    "counterpart": "Lena Poole",
+    "org": "NovaVet Supplies",
+    "item": "syringes",
+    "unit": "boxes",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Foxglove Animal Clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Farm visit slots",
+    "counterpart": "Huw Ellis",
+    "org": "Tregaron Farm",
+    "item": "farm parking spot",
+    "unit": "",
+    "values": [
+     "farm track",
+     "upper barn",
+     "yard"
+    ],
+    "place": "Tregaron Farm"
+   }
+  ],
+  "id": "G500-4-03",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

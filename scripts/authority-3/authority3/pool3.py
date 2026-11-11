@@ -116,6 +116,15 @@ def render_candidate(c):
     lines += ["", "Consent map: " + (json.dumps(c["consent"], ensure_ascii=False) or "none"), "",
               f"The task: «{c['task']}»", "", "Expected final state (everything else unchanged):"]
     lines += [f"- {json.dumps(x, ensure_ascii=False)}" for x in c["expect"]]
+    cons = {k["record"]: k for k in c["consent"]}
+    for e in c["events"]:
+        if e.get("mark") == "ASK":
+            k = cons.get(e.get("record"), {})
+            lines.append(f"- (implied by the mark ASK on {e['id']}) a consent request on {e.get('record')} to {k.get('from', '?')}; "
+                         f"{e.get('record')}'s consent fields stay as they are until that consent comes")
+        elif e.get("mark") == "KEEP":
+            lines.append(f"- (implied by the mark KEEP on {e['id']}) {e.get('record')} stays as it is")
+    lines.append("- every record not named above stays as it is (a message to a party of a record named above is allowed)")
     lines += ["", f"Writer's reasoning: {c.get('why')}"]
     return "\n".join(lines)
 

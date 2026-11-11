@@ -1,0 +1,531 @@
+{
+ "id": "G100-1-05",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 4,
+ "setting": "A plumber running Rigby & Sons Plumbing who uses an assistant to schedule callouts, track parts orders, and keep job histories",
+ "prompt_sha256": "4370cdee1e50d8c49b503551f810e13eb027198c89211ca8351ab00b32e13098",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Flue kit price rise at Halden's\",\n  \"setting\": \"A plumber running Rigby & Sons Plumbing who uses an assistant to schedule callouts, track parts orders, and keep job histories\",\n  \"owner\": \"Ross\",\n  \"org\": \"Rigby & Sons Plumbing\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Good news for trade customers: our Bridge Street depot keeps the FK-22 flue kit in stock all year round, and same-day collection is fine any weekday before 16:00.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Trade price list: FK-22 horizontal flue kit at 188 pounds plus VAT. That is our standard trade rate for Rigby & Sons.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-07\", \"type\": \"instruction\", \"from\": \"Ross Rigby\", \"text\": \"Standing rule: once a quote has gone out to a client, I never change the quoted figure without that client's written agreement. If a price has to move, we ask them first and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Just to confirm how we spend money: any order placed with Halden Plumbers' Merchant above 400 pounds needs my sign-off before it goes in. Below that, you can order as usual.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Ross Rigby\", \"text\": \"Nye Pritchard has finished his parts-runner induction. From now on he handles all Halden collections with the van on Tuesdays and Thursdays.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"task\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Reminder for the diary: the annual gas safety checks for the three bakery contracts all fall due in July.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"My boiler at Fern Cottage on Marleigh Lane is eighteen years old and the engineer says it is beyond repair. I would like a full replacement, and October would suit me best because I am away before that.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"For the Devlin job: a Worcester 30i combi with horizontal flue takes the FK-22 flue kit, and you should allow a full day for the fit.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Ordered one FK-22 flue kit from Halden Plumbers' Merchant at the 188 pound trade price for the Fern Cottage boiler replacement, for collection at the Bridge Street depot. Under the 400 pound limit, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Quoted Elspeth Devlin 260 pounds for the full boiler replacement at Fern Cottage, covering the flue kit we ordered at 188 pounds plus the fitting day, and sent the quote to her by email.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\", \"e8\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Booked the boiler replacement at Fern Cottage for Friday 23 October, one full day, starting 08:30, based on the quote Elspeth Devlin accepted. I will take the job myself.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Scheduled Nye to collect the FK-22 kit from the Halden Bridge Street depot on Thursday 22 October at 09:00, comfortably before the 16:00 same-day cutoff, so the kit is on the van the day before the Fern Cottage job.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"task\", \"from\": \"Ross Rigby\", \"text\": \"To-do: send Elspeth Devlin the deposit reminder during the week of Monday 12 October, a week before the Fern Cottage job.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"All June and July invoicing is done and filed. Nothing outstanding on our side.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Gavin Kettlewell (Kettlewell Bakery)\", \"text\": \"Our second oven at the bakery gets its quarterly service; the next one is due in November, any weekday suits.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Price notice for trade customers: from 1 October the trade price of 22mm copper pipe goes up from 6.20 to 7.40 pounds a metre. Sorry for the increase, it is the mill price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-09-24\", \"type\": \"call\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Called the garage: the white van's service is booked for early November, so it will be off the road for one morning.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"Confirming I will be at home all day on Friday 23 October for the boiler work. Looking forward to finally having heating that works.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Heads-up for your jobs: the manufacturer has raised the price of the FK-22 flue kit. From Monday 13 October the trade price is 225 pounds plus VAT instead of 188. Everything else at Bridge Street, including same-day collection before 16:00, stays exactly as before.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Paid and filed: Halden's monthly account statement is settled in full.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Nye Pritchard\", \"text\": \"Van is fuelled and the tool stock is checked. All set for the Fern Cottage run next week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"FK-22 flue kit from Halden (Fern Cottage job)\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"188\", \"branch\": \"Bridge Street\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Boiler replacement at Fern Cottage\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"08:30\", \"client\": \"Elspeth Devlin\", \"place\": \"Fern Cottage, Marleigh Lane\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Halden parts collection (FK-22)\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"09:00\", \"place\": \"Halden Bridge Street depot\", \"assigned_to\": \"Nye Pritchard\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Elspeth Devlin - boiler replacement\", \"fields\": {\"client\": \"Elspeth Devlin\", \"job\": \"boiler replacement\", \"quote_amount\": \"260\", \"status\": \"quoted\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"quote_amount\"], \"from\": \"Elspeth Devlin (Fern Cottage)\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The Grundwells at 4 Ashfield Cottages need the same flue kit for their boiler job. Order one more FK-22 from Halden and have Nye pick it up on Thursday with the other one, please.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"price\", \"value\": \"225\", \"stale\": [\"188\"]},\n    {\"create\": \"orders\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"225\", \"branch\": \"Bridge Street\", \"pickup_date\": \"2026-10-22\", \"status\": \"ordered\"}, \"stale\": {\"price\": [\"188\"]}, \"task\": true}\n  ],\n  \"why\": \"The change revokes only the old 188 pound price fact; every flue-kit order must now be priced at 225, so ORD-1 is revised and the new Grundwell order must be created at 225. The client quote CL-1 rests on the old price two hops away, but the standing rule requires Elspeth Devlin's written agreement before any quoted figure changes, so it stays at 260 with a consent request rather than an edit. The Fern Cottage booking is touched in appearance but uses only the accepted quote's date and scope, which the price rise leaves standing, so it is KEEP; EV-2 and the bakery/copper items are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"copper pipe restock\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"22mm copper pipe\", \"unit\": \"metre\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"solder and flux\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"lead-free solder reels\", \"unit\": \"reel\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"radiator valves\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"thermostatic radiator valves\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"booking\", \"topic\": \"van service run\", \"counterpart\": \"Priya Nandedkar\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"van service bay slot\", \"unit\": \"\", \"values\": [\"Bridge Street workshop\", \"Riverside workshop\"], \"place\": \"Bridge Street\"},\n    {\"kind\": \"booking\", \"topic\": \"bakery boiler check\", \"counterpart\": \"Gavin Kettlewell\", \"org\": \"Kettlewell Bakery\", \"item\": \"bakery boiler room visit\", \"unit\": \"\", \"values\": [\"front boiler room\", \"rear boiler room\"], \"place\": \"Kettlewell Bakery\"},\n    {\"kind\": \"booking\", \"topic\": \"village hall job\", \"counterpart\": \"Bea Munroe\", \"org\": \"Marleigh Village Hall\", \"item\": \"hall kitchen plumbing visit\", \"unit\": \"\", \"values\": [\"main kitchen\", \"store room\"], \"place\": \"Marleigh Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"washers\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"fiber washers\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"olive fittings\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"15mm olives\", \"unit\": \"tub\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"pipe insulation\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"22mm lagging\", \"unit\": \"metre\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"booking\", \"topic\": \"landlord safety rounds\", \"counterpart\": \"Ross Rigby\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"company van for safety rounds\", \"unit\": \"\", \"values\": [\"van A\", \"van B\"], \"place\": \"Marleigh\"},\n    {\"kind\": \"booking\", \"topic\": \"school callouts\", \"counterpart\": \"Dot Phelps\", \"org\": \"Marleigh Primary School\", \"item\": \"school boiler cupboard visit\", \"unit\": \"\", \"values\": [\"east wing\", \"west wing\"], \"place\": \"Marleigh Primary School\"},\n    {\"kind\": \"order\", \"topic\": \"magnetic filters\", \"counterpart\": \"Colm Bexley\", \"org\": \"Heatparts Direct\", \"item\": \"magnetic filter units\", \"unit\": \"unit\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Heatparts depot\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3146,
+    "completion_tokens": 10028,
+    "reasoning_tokens": 6566,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04502552,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Flue kit price rise at Halden's\",\n  \"setting\": \"A plumber running Rigby & Sons Plumbing who uses an assistant to schedule callouts, track parts orders, and keep job histories\",\n  \"owner\": \"Ross\",\n  \"org\": \"Rigby & Sons Plumbing\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Good news for trade customers: our Bridge Street depot keeps the FK-22 flue kit in stock all year round, and same-day collection is fine any weekday before 16:00.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Trade price list: FK-22 horizontal flue kit at 188 pounds plus VAT. That is our standard trade rate for Rigby & Sons.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-07\", \"type\": \"instruction\", \"from\": \"Ross Rigby\", \"text\": \"Standing rule: once a quote has gone out to a client, I never change the quoted figure without that client's written agreement. If a price has to move, we ask them first and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Just to confirm how we spend money: any order placed with Halden Plumbers' Merchant above 400 pounds needs my sign-off before it goes in. Below that, you can order as usual.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Ross Rigby\", \"text\": \"Nye Pritchard has finished his parts-runner induction. From now on he handles all Halden collections with the van on Tuesdays and Thursdays.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"task\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Reminder for the diary: the annual gas safety checks for the three bakery contracts all fall due in July.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"My boiler at Fern Cottage on Marleigh Lane is eighteen years old and the engineer says it is beyond repair. I would like a full replacement, and October would suit me best because I am away before that.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"For the Devlin job: a Worcester 30i combi with horizontal flue takes the FK-22 flue kit, and you should allow a full day for the fit.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Ordered one FK-22 flue kit from Halden Plumbers' Merchant at the 188 pound trade price for the Fern Cottage boiler replacement, for collection at the Bridge Street depot. Under the 400 pound limit, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Quoted Elspeth Devlin 260 pounds for the full boiler replacement at Fern Cottage, covering the flue kit we ordered at 188 pounds plus the fitting day, and sent the quote to her by email.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\", \"e8\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Booked the boiler replacement at Fern Cottage for Friday 23 October, one full day, starting 08:30, based on the quote Elspeth Devlin accepted. I will take the job myself.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Scheduled Nye to collect the FK-22 kit from the Halden Bridge Street depot on Thursday 22 October at 09:00, comfortably before the 16:00 same-day cutoff, so the kit is on the van the day before the Fern Cottage job.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"task\", \"from\": \"Ross Rigby\", \"text\": \"To-do: send Elspeth Devlin the deposit reminder during the week of Monday 12 October, a week before the Fern Cottage job.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"All June and July invoicing is done and filed. Nothing outstanding on our side.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Gavin Kettlewell (Kettlewell Bakery)\", \"text\": \"Our second oven at the bakery gets its quarterly service; the next one is due in November, any weekday suits.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Price notice for trade customers: from 1 October the trade price of 22mm copper pipe goes up from 6.20 to 7.40 pounds a metre. Sorry for the increase, it is the mill price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-09-24\", \"type\": \"call\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Called the garage: the white van's service is booked for early November, so it will be off the road for one morning.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"Confirming I will be at home all day on Friday 23 October for the boiler work. Looking forward to finally having heating that works.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Heads-up for your jobs: the manufacturer has raised the price of the FK-22 flue kit. From Tuesday 13 October the trade price is 225 pounds plus VAT instead of 188. Everything else at Bridge Street, including same-day collection before 16:00, stays exactly as before.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Paid and filed: Halden's monthly account statement is settled in full.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Nye Pritchard\", \"text\": \"Van is fuelled and the tool stock is checked. All set for the Fern Cottage run next week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"FK-22 flue kit from Halden (Fern Cottage job)\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"188\", \"branch\": \"Bridge Street\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Boiler replacement at Fern Cottage\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"08:30\", \"client\": \"Elspeth Devlin\", \"place\": \"Fern Cottage, Marleigh Lane\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Halden parts collection (FK-22)\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"09:00\", \"place\": \"Halden Bridge Street depot\", \"assigned_to\": \"Nye Pritchard\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Elspeth Devlin - boiler replacement\", \"fields\": {\"client\": \"Elspeth Devlin\", \"job\": \"boiler replacement\", \"quote_amount\": \"260\", \"status\": \"quoted\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"quote_amount\"], \"from\": \"Elspeth Devlin (Fern Cottage)\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The Grundwells at 4 Ashfield Cottages need the same flue kit for their boiler job. Order one more FK-22 from Halden and have Nye pick it up on Thursday with the other one, please.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"price\", \"value\": \"225\", \"stale\": [\"188\"]},\n    {\"create\": \"orders\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"225\", \"branch\": \"Bridge Street\", \"pickup_date\": \"2026-10-22\", \"status\": \"ordered\"}, \"stale\": {\"price\": [\"188\"]}, \"task\": true}\n  ],\n  \"why\": \"The change revokes only the old 188 pound price fact; every flue-kit order must now be priced at 225, so ORD-1 is revised and the new Grundwell order must be created at 225. The client quote CL-1 rests on the old price two hops away, but the standing rule requires Elspeth Devlin's written agreement before any quoted figure changes, so it stays at 260 with a consent request rather than an edit. The Fern Cottage booking is touched in appearance but uses only the accepted quote's date and scope, which the price rise leaves standing, so it is KEEP; EV-2 and the bakery/copper items are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"copper pipe restock\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"22mm copper pipe\", \"unit\": \"metre\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"solder and flux\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"lead-free solder reels\", \"unit\": \"reel\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"radiator valves\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"thermostatic radiator valves\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"booking\", \"topic\": \"van service run\", \"counterpart\": \"Priya Nandedkar\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"van service bay slot\", \"unit\": \"\", \"values\": [\"Bridge Street workshop\", \"Riverside workshop\"], \"place\": \"Bridge Street\"},\n    {\"kind\": \"booking\", \"topic\": \"bakery boiler check\", \"counterpart\": \"Gavin Kettlewell\", \"org\": \"Kettlewell Bakery\", \"item\": \"bakery boiler room visit\", \"unit\": \"\", \"values\": [\"front boiler room\", \"rear boiler room\"], \"place\": \"Kettlewell Bakery\"},\n    {\"kind\": \"booking\", \"topic\": \"village hall job\", \"counterpart\": \"Bea Munroe\", \"org\": \"Marleigh Village Hall\", \"item\": \"hall kitchen plumbing visit\", \"unit\": \"\", \"values\": [\"main kitchen\", \"store room\"], \"place\": \"Marleigh Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"washers\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"fiber washers\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"olive fittings\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"15mm olives\", \"unit\": \"tub\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"pipe insulation\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"22mm lagging\", \"unit\": \"metre\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"booking\", \"topic\": \"landlord safety rounds\", \"counterpart\": \"Ross Rigby\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"company van for safety rounds\", \"unit\": \"\", \"values\": [\"van A\", \"van B\"], \"place\": \"Marleigh\"},\n    {\"kind\": \"booking\", \"topic\": \"school callouts\", \"counterpart\": \"Dot Phelps\", \"org\": \"Marleigh Primary School\", \"item\": \"school boiler cupboard visit\", \"unit\": \"\", \"values\": [\"east wing\", \"west wing\"], \"place\": \"Marleigh Primary School\"},\n    {\"kind\": \"order\", \"topic\": \"magnetic filters\", \"counterpart\": \"Colm Bexley\", \"org\": \"Heatparts Direct\", \"item\": \"magnetic filter units\", \"unit\": \"unit\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Heatparts depot\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6660,
+    "completion_tokens": 3479,
+    "reasoning_tokens": 17,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02105656,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e19: «Monday 13 October» is not a Monday in 2026 (or 2027)\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Flue kit price rise at Halden's\",\n  \"setting\": \"A plumber running Rigby & Sons Plumbing who uses an assistant to schedule callouts, track parts orders, and keep job histories\",\n  \"owner\": \"Ross\",\n  \"org\": \"Rigby & Sons Plumbing\",\n  \"now\": \"2026-10-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Good news for trade customers: our Bridge Street depot keeps the FK-22 flue kit in stock all year round, and same-day collection is fine any weekday before 16:00.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Trade price list: FK-22 horizontal flue kit at 188 pounds plus VAT. That is our standard trade rate for Rigby & Sons.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-07\", \"type\": \"instruction\", \"from\": \"Ross Rigby\", \"text\": \"Standing rule: once a quote has gone out to a client, I never change the quoted figure without that client's written agreement. If a price has to move, we ask them first and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Just to confirm how we spend money: any order placed with Halden Plumbers' Merchant above 400 pounds needs my sign-off before it goes in. Below that, you can order as usual.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Ross Rigby\", \"text\": \"Nye Pritchard has finished his parts-runner induction. From now on he handles all Halden collections with the van on Tuesdays and Thursdays.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"task\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Reminder for the diary: the annual gas safety checks for the three bakery contracts all fall due in July.\", \"role\": \"other\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"My boiler at Fern Cottage on Marleigh Lane is eighteen years old and the engineer says it is beyond repair. I would like a full replacement, and October would suit me best because I am away before that.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"For the Devlin job: a Worcester 30i combi with horizontal flue takes the FK-22 flue kit, and you should allow a full day for the fit.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Ordered one FK-22 flue kit from Halden Plumbers' Merchant at the 188 pound trade price for the Fern Cottage boiler replacement, for collection at the Bridge Street depot. Under the 400 pound limit, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e1\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Quoted Elspeth Devlin 260 pounds for the full boiler replacement at Fern Cottage, covering the flue kit we ordered at 188 pounds plus the fitting day, and sent the quote to her by email.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e7\", \"e8\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Booked the boiler replacement at Fern Cottage for Friday 23 October, one full day, starting 08:30, based on the quote Elspeth Devlin accepted. I will take the job myself.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Ross Rigby\", \"text\": \"Scheduled Nye to collect the FK-22 kit from the Halden Bridge Street depot on Thursday 22 October at 09:00, comfortably before the 16:00 same-day cutoff, so the kit is on the van the day before the Fern Cottage job.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"task\", \"from\": \"Ross Rigby\", \"text\": \"To-do: send Elspeth Devlin the deposit reminder during the week of Monday 12 October, a week before the Fern Cottage job.\", \"role\": \"obligation\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"All June and July invoicing is done and filed. Nothing outstanding on our side.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Gavin Kettlewell (Kettlewell Bakery)\", \"text\": \"Our second oven at the bakery gets its quarterly service; the next one is due in November, any weekday suits.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Price notice for trade customers: from 1 October the trade price of 22mm copper pipe goes up from 6.20 to 7.40 pounds a metre. Sorry for the increase, it is the mill price.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-09-24\", \"type\": \"call\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Called the garage: the white van's service is booked for early November, so it will be off the road for one morning.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Elspeth Devlin (Fern Cottage)\", \"text\": \"Confirming I will be at home all day on Friday 23 October for the boiler work. Looking forward to finally having heating that works.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Dan Okafor (Halden Plumbers' Merchant)\", \"text\": \"Heads-up for your jobs: the manufacturer has raised the price of the FK-22 flue kit. From Tuesday 13 October the trade price is 225 pounds plus VAT instead of 188. Everything else at Bridge Street, including same-day collection before 16:00, stays exactly as before.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n    {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Priya Nandedkar (office manager)\", \"text\": \"Paid and filed: Halden's monthly account statement is settled in full.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Nye Pritchard\", \"text\": \"Van is fuelled and the tool stock is checked. All set for the Fern Cottage run next week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"FK-22 flue kit from Halden (Fern Cottage job)\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"188\", \"branch\": \"Bridge Street\", \"status\": \"ordered\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Boiler replacement at Fern Cottage\", \"fields\": {\"date\": \"2026-10-23\", \"time\": \"08:30\", \"client\": \"Elspeth Devlin\", \"place\": \"Fern Cottage, Marleigh Lane\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Halden parts collection (FK-22)\", \"fields\": {\"date\": \"2026-10-22\", \"time\": \"09:00\", \"place\": \"Halden Bridge Street depot\", \"assigned_to\": \"Nye Pritchard\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Elspeth Devlin - boiler replacement\", \"fields\": {\"client\": \"Elspeth Devlin\", \"job\": \"boiler replacement\", \"quote_amount\": \"260\", \"status\": \"quoted\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"quote_amount\"], \"from\": \"Elspeth Devlin (Fern Cottage)\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"The Grundwells at 4 Ashfield Cottages need the same flue kit for their boiler job. Order one more FK-22 from Halden and have Nye pick it up on Thursday with the other one, please.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"price\", \"value\": \"225\", \"stale\": [\"188\"]},\n    {\"create\": \"orders\", \"fields\": {\"item\": \"FK-22 flue kit\", \"quantity\": \"1\", \"price\": \"225\", \"branch\": \"Bridge Street\", \"pickup_date\": \"2026-10-22\", \"status\": \"ordered\"}, \"stale\": {\"price\": [\"188\"]}, \"task\": true}\n  ],\n  \"why\": \"The change revokes only the old 188 pound price fact; every flue-kit order must now be priced at 225, so ORD-1 is revised and the new Grundwell order must be created at 225. The client quote CL-1 rests on the old price two hops away, but the standing rule requires Elspeth Devlin's written agreement before any quoted figure changes, so it stays at 260 with a consent request rather than an edit. The Fern Cottage booking is touched in appearance but uses only the accepted quote's date and scope, which the price rise leaves standing, so it is KEEP; EV-2 and the bakery/copper items are untouched.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"copper pipe restock\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"22mm copper pipe\", \"unit\": \"metre\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"solder and flux\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"lead-free solder reels\", \"unit\": \"reel\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"order\", \"topic\": \"radiator valves\", \"counterpart\": \"Dan Okafor\", \"org\": \"Halden Plumbers' Merchant\", \"item\": \"thermostatic radiator valves\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Bridge Street depot\"},\n    {\"kind\": \"booking\", \"topic\": \"van service run\", \"counterpart\": \"Priya Nandedkar\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"van service bay slot\", \"unit\": \"\", \"values\": [\"Bridge Street workshop\", \"Riverside workshop\", \"Northgate workshop\"], \"place\": \"Bridge Street\"},\n    {\"kind\": \"booking\", \"topic\": \"bakery boiler check\", \"counterpart\": \"Gavin Kettlewell\", \"org\": \"Kettlewell Bakery\", \"item\": \"bakery boiler room visit\", \"unit\": \"\", \"values\": [\"front boiler room\", \"rear boiler room\", \"upstairs plant room\"], \"place\": \"Kettlewell Bakery\"},\n    {\"kind\": \"booking\", \"topic\": \"village hall job\", \"counterpart\": \"Bea Munroe\", \"org\": \"Marleigh Village Hall\", \"item\": \"hall kitchen plumbing visit\", \"unit\": \"\", \"values\": [\"main kitchen\", \"store room\", \"servery area\"], \"place\": \"Marleigh Village Hall\"},\n    {\"kind\": \"order\", \"topic\": \"washers\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"fiber washers\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"olive fittings\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"15mm olives\", \"unit\": \"tub\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"order\", \"topic\": \"pipe insulation\", \"counterpart\": \"Marta Quill\", \"org\": \"Drainline Supplies\", \"item\": \"22mm lagging\", \"unit\": \"metre\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Drainline depot\"},\n    {\"kind\": \"booking\", \"topic\": \"landlord safety rounds\", \"counterpart\": \"Ross Rigby\", \"org\": \"Rigby & Sons Plumbing\", \"item\": \"company van for safety rounds\", \"unit\": \"\", \"values\": [\"van A\", \"van B\", \"van C\"], \"place\": \"Marleigh\"},\n    {\"kind\": \"booking\", \"topic\": \"school callouts\", \"counterpart\": \"Dot Phelps\", \"org\": \"Marleigh Primary School\", \"item\": \"school boiler cupboard visit\", \"unit\": \"\", \"values\": [\"east wing\", \"west wing\", \"annex cupboard\"], \"place\": \"Marleigh Primary School\"},\n    {\"kind\": \"order\", \"topic\": \"magnetic filters\", \"counterpart\": \"Colm Bexley\", \"org\": \"Heatparts Direct\", \"item\": \"magnetic filter units\", \"unit\": \"unit\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"Heatparts depot\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10228,
+    "completion_tokens": 3495,
+    "reasoning_tokens": 8,
+    "cached_tokens": 6656
+   },
+   "cost": 0.02210936,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'van service run': values needs at least three entries\n- noise topic 'bakery boiler check': values needs at least three entries\n- noise topic 'village hall job': values needs at least three entries\n- noise topic 'landlord safety rounds': values needs at least three entries\n- noise topic 'school callouts': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Flue kit price rise at Halden's",
+  "setting": "A plumber running Rigby & Sons Plumbing who uses an assistant to schedule callouts, track parts orders, and keep job histories",
+  "owner": "Ross",
+  "org": "Rigby & Sons Plumbing",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Dan Okafor (Halden Plumbers' Merchant)",
+    "text": "Good news for trade customers: our Bridge Street depot keeps the FK-22 flue kit in stock all year round, and same-day collection is fine any weekday before 16:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Dan Okafor (Halden Plumbers' Merchant)",
+    "text": "Trade price list: FK-22 horizontal flue kit at 188 pounds plus VAT. That is our standard trade rate for Rigby & Sons.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-07",
+    "type": "instruction",
+    "from": "Ross Rigby",
+    "text": "Standing rule: once a quote has gone out to a client, I never change the quoted figure without that client's written agreement. If a price has to move, we ask them first and wait for a yes.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Priya Nandedkar (office manager)",
+    "text": "Just to confirm how we spend money: any order placed with Halden Plumbers' Merchant above 400 pounds needs my sign-off before it goes in. Below that, you can order as usual.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Ross Rigby",
+    "text": "Nye Pritchard has finished his parts-runner induction. From now on he handles all Halden collections with the van on Tuesdays and Thursdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "task",
+    "from": "Priya Nandedkar (office manager)",
+    "text": "Reminder for the diary: the annual gas safety checks for the three bakery contracts all fall due in July.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Elspeth Devlin (Fern Cottage)",
+    "text": "My boiler at Fern Cottage on Marleigh Lane is eighteen years old and the engineer says it is beyond repair. I would like a full replacement, and October would suit me best because I am away before that.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Dan Okafor (Halden Plumbers' Merchant)",
+    "text": "For the Devlin job: a Worcester 30i combi with horizontal flue takes the FK-22 flue kit, and you should allow a full day for the fit.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ross Rigby",
+    "text": "Ordered one FK-22 flue kit from Halden Plumbers' Merchant at the 188 pound trade price for the Fern Cottage boiler replacement, for collection at the Bridge Street depot. Under the 400 pound limit, so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e1",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Ross Rigby",
+    "text": "Quoted Elspeth Devlin 260 pounds for the full boiler replacement at Fern Cottage, covering the flue kit we ordered at 188 pounds plus the fitting day, and sent the quote to her by email.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e7",
+     "e8"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Ross Rigby",
+    "text": "Booked the boiler replacement at Fern Cottage for Friday 23 October, one full day, starting 08:30, based on the quote Elspeth Devlin accepted. I will take the job myself.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Ross Rigby",
+    "text": "Scheduled Nye to collect the FK-22 kit from the Halden Bridge Street depot on Thursday 22 October at 09:00, comfortably before the 16:00 same-day cutoff, so the kit is on the van the day before the Fern Cottage job.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "task",
+    "from": "Ross Rigby",
+    "text": "To-do: send Elspeth Devlin the deposit reminder during the week of Monday 12 October, a week before the Fern Cottage job.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Priya Nandedkar (office manager)",
+    "text": "All June and July invoicing is done and filed. Nothing outstanding on our side.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Gavin Kettlewell (Kettlewell Bakery)",
+    "text": "Our second oven at the bakery gets its quarterly service; the next one is due in November, any weekday suits.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Dan Okafor (Halden Plumbers' Merchant)",
+    "text": "Price notice for trade customers: from 1 October the trade price of 22mm copper pipe goes up from 6.20 to 7.40 pounds a metre. Sorry for the increase, it is the mill price.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-24",
+    "type": "call",
+    "from": "Priya Nandedkar (office manager)",
+    "text": "Called the garage: the white van's service is booked for early November, so it will be off the road for one morning.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Elspeth Devlin (Fern Cottage)",
+    "text": "Confirming I will be at home all day on Friday 23 October for the boiler work. Looking forward to finally having heating that works.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Dan Okafor (Halden Plumbers' Merchant)",
+    "text": "Heads-up for your jobs: the manufacturer has raised the price of the FK-22 flue kit. From Tuesday 13 October the trade price is 225 pounds plus VAT instead of 188. Everything else at Bridge Street, including same-day collection before 16:00, stays exactly as before.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-14",
+    "type": "note",
+    "from": "Priya Nandedkar (office manager)",
+    "text": "Paid and filed: Halden's monthly account statement is settled in full.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Nye Pritchard",
+    "text": "Van is fuelled and the tool stock is checked. All set for the Fern Cottage run next week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "FK-22 flue kit from Halden (Fern Cottage job)",
+    "fields": {
+     "item": "FK-22 flue kit",
+     "quantity": "1",
+     "price": "188",
+     "branch": "Bridge Street",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Boiler replacement at Fern Cottage",
+    "fields": {
+     "date": "2026-10-23",
+     "time": "08:30",
+     "client": "Elspeth Devlin",
+     "place": "Fern Cottage, Marleigh Lane",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Halden parts collection (FK-22)",
+    "fields": {
+     "date": "2026-10-22",
+     "time": "09:00",
+     "place": "Halden Bridge Street depot",
+     "assigned_to": "Nye Pritchard",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Elspeth Devlin - boiler replacement",
+    "fields": {
+     "client": "Elspeth Devlin",
+     "job": "boiler replacement",
+     "quote_amount": "260",
+     "status": "quoted"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "quote_amount"
+    ],
+    "from": "Elspeth Devlin (Fern Cottage)",
+    "rule": "e3"
+   }
+  ],
+  "task": "The Grundwells at 4 Ashfield Cottages need the same flue kit for their boiler job. Order one more FK-22 from Halden and have Nye pick it up on Thursday with the other one, please.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "price",
+    "value": "225",
+    "stale": [
+     "188"
+    ]
+   },
+   {
+    "create": "orders",
+    "fields": {
+     "item": "FK-22 flue kit",
+     "quantity": "1",
+     "price": "225",
+     "branch": "Bridge Street",
+     "pickup_date": "2026-10-22",
+     "status": "ordered"
+    },
+    "stale": {
+     "price": [
+      "188"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The change revokes only the old 188 pound price fact; every flue-kit order must now be priced at 225, so ORD-1 is revised and the new Grundwell order must be created at 225. The client quote CL-1 rests on the old price two hops away, but the standing rule requires Elspeth Devlin's written agreement before any quoted figure changes, so it stays at 260 with a consent request rather than an edit. The Fern Cottage booking is touched in appearance but uses only the accepted quote's date and scope, which the price rise leaves standing, so it is KEEP; EV-2 and the bakery/copper items are untouched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "copper pipe restock",
+    "counterpart": "Dan Okafor",
+    "org": "Halden Plumbers' Merchant",
+    "item": "22mm copper pipe",
+    "unit": "metre",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Bridge Street depot"
+   },
+   {
+    "kind": "order",
+    "topic": "solder and flux",
+    "counterpart": "Dan Okafor",
+    "org": "Halden Plumbers' Merchant",
+    "item": "lead-free solder reels",
+    "unit": "reel",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Bridge Street depot"
+   },
+   {
+    "kind": "order",
+    "topic": "radiator valves",
+    "counterpart": "Dan Okafor",
+    "org": "Halden Plumbers' Merchant",
+    "item": "thermostatic radiator valves",
+    "unit": "pack",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "Bridge Street depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "van service run",
+    "counterpart": "Priya Nandedkar",
+    "org": "Rigby & Sons Plumbing",
+    "item": "van service bay slot",
+    "unit": "",
+    "values": [
+     "Bridge Street workshop",
+     "Riverside workshop",
+     "Northgate workshop"
+    ],
+    "place": "Bridge Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "bakery boiler check",
+    "counterpart": "Gavin Kettlewell",
+    "org": "Kettlewell Bakery",
+    "item": "bakery boiler room visit",
+    "unit": "",
+    "values": [
+     "front boiler room",
+     "rear boiler room",
+     "upstairs plant room"
+    ],
+    "place": "Kettlewell Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "village hall job",
+    "counterpart": "Bea Munroe",
+    "org": "Marleigh Village Hall",
+    "item": "hall kitchen plumbing visit",
+    "unit": "",
+    "values": [
+     "main kitchen",
+     "store room",
+     "servery area"
+    ],
+    "place": "Marleigh Village Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "washers",
+    "counterpart": "Marta Quill",
+    "org": "Drainline Supplies",
+    "item": "fiber washers",
+    "unit": "box",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Drainline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "olive fittings",
+    "counterpart": "Marta Quill",
+    "org": "Drainline Supplies",
+    "item": "15mm olives",
+    "unit": "tub",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Drainline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "pipe insulation",
+    "counterpart": "Marta Quill",
+    "org": "Drainline Supplies",
+    "item": "22mm lagging",
+    "unit": "metre",
+    "values": [
+     "15",
+     "25",
+     "35"
+    ],
+    "place": "Drainline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "landlord safety rounds",
+    "counterpart": "Ross Rigby",
+    "org": "Rigby & Sons Plumbing",
+    "item": "company van for safety rounds",
+    "unit": "",
+    "values": [
+     "van A",
+     "van B",
+     "van C"
+    ],
+    "place": "Marleigh"
+   },
+   {
+    "kind": "booking",
+    "topic": "school callouts",
+    "counterpart": "Dot Phelps",
+    "org": "Marleigh Primary School",
+    "item": "school boiler cupboard visit",
+    "unit": "",
+    "values": [
+     "east wing",
+     "west wing",
+     "annex cupboard"
+    ],
+    "place": "Marleigh Primary School"
+   },
+   {
+    "kind": "order",
+    "topic": "magnetic filters",
+    "counterpart": "Colm Bexley",
+    "org": "Heatparts Direct",
+    "item": "magnetic filter units",
+    "unit": "unit",
+    "values": [
+     "1",
+     "2",
+     "4"
+    ],
+    "place": "Heatparts depot"
+   }
+  ],
+  "id": "G100-1-05",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [
+  "the change is too close to now: only 3 of 100 events would come after it; move the change earlier"
+ ],
+ "valid": false
+}

@@ -1,0 +1,584 @@
+{
+ "id": "G100-4-06",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 5,
+ "setting": "The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records",
+ "prompt_sha256": "c3278a0b7bee96f0283b93f96b14f7cc763dc99f599c10672f967a47d08eb8d8",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Intercom Extension Correction\",\n \"setting\": \"The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records\",\n \"owner\": \"Marta\",\n \"org\": \"Grandvale Office Park Facilities\",\n \"now\": \"2026-09-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing instruction from Marta: any single contractor booking above 750 must have Priya Raman's written sign-off in the file before it is confirmed in the schedule.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing instruction from Marta: no access-card record may be changed without the consent of Tomas Witt, the HR lead at Grandvale Office Park.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Cole Frayne (Kestrel Lifts)\", \"text\": \"Cole Frayne at Kestrel Lifts confirming the annual lift service visit for the Tower A lift is set for 2026-09-10, technician arriving from 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Note to file: the intercom at the west parking barrier of Grandvale Office Park runs on extension 214 for the facilities office.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"quote\", \"from\": \"Lena Ott (Lumen Supplies)\", \"text\": \"Lena Ott at Lumen Supplies quotes 4.20 per LED tube for the T8 replacements, delivered to the Grandvale goods dock.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Priya Raman\", \"text\": \"Priya Raman gives written sign-off for the LED tube restocking order with Lumen Supplies.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta orders 120 LED tubes from Lumen Supplies at 4.20 each, delivered to the Grandvale goods dock, per Lena Ott's quote and with Priya Raman's sign-off on file.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-19\", \"type\": \"quote\", \"from\": \"Ravi Chand (Northgate Cleaning)\", \"text\": \"Ravi Chand at Northgate Cleaning quotes 380 for a one-off deep clean of the Grandvale atrium.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta books Northgate Cleaning for the atrium deep clean at the quoted 380, scheduled for 2026-08-14; it is below the 750 sign-off line so no extra approval is needed.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-01\", \"type\": \"email\", \"from\": \"Tomas Witt\", \"text\": \"Tomas Witt confirms new hire Ines Barros starts on 2026-08-01 as a facilities assistant and needs a level 2 access card for the Grandvale service corridors.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta assigns access card CL-1 to Ines Barros at level 2 access, per Tomas Witt's confirmation, and the card record is logged for the 2026-08-01 start.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"CL-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Greta Holm (Halvard Fire Safety)\", \"text\": \"Greta Holm at Halvard Fire Safety quotes 540 for the annual fire extinguisher check of the Grandvale east wing, quote valid until 2026-10-31.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Gatehouse Desk\", \"text\": \"The Grandvale gatehouse confirms the pallet delivery slot at the goods dock runs from 07:00 to 09:00 each weekday morning.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta schedules the paper supplier's pallet delivery for 2026-09-03 in the 07:00 to 09:00 goods dock slot, per the gatehouse confirmation.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Pia Lund (Airworks)\", \"text\": \"Pia Lund at Airworks confirms the rooftop HVAC filter size F-220 is only stocked by Airworks, at their Grandvale depot price.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Marta orders 24 of the F-220 rooftop HVAC filters from Airworks, since they are the sole supplier, for delivery to the Grandvale plant room.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gatehouse Desk\", \"text\": \"Small correction from the gatehouse: the intercom at the west parking barrier is extension 217, not 214. We renumbered the internal extensions in the spring and the old list was never updated.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Gatehouse Desk\", \"text\": \"Reminder for the facilities team: deliveries for the east side of the park should be buzzed through on the east barrier intercom, extension 231, during the morning slot.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-24\", \"type\": \"invoice\", \"from\": \"Cole Frayne (Kestrel Lifts)\", \"text\": \"Kestrel Lifts sends the invoice for the 2026-09-10 lift service visit to Tower A, technician Cole Frayne, 260 for the service call.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-25\", \"type\": \"notice\", \"from\": \"Tomas Witt\", \"text\": \"Tomas Witt posts a reminder that the annual fire extinguisher check for the east wing must be completed by 2026-10-15 to keep the insurance cover valid.\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-26\", \"type\": \"message\", \"from\": \"Ravi Chand (Northgate Cleaning)\", \"text\": \"Ravi Chand asks whether the atrium deep clean went well on 2026-08-14 and whether Grandvale wants it repeated quarterly.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"LED tube restocking order - Lumen Supplies\", \"fields\": {\"supplier\": \"Lumen Supplies\", \"item\": \"T8 LED tubes\", \"quantity\": \"120\", \"unit_price\": \"4.20\", \"delivery_place\": \"Grandvale goods dock\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"HVAC filter order - Airworks\", \"fields\": {\"supplier\": \"Airworks\", \"item\": \"F-220 rooftop HVAC filters\", \"quantity\": \"24\", \"delivery_place\": \"Grandvale plant room\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Atrium deep clean - Northgate Cleaning\", \"fields\": {\"date\": \"2026-08-14\", \"contractor\": \"Northgate Cleaning\", \"place\": \"Grandvale atrium\", \"amount\": \"380\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Paper supplier pallet delivery\", \"fields\": {\"date\": \"2026-09-03\", \"start_time\": \"07:00\", \"end_time\": \"09:00\", \"place\": \"Grandvale goods dock\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Access card - Ines Barros\", \"fields\": {\"holder\": \"Ines Barros\", \"level\": \"2\", \"area\": \"service corridors\", \"issued\": \"2026-08-01\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"holder\", \"level\", \"area\", \"status\"], \"from\": \"Tomas Witt\", \"rule\": \"e2\"}\n ],\n \"task\": \"The east wing extinguisher check is due by mid-October and Greta Holm's quote from Halvard Fire Safety is still valid. Please book Halvard for the check in the last week of September and confirm the visit with their office.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-09-29\", \"contractor\": \"Halvard Fire Safety\", \"place\": \"east wing\", \"job\": \"annual fire extinguisher check\", \"amount\": \"540\", \"status\": \"booked\"}, \"stale\": {\"place\": [\"west wing\", \"atrium\"]}, \"task\": true},\n  {\"message_to\": \"Greta Holm (Halvard Fire Safety)\", \"regarding\": null, \"says\": [\"annual fire extinguisher check\", \"east wing\", \"week of 2026-09-28\", \"540\"], \"stale\": [\"380\"], \"task\": true}\n ],\n \"why\": \"The change only corrects the west barrier intercom extension, a fact no decision rests on, so no existing record may be touched; the distractor's east barrier extension 231 must not be used either. The task is simply the extinguisher booking under Greta Holm's 540 quote, in the last week of September, below the 750 sign-off threshold, with a confirmation message to Halvard carrying the place, date and amount. All other records stay exactly as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"LED tube restock\", \"counterpart\": \"Lena Ott\", \"org\": \"Lumen Supplies\", \"item\": \"T8 LED tubes\", \"unit\": \"tubes\", \"values\": [\"40\", \"60\", \"80\", \"120\"], \"place\": \"Grandvale goods dock\"},\n  {\"kind\": \"order\", \"topic\": \"HVAC filters\", \"counterpart\": \"Pia Lund\", \"org\": \"Airworks\", \"item\": \"F-220 rooftop HVAC filters\", \"unit\": \"filters\", \"values\": [\"8\", \"12\", \"24\"], \"place\": \"Grandvale plant room\"},\n  {\"kind\": \"booking\", \"topic\": \"Lift service visits\", \"counterpart\": \"Cole Frayne\", \"org\": \"Kestrel Lifts\", \"item\": \"annual lift service\", \"unit\": \"visits\", \"values\": [\"Tower A lift\", \"Tower B lift\", \"parking lift\"], \"place\": \"Grandvale Tower A\"},\n  {\"kind\": \"booking\", \"topic\": \"Quarterly deep cleans\", \"counterpart\": \"Ravi Chand\", \"org\": \"Northgate Cleaning\", \"item\": \"deep clean\", \"unit\": \"cleans\", \"values\": [\"atrium\", \"east wing lobby\", \"staff kitchen\"], \"place\": \"Grandvale atrium\"},\n  {\"kind\": \"booking\", \"topic\": \"Fire safety visits\", \"counterpart\": \"Greta Holm\", \"org\": \"Halvard Fire Safety\", \"item\": \"safety equipment check\", \"unit\": \"checks\", \"values\": [\"east wing\", \"west wing\", \"boiler room\"], \"place\": \"Grandvale east wing\"},\n  {\"kind\": \"order\", \"topic\": \"Hand soap restock\", \"counterpart\": \"Milo Kerr\", \"org\": \"Basin Hygiene Co\", \"item\": \"liquid hand soap cartridges\", \"unit\": \"cartridges\", \"values\": [\"30\", \"45\", \"60\", \"90\"], \"place\": \"Grandvale janitor store\"},\n  {\"kind\": \"order\", \"topic\": \"Copy paper\", \"counterpart\": \"Dora Vela\", \"org\": \"Plainfield Office Paper\", \"item\": \"A4 copy paper boxes\", \"unit\": \"boxes\", \"values\": [\"10\", \"20\", \"35\"], \"place\": \"Grandvale goods dock\"},\n  {\"kind\": \"booking\", \"topic\": \"Meeting room bookings\", \"counterpart\": \"Sana Iqbal\", \"org\": \"Grandvale Tenants Association\", \"item\": \"meeting room slot\", \"unit\": \"slots\", \"values\": [\"atrium meeting room\", \"garden room\", \"north annex room\"], \"place\": \"Grandvale atrium\"},\n  {\"kind\": \"order\", \"topic\": \"De-icing salt\", \"counterpart\": \"Bruno Hale\", \"org\": \"Northway Grit Supply\", \"item\": \"de-icing salt bags\", \"unit\": \"bags\", \"values\": [\"25\", \"50\", \"75\"], \"place\": \"Grandvale parking garage\"},\n  {\"kind\": \"booking\", \"topic\": \"Window cleaning rounds\", \"counterpart\": \"Elsa Pim\", \"org\": \"Clearview Window Care\", \"item\": \"window cleaning round\", \"unit\": \"rounds\", \"values\": [\"atrium glass\", \"Tower A ground floor\", \"gatehouse windows\"], \"place\": \"Grandvale atrium\"},\n  {\"kind\": \"order\", \"topic\": \"Access card blanks\", \"counterpart\": \"Tomas Witt\", \"org\": \"Grandvale HR\", \"item\": \"blank access cards\", \"unit\": \"cards\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Grandvale gatehouse\"},\n  {\"kind\": \"booking\", \"topic\": \"Shredding service visits\", \"counterpart\": \"Anya Rohr\", \"org\": \"SafeShred Ltd\", \"item\": \"document shredding visit\", \"unit\": \"visits\", \"values\": [\"north annex\", \"records room\", \"gatehouse\"], \"place\": \"Grandvale records room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3154,
+    "completion_tokens": 5053,
+    "reasoning_tokens": 1607,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02314672,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Intercom Extension Correction",
+  "setting": "The facilities supervisor at Grandvale Office Park whose assistant logs work orders, contractor visits, and access-card records",
+  "owner": "Marta",
+  "org": "Grandvale Office Park Facilities",
+  "now": "2026-09-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing instruction from Marta: any single contractor booking above 750 must have Priya Raman's written sign-off in the file before it is confirmed in the schedule.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing instruction from Marta: no access-card record may be changed without the consent of Tomas Witt, the HR lead at Grandvale Office Park.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Cole Frayne (Kestrel Lifts)",
+    "text": "Cole Frayne at Kestrel Lifts confirming the annual lift service visit for the Tower A lift is set for 2026-09-10, technician arriving from 08:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Note to file: the intercom at the west parking barrier of Grandvale Office Park runs on extension 214 for the facilities office.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-11",
+    "type": "quote",
+    "from": "Lena Ott (Lumen Supplies)",
+    "text": "Lena Ott at Lumen Supplies quotes 4.20 per LED tube for the T8 replacements, delivered to the Grandvale goods dock.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Priya Raman",
+    "text": "Priya Raman gives written sign-off for the LED tube restocking order with Lumen Supplies.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta orders 120 LED tubes from Lumen Supplies at 4.20 each, delivered to the Grandvale goods dock, per Lena Ott's quote and with Priya Raman's sign-off on file.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-19",
+    "type": "quote",
+    "from": "Ravi Chand (Northgate Cleaning)",
+    "text": "Ravi Chand at Northgate Cleaning quotes 380 for a one-off deep clean of the Grandvale atrium.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-23",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta books Northgate Cleaning for the atrium deep clean at the quoted 380, scheduled for 2026-08-14; it is below the 750 sign-off line so no extra approval is needed.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-01",
+    "type": "email",
+    "from": "Tomas Witt",
+    "text": "Tomas Witt confirms new hire Ines Barros starts on 2026-08-01 as a facilities assistant and needs a level 2 access card for the Grandvale service corridors.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta assigns access card CL-1 to Ines Barros at level 2 access, per Tomas Witt's confirmation, and the card record is logged for the 2026-08-01 start.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e2"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Greta Holm (Halvard Fire Safety)",
+    "text": "Greta Holm at Halvard Fire Safety quotes 540 for the annual fire extinguisher check of the Grandvale east wing, quote valid until 2026-10-31.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Gatehouse Desk",
+    "text": "The Grandvale gatehouse confirms the pallet delivery slot at the goods dock runs from 07:00 to 09:00 each weekday morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta schedules the paper supplier's pallet delivery for 2026-09-03 in the 07:00 to 09:00 goods dock slot, per the gatehouse confirmation.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Pia Lund (Airworks)",
+    "text": "Pia Lund at Airworks confirms the rooftop HVAC filter size F-220 is only stocked by Airworks, at their Grandvale depot price.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Marta orders 24 of the F-220 rooftop HVAC filters from Airworks, since they are the sole supplier, for delivery to the Grandvale plant room.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Gatehouse Desk",
+    "text": "Small correction from the gatehouse: the intercom at the west parking barrier is extension 217, not 214. We renumbered the internal extensions in the spring and the old list was never updated.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Gatehouse Desk",
+    "text": "Reminder for the facilities team: deliveries for the east side of the park should be buzzed through on the east barrier intercom, extension 231, during the morning slot.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-24",
+    "type": "invoice",
+    "from": "Cole Frayne (Kestrel Lifts)",
+    "text": "Kestrel Lifts sends the invoice for the 2026-09-10 lift service visit to Tower A, technician Cole Frayne, 260 for the service call.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-25",
+    "type": "notice",
+    "from": "Tomas Witt",
+    "text": "Tomas Witt posts a reminder that the annual fire extinguisher check for the east wing must be completed by 2026-10-15 to keep the insurance cover valid.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-26",
+    "type": "message",
+    "from": "Ravi Chand (Northgate Cleaning)",
+    "text": "Ravi Chand asks whether the atrium deep clean went well on 2026-08-14 and whether Grandvale wants it repeated quarterly.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "LED tube restocking order - Lumen Supplies",
+    "fields": {
+     "supplier": "Lumen Supplies",
+     "item": "T8 LED tubes",
+     "quantity": "120",
+     "unit_price": "4.20",
+     "delivery_place": "Grandvale goods dock",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "HVAC filter order - Airworks",
+    "fields": {
+     "supplier": "Airworks",
+     "item": "F-220 rooftop HVAC filters",
+     "quantity": "24",
+     "delivery_place": "Grandvale plant room",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Atrium deep clean - Northgate Cleaning",
+    "fields": {
+     "date": "2026-08-14",
+     "contractor": "Northgate Cleaning",
+     "place": "Grandvale atrium",
+     "amount": "380",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Paper supplier pallet delivery",
+    "fields": {
+     "date": "2026-09-03",
+     "start_time": "07:00",
+     "end_time": "09:00",
+     "place": "Grandvale goods dock",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Access card - Ines Barros",
+    "fields": {
+     "holder": "Ines Barros",
+     "level": "2",
+     "area": "service corridors",
+     "issued": "2026-08-01",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "holder",
+     "level",
+     "area",
+     "status"
+    ],
+    "from": "Tomas Witt",
+    "rule": "e2"
+   }
+  ],
+  "task": "The east wing extinguisher check is due by mid-October and Greta Holm's quote from Halvard Fire Safety is still valid. Please book Halvard for the check in the last week of September and confirm the visit with their office.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-09-29",
+     "contractor": "Halvard Fire Safety",
+     "place": "east wing",
+     "job": "annual fire extinguisher check",
+     "amount": "540",
+     "status": "booked"
+    },
+    "stale": {
+     "place": [
+      "west wing",
+      "atrium"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Greta Holm (Halvard Fire Safety)",
+    "regarding": null,
+    "says": [
+     "annual fire extinguisher check",
+     "east wing",
+     "week of 2026-09-28",
+     "540"
+    ],
+    "stale": [
+     "380"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change only corrects the west barrier intercom extension, a fact no decision rests on, so no existing record may be touched; the distractor's east barrier extension 231 must not be used either. The task is simply the extinguisher booking under Greta Holm's 540 quote, in the last week of September, below the 750 sign-off threshold, with a confirmation message to Halvard carrying the place, date and amount. All other records stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "LED tube restock",
+    "counterpart": "Lena Ott",
+    "org": "Lumen Supplies",
+    "item": "T8 LED tubes",
+    "unit": "tubes",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "120"
+    ],
+    "place": "Grandvale goods dock"
+   },
+   {
+    "kind": "order",
+    "topic": "HVAC filters",
+    "counterpart": "Pia Lund",
+    "org": "Airworks",
+    "item": "F-220 rooftop HVAC filters",
+    "unit": "filters",
+    "values": [
+     "8",
+     "12",
+     "24"
+    ],
+    "place": "Grandvale plant room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Lift service visits",
+    "counterpart": "Cole Frayne",
+    "org": "Kestrel Lifts",
+    "item": "annual lift service",
+    "unit": "visits",
+    "values": [
+     "Tower A lift",
+     "Tower B lift",
+     "parking lift"
+    ],
+    "place": "Grandvale Tower A"
+   },
+   {
+    "kind": "booking",
+    "topic": "Quarterly deep cleans",
+    "counterpart": "Ravi Chand",
+    "org": "Northgate Cleaning",
+    "item": "deep clean",
+    "unit": "cleans",
+    "values": [
+     "atrium",
+     "east wing lobby",
+     "staff kitchen"
+    ],
+    "place": "Grandvale atrium"
+   },
+   {
+    "kind": "booking",
+    "topic": "Fire safety visits",
+    "counterpart": "Greta Holm",
+    "org": "Halvard Fire Safety",
+    "item": "safety equipment check",
+    "unit": "checks",
+    "values": [
+     "east wing",
+     "west wing",
+     "boiler room"
+    ],
+    "place": "Grandvale east wing"
+   },
+   {
+    "kind": "order",
+    "topic": "Hand soap restock",
+    "counterpart": "Milo Kerr",
+    "org": "Basin Hygiene Co",
+    "item": "liquid hand soap cartridges",
+    "unit": "cartridges",
+    "values": [
+     "30",
+     "45",
+     "60",
+     "90"
+    ],
+    "place": "Grandvale janitor store"
+   },
+   {
+    "kind": "order",
+    "topic": "Copy paper",
+    "counterpart": "Dora Vela",
+    "org": "Plainfield Office Paper",
+    "item": "A4 copy paper boxes",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "20",
+     "35"
+    ],
+    "place": "Grandvale goods dock"
+   },
+   {
+    "kind": "booking",
+    "topic": "Meeting room bookings",
+    "counterpart": "Sana Iqbal",
+    "org": "Grandvale Tenants Association",
+    "item": "meeting room slot",
+    "unit": "slots",
+    "values": [
+     "atrium meeting room",
+     "garden room",
+     "north annex room"
+    ],
+    "place": "Grandvale atrium"
+   },
+   {
+    "kind": "order",
+    "topic": "De-icing salt",
+    "counterpart": "Bruno Hale",
+    "org": "Northway Grit Supply",
+    "item": "de-icing salt bags",
+    "unit": "bags",
+    "values": [
+     "25",
+     "50",
+     "75"
+    ],
+    "place": "Grandvale parking garage"
+   },
+   {
+    "kind": "booking",
+    "topic": "Window cleaning rounds",
+    "counterpart": "Elsa Pim",
+    "org": "Clearview Window Care",
+    "item": "window cleaning round",
+    "unit": "rounds",
+    "values": [
+     "atrium glass",
+     "Tower A ground floor",
+     "gatehouse windows"
+    ],
+    "place": "Grandvale atrium"
+   },
+   {
+    "kind": "order",
+    "topic": "Access card blanks",
+    "counterpart": "Tomas Witt",
+    "org": "Grandvale HR",
+    "item": "blank access cards",
+    "unit": "cards",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Grandvale gatehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "Shredding service visits",
+    "counterpart": "Anya Rohr",
+    "org": "SafeShred Ltd",
+    "item": "document shredding visit",
+    "unit": "visits",
+    "values": [
+     "north annex",
+     "records room",
+     "gatehouse"
+    ],
+    "place": "Grandvale records room"
+   }
+  ],
+  "id": "G100-4-06",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task specifies the last week of September, but nothing fixes September 29 as the booking date; other dates in that window would also satisfy it. The consent map also omits the issued field even though the stated rule requires Tomas Witt's consent for any access-card record change.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task specifies the last week of September, but nothing fixes September 29 as the booking date; other dates in that window would also satisfy it. The consent map also omits the issued field even though the stated rule requires Tomas Witt's consent for any access-card record change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3355,
+    "completion_tokens": 155,
+    "reasoning_tokens": 62,
+    "cached_tokens": 0
+   },
+   "cost": 0.04968,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "030f0f8e398bb4075e978a0b8518305169699253f9d13b2f20504d5c02ef4b9f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The expected state fixes the booking date at 2026-09-29, but the task only says 'last week of September', so 28-30 September are all defensible and the grader would penalise a valid choice. The change is labelled 'Small correction from the gatehouse', which announces it as a correction rather than hiding it among ordinary events. The class (4), the tier counts (21 core events, 5 decisions, change 13 days before the task day with 4 core events after it) and the forced booking act are otherwise consistent with the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The expected state fixes the booking date at 2026-09-29, but the task only says 'last week of September', so 28-30 September are all defensible and the grader would penalise a valid choice. The change is labelled 'Small correction from the gatehouse', which announces it as a correction rather than hiding it among ordinary events. The class (4), the tier counts (21 core events, 5 decisions, change 13 days before the task day with 4 core events after it) and the forced booking act are otherwise consistent with the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4930,
+    "completion_tokens": 1246,
+    "reasoning_tokens": 1029,
+    "cached_tokens": 0
+   },
+   "cost": 0.001116,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "030f0f8e398bb4075e978a0b8518305169699253f9d13b2f20504d5c02ef4b9f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

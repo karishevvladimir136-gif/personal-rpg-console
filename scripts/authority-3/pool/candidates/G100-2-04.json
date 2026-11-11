@@ -1,0 +1,586 @@
+{
+ "id": "G100-2-04",
+ "writer": "glm",
+ "tier": 100,
+ "class": 2,
+ "idx": 3,
+ "setting": "An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories",
+ "prompt_sha256": "d735490b441f5a8d8326c174500158a7ca0741d9733b6c9edbdb11662913d9e1",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Volt & Vine\",\n \"setting\": \"An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories\",\n \"owner\": \"Marta\",\n \"org\": \"Volt & Vine Electrical\",\n \"now\": \"2026-09-10\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: any supplier order above 500 dollars needs Piotr Nowak's written sign-off before we confirm it. Piotr looks after the money side. Keep to it even for small rush jobs.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Second standing rule: once a client booking is confirmed in the schedule, we only move its date if the client has agreed in writing. No quiet reshuffling of people's installs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Caldwell rate card for Volt & Vine: Zephyr 7kW home charger kit with cable and pedestal bracket, 740 dollars including delivery. Delivery is two working days after we confirm an order.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Rose Odell\", \"text\": \"Confirming our chat: I'd like the kitchen rewire at Birch Cottage done in the week of 21 September, whenever suits your crew. Rose Odell.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Havencore Supply)\", \"text\": \"Havencore Supply price for armoured 3-core cable: 6.20 dollars per metre at our trade rate, from stock.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 150 metres of armoured 3-core cable from Havencore Supply at 6.20 dollars a metre, 930 dollars in total. It was above the 500 dollar limit, so Piotr Nowak signed it off in writing before I confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Rose Odell's kitchen rewire at Birch Cottage for 18 September, materials coming from our own cable stock, so no new supplier order is needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Hi, Mei Chen here at 14 Alder Row. I'd like a 7kW home charger fitted on the garage wall. The Zephyr kit you described sounds right. Whatever date works for you. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"message\", \"from\": \"Piotr Nowak\", \"text\": \"Just so you know, I'm away on holiday from 6 September to 20 September and won't be reachable to sign anything off.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Drafted the order to Caldwell Electrical Supply for Mei Chen's Zephyr 7kW charger kit at 740 dollars. That is over the 500 dollar limit, so it needs Piotr Nowak's sign-off, and he is away until 20 September. Left the order unconfirmed as awaiting sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e9\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Mei Chen's charger install at 14 Alder Row for 24 September. That follows the Caldwell delivery, which lands two working days after the kit order is confirmed once sign-off comes through.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder to myself: pay the Havencore Supply invoice INV-2214 for the June cable order by 15 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Quick question: if the charger kit happens to arrive sooner than planned, could my install be brought forward? I'm flexible most weekdays. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Team note: from today, Piotr Nowak's sign-off is only needed for supplier orders above 1500 dollars, not 500. Havencore and Caldwell have both put us on contracted rates, and the old 500 dollar limit was holding up small jobs for no good reason. Anything he already signed off stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Bram Osei (Ridgeline Wholesale)\", \"text\": \"Ridgeline Wholesale special for Volt & Vine: Zephyr 7kW charger kit supplied with pedestal mount for 895 dollars, offer valid to the end of the month. We can deliver within a week of ordering.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Chasing our side: the Zephyr 7kW kit order for your Alder Row job is still sitting with us unconfirmed. Let us know when to proceed. Jonah.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Rose Odell\", \"text\": \"All set for the rewire on the 18th, side gate will be open from 8 in the morning. Rose.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Monthly plan: Odell rewire on 18 September, Chen charger install on 24 September, van restock orders as needed. Certification paperwork for the two July commercial jobs still to be filed with the registry.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Havencore cable order\", \"fields\": {\"supplier\": \"Havencore Supply\", \"item\": \"armoured 3-core cable\", \"quantity\": \"150\", \"unit\": \"metre\", \"amount\": \"930\", \"approved_by\": \"Piotr Nowak\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Caldwell charger kit for Chen\", \"fields\": {\"supplier\": \"Caldwell Electrical Supply\", \"item\": \"Zephyr 7kW charger kit\", \"amount\": \"740\", \"approved_by\": \"pending\", \"status\": \"awaiting sign-off\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Odell kitchen rewire\", \"fields\": {\"client\": \"Rose Odell\", \"date\": \"2026-09-18\", \"place\": \"Birch Cottage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Chen charger install\", \"fields\": {\"client\": \"Mei Chen\", \"date\": \"2026-09-24\", \"place\": \"14 Alder Row\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Mei Chen wiring history\", \"fields\": {\"address\": \"14 Alder Row\", \"agreed_item\": \"Zephyr 7kW kit\", \"supplier\": \"Caldwell Electrical Supply\", \"quoted_price\": \"740\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Mei Chen\", \"rule\": \"e2\"}\n ],\n \"task\": \"Mei Chen keeps asking about her charger. Please get her order with Caldwell confirmed and sort out the install date so it happens as soon as it sensibly can.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"approved_by\", \"value\": \"not required\", \"stale\": [\"pending\"], \"task\": true},\n  {\"message_to\": \"Mei Chen\", \"regarding\": \"EV-2\", \"says\": [\"her charger kit order can now be confirmed with Caldwell\", \"ask whether she would like an earlier install date than 24 September\"], \"stale\": [\"her order is still awaiting sign-off\"], \"task\": true}\n ],\n \"why\": \"The amendment raises the sign-off threshold to 1500 dollars, so the 740 dollar Caldwell order (ORD-2) no longer needs Piotr Nowak's sign-off and should be confirmed now; EV-2's date can only change with Mei Chen's written agreement under the standing booking rule, so the assistant must ask her rather than move it. ORD-1 was already signed off and the amendment expressly leaves such orders standing, so it is KEEP and nothing else changes; the Ridgeline 895 dollar quote is a distractor, not the kit price to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"twin-and-earth restock\", \"counterpart\": \"Nadia Fields\", \"org\": \"Havencore Supply\", \"item\": \"twin-and-earth cable\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"consumer units restock\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"consumer units\", \"unit\": \"unit\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"supplier review call\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Volt & Vine Electrical\", \"item\": \"supplier review call\", \"values\": [\"back office\", \"site cabin\"], \"place\": \"Volt & Vine office\"},\n  {\"kind\": \"order\", \"topic\": \"fuse spares\", \"counterpart\": \"Greta Hallow\", \"org\": \"Ridgeline Wholesale\", \"item\": \"fuse board spares\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"wiring survey visit\", \"counterpart\": \"Rose Odell\", \"org\": \"Birch Cottage household\", \"item\": \"wiring survey visit\", \"values\": [\"kitchen\", \"hallway\"], \"place\": \"Birch Cottage\"},\n  {\"kind\": \"booking\", \"topic\": \"post-install check\", \"counterpart\": \"Mei Chen\", \"org\": \"14 Alder Row household\", \"item\": \"follow-up electrical check\", \"values\": [\"garage\", \"driveway\"], \"place\": \"14 Alder Row\"},\n  {\"kind\": \"order\", \"topic\": \"conduit restock\", \"counterpart\": \"Bram Osei\", \"org\": \"Havencore Supply\", \"item\": \"conduit\", \"unit\": \"length\", \"values\": [\"25\", \"50\", \"75\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"ladder hire\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"inspection ladder hire\", \"values\": [\"depot pickup\", \"site delivery\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"downlight packs\", \"counterpart\": \"Tomas Vela\", \"org\": \"Corvid Lighting\", \"item\": \"downlight packs\", \"unit\": \"pack\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"trade counter slot\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"counter collection slot\", \"values\": [\"morning\", \"afternoon\"], \"place\": \"Caldwell trade counter\"},\n  {\"kind\": \"order\", \"topic\": \"smart switches\", \"counterpart\": \"Ines Quist\", \"org\": \"Corvid Lighting\", \"item\": \"smart switch packs\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"apprentice training session\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"safe isolation training\", \"values\": [\"training room\", \"workshop bench\"], \"place\": \"Volt & Vine office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3139,
+    "completion_tokens": 7989,
+    "reasoning_tokens": 4748,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03604412,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Volt & Vine\",\n \"setting\": \"An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories\",\n \"owner\": \"Marta\",\n \"org\": \"Volt & Vine Electrical\",\n \"now\": \"2026-09-10\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: any supplier order above 500 dollars needs Piotr Nowak's written sign-off before we confirm it. Piotr looks after the money side. Keep to it even for small rush jobs.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Second standing rule: once a client booking is confirmed in the schedule, we only move its date if the client has agreed in writing. No quiet reshuffling of people's installs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Caldwell rate card for Volt & Vine: Zephyr 7kW home charger kit with cable and pedestal bracket, 740 dollars including delivery. Delivery is two working days after we confirm an order.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Rose Odell\", \"text\": \"Confirming our chat: I'd like the kitchen rewire at Birch Cottage done in the week of 21 September, whenever suits your crew. Rose Odell.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Havencore Supply)\", \"text\": \"Havencore Supply price for armoured 3-core cable: 6.20 dollars per metre at our trade rate, from stock.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 150 metres of armoured 3-core cable from Havencore Supply at 6.20 dollars a metre, 930 dollars in total. It was above the 500 dollar limit, so Piotr Nowak signed it off in writing before I confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Rose Odell's kitchen rewire at Birch Cottage for 18 September, materials coming from our own cable stock, so no new supplier order is needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Hi, Mei Chen here at 14 Alder Row. I'd like a 7kW home charger fitted on the garage wall. The Zephyr kit you described sounds right. Whatever date works for you. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"message\", \"from\": \"Piotr Nowak\", \"text\": \"Just so you know, I'm away on holiday from 6 September to 20 September and won't be reachable to sign anything off.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Hanna Wells (registrar)\", \"text\": \"Your last certification filing for Volt & Vine Electrical (registration VR-0442) was received in good order. Nothing due from you until your annual renewal in March 2027.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Drafted the order to Caldwell Electrical Supply for Mei Chen's Zephyr 7kW charger kit at 740 dollars. That is over the 500 dollar limit, so it needs Piotr Nowak's sign-off, and he is away until 20 September. Left the order unconfirmed as awaiting sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e9\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Mei Chen's charger install at 14 Alder Row for 24 September. That follows the Caldwell delivery, which lands two working days after the kit order is confirmed once sign-off comes through.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder to myself: pay the Havencore Supply invoice INV-2214 for the June cable order by 15 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Quick question: if the charger kit happens to arrive sooner than planned, could my install be brought forward? I'm flexible most weekdays. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Monthly plan: Odell rewire on 18 September, Chen charger install on 24 September, van restock orders as needed. Certification paperwork for the two July commercial jobs still to be filed with the registry.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"call\", \"from\": \"Dev Kapoor (Terncrest Bakery)\", \"text\": \"Phone note: Dev Kapoor from Terncrest Bakery called about a full rewiring quote for their ovens area. Told him we'd send a quote by early October. No date or amounts agreed yet.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Team note: from today, Piotr Nowak's sign-off is only needed for supplier orders above 1500 dollars, not 500. Havencore and Caldwell have both put us on contracted rates, and the old 500 dollar limit was holding up small jobs for no good reason. Anything he already signed off stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Bram Osei (Ridgeline Wholesale)\", \"text\": \"Ridgeline Wholesale special for Volt & Vine: Zephyr 7kW charger kit supplied with pedestal mount for 895 dollars, offer valid to the end of the month. We can deliver within a week of ordering.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Chasing our side: the Zephyr 7kW kit order for your Alder Row job is still sitting with us unconfirmed. Let us know when to proceed. Jonah.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Rose Odell\", \"text\": \"All set for the rewire on the 18th, side gate will be open from 8 in the morning. Rose.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Havencore cable order\", \"fields\": {\"supplier\": \"Havencore Supply\", \"item\": \"armoured 3-core cable\", \"quantity\": \"150\", \"unit\": \"metre\", \"amount\": \"930\", \"approved_by\": \"Piotr Nowak\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Caldwell charger kit for Chen\", \"fields\": {\"supplier\": \"Caldwell Electrical Supply\", \"item\": \"Zephyr 7kW charger kit\", \"amount\": \"740\", \"approved_by\": \"pending\", \"status\": \"awaiting sign-off\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Odell kitchen rewire\", \"fields\": {\"client\": \"Rose Odell\", \"date\": \"2026-09-18\", \"place\": \"Birch Cottage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Chen charger install\", \"fields\": {\"client\": \"Mei Chen\", \"date\": \"2026-09-24\", \"place\": \"14 Alder Row\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Mei Chen wiring history\", \"fields\": {\"address\": \"14 Alder Row\", \"agreed_item\": \"Zephyr 7kW kit\", \"supplier\": \"Caldwell Electrical Supply\", \"quoted_price\": \"740\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Mei Chen\", \"rule\": \"e2\"}\n ],\n \"task\": \"Mei Chen keeps asking about her charger. Please get her order with Caldwell confirmed and sort out the install date so it happens as soon as it sensibly can.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"approved_by\", \"value\": \"not required\", \"stale\": [\"pending\"], \"task\": true},\n  {\"message_to\": \"Mei Chen\", \"regarding\": \"EV-2\", \"says\": [\"her charger kit order can now be confirmed with Caldwell\", \"ask whether she would like an earlier install date than 24 September\"], \"stale\": [\"her order is still awaiting sign-off\"], \"task\": true}\n ],\n \"why\": \"The amendment raises the sign-off threshold to 1500 dollars, so the 740 dollar Caldwell order (ORD-2) no longer needs Piotr Nowak's sign-off and should be confirmed now; EV-2's date can only change with Mei Chen's written agreement under the standing booking rule, so the assistant must ask her rather than move it. ORD-1 was already signed off and the amendment expressly leaves such orders standing, so it is KEEP and nothing else changes; the Ridgeline 895 dollar quote is a distractor, not the kit price to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"twin-and-earth restock\", \"counterpart\": \"Nadia Fields\", \"org\": \"Havencore Supply\", \"item\": \"twin-and-earth cable\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"consumer units restock\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"consumer units\", \"unit\": \"unit\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"supplier review call\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Volt & Vine Electrical\", \"item\": \"supplier review call\", \"values\": [\"back office\", \"site cabin\"], \"place\": \"Volt & Vine office\"},\n  {\"kind\": \"order\", \"topic\": \"fuse spares\", \"counterpart\": \"Greta Hallow\", \"org\": \"Ridgeline Wholesale\", \"item\": \"fuse board spares\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"wiring survey visit\", \"counterpart\": \"Rose Odell\", \"org\": \"Birch Cottage household\", \"item\": \"wiring survey visit\", \"values\": [\"kitchen\", \"hallway\"], \"place\": \"Birch Cottage\"},\n  {\"kind\": \"booking\", \"topic\": \"post-install check\", \"counterpart\": \"Mei Chen\", \"org\": \"14 Alder Row household\", \"item\": \"follow-up electrical check\", \"values\": [\"garage\", \"driveway\"], \"place\": \"14 Alder Row\"},\n  {\"kind\": \"order\", \"topic\": \"conduit restock\", \"counterpart\": \"Bram Osei\", \"org\": \"Havencore Supply\", \"item\": \"conduit\", \"unit\": \"length\", \"values\": [\"25\", \"50\", \"75\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"ladder hire\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"inspection ladder hire\", \"values\": [\"depot pickup\", \"site delivery\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"downlight packs\", \"counterpart\": \"Tomas Vela\", \"org\": \"Corvid Lighting\", \"item\": \"downlight packs\", \"unit\": \"pack\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"trade counter slot\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"counter collection slot\", \"values\": [\"morning\", \"afternoon\"], \"place\": \"Caldwell trade counter\"},\n  {\"kind\": \"order\", \"topic\": \"smart switches\", \"counterpart\": \"Ines Quist\", \"org\": \"Corvid Lighting\", \"item\": \"smart switch packs\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"apprentice training session\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"safe isolation training\", \"values\": [\"training room\", \"workshop bench\"], \"place\": \"Volt & Vine office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6430,
+    "completion_tokens": 3455,
+    "reasoning_tokens": 38,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02062896,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Volt & Vine\",\n \"setting\": \"An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories\",\n \"owner\": \"Marta\",\n \"org\": \"Volt & Vine Electrical\",\n \"now\": \"2026-09-10\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the workshop: any supplier order above 500 dollars needs Piotr Nowak's written sign-off before we confirm it. Piotr looks after the money side. Keep to it even for small rush jobs.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Second standing rule: once a client booking is confirmed in the schedule, we only move its date if the client has agreed in writing. No quiet reshuffling of people's installs.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Caldwell rate card for Volt & Vine: Zephyr 7kW home charger kit with cable and pedestal bracket, 740 dollars including delivery. Delivery is two working days after we confirm an order.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Rose Odell\", \"text\": \"Confirming our chat: I'd like the kitchen rewire at Birch Cottage done in the week of 21 September, whenever suits your crew. Rose Odell.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Havencore Supply)\", \"text\": \"Havencore Supply price for armoured 3-core cable: 6.20 dollars per metre at our trade rate, from stock.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 150 metres of armoured 3-core cable from Havencore Supply at 6.20 dollars a metre, 930 dollars in total. It was above the 500 dollar limit, so Piotr Nowak signed it off in writing before I confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Rose Odell's kitchen rewire at Birch Cottage for 18 September, materials coming from our own cable stock, so no new supplier order is needed.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Hi, Mei Chen here at 14 Alder Row. I'd like a 7kW home charger fitted on the garage wall. The Zephyr kit you described sounds right. Whatever date works for you. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-05\", \"type\": \"message\", \"from\": \"Piotr Nowak\", \"text\": \"Just so you know, I'm away on holiday from 6 September to 20 September and won't be reachable to sign anything off.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Hanna Wells (registrar)\", \"text\": \"Your last certification filing for Volt & Vine Electrical (registration VR-0442) was received in good order. Nothing due from you until your annual renewal in March 2027.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-08\", \"type\": \"quote\", \"from\": \"Tomas Vela (Corvid Lighting)\", \"text\": \"Corvid Lighting trade price for downlight packs: 31 dollars per pack of six, from stock, next-day delivery once an order is confirmed.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Put together a restock order for 20 downlight packs from Corvid Lighting at 31 dollars a pack, 620 dollars in total. That is above the 500 dollar limit, so it needs Piotr Nowak's sign-off first. Left it unconfirmed as awaiting sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Drafted the order to Caldwell Electrical Supply for Mei Chen's Zephyr 7kW charger kit at 740 dollars. That is over the 500 dollar limit, so it needs Piotr Nowak's sign-off, and he is away until 20 September. Left the order unconfirmed as awaiting sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\", \"e9\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Mei Chen's charger install at 14 Alder Row for 24 September. That follows the Caldwell delivery, which lands two working days after the kit order is confirmed once sign-off comes through.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Reminder to myself: pay the Havencore Supply invoice INV-2214 for the June cable order by 15 September.\", \"role\": \"obligation\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Mei Chen\", \"text\": \"Quick question: if the charger kit happens to arrive sooner than planned, could my install be brought forward? I'm flexible most weekdays. Mei.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Monthly plan: Odell rewire on 18 September, Chen charger install on 24 September, van restock orders as needed. Certification paperwork for the two July commercial jobs still to be filed with the registry.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"call\", \"from\": \"Dev Kapoor (Terncrest Bakery)\", \"text\": \"Phone note: Dev Kapoor from Terncrest Bakery called about a full rewiring quote for their ovens area. Told him we'd send a quote by early October. No date or amounts agreed yet.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Team note: from today, Piotr Nowak's sign-off is only needed for supplier orders above 1500 dollars, not 500. Havencore and Caldwell have both put us on contracted rates, and the old 500 dollar limit was holding up small jobs for no good reason. Anything he already signed off stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e16\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Bram Osei (Ridgeline Wholesale)\", \"text\": \"Ridgeline Wholesale special for Volt & Vine: Zephyr 7kW charger kit supplied with pedestal mount for 895 dollars, offer valid to the end of the month. We can deliver within a week of ordering.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"Jonah Pike (Caldwell Electrical Supply)\", \"text\": \"Chasing our side: the Zephyr 7kW kit order for your Alder Row job is still sitting with us unconfirmed. Let us know when to proceed. Jonah.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Rose Odell\", \"text\": \"All set for the rewire on the 18th, side gate will be open from 8 in the morning. Rose.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Havencore cable order\", \"fields\": {\"supplier\": \"Havencore Supply\", \"item\": \"armoured 3-core cable\", \"quantity\": \"150\", \"unit\": \"metre\", \"amount\": \"930\", \"approved_by\": \"Piotr Nowak\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Caldwell charger kit for Chen\", \"fields\": {\"supplier\": \"Caldwell Electrical Supply\", \"item\": \"Zephyr 7kW charger kit\", \"amount\": \"740\", \"approved_by\": \"pending\", \"status\": \"awaiting sign-off\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Corvid downlight restock\", \"fields\": {\"supplier\": \"Corvid Lighting\", \"item\": \"downlight packs\", \"quantity\": \"20\", \"unit\": \"pack\", \"amount\": \"620\", \"approved_by\": \"pending\", \"status\": \"awaiting sign-off\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Odell kitchen rewire\", \"fields\": {\"client\": \"Rose Odell\", \"date\": \"2026-09-18\", \"place\": \"Birch Cottage\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Chen charger install\", \"fields\": {\"client\": \"Mei Chen\", \"date\": \"2026-09-24\", \"place\": \"14 Alder Row\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Mei Chen wiring history\", \"fields\": {\"address\": \"14 Alder Row\", \"agreed_item\": \"Zephyr 7kW kit\", \"supplier\": \"Caldwell Electrical Supply\", \"quoted_price\": \"740\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Mei Chen\", \"rule\": \"e2\"}\n ],\n \"task\": \"Mei Chen keeps asking about her charger. Please get her order with Caldwell confirmed and sort out the install date so it happens as soon as it sensibly can.\",\n \"expect\": [\n  {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"awaiting sign-off\"], \"task\": true},\n  {\"record\": \"ORD-2\", \"field\": \"approved_by\", \"value\": \"not required\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"awaiting sign-off\"]},\n  {\"record\": \"ORD-3\", \"field\": \"approved_by\", \"value\": \"not required\", \"stale\": [\"pending\"]},\n  {\"message_to\": \"Mei Chen\", \"regarding\": \"EV-2\", \"says\": [\"her charger kit order can now be confirmed with Caldwell\", \"ask whether she would like an earlier install date than 24 September\"], \"stale\": [\"her order is still awaiting sign-off\"], \"task\": true}\n ],\n \"why\": \"The amendment raises the sign-off threshold to 1500 dollars, so both open orders under it — the 740 dollar Caldwell kit (ORD-2) and the 620 dollar Corvid downlight restock (ORD-3) — no longer need Piotr Nowak's sign-off and should be confirmed; ORD-1 was already signed off and the amendment expressly leaves such orders standing, so it is KEEP. EV-2's date can only change with Mei Chen's written agreement under the standing booking rule, so the assistant must ask her rather than move it; the Ridgeline 895 dollar quote is a distractor, not the kit price to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"twin-and-earth restock\", \"counterpart\": \"Nadia Fields\", \"org\": \"Havencore Supply\", \"item\": \"twin-and-earth cable\", \"unit\": \"roll\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"consumer units restock\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"consumer units\", \"unit\": \"unit\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"supplier review call\", \"counterpart\": \"Piotr Nowak\", \"org\": \"Volt & Vine Electrical\", \"item\": \"supplier review call\", \"values\": [\"back office\", \"site cabin\", \"depot meeting room\"], \"place\": \"Volt & Vine office\"},\n  {\"kind\": \"order\", \"topic\": \"fuse spares\", \"counterpart\": \"Greta Hallow\", \"org\": \"Ridgeline Wholesale\", \"item\": \"fuse board spares\", \"unit\": \"pack\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"wiring survey visit\", \"counterpart\": \"Rose Odell\", \"org\": \"Birch Cottage household\", \"item\": \"wiring survey visit\", \"values\": [\"kitchen\", \"hallway\", \"utility room\"], \"place\": \"Birch Cottage\"},\n  {\"kind\": \"booking\", \"topic\": \"post-install check\", \"counterpart\": \"Mei Chen\", \"org\": \"14 Alder Row household\", \"item\": \"follow-up electrical check\", \"values\": [\"garage\", \"driveway\", \"hallway\"], \"place\": \"14 Alder Row\"},\n  {\"kind\": \"order\", \"topic\": \"conduit restock\", \"counterpart\": \"Bram Osei\", \"org\": \"Havencore Supply\", \"item\": \"conduit\", \"unit\": \"length\", \"values\": [\"25\", \"50\", \"75\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"ladder hire\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"inspection ladder hire\", \"values\": [\"depot pickup\", \"site delivery\", \"depot pickup with roof bars\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"order\", \"topic\": \"downlight packs\", \"counterpart\": \"Tomas Vela\", \"org\": \"Corvid Lighting\", \"item\": \"downlight packs\", \"unit\": \"pack\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"trade counter slot\", \"counterpart\": \"Jonah Pike\", \"org\": \"Caldwell Electrical Supply\", \"item\": \"counter collection slot\", \"values\": [\"morning\", \"afternoon\", \"late afternoon\"], \"place\": \"Caldwell trade counter\"},\n  {\"kind\": \"order\", \"topic\": \"smart switches\", \"counterpart\": \"Ines Quist\", \"org\": \"Corvid Lighting\", \"item\": \"smart switch packs\", \"unit\": \"pack\", \"values\": [\"3\", \"6\", \"9\"], \"place\": \"Volt & Vine depot\"},\n  {\"kind\": \"booking\", \"topic\": \"apprentice training session\", \"counterpart\": \"Sylvie March\", \"org\": \"Northgate Tool Hire\", \"item\": \"safe isolation training\", \"values\": [\"training room\", \"workshop bench\", \"site cabin\"], \"place\": \"Volt & Vine office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9995,
+    "completion_tokens": 4146,
+    "reasoning_tokens": 328,
+    "cached_tokens": 6400
+   },
+   "cost": 0.0249394,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- class 2: of the decisions citing the amended rule, at least two are REVISE/ASK and at least one KEEP\n- noise topic 'supplier review call': values needs at least three entries\n- noise topic 'wiring survey visit': values needs at least three entries\n- noise topic 'post-install check': values needs at least three entries\n- noise topic 'ladder hire': values needs at least three entries\n- noise topic 'trade counter slot': values needs at least three entries\n- noise topic 'apprentice training session': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at Volt & Vine",
+  "setting": "An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories",
+  "owner": "Marta",
+  "org": "Volt & Vine Electrical",
+  "now": "2026-09-10",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the workshop: any supplier order above 500 dollars needs Piotr Nowak's written sign-off before we confirm it. Piotr looks after the money side. Keep to it even for small rush jobs.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Second standing rule: once a client booking is confirmed in the schedule, we only move its date if the client has agreed in writing. No quiet reshuffling of people's installs.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Jonah Pike (Caldwell Electrical Supply)",
+    "text": "Caldwell rate card for Volt & Vine: Zephyr 7kW home charger kit with cable and pedestal bracket, 740 dollars including delivery. Delivery is two working days after we confirm an order.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Rose Odell",
+    "text": "Confirming our chat: I'd like the kitchen rewire at Birch Cottage done in the week of 21 September, whenever suits your crew. Rose Odell.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Nadia Fields (Havencore Supply)",
+    "text": "Havencore Supply price for armoured 3-core cable: 6.20 dollars per metre at our trade rate, from stock.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 150 metres of armoured 3-core cable from Havencore Supply at 6.20 dollars a metre, 930 dollars in total. It was above the 500 dollar limit, so Piotr Nowak signed it off in writing before I confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Rose Odell's kitchen rewire at Birch Cottage for 18 September, materials coming from our own cable stock, so no new supplier order is needed.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Mei Chen",
+    "text": "Hi, Mei Chen here at 14 Alder Row. I'd like a 7kW home charger fitted on the garage wall. The Zephyr kit you described sounds right. Whatever date works for you. Mei.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-05",
+    "type": "message",
+    "from": "Piotr Nowak",
+    "text": "Just so you know, I'm away on holiday from 6 September to 20 September and won't be reachable to sign anything off.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Hanna Wells (registrar)",
+    "text": "Your last certification filing for Volt & Vine Electrical (registration VR-0442) was received in good order. Nothing due from you until your annual renewal in March 2027.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-08",
+    "type": "quote",
+    "from": "Tomas Vela (Corvid Lighting)",
+    "text": "Corvid Lighting trade price for downlight packs: 31 dollars per pack of six, from stock, next-day delivery once an order is confirmed.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Put together a restock order for 20 downlight packs from Corvid Lighting at 31 dollars a pack, 620 dollars in total. That is above the 500 dollar limit, so it needs Piotr Nowak's sign-off first. Left it unconfirmed as awaiting sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e22",
+     "e1"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Drafted the order to Caldwell Electrical Supply for Mei Chen's Zephyr 7kW charger kit at 740 dollars. That is over the 500 dollar limit, so it needs Piotr Nowak's sign-off, and he is away until 20 September. Left the order unconfirmed as awaiting sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1",
+     "e9"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Mei Chen's charger install at 14 Alder Row for 24 September. That follows the Caldwell delivery, which lands two working days after the kit order is confirmed once sign-off comes through.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e8"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-20",
+    "type": "note",
+    "from": "Marta",
+    "text": "Reminder to myself: pay the Havencore Supply invoice INV-2214 for the June cable order by 15 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Mei Chen",
+    "text": "Quick question: if the charger kit happens to arrive sooner than planned, could my install be brought forward? I'm flexible most weekdays. Mei.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-01",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Monthly plan: Odell rewire on 18 September, Chen charger install on 24 September, van restock orders as needed. Certification paperwork for the two July commercial jobs still to be filed with the registry.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-02",
+    "type": "call",
+    "from": "Dev Kapoor (Terncrest Bakery)",
+    "text": "Phone note: Dev Kapoor from Terncrest Bakery called about a full rewiring quote for their ovens area. Told him we'd send a quote by early October. No date or amounts agreed yet.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Marta",
+    "text": "Team note: from today, Piotr Nowak's sign-off is only needed for supplier orders above 1500 dollars, not 500. Havencore and Caldwell have both put us on contracted rates, and the old 500 dollar limit was holding up small jobs for no good reason. Anything he already signed off stays exactly as it is.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-08",
+    "type": "quote",
+    "from": "Bram Osei (Ridgeline Wholesale)",
+    "text": "Ridgeline Wholesale special for Volt & Vine: Zephyr 7kW charger kit supplied with pedestal mount for 895 dollars, offer valid to the end of the month. We can deliver within a week of ordering.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-09",
+    "type": "notice",
+    "from": "Jonah Pike (Caldwell Electrical Supply)",
+    "text": "Chasing our side: the Zephyr 7kW kit order for your Alder Row job is still sitting with us unconfirmed. Let us know when to proceed. Jonah.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-10",
+    "type": "message",
+    "from": "Rose Odell",
+    "text": "All set for the rewire on the 18th, side gate will be open from 8 in the morning. Rose.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Havencore cable order",
+    "fields": {
+     "supplier": "Havencore Supply",
+     "item": "armoured 3-core cable",
+     "quantity": "150",
+     "unit": "metre",
+     "amount": "930",
+     "approved_by": "Piotr Nowak",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Caldwell charger kit for Chen",
+    "fields": {
+     "supplier": "Caldwell Electrical Supply",
+     "item": "Zephyr 7kW charger kit",
+     "amount": "740",
+     "approved_by": "pending",
+     "status": "awaiting sign-off"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Corvid downlight restock",
+    "fields": {
+     "supplier": "Corvid Lighting",
+     "item": "downlight packs",
+     "quantity": "20",
+     "unit": "pack",
+     "amount": "620",
+     "approved_by": "pending",
+     "status": "awaiting sign-off"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Odell kitchen rewire",
+    "fields": {
+     "client": "Rose Odell",
+     "date": "2026-09-18",
+     "place": "Birch Cottage",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Chen charger install",
+    "fields": {
+     "client": "Mei Chen",
+     "date": "2026-09-24",
+     "place": "14 Alder Row",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Mei Chen wiring history",
+    "fields": {
+     "address": "14 Alder Row",
+     "agreed_item": "Zephyr 7kW kit",
+     "supplier": "Caldwell Electrical Supply",
+     "quoted_price": "740",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Mei Chen",
+    "rule": "e2"
+   }
+  ],
+  "task": "Mei Chen keeps asking about her charger. Please get her order with Caldwell confirmed and sort out the install date so it happens as soon as it sensibly can.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "awaiting sign-off"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "approved_by",
+    "value": "not required",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "awaiting sign-off"
+    ]
+   },
+   {
+    "record": "ORD-3",
+    "field": "approved_by",
+    "value": "not required",
+    "stale": [
+     "pending"
+    ]
+   },
+   {
+    "message_to": "Mei Chen",
+    "regarding": "EV-2",
+    "says": [
+     "her charger kit order can now be confirmed with Caldwell",
+     "ask whether she would like an earlier install date than 24 September"
+    ],
+    "stale": [
+     "her order is still awaiting sign-off"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amendment raises the sign-off threshold to 1500 dollars, so both open orders under it — the 740 dollar Caldwell kit (ORD-2) and the 620 dollar Corvid downlight restock (ORD-3) — no longer need Piotr Nowak's sign-off and should be confirmed; ORD-1 was already signed off and the amendment expressly leaves such orders standing, so it is KEEP. EV-2's date can only change with Mei Chen's written agreement under the standing booking rule, so the assistant must ask her rather than move it; the Ridgeline 895 dollar quote is a distractor, not the kit price to act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "twin-and-earth restock",
+    "counterpart": "Nadia Fields",
+    "org": "Havencore Supply",
+    "item": "twin-and-earth cable",
+    "unit": "roll",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Volt & Vine depot"
+   },
+   {
+    "kind": "order",
+    "topic": "consumer units restock",
+    "counterpart": "Jonah Pike",
+    "org": "Caldwell Electrical Supply",
+    "item": "consumer units",
+    "unit": "unit",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Volt & Vine depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "supplier review call",
+    "counterpart": "Piotr Nowak",
+    "org": "Volt & Vine Electrical",
+    "item": "supplier review call",
+    "values": [
+     "back office",
+     "site cabin",
+     "depot meeting room"
+    ],
+    "place": "Volt & Vine office"
+   },
+   {
+    "kind": "order",
+    "topic": "fuse spares",
+    "counterpart": "Greta Hallow",
+    "org": "Ridgeline Wholesale",
+    "item": "fuse board spares",
+    "unit": "pack",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "van stock"
+   },
+   {
+    "kind": "booking",
+    "topic": "wiring survey visit",
+    "counterpart": "Rose Odell",
+    "org": "Birch Cottage household",
+    "item": "wiring survey visit",
+    "values": [
+     "kitchen",
+     "hallway",
+     "utility room"
+    ],
+    "place": "Birch Cottage"
+   },
+   {
+    "kind": "booking",
+    "topic": "post-install check",
+    "counterpart": "Mei Chen",
+    "org": "14 Alder Row household",
+    "item": "follow-up electrical check",
+    "values": [
+     "garage",
+     "driveway",
+     "hallway"
+    ],
+    "place": "14 Alder Row"
+   },
+   {
+    "kind": "order",
+    "topic": "conduit restock",
+    "counterpart": "Bram Osei",
+    "org": "Havencore Supply",
+    "item": "conduit",
+    "unit": "length",
+    "values": [
+     "25",
+     "50",
+     "75"
+    ],
+    "place": "Volt & Vine depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "ladder hire",
+    "counterpart": "Sylvie March",
+    "org": "Northgate Tool Hire",
+    "item": "inspection ladder hire",
+    "values": [
+     "depot pickup",
+     "site delivery",
+     "depot pickup with roof bars"
+    ],
+    "place": "Volt & Vine depot"
+   },
+   {
+    "kind": "order",
+    "topic": "downlight packs",
+    "counterpart": "Tomas Vela",
+    "org": "Corvid Lighting",
+    "item": "downlight packs",
+    "unit": "pack",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "van stock"
+   },
+   {
+    "kind": "booking",
+    "topic": "trade counter slot",
+    "counterpart": "Jonah Pike",
+    "org": "Caldwell Electrical Supply",
+    "item": "counter collection slot",
+    "values": [
+     "morning",
+     "afternoon",
+     "late afternoon"
+    ],
+    "place": "Caldwell trade counter"
+   },
+   {
+    "kind": "order",
+    "topic": "smart switches",
+    "counterpart": "Ines Quist",
+    "org": "Corvid Lighting",
+    "item": "smart switch packs",
+    "unit": "pack",
+    "values": [
+     "3",
+     "6",
+     "9"
+    ],
+    "place": "Volt & Vine depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "apprentice training session",
+    "counterpart": "Sylvie March",
+    "org": "Northgate Tool Hire",
+    "item": "safe isolation training",
+    "values": [
+     "training room",
+     "workshop bench",
+     "site cabin"
+    ],
+    "place": "Volt & Vine office"
+   }
+  ],
+  "id": "G100-2-04",
+  "tier": 100,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [
+  "events must be listed in date order (e11 is dated before e23)"
+ ],
+ "valid": false
+}

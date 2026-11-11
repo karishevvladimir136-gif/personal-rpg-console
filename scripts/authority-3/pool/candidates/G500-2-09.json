@@ -1,0 +1,705 @@
+{
+ "id": "G500-2-09",
+ "writer": "glm",
+ "tier": 500,
+ "class": 2,
+ "idx": 8,
+ "setting": "A watch repairer at Tick & Tock whose assistant keeps repair tickets, parts sourcing, and customer collection notices",
+ "prompt_sha256": "4950c95bdd734d1d1942f3cfa2cfd84b68b460ed065014c09891041e75cc9cd7",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Sign-off threshold raised at Tick & Tock\",\n  \"setting\": \"A watch repairer at Tick & Tock whose assistant keeps repair tickets, parts sourcing, and customer collection notices\",\n  \"owner\": \"Ruth\",\n  \"org\": \"Tick & Tock Watch Repairs\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing instruction for the workshop: any parts order over 350 needs Priya Nair's sign-off before we confirm it with the supplier.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"House rule: once a customer's collection slot is booked and confirmed, we only change the date or time with that customer's agreement — no silent moves.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Price update: sapphire crystals are 12 each, any quantity.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Renewed the shop insurance for another year — papers in the drawer under the counter.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Approved the sapphire crystal order — 480 to Brisk Supplies, go ahead and confirm.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 40 sapphire crystals from Brisk Supplies at 12 each, 480 in total, with Priya's sign-off on file.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"The 40 sapphire crystals were delivered this morning to the workshop.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Mara Quist's bracelet clasp repair is finished and waiting in the drawer.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Mara Quist to collect her repaired bracelet clasp at the front counter on 3 July at 11:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Stock count: 12 sapphire crystals, 8 gasket sheets and 4 leather straps left.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Leather straps are 9 each from this month.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Mara Quist\", \"text\": \"Thanks for fixing the clasp so quickly — it looks brand new.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Movement holders are 20.80 each at our current prices.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Just to confirm our terms: we deliver within five working days of order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-12\", \"type\": \"quote\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Gasket sheets are 6 each, any quantity.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 50 gasket sheets from Brisk Supplies at 6 each, 300 in total — small enough that no approval was needed.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-4\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Shop meeting: front counter hours stay 9 to 5; Ines takes Saturday mornings off in August.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"letter\", \"from\": \"Kurt Behrens\", \"text\": \"A client left a wristwatch for engraving; pick-up will be arranged separately once the work is done.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"I want a vintage overhaul push in mid-October — Ines on one bench, Hollis Vance's pocket watch first in the queue. We'll need the Lubek parts in the workshop before it starts.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"I've placed the order with Lubek Parts for 25 movement holders at 20.80 each — 520 in total — for the vintage overhaul push. That's above the 350 sign-off limit, so it sits with Priya before we confirm with Sabine.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e13\", \"e14\", \"e19\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Got the Lubek request on my desk — I'll review it next week.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-30\", \"type\": \"call\", \"from\": \"Ines Paul\", \"text\": \"Ines called: she's back from holiday and free on both benches from mid-October.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Balance staffs are 21 each at current prices.\", \"role\": \"fact\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the vintage push week for Monday 12 to Friday 16 October: Ines on bench 2, Hollis's pocket watch first in the queue. Lubek delivers five working days after confirmation, so parts ordered this week will land in time.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e14\", \"e19\", \"e22\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Second Lubek order placed for the push: 18 balance staffs at 21 each, 378 in total. Over the 350 limit as well, so it goes to Priya for sign-off before confirming.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e23\", \"e19\"], \"record\": \"ORD-5\", \"mark\": \"REVISE\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Told Hollis Vance to collect his pocket watch on Tuesday 20 October at 15:00 — that leaves room for the Lubek confirmation to clear Priya's sign-off after the push week.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"While I'm at the conference, a reminder: any parts order above 350 still comes to me for sign-off before you confirm it with the supplier — that includes the two Lubek orders on my desk.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Quick update on sign-offs: from Monday 21 September the threshold for parts orders goes up from 350 to 600. Supplier prices have climbed this year and I don't need to see the smaller orders anymore. Anything already confirmed stays as it is; anything still sitting with me under 600 can be confirmed straight away.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n    {\"id\": \"e29\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Our new price list from 1 October: movement holders 21.60 each and balance staffs 22.40 each. Orders confirmed before then keep their original prices.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e30\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Hollis Vance\", \"text\": \"See you Tuesday 20 October at three — looking forward to having the old girl ticking again.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-01\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Once both Lubek orders are confirmed, the invoice gets paid within 14 days — don't let it slip.\", \"role\": \"obligation\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"Ines, can you set up the ultrasonic bath before the push week starts?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Sapphire crystals - Brisk Supplies\", \"fields\": {\"supplier\": \"Brisk Supplies\", \"item\": \"sapphire crystals\", \"quantity\": \"40\", \"amount\": \"480\", \"status\": \"confirmed\", \"signoff\": \"approved by Priya 2026-06-14\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Movement holders - Lubek Parts\", \"fields\": {\"supplier\": \"Lubek Parts\", \"item\": \"movement holders\", \"quantity\": \"25\", \"amount\": \"520\", \"status\": \"pending_signoff\", \"signoff\": \"awaiting Priya\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Gasket sheets - Brisk Supplies\", \"fields\": {\"supplier\": \"Brisk Supplies\", \"item\": \"gasket sheets\", \"quantity\": \"50\", \"amount\": \"300\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Balance staffs - Lubek Parts\", \"fields\": {\"supplier\": \"Lubek Parts\", \"item\": \"balance staffs\", \"quantity\": \"18\", \"amount\": \"378\", \"status\": \"pending_signoff\", \"signoff\": \"awaiting Priya\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mara Quist - clasp collection\", \"fields\": {\"customer\": \"Mara Quist\", \"date\": \"2026-07-03\", \"time\": \"11:00\", \"place\": \"front counter\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Vintage overhaul push week\", \"fields\": {\"start\": \"2026-10-12\", \"end\": \"2026-10-16\", \"technician\": \"Ines\", \"bench\": \"2\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Hollis Vance - pocket watch collection\", \"fields\": {\"customer\": \"Hollis Vance\", \"date\": \"2026-10-20\", \"time\": \"15:00\", \"place\": \"front counter\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hollis Vance - pocket watch overhaul\", \"fields\": {\"customer\": \"Hollis Vance\", \"watch\": \"1940s Erran pocket watch\", \"job\": \"full overhaul\", \"parts\": \"Lubek movement holder\", \"status\": \"in repair\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Hollis Vance\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please get the October vintage push moving: confirm the two pending Lubek parts orders with Sabine, and let Priya know she doesn't need to look at them.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending_signoff\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"awaiting Priya\"], \"task\": true},\n    {\"record\": \"ORD-5\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending_signoff\"], \"task\": true},\n    {\"record\": \"ORD-5\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"awaiting Priya\"], \"task\": true},\n    {\"message_to\": \"Sabine Roth (Lubek Parts)\", \"regarding\": \"ORD-2\", \"says\": [\"confirm 25 movement holders at 520\", \"confirm 18 balance staffs at 378\"], \"stale\": [\"21.60 each\", \"22.40 each\"], \"task\": true},\n    {\"message_to\": \"Priya Nair\", \"regarding\": \"ORD-2\", \"says\": [\"threshold is now 600\", \"Lubek orders at 520 and 378 confirmed without sign-off\"], \"stale\": [\"350\"], \"task\": true}\n  ],\n  \"why\": \"Priya's amendment raises the sign-off threshold from 350 to 600 from 2026-09-21 and leaves already-confirmed orders standing, so ORD-1 is KEEP, while the two Lubek orders still awaiting her sign-off (520 and 378, both now under 600) should be confirmed directly — REVISE. EV-2's push week uses only the delivery lead time and bench availability the amendment leaves standing (KEEP); EV-3's late pickup date was set to absorb the sign-off delay, but moving Hollis's confirmed slot needs his consent under the house rule, so it is ASK and must stay unchanged. The new Lubek price list applies only to future orders and must not be read into the pending orders' amounts.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"crystal restock\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"sapphire crystals\", \"unit\": \"pieces\", \"values\": [\"30\", \"40\", \"60\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"gasket sheets\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"gasket sheets\", \"unit\": \"sheets\", \"values\": [\"40\", \"50\", \"80\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"movement holders restock\", \"counterpart\": \"Sabine Roth\", \"org\": \"Lubek Parts\", \"item\": \"movement holders\", \"unit\": \"pieces\", \"values\": [\"10\", \"20\", \"25\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"leather straps\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"leather straps\", \"unit\": \"straps\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"front counter\"},\n    {\"kind\": \"booking\", \"topic\": \"customer collections\", \"counterpart\": \"Mara Quist\", \"org\": \"private\", \"item\": \"collection appointment\", \"values\": [\"front counter\", \"workshop bench 1\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning solution\", \"counterpart\": \"Else Merten\", \"org\": \"Renox Chemicals\", \"item\": \"watch cleaning solution\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"bench sessions\", \"counterpart\": \"Ines Paul\", \"org\": \"Tick & Tock Watch Repairs\", \"item\": \"bench session\", \"values\": [\"bench 1\", \"bench 2\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"balance staffs restock\", \"counterpart\": \"Sabine Roth\", \"org\": \"Lubek Parts\", \"item\": \"balance staffs\", \"unit\": \"pieces\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"valuation appointments\", \"counterpart\": \"Hollis Vance\", \"org\": \"private\", \"item\": \"valuation appointment\", \"values\": [\"front counter\", \"back office\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"batteries\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"silver-oxide batteries\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"courier pickups\", \"counterpart\": \"Toma Reyes\", \"org\": \"Velox Courier\", \"item\": \"courier slot\", \"values\": [\"shop door\", \"rear entrance\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"display cases\", \"counterpart\": \"Petra Lund\", \"org\": \"Nordvid Displays\", \"item\": \"display cases\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"front of shop\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3197,
+    "completion_tokens": 15690,
+    "reasoning_tokens": 11216,
+    "cached_tokens": 3136
+   },
+   "cost": 0.06993676,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Sign-off threshold raised at Tick & Tock\",\n  \"setting\": \"A watch repairer at Tick & Tock whose assistant keeps repair tickets, parts sourcing, and customer collection notices\",\n  \"owner\": \"Ruth\",\n  \"org\": \"Tick & Tock Watch Repairs\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"Standing instruction for the workshop: any parts order over 350 needs Priya Nair's sign-off before we confirm it with the supplier.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ruth\", \"text\": \"House rule: once a customer's collection slot is booked and confirmed, we only change the date or time with that customer's agreement — no silent moves.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Price update: sapphire crystals are 12 each, any quantity.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Renewed the shop insurance for another year — papers in the drawer under the counter.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Approved the sapphire crystal order — 480 to Brisk Supplies, go ahead and confirm.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 40 sapphire crystals from Brisk Supplies at 12 each, 480 in total, with Priya's sign-off on file.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"The 40 sapphire crystals were delivered this morning to the workshop.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Mara Quist's bracelet clasp repair is finished and waiting in the drawer.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked Mara Quist to collect her repaired bracelet clasp at the front counter on 3 July at 11:00.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Ruth\", \"text\": \"Stock count: 12 sapphire crystals, 8 gasket sheets and 4 leather straps left.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Leather straps are 9 each from this month.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Mara Quist\", \"text\": \"Thanks for fixing the clasp so quickly — it looks brand new.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Movement holders are 20.80 each at our current prices.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Just to confirm our terms: we deliver within five working days of order confirmation.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-12\", \"type\": \"quote\", \"from\": \"Dario Kelm (Brisk Supplies)\", \"text\": \"Gasket sheets are 6 each, any quantity.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Ordered 50 gasket sheets from Brisk Supplies at 6 each, 300 in total — small enough that no approval was needed.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"ORD-4\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"minutes\", \"from\": \"Ruth\", \"text\": \"Shop meeting: front counter hours stay 9 to 5; Ines takes Saturday mornings off in August.\", \"role\": \"other\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-05\", \"type\": \"letter\", \"from\": \"Kurt Behrens\", \"text\": \"A client left a wristwatch for engraving; pick-up will be arranged separately once the work is done.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"I want a vintage overhaul push in mid-October — Ines on one bench, Hollis Vance's pocket watch first in the queue. We'll need the Lubek parts in the workshop before it starts.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"I've placed the order with Lubek Parts for 25 movement holders at 20.80 each — 520 in total — for the vintage overhaul push. That's above the 350 sign-off limit, so it sits with Priya before we confirm with Sabine.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e13\", \"e14\", \"e19\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Got the Lubek request on my desk — I'll review it next week.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-30\", \"type\": \"call\", \"from\": \"Ines Paul\", \"text\": \"Ines called: she's back from holiday and free on both benches from mid-October.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Balance staffs are 21 each at current prices.\", \"role\": \"fact\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Booked the vintage push week for Monday 12 to Friday 16 October: Ines on bench 2, Hollis's pocket watch first in the queue. Lubek delivers five working days after confirmation, so parts ordered this week will land in time.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e14\", \"e19\", \"e22\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-04\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Second Lubek order placed for the push: 18 balance staffs at 21 each, 378 in total. Over the 350 limit as well, so it goes to Priya for sign-off before confirming.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e23\", \"e19\"], \"record\": \"ORD-5\", \"mark\": \"REVISE\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Ruth\", \"text\": \"Told Hollis Vance to collect his pocket watch on Tuesday 20 October at 15:00 — that leaves room for the Lubek confirmation to clear Priya's sign-off after the push week.\", \"role\": \"decision\", \"rests_on\": [\"e20\", \"e2\"], \"record\": \"EV-3\", \"mark\": \"ASK\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"While I'm at the conference, a reminder: any parts order above 350 still comes to me for sign-off before you confirm it with the supplier — that includes the two Lubek orders on my desk.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Quick update on sign-offs: from Monday 21 September the threshold for parts orders goes up from 350 to 600. Supplier prices have climbed this year and I don't need to see the smaller orders anymore. Anything already confirmed stays as it is; anything still sitting with me under 600 can be confirmed straight away.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n    {\"id\": \"e29\", \"date\": \"2026-09-24\", \"type\": \"quote\", \"from\": \"Sabine Roth (Lubek Parts)\", \"text\": \"Our new price list from 1 October: movement holders 21.60 each and balance staffs 22.40 each. Orders confirmed before then keep their original prices.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e30\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Hollis Vance\", \"text\": \"See you Tuesday 20 October at three — looking forward to having the old girl ticking again.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-01\", \"type\": \"task\", \"from\": \"Ruth\", \"text\": \"Once both Lubek orders are confirmed, the invoice gets paid within 14 days — don't let it slip.\", \"role\": \"obligation\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Ruth\", \"text\": \"Ines, can you set up the ultrasonic bath before the push week starts?\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Sapphire crystals - Brisk Supplies\", \"fields\": {\"supplier\": \"Brisk Supplies\", \"item\": \"sapphire crystals\", \"quantity\": \"40\", \"amount\": \"480\", \"status\": \"confirmed\", \"signoff\": \"approved by Priya 2026-06-14\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Movement holders - Lubek Parts\", \"fields\": {\"supplier\": \"Lubek Parts\", \"item\": \"movement holders\", \"quantity\": \"25\", \"amount\": \"520\", \"status\": \"pending_signoff\", \"signoff\": \"awaiting Priya\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Gasket sheets - Brisk Supplies\", \"fields\": {\"supplier\": \"Brisk Supplies\", \"item\": \"gasket sheets\", \"quantity\": \"50\", \"amount\": \"300\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Balance staffs - Lubek Parts\", \"fields\": {\"supplier\": \"Lubek Parts\", \"item\": \"balance staffs\", \"quantity\": \"18\", \"amount\": \"378\", \"status\": \"pending_signoff\", \"signoff\": \"awaiting Priya\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Mara Quist - clasp collection\", \"fields\": {\"customer\": \"Mara Quist\", \"date\": \"2026-07-03\", \"time\": \"11:00\", \"place\": \"front counter\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Vintage overhaul push week\", \"fields\": {\"start\": \"2026-10-12\", \"end\": \"2026-10-16\", \"technician\": \"Ines\", \"bench\": \"2\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Hollis Vance - pocket watch collection\", \"fields\": {\"customer\": \"Hollis Vance\", \"date\": \"2026-10-20\", \"time\": \"15:00\", \"place\": \"front counter\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hollis Vance - pocket watch overhaul\", \"fields\": {\"customer\": \"Hollis Vance\", \"watch\": \"1940s Erran pocket watch\", \"job\": \"full overhaul\", \"parts\": \"Lubek movement holder\", \"status\": \"in repair\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\"], \"from\": \"Hollis Vance\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please get the October vintage push moving: confirm the two pending Lubek parts orders with Sabine, and let Priya know she doesn't need to look at them.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending_signoff\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"awaiting Priya\"], \"task\": true},\n    {\"record\": \"ORD-5\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending_signoff\"], \"task\": true},\n    {\"record\": \"ORD-5\", \"field\": \"signoff\", \"value\": \"not required\", \"stale\": [\"awaiting Priya\"], \"task\": true},\n    {\"message_to\": \"Sabine Roth (Lubek Parts)\", \"regarding\": \"ORD-2\", \"says\": [\"confirm 25 movement holders at 520\", \"confirm 18 balance staffs at 378\"], \"stale\": [\"21.60 each\", \"22.40 each\"], \"task\": true},\n    {\"message_to\": \"Priya Nair\", \"regarding\": \"ORD-2\", \"says\": [\"threshold is now 600\", \"Lubek orders at 520 and 378 confirmed without sign-off\"], \"stale\": [\"350\"], \"task\": true}\n  ],\n  \"why\": \"Priya's amendment raises the sign-off threshold from 350 to 600 from 2026-09-21 and leaves already-confirmed orders standing, so ORD-1 is KEEP, while the two Lubek orders still awaiting her sign-off (520 and 378, both now under 600) should be confirmed directly — REVISE. EV-2's push week uses only the delivery lead time and bench availability the amendment leaves standing (KEEP); EV-3's late pickup date was set to absorb the sign-off delay, but moving Hollis's confirmed slot needs his consent under the house rule, so it is ASK and must stay unchanged. The new Lubek price list applies only to future orders and must not be read into the pending orders' amounts.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"crystal restock\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"sapphire crystals\", \"unit\": \"pieces\", \"values\": [\"30\", \"40\", \"60\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"gasket sheets\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"gasket sheets\", \"unit\": \"sheets\", \"values\": [\"40\", \"50\", \"80\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"movement holders restock\", \"counterpart\": \"Sabine Roth\", \"org\": \"Lubek Parts\", \"item\": \"movement holders\", \"unit\": \"pieces\", \"values\": [\"10\", \"20\", \"25\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"leather straps\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"leather straps\", \"unit\": \"straps\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"front counter\"},\n    {\"kind\": \"booking\", \"topic\": \"customer collections\", \"counterpart\": \"Mara Quist\", \"org\": \"private\", \"item\": \"collection appointment\", \"values\": [\"front counter\", \"workshop bench 1\", \"back office\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning solution\", \"counterpart\": \"Else Merten\", \"org\": \"Renox Chemicals\", \"item\": \"watch cleaning solution\", \"unit\": \"litres\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"bench sessions\", \"counterpart\": \"Ines Paul\", \"org\": \"Tick & Tock Watch Repairs\", \"item\": \"bench session\", \"values\": [\"bench 1\", \"bench 2\", \"back bench\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"order\", \"topic\": \"balance staffs restock\", \"counterpart\": \"Sabine Roth\", \"org\": \"Lubek Parts\", \"item\": \"balance staffs\", \"unit\": \"pieces\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"valuation appointments\", \"counterpart\": \"Hollis Vance\", \"org\": \"private\", \"item\": \"valuation appointment\", \"values\": [\"front counter\", \"back office\", \"workshop bench 1\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"batteries\", \"counterpart\": \"Dario Kelm\", \"org\": \"Brisk Supplies\", \"item\": \"silver-oxide batteries\", \"unit\": \"packs\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Tick & Tock workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"courier pickups\", \"counterpart\": \"Toma Reyes\", \"org\": \"Velox Courier\", \"item\": \"courier slot\", \"values\": [\"shop door\", \"rear entrance\", \"side gate\"], \"place\": \"Tick & Tock shop\"},\n    {\"kind\": \"order\", \"topic\": \"display cases\", \"counterpart\": \"Petra Lund\", \"org\": \"Nordvid Displays\", \"item\": \"display cases\", \"unit\": \"cases\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"front of shop\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7756,
+    "completion_tokens": 4493,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02705256,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'customer collections': values needs at least three entries\n- noise topic 'bench sessions': values needs at least three entries\n- noise topic 'valuation appointments': values needs at least three entries\n- noise topic 'courier pickups': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at Tick & Tock",
+  "setting": "A watch repairer at Tick & Tock whose assistant keeps repair tickets, parts sourcing, and customer collection notices",
+  "owner": "Ruth",
+  "org": "Tick & Tock Watch Repairs",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "Standing instruction for the workshop: any parts order over 350 needs Priya Nair's sign-off before we confirm it with the supplier.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Ruth",
+    "text": "House rule: once a customer's collection slot is booked and confirmed, we only change the date or time with that customer's agreement — no silent moves.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Dario Kelm (Brisk Supplies)",
+    "text": "Price update: sapphire crystals are 12 each, any quantity.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Renewed the shop insurance for another year — papers in the drawer under the counter.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-14",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Approved the sapphire crystal order — 480 to Brisk Supplies, go ahead and confirm.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 40 sapphire crystals from Brisk Supplies at 12 each, 480 in total, with Priya's sign-off on file.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Dario Kelm (Brisk Supplies)",
+    "text": "The 40 sapphire crystals were delivered this morning to the workshop.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-24",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Mara Quist's bracelet clasp repair is finished and waiting in the drawer.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked Mara Quist to collect her repaired bracelet clasp at the front counter on 3 July at 11:00.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-30",
+    "type": "note",
+    "from": "Ruth",
+    "text": "Stock count: 12 sapphire crystals, 8 gasket sheets and 4 leather straps left.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Dario Kelm (Brisk Supplies)",
+    "text": "Leather straps are 9 each from this month.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Mara Quist",
+    "text": "Thanks for fixing the clasp so quickly — it looks brand new.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Sabine Roth (Lubek Parts)",
+    "text": "Movement holders are 20.80 each at our current prices.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Sabine Roth (Lubek Parts)",
+    "text": "Just to confirm our terms: we deliver within five working days of order confirmation.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-12",
+    "type": "quote",
+    "from": "Dario Kelm (Brisk Supplies)",
+    "text": "Gasket sheets are 6 each, any quantity.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Ordered 50 gasket sheets from Brisk Supplies at 6 each, 300 in total — small enough that no approval was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-20",
+    "type": "minutes",
+    "from": "Ruth",
+    "text": "Shop meeting: front counter hours stay 9 to 5; Ines takes Saturday mornings off in August.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-05",
+    "type": "letter",
+    "from": "Kurt Behrens",
+    "text": "A client left a wristwatch for engraving; pick-up will be arranged separately once the work is done.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Ruth",
+    "text": "I want a vintage overhaul push in mid-October — Ines on one bench, Hollis Vance's pocket watch first in the queue. We'll need the Lubek parts in the workshop before it starts.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-26",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "I've placed the order with Lubek Parts for 25 movement holders at 20.80 each — 520 in total — for the vintage overhaul push. That's above the 350 sign-off limit, so it sits with Priya before we confirm with Sabine.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e13",
+     "e14",
+     "e19"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Got the Lubek request on my desk — I'll review it next week.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-30",
+    "type": "call",
+    "from": "Ines Paul",
+    "text": "Ines called: she's back from holiday and free on both benches from mid-October.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-01",
+    "type": "quote",
+    "from": "Sabine Roth (Lubek Parts)",
+    "text": "Balance staffs are 21 each at current prices.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Booked the vintage push week for Monday 12 to Friday 16 October: Ines on bench 2, Hollis's pocket watch first in the queue. Lubek delivers five working days after confirmation, so parts ordered this week will land in time.",
+    "role": "decision",
+    "rests_on": [
+     "e20",
+     "e14",
+     "e19",
+     "e22"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-04",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Second Lubek order placed for the push: 18 balance staffs at 21 each, 378 in total. Over the 350 limit as well, so it goes to Priya for sign-off before confirming.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e23",
+     "e19"
+    ],
+    "record": "ORD-5",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Ruth",
+    "text": "Told Hollis Vance to collect his pocket watch on Tuesday 20 October at 15:00 — that leaves room for the Lubek confirmation to clear Priya's sign-off after the push week.",
+    "role": "decision",
+    "rests_on": [
+     "e20",
+     "e2"
+    ],
+    "record": "EV-3",
+    "mark": "ASK"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "While I'm at the conference, a reminder: any parts order above 350 still comes to me for sign-off before you confirm it with the supplier — that includes the two Lubek orders on my desk.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Quick update on sign-offs: from Monday 21 September the threshold for parts orders goes up from 350 to 600. Supplier prices have climbed this year and I don't need to see the smaller orders anymore. Anything already confirmed stays as it is; anything still sitting with me under 600 can be confirmed straight away.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-24",
+    "type": "quote",
+    "from": "Sabine Roth (Lubek Parts)",
+    "text": "Our new price list from 1 October: movement holders 21.60 each and balance staffs 22.40 each. Orders confirmed before then keep their original prices.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Hollis Vance",
+    "text": "See you Tuesday 20 October at three — looking forward to having the old girl ticking again.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-01",
+    "type": "task",
+    "from": "Ruth",
+    "text": "Once both Lubek orders are confirmed, the invoice gets paid within 14 days — don't let it slip.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Ruth",
+    "text": "Ines, can you set up the ultrasonic bath before the push week starts?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Sapphire crystals - Brisk Supplies",
+    "fields": {
+     "supplier": "Brisk Supplies",
+     "item": "sapphire crystals",
+     "quantity": "40",
+     "amount": "480",
+     "status": "confirmed",
+     "signoff": "approved by Priya 2026-06-14"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Movement holders - Lubek Parts",
+    "fields": {
+     "supplier": "Lubek Parts",
+     "item": "movement holders",
+     "quantity": "25",
+     "amount": "520",
+     "status": "pending_signoff",
+     "signoff": "awaiting Priya"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Gasket sheets - Brisk Supplies",
+    "fields": {
+     "supplier": "Brisk Supplies",
+     "item": "gasket sheets",
+     "quantity": "50",
+     "amount": "300",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Balance staffs - Lubek Parts",
+    "fields": {
+     "supplier": "Lubek Parts",
+     "item": "balance staffs",
+     "quantity": "18",
+     "amount": "378",
+     "status": "pending_signoff",
+     "signoff": "awaiting Priya"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Mara Quist - clasp collection",
+    "fields": {
+     "customer": "Mara Quist",
+     "date": "2026-07-03",
+     "time": "11:00",
+     "place": "front counter",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Vintage overhaul push week",
+    "fields": {
+     "start": "2026-10-12",
+     "end": "2026-10-16",
+     "technician": "Ines",
+     "bench": "2",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Hollis Vance - pocket watch collection",
+    "fields": {
+     "customer": "Hollis Vance",
+     "date": "2026-10-20",
+     "time": "15:00",
+     "place": "front counter",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Hollis Vance - pocket watch overhaul",
+    "fields": {
+     "customer": "Hollis Vance",
+     "watch": "1940s Erran pocket watch",
+     "job": "full overhaul",
+     "parts": "Lubek movement holder",
+     "status": "in repair"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date"
+    ],
+    "from": "Hollis Vance",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please get the October vintage push moving: confirm the two pending Lubek parts orders with Sabine, and let Priya know she doesn't need to look at them.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending_signoff"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "signoff",
+    "value": "not required",
+    "stale": [
+     "awaiting Priya"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-5",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending_signoff"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-5",
+    "field": "signoff",
+    "value": "not required",
+    "stale": [
+     "awaiting Priya"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Sabine Roth (Lubek Parts)",
+    "regarding": "ORD-2",
+    "says": [
+     "confirm 25 movement holders at 520",
+     "confirm 18 balance staffs at 378"
+    ],
+    "stale": [
+     "21.60 each",
+     "22.40 each"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Nair",
+    "regarding": "ORD-2",
+    "says": [
+     "threshold is now 600",
+     "Lubek orders at 520 and 378 confirmed without sign-off"
+    ],
+    "stale": [
+     "350"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's amendment raises the sign-off threshold from 350 to 600 from 2026-09-21 and leaves already-confirmed orders standing, so ORD-1 is KEEP, while the two Lubek orders still awaiting her sign-off (520 and 378, both now under 600) should be confirmed directly — REVISE. EV-2's push week uses only the delivery lead time and bench availability the amendment leaves standing (KEEP); EV-3's late pickup date was set to absorb the sign-off delay, but moving Hollis's confirmed slot needs his consent under the house rule, so it is ASK and must stay unchanged. The new Lubek price list applies only to future orders and must not be read into the pending orders' amounts.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "crystal restock",
+    "counterpart": "Dario Kelm",
+    "org": "Brisk Supplies",
+    "item": "sapphire crystals",
+    "unit": "pieces",
+    "values": [
+     "30",
+     "40",
+     "60"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "gasket sheets",
+    "counterpart": "Dario Kelm",
+    "org": "Brisk Supplies",
+    "item": "gasket sheets",
+    "unit": "sheets",
+    "values": [
+     "40",
+     "50",
+     "80"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "movement holders restock",
+    "counterpart": "Sabine Roth",
+    "org": "Lubek Parts",
+    "item": "movement holders",
+    "unit": "pieces",
+    "values": [
+     "10",
+     "20",
+     "25"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "leather straps",
+    "counterpart": "Dario Kelm",
+    "org": "Brisk Supplies",
+    "item": "leather straps",
+    "unit": "straps",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "front counter"
+   },
+   {
+    "kind": "booking",
+    "topic": "customer collections",
+    "counterpart": "Mara Quist",
+    "org": "private",
+    "item": "collection appointment",
+    "values": [
+     "front counter",
+     "workshop bench 1",
+     "back office"
+    ],
+    "place": "Tick & Tock shop"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning solution",
+    "counterpart": "Else Merten",
+    "org": "Renox Chemicals",
+    "item": "watch cleaning solution",
+    "unit": "litres",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "bench sessions",
+    "counterpart": "Ines Paul",
+    "org": "Tick & Tock Watch Repairs",
+    "item": "bench session",
+    "values": [
+     "bench 1",
+     "bench 2",
+     "back bench"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "balance staffs restock",
+    "counterpart": "Sabine Roth",
+    "org": "Lubek Parts",
+    "item": "balance staffs",
+    "unit": "pieces",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "valuation appointments",
+    "counterpart": "Hollis Vance",
+    "org": "private",
+    "item": "valuation appointment",
+    "values": [
+     "front counter",
+     "back office",
+     "workshop bench 1"
+    ],
+    "place": "Tick & Tock shop"
+   },
+   {
+    "kind": "order",
+    "topic": "batteries",
+    "counterpart": "Dario Kelm",
+    "org": "Brisk Supplies",
+    "item": "silver-oxide batteries",
+    "unit": "packs",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Tick & Tock workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "courier pickups",
+    "counterpart": "Toma Reyes",
+    "org": "Velox Courier",
+    "item": "courier slot",
+    "values": [
+     "shop door",
+     "rear entrance",
+     "side gate"
+    ],
+    "place": "Tick & Tock shop"
+   },
+   {
+    "kind": "order",
+    "topic": "display cases",
+    "counterpart": "Petra Lund",
+    "org": "Nordvid Displays",
+    "item": "display cases",
+    "unit": "cases",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "front of shop"
+   }
+  ],
+  "id": "G500-2-09",
+  "tier": 500,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

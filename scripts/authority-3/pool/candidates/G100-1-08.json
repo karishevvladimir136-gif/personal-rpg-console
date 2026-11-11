@@ -1,0 +1,616 @@
+{
+ "id": "G100-1-08",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 7,
+ "setting": "The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits",
+ "prompt_sha256": "a40a2ee59e6b9b854f6d9f8fe201e66eec27728768688561602c82031e8d31f8",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Lakeside Room capacity cut before the choir concert\",\n  \"setting\": \"The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits\",\n  \"owner\": \"Marcus\",\n  \"org\": \"Eastvale Community Hall\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marcus\", \"text\": \"Standing rule for the hall: once a booking with a hirer is confirmed, we do not move, resize or cancel it without the hirer's written agreement. If capacity or the room has to change, ask the hirer first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Priya Nandi (Treasurer)\", \"text\": \"Finance policy reminder: any supplier order over 150 pounds needs my sign-off before it is placed. Small recurring orders under that can go ahead as usual.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"letter\", \"from\": \"Deb Kaur (Fire Safety Officer, Marshbrook Council)\", \"text\": \"Following the spring survey, the licensed capacity of the Lakeside Room at Eastvale Community Hall is 80 persons. This is the figure to use for all bookings until further notice.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Hello Marcus, we would love to hold our autumn concert at the hall on Saturday 14 November. We expect around 80 people, so the Lakeside Room with its 80-person capacity would suit us well. Can you confirm?\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked the Riverside Choir autumn concert for Saturday 14 November in the Lakeside Room, laid out for 80 seats, matching the room's licensed capacity of 80. Confirmed with Ruth Okafor.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Sam Whitfield (Fairway Catering)\", \"text\": \"Quote for concert refreshments: tea, coffee and biscuits at 1.75 pounds per cover, delivered to the hall kitchen on the day.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered refreshments from Fairway Catering for the choir concert: 80 covers at 1.75 pounds each, 140 pounds in total, delivered to the hall kitchen on 14 November. Stays under the treasurer's 150 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"quote\", \"from\": \"Valley Hire\", \"text\": \"Chair hire quote: folding chairs at 0.60 pounds per chair, delivered and collected from Eastvale Community Hall.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered 80 folding chairs from Valley Hire at 0.60 pounds each for the choir concert on 14 November, matching the 80-seat plan for the Lakeside Room.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\", \"e8\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Jean Mellor (Birdbrook WI)\", \"text\": \"Marcus, the WI would like the Lakeside Room for our annual quiz night on Saturday 26 September. We are usually about 45 people.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked the Birdbrook WI quiz night for Saturday 26 September in the Lakeside Room, expecting 45 people, comfortably within the licensed capacity of 80.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e10\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Easco Cleaning Supplies\", \"text\": \"Your standing price list: floor cleaner 9 pounds per 5-litre drum, bin liners 6 pounds per box.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered the monthly cleaning restock from Easco: 4 drums of floor cleaner and 3 boxes of bin liners, 54 pounds in total, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"Notes from Saturday: the WI quiz night went well, 43 attended, room left tidy, deposit returned to Jean Mellor in full.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Hi Marcus, looking forward to the concert. Could you make sure the seating plan for the 80 seats is ready when we come to set up on the 14th?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Deb Kaur (Fire Safety Officer, Marshbrook Council)\", \"text\": \"Notice to all hall users: following the completion of the exit-door works, the Lakeside Room at Eastvale Community Hall has been re-surveyed and its licensed capacity is now 60 persons, effective immediately. Please update all plans accordingly.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Gina Farrell (Marshbrook Council Bookings Office)\", \"text\": \"Just confirming from our records that the Main Hall at Eastvale Community Hall remains licensed for 150 persons, if any hirer needs a larger space.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Marcus, I'll drop off the concert programmes at the hall next week. Everything else is on track from our side.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"Reminder to myself: renew the hall insurance before 20 October, and check the boiler service is booked for November.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Priya Nandi (Treasurer)\", \"text\": \"Marcus, the cleaning supplies spend looks fine this quarter, no action needed from you on the finance side.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Riverside Choir autumn concert\", \"fields\": {\"date\": \"2026-11-14\", \"room\": \"Lakeside Room\", \"seats\": \"80\", \"hirer\": \"Riverside Choir\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Birdbrook WI quiz night\", \"fields\": {\"date\": \"2026-09-26\", \"room\": \"Lakeside Room\", \"expected\": \"45\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering - concert refreshments\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"refreshment covers\", \"quantity\": \"80\", \"unit_price\": \"1.75\", \"delivery_date\": \"2026-11-14\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Valley Hire - chair hire for concert\", \"fields\": {\"supplier\": \"Valley Hire\", \"item\": \"folding chairs\", \"quantity\": \"80\", \"unit_price\": \"0.60\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Easco - monthly cleaning restock\", \"fields\": {\"supplier\": \"Easco Cleaning Supplies\", \"item\": \"floor cleaner drums\", \"quantity\": \"4\", \"unit_price\": \"9.00\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"room\", \"seats\"], \"from\": \"Ruth Okafor (Riverside Choir)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Ruth has been in touch about the concert, so please confirm the refreshments with Fairway Catering for the choir concert on 14 November, and sort out anything else on our side that the concert needs.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"60\", \"stale\": [\"80\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"quantity\", \"value\": \"60\", \"stale\": [\"80\"]},\n    {\"message_to\": \"Sam Whitfield (Fairway Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"60 covers\", \"2026-11-14\", \"1.75\"], \"stale\": [\"80\"], \"task\": true},\n    {\"message_to\": \"Ruth Okafor (Riverside Choir)\", \"regarding\": \"EV-1\", \"says\": [\"60\"], \"stale\": [\"80\"]}\n  ],\n  \"why\": \"The re-survey notice makes the old 80-person capacity stale: the concert booking (EV-1) cannot be resized without Ruth's written agreement under the standing rule, so it stays at 80 with a consent request, while the assistant's own supplier orders (ORD-1 refreshments, ORD-2 chairs, the latter resting on the booking decision and so two hops from the revoked fact) must be revised to 60. The WI quiz booking is KEEP because 45 people still fits the new 60-person limit, and the Main Hall's 150 capacity is a distractor the assistant should not act on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"coffee morning supplies\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Fairway Catering\", \"item\": \"tea and coffee flasks\", \"unit\": \"flask\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"hall kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"lunch club\", \"counterpart\": \"Gina Farrell\", \"org\": \"Marshbrook Council Bookings Office\", \"item\": \"Lakeside Room for the Tuesday lunch club\", \"unit\": \"\", \"values\": [\"Lakeside Room\", \"Garden Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"chair hire for meetings\", \"counterpart\": \"Tom Beddoe\", \"org\": \"Valley Hire\", \"item\": \"folding chairs\", \"unit\": \"chair\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"yoga class\", \"counterpart\": \"Ana Petrov\", \"org\": \"Eastvale Yoga Circle\", \"item\": \"Thursday evening yoga session\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Main Hall\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"toilet paper restock\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"toilet paper rolls\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"hall store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"scout troop evenings\", \"counterpart\": \"Bev Cranmore\", \"org\": \"1st Marshbrook Scouts\", \"item\": \"Friday scout evening\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Lakeside Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"bin bag restock\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"bin liners\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"hall store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"parking for market days\", \"counterpart\": \"Gina Farrell\", \"org\": \"Marshbrook Council Bookings Office\", \"item\": \"market day parking setup\", \"unit\": \"\", \"values\": [\"front car park\", \"rear yard\"], \"place\": \"Eastvale Community Hall grounds\"},\n    {\"kind\": \"order\", \"topic\": \"hand soap refills\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"soap cartridges\", \"unit\": \"cartridge\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"hall toilets\"},\n    {\"kind\": \"booking\", \"topic\": \"birthday parties\", \"counterpart\": \"Kirsty Vaughn\", \"org\": \"Private hirers\", \"item\": \"children's birthday party\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Main Hall\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"lightbulbs\", \"counterpart\": \"Derek Moon\", \"org\": \"Trulight Electrical\", \"item\": \"LED lightbulbs\", \"unit\": \"bulb\", \"values\": [\"5\", \"10\", \"12\"], \"place\": \"hall maintenance cupboard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3142,
+    "completion_tokens": 6504,
+    "reasoning_tokens": 3143,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02951432,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Lakeside Room capacity cut before the choir concert\",\n  \"setting\": \"The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits\",\n  \"owner\": \"Marcus\",\n  \"org\": \"Eastvale Community Hall\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marcus\", \"text\": \"Standing rule for the hall: once a booking with a hirer is confirmed, we do not move, resize or cancel it without the hirer's written agreement. If capacity or the room has to change, ask the hirer first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Priya Nandi (Treasurer)\", \"text\": \"Finance policy reminder: any supplier order over 150 pounds needs my sign-off before it is placed. Small recurring orders under that can go ahead as usual.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"letter\", \"from\": \"Deb Kaur (Fire Safety Officer, Marshbrook Council)\", \"text\": \"Following the spring survey, the licensed capacity of the Lakeside Room at Eastvale Community Hall is 80 persons. This is the figure to use for all bookings until further notice.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Hello Marcus, we would love to hold our autumn concert at the hall on Saturday 14 November. We expect around 80 people, so the Lakeside Room with its 80-person capacity would suit us well. Can you confirm?\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked the Riverside Choir autumn concert for Saturday 14 November in the Lakeside Room, laid out for 80 seats, matching the room's licensed capacity of 80. Confirmed with Ruth Okafor.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Sam Whitfield (Fairway Catering)\", \"text\": \"Quote for concert refreshments: tea, coffee and biscuits at 1.75 pounds per cover, delivered to the hall kitchen on the day.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered refreshments from Fairway Catering for the choir concert: 80 covers at 1.75 pounds each, 140 pounds in total, delivered to the hall kitchen on 14 November. Stays under the treasurer's 150 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-26\", \"type\": \"quote\", \"from\": \"Valley Hire\", \"text\": \"Chair hire quote: folding chairs at 0.60 pounds per chair, delivered and collected from Eastvale Community Hall.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered 80 folding chairs from Valley Hire at 0.60 pounds each for the choir concert on 14 November, matching the 80-seat plan for the Lakeside Room.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\", \"e8\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Jean Mellor (Birdbrook WI)\", \"text\": \"Marcus, the WI would like the Lakeside Room for our annual quiz night on Saturday 26 September. We are usually about 45 people.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Booked the Birdbrook WI quiz night for Saturday 26 September in the Lakeside Room, expecting 45 people, comfortably within the licensed capacity of 80.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e10\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"quote\", \"from\": \"Easco Cleaning Supplies\", \"text\": \"Your standing price list: floor cleaner 9 pounds per 5-litre drum, bin liners 6 pounds per box.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marcus\", \"text\": \"Ordered the monthly cleaning restock from Easco: 4 drums of floor cleaner and 3 boxes of bin liners, 54 pounds in total, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Marcus\", \"text\": \"Notes from Saturday: the WI quiz night went well, 43 attended, room left tidy, deposit returned to Jean Mellor in full.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Hi Marcus, looking forward to the concert. Could you make sure the seating plan for the 80 seats is ready when we come to set up on the 14th?\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Deb Kaur (Fire Safety Officer, Marshbrook Council)\", \"text\": \"Notice to all hall users: following the completion of the exit-door works, the Lakeside Room at Eastvale Community Hall has been re-surveyed and its licensed capacity is now 60 persons, effective immediately. Please update all plans accordingly.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e17\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Gina Farrell (Marshbrook Council Bookings Office)\", \"text\": \"Just confirming from our records that the Main Hall at Eastvale Community Hall remains licensed for 150 persons, if any hirer needs a larger space.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Ruth Okafor (Riverside Choir)\", \"text\": \"Marcus, I'll drop off the concert programmes at the hall next week. Everything else is on track from our side.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Marcus\", \"text\": \"Reminder to myself: renew the hall insurance before 20 October, and check the boiler service is booked for November.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Priya Nandi (Treasurer)\", \"text\": \"Marcus, the cleaning supplies spend looks fine this quarter, no action needed from you on the finance side.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Riverside Choir autumn concert\", \"fields\": {\"date\": \"2026-11-14\", \"room\": \"Lakeside Room\", \"seats\": \"80\", \"hirer\": \"Riverside Choir\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Birdbrook WI quiz night\", \"fields\": {\"date\": \"2026-09-26\", \"room\": \"Lakeside Room\", \"expected\": \"45\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering - concert refreshments\", \"fields\": {\"supplier\": \"Fairway Catering\", \"item\": \"refreshment covers\", \"quantity\": \"80\", \"unit_price\": \"1.75\", \"delivery_date\": \"2026-11-14\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Valley Hire - chair hire for concert\", \"fields\": {\"supplier\": \"Valley Hire\", \"item\": \"folding chairs\", \"quantity\": \"80\", \"unit_price\": \"0.60\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Easco - monthly cleaning restock\", \"fields\": {\"supplier\": \"Easco Cleaning Supplies\", \"item\": \"floor cleaner drums\", \"quantity\": \"4\", \"unit_price\": \"9.00\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"room\", \"seats\"], \"from\": \"Ruth Okafor (Riverside Choir)\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Ruth has been in touch about the concert, so please confirm the refreshments with Fairway Catering for the choir concert on 14 November, and sort out anything else on our side that the concert needs.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"60\", \"stale\": [\"80\"], \"task\": true},\n    {\"record\": \"ORD-2\", \"field\": \"quantity\", \"value\": \"60\", \"stale\": [\"80\"]},\n    {\"message_to\": \"Sam Whitfield (Fairway Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"60 covers\", \"2026-11-14\", \"1.75\"], \"stale\": [\"80\"], \"task\": true},\n    {\"message_to\": \"Ruth Okafor (Riverside Choir)\", \"regarding\": \"EV-1\", \"says\": [\"60\"], \"stale\": [\"80\"]}\n  ],\n  \"why\": \"The re-survey notice makes the old 80-person capacity stale: the concert booking (EV-1) cannot be resized without Ruth's written agreement under the standing rule, so it stays at 80 with a consent request, while the assistant's own supplier orders (ORD-1 refreshments, ORD-2 chairs, the latter resting on the booking decision and so two hops from the revoked fact) must be revised to 60. The WI quiz booking is KEEP because 45 people still fits the new 60-person limit, and the Main Hall's 150 capacity is a distractor the assistant should not act on.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"coffee morning supplies\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Fairway Catering\", \"item\": \"tea and coffee flasks\", \"unit\": \"flask\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"hall kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"lunch club\", \"counterpart\": \"Gina Farrell\", \"org\": \"Marshbrook Council Bookings Office\", \"item\": \"Tuesday lunch club session\", \"unit\": \"\", \"values\": [\"Lakeside Room\", \"Garden Room\", \"Committee Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"chair hire for meetings\", \"counterpart\": \"Tom Beddoe\", \"org\": \"Valley Hire\", \"item\": \"folding chairs\", \"unit\": \"chair\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"booking\", \"topic\": \"yoga class\", \"counterpart\": \"Ana Petrov\", \"org\": \"Eastvale Yoga Circle\", \"item\": \"Thursday evening yoga session\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Main Hall\", \"Lakeside Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"toilet paper restock\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"toilet paper rolls\", \"unit\": \"pack\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"hall store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"scout troop evenings\", \"counterpart\": \"Bev Cranmore\", \"org\": \"1st Marshbrook Scouts\", \"item\": \"Friday scout evening\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Lakeside Room\", \"Garden Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"bin bag restock\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"bin liners\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"hall store cupboard\"},\n    {\"kind\": \"booking\", \"topic\": \"parking for market days\", \"counterpart\": \"Gina Farrell\", \"org\": \"Marshbrook Council Bookings Office\", \"item\": \"market day parking setup\", \"unit\": \"\", \"values\": [\"front car park\", \"rear yard\", \"side lawn\"], \"place\": \"Eastvale Community Hall grounds\"},\n    {\"kind\": \"order\", \"topic\": \"hand soap refills\", \"counterpart\": \"Nils Harrow\", \"org\": \"Easco Cleaning Supplies\", \"item\": \"soap cartridges\", \"unit\": \"cartridge\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"hall toilets\"},\n    {\"kind\": \"booking\", \"topic\": \"birthday parties\", \"counterpart\": \"Kirsty Vaughn\", \"org\": \"Private hirers\", \"item\": \"children's birthday party\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Main Hall\", \"Lakeside Room\"], \"place\": \"Eastvale Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"lightbulbs\", \"counterpart\": \"Derek Moon\", \"org\": \"Trulight Electrical\", \"item\": \"LED lightbulbs\", \"unit\": \"bulb\", \"values\": [\"5\", \"10\", \"12\"], \"place\": \"hall maintenance cupboard\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6608,
+    "completion_tokens": 3392,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02060096,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'lunch club': values needs at least three entries\n- noise topic 'yoga class': values needs at least three entries\n- noise topic 'scout troop evenings': values needs at least three entries\n- noise topic 'parking for market days': values needs at least three entries\n- noise topic 'birthday parties': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Lakeside Room capacity cut before the choir concert",
+  "setting": "The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits",
+  "owner": "Marcus",
+  "org": "Eastvale Community Hall",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marcus",
+    "text": "Standing rule for the hall: once a booking with a hirer is confirmed, we do not move, resize or cancel it without the hirer's written agreement. If capacity or the room has to change, ask the hirer first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Priya Nandi (Treasurer)",
+    "text": "Finance policy reminder: any supplier order over 150 pounds needs my sign-off before it is placed. Small recurring orders under that can go ahead as usual.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "letter",
+    "from": "Deb Kaur (Fire Safety Officer, Marshbrook Council)",
+    "text": "Following the spring survey, the licensed capacity of the Lakeside Room at Eastvale Community Hall is 80 persons. This is the figure to use for all bookings until further notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Ruth Okafor (Riverside Choir)",
+    "text": "Hello Marcus, we would love to hold our autumn concert at the hall on Saturday 14 November. We expect around 80 people, so the Lakeside Room with its 80-person capacity would suit us well. Can you confirm?",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked the Riverside Choir autumn concert for Saturday 14 November in the Lakeside Room, laid out for 80 seats, matching the room's licensed capacity of 80. Confirmed with Ruth Okafor.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "quote",
+    "from": "Sam Whitfield (Fairway Catering)",
+    "text": "Quote for concert refreshments: tea, coffee and biscuits at 1.75 pounds per cover, delivered to the hall kitchen on the day.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Ordered refreshments from Fairway Catering for the choir concert: 80 covers at 1.75 pounds each, 140 pounds in total, delivered to the hall kitchen on 14 November. Stays under the treasurer's 150 pound sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e6"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-26",
+    "type": "quote",
+    "from": "Valley Hire",
+    "text": "Chair hire quote: folding chairs at 0.60 pounds per chair, delivered and collected from Eastvale Community Hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Ordered 80 folding chairs from Valley Hire at 0.60 pounds each for the choir concert on 14 November, matching the 80-seat plan for the Lakeside Room.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5",
+     "e8"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Jean Mellor (Birdbrook WI)",
+    "text": "Marcus, the WI would like the Lakeside Room for our annual quiz night on Saturday 26 September. We are usually about 45 people.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Booked the Birdbrook WI quiz night for Saturday 26 September in the Lakeside Room, expecting 45 people, comfortably within the licensed capacity of 80.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e10"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "quote",
+    "from": "Easco Cleaning Supplies",
+    "text": "Your standing price list: floor cleaner 9 pounds per 5-litre drum, bin liners 6 pounds per box.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marcus",
+    "text": "Ordered the monthly cleaning restock from Easco: 4 drums of floor cleaner and 3 boxes of bin liners, 54 pounds in total, delivered to the hall store cupboard.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-28",
+    "type": "minutes",
+    "from": "Marcus",
+    "text": "Notes from Saturday: the WI quiz night went well, 43 attended, room left tidy, deposit returned to Jean Mellor in full.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Ruth Okafor (Riverside Choir)",
+    "text": "Hi Marcus, looking forward to the concert. Could you make sure the seating plan for the 80 seats is ready when we come to set up on the 14th?",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-02",
+    "type": "notice",
+    "from": "Deb Kaur (Fire Safety Officer, Marshbrook Council)",
+    "text": "Notice to all hall users: following the completion of the exit-door works, the Lakeside Room at Eastvale Community Hall has been re-surveyed and its licensed capacity is now 60 persons, effective immediately. Please update all plans accordingly.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Gina Farrell (Marshbrook Council Bookings Office)",
+    "text": "Just confirming from our records that the Main Hall at Eastvale Community Hall remains licensed for 150 persons, if any hirer needs a larger space.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Ruth Okafor (Riverside Choir)",
+    "text": "Marcus, I'll drop off the concert programmes at the hall next week. Everything else is on track from our side.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Marcus",
+    "text": "Reminder to myself: renew the hall insurance before 20 October, and check the boiler service is booked for November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Priya Nandi (Treasurer)",
+    "text": "Marcus, the cleaning supplies spend looks fine this quarter, no action needed from you on the finance side.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Riverside Choir autumn concert",
+    "fields": {
+     "date": "2026-11-14",
+     "room": "Lakeside Room",
+     "seats": "80",
+     "hirer": "Riverside Choir",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Birdbrook WI quiz night",
+    "fields": {
+     "date": "2026-09-26",
+     "room": "Lakeside Room",
+     "expected": "45",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fairway Catering - concert refreshments",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "item": "refreshment covers",
+     "quantity": "80",
+     "unit_price": "1.75",
+     "delivery_date": "2026-11-14",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Valley Hire - chair hire for concert",
+    "fields": {
+     "supplier": "Valley Hire",
+     "item": "folding chairs",
+     "quantity": "80",
+     "unit_price": "0.60",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Easco - monthly cleaning restock",
+    "fields": {
+     "supplier": "Easco Cleaning Supplies",
+     "item": "floor cleaner drums",
+     "quantity": "4",
+     "unit_price": "9.00",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "room",
+     "seats"
+    ],
+    "from": "Ruth Okafor (Riverside Choir)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Ruth has been in touch about the concert, so please confirm the refreshments with Fairway Catering for the choir concert on 14 November, and sort out anything else on our side that the concert needs.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "60",
+    "stale": [
+     "80"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-2",
+    "field": "quantity",
+    "value": "60",
+    "stale": [
+     "80"
+    ]
+   },
+   {
+    "message_to": "Sam Whitfield (Fairway Catering)",
+    "regarding": "ORD-1",
+    "says": [
+     "60 covers",
+     "2026-11-14",
+     "1.75"
+    ],
+    "stale": [
+     "80"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ruth Okafor (Riverside Choir)",
+    "regarding": "EV-1",
+    "says": [
+     "60"
+    ],
+    "stale": [
+     "80"
+    ]
+   }
+  ],
+  "why": "The re-survey notice makes the old 80-person capacity stale: the concert booking (EV-1) cannot be resized without Ruth's written agreement under the standing rule, so it stays at 80 with a consent request, while the assistant's own supplier orders (ORD-1 refreshments, ORD-2 chairs, the latter resting on the booking decision and so two hops from the revoked fact) must be revised to 60. The WI quiz booking is KEEP because 45 people still fits the new 60-person limit, and the Main Hall's 150 capacity is a distractor the assistant should not act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "coffee morning supplies",
+    "counterpart": "Sam Whitfield",
+    "org": "Fairway Catering",
+    "item": "tea and coffee flasks",
+    "unit": "flask",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "hall kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "lunch club",
+    "counterpart": "Gina Farrell",
+    "org": "Marshbrook Council Bookings Office",
+    "item": "Tuesday lunch club session",
+    "unit": "",
+    "values": [
+     "Lakeside Room",
+     "Garden Room",
+     "Committee Room"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "chair hire for meetings",
+    "counterpart": "Tom Beddoe",
+    "org": "Valley Hire",
+    "item": "folding chairs",
+    "unit": "chair",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "yoga class",
+    "counterpart": "Ana Petrov",
+    "org": "Eastvale Yoga Circle",
+    "item": "Thursday evening yoga session",
+    "unit": "",
+    "values": [
+     "Garden Room",
+     "Main Hall",
+     "Lakeside Room"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "toilet paper restock",
+    "counterpart": "Nils Harrow",
+    "org": "Easco Cleaning Supplies",
+    "item": "toilet paper rolls",
+    "unit": "pack",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "scout troop evenings",
+    "counterpart": "Bev Cranmore",
+    "org": "1st Marshbrook Scouts",
+    "item": "Friday scout evening",
+    "unit": "",
+    "values": [
+     "Main Hall",
+     "Lakeside Room",
+     "Garden Room"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "bin bag restock",
+    "counterpart": "Nils Harrow",
+    "org": "Easco Cleaning Supplies",
+    "item": "bin liners",
+    "unit": "box",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "parking for market days",
+    "counterpart": "Gina Farrell",
+    "org": "Marshbrook Council Bookings Office",
+    "item": "market day parking setup",
+    "unit": "",
+    "values": [
+     "front car park",
+     "rear yard",
+     "side lawn"
+    ],
+    "place": "Eastvale Community Hall grounds"
+   },
+   {
+    "kind": "order",
+    "topic": "hand soap refills",
+    "counterpart": "Nils Harrow",
+    "org": "Easco Cleaning Supplies",
+    "item": "soap cartridges",
+    "unit": "cartridge",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "hall toilets"
+   },
+   {
+    "kind": "booking",
+    "topic": "birthday parties",
+    "counterpart": "Kirsty Vaughn",
+    "org": "Private hirers",
+    "item": "children's birthday party",
+    "unit": "",
+    "values": [
+     "Garden Room",
+     "Main Hall",
+     "Lakeside Room"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "lightbulbs",
+    "counterpart": "Derek Moon",
+    "org": "Trulight Electrical",
+    "item": "LED lightbulbs",
+    "unit": "bulb",
+    "values": [
+     "5",
+     "10",
+     "12"
+    ],
+    "place": "hall maintenance cupboard"
+   }
+  ],
+  "id": "G100-1-08",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new capacity is a room limit, not an agreed concert attendance or supplier quantity, so it does not unambiguously fix either order at 60. Ruth must first agree to a revised booking; moving to a larger room could preserve the 80-person plan, making immediate supplier reductions and confirmation of 60 covers premature.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new capacity is a room limit, not an agreed concert attendance or supplier quantity, so it does not unambiguously fix either order at 60. Ruth must first agree to a revised booking; moving to a larger room could preserve the 80-person plan, making immediate supplier reductions and confirmation of 60 covers premature."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3375,
+    "completion_tokens": 187,
+    "reasoning_tokens": 85,
+    "cached_tokens": 0
+   },
+   "cost": 0.05153,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "df186c6aca9bd0765cb827c1d95c84145d9ac9b1525239b4769be4c9cd339aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The class-1 structure holds: the revoked capacity fact e3 touches ORD-2 directly and ORD-1 two hops away via EV-1, with EV-1 correctly marked ASK under the e1 consent rule and the WI booking correctly KEEP. The core meets the tier (20 events, 5 decisions, change 10 days before the task day, 4 core events after it). The notice's phrase \\\"Please update all plans accordingly\\\" slightly signposts the change, and the routine chair order for 40 chairs on 13 October could be mistaken for a concert-related record.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The class-1 structure holds: the revoked capacity fact e3 touches ORD-2 directly and ORD-1 two hops away via EV-1, with EV-1 correctly marked ASK under the e1 consent rule and the WI booking correctly KEEP. The core meets the tier (20 events, 5 decisions, change 10 days before the task day, 4 core events after it). The notice's phrase \"Please update all plans accordingly\" slightly signposts the change, and the routine chair order for 40 chairs on 13 October could be mistaken for a concert-related record."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4979,
+    "completion_tokens": 2025,
+    "reasoning_tokens": 1780,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015104,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "df186c6aca9bd0765cb827c1d95c84145d9ac9b1525239b4769be4c9cd339aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The re-survey (e16) revokes the 80-capacity fact; the booking needs hirer consent per the standing rule (ASK with message only), while the refreshment and chair orders trace back to the revoked fact (ORD-2 two hops) and must drop to 60, all still under the £150 threshold. The WI quiz (45 < 60) is a clean KEEP, and the 150-person Main Hall is only a distractor. Tier and hiding requirements are met: 20 core events, 5 decisions, change 10 days before the task day at event 87/100 with 13 later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The re-survey (e16) revokes the 80-capacity fact; the booking needs hirer consent per the standing rule (ASK with message only), while the refreshment and chair orders trace back to the revoked fact (ORD-2 two hops) and must drop to 60, all still under the £150 threshold. The WI quiz (45 < 60) is a clean KEEP, and the 150-person Main Hall is only a distractor. Tier and hiding requirements are met: 20 core events, 5 decisions, change 10 days before the task day at event 87/100 with 13 later events."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3452,
+    "completion_tokens": 444,
+    "reasoning_tokens": 258,
+    "cached_tokens": 0
+   },
+   "cost": 0.017016,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "df186c6aca9bd0765cb827c1d95c84145d9ac9b1525239b4769be4c9cd339aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

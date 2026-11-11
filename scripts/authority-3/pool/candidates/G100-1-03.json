@@ -1,0 +1,678 @@
+{
+ "id": "G100-1-03",
+ "writer": "glm",
+ "tier": 100,
+ "class": 1,
+ "idx": 2,
+ "setting": "A receptionist at Brightsmile Dental Clinic, a four-dentist practice, whose assistant manages appointment books and patient records",
+ "prompt_sha256": "4d7b72e665a3326a5ad791b125d67324cf9191221aef7115e2f6ee974cf4d3c1",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Maple Room refit moves clinic sessions to the Cedar Suite\",\n \"setting\": \"A receptionist at Brightsmile Dental Clinic, a four-dentist practice, whose assistant manages appointment books and patient records\",\n \"owner\": \"Priya\",\n \"org\": \"Brightsmile Dental Clinic\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Dr Amara Osei (Brightsmile Dental Clinic)\", \"text\": \"Standing instruction for the front desk: before any change is made to a session that has already been confirmed with an outside trainer, we need that trainer's agreement first. No moving dates, rooms or times on confirmed training bookings without their yes.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Office rules from me: confirmed supplier orders over 150 can only be changed once the supplier has confirmed in writing, and any new order above 250 needs sign-off from Tomás Reyes, our finance lead.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"Hi Priya, happy to run your Q4 in-house training day again this autumn. I can do Friday 13 November 2026. Same format as spring: morning session for the dentists and hygienists, and I'll invoice the clinic directly. Just tell me the room and I'll add it to my calendar.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Confirming your enquiry: the Maple Room at Hartwell Community Centre is free on Fridays and Saturdays through the autumn. Hire fee is 90 per session, tables and chairs included. The room seats 40 and has level access from the main reception.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Our standing venue arrangement: all Brightsmile group sessions — staff training days and family recall workshops — are held in the Maple Room at Hartwell Community Centre, hire fee 90 per session, booked through centre manager Joan Park.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-14\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Booked Rosa Kemp from DentEdge Training for the Q4 training day on Friday 13 November 2026, 09:00 to 13:00, in the Maple Room at Hartwell Community Centre at the usual 90 hire fee. Confirmed with Rosa by email and the room with Joan Park.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Scheduled the November family recall workshop for the Saturday straight after training, Saturday 14 November 2026, 10:00 to 12:00, also in the Maple Room at Hartwell Community Centre so we keep the room over both days. Free for recalled families, run in-house by our own team.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Ordered three folding display boards from BoardCraft Supplies for the training and workshop weekends, delivered to the main reception at Hartwell Community Centre, 84 in total, under the 250 sign-off threshold. They can stay in the centre's store cupboard between our sessions.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Confirmed the catering with Fairway Catering for the training day: 12 lunch boxes delivered to the Maple Room at Hartwell Community Centre on Friday 13 November, 180. Following our supplier rules, this order stands as confirmed unless Fairway agrees to any change.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Mira Stone (Brightsmile Dental Clinic)\", \"text\": \"Priya, I'm free on Saturday 14 November and happy to run the children's brushing station at the family workshop again. Put me down for the whole morning.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Dr Amara Osei (Brightsmile Dental Clinic)\", \"text\": \"Practice meeting notes: Q4 training day on 13 November and family workshop on 14 November both confirmed at Hartwell. Waiting room repaint scheduled for August. Dr Liu's holiday cover rota to follow.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-02\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Recall list check: 62 families are due their November recall and should be invited to the family workshop on 14 November. I'll send the reminders by SMS in the second half of October.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Drafted the SMS reminder for the 62 recall families for the November family workshop: Saturday 14 November 2026, 10:00, Maple Room at Hartwell Community Centre, free parking behind the centre. To be sent from the clinic's recall list once the October date comes round.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e12\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Nadia Bloom (MedSupply Direct)\", \"text\": \"Quote for your autumn restock: nitrile gloves 6.40 per box of 100, sterilisation pouches 11.20 per pack of 200. Valid until the end of October.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"All set for 13 November, Priya — I've got the Maple Room at Hartwell from 9am. I'll bring the radiography update and the new infection-control module. See you then.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"BoardCraft Supplies\", \"text\": \"Your order of three folding display boards has shipped and will be delivered to Hartwell Community Centre main reception in the week of 21 September.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"To-do: send the family workshop reminder texts to the November recall families by 24 October, so they have three weeks' notice.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Invoice for September room hire: two evening sessions, Willow Room, 45 per session, total 90. Payment by the end of the month as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Dear Priya, I'm afraid the Maple Room has to close for a damp refit from 15 October until the new year — the surveyors came in last week. All Maple Room bookings are being moved to the Cedar Suite on the first floor of the same building; it seats 45 and has level access via the lift. The hire fee for the Cedar Suite is 110 per session. Please let your trainers and suppliers know the new room.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-10\", \"type\": \"call\", \"from\": \"Dr Ben Liu (Brightsmile Dental Clinic)\", \"text\": \"Ben called the desk: he'll swap his 11 November morning check-ups to the afternoon so he can attend the Friday training session in full.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"quote\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"Priya, one extra offer while I have you: I could add an infection-control refresher on Saturday 12 December, 09:30 to 12:00, in the Birch Annexe at Hartwell — the centre still has it free. Fee would be 130 for the smaller group. Let me know if you want it and I'll pencil it in.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sam Whitfield (Fairway Catering)\", \"text\": \"Confirmation of your order: 12 lunch boxes for Friday 13 November, delivered to the Maple Room at Hartwell Community Centre around 12:15. Invoice to follow after delivery.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Mira Stone (Brightsmile Dental Clinic)\", \"text\": \"Don't forget to send the recall families their workshop reminders — Mira says she's already had two parents asking about the date at their appointments this week.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Reminder to self: this week — send the family workshop SMS reminders, check the Fairway delivery, and confirm the Christmas rota with the dentists.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Q4 staff training day with DentEdge\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"09:00\", \"place\": \"Maple Room, Hartwell Community Centre\", \"trainer\": \"Rosa Kemp\", \"fee\": \"90\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"November family recall workshop\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"10:00\", \"place\": \"Maple Room, Hartwell Community Centre\", \"run_by\": \"in-house team\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Display boards for training weekends\", \"fields\": {\"item\": \"folding display boards\", \"quantity\": \"3\", \"supplier\": \"BoardCraft Supplies\", \"delivery_place\": \"Hartwell Community Centre main reception\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Training day catering\", \"fields\": {\"item\": \"lunch boxes\", \"quantity\": \"12\", \"supplier\": \"Fairway Catering\", \"delivery_place\": \"Maple Room, Hartwell Community Centre\", \"delivery_date\": \"2026-11-13\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"November family workshop reminder\", \"fields\": {\"patients\": \"62\", \"channel\": \"SMS\", \"venue\": \"Maple Room, Hartwell Community Centre\", \"status\": \"draft\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"place\"], \"from\": \"Rosa Kemp (DentEdge Training)\", \"rule\": \"e1\"},\n  {\"record\": \"ORD-2\", \"fields\": [\"delivery_place\"], \"from\": \"Sam Whitfield (Fairway Catering)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you send out the November recall reminders to the families today? Use the workshop details we have on file — date, time and venue — in the SMS, and mark the reminder as sent when it goes.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"place\", \"value\": \"Cedar Suite, Hartwell Community Centre\", \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"venue\", \"value\": \"Cedar Suite, Hartwell Community Centre\", \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"November recall families (SMS)\", \"regarding\": \"EV-2\", \"says\": [\"Cedar Suite, Hartwell Community Centre\", \"Saturday 14 November 2026, 10:00\"], \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true}\n ],\n \"why\": \"The Hartwell email revokes the standing Maple Room arrangement: every group session now runs in the Cedar Suite at 110. The in-house family workshop (EV-2) and its reminder draft (CL-1) can be corrected and sent by the assistant directly, so they are REVISE; the task sends the reminders with the new venue. The Rosa training day (EV-1) and the Fairway catering delivery (ORD-2, two hops via the training day) are confirmed with outside parties, so under rules e1 and e2 the assistant must ask Rosa and Sam before changing their records, not act. The display-board delivery (ORD-1) only relies on the Hartwell building itself, which the refit leaves standing, so it is KEEP and must stay untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"weekly team huddle room\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"small meeting room\", \"values\": [\"Willow Room\", \"Oak Room\", \"Junction Room\"], \"place\": \"Hartwell Community Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"patient education evening\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"evening hall slot\", \"values\": [\"Willow Room\", \"Oak Room\", \"Garden Hall\"], \"place\": \"Hartwell Community Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"centre parking bays\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"parking bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Hartwell Community Centre car park\"},\n  {\"kind\": \"order\", \"topic\": \"training manuals restock\", \"counterpart\": \"Rosa Kemp\", \"org\": \"DentEdge Training\", \"item\": \"training manuals\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Brightsmile staff room\"},\n  {\"kind\": \"order\", \"topic\": \"nitrile gloves\", \"counterpart\": \"Nadia Bloom\", \"org\": \"MedSupply Direct\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Brightsmile store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"sterilisation pouches\", \"counterpart\": \"Vic Moreau\", \"org\": \"SteriCore\", \"item\": \"sterilisation pouches\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Brightsmile sterilisation room\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Lena Ford\", \"org\": \"OfficePlus\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Brightsmile front office\"},\n  {\"kind\": \"booking\", \"topic\": \"hygiene appointment slots\", \"counterpart\": \"Mira Stone\", \"org\": \"Brightsmile Dental Clinic\", \"item\": \"hygiene surgery\", \"values\": [\"Surgery 2\", \"Surgery 3\", \"Surgery 4\"], \"place\": \"Brightsmile surgeries\"},\n  {\"kind\": \"order\", \"topic\": \"staff lunch platters\", \"counterpart\": \"Marco Diaz\", \"org\": \"Fairway Catering\", \"item\": \"lunch platters\", \"unit\": \"platters\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Brightsmile staff room\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Brightsmile front office\"},\n  {\"kind\": \"order\", \"topic\": \"fluoride varnish\", \"counterpart\": \"Anya Reed\", \"org\": \"DentalAid Wholesale\", \"item\": \"fluoride varnish\", \"unit\": \"vials\", \"values\": [\"6\", \"10\", \"12\", \"15\"], \"place\": \"Brightsmile treatment store\"},\n  {\"kind\": \"booking\", \"topic\": \"webinar training slots\", \"counterpart\": \"Rosa Kemp\", \"org\": \"DentEdge Training\", \"item\": \"lunchtime webinar slot\", \"values\": [\"Staff room screen\", \"Meeting nook\"], \"place\": \"Brightsmile staff room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3146,
+    "completion_tokens": 9081,
+    "reasoning_tokens": 4825,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04085872,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Maple Room refit moves clinic sessions to the Cedar Suite\",\n \"setting\": \"A receptionist at Brightsmile Dental Clinic, a four-dentist practice, whose assistant manages appointment books and patient records\",\n \"owner\": \"Priya\",\n \"org\": \"Brightsmile Dental Clinic\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Dr Amara Osei (Brightsmile Dental Clinic)\", \"text\": \"Standing instruction for the front desk: before any change is made to a session that has already been confirmed with an outside trainer, we need that trainer's agreement first. No moving dates, rooms or times on confirmed training bookings without their yes.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Office rules from me: confirmed supplier orders over 150 can only be changed once the supplier has confirmed in writing, and any new order above 250 needs sign-off from Tomás Reyes, our finance lead.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"Hi Priya, happy to run your Q4 in-house training day again this autumn. I can do Friday 13 November 2026. Same format as spring: morning session for the dentists and hygienists, and I'll invoice the clinic directly. Just tell me the room and I'll add it to my calendar.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Confirming your enquiry: the Maple Room at Hartwell Community Centre is free on Fridays and Saturdays through the autumn. Hire fee is 90 per session, tables and chairs included. The room seats 40 and has level access from the main reception.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Our standing venue arrangement: all Brightsmile group sessions — staff training days and family recall workshops — are held in the Maple Room at Hartwell Community Centre, hire fee 90 per session, booked through centre manager Joan Park.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-14\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Booked Rosa Kemp from DentEdge Training for the Q4 training day on Friday 13 November 2026, 09:00 to 13:00, in the Maple Room at Hartwell Community Centre at the usual 90 hire fee. Confirmed with Rosa by email and the room with Joan Park.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Scheduled the November family recall workshop for the Saturday straight after training, Saturday 14 November 2026, 10:00 to 12:00, also in the Maple Room at Hartwell Community Centre so we keep the room over both days. Free for recalled families, run in-house by our own team.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Ordered three folding display boards from BoardCraft Supplies for the training and workshop weekends, delivered to the main reception at Hartwell Community Centre, 84 in total, under the 250 sign-off threshold. They can stay in the centre's store cupboard between our sessions.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Confirmed the catering with Fairway Catering for the training day: 12 lunch boxes delivered to the Maple Room at Hartwell Community Centre on Friday 13 November, 180. Following our supplier rules, this order stands as confirmed unless Fairway agrees to any change.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Mira Stone (Brightsmile Dental Clinic)\", \"text\": \"Priya, I'm free on Saturday 14 November and happy to run the children's brushing station at the family workshop again. Put me down for the whole morning.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"minutes\", \"from\": \"Dr Amara Osei (Brightsmile Dental Clinic)\", \"text\": \"Practice meeting notes: Q4 training day on 13 November and family workshop on 14 November both confirmed at Hartwell. Waiting room repaint scheduled for August. Dr Liu's holiday cover rota to follow.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-02\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Recall list check: 62 families are due their November recall and should be invited to the family workshop on 14 November. I'll send the reminders by SMS in the second half of October.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Drafted the SMS reminder for the 62 recall families for the November family workshop: Saturday 14 November 2026, 10:00, Maple Room at Hartwell Community Centre, free parking behind the centre. To be sent from the clinic's recall list once the October date comes round.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e12\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Nadia Bloom (MedSupply Direct)\", \"text\": \"Quote for your autumn restock: nitrile gloves 6.40 per box of 100, sterilisation pouches 11.20 per pack of 200. Valid until the end of October.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-01\", \"type\": \"email\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"All set for 13 November, Priya — I've got the Maple Room at Hartwell from 9am. I'll bring the radiography update and the new infection-control module. See you then.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e16\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"BoardCraft Supplies\", \"text\": \"Your order of three folding display boards has shipped and will be delivered to Hartwell Community Centre main reception in the week of 21 September.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"To-do: send the family workshop reminder texts to the November recall families by 24 October, so they have three weeks' notice.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Sam Whitfield (Fairway Catering)\", \"text\": \"Confirmation of your order: 12 lunch boxes for Friday 13 November, delivered to the Maple Room at Hartwell Community Centre around 12:15. Invoice to follow after delivery.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Invoice for September room hire: two evening sessions, Willow Room, 45 per session, total 90. Payment by the end of the month as usual.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Joan Park (Hartwell Community Centre)\", \"text\": \"Dear Priya, I'm afraid the Maple Room has to close for a damp refit from 15 October until the new year — the surveyors came in last week. All Maple Room bookings are being moved to the Cedar Suite on the first floor of the same building; it seats 45 and has level access via the lift. The hire fee for the Cedar Suite is 110 per session. Please let your trainers and suppliers know the new room.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e21\", \"date\": \"2026-10-10\", \"type\": \"call\", \"from\": \"Dr Ben Liu (Brightsmile Dental Clinic)\", \"text\": \"Ben called the desk: he'll swap his 11 November morning check-ups to the afternoon so he can attend the Friday training session in full.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-12\", \"type\": \"quote\", \"from\": \"Rosa Kemp (DentEdge Training)\", \"text\": \"Priya, one extra offer while I have you: I could add an infection-control refresher on Saturday 12 December, 09:30 to 12:00, in the Birch Annexe at Hartwell — the centre still has it free. Fee would be 130 for the smaller group. Let me know if you want it and I'll pencil it in.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Nadia Bloom (MedSupply Direct)\", \"text\": \"Just a reminder that our autumn quote — gloves at 6.40 a box, pouches at 11.20 a pack — runs out at the end of October if you want to restock at these prices.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Mira Stone (Brightsmile Dental Clinic)\", \"text\": \"Don't forget to send the recall families their workshop reminders — Mira says she's already had two parents asking about the date at their appointments this week.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Priya (Brightsmile Dental Clinic)\", \"text\": \"Reminder to self: this week — send the family workshop SMS reminders, check the Fairway delivery, and confirm the Christmas rota with the dentists.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Q4 staff training day with DentEdge\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"09:00\", \"place\": \"Maple Room, Hartwell Community Centre\", \"trainer\": \"Rosa Kemp\", \"fee\": \"90\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"November family recall workshop\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"10:00\", \"place\": \"Maple Room, Hartwell Community Centre\", \"run_by\": \"in-house team\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Display boards for training weekends\", \"fields\": {\"item\": \"folding display boards\", \"quantity\": \"3\", \"supplier\": \"BoardCraft Supplies\", \"delivery_place\": \"Hartwell Community Centre main reception\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Training day catering\", \"fields\": {\"item\": \"lunch boxes\", \"quantity\": \"12\", \"supplier\": \"Fairway Catering\", \"delivery_place\": \"Maple Room, Hartwell Community Centre\", \"delivery_date\": \"2026-11-13\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"November family workshop reminder\", \"fields\": {\"patients\": \"62\", \"channel\": \"SMS\", \"venue\": \"Maple Room, Hartwell Community Centre\", \"status\": \"draft\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"place\"], \"from\": \"Rosa Kemp (DentEdge Training)\", \"rule\": \"e1\"},\n  {\"record\": \"ORD-2\", \"fields\": [\"delivery_place\"], \"from\": \"Sam Whitfield (Fairway Catering)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Can you send out the November recall reminders to the families today? Use the workshop details we have on file — date, time and venue — in the SMS, and mark the reminder as sent when it goes.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"place\", \"value\": \"Cedar Suite, Hartwell Community Centre\", \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"venue\", \"value\": \"Cedar Suite, Hartwell Community Centre\", \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"status\", \"value\": \"sent\", \"stale\": [\"draft\"], \"task\": true},\n  {\"message_to\": \"November recall families (SMS)\", \"regarding\": \"EV-2\", \"says\": [\"Cedar Suite, Hartwell Community Centre\", \"Saturday 14 November 2026, 10:00\"], \"stale\": [\"Maple Room, Hartwell Community Centre\"], \"task\": true}\n ],\n \"why\": \"The Hartwell email revokes the standing Maple Room arrangement: every group session now runs in the Cedar Suite at 110. The in-house family workshop (EV-2) and its reminder draft (CL-1) can be corrected and sent by the assistant directly, so they are REVISE; the task sends the reminders with the new venue. The Rosa training day (EV-1) and the Fairway catering delivery (ORD-2, two hops via the training day) are confirmed with outside parties, so under rules e1 and e2 the assistant must ask Rosa and Sam before changing their records, not act. The display-board delivery (ORD-1) only relies on the Hartwell building itself, which the refit leaves standing, so it is KEEP and must stay untouched.\",\n \"noise_kit\": [\n  {\"kind\": \"booking\", \"topic\": \"weekly team huddle room\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"small meeting room\", \"values\": [\"Willow Room\", \"Oak Room\", \"Junction Room\"], \"place\": \"Hartwell Community Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"patient education evening\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"evening hall slot\", \"values\": [\"Willow Room\", \"Oak Room\", \"Garden Hall\"], \"place\": \"Hartwell Community Centre\"},\n  {\"kind\": \"booking\", \"topic\": \"centre parking bays\", \"counterpart\": \"Joan Park\", \"org\": \"Hartwell Community Centre\", \"item\": \"parking bay\", \"values\": [\"Bay 1\", \"Bay 2\", \"Bay 3\"], \"place\": \"Hartwell Community Centre car park\"},\n  {\"kind\": \"order\", \"topic\": \"training manuals restock\", \"counterpart\": \"Rosa Kemp\", \"org\": \"DentEdge Training\", \"item\": \"training manuals\", \"unit\": \"boxes\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Brightsmile staff room\"},\n  {\"kind\": \"order\", \"topic\": \"nitrile gloves\", \"counterpart\": \"Nadia Bloom\", \"org\": \"MedSupply Direct\", \"item\": \"nitrile gloves\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Brightsmile store cupboard\"},\n  {\"kind\": \"order\", \"topic\": \"sterilisation pouches\", \"counterpart\": \"Vic Moreau\", \"org\": \"SteriCore\", \"item\": \"sterilisation pouches\", \"unit\": \"packs\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Brightsmile sterilisation room\"},\n  {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Lena Ford\", \"org\": \"OfficePlus\", \"item\": \"printer paper\", \"unit\": \"reams\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Brightsmile front office\"},\n  {\"kind\": \"booking\", \"topic\": \"hygiene appointment slots\", \"counterpart\": \"Mira Stone\", \"org\": \"Brightsmile Dental Clinic\", \"item\": \"hygiene surgery\", \"values\": [\"Surgery 2\", \"Surgery 3\", \"Surgery 4\"], \"place\": \"Brightsmile surgeries\"},\n  {\"kind\": \"order\", \"topic\": \"staff lunch platters\", \"counterpart\": \"Marco Diaz\", \"org\": \"Fairway Catering\", \"item\": \"lunch platters\", \"unit\": \"platters\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Brightsmile staff room\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Sam Whitfield\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Brightsmile front office\"},\n  {\"kind\": \"order\", \"topic\": \"fluoride varnish\", \"counterpart\": \"Anya Reed\", \"org\": \"DentalAid Wholesale\", \"item\": \"fluoride varnish\", \"unit\": \"vials\", \"values\": [\"6\", \"10\", \"12\", \"15\"], \"place\": \"Brightsmile treatment store\"},\n  {\"kind\": \"booking\", \"topic\": \"webinar training slots\", \"counterpart\": \"Rosa Kemp\", \"org\": \"DentEdge Training\", \"item\": \"lunchtime webinar slot\", \"values\": [\"Staff room screen\", \"Meeting nook\", \"Seminar room screen\"], \"place\": \"Brightsmile staff room\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7463,
+    "completion_tokens": 4381,
+    "reasoning_tokens": 28,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02614956,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e22: an echo must come after the revoked event and before the change\n- noise topic 'webinar training slots': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Maple Room refit moves clinic sessions to the Cedar Suite",
+  "setting": "A receptionist at Brightsmile Dental Clinic, a four-dentist practice, whose assistant manages appointment books and patient records",
+  "owner": "Priya",
+  "org": "Brightsmile Dental Clinic",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Dr Amara Osei (Brightsmile Dental Clinic)",
+    "text": "Standing instruction for the front desk: before any change is made to a session that has already been confirmed with an outside trainer, we need that trainer's agreement first. No moving dates, rooms or times on confirmed training bookings without their yes.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Office rules from me: confirmed supplier orders over 150 can only be changed once the supplier has confirmed in writing, and any new order above 250 needs sign-off from Tomás Reyes, our finance lead.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Rosa Kemp (DentEdge Training)",
+    "text": "Hi Priya, happy to run your Q4 in-house training day again this autumn. I can do Friday 13 November 2026. Same format as spring: morning session for the dentists and hygienists, and I'll invoice the clinic directly. Just tell me the room and I'll add it to my calendar.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Joan Park (Hartwell Community Centre)",
+    "text": "Confirming your enquiry: the Maple Room at Hartwell Community Centre is free on Fridays and Saturdays through the autumn. Hire fee is 90 per session, tables and chairs included. The room seats 40 and has level access from the main reception.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-11",
+    "type": "note",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Our standing venue arrangement: all Brightsmile group sessions — staff training days and family recall workshops — are held in the Maple Room at Hartwell Community Centre, hire fee 90 per session, booked through centre manager Joan Park.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-14",
+    "type": "decision",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Booked Rosa Kemp from DentEdge Training for the Q4 training day on Friday 13 November 2026, 09:00 to 13:00, in the Maple Room at Hartwell Community Centre at the usual 90 hire fee. Confirmed with Rosa by email and the room with Joan Park.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Scheduled the November family recall workshop for the Saturday straight after training, Saturday 14 November 2026, 10:00 to 12:00, also in the Maple Room at Hartwell Community Centre so we keep the room over both days. Free for recalled families, run in-house by our own team.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Ordered three folding display boards from BoardCraft Supplies for the training and workshop weekends, delivered to the main reception at Hartwell Community Centre, 84 in total, under the 250 sign-off threshold. They can stay in the centre's store cupboard between our sessions.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Confirmed the catering with Fairway Catering for the training day: 12 lunch boxes delivered to the Maple Room at Hartwell Community Centre on Friday 13 November, 180. Following our supplier rules, this order stands as confirmed unless Fairway agrees to any change.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Mira Stone (Brightsmile Dental Clinic)",
+    "text": "Priya, I'm free on Saturday 14 November and happy to run the children's brushing station at the family workshop again. Put me down for the whole morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "minutes",
+    "from": "Dr Amara Osei (Brightsmile Dental Clinic)",
+    "text": "Practice meeting notes: Q4 training day on 13 November and family workshop on 14 November both confirmed at Hartwell. Waiting room repaint scheduled for August. Dr Liu's holiday cover rota to follow.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-02",
+    "type": "note",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Recall list check: 62 families are due their November recall and should be invited to the family workshop on 14 November. I'll send the reminders by SMS in the second half of October.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Drafted the SMS reminder for the 62 recall families for the November family workshop: Saturday 14 November 2026, 10:00, Maple Room at Hartwell Community Centre, free parking behind the centre. To be sent from the clinic's recall list once the October date comes round.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e12"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "Nadia Bloom (MedSupply Direct)",
+    "text": "Quote for your autumn restock: nitrile gloves 6.40 per box of 100, sterilisation pouches 11.20 per pack of 200. Valid until the end of October.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-01",
+    "type": "email",
+    "from": "Rosa Kemp (DentEdge Training)",
+    "text": "All set for 13 November, Priya — I've got the Maple Room at Hartwell from 9am. I'll bring the radiography update and the new infection-control module. See you then.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-09",
+    "type": "notice",
+    "from": "BoardCraft Supplies",
+    "text": "Your order of three folding display boards has shipped and will be delivered to Hartwell Community Centre main reception in the week of 21 September.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "To-do: send the family workshop reminder texts to the November recall families by 24 October, so they have three weeks' notice.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Sam Whitfield (Fairway Catering)",
+    "text": "Confirmation of your order: 12 lunch boxes for Friday 13 November, delivered to the Maple Room at Hartwell Community Centre around 12:15. Invoice to follow after delivery.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-06",
+    "type": "invoice",
+    "from": "Joan Park (Hartwell Community Centre)",
+    "text": "Invoice for September room hire: two evening sessions, Willow Room, 45 per session, total 90. Payment by the end of the month as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Joan Park (Hartwell Community Centre)",
+    "text": "Dear Priya, I'm afraid the Maple Room has to close for a damp refit from 15 October until the new year — the surveyors came in last week. All Maple Room bookings are being moved to the Cedar Suite on the first floor of the same building; it seats 45 and has level access via the lift. The hire fee for the Cedar Suite is 110 per session. Please let your trainers and suppliers know the new room.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-10",
+    "type": "call",
+    "from": "Dr Ben Liu (Brightsmile Dental Clinic)",
+    "text": "Ben called the desk: he'll swap his 11 November morning check-ups to the afternoon so he can attend the Friday training session in full.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-12",
+    "type": "quote",
+    "from": "Rosa Kemp (DentEdge Training)",
+    "text": "Priya, one extra offer while I have you: I could add an infection-control refresher on Saturday 12 December, 09:30 to 12:00, in the Birch Annexe at Hartwell — the centre still has it free. Fee would be 130 for the smaller group. Let me know if you want it and I'll pencil it in.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Nadia Bloom (MedSupply Direct)",
+    "text": "Just a reminder that our autumn quote — gloves at 6.40 a box, pouches at 11.20 a pack — runs out at the end of October if you want to restock at these prices.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Mira Stone (Brightsmile Dental Clinic)",
+    "text": "Don't forget to send the recall families their workshop reminders — Mira says she's already had two parents asking about the date at their appointments this week.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Priya (Brightsmile Dental Clinic)",
+    "text": "Reminder to self: this week — send the family workshop SMS reminders, check the Fairway delivery, and confirm the Christmas rota with the dentists.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Q4 staff training day with DentEdge",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "09:00",
+     "place": "Maple Room, Hartwell Community Centre",
+     "trainer": "Rosa Kemp",
+     "fee": "90",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "November family recall workshop",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "10:00",
+     "place": "Maple Room, Hartwell Community Centre",
+     "run_by": "in-house team",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Display boards for training weekends",
+    "fields": {
+     "item": "folding display boards",
+     "quantity": "3",
+     "supplier": "BoardCraft Supplies",
+     "delivery_place": "Hartwell Community Centre main reception",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Training day catering",
+    "fields": {
+     "item": "lunch boxes",
+     "quantity": "12",
+     "supplier": "Fairway Catering",
+     "delivery_place": "Maple Room, Hartwell Community Centre",
+     "delivery_date": "2026-11-13",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "November family workshop reminder",
+    "fields": {
+     "patients": "62",
+     "channel": "SMS",
+     "venue": "Maple Room, Hartwell Community Centre",
+     "status": "draft"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "place"
+    ],
+    "from": "Rosa Kemp (DentEdge Training)",
+    "rule": "e1"
+   },
+   {
+    "record": "ORD-2",
+    "fields": [
+     "delivery_place"
+    ],
+    "from": "Sam Whitfield (Fairway Catering)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Can you send out the November recall reminders to the families today? Use the workshop details we have on file — date, time and venue — in the SMS, and mark the reminder as sent when it goes.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "place",
+    "value": "Cedar Suite, Hartwell Community Centre",
+    "stale": [
+     "Maple Room, Hartwell Community Centre"
+    ],
+    "task": true
+   },
+   {
+    "record": "CL-1",
+    "field": "venue",
+    "value": "Cedar Suite, Hartwell Community Centre",
+    "stale": [
+     "Maple Room, Hartwell Community Centre"
+    ],
+    "task": true
+   },
+   {
+    "record": "CL-1",
+    "field": "status",
+    "value": "sent",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "November recall families (SMS)",
+    "regarding": "EV-2",
+    "says": [
+     "Cedar Suite, Hartwell Community Centre",
+     "Saturday 14 November 2026, 10:00"
+    ],
+    "stale": [
+     "Maple Room, Hartwell Community Centre"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The Hartwell email revokes the standing Maple Room arrangement: every group session now runs in the Cedar Suite at 110. The in-house family workshop (EV-2) and its reminder draft (CL-1) can be corrected and sent by the assistant directly, so they are REVISE; the task sends the reminders with the new venue. The Rosa training day (EV-1) and the Fairway catering delivery (ORD-2, two hops via the training day) are confirmed with outside parties, so under rules e1 and e2 the assistant must ask Rosa and Sam before changing their records, not act. The display-board delivery (ORD-1) only relies on the Hartwell building itself, which the refit leaves standing, so it is KEEP and must stay untouched.",
+  "noise_kit": [
+   {
+    "kind": "booking",
+    "topic": "weekly team huddle room",
+    "counterpart": "Joan Park",
+    "org": "Hartwell Community Centre",
+    "item": "small meeting room",
+    "values": [
+     "Willow Room",
+     "Oak Room",
+     "Junction Room"
+    ],
+    "place": "Hartwell Community Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "patient education evening",
+    "counterpart": "Joan Park",
+    "org": "Hartwell Community Centre",
+    "item": "evening hall slot",
+    "values": [
+     "Willow Room",
+     "Oak Room",
+     "Garden Hall"
+    ],
+    "place": "Hartwell Community Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "centre parking bays",
+    "counterpart": "Joan Park",
+    "org": "Hartwell Community Centre",
+    "item": "parking bay",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Bay 3"
+    ],
+    "place": "Hartwell Community Centre car park"
+   },
+   {
+    "kind": "order",
+    "topic": "training manuals restock",
+    "counterpart": "Rosa Kemp",
+    "org": "DentEdge Training",
+    "item": "training manuals",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Brightsmile staff room"
+   },
+   {
+    "kind": "order",
+    "topic": "nitrile gloves",
+    "counterpart": "Nadia Bloom",
+    "org": "MedSupply Direct",
+    "item": "nitrile gloves",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Brightsmile store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "sterilisation pouches",
+    "counterpart": "Vic Moreau",
+    "org": "SteriCore",
+    "item": "sterilisation pouches",
+    "unit": "packs",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Brightsmile sterilisation room"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper",
+    "counterpart": "Lena Ford",
+    "org": "OfficePlus",
+    "item": "printer paper",
+    "unit": "reams",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Brightsmile front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "hygiene appointment slots",
+    "counterpart": "Mira Stone",
+    "org": "Brightsmile Dental Clinic",
+    "item": "hygiene surgery",
+    "values": [
+     "Surgery 2",
+     "Surgery 3",
+     "Surgery 4"
+    ],
+    "place": "Brightsmile surgeries"
+   },
+   {
+    "kind": "order",
+    "topic": "staff lunch platters",
+    "counterpart": "Marco Diaz",
+    "org": "Fairway Catering",
+    "item": "lunch platters",
+    "unit": "platters",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Brightsmile staff room"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Sam Whitfield",
+    "org": "Fairway Catering",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Brightsmile front office"
+   },
+   {
+    "kind": "order",
+    "topic": "fluoride varnish",
+    "counterpart": "Anya Reed",
+    "org": "DentalAid Wholesale",
+    "item": "fluoride varnish",
+    "unit": "vials",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "15"
+    ],
+    "place": "Brightsmile treatment store"
+   },
+   {
+    "kind": "booking",
+    "topic": "webinar training slots",
+    "counterpart": "Rosa Kemp",
+    "org": "DentEdge Training",
+    "item": "lunchtime webinar slot",
+    "values": [
+     "Staff room screen",
+     "Meeting nook",
+     "Seminar room screen"
+    ],
+    "place": "Brightsmile staff room"
+   }
+  ],
+  "id": "G100-1-03",
+  "tier": 100,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state omits consent requests to Rosa for EV-1 and Sam for ORD-2, despite both being marked ASK; leaving their records unchanged does not satisfy the requirement to ask. The change also fixes the room hire fee at 110, but the expected state and consent map leave EV-1's stale fee of 90 unaddressed.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state omits consent requests to Rosa for EV-1 and Sam for ORD-2, despite both being marked ASK; leaving their records unchanged does not satisfy the requirement to ask. The change also fixes the room hire fee at 110, but the expected state and consent map leave EV-1's stale fee of 90 unaddressed."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4077,
+    "completion_tokens": 230,
+    "reasoning_tokens": 122,
+    "cached_tokens": 0
+   },
+   "cost": 0.062455,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd052f0dab66b1011fe41b621195ad3f87a01d7c60bef2318c9305306a20c0d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e20) revokes the standing Maple Room arrangement (e5). E0010 is two hops from it via E0006, which gives the required REVISE-two-hops-away case, and the ASK and KEEP marks match the consent map and rules e1 and e2. The core has 25 events, 5 decisions, and the change falls 12 days before the task day with 5 core events after it. The Cedar Suite's 45-seat capacity against 62 invited families is not addressed, but it does not affect the scored state.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e20) revokes the standing Maple Room arrangement (e5). E0010 is two hops from it via E0006, which gives the required REVISE-two-hops-away case, and the ASK and KEEP marks match the consent map and rules e1 and e2. The core has 25 events, 5 decisions, and the change falls 12 days before the task day with 5 core events after it. The Cedar Suite's 45-seat capacity against 62 invited families is not addressed, but it does not affect the scored state."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6021,
+    "completion_tokens": 2346,
+    "reasoning_tokens": 2124,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017751,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd052f0dab66b1011fe41b621195ad3f87a01d7c60bef2318c9305306a20c0d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the standing Maple Room fact; EV-2 and CL-1 are in-house so REVISE with values fixed by the change, EV-1 (one hop) and ORD-2 (two hops via the training day) are ASK under rules e1/e2 which match the consent map, and ORD-1 correctly stays untouched. The task obliges sending the SMS with on-file details without naming the change. Tier met: 25 core events, 5 core decisions, change 12 days before the task day with 5 core events after it, and it sits at event 88 of 100 with routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the standing Maple Room fact; EV-2 and CL-1 are in-house so REVISE with values fixed by the change, EV-1 (one hop) and ORD-2 (two hops via the training day) are ASK under rules e1/e2 which match the consent map, and ORD-1 correctly stays untouched. The task obliges sending the SMS with on-file details without naming the change. Tier met: 25 core events, 5 core decisions, change 12 days before the task day with 5 core events after it, and it sits at event 88 of 100 with routine events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 4168,
+    "completion_tokens": 487,
+    "reasoning_tokens": 297,
+    "cached_tokens": 0
+   },
+   "cost": 0.019809,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd052f0dab66b1011fe41b621195ad3f87a01d7c60bef2318c9305306a20c0d9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

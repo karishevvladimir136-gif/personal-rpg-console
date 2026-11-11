@@ -1,0 +1,608 @@
+{
+ "id": "G500-4-08",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 7,
+ "setting": "An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories",
+ "prompt_sha256": "cc0f0d5e09d65f42f32b2d9f0ed36e83cc25b02d27fb28b11a51fed019948386",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Two Sparks on the Old Register\",\n \"setting\": \"An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories\",\n \"owner\": \"Marta\",\n \"org\": \"Volt & Vine\",\n \"now\": \"2026-10-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule from me: any customer quote above 800 needs my written sign-off before it goes out. Under 800, send it straight away.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Safety policy: every property listed on the county pre-1970 wiring register gets a two-person crew, and the schedule entry for such a job must name both electricians. No solo visits at registered properties, ever.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Hello, Deborah here from Old Mill Cottage on Mill Lane. The county has my house on the pre-1970 wiring register, and I'd like the old consumer unit replaced this autumn. Can you take it on?\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas Vega\", \"text\": \"Marta, I'm free all through the week of 9 November and my inspection and testing certificate is current until mid-2027, so I can act as second spark on any register-listed jobs then.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the consumer-unit replacement at Old Mill Cottage for Thursday 12 November, 08:30 start. Because the house is on the pre-1970 register it's a two-person job, so I put myself and Tomas on the booking, since he's free that week and his certificate is current.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Quotation from Brightcore: 18-way metal consumer units at 96 each, ex VAT, from stock.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered two 18-way metal consumer units from Brightcore at 96 each, one for the Old Mill Cottage job in November and one for the shelf.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Sandhu (Harmonia Bakery)\", \"text\": \"We'd like the oven circuit in the bakery kitchen upgraded. Your estimate of 640 sounds fine — when can you do it?\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Sent Priya the Harmonia Bakery oven circuit quote at 640 — no sign-off needed since it's under my 800 limit — and booked the job for Thursday 20 August at 09:00.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Brightcore price update: 2.5mm twin and earth cable at 60 per 100-metre drum.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed a stock order with Brightcore for two drums of 2.5mm twin and earth cable at 60 a drum to top up the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Opened a wiring history for Deborah Nash at Old Mill Cottage: the house is on the pre-1970 register, the wiring is 1960s rubber, and a full rewire should be advised within two years.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-22\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Heads up, I'm away on a training course from 26 October to 2 November, so keep me off the schedule for those two weeks.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Monthly workshop minutes: PAT testing on the power tools is done, first-aid kit restocked, van serviced.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Mornings suit me best for the November job. The side gate code is 4471 if you need to get into the back garden.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Colin Bright (Gable House)\", \"text\": \"I'm buying Gable House on Church View Lane and need an EICR for the mortgage. The house was rewired in 1998 with PVC cable, so nothing ancient.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Opened a customer record for Colin Bright at Gable House noting the 1998 PVC wiring from his email.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"CL-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the EICR inspection at Gable House for Tuesday 6 October at 09:30, drawing on the customer record and Colin's request.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e17\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"quote\", \"from\": \"Ana Beck (Partline Depot)\", \"text\": \"Partline Depot quotation: Wago connectors at 22 per box of fifty.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered six boxes of fifty Wago connectors from Partline Depot at 22 a box for the van stock.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"County Council\", \"text\": \"Register notice: Fern Hollow, 14 Rope Walk, has been added to the county pre-1970 wiring register with immediate effect. Registered properties require a two-person crew for electrical work.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-20\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Confirming I'm on the Old Mill Cottage job with you on Thursday 12 November, 08:30 start, both of us on site as planned.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Colin Bright (Gable House)\", \"text\": \"Thanks for booking the inspection — the side door will be unlocked from 09:00 on the day.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-06\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Job notes: EICR completed at Gable House, satisfactory result, certificate to be filed. Consumer unit at Old Mill Cottage job still on track for November.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Putting this in plain words so it's on file: any job at a house on the old-wiring register is a two-person job. When you schedule one, both electricians' names go on the booking, no exceptions, and nobody works solo at a registered property.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Price update from Brightcore: 18-way metal consumer units are now 104 each, ex VAT.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-20\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: send Deborah at Old Mill Cottage a reminder about the November job a week before the date.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Quick question about the 12 November visit — will it be one electrician or two coming? I want to make sure I leave the drive clear.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-27\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"I've reserved van A for the Old Mill Cottage job on the 12th, tools loaded the day before.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Old Mill Cottage consumer unit replacement\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"08:30\", \"address\": \"Old Mill Cottage, Mill Lane\", \"crew\": \"Marta and Tomas\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harmonia Bakery oven circuit upgrade\", \"fields\": {\"date\": \"2026-08-20\", \"time\": \"09:00\", \"address\": \"Harmonia Bakery, 3 Cornmarket\", \"crew\": \"Marta\", \"status\": \"completed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Gable House EICR inspection\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"09:30\", \"address\": \"Gable House, Church View Lane\", \"crew\": \"Marta\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Brightcore consumer units\", \"fields\": {\"supplier\": \"Brightcore Supplies\", \"item\": \"18-way metal consumer unit\", \"quantity\": \"2\", \"unit_price\": \"96\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Brightcore cable stock\", \"fields\": {\"supplier\": \"Brightcore Supplies\", \"item\": \"2.5mm twin and earth cable drum\", \"quantity\": \"2\", \"unit_price\": \"60\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Partline Wago connectors\", \"fields\": {\"supplier\": \"Partline Depot\", \"item\": \"Wago connector box of 50\", \"quantity\": \"6\", \"unit_price\": \"22\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Deborah Nash — Old Mill Cottage\", \"fields\": {\"customer\": \"Deborah Nash\", \"property\": \"Old Mill Cottage, Mill Lane\", \"wiring\": \"1960s rubber, on pre-1970 register\", \"rewire_due\": \"2028\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Colin Bright — Gable House\", \"fields\": {\"customer\": \"Colin Bright\", \"property\": \"Gable House, Church View Lane\", \"wiring\": \"1998 PVC\", \"last_eicr\": \"2026-10-06\", \"status\": \"active\"}}\n ],\n \"consent\": [],\n \"task\": \"Please confirm the Old Mill Cottage consumer-unit replacement with Deborah — send her a confirmation for Thursday 12 November with the 08:30 arrival, both electricians' names, and mark the booking confirmed.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true},\n  {\"message_to\": \"Deborah Nash\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-12\", \"08:30\", \"Marta and Tomas\", \"two electricians\"], \"stale\": [\"one electrician\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 10 October instruction merely restates the existing two-person-crew rule in other words, so no decision is touched and nothing in the plan changes. The right final state is only the task's own act — EV-1 marked confirmed and a confirmation to Deborah carrying the 12 November date, the 08:30 arrival and the two-person crew of Marta and Tomas, exactly as booked under the rule that has stood since June. The Fern Hollow register notice and the new Brightcore unit price are distractors; the booked job, crew and order stand as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Brightcore cable restock\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"2.5mm twin and earth cable drum\", \"unit\": \"drum\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Brightcore consumer unit stock\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"18-way metal consumer unit\", \"unit\": \"unit\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Old Mill Cottage alarm test visits\", \"counterpart\": \"Deborah Nash\", \"org\": \"Old Mill Cottage\", \"item\": \"smoke alarm test visit\", \"values\": [\"kitchen\", \"hallway\", \"landing\"], \"place\": \"Mill Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"Harmonia bakery circuit checks\", \"counterpart\": \"Priya Sandhu\", \"org\": \"Harmonia Bakery\", \"item\": \"appliance circuit check\", \"values\": [\"bakery front\", \"bakery kitchen\", \"storeroom\"], \"place\": \"3 Cornmarket\"},\n  {\"kind\": \"order\", \"topic\": \"Partline connector restock\", \"counterpart\": \"Ana Beck\", \"org\": \"Partline Depot\", \"item\": \"Wago connector box of 50\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Lumen downlight stock\", \"counterpart\": \"Lukas Meyer\", \"org\": \"Lumen Trade\", \"item\": \"LED downlight pack\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Gable House PAT testing\", \"counterpart\": \"Colin Bright\", \"org\": \"Gable House\", \"item\": \"PAT testing session\", \"values\": [\"garage\", \"kitchen\", \"study\"], \"place\": \"Church View Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"crew van reservation\", \"counterpart\": \"Tomas Vega\", \"org\": \"Volt & Vine\", \"item\": \"crew van booking\", \"values\": [\"van A\", \"van B\"], \"place\": \"depot\"},\n  {\"kind\": \"order\", \"topic\": \"trunking stock order\", \"counterpart\": \"Ana Beck\", \"org\": \"Partline Depot\", \"item\": \"PVC trunking 3m length\", \"unit\": \"length\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"fuse assortment order\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"fuse assortment box\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"parish hall inspection visits\", \"counterpart\": \"Iris Kellam\", \"org\": \"St Bridget's Parish Hall\", \"item\": \"quarterly inspection visit\", \"values\": [\"main hall\", \"kitchen\", \"store room\"], \"place\": \"St Bridget's Lane\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3209,
+    "completion_tokens": 8823,
+    "reasoning_tokens": 4731,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03973876,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Two Sparks on the Old Register\",\n \"setting\": \"An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories\",\n \"owner\": \"Marta\",\n \"org\": \"Volt & Vine\",\n \"now\": \"2026-10-28\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule from me: any customer quote above 800 needs my written sign-off before it goes out. Under 800, send it straight away.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Safety policy: every property listed on the county pre-1970 wiring register gets a two-person crew, and the schedule entry for such a job must name both electricians. No solo visits at registered properties, ever.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Hello, Deborah here from Old Mill Cottage on Mill Lane. The county has my house on the pre-1970 wiring register, and I'd like the old consumer unit replaced this autumn. Can you take it on?\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas Vega\", \"text\": \"Marta, I'm free all through the week of 9 November and my inspection and testing certificate is current until mid-2027, so I can act as second spark on any register-listed jobs then.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the consumer-unit replacement at Old Mill Cottage for Thursday 12 November, 08:30 start. Because the house is on the pre-1970 register it's a two-person job, so I put myself and Tomas on the booking, since he's free that week and his certificate is current.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Quotation from Brightcore: 18-way metal consumer units at 96 each, ex VAT, from stock.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered two 18-way metal consumer units from Brightcore at 96 each, one for the Old Mill Cottage job in November and one for the shelf.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Sandhu (Harmonia Bakery)\", \"text\": \"We'd like the oven circuit in the bakery kitchen upgraded. Your estimate of 640 sounds fine — when can you do it?\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Sent Priya the Harmonia Bakery oven circuit quote at 640 — no sign-off needed since it's under my 800 limit — and booked the job for Thursday 20 August at 09:00.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-09\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Brightcore price update: 2.5mm twin and earth cable at 60 per 100-metre drum.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed a stock order with Brightcore for two drums of 2.5mm twin and earth cable at 60 a drum to top up the workshop.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Opened a wiring history for Deborah Nash at Old Mill Cottage: the house is on the pre-1970 register, the wiring is 1960s rubber, and a full rewire should be advised within two years.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-22\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Heads up, I'm away on a training course from 26 October to 2 November, so keep me off the schedule for those two weeks.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Monthly workshop minutes: PAT testing on the power tools is done, first-aid kit restocked, van serviced.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Mornings suit me best for the November job. The side gate code is 4471 if you need to get into the back garden.\", \"role\": \"fact\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Colin Bright (Gable House)\", \"text\": \"I'm buying Gable House on Church View Lane and need an EICR for the mortgage. The house was rewired in 1998 with PVC cable, so nothing ancient.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Opened a customer record for Colin Bright at Gable House noting the 1998 PVC wiring from his email.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"CL-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the EICR inspection at Gable House for Tuesday 6 October at 09:30, drawing on the customer record and Colin's request.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e17\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"quote\", \"from\": \"Ana Beck (Partline Depot)\", \"text\": \"Partline Depot quotation: Wago connectors at 22 per box of fifty.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered six boxes of fifty Wago connectors from Partline Depot at 22 a box for the van stock.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"County Council\", \"text\": \"Register notice: Fern Hollow, 14 Rope Walk, has been added to the county pre-1970 wiring register with immediate effect. Registered properties require a two-person crew for electrical work.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-20\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"Confirming I'm on the Old Mill Cottage job with you on Thursday 12 November, 08:30 start, both of us on site as planned.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Colin Bright (Gable House)\", \"text\": \"Thanks for booking the inspection — the side door will be unlocked from 09:00 on the day.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-06\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Job notes: EICR completed at Gable House, satisfactory result, certificate to be filed. Consumer unit at Old Mill Cottage job still on track for November.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Putting this in plain words so it's on file: any job at a house on the old-wiring register is a two-person job. When you schedule one, both electricians' names go on the booking, no exceptions, and nobody works solo at a registered property.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-14\", \"type\": \"quote\", \"from\": \"Sam Okoro (Brightcore Supplies)\", \"text\": \"Price update from Brightcore: 18-way metal consumer units are now 104 each, ex VAT.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-20\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: send Deborah at Old Mill Cottage a reminder about the November job a week before the date.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"Deborah Nash (Old Mill Cottage)\", \"text\": \"Quick question about the 12 November visit — will it be one electrician or two coming? I want to make sure I leave the drive clear.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-27\", \"type\": \"message\", \"from\": \"Tomas Vega\", \"text\": \"I've reserved van A for the Old Mill Cottage job on the 12th, tools loaded the day before.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Old Mill Cottage consumer unit replacement\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"08:30\", \"address\": \"Old Mill Cottage, Mill Lane\", \"crew\": \"Marta and Tomas\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harmonia Bakery oven circuit upgrade\", \"fields\": {\"date\": \"2026-08-20\", \"time\": \"09:00\", \"address\": \"Harmonia Bakery, 3 Cornmarket\", \"crew\": \"Marta\", \"status\": \"completed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Gable House EICR inspection\", \"fields\": {\"date\": \"2026-10-06\", \"time\": \"09:30\", \"address\": \"Gable House, Church View Lane\", \"crew\": \"Marta\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Brightcore consumer units\", \"fields\": {\"supplier\": \"Brightcore Supplies\", \"item\": \"18-way metal consumer unit\", \"quantity\": \"2\", \"unit_price\": \"96\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Brightcore cable stock\", \"fields\": {\"supplier\": \"Brightcore Supplies\", \"item\": \"2.5mm twin and earth cable drum\", \"quantity\": \"2\", \"unit_price\": \"60\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Partline Wago connectors\", \"fields\": {\"supplier\": \"Partline Depot\", \"item\": \"Wago connector box of 50\", \"quantity\": \"6\", \"unit_price\": \"22\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Deborah Nash — Old Mill Cottage\", \"fields\": {\"customer\": \"Deborah Nash\", \"property\": \"Old Mill Cottage, Mill Lane\", \"wiring\": \"1960s rubber, on pre-1970 register\", \"rewire_due\": \"2028\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Colin Bright — Gable House\", \"fields\": {\"customer\": \"Colin Bright\", \"property\": \"Gable House, Church View Lane\", \"wiring\": \"1998 PVC\", \"last_eicr\": \"2026-10-06\", \"status\": \"active\"}}\n ],\n \"consent\": [],\n \"task\": \"Please confirm the Old Mill Cottage consumer-unit replacement with Deborah — send her a confirmation for Thursday 12 November with the 08:30 arrival, both electricians' names, and mark the booking confirmed.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true},\n  {\"message_to\": \"Deborah Nash\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-12\", \"08:30\", \"Marta and Tomas\", \"two electricians\"], \"stale\": [\"one electrician\"], \"task\": true}\n ],\n \"why\": \"This is a control: the 10 October instruction merely restates the existing two-person-crew rule in other words, so no decision is touched and nothing in the plan changes. The right final state is only the task's own act — EV-1 marked confirmed and a confirmation to Deborah carrying the 12 November date, the 08:30 arrival and the two-person crew of Marta and Tomas, exactly as booked under the rule that has stood since June. The Fern Hollow register notice and the new Brightcore unit price are distractors; the booked job, crew and order stand as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Brightcore cable restock\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"2.5mm twin and earth cable drum\", \"unit\": \"drum\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Brightcore consumer unit stock\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"18-way metal consumer unit\", \"unit\": \"unit\", \"values\": [\"1\", \"2\", \"4\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Old Mill Cottage alarm test visits\", \"counterpart\": \"Deborah Nash\", \"org\": \"Old Mill Cottage\", \"item\": \"smoke alarm test visit\", \"values\": [\"kitchen\", \"hallway\", \"landing\"], \"place\": \"Mill Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"Harmonia bakery circuit checks\", \"counterpart\": \"Priya Sandhu\", \"org\": \"Harmonia Bakery\", \"item\": \"appliance circuit check\", \"values\": [\"bakery front\", \"bakery kitchen\", \"storeroom\"], \"place\": \"3 Cornmarket\"},\n  {\"kind\": \"order\", \"topic\": \"Partline connector restock\", \"counterpart\": \"Ana Beck\", \"org\": \"Partline Depot\", \"item\": \"Wago connector box of 50\", \"unit\": \"box\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Lumen downlight stock\", \"counterpart\": \"Lukas Meyer\", \"org\": \"Lumen Trade\", \"item\": \"LED downlight pack\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Gable House PAT testing\", \"counterpart\": \"Colin Bright\", \"org\": \"Gable House\", \"item\": \"PAT testing session\", \"values\": [\"garage\", \"kitchen\", \"study\"], \"place\": \"Church View Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"crew van reservation\", \"counterpart\": \"Tomas Vega\", \"org\": \"Volt & Vine\", \"item\": \"crew van booking\", \"values\": [\"van A\", \"van B\", \"van C\"], \"place\": \"depot\"},\n  {\"kind\": \"order\", \"topic\": \"trunking stock order\", \"counterpart\": \"Ana Beck\", \"org\": \"Partline Depot\", \"item\": \"PVC trunking 3m length\", \"unit\": \"length\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"workshop\"},\n  {\"kind\": \"order\", \"topic\": \"fuse assortment order\", \"counterpart\": \"Sam Okoro\", \"org\": \"Brightcore Supplies\", \"item\": \"fuse assortment box\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"van stock\"},\n  {\"kind\": \"booking\", \"topic\": \"parish hall inspection visits\", \"counterpart\": \"Iris Kellam\", \"org\": \"St Bridget's Parish Hall\", \"item\": \"quarterly inspection visit\", \"values\": [\"main hall\", \"kitchen\", \"store room\"], \"place\": \"St Bridget's Lane\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7344,
+    "completion_tokens": 4109,
+    "reasoning_tokens": 13,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0247132,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'crew van reservation': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Two Sparks on the Old Register",
+  "setting": "An electrician running Volt & Vine whose assistant logs job quotes, certifications, and customer wiring histories",
+  "owner": "Marta",
+  "org": "Volt & Vine",
+  "now": "2026-10-28",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule from me: any customer quote above 800 needs my written sign-off before it goes out. Under 800, send it straight away.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Safety policy: every property listed on the county pre-1970 wiring register gets a two-person crew, and the schedule entry for such a job must name both electricians. No solo visits at registered properties, ever.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Deborah Nash (Old Mill Cottage)",
+    "text": "Hello, Deborah here from Old Mill Cottage on Mill Lane. The county has my house on the pre-1970 wiring register, and I'd like the old consumer unit replaced this autumn. Can you take it on?",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Tomas Vega",
+    "text": "Marta, I'm free all through the week of 9 November and my inspection and testing certificate is current until mid-2027, so I can act as second spark on any register-listed jobs then.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the consumer-unit replacement at Old Mill Cottage for Thursday 12 November, 08:30 start. Because the house is on the pre-1970 register it's a two-person job, so I put myself and Tomas on the booking, since he's free that week and his certificate is current.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-22",
+    "type": "quote",
+    "from": "Sam Okoro (Brightcore Supplies)",
+    "text": "Quotation from Brightcore: 18-way metal consumer units at 96 each, ex VAT, from stock.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered two 18-way metal consumer units from Brightcore at 96 each, one for the Old Mill Cottage job in November and one for the shelf.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Priya Sandhu (Harmonia Bakery)",
+    "text": "We'd like the oven circuit in the bakery kitchen upgraded. Your estimate of 640 sounds fine — when can you do it?",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Sent Priya the Harmonia Bakery oven circuit quote at 640 — no sign-off needed since it's under my 800 limit — and booked the job for Thursday 20 August at 09:00.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e8"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-09",
+    "type": "quote",
+    "from": "Sam Okoro (Brightcore Supplies)",
+    "text": "Brightcore price update: 2.5mm twin and earth cable at 60 per 100-metre drum.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Placed a stock order with Brightcore for two drums of 2.5mm twin and earth cable at 60 a drum to top up the workshop.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Opened a wiring history for Deborah Nash at Old Mill Cottage: the house is on the pre-1970 register, the wiring is 1960s rubber, and a full rewire should be advised within two years.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-22",
+    "type": "message",
+    "from": "Tomas Vega",
+    "text": "Heads up, I'm away on a training course from 26 October to 2 November, so keep me off the schedule for those two weeks.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-01",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Monthly workshop minutes: PAT testing on the power tools is done, first-aid kit restocked, van serviced.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Deborah Nash (Old Mill Cottage)",
+    "text": "Mornings suit me best for the November job. The side gate code is 4471 if you need to get into the back garden.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Colin Bright (Gable House)",
+    "text": "I'm buying Gable House on Church View Lane and need an EICR for the mortgage. The house was rewired in 1998 with PVC cable, so nothing ancient.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Opened a customer record for Colin Bright at Gable House noting the 1998 PVC wiring from his email.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the EICR inspection at Gable House for Tuesday 6 October at 09:30, drawing on the customer record and Colin's request.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e17"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-28",
+    "type": "quote",
+    "from": "Ana Beck (Partline Depot)",
+    "text": "Partline Depot quotation: Wago connectors at 22 per box of fifty.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered six boxes of fifty Wago connectors from Partline Depot at 22 a box for the van stock.",
+    "role": "decision",
+    "rests_on": [
+     "e19"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "notice",
+    "from": "County Council",
+    "text": "Register notice: Fern Hollow, 14 Rope Walk, has been added to the county pre-1970 wiring register with immediate effect. Registered properties require a two-person crew for electrical work.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-20",
+    "type": "message",
+    "from": "Tomas Vega",
+    "text": "Confirming I'm on the Old Mill Cottage job with you on Thursday 12 November, 08:30 start, both of us on site as planned.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Colin Bright (Gable House)",
+    "text": "Thanks for booking the inspection — the side door will be unlocked from 09:00 on the day.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-06",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Job notes: EICR completed at Gable House, satisfactory result, certificate to be filed. Consumer unit at Old Mill Cottage job still on track for November.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-10",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Putting this in plain words so it's on file: any job at a house on the old-wiring register is a two-person job. When you schedule one, both electricians' names go on the booking, no exceptions, and nobody works solo at a registered property.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-14",
+    "type": "quote",
+    "from": "Sam Okoro (Brightcore Supplies)",
+    "text": "Price update from Brightcore: 18-way metal consumer units are now 104 each, ex VAT.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-20",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: send Deborah at Old Mill Cottage a reminder about the November job a week before the date.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-24",
+    "type": "email",
+    "from": "Deborah Nash (Old Mill Cottage)",
+    "text": "Quick question about the 12 November visit — will it be one electrician or two coming? I want to make sure I leave the drive clear.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-27",
+    "type": "message",
+    "from": "Tomas Vega",
+    "text": "I've reserved van A for the Old Mill Cottage job on the 12th, tools loaded the day before.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Old Mill Cottage consumer unit replacement",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "08:30",
+     "address": "Old Mill Cottage, Mill Lane",
+     "crew": "Marta and Tomas",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harmonia Bakery oven circuit upgrade",
+    "fields": {
+     "date": "2026-08-20",
+     "time": "09:00",
+     "address": "Harmonia Bakery, 3 Cornmarket",
+     "crew": "Marta",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Gable House EICR inspection",
+    "fields": {
+     "date": "2026-10-06",
+     "time": "09:30",
+     "address": "Gable House, Church View Lane",
+     "crew": "Marta",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Brightcore consumer units",
+    "fields": {
+     "supplier": "Brightcore Supplies",
+     "item": "18-way metal consumer unit",
+     "quantity": "2",
+     "unit_price": "96",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Brightcore cable stock",
+    "fields": {
+     "supplier": "Brightcore Supplies",
+     "item": "2.5mm twin and earth cable drum",
+     "quantity": "2",
+     "unit_price": "60",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Partline Wago connectors",
+    "fields": {
+     "supplier": "Partline Depot",
+     "item": "Wago connector box of 50",
+     "quantity": "6",
+     "unit_price": "22",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Deborah Nash — Old Mill Cottage",
+    "fields": {
+     "customer": "Deborah Nash",
+     "property": "Old Mill Cottage, Mill Lane",
+     "wiring": "1960s rubber, on pre-1970 register",
+     "rewire_due": "2028",
+     "status": "active"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Colin Bright — Gable House",
+    "fields": {
+     "customer": "Colin Bright",
+     "property": "Gable House, Church View Lane",
+     "wiring": "1998 PVC",
+     "last_eicr": "2026-10-06",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [],
+  "task": "Please confirm the Old Mill Cottage consumer-unit replacement with Deborah — send her a confirmation for Thursday 12 November with the 08:30 arrival, both electricians' names, and mark the booking confirmed.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Deborah Nash",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-12",
+     "08:30",
+     "Marta and Tomas",
+     "two electricians"
+    ],
+    "stale": [
+     "one electrician"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the 10 October instruction merely restates the existing two-person-crew rule in other words, so no decision is touched and nothing in the plan changes. The right final state is only the task's own act — EV-1 marked confirmed and a confirmation to Deborah carrying the 12 November date, the 08:30 arrival and the two-person crew of Marta and Tomas, exactly as booked under the rule that has stood since June. The Fern Hollow register notice and the new Brightcore unit price are distractors; the booked job, crew and order stand as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Brightcore cable restock",
+    "counterpart": "Sam Okoro",
+    "org": "Brightcore Supplies",
+    "item": "2.5mm twin and earth cable drum",
+    "unit": "drum",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "Brightcore consumer unit stock",
+    "counterpart": "Sam Okoro",
+    "org": "Brightcore Supplies",
+    "item": "18-way metal consumer unit",
+    "unit": "unit",
+    "values": [
+     "1",
+     "2",
+     "4"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Old Mill Cottage alarm test visits",
+    "counterpart": "Deborah Nash",
+    "org": "Old Mill Cottage",
+    "item": "smoke alarm test visit",
+    "values": [
+     "kitchen",
+     "hallway",
+     "landing"
+    ],
+    "place": "Mill Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "Harmonia bakery circuit checks",
+    "counterpart": "Priya Sandhu",
+    "org": "Harmonia Bakery",
+    "item": "appliance circuit check",
+    "values": [
+     "bakery front",
+     "bakery kitchen",
+     "storeroom"
+    ],
+    "place": "3 Cornmarket"
+   },
+   {
+    "kind": "order",
+    "topic": "Partline connector restock",
+    "counterpart": "Ana Beck",
+    "org": "Partline Depot",
+    "item": "Wago connector box of 50",
+    "unit": "box",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "Lumen downlight stock",
+    "counterpart": "Lukas Meyer",
+    "org": "Lumen Trade",
+    "item": "LED downlight pack",
+    "unit": "pack",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Gable House PAT testing",
+    "counterpart": "Colin Bright",
+    "org": "Gable House",
+    "item": "PAT testing session",
+    "values": [
+     "garage",
+     "kitchen",
+     "study"
+    ],
+    "place": "Church View Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "crew van reservation",
+    "counterpart": "Tomas Vega",
+    "org": "Volt & Vine",
+    "item": "crew van booking",
+    "values": [
+     "van A",
+     "van B",
+     "van C"
+    ],
+    "place": "depot"
+   },
+   {
+    "kind": "order",
+    "topic": "trunking stock order",
+    "counterpart": "Ana Beck",
+    "org": "Partline Depot",
+    "item": "PVC trunking 3m length",
+    "unit": "length",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "fuse assortment order",
+    "counterpart": "Sam Okoro",
+    "org": "Brightcore Supplies",
+    "item": "fuse assortment box",
+    "unit": "box",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "van stock"
+   },
+   {
+    "kind": "booking",
+    "topic": "parish hall inspection visits",
+    "counterpart": "Iris Kellam",
+    "org": "St Bridget's Parish Hall",
+    "item": "quarterly inspection visit",
+    "values": [
+     "main hall",
+     "kitchen",
+     "store room"
+    ],
+    "place": "St Bridget's Lane"
+   }
+  ],
+  "id": "G500-4-08",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

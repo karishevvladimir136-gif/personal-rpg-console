@@ -1,0 +1,673 @@
+{
+ "id": "G500-3-04",
+ "writer": "glm",
+ "tier": 500,
+ "class": 3,
+ "idx": 3,
+ "setting": "A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes",
+ "prompt_sha256": "07f4e23c7d95cd8bce868d14e275d39438f4fa45a84e302a779a747326ed4ecf",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Moved settlement conference, chained prep session and interpreter\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Marion\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Intake note: new divorce matter for Ed Doyle, case HAR-2026-114, opposing party Priya Doyle. Ed's first language is Portuguese, so an interpreter attends every client meeting with him.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Confirming my terms: Portuguese interpreting at 180 per session, evening slots from 17:00 work well for me. Happy to support Ed Doyle's meetings.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marion\", \"text\": \"Standing policy: any confirmed booking with an outside contractor — interpreters, court reporters, copy services — is never moved or cancelled without that contractor's written agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marion\", \"text\": \"Two house rules: court dates in the schedule are only ever updated from a notice signed by the Harbor County clerk of court, and every change to an appointment agreed with a client is confirmed to that client in writing within the same week.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Farah Nasser\", \"text\": \"Thanks for fitting me in — I can come to the office on Friday 19 June 2026 at 11:00 to talk about my divorce.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Farah Nasser's intake meeting for Friday 19 June 2026 at 11:00 at the office, as she proposed.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Yuki Tan (Bayline Court Reporting)\", \"text\": \"Our deposition transcription rate is 3.20 per page, delivery within five working days.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"We act for Priya Doyle in HAR-2026-114. Please direct correspondence on the financial bundle to this address.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Notice of conference: in the matter HAR-2026-114 (Doyle), the settlement conference is set down for Thursday 15 October 2026 at 10:00 in Courtroom 4, Harbor County Courthouse, before Judge Alvarez.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Chambers of Judge Alvarez\", \"text\": \"For settlement conferences before Judge Alvarez, parties must bring three certified paper copies of any financial bundle filed with the court.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-07\", \"type\": \"quote\", \"from\": \"Harbor Court Copy Service\", \"text\": \"Certified copies are 4 per page; we can certify a full financial bundle within three working days.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Diary check: Doyle settlement conference confirmed for Thursday 15 October 2026, 10:00, Courtroom 4, Judge Alvarez. Prep session with Ed booked for the evening before, with his interpreter.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Because Judge Alvarez requires three certified paper copies of the financial bundle at the settlement conference, I ordered three certified copies of the Doyle financial bundle from Harbor Court Copy Service at their quoted 4 per page.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e10\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Scheduled Ed Doyle's settlement conference prep session for Wednesday 14 October 2026 at 17:30 in Meeting Room 2, the evening before his conference, with his interpreter as usual.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"notice\", \"from\": \"Harbor County Courthouse\", \"text\": \"Maintenance notice: the courthouse rotunda lift will be out of service for two weeks in August. Courtroom access is unaffected.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"reminder\", \"from\": \"Marion\", \"text\": \"Calendar reminder: Doyle prep session with interpreter Lena Voss on Wednesday 14 October 2026 at 17:30, Meeting Room 2 — one day before the settlement conference.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Lena Voss for Portuguese interpreting at Ed's prep session on Wednesday 14 October 2026 at 17:30, at her standard 180 per session, and confirmed the booking with her.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Marion\", \"text\": \"To-do: renew the practice management software licence before the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Our Garden Room is free on Thursday 3 September 2026 for the Kessler mediation, at 90 per hour including refreshments.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked the Kessler mediation for Thursday 3 September 2026 in the Garden Room at Fenwick Mediation Centre at the quoted 90 per hour.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"EV-3\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Harbor Court Copy Service\", \"text\": \"We can also supply transcript copies for the Kessler matter at 4 per page, two certified copies ready in three days.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Ordered two certified transcript copies for the Kessler file from Harbor Court Copy Service.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-30\", \"type\": \"invoice\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Invoice for the Kessler mediation room hire, 3 September 2026, 360 in total, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Marion\", \"text\": \"Pre-mediation note, Kessler: positions exchanged, financial disclosure outstanding from the other side; next review after the 3 September session.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"cancellation\", \"from\": \"Farah Nasser\", \"text\": \"So sorry — I have to cancel my follow-up meeting this month; I will be in touch to rearrange.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Re HAR-2026-114 (Doyle): due to judicial scheduling, the settlement conference before Judge Alvarez is moved to Thursday 22 October 2026 at 10:00, in the same Courtroom 4 at Harbor County Courthouse. The 15 October listing is vacated. Please adjust your arrangements.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n    {\"id\": \"e27\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"Priya may need to travel that week. If the timing becomes a problem for anyone, Thursday 29 October could also work well for us — let's keep it in reserve.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Invoice for the interpreting session at the August document review with Ed Doyle: 180, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Maria Doyle\", \"text\": \"Ed's mother Maria called: she plans to sit in on the prep session before the settlement conference to support Ed.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Ed Doyle\", \"text\": \"Obrigado for everything — I'm getting my papers together and I'll see you at the prep session before court.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"To-do: renew the firm's malpractice insurance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-04\", \"type\": \"call\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Nadia called to check whether Hartwell needs another mediation slot this autumn; nothing fixed yet.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Doyle settlement conference prep session\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"17:30\", \"place\": \"Meeting Room 2, Hartwell Family Law\", \"client\": \"Ed Doyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Intake meeting - Farah Nasser\", \"fields\": {\"date\": \"2026-06-19\", \"time\": \"11:00\", \"place\": \"Hartwell Family Law\", \"client\": \"Farah Nasser\", \"status\": \"done\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kessler mediation\", \"fields\": {\"date\": \"2026-09-03\", \"time\": \"09:30\", \"place\": \"Garden Room, Fenwick Mediation Centre\", \"client\": \"Greta Kessler\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreting - Doyle prep session\", \"fields\": {\"provider\": \"Lena Voss\", \"service\": \"Portuguese interpreting\", \"date\": \"2026-10-14\", \"time\": \"17:30\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified copies - Doyle financial bundle\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified copies of financial bundle\", \"quantity\": \"3\", \"due\": \"2026-10-08\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Kessler transcript copies\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified transcript copies\", \"quantity\": \"2\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Doyle divorce file\", \"fields\": {\"client\": \"Ed Doyle\", \"opposing\": \"Priya Doyle\", \"case_no\": \"HAR-2026-114\", \"language\": \"Portuguese\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Lena Voss\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you get the Doyle settlement conference prep lined up properly? Please confirm the prep session with Ed, and sort out Lena's interpreting booking for it.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Ed Doyle\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"17:30\", \"Meeting Room 2\"], \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Lena Voss\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-14\"], \"task\": true}\n  ],\n  \"why\": \"The clerk's correction moves the settlement conference from 15 to 22 October. The prep session decision rests on the old conference date, so its record EV-1 must be revised from 14 to 21 October and confirmed to Ed in writing; the interpreter booking ORD-1 rests on the prep session (two hops from the corrected fact) but moving a confirmed contractor booking requires Lena Voss's agreement under the standing policy, so the assistant must ask her rather than change the record. The certified-copies order cites the conference only for the judge and bundle requirement, which the correction leaves standing, so it stays as it is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"certified copies\", \"counterpart\": \"Gil Hart\", \"org\": \"Harbor Court Copy Service\", \"item\": \"certified bundle copies\", \"unit\": \"bundles\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"interpreting sessions\", \"counterpart\": \"Lena Voss\", \"org\": \"Voss Interpreting\", \"item\": \"phone interpreting session\", \"unit\": \"session\", \"values\": [\"Meeting Room 1\", \"Video room\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"courthouse rooms\", \"counterpart\": \"Theresa Byrne\", \"org\": \"Harbor County Clerk of Court\", \"item\": \"courtroom observation slot\", \"unit\": \"slot\", \"values\": [\"Courtroom 4\", \"Courtroom 2\", \"Rotunda\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Tom Ashe\", \"org\": \"Ashe Couriers\", \"item\": \"same-day document run\", \"unit\": \"trips\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"lever-arch files\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee for client meetings\", \"unit\": \"cases\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law break room\"},\n    {\"kind\": \"booking\", \"topic\": \"mediation rooms\", \"counterpart\": \"Nadia Fields\", \"org\": \"Fenwick Mediation Centre\", \"item\": \"mediation suite\", \"unit\": \"suite\", \"values\": [\"Garden Room\", \"Suite 1\", \"Suite 2\"], \"place\": \"Fenwick Mediation Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"deposition rooms\", \"counterpart\": \"Yuki Tan\", \"org\": \"Bayline Court Reporting\", \"item\": \"deposition room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"IT support\", \"counterpart\": \"Owen Pike\", \"org\": \"Pike IT\", \"item\": \"laptop service\", \"unit\": \"hours\", \"values\": [\"2\", \"4\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"notary desk\", \"counterpart\": \"Hana Cole\", \"org\": \"Cole Notary\", \"item\": \"notary desk slot\", \"unit\": \"slot\", \"values\": [\"front office\", \"Meeting Room 1\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"library carrels\", \"counterpart\": \"Rosa Vega\", \"org\": \"Harbor Law Library\", \"item\": \"research carrel\", \"unit\": \"carrel\", \"values\": [\"Carrel 3\", \"Carrel 7\"], \"place\": \"Harbor Law Library\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3198,
+    "completion_tokens": 12114,
+    "reasoning_tokens": 7683,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05420376,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Moved settlement conference, chained prep session and interpreter\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Marion\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Intake note: new divorce matter for Ed Doyle, case HAR-2026-114, opposing party Priya Doyle. Ed's first language is Portuguese, so an interpreter attends every client meeting with him.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Confirming my terms: Portuguese interpreting at 180 per session, evening slots from 17:00 work well for me. Happy to support Ed Doyle's meetings.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marion\", \"text\": \"Standing policy: any confirmed booking with an outside contractor — interpreters, court reporters, copy services — is never moved or cancelled without that contractor's written agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marion\", \"text\": \"Two house rules: court dates in the schedule are only ever updated from a notice signed by the Harbor County clerk of court, and every change to an appointment agreed with a client is confirmed to that client in writing within the same week.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Farah Nasser\", \"text\": \"Thanks for fitting me in — I can come to the office on Friday 19 June 2026 at 11:00 to talk about my divorce.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Farah Nasser's intake meeting for Friday 19 June 2026 at 11:00 at the office, as she proposed.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Yuki Tan (Bayline Court Reporting)\", \"text\": \"Our deposition transcription rate is 3.20 per page, delivery within five working days.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"We act for Priya Doyle in HAR-2026-114. Please direct correspondence on the financial bundle to this address.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Notice of conference: in the matter HAR-2026-114 (Doyle), the settlement conference is set down for Thursday 15 October 2026 at 10:00 in Courtroom 4, Harbor County Courthouse, before Judge Alvarez.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Chambers of Judge Alvarez\", \"text\": \"For settlement conferences before Judge Alvarez, parties must bring three certified paper copies of any financial bundle filed with the court.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-07\", \"type\": \"quote\", \"from\": \"Harbor Court Copy Service\", \"text\": \"Certified copies are 4 per page; we can certify a full financial bundle within three working days.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Diary check: Doyle settlement conference confirmed for Thursday 15 October 2026, 10:00, Courtroom 4, Judge Alvarez. Prep session with Ed booked for the evening before, with his interpreter.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Because Judge Alvarez requires three certified paper copies of the financial bundle at the settlement conference, I ordered three certified copies of the Doyle financial bundle from Harbor Court Copy Service at their quoted 4 per page.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e10\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Scheduled Ed Doyle's settlement conference prep session for Wednesday 14 October 2026 at 17:30 in Meeting Room 2, the evening before his conference, with his interpreter as usual.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"notice\", \"from\": \"Harbor County Courthouse\", \"text\": \"Maintenance notice: the courthouse rotunda lift will be out of service for two weeks in August. Courtroom access is unaffected.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Calendar reminder: Doyle prep session with interpreter Lena Voss on Wednesday 14 October 2026 at 17:30, Meeting Room 2 — one day before the settlement conference.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Lena Voss for Portuguese interpreting at Ed's prep session on Wednesday 14 October 2026 at 17:30, at her standard 180 per session, and confirmed the booking with her.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Marion\", \"text\": \"To-do: renew the practice management software licence before the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Our Garden Room is free on Thursday 3 September 2026 for the Kessler mediation, at 90 per hour including refreshments.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked the Kessler mediation for Thursday 3 September 2026 in the Garden Room at Fenwick Mediation Centre at the quoted 90 per hour.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"EV-3\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-24\", \"type\": \"quote\", \"from\": \"Harbor Court Copy Service\", \"text\": \"We can also supply transcript copies for the Kessler matter at 4 per page, two certified copies ready in three days.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Ordered two certified transcript copies for the Kessler file from Harbor Court Copy Service.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-30\", \"type\": \"invoice\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Invoice for the Kessler mediation room hire, 3 September 2026, 360 in total, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Marion\", \"text\": \"Pre-mediation note, Kessler: positions exchanged, financial disclosure outstanding from the other side; next review after the 3 September session.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"cancellation\", \"from\": \"Farah Nasser\", \"text\": \"So sorry — I have to cancel my follow-up meeting this month; I will be in touch to rearrange.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Re HAR-2026-114 (Doyle): due to judicial scheduling, the settlement conference before Judge Alvarez is moved to Thursday 22 October 2026 at 10:00, in the same Courtroom 4 at Harbor County Courthouse. The 15 October listing is vacated. Please adjust your arrangements.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n    {\"id\": \"e27\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"Priya may need to travel that week. If the timing becomes a problem for anyone, Thursday 29 October could also work well for us — let's keep it in reserve.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Invoice for the interpreting session at the August document review with Ed Doyle: 180, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Maria Doyle\", \"text\": \"Ed's mother Maria called: she plans to sit in on the prep session before the settlement conference to support Ed.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Ed Doyle\", \"text\": \"Obrigado for everything — I'm getting my papers together and I'll see you at the prep session before court.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"To-do: renew the firm's malpractice insurance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-04\", \"type\": \"call\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Nadia called to check whether Hartwell needs another mediation slot this autumn; nothing fixed yet.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Doyle settlement conference prep session\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"17:30\", \"place\": \"Meeting Room 2, Hartwell Family Law\", \"client\": \"Ed Doyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Intake meeting - Farah Nasser\", \"fields\": {\"date\": \"2026-06-19\", \"time\": \"11:00\", \"place\": \"Hartwell Family Law\", \"client\": \"Farah Nasser\", \"status\": \"done\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kessler mediation\", \"fields\": {\"date\": \"2026-09-03\", \"time\": \"09:30\", \"place\": \"Garden Room, Fenwick Mediation Centre\", \"client\": \"Greta Kessler\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreting - Doyle prep session\", \"fields\": {\"provider\": \"Lena Voss\", \"service\": \"Portuguese interpreting\", \"date\": \"2026-10-14\", \"time\": \"17:30\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified copies - Doyle financial bundle\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified copies of financial bundle\", \"quantity\": \"3\", \"due\": \"2026-10-08\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Kessler transcript copies\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified transcript copies\", \"quantity\": \"2\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Doyle divorce file\", \"fields\": {\"client\": \"Ed Doyle\", \"opposing\": \"Priya Doyle\", \"case_no\": \"HAR-2026-114\", \"language\": \"Portuguese\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Lena Voss\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you get the Doyle settlement conference prep lined up properly? Please confirm the prep session with Ed, and sort out Lena's interpreting booking for it.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Ed Doyle\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"17:30\", \"Meeting Room 2\"], \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Lena Voss\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-14\"], \"task\": true}\n  ],\n  \"why\": \"The clerk's correction moves the settlement conference from 15 to 22 October. The prep session decision rests on the old conference date, so its record EV-1 must be revised from 14 to 21 October and confirmed to Ed in writing; the interpreter booking ORD-1 rests on the prep session (two hops from the corrected fact) but moving a confirmed contractor booking requires Lena Voss's agreement under the standing policy, so the assistant must ask her rather than change the record. The certified-copies order cites the conference only for the judge and bundle requirement, which the correction leaves standing, so it stays as it is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"certified copies\", \"counterpart\": \"Gil Hart\", \"org\": \"Harbor Court Copy Service\", \"item\": \"certified bundle copies\", \"unit\": \"bundles\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"interpreting sessions\", \"counterpart\": \"Lena Voss\", \"org\": \"Voss Interpreting\", \"item\": \"phone interpreting session\", \"unit\": \"session\", \"values\": [\"Meeting Room 1\", \"Video room\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"courthouse rooms\", \"counterpart\": \"Theresa Byrne\", \"org\": \"Harbor County Clerk of Court\", \"item\": \"courtroom observation slot\", \"unit\": \"slot\", \"values\": [\"Courtroom 4\", \"Courtroom 2\", \"Rotunda\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Tom Ashe\", \"org\": \"Ashe Couriers\", \"item\": \"same-day document run\", \"unit\": \"trips\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"lever-arch files\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee for client meetings\", \"unit\": \"cases\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law break room\"},\n    {\"kind\": \"booking\", \"topic\": \"mediation rooms\", \"counterpart\": \"Nadia Fields\", \"org\": \"Fenwick Mediation Centre\", \"item\": \"mediation suite\", \"unit\": \"suite\", \"values\": [\"Garden Room\", \"Suite 1\", \"Suite 2\"], \"place\": \"Fenwick Mediation Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"deposition rooms\", \"counterpart\": \"Yuki Tan\", \"org\": \"Bayline Court Reporting\", \"item\": \"deposition room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"IT support\", \"counterpart\": \"Owen Pike\", \"org\": \"Pike IT\", \"item\": \"laptop service\", \"unit\": \"hours\", \"values\": [\"2\", \"4\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"notary desk\", \"counterpart\": \"Hana Cole\", \"org\": \"Cole Notary\", \"item\": \"notary desk slot\", \"unit\": \"slot\", \"values\": [\"front office\", \"Meeting Room 1\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"library carrels\", \"counterpart\": \"Rosa Vega\", \"org\": \"Harbor Law Library\", \"item\": \"research carrel\", \"unit\": \"carrel\", \"values\": [\"Carrel 3\", \"Carrel 7\"], \"place\": \"Harbor Law Library\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7713,
+    "completion_tokens": 4439,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02675476,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e16: type «reminder» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Moved settlement conference, chained prep session and interpreter\",\n  \"setting\": \"A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes\",\n  \"owner\": \"Marion\",\n  \"org\": \"Hartwell Family Law\",\n  \"now\": \"2026-10-05\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Intake note: new divorce matter for Ed Doyle, case HAR-2026-114, opposing party Priya Doyle. Ed's first language is Portuguese, so an interpreter attends every client meeting with him.\", \"role\": \"fact\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Confirming my terms: Portuguese interpreting at 180 per session, evening slots from 17:00 work well for me. Happy to support Ed Doyle's meetings.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marion\", \"text\": \"Standing policy: any confirmed booking with an outside contractor — interpreters, court reporters, copy services — is never moved or cancelled without that contractor's written agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"instruction\", \"from\": \"Marion\", \"text\": \"Two house rules: court dates in the schedule are only ever updated from a notice signed by the Harbor County clerk of court, and every change to an appointment agreed with a client is confirmed to that client in writing within the same week.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Farah Nasser\", \"text\": \"Thanks for fitting me in — I can come to the office on Friday 19 June 2026 at 11:00 to talk about my divorce.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Farah Nasser's intake meeting for Friday 19 June 2026 at 11:00 at the office, as she proposed.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Yuki Tan (Bayline Court Reporting)\", \"text\": \"Our deposition transcription rate is 3.20 per page, delivery within five working days.\", \"role\": \"other\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"We act for Priya Doyle in HAR-2026-114. Please direct correspondence on the financial bundle to this address.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Notice of conference: in the matter HAR-2026-114 (Doyle), the settlement conference is set down for Thursday 15 October 2026 at 10:00 in Courtroom 4, Harbor County Courthouse, before Judge Alvarez.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Chambers of Judge Alvarez\", \"text\": \"For settlement conferences before Judge Alvarez, parties must bring three certified paper copies of any financial bundle filed with the court.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-07\", \"type\": \"quote\", \"from\": \"Harbor Court Copy Service\", \"text\": \"Certified copies are 4 per page; we can certify a full financial bundle within three working days.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Diary check: Doyle settlement conference confirmed for Thursday 15 October 2026, 10:00, Courtroom 4, Judge Alvarez. Prep session with Ed booked for the evening before, with his interpreter.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e13\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Because Judge Alvarez requires three certified paper copies of the financial bundle at the settlement conference, I ordered three certified copies of the Doyle financial bundle from Harbor Court Copy Service at their quoted 4 per page.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e10\", \"e11\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Scheduled Ed Doyle's settlement conference prep session for Wednesday 14 October 2026 at 17:30 in Meeting Room 2, the evening before his conference, with his interpreter as usual.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e4\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-28\", \"type\": \"notice\", \"from\": \"Harbor County Courthouse\", \"text\": \"Maintenance notice: the courthouse rotunda lift will be out of service for two weeks in August. Courtroom access is unaffected.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"Calendar reminder: Doyle prep session with interpreter Lena Voss on Wednesday 14 October 2026 at 17:30, Meeting Room 2 — one day before the settlement conference.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e17\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked Lena Voss for Portuguese interpreting at Ed's prep session on Wednesday 14 October 2026 at 17:30, at her standard 180 per session, and confirmed the booking with her.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-14\", \"type\": \"task\", \"from\": \"Marion\", \"text\": \"To-do: renew the practice management software licence before the end of September.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-18\", \"type\": \"quote\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Our Garden Room is free on Thursday 3 September 2026 for the Kessler mediation, at 90 per hour including refreshments.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Booked the Kessler mediation for Thursday 3 September 2026 in the Garden Room at Fenwick Mediation Centre at the quoted 90 per hour.\", \"role\": \"decision\", \"rests_on\": [\"e19\"], \"record\": \"EV-3\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-24\", \"type\": \"quote\", \"from\": \"Harbor Court Copy Service\", \"text\": \"We can also supply transcript copies for the Kessler matter at 4 per page, two certified copies ready in three days.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-27\", \"type\": \"decision\", \"from\": \"Marion\", \"text\": \"Ordered two certified transcript copies for the Kessler file from Harbor Court Copy Service.\", \"role\": \"decision\", \"rests_on\": [\"e21\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-30\", \"type\": \"invoice\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Invoice for the Kessler mediation room hire, 3 September 2026, 360 in total, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Marion\", \"text\": \"Pre-mediation note, Kessler: positions exchanged, financial disclosure outstanding from the other side; next review after the 3 September session.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"cancellation\", \"from\": \"Farah Nasser\", \"text\": \"So sorry — I have to cancel my follow-up meeting this month; I will be in touch to rearrange.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Theresa Byrne (Harbor County Clerk of Court)\", \"text\": \"Re HAR-2026-114 (Doyle): due to judicial scheduling, the settlement conference before Judge Alvarez is moved to Thursday 22 October 2026 at 10:00, in the same Courtroom 4 at Harbor County Courthouse. The 15 October listing is vacated. Please adjust your arrangements.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n    {\"id\": \"e27\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Ravi Shah (Shah & Whitmore, for Priya Doyle)\", \"text\": \"Priya may need to travel that week. If the timing becomes a problem for anyone, Thursday 29 October could also work well for us — let's keep it in reserve.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e28\", \"date\": \"2026-09-30\", \"type\": \"invoice\", \"from\": \"Lena Voss (Voss Interpreting)\", \"text\": \"Invoice for the interpreting session at the August document review with Ed Doyle: 180, payable within 14 days.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Maria Doyle\", \"text\": \"Ed's mother Maria called: she plans to sit in on the prep session before the settlement conference to support Ed.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-02\", \"type\": \"message\", \"from\": \"Ed Doyle\", \"text\": \"Obrigado for everything — I'm getting my papers together and I'll see you at the prep session before court.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-03\", \"type\": \"note\", \"from\": \"Marion\", \"text\": \"To-do: renew the firm's malpractice insurance by 31 October 2026.\", \"role\": \"obligation\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-04\", \"type\": \"call\", \"from\": \"Nadia Fields (Fenwick Mediation Centre)\", \"text\": \"Nadia called to check whether Hartwell needs another mediation slot this autumn; nothing fixed yet.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Doyle settlement conference prep session\", \"fields\": {\"date\": \"2026-10-14\", \"time\": \"17:30\", \"place\": \"Meeting Room 2, Hartwell Family Law\", \"client\": \"Ed Doyle\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Intake meeting - Farah Nasser\", \"fields\": {\"date\": \"2026-06-19\", \"time\": \"11:00\", \"place\": \"Hartwell Family Law\", \"client\": \"Farah Nasser\", \"status\": \"done\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Kessler mediation\", \"fields\": {\"date\": \"2026-09-03\", \"time\": \"09:30\", \"place\": \"Garden Room, Fenwick Mediation Centre\", \"client\": \"Greta Kessler\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Interpreting - Doyle prep session\", \"fields\": {\"provider\": \"Lena Voss\", \"service\": \"Portuguese interpreting\", \"date\": \"2026-10-14\", \"time\": \"17:30\", \"fee\": \"180\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Certified copies - Doyle financial bundle\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified copies of financial bundle\", \"quantity\": \"3\", \"due\": \"2026-10-08\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Kessler transcript copies\", \"fields\": {\"vendor\": \"Harbor Court Copy Service\", \"item\": \"Certified transcript copies\", \"quantity\": \"2\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Doyle divorce file\", \"fields\": {\"client\": \"Ed Doyle\", \"opposing\": \"Priya Doyle\", \"case_no\": \"HAR-2026-114\", \"language\": \"Portuguese\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Lena Voss\", \"rule\": \"e3\"}\n  ],\n  \"task\": \"Can you get the Doyle settlement conference prep lined up properly? Please confirm the prep session with Ed, and sort out Lena's interpreting booking for it.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-10-21\", \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Ed Doyle\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-21\", \"17:30\", \"Meeting Room 2\"], \"stale\": [\"2026-10-14\"], \"task\": true},\n    {\"message_to\": \"Lena Voss\", \"regarding\": \"ORD-1\", \"says\": [\"2026-10-21\"], \"stale\": [\"2026-10-14\"], \"task\": true}\n  ],\n  \"why\": \"The clerk's correction moves the settlement conference from 15 to 22 October. The prep session decision rests on the old conference date, so its record EV-1 must be revised from 14 to 21 October and confirmed to Ed in writing; the interpreter booking ORD-1 rests on the prep session (two hops from the corrected fact) but moving a confirmed contractor booking requires Lena Voss's agreement under the standing policy, so the assistant must ask her rather than change the record. The certified-copies order cites the conference only for the judge and bundle requirement, which the correction leaves standing, so it stays as it is.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"certified copies\", \"counterpart\": \"Gil Hart\", \"org\": \"Harbor Court Copy Service\", \"item\": \"certified bundle copies\", \"unit\": \"bundles\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"interpreting sessions\", \"counterpart\": \"Lena Voss\", \"org\": \"Voss Interpreting\", \"item\": \"phone interpreting session\", \"unit\": \"session\", \"values\": [\"Meeting Room 1\", \"Video room\", \"Meeting Room 2\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"courthouse rooms\", \"counterpart\": \"Theresa Byrne\", \"org\": \"Harbor County Clerk of Court\", \"item\": \"courtroom observation slot\", \"unit\": \"slot\", \"values\": [\"Courtroom 4\", \"Courtroom 2\", \"Rotunda\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"courier runs\", \"counterpart\": \"Tom Ashe\", \"org\": \"Ashe Couriers\", \"item\": \"same-day document run\", \"unit\": \"trips\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Harbor County Courthouse\"},\n    {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"lever-arch files\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee for client meetings\", \"unit\": \"cases\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law break room\"},\n    {\"kind\": \"booking\", \"topic\": \"mediation rooms\", \"counterpart\": \"Nadia Fields\", \"org\": \"Fenwick Mediation Centre\", \"item\": \"mediation suite\", \"unit\": \"suite\", \"values\": [\"Garden Room\", \"Suite 1\", \"Suite 2\"], \"place\": \"Fenwick Mediation Centre\"},\n    {\"kind\": \"booking\", \"topic\": \"deposition rooms\", \"counterpart\": \"Yuki Tan\", \"org\": \"Bayline Court Reporting\", \"item\": \"deposition room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"IT support\", \"counterpart\": \"Owen Pike\", \"org\": \"Pike IT\", \"item\": \"laptop service\", \"unit\": \"hours\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"notary desk\", \"counterpart\": \"Hana Cole\", \"org\": \"Cole Notary\", \"item\": \"notary desk slot\", \"unit\": \"slot\", \"values\": [\"front office\", \"Meeting Room 1\", \"Meeting Room 2\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Gil Pratt\", \"org\": \"Northline Office Supply\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Hartwell Family Law\"},\n    {\"kind\": \"booking\", \"topic\": \"library carrels\", \"counterpart\": \"Rosa Vega\", \"org\": \"Harbor Law Library\", \"item\": \"research carrel\", \"unit\": \"carrel\", \"values\": [\"Carrel 3\", \"Carrel 7\", \"Carrel 11\"], \"place\": \"Harbor Law Library\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12246,
+    "completion_tokens": 4465,
+    "reasoning_tokens": 9,
+    "cached_tokens": 7680
+   },
+   "cost": 0.0280352,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'interpreting sessions': values needs at least three entries\n- noise topic 'deposition rooms': values needs at least three entries\n- noise topic 'IT support': values needs at least three entries\n- noise topic 'notary desk': values needs at least three entries\n- noise topic 'library carrels': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Moved settlement conference, chained prep session and interpreter",
+  "setting": "A solo divorce lawyer at Hartwell Family Law who has her assistant track case files, hearing dates, and client intake notes",
+  "owner": "Marion",
+  "org": "Hartwell Family Law",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "note",
+    "from": "Marion",
+    "text": "Intake note: new divorce matter for Ed Doyle, case HAR-2026-114, opposing party Priya Doyle. Ed's first language is Portuguese, so an interpreter attends every client meeting with him.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Lena Voss (Voss Interpreting)",
+    "text": "Confirming my terms: Portuguese interpreting at 180 per session, evening slots from 17:00 work well for me. Happy to support Ed Doyle's meetings.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Marion",
+    "text": "Standing policy: any confirmed booking with an outside contractor — interpreters, court reporters, copy services — is never moved or cancelled without that contractor's written agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "instruction",
+    "from": "Marion",
+    "text": "Two house rules: court dates in the schedule are only ever updated from a notice signed by the Harbor County clerk of court, and every change to an appointment agreed with a client is confirmed to that client in writing within the same week.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "message",
+    "from": "Farah Nasser",
+    "text": "Thanks for fitting me in — I can come to the office on Friday 19 June 2026 at 11:00 to talk about my divorce.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Booked Farah Nasser's intake meeting for Friday 19 June 2026 at 11:00 at the office, as she proposed.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "quote",
+    "from": "Yuki Tan (Bayline Court Reporting)",
+    "text": "Our deposition transcription rate is 3.20 per page, delivery within five working days.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Ravi Shah (Shah & Whitmore, for Priya Doyle)",
+    "text": "We act for Priya Doyle in HAR-2026-114. Please direct correspondence on the financial bundle to this address.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "letter",
+    "from": "Theresa Byrne (Harbor County Clerk of Court)",
+    "text": "Notice of conference: in the matter HAR-2026-114 (Doyle), the settlement conference is set down for Thursday 15 October 2026 at 10:00 in Courtroom 4, Harbor County Courthouse, before Judge Alvarez.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Chambers of Judge Alvarez",
+    "text": "For settlement conferences before Judge Alvarez, parties must bring three certified paper copies of any financial bundle filed with the court.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-07",
+    "type": "quote",
+    "from": "Harbor Court Copy Service",
+    "text": "Certified copies are 4 per page; we can certify a full financial bundle within three working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "note",
+    "from": "Marion",
+    "text": "Diary check: Doyle settlement conference confirmed for Thursday 15 October 2026, 10:00, Courtroom 4, Judge Alvarez. Prep session with Ed booked for the evening before, with his interpreter.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Because Judge Alvarez requires three certified paper copies of the financial bundle at the settlement conference, I ordered three certified copies of the Doyle financial bundle from Harbor Court Copy Service at their quoted 4 per page.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e10",
+     "e11"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Scheduled Ed Doyle's settlement conference prep session for Wednesday 14 October 2026 at 17:30 in Meeting Room 2, the evening before his conference, with his interpreter as usual.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2",
+     "e4"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-28",
+    "type": "notice",
+    "from": "Harbor County Courthouse",
+    "text": "Maintenance notice: the courthouse rotunda lift will be out of service for two weeks in August. Courtroom access is unaffected.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "note",
+    "from": "Marion",
+    "text": "Calendar reminder: Doyle prep session with interpreter Lena Voss on Wednesday 14 October 2026 at 17:30, Meeting Room 2 — one day before the settlement conference.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Booked Lena Voss for Portuguese interpreting at Ed's prep session on Wednesday 14 October 2026 at 17:30, at her standard 180 per session, and confirmed the booking with her.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e2",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-14",
+    "type": "task",
+    "from": "Marion",
+    "text": "To-do: renew the practice management software licence before the end of September.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-18",
+    "type": "quote",
+    "from": "Nadia Fields (Fenwick Mediation Centre)",
+    "text": "Our Garden Room is free on Thursday 3 September 2026 for the Kessler mediation, at 90 per hour including refreshments.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Booked the Kessler mediation for Thursday 3 September 2026 in the Garden Room at Fenwick Mediation Centre at the quoted 90 per hour.",
+    "role": "decision",
+    "rests_on": [
+     "e19"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-24",
+    "type": "quote",
+    "from": "Harbor Court Copy Service",
+    "text": "We can also supply transcript copies for the Kessler matter at 4 per page, two certified copies ready in three days.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-27",
+    "type": "decision",
+    "from": "Marion",
+    "text": "Ordered two certified transcript copies for the Kessler file from Harbor Court Copy Service.",
+    "role": "decision",
+    "rests_on": [
+     "e21"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-30",
+    "type": "invoice",
+    "from": "Nadia Fields (Fenwick Mediation Centre)",
+    "text": "Invoice for the Kessler mediation room hire, 3 September 2026, 360 in total, payable within 14 days.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-02",
+    "type": "minutes",
+    "from": "Marion",
+    "text": "Pre-mediation note, Kessler: positions exchanged, financial disclosure outstanding from the other side; next review after the 3 September session.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-08",
+    "type": "cancellation",
+    "from": "Farah Nasser",
+    "text": "So sorry — I have to cancel my follow-up meeting this month; I will be in touch to rearrange.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Theresa Byrne (Harbor County Clerk of Court)",
+    "text": "Re HAR-2026-114 (Doyle): due to judicial scheduling, the settlement conference before Judge Alvarez is moved to Thursday 22 October 2026 at 10:00, in the same Courtroom 4 at Harbor County Courthouse. The 15 October listing is vacated. Please adjust your arrangements.",
+    "role": "change",
+    "revokes": [
+     "e9"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Ravi Shah (Shah & Whitmore, for Priya Doyle)",
+    "text": "Priya may need to travel that week. If the timing becomes a problem for anyone, Thursday 29 October could also work well for us — let's keep it in reserve.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-30",
+    "type": "invoice",
+    "from": "Lena Voss (Voss Interpreting)",
+    "text": "Invoice for the interpreting session at the August document review with Ed Doyle: 180, payable within 14 days.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-01",
+    "type": "call",
+    "from": "Maria Doyle",
+    "text": "Ed's mother Maria called: she plans to sit in on the prep session before the settlement conference to support Ed.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-02",
+    "type": "message",
+    "from": "Ed Doyle",
+    "text": "Obrigado for everything — I'm getting my papers together and I'll see you at the prep session before court.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-03",
+    "type": "note",
+    "from": "Marion",
+    "text": "To-do: renew the firm's malpractice insurance by 31 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-04",
+    "type": "call",
+    "from": "Nadia Fields (Fenwick Mediation Centre)",
+    "text": "Nadia called to check whether Hartwell needs another mediation slot this autumn; nothing fixed yet.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Doyle settlement conference prep session",
+    "fields": {
+     "date": "2026-10-14",
+     "time": "17:30",
+     "place": "Meeting Room 2, Hartwell Family Law",
+     "client": "Ed Doyle",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Intake meeting - Farah Nasser",
+    "fields": {
+     "date": "2026-06-19",
+     "time": "11:00",
+     "place": "Hartwell Family Law",
+     "client": "Farah Nasser",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Kessler mediation",
+    "fields": {
+     "date": "2026-09-03",
+     "time": "09:30",
+     "place": "Garden Room, Fenwick Mediation Centre",
+     "client": "Greta Kessler",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Interpreting - Doyle prep session",
+    "fields": {
+     "provider": "Lena Voss",
+     "service": "Portuguese interpreting",
+     "date": "2026-10-14",
+     "time": "17:30",
+     "fee": "180",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Certified copies - Doyle financial bundle",
+    "fields": {
+     "vendor": "Harbor Court Copy Service",
+     "item": "Certified copies of financial bundle",
+     "quantity": "3",
+     "due": "2026-10-08",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Kessler transcript copies",
+    "fields": {
+     "vendor": "Harbor Court Copy Service",
+     "item": "Certified transcript copies",
+     "quantity": "2",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Doyle divorce file",
+    "fields": {
+     "client": "Ed Doyle",
+     "opposing": "Priya Doyle",
+     "case_no": "HAR-2026-114",
+     "language": "Portuguese",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Lena Voss",
+    "rule": "e3"
+   }
+  ],
+  "task": "Can you get the Doyle settlement conference prep lined up properly? Please confirm the prep session with Ed, and sort out Lena's interpreting booking for it.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-10-21",
+    "stale": [
+     "2026-10-14"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ed Doyle",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-21",
+     "17:30",
+     "Meeting Room 2"
+    ],
+    "stale": [
+     "2026-10-14"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Lena Voss",
+    "regarding": "ORD-1",
+    "says": [
+     "2026-10-21"
+    ],
+    "stale": [
+     "2026-10-14"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The clerk's correction moves the settlement conference from 15 to 22 October. The prep session decision rests on the old conference date, so its record EV-1 must be revised from 14 to 21 October and confirmed to Ed in writing; the interpreter booking ORD-1 rests on the prep session (two hops from the corrected fact) but moving a confirmed contractor booking requires Lena Voss's agreement under the standing policy, so the assistant must ask her rather than change the record. The certified-copies order cites the conference only for the judge and bundle requirement, which the correction leaves standing, so it stays as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "certified copies",
+    "counterpart": "Gil Hart",
+    "org": "Harbor Court Copy Service",
+    "item": "certified bundle copies",
+    "unit": "bundles",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "booking",
+    "topic": "interpreting sessions",
+    "counterpart": "Lena Voss",
+    "org": "Voss Interpreting",
+    "item": "phone interpreting session",
+    "unit": "session",
+    "values": [
+     "Meeting Room 1",
+     "Video room",
+     "Meeting Room 2"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "booking",
+    "topic": "courthouse rooms",
+    "counterpart": "Theresa Byrne",
+    "org": "Harbor County Clerk of Court",
+    "item": "courtroom observation slot",
+    "unit": "slot",
+    "values": [
+     "Courtroom 4",
+     "Courtroom 2",
+     "Rotunda"
+    ],
+    "place": "Harbor County Courthouse"
+   },
+   {
+    "kind": "order",
+    "topic": "courier runs",
+    "counterpart": "Tom Ashe",
+    "org": "Ashe Couriers",
+    "item": "same-day document run",
+    "unit": "trips",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Harbor County Courthouse"
+   },
+   {
+    "kind": "order",
+    "topic": "office supplies",
+    "counterpart": "Gil Pratt",
+    "org": "Northline Office Supply",
+    "item": "lever-arch files",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee supplies",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "coffee for client meetings",
+    "unit": "cases",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Hartwell Family Law break room"
+   },
+   {
+    "kind": "booking",
+    "topic": "mediation rooms",
+    "counterpart": "Nadia Fields",
+    "org": "Fenwick Mediation Centre",
+    "item": "mediation suite",
+    "unit": "suite",
+    "values": [
+     "Garden Room",
+     "Suite 1",
+     "Suite 2"
+    ],
+    "place": "Fenwick Mediation Centre"
+   },
+   {
+    "kind": "booking",
+    "topic": "deposition rooms",
+    "counterpart": "Yuki Tan",
+    "org": "Bayline Court Reporting",
+    "item": "deposition room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "Room C"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "order",
+    "topic": "IT support",
+    "counterpart": "Owen Pike",
+    "org": "Pike IT",
+    "item": "laptop service",
+    "unit": "hours",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "booking",
+    "topic": "notary desk",
+    "counterpart": "Hana Cole",
+    "org": "Cole Notary",
+    "item": "notary desk slot",
+    "unit": "slot",
+    "values": [
+     "front office",
+     "Meeting Room 1",
+     "Meeting Room 2"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "order",
+    "topic": "printer toner",
+    "counterpart": "Gil Pratt",
+    "org": "Northline Office Supply",
+    "item": "printer toner",
+    "unit": "cartridges",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Hartwell Family Law"
+   },
+   {
+    "kind": "booking",
+    "topic": "library carrels",
+    "counterpart": "Rosa Vega",
+    "org": "Harbor Law Library",
+    "item": "research carrel",
+    "unit": "carrel",
+    "values": [
+     "Carrel 3",
+     "Carrel 7",
+     "Carrel 11"
+    ],
+    "place": "Harbor Law Library"
+   }
+  ],
+  "id": "G500-3-04",
+  "tier": 500,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

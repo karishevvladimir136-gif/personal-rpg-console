@@ -1,0 +1,663 @@
+{
+ "id": "G500-4-02",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 1,
+ "setting": "The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits",
+ "prompt_sha256": "b236bd0bd57f4d55fb09095d0a517402437ee8ee3af1bc6dfca8b147363d5570",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Hall deposit rule restated\",\n \"setting\": \"The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits\",\n \"owner\": \"Marta\",\n \"org\": \"Eastvale Community Hall\",\n \"now\": \"2026-09-24\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing policy: every booking of the main hall at Eastvale Community Hall carries a deposit of 150 pounds, held against the booking and refunded after the post-event inspection. Small room bookings carry no deposit.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing policy: once a booking at Eastvale Community Hall is confirmed with a hirer, the date may only be moved with that hirer's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Reminder of our rates: the main hall is 120 pounds for a half day, and the kitchen adds 40 pounds on top.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Grace Chen\", \"text\": \"We would like the main hall with kitchen for our wedding reception on Saturday 3 October 2026, full evening.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall with kitchen for Grace Chen's wedding reception on 3 October 2026, half-day rate 120 pounds plus 40 pounds for the kitchen, deposit of 150 pounds taken.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"Our weekly cleaning visit stays on Thursday mornings; supplies list attached, we usually need floor fluid and bin liners.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered the usual cleaning supplies from Bright and Co for the Thursday visits: 12 bottles of floor fluid and 6 boxes of bin liners, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Lena Frost\", \"text\": \"The Tuesday evening yoga class would like to keep the small room through the autumn, please.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the small room for Lena Frost's yoga class every Tuesday evening from 29 September 2026, no deposit needed for the small room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Tom Burns\", \"text\": \"Can we have the small room for my daughter's birthday party on Saturday 10 October 2026, afternoon?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the small room for Tom Burns's daughter's birthday party on 10 October 2026, afternoon, no deposit for the small room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e10\"], \"record\": \"EV-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Ray Hollis (Lakeside FC)\", \"text\": \"Lakeside FC would like the main hall for our charity quiz night on Saturday 24 October 2026, evening.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall for Ray Hollis of Lakeside FC for their charity quiz night on 24 October 2026, evening, half-day rate 120 pounds, deposit of 150 pounds taken.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e12\"], \"record\": \"EV-4\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Maintenance log: the corridor light fittings take LED bulbs; we keep a stock order with Vale Electrical.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 LED corridor bulbs from Vale Electrical for the fittings noted in the maintenance log, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Note to self: the boiler service is due in November; Hettie at Vale Heating will call to arrange it.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sam Rivera\", \"text\": \"The Eastvale Community Choir would like the main hall for Monday evening rehearsals again this term, starting 28 September 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall for Sam Rivera's Eastvale Community Choir rehearsals on Monday evenings from 28 September 2026, half-day rate 120 pounds, deposit of 150 pounds taken for the term.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e17\"], \"record\": \"EV-5\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"Invoice for July cleaning visits: 240 pounds, as usual.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Grace Chen\", \"text\": \"Just checking our wedding booking is all in order for 3 October at the main hall.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Confirmed to Grace Chen: the main hall with kitchen is booked for 3 October 2026, and her deposit of 150 pounds is held against the booking and will be refunded after the inspection.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Hettie Vale (Vale Heating)\", \"text\": \"We can service the boiler on either 12 or 19 November 2026, morning.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"call\", \"from\": \"Marta\", \"text\": \"Called Hettie at Vale Heating and provisionally pencilled the boiler service for Thursday 12 November 2026, morning; she will send written confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"After the committee meeting, here is our deposit policy in the new wording, effective now: each hirer of the main hall pays a returnable deposit of 150 pounds when the booking is made, and the caretaker pays it back once the hall has been checked after the event. Bookings for the small room do not need a deposit.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Ray Hollis (Lakeside FC)\", \"text\": \"Quiz night is fine for 24 October; we expect around 60 people and will bring our own PA.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Note: for small room parties like the Burns birthday, we ask a 75 pound key deposit on the day, collected by the caretaker and returned when the key comes back.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nandi (Meadowbrook Toddler Group)\", \"text\": \"The Meadowbrook toddler group would love the main hall on Friday 16 October 2026, 9:30 to 11:30, for our autumn session with songs and play. Could you confirm the booking and tell me the deposit?\", \"role\": \"fact\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Sam Rivera\", \"text\": \"Choir rehearsals are going well; we will keep Mondays as booked.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"We are running low on bin liners at the hall; the next supply order should include more boxes.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Reminder to reply to Priya Nandi at the Meadowbrook toddler group about the main hall on Friday 16 October 2026, morning.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Chen wedding reception\", \"fields\": {\"date\": \"2026-10-03\", \"time\": \"18:00\", \"place\": \"main hall with kitchen\", \"hirer\": \"Grace Chen\", \"deposit\": \"150\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Yoga class, autumn term\", \"fields\": {\"date\": \"2026-09-29\", \"time\": \"19:00\", \"place\": \"small room\", \"hirer\": \"Lena Frost\", \"deposit\": \"0\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Burns birthday party\", \"fields\": {\"date\": \"2026-10-10\", \"time\": \"14:00\", \"place\": \"small room\", \"hirer\": \"Tom Burns\", \"deposit\": \"0\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lakeside FC charity quiz night\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"19:30\", \"place\": \"main hall\", \"hirer\": \"Ray Hollis\", \"deposit\": \"150\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Community choir rehearsals\", \"fields\": {\"date\": \"2026-09-28\", \"time\": \"19:00\", \"place\": \"main hall\", \"hirer\": \"Sam Rivera\", \"deposit\": \"150\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cleaning supplies, Bright and Co\", \"fields\": {\"item\": \"floor fluid and bin liners\", \"quantity\": \"12 bottles floor fluid, 6 boxes bin liners\", \"supplier\": \"Bright and Co Cleaning\", \"place\": \"hall store cupboard\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"LED corridor bulbs, Vale Electrical\", \"fields\": {\"item\": \"LED corridor bulbs\", \"quantity\": \"24\", \"supplier\": \"Vale Electrical\", \"place\": \"hall store cupboard\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Grace Chen\", \"fields\": {\"phone\": \"07700 900112\", \"email\": \"grace.chen@example.com\", \"note\": \"wedding reception, deposit held\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Priya Nandi, Meadowbrook toddler group\", \"fields\": {\"phone\": \"07700 900334\", \"email\": \"priya.nandi@example.com\", \"note\": \"autumn session enquiry, main hall\", \"status\": \"pending\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-4\", \"fields\": [\"date\"], \"from\": \"Ray Hollis (Lakeside FC)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please book the main hall for Priya Nandi's Meadowbrook toddler group this Friday 16 October, 9:30 to 11:30, and send her a confirmation telling her the deposit amount.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"09:30\", \"place\": \"main hall\", \"hirer\": \"Priya Nandi (Meadowbrook toddler group)\", \"deposit\": \"150\", \"status\": \"booked\"}, \"stale\": {\"deposit\": [\"75\", \"0\"]}, \"task\": true},\n  {\"message_to\": \"Priya Nandi (Meadowbrook toddler group)\", \"regarding\": null, \"says\": [\"main hall\", \"2026-10-16\", \"09:30\", \"deposit of 150 pounds\"], \"stale\": [\"75\"], \"task\": true}\n ],\n \"why\": \"The 8 September email only restates the deposit policy in new words with the same substance (150 pounds, refundable, main hall only), so no existing decision or record changes and no marks are given. The task is a fresh main hall booking, which under the policy as it stands carries the 150 pound deposit; the 75 pound figure is only the small room key deposit, not the value to act on, and no confirmed booking is moved, so no hirer consent is needed.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Marta\", \"org\": \"Eastvale Community Hall\", \"item\": \"tea and coffee supplies\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"small room meetings\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"small room monthly staff meeting\", \"values\": [\"small room\", \"store office\", \"kitchen corner\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"main hall badminton\", \"counterpart\": \"Ken Park\", \"org\": \"Eastvale Badminton Club\", \"item\": \"badminton session\", \"values\": [\"main hall\", \"main hall with kitchen\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"toilet paper restock\", \"counterpart\": \"Ravi Menon\", \"org\": \"Vale Wholesale\", \"item\": \"toilet paper\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"scout troop evenings\", \"counterpart\": \"Nora Bell\", \"org\": \"1st Eastvale Scouts\", \"item\": \"scout troop meeting\", \"values\": [\"main hall\", \"small room\", \"main hall with kitchen\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"hand soap and sanitiser\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"hand soap and sanitiser\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"parking bay for vans\", \"counterpart\": \"Hettie Vale\", \"org\": \"Vale Heating\", \"item\": \"service van parking bay\", \"values\": [\"front bay\", \"side yard\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"bin liners restock\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"bin liners\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"pillow-aerobics class\", \"counterpart\": \"Lena Frost\", \"org\": \"Frost Fitness\", \"item\": \"fitness class\", \"values\": [\"small room\", \"main hall\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"LED bulbs restock\", \"counterpart\": \"Owen Vale\", \"org\": \"Vale Electrical\", \"item\": \"LED bulbs\", \"unit\": \"bulbs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"committee meetings\", \"counterpart\": \"Marta\", \"org\": \"Eastvale Community Hall\", \"item\": \"hall committee meeting\", \"values\": [\"small room\", \"kitchen corner\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"first aid kit supplies\", \"counterpart\": \"Priya Nandi\", \"org\": \"Meadowbrook toddler group\", \"item\": \"plasters and wipes\", \"unit\": \"packs\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"hall store cupboard\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3211,
+    "completion_tokens": 5797,
+    "reasoning_tokens": 1505,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02642716,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Hall deposit rule restated\",\n \"setting\": \"The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits\",\n \"owner\": \"Marta\",\n \"org\": \"Eastvale Community Hall\",\n \"now\": \"2026-09-24\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing policy: every booking of the main hall at Eastvale Community Hall carries a deposit of 150 pounds, held against the booking and refunded after the post-event inspection. Small room bookings carry no deposit.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing policy: once a booking at Eastvale Community Hall is confirmed with a hirer, the date may only be moved with that hirer's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Reminder of our rates: the main hall is 120 pounds for a half day, and the kitchen adds 40 pounds on top.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Grace Chen\", \"text\": \"We would like the main hall with kitchen for our wedding reception on Saturday 3 October 2026, full evening.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall with kitchen for Grace Chen's wedding reception on 3 October 2026, half-day rate 120 pounds plus 40 pounds for the kitchen, deposit of 150 pounds taken.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"Our weekly cleaning visit stays on Thursday mornings; supplies list attached, we usually need floor fluid and bin liners.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered the usual cleaning supplies from Bright and Co for the Thursday visits: 12 bottles of floor fluid and 6 boxes of bin liners, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Lena Frost\", \"text\": \"The Tuesday evening yoga class would like to keep the small room through the autumn, please.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the small room for Lena Frost's yoga class every Tuesday evening from 29 September 2026, no deposit needed for the small room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Tom Burns\", \"text\": \"Can we have the small room for my daughter's birthday party on Saturday 10 October 2026, afternoon?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the small room for Tom Burns's daughter's birthday party on 10 October 2026, afternoon, no deposit for the small room.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e10\"], \"record\": \"EV-3\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Ray Hollis (Lakeside FC)\", \"text\": \"Lakeside FC would like the main hall for our charity quiz night on Saturday 24 October 2026, evening.\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall for Ray Hollis of Lakeside FC for their charity quiz night on 24 October 2026, evening, half-day rate 120 pounds, deposit of 150 pounds taken.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e12\"], \"record\": \"EV-4\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Maintenance log: the corridor light fittings take LED bulbs; we keep a stock order with Vale Electrical.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 LED corridor bulbs from Vale Electrical for the fittings noted in the maintenance log, delivered to the hall store cupboard.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Note to self: the boiler service is due in November; Hettie at Vale Heating will call to arrange it.\", \"role\": \"obligation\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sam Rivera\", \"text\": \"The Eastvale Community Choir would like the main hall for Monday evening rehearsals again this term, starting 28 September 2026.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the main hall for Sam Rivera's Eastvale Community Choir rehearsals on Monday evenings from 28 September 2026, half-day rate 120 pounds, deposit of 150 pounds taken for the term.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e17\"], \"record\": \"EV-5\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"Invoice for July cleaning visits: 240 pounds, as usual.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Grace Chen\", \"text\": \"Just checking our wedding booking is all in order for 3 October at the main hall.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Confirmed to Grace Chen: the main hall with kitchen is booked for 3 October 2026, and her deposit of 150 pounds is held against the booking and will be refunded after the inspection.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Hettie Vale (Vale Heating)\", \"text\": \"We can service the boiler on either 12 or 19 November 2026, morning.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"call\", \"from\": \"Marta\", \"text\": \"Called Hettie at Vale Heating and provisionally pencilled the boiler service for Thursday 12 November 2026, morning; she will send written confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"After the committee meeting, here is our deposit policy in the new wording, effective now: each hirer of the main hall pays a returnable deposit of 150 pounds when the booking is made, and the caretaker pays it back once the hall has been checked after the event. Bookings for the small room do not need a deposit.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e25\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Ray Hollis (Lakeside FC)\", \"text\": \"Quiz night is fine for 24 October; we expect around 60 people and will bring our own PA.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Note: for small room parties like the Burns birthday, we ask a 75 pound key deposit on the day, collected by the caretaker and returned when the key comes back.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Priya Nandi (Meadowbrook Toddler Group)\", \"text\": \"The Meadowbrook toddler group would love the main hall on Friday 16 October 2026, 9:30 to 11:30, for our autumn session with songs and play. Could you confirm the booking and tell me the deposit?\", \"role\": \"fact\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Sam Rivera\", \"text\": \"Choir rehearsals are going well; we will keep Mondays as booked.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-21\", \"type\": \"email\", \"from\": \"Dana Okafor (Bright and Co Cleaning)\", \"text\": \"We are running low on bin liners at the hall; the next supply order should include more boxes.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Marta\", \"text\": \"Reminder to reply to Priya Nandi at the Meadowbrook toddler group about the main hall on Friday 16 October 2026, morning.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Chen wedding reception\", \"fields\": {\"date\": \"2026-10-03\", \"time\": \"18:00\", \"place\": \"main hall with kitchen\", \"hirer\": \"Grace Chen\", \"deposit\": \"150\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Yoga class, autumn term\", \"fields\": {\"date\": \"2026-09-29\", \"time\": \"19:00\", \"place\": \"small room\", \"hirer\": \"Lena Frost\", \"deposit\": \"0\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Burns birthday party\", \"fields\": {\"date\": \"2026-10-10\", \"time\": \"14:00\", \"place\": \"small room\", \"hirer\": \"Tom Burns\", \"deposit\": \"0\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Lakeside FC charity quiz night\", \"fields\": {\"date\": \"2026-10-24\", \"time\": \"19:30\", \"place\": \"main hall\", \"hirer\": \"Ray Hollis\", \"deposit\": \"150\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Community choir rehearsals\", \"fields\": {\"date\": \"2026-09-28\", \"time\": \"19:00\", \"place\": \"main hall\", \"hirer\": \"Sam Rivera\", \"deposit\": \"150\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cleaning supplies, Bright and Co\", \"fields\": {\"item\": \"floor fluid and bin liners\", \"quantity\": \"12 bottles floor fluid, 6 boxes bin liners\", \"supplier\": \"Bright and Co Cleaning\", \"place\": \"hall store cupboard\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"LED corridor bulbs, Vale Electrical\", \"fields\": {\"item\": \"LED corridor bulbs\", \"quantity\": \"24\", \"supplier\": \"Vale Electrical\", \"place\": \"hall store cupboard\", \"status\": \"delivered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Grace Chen\", \"fields\": {\"phone\": \"07700 900112\", \"email\": \"grace.chen@example.com\", \"note\": \"wedding reception, deposit held\", \"status\": \"active\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Priya Nandi, Meadowbrook toddler group\", \"fields\": {\"phone\": \"07700 900334\", \"email\": \"priya.nandi@example.com\", \"note\": \"autumn session enquiry, main hall\", \"status\": \"pending\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-4\", \"fields\": [\"date\"], \"from\": \"Ray Hollis (Lakeside FC)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please book the main hall for Priya Nandi's Meadowbrook toddler group this Friday 16 October, 9:30 to 11:30, and send her a confirmation telling her the deposit amount.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"09:30\", \"place\": \"main hall\", \"hirer\": \"Priya Nandi (Meadowbrook toddler group)\", \"deposit\": \"150\", \"status\": \"booked\"}, \"stale\": {\"deposit\": [\"75\", \"0\"]}, \"task\": true},\n  {\"message_to\": \"Priya Nandi (Meadowbrook toddler group)\", \"regarding\": null, \"says\": [\"main hall\", \"2026-10-16\", \"09:30\", \"deposit of 150 pounds\"], \"stale\": [\"75\"], \"task\": true}\n ],\n \"why\": \"The 8 September email only restates the deposit policy in new words with the same substance (150 pounds, refundable, main hall only), so no existing decision or record changes and no marks are given. The task is a fresh main hall booking, which under the policy as it stands carries the 150 pound deposit; the 75 pound figure is only the small room key deposit, not the value to act on, and no confirmed booking is moved, so no hirer consent is needed.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Marta\", \"org\": \"Eastvale Community Hall\", \"item\": \"tea and coffee supplies\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"hall kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"small room meetings\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"small room monthly staff meeting\", \"values\": [\"small room\", \"store office\", \"kitchen corner\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"main hall badminton\", \"counterpart\": \"Ken Park\", \"org\": \"Eastvale Badminton Club\", \"item\": \"badminton session\", \"values\": [\"main hall\", \"main hall with kitchen\", \"small room\", \"main hall stage side\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"toilet paper restock\", \"counterpart\": \"Ravi Menon\", \"org\": \"Vale Wholesale\", \"item\": \"toilet paper\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\", \"40\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"scout troop evenings\", \"counterpart\": \"Nora Bell\", \"org\": \"1st Eastvale Scouts\", \"item\": \"scout troop meeting\", \"values\": [\"main hall\", \"small room\", \"main hall with kitchen\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"hand soap and sanitiser\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"hand soap and sanitiser\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"parking bay for vans\", \"counterpart\": \"Hettie Vale\", \"org\": \"Vale Heating\", \"item\": \"service van parking bay\", \"values\": [\"front bay\", \"side yard\", \"rear yard\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"bin liners restock\", \"counterpart\": \"Dana Okafor\", \"org\": \"Bright and Co Cleaning\", \"item\": \"bin liners\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"fitness classes\", \"counterpart\": \"Lena Frost\", \"org\": \"Frost Fitness\", \"item\": \"fitness class\", \"values\": [\"small room\", \"main hall\", \"main hall with kitchen\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"LED bulbs restock\", \"counterpart\": \"Owen Vale\", \"org\": \"Vale Electrical\", \"item\": \"LED bulbs\", \"unit\": \"bulbs\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"hall store cupboard\"},\n  {\"kind\": \"booking\", \"topic\": \"committee meetings\", \"counterpart\": \"Marta\", \"org\": \"Eastvale Community Hall\", \"item\": \"hall committee meeting\", \"values\": [\"small room\", \"kitchen corner\", \"store office\"], \"place\": \"Eastvale Community Hall\"},\n  {\"kind\": \"order\", \"topic\": \"first aid kit supplies\", \"counterpart\": \"Priya Nandi\", \"org\": \"Meadowbrook toddler group\", \"item\": \"plasters and wipes\", \"unit\": \"packs\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"hall store cupboard\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7598,
+    "completion_tokens": 4311,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0259576,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'main hall badminton': values needs at least three entries\n- noise topic 'parking bay for vans': values needs at least three entries\n- noise topic 'pillow-aerobics class': values needs at least three entries\n- noise topic 'committee meetings': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Hall deposit rule restated",
+  "setting": "The caretaker of Eastvale Community Hall whose assistant tracks bookings, maintenance logs, and hirer deposits",
+  "owner": "Marta",
+  "org": "Eastvale Community Hall",
+  "now": "2026-09-24",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing policy: every booking of the main hall at Eastvale Community Hall carries a deposit of 150 pounds, held against the booking and refunded after the post-event inspection. Small room bookings carry no deposit.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing policy: once a booking at Eastvale Community Hall is confirmed with a hirer, the date may only be moved with that hirer's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Marta",
+    "text": "Reminder of our rates: the main hall is 120 pounds for a half day, and the kitchen adds 40 pounds on top.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Grace Chen",
+    "text": "We would like the main hall with kitchen for our wedding reception on Saturday 3 October 2026, full evening.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the main hall with kitchen for Grace Chen's wedding reception on 3 October 2026, half-day rate 120 pounds plus 40 pounds for the kitchen, deposit of 150 pounds taken.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Dana Okafor (Bright and Co Cleaning)",
+    "text": "Our weekly cleaning visit stays on Thursday mornings; supplies list attached, we usually need floor fluid and bin liners.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered the usual cleaning supplies from Bright and Co for the Thursday visits: 12 bottles of floor fluid and 6 boxes of bin liners, delivered to the hall store cupboard.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Lena Frost",
+    "text": "The Tuesday evening yoga class would like to keep the small room through the autumn, please.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the small room for Lena Frost's yoga class every Tuesday evening from 29 September 2026, no deposit needed for the small room.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e8"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Tom Burns",
+    "text": "Can we have the small room for my daughter's birthday party on Saturday 10 October 2026, afternoon?",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-26",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the small room for Tom Burns's daughter's birthday party on 10 October 2026, afternoon, no deposit for the small room.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e10"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Ray Hollis (Lakeside FC)",
+    "text": "Lakeside FC would like the main hall for our charity quiz night on Saturday 24 October 2026, evening.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the main hall for Ray Hollis of Lakeside FC for their charity quiz night on 24 October 2026, evening, half-day rate 120 pounds, deposit of 150 pounds taken.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e12"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Maintenance log: the corridor light fittings take LED bulbs; we keep a stock order with Vale Electrical.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 24 LED corridor bulbs from Vale Electrical for the fittings noted in the maintenance log, delivered to the hall store cupboard.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Marta",
+    "text": "Note to self: the boiler service is due in November; Hettie at Vale Heating will call to arrange it.",
+    "role": "obligation"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Sam Rivera",
+    "text": "The Eastvale Community Choir would like the main hall for Monday evening rehearsals again this term, starting 28 September 2026.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-21",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the main hall for Sam Rivera's Eastvale Community Choir rehearsals on Monday evenings from 28 September 2026, half-day rate 120 pounds, deposit of 150 pounds taken for the term.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e17"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Dana Okafor (Bright and Co Cleaning)",
+    "text": "Invoice for July cleaning visits: 240 pounds, as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Grace Chen",
+    "text": "Just checking our wedding booking is all in order for 3 October at the main hall.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Marta",
+    "text": "Confirmed to Grace Chen: the main hall with kitchen is booked for 3 October 2026, and her deposit of 150 pounds is held against the booking and will be refunded after the inspection.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Hettie Vale (Vale Heating)",
+    "text": "We can service the boiler on either 12 or 19 November 2026, morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "call",
+    "from": "Marta",
+    "text": "Called Hettie at Vale Heating and provisionally pencilled the boiler service for Thursday 12 November 2026, morning; she will send written confirmation.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Marta",
+    "text": "After the committee meeting, here is our deposit policy in the new wording, effective now: each hirer of the main hall pays a returnable deposit of 150 pounds when the booking is made, and the caretaker pays it back once the hall has been checked after the event. Bookings for the small room do not need a deposit.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-11",
+    "type": "email",
+    "from": "Ray Hollis (Lakeside FC)",
+    "text": "Quiz night is fine for 24 October; we expect around 60 people and will bring our own PA.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "note",
+    "from": "Marta",
+    "text": "Note: for small room parties like the Burns birthday, we ask a 75 pound key deposit on the day, collected by the caretaker and returned when the key comes back.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Priya Nandi (Meadowbrook Toddler Group)",
+    "text": "The Meadowbrook toddler group would love the main hall on Friday 16 October 2026, 9:30 to 11:30, for our autumn session with songs and play. Could you confirm the booking and tell me the deposit?",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-19",
+    "type": "email",
+    "from": "Sam Rivera",
+    "text": "Choir rehearsals are going well; we will keep Mondays as booked.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-21",
+    "type": "email",
+    "from": "Dana Okafor (Bright and Co Cleaning)",
+    "text": "We are running low on bin liners at the hall; the next supply order should include more boxes.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Marta",
+    "text": "Reminder to reply to Priya Nandi at the Meadowbrook toddler group about the main hall on Friday 16 October 2026, morning.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Chen wedding reception",
+    "fields": {
+     "date": "2026-10-03",
+     "time": "18:00",
+     "place": "main hall with kitchen",
+     "hirer": "Grace Chen",
+     "deposit": "150",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Yoga class, autumn term",
+    "fields": {
+     "date": "2026-09-29",
+     "time": "19:00",
+     "place": "small room",
+     "hirer": "Lena Frost",
+     "deposit": "0",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Burns birthday party",
+    "fields": {
+     "date": "2026-10-10",
+     "time": "14:00",
+     "place": "small room",
+     "hirer": "Tom Burns",
+     "deposit": "0",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Lakeside FC charity quiz night",
+    "fields": {
+     "date": "2026-10-24",
+     "time": "19:30",
+     "place": "main hall",
+     "hirer": "Ray Hollis",
+     "deposit": "150",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Community choir rehearsals",
+    "fields": {
+     "date": "2026-09-28",
+     "time": "19:00",
+     "place": "main hall",
+     "hirer": "Sam Rivera",
+     "deposit": "150",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Cleaning supplies, Bright and Co",
+    "fields": {
+     "item": "floor fluid and bin liners",
+     "quantity": "12 bottles floor fluid, 6 boxes bin liners",
+     "supplier": "Bright and Co Cleaning",
+     "place": "hall store cupboard",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "LED corridor bulbs, Vale Electrical",
+    "fields": {
+     "item": "LED corridor bulbs",
+     "quantity": "24",
+     "supplier": "Vale Electrical",
+     "place": "hall store cupboard",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Grace Chen",
+    "fields": {
+     "phone": "07700 900112",
+     "email": "grace.chen@example.com",
+     "note": "wedding reception, deposit held",
+     "status": "active"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Priya Nandi, Meadowbrook toddler group",
+    "fields": {
+     "phone": "07700 900334",
+     "email": "priya.nandi@example.com",
+     "note": "autumn session enquiry, main hall",
+     "status": "pending"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-4",
+    "fields": [
+     "date"
+    ],
+    "from": "Ray Hollis (Lakeside FC)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please book the main hall for Priya Nandi's Meadowbrook toddler group this Friday 16 October, 9:30 to 11:30, and send her a confirmation telling her the deposit amount.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "09:30",
+     "place": "main hall",
+     "hirer": "Priya Nandi (Meadowbrook toddler group)",
+     "deposit": "150",
+     "status": "booked"
+    },
+    "stale": {
+     "deposit": [
+      "75",
+      "0"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Priya Nandi (Meadowbrook toddler group)",
+    "regarding": null,
+    "says": [
+     "main hall",
+     "2026-10-16",
+     "09:30",
+     "deposit of 150 pounds"
+    ],
+    "stale": [
+     "75"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The 8 September email only restates the deposit policy in new words with the same substance (150 pounds, refundable, main hall only), so no existing decision or record changes and no marks are given. The task is a fresh main hall booking, which under the policy as it stands carries the 150 pound deposit; the 75 pound figure is only the small room key deposit, not the value to act on, and no confirmed booking is moved, so no hirer consent is needed.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "tea and coffee restock",
+    "counterpart": "Marta",
+    "org": "Eastvale Community Hall",
+    "item": "tea and coffee supplies",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "hall kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "small room meetings",
+    "counterpart": "Dana Okafor",
+    "org": "Bright and Co Cleaning",
+    "item": "small room monthly staff meeting",
+    "values": [
+     "small room",
+     "store office",
+     "kitchen corner"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "main hall badminton",
+    "counterpart": "Ken Park",
+    "org": "Eastvale Badminton Club",
+    "item": "badminton session",
+    "values": [
+     "main hall",
+     "main hall with kitchen",
+     "small room",
+     "main hall stage side"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "toilet paper restock",
+    "counterpart": "Ravi Menon",
+    "org": "Vale Wholesale",
+    "item": "toilet paper",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "scout troop evenings",
+    "counterpart": "Nora Bell",
+    "org": "1st Eastvale Scouts",
+    "item": "scout troop meeting",
+    "values": [
+     "main hall",
+     "small room",
+     "main hall with kitchen"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "hand soap and sanitiser",
+    "counterpart": "Dana Okafor",
+    "org": "Bright and Co Cleaning",
+    "item": "hand soap and sanitiser",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "parking bay for vans",
+    "counterpart": "Hettie Vale",
+    "org": "Vale Heating",
+    "item": "service van parking bay",
+    "values": [
+     "front bay",
+     "side yard",
+     "rear yard"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "bin liners restock",
+    "counterpart": "Dana Okafor",
+    "org": "Bright and Co Cleaning",
+    "item": "bin liners",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "fitness classes",
+    "counterpart": "Lena Frost",
+    "org": "Frost Fitness",
+    "item": "fitness class",
+    "values": [
+     "small room",
+     "main hall",
+     "main hall with kitchen"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "LED bulbs restock",
+    "counterpart": "Owen Vale",
+    "org": "Vale Electrical",
+    "item": "LED bulbs",
+    "unit": "bulbs",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "hall store cupboard"
+   },
+   {
+    "kind": "booking",
+    "topic": "committee meetings",
+    "counterpart": "Marta",
+    "org": "Eastvale Community Hall",
+    "item": "hall committee meeting",
+    "values": [
+     "small room",
+     "kitchen corner",
+     "store office"
+    ],
+    "place": "Eastvale Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid kit supplies",
+    "counterpart": "Priya Nandi",
+    "org": "Meadowbrook toddler group",
+    "item": "plasters and wipes",
+    "unit": "packs",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "hall store cupboard"
+   }
+  ],
+  "id": "G500-4-02",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,667 @@
+{
+ "id": "G1000-2-01",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 2,
+ "idx": 0,
+ "setting": "A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules",
+ "prompt_sha256": "063754f0afb853ced57e4baaa612d037aba2cd2ee09433eb5d68363f1681563e",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Rush surcharge raised at Studio Fenn\",\n \"setting\": \"A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules\",\n \"owner\": \"Mira\",\n \"org\": \"Studio Fenn\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Studio Fenn's standard day rate for design work is 640. That is the base I quote all regular work from.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Studio Fenn rush policy: any job with a turnaround under five working days counts as rush work. Rush jobs need my written sign-off before we accept them, and every rush job carries a surcharge of 20% on top of the project fee.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing instruction: once dates or amounts have been confirmed with a client in writing, we do not change them without that client's written agreement first. No repricing or rescheduling on our own initiative.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Joran Aas (Brygg Paper)\", \"text\": \"Price update: Munken Pure 300gsm is 1.10 per sheet, delivered to Studio Fenn. Lead time one week.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"We are planning a full rebrand of Nordlys Bakery, new logo, packaging and signage. Budget is around 2500. Could you put together a quote?\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"I would love a logo refresh workshop at Studio Fenn. We need it finished before our reopening on 30 October, so timing will be tight. You can reach me any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the weekly team stand-up in the Studio Fenn meeting room every Tuesday at 09:30, recurring for the rest of the year.\", \"role\": \"decision\", \"record\": \"EV-3\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"call\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"Called about a flyer refresh for Aurora Health's autumn campaign. Standard turnaround is fine for them, no rush needed.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Joran Aas (Brygg Paper)\", \"text\": \"Invoice for the last paper delivery: 440 for 400 sheets of Munken Pure 300gsm. Due in 14 days.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 400 sheets of Munken Pure 300gsm from Brygg Paper at 1.10 per sheet for the studio stock, delivered to Studio Fenn.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Mia Holm (Nord Ink Supply)\", \"text\": \"Quotation: CMYK ink set at 240 per box, delivery to Studio Fenn within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-05\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Every client brief must be logged in the CRM by the end of the day it arrives, no exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Scheduled the Aurora Health flyer refresh for 20 August at the standard day rate of 640. Normal five-day turnaround, so no rush surcharge applies.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-4\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"The flyers look great, thank you. We will be back for the November refresh.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 6 boxes of CMYK ink from Nord Ink Supply at 240 per box for the studio, delivered to Studio Fenn.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-06\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Team notes: keep the meeting room tidy after client workshops, and chase Nordlys Bakery about the rebrand brief.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Mira\", \"text\": \"Reminder of current pricing: rush surcharge is 20% on top of the project fee for any job under five working days' turnaround, and I sign off every rush job before we accept it.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Quick question about the workshop: will you provide materials and colour swatches, or should I bring some?\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"Update on the rebrand: we now need everything finished by 30 October. Once we start, the work itself takes about four working days, so it will be tight. Please send me a draft quote with the total and your deposit terms.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Sofia Roald (Fjellheim Shelter)\", \"text\": \"Fjellheim Shelter is a registered charity. We urgently need posters for our 22 September fundraiser and have a budget of 600. Can you help?\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Accepted the Fjellheim Shelter rush poster job and signed it off myself. Two-day turnaround, project fee 600 with the 20% rush surcharge, total 720, delivered 22 September. Their registered charity status is noted on file.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e20\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Can you confirm the workshop date, place and the all-in price so I can put it in our budget?\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Signed off and accepted the rush logo refresh workshop for Trellis Yoga: three working days' turnaround, workshop on Tuesday 27 October at 10:00 in the Studio Fenn meeting room. Project fee 1500 with the 20% rush surcharge, all-in total 1800.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Perfect, confirmed. Workshop on 27 October at your studio, 1800 all-in. See you then!\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Prepared the draft quote for the Nordlys Bakery rebrand: base fee 2200, four working days' turnaround so the 20% rush surcharge applies, total 2640. Kept as a draft, nothing confirmed with Halvard yet.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e19\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Set the deposit plan for the Nordlys Bakery rebrand: 50% of the quoted total, which is 1320, due at sign-off, with the balance on delivery.\", \"role\": \"decision\", \"rests_on\": [\"e25\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: send Aurora Health the invoice for the flyer refresh, 640, by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Mira\", \"text\": \"Heads-up on pricing: courier and overtime costs have gone up this quarter, so from today the rush surcharge is 30% of the project fee for all rush work that has not been invoiced yet. Registered charities keep the 20% rate. The sign-off rule for rush jobs stays exactly as it was.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"We would like to book the November flyer refresh now. Standard turnaround is fine, at the usual day rate of 640. Please confirm and put it in the schedule.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Studio note: order more coffee for client meetings and tidy the swatch drawer.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Two things: please add my business partner to the workshop guest list, and we are still set for 1800 all-in on the 27th, right?\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e32\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"Any news on the rebrand quote? I was hoping to see the numbers this week so we can decide.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Mira\", \"text\": \"Please keep the CRM briefs up to date and make sure the November schedule is filling in properly.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Trellis Yoga rush logo workshop\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"10:00\", \"place\": \"Studio Fenn meeting room\", \"client\": \"Trellis Yoga\", \"base_fee\": \"1500\", \"surcharge\": \"20\", \"total\": \"1800\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Fjellheim Shelter rush posters\", \"fields\": {\"date\": \"2026-09-22\", \"client\": \"Fjellheim Shelter\", \"base_fee\": \"600\", \"surcharge\": \"20\", \"total\": \"720\", \"status\": \"completed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Weekly team stand-up\", \"fields\": {\"weekday\": \"Tuesday\", \"time\": \"09:30\", \"place\": \"Studio Fenn meeting room\", \"status\": \"recurring\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Aurora Health flyer refresh\", \"fields\": {\"date\": \"2026-08-20\", \"client\": \"Aurora Health\", \"fee\": \"640\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Munken paper stock order\", \"fields\": {\"supplier\": \"Brygg Paper\", \"item\": \"Munken Pure 300gsm\", \"quantity\": \"400\", \"unit\": \"sheets\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Ink restock\", \"fields\": {\"supplier\": \"Nord Ink Supply\", \"item\": \"CMYK ink set\", \"quantity\": \"6\", \"unit\": \"boxes\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nordlys Bakery rebrand quote\", \"fields\": {\"client\": \"Nordlys Bakery\", \"turnaround\": \"4 working days\", \"base_fee\": \"2200\", \"surcharge\": \"20\", \"total\": \"2640\", \"status\": \"draft\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Nordlys Bakery deposit plan\", \"fields\": {\"client\": \"Nordlys Bakery\", \"deposit_pct\": \"50\", \"deposit_amount\": \"1320\", \"due\": \"at sign-off\", \"status\": \"pending\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"surcharge\", \"total\"], \"from\": \"Petra Lind\", \"rule\": \"e3\"}\n ],\n \"task\": \"Halvard at Nordlys Bakery is chasing the rebrand quote. Please email him the quote with the total and the deposit amount today so he can sign off.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"surcharge\", \"value\": \"30\", \"stale\": [\"20\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"2860\", \"stale\": [\"2640\"], \"task\": true},\n  {\"record\": \"CL-2\", \"field\": \"deposit_amount\", \"value\": \"1430\", \"stale\": [\"1320\"]},\n  {\"message_to\": \"Halvard Berg\", \"regarding\": \"CL-1\", \"says\": [\"2860\", \"1430\"], \"stale\": [\"2640\", \"1320\"], \"task\": true}\n ],\n \"why\": \"The amendment raises the rush surcharge to 30% for all rush work not yet invoiced, which reaches the Nordlys draft quote (CL-1) and, one hop further, its 50% deposit plan (CL-2) — both drafts never confirmed with the client, so no consent is needed and they are REVISE. The Trellis workshop (EV-1) is also un-invoiced rush work, but its price was confirmed in writing with Petra, so repricing it requires her consent under the standing confirmation rule, making it ASK and leaving the record unchanged. The Fjellheim Shelter job cites the old rule but the charity exception keeps its 20% rate, so it is KEEP, and Aurora's day-rate work never rested on the rush rule.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"paper restock\", \"counterpart\": \"Joran Aas\", \"org\": \"Brygg Paper\", \"item\": \"Munken Pure 300gsm\", \"unit\": \"sheets\", \"values\": [\"200\", \"400\", \"600\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"ink restock\", \"counterpart\": \"Mia Holm\", \"org\": \"Nord Ink Supply\", \"item\": \"CMYK ink set\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"yoga logo workshop room\", \"counterpart\": \"Petra Lind\", \"org\": \"Trellis Yoga\", \"item\": \"workshop room booking\", \"unit\": \"\", \"values\": [\"small studio room\", \"large studio room\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"bakery packaging samples\", \"counterpart\": \"Halvard Berg\", \"org\": \"Nordlys Bakery\", \"item\": \"kraft sample packs\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Nordlys Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"shelter poster pickup\", \"counterpart\": \"Sofia Roald\", \"org\": \"Fjellheim Shelter\", \"item\": \"poster pickup slot\", \"unit\": \"\", \"values\": [\"front desk\", \"back room\"], \"place\": \"Fjellheim Shelter\"},\n  {\"kind\": \"booking\", \"topic\": \"client review meeting\", \"counterpart\": \"Dagny Vik\", \"org\": \"Aurora Health\", \"item\": \"review meeting\", \"unit\": \"\", \"values\": [\"meeting room\", \"video call\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"business cards\", \"counterpart\": \"Even Dahl\", \"org\": \"Dahl Print Co\", \"item\": \"business card stock\", \"unit\": \"boxes\", \"values\": [\"2\", \"5\", \"10\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"photo shoot day\", \"counterpart\": \"Lene Moe\", \"org\": \"Studio Fenn\", \"item\": \"photo studio slot\", \"unit\": \"\", \"values\": [\"studio floor\", \"meeting room\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"swatch books\", \"counterpart\": \"Kari Lien\", \"org\": \"Colour Mill\", \"item\": \"pantone swatch books\", \"unit\": \"pieces\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"portfolio review\", \"counterpart\": \"Nils Foss\", \"org\": \"Foss & Co\", \"item\": \"portfolio review\", \"unit\": \"\", \"values\": [\"meeting room\", \"cafe corner\"], \"place\": \"Studio Fenn\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3199,
+    "completion_tokens": 13073,
+    "reasoning_tokens": 8571,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05842476,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Rush surcharge raised at Studio Fenn\",\n \"setting\": \"A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules\",\n \"owner\": \"Mira\",\n \"org\": \"Studio Fenn\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-01\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Studio Fenn's standard day rate for design work is 640. That is the base I quote all regular work from.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Studio Fenn rush policy: any job with a turnaround under five working days counts as rush work. Rush jobs need my written sign-off before we accept them, and every rush job carries a surcharge of 20% on top of the project fee.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing instruction: once dates or amounts have been confirmed with a client in writing, we do not change them without that client's written agreement first. No repricing or rescheduling on our own initiative.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Joran Aas (Brygg Paper)\", \"text\": \"Price update: Munken Pure 300gsm is 1.10 per sheet, delivered to Studio Fenn. Lead time one week.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"We are planning a full rebrand of Nordlys Bakery, new logo, packaging and signage. Budget is around 2500. Could you put together a quote?\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"I would love a logo refresh workshop at Studio Fenn. We need it finished before our reopening on 30 October, so timing will be tight. You can reach me any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the weekly team stand-up in the Studio Fenn meeting room every Tuesday at 09:30, recurring for the rest of the year at no charge to anyone, standard studio time.\", \"role\": \"decision\", \"rests_on\": [\"e1\"], \"record\": \"EV-3\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"call\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"Called about a flyer refresh for Aurora Health's autumn campaign. Standard turnaround is fine for them, no rush needed.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"invoice\", \"from\": \"Joran Aas (Brygg Paper)\", \"text\": \"Invoice for the last paper delivery: 440 for 400 sheets of Munken Pure 300gsm. Due in 14 days.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 400 sheets of Munken Pure 300gsm from Brygg Paper at 1.10 per sheet for the studio stock, delivered to Studio Fenn.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Mia Holm (Nord Ink Supply)\", \"text\": \"Quotation: CMYK ink set at 240 per box, delivery to Studio Fenn within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-05\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Every client brief must be logged in the CRM by the end of the day it arrives, no exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Scheduled the Aurora Health flyer refresh for 20 August at the standard day rate of 640. Normal five-day turnaround, so no rush surcharge applies.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e8\"], \"record\": \"EV-4\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"The flyers look great, thank you. We will be back for the November refresh.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 6 boxes of CMYK ink from Nord Ink Supply at 240 per box for the studio, delivered to Studio Fenn.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-06\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Team notes: keep the meeting room tidy after client workshops, and chase Nordlys Bakery about the rebrand brief.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Mira\", \"text\": \"Reminder of current pricing: rush surcharge is 20% on top of the project fee for any job under five working days' turnaround, and I sign off every rush job before we accept it.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e18\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Quick question about the workshop: will you provide materials and colour swatches, or should I bring some?\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"Update on the rebrand: we now need everything finished by 30 October. Once we start, the work itself takes about four working days, so it will be tight. Please send me a draft quote with the total and your deposit terms.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"email\", \"from\": \"Sofia Roald (Fjellheim Shelter)\", \"text\": \"Fjellheim Shelter is a registered charity. We urgently need posters for our 22 September fundraiser and have a budget of 600. Can you help?\", \"role\": \"fact\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Accepted the Fjellheim Shelter rush poster job and signed it off myself. Two-day turnaround, project fee 600 with the 20% rush surcharge, total 720, delivered 22 September. Their registered charity status is noted on file.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e20\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Can you confirm the workshop date, place and the all-in price so I can put it in our budget?\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Signed off and accepted the rush logo refresh workshop for Trellis Yoga: three working days' turnaround, workshop on Tuesday 27 October at 10:00 in the Studio Fenn meeting room. Project fee 1500 with the 20% rush surcharge, all-in total 1800.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Perfect, confirmed. Workshop on 27 October at your studio, 1800 all-in. See you then!\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Prepared the draft quote for the Nordlys Bakery rebrand: base fee 2200, four working days' turnaround so the 20% rush surcharge applies, total 2640. Kept as a draft, nothing confirmed with Halvard yet.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e19\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Set the deposit plan for the Nordlys Bakery rebrand: 50% of the quoted total, which is 1320, due at sign-off, with the balance on delivery.\", \"role\": \"decision\", \"rests_on\": [\"e25\"], \"record\": \"CL-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: send Aurora Health the invoice for the flyer refresh, 640, by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-05\", \"type\": \"notice\", \"from\": \"Mira\", \"text\": \"Heads-up on pricing: courier and overtime costs have gone up this quarter, so from today the rush surcharge is 30% of the project fee for all rush work that has not been invoiced yet. Registered charities keep the 20% rate. The sign-off rule for rush jobs stays exactly as it was.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Dagny Vik (Aurora Health)\", \"text\": \"We would like to book the November flyer refresh now. Standard turnaround is fine, at the usual day rate of 640. Please confirm and put it in the schedule.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"note\", \"from\": \"Mira\", \"text\": \"Studio note: order more coffee for client meetings and tidy the swatch drawer.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Petra Lind (Trellis Yoga)\", \"text\": \"Two things: please add my business partner to the workshop guest list, and we are still set for 1800 all-in on the 27th, right?\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e32\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Halvard Berg (Nordlys Bakery)\", \"text\": \"Any news on the rebrand quote? I was hoping to see the numbers this week so we can decide.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Mira\", \"text\": \"Please keep the CRM briefs up to date and make sure the November schedule is filling in properly.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Trellis Yoga rush logo workshop\", \"fields\": {\"date\": \"2026-10-27\", \"time\": \"10:00\", \"place\": \"Studio Fenn meeting room\", \"client\": \"Trellis Yoga\", \"base_fee\": \"1500\", \"surcharge\": \"20\", \"total\": \"1800\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Fjellheim Shelter rush posters\", \"fields\": {\"date\": \"2026-09-22\", \"client\": \"Fjellheim Shelter\", \"base_fee\": \"600\", \"surcharge\": \"20\", \"total\": \"720\", \"status\": \"completed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Weekly team stand-up\", \"fields\": {\"weekday\": \"Tuesday\", \"time\": \"09:30\", \"place\": \"Studio Fenn meeting room\", \"status\": \"recurring\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Aurora Health flyer refresh\", \"fields\": {\"date\": \"2026-08-20\", \"client\": \"Aurora Health\", \"fee\": \"640\", \"status\": \"completed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Munken paper stock order\", \"fields\": {\"supplier\": \"Brygg Paper\", \"item\": \"Munken Pure 300gsm\", \"quantity\": \"400\", \"unit\": \"sheets\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Ink restock\", \"fields\": {\"supplier\": \"Nord Ink Supply\", \"item\": \"CMYK ink set\", \"quantity\": \"6\", \"unit\": \"boxes\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Nordlys Bakery rebrand quote\", \"fields\": {\"client\": \"Nordlys Bakery\", \"turnaround\": \"4 working days\", \"base_fee\": \"2200\", \"surcharge\": \"20\", \"total\": \"2640\", \"status\": \"draft\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Nordlys Bakery deposit plan\", \"fields\": {\"client\": \"Nordlys Bakery\", \"deposit_pct\": \"50\", \"deposit_amount\": \"1320\", \"due\": \"at sign-off\", \"status\": \"pending\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"surcharge\", \"total\"], \"from\": \"Petra Lind\", \"rule\": \"e3\"}\n ],\n \"task\": \"Halvard at Nordlys Bakery is chasing the rebrand quote. Please email him the quote with the total and the deposit amount today so he can sign off.\",\n \"expect\": [\n  {\"record\": \"CL-1\", \"field\": \"surcharge\", \"value\": \"30\", \"stale\": [\"20\"], \"task\": true},\n  {\"record\": \"CL-1\", \"field\": \"total\", \"value\": \"2860\", \"stale\": [\"2640\"], \"task\": true},\n  {\"record\": \"CL-2\", \"field\": \"deposit_amount\", \"value\": \"1430\", \"stale\": [\"1320\"]},\n  {\"message_to\": \"Halvard Berg\", \"regarding\": \"CL-1\", \"says\": [\"2860\", \"1430\"], \"stale\": [\"2640\", \"1320\"], \"task\": true}\n ],\n \"why\": \"The amendment raises the rush surcharge to 30% for all rush work not yet invoiced, which reaches the Nordlys draft quote (CL-1) and, one hop further, its 50% deposit plan (CL-2) — both drafts never confirmed with the client, so no consent is needed and they are REVISE. The Trellis workshop (EV-1) is also un-invoiced rush work, but its price was confirmed in writing with Petra, so repricing it requires her consent under the standing confirmation rule, making it ASK and leaving the record unchanged. The Fjellheim Shelter job cites the old rule but the charity exception keeps its 20% rate, so it is KEEP, and Aurora's day-rate work never rested on the rush rule.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"paper restock\", \"counterpart\": \"Joran Aas\", \"org\": \"Brygg Paper\", \"item\": \"Munken Pure 300gsm\", \"unit\": \"sheets\", \"values\": [\"200\", \"400\", \"600\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"ink restock\", \"counterpart\": \"Mia Holm\", \"org\": \"Nord Ink Supply\", \"item\": \"CMYK ink set\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"yoga logo workshop room\", \"counterpart\": \"Petra Lind\", \"org\": \"Trellis Yoga\", \"item\": \"workshop room booking\", \"unit\": \"\", \"values\": [\"small studio room\", \"large studio room\", \"meeting room\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"bakery packaging samples\", \"counterpart\": \"Halvard Berg\", \"org\": \"Nordlys Bakery\", \"item\": \"kraft sample packs\", \"unit\": \"packs\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Nordlys Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"shelter poster pickup\", \"counterpart\": \"Sofia Roald\", \"org\": \"Fjellheim Shelter\", \"item\": \"poster pickup slot\", \"unit\": \"\", \"values\": [\"front desk\", \"back room\", \"side entrance\"], \"place\": \"Fjellheim Shelter\"},\n  {\"kind\": \"booking\", \"topic\": \"client review meeting\", \"counterpart\": \"Dagny Vik\", \"org\": \"Aurora Health\", \"item\": \"review meeting\", \"unit\": \"\", \"values\": [\"meeting room\", \"video call\", \"cafe corner\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"business cards\", \"counterpart\": \"Even Dahl\", \"org\": \"Dahl Print Co\", \"item\": \"business card stock\", \"unit\": \"boxes\", \"values\": [\"2\", \"5\", \"10\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"photo shoot day\", \"counterpart\": \"Lene Moe\", \"org\": \"Studio Fenn\", \"item\": \"photo studio slot\", \"unit\": \"\", \"values\": [\"studio floor\", \"meeting room\", \"back lot\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"order\", \"topic\": \"swatch books\", \"counterpart\": \"Kari Lien\", \"org\": \"Colour Mill\", \"item\": \"pantone swatch books\", \"unit\": \"pieces\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Studio Fenn\"},\n  {\"kind\": \"booking\", \"topic\": \"portfolio review\", \"counterpart\": \"Nils Foss\", \"org\": \"Foss & Co\", \"item\": \"portfolio review\", \"unit\": \"\", \"values\": [\"meeting room\", \"cafe corner\", \"video call\"], \"place\": \"Studio Fenn\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7821,
+    "completion_tokens": 4570,
+    "reasoning_tokens": 29,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02748236,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e7: a decision must rest on at least one earlier event\n- noise topic 'yoga logo workshop room': values needs at least three entries\n- noise topic 'shelter poster pickup': values needs at least three entries\n- noise topic 'client review meeting': values needs at least three entries\n- noise topic 'photo shoot day': values needs at least three entries\n- noise topic 'portfolio review': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Rush surcharge raised at Studio Fenn",
+  "setting": "A graphic designer at Studio Fenn whose assistant logs client briefs, revision approvals, and invoice schedules",
+  "owner": "Mira",
+  "org": "Studio Fenn",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-01",
+    "type": "note",
+    "from": "Mira",
+    "text": "Studio Fenn's standard day rate for design work is 640. That is the base I quote all regular work from.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Mira",
+    "text": "Studio Fenn rush policy: any job with a turnaround under five working days counts as rush work. Rush jobs need my written sign-off before we accept them, and every rush job carries a surcharge of 20% on top of the project fee.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Standing instruction: once dates or amounts have been confirmed with a client in writing, we do not change them without that client's written agreement first. No repricing or rescheduling on our own initiative.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Joran Aas (Brygg Paper)",
+    "text": "Price update: Munken Pure 300gsm is 1.10 per sheet, delivered to Studio Fenn. Lead time one week.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Halvard Berg (Nordlys Bakery)",
+    "text": "We are planning a full rebrand of Nordlys Bakery, new logo, packaging and signage. Budget is around 2500. Could you put together a quote?",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Petra Lind (Trellis Yoga)",
+    "text": "I would love a logo refresh workshop at Studio Fenn. We need it finished before our reopening on 30 October, so timing will be tight. You can reach me any weekday.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked the weekly team stand-up in the Studio Fenn meeting room every Tuesday at 09:30, recurring for the rest of the year at no charge to anyone, standard studio time.",
+    "role": "decision",
+    "rests_on": [
+     "e1"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "call",
+    "from": "Dagny Vik (Aurora Health)",
+    "text": "Called about a flyer refresh for Aurora Health's autumn campaign. Standard turnaround is fine for them, no rush needed.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "invoice",
+    "from": "Joran Aas (Brygg Paper)",
+    "text": "Invoice for the last paper delivery: 440 for 400 sheets of Munken Pure 300gsm. Due in 14 days.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 400 sheets of Munken Pure 300gsm from Brygg Paper at 1.10 per sheet for the studio stock, delivered to Studio Fenn.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-15",
+    "type": "quote",
+    "from": "Mia Holm (Nord Ink Supply)",
+    "text": "Quotation: CMYK ink set at 240 per box, delivery to Studio Fenn within 3 working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-05",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Every client brief must be logged in the CRM by the end of the day it arrives, no exceptions.",
+    "role": "rule"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Scheduled the Aurora Health flyer refresh for 20 August at the standard day rate of 640. Normal five-day turnaround, so no rush surcharge applies.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e8"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Dagny Vik (Aurora Health)",
+    "text": "The flyers look great, thank you. We will be back for the November refresh.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 6 boxes of CMYK ink from Nord Ink Supply at 240 per box for the studio, delivered to Studio Fenn.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-06",
+    "type": "minutes",
+    "from": "Mira",
+    "text": "Team notes: keep the meeting room tidy after client workshops, and chase Nordlys Bakery about the rebrand brief.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Mira",
+    "text": "Reminder of current pricing: rush surcharge is 20% on top of the project fee for any job under five working days' turnaround, and I sign off every rush job before we accept it.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Petra Lind (Trellis Yoga)",
+    "text": "Quick question about the workshop: will you provide materials and colour swatches, or should I bring some?",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Halvard Berg (Nordlys Bakery)",
+    "text": "Update on the rebrand: we now need everything finished by 30 October. Once we start, the work itself takes about four working days, so it will be tight. Please send me a draft quote with the total and your deposit terms.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-16",
+    "type": "email",
+    "from": "Sofia Roald (Fjellheim Shelter)",
+    "text": "Fjellheim Shelter is a registered charity. We urgently need posters for our 22 September fundraiser and have a budget of 600. Can you help?",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Accepted the Fjellheim Shelter rush poster job and signed it off myself. Two-day turnaround, project fee 600 with the 20% rush surcharge, total 720, delivered 22 September. Their registered charity status is noted on file.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e20"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Petra Lind (Trellis Yoga)",
+    "text": "Can you confirm the workshop date, place and the all-in price so I can put it in our budget?",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-24",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Signed off and accepted the rush logo refresh workshop for Trellis Yoga: three working days' turnaround, workshop on Tuesday 27 October at 10:00 in the Studio Fenn meeting room. Project fee 1500 with the 20% rush surcharge, all-in total 1800.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Petra Lind (Trellis Yoga)",
+    "text": "Perfect, confirmed. Workshop on 27 October at your studio, 1800 all-in. See you then!",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-26",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Prepared the draft quote for the Nordlys Bakery rebrand: base fee 2200, four working days' turnaround so the 20% rush surcharge applies, total 2640. Kept as a draft, nothing confirmed with Halvard yet.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e19",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-29",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Set the deposit plan for the Nordlys Bakery rebrand: 50% of the quoted total, which is 1320, due at sign-off, with the balance on delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e25"
+    ],
+    "record": "CL-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-02",
+    "type": "task",
+    "from": "Mira",
+    "text": "To-do: send Aurora Health the invoice for the flyer refresh, 640, by 31 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-05",
+    "type": "notice",
+    "from": "Mira",
+    "text": "Heads-up on pricing: courier and overtime costs have gone up this quarter, so from today the rush surcharge is 30% of the project fee for all rush work that has not been invoiced yet. Registered charities keep the 20% rate. The sign-off rule for rush jobs stays exactly as it was.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Dagny Vik (Aurora Health)",
+    "text": "We would like to book the November flyer refresh now. Standard turnaround is fine, at the usual day rate of 640. Please confirm and put it in the schedule.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-09",
+    "type": "note",
+    "from": "Mira",
+    "text": "Studio note: order more coffee for client meetings and tidy the swatch drawer.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Petra Lind (Trellis Yoga)",
+    "text": "Two things: please add my business partner to the workshop guest list, and we are still set for 1800 all-in on the 27th, right?",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Halvard Berg (Nordlys Bakery)",
+    "text": "Any news on the rebrand quote? I was hoping to see the numbers this week so we can decide.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Mira",
+    "text": "Please keep the CRM briefs up to date and make sure the November schedule is filling in properly.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Trellis Yoga rush logo workshop",
+    "fields": {
+     "date": "2026-10-27",
+     "time": "10:00",
+     "place": "Studio Fenn meeting room",
+     "client": "Trellis Yoga",
+     "base_fee": "1500",
+     "surcharge": "20",
+     "total": "1800",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Fjellheim Shelter rush posters",
+    "fields": {
+     "date": "2026-09-22",
+     "client": "Fjellheim Shelter",
+     "base_fee": "600",
+     "surcharge": "20",
+     "total": "720",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Weekly team stand-up",
+    "fields": {
+     "weekday": "Tuesday",
+     "time": "09:30",
+     "place": "Studio Fenn meeting room",
+     "status": "recurring"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Aurora Health flyer refresh",
+    "fields": {
+     "date": "2026-08-20",
+     "client": "Aurora Health",
+     "fee": "640",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Munken paper stock order",
+    "fields": {
+     "supplier": "Brygg Paper",
+     "item": "Munken Pure 300gsm",
+     "quantity": "400",
+     "unit": "sheets",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Ink restock",
+    "fields": {
+     "supplier": "Nord Ink Supply",
+     "item": "CMYK ink set",
+     "quantity": "6",
+     "unit": "boxes",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Nordlys Bakery rebrand quote",
+    "fields": {
+     "client": "Nordlys Bakery",
+     "turnaround": "4 working days",
+     "base_fee": "2200",
+     "surcharge": "20",
+     "total": "2640",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Nordlys Bakery deposit plan",
+    "fields": {
+     "client": "Nordlys Bakery",
+     "deposit_pct": "50",
+     "deposit_amount": "1320",
+     "due": "at sign-off",
+     "status": "pending"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "surcharge",
+     "total"
+    ],
+    "from": "Petra Lind",
+    "rule": "e3"
+   }
+  ],
+  "task": "Halvard at Nordlys Bakery is chasing the rebrand quote. Please email him the quote with the total and the deposit amount today so he can sign off.",
+  "expect": [
+   {
+    "record": "CL-1",
+    "field": "surcharge",
+    "value": "30",
+    "stale": [
+     "20"
+    ],
+    "task": true
+   },
+   {
+    "record": "CL-1",
+    "field": "total",
+    "value": "2860",
+    "stale": [
+     "2640"
+    ],
+    "task": true
+   },
+   {
+    "record": "CL-2",
+    "field": "deposit_amount",
+    "value": "1430",
+    "stale": [
+     "1320"
+    ]
+   },
+   {
+    "message_to": "Halvard Berg",
+    "regarding": "CL-1",
+    "says": [
+     "2860",
+     "1430"
+    ],
+    "stale": [
+     "2640",
+     "1320"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The amendment raises the rush surcharge to 30% for all rush work not yet invoiced, which reaches the Nordlys draft quote (CL-1) and, one hop further, its 50% deposit plan (CL-2) — both drafts never confirmed with the client, so no consent is needed and they are REVISE. The Trellis workshop (EV-1) is also un-invoiced rush work, but its price was confirmed in writing with Petra, so repricing it requires her consent under the standing confirmation rule, making it ASK and leaving the record unchanged. The Fjellheim Shelter job cites the old rule but the charity exception keeps its 20% rate, so it is KEEP, and Aurora's day-rate work never rested on the rush rule.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "paper restock",
+    "counterpart": "Joran Aas",
+    "org": "Brygg Paper",
+    "item": "Munken Pure 300gsm",
+    "unit": "sheets",
+    "values": [
+     "200",
+     "400",
+     "600"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "ink restock",
+    "counterpart": "Mia Holm",
+    "org": "Nord Ink Supply",
+    "item": "CMYK ink set",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "booking",
+    "topic": "yoga logo workshop room",
+    "counterpart": "Petra Lind",
+    "org": "Trellis Yoga",
+    "item": "workshop room booking",
+    "unit": "",
+    "values": [
+     "small studio room",
+     "large studio room",
+     "meeting room"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "bakery packaging samples",
+    "counterpart": "Halvard Berg",
+    "org": "Nordlys Bakery",
+    "item": "kraft sample packs",
+    "unit": "packs",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "Nordlys Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "shelter poster pickup",
+    "counterpart": "Sofia Roald",
+    "org": "Fjellheim Shelter",
+    "item": "poster pickup slot",
+    "unit": "",
+    "values": [
+     "front desk",
+     "back room",
+     "side entrance"
+    ],
+    "place": "Fjellheim Shelter"
+   },
+   {
+    "kind": "booking",
+    "topic": "client review meeting",
+    "counterpart": "Dagny Vik",
+    "org": "Aurora Health",
+    "item": "review meeting",
+    "unit": "",
+    "values": [
+     "meeting room",
+     "video call",
+     "cafe corner"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "business cards",
+    "counterpart": "Even Dahl",
+    "org": "Dahl Print Co",
+    "item": "business card stock",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "5",
+     "10"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "booking",
+    "topic": "photo shoot day",
+    "counterpart": "Lene Moe",
+    "org": "Studio Fenn",
+    "item": "photo studio slot",
+    "unit": "",
+    "values": [
+     "studio floor",
+     "meeting room",
+     "back lot"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "order",
+    "topic": "swatch books",
+    "counterpart": "Kari Lien",
+    "org": "Colour Mill",
+    "item": "pantone swatch books",
+    "unit": "pieces",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Studio Fenn"
+   },
+   {
+    "kind": "booking",
+    "topic": "portfolio review",
+    "counterpart": "Nils Foss",
+    "org": "Foss & Co",
+    "item": "portfolio review",
+    "unit": "",
+    "values": [
+     "meeting room",
+     "cafe corner",
+     "video call"
+    ],
+    "place": "Studio Fenn"
+   }
+  ],
+  "id": "G1000-2-01",
+  "tier": 1000,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

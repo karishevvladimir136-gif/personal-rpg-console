@@ -1,0 +1,620 @@
+{
+ "id": "G100-3-08",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 7,
+ "setting": "A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts",
+ "prompt_sha256": "b0686e234ab495b6ca06adc743078cf73606abdb05ca5f189ec8c4109438fde5",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Kestrel Lane hedge: delayed lifting\",\n \"setting\": \"A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts\",\n \"owner\": \"Mira\",\n \"org\": \"Greenharrow Designs\",\n \"now\": \"2026-08-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule from Mira: a confirmed appointment with a client in the schedule may only be moved with that client's agreement — always ask them first, never shift a confirmed booking on our own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Policy: any supplier order over 800 pounds needs Ravi's sign-off before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas here from Rowan Nurseries. We start lifting bare-root hedging the week of Monday 17 August. Hawthorn whips are 4.20 pounds each this season, and delivery to the Greenharrow yard is a flat 40 pounds on any order. Bagged goods and container lines we hold in stock year-round.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Ines Tams\", \"text\": \"Ines Tams at Kestrel Lane here — the new hedge along the front boundary is my priority. Please get the planting done in the first half of September if you can; the beds will be ready by then.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Signed off the Kestrel Lane hedge plan: 300 hawthorn whips from Rowan Nurseries at 4.20 pounds each, 1260 pounds in total — Ravi countersigned it as our policy requires for orders over 800 pounds. Delivery to the Greenharrow yard booked for Friday 4 September, after lifting starts the week of Monday 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — sign-off given for the Rowan Nurseries whip order, 1260 pounds, all fine from the finance side.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Kestrel Lane planting morning for Wednesday 9 September at 09:00 with Ines Tams — she confirmed by phone. Ben and Tomas on the crew. That sits a few days after the whips reach our yard on Friday 4 September, so stock will be on site.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Quick note from Rowan Nurseries: we're closed for stocktaking on Friday 24 July, so no collections or deliveries that day.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 20 bags of bark mulch from Rowan Nurseries for the Kestrel Lane beds — their flat 40 pounds delivery to the Greenharrow yard applies, coming along with our other goods. Bagged stock, so no waiting on the lifting season.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"note\", \"from\": \"Ben\", \"text\": \"Ben's note: spare topsoil, stakes and the planting tools are all stacked in the Greenharrow yard shed, ready for the September jobs.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Marguerite Harcourt\", \"text\": \"Dear Mira, many thanks for the July meadow cut at Harcourt Meadow — it has never looked better. We'll be in touch about the autumn one.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Harcourt autumn meadow cut for Tuesday 15 September, Ben and me on the crew, as Mrs Harcourt asked.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-06\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Weekly planning minutes: bulb order for Harcourt Meadow discussed and parked until September; van hire for the Kestrel Lane week to be arranged; nothing else decided.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: confirm the final session details with Ines Tams a week before the Kestrel Lane planting morning — by 2026-09-02.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas at Rowan Nurseries — our container-grown hawthorn and beech lines are looking good and are ready to collect from the nursery any weekday from now, if you ever want instant stock.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-08-19\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas from Rowan Nurseries. An update on my June note: the dry summer has pushed back lifting this year, so bare-root hedging won't be ready until the week of Monday 21 September. Your whip order will now reach the Greenharrow yard on Monday 21 September instead of Friday 4 September. Bagged goods and container lines are unaffected, and the flat 40 pounds delivery still stands.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Tomas\", \"text\": \"Tomas here — the Kestrel Lane boundary beds are weeded and forked over, all set for the planting morning.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-24\", \"type\": \"message\", \"from\": \"Ines Tams\", \"text\": \"Ines from Kestrel Lane — the garden's ready and I'm looking forward to the planting morning. Just shout if you need anything from my side beforehand.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — gentle reminder to file the Rowan invoices once the deliveries land this autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-06-30\", \"type\": \"call\", \"from\": \"Mira\", \"text\": \"Call note: Mira and Ben agreed Ben leads the Kestrel Lane planting with Tomas assisting; no other changes to the plan.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Priya Kant (Fieldline Seeds)\", \"text\": \"Fieldline Seeds quote: meadow grass seed at 18 pounds per kg, wildflower mix at 24 pounds per kg, delivery included.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - hawthorn whips for Kestrel Lane\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"hawthorn whips bare-root\", \"quantity\": \"300\", \"unit_price\": \"4.20\", \"amount\": \"1260\", \"delivery_date\": \"2026-09-04\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - bark mulch for Kestrel Lane beds\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"quantity\": \"20\", \"delivery_fee\": \"40\", \"delivery_date\": \"2026-08-25\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel Lane planting morning\", \"fields\": {\"date\": \"2026-09-09\", \"time\": \"09:00\", \"site\": \"Kestrel Lane\", \"client\": \"Ines Tams\", \"crew\": \"Ben and Tomas\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harcourt autumn meadow cut\", \"fields\": {\"date\": \"2026-09-15\", \"place\": \"Harcourt Meadow\", \"work\": \"autumn meadow cut\", \"crew\": \"Ben and Mira\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"status\"], \"from\": \"Ines Tams\", \"rule\": \"e1\"}\n ],\n \"task\": \"Mira here. Please bring the Kestrel Lane job up to date — the order and the planting morning with Ines should reflect when we'll actually have the whips at the yard, and Ines needs to hear from us. Thanks.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-09-21\", \"stale\": [\"2026-09-04\"], \"task\": true},\n  {\"message_to\": \"Ines Tams\", \"regarding\": \"EV-1\", \"says\": [\"propose moving the Kestrel Lane planting morning to Wednesday 23 September 2026\", \"whips delivered to the yard Monday 21 September 2026\"], \"stale\": [\"2026-09-09\", \"2026-09-04\"], \"task\": true}\n ],\n \"why\": \"The change corrects Rowan's June availability note: bare-root lifting slips to the week of Monday 21 September, so ORD-1 (the whip order, resting directly on that note) is REVISE and its delivery date becomes 2026-09-21. EV-1 (the confirmed planting morning with Ines) rests on the order, not on the nursery note — it is two hops down the chain and is ASK, because the standing rule requires Ines Tams's agreement before a confirmed client appointment is moved, so the assistant must ask rather than change the date. ORD-2 (mulch) cites only Rowan's flat 40 pound delivery on bagged stock, which the correction explicitly leaves standing, so it is KEEP; EV-2 and everything else stay untouched. The August email about container-grown hawthorn is a distractor: ready-now stock of a different kind, not the value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"hedge feed\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"liquid hedge feed\", \"unit\": \"5-litre bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"mulch restock\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"unit\": \"bags\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"tree stakes\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"tree stakes\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel Lane tidy-up\", \"counterpart\": \"Ines Tams\", \"org\": \"Kestrel Lane household\", \"item\": \"seasonal tidy-up visit\", \"unit\": \"\", \"values\": [\"front garden\", \"back garden\", \"orchard strip\"], \"place\": \"Kestrel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Del Moss\", \"org\": \"Harrow Van Hire\", \"item\": \"crew van\", \"unit\": \"\", \"values\": [\"small van\", \"long-wheelbase van\", \"tipper van\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"meadow seed\", \"counterpart\": \"Priya Kant\", \"org\": \"Fieldline Seeds\", \"item\": \"meadow grass seed\", \"unit\": \"kg\", \"values\": [\"10\", \"20\", \"35\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"compost\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"peat-free compost\", \"unit\": \"40-litre bags\", \"values\": [\"20\", \"30\", \"50\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"path gravel\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"path gravel\", \"unit\": \"tonne bags\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"design consultations\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"design consultation\", \"unit\": \"\", \"values\": [\"studio room\", \"potting shed\", \"site cabin\"], \"place\": \"Greenharrow studio\"},\n  {\"kind\": \"booking\", \"topic\": \"mower service\", \"counterpart\": \"Ulf Dean\", \"org\": \"Dean Small Engines\", \"item\": \"mower service slot\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"mobile visit\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"pond checks\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"pond maintenance visit\", \"unit\": \"\", \"values\": [\"koi pond\", \"wildlife pond\"], \"place\": \"Vaile residence\"},\n  {\"kind\": \"booking\", \"topic\": \"orchard pruning\", \"counterpart\": \"Marguerite Harcourt\", \"org\": \"Harcourt Estate\", \"item\": \"winter pruning visit\", \"unit\": \"\", \"values\": [\"orchard rows 1-3\", \"orchard rows 4-6\"], \"place\": \"Harcourt Meadow\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3140,
+    "completion_tokens": 10531,
+    "reasoning_tokens": 6953,
+    "cached_tokens": 3072
+   },
+   "cost": 0.04723032,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Kestrel Lane hedge: delayed lifting\",\n \"setting\": \"A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts\",\n \"owner\": \"Mira\",\n \"org\": \"Greenharrow Designs\",\n \"now\": \"2026-08-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule from Mira: a confirmed appointment with a client in the schedule may only be moved with that client's agreement — always ask them first, never shift a confirmed booking on our own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Policy: any supplier order over 800 pounds needs Ravi's sign-off before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas here from Rowan Nurseries. We start lifting bare-root hedging the week of Monday 17 August. Hawthorn whips are 4.20 pounds each this season, and delivery to the Greenharrow yard is a flat 40 pounds on any order. Bagged goods and container lines we hold in stock year-round.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Ines Tams\", \"text\": \"Ines Tams at Kestrel Lane here — the new hedge along the front boundary is my priority. Please get the planting done in the first half of September if you can; the beds will be ready by then.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Signed off the Kestrel Lane hedge plan: 300 hawthorn whips from Rowan Nurseries at 4.20 pounds each, 1260 pounds in total — Ravi countersigned it as our policy requires for orders over 800 pounds. Delivery to the Greenharrow yard booked for Friday 4 September, after lifting starts the week of Monday 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — sign-off given for the Rowan Nurseries whip order, 1260 pounds, all fine from the finance side.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Kestrel Lane planting morning for Wednesday 9 September at 09:00 with Ines Tams — she confirmed by phone. Ben and Tomas on the crew. That sits a few days after the whips reach our yard on Friday 4 September, so stock will be on site.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Quick note from Rowan Nurseries: we're closed for stocktaking on Friday 24 July, so no collections or deliveries that day.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 20 bags of bark mulch from Rowan Nurseries for the Kestrel Lane beds — their flat 40 pounds delivery to the Greenharrow yard applies, coming along with our other goods. Bagged stock, so no waiting on the lifting season.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"note\", \"from\": \"Ben\", \"text\": \"Ben's note: spare topsoil, stakes and the planting tools are all stacked in the Greenharrow yard shed, ready for the September jobs.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Marguerite Harcourt\", \"text\": \"Dear Mira, many thanks for the July meadow cut at Harcourt Meadow — it has never looked better. We'll be in touch about the autumn one.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Harcourt autumn meadow cut for Tuesday 15 September, Ben and me on the crew, as Mrs Harcourt asked.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-06\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Weekly planning minutes: bulb order for Harcourt Meadow discussed and parked until September; van hire for the Kestrel Lane week to be arranged; nothing else decided.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: confirm the final session details with Ines Tams a week before the Kestrel Lane planting morning — by 2026-09-02.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas at Rowan Nurseries — our container-grown hawthorn and beech lines are looking good and are ready to collect from the nursery any weekday from now, if you ever want instant stock.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e16\", \"date\": \"2026-08-19\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas from Rowan Nurseries. An update on my June note: the dry summer has pushed back lifting this year, so bare-root hedging won't be ready until the week of Monday 21 September. Your whip order will now reach the Greenharrow yard on Monday 21 September instead of Friday 4 September. Bagged goods and container lines are unaffected, and the flat 40 pounds delivery still stands.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Tomas\", \"text\": \"Tomas here — the Kestrel Lane boundary beds are weeded and forked over, all set for the planting morning.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-24\", \"type\": \"message\", \"from\": \"Ines Tams\", \"text\": \"Ines from Kestrel Lane — the garden's ready and I'm looking forward to the planting morning. Just shout if you need anything from my side beforehand.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — gentle reminder to file the Rowan invoices once the deliveries land this autumn.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-26\", \"type\": \"call\", \"from\": \"Mira\", \"text\": \"Call note: Mira and Ben agreed Ben leads the Kestrel Lane planting with Tomas assisting; no other changes to the plan.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-25\", \"type\": \"quote\", \"from\": \"Priya Kant (Fieldline Seeds)\", \"text\": \"Fieldline Seeds quote: meadow grass seed at 18 pounds per kg, wildflower mix at 24 pounds per kg, delivery included.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - hawthorn whips for Kestrel Lane\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"hawthorn whips bare-root\", \"quantity\": \"300\", \"unit_price\": \"4.20\", \"amount\": \"1260\", \"delivery_date\": \"2026-09-04\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - bark mulch for Kestrel Lane beds\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"quantity\": \"20\", \"delivery_fee\": \"40\", \"delivery_date\": \"2026-08-25\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel Lane planting morning\", \"fields\": {\"date\": \"2026-09-09\", \"time\": \"09:00\", \"site\": \"Kestrel Lane\", \"client\": \"Ines Tams\", \"crew\": \"Ben and Tomas\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harcourt autumn meadow cut\", \"fields\": {\"date\": \"2026-09-15\", \"place\": \"Harcourt Meadow\", \"work\": \"autumn meadow cut\", \"crew\": \"Ben and Mira\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"status\"], \"from\": \"Ines Tams\", \"rule\": \"e1\"}\n ],\n \"task\": \"Mira here. Please bring the Kestrel Lane job up to date — the order and the planting morning with Ines should reflect when we'll actually have the whips at the yard, and Ines needs to hear from us. Thanks.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-09-21\", \"stale\": [\"2026-09-04\"], \"task\": true},\n  {\"message_to\": \"Ines Tams\", \"regarding\": \"EV-1\", \"says\": [\"propose moving the Kestrel Lane planting morning to Wednesday 23 September 2026\", \"whips delivered to the yard Monday 21 September 2026\"], \"stale\": [\"2026-09-09\", \"2026-09-04\"], \"task\": true}\n ],\n \"why\": \"The change corrects Rowan's June availability note: bare-root lifting slips to the week of Monday 21 September, so ORD-1 (the whip order, resting directly on that note) is REVISE and its delivery date becomes 2026-09-21. EV-1 (the confirmed planting morning with Ines) rests on the order, not on the nursery note — it is two hops down the chain and is ASK, because the standing rule requires Ines Tams's agreement before a confirmed client appointment is moved, so the assistant must ask rather than change the date. ORD-2 (mulch) cites only Rowan's flat 40 pound delivery on bagged stock, which the correction explicitly leaves standing, so it is KEEP; EV-2 and everything else stay untouched. The August email about container-grown hawthorn is a distractor: ready-now stock of a different kind, not the value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"hedge feed\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"liquid hedge feed\", \"unit\": \"5-litre bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"mulch restock\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"unit\": \"bags\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"tree stakes\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"tree stakes\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel Lane tidy-up\", \"counterpart\": \"Ines Tams\", \"org\": \"Kestrel Lane household\", \"item\": \"seasonal tidy-up visit\", \"unit\": \"\", \"values\": [\"front garden\", \"back garden\", \"orchard strip\"], \"place\": \"Kestrel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Del Moss\", \"org\": \"Harrow Van Hire\", \"item\": \"crew van\", \"unit\": \"\", \"values\": [\"small van\", \"long-wheelbase van\", \"tipper van\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"meadow seed\", \"counterpart\": \"Priya Kant\", \"org\": \"Fieldline Seeds\", \"item\": \"meadow grass seed\", \"unit\": \"kg\", \"values\": [\"10\", \"20\", \"35\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"compost\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"peat-free compost\", \"unit\": \"40-litre bags\", \"values\": [\"20\", \"30\", \"50\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"path gravel\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"path gravel\", \"unit\": \"tonne bags\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"design consultations\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"design consultation\", \"unit\": \"\", \"values\": [\"studio room\", \"potting shed\", \"site cabin\"], \"place\": \"Greenharrow studio\"},\n  {\"kind\": \"booking\", \"topic\": \"mower service\", \"counterpart\": \"Ulf Dean\", \"org\": \"Dean Small Engines\", \"item\": \"mower service slot\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"mobile visit\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"pond checks\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"pond maintenance visit\", \"unit\": \"\", \"values\": [\"koi pond\", \"wildlife pond\", \"stream pool\"], \"place\": \"Vaile residence\"},\n  {\"kind\": \"booking\", \"topic\": \"orchard pruning\", \"counterpart\": \"Marguerite Harcourt\", \"org\": \"Harcourt Estate\", \"item\": \"winter pruning visit\", \"unit\": \"\", \"values\": [\"orchard rows 1-3\", \"orchard rows 4-6\", \"walled garden espaliers\"], \"place\": \"Harcourt Meadow\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6792,
+    "completion_tokens": 3590,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02172976,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e20 is dated before e19)\n- noise topic 'pond checks': values needs at least three entries\n- noise topic 'orchard pruning': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Kestrel Lane hedge: delayed lifting\",\n \"setting\": \"A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts\",\n \"owner\": \"Mira\",\n \"org\": \"Greenharrow Designs\",\n \"now\": \"2026-08-26\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Mira\", \"text\": \"Standing rule from Mira: a confirmed appointment with a client in the schedule may only be moved with that client's agreement — always ask them first, never shift a confirmed booking on our own.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Mira\", \"text\": \"Policy: any supplier order over 800 pounds needs Ravi's sign-off before it is confirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas here from Rowan Nurseries. We start lifting bare-root hedging the week of Monday 17 August. Hawthorn whips are 4.20 pounds each this season, and delivery to the Greenharrow yard is a flat 40 pounds on any order. Bagged goods and container lines we hold in stock year-round.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Ines Tams\", \"text\": \"Ines Tams at Kestrel Lane here — the new hedge along the front boundary is my priority. Please get the planting done in the first half of September if you can; the beds will be ready by then.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Signed off the Kestrel Lane hedge plan: 300 hawthorn whips from Rowan Nurseries at 4.20 pounds each, 1260 pounds in total — Ravi countersigned it as our policy requires for orders over 800 pounds. Delivery to the Greenharrow yard booked for Friday 4 September, after lifting starts the week of Monday 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\", \"e4\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — sign-off given for the Rowan Nurseries whip order, 1260 pounds, all fine from the finance side.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Kestrel Lane planting morning for Wednesday 9 September at 09:00 with Ines Tams — she confirmed by phone. Ben and Tomas on the crew. That sits a few days after the whips reach our yard on Friday 4 September, so stock will be on site.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Quick note from Rowan Nurseries: we're closed for stocktaking on Friday 24 July, so no collections or deliveries that day.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Ordered 20 bags of bark mulch from Rowan Nurseries for the Kestrel Lane beds — their flat 40 pounds delivery to the Greenharrow yard applies, coming along with our other goods. Bagged stock, so no waiting on the lifting season.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"note\", \"from\": \"Ben\", \"text\": \"Ben's note: spare topsoil, stakes and the planting tools are all stacked in the Greenharrow yard shed, ready for the September jobs.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-28\", \"type\": \"letter\", \"from\": \"Marguerite Harcourt\", \"text\": \"Dear Mira, many thanks for the July meadow cut at Harcourt Meadow — it has never looked better. We'll be in touch about the autumn one.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Mira\", \"text\": \"Booked the Harcourt autumn meadow cut for Tuesday 15 September, Ben and me on the crew, as Mrs Harcourt asked.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-05\", \"type\": \"quote\", \"from\": \"Priya Kant (Fieldline Seeds)\", \"text\": \"Fieldline Seeds quote: meadow grass seed at 18 pounds per kg, wildflower mix at 24 pounds per kg, delivery included.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-06\", \"type\": \"minutes\", \"from\": \"Mira\", \"text\": \"Weekly planning minutes: bulb order for Harcourt Meadow discussed and parked until September; van hire for the Kestrel Lane week to be arranged; nothing else decided.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-11\", \"type\": \"task\", \"from\": \"Mira\", \"text\": \"To-do: confirm the final session details with Ines Tams a week before the Kestrel Lane planting morning — by 2026-09-02.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas at Rowan Nurseries — our container-grown hawthorn and beech lines are looking good and are ready to collect from the nursery any weekday from now, if you ever want instant stock.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-08-19\", \"type\": \"email\", \"from\": \"Bas Hollis (Rowan Nurseries)\", \"text\": \"Bas from Rowan Nurseries. An update on my June note: the dry summer has pushed back lifting this year, so bare-root hedging won't be ready until the week of Monday 21 September. Your whip order will now reach the Greenharrow yard on Monday 21 September instead of Friday 4 September. Bagged goods and container lines are unaffected, and the flat 40 pounds delivery still stands.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"message\", \"from\": \"Tomas\", \"text\": \"Tomas here — the Kestrel Lane boundary beds are weeded and forked over, all set for the planting morning.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-24\", \"type\": \"message\", \"from\": \"Ines Tams\", \"text\": \"Ines from Kestrel Lane — the garden's ready and I'm looking forward to the planting morning. Just shout if you need anything from my side beforehand.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-25\", \"type\": \"email\", \"from\": \"Ravi\", \"text\": \"Ravi here — gentle reminder to file the Rowan invoices once the deliveries land this autumn.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-26\", \"type\": \"call\", \"from\": \"Mira\", \"text\": \"Call note: Mira and Ben agreed Ben leads the Kestrel Lane planting with Tomas assisting; no other changes to the plan.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - hawthorn whips for Kestrel Lane\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"hawthorn whips bare-root\", \"quantity\": \"300\", \"unit_price\": \"4.20\", \"amount\": \"1260\", \"delivery_date\": \"2026-09-04\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Rowan Nurseries - bark mulch for Kestrel Lane beds\", \"fields\": {\"supplier\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"quantity\": \"20\", \"delivery_fee\": \"40\", \"delivery_date\": \"2026-08-25\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel Lane planting morning\", \"fields\": {\"date\": \"2026-09-09\", \"time\": \"09:00\", \"site\": \"Kestrel Lane\", \"client\": \"Ines Tams\", \"crew\": \"Ben and Tomas\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harcourt autumn meadow cut\", \"fields\": {\"date\": \"2026-09-15\", \"place\": \"Harcourt Meadow\", \"work\": \"autumn meadow cut\", \"crew\": \"Ben and Mira\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"status\"], \"from\": \"Ines Tams\", \"rule\": \"e1\"}\n ],\n \"task\": \"Mira here. Please bring the Kestrel Lane job up to date — the order and the planting morning with Ines should reflect when we'll actually have the whips at the yard, and Ines needs to hear from us. Thanks.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_date\", \"value\": \"2026-09-21\", \"stale\": [\"2026-09-04\"], \"task\": true},\n  {\"message_to\": \"Ines Tams\", \"regarding\": \"EV-1\", \"says\": [\"propose moving the Kestrel Lane planting morning to Wednesday 23 September 2026\", \"whips delivered to the yard Monday 21 September 2026\"], \"stale\": [\"2026-09-09\", \"2026-09-04\"], \"task\": true}\n ],\n \"why\": \"The change corrects Rowan's June availability note: bare-root lifting slips to the week of Monday 21 September, so ORD-1 (the whip order, resting directly on that note) is REVISE and its delivery date becomes 2026-09-21. EV-1 (the confirmed planting morning with Ines) rests on the order, not on the nursery note — it is two hops down the chain and is ASK, because the standing rule requires Ines Tams's agreement before a confirmed client appointment is moved, so the assistant must ask rather than change the date. ORD-2 (mulch) cites only Rowan's flat 40 pound delivery on bagged stock, which the correction explicitly leaves standing, so it is KEEP; EV-2 and everything else stay untouched. The August email about container-grown hawthorn is a distractor: ready-now stock of a different kind, not the value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"hedge feed\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"liquid hedge feed\", \"unit\": \"5-litre bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"mulch restock\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"bagged bark mulch\", \"unit\": \"bags\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"tree stakes\", \"counterpart\": \"Bas Hollis\", \"org\": \"Rowan Nurseries\", \"item\": \"tree stakes\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"20\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel Lane tidy-up\", \"counterpart\": \"Ines Tams\", \"org\": \"Kestrel Lane household\", \"item\": \"seasonal tidy-up visit\", \"unit\": \"\", \"values\": [\"front garden\", \"back garden\", \"orchard strip\"], \"place\": \"Kestrel Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"van hire\", \"counterpart\": \"Del Moss\", \"org\": \"Harrow Van Hire\", \"item\": \"crew van\", \"unit\": \"\", \"values\": [\"small van\", \"long-wheelbase van\", \"tipper van\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"meadow seed\", \"counterpart\": \"Priya Kant\", \"org\": \"Fieldline Seeds\", \"item\": \"meadow grass seed\", \"unit\": \"kg\", \"values\": [\"10\", \"20\", \"35\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"compost\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"peat-free compost\", \"unit\": \"40-litre bags\", \"values\": [\"20\", \"30\", \"50\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"order\", \"topic\": \"path gravel\", \"counterpart\": \"Nils Okafor\", \"org\": \"Greenstock Supplies\", \"item\": \"path gravel\", \"unit\": \"tonne bags\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"design consultations\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"design consultation\", \"unit\": \"\", \"values\": [\"studio room\", \"potting shed\", \"site cabin\"], \"place\": \"Greenharrow studio\"},\n  {\"kind\": \"booking\", \"topic\": \"mower service\", \"counterpart\": \"Ulf Dean\", \"org\": \"Dean Small Engines\", \"item\": \"mower service slot\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"mobile visit\"], \"place\": \"Greenharrow yard\"},\n  {\"kind\": \"booking\", \"topic\": \"pond checks\", \"counterpart\": \"Greta Vaile\", \"org\": \"Vaile and Poole\", \"item\": \"pond maintenance visit\", \"unit\": \"\", \"values\": [\"koi pond\", \"wildlife pond\", \"stream pool\"], \"place\": \"Vaile residence\"},\n  {\"kind\": \"booking\", \"topic\": \"orchard pruning\", \"counterpart\": \"Marguerite Harcourt\", \"org\": \"Harcourt Estate\", \"item\": \"winter pruning visit\", \"unit\": \"\", \"values\": [\"orchard rows 1-3\", \"orchard rows 4-6\", \"walled garden espaliers\"], \"place\": \"Harcourt Meadow\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 10427,
+    "completion_tokens": 3754,
+    "reasoning_tokens": 164,
+    "cached_tokens": 6784
+   },
+   "cost": 0.02338164,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e21 is dated before e20)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Kestrel Lane hedge: delayed lifting",
+  "setting": "A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts",
+  "owner": "Mira",
+  "org": "Greenharrow Designs",
+  "now": "2026-08-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Mira",
+    "text": "Standing rule from Mira: a confirmed appointment with a client in the schedule may only be moved with that client's agreement — always ask them first, never shift a confirmed booking on our own.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Mira",
+    "text": "Policy: any supplier order over 800 pounds needs Ravi's sign-off before it is confirmed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Bas Hollis (Rowan Nurseries)",
+    "text": "Bas here from Rowan Nurseries. We start lifting bare-root hedging the week of Monday 17 August. Hawthorn whips are 4.20 pounds each this season, and delivery to the Greenharrow yard is a flat 40 pounds on any order. Bagged goods and container lines we hold in stock year-round.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Ines Tams",
+    "text": "Ines Tams at Kestrel Lane here — the new hedge along the front boundary is my priority. Please get the planting done in the first half of September if you can; the beds will be ready by then.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Signed off the Kestrel Lane hedge plan: 300 hawthorn whips from Rowan Nurseries at 4.20 pounds each, 1260 pounds in total — Ravi countersigned it as our policy requires for orders over 800 pounds. Delivery to the Greenharrow yard booked for Friday 4 September, after lifting starts the week of Monday 17 August.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "Ravi",
+    "text": "Ravi here — sign-off given for the Rowan Nurseries whip order, 1260 pounds, all fine from the finance side.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked the Kestrel Lane planting morning for Wednesday 9 September at 09:00 with Ines Tams — she confirmed by phone. Ben and Tomas on the crew. That sits a few days after the whips reach our yard on Friday 4 September, so stock will be on site.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Bas Hollis (Rowan Nurseries)",
+    "text": "Quick note from Rowan Nurseries: we're closed for stocktaking on Friday 24 July, so no collections or deliveries that day.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-16",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Ordered 20 bags of bark mulch from Rowan Nurseries for the Kestrel Lane beds — their flat 40 pounds delivery to the Greenharrow yard applies, coming along with our other goods. Bagged stock, so no waiting on the lifting season.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-22",
+    "type": "note",
+    "from": "Ben",
+    "text": "Ben's note: spare topsoil, stakes and the planting tools are all stacked in the Greenharrow yard shed, ready for the September jobs.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-28",
+    "type": "letter",
+    "from": "Marguerite Harcourt",
+    "text": "Dear Mira, many thanks for the July meadow cut at Harcourt Meadow — it has never looked better. We'll be in touch about the autumn one.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Mira",
+    "text": "Booked the Harcourt autumn meadow cut for Tuesday 15 September, Ben and me on the crew, as Mrs Harcourt asked.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-05",
+    "type": "quote",
+    "from": "Priya Kant (Fieldline Seeds)",
+    "text": "Fieldline Seeds quote: meadow grass seed at 18 pounds per kg, wildflower mix at 24 pounds per kg, delivery included.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-06",
+    "type": "minutes",
+    "from": "Mira",
+    "text": "Weekly planning minutes: bulb order for Harcourt Meadow discussed and parked until September; van hire for the Kestrel Lane week to be arranged; nothing else decided.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-11",
+    "type": "task",
+    "from": "Mira",
+    "text": "To-do: confirm the final session details with Ines Tams a week before the Kestrel Lane planting morning — by 2026-09-02.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Bas Hollis (Rowan Nurseries)",
+    "text": "Bas at Rowan Nurseries — our container-grown hawthorn and beech lines are looking good and are ready to collect from the nursery any weekday from now, if you ever want instant stock.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-19",
+    "type": "email",
+    "from": "Bas Hollis (Rowan Nurseries)",
+    "text": "Bas from Rowan Nurseries. An update on my June note: the dry summer has pushed back lifting this year, so bare-root hedging won't be ready until the week of Monday 21 September. Your whip order will now reach the Greenharrow yard on Monday 21 September instead of Friday 4 September. Bagged goods and container lines are unaffected, and the flat 40 pounds delivery still stands.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "message",
+    "from": "Tomas",
+    "text": "Tomas here — the Kestrel Lane boundary beds are weeded and forked over, all set for the planting morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-24",
+    "type": "message",
+    "from": "Ines Tams",
+    "text": "Ines from Kestrel Lane — the garden's ready and I'm looking forward to the planting morning. Just shout if you need anything from my side beforehand.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-25",
+    "type": "email",
+    "from": "Ravi",
+    "text": "Ravi here — gentle reminder to file the Rowan invoices once the deliveries land this autumn.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-26",
+    "type": "call",
+    "from": "Mira",
+    "text": "Call note: Mira and Ben agreed Ben leads the Kestrel Lane planting with Tomas assisting; no other changes to the plan.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Rowan Nurseries - hawthorn whips for Kestrel Lane",
+    "fields": {
+     "supplier": "Rowan Nurseries",
+     "item": "hawthorn whips bare-root",
+     "quantity": "300",
+     "unit_price": "4.20",
+     "amount": "1260",
+     "delivery_date": "2026-09-04",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Rowan Nurseries - bark mulch for Kestrel Lane beds",
+    "fields": {
+     "supplier": "Rowan Nurseries",
+     "item": "bagged bark mulch",
+     "quantity": "20",
+     "delivery_fee": "40",
+     "delivery_date": "2026-08-25",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Kestrel Lane planting morning",
+    "fields": {
+     "date": "2026-09-09",
+     "time": "09:00",
+     "site": "Kestrel Lane",
+     "client": "Ines Tams",
+     "crew": "Ben and Tomas",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harcourt autumn meadow cut",
+    "fields": {
+     "date": "2026-09-15",
+     "place": "Harcourt Meadow",
+     "work": "autumn meadow cut",
+     "crew": "Ben and Mira",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "status"
+    ],
+    "from": "Ines Tams",
+    "rule": "e1"
+   }
+  ],
+  "task": "Mira here. Please bring the Kestrel Lane job up to date — the order and the planting morning with Ines should reflect when we'll actually have the whips at the yard, and Ines needs to hear from us. Thanks.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "delivery_date",
+    "value": "2026-09-21",
+    "stale": [
+     "2026-09-04"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ines Tams",
+    "regarding": "EV-1",
+    "says": [
+     "propose moving the Kestrel Lane planting morning to Wednesday 23 September 2026",
+     "whips delivered to the yard Monday 21 September 2026"
+    ],
+    "stale": [
+     "2026-09-09",
+     "2026-09-04"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change corrects Rowan's June availability note: bare-root lifting slips to the week of Monday 21 September, so ORD-1 (the whip order, resting directly on that note) is REVISE and its delivery date becomes 2026-09-21. EV-1 (the confirmed planting morning with Ines) rests on the order, not on the nursery note — it is two hops down the chain and is ASK, because the standing rule requires Ines Tams's agreement before a confirmed client appointment is moved, so the assistant must ask rather than change the date. ORD-2 (mulch) cites only Rowan's flat 40 pound delivery on bagged stock, which the correction explicitly leaves standing, so it is KEEP; EV-2 and everything else stay untouched. The August email about container-grown hawthorn is a distractor: ready-now stock of a different kind, not the value to act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "hedge feed",
+    "counterpart": "Bas Hollis",
+    "org": "Rowan Nurseries",
+    "item": "liquid hedge feed",
+    "unit": "5-litre bottles",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "order",
+    "topic": "mulch restock",
+    "counterpart": "Bas Hollis",
+    "org": "Rowan Nurseries",
+    "item": "bagged bark mulch",
+    "unit": "bags",
+    "values": [
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "order",
+    "topic": "tree stakes",
+    "counterpart": "Bas Hollis",
+    "org": "Rowan Nurseries",
+    "item": "tree stakes",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "20"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kestrel Lane tidy-up",
+    "counterpart": "Ines Tams",
+    "org": "Kestrel Lane household",
+    "item": "seasonal tidy-up visit",
+    "unit": "",
+    "values": [
+     "front garden",
+     "back garden",
+     "orchard strip"
+    ],
+    "place": "Kestrel Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire",
+    "counterpart": "Del Moss",
+    "org": "Harrow Van Hire",
+    "item": "crew van",
+    "unit": "",
+    "values": [
+     "small van",
+     "long-wheelbase van",
+     "tipper van"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "order",
+    "topic": "meadow seed",
+    "counterpart": "Priya Kant",
+    "org": "Fieldline Seeds",
+    "item": "meadow grass seed",
+    "unit": "kg",
+    "values": [
+     "10",
+     "20",
+     "35"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "order",
+    "topic": "compost",
+    "counterpart": "Nils Okafor",
+    "org": "Greenstock Supplies",
+    "item": "peat-free compost",
+    "unit": "40-litre bags",
+    "values": [
+     "20",
+     "30",
+     "50"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "order",
+    "topic": "path gravel",
+    "counterpart": "Nils Okafor",
+    "org": "Greenstock Supplies",
+    "item": "path gravel",
+    "unit": "tonne bags",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "design consultations",
+    "counterpart": "Greta Vaile",
+    "org": "Vaile and Poole",
+    "item": "design consultation",
+    "unit": "",
+    "values": [
+     "studio room",
+     "potting shed",
+     "site cabin"
+    ],
+    "place": "Greenharrow studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "mower service",
+    "counterpart": "Ulf Dean",
+    "org": "Dean Small Engines",
+    "item": "mower service slot",
+    "unit": "",
+    "values": [
+     "workshop bay 1",
+     "workshop bay 2",
+     "mobile visit"
+    ],
+    "place": "Greenharrow yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "pond checks",
+    "counterpart": "Greta Vaile",
+    "org": "Vaile and Poole",
+    "item": "pond maintenance visit",
+    "unit": "",
+    "values": [
+     "koi pond",
+     "wildlife pond",
+     "stream pool"
+    ],
+    "place": "Vaile residence"
+   },
+   {
+    "kind": "booking",
+    "topic": "orchard pruning",
+    "counterpart": "Marguerite Harcourt",
+    "org": "Harcourt Estate",
+    "item": "winter pruning visit",
+    "unit": "",
+    "values": [
+     "orchard rows 1-3",
+     "orchard rows 4-6",
+     "walled garden espaliers"
+    ],
+    "place": "Harcourt Meadow"
+   }
+  ],
+  "id": "G100-3-08",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history fixes the whip delivery date as 21 September and requires asking Ines before moving her confirmed appointment, but it does not establish 23 September as the proposed planting date. Requiring that exact proposal makes the expected final state underdetermined; other suitable dates after delivery could also satisfy the task.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history fixes the whip delivery date as 21 September and requires asking Ines before moving her confirmed appointment, but it does not establish 23 September as the proposed planting date. Requiring that exact proposal makes the expected final state underdetermined; other suitable dates after delivery could also satisfy the task."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3430,
+    "completion_tokens": 191,
+    "reasoning_tokens": 93,
+    "cached_tokens": 0
+   },
+   "cost": 0.0524175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b21e062a1560a4c24eded99c58f06fe7fb6a327590bc317a1a954640ce62fa5c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is sound: ORD-1 rests directly on the revoked June note (e3), EV-1 is two hops down through e5, and ORD-2 cites the standing 40-pound delivery, so it is KEEP. The change is event 93 of 100, seven days before the task day, with four core events after it, and it reads as an ordinary email. The proposed Wednesday 23 September for the Ines message is a judgment rather than a history-fixed value, though it is the first Wednesday after the 21 September delivery.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is sound: ORD-1 rests directly on the revoked June note (e3), EV-1 is two hops down through e5, and ORD-2 cites the standing 40-pound delivery, so it is KEEP. The change is event 93 of 100, seven days before the task day, with four core events after it, and it reads as an ordinary email. The proposed Wednesday 23 September for the Ines message is a judgment rather than a history-fixed value, though it is the first Wednesday after the 21 September delivery."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4983,
+    "completion_tokens": 2153,
+    "reasoning_tokens": 1930,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015748,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b21e062a1560a4c24eded99c58f06fe7fb6a327590bc317a1a954640ce62fa5c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the change (e17) corrects the June lifting note, ORD-1 rests directly on it (REVISE to 2026-09-21), EV-1 rests on the order two hops down and is ASK under the standing client-consent rule, and ORD-2 cites only the delivery-fee aspect the correction explicitly preserves (KEEP). The consent map matches rule e1, and the tier counts, change distance (7 days), and trailing events all hold. Minor note: the proposed date Wednesday 23 September isn't uniquely forced by the history, but preserving the Wednesday-of-planting-week pattern makes it the natural reading.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the change (e17) corrects the June lifting note, ORD-1 rests directly on it (REVISE to 2026-09-21), EV-1 rests on the order two hops down and is ASK under the standing client-consent rule, and ORD-2 cites only the delivery-fee aspect the correction explicitly preserves (KEEP). The consent map matches rule e1, and the tier counts, change distance (7 days), and trailing events all hold. Minor note: the proposed date Wednesday 23 September isn't uniquely forced by the history, but preserving the Wednesday-of-planting-week pattern makes it the natural reading."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3550,
+    "completion_tokens": 727,
+    "reasoning_tokens": 535,
+    "cached_tokens": 256
+   },
+   "cost": 0.0208638,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b21e062a1560a4c24eded99c58f06fe7fb6a327590bc317a1a954640ce62fa5c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

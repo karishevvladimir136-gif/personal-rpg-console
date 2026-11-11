@@ -1,0 +1,675 @@
+{
+ "id": "G1000-3-03",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 2,
+ "setting": "A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs",
+ "prompt_sha256": "cc7cc228e8d89ff1c6cbdfd0493a6a6c795e2dfaa228ed6f21e299409786168f",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Harbrook Market Pickup Window Chain\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Rosa\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the CRM: never change a client's registered details, such as their address, contact or pickup day, without that client's own written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the run sheet: once a driver is assigned to a confirmed run, that assignment and the departure time may only be changed with the fleet lead Marty Vance's sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Confirming our arrangement: the morning loading window at Harbrook Market is 06:00 to 08:00 on weekdays. Any courier collecting in the morning should arrive inside that window.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Collection point is loading dock B on Fenwick Road. Vans up to 3.5 tonnes fit the canopy, so no need to send anything smaller.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Driver availability: Tomas Ruiz is free for morning market runs on Tuesdays and Thursdays this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Quote for 200 proof-of-delivery logbooks, printed with our run-sheet columns, at 184 pounds delivered to the Swiftline depot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Accepted Marlow Print's quote and ordered 200 proof-of-delivery logbooks for the depot office.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"invoice\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Invoice for the 200 logbooks, 184 pounds, paid by bank transfer as agreed.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving window at the Riverside Foods depot is 09:00 to 11:00. Deliveries arriving inside that window go straight to the chill hall.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a standing Thursday pickup at Harbrook Market for 06:15, comfortably inside their 06:00 to 08:00 morning window, collecting from loading dock B on Fenwick Road with Tomas available mornings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Rosa Alvarez\", \"text\": \"Sent Dora Kim the confirmation of our standing booking: our van will be at dock B every Thursday at 06:15, within the 06:00 to 08:00 morning loading window.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e12\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Assigned Tomas Ruiz to the standing Harbrook to Riverside Foods run: leave dock B at 06:15 after the market pickup and deliver to the Riverside depot inside their 09:00 to 11:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-29\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Thanks for the schedule, the Thursday morning delivery works well for our chill hall staffing.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Registered Harbrook Market as a regular client stop: contact Dora Kim, collection at loading dock B on Fenwick Road, Thursday pickups, vans up to 3.5 tonnes.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"task\", \"from\": \"Rosa Alvarez\", \"text\": \"To do: reorder proof-of-delivery logbooks from Marlow Print before 2026-12-01, the current stock will run out around then.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-19\", \"type\": \"call\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Dora asked whether we could also collect on Saturday mornings; Rosa explained we only run the Fenwick Road route on weekdays for now.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Owen Bell (Bellamy Bakery)\", \"text\": \"We would like to try Swiftline for afternoon collections from our bakehouse, two or three crates a time.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a trial afternoon pickup for Bellamy Bakery for Thursday 2026-10-08 to see how the route fits.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-04\", \"type\": \"cancellation\", \"from\": \"Rosa Alvarez\", \"text\": \"Cancelled the spare van reservation with the hire desk for the second week of September; the market run only needs one vehicle.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-09\", \"type\": \"reminder\", \"from\": \"Swiftline Logistics\", \"text\": \"Weekly reminder: standing pickup at Harbrook Market, Thursday 06:15 at loading dock B, Fenwick Road, driver Tomas Ruiz.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Named Priya Nair as backup driver for the morning market runs in case Tomas is unavailable on a Tuesday or Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e5\"]},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"quote\", \"from\": \"Ansel Ford (Greystone Garage)\", \"text\": \"Quote for four new van tyres, fitted at the Greystone Garage service bay, 520 pounds total.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Ordered the four van tyres from Greystone Garage at the quoted 520 pounds, fitting booked at their service bay.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Driver holiday list for October attached; Tomas has no leave booked, so the market runs are covered.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked the tail-lift van for the Thursday market runs through the winter, easier for the market crates.\", \"role\": \"decision\", \"record\": \"EV-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"A quick update from the market office: our gate crew shifts changed, so from the week of 12 October the morning loading window is 07:30 to 09:30, not the old times. Collections should arrive inside the new window. Dock B on Fenwick Road is unchanged.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Fleet chat: tyre fitting went fine, van is back on the Thursday route.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Northway insurers\", \"text\": \"Goods-in-transit insurance renewal notice for Swiftline Logistics, premium due 2026-11-15.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Nick Prasad (Fenwick Cold Store)\", \"text\": \"In case it helps your planning: our early loading slots at the Fenwick cold store start at 06:00 if you ever need a frozen collection before the traffic builds up.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Stock check: about 90 proof-of-delivery logbooks left in the depot office cupboard.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving staffing is confirmed through October, the 09:00 to 11:00 window stays fully covered.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Could you send over the details for this week's pickup so the gate crew knows which van and driver to expect?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harbrook Market standing pickup\", \"fields\": {\"date\": \"2026-10-22\", \"window\": \"06:00-08:00\", \"pickup_time\": \"06:15\", \"place\": \"Loading dock B, Fenwick Road\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbrook to Riverside Foods run\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Tomas Ruiz\", \"departure\": \"06:15\", \"arrival_window\": \"09:00-11:00\", \"destination\": \"Riverside Foods depot\", \"status\": \"assigned\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Bellamy Bakery trial pickup\", \"fields\": {\"date\": \"2026-10-08\", \"time\": \"14:30\", \"place\": \"Bellamy bakehouse\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tail-lift van for market runs\", \"fields\": {\"day\": \"Thursday\", \"vehicle\": \"Tail-lift van TL-7\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbrook Market client record\", \"fields\": {\"contact\": \"Dora Kim\", \"address\": \"Loading dock B, Fenwick Road\", \"pickup_day\": \"Thursday\", \"van_limit\": \"3.5 tonnes\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"POD logbooks from Marlow Print\", \"fields\": {\"quantity\": \"200\", \"amount\": \"184\", \"supplier\": \"Marlow Print\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Van tyres from Greystone Garage\", \"fields\": {\"quantity\": \"4\", \"amount\": \"520\", \"supplier\": \"Greystone Garage\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"driver\", \"departure\"], \"from\": \"Marty Vance\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Dora Kim the confirmation for this Thursday's pickup at Harbrook Market — which van we're sending, the driver's name, and the time we'll be at her dock.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"window\", \"value\": \"07:30-09:30\", \"stale\": [\"06:00-08:00\"]},\n  {\"record\": \"EV-1\", \"field\": \"pickup_time\", \"value\": \"07:35\", \"stale\": [\"06:15\"]},\n  {\"message_to\": \"Dora Kim\", \"regarding\": \"EV-1\", \"says\": [\"07:35\", \"Tomas Ruiz\", \"Loading dock B\", \"2026-10-22\"], \"stale\": [\"06:15\", \"06:00\"], \"task\": true}\n ],\n \"why\": \"Dora's 2 October email corrects the loading-window fact, so the standing pickup booking (EV-1) must be revised to the new 07:30-09:30 window, and the confirmation to her must carry the corrected time, not the stale 06:15. The driver assignment (EV-2) is touched two hops down the chain but its driver and departure fields need Marty Vance's sign-off under Rosa's rule, so it must stay as it is with a consent request. The CRM record (CL-1) rests on the unchanged dock B and Thursday aspects, so it is KEEP and stays exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"logbook restock\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"proof-of-delivery logbooks\", \"unit\": \"box\", \"values\": [\"30\", \"50\", \"80\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"packing tape\", \"unit\": \"case\", \"values\": [\"10\", \"24\", \"40\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"route map booklets\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"route map booklets\", \"unit\": \"pack\", \"values\": [\"15\", \"25\", \"50\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"thermal liners\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"thermal liners\", \"unit\": \"roll\", \"values\": [\"20\", \"35\", \"60\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Tina Okafor\", \"org\": \"Safeguard Wholesale\", \"item\": \"work gloves\", \"unit\": \"pair\", \"values\": [\"40\", \"75\", \"120\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Maya Lindqvist\", \"org\": \"Officepoint Direct\", \"item\": \"printer toner\", \"unit\": \"cartridge\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"van service bay\", \"counterpart\": \"Ansel Ford\", \"org\": \"Greystone Garage\", \"item\": \"service bay slot\", \"unit\": \"slot\", \"values\": [\"Bay 1\", \"Bay 2\", \"Ramp 3\"], \"place\": \"Greystone Garage\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers' briefing room\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"briefing room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"driver assessment track\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"assessment track\", \"unit\": \"track\", \"values\": [\"Track A\", \"Track B\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside delivery slot\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Riverside Foods\", \"item\": \"delivery slot\", \"unit\": \"dock\", \"values\": [\"Dock 1\", \"Dock 2\"], \"place\": \"Riverside Foods depot\"},\n  {\"kind\": \"booking\", \"topic\": \"cold-store loading slot\", \"counterpart\": \"Nick Prasad\", \"org\": \"Fenwick Cold Store\", \"item\": \"cold-store loading slot\", \"unit\": \"bay\", \"values\": [\"Bay A\", \"Bay B\", \"Bay C\"], \"place\": \"Fenwick Road\"},\n  {\"kind\": \"order\", \"topic\": \"crate sanitiser\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"crate sanitiser\", \"unit\": \"bottle\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Swiftline depot\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 10001,
+    "reasoning_tokens": 5725,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04490936,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Harbrook Market Pickup Window Chain\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Rosa\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the CRM: never change a client's registered details, such as their address, contact or pickup day, without that client's own written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the run sheet: once a driver is assigned to a confirmed run, that assignment and the departure time may only be changed with the fleet lead Marty Vance's sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Confirming our arrangement: the morning loading window at Harbrook Market is 06:00 to 08:00 on weekdays. Any courier collecting in the morning should arrive inside that window.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Collection point is loading dock B on Fenwick Road. Vans up to 3.5 tonnes fit the canopy, so no need to send anything smaller.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Driver availability: Tomas Ruiz is free for morning market runs on Tuesdays and Thursdays this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Quote for 200 proof-of-delivery logbooks, printed with our run-sheet columns, at 184 pounds delivered to the Swiftline depot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Accepted Marlow Print's quote and ordered 200 proof-of-delivery logbooks for the depot office.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"invoice\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Invoice for the 200 logbooks, 184 pounds, paid by bank transfer as agreed.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving window at the Riverside Foods depot is 09:00 to 11:00. Deliveries arriving inside that window go straight to the chill hall.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a standing Thursday pickup at Harbrook Market for 06:15, comfortably inside their 06:00 to 08:00 morning window, collecting from loading dock B on Fenwick Road with Tomas available mornings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Rosa Alvarez\", \"text\": \"Sent Dora Kim the confirmation of our standing booking: our van will be at dock B every Thursday at 06:15, within the 06:00 to 08:00 morning loading window.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e12\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Assigned Tomas Ruiz to the standing Harbrook to Riverside Foods run: leave dock B at 06:15 after the market pickup and deliver to the Riverside depot inside their 09:00 to 11:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-29\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Thanks for the schedule, the Thursday morning delivery works well for our chill hall staffing.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Registered Harbrook Market as a regular client stop: contact Dora Kim, collection at loading dock B on Fenwick Road, Thursday pickups, vans up to 3.5 tonnes.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"task\", \"from\": \"Rosa Alvarez\", \"text\": \"To do: reorder proof-of-delivery logbooks from Marlow Print before 2026-12-01, the current stock will run out around then.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-19\", \"type\": \"call\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Dora asked whether we could also collect on Saturday mornings; Rosa explained we only run the Fenwick Road route on weekdays for now.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Owen Bell (Bellamy Bakery)\", \"text\": \"We would like to try Swiftline for afternoon collections from our bakehouse, two or three crates a time.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a trial afternoon pickup for Bellamy Bakery for Thursday 2026-10-08 to see how the route fits.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-04\", \"type\": \"cancellation\", \"from\": \"Rosa Alvarez\", \"text\": \"Cancelled the spare van reservation with the hire desk for the second week of September; the market run only needs one vehicle.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"Swiftline Logistics\", \"text\": \"Weekly reminder: standing pickup at Harbrook Market, Thursday 06:15 at loading dock B, Fenwick Road, driver Tomas Ruiz.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Named Priya Nair as backup driver for the morning market runs in case Tomas is unavailable on a Tuesday or Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e5\"]},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"quote\", \"from\": \"Ansel Ford (Greystone Garage)\", \"text\": \"Quote for four new van tyres, fitted at the Greystone Garage service bay, 520 pounds total.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Ordered the four van tyres from Greystone Garage at the quoted 520 pounds, fitting booked at their service bay.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Driver holiday list for October attached; Tomas has no leave booked, so the market runs are covered.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked the tail-lift van for the Thursday market runs through the winter, easier for the market crates.\", \"role\": \"decision\", \"record\": \"EV-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"A quick update from the market office: our gate crew shifts changed, so from the week of 12 October the morning loading window is 07:30 to 09:30, not the old times. Collections should arrive inside the new window. Dock B on Fenwick Road is unchanged.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Fleet chat: tyre fitting went fine, van is back on the Thursday route.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Northway insurers\", \"text\": \"Goods-in-transit insurance renewal notice for Swiftline Logistics, premium due 2026-11-15.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Nick Prasad (Fenwick Cold Store)\", \"text\": \"In case it helps your planning: our early loading slots at the Fenwick cold store start at 06:00 if you ever need a frozen collection before the traffic builds up.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Stock check: about 90 proof-of-delivery logbooks left in the depot office cupboard.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving staffing is confirmed through October, the 09:00 to 11:00 window stays fully covered.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Could you send over the details for this week's pickup so the gate crew knows which van and driver to expect?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harbrook Market standing pickup\", \"fields\": {\"date\": \"2026-10-22\", \"window\": \"06:00-08:00\", \"pickup_time\": \"06:15\", \"place\": \"Loading dock B, Fenwick Road\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbrook to Riverside Foods run\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Tomas Ruiz\", \"departure\": \"06:15\", \"arrival_window\": \"09:00-11:00\", \"destination\": \"Riverside Foods depot\", \"status\": \"assigned\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Bellamy Bakery trial pickup\", \"fields\": {\"date\": \"2026-10-08\", \"time\": \"14:30\", \"place\": \"Bellamy bakehouse\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tail-lift van for market runs\", \"fields\": {\"day\": \"Thursday\", \"vehicle\": \"Tail-lift van TL-7\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbrook Market client record\", \"fields\": {\"contact\": \"Dora Kim\", \"address\": \"Loading dock B, Fenwick Road\", \"pickup_day\": \"Thursday\", \"van_limit\": \"3.5 tonnes\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"POD logbooks from Marlow Print\", \"fields\": {\"quantity\": \"200\", \"amount\": \"184\", \"supplier\": \"Marlow Print\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Van tyres from Greystone Garage\", \"fields\": {\"quantity\": \"4\", \"amount\": \"520\", \"supplier\": \"Greystone Garage\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"driver\", \"departure\"], \"from\": \"Marty Vance\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Dora Kim the confirmation for this Thursday's pickup at Harbrook Market — which van we're sending, the driver's name, and the time we'll be at her dock.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"window\", \"value\": \"07:30-09:30\", \"stale\": [\"06:00-08:00\"]},\n  {\"record\": \"EV-1\", \"field\": \"pickup_time\", \"value\": \"07:35\", \"stale\": [\"06:15\"]},\n  {\"message_to\": \"Dora Kim\", \"regarding\": \"EV-1\", \"says\": [\"07:35\", \"Tomas Ruiz\", \"Loading dock B\", \"2026-10-22\"], \"stale\": [\"06:15\", \"06:00\"], \"task\": true}\n ],\n \"why\": \"Dora's 2 October email corrects the loading-window fact, so the standing pickup booking (EV-1) must be revised to the new 07:30-09:30 window, and the confirmation to her must carry the corrected time, not the stale 06:15. The driver assignment (EV-2) is touched two hops down the chain but its driver and departure fields need Marty Vance's sign-off under Rosa's rule, so it must stay as it is with a consent request. The CRM record (CL-1) rests on the unchanged dock B and Thursday aspects, so it is KEEP and stays exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"logbook restock\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"proof-of-delivery logbooks\", \"unit\": \"box\", \"values\": [\"30\", \"50\", \"80\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"packing tape\", \"unit\": \"case\", \"values\": [\"10\", \"24\", \"40\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"route map booklets\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"route map booklets\", \"unit\": \"pack\", \"values\": [\"15\", \"25\", \"50\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"thermal liners\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"thermal liners\", \"unit\": \"roll\", \"values\": [\"20\", \"35\", \"60\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Tina Okafor\", \"org\": \"Safeguard Wholesale\", \"item\": \"work gloves\", \"unit\": \"pair\", \"values\": [\"40\", \"75\", \"120\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Maya Lindqvist\", \"org\": \"Officepoint Direct\", \"item\": \"printer toner\", \"unit\": \"cartridge\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"van service bay\", \"counterpart\": \"Ansel Ford\", \"org\": \"Greystone Garage\", \"item\": \"service bay slot\", \"unit\": \"slot\", \"values\": [\"Bay 1\", \"Bay 2\", \"Ramp 3\"], \"place\": \"Greystone Garage\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers' briefing room\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"briefing room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"driver assessment track\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"assessment track\", \"unit\": \"track\", \"values\": [\"Track A\", \"Track B\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside delivery slot\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Riverside Foods\", \"item\": \"delivery slot\", \"unit\": \"dock\", \"values\": [\"Dock 1\", \"Dock 2\"], \"place\": \"Riverside Foods depot\"},\n  {\"kind\": \"booking\", \"topic\": \"cold-store loading slot\", \"counterpart\": \"Nick Prasad\", \"org\": \"Fenwick Cold Store\", \"item\": \"cold-store loading slot\", \"unit\": \"bay\", \"values\": [\"Bay A\", \"Bay B\", \"Bay C\"], \"place\": \"Fenwick Road\"},\n  {\"kind\": \"order\", \"topic\": \"crate sanitiser\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"crate sanitiser\", \"unit\": \"bottle\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Swiftline depot\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7560,
+    "completion_tokens": 4284,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02585856,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e20: type «reminder» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Harbrook Market Pickup Window Chain\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Rosa\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the CRM: never change a client's registered details, such as their address, contact or pickup day, without that client's own written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Rosa Alvarez\", \"text\": \"Standing rule for the run sheet: once a driver is assigned to a confirmed run, that assignment and the departure time may only be changed with the fleet lead Marty Vance's sign-off.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Confirming our arrangement: the morning loading window at Harbrook Market is 06:00 to 08:00 on weekdays. Any courier collecting in the morning should arrive inside that window.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Collection point is loading dock B on Fenwick Road. Vans up to 3.5 tonnes fit the canopy, so no need to send anything smaller.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Driver availability: Tomas Ruiz is free for morning market runs on Tuesdays and Thursdays this quarter.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Quote for 200 proof-of-delivery logbooks, printed with our run-sheet columns, at 184 pounds delivered to the Swiftline depot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Accepted Marlow Print's quote and ordered 200 proof-of-delivery logbooks for the depot office.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"invoice\", \"from\": \"Gil Marsh (Marlow Print)\", \"text\": \"Invoice for the 200 logbooks, 184 pounds, paid by bank transfer as agreed.\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving window at the Riverside Foods depot is 09:00 to 11:00. Deliveries arriving inside that window go straight to the chill hall.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a standing Thursday pickup at Harbrook Market for 06:15, comfortably inside their 06:00 to 08:00 morning window, collecting from loading dock B on Fenwick Road with Tomas available mornings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-16\", \"type\": \"email\", \"from\": \"Rosa Alvarez\", \"text\": \"Sent Dora Kim the confirmation of our standing booking: our van will be at dock B every Thursday at 06:15, within the 06:00 to 08:00 morning loading window.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e12\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Assigned Tomas Ruiz to the standing Harbrook to Riverside Foods run: leave dock B at 06:15 after the market pickup and deliver to the Riverside depot inside their 09:00 to 11:00 receiving window.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-29\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Thanks for the schedule, the Thursday morning delivery works well for our chill hall staffing.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-05\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Registered Harbrook Market as a regular client stop: contact Dora Kim, collection at loading dock B on Fenwick Road, Thursday pickups, vans up to 3.5 tonnes.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"task\", \"from\": \"Rosa Alvarez\", \"text\": \"To do: reorder proof-of-delivery logbooks from Marlow Print before 2026-12-01, the current stock will run out around then.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-19\", \"type\": \"call\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Dora asked whether we could also collect on Saturday mornings; Rosa explained we only run the Fenwick Road route on weekdays for now.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-26\", \"type\": \"email\", \"from\": \"Owen Bell (Bellamy Bakery)\", \"text\": \"We would like to try Swiftline for afternoon collections from our bakehouse, two or three crates a time.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked a trial afternoon pickup for Bellamy Bakery for Thursday 2026-10-08 to see how the route fits.\", \"role\": \"decision\", \"rests_on\": [\"e17\"], \"record\": \"EV-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-04\", \"type\": \"cancellation\", \"from\": \"Rosa Alvarez\", \"text\": \"Cancelled the spare van reservation with the hire desk for the second week of September; the market run only needs one vehicle.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-09\", \"type\": \"notice\", \"from\": \"Swiftline Logistics\", \"text\": \"Weekly reminder: standing pickup at Harbrook Market, Thursday 06:15 at loading dock B, Fenwick Road, driver Tomas Ruiz.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Named Priya Nair as backup driver for the morning market runs in case Tomas is unavailable on a Tuesday or Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e5\"]},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"quote\", \"from\": \"Ansel Ford (Greystone Garage)\", \"text\": \"Quote for four new van tyres, fitted at the Greystone Garage service bay, 520 pounds total.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-19\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Ordered the four van tyres from Greystone Garage at the quoted 520 pounds, fitting booked at their service bay.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Driver holiday list for October attached; Tomas has no leave booked, so the market runs are covered.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-25\", \"type\": \"decision\", \"from\": \"Rosa Alvarez\", \"text\": \"Booked the tail-lift van for the standing Thursday market pickup runs through the winter, easier for the market crates.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"A quick update from the market office: our gate crew shifts changed, so from the week of 12 October the morning loading window is 07:30 to 09:30, not the old times. Collections should arrive inside the new window. Dock B on Fenwick Road is unchanged.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Marty Vance (Swiftline Logistics)\", \"text\": \"Fleet chat: tyre fitting went fine, van is back on the Thursday route.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"letter\", \"from\": \"Northway insurers\", \"text\": \"Goods-in-transit insurance renewal notice for Swiftline Logistics, premium due 2026-11-15.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Nick Prasad (Fenwick Cold Store)\", \"text\": \"In case it helps your planning: our early loading slots at the Fenwick cold store start at 06:00 if you ever need a frozen collection before the traffic builds up.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-12\", \"type\": \"note\", \"from\": \"Rosa Alvarez\", \"text\": \"Stock check: about 90 proof-of-delivery logbooks left in the depot office cupboard.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ravi Chandra (Riverside Foods)\", \"text\": \"Our receiving staffing is confirmed through October, the 09:00 to 11:00 window stays fully covered.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Dora Kim (Harbrook Market)\", \"text\": \"Could you send over the details for this week's pickup so the gate crew knows which van and driver to expect?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harbrook Market standing pickup\", \"fields\": {\"date\": \"2026-10-22\", \"window\": \"06:00-08:00\", \"pickup_time\": \"06:15\", \"place\": \"Loading dock B, Fenwick Road\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbrook to Riverside Foods run\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Tomas Ruiz\", \"departure\": \"06:15\", \"arrival_window\": \"09:00-11:00\", \"destination\": \"Riverside Foods depot\", \"status\": \"assigned\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Bellamy Bakery trial pickup\", \"fields\": {\"date\": \"2026-10-08\", \"time\": \"14:30\", \"place\": \"Bellamy bakehouse\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Tail-lift van for market runs\", \"fields\": {\"day\": \"Thursday\", \"vehicle\": \"Tail-lift van TL-7\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbrook Market client record\", \"fields\": {\"contact\": \"Dora Kim\", \"address\": \"Loading dock B, Fenwick Road\", \"pickup_day\": \"Thursday\", \"van_limit\": \"3.5 tonnes\", \"status\": \"active\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"POD logbooks from Marlow Print\", \"fields\": {\"quantity\": \"200\", \"amount\": \"184\", \"supplier\": \"Marlow Print\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Van tyres from Greystone Garage\", \"fields\": {\"quantity\": \"4\", \"amount\": \"520\", \"supplier\": \"Greystone Garage\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"driver\", \"departure\"], \"from\": \"Marty Vance\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Dora Kim the confirmation for this Thursday's pickup at Harbrook Market — which van we're sending, the driver's name, and the time we'll be at her dock.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"window\", \"value\": \"07:30-09:30\", \"stale\": [\"06:00-08:00\"]},\n  {\"record\": \"EV-1\", \"field\": \"pickup_time\", \"value\": \"07:35\", \"stale\": [\"06:15\"]},\n  {\"message_to\": \"Dora Kim\", \"regarding\": \"EV-1\", \"says\": [\"07:35\", \"Tomas Ruiz\", \"Loading dock B\", \"2026-10-22\"], \"stale\": [\"06:15\", \"06:00\"], \"task\": true}\n ],\n \"why\": \"Dora's 2 October email corrects the loading-window fact, so the standing pickup booking (EV-1) must be revised to the new 07:30-09:30 window, and the confirmation to her must carry the corrected time, not the stale 06:15. The driver assignment (EV-2) is touched two hops down the chain but its driver and departure fields need Marty Vance's sign-off under Rosa's rule, so it must stay as it is with a consent request. The CRM record (CL-1) rests on the unchanged dock B and Thursday aspects, so it is KEEP and stays exactly as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"logbook restock\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"proof-of-delivery logbooks\", \"unit\": \"box\", \"values\": [\"30\", \"50\", \"80\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"packing tape\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"packing tape\", \"unit\": \"case\", \"values\": [\"10\", \"24\", \"40\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"route map booklets\", \"counterpart\": \"Gil Marsh\", \"org\": \"Marlow Print\", \"item\": \"route map booklets\", \"unit\": \"pack\", \"values\": [\"15\", \"25\", \"50\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"thermal liners\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"thermal liners\", \"unit\": \"roll\", \"values\": [\"20\", \"35\", \"60\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"work gloves\", \"counterpart\": \"Tina Okafor\", \"org\": \"Safeguard Wholesale\", \"item\": \"work gloves\", \"unit\": \"pair\", \"values\": [\"40\", \"75\", \"120\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Maya Lindqvist\", \"org\": \"Officepoint Direct\", \"item\": \"printer toner\", \"unit\": \"cartridge\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"van service bay\", \"counterpart\": \"Ansel Ford\", \"org\": \"Greystone Garage\", \"item\": \"service bay slot\", \"unit\": \"slot\", \"values\": [\"Bay 1\", \"Bay 2\", \"Ramp 3\"], \"place\": \"Greystone Garage\"},\n  {\"kind\": \"booking\", \"topic\": \"drivers' briefing room\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"briefing room\", \"unit\": \"room\", \"values\": [\"Room A\", \"Room B\", \"Room C\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"driver assessment track\", \"counterpart\": \"Marty Vance\", \"org\": \"Swiftline Logistics\", \"item\": \"assessment track\", \"unit\": \"track\", \"values\": [\"Track A\", \"Track B\", \"Track C\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Riverside delivery slot\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Riverside Foods\", \"item\": \"delivery slot\", \"unit\": \"dock\", \"values\": [\"Dock 1\", \"Dock 2\", \"Dock 3\"], \"place\": \"Riverside Foods depot\"},\n  {\"kind\": \"booking\", \"topic\": \"cold-store loading slot\", \"counterpart\": \"Nick Prasad\", \"org\": \"Fenwick Cold Store\", \"item\": \"cold-store loading slot\", \"unit\": \"bay\", \"values\": [\"Bay A\", \"Bay B\", \"Bay C\"], \"place\": \"Fenwick Road\"},\n  {\"kind\": \"order\", \"topic\": \"crate sanitiser\", \"counterpart\": \"Priya Nair\", \"org\": \"ColdCover Supplies\", \"item\": \"crate sanitiser\", \"unit\": \"bottle\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Swiftline depot\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 11927,
+    "completion_tokens": 4314,
+    "reasoning_tokens": 14,
+    "cached_tokens": 7552
+   },
+   "cost": 0.02707012,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e25: a decision must rest on at least one earlier event\n- noise topic \"drivers' briefing room\": values needs at least three entries\n- noise topic 'driver assessment track': values needs at least three entries\n- noise topic 'Riverside delivery slot': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Harbrook Market Pickup Window Chain",
+  "setting": "A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs",
+  "owner": "Rosa",
+  "org": "Swiftline Logistics",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Rosa Alvarez",
+    "text": "Standing rule for the CRM: never change a client's registered details, such as their address, contact or pickup day, without that client's own written agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Rosa Alvarez",
+    "text": "Standing rule for the run sheet: once a driver is assigned to a confirmed run, that assignment and the departure time may only be changed with the fleet lead Marty Vance's sign-off.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Dora Kim (Harbrook Market)",
+    "text": "Confirming our arrangement: the morning loading window at Harbrook Market is 06:00 to 08:00 on weekdays. Any courier collecting in the morning should arrive inside that window.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Dora Kim (Harbrook Market)",
+    "text": "Collection point is loading dock B on Fenwick Road. Vans up to 3.5 tonnes fit the canopy, so no need to send anything smaller.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Rosa Alvarez",
+    "text": "Driver availability: Tomas Ruiz is free for morning market runs on Tuesdays and Thursdays this quarter.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Gil Marsh (Marlow Print)",
+    "text": "Quote for 200 proof-of-delivery logbooks, printed with our run-sheet columns, at 184 pounds delivered to the Swiftline depot.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Accepted Marlow Print's quote and ordered 200 proof-of-delivery logbooks for the depot office.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "invoice",
+    "from": "Gil Marsh (Marlow Print)",
+    "text": "Invoice for the 200 logbooks, 184 pounds, paid by bank transfer as agreed.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Ravi Chandra (Riverside Foods)",
+    "text": "Our receiving window at the Riverside Foods depot is 09:00 to 11:00. Deliveries arriving inside that window go straight to the chill hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Booked a standing Thursday pickup at Harbrook Market for 06:15, comfortably inside their 06:00 to 08:00 morning window, collecting from loading dock B on Fenwick Road with Tomas available mornings.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-16",
+    "type": "email",
+    "from": "Rosa Alvarez",
+    "text": "Sent Dora Kim the confirmation of our standing booking: our van will be at dock B every Thursday at 06:15, within the 06:00 to 08:00 morning loading window.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Assigned Tomas Ruiz to the standing Harbrook to Riverside Foods run: leave dock B at 06:15 after the market pickup and deliver to the Riverside depot inside their 09:00 to 11:00 receiving window.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e9",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-29",
+    "type": "email",
+    "from": "Ravi Chandra (Riverside Foods)",
+    "text": "Thanks for the schedule, the Thursday morning delivery works well for our chill hall staffing.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-05",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Registered Harbrook Market as a regular client stop: contact Dora Kim, collection at loading dock B on Fenwick Road, Thursday pickups, vans up to 3.5 tonnes.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "CL-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "task",
+    "from": "Rosa Alvarez",
+    "text": "To do: reorder proof-of-delivery logbooks from Marlow Print before 2026-12-01, the current stock will run out around then.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-19",
+    "type": "call",
+    "from": "Dora Kim (Harbrook Market)",
+    "text": "Dora asked whether we could also collect on Saturday mornings; Rosa explained we only run the Fenwick Road route on weekdays for now.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-26",
+    "type": "email",
+    "from": "Owen Bell (Bellamy Bakery)",
+    "text": "We would like to try Swiftline for afternoon collections from our bakehouse, two or three crates a time.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Booked a trial afternoon pickup for Bellamy Bakery for Thursday 2026-10-08 to see how the route fits.",
+    "role": "decision",
+    "rests_on": [
+     "e17"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-04",
+    "type": "cancellation",
+    "from": "Rosa Alvarez",
+    "text": "Cancelled the spare van reservation with the hire desk for the second week of September; the market run only needs one vehicle.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-09",
+    "type": "notice",
+    "from": "Swiftline Logistics",
+    "text": "Weekly reminder: standing pickup at Harbrook Market, Thursday 06:15 at loading dock B, Fenwick Road, driver Tomas Ruiz.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-11",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Named Priya Nair as backup driver for the morning market runs in case Tomas is unavailable on a Tuesday or Thursday.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-14",
+    "type": "quote",
+    "from": "Ansel Ford (Greystone Garage)",
+    "text": "Quote for four new van tyres, fitted at the Greystone Garage service bay, 520 pounds total.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-19",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Ordered the four van tyres from Greystone Garage at the quoted 520 pounds, fitting booked at their service bay.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-23",
+    "type": "email",
+    "from": "Marty Vance (Swiftline Logistics)",
+    "text": "Driver holiday list for October attached; Tomas has no leave booked, so the market runs are covered.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-25",
+    "type": "decision",
+    "from": "Rosa Alvarez",
+    "text": "Booked the tail-lift van for the standing Thursday market pickup runs through the winter, easier for the market crates.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Dora Kim (Harbrook Market)",
+    "text": "A quick update from the market office: our gate crew shifts changed, so from the week of 12 October the morning loading window is 07:30 to 09:30, not the old times. Collections should arrive inside the new window. Dock B on Fenwick Road is unchanged.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Marty Vance (Swiftline Logistics)",
+    "text": "Fleet chat: tyre fitting went fine, van is back on the Thursday route.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-06",
+    "type": "letter",
+    "from": "Northway insurers",
+    "text": "Goods-in-transit insurance renewal notice for Swiftline Logistics, premium due 2026-11-15.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Nick Prasad (Fenwick Cold Store)",
+    "text": "In case it helps your planning: our early loading slots at the Fenwick cold store start at 06:00 if you ever need a frozen collection before the traffic builds up.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-12",
+    "type": "note",
+    "from": "Rosa Alvarez",
+    "text": "Stock check: about 90 proof-of-delivery logbooks left in the depot office cupboard.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Ravi Chandra (Riverside Foods)",
+    "text": "Our receiving staffing is confirmed through October, the 09:00 to 11:00 window stays fully covered.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Dora Kim (Harbrook Market)",
+    "text": "Could you send over the details for this week's pickup so the gate crew knows which van and driver to expect?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Harbrook Market standing pickup",
+    "fields": {
+     "date": "2026-10-22",
+     "window": "06:00-08:00",
+     "pickup_time": "06:15",
+     "place": "Loading dock B, Fenwick Road",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harbrook to Riverside Foods run",
+    "fields": {
+     "date": "2026-10-22",
+     "driver": "Tomas Ruiz",
+     "departure": "06:15",
+     "arrival_window": "09:00-11:00",
+     "destination": "Riverside Foods depot",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Bellamy Bakery trial pickup",
+    "fields": {
+     "date": "2026-10-08",
+     "time": "14:30",
+     "place": "Bellamy bakehouse",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Tail-lift van for market runs",
+    "fields": {
+     "day": "Thursday",
+     "vehicle": "Tail-lift van TL-7",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harbrook Market client record",
+    "fields": {
+     "contact": "Dora Kim",
+     "address": "Loading dock B, Fenwick Road",
+     "pickup_day": "Thursday",
+     "van_limit": "3.5 tonnes",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "POD logbooks from Marlow Print",
+    "fields": {
+     "quantity": "200",
+     "amount": "184",
+     "supplier": "Marlow Print",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Van tyres from Greystone Garage",
+    "fields": {
+     "quantity": "4",
+     "amount": "520",
+     "supplier": "Greystone Garage",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "driver",
+     "departure"
+    ],
+    "from": "Marty Vance",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Dora Kim the confirmation for this Thursday's pickup at Harbrook Market — which van we're sending, the driver's name, and the time we'll be at her dock.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "window",
+    "value": "07:30-09:30",
+    "stale": [
+     "06:00-08:00"
+    ]
+   },
+   {
+    "record": "EV-1",
+    "field": "pickup_time",
+    "value": "07:35",
+    "stale": [
+     "06:15"
+    ]
+   },
+   {
+    "message_to": "Dora Kim",
+    "regarding": "EV-1",
+    "says": [
+     "07:35",
+     "Tomas Ruiz",
+     "Loading dock B",
+     "2026-10-22"
+    ],
+    "stale": [
+     "06:15",
+     "06:00"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Dora's 2 October email corrects the loading-window fact, so the standing pickup booking (EV-1) must be revised to the new 07:30-09:30 window, and the confirmation to her must carry the corrected time, not the stale 06:15. The driver assignment (EV-2) is touched two hops down the chain but its driver and departure fields need Marty Vance's sign-off under Rosa's rule, so it must stay as it is with a consent request. The CRM record (CL-1) rests on the unchanged dock B and Thursday aspects, so it is KEEP and stays exactly as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "logbook restock",
+    "counterpart": "Gil Marsh",
+    "org": "Marlow Print",
+    "item": "proof-of-delivery logbooks",
+    "unit": "box",
+    "values": [
+     "30",
+     "50",
+     "80"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "packing tape",
+    "counterpart": "Gil Marsh",
+    "org": "Marlow Print",
+    "item": "packing tape",
+    "unit": "case",
+    "values": [
+     "10",
+     "24",
+     "40"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "route map booklets",
+    "counterpart": "Gil Marsh",
+    "org": "Marlow Print",
+    "item": "route map booklets",
+    "unit": "pack",
+    "values": [
+     "15",
+     "25",
+     "50"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "thermal liners",
+    "counterpart": "Priya Nair",
+    "org": "ColdCover Supplies",
+    "item": "thermal liners",
+    "unit": "roll",
+    "values": [
+     "20",
+     "35",
+     "60"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "work gloves",
+    "counterpart": "Tina Okafor",
+    "org": "Safeguard Wholesale",
+    "item": "work gloves",
+    "unit": "pair",
+    "values": [
+     "40",
+     "75",
+     "120"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "printer toner",
+    "counterpart": "Maya Lindqvist",
+    "org": "Officepoint Direct",
+    "item": "printer toner",
+    "unit": "cartridge",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "van service bay",
+    "counterpart": "Ansel Ford",
+    "org": "Greystone Garage",
+    "item": "service bay slot",
+    "unit": "slot",
+    "values": [
+     "Bay 1",
+     "Bay 2",
+     "Ramp 3"
+    ],
+    "place": "Greystone Garage"
+   },
+   {
+    "kind": "booking",
+    "topic": "drivers' briefing room",
+    "counterpart": "Marty Vance",
+    "org": "Swiftline Logistics",
+    "item": "briefing room",
+    "unit": "room",
+    "values": [
+     "Room A",
+     "Room B",
+     "Room C"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "driver assessment track",
+    "counterpart": "Marty Vance",
+    "org": "Swiftline Logistics",
+    "item": "assessment track",
+    "unit": "track",
+    "values": [
+     "Track A",
+     "Track B",
+     "Track C"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Riverside delivery slot",
+    "counterpart": "Ravi Chandra",
+    "org": "Riverside Foods",
+    "item": "delivery slot",
+    "unit": "dock",
+    "values": [
+     "Dock 1",
+     "Dock 2",
+     "Dock 3"
+    ],
+    "place": "Riverside Foods depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "cold-store loading slot",
+    "counterpart": "Nick Prasad",
+    "org": "Fenwick Cold Store",
+    "item": "cold-store loading slot",
+    "unit": "bay",
+    "values": [
+     "Bay A",
+     "Bay B",
+     "Bay C"
+    ],
+    "place": "Fenwick Road"
+   },
+   {
+    "kind": "order",
+    "topic": "crate sanitiser",
+    "counterpart": "Priya Nair",
+    "org": "ColdCover Supplies",
+    "item": "crate sanitiser",
+    "unit": "bottle",
+    "values": [
+     "12",
+     "24",
+     "48"
+    ],
+    "place": "Swiftline depot"
+   }
+  ],
+  "id": "G1000-3-03",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [
+  "decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e25']"
+ ],
+ "valid": false
+}

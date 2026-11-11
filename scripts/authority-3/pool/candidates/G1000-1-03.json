@@ -1,0 +1,710 @@
+{
+ "id": "G1000-1-03",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 1,
+ "idx": 2,
+ "setting": "A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes",
+ "prompt_sha256": "16cb2d57f85c60b5371af5445f0c40ec9c591fe9a09810e584da46599d3c4e33",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Test centre moves to Grangewell\",\n  \"setting\": \"A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes\",\n  \"owner\": \"Kay\",\n  \"org\": \"Apex School of Motoring\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Kay\", \"text\": \"Standing rule: never move a pupil's confirmed test or lesson booking without that pupil agreeing first. If a booking with a pupil needs to change, ask them and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Kay\", \"text\": \"Standing rule: any purchase over 150 for the school needs Priya at the Apex office to sign off before we commit.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"All practical driving tests for our area are held at Millbrook Test Centre on Fen Road. Tests run weekday mornings and also on Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Confirming the coffee and pastry drop for the instructor refresher morning on 20 June at the Apex office.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Oakfield Tyres\", \"text\": \"Quoting 340 for a set of four winter tyres fitted on a dual-control hatchback, valid to end of August.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"minutes\", \"from\": \"Kay\", \"text\": \"Term planning meeting: we agreed Saturday lesson slots will be offered this autumn since practical tests run on Saturdays at Millbrook Test Centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sara Whitfield\", \"text\": \"I've passed my theory test, so I'm ready to book the practical whenever you can fit me in.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Sara Whitfield's practical driving test for Thursday 5 November 2026 at 09:20 at Millbrook Test Centre, matching her readiness and the area's test centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Happy to take Sara for the run-up lessons; I know the Millbrook area routes well.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Assigned Marcus Bell as Sara Whitfield's instructor for her lessons up to the practical test on 5 November.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\"], \"record\": \"CL-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-29\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Planned the autumn mock-test route for pupils: the loop finishes with a drive past Millbrook Test Centre so pupils see the test venue before the real thing.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Tom Aldous\", \"text\": \"My theory is booked for late August; can we pencil in a mock test for early November?\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Tom Aldous's mock driving test for Sunday 8 November 2026 at 10:40 at Millbrook Test Centre, the venue his real test will use.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e12\"], \"record\": \"EV-4\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-18\", \"type\": \"invoice\", \"from\": \"Oakfield Tyres\", \"text\": \"Invoice 5521 for 340, winter tyres fitted to the dual-control car, payable within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-21\", \"type\": \"task\", \"from\": \"Kay\", \"text\": \"To-do: pay the Oakfield Tyres invoice of 340 by 30 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Ordered the winter tyre set from Oakfield Tyres at the quoted 340; Priya signed off as it is over 150.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Scheduled Sara Whitfield's pre-test familiarisation lesson for Tuesday 3 November 2026 at 15:00 with Marcus, finishing with a drive up to Millbrook Test Centre so she sees the centre and the approach roads before Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Pupil progress note: Sara Whitfield is consistently good on roundabouts and mirrors; manoeuvres need one more polish session.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Set Tom Aldous's test-day plan: pick him up from his home on Windmill Lane at 08:15, since the drive out to Millbrook Test Centre takes about 50 minutes before a morning test.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"The small hall is free on Wednesday evenings from October for the classroom refresher course.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked the Wednesday evening classroom refresher course at Bramley Community Hall, starting 7 October, using the hall's confirmed availability.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-7\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Hettie Lang\", \"text\": \"Please cancel my Friday lessons for the next three weeks while I'm on shift changes.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"letter\", \"from\": \"Regional Driving Test Office\", \"text\": \"Booking confirmation: Sara Whitfield, practical test on Thursday 5 November 2026 at 09:20, Millbrook Test Centre, Fen Road. Please arrive 10 minutes early.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"message\", \"from\": \"Marcus Bell\", \"text\": \"Reminder for the diary: all this term's mock tests finish at Millbrook so pupils know the test centre.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"cancellation\", \"from\": \"Hettie Lang\", \"text\": \"Cancelling the remaining October Friday lessons; will restart in November.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Kay\", \"text\": \"Call with Priya: the tyre invoice is paid, and we'll cap routine fuel-card orders at 60 a week.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Grangewell Business Park\", \"text\": \"Our unit 4 meeting room is available for instructor briefings on weekday mornings if you ever need a base on this side of town.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Regional Driving Test Office\", \"text\": \"Notice to local schools: from Monday 20 October 2026, all practical driving tests in this area will be held at Grangewell Test Centre on Bridge Street. Millbrook Test Centre on Fen Road no longer hosts practical tests; it remains open for other services. Saturday testing continues as before.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e29\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Sara Whitfield\", \"text\": \"Looking forward to test week — just send me the final details when you have them.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-14\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"From November, motorcycle tests in the region will be handled at Halden Test Centre rather than local sites.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e31\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"Confirming the hall booking continues each Wednesday evening through December.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Car service for the dual-control car is due before the December rush; book it with Halstead Garage.\", \"role\": \"obligation\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Weather looks fine for next week's lessons; I'll keep the usual Saturday morning slots running.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-25\", \"type\": \"message\", \"from\": \"Tom Aldous\", \"text\": \"Theory passed! See you for the mock test in November.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Practical test – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"date\": \"2026-11-05\", \"time\": \"09:20\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn mock-test route\", \"fields\": {\"route_name\": \"Autumn mock loop\", \"finishes_at\": \"Millbrook Test Centre, Fen Road\", \"duration\": \"60\", \"status\": \"active\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Pre-test familiarisation lesson – Sara\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"date\": \"2026-11-03\", \"time\": \"15:00\", \"focus\": \"drive to Millbrook Test Centre and the approach roads\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Mock test – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"date\": \"2026-11-08\", \"time\": \"10:40\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Test-day pickup – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"pickup_place\": \"Windmill Lane\", \"pickup_time\": \"08:15\", \"destination\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Saturday lesson slots\", \"fields\": {\"slots\": \"Saturday mornings, 08:00 to 12:00\", \"term\": \"Autumn 2026\", \"status\": \"active\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Classroom refresher course\", \"fields\": {\"place\": \"Bramley Community Hall\", \"day\": \"Wednesday\", \"start_date\": \"2026-10-07\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Winter tyres – dual-control car\", \"fields\": {\"supplier\": \"Oakfield Tyres\", \"item\": \"winter tyres, set of 4\", \"amount\": \"340\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Pupil – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"test_date\": \"2026-11-05\", \"notes\": \"strong on roundabouts and mirrors\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-4\", \"fields\": [\"venue\", \"date\", \"time\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"},\n    {\"record\": \"EV-5\", \"fields\": [\"pickup_place\", \"pickup_time\", \"destination\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Sara's test is next Thursday — please send her the final confirmation with exactly where she's going and when, and make sure my diary and the plan around her test all line up.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"venue\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-2\", \"field\": \"finishes_at\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-3\", \"field\": \"focus\", \"value\": \"drive to Grangewell Test Centre and the approach roads\", \"stale\": [\"drive to Millbrook Test Centre and the approach roads\"]},\n    {\"record\": \"CL-1\", \"field\": \"test_date\", \"value\": \"2026-11-05\", \"task\": false},\n    {\"message_to\": \"Sara Whitfield\", \"regarding\": \"EV-1\", \"says\": [\"Grangewell Test Centre, Bridge Street\", \"Thursday 5 November 2026 at 09:20\"], \"stale\": [\"Millbrook Test Centre, Fen Road\"], \"task\": true}\n  ],\n  \"why\": \"The Regional Driving Test Office moved all practical tests to Grangewell Test Centre from 20 October, so everything resting on the Millbrook fact that touches Sara's test week must be revised: her test venue, the mock-test route's finish, and her familiarisation lesson focus, plus a confirmation message carrying the new venue. Tom's mock test and his test-day pickup also rest on the Millbrook fact, but the standing rule requires his agreement before any confirmed booking is moved, so those stay as they are with a consent request rather than a change. The Saturday slots decision is KEEP because the change moved the venue but left Saturday testing standing.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Tyre restock\", \"counterpart\": \"Priya\", \"org\": \"Oakfield Tyres\", \"item\": \"tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Instructor briefings\", \"counterpart\": \"Dana\", \"org\": \"Grangewell Business Park\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Unit 4 meeting room\", \"Unit 2 meeting room\"], \"place\": \"Grangewell Business Park\"},\n    {\"kind\": \"booking\", \"topic\": \"Refresher classroom\", \"counterpart\": \"Hettie\", \"org\": \"Bramley Community Hall\", \"item\": \"small hall\", \"unit\": \"\", \"values\": [\"Small hall\", \"Main hall\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Fuel card top-up\", \"counterpart\": \"Priya\", \"org\": \"Apex School of Motoring\", \"item\": \"fuel\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Millbrook filling station\"},\n    {\"kind\": \"booking\", \"topic\": \"Lesson car slots\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"dual-control car\", \"unit\": \"\", \"values\": [\"Car 1\", \"Car 2\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Learner plates\", \"counterpart\": \"Marcus Bell\", \"org\": \"Signworks\", \"item\": \"L plates\", \"unit\": \"pairs\", \"values\": [\"6\", \"10\", \"20\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry drop\", \"unit\": \"\", \"values\": [\"Apex office\", \"Bramley Community Hall\"], \"place\": \"Apex office\"},\n    {\"kind\": \"order\", \"topic\": \"Car service parts\", \"counterpart\": \"Priya\", \"org\": \"Halstead Garage\", \"item\": \"service parts\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Halstead Garage\"},\n    {\"kind\": \"booking\", \"topic\": \"Mock test routes\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"route slot\", \"unit\": \"\", \"values\": [\"Millbrook loop\", \"Bridge Street loop\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Highway Code booklets\", \"counterpart\": \"Hettie\", \"org\": \"Page & Press\", \"item\": \"Highway Code booklets\", \"unit\": \"copies\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Apex office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3203,
+    "completion_tokens": 6743,
+    "reasoning_tokens": 2240,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03057836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Test centre moves to Grangewell\",\n  \"setting\": \"A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes\",\n  \"owner\": \"Kay\",\n  \"org\": \"Apex School of Motoring\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Kay\", \"text\": \"Standing rule: never move a pupil's confirmed test or lesson booking without that pupil agreeing first. If a booking with a pupil needs to change, ask them and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Kay\", \"text\": \"Standing rule: any purchase over 150 for the school needs Priya at the Apex office to sign off before we commit.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"All practical driving tests for our area are held at Millbrook Test Centre on Fen Road. Tests run weekday mornings and also on Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Confirming the coffee and pastry drop for the instructor refresher morning on 20 June at the Apex office.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Oakfield Tyres\", \"text\": \"Quoting 340 for a set of four winter tyres fitted on a dual-control hatchback, valid to end of August.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"minutes\", \"from\": \"Kay\", \"text\": \"Term planning meeting: we agreed Saturday lesson slots will be offered this autumn since practical tests run on Saturdays at Millbrook Test Centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sara Whitfield\", \"text\": \"I've passed my theory test, so I'm ready to book the practical whenever you can fit me in.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Sara Whitfield's practical driving test for Thursday 5 November 2026 at 09:20 at Millbrook Test Centre, matching her readiness and the area's test centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Happy to take Sara for the run-up lessons; I know the Millbrook area routes well.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Assigned Marcus Bell as Sara Whitfield's instructor for her lessons up to the practical test on 5 November.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\"], \"record\": \"CL-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-29\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Planned the autumn mock-test route for pupils: the loop finishes with a drive past Millbrook Test Centre so pupils see the test venue before the real thing.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Tom Aldous\", \"text\": \"My theory is booked for late August; can we pencil in a mock test for early November?\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Tom Aldous's mock driving test for Sunday 8 November 2026 at 10:40 at Millbrook Test Centre, the venue his real test will use.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e12\"], \"record\": \"EV-4\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-18\", \"type\": \"invoice\", \"from\": \"Oakfield Tyres\", \"text\": \"Invoice 5521 for 340, winter tyres fitted to the dual-control car, payable within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-21\", \"type\": \"task\", \"from\": \"Kay\", \"text\": \"To-do: pay the Oakfield Tyres invoice of 340 by 30 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Ordered the winter tyre set from Oakfield Tyres at the quoted 340; Priya signed off as it is over 150.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Scheduled Sara Whitfield's pre-test familiarisation lesson for Tuesday 3 November 2026 at 15:00 with Marcus, finishing with a drive up to Millbrook Test Centre so she sees the centre and the approach roads before Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Pupil progress note: Sara Whitfield is consistently good on roundabouts and mirrors; manoeuvres need one more polish session.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Set Tom Aldous's test-day plan: pick him up from his home on Windmill Lane at 08:15, since the drive out to Millbrook Test Centre takes about 50 minutes before a morning test.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"The small hall is free on Wednesday evenings from October for the classroom refresher course.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked the Wednesday evening classroom refresher course at Bramley Community Hall, starting 7 October, using the hall's confirmed availability.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-7\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Hettie Lang\", \"text\": \"Please cancel my Friday lessons for the next three weeks while I'm on shift changes.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"letter\", \"from\": \"Regional Driving Test Office\", \"text\": \"Booking confirmation: Sara Whitfield, practical test on Thursday 5 November 2026 at 09:20, Millbrook Test Centre, Fen Road. Please arrive 10 minutes early.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"message\", \"from\": \"Marcus Bell\", \"text\": \"Reminder for the diary: all this term's mock tests finish at Millbrook so pupils know the test centre.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"cancellation\", \"from\": \"Hettie Lang\", \"text\": \"Cancelling the remaining October Friday lessons; will restart in November.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Kay\", \"text\": \"Call with Priya: the tyre invoice is paid, and we'll cap routine fuel-card orders at 60 a week.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Grangewell Business Park\", \"text\": \"Our unit 4 meeting room is available for instructor briefings on weekday mornings if you ever need a base on this side of town.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Regional Driving Test Office\", \"text\": \"Notice to local schools: from Tuesday 20 October 2026, all practical driving tests in this area will be held at Grangewell Test Centre on Bridge Street. Millbrook Test Centre on Fen Road no longer hosts practical tests; it remains open for other services. Saturday testing continues as before.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e29\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Sara Whitfield\", \"text\": \"Looking forward to test week — just send me the final details when you have them.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-14\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"From November, motorcycle tests in the region will be handled at Halden Test Centre rather than local sites.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e31\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"Confirming the hall booking continues each Wednesday evening through December.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Car service for the dual-control car is due before the December rush; book it with Halstead Garage.\", \"role\": \"obligation\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Weather looks fine for next week's lessons; I'll keep the usual Saturday morning slots running.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-25\", \"type\": \"message\", \"from\": \"Tom Aldous\", \"text\": \"Theory passed! See you for the mock test in November.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Practical test – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"date\": \"2026-11-05\", \"time\": \"09:20\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn mock-test route\", \"fields\": {\"route_name\": \"Autumn mock loop\", \"finishes_at\": \"Millbrook Test Centre, Fen Road\", \"duration\": \"60\", \"status\": \"active\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Pre-test familiarisation lesson – Sara\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"date\": \"2026-11-03\", \"time\": \"15:00\", \"focus\": \"drive to Millbrook Test Centre and the approach roads\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Mock test – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"date\": \"2026-11-08\", \"time\": \"10:40\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Test-day pickup – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"pickup_place\": \"Windmill Lane\", \"pickup_time\": \"08:15\", \"destination\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Saturday lesson slots\", \"fields\": {\"slots\": \"Saturday mornings, 08:00 to 12:00\", \"term\": \"Autumn 2026\", \"status\": \"active\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Classroom refresher course\", \"fields\": {\"place\": \"Bramley Community Hall\", \"day\": \"Wednesday\", \"start_date\": \"2026-10-07\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Winter tyres – dual-control car\", \"fields\": {\"supplier\": \"Oakfield Tyres\", \"item\": \"winter tyres, set of 4\", \"amount\": \"340\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Pupil – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"test_date\": \"2026-11-05\", \"notes\": \"strong on roundabouts and mirrors\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-4\", \"fields\": [\"venue\", \"date\", \"time\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"},\n    {\"record\": \"EV-5\", \"fields\": [\"pickup_place\", \"pickup_time\", \"destination\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Sara's test is next Thursday — please send her the final confirmation with exactly where she's going and when, and make sure my diary and the plan around her test all line up.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"venue\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-2\", \"field\": \"finishes_at\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-3\", \"field\": \"focus\", \"value\": \"drive to Grangewell Test Centre and the approach roads\", \"stale\": [\"drive to Millbrook Test Centre and the approach roads\"]},\n    {\"record\": \"CL-1\", \"field\": \"test_date\", \"value\": \"2026-11-05\", \"task\": false},\n    {\"message_to\": \"Sara Whitfield\", \"regarding\": \"EV-1\", \"says\": [\"Grangewell Test Centre, Bridge Street\", \"Thursday 5 November 2026 at 09:20\"], \"stale\": [\"Millbrook Test Centre, Fen Road\"], \"task\": true}\n  ],\n  \"why\": \"The Regional Driving Test Office moved all practical tests to Grangewell Test Centre from 20 October, so everything resting on the Millbrook fact that touches Sara's test week must be revised: her test venue, the mock-test route's finish, and her familiarisation lesson focus, plus a confirmation message carrying the new venue. Tom's mock test and his test-day pickup also rest on the Millbrook fact, but the standing rule requires his agreement before any confirmed booking is moved, so those stay as they are with a consent request rather than a change. The Saturday slots decision is KEEP because the change moved the venue but left Saturday testing standing.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Tyre restock\", \"counterpart\": \"Priya\", \"org\": \"Oakfield Tyres\", \"item\": \"tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Instructor briefings\", \"counterpart\": \"Dana\", \"org\": \"Grangewell Business Park\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Unit 4 meeting room\", \"Unit 2 meeting room\"], \"place\": \"Grangewell Business Park\"},\n    {\"kind\": \"booking\", \"topic\": \"Refresher classroom\", \"counterpart\": \"Hettie\", \"org\": \"Bramley Community Hall\", \"item\": \"small hall\", \"unit\": \"\", \"values\": [\"Small hall\", \"Main hall\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Fuel card top-up\", \"counterpart\": \"Priya\", \"org\": \"Apex School of Motoring\", \"item\": \"fuel\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Millbrook filling station\"},\n    {\"kind\": \"booking\", \"topic\": \"Lesson car slots\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"dual-control car\", \"unit\": \"\", \"values\": [\"Car 1\", \"Car 2\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Learner plates\", \"counterpart\": \"Marcus Bell\", \"org\": \"Signworks\", \"item\": \"L plates\", \"unit\": \"pairs\", \"values\": [\"6\", \"10\", \"20\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry drop\", \"unit\": \"\", \"values\": [\"Apex office\", \"Bramley Community Hall\"], \"place\": \"Apex office\"},\n    {\"kind\": \"order\", \"topic\": \"Car service parts\", \"counterpart\": \"Priya\", \"org\": \"Halstead Garage\", \"item\": \"service parts\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Halstead Garage\"},\n    {\"kind\": \"booking\", \"topic\": \"Mock test routes\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"route slot\", \"unit\": \"\", \"values\": [\"Millbrook loop\", \"Bridge Street loop\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Highway Code booklets\", \"counterpart\": \"Hettie\", \"org\": \"Page & Press\", \"item\": \"Highway Code booklets\", \"unit\": \"copies\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Apex office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7758,
+    "completion_tokens": 4520,
+    "reasoning_tokens": 17,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0271012,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e28: «Monday 20 October» is not a Monday in 2026 (or 2027)\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Test centre moves to Grangewell\",\n  \"setting\": \"A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes\",\n  \"owner\": \"Kay\",\n  \"org\": \"Apex School of Motoring\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Kay\", \"text\": \"Standing rule: never move a pupil's confirmed test or lesson booking without that pupil agreeing first. If a booking with a pupil needs to change, ask them and wait for a yes.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Kay\", \"text\": \"Standing rule: any purchase over 150 for the school needs Priya at the Apex office to sign off before we commit.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"All practical driving tests for our area are held at Millbrook Test Centre on Fen Road. Tests run weekday mornings and also on Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Confirming the coffee and pastry drop for the instructor refresher morning on 20 June at the Apex office.\", \"role\": \"other\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Oakfield Tyres\", \"text\": \"Quoting 340 for a set of four winter tyres fitted on a dual-control hatchback, valid to end of August.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-24\", \"type\": \"minutes\", \"from\": \"Kay\", \"text\": \"Term planning meeting: we agreed Saturday lesson slots will be offered this autumn since practical tests run on Saturdays at Millbrook Test Centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Sara Whitfield\", \"text\": \"I've passed my theory test, so I'm ready to book the practical whenever you can fit me in.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Sara Whitfield's practical driving test for Thursday 5 November 2026 at 09:20 at Millbrook Test Centre, matching her readiness and the area's test centre.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Happy to take Sara for the run-up lessons; I know the Millbrook area routes well.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-22\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Assigned Marcus Bell as Sara Whitfield's instructor for her lessons up to the practical test on 5 November; he will cover the test-week run-up with her regardless of which route they use.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-29\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Planned the autumn mock-test route for pupils: the loop finishes with a drive past Millbrook Test Centre so pupils see the test venue before the real thing.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Tom Aldous\", \"text\": \"My theory is booked for late August; can we pencil in a mock test for early November?\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked Tom Aldous's mock driving test for Sunday 8 November 2026 at 10:40 at Millbrook Test Centre, the venue his real test will use.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e12\"], \"record\": \"EV-4\", \"mark\": \"ASK\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-18\", \"type\": \"invoice\", \"from\": \"Oakfield Tyres\", \"text\": \"Invoice 5521 for 340, winter tyres fitted to the dual-control car, payable within 30 days.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-21\", \"type\": \"task\", \"from\": \"Kay\", \"text\": \"To-do: pay the Oakfield Tyres invoice of 340 by 30 September.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-26\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Ordered the winter tyre set from Oakfield Tyres at the quoted 340; Priya signed off as it is over 150.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Scheduled Sara Whitfield's pre-test familiarisation lesson for Tuesday 3 November 2026 at 15:00 with Marcus, finishing with a drive up to Millbrook Test Centre so she sees the centre and the approach roads before Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e9\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Pupil progress note: Sara Whitfield is consistently good on roundabouts and mirrors; manoeuvres need one more polish session.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Set Tom Aldous's test-day plan: pick him up from his home on Windmill Lane at 08:15, since the drive out to Millbrook Test Centre takes about 50 minutes before a morning test.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-5\", \"mark\": \"ASK\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"The small hall is free on Wednesday evenings from October for the classroom refresher course.\", \"role\": \"fact\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Kay\", \"text\": \"Booked the Wednesday evening classroom refresher course at Bramley Community Hall, starting 7 October, using the hall's confirmed availability.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"EV-7\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Hettie Lang\", \"text\": \"Please cancel my Friday lessons for the next three weeks while I'm on shift changes.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"letter\", \"from\": \"Regional Driving Test Office\", \"text\": \"Booking confirmation: Sara Whitfield, practical test on Thursday 5 November 2026 at 09:20, Millbrook Test Centre, Fen Road. Please arrive 10 minutes early.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"message\", \"from\": \"Marcus Bell\", \"text\": \"Reminder for the diary: all this term's mock tests finish at Millbrook so pupils know the test centre.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"cancellation\", \"from\": \"Hettie Lang\", \"text\": \"Cancelling the remaining October Friday lessons; will restart in November.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"call\", \"from\": \"Kay\", \"text\": \"Call with Priya: the tyre invoice is paid, and we'll cap routine fuel-card orders at 60 a week.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Grangewell Business Park\", \"text\": \"Our unit 4 meeting room is available for instructor briefings on weekday mornings if you ever need a base on this side of town.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Regional Driving Test Office\", \"text\": \"Notice to local schools: from Tuesday 20 October 2026, all practical driving tests in this area will be held at Grangewell Test Centre on Bridge Street. Millbrook Test Centre on Fen Road no longer hosts practical tests; it remains open for other services. Saturday testing continues as before.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n    {\"id\": \"e29\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Sara Whitfield\", \"text\": \"Looking forward to test week — just send me the final details when you have them.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-14\", \"type\": \"notice\", \"from\": \"Regional Driving Test Office\", \"text\": \"From November, motorcycle tests in the region will be handled at Halden Test Centre rather than local sites.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e31\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Bramley Community Hall\", \"text\": \"Confirming the hall booking continues each Wednesday evening through December.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-21\", \"type\": \"note\", \"from\": \"Kay\", \"text\": \"Car service for the dual-control car is due before the December rush; book it with Halstead Garage.\", \"role\": \"obligation\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-23\", \"type\": \"email\", \"from\": \"Marcus Bell\", \"text\": \"Weather looks fine for next week's lessons; I'll keep the usual Saturday morning slots running.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-25\", \"type\": \"message\", \"from\": \"Tom Aldous\", \"text\": \"Theory passed! See you for the mock test in November.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Practical test – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"date\": \"2026-11-05\", \"time\": \"09:20\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn mock-test route\", \"fields\": {\"route_name\": \"Autumn mock loop\", \"finishes_at\": \"Millbrook Test Centre, Fen Road\", \"duration\": \"60\", \"status\": \"active\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Pre-test familiarisation lesson – Sara\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"date\": \"2026-11-03\", \"time\": \"15:00\", \"focus\": \"drive to Millbrook Test Centre and the approach roads\", \"status\": \"booked\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Mock test – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"date\": \"2026-11-08\", \"time\": \"10:40\", \"venue\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Test-day pickup – Tom Aldous\", \"fields\": {\"pupil\": \"Tom Aldous\", \"pickup_place\": \"Windmill Lane\", \"pickup_time\": \"08:15\", \"destination\": \"Millbrook Test Centre, Fen Road\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Saturday lesson slots\", \"fields\": {\"slots\": \"Saturday mornings, 08:00 to 12:00\", \"term\": \"Autumn 2026\", \"status\": \"active\"}},\n    {\"id\": \"EV-7\", \"collection\": \"schedule\", \"title\": \"Classroom refresher course\", \"fields\": {\"place\": \"Bramley Community Hall\", \"day\": \"Wednesday\", \"start_date\": \"2026-10-07\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Winter tyres – dual-control car\", \"fields\": {\"supplier\": \"Oakfield Tyres\", \"item\": \"winter tyres, set of 4\", \"amount\": \"340\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Pupil – Sara Whitfield\", \"fields\": {\"pupil\": \"Sara Whitfield\", \"instructor\": \"Marcus Bell\", \"test_date\": \"2026-11-05\", \"notes\": \"strong on roundabouts and mirrors\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-4\", \"fields\": [\"venue\", \"date\", \"time\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"},\n    {\"record\": \"EV-5\", \"fields\": [\"pickup_place\", \"pickup_time\", \"destination\"], \"from\": \"Tom Aldous\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Sara's test is next Thursday — please send her the final confirmation with exactly where she's going and when, and make sure my diary and the plan around her test all line up.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"venue\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-2\", \"field\": \"finishes_at\", \"value\": \"Grangewell Test Centre, Bridge Street\", \"stale\": [\"Millbrook Test Centre, Fen Road\"]},\n    {\"record\": \"EV-3\", \"field\": \"focus\", \"value\": \"drive to Grangewell Test Centre and the approach roads\", \"stale\": [\"drive to Millbrook Test Centre and the approach roads\"]},\n    {\"message_to\": \"Sara Whitfield\", \"regarding\": \"EV-1\", \"says\": [\"Grangewell Test Centre, Bridge Street\", \"Thursday 5 November 2026 at 09:20\"], \"stale\": [\"Millbrook Test Centre, Fen Road\"], \"task\": true}\n  ],\n  \"why\": \"The Regional Driving Test Office moved all practical tests to Grangewell Test Centre from 20 October, so everything resting on the Millbrook fact that touches Sara's test week must be revised: her test venue, the mock-test route's finish, and her familiarisation lesson focus, plus a confirmation message carrying the new venue. Tom's mock test and his test-day pickup also rest on the Millbrook fact, but the standing rule requires his agreement before any confirmed booking is moved, so those stay as they are with a consent request rather than a change. The Saturday slots decision and the instructor assignment for Sara are KEEP because the change moved the venue but left Saturday testing and Marcus's role standing.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Tyre restock\", \"counterpart\": \"Priya\", \"org\": \"Oakfield Tyres\", \"item\": \"tyres\", \"unit\": \"tyres\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Instructor briefings\", \"counterpart\": \"Dana\", \"org\": \"Grangewell Business Park\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Unit 4 meeting room\", \"Unit 2 meeting room\", \"Unit 6 meeting room\"], \"place\": \"Grangewell Business Park\"},\n    {\"kind\": \"booking\", \"topic\": \"Refresher classroom\", \"counterpart\": \"Hettie\", \"org\": \"Bramley Community Hall\", \"item\": \"small hall\", \"unit\": \"\", \"values\": [\"Small hall\", \"Main hall\", \"Side room\"], \"place\": \"Bramley Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Fuel card top-up\", \"counterpart\": \"Priya\", \"org\": \"Apex School of Motoring\", \"item\": \"fuel\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Millbrook filling station\"},\n    {\"kind\": \"booking\", \"topic\": \"Lesson car slots\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"dual-control car\", \"unit\": \"\", \"values\": [\"Car 1\", \"Car 2\", \"Car 3\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Learner plates\", \"counterpart\": \"Marcus Bell\", \"org\": \"Signworks\", \"item\": \"L plates\", \"unit\": \"pairs\", \"values\": [\"6\", \"10\", \"20\"], \"place\": \"Apex office\"},\n    {\"kind\": \"booking\", \"topic\": \"Catering drop\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee and pastry drop\", \"unit\": \"\", \"values\": [\"Apex office\", \"Bramley Community Hall\", \"Grangewell Business Park\"], \"place\": \"Apex office\"},\n    {\"kind\": \"order\", \"topic\": \"Car service parts\", \"counterpart\": \"Priya\", \"org\": \"Halstead Garage\", \"item\": \"service parts\", \"unit\": \"kits\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Halstead Garage\"},\n    {\"kind\": \"booking\", \"topic\": \"Mock test routes\", \"counterpart\": \"Marcus Bell\", \"org\": \"Apex School of Motoring\", \"item\": \"route slot\", \"unit\": \"\", \"values\": [\"Millbrook loop\", \"Bridge Street loop\", \"River Road loop\"], \"place\": \"Millbrook\"},\n    {\"kind\": \"order\", \"topic\": \"Highway Code booklets\", \"counterpart\": \"Hettie\", \"org\": \"Page & Press\", \"item\": \"Highway Code booklets\", \"unit\": \"copies\", \"values\": [\"10\", \"25\", \"50\"], \"place\": \"Apex office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 12391,
+    "completion_tokens": 4573,
+    "reasoning_tokens": 40,
+    "cached_tokens": 7744
+   },
+   "cost": 0.02864044,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e10']\n- noise topic 'Instructor briefings': values needs at least three entries\n- noise topic 'Refresher classroom': values needs at least three entries\n- noise topic 'Lesson car slots': values needs at least three entries\n- noise topic 'Catering drop': values needs at least three entries\n- noise topic 'Mock test routes': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Test centre moves to Grangewell",
+  "setting": "A driving instructor at Apex School of Motoring whose assistant keeps lesson diaries, test bookings, and pupil progress notes",
+  "owner": "Kay",
+  "org": "Apex School of Motoring",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Kay",
+    "text": "Standing rule: never move a pupil's confirmed test or lesson booking without that pupil agreeing first. If a booking with a pupil needs to change, ask them and wait for a yes.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Kay",
+    "text": "Standing rule: any purchase over 150 for the school needs Priya at the Apex office to sign off before we commit.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "notice",
+    "from": "Regional Driving Test Office",
+    "text": "All practical driving tests for our area are held at Millbrook Test Centre on Fen Road. Tests run weekday mornings and also on Saturdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-11",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Confirming the coffee and pastry drop for the instructor refresher morning on 20 June at the Apex office.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Oakfield Tyres",
+    "text": "Quoting 340 for a set of four winter tyres fitted on a dual-control hatchback, valid to end of August.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-24",
+    "type": "minutes",
+    "from": "Kay",
+    "text": "Term planning meeting: we agreed Saturday lesson slots will be offered this autumn since practical tests run on Saturdays at Millbrook Test Centre.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Sara Whitfield",
+    "text": "I've passed my theory test, so I'm ready to book the practical whenever you can fit me in.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Booked Sara Whitfield's practical driving test for Thursday 5 November 2026 at 09:20 at Millbrook Test Centre, matching her readiness and the area's test centre.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Happy to take Sara for the run-up lessons; I know the Millbrook area routes well.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-22",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Assigned Marcus Bell as Sara Whitfield's instructor for her lessons up to the practical test on 5 November; he will cover the test-week run-up with her regardless of which route they use.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e8"
+    ],
+    "record": "CL-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-29",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Planned the autumn mock-test route for pupils: the loop finishes with a drive past Millbrook Test Centre so pupils see the test venue before the real thing.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Tom Aldous",
+    "text": "My theory is booked for late August; can we pencil in a mock test for early November?",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Booked Tom Aldous's mock driving test for Sunday 8 November 2026 at 10:40 at Millbrook Test Centre, the venue his real test will use.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e12"
+    ],
+    "record": "EV-4",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-18",
+    "type": "invoice",
+    "from": "Oakfield Tyres",
+    "text": "Invoice 5521 for 340, winter tyres fitted to the dual-control car, payable within 30 days.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-21",
+    "type": "task",
+    "from": "Kay",
+    "text": "To-do: pay the Oakfield Tyres invoice of 340 by 30 September.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-26",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Ordered the winter tyre set from Oakfield Tyres at the quoted 340; Priya signed off as it is over 150.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Scheduled Sara Whitfield's pre-test familiarisation lesson for Tuesday 3 November 2026 at 15:00 with Marcus, finishing with a drive up to Millbrook Test Centre so she sees the centre and the approach roads before Thursday.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e9"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-08",
+    "type": "note",
+    "from": "Kay",
+    "text": "Pupil progress note: Sara Whitfield is consistently good on roundabouts and mirrors; manoeuvres need one more polish session.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Set Tom Aldous's test-day plan: pick him up from his home on Windmill Lane at 08:15, since the drive out to Millbrook Test Centre takes about 50 minutes before a morning test.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-5",
+    "mark": "ASK"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Bramley Community Hall",
+    "text": "The small hall is free on Wednesday evenings from October for the classroom refresher course.",
+    "role": "fact"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Kay",
+    "text": "Booked the Wednesday evening classroom refresher course at Bramley Community Hall, starting 7 October, using the hall's confirmed availability.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "EV-7"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Hettie Lang",
+    "text": "Please cancel my Friday lessons for the next three weeks while I'm on shift changes.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-20",
+    "type": "letter",
+    "from": "Regional Driving Test Office",
+    "text": "Booking confirmation: Sara Whitfield, practical test on Thursday 5 November 2026 at 09:20, Millbrook Test Centre, Fen Road. Please arrive 10 minutes early.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-25",
+    "type": "message",
+    "from": "Marcus Bell",
+    "text": "Reminder for the diary: all this term's mock tests finish at Millbrook so pupils know the test centre.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "cancellation",
+    "from": "Hettie Lang",
+    "text": "Cancelling the remaining October Friday lessons; will restart in November.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-01",
+    "type": "call",
+    "from": "Kay",
+    "text": "Call with Priya: the tyre invoice is paid, and we'll cap routine fuel-card orders at 60 a week.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Grangewell Business Park",
+    "text": "Our unit 4 meeting room is available for instructor briefings on weekday mornings if you ever need a base on this side of town.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Regional Driving Test Office",
+    "text": "Notice to local schools: from Tuesday 20 October 2026, all practical driving tests in this area will be held at Grangewell Test Centre on Bridge Street. Millbrook Test Centre on Fen Road no longer hosts practical tests; it remains open for other services. Saturday testing continues as before.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Sara Whitfield",
+    "text": "Looking forward to test week — just send me the final details when you have them.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-14",
+    "type": "notice",
+    "from": "Regional Driving Test Office",
+    "text": "From November, motorcycle tests in the region will be handled at Halden Test Centre rather than local sites.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Bramley Community Hall",
+    "text": "Confirming the hall booking continues each Wednesday evening through December.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-21",
+    "type": "note",
+    "from": "Kay",
+    "text": "Car service for the dual-control car is due before the December rush; book it with Halstead Garage.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-23",
+    "type": "email",
+    "from": "Marcus Bell",
+    "text": "Weather looks fine for next week's lessons; I'll keep the usual Saturday morning slots running.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-25",
+    "type": "message",
+    "from": "Tom Aldous",
+    "text": "Theory passed! See you for the mock test in November.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Practical test – Sara Whitfield",
+    "fields": {
+     "pupil": "Sara Whitfield",
+     "date": "2026-11-05",
+     "time": "09:20",
+     "venue": "Millbrook Test Centre, Fen Road",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Autumn mock-test route",
+    "fields": {
+     "route_name": "Autumn mock loop",
+     "finishes_at": "Millbrook Test Centre, Fen Road",
+     "duration": "60",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Pre-test familiarisation lesson – Sara",
+    "fields": {
+     "pupil": "Sara Whitfield",
+     "instructor": "Marcus Bell",
+     "date": "2026-11-03",
+     "time": "15:00",
+     "focus": "drive to Millbrook Test Centre and the approach roads",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Mock test – Tom Aldous",
+    "fields": {
+     "pupil": "Tom Aldous",
+     "date": "2026-11-08",
+     "time": "10:40",
+     "venue": "Millbrook Test Centre, Fen Road",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Test-day pickup – Tom Aldous",
+    "fields": {
+     "pupil": "Tom Aldous",
+     "pickup_place": "Windmill Lane",
+     "pickup_time": "08:15",
+     "destination": "Millbrook Test Centre, Fen Road",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Saturday lesson slots",
+    "fields": {
+     "slots": "Saturday mornings, 08:00 to 12:00",
+     "term": "Autumn 2026",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-7",
+    "collection": "schedule",
+    "title": "Classroom refresher course",
+    "fields": {
+     "place": "Bramley Community Hall",
+     "day": "Wednesday",
+     "start_date": "2026-10-07",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Winter tyres – dual-control car",
+    "fields": {
+     "supplier": "Oakfield Tyres",
+     "item": "winter tyres, set of 4",
+     "amount": "340",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Pupil – Sara Whitfield",
+    "fields": {
+     "pupil": "Sara Whitfield",
+     "instructor": "Marcus Bell",
+     "test_date": "2026-11-05",
+     "notes": "strong on roundabouts and mirrors",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-4",
+    "fields": [
+     "venue",
+     "date",
+     "time"
+    ],
+    "from": "Tom Aldous",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-5",
+    "fields": [
+     "pickup_place",
+     "pickup_time",
+     "destination"
+    ],
+    "from": "Tom Aldous",
+    "rule": "e1"
+   }
+  ],
+  "task": "Sara's test is next Thursday — please send her the final confirmation with exactly where she's going and when, and make sure my diary and the plan around her test all line up.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "venue",
+    "value": "Grangewell Test Centre, Bridge Street",
+    "stale": [
+     "Millbrook Test Centre, Fen Road"
+    ]
+   },
+   {
+    "record": "EV-2",
+    "field": "finishes_at",
+    "value": "Grangewell Test Centre, Bridge Street",
+    "stale": [
+     "Millbrook Test Centre, Fen Road"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "focus",
+    "value": "drive to Grangewell Test Centre and the approach roads",
+    "stale": [
+     "drive to Millbrook Test Centre and the approach roads"
+    ]
+   },
+   {
+    "message_to": "Sara Whitfield",
+    "regarding": "EV-1",
+    "says": [
+     "Grangewell Test Centre, Bridge Street",
+     "Thursday 5 November 2026 at 09:20"
+    ],
+    "stale": [
+     "Millbrook Test Centre, Fen Road"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The Regional Driving Test Office moved all practical tests to Grangewell Test Centre from 20 October, so everything resting on the Millbrook fact that touches Sara's test week must be revised: her test venue, the mock-test route's finish, and her familiarisation lesson focus, plus a confirmation message carrying the new venue. Tom's mock test and his test-day pickup also rest on the Millbrook fact, but the standing rule requires his agreement before any confirmed booking is moved, so those stay as they are with a consent request rather than a change. The Saturday slots decision and the instructor assignment for Sara are KEEP because the change moved the venue but left Saturday testing and Marcus's role standing.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Tyre restock",
+    "counterpart": "Priya",
+    "org": "Oakfield Tyres",
+    "item": "tyres",
+    "unit": "tyres",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Apex office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Instructor briefings",
+    "counterpart": "Dana",
+    "org": "Grangewell Business Park",
+    "item": "meeting room",
+    "unit": "",
+    "values": [
+     "Unit 4 meeting room",
+     "Unit 2 meeting room",
+     "Unit 6 meeting room"
+    ],
+    "place": "Grangewell Business Park"
+   },
+   {
+    "kind": "booking",
+    "topic": "Refresher classroom",
+    "counterpart": "Hettie",
+    "org": "Bramley Community Hall",
+    "item": "small hall",
+    "unit": "",
+    "values": [
+     "Small hall",
+     "Main hall",
+     "Side room"
+    ],
+    "place": "Bramley Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Fuel card top-up",
+    "counterpart": "Priya",
+    "org": "Apex School of Motoring",
+    "item": "fuel",
+    "unit": "litres",
+    "values": [
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Millbrook filling station"
+   },
+   {
+    "kind": "booking",
+    "topic": "Lesson car slots",
+    "counterpart": "Marcus Bell",
+    "org": "Apex School of Motoring",
+    "item": "dual-control car",
+    "unit": "",
+    "values": [
+     "Car 1",
+     "Car 2",
+     "Car 3"
+    ],
+    "place": "Millbrook"
+   },
+   {
+    "kind": "order",
+    "topic": "Learner plates",
+    "counterpart": "Marcus Bell",
+    "org": "Signworks",
+    "item": "L plates",
+    "unit": "pairs",
+    "values": [
+     "6",
+     "10",
+     "20"
+    ],
+    "place": "Apex office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Catering drop",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "coffee and pastry drop",
+    "unit": "",
+    "values": [
+     "Apex office",
+     "Bramley Community Hall",
+     "Grangewell Business Park"
+    ],
+    "place": "Apex office"
+   },
+   {
+    "kind": "order",
+    "topic": "Car service parts",
+    "counterpart": "Priya",
+    "org": "Halstead Garage",
+    "item": "service parts",
+    "unit": "kits",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Halstead Garage"
+   },
+   {
+    "kind": "booking",
+    "topic": "Mock test routes",
+    "counterpart": "Marcus Bell",
+    "org": "Apex School of Motoring",
+    "item": "route slot",
+    "unit": "",
+    "values": [
+     "Millbrook loop",
+     "Bridge Street loop",
+     "River Road loop"
+    ],
+    "place": "Millbrook"
+   },
+   {
+    "kind": "order",
+    "topic": "Highway Code booklets",
+    "counterpart": "Hettie",
+    "org": "Page & Press",
+    "item": "Highway Code booklets",
+    "unit": "copies",
+    "values": [
+     "10",
+     "25",
+     "50"
+    ],
+    "place": "Apex office"
+   }
+  ],
+  "id": "G1000-1-03",
+  "tier": 1000,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

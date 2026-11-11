@@ -1,0 +1,742 @@
+{
+ "id": "G500-2-04",
+ "writer": "glm",
+ "tier": 500,
+ "class": 2,
+ "idx": 3,
+ "setting": "The volunteer coordinator at Riverbend Food Bank whose assistant schedules shifts, donor records, and stock inventories",
+ "prompt_sha256": "3ebf97c527015dae0b27f52861fdea95ff078f04b759a898cd24ec7339c0c292",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Group-shift consent threshold raised\",\n  \"setting\": \"The volunteer coordinator at Riverbend Food Bank whose assistant schedules shifts, donor records, and stock inventories\",\n  \"owner\": \"Nora\",\n  \"org\": \"Riverbend Food Bank\",\n  \"now\": \"2026-11-02\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule from me: any supplier order over 500 dollars needs written sign-off from Dale, our treasurer, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Marta Chen (Hartwell Bank)\", \"text\": \"Our staff volunteer group is 10 people and we can only come on Saturdays. I'm the contact for anything to do with our shifts.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Pastor Ruth Keller (Lakeside Church)\", \"text\": \"Our congregation can bring 16 volunteers. Ruth Keller is the single contact for the group, and we prefer Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sam Boyd (Orton Logistics)\", \"text\": \"We can send 15 warehouse staff on Thursdays, based at the Northgate depot. We bring our own safety gloves and need a pallet truck on site.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya Nair (Board Chair)\", \"text\": \"Board policy on group shifts: a confirmed shift with more than 8 volunteers from one partner may only be moved, resized or cancelled with that partner's contact giving written agreement first. We made a promise to our partner groups and we keep it.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"quote\", \"from\": \"Lena Ford (Greenfield Farms)\", \"text\": \"We can supply apples at 4 dollars per crate, minimum order 20 crates, delivered to the Main warehouse.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"quote\", \"from\": \"Kaye Lim (TeePrints)\", \"text\": \"Volunteer t-shirts are 11 dollars each, any quantity over 10, delivered within two weeks.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ali Novak (Riverbend Food Bank)\", \"text\": \"Reminder that the training room bookings are now handled through the shared calendar.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"I ordered 40 crates of apples from Greenfield Farms at 4 dollars a crate, 160 dollars in total, well under the 500 dollar sign-off threshold, delivery to the Main warehouse.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Wes Turner (Canning Co-op)\", \"text\": \"Just checking you received our latest price list for canned goods.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The training room at Riverbend is free every Saturday morning through the autumn, good for orientations.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Hartwell Bank's group shift: their 10 volunteers, Saturday 7 November, Main warehouse. As a group over 8, Marta Chen gave her written agreement to the date and size when confirming, so the shift is binding on both sides.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-12\", \"type\": \"quote\", \"from\": \"Ivan Petrov (BoxWorks)\", \"text\": \"Packing boxes at 0.95 dollars each for orders of 100 or more.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Lakeside Church's group shift: 16 volunteers, Saturday 21 November, Main warehouse. As a group over 8, Ruth Keller agreed in writing to the date and headcount, which locks the booking in.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-13\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The food bank van is available for pallet pickups on Saturday mornings in November if booked a week ahead.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Orton Logistics' shift: their 15 volunteers, Thursday 12 November, based at the Northgate depot, with a pallet truck reserved. Sam Boyd agreed to the date as a group over 8 under the group-shift policy.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"I ordered 16 t-shirts from TeePrints, one per Lakeside Church volunteer at 11 dollars each, 176 dollars in total, under the 500 dollar sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e3\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Scheduled a new-volunteer orientation in the training room for Saturday 24 October, since the room is free Saturday mornings.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-5\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Placed our quarterly order with BoxWorks: 200 packing boxes at 0.95 dollars each, 190 dollars in total, under the 500 dollar sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Scheduled the November van delivery run for the morning of Saturday 7 November, aligned with the Hartwell Bank shift that day so their volunteers can help load the pallets before the van leaves the Main warehouse.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e15\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Updated the Hartwell Bank donor record: the new contact is Marta Chen, and their giving preference is fresh produce.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-1\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-05\", \"type\": \"letter\", \"from\": \"Harbor Food Network\", \"text\": \"Thank you for your August surplus report; the network meeting is in December.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Recorded the completed Hartwell Bank shift from Saturday 19 September: 10 volunteers at the Main warehouse, agreed with Marta Chen under the group-shift policy for groups over 8. The shift ran as planned.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e24\", \"date\": \"2026-08-20\", \"type\": \"task\", \"from\": \"Nora\", \"text\": \"Pay the Greenfield Farms invoice of 160 dollars by 5 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-05\", \"type\": \"notice\", \"from\": \"Ali Novak (Riverbend Food Bank)\", \"text\": \"The Northgate depot expansion is finished and open: capacity there has doubled, and weekday group shifts at the depot now have plenty of room.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Greta Holm (Daleview Dairy)\", \"text\": \"Milk deliveries continue on Tuesdays as usual.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Pastor Ruth Keller (Lakeside Church)\", \"text\": \"Confirming again that our 16 volunteers are set for Saturday 21 November. As we agreed, any change to the date or the headcount goes through me in writing first.\", \"echo\": true, \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Priya Nair (Board Chair)\", \"text\": \"Board amendment, effective 1 October and prompted by the Northgate depot expansion: for confirmed group shifts, the consent threshold rises from more than 8 volunteers to more than 12 volunteers. Written agreement from the partner contact is now required only for moving, resizing or cancelling a confirmed shift with more than 12 volunteers. Shifts based at the Northgate depot are exempt from the consent requirement altogether, since capacity there has doubled. The promise to our partner groups otherwise stands.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Lena Ford (Greenfield Farms)\", \"text\": \"Apple season ends 20 November, so any late orders should reach us before then.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Marta Chen (Hartwell Bank)\", \"text\": \"Some colleagues are keen to join in November, so we might add four more volunteers to our group. I'll confirm final numbers with you by 10 November.\", \"distractor\": true, \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Ruiz (Hearthstone Bakery)\", \"text\": \"Bread pickup schedule for November is attached, same as October.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Nora\", \"text\": \"Reminder to myself: November group shifts and the delivery run all look set on the calendar.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hartwell Bank group shift\", \"fields\": {\"date\": \"2026-11-07\", \"start_time\": \"09:00\", \"place\": \"Main warehouse\", \"volunteers\": \"10\", \"contact\": \"Marta Chen\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Lakeside Church group shift\", \"fields\": {\"date\": \"2026-11-21\", \"start_time\": \"09:30\", \"place\": \"Main warehouse\", \"volunteers\": \"16\", \"contact\": \"Ruth Keller\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Orton Logistics depot shift\", \"fields\": {\"date\": \"2026-11-12\", \"start_time\": \"08:00\", \"place\": \"Northgate depot\", \"volunteers\": \"15\", \"contact\": \"Sam Boyd\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"November van delivery run\", \"fields\": {\"date\": \"2026-11-07\", \"start_time\": \"10:00\", \"vehicle\": \"Food bank van\", \"linked_shift\": \"Hartwell Bank group shift\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"New volunteer orientation\", \"fields\": {\"date\": \"2026-10-24\", \"start_time\": \"10:00\", \"place\": \"Training room\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Hartwell Bank September shift\", \"fields\": {\"date\": \"2026-09-19\", \"start_time\": \"09:00\", \"place\": \"Main warehouse\", \"volunteers\": \"10\", \"contact\": \"Marta Chen\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Greenfield Farms apples\", \"fields\": {\"supplier\": \"Greenfield Farms\", \"item\": \"apples\", \"quantity\": \"40\", \"unit_cost\": \"4\", \"total\": \"160\", \"place\": \"Main warehouse\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"TeePrints volunteer shirts\", \"fields\": {\"supplier\": \"TeePrints\", \"item\": \"volunteer t-shirts\", \"quantity\": \"16\", \"unit_cost\": \"11\", \"total\": \"176\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"BoxWorks packing boxes\", \"fields\": {\"supplier\": \"BoxWorks\", \"item\": \"packing boxes\", \"quantity\": \"200\", \"unit_cost\": \"0.95\", \"total\": \"190\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartwell Bank donor record\", \"fields\": {\"contact\": \"Marta Chen\", \"preference\": \"fresh produce\", \"last_activity\": \"2026-08-02\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"volunteers\", \"place\"], \"from\": \"Ruth Keller\", \"rule\": \"e5\"}\n  ],\n  \"task\": \"Marta Chen from Hartwell Bank just called: they'll come with only 9 volunteers, on Saturday 14 November instead of our current date. Please update their shift and the van delivery run that goes with it, and confirm the new details with her by email. Also, Pastor Ruth wants to trim the Lakeside Church shift down to 12 volunteers on the 21st — sort that out with her too.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-14\", \"stale\": [\"2026-11-07\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"volunteers\", \"value\": \"9\", \"stale\": [\"10\"], \"task\": true},\n    {\"record\": \"EV-4\", \"field\": \"date\", \"value\": \"2026-11-14\", \"stale\": [\"2026-11-07\"], \"task\": true},\n    {\"message_to\": \"Marta Chen\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 14 November\", \"9 volunteers\"], \"stale\": [\"Saturday 7 November\", \"10 volunteers\"], \"task\": true},\n    {\"message_to\": \"Ruth Keller\", \"regarding\": \"EV-2\", \"says\": [\"12 volunteers\"], \"stale\": [\"16\"], \"task\": true}\n  ],\n  \"why\": \"The board amendment raised the consent threshold to more than 12 volunteers, so Hartwell Bank (9 after the change, 10 before) no longer needs Marta's consent to move or resize: EV-1 is REVISE and the assistant updates it and the linked delivery run EV-4 (two hops from the rule through EV-1) itself. Lakeside's 16-volunteer shift is still above the new threshold, so trimming it to 12 stays ASK: the assistant must request Ruth Keller's consent rather than change EV-2. The Orton depot shift is KEEP because the depot exemption and its substance are untouched, and the completed September shift falls before the amendment's effective date, so EV-3, EV-6 and all other records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"fruit restock\", \"counterpart\": \"Lena Ford\", \"org\": \"Greenfield Farms\", \"item\": \"crates of apples\", \"unit\": \"crates\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"packing supplies\", \"counterpart\": \"Ivan Petrov\", \"org\": \"BoxWorks\", \"item\": \"packing boxes\", \"unit\": \"boxes\", \"values\": [\"150\", \"200\", \"250\", \"300\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"shirts\", \"counterpart\": \"Kaye Lim\", \"org\": \"TeePrints\", \"item\": \"volunteer t-shirts\", \"unit\": \"shirts\", \"values\": [\"12\", \"16\", \"20\", \"24\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"depot group shift\", \"counterpart\": \"Sam Boyd\", \"org\": \"Orton Logistics\", \"item\": \"weekday depot group shift\", \"unit\": \"\", \"values\": [\"Northgate depot\", \"Main warehouse\"], \"place\": \"Northgate depot\"},\n    {\"kind\": \"booking\", \"topic\": \"orientation session\", \"counterpart\": \"Ali Novak\", \"org\": \"Riverbend Food Bank\", \"item\": \"new-volunteer orientation\", \"unit\": \"\", \"values\": [\"Training room\", \"Main warehouse\"], \"place\": \"Riverbend Food Bank\"},\n    {\"kind\": \"booking\", \"topic\": \"donor tour\", \"counterpart\": \"Marta Chen\", \"org\": \"Hartwell Bank\", \"item\": \"donor group tour\", \"unit\": \"\", \"values\": [\"Main warehouse\", \"Northgate depot\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"church packing session\", \"counterpart\": \"Ruth Keller\", \"org\": \"Lakeside Church\", \"item\": \"weekend packing session\", \"unit\": \"\", \"values\": [\"Training room\", \"Main warehouse\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"van pickup\", \"counterpart\": \"Nora\", \"org\": \"Riverbend Food Bank\", \"item\": \"van pickup slot\", \"unit\": \"\", \"values\": [\"Northgate depot\", \"Main warehouse\"], \"place\": \"Riverbend Food Bank\"},\n    {\"kind\": \"order\", \"topic\": \"bread\", \"counterpart\": \"Tom Ruiz\", \"org\": \"Hearthstone Bakery\", \"item\": \"loaves of bread\", \"unit\": \"loaves\", \"values\": [\"60\", \"80\", \"100\", \"120\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"milk\", \"counterpart\": \"Greta Holm\", \"org\": \"Daleview Dairy\", \"item\": \"litres of milk\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"canned goods\", \"counterpart\": \"Wes Turner\", \"org\": \"Canning Co-op\", \"item\": \"cases of canned vegetables\", \"unit\": \"cases\", \"values\": [\"25\", \"35\", \"45\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Voss\", \"org\": \"Clearline Supplies\", \"item\": \"bottles of sanitiser\", \"unit\": \"bottles\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Main warehouse\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3196,
+    "completion_tokens": 10560,
+    "reasoning_tokens": 5761,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04736336,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Group-shift consent threshold raised\",\n  \"setting\": \"The volunteer coordinator at Riverbend Food Bank whose assistant schedules shifts, donor records, and stock inventories\",\n  \"owner\": \"Nora\",\n  \"org\": \"Riverbend Food Bank\",\n  \"now\": \"2026-11-02\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Nora\", \"text\": \"Standing rule from me: any supplier order over 500 dollars needs written sign-off from Dale, our treasurer, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Marta Chen (Hartwell Bank)\", \"text\": \"Our staff volunteer group is 10 people and we can only come on Saturdays. I'm the contact for anything to do with our shifts.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Pastor Ruth Keller (Lakeside Church)\", \"text\": \"Our congregation can bring 16 volunteers. Ruth Keller is the single contact for the group, and we prefer Saturdays.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sam Boyd (Orton Logistics)\", \"text\": \"We can send 15 warehouse staff on Thursdays, based at the Northgate depot. We bring our own safety gloves and need a pallet truck on site.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"policy\", \"from\": \"Priya Nair (Board Chair)\", \"text\": \"Board policy on group shifts: a confirmed shift with more than 8 volunteers from one partner may only be moved, resized or cancelled with that partner's contact giving written agreement first. We made a promise to our partner groups and we keep it.\", \"role\": \"rule\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"quote\", \"from\": \"Lena Ford (Greenfield Farms)\", \"text\": \"We can supply apples at 4 dollars per crate, minimum order 20 crates, delivered to the Main warehouse.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-16\", \"type\": \"quote\", \"from\": \"Kaye Lim (TeePrints)\", \"text\": \"Volunteer t-shirts are 11 dollars each, any quantity over 10, delivered within two weeks.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ali Novak (Riverbend Food Bank)\", \"text\": \"Reminder that the training room bookings are now handled through the shared calendar.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"I ordered 40 crates of apples from Greenfield Farms at 4 dollars a crate, 160 dollars in total, well under the 500 dollar sign-off threshold, delivery to the Main warehouse.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"email\", \"from\": \"Wes Turner (Canning Co-op)\", \"text\": \"Just checking you received our latest price list for canned goods.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The training room at Riverbend is free every Saturday morning through the autumn, good for orientations.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Hartwell Bank's group shift: their 10 volunteers, Saturday 7 November, Main warehouse. As a group over 8, Marta Chen gave her written agreement to the date and size when confirming, so the shift is binding on both sides.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"quote\", \"from\": \"Ivan Petrov (BoxWorks)\", \"text\": \"Packing boxes at 0.95 dollars each for orders of 100 or more.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-12\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Lakeside Church's group shift: 16 volunteers, Saturday 21 November, Main warehouse. As a group over 8, Ruth Keller agreed in writing to the date and headcount, which locks the booking in.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-13\", \"type\": \"note\", \"from\": \"Nora\", \"text\": \"The food bank van is available for pallet pickups on Saturday mornings in November if booked a week ahead.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Confirmed Orton Logistics' shift: their 15 volunteers, Thursday 12 November, based at the Northgate depot, with a pallet truck reserved. Sam Boyd agreed to the date as a group over 8 under the group-shift policy.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-18\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"I ordered 16 t-shirts from TeePrints, one per Lakeside Church volunteer at 11 dollars each, 176 dollars in total, under the 500 dollar sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e3\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Scheduled a new-volunteer orientation in the training room for Saturday 24 October, since the room is free Saturday mornings.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-5\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Placed our quarterly order with BoxWorks: 200 packing boxes at 0.95 dollars each, 190 dollars in total, under the 500 dollar sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e13\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Scheduled the November van delivery run for the morning of Saturday 7 November, aligned with the Hartwell Bank shift that day so their volunteers can help load the pallets before the van leaves the Main warehouse.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e15\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-02\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Updated the Hartwell Bank donor record: the new contact is Marta Chen, and their giving preference is fresh produce.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-1\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-05\", \"type\": \"letter\", \"from\": \"Harbor Food Network\", \"text\": \"Thank you for your August surplus report; the network meeting is in December.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Nora\", \"text\": \"Recorded the completed Hartwell Bank shift from Saturday 19 September: 10 volunteers at the Main warehouse, agreed with Marta Chen under the group-shift policy for groups over 8. The shift ran as planned.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-6\", \"mark\": \"KEEP\"},\n    {\"id\": \"e24\", \"date\": \"2026-08-20\", \"type\": \"task\", \"from\": \"Nora\", \"text\": \"Pay the Greenfield Farms invoice of 160 dollars by 5 November.\", \"role\": \"obligation\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-05\", \"type\": \"notice\", \"from\": \"Ali Novak (Riverbend Food Bank)\", \"text\": \"The Northgate depot expansion is finished and open: capacity there has doubled, and weekday group shifts at the depot now have plenty of room.\", \"role\": \"fact\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Greta Holm (Daleview Dairy)\", \"text\": \"Milk deliveries continue on Tuesdays as usual.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Pastor Ruth Keller (Lakeside Church)\", \"text\": \"Confirming again that our 16 volunteers are set for Saturday 21 November. As we agreed, any change to the date or the headcount goes through me in writing first.\", \"echo\": true, \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"notice\", \"from\": \"Priya Nair (Board Chair)\", \"text\": \"Board amendment, effective 1 October and prompted by the Northgate depot expansion: for confirmed group shifts, the consent threshold rises from more than 8 volunteers to more than 12 volunteers. Written agreement from the partner contact is now required only for moving, resizing or cancelling a confirmed shift with more than 12 volunteers. Shifts based at the Northgate depot are exempt from the consent requirement altogether, since capacity there has doubled. The promise to our partner groups otherwise stands.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n    {\"id\": \"e29\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Lena Ford (Greenfield Farms)\", \"text\": \"Apple season ends 20 November, so any late orders should reach us before then.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Marta Chen (Hartwell Bank)\", \"text\": \"Some colleagues are keen to join in November, so we might add four more volunteers to our group. I'll confirm final numbers with you by 10 November.\", \"distractor\": true, \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Ruiz (Hearthstone Bakery)\", \"text\": \"Bread pickup schedule for November is attached, same as October.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Nora\", \"text\": \"Reminder to myself: November group shifts and the delivery run all look set on the calendar.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hartwell Bank group shift\", \"fields\": {\"date\": \"2026-11-07\", \"start_time\": \"09:00\", \"place\": \"Main warehouse\", \"volunteers\": \"10\", \"contact\": \"Marta Chen\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Lakeside Church group shift\", \"fields\": {\"date\": \"2026-11-21\", \"start_time\": \"09:30\", \"place\": \"Main warehouse\", \"volunteers\": \"16\", \"contact\": \"Ruth Keller\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Orton Logistics depot shift\", \"fields\": {\"date\": \"2026-11-12\", \"start_time\": \"08:00\", \"place\": \"Northgate depot\", \"volunteers\": \"15\", \"contact\": \"Sam Boyd\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"November van delivery run\", \"fields\": {\"date\": \"2026-11-07\", \"start_time\": \"10:00\", \"vehicle\": \"Food bank van\", \"linked_shift\": \"Hartwell Bank group shift\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"New volunteer orientation\", \"fields\": {\"date\": \"2026-10-24\", \"start_time\": \"10:00\", \"place\": \"Training room\", \"status\": \"scheduled\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Hartwell Bank September shift\", \"fields\": {\"date\": \"2026-09-19\", \"start_time\": \"09:00\", \"place\": \"Main warehouse\", \"volunteers\": \"10\", \"contact\": \"Marta Chen\", \"status\": \"completed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Greenfield Farms apples\", \"fields\": {\"supplier\": \"Greenfield Farms\", \"item\": \"apples\", \"quantity\": \"40\", \"unit_cost\": \"4\", \"total\": \"160\", \"place\": \"Main warehouse\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"TeePrints volunteer shirts\", \"fields\": {\"supplier\": \"TeePrints\", \"item\": \"volunteer t-shirts\", \"quantity\": \"16\", \"unit_cost\": \"11\", \"total\": \"176\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"BoxWorks packing boxes\", \"fields\": {\"supplier\": \"BoxWorks\", \"item\": \"packing boxes\", \"quantity\": \"200\", \"unit_cost\": \"0.95\", \"total\": \"190\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Hartwell Bank donor record\", \"fields\": {\"contact\": \"Marta Chen\", \"preference\": \"fresh produce\", \"last_activity\": \"2026-08-02\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"volunteers\", \"place\"], \"from\": \"Ruth Keller\", \"rule\": \"e5\"}\n  ],\n  \"task\": \"Marta Chen from Hartwell Bank just called: they'll come with only 9 volunteers, on Saturday 14 November instead of our current date. Please update their shift and the van delivery run that goes with it, and confirm the new details with her by email. Also, Pastor Ruth wants to trim the Lakeside Church shift down to 12 volunteers on the 21st — sort that out with her too.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-14\", \"stale\": [\"2026-11-07\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"volunteers\", \"value\": \"9\", \"stale\": [\"10\"], \"task\": true},\n    {\"record\": \"EV-4\", \"field\": \"date\", \"value\": \"2026-11-14\", \"stale\": [\"2026-11-07\"], \"task\": true},\n    {\"message_to\": \"Marta Chen\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 14 November\", \"9 volunteers\"], \"stale\": [\"Saturday 7 November\", \"10 volunteers\"], \"task\": true},\n    {\"message_to\": \"Ruth Keller\", \"regarding\": \"EV-2\", \"says\": [\"12 volunteers\"], \"stale\": [\"16\"], \"task\": true}\n  ],\n  \"why\": \"The board amendment raised the consent threshold to more than 12 volunteers, so Hartwell Bank (9 after the change, 10 before) no longer needs Marta's consent to move or resize: EV-1 is REVISE and the assistant updates it and the linked delivery run EV-4 (two hops from the rule through EV-1) itself. Lakeside's 16-volunteer shift is still above the new threshold, so trimming it to 12 stays ASK: the assistant must request Ruth Keller's consent rather than change EV-2. The Orton depot shift is KEEP because the depot exemption and its substance are untouched, and the completed September shift falls before the amendment's effective date, so EV-3, EV-6 and all other records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"fruit restock\", \"counterpart\": \"Lena Ford\", \"org\": \"Greenfield Farms\", \"item\": \"crates of apples\", \"unit\": \"crates\", \"values\": [\"20\", \"30\", \"40\", \"50\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"packing supplies\", \"counterpart\": \"Ivan Petrov\", \"org\": \"BoxWorks\", \"item\": \"packing boxes\", \"unit\": \"boxes\", \"values\": [\"150\", \"200\", \"250\", \"300\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"shirts\", \"counterpart\": \"Kaye Lim\", \"org\": \"TeePrints\", \"item\": \"volunteer t-shirts\", \"unit\": \"shirts\", \"values\": [\"12\", \"16\", \"20\", \"24\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"depot group shift\", \"counterpart\": \"Sam Boyd\", \"org\": \"Orton Logistics\", \"item\": \"weekday depot group shift\", \"unit\": \"\", \"values\": [\"Northgate depot\", \"Main warehouse\", \"Training room\"], \"place\": \"Northgate depot\"},\n    {\"kind\": \"booking\", \"topic\": \"orientation session\", \"counterpart\": \"Ali Novak\", \"org\": \"Riverbend Food Bank\", \"item\": \"new-volunteer orientation\", \"unit\": \"\", \"values\": [\"Training room\", \"Main warehouse\", \"Northgate depot\"], \"place\": \"Riverbend Food Bank\"},\n    {\"kind\": \"booking\", \"topic\": \"donor tour\", \"counterpart\": \"Marta Chen\", \"org\": \"Hartwell Bank\", \"item\": \"donor group tour\", \"unit\": \"\", \"values\": [\"Main warehouse\", \"Northgate depot\", \"Training room\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"church packing session\", \"counterpart\": \"Ruth Keller\", \"org\": \"Lakeside Church\", \"item\": \"weekend packing session\", \"unit\": \"\", \"values\": [\"Training room\", \"Main warehouse\", \"Northgate depot\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"van pickup\", \"counterpart\": \"Nora\", \"org\": \"Riverbend Food Bank\", \"item\": \"van pickup slot\", \"unit\": \"\", \"values\": [\"Northgate depot\", \"Main warehouse\", \"Training room\"], \"place\": \"Riverbend Food Bank\"},\n    {\"kind\": \"order\", \"topic\": \"bread\", \"counterpart\": \"Tom Ruiz\", \"org\": \"Hearthstone Bakery\", \"item\": \"loaves of bread\", \"unit\": \"loaves\", \"values\": [\"60\", \"80\", \"100\", \"120\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"milk\", \"counterpart\": \"Greta Holm\", \"org\": \"Daleview Dairy\", \"item\": \"litres of milk\", \"unit\": \"litres\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"canned goods\", \"counterpart\": \"Wes Turner\", \"org\": \"Canning Co-op\", \"item\": \"cases of canned vegetables\", \"unit\": \"cases\", \"values\": [\"25\", \"35\", \"45\"], \"place\": \"Main warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Voss\", \"org\": \"Clearline Supplies\", \"item\": \"bottles of sanitiser\", \"unit\": \"bottles\", \"values\": [\"15\", \"25\", \"35\"], \"place\": \"Main warehouse\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 8114,
+    "completion_tokens": 4950,
+    "reasoning_tokens": 129,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02956456,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e14 is dated before e13)\n- noise topic 'depot group shift': values needs at least three entries\n- noise topic 'orientation session': values needs at least three entries\n- noise topic 'donor tour': values needs at least three entries\n- noise topic 'church packing session': values needs at least three entries\n- noise topic 'van pickup': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Group-shift consent threshold raised",
+  "setting": "The volunteer coordinator at Riverbend Food Bank whose assistant schedules shifts, donor records, and stock inventories",
+  "owner": "Nora",
+  "org": "Riverbend Food Bank",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Nora",
+    "text": "Standing rule from me: any supplier order over 500 dollars needs written sign-off from Dale, our treasurer, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Marta Chen (Hartwell Bank)",
+    "text": "Our staff volunteer group is 10 people and we can only come on Saturdays. I'm the contact for anything to do with our shifts.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Pastor Ruth Keller (Lakeside Church)",
+    "text": "Our congregation can bring 16 volunteers. Ruth Keller is the single contact for the group, and we prefer Saturdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Sam Boyd (Orton Logistics)",
+    "text": "We can send 15 warehouse staff on Thursdays, based at the Northgate depot. We bring our own safety gloves and need a pallet truck on site.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "policy",
+    "from": "Priya Nair (Board Chair)",
+    "text": "Board policy on group shifts: a confirmed shift with more than 8 volunteers from one partner may only be moved, resized or cancelled with that partner's contact giving written agreement first. We made a promise to our partner groups and we keep it.",
+    "role": "rule"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "quote",
+    "from": "Lena Ford (Greenfield Farms)",
+    "text": "We can supply apples at 4 dollars per crate, minimum order 20 crates, delivered to the Main warehouse.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-16",
+    "type": "quote",
+    "from": "Kaye Lim (TeePrints)",
+    "text": "Volunteer t-shirts are 11 dollars each, any quantity over 10, delivered within two weeks.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Ali Novak (Riverbend Food Bank)",
+    "text": "Reminder that the training room bookings are now handled through the shared calendar.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Nora",
+    "text": "I ordered 40 crates of apples from Greenfield Farms at 4 dollars a crate, 160 dollars in total, well under the 500 dollar sign-off threshold, delivery to the Main warehouse.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "email",
+    "from": "Wes Turner (Canning Co-op)",
+    "text": "Just checking you received our latest price list for canned goods.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-30",
+    "type": "note",
+    "from": "Nora",
+    "text": "The training room at Riverbend is free every Saturday morning through the autumn, good for orientations.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Confirmed Hartwell Bank's group shift: their 10 volunteers, Saturday 7 November, Main warehouse. As a group over 8, Marta Chen gave her written agreement to the date and size when confirming, so the shift is binding on both sides.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "quote",
+    "from": "Ivan Petrov (BoxWorks)",
+    "text": "Packing boxes at 0.95 dollars each for orders of 100 or more.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-12",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Confirmed Lakeside Church's group shift: 16 volunteers, Saturday 21 November, Main warehouse. As a group over 8, Ruth Keller agreed in writing to the date and headcount, which locks the booking in.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-13",
+    "type": "note",
+    "from": "Nora",
+    "text": "The food bank van is available for pallet pickups on Saturday mornings in November if booked a week ahead.",
+    "role": "fact"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Confirmed Orton Logistics' shift: their 15 volunteers, Thursday 12 November, based at the Northgate depot, with a pallet truck reserved. Sam Boyd agreed to the date as a group over 8 under the group-shift policy.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-18",
+    "type": "decision",
+    "from": "Nora",
+    "text": "I ordered 16 t-shirts from TeePrints, one per Lakeside Church volunteer at 11 dollars each, 176 dollars in total, under the 500 dollar sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Scheduled a new-volunteer orientation in the training room for Saturday 24 October, since the room is free Saturday mornings.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Placed our quarterly order with BoxWorks: 200 packing boxes at 0.95 dollars each, 190 dollars in total, under the 500 dollar sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e13",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Scheduled the November van delivery run for the morning of Saturday 7 November, aligned with the Hartwell Bank shift that day so their volunteers can help load the pallets before the van leaves the Main warehouse.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e15"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-02",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Updated the Hartwell Bank donor record: the new contact is Marta Chen, and their giving preference is fresh produce.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-05",
+    "type": "letter",
+    "from": "Harbor Food Network",
+    "text": "Thank you for your August surplus report; the network meeting is in December.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Nora",
+    "text": "Recorded the completed Hartwell Bank shift from Saturday 19 September: 10 volunteers at the Main warehouse, agreed with Marta Chen under the group-shift policy for groups over 8. The shift ran as planned.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "EV-6",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-20",
+    "type": "task",
+    "from": "Nora",
+    "text": "Pay the Greenfield Farms invoice of 160 dollars by 5 November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-05",
+    "type": "notice",
+    "from": "Ali Novak (Riverbend Food Bank)",
+    "text": "The Northgate depot expansion is finished and open: capacity there has doubled, and weekday group shifts at the depot now have plenty of room.",
+    "role": "fact"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Greta Holm (Daleview Dairy)",
+    "text": "Milk deliveries continue on Tuesdays as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-19",
+    "type": "email",
+    "from": "Pastor Ruth Keller (Lakeside Church)",
+    "text": "Confirming again that our 16 volunteers are set for Saturday 21 November. As we agreed, any change to the date or the headcount goes through me in writing first.",
+    "echo": true,
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "notice",
+    "from": "Priya Nair (Board Chair)",
+    "text": "Board amendment, effective 1 October and prompted by the Northgate depot expansion: for confirmed group shifts, the consent threshold rises from more than 8 volunteers to more than 12 volunteers. Written agreement from the partner contact is now required only for moving, resizing or cancelling a confirmed shift with more than 12 volunteers. Shifts based at the Northgate depot are exempt from the consent requirement altogether, since capacity there has doubled. The promise to our partner groups otherwise stands.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Lena Ford (Greenfield Farms)",
+    "text": "Apple season ends 20 November, so any late orders should reach us before then.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Marta Chen (Hartwell Bank)",
+    "text": "Some colleagues are keen to join in November, so we might add four more volunteers to our group. I'll confirm final numbers with you by 10 November.",
+    "distractor": true,
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Tom Ruiz (Hearthstone Bakery)",
+    "text": "Bread pickup schedule for November is attached, same as October.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-30",
+    "type": "message",
+    "from": "Nora",
+    "text": "Reminder to myself: November group shifts and the delivery run all look set on the calendar.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Hartwell Bank group shift",
+    "fields": {
+     "date": "2026-11-07",
+     "start_time": "09:00",
+     "place": "Main warehouse",
+     "volunteers": "10",
+     "contact": "Marta Chen",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Lakeside Church group shift",
+    "fields": {
+     "date": "2026-11-21",
+     "start_time": "09:30",
+     "place": "Main warehouse",
+     "volunteers": "16",
+     "contact": "Ruth Keller",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Orton Logistics depot shift",
+    "fields": {
+     "date": "2026-11-12",
+     "start_time": "08:00",
+     "place": "Northgate depot",
+     "volunteers": "15",
+     "contact": "Sam Boyd",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "November van delivery run",
+    "fields": {
+     "date": "2026-11-07",
+     "start_time": "10:00",
+     "vehicle": "Food bank van",
+     "linked_shift": "Hartwell Bank group shift",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "New volunteer orientation",
+    "fields": {
+     "date": "2026-10-24",
+     "start_time": "10:00",
+     "place": "Training room",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Hartwell Bank September shift",
+    "fields": {
+     "date": "2026-09-19",
+     "start_time": "09:00",
+     "place": "Main warehouse",
+     "volunteers": "10",
+     "contact": "Marta Chen",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Greenfield Farms apples",
+    "fields": {
+     "supplier": "Greenfield Farms",
+     "item": "apples",
+     "quantity": "40",
+     "unit_cost": "4",
+     "total": "160",
+     "place": "Main warehouse",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "TeePrints volunteer shirts",
+    "fields": {
+     "supplier": "TeePrints",
+     "item": "volunteer t-shirts",
+     "quantity": "16",
+     "unit_cost": "11",
+     "total": "176",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "BoxWorks packing boxes",
+    "fields": {
+     "supplier": "BoxWorks",
+     "item": "packing boxes",
+     "quantity": "200",
+     "unit_cost": "0.95",
+     "total": "190",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Hartwell Bank donor record",
+    "fields": {
+     "contact": "Marta Chen",
+     "preference": "fresh produce",
+     "last_activity": "2026-08-02",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "volunteers",
+     "place"
+    ],
+    "from": "Ruth Keller",
+    "rule": "e5"
+   }
+  ],
+  "task": "Marta Chen from Hartwell Bank just called: they'll come with only 9 volunteers, on Saturday 14 November instead of our current date. Please update their shift and the van delivery run that goes with it, and confirm the new details with her by email. Also, Pastor Ruth wants to trim the Lakeside Church shift down to 12 volunteers on the 21st — sort that out with her too.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-14",
+    "stale": [
+     "2026-11-07"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "volunteers",
+    "value": "9",
+    "stale": [
+     "10"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-4",
+    "field": "date",
+    "value": "2026-11-14",
+    "stale": [
+     "2026-11-07"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Marta Chen",
+    "regarding": "EV-1",
+    "says": [
+     "Saturday 14 November",
+     "9 volunteers"
+    ],
+    "stale": [
+     "Saturday 7 November",
+     "10 volunteers"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Ruth Keller",
+    "regarding": "EV-2",
+    "says": [
+     "12 volunteers"
+    ],
+    "stale": [
+     "16"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The board amendment raised the consent threshold to more than 12 volunteers, so Hartwell Bank (9 after the change, 10 before) no longer needs Marta's consent to move or resize: EV-1 is REVISE and the assistant updates it and the linked delivery run EV-4 (two hops from the rule through EV-1) itself. Lakeside's 16-volunteer shift is still above the new threshold, so trimming it to 12 stays ASK: the assistant must request Ruth Keller's consent rather than change EV-2. The Orton depot shift is KEEP because the depot exemption and its substance are untouched, and the completed September shift falls before the amendment's effective date, so EV-3, EV-6 and all other records stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "fruit restock",
+    "counterpart": "Lena Ford",
+    "org": "Greenfield Farms",
+    "item": "crates of apples",
+    "unit": "crates",
+    "values": [
+     "20",
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "packing supplies",
+    "counterpart": "Ivan Petrov",
+    "org": "BoxWorks",
+    "item": "packing boxes",
+    "unit": "boxes",
+    "values": [
+     "150",
+     "200",
+     "250",
+     "300"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "shirts",
+    "counterpart": "Kaye Lim",
+    "org": "TeePrints",
+    "item": "volunteer t-shirts",
+    "unit": "shirts",
+    "values": [
+     "12",
+     "16",
+     "20",
+     "24"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "depot group shift",
+    "counterpart": "Sam Boyd",
+    "org": "Orton Logistics",
+    "item": "weekday depot group shift",
+    "unit": "",
+    "values": [
+     "Northgate depot",
+     "Main warehouse",
+     "Training room"
+    ],
+    "place": "Northgate depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "orientation session",
+    "counterpart": "Ali Novak",
+    "org": "Riverbend Food Bank",
+    "item": "new-volunteer orientation",
+    "unit": "",
+    "values": [
+     "Training room",
+     "Main warehouse",
+     "Northgate depot"
+    ],
+    "place": "Riverbend Food Bank"
+   },
+   {
+    "kind": "booking",
+    "topic": "donor tour",
+    "counterpart": "Marta Chen",
+    "org": "Hartwell Bank",
+    "item": "donor group tour",
+    "unit": "",
+    "values": [
+     "Main warehouse",
+     "Northgate depot",
+     "Training room"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "church packing session",
+    "counterpart": "Ruth Keller",
+    "org": "Lakeside Church",
+    "item": "weekend packing session",
+    "unit": "",
+    "values": [
+     "Training room",
+     "Main warehouse",
+     "Northgate depot"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "van pickup",
+    "counterpart": "Nora",
+    "org": "Riverbend Food Bank",
+    "item": "van pickup slot",
+    "unit": "",
+    "values": [
+     "Northgate depot",
+     "Main warehouse",
+     "Training room"
+    ],
+    "place": "Riverbend Food Bank"
+   },
+   {
+    "kind": "order",
+    "topic": "bread",
+    "counterpart": "Tom Ruiz",
+    "org": "Hearthstone Bakery",
+    "item": "loaves of bread",
+    "unit": "loaves",
+    "values": [
+     "60",
+     "80",
+     "100",
+     "120"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "milk",
+    "counterpart": "Greta Holm",
+    "org": "Daleview Dairy",
+    "item": "litres of milk",
+    "unit": "litres",
+    "values": [
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "canned goods",
+    "counterpart": "Wes Turner",
+    "org": "Canning Co-op",
+    "item": "cases of canned vegetables",
+    "unit": "cases",
+    "values": [
+     "25",
+     "35",
+     "45"
+    ],
+    "place": "Main warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Petra Voss",
+    "org": "Clearline Supplies",
+    "item": "bottles of sanitiser",
+    "unit": "bottles",
+    "values": [
+     "15",
+     "25",
+     "35"
+    ],
+    "place": "Main warehouse"
+   }
+  ],
+  "id": "G500-2-04",
+  "tier": 500,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,561 @@
+{
+ "id": "G100-4-03",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 2,
+ "setting": "An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims",
+ "prompt_sha256": "84302aebcfcecd06c1c39eb639725497816580991ecd7b1a29192cc81ce89f4b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Harborline address correction beside a routine claim\",\n \"setting\": \"An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims\",\n \"owner\": \"Ines\",\n \"org\": \"Marlowe Bodyworks\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ines\", \"text\": \"Standing rule from Ines: any supplier order above 400 in total needs sign-off from Priya, our finance lead, before it is sent. Under that, I can just place the order.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ines\", \"text\": \"Standing policy at Marlowe Bodyworks: a confirmed appointment or group session in the schedule may not be moved to another date or time without the patient's consent, or Sonia Feld's consent for the hydrotherapy group. Always ask first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Physio Supplies Direct\", \"text\": \"Quote from Physio Supplies Direct: massage oil at 45 per 5-litre jug, delivered to Marlowe Bodyworks within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"letter\", \"from\": \"Beacon Mutual\", \"text\": \"Beacon Mutual confirms reimbursement of 48 per osteopathy session. Claims go by email to claims@beaconmutual.example quoting our provider number MB-774.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines ordered 12 jugs of massage oil from Physio Supplies Direct at 45 each, 540 total — above the 400 threshold, so Priya signed off first. Delivery to Marlowe Bodyworks.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance writes: claims under our group scheme, reference HA-2291, should be emailed to groupclaims@harborline.example.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Treatment note: session with Rachel Doyle completed on 24 June, standard osteopathy session, claimable under her Beacon Mutual policy.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines filed the claim for Rachel Doyle's 24 June session with Beacon Mutual at 48, quoting provider number MB-774, sent to claims@beaconmutual.example.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Riverside Leisure\", \"text\": \"Riverside Leisure confirms the hydrotherapy pool is available Tuesday mornings at 10:00, at 90 per session, for our patient group.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines booked the monthly hydrotherapy group session at Riverside Leisure's pool for the second Tuesday of each month at 10:00, at 90 per session, starting August.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Priya Nair (finance)\", \"text\": \"Priya confirms the June supplies invoice was paid and the budget line for clinic supplies is fine for the rest of the year.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Quick count: we now have 62 active patients on the books at Marlowe Bodyworks.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"message\", \"from\": \"Sonia Feld\", \"text\": \"Sonia Feld, who coordinates the hydrotherapy group, says everyone is happy with the second-Tuesday 10:00 slot at Riverside Leisure.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines assigned Room 2 at Marlowe Bodyworks for all Tuesday osteopathy clinics from October onwards.\", \"role\": \"decision\", \"rests_on\": [\"e12\"]},\n  {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Physio Supplies Direct\", \"text\": \"Physio Supplies Direct reminder: our massage oil price holds at 45 per 5-litre jug for the rest of the year.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e16\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance writes: please note our group claims address has changed — claims under scheme HA-2291 should now go to groupclaims@harborline-assurance.example. The scheme reference stays HA-2291.\", \"role\": \"change\", \"revokes\": [\"e6\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance circulation to providers: they now reimburse physiotherapy sessions in the group scheme at 52 per session.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Riverside Leisure\", \"text\": \"Riverside Leisure confirms the November hydrotherapy pool session on the second Tuesday at 10:00 as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-17\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Treatment note: session with Marta Kowalski completed on Saturday 17 October, standard osteopathy session, she is covered by Beacon Mutual.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Priya Nair (finance)\", \"text\": \"Priya asks me to keep claims filed within a week of the session so reimbursement lands the same month.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Massage oil — Physio Supplies Direct\", \"fields\": {\"supplier\": \"Physio Supplies Direct\", \"item\": \"massage oil 5-litre jug\", \"quantity\": \"12\", \"unit_price\": \"45\", \"place\": \"Marlowe Bodyworks\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hydrotherapy group — Riverside Leisure\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"10:00\", \"place\": \"Riverside Leisure pool\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Claim — Rachel Doyle\", \"fields\": {\"patient\": \"Rachel Doyle\", \"session_date\": \"2026-06-24\", \"insurer\": \"Beacon Mutual\", \"fee\": \"48\", \"status\": \"settled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Sonia Feld\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please file the claim for Marta Kowalski's session on 17 October with Beacon Mutual, the usual way.\",\n \"expect\": [\n  {\"message_to\": \"Beacon Mutual\", \"regarding\": null, \"says\": [\"Marta Kowalski\", \"2026-10-17\", \"48\", \"MB-774\"], \"stale\": [\"52\"], \"task\": true},\n  {\"create\": \"crm\", \"fields\": {\"patient\": \"Marta Kowalski\", \"session_date\": \"2026-10-17\", \"insurer\": \"Beacon Mutual\", \"fee\": \"48\", \"status\": \"submitted\"}, \"stale\": {\"fee\": [\"52\"]}, \"task\": true}\n ],\n \"why\": \"This is a control: the Harborline address correction (e16) revokes only e6, and no decision rests on e6, so no decision carries a mark and every existing record must stay exactly as it is. The task is a routine Beacon Mutual claim that uses the standing rate of 48 and provider number MB-774 from e4; the distractor's 52 Harborline rate is for a different insurer and must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Cotton roll restock\", \"counterpart\": \"Dev Patel\", \"org\": \"Physio Supplies Direct\", \"item\": \"cotton roll\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Kinesiology tape\", \"counterpart\": \"Dev Patel\", \"org\": \"Physio Supplies Direct\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"20\", \"25\", \"30\", \"40\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Linen and towels\", \"counterpart\": \"Marta Hodge\", \"org\": \"Cleanline Textiles\", \"item\": \"towel sets\", \"unit\": \"set\", \"values\": [\"15\", \"20\", \"25\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Hydrotherapy pool slots\", \"counterpart\": \"Gary Whitmore\", \"org\": \"Riverside Leisure\", \"item\": \"pool lane bookings\", \"unit\": \"\", \"values\": [\"Riverside Leisure pool\", \"Riverside Leisure small pool\", \"Riverside Leisure warm pool\"], \"place\": \"Riverside Leisure\"},\n  {\"kind\": \"booking\", \"topic\": \"Treatment room bookings\", \"counterpart\": \"Nadia Ross\", \"org\": \"Marlowe Bodyworks\", \"item\": \"treatment room bookings\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Patient education evenings\", \"counterpart\": \"Nadia Ross\", \"org\": \"Marlowe Bodyworks\", \"item\": \"seminar room bookings\", \"unit\": \"\", \"values\": [\"Seminar room A\", \"Seminar room B\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Clinic cleaning supplies\", \"counterpart\": \"Owen Blake\", \"org\": \"SteriCare Wholesale\", \"item\": \"surface disinfectant\", \"unit\": \"bottle\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Pillow cases\", \"counterpart\": \"Marta Hodge\", \"org\": \"Cleanline Textiles\", \"item\": \"disposable pillow cases\", \"unit\": \"pack\", \"values\": [\"30\", \"40\", \"50\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training days\", \"counterpart\": \"Gary Whitmore\", \"org\": \"Riverside Leisure\", \"item\": \"function room bookings\", \"unit\": \"\", \"values\": [\"Riverside Leisure function room\", \"Riverside Leisure meeting room\"], \"place\": \"Riverside Leisure\"},\n  {\"kind\": \"order\", \"topic\": \"Reception stationery\", \"counterpart\": \"Lucia Moretti\", \"org\": \"Paper Trail Office\", \"item\": \"appointment cards\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Marlowe Bodyworks\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3154,
+    "completion_tokens": 4746,
+    "reasoning_tokens": 1821,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02179592,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Harborline address correction beside a routine claim\",\n \"setting\": \"An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims\",\n \"owner\": \"Ines\",\n \"org\": \"Marlowe Bodyworks\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Ines\", \"text\": \"Standing rule from Ines: any supplier order above 400 in total needs sign-off from Priya, our finance lead, before it is sent. Under that, I can just place the order.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Ines\", \"text\": \"Standing policy at Marlowe Bodyworks: a confirmed appointment or group session in the schedule may not be moved to another date or time without the patient's consent, or Sonia Feld's consent for the hydrotherapy group. Always ask first.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Physio Supplies Direct\", \"text\": \"Quote from Physio Supplies Direct: massage oil at 45 per 5-litre jug, delivered to Marlowe Bodyworks within 3 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"letter\", \"from\": \"Beacon Mutual\", \"text\": \"Beacon Mutual confirms reimbursement of 48 per osteopathy session. Claims go by email to claims@beaconmutual.example quoting our provider number MB-774.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines ordered 12 jugs of massage oil from Physio Supplies Direct at 45 each, 540 total — above the 400 threshold, so Priya signed off first. Delivery to Marlowe Bodyworks.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"letter\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance writes: claims under our group scheme, reference HA-2291, should be emailed to groupclaims@harborline.example.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Treatment note: session with Rachel Doyle completed on 24 June, standard osteopathy session, claimable under her Beacon Mutual policy.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines filed the claim for Rachel Doyle's 24 June session with Beacon Mutual at 48, quoting provider number MB-774, sent to claims@beaconmutual.example.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e7\"], \"record\": \"CL-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Riverside Leisure\", \"text\": \"Riverside Leisure confirms the hydrotherapy pool is available Tuesday mornings at 10:00, at 90 per session, for our patient group.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines booked the monthly hydrotherapy group session at Riverside Leisure's pool for the second Tuesday of each month at 10:00, at 90 per session, starting August.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\"], \"record\": \"EV-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Priya Nair (finance)\", \"text\": \"Priya confirms the June supplies invoice was paid and the budget line for clinic supplies is fine for the rest of the year.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Quick count: we now have 62 active patients on the books at Marlowe Bodyworks.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-04\", \"type\": \"message\", \"from\": \"Sonia Feld\", \"text\": \"Sonia Feld, who coordinates the hydrotherapy group, says everyone is happy with the second-Tuesday 10:00 slot at Riverside Leisure.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-30\", \"type\": \"decision\", \"from\": \"Ines\", \"text\": \"Ines assigned Room 2 at Marlowe Bodyworks for all Tuesday osteopathy clinics from October onwards.\", \"role\": \"decision\", \"rests_on\": [\"e12\"]},\n  {\"id\": \"e15\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Physio Supplies Direct\", \"text\": \"Physio Supplies Direct reminder: our massage oil price holds at 45 per 5-litre jug for the rest of the year.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e16\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance writes: please note our group claims address has changed — claims under scheme HA-2291 should now go to groupclaims@harborline-assurance.example. The scheme reference stays HA-2291.\", \"role\": \"change\", \"revokes\": [\"e6\"]},\n  {\"id\": \"e17\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harborline Assurance\", \"text\": \"Harborline Assurance circulation to providers: they now reimburse physiotherapy sessions in the group scheme at 52 per session.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e18\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Riverside Leisure\", \"text\": \"Riverside Leisure confirms the November hydrotherapy pool session on the second Tuesday at 10:00 as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-17\", \"type\": \"note\", \"from\": \"Ines\", \"text\": \"Treatment note: session with Marta Kowalski completed on Saturday 17 October, standard osteopathy session, she is covered by Beacon Mutual.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"message\", \"from\": \"Priya Nair (finance)\", \"text\": \"Priya asks me to keep claims filed within a week of the session so reimbursement lands the same month.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Massage oil — Physio Supplies Direct\", \"fields\": {\"supplier\": \"Physio Supplies Direct\", \"item\": \"massage oil 5-litre jug\", \"quantity\": \"12\", \"unit_price\": \"45\", \"place\": \"Marlowe Bodyworks\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Hydrotherapy group — Riverside Leisure\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"10:00\", \"place\": \"Riverside Leisure pool\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Claim — Rachel Doyle\", \"fields\": {\"patient\": \"Rachel Doyle\", \"session_date\": \"2026-06-24\", \"insurer\": \"Beacon Mutual\", \"fee\": \"48\", \"status\": \"settled\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Sonia Feld\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please file the claim for Marta Kowalski's session on 17 October with Beacon Mutual, the usual way.\",\n \"expect\": [\n  {\"message_to\": \"Beacon Mutual\", \"regarding\": null, \"says\": [\"Marta Kowalski\", \"2026-10-17\", \"48\", \"MB-774\"], \"stale\": [\"52\"], \"task\": true},\n  {\"create\": \"crm\", \"fields\": {\"patient\": \"Marta Kowalski\", \"session_date\": \"2026-10-17\", \"insurer\": \"Beacon Mutual\", \"fee\": \"48\", \"status\": \"submitted\"}, \"stale\": {\"fee\": [\"52\"]}, \"task\": true}\n ],\n \"why\": \"This is a control: the Harborline address correction (e16) revokes only e6, and no decision rests on e6, so no decision carries a mark and every existing record must stay exactly as it is. The task is a routine Beacon Mutual claim that uses the standing rate of 48 and provider number MB-774 from e4; the distractor's 52 Harborline rate is for a different insurer and must not be used.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Cotton roll restock\", \"counterpart\": \"Dev Patel\", \"org\": \"Physio Supplies Direct\", \"item\": \"cotton roll\", \"unit\": \"box\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Kinesiology tape\", \"counterpart\": \"Dev Patel\", \"org\": \"Physio Supplies Direct\", \"item\": \"kinesiology tape rolls\", \"unit\": \"roll\", \"values\": [\"20\", \"25\", \"30\", \"40\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Linen and towels\", \"counterpart\": \"Marta Hodge\", \"org\": \"Cleanline Textiles\", \"item\": \"towel sets\", \"unit\": \"set\", \"values\": [\"15\", \"20\", \"25\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Hydrotherapy pool slots\", \"counterpart\": \"Gary Whitmore\", \"org\": \"Riverside Leisure\", \"item\": \"pool lane bookings\", \"unit\": \"\", \"values\": [\"Riverside Leisure pool\", \"Riverside Leisure small pool\", \"Riverside Leisure warm pool\"], \"place\": \"Riverside Leisure\"},\n  {\"kind\": \"booking\", \"topic\": \"Treatment room bookings\", \"counterpart\": \"Nadia Ross\", \"org\": \"Marlowe Bodyworks\", \"item\": \"treatment room bookings\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Patient education evenings\", \"counterpart\": \"Nadia Ross\", \"org\": \"Marlowe Bodyworks\", \"item\": \"seminar room bookings\", \"unit\": \"\", \"values\": [\"Seminar room A\", \"Seminar room B\", \"Seminar room C\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Clinic cleaning supplies\", \"counterpart\": \"Owen Blake\", \"org\": \"SteriCare Wholesale\", \"item\": \"surface disinfectant\", \"unit\": \"bottle\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"order\", \"topic\": \"Pillow cases\", \"counterpart\": \"Marta Hodge\", \"org\": \"Cleanline Textiles\", \"item\": \"disposable pillow cases\", \"unit\": \"pack\", \"values\": [\"30\", \"40\", \"50\"], \"place\": \"Marlowe Bodyworks\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training days\", \"counterpart\": \"Gary Whitmore\", \"org\": \"Riverside Leisure\", \"item\": \"function room bookings\", \"unit\": \"\", \"values\": [\"Riverside Leisure function room\", \"Riverside Leisure meeting room\", \"Riverside Leisure training room\"], \"place\": \"Riverside Leisure\"},\n  {\"kind\": \"order\", \"topic\": \"Reception stationery\", \"counterpart\": \"Lucia Moretti\", \"org\": \"Paper Trail Office\", \"item\": \"appointment cards\", \"unit\": \"box\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Marlowe Bodyworks\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6137,
+    "completion_tokens": 2939,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01794836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Patient education evenings': values needs at least three entries\n- noise topic 'Staff training days': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Harborline address correction beside a routine claim",
+  "setting": "An osteopath at Marlowe Bodyworks whose assistant records patient histories, treatment notes, and insurance claims",
+  "owner": "Ines",
+  "org": "Marlowe Bodyworks",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Ines",
+    "text": "Standing rule from Ines: any supplier order above 400 in total needs sign-off from Priya, our finance lead, before it is sent. Under that, I can just place the order.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Ines",
+    "text": "Standing policy at Marlowe Bodyworks: a confirmed appointment or group session in the schedule may not be moved to another date or time without the patient's consent, or Sonia Feld's consent for the hydrotherapy group. Always ask first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Physio Supplies Direct",
+    "text": "Quote from Physio Supplies Direct: massage oil at 45 per 5-litre jug, delivered to Marlowe Bodyworks within 3 working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "letter",
+    "from": "Beacon Mutual",
+    "text": "Beacon Mutual confirms reimbursement of 48 per osteopathy session. Claims go by email to claims@beaconmutual.example quoting our provider number MB-774.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Ines",
+    "text": "Ines ordered 12 jugs of massage oil from Physio Supplies Direct at 45 each, 540 total — above the 400 threshold, so Priya signed off first. Delivery to Marlowe Bodyworks.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "letter",
+    "from": "Harborline Assurance",
+    "text": "Harborline Assurance writes: claims under our group scheme, reference HA-2291, should be emailed to groupclaims@harborline.example.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-24",
+    "type": "note",
+    "from": "Ines",
+    "text": "Treatment note: session with Rachel Doyle completed on 24 June, standard osteopathy session, claimable under her Beacon Mutual policy.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ines",
+    "text": "Ines filed the claim for Rachel Doyle's 24 June session with Beacon Mutual at 48, quoting provider number MB-774, sent to claims@beaconmutual.example.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e7"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Riverside Leisure",
+    "text": "Riverside Leisure confirms the hydrotherapy pool is available Tuesday mornings at 10:00, at 90 per session, for our patient group.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Ines",
+    "text": "Ines booked the monthly hydrotherapy group session at Riverside Leisure's pool for the second Tuesday of each month at 10:00, at 90 per session, starting August.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Priya Nair (finance)",
+    "text": "Priya confirms the June supplies invoice was paid and the budget line for clinic supplies is fine for the rest of the year.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "note",
+    "from": "Ines",
+    "text": "Quick count: we now have 62 active patients on the books at Marlowe Bodyworks.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-04",
+    "type": "message",
+    "from": "Sonia Feld",
+    "text": "Sonia Feld, who coordinates the hydrotherapy group, says everyone is happy with the second-Tuesday 10:00 slot at Riverside Leisure.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-30",
+    "type": "decision",
+    "from": "Ines",
+    "text": "Ines assigned Room 2 at Marlowe Bodyworks for all Tuesday osteopathy clinics from October onwards.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Physio Supplies Direct",
+    "text": "Physio Supplies Direct reminder: our massage oil price holds at 45 per 5-litre jug for the rest of the year.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Harborline Assurance",
+    "text": "Harborline Assurance writes: please note our group claims address has changed — claims under scheme HA-2291 should now go to groupclaims@harborline-assurance.example. The scheme reference stays HA-2291.",
+    "role": "change",
+    "revokes": [
+     "e6"
+    ]
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Harborline Assurance",
+    "text": "Harborline Assurance circulation to providers: they now reimburse physiotherapy sessions in the group scheme at 52 per session.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Riverside Leisure",
+    "text": "Riverside Leisure confirms the November hydrotherapy pool session on the second Tuesday at 10:00 as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-17",
+    "type": "note",
+    "from": "Ines",
+    "text": "Treatment note: session with Marta Kowalski completed on Saturday 17 October, standard osteopathy session, she is covered by Beacon Mutual.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "message",
+    "from": "Priya Nair (finance)",
+    "text": "Priya asks me to keep claims filed within a week of the session so reimbursement lands the same month.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Massage oil — Physio Supplies Direct",
+    "fields": {
+     "supplier": "Physio Supplies Direct",
+     "item": "massage oil 5-litre jug",
+     "quantity": "12",
+     "unit_price": "45",
+     "place": "Marlowe Bodyworks",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Hydrotherapy group — Riverside Leisure",
+    "fields": {
+     "date": "2026-11-10",
+     "time": "10:00",
+     "place": "Riverside Leisure pool",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Claim — Rachel Doyle",
+    "fields": {
+     "patient": "Rachel Doyle",
+     "session_date": "2026-06-24",
+     "insurer": "Beacon Mutual",
+     "fee": "48",
+     "status": "settled"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Sonia Feld",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please file the claim for Marta Kowalski's session on 17 October with Beacon Mutual, the usual way.",
+  "expect": [
+   {
+    "message_to": "Beacon Mutual",
+    "regarding": null,
+    "says": [
+     "Marta Kowalski",
+     "2026-10-17",
+     "48",
+     "MB-774"
+    ],
+    "stale": [
+     "52"
+    ],
+    "task": true
+   },
+   {
+    "create": "crm",
+    "fields": {
+     "patient": "Marta Kowalski",
+     "session_date": "2026-10-17",
+     "insurer": "Beacon Mutual",
+     "fee": "48",
+     "status": "submitted"
+    },
+    "stale": {
+     "fee": [
+      "52"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "This is a control: the Harborline address correction (e16) revokes only e6, and no decision rests on e6, so no decision carries a mark and every existing record must stay exactly as it is. The task is a routine Beacon Mutual claim that uses the standing rate of 48 and provider number MB-774 from e4; the distractor's 52 Harborline rate is for a different insurer and must not be used.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Cotton roll restock",
+    "counterpart": "Dev Patel",
+    "org": "Physio Supplies Direct",
+    "item": "cotton roll",
+    "unit": "box",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "order",
+    "topic": "Kinesiology tape",
+    "counterpart": "Dev Patel",
+    "org": "Physio Supplies Direct",
+    "item": "kinesiology tape rolls",
+    "unit": "roll",
+    "values": [
+     "20",
+     "25",
+     "30",
+     "40"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "order",
+    "topic": "Linen and towels",
+    "counterpart": "Marta Hodge",
+    "org": "Cleanline Textiles",
+    "item": "towel sets",
+    "unit": "set",
+    "values": [
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "Hydrotherapy pool slots",
+    "counterpart": "Gary Whitmore",
+    "org": "Riverside Leisure",
+    "item": "pool lane bookings",
+    "unit": "",
+    "values": [
+     "Riverside Leisure pool",
+     "Riverside Leisure small pool",
+     "Riverside Leisure warm pool"
+    ],
+    "place": "Riverside Leisure"
+   },
+   {
+    "kind": "booking",
+    "topic": "Treatment room bookings",
+    "counterpart": "Nadia Ross",
+    "org": "Marlowe Bodyworks",
+    "item": "treatment room bookings",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "Patient education evenings",
+    "counterpart": "Nadia Ross",
+    "org": "Marlowe Bodyworks",
+    "item": "seminar room bookings",
+    "unit": "",
+    "values": [
+     "Seminar room A",
+     "Seminar room B",
+     "Seminar room C"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "order",
+    "topic": "Clinic cleaning supplies",
+    "counterpart": "Owen Blake",
+    "org": "SteriCare Wholesale",
+    "item": "surface disinfectant",
+    "unit": "bottle",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "order",
+    "topic": "Pillow cases",
+    "counterpart": "Marta Hodge",
+    "org": "Cleanline Textiles",
+    "item": "disposable pillow cases",
+    "unit": "pack",
+    "values": [
+     "30",
+     "40",
+     "50"
+    ],
+    "place": "Marlowe Bodyworks"
+   },
+   {
+    "kind": "booking",
+    "topic": "Staff training days",
+    "counterpart": "Gary Whitmore",
+    "org": "Riverside Leisure",
+    "item": "function room bookings",
+    "unit": "",
+    "values": [
+     "Riverside Leisure function room",
+     "Riverside Leisure meeting room",
+     "Riverside Leisure training room"
+    ],
+    "place": "Riverside Leisure"
+   },
+   {
+    "kind": "order",
+    "topic": "Reception stationery",
+    "counterpart": "Lucia Moretti",
+    "org": "Paper Trail Office",
+    "item": "appointment cards",
+    "unit": "box",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Marlowe Bodyworks"
+   }
+  ],
+  "id": "G100-4-03",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The Harborline address change affects no existing decision or record; Marta's Beacon Mutual claim uses the unchanged rate of 48 and provider number MB-774. Filing the claim requires workplace action without the task hinting at a change. The core has 20 events and four decisions, with the change 12 days before the task and four later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Harborline address change affects no existing decision or record; Marta's Beacon Mutual claim uses the unchanged rate of 48 and provider number MB-774. Filing the claim requires workplace action without the task hinting at a change. The core has 20 events and four decisions, with the change 12 days before the task and four later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 2985,
+    "completion_tokens": 217,
+    "reasoning_tokens": 109,
+    "cached_tokens": 0
+   },
+   "cost": 0.048155,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "922ef01435968296d4911d6e2322f3fa8f8b066d0358625f29b65202189ef9a4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Harborline change (e16) revokes only e6, and no decision rests on e6, so no record is marked and the expected state is the Beacon Mutual claim at 48 under MB-774. The core has 20 events, 4 decisions, the change is 12 days before the task day with 4 core events after it, and it is an ordinary email with no correction label. The task requires an outbound claim, so it forces an act.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Harborline change (e16) revokes only e6, and no decision rests on e6, so no record is marked and the expected state is the Beacon Mutual claim at 48 under MB-774. The core has 20 events, 4 decisions, the change is 12 days before the task day with 4 core events after it, and it is an ordinary email with no correction label. The task requires an outbound claim, so it forces an act."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4370,
+    "completion_tokens": 1598,
+    "reasoning_tokens": 1411,
+    "cached_tokens": 0
+   },
+   "cost": 0.001236,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "922ef01435968296d4911d6e2322f3fa8f8b066d0358625f29b65202189ef9a4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e16) revokes only e6, on which no decision rests, so all records rightly stay as-is and the consent map matches e2. The task is a routine Beacon Mutual claim at 48 with MB-774, requiring an act without hinting at the change, and the 52 Harborline rate is a correctly flagged distractor. Tier 100 met: 20 core events, 4 decisions, change 12 days before the task day with 4 core events after, and it sits mid-history unannounced.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e16) revokes only e6, on which no decision rests, so all records rightly stay as-is and the consent map matches e2. The task is a routine Beacon Mutual claim at 48 with MB-774, requiring an act without hinting at the change, and the 52 Harborline rate is a correctly flagged distractor. Tier 100 met: 20 core events, 4 decisions, change 12 days before the task day with 4 core events after, and it sits mid-history unannounced."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3070,
+    "completion_tokens": 387,
+    "reasoning_tokens": 221,
+    "cached_tokens": 256
+   },
+   "cost": 0.0143238,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "922ef01435968296d4911d6e2322f3fa8f8b066d0358625f29b65202189ef9a4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

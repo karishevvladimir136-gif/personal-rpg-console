@@ -1,0 +1,587 @@
+{
+ "id": "G100-4-01",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 0,
+ "setting": "A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs",
+ "prompt_sha256": "8f0501a64e0347fe86fbdf413c1c37b8be0b193dfeb68cbf5599fb68fb7b22aa",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Northgate dock notice beside the Brightline run\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Marta\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Swiftline Logistics: any client pickup above 40 parcels in one run needs sign-off from Priya Nandan, our finance lead, before we confirm the booking with the client.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a pickup window has been confirmed with a client, that window may only be moved with the client contact's written consent. Drivers and vans can be reassigned freely, but confirmed windows are the client's.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: dock 2 is the outbound loading dock for courier traffic, open 08:00 to 16:00 on weekdays. Inbound deliveries use dock 1.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Driver roster note: Ravi Sharma drives van V4, which carries up to 60 parcels per run. Ravi covers the western town routes.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Confirming our standing arrangement: Brightline Print pickups happen at our Rear Yard on Cedar Lane, standard window 09:00 to 12:00, usually around 35 parcels a day. I am the contact for anything concerning these pickups.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Our cold-chain collections must always use the refrigerated van V7 with driver Amara Osei. Standard pickup from the Kestrel depot loading bay, window 07:00 to 09:00, about 24 crates. Tomas Reyes is your contact for scheduling.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing daily Brightline Print run: Ravi Sharma on van V4, collecting about 35 parcels from the Rear Yard on Cedar Lane in the 09:00 to 12:00 window Ellen Marsh confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel Foods cold-chain collection for Thursday 22 October: Amara Osei on refrigerated van V7, 24 crates from the depot loading bay in the 07:00 to 09:00 window Tomas Reyes set.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed a standing order for 80 coolant packs per month from Frostbox Ltd to keep van V7 stocked for the Kestrel cold-chain runs.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Just noting for the file: I approved the standing Frostbox order of 80 coolant packs monthly, since it sits under the 40-parcel client threshold rule and is a supplier reorder anyway.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Proof-of-delivery note: for Brightline Print, Ellen Marsh signs the POD log at the Rear Yard gate; scan and file the sheet the same day.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added Brightline Print to the client register with Ellen Marsh as contact, the Rear Yard on Cedar Lane as pickup point, and the confirmed 09:00 to 12:00 window.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Ravi Sharma\", \"text\": \"Van V4 had its service today, all good, back on the Brightline run tomorrow as usual.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Reminder: for the 22 October collection, please make sure the POD log notes crate temperatures at handover, our auditor checks them.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"notice\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: from Monday 12 October a new dock 3 will open for inbound parcel traffic only, next to the main gate. Dock 2 remains the outbound courier dock with its usual 08:00 to 16:00 weekday hours, and dock 1 keeps handling inbound goods vehicles.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Quick question: for one day next month we might have a larger batch and would like a 13:00 to 16:00 afternoon window instead of the morning one. Nothing decided yet, I will confirm the date when I know it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-16\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: confirm this week's Kestrel cold-chain collection details with Tomas Reyes by Monday 19 October so the POD sheets are ready.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"message\", \"from\": \"Amara Osei\", \"text\": \"Van V7 is loaded and cold-tested, ready for the Thursday Kestrel depot run, 24 crates as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Monthly reminder from finance: send me the parcel counts for any client run above 40 parcels before you confirm it, per the standing rule.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Brightline volumes have held steady around 35 parcels a day, so the standing morning run with Ravi continues unchanged this week.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brightline Print standing daily run\", \"fields\": {\"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"parcels\": \"35\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel Foods cold-chain collection\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Amara Osei\", \"van\": \"V7\", \"place\": \"Kestrel depot loading bay\", \"window\": \"07:00-09:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Frostbox coolant packs monthly order\", \"fields\": {\"supplier\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"quantity\": \"80\", \"unit\": \"packs\", \"monthly\": \"yes\", \"status\": \"active\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Brightline Print client record\", \"fields\": {\"contact\": \"Ellen Marsh\", \"pickup_point\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"pod_signer\": \"Ellen Marsh\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"window\", \"date\"], \"from\": \"Tomas Reyes (Kestrel Foods)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please set up tomorrow's Brightline Print pickup on Wednesday 21 October and confirm it with Ellen Marsh — same standing run as always.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-21\", \"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"status\": \"confirmed\"}, \"stale\": {\"window\": [\"13:00-16:00\"]}, \"task\": true},\n  {\"message_to\": \"Ellen Marsh (Brightline Print)\", \"regarding\": \"EV-1\", \"says\": [\"Wednesday 21 October\", \"09:00-12:00\", \"Rear Yard, Cedar Lane\", \"Ravi Sharma\"], \"stale\": [\"13:00-16:00\", \"dock 3\"], \"task\": true}\n ],\n \"why\": \"The Northgate dock notice adds a new inbound dock and changes nothing any decision rests on: dock 2's outbound hours stand, and no Swiftline record involves Northgate. The correct act is simply to book Wednesday's Brightline run exactly as the standing plan has it and confirm with Ellen Marsh using the 09:00-12:00 morning window; the 13:00-16:00 window Ellen floated is an undecided future option and must not be used, and no existing record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Frostbox coolant packs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"unit\": \"packs\", \"values\": [\"60\", \"80\", \"100\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Depot training room\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Seminar Room A\", \"Seminar Room B\", \"Dock Office\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Printer toner\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Brightline Print\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rear Yard, Cedar Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel depot slot\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Kestrel Foods\", \"item\": \"loading bay slot\", \"unit\": \"slot\", \"values\": [\"Loading Bay 1\", \"Loading Bay 2\", \"Cold Store Apron\"], \"place\": \"Kestrel depot\"},\n  {\"kind\": \"order\", \"topic\": \"Van tyres\", \"counterpart\": \"Serge Kowal\", \"org\": \"Rollway Parts\", \"item\": \"van tyres\", \"unit\": \"tyres\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline garage\"},\n  {\"kind\": \"booking\", \"topic\": \"Route-planning huddles\", \"counterpart\": \"Ravi Sharma\", \"org\": \"Swiftline Logistics\", \"item\": \"huddle desk\", \"unit\": \"desk\", \"values\": [\"Dispatch Desk 1\", \"Dispatch Desk 2\", \"Break Room\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"POD log paper\", \"counterpart\": \"Marta\", \"org\": \"Swiftline Logistics\", \"item\": \"POD log sheets\", \"unit\": \"reams\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier parking bays\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"parking bay\", \"unit\": \"bay\", \"values\": [\"Bay 4\", \"Bay 5\", \"Bay 6\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Cool-box liners\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"cool-box liners\", \"unit\": \"liners\", \"values\": [\"40\", \"50\", \"70\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Driver medical slots\", \"counterpart\": \"Amara Osei\", \"org\": \"Swiftline Logistics\", \"item\": \"clinic slot\", \"unit\": \"slot\", \"values\": [\"Clinic Room 1\", \"Clinic Room 2\"], \"place\": \"Riverside Clinic\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3152,
+    "completion_tokens": 4714,
+    "reasoning_tokens": 1517,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02165232,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Northgate dock notice beside the Brightline run\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Marta\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Swiftline Logistics: any client pickup above 40 parcels in one run needs sign-off from Priya Nandan, our finance lead, before we confirm the booking with the client.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a pickup window has been confirmed with a client, that window may only be moved with the client contact's written consent. Drivers and vans can be reassigned freely, but confirmed windows are the client's.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: dock 2 is the outbound loading dock for courier traffic, open 08:00 to 16:00 on weekdays. Inbound deliveries use dock 1.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Driver roster note: Ravi Sharma drives van V4, which carries up to 60 parcels per run. Ravi covers the western town routes.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Confirming our standing arrangement: Brightline Print pickups happen at our Rear Yard on Cedar Lane, standard window 09:00 to 12:00, usually around 35 parcels a day. I am the contact for anything concerning these pickups.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing daily Brightline Print run: Ravi Sharma on van V4, collecting about 35 parcels from the Rear Yard on Cedar Lane in the 09:00 to 12:00 window Ellen Marsh confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel Foods cold-chain collection for Thursday 22 October: Amara Osei on refrigerated van V7, 24 crates from the depot loading bay in the 07:00 to 09:00 window Tomas Reyes set.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-2\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Our cold-chain collections must always use the refrigerated van V7 with driver Amara Osei. Standard pickup from the Kestrel depot loading bay, window 07:00 to 09:00, about 24 crates. Tomas Reyes is your contact for scheduling.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed a standing order for 80 coolant packs per month from Frostbox Ltd to keep van V7 stocked for the Kestrel cold-chain runs.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Just noting for the file: I approved the standing Frostbox order of 80 coolant packs monthly, since it sits under the 40-parcel client threshold rule and is a supplier reorder anyway.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Proof-of-delivery note: for Brightline Print, Ellen Marsh signs the POD log at the Rear Yard gate; scan and file the sheet the same day.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added Brightline Print to the client register with Ellen Marsh as contact, the Rear Yard on Cedar Lane as pickup point, and the confirmed 09:00 to 12:00 window.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Ravi Sharma\", \"text\": \"Van V4 had its service today, all good, back on the Brightline run tomorrow as usual.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Reminder: for the 22 October collection, please make sure the POD log notes crate temperatures at handover, our auditor checks them.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"notice\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: from Monday 12 October a new dock 3 will open for inbound parcel traffic only, next to the main gate. Dock 2 remains the outbound courier dock with its usual 08:00 to 16:00 weekday hours, and dock 1 keeps handling inbound goods vehicles.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Quick question: for one day next month we might have a larger batch and would like a 13:00 to 16:00 afternoon window instead of the morning one. Nothing decided yet, I will confirm the date when I know it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-16\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: confirm this week's Kestrel cold-chain collection details with Tomas Reyes by Monday 19 October so the POD sheets are ready.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"message\", \"from\": \"Amara Osei\", \"text\": \"Van V7 is loaded and cold-tested, ready for the Thursday Kestrel depot run, 24 crates as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Monthly reminder from finance: send me the parcel counts for any client run above 40 parcels before you confirm it, per the standing rule.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Brightline volumes have held steady around 35 parcels a day, so the standing morning run with Ravi continues unchanged this week.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brightline Print standing daily run\", \"fields\": {\"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"parcels\": \"35\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel Foods cold-chain collection\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Amara Osei\", \"van\": \"V7\", \"place\": \"Kestrel depot loading bay\", \"window\": \"07:00-09:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Frostbox coolant packs monthly order\", \"fields\": {\"supplier\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"quantity\": \"80\", \"unit\": \"packs\", \"monthly\": \"yes\", \"status\": \"active\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Brightline Print client record\", \"fields\": {\"contact\": \"Ellen Marsh\", \"pickup_point\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"pod_signer\": \"Ellen Marsh\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"window\", \"date\"], \"from\": \"Tomas Reyes (Kestrel Foods)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please set up tomorrow's Brightline Print pickup on Wednesday 21 October and confirm it with Ellen Marsh — same standing run as always.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-21\", \"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"status\": \"confirmed\"}, \"stale\": {\"window\": [\"13:00-16:00\"]}, \"task\": true},\n  {\"message_to\": \"Ellen Marsh (Brightline Print)\", \"regarding\": \"EV-1\", \"says\": [\"Wednesday 21 October\", \"09:00-12:00\", \"Rear Yard, Cedar Lane\", \"Ravi Sharma\"], \"stale\": [\"13:00-16:00\", \"dock 3\"], \"task\": true}\n ],\n \"why\": \"The Northgate dock notice adds a new inbound dock and changes nothing any decision rests on: dock 2's outbound hours stand, and no Swiftline record involves Northgate. The correct act is simply to book Wednesday's Brightline run exactly as the standing plan has it and confirm with Ellen Marsh using the 09:00-12:00 morning window; the 13:00-16:00 window Ellen floated is an undecided future option and must not be used, and no existing record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Frostbox coolant packs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"unit\": \"packs\", \"values\": [\"60\", \"80\", \"100\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Depot training room\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Seminar Room A\", \"Seminar Room B\", \"Dock Office\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Printer toner\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Brightline Print\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rear Yard, Cedar Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel depot slot\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Kestrel Foods\", \"item\": \"loading bay slot\", \"unit\": \"slot\", \"values\": [\"Loading Bay 1\", \"Loading Bay 2\", \"Cold Store Apron\"], \"place\": \"Kestrel depot\"},\n  {\"kind\": \"order\", \"topic\": \"Van tyres\", \"counterpart\": \"Serge Kowal\", \"org\": \"Rollway Parts\", \"item\": \"van tyres\", \"unit\": \"tyres\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline garage\"},\n  {\"kind\": \"booking\", \"topic\": \"Route-planning huddles\", \"counterpart\": \"Ravi Sharma\", \"org\": \"Swiftline Logistics\", \"item\": \"huddle desk\", \"unit\": \"desk\", \"values\": [\"Dispatch Desk 1\", \"Dispatch Desk 2\", \"Break Room\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"POD log paper\", \"counterpart\": \"Marta\", \"org\": \"Swiftline Logistics\", \"item\": \"POD log sheets\", \"unit\": \"reams\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier parking bays\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"parking bay\", \"unit\": \"bay\", \"values\": [\"Bay 4\", \"Bay 5\", \"Bay 6\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Cool-box liners\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"cool-box liners\", \"unit\": \"liners\", \"values\": [\"40\", \"50\", \"70\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Driver medical slots\", \"counterpart\": \"Amara Osei\", \"org\": \"Swiftline Logistics\", \"item\": \"clinic slot\", \"unit\": \"slot\", \"values\": [\"Clinic Room 1\", \"Clinic Room 2\", \"Clinic Room 3\"], \"place\": \"Riverside Clinic\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6409,
+    "completion_tokens": 3204,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01949516,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e7 is dated before e6)\n- noise topic 'Driver medical slots': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Northgate dock notice beside the Brightline run\",\n \"setting\": \"A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs\",\n \"owner\": \"Marta\",\n \"org\": \"Swiftline Logistics\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule at Swiftline Logistics: any client pickup above 40 parcels in one run needs sign-off from Priya Nandan, our finance lead, before we confirm the booking with the client.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a pickup window has been confirmed with a client, that window may only be moved with the client contact's written consent. Drivers and vans can be reassigned freely, but confirmed windows are the client's.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"letter\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: dock 2 is the outbound loading dock for courier traffic, open 08:00 to 16:00 on weekdays. Inbound deliveries use dock 1.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Driver roster note: Ravi Sharma drives van V4, which carries up to 60 parcels per run. Ravi covers the western town routes.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Confirming our standing arrangement: Brightline Print pickups happen at our Rear Yard on Cedar Lane, standard window 09:00 to 12:00, usually around 35 parcels a day. I am the contact for anything concerning these pickups.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up the standing daily Brightline Print run: Ravi Sharma on van V4, collecting about 35 parcels from the Rear Yard on Cedar Lane in the 09:00 to 12:00 window Ellen Marsh confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Our cold-chain collections must always use the refrigerated van V7 with driver Amara Osei. Standard pickup from the Kestrel depot loading bay, window 07:00 to 09:00, about 24 crates. Tomas Reyes is your contact for scheduling.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled the Kestrel Foods cold-chain collection for Thursday 22 October: Amara Osei on refrigerated van V7, 24 crates from the depot loading bay in the 07:00 to 09:00 window Tomas Reyes set.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Placed a standing order for 80 coolant packs per month from Frostbox Ltd to keep van V7 stocked for the Kestrel cold-chain runs.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Just noting for the file: I approved the standing Frostbox order of 80 coolant packs monthly, since it sits under the 40-parcel client threshold rule and is a supplier reorder anyway.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Proof-of-delivery note: for Brightline Print, Ellen Marsh signs the POD log at the Rear Yard gate; scan and file the sheet the same day.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added Brightline Print to the client register with Ellen Marsh as contact, the Rear Yard on Cedar Lane as pickup point, and the confirmed 09:00 to 12:00 window.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Ravi Sharma\", \"text\": \"Van V4 had its service today, all good, back on the Brightline run tomorrow as usual.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Tomas Reyes (Kestrel Foods)\", \"text\": \"Reminder: for the 22 October collection, please make sure the POD log notes crate temperatures at handover, our auditor checks them.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-10-10\", \"type\": \"notice\", \"from\": \"Northgate Facilities Office\", \"text\": \"Northgate Business Park notice: from Monday 12 October a new dock 3 will open for inbound parcel traffic only, next to the main gate. Dock 2 remains the outbound courier dock with its usual 08:00 to 16:00 weekday hours, and dock 1 keeps handling inbound goods vehicles.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e16\", \"date\": \"2026-10-14\", \"type\": \"email\", \"from\": \"Ellen Marsh (Brightline Print)\", \"text\": \"Quick question: for one day next month we might have a larger batch and would like a 13:00 to 16:00 afternoon window instead of the morning one. Nothing decided yet, I will confirm the date when I know it.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e17\", \"date\": \"2026-10-16\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: confirm this week's Kestrel cold-chain collection details with Tomas Reyes by Monday 19 October so the POD sheets are ready.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-10-18\", \"type\": \"message\", \"from\": \"Amara Osei\", \"text\": \"Van V7 is loaded and cold-tested, ready for the Thursday Kestrel depot run, 24 crates as usual.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Priya Nandan\", \"text\": \"Monthly reminder from finance: send me the parcel counts for any client run above 40 parcels before you confirm it, per the standing rule.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Brightline volumes have held steady around 35 parcels a day, so the standing morning run with Ravi continues unchanged this week.\", \"role\": \"fact\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Brightline Print standing daily run\", \"fields\": {\"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"parcels\": \"35\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kestrel Foods cold-chain collection\", \"fields\": {\"date\": \"2026-10-22\", \"driver\": \"Amara Osei\", \"van\": \"V7\", \"place\": \"Kestrel depot loading bay\", \"window\": \"07:00-09:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Frostbox coolant packs monthly order\", \"fields\": {\"supplier\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"quantity\": \"80\", \"unit\": \"packs\", \"monthly\": \"yes\", \"status\": \"active\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Brightline Print client record\", \"fields\": {\"contact\": \"Ellen Marsh\", \"pickup_point\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"pod_signer\": \"Ellen Marsh\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"window\", \"date\"], \"from\": \"Tomas Reyes (Kestrel Foods)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please set up tomorrow's Brightline Print pickup on Wednesday 21 October and confirm it with Ellen Marsh — same standing run as always.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-10-21\", \"driver\": \"Ravi Sharma\", \"van\": \"V4\", \"place\": \"Rear Yard, Cedar Lane\", \"window\": \"09:00-12:00\", \"status\": \"confirmed\"}, \"stale\": {\"window\": [\"13:00-16:00\"]}, \"task\": true},\n  {\"message_to\": \"Ellen Marsh (Brightline Print)\", \"regarding\": \"EV-1\", \"says\": [\"Wednesday 21 October\", \"09:00-12:00\", \"Rear Yard, Cedar Lane\", \"Ravi Sharma\"], \"stale\": [\"13:00-16:00\", \"dock 3\"], \"task\": true}\n ],\n \"why\": \"The Northgate dock notice adds a new inbound dock and changes nothing any decision rests on: dock 2's outbound hours stand, and no Swiftline record involves Northgate. The correct act is simply to book Wednesday's Brightline run exactly as the standing plan has it and confirm with Ellen Marsh using the 09:00-12:00 morning window; the 13:00-16:00 window Ellen floated is an undecided future option and must not be used, and no existing record changes.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Frostbox coolant packs\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"coolant packs\", \"unit\": \"packs\", \"values\": [\"60\", \"80\", \"100\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Depot training room\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"training room\", \"unit\": \"room\", \"values\": [\"Seminar Room A\", \"Seminar Room B\", \"Dock Office\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Printer toner\", \"counterpart\": \"Ellen Marsh\", \"org\": \"Brightline Print\", \"item\": \"toner cartridges\", \"unit\": \"cartridges\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Rear Yard, Cedar Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"Kestrel depot slot\", \"counterpart\": \"Tomas Reyes\", \"org\": \"Kestrel Foods\", \"item\": \"loading bay slot\", \"unit\": \"slot\", \"values\": [\"Loading Bay 1\", \"Loading Bay 2\", \"Cold Store Apron\"], \"place\": \"Kestrel depot\"},\n  {\"kind\": \"order\", \"topic\": \"Van tyres\", \"counterpart\": \"Serge Kowal\", \"org\": \"Rollway Parts\", \"item\": \"van tyres\", \"unit\": \"tyres\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Swiftline garage\"},\n  {\"kind\": \"booking\", \"topic\": \"Route-planning huddles\", \"counterpart\": \"Ravi Sharma\", \"org\": \"Swiftline Logistics\", \"item\": \"huddle desk\", \"unit\": \"desk\", \"values\": [\"Dispatch Desk 1\", \"Dispatch Desk 2\", \"Break Room\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"order\", \"topic\": \"POD log paper\", \"counterpart\": \"Marta\", \"org\": \"Swiftline Logistics\", \"item\": \"POD log sheets\", \"unit\": \"reams\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Courier parking bays\", \"counterpart\": \"Hilda Braun\", \"org\": \"Northgate Facilities Office\", \"item\": \"parking bay\", \"unit\": \"bay\", \"values\": [\"Bay 4\", \"Bay 5\", \"Bay 6\"], \"place\": \"Northgate Business Park\"},\n  {\"kind\": \"order\", \"topic\": \"Cool-box liners\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Frostbox Ltd\", \"item\": \"cool-box liners\", \"unit\": \"liners\", \"values\": [\"40\", \"50\", \"70\"], \"place\": \"Swiftline depot\"},\n  {\"kind\": \"booking\", \"topic\": \"Driver medical slots\", \"counterpart\": \"Amara Osei\", \"org\": \"Swiftline Logistics\", \"item\": \"clinic slot\", \"unit\": \"slot\", \"values\": [\"Clinic Room 1\", \"Clinic Room 2\", \"Clinic Room 3\"], \"place\": \"Riverside Clinic\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9657,
+    "completion_tokens": 3259,
+    "reasoning_tokens": 55,
+    "cached_tokens": 6400
+   },
+   "cost": 0.0205634,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e7: rests_on → e8 must point to an earlier event\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Northgate dock notice beside the Brightline run",
+  "setting": "A courier dispatcher at Swiftline Logistics whose assistant tracks pickup windows, driver assignments, and proof-of-delivery logs",
+  "owner": "Marta",
+  "org": "Swiftline Logistics",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule at Swiftline Logistics: any client pickup above 40 parcels in one run needs sign-off from Priya Nandan, our finance lead, before we confirm the booking with the client.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: once a pickup window has been confirmed with a client, that window may only be moved with the client contact's written consent. Drivers and vans can be reassigned freely, but confirmed windows are the client's.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "letter",
+    "from": "Northgate Facilities Office",
+    "text": "Northgate Business Park notice: dock 2 is the outbound loading dock for courier traffic, open 08:00 to 16:00 on weekdays. Inbound deliveries use dock 1.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Marta",
+    "text": "Driver roster note: Ravi Sharma drives van V4, which carries up to 60 parcels per run. Ravi covers the western town routes.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Ellen Marsh (Brightline Print)",
+    "text": "Confirming our standing arrangement: Brightline Print pickups happen at our Rear Yard on Cedar Lane, standard window 09:00 to 12:00, usually around 35 parcels a day. I am the contact for anything concerning these pickups.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up the standing daily Brightline Print run: Ravi Sharma on van V4, collecting about 35 parcels from the Rear Yard on Cedar Lane in the 09:00 to 12:00 window Ellen Marsh confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Tomas Reyes (Kestrel Foods)",
+    "text": "Our cold-chain collections must always use the refrigerated van V7 with driver Amara Osei. Standard pickup from the Kestrel depot loading bay, window 07:00 to 09:00, about 24 crates. Tomas Reyes is your contact for scheduling.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled the Kestrel Foods cold-chain collection for Thursday 22 October: Amara Osei on refrigerated van V7, 24 crates from the depot loading bay in the 07:00 to 09:00 window Tomas Reyes set.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Placed a standing order for 80 coolant packs per month from Frostbox Ltd to keep van V7 stocked for the Kestrel cold-chain runs.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Priya Nandan",
+    "text": "Just noting for the file: I approved the standing Frostbox order of 80 coolant packs monthly, since it sits under the 40-parcel client threshold rule and is a supplier reorder anyway.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "note",
+    "from": "Marta",
+    "text": "Proof-of-delivery note: for Brightline Print, Ellen Marsh signs the POD log at the Rear Yard gate; scan and file the sheet the same day.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Added Brightline Print to the client register with Ellen Marsh as contact, the Rear Yard on Cedar Lane as pickup point, and the confirmed 09:00 to 12:00 window.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-04",
+    "type": "message",
+    "from": "Ravi Sharma",
+    "text": "Van V4 had its service today, all good, back on the Brightline run tomorrow as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Tomas Reyes (Kestrel Foods)",
+    "text": "Reminder: for the 22 October collection, please make sure the POD log notes crate temperatures at handover, our auditor checks them.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-10-10",
+    "type": "notice",
+    "from": "Northgate Facilities Office",
+    "text": "Northgate Business Park notice: from Monday 12 October a new dock 3 will open for inbound parcel traffic only, next to the main gate. Dock 2 remains the outbound courier dock with its usual 08:00 to 16:00 weekday hours, and dock 1 keeps handling inbound goods vehicles.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-14",
+    "type": "email",
+    "from": "Ellen Marsh (Brightline Print)",
+    "text": "Quick question: for one day next month we might have a larger batch and would like a 13:00 to 16:00 afternoon window instead of the morning one. Nothing decided yet, I will confirm the date when I know it.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-16",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: confirm this week's Kestrel cold-chain collection details with Tomas Reyes by Monday 19 October so the POD sheets are ready.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-18",
+    "type": "message",
+    "from": "Amara Osei",
+    "text": "Van V7 is loaded and cold-tested, ready for the Thursday Kestrel depot run, 24 crates as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Priya Nandan",
+    "text": "Monthly reminder from finance: send me the parcel counts for any client run above 40 parcels before you confirm it, per the standing rule.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Marta",
+    "text": "Brightline volumes have held steady around 35 parcels a day, so the standing morning run with Ravi continues unchanged this week.",
+    "role": "fact"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Brightline Print standing daily run",
+    "fields": {
+     "driver": "Ravi Sharma",
+     "van": "V4",
+     "place": "Rear Yard, Cedar Lane",
+     "window": "09:00-12:00",
+     "parcels": "35",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kestrel Foods cold-chain collection",
+    "fields": {
+     "date": "2026-10-22",
+     "driver": "Amara Osei",
+     "van": "V7",
+     "place": "Kestrel depot loading bay",
+     "window": "07:00-09:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Frostbox coolant packs monthly order",
+    "fields": {
+     "supplier": "Frostbox Ltd",
+     "item": "coolant packs",
+     "quantity": "80",
+     "unit": "packs",
+     "monthly": "yes",
+     "status": "active"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Brightline Print client record",
+    "fields": {
+     "contact": "Ellen Marsh",
+     "pickup_point": "Rear Yard, Cedar Lane",
+     "window": "09:00-12:00",
+     "pod_signer": "Ellen Marsh",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "window",
+     "date"
+    ],
+    "from": "Tomas Reyes (Kestrel Foods)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please set up tomorrow's Brightline Print pickup on Wednesday 21 October and confirm it with Ellen Marsh — same standing run as always.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-10-21",
+     "driver": "Ravi Sharma",
+     "van": "V4",
+     "place": "Rear Yard, Cedar Lane",
+     "window": "09:00-12:00",
+     "status": "confirmed"
+    },
+    "stale": {
+     "window": [
+      "13:00-16:00"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Ellen Marsh (Brightline Print)",
+    "regarding": "EV-1",
+    "says": [
+     "Wednesday 21 October",
+     "09:00-12:00",
+     "Rear Yard, Cedar Lane",
+     "Ravi Sharma"
+    ],
+    "stale": [
+     "13:00-16:00",
+     "dock 3"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The Northgate dock notice adds a new inbound dock and changes nothing any decision rests on: dock 2's outbound hours stand, and no Swiftline record involves Northgate. The correct act is simply to book Wednesday's Brightline run exactly as the standing plan has it and confirm with Ellen Marsh using the 09:00-12:00 morning window; the 13:00-16:00 window Ellen floated is an undecided future option and must not be used, and no existing record changes.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Frostbox coolant packs",
+    "counterpart": "Dana Ortiz",
+    "org": "Frostbox Ltd",
+    "item": "coolant packs",
+    "unit": "packs",
+    "values": [
+     "60",
+     "80",
+     "100"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Depot training room",
+    "counterpart": "Hilda Braun",
+    "org": "Northgate Facilities Office",
+    "item": "training room",
+    "unit": "room",
+    "values": [
+     "Seminar Room A",
+     "Seminar Room B",
+     "Dock Office"
+    ],
+    "place": "Northgate Business Park"
+   },
+   {
+    "kind": "order",
+    "topic": "Printer toner",
+    "counterpart": "Ellen Marsh",
+    "org": "Brightline Print",
+    "item": "toner cartridges",
+    "unit": "cartridges",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Rear Yard, Cedar Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "Kestrel depot slot",
+    "counterpart": "Tomas Reyes",
+    "org": "Kestrel Foods",
+    "item": "loading bay slot",
+    "unit": "slot",
+    "values": [
+     "Loading Bay 1",
+     "Loading Bay 2",
+     "Cold Store Apron"
+    ],
+    "place": "Kestrel depot"
+   },
+   {
+    "kind": "order",
+    "topic": "Van tyres",
+    "counterpart": "Serge Kowal",
+    "org": "Rollway Parts",
+    "item": "van tyres",
+    "unit": "tyres",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Swiftline garage"
+   },
+   {
+    "kind": "booking",
+    "topic": "Route-planning huddles",
+    "counterpart": "Ravi Sharma",
+    "org": "Swiftline Logistics",
+    "item": "huddle desk",
+    "unit": "desk",
+    "values": [
+     "Dispatch Desk 1",
+     "Dispatch Desk 2",
+     "Break Room"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "order",
+    "topic": "POD log paper",
+    "counterpart": "Marta",
+    "org": "Swiftline Logistics",
+    "item": "POD log sheets",
+    "unit": "reams",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Courier parking bays",
+    "counterpart": "Hilda Braun",
+    "org": "Northgate Facilities Office",
+    "item": "parking bay",
+    "unit": "bay",
+    "values": [
+     "Bay 4",
+     "Bay 5",
+     "Bay 6"
+    ],
+    "place": "Northgate Business Park"
+   },
+   {
+    "kind": "order",
+    "topic": "Cool-box liners",
+    "counterpart": "Dana Ortiz",
+    "org": "Frostbox Ltd",
+    "item": "cool-box liners",
+    "unit": "liners",
+    "values": [
+     "40",
+     "50",
+     "70"
+    ],
+    "place": "Swiftline depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "Driver medical slots",
+    "counterpart": "Amara Osei",
+    "org": "Swiftline Logistics",
+    "item": "clinic slot",
+    "unit": "slot",
+    "values": [
+     "Clinic Room 1",
+     "Clinic Room 2",
+     "Clinic Room 3"
+    ],
+    "place": "Riverside Clinic"
+   }
+  ],
+  "id": "G100-4-01",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Northgate dock 3 notice (e15) touches no decision or record, and the Brightline run is booked from the standing EV-1 plan, so the control class fits. The core has 20 events, 4 decisions, a change 10 days before the task day, and 5 core events after it, meeting the tier. The change is an ordinary 'notice' among routine events and is not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Northgate dock 3 notice (e15) touches no decision or record, and the Brightline run is booked from the standing EV-1 plan, so the control class fits. The core has 20 events, 4 decisions, a change 10 days before the task day, and 5 core events after it, meeting the tier. The change is an ordinary 'notice' among routine events and is not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4884,
+    "completion_tokens": 1417,
+    "reasoning_tokens": 1235,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011969,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3510553deb198efc172f95cb1dae664ac6eedaac37610aca656e4f9102c29eaa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The requested booking and confirmation follow the standing plan, but the consent map omits Ellen Marsh’s required consent for moving Brightline’s confirmed window under e2. It also protects EV-2’s date although e2 explicitly addresses windows, not dates. The core otherwise meets the control-class and tier requirements, and the change is an ordinary notice followed by later events.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The requested booking and confirmation follow the standing plan, but the consent map omits Ellen Marsh’s required consent for moving Brightline’s confirmed window under e2. It also protects EV-2’s date although e2 explicitly addresses windows, not dates. The core otherwise meets the control-class and tier requirements, and the change is an ordinary notice followed by later events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3304,
+    "completion_tokens": 294,
+    "reasoning_tokens": 184,
+    "cached_tokens": 0
+   },
+   "cost": 0.0559925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3510553deb198efc172f95cb1dae664ac6eedaac37610aca656e4f9102c29eaa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The dock-3 notice explicitly leaves dock 2 and dock 1 unchanged and no record or decision involves Northgate, so the correct act is booking the standing run as-is and confirming with Ellen, avoiding the undecided 13:00-16:00 option. Counts fit tier 100 (20 core events, 4 decisions, change 10 days before the task day with 12 events after), and the change sits unobtrusively mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The dock-3 notice explicitly leaves dock 2 and dock 1 unchanged and no record or decision involves Northgate, so the correct act is booking the standing run as-is and confirming with Ellen, avoiding the undecided 13:00-16:00 option. Counts fit tier 100 (20 core events, 4 decisions, change 10 days before the task day with 12 events after), and the change sits unobtrusively mid-history."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3409,
+    "completion_tokens": 368,
+    "reasoning_tokens": 218,
+    "cached_tokens": 256
+   },
+   "cost": 0.0150558,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "3510553deb198efc172f95cb1dae664ac6eedaac37610aca656e4f9102c29eaa",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

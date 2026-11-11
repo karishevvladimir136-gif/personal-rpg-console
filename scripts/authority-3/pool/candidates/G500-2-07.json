@@ -1,0 +1,652 @@
+{
+ "id": "G500-2-07",
+ "writer": "glm",
+ "tier": 500,
+ "class": 2,
+ "idx": 6,
+ "setting": "A speech therapist at Wordsworth Therapy whose assistant manages caseload notes, school visits, and parent progress reports",
+ "prompt_sha256": "fed2dd92ad9dd094360b329e71b8a6d37bf2f10579bb88c2292f7c7942bba01b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Session-length cap lowered to sixty minutes\",\n \"setting\": \"A speech therapist at Wordsworth Therapy whose assistant manages caseload notes, school visits, and parent progress reports\",\n \"owner\": \"Nadia\",\n \"org\": \"Wordsworth Therapy\",\n \"now\": \"2026-10-27\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Just so everything is in one place: our three partner schools this year are Maple Grove Preschool (coordinator Priya Raman), Brookdale Primary (coordinator Tom Fielding) and Harborview Academy (coordinator Elena Costa). All school bookings go through the visit diary I keep for Nadia.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Visit policy for schools: no school visit session may run longer than 90 minutes. That is our cap on classroom time, and every session we book or draft must fit inside it.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Second policy point: once a school booking has been confirmed with the school, its date, start time or length may not be changed unless that school's coordinator has agreed in writing first.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"We have five reception children who need a small language group with Nadia. Wednesday mornings work best for us, and the Butterfly Room is free from 09:30.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Brookdale has referred eight Year 2 children for articulation work. Tuesday mornings suit us, and we can offer the school hall for the session.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Elena Costa (Harborview Academy)\", \"text\": \"At Harborview each child's plan sets 60-minute sessions, no longer, and I have signed off the autumn dates in writing. Thursday mornings are our slot.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Helen Barrow (parent)\", \"text\": \"Thank you for the June update on Sam's sounds work. We will keep practising the picture cards at home over the summer.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"I have booked the Harborview Academy visit for Thursday 5 November 2026, 09:30 to 10:30, a 60-minute session as each child's plan requires, confirmed in writing with Elena. That sits comfortably inside the 90-minute visit cap.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Ravi Nair (BrightPath Supplies)\", \"text\": \"Quotation: picture card sets for articulation work at 18 pounds per pack, delivery to the Wordsworth Therapy office within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered six packs of picture cards from BrightPath Supplies at 18 pounds a pack, 108 pounds in total, for the autumn articulation groups.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-04\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Caseload note: the summer clinic list is lighter than usual; four families on holiday, so sessions resume fully in September.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"For the reception language group we can offer Wednesday 18 November, 09:30 to 11:00, in the Butterfly Room. That should give plenty of time for all five children.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Maple Grove Preschool language group for Wednesday 18 November 2026, 09:30 to 11:00, a 90-minute session for the five reception children in the Butterfly Room, and confirmed it with Priya. Ninety minutes is right at our visit cap, so it is the most classroom time we can use.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e12\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Diary reminder for the autumn term: under Nadia's visit policy, school sessions are capped at 90 minutes of classroom time, so please keep every school booking at or under 90 minutes.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Drafted the Brookdale Primary articulation session for Tuesday 10 November 2026, 09:30 to 11:00, a 90-minute group for the eight referred Year 2 children. Left it as a draft for now, pending confirmation with Tom, and it fits the 90-minute visit cap.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Brookdale Primary school hall for Tuesday 10 November 2026, 09:30 to 11:00, to cover the drafted Year 2 articulation session end to end.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"invoice\", \"from\": \"Ravi Nair (BrightPath Supplies)\", \"text\": \"Invoice 4471: six packs of picture cards at 18 pounds each, 108 pounds total, due to the Wordsworth Therapy office.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Set up the parent progress report plan for the Maple Grove reception families: one written report per family on the five children in the language group, due 11 December 2026, tracked as planned in the caseload file.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"minutes\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Team minutes: clinic rooms repainted in the last week of August; new intake paperwork agreed; no changes to visit arrangements discussed.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-29\", \"type\": \"cancellation\", \"from\": \"Nadia\", \"text\": \"Cancelled the Thursday afternoon clinic slot on 1 October; the family moved house and will rebook.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: quick chat with a parent about stammering referrals; nothing to change in the diary.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Looking forward to the Year 2 session on the 10th of November. Could you send over the final details once they are settled?\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To-do: confirm the Brookdale Primary session and send Tom Fielding the final session details by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Policy update from today: the schools federation has asked us to cut down classroom time, so from now on no school visit session may run longer than 60 minutes, the old 90-minute cap no longer applies. Please shorten any planned session over 60 minutes down to 60 minutes. As before, bookings already confirmed with a school still need the coordinator's written agreement before their date, time or length is changed.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Elena Costa (Harborview Academy)\", \"text\": \"Just to note for the new year: from January we would like our sessions kept to 45 minutes each, as our timetable is tightening. I will confirm dates in writing as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"The referral waiting list currently stands at fourteen children across the three partner schools; no new referrals this week.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"We are planning a small winter fair in December; feel free to pop a note in the reception parents' letter about the language group if useful.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-23\", \"type\": \"notice\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Office notice: from next month the Wordsworth Therapy office opens at 09:00 on Mondays instead of 08:30.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Quick nudge about the Year 2 session details for the 10th of November, whenever you have them.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Maple Grove language group\", \"fields\": {\"date\": \"2026-11-18\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"duration\": \"90\", \"school\": \"Maple Grove Preschool\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Brookdale Year 2 articulation session\", \"fields\": {\"date\": \"2026-11-10\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"duration\": \"90\", \"school\": \"Brookdale Primary\", \"status\": \"draft\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harborview Academy visit\", \"fields\": {\"date\": \"2026-11-05\", \"start_time\": \"09:30\", \"end_time\": \"10:30\", \"duration\": \"60\", \"school\": \"Harborview Academy\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Brookdale school hall booking\", \"fields\": {\"date\": \"2026-11-10\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"school\": \"Brookdale Primary\", \"room\": \"School hall\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Picture card sets\", \"fields\": {\"item\": \"Picture card sets\", \"quantity\": \"6\", \"unit_price\": \"18\", \"total\": \"108\", \"supplier\": \"BrightPath Supplies\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Maple Grove parent progress reports\", \"fields\": {\"case_group\": \"Maple Grove reception families\", \"deliverable\": \"Parent progress reports\", \"children\": \"5\", \"due_date\": \"2026-12-11\", \"status\": \"planned\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"end_time\", \"duration\"], \"from\": \"Priya Raman (Maple Grove Preschool)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Hi — please confirm the Brookdale Primary session for Tuesday 10 November and email Tom Fielding the final session details.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"duration\", \"value\": \"60\", \"stale\": [\"90\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"end_time\", \"value\": \"10:30\", \"stale\": [\"11:00\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"], \"task\": true},\n  {\"record\": \"EV-4\", \"field\": \"end_time\", \"value\": \"10:30\", \"stale\": [\"11:00\"]},\n  {\"message_to\": \"Tom Fielding (Brookdale Primary)\", \"regarding\": \"EV-2\", \"says\": [\"Tuesday 10 November 2026\", \"09:30\", \"60 minutes\", \"ending 10:30\"], \"stale\": [\"90 minutes\", \"11:00\"], \"task\": true},\n  {\"message_to\": \"Priya Raman (Maple Grove Preschool)\", \"regarding\": \"EV-1\", \"says\": [\"asking to shorten the 18 November session to 60 minutes, ending 10:30\"], \"stale\": [\"90 minutes\", \"11:00\"]}\n ],\n \"why\": \"The amended visit policy caps school sessions at 60 minutes from 12 October. The Brookdale draft (EV-2) and its hall booking (EV-4, two hops from the rule through EV-2) can be shortened directly, so they are REVISE; the Maple Grove booking (EV-1) is already confirmed, so shortening it needs Priya Raman's written agreement under the confirmation-change rule, making it ASK; and Harborview's 60-minute visit already complies, so it is KEEP. The task's confirmation email to Tom must carry the corrected 60-minute session, not the stale 90.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Articulation worksheet restock\", \"counterpart\": \"Ravi Nair\", \"org\": \"BrightPath Supplies\", \"item\": \"worksheet pad\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Sticker rewards\", \"counterpart\": \"Ravi Nair\", \"org\": \"BrightPath Supplies\", \"item\": \"sticker sheet\", \"unit\": \"roll\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"booking\", \"topic\": \"Maple Grove staff training\", \"counterpart\": \"Priya Raman\", \"org\": \"Maple Grove Preschool\", \"item\": \"staff meeting room\", \"unit\": \"\", \"values\": [\"Butterfly Room\", \"Garden Room\"], \"place\": \"Maple Grove Preschool\"},\n  {\"kind\": \"booking\", \"topic\": \"Brookdale sports hall\", \"counterpart\": \"Tom Fielding\", \"org\": \"Brookdale Primary\", \"item\": \"hall\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Small Hall\"], \"place\": \"Brookdale Primary\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborview minibus\", \"counterpart\": \"Elena Costa\", \"org\": \"Harborview Academy\", \"item\": \"minibus\", \"unit\": \"\", \"values\": [\"Minibus A\", \"Minibus B\"], \"place\": \"Harborview Academy\"},\n  {\"kind\": \"booking\", \"topic\": \"Clinic room bookings\", \"counterpart\": \"Maya Chen\", \"org\": \"Wordsworth Therapy\", \"item\": \"therapy room\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Wordsworth Therapy clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Supervision meetings\", \"counterpart\": \"Maya Chen\", \"org\": \"Wordsworth Therapy\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 3\"], \"place\": \"Wordsworth Therapy clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Sensory chew stock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sensory\", \"item\": \"chew pendant\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Whistle straws\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sensory\", \"item\": \"straw set\", \"unit\": \"pack\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Printer paper\", \"counterpart\": \"Greta Lund\", \"org\": \"Nordic Office Co\", \"item\": \"A4 paper\", \"unit\": \"box\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Pocket mirrors\", \"counterpart\": \"Greta Lund\", \"org\": \"Nordic Office Co\", \"item\": \"pocket mirror\", \"unit\": \"pack\", \"values\": [\"6\", \"10\", \"20\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"booking\", \"topic\": \"Home visit slots\", \"counterpart\": \"Nadia\", \"org\": \"Wordsworth Therapy\", \"item\": \"home visit\", \"unit\": \"\", \"values\": [\"morning slot\", \"afternoon slot\"], \"place\": \"family homes\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3196,
+    "completion_tokens": 12894,
+    "reasoning_tokens": 8493,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05763296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Session-length cap lowered to sixty minutes\",\n \"setting\": \"A speech therapist at Wordsworth Therapy whose assistant manages caseload notes, school visits, and parent progress reports\",\n \"owner\": \"Nadia\",\n \"org\": \"Wordsworth Therapy\",\n \"now\": \"2026-10-27\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Just so everything is in one place: our three partner schools this year are Maple Grove Preschool (coordinator Priya Raman), Brookdale Primary (coordinator Tom Fielding) and Harborview Academy (coordinator Elena Costa). All school bookings go through the visit diary I keep for Nadia.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Visit policy for schools: no school visit session may run longer than 90 minutes. That is our cap on classroom time, and every session we book or draft must fit inside it.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nadia\", \"text\": \"Second policy point: once a school booking has been confirmed with the school, its date, start time or length may not be changed unless that school's coordinator has agreed in writing first.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"We have five reception children who need a small language group with Nadia. Wednesday mornings work best for us, and the Butterfly Room is free from 09:30.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Brookdale has referred eight Year 2 children for articulation work. Tuesday mornings suit us, and we can offer the school hall for the session.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Elena Costa (Harborview Academy)\", \"text\": \"At Harborview each child's plan sets 60-minute sessions, no longer, and I have signed off the autumn dates in writing. Thursday mornings are our slot.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Helen Barrow (parent)\", \"text\": \"Thank you for the June update on Sam's sounds work. We will keep practising the picture cards at home over the summer.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"I have booked the Harborview Academy visit for Thursday 5 November 2026, 09:30 to 10:30, a 60-minute session as each child's plan requires, confirmed in writing with Elena. That sits comfortably inside the 90-minute visit cap.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e6\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"quote\", \"from\": \"Ravi Nair (BrightPath Supplies)\", \"text\": \"Quotation: picture card sets for articulation work at 18 pounds per pack, delivery to the Wordsworth Therapy office within a week of ordering.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered six packs of picture cards from BrightPath Supplies at 18 pounds a pack, 108 pounds in total, for the autumn articulation groups.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-04\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Caseload note: the summer clinic list is lighter than usual; four families on holiday, so sessions resume fully in September.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"For the reception language group we can offer Wednesday 18 November, 09:30 to 11:00, in the Butterfly Room. That should give plenty of time for all five children.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Maple Grove Preschool language group for Wednesday 18 November 2026, 09:30 to 11:00, a 90-minute session for the five reception children in the Butterfly Room, and confirmed it with Priya. Ninety minutes is right at our visit cap, so it is the most classroom time we can use.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e4\", \"e12\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Diary reminder for the autumn term: under Nadia's visit policy, school sessions are capped at 90 minutes of classroom time, so please keep every school booking at or under 90 minutes.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Drafted the Brookdale Primary articulation session for Tuesday 10 November 2026, 09:30 to 11:00, a 90-minute group for the eight referred Year 2 children. Left it as a draft for now, pending confirmation with Tom, and it fits the 90-minute visit cap.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"EV-2\", \"mark\": \"REVISE\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the Brookdale Primary school hall for Tuesday 10 November 2026, 09:30 to 11:00, to cover the drafted Year 2 articulation session end to end.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"invoice\", \"from\": \"Ravi Nair (BrightPath Supplies)\", \"text\": \"Invoice 4471: six packs of picture cards at 18 pounds each, 108 pounds total, due to the Wordsworth Therapy office.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Set up the parent progress report plan for the Maple Grove reception families: one written report per family on the five children in the language group, due 11 December 2026, tracked as planned in the caseload file.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"CL-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-25\", \"type\": \"minutes\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Team minutes: clinic rooms repainted in the last week of August; new intake paperwork agreed; no changes to visit arrangements discussed.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-29\", \"type\": \"cancellation\", \"from\": \"Nadia\", \"text\": \"Cancelled the Thursday afternoon clinic slot on 1 October; the family moved house and will rebook.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-02\", \"type\": \"call\", \"from\": \"Nadia\", \"text\": \"Call note: quick chat with a parent about stammering referrals; nothing to change in the diary.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Looking forward to the Year 2 session on the 10th of November. Could you send over the final details once they are settled?\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Nadia\", \"text\": \"To-do: confirm the Brookdale Primary session and send Tom Fielding the final session details by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nadia\", \"text\": \"Policy update from today: the schools federation has asked us to cut down classroom time, so from now on no school visit session may run longer than 60 minutes, the old 90-minute cap no longer applies. Please shorten any planned session over 60 minutes down to 60 minutes. As before, bookings already confirmed with a school still need the coordinator's written agreement before their date, time or length is changed.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e25\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Elena Costa (Harborview Academy)\", \"text\": \"Just to note for the new year: from January we would like our sessions kept to 45 minutes each, as our timetable is tightening. I will confirm dates in writing as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-19\", \"type\": \"email\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"The referral waiting list currently stands at fourteen children across the three partner schools; no new referrals this week.\", \"role\": \"fact\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-21\", \"type\": \"email\", \"from\": \"Priya Raman (Maple Grove Preschool)\", \"text\": \"We are planning a small winter fair in December; feel free to pop a note in the reception parents' letter about the language group if useful.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-23\", \"type\": \"notice\", \"from\": \"Maya Chen (Wordsworth Therapy office)\", \"text\": \"Office notice: from next month the Wordsworth Therapy office opens at 09:00 on Mondays instead of 08:30.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Tom Fielding (Brookdale Primary)\", \"text\": \"Quick nudge about the Year 2 session details for the 10th of November, whenever you have them.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Maple Grove language group\", \"fields\": {\"date\": \"2026-11-18\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"duration\": \"90\", \"school\": \"Maple Grove Preschool\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Brookdale Year 2 articulation session\", \"fields\": {\"date\": \"2026-11-10\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"duration\": \"90\", \"school\": \"Brookdale Primary\", \"status\": \"draft\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harborview Academy visit\", \"fields\": {\"date\": \"2026-11-05\", \"start_time\": \"09:30\", \"end_time\": \"10:30\", \"duration\": \"60\", \"school\": \"Harborview Academy\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Brookdale school hall booking\", \"fields\": {\"date\": \"2026-11-10\", \"start_time\": \"09:30\", \"end_time\": \"11:00\", \"school\": \"Brookdale Primary\", \"room\": \"School hall\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Picture card sets\", \"fields\": {\"item\": \"Picture card sets\", \"quantity\": \"6\", \"unit_price\": \"18\", \"total\": \"108\", \"supplier\": \"BrightPath Supplies\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Maple Grove parent progress reports\", \"fields\": {\"case_group\": \"Maple Grove reception families\", \"deliverable\": \"Parent progress reports\", \"children\": \"5\", \"due_date\": \"2026-12-11\", \"status\": \"planned\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"end_time\", \"duration\"], \"from\": \"Priya Raman (Maple Grove Preschool)\", \"rule\": \"e3\"}\n ],\n \"task\": \"Hi — please confirm the Brookdale Primary session for Tuesday 10 November and email Tom Fielding the final session details.\",\n \"expect\": [\n  {\"record\": \"EV-2\", \"field\": \"duration\", \"value\": \"60\", \"stale\": [\"90\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"end_time\", \"value\": \"10:30\", \"stale\": [\"11:00\"], \"task\": true},\n  {\"record\": \"EV-2\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"draft\"], \"task\": true},\n  {\"record\": \"EV-4\", \"field\": \"end_time\", \"value\": \"10:30\", \"stale\": [\"11:00\"]},\n  {\"message_to\": \"Tom Fielding (Brookdale Primary)\", \"regarding\": \"EV-2\", \"says\": [\"Tuesday 10 November 2026\", \"09:30\", \"60 minutes\", \"ending 10:30\"], \"stale\": [\"90 minutes\", \"11:00\"], \"task\": true},\n  {\"message_to\": \"Priya Raman (Maple Grove Preschool)\", \"regarding\": \"EV-1\", \"says\": [\"asking to shorten the 18 November session to 60 minutes, ending 10:30\"], \"stale\": [\"90 minutes\", \"11:00\"]}\n ],\n \"why\": \"The amended visit policy caps school sessions at 60 minutes from 12 October. The Brookdale draft (EV-2) and its hall booking (EV-4, two hops from the rule through EV-2) can be shortened directly, so they are REVISE; the Maple Grove booking (EV-1) is already confirmed, so shortening it needs Priya Raman's written agreement under the confirmation-change rule, making it ASK; and Harborview's 60-minute visit already complies, so it is KEEP. The task's confirmation email to Tom must carry the corrected 60-minute session, not the stale 90.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Articulation worksheet restock\", \"counterpart\": \"Ravi Nair\", \"org\": \"BrightPath Supplies\", \"item\": \"worksheet pad\", \"unit\": \"pack\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Sticker rewards\", \"counterpart\": \"Ravi Nair\", \"org\": \"BrightPath Supplies\", \"item\": \"sticker sheet\", \"unit\": \"roll\", \"values\": [\"12\", \"24\", \"48\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"booking\", \"topic\": \"Maple Grove staff training\", \"counterpart\": \"Priya Raman\", \"org\": \"Maple Grove Preschool\", \"item\": \"staff meeting room\", \"unit\": \"\", \"values\": [\"Butterfly Room\", \"Garden Room\", \"Staff Room\"], \"place\": \"Maple Grove Preschool\"},\n  {\"kind\": \"booking\", \"topic\": \"Brookdale sports hall\", \"counterpart\": \"Tom Fielding\", \"org\": \"Brookdale Primary\", \"item\": \"hall\", \"unit\": \"\", \"values\": [\"Main Hall\", \"Small Hall\", \"Gymnasium\"], \"place\": \"Brookdale Primary\"},\n  {\"kind\": \"booking\", \"topic\": \"Harborview minibus\", \"counterpart\": \"Elena Costa\", \"org\": \"Harborview Academy\", \"item\": \"minibus\", \"unit\": \"\", \"values\": [\"Minibus A\", \"Minibus B\", \"Minibus C\"], \"place\": \"Harborview Academy\"},\n  {\"kind\": \"booking\", \"topic\": \"Clinic room bookings\", \"counterpart\": \"Maya Chen\", \"org\": \"Wordsworth Therapy\", \"item\": \"therapy room\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Wordsworth Therapy clinic\"},\n  {\"kind\": \"booking\", \"topic\": \"Supervision meetings\", \"counterpart\": \"Maya Chen\", \"org\": \"Wordsworth Therapy\", \"item\": \"meeting room\", \"unit\": \"\", \"values\": [\"Room 2\", \"Room 3\", \"Room 4\"], \"place\": \"Wordsworth Therapy clinic\"},\n  {\"kind\": \"order\", \"topic\": \"Sensory chew stock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sensory\", \"item\": \"chew pendant\", \"unit\": \"box\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Whistle straws\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Sensory\", \"item\": \"straw set\", \"unit\": \"pack\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Printer paper\", \"counterpart\": \"Greta Lund\", \"org\": \"Nordic Office Co\", \"item\": \"A4 paper\", \"unit\": \"box\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"order\", \"topic\": \"Pocket mirrors\", \"counterpart\": \"Greta Lund\", \"org\": \"Nordic Office Co\", \"item\": \"pocket mirror\", \"unit\": \"pack\", \"values\": [\"6\", \"10\", \"20\"], \"place\": \"Wordsworth Therapy office\"},\n  {\"kind\": \"booking\", \"topic\": \"Home visit slots\", \"counterpart\": \"Nadia\", \"org\": \"Wordsworth Therapy\", \"item\": \"home visit\", \"unit\": \"\", \"values\": [\"morning slot\", \"afternoon slot\", \"early-evening slot\"], \"place\": \"family homes\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7723,
+    "completion_tokens": 4441,
+    "reasoning_tokens": 9,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02677756,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Maple Grove staff training': values needs at least three entries\n- noise topic 'Brookdale sports hall': values needs at least three entries\n- noise topic 'Harborview minibus': values needs at least three entries\n- noise topic 'Clinic room bookings': values needs at least three entries\n- noise topic 'Supervision meetings': values needs at least three entries\n- noise topic 'Home visit slots': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Session-length cap lowered to sixty minutes",
+  "setting": "A speech therapist at Wordsworth Therapy whose assistant manages caseload notes, school visits, and parent progress reports",
+  "owner": "Nadia",
+  "org": "Wordsworth Therapy",
+  "now": "2026-10-27",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Maya Chen (Wordsworth Therapy office)",
+    "text": "Just so everything is in one place: our three partner schools this year are Maple Grove Preschool (coordinator Priya Raman), Brookdale Primary (coordinator Tom Fielding) and Harborview Academy (coordinator Elena Costa). All school bookings go through the visit diary I keep for Nadia.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Visit policy for schools: no school visit session may run longer than 90 minutes. That is our cap on classroom time, and every session we book or draft must fit inside it.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nadia",
+    "text": "Second policy point: once a school booking has been confirmed with the school, its date, start time or length may not be changed unless that school's coordinator has agreed in writing first.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Priya Raman (Maple Grove Preschool)",
+    "text": "We have five reception children who need a small language group with Nadia. Wednesday mornings work best for us, and the Butterfly Room is free from 09:30.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Tom Fielding (Brookdale Primary)",
+    "text": "Brookdale has referred eight Year 2 children for articulation work. Tuesday mornings suit us, and we can offer the school hall for the session.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Elena Costa (Harborview Academy)",
+    "text": "At Harborview each child's plan sets 60-minute sessions, no longer, and I have signed off the autumn dates in writing. Thursday mornings are our slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Helen Barrow (parent)",
+    "text": "Thank you for the June update on Sam's sounds work. We will keep practising the picture cards at home over the summer.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "I have booked the Harborview Academy visit for Thursday 5 November 2026, 09:30 to 10:30, a 60-minute session as each child's plan requires, confirmed in writing with Elena. That sits comfortably inside the 90-minute visit cap.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e6"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-15",
+    "type": "quote",
+    "from": "Ravi Nair (BrightPath Supplies)",
+    "text": "Quotation: picture card sets for articulation work at 18 pounds per pack, delivery to the Wordsworth Therapy office within a week of ordering.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-21",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered six packs of picture cards from BrightPath Supplies at 18 pounds a pack, 108 pounds in total, for the autumn articulation groups.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-04",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Caseload note: the summer clinic list is lighter than usual; four families on holiday, so sessions resume fully in September.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Priya Raman (Maple Grove Preschool)",
+    "text": "For the reception language group we can offer Wednesday 18 November, 09:30 to 11:00, in the Butterfly Room. That should give plenty of time for all five children.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Maple Grove Preschool language group for Wednesday 18 November 2026, 09:30 to 11:00, a 90-minute session for the five reception children in the Butterfly Room, and confirmed it with Priya. Ninety minutes is right at our visit cap, so it is the most classroom time we can use.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e4",
+     "e12"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Maya Chen (Wordsworth Therapy office)",
+    "text": "Diary reminder for the autumn term: under Nadia's visit policy, school sessions are capped at 90 minutes of classroom time, so please keep every school booking at or under 90 minutes.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Drafted the Brookdale Primary articulation session for Tuesday 10 November 2026, 09:30 to 11:00, a 90-minute group for the eight referred Year 2 children. Left it as a draft for now, pending confirmation with Tom, and it fits the 90-minute visit cap.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "EV-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the Brookdale Primary school hall for Tuesday 10 November 2026, 09:30 to 11:00, to cover the drafted Year 2 articulation session end to end.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-18",
+    "type": "invoice",
+    "from": "Ravi Nair (BrightPath Supplies)",
+    "text": "Invoice 4471: six packs of picture cards at 18 pounds each, 108 pounds total, due to the Wordsworth Therapy office.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Set up the parent progress report plan for the Maple Grove reception families: one written report per family on the five children in the language group, due 11 December 2026, tracked as planned in the caseload file.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-25",
+    "type": "minutes",
+    "from": "Maya Chen (Wordsworth Therapy office)",
+    "text": "Team minutes: clinic rooms repainted in the last week of August; new intake paperwork agreed; no changes to visit arrangements discussed.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-29",
+    "type": "cancellation",
+    "from": "Nadia",
+    "text": "Cancelled the Thursday afternoon clinic slot on 1 October; the family moved house and will rebook.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-02",
+    "type": "call",
+    "from": "Nadia",
+    "text": "Call note: quick chat with a parent about stammering referrals; nothing to change in the diary.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "Tom Fielding (Brookdale Primary)",
+    "text": "Looking forward to the Year 2 session on the 10th of November. Could you send over the final details once they are settled?",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Nadia",
+    "text": "To-do: confirm the Brookdale Primary session and send Tom Fielding the final session details by 31 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Nadia",
+    "text": "Policy update from today: the schools federation has asked us to cut down classroom time, so from now on no school visit session may run longer than 60 minutes, the old 90-minute cap no longer applies. Please shorten any planned session over 60 minutes down to 60 minutes. As before, bookings already confirmed with a school still need the coordinator's written agreement before their date, time or length is changed.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Elena Costa (Harborview Academy)",
+    "text": "Just to note for the new year: from January we would like our sessions kept to 45 minutes each, as our timetable is tightening. I will confirm dates in writing as usual.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-19",
+    "type": "email",
+    "from": "Maya Chen (Wordsworth Therapy office)",
+    "text": "The referral waiting list currently stands at fourteen children across the three partner schools; no new referrals this week.",
+    "role": "fact"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-21",
+    "type": "email",
+    "from": "Priya Raman (Maple Grove Preschool)",
+    "text": "We are planning a small winter fair in December; feel free to pop a note in the reception parents' letter about the language group if useful.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-23",
+    "type": "notice",
+    "from": "Maya Chen (Wordsworth Therapy office)",
+    "text": "Office notice: from next month the Wordsworth Therapy office opens at 09:00 on Mondays instead of 08:30.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Tom Fielding (Brookdale Primary)",
+    "text": "Quick nudge about the Year 2 session details for the 10th of November, whenever you have them.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Maple Grove language group",
+    "fields": {
+     "date": "2026-11-18",
+     "start_time": "09:30",
+     "end_time": "11:00",
+     "duration": "90",
+     "school": "Maple Grove Preschool",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Brookdale Year 2 articulation session",
+    "fields": {
+     "date": "2026-11-10",
+     "start_time": "09:30",
+     "end_time": "11:00",
+     "duration": "90",
+     "school": "Brookdale Primary",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Harborview Academy visit",
+    "fields": {
+     "date": "2026-11-05",
+     "start_time": "09:30",
+     "end_time": "10:30",
+     "duration": "60",
+     "school": "Harborview Academy",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Brookdale school hall booking",
+    "fields": {
+     "date": "2026-11-10",
+     "start_time": "09:30",
+     "end_time": "11:00",
+     "school": "Brookdale Primary",
+     "room": "School hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Picture card sets",
+    "fields": {
+     "item": "Picture card sets",
+     "quantity": "6",
+     "unit_price": "18",
+     "total": "108",
+     "supplier": "BrightPath Supplies",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Maple Grove parent progress reports",
+    "fields": {
+     "case_group": "Maple Grove reception families",
+     "deliverable": "Parent progress reports",
+     "children": "5",
+     "due_date": "2026-12-11",
+     "status": "planned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "end_time",
+     "duration"
+    ],
+    "from": "Priya Raman (Maple Grove Preschool)",
+    "rule": "e3"
+   }
+  ],
+  "task": "Hi — please confirm the Brookdale Primary session for Tuesday 10 November and email Tom Fielding the final session details.",
+  "expect": [
+   {
+    "record": "EV-2",
+    "field": "duration",
+    "value": "60",
+    "stale": [
+     "90"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "end_time",
+    "value": "10:30",
+    "stale": [
+     "11:00"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-2",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "draft"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-4",
+    "field": "end_time",
+    "value": "10:30",
+    "stale": [
+     "11:00"
+    ]
+   },
+   {
+    "message_to": "Tom Fielding (Brookdale Primary)",
+    "regarding": "EV-2",
+    "says": [
+     "Tuesday 10 November 2026",
+     "09:30",
+     "60 minutes",
+     "ending 10:30"
+    ],
+    "stale": [
+     "90 minutes",
+     "11:00"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Raman (Maple Grove Preschool)",
+    "regarding": "EV-1",
+    "says": [
+     "asking to shorten the 18 November session to 60 minutes, ending 10:30"
+    ],
+    "stale": [
+     "90 minutes",
+     "11:00"
+    ]
+   }
+  ],
+  "why": "The amended visit policy caps school sessions at 60 minutes from 12 October. The Brookdale draft (EV-2) and its hall booking (EV-4, two hops from the rule through EV-2) can be shortened directly, so they are REVISE; the Maple Grove booking (EV-1) is already confirmed, so shortening it needs Priya Raman's written agreement under the confirmation-change rule, making it ASK; and Harborview's 60-minute visit already complies, so it is KEEP. The task's confirmation email to Tom must carry the corrected 60-minute session, not the stale 90.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Articulation worksheet restock",
+    "counterpart": "Ravi Nair",
+    "org": "BrightPath Supplies",
+    "item": "worksheet pad",
+    "unit": "pack",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "order",
+    "topic": "Sticker rewards",
+    "counterpart": "Ravi Nair",
+    "org": "BrightPath Supplies",
+    "item": "sticker sheet",
+    "unit": "roll",
+    "values": [
+     "12",
+     "24",
+     "48"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Maple Grove staff training",
+    "counterpart": "Priya Raman",
+    "org": "Maple Grove Preschool",
+    "item": "staff meeting room",
+    "unit": "",
+    "values": [
+     "Butterfly Room",
+     "Garden Room",
+     "Staff Room"
+    ],
+    "place": "Maple Grove Preschool"
+   },
+   {
+    "kind": "booking",
+    "topic": "Brookdale sports hall",
+    "counterpart": "Tom Fielding",
+    "org": "Brookdale Primary",
+    "item": "hall",
+    "unit": "",
+    "values": [
+     "Main Hall",
+     "Small Hall",
+     "Gymnasium"
+    ],
+    "place": "Brookdale Primary"
+   },
+   {
+    "kind": "booking",
+    "topic": "Harborview minibus",
+    "counterpart": "Elena Costa",
+    "org": "Harborview Academy",
+    "item": "minibus",
+    "unit": "",
+    "values": [
+     "Minibus A",
+     "Minibus B",
+     "Minibus C"
+    ],
+    "place": "Harborview Academy"
+   },
+   {
+    "kind": "booking",
+    "topic": "Clinic room bookings",
+    "counterpart": "Maya Chen",
+    "org": "Wordsworth Therapy",
+    "item": "therapy room",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Wordsworth Therapy clinic"
+   },
+   {
+    "kind": "booking",
+    "topic": "Supervision meetings",
+    "counterpart": "Maya Chen",
+    "org": "Wordsworth Therapy",
+    "item": "meeting room",
+    "unit": "",
+    "values": [
+     "Room 2",
+     "Room 3",
+     "Room 4"
+    ],
+    "place": "Wordsworth Therapy clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "Sensory chew stock",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Sensory",
+    "item": "chew pendant",
+    "unit": "box",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "order",
+    "topic": "Whistle straws",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Sensory",
+    "item": "straw set",
+    "unit": "pack",
+    "values": [
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "order",
+    "topic": "Printer paper",
+    "counterpart": "Greta Lund",
+    "org": "Nordic Office Co",
+    "item": "A4 paper",
+    "unit": "box",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "order",
+    "topic": "Pocket mirrors",
+    "counterpart": "Greta Lund",
+    "org": "Nordic Office Co",
+    "item": "pocket mirror",
+    "unit": "pack",
+    "values": [
+     "6",
+     "10",
+     "20"
+    ],
+    "place": "Wordsworth Therapy office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Home visit slots",
+    "counterpart": "Nadia",
+    "org": "Wordsworth Therapy",
+    "item": "home visit",
+    "unit": "",
+    "values": [
+     "morning slot",
+     "afternoon slot",
+     "early-evening slot"
+    ],
+    "place": "family homes"
+   }
+  ],
+  "id": "G500-2-07",
+  "tier": 500,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

@@ -1,0 +1,655 @@
+{
+ "id": "G1000-3-02",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 1,
+ "setting": "The membership secretary at Dunmore Golf Club whose assistant manages handicap records, tee bookings, and competition entries",
+ "prompt_sha256": "d028469aa06fb4d8da8926c3cc89f3d336d06e46f7f4c56f4e0a2d42e44c18d2",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Autumn Trophy dinner moves to the Terrace Suite\",\n \"setting\": \"The membership secretary at Dunmore Golf Club whose assistant manages handicap records, tee bookings, and competition entries\",\n \"owner\": \"Nora\",\n \"org\": \"Dunmore Golf Club\",\n \"now\": \"2026-10-27\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nora Fielding (Dunmore Golf Club)\", \"text\": \"Standing instruction from me: once a supplier order above five hundred pounds has been confirmed, we do not change it without the supplier's written agreement first. Chase them, get a yes, then amend.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Dunmore Golf Club committee\", \"text\": \"Club finance policy: any supplier order over one thousand pounds needs the treasurer's sign-off before it is placed, not after.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Harriet Vale (member)\", \"text\": \"Hi Nora, can you check whether my handicap was updated after Saturday's card? I think it should be 14.2 now. Thanks!\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"County Union fixtures office\", \"text\": \"Fixture calendar confirmed: the Dunmore Autumn Trophy qualifier is Saturday 24 October 2026, and the finals day is Saturday 14 November 2026, both at Dunmore Golf Club.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Harriet Vale (member)\", \"text\": \"Just to say the tee booking system is working well. I've booked the 08:12 slot for Thursday again.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-04\", \"type\": \"note\", \"from\": \"Nora Fielding\", \"text\": \"Caterer shortlist for the Autumn Trophy finals dinner: Harvest Catering (used them two years ago, good) and Latchfield Kitchens. Will get quotes.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-12\", \"type\": \"quote\", \"from\": \"Latchfield Kitchens\", \"text\": \"Thank you for your enquiry. Our autumn dinner menu would be 21 pounds per head, service in the room of your choice, subject to availability.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Graham Pike (member)\", \"text\": \"Nora, I've paid my Autumn Trophy entry fee at the pro shop. Do I need to sign up separately for the finals dinner?\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Douglas Merrin (club captain)\", \"text\": \"Looking at the entry list, we should plan the finals dinner on Saturday 14 November for about eighty covers. That is roughly what stayed for dinner last year.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-08\", \"type\": \"quote\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Here is our quote for the Autumn Trophy finals dinner on Saturday 14 November: autumn dinner buffet at 18 pounds per head, minimum sixty covers, delivered and served in the Fairway Room. Quote valid until 31 October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Peter Grundy (treasurer)\", \"text\": \"Nora, happy to approve spend up to 1600 pounds for the finals dinner catering, per the finance policy on orders over a thousand. Send me the order when placed.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Booked the Autumn Trophy qualifier for Saturday 24 October on the club schedule: medal format, first tee times from 08:00.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Ordered three engraved trophies from Bramble Engraving for the Autumn Trophy, 240 pounds in total, for collection before finals day on 14 November.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Dunmore Golf Club office\", \"text\": \"Confirmation: the Fairway Room is reserved for the Autumn Trophy finals dinner on Saturday 14 November, laid out for eighty covers, from 19:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Placed the catering order with Harvest Catering for the finals dinner: eighty covers of the autumn dinner buffet at 18 pounds a head, 1440 pounds in total, delivered to the Fairway Room on Saturday 14 November. The treasurer had already approved the spend under the over-a-thousand policy.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\", \"e11\", \"e9\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Put the Autumn Trophy finals dinner on the club schedule: Saturday 14 November, 19:30, in the Fairway Room, eighty covers, catering confirmed with Harvest at 18 pounds a head.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e10\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Set the dinner ticket price at 25 pounds per member: it covers Harvest's 18 pounds a head buffet and adds 7 pounds to club funds. Tickets go on sale from 20 September.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Ordered thirty bottles of house red and white mix from Costello Wines for the finals dinner, 405 pounds, collected from their depot the week before the 14th.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Nora Fielding\", \"text\": \"To-do: confirm final dinner numbers with Harvest Catering by 7 November, once entries close.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Order confirmed, thank you: eighty covers of the autumn dinner buffet at 18 pounds per head, 1440 pounds total, delivered and served in the Fairway Room on Saturday 14 November. We'll arrive from 17:30 to set up.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Published the finals day duty rota for Saturday 14 November: two starters on the first tee from 08:00 and scorers in the office all morning.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Marion Ash (member)\", \"text\": \"I've signed up for the finals dinner and I'm vegetarian - can you make sure the caterers know? Happy to pay the 25 pounds at the bar.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Owen Bramble (Bramble Engraving)\", \"text\": \"Your three trophies are engraved and ready for collection from the workshop any weekday before the finals.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Dunmore Golf Club committee\", \"text\": \"Committee noted that Autumn Trophy preparations are on track: trophies ordered, Harvest Catering confirmed for eighty covers in the Fairway Room on 14 November, tickets selling steadily at 25 pounds.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Harriet Vale (member)\", \"text\": \"Handicap query again - the system still shows 14.5 for me but I sent in two cards. Could you check?\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ross Kettle (club manager)\", \"text\": \"Nora - the window refurbishment at the clubhouse has been brought forward, and the Fairway Room will be closed from 3 November. The Autumn Trophy dinner on Saturday 14 November will move to the Terrace Suite instead. Everything else stays as it is: Harvest's menu, price and numbers are unaffected, they will simply be delivering and serving in the Terrace Suite, which has its own service lift. Please update the arrangements on your side.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"County Union fixtures office\", \"text\": \"Finals day on Saturday 14 November: play will begin at 08:30 with two-tee starts, morning and afternoon rounds.\", \"role\": \"fact\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"notice\", \"from\": \"Ross Kettle (club manager)\", \"text\": \"Clubhouse notice: the new heating units in the Terrace Suite have been commissioned and the suite is fully available for functions.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"quote\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Early quote for the club Christmas party on 12 December: festive menu at 22 pounds per head, minimum forty covers. No commitment needed yet, just so you can plan.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Nora Fielding\", \"text\": \"Reminder to myself: entries close this week - confirm the final dinner details with Mira at Harvest in good time for the 14th.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Douglas Merrin (club captain)\", \"text\": \"Nora, with entries closing, please get the finals dinner confirmation over to Harvest Catering this week so the caterers have everything in writing. Douglas.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Graham Pike (member)\", \"text\": \"Signed my partner and myself up for the finals dinner yesterday, so add two to whatever list you have. See you on the 14th!\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy finals dinner\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"19:30\", \"place\": \"Fairway Room\", \"covers\": \"80\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy dinner tickets\", \"fields\": {\"price\": \"25\", \"on_sale_from\": \"2026-09-20\", \"status\": \"on sale\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy qualifier\", \"fields\": {\"date\": \"2026-10-24\", \"format\": \"medal\", \"tee_start\": \"08:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Finals day duty rota\", \"fields\": {\"date\": \"2026-11-14\", \"starters\": \"2\", \"scorers\": \"office\", \"status\": \"published\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Catering - autumn dinner buffet\", \"fields\": {\"delivery_date\": \"2026-11-14\", \"covers\": \"80\", \"unit_price\": \"18\", \"total\": \"1440\", \"delivery_place\": \"Fairway Room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Engraving - trophies\", \"fields\": {\"supplier\": \"Bramble Engraving\", \"item\": \"3 engraved trophies\", \"amount\": \"240\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Costello Wines - dinner wine\", \"fields\": {\"supplier\": \"Costello Wines\", \"item\": \"30 bottles house wine\", \"amount\": \"405\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Autumn Trophy entries\", \"fields\": {\"entries\": \"78\", \"dinner_signups\": \"80\", \"status\": \"open\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"covers\", \"unit_price\", \"total\", \"delivery_place\"], \"from\": \"Mira Vale (Harvest Catering)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Entries have closed, so it's time to confirm the finals dinner with the caterers: please send Mira at Harvest Catering the final details for the Autumn Trophy dinner on Saturday 14 November - our numbers, the menu price we agreed, and where they'll be delivering and serving.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"Terrace Suite\", \"stale\": [\"Fairway Room\"]},\n  {\"message_to\": \"Mira Vale (Harvest Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"Terrace Suite\", \"80\", \"18\", \"2026-11-14\"], \"stale\": [\"Fairway Room\"], \"task\": true}\n ],\n \"why\": \"The manager's email corrects Harvest's quote: the Fairway Room is closed from 3 November and the dinner moves to the Terrace Suite, while the 18-pound price, the menu and the eighty covers stand. The dinner schedule entry EV-1 (which rests on the catering order, itself resting on the quote) is a REVISE, so its place field becomes Terrace Suite; the catering order ORD-1 is an ASK because the standing rule requires the supplier's written agreement before any change to a confirmed order over five hundred pounds, so it stays as it is pending a consent request. The ticket price decision is KEEP, since the 18-pound head price it was built on is untouched, and the confirmation message to Mira must carry the Terrace Suite, not the Fairway Room.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekend sandwich platters\", \"counterpart\": \"Mira Vale\", \"org\": \"Harvest Catering\", \"item\": \"sandwich platters\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"clubhouse kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"medal plate engraving\", \"counterpart\": \"Owen Bramble\", \"org\": \"Bramble Engraving\", \"item\": \"engraved medal plates\", \"unit\": \"plates\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"pro shop\"},\n  {\"kind\": \"order\", \"topic\": \"bar wine restock\", \"counterpart\": \"Nina Costello\", \"org\": \"Costello Wines\", \"item\": \"house red\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"clubhouse cellar\"},\n  {\"kind\": \"order\", \"topic\": \"range balls\", \"counterpart\": \"Ted Marsh\", \"org\": \"Range Supplies Co\", \"item\": \"range balls\", \"unit\": \"buckets\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"driving range\"},\n  {\"kind\": \"booking\", \"topic\": \"society tee slots\", \"counterpart\": \"Graham Pike\", \"org\": \"Pike Logistics society\", \"item\": \"society tee slot\", \"unit\": \"slots\", \"values\": [\"first tee\", \"tenth tee\"], \"place\": \"first tee\"},\n  {\"kind\": \"booking\", \"topic\": \"bridge afternoons\", \"counterpart\": \"Dora Lin\", \"org\": \"Dunmore Bridge Club\", \"item\": \"bridge afternoon\", \"unit\": \"sessions\", \"values\": [\"Long Bar\", \"snug room\"], \"place\": \"Long Bar\"},\n  {\"kind\": \"booking\", \"topic\": \"buggy hire\", \"counterpart\": \"Wes Nolan\", \"org\": \"Dunmore pro shop\", \"item\": \"golf buggy\", \"unit\": \"buggies\", \"values\": [\"buggy 1\", \"buggy 2\", \"buggy 3\"], \"place\": \"buggy store\"},\n  {\"kind\": \"booking\", \"topic\": \"physio sessions\", \"counterpart\": \"Sam Ryder\", \"org\": \"Rydere Sports Therapy\", \"item\": \"physio session\", \"unit\": \"sessions\", \"values\": [\"physio room\", \"stretching bay\"], \"place\": \"physio room\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Marla Quinn\", \"org\": \"Bean There Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"clubhouse bar\"},\n  {\"kind\": \"order\", \"topic\": \"top-dressing sand\", \"counterpart\": \"Doug Ferris\", \"org\": \"Turfline Supplies\", \"item\": \"top-dressing sand\", \"unit\": \"tonnes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"greens shed\"},\n  {\"kind\": \"booking\", \"topic\": \"teaching bays\", \"counterpart\": \"Wes Nolan\", \"org\": \"Dunmore pro shop\", \"item\": \"teaching bay\", \"unit\": \"bays\", \"values\": [\"teaching bay 1\", \"teaching bay 2\"], \"place\": \"driving range\"},\n  {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Priya Shah\", \"org\": \"Inkwell Office Supplies\", \"item\": \"printer paper\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"8\"], \"place\": \"club office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3198,
+    "completion_tokens": 12270,
+    "reasoning_tokens": 7714,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05489016,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Autumn Trophy dinner moves to the Terrace Suite\",\n \"setting\": \"The membership secretary at Dunmore Golf Club whose assistant manages handicap records, tee bookings, and competition entries\",\n \"owner\": \"Nora\",\n \"org\": \"Dunmore Golf Club\",\n \"now\": \"2026-10-27\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Nora Fielding (Dunmore Golf Club)\", \"text\": \"Standing instruction from me: once a supplier order above five hundred pounds has been confirmed, we do not change it without the supplier's written agreement first. Chase them, get a yes, then amend.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Dunmore Golf Club committee\", \"text\": \"Club finance policy: any supplier order over one thousand pounds needs the treasurer's sign-off before it is placed, not after.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"message\", \"from\": \"Harriet Vale (member)\", \"text\": \"Hi Nora, can you check whether my handicap was updated after Saturday's card? I think it should be 14.2 now. Thanks!\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"County Union fixtures office\", \"text\": \"Fixture calendar confirmed: the Dunmore Autumn Trophy qualifier is Saturday 24 October 2026, and the finals day is Saturday 14 November 2026, both at Dunmore Golf Club.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Harriet Vale (member)\", \"text\": \"Just to say the tee booking system is working well. I've booked the 08:12 slot for Thursday again.\", \"role\": \"other\"},\n  {\"id\": \"e6\", \"date\": \"2026-08-04\", \"type\": \"note\", \"from\": \"Nora Fielding\", \"text\": \"Caterer shortlist for the Autumn Trophy finals dinner: Harvest Catering (used them two years ago, good) and Latchfield Kitchens. Will get quotes.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-08-12\", \"type\": \"quote\", \"from\": \"Latchfield Kitchens\", \"text\": \"Thank you for your enquiry. Our autumn dinner menu would be 21 pounds per head, service in the room of your choice, subject to availability.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Graham Pike (member)\", \"text\": \"Nora, I've paid my Autumn Trophy entry fee at the pro shop. Do I need to sign up separately for the finals dinner?\", \"role\": \"other\"},\n  {\"id\": \"e9\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Douglas Merrin (club captain)\", \"text\": \"Looking at the entry list, we should plan the finals dinner on Saturday 14 November for about eighty covers. That is roughly what stayed for dinner last year.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-09-09\", \"type\": \"quote\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Here is our quote for the Autumn Trophy finals dinner on Saturday 14 November: autumn dinner buffet at 18 pounds per head, minimum sixty covers, delivered and served in the Fairway Room. Quote valid until 31 October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-09-09\", \"type\": \"email\", \"from\": \"Peter Grundy (treasurer)\", \"text\": \"Nora, happy to approve spend up to 1600 pounds for the finals dinner catering, per the finance policy on orders over a thousand. Send me the order when placed.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Booked the Autumn Trophy qualifier for Saturday 24 October on the club schedule: medal format, first tee times from 08:00.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-11\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Ordered three engraved trophies from Bramble Engraving for the Autumn Trophy, 240 pounds in total, for collection before finals day on 14 November.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Dunmore Golf Club office\", \"text\": \"Confirmation: the Fairway Room is reserved for the Autumn Trophy finals dinner on Saturday 14 November, laid out for eighty covers, from 19:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e15\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Placed the catering order with Harvest Catering for the finals dinner: eighty covers of the autumn dinner buffet at 18 pounds a head, 1440 pounds in total, delivered to the Fairway Room on Saturday 14 November. The treasurer had already approved the spend under the over-a-thousand policy.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\", \"e11\", \"e9\"], \"record\": \"ORD-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Put the Autumn Trophy finals dinner on the club schedule, following the catering order just placed with Harvest: Saturday 14 November, 19:30, in the Fairway Room, eighty covers, catering confirmed at 18 pounds a head.\", \"role\": \"decision\", \"rests_on\": [\"e15\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Set the dinner ticket price at 25 pounds per member: it covers Harvest's 18 pounds a head buffet and adds 7 pounds to club funds. Tickets go on sale from 20 September.\", \"role\": \"decision\", \"rests_on\": [\"e10\"], \"record\": \"EV-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Ordered thirty bottles of house red and white mix from Costello Wines for the finals dinner, 405 pounds, collected from their depot the week before the 14th.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Nora Fielding\", \"text\": \"To-do: confirm final dinner numbers with Harvest Catering by 7 November, once entries close.\", \"role\": \"obligation\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-19\", \"type\": \"email\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Order confirmed, thank you: eighty covers of the autumn dinner buffet at 18 pounds per head, 1440 pounds total, delivered and served in the Fairway Room on Saturday 14 November. We'll arrive from 17:30 to set up.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-22\", \"type\": \"decision\", \"from\": \"Nora Fielding\", \"text\": \"Published the finals day duty rota for Saturday 14 November: two starters on the first tee from 08:00 and scorers in the office all morning.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-4\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Marion Ash (member)\", \"text\": \"I've signed up for the finals dinner and I'm vegetarian - can you make sure the caterers know? Happy to pay the 25 pounds at the bar.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Owen Bramble (Bramble Engraving)\", \"text\": \"Your three trophies are engraved and ready for collection from the workshop any weekday before the finals.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"minutes\", \"from\": \"Dunmore Golf Club committee\", \"text\": \"Committee noted that Autumn Trophy preparations are on track: trophies ordered, Harvest Catering confirmed for eighty covers in the Fairway Room on 14 November, tickets selling steadily at 25 pounds.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Harriet Vale (member)\", \"text\": \"Handicap query again - the system still shows 14.5 for me but I sent in two cards. Could you check?\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Ross Kettle (club manager)\", \"text\": \"Nora - the window refurbishment at the clubhouse has been brought forward, and the Fairway Room will be closed from 3 November. The Autumn Trophy dinner on Saturday 14 November will move to the Terrace Suite instead. Everything else stays as it is: Harvest's menu, price and numbers are unaffected, they will simply be delivering and serving in the Terrace Suite, which has its own service lift. Please update the arrangements on your side.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"County Union fixtures office\", \"text\": \"Finals day on Saturday 14 November: play will begin at 08:30 with two-tee starts, morning and afternoon rounds.\", \"role\": \"fact\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"notice\", \"from\": \"Ross Kettle (club manager)\", \"text\": \"Clubhouse notice: the new heating units in the Terrace Suite have been commissioned and the suite is fully available for functions.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"quote\", \"from\": \"Mira Vale (Harvest Catering)\", \"text\": \"Early quote for the club Christmas party on 12 December: festive menu at 22 pounds per head, minimum forty covers. No commitment needed yet, just so you can plan.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Nora Fielding\", \"text\": \"Reminder to myself: entries close this week - confirm the final dinner details with Mira at Harvest in good time for the 14th.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Douglas Merrin (club captain)\", \"text\": \"Nora, with entries closing, please get the finals dinner confirmation over to Harvest Catering this week so the caterers have everything in writing. Douglas.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Graham Pike (member)\", \"text\": \"Signed my partner and myself up for the finals dinner yesterday, so add two to whatever list you have. See you on the 14th!\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy finals dinner\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"19:30\", \"place\": \"Fairway Room\", \"covers\": \"80\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy dinner tickets\", \"fields\": {\"price\": \"25\", \"on_sale_from\": \"2026-09-20\", \"status\": \"on sale\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn Trophy qualifier\", \"fields\": {\"date\": \"2026-10-24\", \"format\": \"medal\", \"tee_start\": \"08:00\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Finals day duty rota\", \"fields\": {\"date\": \"2026-11-14\", \"starters\": \"2\", \"scorers\": \"office\", \"status\": \"published\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Harvest Catering - autumn dinner buffet\", \"fields\": {\"delivery_date\": \"2026-11-14\", \"covers\": \"80\", \"unit_price\": \"18\", \"total\": \"1440\", \"delivery_place\": \"Fairway Room\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Engraving - trophies\", \"fields\": {\"supplier\": \"Bramble Engraving\", \"item\": \"3 engraved trophies\", \"amount\": \"240\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Costello Wines - dinner wine\", \"fields\": {\"supplier\": \"Costello Wines\", \"item\": \"30 bottles house wine\", \"amount\": \"405\", \"status\": \"ordered\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Autumn Trophy entries\", \"fields\": {\"entries\": \"78\", \"dinner_signups\": \"80\", \"status\": \"open\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-1\", \"fields\": [\"covers\", \"unit_price\", \"total\", \"delivery_place\"], \"from\": \"Mira Vale (Harvest Catering)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Entries have closed, so it's time to confirm the finals dinner with the caterers: please send Mira at Harvest Catering the final details for the Autumn Trophy dinner on Saturday 14 November - our numbers, the menu price we agreed, and where they'll be delivering and serving.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"place\", \"value\": \"Terrace Suite\", \"stale\": [\"Fairway Room\"]},\n  {\"message_to\": \"Mira Vale (Harvest Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"Terrace Suite\", \"80\", \"18\", \"2026-11-14\"], \"stale\": [\"Fairway Room\"], \"task\": true}\n ],\n \"why\": \"The manager's email corrects Harvest's quote: the Fairway Room is closed from 3 November and the dinner moves to the Terrace Suite, while the 18-pound price, the menu and the eighty covers stand. The chain is fact e10 (quote, Fairway Room) to decision e15 (catering order ORD-1, an ASK because the standing rule requires the supplier's written agreement before changing a confirmed order over five hundred pounds) to decision e16 (dinner schedule EV-1, two hops from the quote, a REVISE whose place field becomes Terrace Suite); the ticket price decision e17 is KEEP because the 18-pound head price it was built on is untouched. The confirmation message to Mira must carry the Terrace Suite, not the Fairway Room.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekend sandwich platters\", \"counterpart\": \"Mira Vale\", \"org\": \"Harvest Catering\", \"item\": \"sandwich platters\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"clubhouse kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"medal plate engraving\", \"counterpart\": \"Owen Bramble\", \"org\": \"Bramble Engraving\", \"item\": \"engraved medal plates\", \"unit\": \"plates\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"pro shop\"},\n  {\"kind\": \"order\", \"topic\": \"bar wine restock\", \"counterpart\": \"Nina Costello\", \"org\": \"Costello Wines\", \"item\": \"house red\", \"unit\": \"bottles\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"clubhouse cellar\"},\n  {\"kind\": \"order\", \"topic\": \"range balls\", \"counterpart\": \"Ted Marsh\", \"org\": \"Range Supplies Co\", \"item\": \"range balls\", \"unit\": \"buckets\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"driving range\"},\n  {\"kind\": \"booking\", \"topic\": \"society tee slots\", \"counterpart\": \"Graham Pike\", \"org\": \"Pike Logistics society\", \"item\": \"society tee slot\", \"unit\": \"slots\", \"values\": [\"first tee\", \"tenth tee\", \"practice tee\"], \"place\": \"first tee\"},\n  {\"kind\": \"booking\", \"topic\": \"bridge afternoons\", \"counterpart\": \"Dora Lin\", \"org\": \"Dunmore Bridge Club\", \"item\": \"bridge afternoon\", \"unit\": \"sessions\", \"values\": [\"Long Bar\", \"snug room\", \"committee room\"], \"place\": \"Long Bar\"},\n  {\"kind\": \"booking\", \"topic\": \"buggy hire\", \"counterpart\": \"Wes Nolan\", \"org\": \"Dunmore pro shop\", \"item\": \"golf buggy\", \"unit\": \"buggies\", \"values\": [\"buggy 1\", \"buggy 2\", \"buggy 3\"], \"place\": \"buggy store\"},\n  {\"kind\": \"booking\", \"topic\": \"physio sessions\", \"counterpart\": \"Sam Ryder\", \"org\": \"Rydere Sports Therapy\", \"item\": \"physio session\", \"unit\": \"sessions\", \"values\": [\"physio room\", \"stretching bay\", \"treatment room 2\"], \"place\": \"physio room\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Marla Quinn\", \"org\": \"Bean There Roasters\", \"item\": \"espresso beans\", \"unit\": \"kg\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"clubhouse bar\"},\n  {\"kind\": \"order\", \"topic\": \"top-dressing sand\", \"counterpart\": \"Doug Ferris\", \"org\": \"Turfline Supplies\", \"item\": \"top-dressing sand\", \"unit\": \"tonnes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"greens shed\"},\n  {\"kind\": \"booking\", \"topic\": \"teaching bays\", \"counterpart\": \"Wes Nolan\", \"org\": \"Dunmore pro shop\", \"item\": \"teaching bay\", \"unit\": \"bays\", \"values\": [\"teaching bay 1\", \"teaching bay 2\", \"teaching bay 3\"], \"place\": \"driving range\"},\n  {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Priya Shah\", \"org\": \"Inkwell Office Supplies\", \"item\": \"printer paper\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"8\"], \"place\": \"club office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7890,
+    "completion_tokens": 4690,
+    "reasoning_tokens": 109,
+    "cached_tokens": 64
+   },
+   "cost": 0.03160904,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- at least one REVISE or ASK decision must be two hops from what the change revokes\n- class 3: needs a chain fact → B → C with B and C both REVISE or ASK\n- noise topic 'society tee slots': values needs at least three entries\n- noise topic 'bridge afternoons': values needs at least three entries\n- noise topic 'physio sessions': values needs at least three entries\n- noise topic 'teaching bays': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Autumn Trophy dinner moves to the Terrace Suite",
+  "setting": "The membership secretary at Dunmore Golf Club whose assistant manages handicap records, tee bookings, and competition entries",
+  "owner": "Nora",
+  "org": "Dunmore Golf Club",
+  "now": "2026-10-27",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Nora Fielding (Dunmore Golf Club)",
+    "text": "Standing instruction from me: once a supplier order above five hundred pounds has been confirmed, we do not change it without the supplier's written agreement first. Chase them, get a yes, then amend.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-09",
+    "type": "policy",
+    "from": "Dunmore Golf Club committee",
+    "text": "Club finance policy: any supplier order over one thousand pounds needs the treasurer's sign-off before it is placed, not after.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "message",
+    "from": "Harriet Vale (member)",
+    "text": "Hi Nora, can you check whether my handicap was updated after Saturday's card? I think it should be 14.2 now. Thanks!",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "letter",
+    "from": "County Union fixtures office",
+    "text": "Fixture calendar confirmed: the Dunmore Autumn Trophy qualifier is Saturday 24 October 2026, and the finals day is Saturday 14 November 2026, both at Dunmore Golf Club.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Harriet Vale (member)",
+    "text": "Just to say the tee booking system is working well. I've booked the 08:12 slot for Thursday again.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-08-04",
+    "type": "note",
+    "from": "Nora Fielding",
+    "text": "Caterer shortlist for the Autumn Trophy finals dinner: Harvest Catering (used them two years ago, good) and Latchfield Kitchens. Will get quotes.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-12",
+    "type": "quote",
+    "from": "Latchfield Kitchens",
+    "text": "Thank you for your enquiry. Our autumn dinner menu would be 21 pounds per head, service in the room of your choice, subject to availability.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Graham Pike (member)",
+    "text": "Nora, I've paid my Autumn Trophy entry fee at the pro shop. Do I need to sign up separately for the finals dinner?",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Douglas Merrin (club captain)",
+    "text": "Looking at the entry list, we should plan the finals dinner on Saturday 14 November for about eighty covers. That is roughly what stayed for dinner last year.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-09",
+    "type": "quote",
+    "from": "Mira Vale (Harvest Catering)",
+    "text": "Here is our quote for the Autumn Trophy finals dinner on Saturday 14 November: autumn dinner buffet at 18 pounds per head, minimum sixty covers, delivered and served in the Fairway Room. Quote valid until 31 October 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-09",
+    "type": "email",
+    "from": "Peter Grundy (treasurer)",
+    "text": "Nora, happy to approve spend up to 1600 pounds for the finals dinner catering, per the finance policy on orders over a thousand. Send me the order when placed.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Booked the Autumn Trophy qualifier for Saturday 24 October on the club schedule: medal format, first tee times from 08:00.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-11",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Ordered three engraved trophies from Bramble Engraving for the Autumn Trophy, 240 pounds in total, for collection before finals day on 14 November.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Dunmore Golf Club office",
+    "text": "Confirmation: the Fairway Room is reserved for the Autumn Trophy finals dinner on Saturday 14 November, laid out for eighty covers, from 19:00.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Placed the catering order with Harvest Catering for the finals dinner: eighty covers of the autumn dinner buffet at 18 pounds a head, 1440 pounds in total, delivered to the Fairway Room on Saturday 14 November. The treasurer had already approved the spend under the over-a-thousand policy.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e2",
+     "e11",
+     "e9"
+    ],
+    "record": "ORD-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Put the Autumn Trophy finals dinner on the club schedule, following the catering order just placed with Harvest: Saturday 14 November, 19:30, in the Fairway Room, eighty covers, catering confirmed at 18 pounds a head.",
+    "role": "decision",
+    "rests_on": [
+     "e15"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Set the dinner ticket price at 25 pounds per member: it covers Harvest's 18 pounds a head buffet and adds 7 pounds to club funds. Tickets go on sale from 20 September.",
+    "role": "decision",
+    "rests_on": [
+     "e10"
+    ],
+    "record": "EV-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-17",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Ordered thirty bottles of house red and white mix from Costello Wines for the finals dinner, 405 pounds, collected from their depot the week before the 14th.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Nora Fielding",
+    "text": "To-do: confirm final dinner numbers with Harvest Catering by 7 November, once entries close.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-19",
+    "type": "email",
+    "from": "Mira Vale (Harvest Catering)",
+    "text": "Order confirmed, thank you: eighty covers of the autumn dinner buffet at 18 pounds per head, 1440 pounds total, delivered and served in the Fairway Room on Saturday 14 November. We'll arrive from 17:30 to set up.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-22",
+    "type": "decision",
+    "from": "Nora Fielding",
+    "text": "Published the finals day duty rota for Saturday 14 November: two starters on the first tee from 08:00 and scorers in the office all morning.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Marion Ash (member)",
+    "text": "I've signed up for the finals dinner and I'm vegetarian - can you make sure the caterers know? Happy to pay the 25 pounds at the bar.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Owen Bramble (Bramble Engraving)",
+    "text": "Your three trophies are engraved and ready for collection from the workshop any weekday before the finals.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-02",
+    "type": "minutes",
+    "from": "Dunmore Golf Club committee",
+    "text": "Committee noted that Autumn Trophy preparations are on track: trophies ordered, Harvest Catering confirmed for eighty covers in the Fairway Room on 14 November, tickets selling steadily at 25 pounds.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Harriet Vale (member)",
+    "text": "Handicap query again - the system still shows 14.5 for me but I sent in two cards. Could you check?",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Ross Kettle (club manager)",
+    "text": "Nora - the window refurbishment at the clubhouse has been brought forward, and the Fairway Room will be closed from 3 November. The Autumn Trophy dinner on Saturday 14 November will move to the Terrace Suite instead. Everything else stays as it is: Harvest's menu, price and numbers are unaffected, they will simply be delivering and serving in the Terrace Suite, which has its own service lift. Please update the arrangements on your side.",
+    "role": "change",
+    "revokes": [
+     "e10"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "County Union fixtures office",
+    "text": "Finals day on Saturday 14 November: play will begin at 08:30 with two-tee starts, morning and afternoon rounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "notice",
+    "from": "Ross Kettle (club manager)",
+    "text": "Clubhouse notice: the new heating units in the Terrace Suite have been commissioned and the suite is fully available for functions.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-20",
+    "type": "quote",
+    "from": "Mira Vale (Harvest Catering)",
+    "text": "Early quote for the club Christmas party on 12 December: festive menu at 22 pounds per head, minimum forty covers. No commitment needed yet, just so you can plan.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-24",
+    "type": "note",
+    "from": "Nora Fielding",
+    "text": "Reminder to myself: entries close this week - confirm the final dinner details with Mira at Harvest in good time for the 14th.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-26",
+    "type": "message",
+    "from": "Douglas Merrin (club captain)",
+    "text": "Nora, with entries closing, please get the finals dinner confirmation over to Harvest Catering this week so the caterers have everything in writing. Douglas.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-27",
+    "type": "email",
+    "from": "Graham Pike (member)",
+    "text": "Signed my partner and myself up for the finals dinner yesterday, so add two to whatever list you have. See you on the 14th!",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn Trophy finals dinner",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "19:30",
+     "place": "Fairway Room",
+     "covers": "80",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Autumn Trophy dinner tickets",
+    "fields": {
+     "price": "25",
+     "on_sale_from": "2026-09-20",
+     "status": "on sale"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Autumn Trophy qualifier",
+    "fields": {
+     "date": "2026-10-24",
+     "format": "medal",
+     "tee_start": "08:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Finals day duty rota",
+    "fields": {
+     "date": "2026-11-14",
+     "starters": "2",
+     "scorers": "office",
+     "status": "published"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Harvest Catering - autumn dinner buffet",
+    "fields": {
+     "delivery_date": "2026-11-14",
+     "covers": "80",
+     "unit_price": "18",
+     "total": "1440",
+     "delivery_place": "Fairway Room",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bramble Engraving - trophies",
+    "fields": {
+     "supplier": "Bramble Engraving",
+     "item": "3 engraved trophies",
+     "amount": "240",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Costello Wines - dinner wine",
+    "fields": {
+     "supplier": "Costello Wines",
+     "item": "30 bottles house wine",
+     "amount": "405",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Autumn Trophy entries",
+    "fields": {
+     "entries": "78",
+     "dinner_signups": "80",
+     "status": "open"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "covers",
+     "unit_price",
+     "total",
+     "delivery_place"
+    ],
+    "from": "Mira Vale (Harvest Catering)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Entries have closed, so it's time to confirm the finals dinner with the caterers: please send Mira at Harvest Catering the final details for the Autumn Trophy dinner on Saturday 14 November - our numbers, the menu price we agreed, and where they'll be delivering and serving.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "place",
+    "value": "Terrace Suite",
+    "stale": [
+     "Fairway Room"
+    ]
+   },
+   {
+    "message_to": "Mira Vale (Harvest Catering)",
+    "regarding": "ORD-1",
+    "says": [
+     "Terrace Suite",
+     "80",
+     "18",
+     "2026-11-14"
+    ],
+    "stale": [
+     "Fairway Room"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The manager's email corrects Harvest's quote: the Fairway Room is closed from 3 November and the dinner moves to the Terrace Suite, while the 18-pound price, the menu and the eighty covers stand. The chain is fact e10 (quote, Fairway Room) to decision e15 (catering order ORD-1, an ASK because the standing rule requires the supplier's written agreement before changing a confirmed order over five hundred pounds) to decision e16 (dinner schedule EV-1, two hops from the quote, a REVISE whose place field becomes Terrace Suite); the ticket price decision e17 is KEEP because the 18-pound head price it was built on is untouched. The confirmation message to Mira must carry the Terrace Suite, not the Fairway Room.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "weekend sandwich platters",
+    "counterpart": "Mira Vale",
+    "org": "Harvest Catering",
+    "item": "sandwich platters",
+    "unit": "platters",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "clubhouse kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "medal plate engraving",
+    "counterpart": "Owen Bramble",
+    "org": "Bramble Engraving",
+    "item": "engraved medal plates",
+    "unit": "plates",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "pro shop"
+   },
+   {
+    "kind": "order",
+    "topic": "bar wine restock",
+    "counterpart": "Nina Costello",
+    "org": "Costello Wines",
+    "item": "house red",
+    "unit": "bottles",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "clubhouse cellar"
+   },
+   {
+    "kind": "order",
+    "topic": "range balls",
+    "counterpart": "Ted Marsh",
+    "org": "Range Supplies Co",
+    "item": "range balls",
+    "unit": "buckets",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "driving range"
+   },
+   {
+    "kind": "booking",
+    "topic": "society tee slots",
+    "counterpart": "Graham Pike",
+    "org": "Pike Logistics society",
+    "item": "society tee slot",
+    "unit": "slots",
+    "values": [
+     "first tee",
+     "tenth tee",
+     "practice tee"
+    ],
+    "place": "first tee"
+   },
+   {
+    "kind": "booking",
+    "topic": "bridge afternoons",
+    "counterpart": "Dora Lin",
+    "org": "Dunmore Bridge Club",
+    "item": "bridge afternoon",
+    "unit": "sessions",
+    "values": [
+     "Long Bar",
+     "snug room",
+     "committee room"
+    ],
+    "place": "Long Bar"
+   },
+   {
+    "kind": "booking",
+    "topic": "buggy hire",
+    "counterpart": "Wes Nolan",
+    "org": "Dunmore pro shop",
+    "item": "golf buggy",
+    "unit": "buggies",
+    "values": [
+     "buggy 1",
+     "buggy 2",
+     "buggy 3"
+    ],
+    "place": "buggy store"
+   },
+   {
+    "kind": "booking",
+    "topic": "physio sessions",
+    "counterpart": "Sam Ryder",
+    "org": "Rydere Sports Therapy",
+    "item": "physio session",
+    "unit": "sessions",
+    "values": [
+     "physio room",
+     "stretching bay",
+     "treatment room 2"
+    ],
+    "place": "physio room"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Marla Quinn",
+    "org": "Bean There Roasters",
+    "item": "espresso beans",
+    "unit": "kg",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "clubhouse bar"
+   },
+   {
+    "kind": "order",
+    "topic": "top-dressing sand",
+    "counterpart": "Doug Ferris",
+    "org": "Turfline Supplies",
+    "item": "top-dressing sand",
+    "unit": "tonnes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "greens shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "teaching bays",
+    "counterpart": "Wes Nolan",
+    "org": "Dunmore pro shop",
+    "item": "teaching bay",
+    "unit": "bays",
+    "values": [
+     "teaching bay 1",
+     "teaching bay 2",
+     "teaching bay 3"
+    ],
+    "place": "driving range"
+   },
+   {
+    "kind": "order",
+    "topic": "office paper",
+    "counterpart": "Priya Shah",
+    "org": "Inkwell Office Supplies",
+    "item": "printer paper",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "8"
+    ],
+    "place": "club office"
+   }
+  ],
+  "id": "G1000-3-02",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

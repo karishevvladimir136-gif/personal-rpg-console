@@ -1,0 +1,676 @@
+{
+ "id": "G1000-1-02",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 1,
+ "idx": 1,
+ "setting": "The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders",
+ "prompt_sha256": "0f4c2e23682d3de5781f0d9ffa38fe6ff52da41e0f01029e39538bb365545a54",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Bakery drops the Friday route\",\n \"setting\": \"The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders\",\n \"owner\": \"Marta\",\n \"org\": \"Copper Kettle Café\",\n \"now\": \"2026-11-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 250 in total needs Priya Nair's sign-off before it is placed. Priya is our finance lead.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a catering booking is confirmed with a client, its date or service window may not be changed without the client's written consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: shifts in the published roster may not be moved or retimed without the agreement of the barista named on the shift.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Confirming our delivery arrangement with Copper Kettle Café: we deliver on Tuesdays and Fridays, arriving by 7:00 in the morning. Standing price on bread loaves is 2.10 each.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Dana Whitlock (Fernbrook Dairy)\", \"text\": \"Quote for Copper Kettle Café: milk at 1.05 per litre, delivered on Monday mornings.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I've set up a standing bread order with Hearthside Bakery: 40 loaves on their Friday delivery run, at 2.10 a loaf, so about 84 a week — well under the 250 sign-off threshold, so no need to bother Priya.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"message\", \"from\": \"Jonas Adeyemi\", \"text\": \"Happy to take the Friday 6:30 opening shifts if you need someone early to receive deliveries.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Rostered Jonas Adeyemi for the Friday 6:30 opening shift every week, so he is there to receive the Hearthside bread delivery of 40 loaves.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"We'd like a monthly staff brunch at the café for 30 people, starting Saturday 12 September, budget around 420 per brunch. Can you do bread and pastries?\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Larkspur Design Studio brunch: monthly on Saturdays at 10:30 for 30 guests, Hearthside Bakery supplying the bread and pastries, 420 per brunch. Booking is confirmed with Wren, so any change to the date needs her written consent.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The new menu cards look great on the counter — reorder the same design next time.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Cinnamon croissants are 1.80 each if you'd like them on your regular Tuesday run.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added a standing Tuesday order with Hearthside Bakery: 30 croissants at 1.80 each on the Tuesday morning run, 54 a week — no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e4\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"invoice\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Hearthside Bakery invoice for July supplies: 738 in total.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Hearthside Bakery July invoice of 738 by 15 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"message\", \"from\": \"Tomas Rivera\", \"text\": \"Just a heads up, I can also cover Sunday afternoons if the roster needs it.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up a standing order with Fernbrook Dairy: 60 litres of milk every Monday at 1.05 a litre, 63 a week.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Just confirming the current standing arrangement: 40 loaves delivered every Friday morning by 7:00, plus the Tuesday croissants. All as agreed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Rostered Tomas Rivera for the Sunday closing shifts from next month, with his agreement as required for roster changes.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e16\"], \"record\": \"EV-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: winter menu trial in November, patio heaters to be checked before the first frost.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed a catering booking with Northgate Yoga Studio: Friday 20 November in the evening, 25 guests, tea and pastries, 350. Confirmed with the studio, so the date can't move without their written consent.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Roster reminder: Jonas Adeyemi has the Friday 6:30 opening shift each week to take in the Hearthside bread delivery of 40 loaves.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"Thank you — the September brunch was lovely. See you on the second Saturday of October as usual.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"quote\", \"from\": \"Elena Boyd (Meridian Repairs)\", \"text\": \"We can service espresso machines on weekdays, callout fee 95, morning or afternoon slots available.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Meridian Repairs for the espresso machine service on Tuesday 10 November, morning slot, 95 callout.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"EV-3\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"invoice\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Hearthside Bakery invoice for September supplies: 702 in total.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Renew the café music licence before 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Some news from us: we are dropping our Friday delivery route from the week of 26 October — too few stops on it. Your deliveries will be on Tuesdays and Thursdays instead, still arriving by 7:00. Thursday should work fine for your bread. Same prices, nothing else changes.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-22\", \"type\": \"letter\", \"from\": \"Harbourline Property\", \"text\": \"Reminder that the quarterly rent for the Copper Kettle Café premises is due on 1 November.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Small scheduling note: from November our Tuesday run will arrive at 6:15 instead of 7:00, as the route got shorter. Thursday arrival times stay at 7:00.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e31\", \"date\": \"2026-10-29\", \"type\": \"email\", \"from\": \"Dana Whitlock (Fernbrook Dairy)\", \"text\": \"Heads up: milk goes up to 1.10 a litre from January. Everything else stays the same.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"message\", \"from\": \"Jonas Adeyemi\", \"text\": \"All set for my usual early shift this week — see you Friday morning.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-04\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Let's trial the winter menu starting next week — pumpkin spice and the chestnut loaf.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"Looking forward to the brunch on Saturday the 14th — 30 of us as always. Same bread and pastries would be perfect.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Hearthside standing bread order\", \"fields\": {\"supplier\": \"Hearthside Bakery\", \"item\": \"bread loaves\", \"quantity\": \"40\", \"delivery_day\": \"Friday\", \"unit_price\": \"2.10\", \"status\": \"active\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Hearthside standing croissant order\", \"fields\": {\"supplier\": \"Hearthside Bakery\", \"item\": \"cinnamon croissants\", \"quantity\": \"30\", \"delivery_day\": \"Tuesday\", \"unit_price\": \"1.80\", \"status\": \"active\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Fernbrook standing milk order\", \"fields\": {\"supplier\": \"Fernbrook Dairy\", \"item\": \"milk\", \"quantity\": \"60\", \"unit\": \"litres\", \"delivery_day\": \"Monday\", \"status\": \"active\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly opening shift for Hearthside delivery\", \"fields\": {\"person\": \"Jonas Adeyemi\", \"day\": \"Friday\", \"time\": \"06:30\", \"purpose\": \"receive Hearthside bread delivery\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly Sunday closing shift\", \"fields\": {\"person\": \"Tomas Rivera\", \"day\": \"Sunday\", \"time\": \"16:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Espresso machine service\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"09:00\", \"contractor\": \"Meridian Repairs\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Larkspur Design Studio monthly brunch\", \"fields\": {\"client\": \"Larkspur Design Studio\", \"contact\": \"Wren Holt\", \"event\": \"monthly Saturday brunch\", \"next_date\": \"2026-11-14\", \"guests\": \"30\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Northgate Yoga Studio catering\", \"fields\": {\"client\": \"Northgate Yoga Studio\", \"contact\": \"Ravi Chand\", \"event\": \"evening tea and pastries\", \"date\": \"2026-11-20\", \"guests\": \"25\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Jonas Adeyemi\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please confirm our standing bread order with Hearthside Bakery for the coming week so everything's set for the Larkspur brunch on Saturday the 14th.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_day\", \"value\": \"Thursday\", \"stale\": [\"Friday\"], \"task\": true},\n  {\"message_to\": \"Sanjay Patel (Hearthside Bakery)\", \"regarding\": \"ORD-1\", \"says\": [\"Thursday\", \"40 loaves\", \"7:00\"], \"stale\": [\"Friday\"], \"task\": true}\n ],\n \"why\": \"Hearthside's email revokes the Tuesday-and-Friday delivery fact, so the standing 40-loaf order's Friday slot (ORD-1) must become Thursday, and the confirmation to the bakery must carry Thursday, not the stale Friday. Jonas's Friday 6:30 shift (EV-1) rests on that order two hops away, but moving a rostered shift needs his agreement under the roster rule, so it stays untouched pending consent. The Larkspur brunch (CL-1) and the Tuesday croissant order (ORD-3) use parts of the old fact that survive — the supplier, the Saturday date, and the Tuesday run — so they are KEEP and must not change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Hearthside pastry restock\", \"counterpart\": \"Sanjay Patel\", \"org\": \"Hearthside Bakery\", \"item\": \"cinnamon buns\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Copper Kettle Café counter\"},\n  {\"kind\": \"order\", \"topic\": \"Hearthside flour\", \"counterpart\": \"Sanjay Patel\", \"org\": \"Hearthside Bakery\", \"item\": \"stoneground flour\", \"unit\": \"kg\", \"values\": [\"25\", \"50\"], \"place\": \"Copper Kettle Café storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"Fernbrook oat milk\", \"counterpart\": \"Dana Whitlock\", \"org\": \"Fernbrook Dairy\", \"item\": \"oat milk\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Copper Kettle Café cold store\"},\n  {\"kind\": \"booking\", \"topic\": \"Larkspur tasting room\", \"counterpart\": \"Wren Holt\", \"org\": \"Larkspur Design Studio\", \"item\": \"café room for client tastings\", \"unit\": \"\", \"values\": [\"back room\", \"front alcove\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate studio van\", \"counterpart\": \"Ravi Chand\", \"org\": \"Northgate Yoga Studio\", \"item\": \"catering van for studio runs\", \"unit\": \"\", \"values\": [\"small van\", \"large van\"], \"place\": \"Northgate Yoga Studio\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Odette Marsh\", \"org\": \"Rowan Roasters\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"roastery training\", \"counterpart\": \"Sana Iqbal\", \"org\": \"Rowan Roasters\", \"item\": \"barista training session\", \"unit\": \"\", \"values\": [\"training room\", \"roastery floor\"], \"place\": \"Rowan Roasters\"},\n  {\"kind\": \"order\", \"topic\": \"paper cups\", \"counterpart\": \"Elias Ford\", \"org\": \"Meridian Paper Supplies\", \"item\": \"paper cups\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"library book club\", \"counterpart\": \"Ines Okafor\", \"org\": \"Millbrook Library\", \"item\": \"café space for book club\", \"unit\": \"\", \"values\": [\"patio\", \"front room\"], \"place\": \"Copper Kettle Café patio\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Lund\", \"org\": \"Clearline Hygiene\", \"item\": \"sanitiser\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\"], \"place\": \"Copper Kettle Café kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Hana Ito\", \"org\": \"Cedarleaf Teas\", \"item\": \"loose tea\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Copper Kettle Café\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 11410,
+    "reasoning_tokens": 6940,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05110896,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Bakery drops the Friday route\",\n \"setting\": \"The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders\",\n \"owner\": \"Marta\",\n \"org\": \"Copper Kettle Café\",\n \"now\": \"2026-11-06\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: any supplier order above 250 in total needs Priya Nair's sign-off before it is placed. Priya is our finance lead.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: once a catering booking is confirmed with a client, its date or service window may not be changed without the client's written consent.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule: shifts in the published roster may not be moved or retimed without the agreement of the barista named on the shift.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Confirming our delivery arrangement with Copper Kettle Café: we deliver on Tuesdays and Fridays, arriving by 7:00 in the morning. Standing price on bread loaves is 2.10 each.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Dana Whitlock (Fernbrook Dairy)\", \"text\": \"Quote for Copper Kettle Café: milk at 1.05 per litre, delivered on Monday mornings.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I've set up a standing bread order with Hearthside Bakery: 40 loaves on their Friday delivery run, at 2.10 a loaf, so about 84 a week — well under the 250 sign-off threshold, so no need to bother Priya.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"message\", \"from\": \"Jonas Adeyemi\", \"text\": \"Happy to take the Friday 6:30 opening shifts if you need someone early to receive deliveries.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Rostered Jonas Adeyemi for the Friday 6:30 opening shift every week, so he is there to receive the Hearthside bread delivery of 40 loaves.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"We'd like a monthly staff brunch at the café for 30 people, starting Saturday 12 September, budget around 420 per brunch. Can you do bread and pastries?\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed the Larkspur Design Studio brunch: monthly on Saturdays at 10:30 for 30 guests, Hearthside Bakery supplying the bread and pastries, 420 per brunch. Booking is confirmed with Wren, so any change to the date needs her written consent.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e4\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-14\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"The new menu cards look great on the counter — reorder the same design next time.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Cinnamon croissants are 1.80 each if you'd like them on your regular Tuesday run.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Added a standing Tuesday order with Hearthside Bakery: 30 croissants at 1.80 each on the Tuesday morning run, 54 a week — no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e12\", \"e4\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-03\", \"type\": \"invoice\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Hearthside Bakery invoice for July supplies: 738 in total.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-05\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Pay the Hearthside Bakery July invoice of 738 by 15 August.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"message\", \"from\": \"Tomas Rivera\", \"text\": \"Just a heads up, I can also cover Sunday afternoons if the roster needs it.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set up a standing order with Fernbrook Dairy: 60 litres of milk every Monday at 1.05 a litre, 63 a week.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Just confirming the current standing arrangement: 40 loaves delivered every Friday morning by 7:00, plus the Tuesday croissants. All as agreed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Rostered Tomas Rivera for the Sunday closing shifts from next month, with his agreement as required for roster changes.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e16\"], \"record\": \"EV-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Staff meeting notes: winter menu trial in November, patio heaters to be checked before the first frost.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Confirmed a catering booking with Northgate Yoga Studio: Friday 20 November in the evening, 25 guests, tea and pastries, 350. Confirmed with the studio, so the date can't move without their written consent.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"CL-2\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"notice\", \"from\": \"Marta\", \"text\": \"Roster reminder: Jonas Adeyemi has the Friday 6:30 opening shift each week to take in the Hearthside bread delivery of 40 loaves.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"Thank you — the September brunch was lovely. See you on the second Saturday of October as usual.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-25\", \"type\": \"quote\", \"from\": \"Elena Boyd (Meridian Repairs)\", \"text\": \"We can service espresso machines on weekdays, callout fee 95, morning or afternoon slots available.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-29\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Meridian Repairs for the espresso machine service on Tuesday 10 November, morning slot, 95 callout.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"EV-3\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"invoice\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Hearthside Bakery invoice for September supplies: 702 in total.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Renew the café music licence before 30 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Some news from us: we are dropping our Friday delivery route from the week of 26 October — too few stops on it. Your deliveries will be on Tuesdays and Thursdays instead, still arriving by 7:00. Thursday should work fine for your bread. Same prices, nothing else changes.\", \"role\": \"change\", \"revokes\": [\"e4\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-22\", \"type\": \"letter\", \"from\": \"Harbourline Property\", \"text\": \"Reminder that the quarterly rent for the Copper Kettle Café premises is due on 1 November.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"Sanjay Patel (Hearthside Bakery)\", \"text\": \"Small scheduling note: from November our Tuesday run will arrive at 6:15 instead of 7:00, as the route got shorter. Thursday arrival times stay at 7:00.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e31\", \"date\": \"2026-10-29\", \"type\": \"email\", \"from\": \"Dana Whitlock (Fernbrook Dairy)\", \"text\": \"Heads up: milk goes up to 1.10 a litre from January. Everything else stays the same.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-02\", \"type\": \"message\", \"from\": \"Jonas Adeyemi\", \"text\": \"All set for my usual early shift this week — see you Friday morning.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-04\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Let's trial the winter menu starting next week — pumpkin spice and the chestnut loaf.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Wren Holt (Larkspur Design Studio)\", \"text\": \"Looking forward to the brunch on Saturday the 14th — 30 of us as always. Same bread and pastries would be perfect.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Hearthside standing bread order\", \"fields\": {\"supplier\": \"Hearthside Bakery\", \"item\": \"bread loaves\", \"quantity\": \"40\", \"delivery_day\": \"Friday\", \"unit_price\": \"2.10\", \"status\": \"active\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Hearthside standing croissant order\", \"fields\": {\"supplier\": \"Hearthside Bakery\", \"item\": \"cinnamon croissants\", \"quantity\": \"30\", \"delivery_day\": \"Tuesday\", \"unit_price\": \"1.80\", \"status\": \"active\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Fernbrook standing milk order\", \"fields\": {\"supplier\": \"Fernbrook Dairy\", \"item\": \"milk\", \"quantity\": \"60\", \"unit\": \"litres\", \"delivery_day\": \"Monday\", \"status\": \"active\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly opening shift for Hearthside delivery\", \"fields\": {\"person\": \"Jonas Adeyemi\", \"day\": \"Friday\", \"time\": \"06:30\", \"purpose\": \"receive Hearthside bread delivery\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly Sunday closing shift\", \"fields\": {\"person\": \"Tomas Rivera\", \"day\": \"Sunday\", \"time\": \"16:00\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Espresso machine service\", \"fields\": {\"date\": \"2026-11-10\", \"time\": \"09:00\", \"contractor\": \"Meridian Repairs\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Larkspur Design Studio monthly brunch\", \"fields\": {\"client\": \"Larkspur Design Studio\", \"contact\": \"Wren Holt\", \"event\": \"monthly Saturday brunch\", \"next_date\": \"2026-11-14\", \"guests\": \"30\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Northgate Yoga Studio catering\", \"fields\": {\"client\": \"Northgate Yoga Studio\", \"contact\": \"Ravi Chand\", \"event\": \"evening tea and pastries\", \"date\": \"2026-11-20\", \"guests\": \"25\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"day\", \"time\"], \"from\": \"Jonas Adeyemi\", \"rule\": \"e3\"}\n ],\n \"task\": \"Please confirm our standing bread order with Hearthside Bakery for the coming week so everything's set for the Larkspur brunch on Saturday the 14th.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"delivery_day\", \"value\": \"Thursday\", \"stale\": [\"Friday\"], \"task\": true},\n  {\"message_to\": \"Sanjay Patel (Hearthside Bakery)\", \"regarding\": \"ORD-1\", \"says\": [\"Thursday\", \"40 loaves\", \"7:00\"], \"stale\": [\"Friday\"], \"task\": true}\n ],\n \"why\": \"Hearthside's email revokes the Tuesday-and-Friday delivery fact, so the standing 40-loaf order's Friday slot (ORD-1) must become Thursday, and the confirmation to the bakery must carry Thursday, not the stale Friday. Jonas's Friday 6:30 shift (EV-1) rests on that order two hops away, but moving a rostered shift needs his agreement under the roster rule, so it stays untouched pending consent. The Larkspur brunch (CL-1) and the Tuesday croissant order (ORD-3) use parts of the old fact that survive — the supplier, the Saturday date, and the Tuesday run — so they are KEEP and must not change.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Hearthside pastry restock\", \"counterpart\": \"Sanjay Patel\", \"org\": \"Hearthside Bakery\", \"item\": \"cinnamon buns\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Copper Kettle Café counter\"},\n  {\"kind\": \"order\", \"topic\": \"Hearthside flour\", \"counterpart\": \"Sanjay Patel\", \"org\": \"Hearthside Bakery\", \"item\": \"stoneground flour\", \"unit\": \"kg\", \"values\": [\"25\", \"50\", \"75\"], \"place\": \"Copper Kettle Café storeroom\"},\n  {\"kind\": \"order\", \"topic\": \"Fernbrook oat milk\", \"counterpart\": \"Dana Whitlock\", \"org\": \"Fernbrook Dairy\", \"item\": \"oat milk\", \"unit\": \"litres\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"Copper Kettle Café cold store\"},\n  {\"kind\": \"booking\", \"topic\": \"Larkspur tasting room\", \"counterpart\": \"Wren Holt\", \"org\": \"Larkspur Design Studio\", \"item\": \"café room for client tastings\", \"unit\": \"\", \"values\": [\"back room\", \"front alcove\", \"patio\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"Northgate studio van\", \"counterpart\": \"Ravi Chand\", \"org\": \"Northgate Yoga Studio\", \"item\": \"catering van for studio runs\", \"unit\": \"\", \"values\": [\"small van\", \"large van\", \"cargo bike\"], \"place\": \"Northgate Yoga Studio\"},\n  {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Odette Marsh\", \"org\": \"Rowan Roasters\", \"item\": \"coffee beans\", \"unit\": \"kg\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"roastery training\", \"counterpart\": \"Sana Iqbal\", \"org\": \"Rowan Roasters\", \"item\": \"barista training session\", \"unit\": \"\", \"values\": [\"training room\", \"roastery floor\", \"cupping lab\"], \"place\": \"Rowan Roasters\"},\n  {\"kind\": \"order\", \"topic\": \"paper cups\", \"counterpart\": \"Elias Ford\", \"org\": \"Meridian Paper Supplies\", \"item\": \"paper cups\", \"unit\": \"packs\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"Copper Kettle Café\"},\n  {\"kind\": \"booking\", \"topic\": \"library book club\", \"counterpart\": \"Ines Okafor\", \"org\": \"Millbrook Library\", \"item\": \"café space for book club\", \"unit\": \"\", \"values\": [\"patio\", \"front room\", \"back room\"], \"place\": \"Copper Kettle Café patio\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Petra Lund\", \"org\": \"Clearline Hygiene\", \"item\": \"sanitiser\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Copper Kettle Café kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Hana Ito\", \"org\": \"Cedarleaf Teas\", \"item\": \"loose tea\", \"unit\": \"kg\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Copper Kettle Café\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7793,
+    "completion_tokens": 4503,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02714836,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Hearthside flour': values needs at least three entries\n- noise topic 'Larkspur tasting room': values needs at least three entries\n- noise topic 'Northgate studio van': values needs at least three entries\n- noise topic 'roastery training': values needs at least three entries\n- noise topic 'library book club': values needs at least three entries\n- noise topic 'cleaning supplies': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Bakery drops the Friday route",
+  "setting": "The owner of Copper Kettle Café whose assistant schedules barista shifts, supplier deliveries, and catering orders",
+  "owner": "Marta",
+  "org": "Copper Kettle Café",
+  "now": "2026-11-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: any supplier order above 250 in total needs Priya Nair's sign-off before it is placed. Priya is our finance lead.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: once a catering booking is confirmed with a client, its date or service window may not be changed without the client's written consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule: shifts in the published roster may not be moved or retimed without the agreement of the barista named on the shift.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Confirming our delivery arrangement with Copper Kettle Café: we deliver on Tuesdays and Fridays, arriving by 7:00 in the morning. Standing price on bread loaves is 2.10 each.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Dana Whitlock (Fernbrook Dairy)",
+    "text": "Quote for Copper Kettle Café: milk at 1.05 per litre, delivered on Monday mornings.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I've set up a standing bread order with Hearthside Bakery: 40 loaves on their Friday delivery run, at 2.10 a loaf, so about 84 a week — well under the 250 sign-off threshold, so no need to bother Priya.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "message",
+    "from": "Jonas Adeyemi",
+    "text": "Happy to take the Friday 6:30 opening shifts if you need someone early to receive deliveries.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Rostered Jonas Adeyemi for the Friday 6:30 opening shift every week, so he is there to receive the Hearthside bread delivery of 40 loaves.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e7",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Wren Holt (Larkspur Design Studio)",
+    "text": "We'd like a monthly staff brunch at the café for 30 people, starting Saturday 12 September, budget around 420 per brunch. Can you do bread and pastries?",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed the Larkspur Design Studio brunch: monthly on Saturdays at 10:30 for 30 guests, Hearthside Bakery supplying the bread and pastries, 420 per brunch. Booking is confirmed with Wren, so any change to the date needs her written consent.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2",
+     "e4"
+    ],
+    "record": "CL-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-14",
+    "type": "note",
+    "from": "Marta",
+    "text": "The new menu cards look great on the counter — reorder the same design next time.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Cinnamon croissants are 1.80 each if you'd like them on your regular Tuesday run.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Added a standing Tuesday order with Hearthside Bakery: 30 croissants at 1.80 each on the Tuesday morning run, 54 a week — no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e12",
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-03",
+    "type": "invoice",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Hearthside Bakery invoice for July supplies: 738 in total.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-05",
+    "type": "task",
+    "from": "Marta",
+    "text": "Pay the Hearthside Bakery July invoice of 738 by 15 August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "message",
+    "from": "Tomas Rivera",
+    "text": "Just a heads up, I can also cover Sunday afternoons if the roster needs it.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set up a standing order with Fernbrook Dairy: 60 litres of milk every Monday at 1.05 a litre, 63 a week.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Just confirming the current standing arrangement: 40 loaves delivered every Friday morning by 7:00, plus the Tuesday croissants. All as agreed.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Rostered Tomas Rivera for the Sunday closing shifts from next month, with his agreement as required for roster changes.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e16"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-01",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Staff meeting notes: winter menu trial in November, patio heaters to be checked before the first frost.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Confirmed a catering booking with Northgate Yoga Studio: Friday 20 November in the evening, 25 guests, tea and pastries, 350. Confirmed with the studio, so the date can't move without their written consent.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "notice",
+    "from": "Marta",
+    "text": "Roster reminder: Jonas Adeyemi has the Friday 6:30 opening shift each week to take in the Hearthside bread delivery of 40 loaves.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Wren Holt (Larkspur Design Studio)",
+    "text": "Thank you — the September brunch was lovely. See you on the second Saturday of October as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-25",
+    "type": "quote",
+    "from": "Elena Boyd (Meridian Repairs)",
+    "text": "We can service espresso machines on weekdays, callout fee 95, morning or afternoon slots available.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-29",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Meridian Repairs for the espresso machine service on Tuesday 10 November, morning slot, 95 callout.",
+    "role": "decision",
+    "rests_on": [
+     "e24"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-02",
+    "type": "invoice",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Hearthside Bakery invoice for September supplies: 702 in total.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-10",
+    "type": "task",
+    "from": "Marta",
+    "text": "Renew the café music licence before 30 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Some news from us: we are dropping our Friday delivery route from the week of 26 October — too few stops on it. Your deliveries will be on Tuesdays and Thursdays instead, still arriving by 7:00. Thursday should work fine for your bread. Same prices, nothing else changes.",
+    "role": "change",
+    "revokes": [
+     "e4"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-22",
+    "type": "letter",
+    "from": "Harbourline Property",
+    "text": "Reminder that the quarterly rent for the Copper Kettle Café premises is due on 1 November.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-24",
+    "type": "email",
+    "from": "Sanjay Patel (Hearthside Bakery)",
+    "text": "Small scheduling note: from November our Tuesday run will arrive at 6:15 instead of 7:00, as the route got shorter. Thursday arrival times stay at 7:00.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-29",
+    "type": "email",
+    "from": "Dana Whitlock (Fernbrook Dairy)",
+    "text": "Heads up: milk goes up to 1.10 a litre from January. Everything else stays the same.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-02",
+    "type": "message",
+    "from": "Jonas Adeyemi",
+    "text": "All set for my usual early shift this week — see you Friday morning.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-11-04",
+    "type": "note",
+    "from": "Marta",
+    "text": "Let's trial the winter menu starting next week — pumpkin spice and the chestnut loaf.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-11-05",
+    "type": "email",
+    "from": "Wren Holt (Larkspur Design Studio)",
+    "text": "Looking forward to the brunch on Saturday the 14th — 30 of us as always. Same bread and pastries would be perfect.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Hearthside standing bread order",
+    "fields": {
+     "supplier": "Hearthside Bakery",
+     "item": "bread loaves",
+     "quantity": "40",
+     "delivery_day": "Friday",
+     "unit_price": "2.10",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Hearthside standing croissant order",
+    "fields": {
+     "supplier": "Hearthside Bakery",
+     "item": "cinnamon croissants",
+     "quantity": "30",
+     "delivery_day": "Tuesday",
+     "unit_price": "1.80",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Fernbrook standing milk order",
+    "fields": {
+     "supplier": "Fernbrook Dairy",
+     "item": "milk",
+     "quantity": "60",
+     "unit": "litres",
+     "delivery_day": "Monday",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Weekly opening shift for Hearthside delivery",
+    "fields": {
+     "person": "Jonas Adeyemi",
+     "day": "Friday",
+     "time": "06:30",
+     "purpose": "receive Hearthside bread delivery",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Weekly Sunday closing shift",
+    "fields": {
+     "person": "Tomas Rivera",
+     "day": "Sunday",
+     "time": "16:00",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Espresso machine service",
+    "fields": {
+     "date": "2026-11-10",
+     "time": "09:00",
+     "contractor": "Meridian Repairs",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Larkspur Design Studio monthly brunch",
+    "fields": {
+     "client": "Larkspur Design Studio",
+     "contact": "Wren Holt",
+     "event": "monthly Saturday brunch",
+     "next_date": "2026-11-14",
+     "guests": "30",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Northgate Yoga Studio catering",
+    "fields": {
+     "client": "Northgate Yoga Studio",
+     "contact": "Ravi Chand",
+     "event": "evening tea and pastries",
+     "date": "2026-11-20",
+     "guests": "25",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "day",
+     "time"
+    ],
+    "from": "Jonas Adeyemi",
+    "rule": "e3"
+   }
+  ],
+  "task": "Please confirm our standing bread order with Hearthside Bakery for the coming week so everything's set for the Larkspur brunch on Saturday the 14th.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "delivery_day",
+    "value": "Thursday",
+    "stale": [
+     "Friday"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Sanjay Patel (Hearthside Bakery)",
+    "regarding": "ORD-1",
+    "says": [
+     "Thursday",
+     "40 loaves",
+     "7:00"
+    ],
+    "stale": [
+     "Friday"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Hearthside's email revokes the Tuesday-and-Friday delivery fact, so the standing 40-loaf order's Friday slot (ORD-1) must become Thursday, and the confirmation to the bakery must carry Thursday, not the stale Friday. Jonas's Friday 6:30 shift (EV-1) rests on that order two hops away, but moving a rostered shift needs his agreement under the roster rule, so it stays untouched pending consent. The Larkspur brunch (CL-1) and the Tuesday croissant order (ORD-3) use parts of the old fact that survive — the supplier, the Saturday date, and the Tuesday run — so they are KEEP and must not change.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Hearthside pastry restock",
+    "counterpart": "Sanjay Patel",
+    "org": "Hearthside Bakery",
+    "item": "cinnamon buns",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Copper Kettle Café counter"
+   },
+   {
+    "kind": "order",
+    "topic": "Hearthside flour",
+    "counterpart": "Sanjay Patel",
+    "org": "Hearthside Bakery",
+    "item": "stoneground flour",
+    "unit": "kg",
+    "values": [
+     "25",
+     "50",
+     "75"
+    ],
+    "place": "Copper Kettle Café storeroom"
+   },
+   {
+    "kind": "order",
+    "topic": "Fernbrook oat milk",
+    "counterpart": "Dana Whitlock",
+    "org": "Fernbrook Dairy",
+    "item": "oat milk",
+    "unit": "litres",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Copper Kettle Café cold store"
+   },
+   {
+    "kind": "booking",
+    "topic": "Larkspur tasting room",
+    "counterpart": "Wren Holt",
+    "org": "Larkspur Design Studio",
+    "item": "café room for client tastings",
+    "unit": "",
+    "values": [
+     "back room",
+     "front alcove",
+     "patio"
+    ],
+    "place": "Copper Kettle Café"
+   },
+   {
+    "kind": "booking",
+    "topic": "Northgate studio van",
+    "counterpart": "Ravi Chand",
+    "org": "Northgate Yoga Studio",
+    "item": "catering van for studio runs",
+    "unit": "",
+    "values": [
+     "small van",
+     "large van",
+     "cargo bike"
+    ],
+    "place": "Northgate Yoga Studio"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Odette Marsh",
+    "org": "Rowan Roasters",
+    "item": "coffee beans",
+    "unit": "kg",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Copper Kettle Café"
+   },
+   {
+    "kind": "booking",
+    "topic": "roastery training",
+    "counterpart": "Sana Iqbal",
+    "org": "Rowan Roasters",
+    "item": "barista training session",
+    "unit": "",
+    "values": [
+     "training room",
+     "roastery floor",
+     "cupping lab"
+    ],
+    "place": "Rowan Roasters"
+   },
+   {
+    "kind": "order",
+    "topic": "paper cups",
+    "counterpart": "Elias Ford",
+    "org": "Meridian Paper Supplies",
+    "item": "paper cups",
+    "unit": "packs",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "Copper Kettle Café"
+   },
+   {
+    "kind": "booking",
+    "topic": "library book club",
+    "counterpart": "Ines Okafor",
+    "org": "Millbrook Library",
+    "item": "café space for book club",
+    "unit": "",
+    "values": [
+     "patio",
+     "front room",
+     "back room"
+    ],
+    "place": "Copper Kettle Café patio"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Petra Lund",
+    "org": "Clearline Hygiene",
+    "item": "sanitiser",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "Copper Kettle Café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "tea restock",
+    "counterpart": "Hana Ito",
+    "org": "Cedarleaf Teas",
+    "item": "loose tea",
+    "unit": "kg",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Copper Kettle Café"
+   }
+  ],
+  "id": "G1000-1-02",
+  "tier": 1000,
+  "class": 1,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

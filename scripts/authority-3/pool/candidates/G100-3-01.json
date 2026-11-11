@@ -1,0 +1,616 @@
+{
+ "id": "G100-3-01",
+ "writer": "glm",
+ "tier": 100,
+ "class": 3,
+ "idx": 0,
+ "setting": "The warehouse lead at Tandem Bike Parts whose assistant tracks stock counts, pick lists, and courier dispatches",
+ "prompt_sha256": "f4b1d6e4820aaaa40daf6bc6825cef7c9887cae0bd516a38fe83ad2008d7dfe7",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Northline cutoff chain\",\n \"setting\": \"The warehouse lead at Tandem Bike Parts whose assistant tracks stock counts, pick lists, and courier dispatches\",\n \"owner\": \"Marta\",\n \"org\": \"Tandem Bike Parts\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Standing rule from Marta: any promise we make to a client about shipping or dispatch times, and any change to such a promise on file, needs the sales lead Priya Nair's agreement first. No exceptions.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: all outbound parcels and pallets leave through Northline Express from dock 3. Nothing goes out via another courier without Marta's say-so.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Nina Belov (Northline Express)\", \"text\": \"Confirming our arrangement: Northline Express offers same-day pickup at your warehouse with a cutoff of 15:00, Monday to Friday, collecting from dock 3. Get a dispatch ready before 15:00 and it leaves the same day.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Nina Belov (Northline Express)\", \"text\": \"For your records: I'm your Northline account manager, Nina Belov, direct line 01632 960 118. Email me for anything courier-related.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Omar Reyes (Pedalworks)\", \"text\": \"Quick intro: Pedalworks places roughly 40 order lines with you each week, and speed of dispatch matters to us. Our contact here is Omar Reyes. What can you promise us on turnaround?\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Decision: I've booked a standing daily dispatch pickup with Northline Express at 15:00 from dock 3, Monday to Friday, using their same-day cutoff. This is our fixed dispatch slot on the schedule board.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Decision, agreed with Priya: we promise Pedalworks same-day dispatch for any order they place before 13:00. That gives the packing team two hours to pick and pack before the 15:00 Northline pickup. Recorded on their account.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e6\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Decision: the weekly pallet run to the Pedalworks depot in Ashford goes out with Northline Express from dock 3 every Friday. Standing order on the books.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Decision: the packing team works a fixed pre-dispatch window of 13:00 to 15:00 each weekday, closing pick lists at 13:00 so everything is packed and staged before the 15:00 Northline pickup.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"EV-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-12\", \"type\": \"message\", \"from\": \"Tomás Ibarra (packing)\", \"text\": \"Tomás here — we're down to two rolls of packing tape at bench 2. Can we get more in the next order?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-12\", \"type\": \"quote\", \"from\": \"Piet Vander (Velo Boxes)\", \"text\": \"Quote from Velo Boxes: shipping cartons at 1.10 each for 200, 0.95 for 400, 0.88 for 600. Valid 30 days, delivery to your main stores.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Decision: ordered 400 shipping cartons from Velo Boxes at the quoted 0.95 each, delivered to main stores.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-02\", \"type\": \"email\", \"from\": \"Birch Cycles\", \"text\": \"Hi, Birch Cycles here — what's your current lead time on hub spares to Guildford? Nothing urgent, just planning.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-14\", \"type\": \"email\", \"from\": \"Nina Belov (Northline Express)\", \"text\": \"Good news: our night-sort freight desk at the Ashford hub now accepts late pallet drops until 19:00 on weekdays, if you ever need to run a pallet over yourself outside normal collections.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Warehouse walk notes: aisle 4 needs clearer rack labels, and the bin-row C brake pad stock should be counted before month end. No dispatch changes discussed.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-03\", \"type\": \"cancellation\", \"from\": \"Marta\", \"text\": \"Cancelled the old Broadline courier account — we're fully on Northline Express for everything outbound now.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-18\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"To-do: pay the Northline Express quarterly invoice by 2026-10-05.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Omar Reyes (Pedalworks)\", \"text\": \"Thanks from all of us at Pedalworks — the same-day turnaround has been spot on. Omar.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Nina Belov (Northline Express)\", \"text\": \"Schedule change from our side: from Monday 19 October our same-day pickup cutoff at your dock moves to 13:30. The 15:00 cutoff no longer applies. Everything else stays as it is — dock 3, your account number, and the weekly Friday pallet run are all unchanged.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e20\", \"date\": \"2026-10-14\", \"type\": \"message\", \"from\": \"Tomás Ibarra (packing)\", \"text\": \"Bench 2 restock done — cartons and tape are in. Also, hub bin labels arrived if you want them put up this week.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-10-16\", \"type\": \"invoice\", \"from\": \"Nina Belov (Northline Express)\", \"text\": \"Northline Express invoice for September collections: 512.00, due 30 days, to the usual account.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Daily Northline pickup\", \"fields\": {\"time\": \"15:00\", \"dock\": \"3\", \"frequency\": \"daily Mon-Fri\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Pre-dispatch packing window\", \"fields\": {\"start\": \"13:00\", \"end\": \"15:00\", \"team\": \"packing\", \"status\": \"active\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Pedalworks shipping promise\", \"fields\": {\"client\": \"Pedalworks\", \"cutoff\": \"13:00\", \"promise\": \"same-day dispatch\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly pallet run to Pedalworks\", \"fields\": {\"courier\": \"Northline Express\", \"day\": \"Friday\", \"destination\": \"Pedalworks depot, Ashford\", \"status\": \"active\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Carton restock\", \"fields\": {\"supplier\": \"Velo Boxes\", \"item\": \"shipping cartons\", \"quantity\": \"400\", \"status\": \"ordered\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"cutoff\"], \"from\": \"Priya Nair (sales lead)\", \"rule\": \"e1\"}\n ],\n \"task\": \"It's Tuesday morning — please get this week's dispatch sorted. Put the Northline pickup slot on the schedule board as it currently stands, check that the Pedalworks shipping promise on file still works with that pickup time, and send the packing team a note with the details they need.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"time\", \"value\": \"13:30\", \"stale\": [\"15:00\"], \"task\": true},\n  {\"record\": \"EV-3\", \"field\": \"start\", \"value\": \"11:30\", \"stale\": [\"13:00\"]},\n  {\"record\": \"EV-3\", \"field\": \"end\", \"value\": \"13:30\", \"stale\": [\"15:00\"]},\n  {\"message_to\": \"packing team\", \"regarding\": \"EV-1\", \"says\": [\"13:30\"], \"stale\": [\"15:00\"], \"task\": true},\n  {\"message_to\": \"Priya Nair (sales lead)\", \"regarding\": \"CL-1\", \"says\": [\"11:30\"], \"stale\": [\"13:00\"], \"task\": true}\n ],\n \"why\": \"The change corrects Northline's same-day cutoff from 15:00 to 13:30, keeping dock 3, the courier and the Friday pallet run standing. The dispatch slot EV-1 and the packing window EV-3 were built on the 15:00 cutoff, so they are REVISE and move to 13:30 and 11:30-13:30. The Pedalworks same-day promise CL-1 is two hops down the chain (it rests on the dispatch slot), but its cutoff field needs Priya Nair's consent under the standing rule, so the assistant must ask her about 11:30 rather than edit the record. The weekly pallet run ORD-1 only uses the courier and dock, which the change leaves standing, so KEEP; the 19:00 night-sort figure is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Tape restock\", \"counterpart\": \"Adila Chen\", \"org\": \"Orapro Adhesives\", \"item\": \"packing tape\", \"unit\": \"rolls\", \"values\": [\"24\", \"48\", \"60\", \"96\"], \"place\": \"dock 3 stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Van hire\", \"counterpart\": \"Marco Tille\", \"org\": \"Ridgeway Vans\", \"item\": \"cargo van\", \"values\": [\"bay 1\", \"bay 2\", \"dock forecourt\"], \"place\": \"dock 3 forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Northline extra pallet pickup\", \"counterpart\": \"Nina Belov\", \"org\": \"Northline Express\", \"item\": \"extra pallet pickup\", \"values\": [\"dock 3\", \"dock 4\", \"yard gate\"], \"place\": \"dock 3\"},\n  {\"kind\": \"order\", \"topic\": \"Carton restock\", \"counterpart\": \"Piet Vander\", \"org\": \"Velo Boxes\", \"item\": \"shipping cartons\", \"unit\": \"cartons\", \"values\": [\"200\", \"400\", \"600\"], \"place\": \"main stores\"},\n  {\"kind\": \"booking\", \"topic\": \"Forklift service\", \"counterpart\": \"Grete Lund\", \"org\": \"Halden Equipment\", \"item\": \"forklift service slot\", \"values\": [\"bay 2\", \"bay 3\", \"workshop\"], \"place\": \"workshop bay\"},\n  {\"kind\": \"order\", \"topic\": \"Bike polish restock\", \"counterpart\": \"Sofi Brandt\", \"org\": \"CleanSpin Supplies\", \"item\": \"bike polish\", \"unit\": \"bottles\", \"values\": [\"30\", \"60\", \"90\"], \"place\": \"stores shelf B\"},\n  {\"kind\": \"booking\", \"topic\": \"Team huddle\", \"counterpart\": \"Jules Ferrand\", \"org\": \"Tandem Bike Parts\", \"item\": \"meeting room\", \"values\": [\"canteen\", \"office room 2\", \"showroom\"], \"place\": \"office\"},\n  {\"kind\": \"order\", \"topic\": \"Brake pad restock\", \"counterpart\": \"Enzo Pali\", \"org\": \"Ribble Components\", \"item\": \"brake pads\", \"unit\": \"pairs\", \"values\": [\"120\", \"240\", \"360\"], \"place\": \"bin row C\"},\n  {\"kind\": \"booking\", \"topic\": \"Shredding service\", \"counterpart\": \"Dario Kelm\", \"org\": \"SafeShred\", \"item\": \"shredding truck\", \"values\": [\"dock 4\", \"yard\", \"dock 3\"], \"place\": \"dock 4\"},\n  {\"kind\": \"order\", \"topic\": \"Thermal labels\", \"counterpart\": \"Hana Miro\", \"org\": \"PrintLine\", \"item\": \"label rolls\", \"unit\": \"rolls\", \"values\": [\"12\", \"24\", \"36\"], \"place\": \"packing bench\"},\n  {\"kind\": \"booking\", \"topic\": \"Pedalworks client visit\", \"counterpart\": \"Omar Reyes\", \"org\": \"Pedalworks\", \"item\": \"client tour\", \"values\": [\"showroom\", \"canteen\", \"office room 2\"], \"place\": \"showroom\"},\n  {\"kind\": \"order\", \"topic\": \"Work gloves\", \"counterpart\": \"Ana Beach\", \"org\": \"HandFirst\", \"item\": \"work gloves\", \"unit\": \"pairs\", \"values\": [\"20\", \"40\", \"80\"], \"place\": \"stores\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3141,
+    "completion_tokens": 8585,
+    "reasoning_tokens": 5094,
+    "cached_tokens": 3072
+   },
+   "cost": 0.03866932,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Northline cutoff chain",
+  "setting": "The warehouse lead at Tandem Bike Parts whose assistant tracks stock counts, pick lists, and courier dispatches",
+  "owner": "Marta",
+  "org": "Tandem Bike Parts",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Standing rule from Marta: any promise we make to a client about shipping or dispatch times, and any change to such a promise on file, needs the sales lead Priya Nair's agreement first. No exceptions.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: all outbound parcels and pallets leave through Northline Express from dock 3. Nothing goes out via another courier without Marta's say-so.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Nina Belov (Northline Express)",
+    "text": "Confirming our arrangement: Northline Express offers same-day pickup at your warehouse with a cutoff of 15:00, Monday to Friday, collecting from dock 3. Get a dispatch ready before 15:00 and it leaves the same day.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Nina Belov (Northline Express)",
+    "text": "For your records: I'm your Northline account manager, Nina Belov, direct line 01632 960 118. Email me for anything courier-related.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Omar Reyes (Pedalworks)",
+    "text": "Quick intro: Pedalworks places roughly 40 order lines with you each week, and speed of dispatch matters to us. Our contact here is Omar Reyes. What can you promise us on turnaround?",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Decision: I've booked a standing daily dispatch pickup with Northline Express at 15:00 from dock 3, Monday to Friday, using their same-day cutoff. This is our fixed dispatch slot on the schedule board.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Decision, agreed with Priya: we promise Pedalworks same-day dispatch for any order they place before 13:00. That gives the packing team two hours to pick and pack before the 15:00 Northline pickup. Recorded on their account.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e6"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Decision: the weekly pallet run to the Pedalworks depot in Ashford goes out with Northline Express from dock 3 every Friday. Standing order on the books.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Decision: the packing team works a fixed pre-dispatch window of 13:00 to 15:00 each weekday, closing pick lists at 13:00 so everything is packed and staged before the 15:00 Northline pickup.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "EV-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-12",
+    "type": "message",
+    "from": "Tomás Ibarra (packing)",
+    "text": "Tomás here — we're down to two rolls of packing tape at bench 2. Can we get more in the next order?",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-12",
+    "type": "quote",
+    "from": "Piet Vander (Velo Boxes)",
+    "text": "Quote from Velo Boxes: shipping cartons at 1.10 each for 200, 0.95 for 400, 0.88 for 600. Valid 30 days, delivery to your main stores.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Decision: ordered 400 shipping cartons from Velo Boxes at the quoted 0.95 each, delivered to main stores.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-02",
+    "type": "email",
+    "from": "Birch Cycles",
+    "text": "Hi, Birch Cycles here — what's your current lead time on hub spares to Guildford? Nothing urgent, just planning.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-14",
+    "type": "email",
+    "from": "Nina Belov (Northline Express)",
+    "text": "Good news: our night-sort freight desk at the Ashford hub now accepts late pallet drops until 19:00 on weekdays, if you ever need to run a pallet over yourself outside normal collections.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-20",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Warehouse walk notes: aisle 4 needs clearer rack labels, and the bin-row C brake pad stock should be counted before month end. No dispatch changes discussed.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-03",
+    "type": "cancellation",
+    "from": "Marta",
+    "text": "Cancelled the old Broadline courier account — we're fully on Northline Express for everything outbound now.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-18",
+    "type": "task",
+    "from": "Marta",
+    "text": "To-do: pay the Northline Express quarterly invoice by 2026-10-05.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Omar Reyes (Pedalworks)",
+    "text": "Thanks from all of us at Pedalworks — the same-day turnaround has been spot on. Omar.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Nina Belov (Northline Express)",
+    "text": "Schedule change from our side: from Monday 19 October our same-day pickup cutoff at your dock moves to 13:30. The 15:00 cutoff no longer applies. Everything else stays as it is — dock 3, your account number, and the weekly Friday pallet run are all unchanged.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-14",
+    "type": "message",
+    "from": "Tomás Ibarra (packing)",
+    "text": "Bench 2 restock done — cartons and tape are in. Also, hub bin labels arrived if you want them put up this week.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-16",
+    "type": "invoice",
+    "from": "Nina Belov (Northline Express)",
+    "text": "Northline Express invoice for September collections: 512.00, due 30 days, to the usual account.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Daily Northline pickup",
+    "fields": {
+     "time": "15:00",
+     "dock": "3",
+     "frequency": "daily Mon-Fri",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Pre-dispatch packing window",
+    "fields": {
+     "start": "13:00",
+     "end": "15:00",
+     "team": "packing",
+     "status": "active"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Pedalworks shipping promise",
+    "fields": {
+     "client": "Pedalworks",
+     "cutoff": "13:00",
+     "promise": "same-day dispatch",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly pallet run to Pedalworks",
+    "fields": {
+     "courier": "Northline Express",
+     "day": "Friday",
+     "destination": "Pedalworks depot, Ashford",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Carton restock",
+    "fields": {
+     "supplier": "Velo Boxes",
+     "item": "shipping cartons",
+     "quantity": "400",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "cutoff"
+    ],
+    "from": "Priya Nair (sales lead)",
+    "rule": "e1"
+   }
+  ],
+  "task": "It's Tuesday morning — please get this week's dispatch sorted. Put the Northline pickup slot on the schedule board as it currently stands, check that the Pedalworks shipping promise on file still works with that pickup time, and send the packing team a note with the details they need.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "time",
+    "value": "13:30",
+    "stale": [
+     "15:00"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-3",
+    "field": "start",
+    "value": "11:30",
+    "stale": [
+     "13:00"
+    ]
+   },
+   {
+    "record": "EV-3",
+    "field": "end",
+    "value": "13:30",
+    "stale": [
+     "15:00"
+    ]
+   },
+   {
+    "message_to": "packing team",
+    "regarding": "EV-1",
+    "says": [
+     "13:30"
+    ],
+    "stale": [
+     "15:00"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Priya Nair (sales lead)",
+    "regarding": "CL-1",
+    "says": [
+     "11:30"
+    ],
+    "stale": [
+     "13:00"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change corrects Northline's same-day cutoff from 15:00 to 13:30, keeping dock 3, the courier and the Friday pallet run standing. The dispatch slot EV-1 and the packing window EV-3 were built on the 15:00 cutoff, so they are REVISE and move to 13:30 and 11:30-13:30. The Pedalworks same-day promise CL-1 is two hops down the chain (it rests on the dispatch slot), but its cutoff field needs Priya Nair's consent under the standing rule, so the assistant must ask her about 11:30 rather than edit the record. The weekly pallet run ORD-1 only uses the courier and dock, which the change leaves standing, so KEEP; the 19:00 night-sort figure is a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Tape restock",
+    "counterpart": "Adila Chen",
+    "org": "Orapro Adhesives",
+    "item": "packing tape",
+    "unit": "rolls",
+    "values": [
+     "24",
+     "48",
+     "60",
+     "96"
+    ],
+    "place": "dock 3 stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Van hire",
+    "counterpart": "Marco Tille",
+    "org": "Ridgeway Vans",
+    "item": "cargo van",
+    "values": [
+     "bay 1",
+     "bay 2",
+     "dock forecourt"
+    ],
+    "place": "dock 3 forecourt"
+   },
+   {
+    "kind": "booking",
+    "topic": "Northline extra pallet pickup",
+    "counterpart": "Nina Belov",
+    "org": "Northline Express",
+    "item": "extra pallet pickup",
+    "values": [
+     "dock 3",
+     "dock 4",
+     "yard gate"
+    ],
+    "place": "dock 3"
+   },
+   {
+    "kind": "order",
+    "topic": "Carton restock",
+    "counterpart": "Piet Vander",
+    "org": "Velo Boxes",
+    "item": "shipping cartons",
+    "unit": "cartons",
+    "values": [
+     "200",
+     "400",
+     "600"
+    ],
+    "place": "main stores"
+   },
+   {
+    "kind": "booking",
+    "topic": "Forklift service",
+    "counterpart": "Grete Lund",
+    "org": "Halden Equipment",
+    "item": "forklift service slot",
+    "values": [
+     "bay 2",
+     "bay 3",
+     "workshop"
+    ],
+    "place": "workshop bay"
+   },
+   {
+    "kind": "order",
+    "topic": "Bike polish restock",
+    "counterpart": "Sofi Brandt",
+    "org": "CleanSpin Supplies",
+    "item": "bike polish",
+    "unit": "bottles",
+    "values": [
+     "30",
+     "60",
+     "90"
+    ],
+    "place": "stores shelf B"
+   },
+   {
+    "kind": "booking",
+    "topic": "Team huddle",
+    "counterpart": "Jules Ferrand",
+    "org": "Tandem Bike Parts",
+    "item": "meeting room",
+    "values": [
+     "canteen",
+     "office room 2",
+     "showroom"
+    ],
+    "place": "office"
+   },
+   {
+    "kind": "order",
+    "topic": "Brake pad restock",
+    "counterpart": "Enzo Pali",
+    "org": "Ribble Components",
+    "item": "brake pads",
+    "unit": "pairs",
+    "values": [
+     "120",
+     "240",
+     "360"
+    ],
+    "place": "bin row C"
+   },
+   {
+    "kind": "booking",
+    "topic": "Shredding service",
+    "counterpart": "Dario Kelm",
+    "org": "SafeShred",
+    "item": "shredding truck",
+    "values": [
+     "dock 4",
+     "yard",
+     "dock 3"
+    ],
+    "place": "dock 4"
+   },
+   {
+    "kind": "order",
+    "topic": "Thermal labels",
+    "counterpart": "Hana Miro",
+    "org": "PrintLine",
+    "item": "label rolls",
+    "unit": "rolls",
+    "values": [
+     "12",
+     "24",
+     "36"
+    ],
+    "place": "packing bench"
+   },
+   {
+    "kind": "booking",
+    "topic": "Pedalworks client visit",
+    "counterpart": "Omar Reyes",
+    "org": "Pedalworks",
+    "item": "client tour",
+    "values": [
+     "showroom",
+     "canteen",
+     "office room 2"
+    ],
+    "place": "showroom"
+   },
+   {
+    "kind": "order",
+    "topic": "Work gloves",
+    "counterpart": "Ana Beach",
+    "org": "HandFirst",
+    "item": "work gloves",
+    "unit": "pairs",
+    "values": [
+     "20",
+     "40",
+     "80"
+    ],
+    "place": "stores"
+   }
+  ],
+  "id": "G100-3-01",
+  "tier": 100,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The change moves Northline's same-day cutoff, but does not unambiguously reschedule the separately booked 15:00 pickup to 13:30. The history also describes an existing two-hour packing window without explicitly requiring its duration to remain fixed, so 11:30 is a plausible revised start and proposed client cutoff rather than a uniquely determined value.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change moves Northline's same-day cutoff, but does not unambiguously reschedule the separately booked 15:00 pickup to 13:30. The history also describes an existing two-hour packing window without explicitly requiring its duration to remain fixed, so 11:30 is a plausible revised start and proposed client cutoff rather than a uniquely determined value."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3455,
+    "completion_tokens": 387,
+    "reasoning_tokens": 278,
+    "cached_tokens": 0
+   },
+   "cost": 0.06253,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "238952d9843f0f835a776cd6f00b361c1e43689380b2307740de157ef633f756",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: the 15:00 cutoff (e3) is revoked, EV-1 (e6) is REVISE, CL-1 (e7) is ASK under Priya's consent rule, and ORD-1 is KEEP because the courier, dock and Friday run stand. The 11:30 start for the packing window follows from e7's two-hour buffer, though that step is somewhat inferential. The core has 21 events and 5 decisions, the change is 8 days before the task day with 2 core events after it, and it appears as a routine schedule change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: the 15:00 cutoff (e3) is revoked, EV-1 (e6) is REVISE, CL-1 (e7) is ASK under Priya's consent rule, and ORD-1 is KEEP because the courier, dock and Friday run stand. The 11:30 start for the packing window follows from e7's two-hour buffer, though that step is somewhat inferential. The core has 21 events and 5 decisions, the change is 8 days before the task day with 2 core events after it, and it appears as a routine schedule change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4954,
+    "completion_tokens": 2219,
+    "reasoning_tokens": 1982,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016049,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "238952d9843f0f835a776cd6f00b361c1e43689380b2307740de157ef633f756",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact e3; EV-1 rests on it directly, EV-3 and CL-1 rest on the EV-1 decision (two hops, CL-1 requiring Priya's consent under e1, hence ASK with 11:30 = two hours before 13:30 as e7 fixes), and ORD-1 cites e3 only for courier/dock which the change explicitly leaves standing (KEEP). Tier counts hold: 21 core events, 5 core decisions, change 8 days before the task day with 2 core events after it. The change is an ordinary mid-history email with later events, not flagged.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact e3; EV-1 rests on it directly, EV-3 and CL-1 rest on the EV-1 decision (two hops, CL-1 requiring Priya's consent under e1, hence ASK with 11:30 = two hours before 13:30 as e7 fixes), and ORD-1 cites e3 only for courier/dock which the change explicitly leaves standing (KEEP). Tier counts hold: 21 core events, 5 core decisions, change 8 days before the task day with 2 core events after it. The change is an ordinary mid-history email with later events, not flagged."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3569,
+    "completion_tokens": 578,
+    "reasoning_tokens": 389,
+    "cached_tokens": 256
+   },
+   "cost": 0.0186858,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "238952d9843f0f835a776cd6f00b361c1e43689380b2307740de157ef633f756",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

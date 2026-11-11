@@ -1,0 +1,633 @@
+{
+ "id": "G100-4-02",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 1,
+ "setting": "The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance",
+ "prompt_sha256": "ae5b9f05a380f4c1b84bc53e282b8d8bfc6b7679d1dbffda570a86fff68ec75f",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Bramble Hollow autumn bookings\",\n  \"setting\": \"The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance\",\n  \"owner\": \"Maren\",\n  \"org\": \"Bramble Hollow Campsite\",\n  \"now\": \"2026-09-20\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-04\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing rule for group bookings at Bramble Hollow: for any group of twenty or more guests, we collect a thirty percent deposit and get Priya Nair's sign-off before the booking is confirmed. Groups under twenty guests need neither.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Maren\", \"text\": \"Meadow Field has 40 pitches and is free on all October weekends this year, so we can take large groups there.\", \"role\": \"fact\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-15\", \"type\": \"quote\", \"from\": \"Hollow Log Supply\", \"text\": \"Hollow Log Supply quoted £45 per bulk firewood pack, delivered on Tuesdays to the campsite yard.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Standing arrangement: each month we order bulk firewood packs from Hollow Log Supply at their list price, delivered to the campsite yard.\", \"role\": \"rule\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-28\", \"type\": \"email\", \"from\": \"Tomas Reid (Lakeside Corp)\", \"text\": \"Lakeside Corp would like an away-day at Bramble Hollow on Saturday 10 October for 24 people, using Meadow Field.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-02\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Booked the Lakeside Corp away-day for Saturday 10 October, 24 guests on Meadow Field. Deposit of thirty percent received and Priya Nair signed off, so it is confirmed under our group booking rule.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\", \"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Gail Peters (Ridgefield Scouts)\", \"text\": \"Ridgefield Scouts would like the weekend of Saturday 26 to Sunday 27 September, 18 people, Meadow Field if possible.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-10\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Booked the Ridgefield Scouts for the weekend of 26–27 September, 18 guests on Meadow Field. They are under twenty so no deposit or sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\", \"e7\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Hollow Log Supply\", \"text\": \"Confirmation of our quote: bulk firewood packs at £45 each, Tuesday deliveries to Bramble Hollow.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e10\", \"date\": \"2026-07-18\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Ordered six bulk firewood packs from Hollow Log Supply for the September delivery at £45 each, per the standing arrangement.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-25\", \"type\": \"notice\", \"from\": \"Rowan Build Ltd\", \"text\": \"Rowan Build Ltd will start the shower block refurbishment on Monday 5 October; it runs two weeks and the east facilities will be closed during the work.\", \"role\": \"fact\", \"ends\": \"2026-10-19\"},\n    {\"id\": \"e12\", \"date\": \"2026-08-02\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"The Harlow family wants a birthday party group on Saturday 17 October, 30 guests on Meadow Field.\", \"role\": \"fact\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-06\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Booked the Harlow family birthday group for Saturday 17 October, 30 guests on Meadow Field. Thirty percent deposit collected and Priya Nair approved, so it is confirmed as our group rule requires.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e2\", \"e12\"], \"record\": \"EV-3\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-14\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering quotes £9 per head for a group supper at Bramble Hollow, served in the barn.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Booked the bat-activity talk with the county wildlife officer for Saturday 3 October in the barn, open to all campers, no charge.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-27\", \"type\": \"note\", \"from\": \"Maren\", \"text\": \"Ordered four bulk firewood packs from Hollow Log Supply for the October delivery at £45 each, per the standing arrangement.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-08\", \"type\": \"instruction\", \"from\": \"Maren\", \"text\": \"Writing our group booking practice in one place so there is no confusion: if a group is twenty or more people, we take a deposit of thirty percent and Priya Nair signs off before we mark the booking confirmed. Smaller groups are simply booked. This is how we have been doing it and how it stays.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e18\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Fairway Catering sent their autumn price list: barn breakfasts are now £6 a head and suppers for groups of thirty or more are £11 a head.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Gail Peters (Ridgefield Scouts)\", \"text\": \"For our weekend of 26–27 September, could the campsite arrange a group supper on the Saturday evening in the barn? We will be 18 people.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-17\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Happy to do the scouts' supper on Saturday 26 September at our quoted £9 a head for your group size; just confirm the final headcount.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e21\", \"date\": \"2026-09-19\", \"type\": \"message\", \"from\": \"Maren\", \"text\": \"Reminder to order gravel for the Meadow Field access track before the October half-term.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Lakeside Corp away-day\", \"fields\": {\"date\": \"2026-10-10\", \"place\": \"Meadow Field\", \"guests\": \"24\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Ridgefield Scouts weekend\", \"fields\": {\"date\": \"2026-09-26\", \"end_date\": \"2026-09-27\", \"place\": \"Meadow Field\", \"guests\": \"18\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Harlow family birthday group\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Meadow Field\", \"guests\": \"30\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Bat-activity talk\", \"fields\": {\"date\": \"2026-10-03\", \"place\": \"Barn\", \"time\": \"19:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"September firewood order\", \"fields\": {\"supplier\": \"Hollow Log Supply\", \"item\": \"bulk firewood packs\", \"quantity\": \"6\", \"unit_price\": \"45\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"October firewood order\", \"fields\": {\"supplier\": \"Hollow Log Supply\", \"item\": \"bulk firewood packs\", \"quantity\": \"4\", \"unit_price\": \"45\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Lakeside Corp\", \"fields\": {\"contact\": \"Tomas Reid\", \"email\": \"t.reid@lakeside.example\", \"guests\": \"24\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-1\", \"fields\": [\"date\", \"guests\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"},\n    {\"record\": \"EV-3\", \"fields\": [\"date\", \"guests\"], \"from\": \"Priya Nair\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Gail from the Ridgefield Scouts has asked again about the supper. Please arrange it for our scouts weekend: a group supper for the 18 people on Saturday 26 September in the barn, and let Fairway Catering know we are going ahead with them.\",\n  \"expect\": [\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-09-26\", \"place\": \"Barn\", \"guests\": \"18\", \"caterer\": \"Fairway Catering\", \"price_per_head\": \"9\", \"status\": \"booked\"}, \"stale\": {\"price_per_head\": [\"11\"]}, \"task\": true},\n    {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": \"EV-2\", \"says\": [\"18 people\", \"9 per head\", \"Saturday 26 September\"], \"stale\": [\"11 per head\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the 8 September instruction merely restates the existing group booking rule in other words, so no earlier decision is touched and no record or mark changes. The task is simply to set up the scouts' supper beside the change: a new schedule record for 18 guests on 26 September in the barn and a confirmation to Fairway Catering at the £9 per head quoted for that group size. The distractor's £11 supper price applies only to groups of thirty or more and must not be used; EV-1, EV-2, EV-3, EV-4, ORD-1, ORD-2 and CL-1 all stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"firewood restock\", \"counterpart\": \"Nils Berg\", \"org\": \"Hollow Log Supply\", \"item\": \"bulk firewood packs\", \"unit\": \"packs\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"campsite yard\"},\n    {\"kind\": \"booking\", \"topic\": \"barn quiz night\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"barn quiz night with snacks\", \"unit\": \"guests\", \"values\": [\"Barn\", \"Picnic Shelter\", \"Meadow Field\"], \"place\": \"Barn\"},\n    {\"kind\": \"booking\", \"topic\": \"school nature walks\", \"counterpart\": \"Gail Peters\", \"org\": \"Ridgefield Scouts\", \"item\": \"guided nature walk slot\", \"unit\": \"groups\", \"values\": [\"Meadow Field\", \"Woodland Trail\", \"Lakeside Loop\"], \"place\": \"Meadow Field\"},\n    {\"kind\": \"order\", \"topic\": \"toilet paper restock\", \"counterpart\": \"Marta Kim\", \"org\": \"Northvale Hygiene\", \"item\": \"toilet paper rolls\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"storage shed\"},\n    {\"kind\": \"order\", \"topic\": \"gravel for tracks\", \"counterpart\": \"Ben Ostrowski\", \"org\": \"Pennine Aggregates\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Meadow Field access track\"},\n    {\"kind\": \"booking\", \"topic\": \"campervan club meets\", \"counterpart\": \"Sue Halloway\", \"org\": \"Dales Campervan Club\", \"item\": \"campervan pitch block\", \"unit\": \"pitches\", \"values\": [\"Meadow Field\", \"Hilltop Paddock\", \"Riverside Strip\"], \"place\": \"Hilltop Paddock\"},\n    {\"kind\": \"order\", \"topic\": \"first aid kits\", \"counterpart\": \"Ade Fowler\", \"org\": \"Peak Safety Ltd\", \"item\": \"first aid kits\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"site office\"},\n    {\"kind\": \"booking\", \"topic\": \"yoga mornings\", \"counterpart\": \"Ella Marsh\", \"org\": \"Slow Morning Yoga\", \"item\": \"barn yoga morning\", \"unit\": \"sessions\", \"values\": [\"Barn\", \"Picnic Shelter\", \"Meadow Field\"], \"place\": \"Barn\"},\n    {\"kind\": \"order\", \"topic\": \"bin liners\", \"counterpart\": \"Marta Kim\", \"org\": \"Northvale Hygiene\", \"item\": \"bin liners\", \"unit\": \"rolls\", \"values\": [\"8\", \"12\", \"16\"], \"place\": \"storage shed\"},\n    {\"kind\": \"booking\", \"topic\": \"fishing club pegs\", \"counterpart\": \"Colin Bright\", \"org\": \"Hollow Anglers\", \"item\": \"lakeside fishing pegs\", \"unit\": \"pegs\", \"values\": [\"Lakeside Loop\", \"Riverside Strip\", \"Meadow Field\"], \"place\": \"Lakeside Loop\"},\n    {\"kind\": \"order\", \"topic\": \"milk delivery\", \"counterpart\": \"Rhian Oakes\", \"org\": \"Daleview Dairy\", \"item\": \"milk crates\", \"unit\": \"crates\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"site shop\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3155,
+    "completion_tokens": 5032,
+    "reasoning_tokens": 1504,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02305572,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Bramble Hollow autumn bookings",
+  "setting": "The campsite manager at Bramble Hollow whose assistant handles pitch bookings, group events, and facility maintenance",
+  "owner": "Maren",
+  "org": "Bramble Hollow Campsite",
+  "now": "2026-09-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-04",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing rule for group bookings at Bramble Hollow: for any group of twenty or more guests, we collect a thirty percent deposit and get Priya Nair's sign-off before the booking is confirmed. Groups under twenty guests need neither.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Maren",
+    "text": "Meadow Field has 40 pitches and is free on all October weekends this year, so we can take large groups there.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-15",
+    "type": "quote",
+    "from": "Hollow Log Supply",
+    "text": "Hollow Log Supply quoted £45 per bulk firewood pack, delivered on Tuesdays to the campsite yard.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-20",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Standing arrangement: each month we order bulk firewood packs from Hollow Log Supply at their list price, delivered to the campsite yard.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-28",
+    "type": "email",
+    "from": "Tomas Reid (Lakeside Corp)",
+    "text": "Lakeside Corp would like an away-day at Bramble Hollow on Saturday 10 October for 24 people, using Meadow Field.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-02",
+    "type": "note",
+    "from": "Maren",
+    "text": "Booked the Lakeside Corp away-day for Saturday 10 October, 24 guests on Meadow Field. Deposit of thirty percent received and Priya Nair signed off, so it is confirmed under our group booking rule.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2",
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Gail Peters (Ridgefield Scouts)",
+    "text": "Ridgefield Scouts would like the weekend of Saturday 26 to Sunday 27 September, 18 people, Meadow Field if possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-10",
+    "type": "note",
+    "from": "Maren",
+    "text": "Booked the Ridgefield Scouts for the weekend of 26–27 September, 18 guests on Meadow Field. They are under twenty so no deposit or sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2",
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Hollow Log Supply",
+    "text": "Confirmation of our quote: bulk firewood packs at £45 each, Tuesday deliveries to Bramble Hollow.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-18",
+    "type": "note",
+    "from": "Maren",
+    "text": "Ordered six bulk firewood packs from Hollow Log Supply for the September delivery at £45 each, per the standing arrangement.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-25",
+    "type": "notice",
+    "from": "Rowan Build Ltd",
+    "text": "Rowan Build Ltd will start the shower block refurbishment on Monday 5 October; it runs two weeks and the east facilities will be closed during the work.",
+    "role": "fact",
+    "ends": "2026-10-19"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-02",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "The Harlow family wants a birthday party group on Saturday 17 October, 30 guests on Meadow Field.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-06",
+    "type": "note",
+    "from": "Maren",
+    "text": "Booked the Harlow family birthday group for Saturday 17 October, 30 guests on Meadow Field. Thirty percent deposit collected and Priya Nair approved, so it is confirmed as our group rule requires.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e2",
+     "e12"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-14",
+    "type": "quote",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering quotes £9 per head for a group supper at Bramble Hollow, served in the barn.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-20",
+    "type": "note",
+    "from": "Maren",
+    "text": "Booked the bat-activity talk with the county wildlife officer for Saturday 3 October in the barn, open to all campers, no charge.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-27",
+    "type": "note",
+    "from": "Maren",
+    "text": "Ordered four bulk firewood packs from Hollow Log Supply for the October delivery at £45 each, per the standing arrangement.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-08",
+    "type": "instruction",
+    "from": "Maren",
+    "text": "Writing our group booking practice in one place so there is no confusion: if a group is twenty or more people, we take a deposit of thirty percent and Priya Nair signs off before we mark the booking confirmed. Smaller groups are simply booked. This is how we have been doing it and how it stays.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Fairway Catering sent their autumn price list: barn breakfasts are now £6 a head and suppers for groups of thirty or more are £11 a head.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Gail Peters (Ridgefield Scouts)",
+    "text": "For our weekend of 26–27 September, could the campsite arrange a group supper on the Saturday evening in the barn? We will be 18 people.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-17",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Happy to do the scouts' supper on Saturday 26 September at our quoted £9 a head for your group size; just confirm the final headcount.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-19",
+    "type": "message",
+    "from": "Maren",
+    "text": "Reminder to order gravel for the Meadow Field access track before the October half-term.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Lakeside Corp away-day",
+    "fields": {
+     "date": "2026-10-10",
+     "place": "Meadow Field",
+     "guests": "24",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Ridgefield Scouts weekend",
+    "fields": {
+     "date": "2026-09-26",
+     "end_date": "2026-09-27",
+     "place": "Meadow Field",
+     "guests": "18",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Harlow family birthday group",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Meadow Field",
+     "guests": "30",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Bat-activity talk",
+    "fields": {
+     "date": "2026-10-03",
+     "place": "Barn",
+     "time": "19:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "September firewood order",
+    "fields": {
+     "supplier": "Hollow Log Supply",
+     "item": "bulk firewood packs",
+     "quantity": "6",
+     "unit_price": "45",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "October firewood order",
+    "fields": {
+     "supplier": "Hollow Log Supply",
+     "item": "bulk firewood packs",
+     "quantity": "4",
+     "unit_price": "45",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Lakeside Corp",
+    "fields": {
+     "contact": "Tomas Reid",
+     "email": "t.reid@lakeside.example",
+     "guests": "24",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "guests"
+    ],
+    "from": "Priya Nair",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-3",
+    "fields": [
+     "date",
+     "guests"
+    ],
+    "from": "Priya Nair",
+    "rule": "e1"
+   }
+  ],
+  "task": "Gail from the Ridgefield Scouts has asked again about the supper. Please arrange it for our scouts weekend: a group supper for the 18 people on Saturday 26 September in the barn, and let Fairway Catering know we are going ahead with them.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-09-26",
+     "place": "Barn",
+     "guests": "18",
+     "caterer": "Fairway Catering",
+     "price_per_head": "9",
+     "status": "booked"
+    },
+    "stale": {
+     "price_per_head": [
+      "11"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Dana Ortiz (Fairway Catering)",
+    "regarding": "EV-2",
+    "says": [
+     "18 people",
+     "9 per head",
+     "Saturday 26 September"
+    ],
+    "stale": [
+     "11 per head"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the 8 September instruction merely restates the existing group booking rule in other words, so no earlier decision is touched and no record or mark changes. The task is simply to set up the scouts' supper beside the change: a new schedule record for 18 guests on 26 September in the barn and a confirmation to Fairway Catering at the £9 per head quoted for that group size. The distractor's £11 supper price applies only to groups of thirty or more and must not be used; EV-1, EV-2, EV-3, EV-4, ORD-1, ORD-2 and CL-1 all stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "firewood restock",
+    "counterpart": "Nils Berg",
+    "org": "Hollow Log Supply",
+    "item": "bulk firewood packs",
+    "unit": "packs",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "campsite yard"
+   },
+   {
+    "kind": "booking",
+    "topic": "barn quiz night",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "barn quiz night with snacks",
+    "unit": "guests",
+    "values": [
+     "Barn",
+     "Picnic Shelter",
+     "Meadow Field"
+    ],
+    "place": "Barn"
+   },
+   {
+    "kind": "booking",
+    "topic": "school nature walks",
+    "counterpart": "Gail Peters",
+    "org": "Ridgefield Scouts",
+    "item": "guided nature walk slot",
+    "unit": "groups",
+    "values": [
+     "Meadow Field",
+     "Woodland Trail",
+     "Lakeside Loop"
+    ],
+    "place": "Meadow Field"
+   },
+   {
+    "kind": "order",
+    "topic": "toilet paper restock",
+    "counterpart": "Marta Kim",
+    "org": "Northvale Hygiene",
+    "item": "toilet paper rolls",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "storage shed"
+   },
+   {
+    "kind": "order",
+    "topic": "gravel for tracks",
+    "counterpart": "Ben Ostrowski",
+    "org": "Pennine Aggregates",
+    "item": "gravel",
+    "unit": "tonnes",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Meadow Field access track"
+   },
+   {
+    "kind": "booking",
+    "topic": "campervan club meets",
+    "counterpart": "Sue Halloway",
+    "org": "Dales Campervan Club",
+    "item": "campervan pitch block",
+    "unit": "pitches",
+    "values": [
+     "Meadow Field",
+     "Hilltop Paddock",
+     "Riverside Strip"
+    ],
+    "place": "Hilltop Paddock"
+   },
+   {
+    "kind": "order",
+    "topic": "first aid kits",
+    "counterpart": "Ade Fowler",
+    "org": "Peak Safety Ltd",
+    "item": "first aid kits",
+    "unit": "kits",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "site office"
+   },
+   {
+    "kind": "booking",
+    "topic": "yoga mornings",
+    "counterpart": "Ella Marsh",
+    "org": "Slow Morning Yoga",
+    "item": "barn yoga morning",
+    "unit": "sessions",
+    "values": [
+     "Barn",
+     "Picnic Shelter",
+     "Meadow Field"
+    ],
+    "place": "Barn"
+   },
+   {
+    "kind": "order",
+    "topic": "bin liners",
+    "counterpart": "Marta Kim",
+    "org": "Northvale Hygiene",
+    "item": "bin liners",
+    "unit": "rolls",
+    "values": [
+     "8",
+     "12",
+     "16"
+    ],
+    "place": "storage shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "fishing club pegs",
+    "counterpart": "Colin Bright",
+    "org": "Hollow Anglers",
+    "item": "lakeside fishing pegs",
+    "unit": "pegs",
+    "values": [
+     "Lakeside Loop",
+     "Riverside Strip",
+     "Meadow Field"
+    ],
+    "place": "Lakeside Loop"
+   },
+   {
+    "kind": "order",
+    "topic": "milk delivery",
+    "counterpart": "Rhian Oakes",
+    "org": "Daleview Dairy",
+    "item": "milk crates",
+    "unit": "crates",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "site shop"
+   }
+  ],
+  "id": "G100-4-02",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supper booking and confirmation at £9 per head follow from the history, and the September instruction is a no-op restatement. However, the consent map imposes approval for date and guest-count edits, whereas e1 only explicitly requires Priya's sign-off before confirming bookings for twenty or more guests; that field-level consent requirement is not established.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supper booking and confirmation at £9 per head follow from the history, and the September instruction is a no-op restatement. However, the consent map imposes approval for date and guest-count edits, whereas e1 only explicitly requires Priya's sign-off before confirming bookings for twenty or more guests; that field-level consent requirement is not established."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3422,
+    "completion_tokens": 289,
+    "reasoning_tokens": 182,
+    "cached_tokens": 0
+   },
+   "cost": 0.0572175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd07b1c3a60fc49deae684d484ff49d96de940b9cec734c3e91d77968cba3dee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e17) restates the existing group rule word for word in substance, so no record or mark should change, and the expected state is consistent with that. The core has 21 events, 6 decisions, and the change falls 12 days before the task day with 4 core events after it, which meets tier 100. The task requires creating a new booking and messaging the caterer, so it forces an act; the distractor £11 price is correctly excluded for a group of 18.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e17) restates the existing group rule word for word in substance, so no record or mark should change, and the expected state is consistent with that. The core has 21 events, 6 decisions, and the change falls 12 days before the task day with 4 core events after it, which meets tier 100. The task requires creating a new booking and messaging the caterer, so it forces an act; the distractor £11 price is correctly excluded for a group of 18."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4916,
+    "completion_tokens": 1877,
+    "reasoning_tokens": 1683,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014301,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd07b1c3a60fc49deae684d484ff49d96de940b9cec734c3e91d77968cba3dee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "kimi": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 8 September instruction restates the existing group rule verbatim in substance, so nothing is touched (true control); the task's supper uses the £9 quote for a group of 18, correctly excluding the £11 distractor that applies only to 30+ groups. Counts fit tier 100 (21 core events, 6 decisions, change 12 days before task day with 4 later core events), the consent map matches e1's sign-off rule, and the change sits as an ordinary instruction mid-history with events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 8 September instruction restates the existing group rule verbatim in substance, so nothing is touched (true control); the task's supper uses the £9 quote for a group of 18, correctly excluding the £11 distractor that applies only to 30+ groups. Counts fit tier 100 (21 core events, 6 decisions, change 12 days before task day with 4 later core events), the consent map matches e1's sign-off rule, and the change sits as an ordinary instruction mid-history with events after it."
+   },
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3503,
+    "completion_tokens": 335,
+    "reasoning_tokens": 170,
+    "cached_tokens": 256
+   },
+   "cost": 0.0148428,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "cd07b1c3a60fc49deae684d484ff49d96de940b9cec734c3e91d77968cba3dee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

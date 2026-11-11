@@ -1,0 +1,674 @@
+{
+ "id": "G1000-3-01",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 0,
+ "setting": "A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts",
+ "prompt_sha256": "35d56f6ad0d5237251edf96475d22771c08a6e1ab84ebe0fd63fc79dbba8b1f9",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Hornbeam shortfall at Kestrel Court\",\n \"setting\": \"A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts\",\n \"owner\": \"Mara\",\n \"org\": \"Greenharrow Designs\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the diary: once a client booking is confirmed (a survey visit, a planting day, a maintenance round), I do not move or rescope it without that client's agreement first. Ask them, get a yes, then change the record.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Any supplier order over 800 in total needs Priya Nolan's sign-off as finance lead before we send it. Under 800 I can just place it.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"We have bark mulch and moss treatment back in stock at the yard whenever you need them, Ivy.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"letter\", \"from\": \"Harborough Council\", \"text\": \"Your trailer parking permit for the Marlow depot yard is renewed through March 2027.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"Quotation: 50 bay trees at 15 each, delivered to the Marlow depot, valid to end of September.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the bay tree order with Bramble Ridge: 50 trees at 15 each, 750 total, under the 800 sign-off line, so no need to bother Priya. Delivery to the Marlow depot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Peter Vaughn (Willow Bank Residence)\", \"text\": \"The summer tidy-up looks wonderful, thank you. We'd like to keep you on for regular maintenance.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-22\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Team headcount is four of us on the books at the moment: me, Sam, Ravi and Elena.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-04\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team meeting notes: we agreed to run one full training day each autumn, on tools and machinery safety, before the hedge season starts.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"cancellation\", \"from\": \"Roshan Patel\", \"text\": \"Roshan cancelled his August border tidy, nothing to reschedule for now.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Site survey, Kestrel Court Cafe: rear garden soil is heavy clay, and Dana Kestrel wants a hornbeam hedge along the back fence, roughly 180 plants for the run. Contact is Dana Kestrel, dana@kestrelcourt.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"text\": \"Any weekday in October works for the planting day, mid-October would be ideal if you can manage it.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Marlow depot job slipped two days with the rain, back on it now.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Good news on the hornbeam: we have 240 plants in stock this season at 4 each, and delivery runs about four weeks from order. It's the same clay-suited stock as always, hornbeam really does well on heavy ground.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Renew the van insurance before the end of October, deadline 2026-10-31.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the Kestrel Court hedge from Fern Hollow: 180 hornbeam at 4 each, 720 total, well under the 800 sign-off line so I placed it myself. Delivery about four weeks out, so booked in for 2026-10-10 to the cafe.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e11\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Peter Vaughn (Willow Bank Residence)\", \"text\": \"Our maintenance contract runs to 31 March 2027 and we'd like the rounds on the first Tuesday of each month as before.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"With 180 hornbeam arriving 2026-10-10, I booked a single planting day on 2026-10-15 with Dana, mid-October as she asked, and confirmed it with her. Whole team on it.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e12\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Finished the Kestrel Court planting plan: species stays hornbeam, chosen because it thrives on heavy clay, with a 45 metre hedge run along the back fence.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e14\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the Willow Bank maintenance rounds for the first Tuesday of each month, starting 2026-10-06, per Peter's contract.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Restocked 40 bags of moss treatment from Bramble Ridge, they confirmed it's back in stock.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the autumn training day for the whole team on 2026-10-08, tools and machinery safety, as we agreed at the meeting.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\"], \"record\": \"EV-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Order confirmation: 180 hornbeam hedging plants at 4 each, total 720, delivery on 2026-10-10 to Kestrel Court Cafe. All as agreed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Ruth Halliwell (Halliwell Veterinary Clinic)\", \"text\": \"We'd like a quote for border pruning at the clinic twice a year, and our contact is me, Ruth Halliwell.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Opened a client record for Halliwell Veterinary Clinic, contact Ruth Halliwell, service border pruning, twice yearly.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"CL-2\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Kestrel Court plan on track: 180 hornbeam from Fern Hollow landing 2026-10-10, planting day 2026-10-15 with Dana, whole team out.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-27\", \"type\": \"quote\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"For what it's worth, we could supply hornbeam hedging too: 200 plants at 5.50 each if you ever need them.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"An apology from us: our season count for hornbeam came in at 80 plants, not the 240 we quoted you. The 4 price and the four-week delivery stand, and it's the same clay-suited stock, but 80 is all we have for this season.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"Invoice for the moss treatment and bay trees, payment due by 2026-10-20.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Send Peter at Willow Bank the autumn border quote by 2026-10-24.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"call\", \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"text\": \"Dana left a voicemail saying she's looking forward to the planting day and will have coffee ready for the crew.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-16\", \"type\": \"notice\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Autumn newsletter: bare-root season opens in November, whitethorn and beech available in quantity.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Priya Nolan\", \"text\": \"Month-end coming up, can you send me a list of orders placed this month when you get a chance?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fern Hollow hornbeam for Kestrel Court\", \"fields\": {\"supplier\": \"Fern Hollow Nurseries\", \"item\": \"hornbeam hedging\", \"quantity\": \"180\", \"unit_price\": \"4\", \"amount\": \"720\", \"delivery_date\": \"2026-10-10\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Ridge bay trees\", \"fields\": {\"supplier\": \"Bramble Ridge Nurseries\", \"item\": \"bay trees\", \"quantity\": \"50\", \"unit_price\": \"15\", \"amount\": \"750\", \"delivery_date\": \"2026-07-20\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Bramble Ridge moss treatment restock\", \"fields\": {\"supplier\": \"Bramble Ridge Nurseries\", \"item\": \"moss treatment\", \"quantity\": \"40\", \"unit_price\": \"9\", \"amount\": \"360\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel Court planting day\", \"fields\": {\"date\": \"2026-10-15\", \"plants\": \"180\", \"client\": \"Dana Kestrel\", \"crew\": \"4\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Willow Bank maintenance rounds\", \"fields\": {\"date\": \"2026-10-06\", \"frequency\": \"monthly, first Tuesday\", \"client\": \"Peter Vaughn\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn training day\", \"fields\": {\"date\": \"2026-10-08\", \"place\": \"Marlow depot\", \"attendees\": \"4\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Kestrel Court planting plan\", \"fields\": {\"species\": \"hornbeam\", \"soil\": \"heavy clay\", \"hedge_length\": \"45\", \"client\": \"Dana Kestrel\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Halliwell Veterinary Clinic client record\", \"fields\": {\"contact\": \"Ruth Halliwell\", \"service\": \"border pruning\", \"frequency\": \"twice yearly\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"plants\"], \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Kestrel Court is the big one this month. Can you confirm the hornbeam order with Fern Hollow and send Dana her planting day note?\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"80\", \"stale\": [\"180\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"320\", \"stale\": [\"720\"], \"task\": true},\n  {\"message_to\": \"Dana Kestrel\", \"regarding\": \"EV-1\", \"says\": [\"80 hornbeam\", \"keep or move the 15 October planting day\"], \"stale\": [\"180\"], \"task\": true}\n ],\n \"why\": \"The change corrects Fern Hollow's stock fact from 240 to 80 hornbeam. The order decision (ORD-1) rests directly on that fact and nobody's consent is needed, so it is REVISE: quantity to 80, amount to 320. The planting day (EV-1) rests on the order, was sized for 180 plants, and is a confirmed client booking, so under Mara's rule e1 its date and scope may only change with Dana's consent: ASK, the record stays and a consent request goes out. The planting plan (CL-1) is KEEP: it used only the clay-suitability of hornbeam, which the correction leaves standing. The Bramble Ridge hornbeam quote is a distractor, not the value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"bark mulch restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"bark mulch\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"45\", \"60\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"moss treatment restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"moss treatment\", \"unit\": \"bags\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"spring bulbs order\", \"counterpart\": \"Tomas Vega\", \"org\": \"Fern Hollow Nurseries\", \"item\": \"spring bulbs\", \"unit\": \"trays\", \"values\": [\"10\", \"18\", \"24\", \"32\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"tree stake restock\", \"counterpart\": \"Tomas Vega\", \"org\": \"Fern Hollow Nurseries\", \"item\": \"tree stakes\", \"unit\": \"bundles\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"cafe courtyard tidy\", \"counterpart\": \"Dana Kestrel\", \"org\": \"Kestrel Court Cafe\", \"item\": \"courtyard tidy-up visit\", \"unit\": \"\", \"values\": [\"front courtyard\", \"rear garden\", \"side passage\"], \"place\": \"Kestrel Court Cafe\"},\n  {\"kind\": \"booking\", \"topic\": \"residence maintenance round\", \"counterpart\": \"Peter Vaughn\", \"org\": \"Willow Bank Residence\", \"item\": \"monthly maintenance round\", \"unit\": \"\", \"values\": [\"back lawn\", \"orchard edge\", \"drive borders\"], \"place\": \"Willow Bank Residence\"},\n  {\"kind\": \"booking\", \"topic\": \"clinic border pruning\", \"counterpart\": \"Ruth Halliwell\", \"org\": \"Halliwell Veterinary Clinic\", \"item\": \"border pruning visit\", \"unit\": \"\", \"values\": [\"front borders\", \"car park bed\", \"waiting area bed\"], \"place\": \"Halliwell Veterinary Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"gravel top-up\", \"counterpart\": \"Ben Cortez\", \"org\": \"Marlow Aggregate Supply\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"tool service slot\", \"counterpart\": \"Elena Boyd\", \"org\": \"Greenharrow Designs\", \"item\": \"mower service drop-off\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"fertiliser restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"hedge fertiliser\", \"unit\": \"bags\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"site survey visit\", \"counterpart\": \"Roshan Patel\", \"org\": \"private client\", \"item\": \"site survey visit\", \"unit\": \"\", \"values\": [\"back garden\", \"front garden\"], \"place\": \"private address\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3199,
+    "completion_tokens": 10243,
+    "reasoning_tokens": 5711,
+    "cached_tokens": 3136
+   },
+   "cost": 0.04597276,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Hornbeam shortfall at Kestrel Court\",\n \"setting\": \"A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts\",\n \"owner\": \"Mara\",\n \"org\": \"Greenharrow Designs\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for the diary: once a client booking is confirmed (a survey visit, a planting day, a maintenance round), I do not move or rescope it without that client's agreement first. Ask them, get a yes, then change the record.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"Any supplier order over 800 in total needs Priya Nolan's sign-off as finance lead before we send it. Under 800 I can just place it.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"We have bark mulch and moss treatment back in stock at the yard whenever you need them, Ivy.\", \"role\": \"other\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-20\", \"type\": \"letter\", \"from\": \"Harborough Council\", \"text\": \"Your trailer parking permit for the Marlow depot yard is renewed through March 2027.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"Quotation: 50 bay trees at 15 each, delivered to the Marlow depot, valid to end of September.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the bay tree order with Bramble Ridge: 50 trees at 15 each, 750 total, under the 800 sign-off line, so no need to bother Priya. Delivery to the Marlow depot.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e7\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Peter Vaughn (Willow Bank Residence)\", \"text\": \"The summer tidy-up looks wonderful, thank you. We'd like to keep you on for regular maintenance.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-07-22\", \"type\": \"message\", \"from\": \"Mara\", \"text\": \"Team headcount is four of us on the books at the moment: me, Sam, Ravi and Elena.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-08-04\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Team meeting notes: we agreed to run one full training day each autumn, on tools and machinery safety, before the hedge season starts.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-12\", \"type\": \"cancellation\", \"from\": \"Roshan Patel\", \"text\": \"Roshan cancelled his August border tidy, nothing to reschedule for now.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-20\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Site survey, Kestrel Court Cafe: rear garden soil is heavy clay, and Dana Kestrel wants a hornbeam hedge along the back fence, roughly 180 plants for the run. Contact is Dana Kestrel, dana@kestrelcourt.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"text\": \"Any weekday in October works for the planting day, mid-October would be ideal if you can manage it.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-09-02\", \"type\": \"message\", \"from\": \"Sam Whitfield\", \"text\": \"Marlow depot job slipped two days with the rain, back on it now.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Good news on the hornbeam: we have 240 plants in stock this season at 4 each, and delivery runs about four weeks from order. It's the same clay-suited stock as always, hornbeam really does well on heavy ground.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Renew the van insurance before the end of October, deadline 2026-10-31.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered the Kestrel Court hedge from Fern Hollow: 180 hornbeam at 4 each, 720 total, well under the 800 sign-off line so I placed it myself. Delivery about four weeks out, so booked in for 2026-10-10 to the cafe.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e11\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Peter Vaughn (Willow Bank Residence)\", \"text\": \"Our maintenance contract runs to 31 March 2027 and we'd like the rounds on the first Tuesday of each month as before.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"With 180 hornbeam arriving 2026-10-10, I booked a single planting day on 2026-10-15 with Dana, mid-October as she asked, and confirmed it with her. Whole team on it.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e12\", \"e1\"], \"record\": \"EV-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Finished the Kestrel Court planting plan: species stays hornbeam, chosen because it thrives on heavy clay, with a 45 metre hedge run along the back fence.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e14\"], \"record\": \"CL-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up the Willow Bank maintenance rounds for the first Tuesday of each month, starting 2026-10-06, per Peter's contract.\", \"role\": \"decision\", \"rests_on\": [\"e17\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-17\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Restocked 40 bags of moss treatment from Bramble Ridge, they confirmed it's back in stock.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the autumn training day for the whole team on 2026-10-08, tools and machinery safety, as we agreed at the meeting.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e8\"], \"record\": \"EV-3\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Order confirmation: 180 hornbeam hedging plants at 4 each, total 720, delivery on 2026-10-10 to Kestrel Court Cafe. All as agreed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-23\", \"type\": \"email\", \"from\": \"Ruth Halliwell (Halliwell Veterinary Clinic)\", \"text\": \"We'd like a quote for border pruning at the clinic twice a year, and our contact is me, Ruth Halliwell.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Opened a client record for Halliwell Veterinary Clinic, contact Ruth Halliwell, service border pruning, twice yearly.\", \"role\": \"decision\", \"rests_on\": [\"e24\"], \"record\": \"CL-2\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-26\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Kestrel Court plan on track: 180 hornbeam from Fern Hollow landing 2026-10-10, planting day 2026-10-15 with Dana, whole team out.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-09-27\", \"type\": \"quote\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"For what it's worth, we could supply hornbeam hedging too: 200 plants at 5.50 each if you ever need them.\", \"role\": \"fact\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"An apology from us: our season count for hornbeam came in at 80 plants, not the 240 we quoted you. The 4 price and the four-week delivery stand, and it's the same clay-suited stock, but 80 is all we have for this season.\", \"role\": \"change\", \"revokes\": [\"e14\"]},\n  {\"id\": \"e29\", \"date\": \"2026-10-06\", \"type\": \"invoice\", \"from\": \"Ivy Marsh (Bramble Ridge Nurseries)\", \"text\": \"Invoice for the moss treatment and bay trees, payment due by 2026-10-20.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-09\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"Send Peter at Willow Bank the autumn border quote by 2026-10-24.\", \"role\": \"obligation\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-12\", \"type\": \"call\", \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"text\": \"Dana left a voicemail saying she's looking forward to the planting day and will have coffee ready for the crew.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-16\", \"type\": \"notice\", \"from\": \"Tomas Vega (Fern Hollow Nurseries)\", \"text\": \"Autumn newsletter: bare-root season opens in November, whitethorn and beech available in quantity.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-18\", \"type\": \"email\", \"from\": \"Priya Nolan\", \"text\": \"Month-end coming up, can you send me a list of orders placed this month when you get a chance?\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fern Hollow hornbeam for Kestrel Court\", \"fields\": {\"supplier\": \"Fern Hollow Nurseries\", \"item\": \"hornbeam hedging\", \"quantity\": \"180\", \"unit_price\": \"4\", \"amount\": \"720\", \"delivery_date\": \"2026-10-10\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bramble Ridge bay trees\", \"fields\": {\"supplier\": \"Bramble Ridge Nurseries\", \"item\": \"bay trees\", \"quantity\": \"50\", \"unit_price\": \"15\", \"amount\": \"750\", \"delivery_date\": \"2026-07-20\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Bramble Ridge moss treatment restock\", \"fields\": {\"supplier\": \"Bramble Ridge Nurseries\", \"item\": \"moss treatment\", \"quantity\": \"40\", \"unit_price\": \"9\", \"amount\": \"360\", \"status\": \"ordered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Kestrel Court planting day\", \"fields\": {\"date\": \"2026-10-15\", \"plants\": \"180\", \"client\": \"Dana Kestrel\", \"crew\": \"4\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Willow Bank maintenance rounds\", \"fields\": {\"date\": \"2026-10-06\", \"frequency\": \"monthly, first Tuesday\", \"client\": \"Peter Vaughn\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn training day\", \"fields\": {\"date\": \"2026-10-08\", \"place\": \"Marlow depot\", \"attendees\": \"4\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Kestrel Court planting plan\", \"fields\": {\"species\": \"hornbeam\", \"soil\": \"heavy clay\", \"hedge_length\": \"45\", \"client\": \"Dana Kestrel\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Halliwell Veterinary Clinic client record\", \"fields\": {\"contact\": \"Ruth Halliwell\", \"service\": \"border pruning\", \"frequency\": \"twice yearly\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"plants\"], \"from\": \"Dana Kestrel (Kestrel Court Cafe)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Kestrel Court is the big one this month. Can you confirm the hornbeam order with Fern Hollow and send Dana her planting day note?\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"quantity\", \"value\": \"80\", \"stale\": [\"180\"], \"task\": true},\n  {\"record\": \"ORD-1\", \"field\": \"amount\", \"value\": \"320\", \"stale\": [\"720\"], \"task\": true},\n  {\"message_to\": \"Dana Kestrel\", \"regarding\": \"EV-1\", \"says\": [\"80 hornbeam\", \"keep or move the 15 October planting day\"], \"stale\": [\"180\"], \"task\": true}\n ],\n \"why\": \"The change corrects Fern Hollow's stock fact from 240 to 80 hornbeam. The order decision (ORD-1) rests directly on that fact and nobody's consent is needed, so it is REVISE: quantity to 80, amount to 320. The planting day (EV-1) rests on the order, was sized for 180 plants, and is a confirmed client booking, so under Mara's rule e1 its date and scope may only change with Dana's consent: ASK, the record stays and a consent request goes out. The planting plan (CL-1) is KEEP: it used only the clay-suitability of hornbeam, which the correction leaves standing. The Bramble Ridge hornbeam quote is a distractor, not the value to act on.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"bark mulch restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"bark mulch\", \"unit\": \"bags\", \"values\": [\"20\", \"30\", \"45\", \"60\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"moss treatment restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"moss treatment\", \"unit\": \"bags\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"spring bulbs order\", \"counterpart\": \"Tomas Vega\", \"org\": \"Fern Hollow Nurseries\", \"item\": \"spring bulbs\", \"unit\": \"trays\", \"values\": [\"10\", \"18\", \"24\", \"32\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"tree stake restock\", \"counterpart\": \"Tomas Vega\", \"org\": \"Fern Hollow Nurseries\", \"item\": \"tree stakes\", \"unit\": \"bundles\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"cafe courtyard tidy\", \"counterpart\": \"Dana Kestrel\", \"org\": \"Kestrel Court Cafe\", \"item\": \"courtyard tidy-up visit\", \"unit\": \"\", \"values\": [\"front courtyard\", \"rear garden\", \"side passage\"], \"place\": \"Kestrel Court Cafe\"},\n  {\"kind\": \"booking\", \"topic\": \"residence maintenance round\", \"counterpart\": \"Peter Vaughn\", \"org\": \"Willow Bank Residence\", \"item\": \"monthly maintenance round\", \"unit\": \"\", \"values\": [\"back lawn\", \"orchard edge\", \"drive borders\"], \"place\": \"Willow Bank Residence\"},\n  {\"kind\": \"booking\", \"topic\": \"clinic border pruning\", \"counterpart\": \"Ruth Halliwell\", \"org\": \"Halliwell Veterinary Clinic\", \"item\": \"border pruning visit\", \"unit\": \"\", \"values\": [\"front borders\", \"car park bed\", \"waiting area bed\"], \"place\": \"Halliwell Veterinary Clinic\"},\n  {\"kind\": \"order\", \"topic\": \"gravel top-up\", \"counterpart\": \"Ben Cortez\", \"org\": \"Marlow Aggregate Supply\", \"item\": \"gravel\", \"unit\": \"tonnes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"tool service slot\", \"counterpart\": \"Elena Boyd\", \"org\": \"Greenharrow Designs\", \"item\": \"mower service drop-off\", \"unit\": \"\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"workshop bay 3\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"order\", \"topic\": \"fertiliser restock\", \"counterpart\": \"Ivy Marsh\", \"org\": \"Bramble Ridge Nurseries\", \"item\": \"hedge fertiliser\", \"unit\": \"bags\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"Marlow depot\"},\n  {\"kind\": \"booking\", \"topic\": \"site survey visit\", \"counterpart\": \"Roshan Patel\", \"org\": \"private client\", \"item\": \"site survey visit\", \"unit\": \"\", \"values\": [\"back garden\", \"front garden\", \"side garden\"], \"place\": \"private address\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7789,
+    "completion_tokens": 4543,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02731876,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'tool service slot': values needs at least three entries\n- noise topic 'site survey visit': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Hornbeam shortfall at Kestrel Court",
+  "setting": "A landscape gardener at Greenharrow Designs whose assistant holds site surveys, planting plans, and maintenance contracts",
+  "owner": "Mara",
+  "org": "Greenharrow Designs",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for the diary: once a client booking is confirmed (a survey visit, a planting day, a maintenance round), I do not move or rescope it without that client's agreement first. Ask them, get a yes, then change the record.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Mara",
+    "text": "Any supplier order over 800 in total needs Priya Nolan's sign-off as finance lead before we send it. Under 800 I can just place it.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Ivy Marsh (Bramble Ridge Nurseries)",
+    "text": "We have bark mulch and moss treatment back in stock at the yard whenever you need them, Ivy.",
+    "role": "other"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-20",
+    "type": "letter",
+    "from": "Harborough Council",
+    "text": "Your trailer parking permit for the Marlow depot yard is renewed through March 2027.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Ivy Marsh (Bramble Ridge Nurseries)",
+    "text": "Quotation: 50 bay trees at 15 each, delivered to the Marlow depot, valid to end of September.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed the bay tree order with Bramble Ridge: 50 trees at 15 each, 750 total, under the 800 sign-off line, so no need to bother Priya. Delivery to the Marlow depot.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e7",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Peter Vaughn (Willow Bank Residence)",
+    "text": "The summer tidy-up looks wonderful, thank you. We'd like to keep you on for regular maintenance.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-07-22",
+    "type": "message",
+    "from": "Mara",
+    "text": "Team headcount is four of us on the books at the moment: me, Sam, Ravi and Elena.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-04",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Team meeting notes: we agreed to run one full training day each autumn, on tools and machinery safety, before the hedge season starts.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-12",
+    "type": "cancellation",
+    "from": "Roshan Patel",
+    "text": "Roshan cancelled his August border tidy, nothing to reschedule for now.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-20",
+    "type": "note",
+    "from": "Mara",
+    "text": "Site survey, Kestrel Court Cafe: rear garden soil is heavy clay, and Dana Kestrel wants a hornbeam hedge along the back fence, roughly 180 plants for the run. Contact is Dana Kestrel, dana@kestrelcourt.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Dana Kestrel (Kestrel Court Cafe)",
+    "text": "Any weekday in October works for the planting day, mid-October would be ideal if you can manage it.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-02",
+    "type": "message",
+    "from": "Sam Whitfield",
+    "text": "Marlow depot job slipped two days with the rain, back on it now.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Tomas Vega (Fern Hollow Nurseries)",
+    "text": "Good news on the hornbeam: we have 240 plants in stock this season at 4 each, and delivery runs about four weeks from order. It's the same clay-suited stock as always, hornbeam really does well on heavy ground.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-08",
+    "type": "task",
+    "from": "Mara",
+    "text": "Renew the van insurance before the end of October, deadline 2026-10-31.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered the Kestrel Court hedge from Fern Hollow: 180 hornbeam at 4 each, 720 total, well under the 800 sign-off line so I placed it myself. Delivery about four weeks out, so booked in for 2026-10-10 to the cafe.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e11",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-09-11",
+    "type": "email",
+    "from": "Peter Vaughn (Willow Bank Residence)",
+    "text": "Our maintenance contract runs to 31 March 2027 and we'd like the rounds on the first Tuesday of each month as before.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "With 180 hornbeam arriving 2026-10-10, I booked a single planting day on 2026-10-15 with Dana, mid-October as she asked, and confirmed it with her. Whole team on it.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e12",
+     "e1"
+    ],
+    "record": "EV-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Finished the Kestrel Court planting plan: species stays hornbeam, chosen because it thrives on heavy clay, with a 45 metre hedge run along the back fence.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e14"
+    ],
+    "record": "CL-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up the Willow Bank maintenance rounds for the first Tuesday of each month, starting 2026-10-06, per Peter's contract.",
+    "role": "decision",
+    "rests_on": [
+     "e17",
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-17",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Restocked 40 bags of moss treatment from Bramble Ridge, they confirmed it's back in stock.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the autumn training day for the whole team on 2026-10-08, tools and machinery safety, as we agreed at the meeting.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e8"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Tomas Vega (Fern Hollow Nurseries)",
+    "text": "Order confirmation: 180 hornbeam hedging plants at 4 each, total 720, delivery on 2026-10-10 to Kestrel Court Cafe. All as agreed.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-23",
+    "type": "email",
+    "from": "Ruth Halliwell (Halliwell Veterinary Clinic)",
+    "text": "We'd like a quote for border pruning at the clinic twice a year, and our contact is me, Ruth Halliwell.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-24",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Opened a client record for Halliwell Veterinary Clinic, contact Ruth Halliwell, service border pruning, twice yearly.",
+    "role": "decision",
+    "rests_on": [
+     "e24"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-26",
+    "type": "note",
+    "from": "Mara",
+    "text": "Kestrel Court plan on track: 180 hornbeam from Fern Hollow landing 2026-10-10, planting day 2026-10-15 with Dana, whole team out.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-27",
+    "type": "quote",
+    "from": "Ivy Marsh (Bramble Ridge Nurseries)",
+    "text": "For what it's worth, we could supply hornbeam hedging too: 200 plants at 5.50 each if you ever need them.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Tomas Vega (Fern Hollow Nurseries)",
+    "text": "An apology from us: our season count for hornbeam came in at 80 plants, not the 240 we quoted you. The 4 price and the four-week delivery stand, and it's the same clay-suited stock, but 80 is all we have for this season.",
+    "role": "change",
+    "revokes": [
+     "e14"
+    ]
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-06",
+    "type": "invoice",
+    "from": "Ivy Marsh (Bramble Ridge Nurseries)",
+    "text": "Invoice for the moss treatment and bay trees, payment due by 2026-10-20.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-09",
+    "type": "task",
+    "from": "Mara",
+    "text": "Send Peter at Willow Bank the autumn border quote by 2026-10-24.",
+    "role": "obligation"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-12",
+    "type": "call",
+    "from": "Dana Kestrel (Kestrel Court Cafe)",
+    "text": "Dana left a voicemail saying she's looking forward to the planting day and will have coffee ready for the crew.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-16",
+    "type": "notice",
+    "from": "Tomas Vega (Fern Hollow Nurseries)",
+    "text": "Autumn newsletter: bare-root season opens in November, whitethorn and beech available in quantity.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-18",
+    "type": "email",
+    "from": "Priya Nolan",
+    "text": "Month-end coming up, can you send me a list of orders placed this month when you get a chance?",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fern Hollow hornbeam for Kestrel Court",
+    "fields": {
+     "supplier": "Fern Hollow Nurseries",
+     "item": "hornbeam hedging",
+     "quantity": "180",
+     "unit_price": "4",
+     "amount": "720",
+     "delivery_date": "2026-10-10",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bramble Ridge bay trees",
+    "fields": {
+     "supplier": "Bramble Ridge Nurseries",
+     "item": "bay trees",
+     "quantity": "50",
+     "unit_price": "15",
+     "amount": "750",
+     "delivery_date": "2026-07-20",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Bramble Ridge moss treatment restock",
+    "fields": {
+     "supplier": "Bramble Ridge Nurseries",
+     "item": "moss treatment",
+     "quantity": "40",
+     "unit_price": "9",
+     "amount": "360",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Kestrel Court planting day",
+    "fields": {
+     "date": "2026-10-15",
+     "plants": "180",
+     "client": "Dana Kestrel",
+     "crew": "4",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Willow Bank maintenance rounds",
+    "fields": {
+     "date": "2026-10-06",
+     "frequency": "monthly, first Tuesday",
+     "client": "Peter Vaughn",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Autumn training day",
+    "fields": {
+     "date": "2026-10-08",
+     "place": "Marlow depot",
+     "attendees": "4",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Kestrel Court planting plan",
+    "fields": {
+     "species": "hornbeam",
+     "soil": "heavy clay",
+     "hedge_length": "45",
+     "client": "Dana Kestrel",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Halliwell Veterinary Clinic client record",
+    "fields": {
+     "contact": "Ruth Halliwell",
+     "service": "border pruning",
+     "frequency": "twice yearly",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "plants"
+    ],
+    "from": "Dana Kestrel (Kestrel Court Cafe)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Kestrel Court is the big one this month. Can you confirm the hornbeam order with Fern Hollow and send Dana her planting day note?",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "quantity",
+    "value": "80",
+    "stale": [
+     "180"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-1",
+    "field": "amount",
+    "value": "320",
+    "stale": [
+     "720"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Dana Kestrel",
+    "regarding": "EV-1",
+    "says": [
+     "80 hornbeam",
+     "keep or move the 15 October planting day"
+    ],
+    "stale": [
+     "180"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change corrects Fern Hollow's stock fact from 240 to 80 hornbeam. The order decision (ORD-1) rests directly on that fact and nobody's consent is needed, so it is REVISE: quantity to 80, amount to 320. The planting day (EV-1) rests on the order, was sized for 180 plants, and is a confirmed client booking, so under Mara's rule e1 its date and scope may only change with Dana's consent: ASK, the record stays and a consent request goes out. The planting plan (CL-1) is KEEP: it used only the clay-suitability of hornbeam, which the correction leaves standing. The Bramble Ridge hornbeam quote is a distractor, not the value to act on.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "bark mulch restock",
+    "counterpart": "Ivy Marsh",
+    "org": "Bramble Ridge Nurseries",
+    "item": "bark mulch",
+    "unit": "bags",
+    "values": [
+     "20",
+     "30",
+     "45",
+     "60"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "order",
+    "topic": "moss treatment restock",
+    "counterpart": "Ivy Marsh",
+    "org": "Bramble Ridge Nurseries",
+    "item": "moss treatment",
+    "unit": "bags",
+    "values": [
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "order",
+    "topic": "spring bulbs order",
+    "counterpart": "Tomas Vega",
+    "org": "Fern Hollow Nurseries",
+    "item": "spring bulbs",
+    "unit": "trays",
+    "values": [
+     "10",
+     "18",
+     "24",
+     "32"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "order",
+    "topic": "tree stake restock",
+    "counterpart": "Tomas Vega",
+    "org": "Fern Hollow Nurseries",
+    "item": "tree stakes",
+    "unit": "bundles",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "cafe courtyard tidy",
+    "counterpart": "Dana Kestrel",
+    "org": "Kestrel Court Cafe",
+    "item": "courtyard tidy-up visit",
+    "unit": "",
+    "values": [
+     "front courtyard",
+     "rear garden",
+     "side passage"
+    ],
+    "place": "Kestrel Court Cafe"
+   },
+   {
+    "kind": "booking",
+    "topic": "residence maintenance round",
+    "counterpart": "Peter Vaughn",
+    "org": "Willow Bank Residence",
+    "item": "monthly maintenance round",
+    "unit": "",
+    "values": [
+     "back lawn",
+     "orchard edge",
+     "drive borders"
+    ],
+    "place": "Willow Bank Residence"
+   },
+   {
+    "kind": "booking",
+    "topic": "clinic border pruning",
+    "counterpart": "Ruth Halliwell",
+    "org": "Halliwell Veterinary Clinic",
+    "item": "border pruning visit",
+    "unit": "",
+    "values": [
+     "front borders",
+     "car park bed",
+     "waiting area bed"
+    ],
+    "place": "Halliwell Veterinary Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "gravel top-up",
+    "counterpart": "Ben Cortez",
+    "org": "Marlow Aggregate Supply",
+    "item": "gravel",
+    "unit": "tonnes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "tool service slot",
+    "counterpart": "Elena Boyd",
+    "org": "Greenharrow Designs",
+    "item": "mower service drop-off",
+    "unit": "",
+    "values": [
+     "workshop bay 1",
+     "workshop bay 2",
+     "workshop bay 3"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "order",
+    "topic": "fertiliser restock",
+    "counterpart": "Ivy Marsh",
+    "org": "Bramble Ridge Nurseries",
+    "item": "hedge fertiliser",
+    "unit": "bags",
+    "values": [
+     "10",
+     "16",
+     "24"
+    ],
+    "place": "Marlow depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "site survey visit",
+    "counterpart": "Roshan Patel",
+    "org": "private client",
+    "item": "site survey visit",
+    "unit": "",
+    "values": [
+     "back garden",
+     "front garden",
+     "side garden"
+    ],
+    "place": "private address"
+   }
+  ],
+  "id": "G1000-3-01",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

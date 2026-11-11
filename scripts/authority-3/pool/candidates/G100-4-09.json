@@ -1,0 +1,637 @@
+{
+ "id": "G100-4-09",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 8,
+ "setting": "A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork",
+ "prompt_sha256": "51f0af241626c2738e3381cfdae8ba2914007665474a5bd240706cad90c9655b",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Pemberley Motors: pads correction and the pre-sale valet\",\n \"setting\": \"A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork\",\n \"owner\": \"Hugo\",\n \"org\": \"Pemberley Motors\",\n \"now\": \"2026-09-18\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Hugo\", \"text\": \"Any customer offer above 12000 pounds on any used car needs Priya Nair's sign-off before we confirm the sale.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Hugo\", \"text\": \"Every trade-in must have its valuation and service notes recorded in the system before the car is listed for sale.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Marcus Reed (Coastal Valet & Detail)\", \"text\": \"Confirming our rate card: a full showroom valet on a single car is 180 pounds, inside and out.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"quote\", \"from\": \"Sally Voss (Nordhill Parts)\", \"text\": \"We stock the service kits for the Kestrel van at 95 pounds per kit, collected from our counter or delivered to the Pemberley Motors workshop.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Hugo\", \"text\": \"Plan is to hold an autumn showroom open evening on Friday 25 September 2026, six to nine in the evening.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Ordered 12 service kits for the Kestrel van from Sally Voss at Nordhill Parts at 95 pounds each, for the workshop stock.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Hugo\", \"text\": \"The summer sale test-drive day is set for Saturday 11 July 2026, all day at the Pemberley Motors forecourt.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Scheduled the summer sale test-drive day for Saturday 11 July 2026 at the forecourt, running 09:00 to 17:00.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Gill March\", \"text\": \"Trade-in details for my car: a 2019 Peverell estate, silver, 54300 miles, full main-dealer service history, cambelt replaced at 48000 miles.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-01\", \"type\": \"note\", \"from\": \"Hugo\", \"text\": \"Reminder to self: renew the trade plate insurance before the end of August.\", \"role\": \"obligation\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Marcus Reed (Coastal Valet & Detail)\", \"text\": \"Just to note, we can only take valet bookings at Pemberley Motors on Mondays and Thursdays.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-06\", \"type\": \"policy\", \"from\": \"Hugo\", \"text\": \"No used car may be listed for sale with an asking price above 15000 pounds without Priya Nair, the finance lead, agreeing to that price first.\", \"role\": \"rule\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Recorded the trade-in of Gill March's 2019 Peverell estate at 14300 pounds part-exchange value and listed it for sale at an asking price of 14500 pounds, service notes filed as received.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\", \"e12\"], \"record\": \"CL-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"call\", \"from\": \"Marcus Reed (Coastal Valet & Detail)\", \"text\": \"Phone note: Marcus confirmed the 180-pound showroom valet rate stands and suggested Thursdays suit best for the regular slot.\", \"role\": \"fact\", \"rests_on\": [\"e3\"]},\n  {\"id\": \"e15\", \"date\": \"2026-07-20\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Booked a standing weekly showroom valet with Marcus Reed of Coastal Valet & Detail every Thursday at 180 pounds per visit, starting Thursday 30 July.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e11\", \"e14\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-03\", \"type\": \"email\", \"from\": \"Dena Kerr (Harrow Couriers)\", \"text\": \"Trade-in from us: a 2021 Kestrel van, white, 61400 miles, serviced on schedule, ready for collection from our yard.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-07\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Recorded the Harrow Couriers trade-in of the 2021 Kestrel van at 11000 pounds and listed it for sale at an asking price of 12800 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e16\", \"e2\", \"e12\"], \"record\": \"CL-2\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Gill March\", \"text\": \"One more thing for the file: the Peverell estate had its rear brake pads replaced this March at Marchettis Garage.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Hugo\", \"text\": \"Scheduled the autumn showroom open evening for Friday 25 September 2026, 18:00 to 21:00, at the Pemberley Motors showroom.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-02\", \"type\": \"minutes\", \"from\": \"Hugo\", \"text\": \"Monthly staff meeting: forecourt rota agreed, Sam Tooley to cover Saturdays, no price changes to current listings.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-04\", \"type\": \"invoice\", \"from\": \"Nordhill Parts\", \"text\": \"Invoice for the July service kit order: 12 kits at 95 pounds, total 1140 pounds, due net 30.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Gill March\", \"text\": \"Sorry, small correction to what I sent in August: the March brake job on the Peverell estate was the front pads, not the rear ones. The rears are original.\", \"role\": \"change\", \"revokes\": [\"e18\"]},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Garth Peck (Marchettis Garage)\", \"text\": \"From our records: the 2021 Kestrel van we serviced had its brake pads replaced at 58900 miles, everything else on schedule.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Marcus Reed (Coastal Valet & Detail)\", \"text\": \"We're free in the week of 21 September if you need anything extra beyond the Thursday slot.\", \"role\": \"fact\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-16\", \"type\": \"task\", \"from\": \"Hugo\", \"text\": \"To do before the open evening: get the Peverell estate properly cleaned inside and out.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Nordhill Parts service kits\", \"fields\": {\"supplier\": \"Nordhill Parts\", \"item\": \"Kestrel van service kits\", \"quantity\": \"12\", \"unit_price\": \"95\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Summer sale test-drive day\", \"fields\": {\"date\": \"2026-07-11\", \"time\": \"09:00\", \"place\": \"Pemberley Motors forecourt\", \"status\": \"done\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Weekly showroom valet\", \"fields\": {\"weekday\": \"Thursday\", \"time\": \"08:00\", \"place\": \"Pemberley Motors showroom\", \"supplier\": \"Coastal Valet & Detail\", \"price_per_visit\": \"180\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Autumn showroom open evening\", \"fields\": {\"date\": \"2026-09-25\", \"start_time\": \"18:00\", \"end_time\": \"21:00\", \"place\": \"Pemberley Motors showroom\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"2019 Peverell estate listing\", \"fields\": {\"vehicle\": \"2019 Peverell estate, silver\", \"mileage\": \"54300\", \"asking_price\": \"14500\", \"seller_contact\": \"Gill March\", \"status\": \"listed\"}},\n  {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"2021 Kestrel van listing\", \"fields\": {\"vehicle\": \"2021 Kestrel van, white\", \"mileage\": \"61400\", \"asking_price\": \"12800\", \"seller_contact\": \"Harrow Couriers\", \"status\": \"listed\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"asking_price\"], \"from\": \"Priya Nair\", \"rule\": \"e12\"},\n  {\"record\": \"CL-2\", \"fields\": [\"asking_price\"], \"from\": \"Priya Nair\", \"rule\": \"e12\"}\n ],\n \"task\": \"Please get the Peverell estate valeted before the open evening — book a full valet with Marcus Reed for Thursday 24 September and confirm the date with him.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-09-24\", \"time\": \"08:00\", \"vehicle\": \"2019 Peverell estate\", \"service\": \"full valet\", \"supplier\": \"Coastal Valet & Detail\", \"status\": \"booked\"}, \"stale\": {}, \"task\": true},\n  {\"message_to\": \"Marcus Reed (Coastal Valet & Detail)\", \"regarding\": null, \"says\": [\"2026-09-24\", \"full valet\", \"180\"], \"stale\": [\"2026-09-25\"], \"task\": true}\n ],\n \"why\": \"The change only corrects a brake-pad detail about the Peverell estate that no decision rests on, so no record may be edited and no listing price touched without Priya Nair's consent. The right act is purely the task: a new valet booking for Thursday 24 September with Marcus Reed at the standing 180-pound rate, plus a confirmation message carrying that date. The distractor about the Kestrel van's pads at 58900 miles should be ignored.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Kestrel service kits\", \"counterpart\": \"Sally Voss\", \"org\": \"Nordhill Parts\", \"item\": \"Kestrel van service kits\", \"unit\": \"kits\", \"values\": [\"6\", \"8\", \"10\", \"12\", \"15\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"order\", \"topic\": \"Valet consumables\", \"counterpart\": \"Marcus Reed\", \"org\": \"Coastal Valet & Detail\", \"item\": \"interior cleaning fluid\", \"unit\": \"bottles\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Valet bay slots\", \"counterpart\": \"Marcus Reed\", \"org\": \"Coastal Valet & Detail\", \"item\": \"valet bay slot\", \"unit\": \"\", \"values\": [\"showroom forecourt\", \"workshop bay\", \"rear yard\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"booking\", \"topic\": \"Trade plate runs\", \"counterpart\": \"Sam Tooley\", \"org\": \"Pemberley Motors\", \"item\": \"trade plate run\", \"unit\": \"\", \"values\": [\"town centre\", \"north ring road\", \"industrial estate\"], \"place\": \"Pemberley Motors forecourt\"},\n  {\"kind\": \"order\", \"topic\": \"Screenwash\", \"counterpart\": \"Sally Voss\", \"org\": \"Nordhill Parts\", \"item\": \"screenwash concentrate\", \"unit\": \"litres\", \"values\": [\"20\", \"40\", \"60\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Test drives\", \"counterpart\": \"Dena Kerr\", \"org\": \"Harrow Couriers\", \"item\": \"van test drive\", \"unit\": \"\", \"values\": [\"forecourt loop\", \"north ring road\", \"industrial estate route\"], \"place\": \"Pemberley Motors forecourt\"},\n  {\"kind\": \"order\", \"topic\": \"Forecourt signage\", \"counterpart\": \"Ruth Bell\", \"org\": \"Signline Print\", \"item\": \"forecourt A-boards\", \"unit\": \"boards\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Pemberley Motors forecourt\"},\n  {\"kind\": \"booking\", \"topic\": \"Photo studio\", \"counterpart\": \"Ruth Bell\", \"org\": \"Signline Print\", \"item\": \"listing photo session\", \"unit\": \"\", \"values\": [\"showroom\", \"forecourt\", \"rear yard\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"order\", \"topic\": \"Coffee for events\", \"counterpart\": \"Ivor Sands\", \"org\": \"Dunmoor Coffee Supply\", \"item\": \"filter coffee\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"Pemberley Motors showroom\"},\n  {\"kind\": \"booking\", \"topic\": \"MOT slots\", \"counterpart\": \"Garth Peck\", \"org\": \"Marchettis Garage\", \"item\": \"MOT bay slot\", \"unit\": \"\", \"values\": [\"Monday morning\", \"Thursday afternoon\", \"Friday morning\"], \"place\": \"Marchettis Garage\"},\n  {\"kind\": \"order\", \"topic\": \"Key cutting\", \"counterpart\": \"Nora Pike\", \"org\": \"Lockwell Keys\", \"item\": \"spare car keys\", \"unit\": \"keys\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Pemberley Motors workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"Valet for trade-ins\", \"counterpart\": \"Dena Kerr\", \"org\": \"Harrow Couriers\", \"item\": \"pre-listing valet\", \"unit\": \"\", \"values\": [\"workshop bay\", \"rear yard\", \"showroom forecourt\"], \"place\": \"Pemberley Motors workshop\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3154,
+    "completion_tokens": 6404,
+    "reasoning_tokens": 2659,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02909112,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Pemberley Motors: pads correction and the pre-sale valet",
+  "setting": "A used-car dealer at Pemberley Motors whose assistant records trade-ins, service histories, and finance paperwork",
+  "owner": "Hugo",
+  "org": "Pemberley Motors",
+  "now": "2026-09-18",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Hugo",
+    "text": "Any customer offer above 12000 pounds on any used car needs Priya Nair's sign-off before we confirm the sale.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Hugo",
+    "text": "Every trade-in must have its valuation and service notes recorded in the system before the car is listed for sale.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Marcus Reed (Coastal Valet & Detail)",
+    "text": "Confirming our rate card: a full showroom valet on a single car is 180 pounds, inside and out.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "quote",
+    "from": "Sally Voss (Nordhill Parts)",
+    "text": "We stock the service kits for the Kestrel van at 95 pounds per kit, collected from our counter or delivered to the Pemberley Motors workshop.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-11",
+    "type": "email",
+    "from": "Hugo",
+    "text": "Plan is to hold an autumn showroom open evening on Friday 25 September 2026, six to nine in the evening.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Ordered 12 service kits for the Kestrel van from Sally Voss at Nordhill Parts at 95 pounds each, for the workshop stock.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Hugo",
+    "text": "The summer sale test-drive day is set for Saturday 11 July 2026, all day at the Pemberley Motors forecourt.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Scheduled the summer sale test-drive day for Saturday 11 July 2026 at the forecourt, running 09:00 to 17:00.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Gill March",
+    "text": "Trade-in details for my car: a 2019 Peverell estate, silver, 54300 miles, full main-dealer service history, cambelt replaced at 48000 miles.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-01",
+    "type": "note",
+    "from": "Hugo",
+    "text": "Reminder to self: renew the trade plate insurance before the end of August.",
+    "role": "obligation"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Marcus Reed (Coastal Valet & Detail)",
+    "text": "Just to note, we can only take valet bookings at Pemberley Motors on Mondays and Thursdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-06",
+    "type": "policy",
+    "from": "Hugo",
+    "text": "No used car may be listed for sale with an asking price above 15000 pounds without Priya Nair, the finance lead, agreeing to that price first.",
+    "role": "rule"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Recorded the trade-in of Gill March's 2019 Peverell estate at 14300 pounds part-exchange value and listed it for sale at an asking price of 14500 pounds, service notes filed as received.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2",
+     "e12"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-14",
+    "type": "call",
+    "from": "Marcus Reed (Coastal Valet & Detail)",
+    "text": "Phone note: Marcus confirmed the 180-pound showroom valet rate stands and suggested Thursdays suit best for the regular slot.",
+    "role": "fact",
+    "rests_on": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-20",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Booked a standing weekly showroom valet with Marcus Reed of Coastal Valet & Detail every Thursday at 180 pounds per visit, starting Thursday 30 July.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e11",
+     "e14"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-03",
+    "type": "email",
+    "from": "Dena Kerr (Harrow Couriers)",
+    "text": "Trade-in from us: a 2021 Kestrel van, white, 61400 miles, serviced on schedule, ready for collection from our yard.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-07",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Recorded the Harrow Couriers trade-in of the 2021 Kestrel van at 11000 pounds and listed it for sale at an asking price of 12800 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e16",
+     "e2",
+     "e12"
+    ],
+    "record": "CL-2"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Gill March",
+    "text": "One more thing for the file: the Peverell estate had its rear brake pads replaced this March at Marchettis Garage.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Hugo",
+    "text": "Scheduled the autumn showroom open evening for Friday 25 September 2026, 18:00 to 21:00, at the Pemberley Motors showroom.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-02",
+    "type": "minutes",
+    "from": "Hugo",
+    "text": "Monthly staff meeting: forecourt rota agreed, Sam Tooley to cover Saturdays, no price changes to current listings.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-04",
+    "type": "invoice",
+    "from": "Nordhill Parts",
+    "text": "Invoice for the July service kit order: 12 kits at 95 pounds, total 1140 pounds, due net 30.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Gill March",
+    "text": "Sorry, small correction to what I sent in August: the March brake job on the Peverell estate was the front pads, not the rear ones. The rears are original.",
+    "role": "change",
+    "revokes": [
+     "e18"
+    ]
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Garth Peck (Marchettis Garage)",
+    "text": "From our records: the 2021 Kestrel van we serviced had its brake pads replaced at 58900 miles, everything else on schedule.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Marcus Reed (Coastal Valet & Detail)",
+    "text": "We're free in the week of 21 September if you need anything extra beyond the Thursday slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-16",
+    "type": "task",
+    "from": "Hugo",
+    "text": "To do before the open evening: get the Peverell estate properly cleaned inside and out.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Nordhill Parts service kits",
+    "fields": {
+     "supplier": "Nordhill Parts",
+     "item": "Kestrel van service kits",
+     "quantity": "12",
+     "unit_price": "95",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Summer sale test-drive day",
+    "fields": {
+     "date": "2026-07-11",
+     "time": "09:00",
+     "place": "Pemberley Motors forecourt",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Weekly showroom valet",
+    "fields": {
+     "weekday": "Thursday",
+     "time": "08:00",
+     "place": "Pemberley Motors showroom",
+     "supplier": "Coastal Valet & Detail",
+     "price_per_visit": "180",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Autumn showroom open evening",
+    "fields": {
+     "date": "2026-09-25",
+     "start_time": "18:00",
+     "end_time": "21:00",
+     "place": "Pemberley Motors showroom",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "2019 Peverell estate listing",
+    "fields": {
+     "vehicle": "2019 Peverell estate, silver",
+     "mileage": "54300",
+     "asking_price": "14500",
+     "seller_contact": "Gill March",
+     "status": "listed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "2021 Kestrel van listing",
+    "fields": {
+     "vehicle": "2021 Kestrel van, white",
+     "mileage": "61400",
+     "asking_price": "12800",
+     "seller_contact": "Harrow Couriers",
+     "status": "listed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "asking_price"
+    ],
+    "from": "Priya Nair",
+    "rule": "e12"
+   },
+   {
+    "record": "CL-2",
+    "fields": [
+     "asking_price"
+    ],
+    "from": "Priya Nair",
+    "rule": "e12"
+   }
+  ],
+  "task": "Please get the Peverell estate valeted before the open evening — book a full valet with Marcus Reed for Thursday 24 September and confirm the date with him.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-09-24",
+     "time": "08:00",
+     "vehicle": "2019 Peverell estate",
+     "service": "full valet",
+     "supplier": "Coastal Valet & Detail",
+     "status": "booked"
+    },
+    "stale": {},
+    "task": true
+   },
+   {
+    "message_to": "Marcus Reed (Coastal Valet & Detail)",
+    "regarding": null,
+    "says": [
+     "2026-09-24",
+     "full valet",
+     "180"
+    ],
+    "stale": [
+     "2026-09-25"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change only corrects a brake-pad detail about the Peverell estate that no decision rests on, so no record may be edited and no listing price touched without Priya Nair's consent. The right act is purely the task: a new valet booking for Thursday 24 September with Marcus Reed at the standing 180-pound rate, plus a confirmation message carrying that date. The distractor about the Kestrel van's pads at 58900 miles should be ignored.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Kestrel service kits",
+    "counterpart": "Sally Voss",
+    "org": "Nordhill Parts",
+    "item": "Kestrel van service kits",
+    "unit": "kits",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12",
+     "15"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "Valet consumables",
+    "counterpart": "Marcus Reed",
+    "org": "Coastal Valet & Detail",
+    "item": "interior cleaning fluid",
+    "unit": "bottles",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "Valet bay slots",
+    "counterpart": "Marcus Reed",
+    "org": "Coastal Valet & Detail",
+    "item": "valet bay slot",
+    "unit": "",
+    "values": [
+     "showroom forecourt",
+     "workshop bay",
+     "rear yard"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "Trade plate runs",
+    "counterpart": "Sam Tooley",
+    "org": "Pemberley Motors",
+    "item": "trade plate run",
+    "unit": "",
+    "values": [
+     "town centre",
+     "north ring road",
+     "industrial estate"
+    ],
+    "place": "Pemberley Motors forecourt"
+   },
+   {
+    "kind": "order",
+    "topic": "Screenwash",
+    "counterpart": "Sally Voss",
+    "org": "Nordhill Parts",
+    "item": "screenwash concentrate",
+    "unit": "litres",
+    "values": [
+     "20",
+     "40",
+     "60"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Test drives",
+    "counterpart": "Dena Kerr",
+    "org": "Harrow Couriers",
+    "item": "van test drive",
+    "unit": "",
+    "values": [
+     "forecourt loop",
+     "north ring road",
+     "industrial estate route"
+    ],
+    "place": "Pemberley Motors forecourt"
+   },
+   {
+    "kind": "order",
+    "topic": "Forecourt signage",
+    "counterpart": "Ruth Bell",
+    "org": "Signline Print",
+    "item": "forecourt A-boards",
+    "unit": "boards",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Pemberley Motors forecourt"
+   },
+   {
+    "kind": "booking",
+    "topic": "Photo studio",
+    "counterpart": "Ruth Bell",
+    "org": "Signline Print",
+    "item": "listing photo session",
+    "unit": "",
+    "values": [
+     "showroom",
+     "forecourt",
+     "rear yard"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "order",
+    "topic": "Coffee for events",
+    "counterpart": "Ivor Sands",
+    "org": "Dunmoor Coffee Supply",
+    "item": "filter coffee",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "Pemberley Motors showroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "MOT slots",
+    "counterpart": "Garth Peck",
+    "org": "Marchettis Garage",
+    "item": "MOT bay slot",
+    "unit": "",
+    "values": [
+     "Monday morning",
+     "Thursday afternoon",
+     "Friday morning"
+    ],
+    "place": "Marchettis Garage"
+   },
+   {
+    "kind": "order",
+    "topic": "Key cutting",
+    "counterpart": "Nora Pike",
+    "org": "Lockwell Keys",
+    "item": "spare car keys",
+    "unit": "keys",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Pemberley Motors workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "Valet for trade-ins",
+    "counterpart": "Dena Kerr",
+    "org": "Harrow Couriers",
+    "item": "pre-listing valet",
+    "unit": "",
+    "values": [
+     "workshop bay",
+     "rear yard",
+     "showroom forecourt"
+    ],
+    "place": "Pemberley Motors workshop"
+   }
+  ],
+  "id": "G100-4-09",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map requires Priya's consent for any asking-price edit, whereas e12 requires it only for asking prices above £15,000. The task fixes the valet date but not its time; the existing weekly slot does not unambiguously establish 08:00 for a separate vehicle-specific booking. The brake-pad correction affects no recorded decision, so class 4 and the tier requirements otherwise fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map requires Priya's consent for any asking-price edit, whereas e12 requires it only for asking prices above £15,000. The task fixes the valet date but not its time; the existing weekly slot does not unambiguously establish 08:00 for a separate vehicle-specific booking. The brake-pad correction affects no recorded decision, so class 4 and the tier requirements otherwise fit."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3558,
+    "completion_tokens": 202,
+    "reasoning_tokens": 84,
+    "cached_tokens": 0
+   },
+   "cost": 0.0545675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "822a9a1e1304546fa6e69a249a131637ed21d384be8c2737684083afde625810",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The change (e22) is announced with the word 'correction' ('small correction to what I sent'), which breaks the hidden-change requirement. The consent map lists CL-1 and CL-2 under e12, but e12 only restricts asking prices above 15000, and both listings are below that, so the consent entries do not follow from the history's rules. The task forces a booking, the class 4 control fits, and the core counts and change distance meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The change (e22) is announced with the word 'correction' ('small correction to what I sent'), which breaks the hidden-change requirement. The consent map lists CL-1 and CL-2 under e12, but e12 only restricts asking prices above 15000, and both listings are below that, so the consent entries do not follow from the history's rules. The task forces a booking, the class 4 control fits, and the core counts and change distance meet tier 100."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5116,
+    "completion_tokens": 1586,
+    "reasoning_tokens": 1390,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013046,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "822a9a1e1304546fa6e69a249a131637ed21d384be8c2737684083afde625810",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

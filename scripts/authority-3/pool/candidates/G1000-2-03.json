@@ -1,0 +1,711 @@
+{
+ "id": "G1000-2-03",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 2,
+ "idx": 2,
+ "setting": "A chiropractor at Ridgeway Spine Clinic whose assistant manages x-ray referrals, appointment series, and payment plans",
+ "prompt_sha256": "7f34d3689ba98ef7005916d0a5022bf28516803647ed8aba3ea0dd8ae8550754",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"The lowered sign-off threshold\",\n  \"setting\": \"A chiropractor at Ridgeway Spine Clinic whose assistant manages x-ray referrals, appointment series, and payment plans\",\n  \"owner\": \"Ross\",\n  \"org\": \"Ridgeway Spine Clinic\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya Nair\", \"text\": \"Standing instruction from Priya Nair, our finance lead: any imaging order above 250 dollars needs her sign-off before it can be confirmed. Keep to that for every x-ray film, screening package or imaging supplier order.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ross\", \"text\": \"My own rule: once a client's appointment series is confirmed, its date, time or number of sessions may not be changed without that client's written consent. Always ask the client first.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"Meridian Imaging price list: the full posture-screening package costs 190 dollars and covers up to 19 sessions; the compact posture-screening package costs 145 dollars and covers up to 14 sessions.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Marta Kowalski is a client of ours, an office ergonomics case. She is only available on Fridays.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging quotation: x-ray referral film comes in a quarterly batch of 22 films for 220 dollars, or a smaller quarterly batch of 13 films for 130 dollars. Our monthly film restock subscription is 310 dollars a month. We need five business days of lead time on any order.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Priya Nair is the finance lead at the clinic and handles all sign-offs on spending.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"The clinic is open Monday to Friday, 08:00 to 18:00.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Toby Marsh covers reception and client check-ins in the mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the monthly film restock subscription with ClearPath Imaging at 310 dollars a month. It is above the 250 dollar sign-off threshold, so Priya Nair signed it off on 28 June and it went through properly.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Harriet Bloom\", \"text\": \"Client Harriet Bloom asks to move her Tuesday adjustment from 14 July to 21 July. Routine reschedule, handled by reception.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"A reminder that our courier delivers to the Ridgeway Spine Clinic offices on Tuesdays only.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I placed a standing order with Meridian Imaging for in-clinic posture printouts at 120 dollars. That sits well under the 250 dollar threshold, so no sign-off from Priya was needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"invoice\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging invoice for the July monthly restock, 310 dollars. Paid in full from the supplies account.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-30\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I set up the monthly coffee and waiting-room supplies order with Brookline Coffee at 85 dollars a month.\", \"role\": \"decision\", \"record\": \"ORD-5\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the full posture-screening package from Meridian Imaging for Marta Kowalski's ergonomics series at 190 dollars, covering up to 19 sessions. It is under the 250 dollar threshold, so Priya's sign-off was not needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I booked Marta Kowalski's screening series around the Meridian full package: 19 weekly sessions at 14:00 on Fridays, starting Friday 6 November 2026. Marta agreed to the series as booked.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e2\", \"e4\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the quarterly x-ray referral film batch with ClearPath Imaging: 22 films for 220 dollars. Under the 250 dollar threshold, so it went through without Priya's sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I put the weekly staff huddle in the schedule for Thursdays at 08:00 in the back consult room.\", \"role\": \"decision\", \"record\": \"EV-1\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Priya Nair\", \"text\": \"Office reminder from Priya: the sign-off threshold for imaging orders stands at 250 dollars. Anything above that comes to her first.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e20\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Halden Linens\", \"text\": \"Halden Linens following up on treatment-table covers; no action needed this month.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-11\", \"type\": \"minutes\", \"from\": \"Toby Marsh\", \"text\": \"Staff meeting minutes: opening hours unchanged, reception roster confirmed, nothing about imaging spending was discussed.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Dr. Ines, the physio down the road, sends referral patients to us on Wednesdays.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I booked Marta Kowalski's initial ergonomics consultation for Friday 25 September at 10:00, since Fridays are her only available day.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Brookline Coffee\", \"text\": \"Brookline Coffee confirming the October delivery of beans and filters as usual.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"Meridian Imaging re-confirming your order: the full posture-screening package at 190 dollars for up to 19 sessions, ready for the series beginning in November.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Toby Marsh\", \"text\": \"Reception note: for any imaging order above 250 dollars, get Priya Nair's sign-off first. That is the current threshold we work to.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e27\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"Ross, following the September audit I have to tighten things. Effective today, my sign-off is required on any imaging order above 150 dollars, not 250. This applies to every imaging order that has not yet been invoiced. Orders that already carry my sign-off stay confirmed as they are. For any pending order above 150 dollars, either bring it under 150 or get my sign-off before confirming it.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n    {\"id\": \"e28\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Separate reminder while I have you: non-imaging supply orders above 500 dollars also need my sign-off. That one has not changed.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Marta Kowalski\", \"text\": \"Marta writes: looking forward to starting the screening series on Friday 6 November. Could you send me a confirmation with the time and the package details?\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging: the Tuesday courier schedule is unchanged for November.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Toby Marsh\", \"text\": \"The waiting-room printer is low on toner again; add it to the next supplies order.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Reminder to restock the patient education leaflets at reception this week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"ClearPath monthly film restock\", \"fields\": {\"supplier\": \"ClearPath Imaging\", \"item\": \"film restock subscription\", \"amount\": \"310\", \"cadence\": \"monthly\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Meridian screening package for Marta's series\", \"fields\": {\"supplier\": \"Meridian Imaging\", \"item\": \"full posture-screening package (19 sessions)\", \"amount\": \"190\", \"client\": \"Marta Kowalski\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Meridian posture printouts\", \"fields\": {\"supplier\": \"Meridian Imaging\", \"item\": \"in-clinic posture printouts\", \"amount\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"ClearPath quarterly referral film\", \"fields\": {\"supplier\": \"ClearPath Imaging\", \"item\": \"quarterly referral film batch (22 films)\", \"amount\": \"220\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Brookline Coffee supplies\", \"fields\": {\"supplier\": \"Brookline Coffee\", \"item\": \"coffee and waiting-room supplies\", \"amount\": \"85\", \"cadence\": \"monthly\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly staff huddle\", \"fields\": {\"day\": \"Thursday\", \"time\": \"08:00\", \"place\": \"back consult room\", \"status\": \"recurring\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Marta Kowalski screening series\", \"fields\": {\"first_session\": \"2026-11-06\", \"time\": \"14:00\", \"sessions\": \"19\", \"client\": \"Marta Kowalski\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marta Kowalski initial consult\", \"fields\": {\"date\": \"2026-09-25\", \"time\": \"10:00\", \"client\": \"Marta Kowalski\", \"status\": \"completed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Marta Kowalski\", \"fields\": {\"name\": \"Marta Kowalski\", \"plan\": \"ergonomics screening series\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"sessions\", \"first_session\", \"time\", \"status\"], \"from\": \"Marta Kowalski\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Hi — Marta asked for her series confirmation. Please sort out the Meridian screening order for her series so everything is in order on our side, and send her a confirmation with her first session time and what the imaging package will be.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"item\", \"value\": \"compact posture-screening package (14 sessions)\", \"stale\": [\"full posture-screening package (19 sessions)\"]},\n    {\"record\": \"ORD-2\", \"field\": \"amount\", \"value\": \"145\", \"stale\": [\"190\"]},\n    {\"record\": \"ORD-4\", \"field\": \"item\", \"value\": \"quarterly referral film batch (13 films)\", \"stale\": [\"quarterly referral film batch (22 films)\"]},\n    {\"record\": \"ORD-4\", \"field\": \"amount\", \"value\": \"130\", \"stale\": [\"220\"]},\n    {\"message_to\": \"Marta Kowalski\", \"regarding\": \"EV-2\", \"says\": [\"6 November 2026\", \"14:00\", \"compact posture-screening package\", \"14 sessions\"], \"stale\": [\"19 sessions\", \"190\"], \"task\": true}\n  ],\n  \"why\": \"Priya's message amends the sign-off rule: the threshold drops from 250 to 150 dollars and reaches every uninvoiced imaging order. ORD-2 (190 dollars) and ORD-4 (220 dollars) were confirmed without sign-off under the old threshold, so each must be brought under 150 using the suppliers' published smaller packages (compact package 145; 13-film batch 130) — both REVISE. ORD-1 already carries Priya's sign-off and ORD-3 is 120 dollars, so both are KEEP. Marta's series session count flows from the package, but the client-consent rule bars changing her confirmed series without her agreement, so EV-2 stays as booked and the confirmation message to her carries the revised package and the consent question, not the stale 19-session, 190-dollar figures.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"x-ray film sheets\", \"counterpart\": \"Sena Voss\", \"org\": \"ClearPath Imaging\", \"item\": \"x-ray film sheets\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"Ridgeway Spine Clinic imaging room\"},\n    {\"kind\": \"booking\", \"topic\": \"Meridian screening room\", \"counterpart\": \"Dale Prue\", \"org\": \"Meridian Imaging\", \"item\": \"screening room slot\", \"unit\": \"\", \"values\": [\"imaging suite A\", \"imaging suite B\", \"consult room 2\"], \"place\": \"Meridian Imaging, Ridgeway branch\"},\n    {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Priya Nair\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"office supplies\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Ridgeway Spine Clinic reception\"},\n    {\"kind\": \"order\", \"topic\": \"posture printout paper\", \"counterpart\": \"Dale Prue\", \"org\": \"Meridian Imaging\", \"item\": \"posture printout paper\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Ridgeway Spine Clinic imaging room\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"staff meeting room\", \"unit\": \"\", \"values\": [\"back consult room\", \"front consult room\", \"staff kitchen\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Nils Brookline\", \"org\": \"Brookline Coffee\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Ridgeway Spine Clinic kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"referral slots\", \"counterpart\": \"Dr. Ines\", \"org\": \"Ridgeway Physio\", \"item\": \"referral slot\", \"unit\": \"\", \"values\": [\"consult room 1\", \"consult room 2\", \"imaging suite A\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"treatment table covers\", \"counterpart\": \"Gwen Halden\", \"org\": \"Halden Linens\", \"item\": \"treatment table covers\", \"unit\": \"sets\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Ridgeway Spine Clinic treatment rooms\"},\n    {\"kind\": \"booking\", \"topic\": \"clinic van\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"clinic van for home visits\", \"unit\": \"\", \"values\": [\"van bay 1\", \"van bay 2\", \"street parking\"], \"place\": \"Ridgeway Spine Clinic car park\"},\n    {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Uma Voss\", \"org\": \"Vantage Office Tech\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Ridgeway Spine Clinic reception\"},\n    {\"kind\": \"booking\", \"topic\": \"courier pickup\", \"counterpart\": \"Sena Voss\", \"org\": \"ClearPath Imaging\", \"item\": \"courier pickup slot\", \"unit\": \"\", \"values\": [\"reception desk\", \"loading door\", \"side entrance\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"patient leaflets\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"patient education leaflets\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Ridgeway Spine Clinic reception\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3202,
+    "completion_tokens": 12933,
+    "reasoning_tokens": 8212,
+    "cached_tokens": 3136
+   },
+   "cost": 0.05781296,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"The lowered sign-off threshold\",\n  \"setting\": \"A chiropractor at Ridgeway Spine Clinic whose assistant manages x-ray referrals, appointment series, and payment plans\",\n  \"owner\": \"Ross\",\n  \"org\": \"Ridgeway Spine Clinic\",\n  \"now\": \"2026-10-26\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Priya Nair\", \"text\": \"Standing instruction from Priya Nair, our finance lead: any imaging order above 250 dollars needs her sign-off before it can be confirmed. Keep to that for every x-ray film, screening package or imaging supplier order.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Ross\", \"text\": \"My own rule: once a client's appointment series is confirmed, its date, time or number of sessions may not be changed without that client's written consent. Always ask the client first.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"Meridian Imaging price list: the full posture-screening package costs 190 dollars and covers up to 19 sessions; the compact posture-screening package costs 145 dollars and covers up to 14 sessions.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Marta Kowalski is a client of ours, an office ergonomics case. She is only available on Fridays.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"quote\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging quotation: x-ray referral film comes in a quarterly batch of 22 films for 220 dollars, or a smaller quarterly batch of 13 films for 130 dollars. Our monthly film restock subscription is 310 dollars a month. We need five business days of lead time on any order.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Priya Nair is the finance lead at the clinic and handles all sign-offs on spending.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"The clinic is open Monday to Friday, 08:00 to 18:00.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-24\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Toby Marsh covers reception and client check-ins in the mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the monthly film restock subscription with ClearPath Imaging at 310 dollars a month. It is above the 250 dollar sign-off threshold, so Priya Nair signed it off on 28 June and it went through properly.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"email\", \"from\": \"Harriet Bloom\", \"text\": \"Client Harriet Bloom asks to move her Tuesday adjustment from 14 July to 21 July. Routine reschedule, handled by reception.\", \"role\": \"other\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"A reminder that our courier delivers to the Ridgeway Spine Clinic offices on Tuesdays only.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I placed a standing order with Meridian Imaging for in-clinic posture printouts at 120 dollars. That sits well under the 250 dollar threshold, so no sign-off from Priya was needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-21\", \"type\": \"invoice\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging invoice for the July monthly restock, 310 dollars. Paid in full from the supplies account.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-30\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I set up the monthly coffee and waiting-room supplies order with Brookline Coffee at 85 dollars a month, for Toby to receive at reception in the mornings.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"ORD-5\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the full posture-screening package from Meridian Imaging for Marta Kowalski's ergonomics series at 190 dollars, covering up to 19 sessions. It is under the 250 dollar threshold, so Priya's sign-off was not needed.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e3\", \"e4\"], \"record\": \"ORD-2\", \"mark\": \"REVISE\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I booked Marta Kowalski's screening series around the Meridian full package: 19 weekly sessions at 14:00 on Fridays, starting Friday 6 November 2026. Marta agreed to the series as booked.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e2\", \"e4\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I confirmed the quarterly x-ray referral film batch with ClearPath Imaging: 22 films for 220 dollars. Under the 250 dollar threshold, so it went through without Priya's sign-off.\", \"role\": \"decision\", \"rests_on\": [\"e1\", \"e5\"], \"record\": \"ORD-4\", \"mark\": \"REVISE\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I put the weekly staff huddle in the schedule for Thursdays at 08:00 in the back consult room, inside our Monday to Friday opening hours, with Toby covering check-ins before it starts.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e8\"], \"record\": \"EV-1\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Priya Nair\", \"text\": \"Office reminder from Priya: the sign-off threshold for imaging orders stands at 250 dollars. Anything above that comes to her first.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e20\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Halden Linens\", \"text\": \"Halden Linens following up on treatment-table covers; no action needed this month.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-11\", \"type\": \"minutes\", \"from\": \"Toby Marsh\", \"text\": \"Staff meeting minutes: opening hours unchanged, reception roster confirmed, nothing about imaging spending was discussed.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Dr. Ines, the physio down the road, sends referral patients to us on Wednesdays.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Ross\", \"text\": \"I booked Marta Kowalski's initial ergonomics consultation for Friday 25 September at 10:00, since Fridays are her only available day.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Brookline Coffee\", \"text\": \"Brookline Coffee confirming the October delivery of beans and filters as usual.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Dale Prue (Meridian Imaging)\", \"text\": \"Meridian Imaging re-confirming your order: the full posture-screening package at 190 dollars for up to 19 sessions, ready for the series beginning in November.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e26\", \"date\": \"2026-10-01\", \"type\": \"note\", \"from\": \"Toby Marsh\", \"text\": \"Reception note: for any imaging order above 250 dollars, get Priya Nair's sign-off first. That is the current threshold we work to.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e27\", \"date\": \"2026-10-06\", \"type\": \"message\", \"from\": \"Priya Nair\", \"text\": \"Ross, following the September audit I have to tighten things. Effective today, my sign-off is required on any imaging order above 150 dollars, not 250. This applies to every imaging order that has not yet been invoiced. Orders that already carry my sign-off stay confirmed as they are. For any pending order above 150 dollars, either bring it under 150 or get my sign-off before confirming it.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n    {\"id\": \"e28\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Priya Nair\", \"text\": \"Separate reminder while I have you: non-imaging supply orders above 500 dollars also need my sign-off. That one has not changed.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Marta Kowalski\", \"text\": \"Marta writes: looking forward to starting the screening series on Friday 6 November. Could you send me a confirmation with the time and the package details?\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Sena Voss (ClearPath Imaging)\", \"text\": \"ClearPath Imaging: the Tuesday courier schedule is unchanged for November.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Toby Marsh\", \"text\": \"The waiting-room printer is low on toner again; add it to the next supplies order.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-24\", \"type\": \"note\", \"from\": \"Ross\", \"text\": \"Reminder to restock the patient education leaflets at reception this week.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"ClearPath monthly film restock\", \"fields\": {\"supplier\": \"ClearPath Imaging\", \"item\": \"film restock subscription\", \"amount\": \"310\", \"cadence\": \"monthly\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Meridian screening package for Marta's series\", \"fields\": {\"supplier\": \"Meridian Imaging\", \"item\": \"full posture-screening package (19 sessions)\", \"amount\": \"190\", \"client\": \"Marta Kowalski\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Meridian posture printouts\", \"fields\": {\"supplier\": \"Meridian Imaging\", \"item\": \"in-clinic posture printouts\", \"amount\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"ClearPath quarterly referral film\", \"fields\": {\"supplier\": \"ClearPath Imaging\", \"item\": \"quarterly referral film batch (22 films)\", \"amount\": \"220\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Brookline Coffee supplies\", \"fields\": {\"supplier\": \"Brookline Coffee\", \"item\": \"coffee and waiting-room supplies\", \"amount\": \"85\", \"cadence\": \"monthly\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Weekly staff huddle\", \"fields\": {\"day\": \"Thursday\", \"time\": \"08:00\", \"place\": \"back consult room\", \"status\": \"recurring\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Marta Kowalski screening series\", \"fields\": {\"first_session\": \"2026-11-06\", \"time\": \"14:00\", \"sessions\": \"19\", \"client\": \"Marta Kowalski\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marta Kowalski initial consult\", \"fields\": {\"date\": \"2026-09-25\", \"time\": \"10:00\", \"client\": \"Marta Kowalski\", \"status\": \"completed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Marta Kowalski\", \"fields\": {\"name\": \"Marta Kowalski\", \"plan\": \"ergonomics screening series\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"sessions\", \"first_session\", \"time\", \"status\"], \"from\": \"Marta Kowalski\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Hi — Marta asked for her series confirmation. Please sort out the Meridian screening order for her series so everything is in order on our side, and send her a confirmation with her first session time and what the imaging package will be.\",\n  \"expect\": [\n    {\"record\": \"ORD-2\", \"field\": \"item\", \"value\": \"compact posture-screening package (14 sessions)\", \"stale\": [\"full posture-screening package (19 sessions)\"]},\n    {\"record\": \"ORD-2\", \"field\": \"amount\", \"value\": \"145\", \"stale\": [\"190\"]},\n    {\"record\": \"ORD-4\", \"field\": \"item\", \"value\": \"quarterly referral film batch (13 films)\", \"stale\": [\"quarterly referral film batch (22 films)\"]},\n    {\"record\": \"ORD-4\", \"field\": \"amount\", \"value\": \"130\", \"stale\": [\"220\"]},\n    {\"message_to\": \"Marta Kowalski\", \"regarding\": \"EV-2\", \"says\": [\"6 November 2026\", \"14:00\", \"compact posture-screening package\", \"14 sessions\"], \"stale\": [\"19 sessions\", \"190\"], \"task\": true}\n  ],\n  \"why\": \"Priya's message amends the sign-off rule: the threshold drops from 250 to 150 dollars and reaches every uninvoiced imaging order. ORD-2 (190 dollars) and ORD-4 (220 dollars) were confirmed without sign-off under the old threshold, so each must be brought under 150 using the suppliers' published smaller packages (compact package 145; 13-film batch 130) — both REVISE. ORD-1 already carries Priya's sign-off and ORD-3 is 120 dollars, so both are KEEP. Marta's series session count flows from the package, but the client-consent rule bars changing her confirmed series without her agreement, so EV-2 stays as booked and the confirmation message to her carries the revised package and the consent question, not the stale 19-session, 190-dollar figures.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"x-ray film sheets\", \"counterpart\": \"Sena Voss\", \"org\": \"ClearPath Imaging\", \"item\": \"x-ray film sheets\", \"unit\": \"boxes\", \"values\": [\"4\", \"6\", \"9\", \"12\"], \"place\": \"Ridgeway Spine Clinic imaging room\"},\n    {\"kind\": \"booking\", \"topic\": \"Meridian screening room\", \"counterpart\": \"Dale Prue\", \"org\": \"Meridian Imaging\", \"item\": \"screening room slot\", \"unit\": \"\", \"values\": [\"imaging suite A\", \"imaging suite B\", \"consult room 2\"], \"place\": \"Meridian Imaging, Ridgeway branch\"},\n    {\"kind\": \"order\", \"topic\": \"office supplies\", \"counterpart\": \"Priya Nair\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"office supplies\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Ridgeway Spine Clinic reception\"},\n    {\"kind\": \"order\", \"topic\": \"posture printout paper\", \"counterpart\": \"Dale Prue\", \"org\": \"Meridian Imaging\", \"item\": \"posture printout paper\", \"unit\": \"packs\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Ridgeway Spine Clinic imaging room\"},\n    {\"kind\": \"booking\", \"topic\": \"staff meeting room\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"staff meeting room\", \"unit\": \"\", \"values\": [\"back consult room\", \"front consult room\", \"staff kitchen\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Nils Brookline\", \"org\": \"Brookline Coffee\", \"item\": \"coffee beans\", \"unit\": \"kilos\", \"values\": [\"2\", \"3\", \"4\", \"6\"], \"place\": \"Ridgeway Spine Clinic kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"referral slots\", \"counterpart\": \"Dr. Ines\", \"org\": \"Ridgeway Physio\", \"item\": \"referral slot\", \"unit\": \"\", \"values\": [\"consult room 1\", \"consult room 2\", \"imaging suite A\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"treatment table covers\", \"counterpart\": \"Gwen Halden\", \"org\": \"Halden Linens\", \"item\": \"treatment table covers\", \"unit\": \"sets\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Ridgeway Spine Clinic treatment rooms\"},\n    {\"kind\": \"booking\", \"topic\": \"clinic van\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"clinic van for home visits\", \"unit\": \"\", \"values\": [\"van bay 1\", \"van bay 2\", \"street parking\"], \"place\": \"Ridgeway Spine Clinic car park\"},\n    {\"kind\": \"order\", \"topic\": \"printer toner\", \"counterpart\": \"Uma Voss\", \"org\": \"Vantage Office Tech\", \"item\": \"printer toner\", \"unit\": \"cartridges\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Ridgeway Spine Clinic reception\"},\n    {\"kind\": \"booking\", \"topic\": \"courier pickup\", \"counterpart\": \"Sena Voss\", \"org\": \"ClearPath Imaging\", \"item\": \"courier pickup slot\", \"unit\": \"\", \"values\": [\"reception desk\", \"loading door\", \"side entrance\"], \"place\": \"Ridgeway Spine Clinic\"},\n    {\"kind\": \"order\", \"topic\": \"patient leaflets\", \"counterpart\": \"Toby Marsh\", \"org\": \"Ridgeway Spine Clinic\", \"item\": \"patient education leaflets\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Ridgeway Spine Clinic reception\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7981,
+    "completion_tokens": 4780,
+    "reasoning_tokens": 10,
+    "cached_tokens": 3200
+   },
+   "cost": 0.0285574,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e14: a decision must rest on at least one earlier event\n- e18: a decision must rest on at least one earlier event\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The lowered sign-off threshold",
+  "setting": "A chiropractor at Ridgeway Spine Clinic whose assistant manages x-ray referrals, appointment series, and payment plans",
+  "owner": "Ross",
+  "org": "Ridgeway Spine Clinic",
+  "now": "2026-10-26",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Priya Nair",
+    "text": "Standing instruction from Priya Nair, our finance lead: any imaging order above 250 dollars needs her sign-off before it can be confirmed. Keep to that for every x-ray film, screening package or imaging supplier order.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Ross",
+    "text": "My own rule: once a client's appointment series is confirmed, its date, time or number of sessions may not be changed without that client's written consent. Always ask the client first.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "quote",
+    "from": "Dale Prue (Meridian Imaging)",
+    "text": "Meridian Imaging price list: the full posture-screening package costs 190 dollars and covers up to 19 sessions; the compact posture-screening package costs 145 dollars and covers up to 14 sessions.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Ross",
+    "text": "Marta Kowalski is a client of ours, an office ergonomics case. She is only available on Fridays.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "quote",
+    "from": "Sena Voss (ClearPath Imaging)",
+    "text": "ClearPath Imaging quotation: x-ray referral film comes in a quarterly batch of 22 films for 220 dollars, or a smaller quarterly batch of 13 films for 130 dollars. Our monthly film restock subscription is 310 dollars a month. We need five business days of lead time on any order.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Ross",
+    "text": "Priya Nair is the finance lead at the clinic and handles all sign-offs on spending.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "note",
+    "from": "Ross",
+    "text": "The clinic is open Monday to Friday, 08:00 to 18:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-24",
+    "type": "note",
+    "from": "Ross",
+    "text": "Toby Marsh covers reception and client check-ins in the mornings.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I confirmed the monthly film restock subscription with ClearPath Imaging at 310 dollars a month. It is above the 250 dollar sign-off threshold, so Priya Nair signed it off on 28 June and it went through properly.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "email",
+    "from": "Harriet Bloom",
+    "text": "Client Harriet Bloom asks to move her Tuesday adjustment from 14 July to 21 July. Routine reschedule, handled by reception.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Dale Prue (Meridian Imaging)",
+    "text": "A reminder that our courier delivers to the Ridgeway Spine Clinic offices on Tuesdays only.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I placed a standing order with Meridian Imaging for in-clinic posture printouts at 120 dollars. That sits well under the 250 dollar threshold, so no sign-off from Priya was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-21",
+    "type": "invoice",
+    "from": "Sena Voss (ClearPath Imaging)",
+    "text": "ClearPath Imaging invoice for the July monthly restock, 310 dollars. Paid in full from the supplies account.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-30",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I set up the monthly coffee and waiting-room supplies order with Brookline Coffee at 85 dollars a month, for Toby to receive at reception in the mornings.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "ORD-5"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I confirmed the full posture-screening package from Meridian Imaging for Marta Kowalski's ergonomics series at 190 dollars, covering up to 19 sessions. It is under the 250 dollar threshold, so Priya's sign-off was not needed.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e3",
+     "e4"
+    ],
+    "record": "ORD-2",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I booked Marta Kowalski's screening series around the Meridian full package: 19 weekly sessions at 14:00 on Fridays, starting Friday 6 November 2026. Marta agreed to the series as booked.",
+    "role": "decision",
+    "rests_on": [
+     "e15",
+     "e2",
+     "e4"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I confirmed the quarterly x-ray referral film batch with ClearPath Imaging: 22 films for 220 dollars. Under the 250 dollar threshold, so it went through without Priya's sign-off.",
+    "role": "decision",
+    "rests_on": [
+     "e1",
+     "e5"
+    ],
+    "record": "ORD-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I put the weekly staff huddle in the schedule for Thursdays at 08:00 in the back consult room, inside our Monday to Friday opening hours, with Toby covering check-ins before it starts.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e8"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Priya Nair",
+    "text": "Office reminder from Priya: the sign-off threshold for imaging orders stands at 250 dollars. Anything above that comes to her first.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Halden Linens",
+    "text": "Halden Linens following up on treatment-table covers; no action needed this month.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-11",
+    "type": "minutes",
+    "from": "Toby Marsh",
+    "text": "Staff meeting minutes: opening hours unchanged, reception roster confirmed, nothing about imaging spending was discussed.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-15",
+    "type": "note",
+    "from": "Ross",
+    "text": "Dr. Ines, the physio down the road, sends referral patients to us on Wednesdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Ross",
+    "text": "I booked Marta Kowalski's initial ergonomics consultation for Friday 25 September at 10:00, since Fridays are her only available day.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Brookline Coffee",
+    "text": "Brookline Coffee confirming the October delivery of beans and filters as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Dale Prue (Meridian Imaging)",
+    "text": "Meridian Imaging re-confirming your order: the full posture-screening package at 190 dollars for up to 19 sessions, ready for the series beginning in November.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-01",
+    "type": "note",
+    "from": "Toby Marsh",
+    "text": "Reception note: for any imaging order above 250 dollars, get Priya Nair's sign-off first. That is the current threshold we work to.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-06",
+    "type": "message",
+    "from": "Priya Nair",
+    "text": "Ross, following the September audit I have to tighten things. Effective today, my sign-off is required on any imaging order above 150 dollars, not 250. This applies to every imaging order that has not yet been invoiced. Orders that already carry my sign-off stay confirmed as they are. For any pending order above 150 dollars, either bring it under 150 or get my sign-off before confirming it.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Priya Nair",
+    "text": "Separate reminder while I have you: non-imaging supply orders above 500 dollars also need my sign-off. That one has not changed.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Marta Kowalski",
+    "text": "Marta writes: looking forward to starting the screening series on Friday 6 November. Could you send me a confirmation with the time and the package details?",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Sena Voss (ClearPath Imaging)",
+    "text": "ClearPath Imaging: the Tuesday courier schedule is unchanged for November.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-23",
+    "type": "note",
+    "from": "Toby Marsh",
+    "text": "The waiting-room printer is low on toner again; add it to the next supplies order.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-24",
+    "type": "note",
+    "from": "Ross",
+    "text": "Reminder to restock the patient education leaflets at reception this week.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "ClearPath monthly film restock",
+    "fields": {
+     "supplier": "ClearPath Imaging",
+     "item": "film restock subscription",
+     "amount": "310",
+     "cadence": "monthly",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Meridian screening package for Marta's series",
+    "fields": {
+     "supplier": "Meridian Imaging",
+     "item": "full posture-screening package (19 sessions)",
+     "amount": "190",
+     "client": "Marta Kowalski",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Meridian posture printouts",
+    "fields": {
+     "supplier": "Meridian Imaging",
+     "item": "in-clinic posture printouts",
+     "amount": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "ClearPath quarterly referral film",
+    "fields": {
+     "supplier": "ClearPath Imaging",
+     "item": "quarterly referral film batch (22 films)",
+     "amount": "220",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Brookline Coffee supplies",
+    "fields": {
+     "supplier": "Brookline Coffee",
+     "item": "coffee and waiting-room supplies",
+     "amount": "85",
+     "cadence": "monthly",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Weekly staff huddle",
+    "fields": {
+     "day": "Thursday",
+     "time": "08:00",
+     "place": "back consult room",
+     "status": "recurring"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Marta Kowalski screening series",
+    "fields": {
+     "first_session": "2026-11-06",
+     "time": "14:00",
+     "sessions": "19",
+     "client": "Marta Kowalski",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Marta Kowalski initial consult",
+    "fields": {
+     "date": "2026-09-25",
+     "time": "10:00",
+     "client": "Marta Kowalski",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Marta Kowalski",
+    "fields": {
+     "name": "Marta Kowalski",
+     "plan": "ergonomics screening series",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "sessions",
+     "first_session",
+     "time",
+     "status"
+    ],
+    "from": "Marta Kowalski",
+    "rule": "e2"
+   }
+  ],
+  "task": "Hi — Marta asked for her series confirmation. Please sort out the Meridian screening order for her series so everything is in order on our side, and send her a confirmation with her first session time and what the imaging package will be.",
+  "expect": [
+   {
+    "record": "ORD-2",
+    "field": "item",
+    "value": "compact posture-screening package (14 sessions)",
+    "stale": [
+     "full posture-screening package (19 sessions)"
+    ]
+   },
+   {
+    "record": "ORD-2",
+    "field": "amount",
+    "value": "145",
+    "stale": [
+     "190"
+    ]
+   },
+   {
+    "record": "ORD-4",
+    "field": "item",
+    "value": "quarterly referral film batch (13 films)",
+    "stale": [
+     "quarterly referral film batch (22 films)"
+    ]
+   },
+   {
+    "record": "ORD-4",
+    "field": "amount",
+    "value": "130",
+    "stale": [
+     "220"
+    ]
+   },
+   {
+    "message_to": "Marta Kowalski",
+    "regarding": "EV-2",
+    "says": [
+     "6 November 2026",
+     "14:00",
+     "compact posture-screening package",
+     "14 sessions"
+    ],
+    "stale": [
+     "19 sessions",
+     "190"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Priya's message amends the sign-off rule: the threshold drops from 250 to 150 dollars and reaches every uninvoiced imaging order. ORD-2 (190 dollars) and ORD-4 (220 dollars) were confirmed without sign-off under the old threshold, so each must be brought under 150 using the suppliers' published smaller packages (compact package 145; 13-film batch 130) — both REVISE. ORD-1 already carries Priya's sign-off and ORD-3 is 120 dollars, so both are KEEP. Marta's series session count flows from the package, but the client-consent rule bars changing her confirmed series without her agreement, so EV-2 stays as booked and the confirmation message to her carries the revised package and the consent question, not the stale 19-session, 190-dollar figures.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "x-ray film sheets",
+    "counterpart": "Sena Voss",
+    "org": "ClearPath Imaging",
+    "item": "x-ray film sheets",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "Ridgeway Spine Clinic imaging room"
+   },
+   {
+    "kind": "booking",
+    "topic": "Meridian screening room",
+    "counterpart": "Dale Prue",
+    "org": "Meridian Imaging",
+    "item": "screening room slot",
+    "unit": "",
+    "values": [
+     "imaging suite A",
+     "imaging suite B",
+     "consult room 2"
+    ],
+    "place": "Meridian Imaging, Ridgeway branch"
+   },
+   {
+    "kind": "order",
+    "topic": "office supplies",
+    "counterpart": "Priya Nair",
+    "org": "Ridgeway Spine Clinic",
+    "item": "office supplies",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "Ridgeway Spine Clinic reception"
+   },
+   {
+    "kind": "order",
+    "topic": "posture printout paper",
+    "counterpart": "Dale Prue",
+    "org": "Meridian Imaging",
+    "item": "posture printout paper",
+    "unit": "packs",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Ridgeway Spine Clinic imaging room"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting room",
+    "counterpart": "Toby Marsh",
+    "org": "Ridgeway Spine Clinic",
+    "item": "staff meeting room",
+    "unit": "",
+    "values": [
+     "back consult room",
+     "front consult room",
+     "staff kitchen"
+    ],
+    "place": "Ridgeway Spine Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Nils Brookline",
+    "org": "Brookline Coffee",
+    "item": "coffee beans",
+    "unit": "kilos",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "6"
+    ],
+    "place": "Ridgeway Spine Clinic kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "referral slots",
+    "counterpart": "Dr. Ines",
+    "org": "Ridgeway Physio",
+    "item": "referral slot",
+    "unit": "",
+    "values": [
+     "consult room 1",
+     "consult room 2",
+     "imaging suite A"
+    ],
+    "place": "Ridgeway Spine Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "treatment table covers",
+    "counterpart": "Gwen Halden",
+    "org": "Halden Linens",
+    "item": "treatment table covers",
+    "unit": "sets",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Ridgeway Spine Clinic treatment rooms"
+   },
+   {
+    "kind": "booking",
+    "topic": "clinic van",
+    "counterpart": "Toby Marsh",
+    "org": "Ridgeway Spine Clinic",
+    "item": "clinic van for home visits",
+    "unit": "",
+    "values": [
+     "van bay 1",
+     "van bay 2",
+     "street parking"
+    ],
+    "place": "Ridgeway Spine Clinic car park"
+   },
+   {
+    "kind": "order",
+    "topic": "printer toner",
+    "counterpart": "Uma Voss",
+    "org": "Vantage Office Tech",
+    "item": "printer toner",
+    "unit": "cartridges",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Ridgeway Spine Clinic reception"
+   },
+   {
+    "kind": "booking",
+    "topic": "courier pickup",
+    "counterpart": "Sena Voss",
+    "org": "ClearPath Imaging",
+    "item": "courier pickup slot",
+    "unit": "",
+    "values": [
+     "reception desk",
+     "loading door",
+     "side entrance"
+    ],
+    "place": "Ridgeway Spine Clinic"
+   },
+   {
+    "kind": "order",
+    "topic": "patient leaflets",
+    "counterpart": "Toby Marsh",
+    "org": "Ridgeway Spine Clinic",
+    "item": "patient education leaflets",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Ridgeway Spine Clinic reception"
+   }
+  ],
+  "id": "G1000-2-03",
+  "tier": 1000,
+  "class": 2,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

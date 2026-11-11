@@ -1,0 +1,623 @@
+{
+ "id": "G500-4-01",
+ "writer": "glm",
+ "tier": 500,
+ "class": 4,
+ "idx": 0,
+ "setting": "A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions",
+ "prompt_sha256": "2b743aeb4ad9ff91e6ebb475b43e17997e43448345d53eae68bf390a3ba8bed8",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Ivory Lane Events – Harlow–Beck wedding (control)\",\n \"setting\": \"A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions\",\n \"owner\": \"Nadine\",\n \"org\": \"Ivory Lane Events\",\n \"now\": \"2026-10-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Nadine\", \"text\": \"Standing rule for Ivory Lane Events: once a booking for a couple is confirmed, nothing about it (date, place, time or vendor) may be moved or changed without the couple's own consent. Always ask Maya and Jonah first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Nadine\", \"text\": \"Standing rule: any supplier order above 500 dollars needs sign-off from our finance lead Tom Reyes before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-10\", \"type\": \"quote\", \"from\": \"Whitetail Meadows (venue)\", \"text\": \"Whitetail Meadows is available Saturday 17 October 2026 for a full-day wedding. Day rate 2400 dollars, includes the Maple Suite as the getting-ready suite and setup from 09:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Booked Whitetail Meadows for the Harlow–Beck wedding on Saturday 17 October 2026 at the 2400 dollar day rate, with the Maple Suite reserved as the getting-ready suite. Maya and Jonah confirmed they want this venue and date.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"quote\", \"from\": \"Bricktown Bakery\", \"text\": \"Bricktown Bakery quote: three-tier buttercream cake plus 120 dessert pieces for 120 guests, 680 dollars total, delivery to Whitetail Meadows on the day included.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Ordered the cake and dessert table from Bricktown Bakery for the Harlow–Beck wedding: three-tier cake plus 120 dessert pieces at 680 dollars, delivery to Whitetail Meadows on 17 October. Tom Reyes approved the order since it is above 500 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"quote\", \"from\": \"Meadowlark Studio\", \"text\": \"Meadowlark Studio quote for wedding florals: bride's bouquet, six bridesmaid posies, ten table arrangements and ceremony arch pieces in a sage and cream palette, 450 dollars.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-27\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Ordered wedding florals from Meadowlark Studio for the Harlow–Beck wedding at 450 dollars: bouquet, six posies, ten table arrangements and arch pieces in sage and cream. No sign-off needed as it is under 500 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"quote\", \"from\": \"Celadon Sound\", \"text\": \"Celadon Sound quote: DJ package with full sound system and lighting for five hours on 17 October, 760 dollars.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-05\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Booked Celadon Sound as DJ for the Harlow–Beck wedding, five-hour package on 17 October at 760 dollars. Tom Reyes approved since it is above 500 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e9\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Priya Nair (hair and makeup)\", \"text\": \"Priya Nair here. I have Friday 16 October in the afternoon free for a hair and makeup trial, and I am available the morning of Saturday 17 October for the wedding itself. My rate is 190 dollars per session per party booking, on-site travel included.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Booked Priya Nair for the Harlow–Beck hair and makeup trial on Friday 16 October at 15:00 at the Maple Suite, Whitetail Meadows, at her 190 dollar session rate.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"EV-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Maya Harlow\", \"text\": \"From Maya: Jonah and I have settled the details — our palette is sage green and cream, and the final guest count is 120. Please keep everything in those colours.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-16\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Opened the client record for the Harlow–Beck wedding: palette sage green and cream, guest count 120, wedding date 17 October 2026 at Whitetail Meadows.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"CL-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-22\", \"type\": \"task\", \"from\": \"Nadine\", \"text\": \"To-do: send the final headcount of 120 to Whitetail Meadows by 3 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-05\", \"type\": \"email\", \"from\": \"Harvest Table Catering\", \"text\": \"Three tasting menu options attached for 12 September: herb-roast chicken, wild mushroom risotto, or a split menu. Prices unchanged from our contract.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Scheduled the menu tasting with Harvest Table Catering for Saturday 12 September at 11:00 at their kitchen, for Maya, Jonah and me.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"Whitetail Meadows (venue)\", \"text\": \"Introducing Rosa Kim, your day-of coordinator at Whitetail Meadows. She will handle setup from 09:00 on the day.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"note\", \"from\": \"Nadine\", \"text\": \"Note from the venue walkthrough: if it rains on 17 October, the ceremony moves indoors to the Barn Hall at Whitetail Meadows. The Maple Suite getting-ready space is unaffected.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"email\", \"from\": \"Priya Nair (hair and makeup)\", \"text\": \"Confirming your trial booking: Friday 16 October at 15:00 at the Maple Suite. My rate stays 190 dollars per session, and I am still booked for wedding mornings on request.\", \"role\": \"fact\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"quote\", \"from\": \"Crestline Coach\", \"text\": \"Crestline Coach quote: two 20-seat shuttle vans for a 22:00 pickup from Whitetail Meadows on 17 October, 540 dollars total.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Loom & Linen\", \"text\": \"Linen quote for 120 guests: sage and cream tablecloths with napkins, 380 dollars, delivery and pickup included.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Sweet Meridian Patisserie\", \"text\": \"Sweet Meridian Patisserie now offers autumn wedding dessert-table menus starting at 520 dollars, with macaron towers and mini tarts. We are taking bookings for October weddings now.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e24\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Priya Nair (hair and makeup)\", \"text\": \"For your other October bride at Riverstone: I can start her party at 09:00 on the Saturday morning. Let me know if that works.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Nadine\", \"text\": \"Booked Crestline Coach for the Harlow–Beck wedding: two 20-seat shuttle vans, 22:00 pickup from Whitetail Meadows on 17 October, 540 dollars. Tom Reyes approved since it is above 500 dollars.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e21\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Maya Harlow\", \"text\": \"Question from Maya: what happens if it rains on the day? Just want to be sure we have a plan.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Nadine\", \"text\": \"Replied to Maya: the ceremony moves to the Barn Hall at Whitetail Meadows if it rains, and the Maple Suite getting-ready plan stays the same.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-03\", \"type\": \"email\", \"from\": \"Whitetail Meadows (venue)\", \"text\": \"Final headcount of 120 received, thank you. We look forward to 17 October.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-04\", \"type\": \"email\", \"from\": \"Rosa Kim (Whitetail Meadows)\", \"text\": \"Day-of timeline draft: couple in the Maple Suite from 07:00, ceremony at 15:00, dinner at 17:30, last shuttle at 22:00. Send any corrections by 10 October.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Harlow–Beck wedding – venue\", \"fields\": {\"date\": \"2026-10-17\", \"place\": \"Whitetail Meadows\", \"getting_ready\": \"Maple Suite\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Hair and makeup trial\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"15:00\", \"place\": \"Maple Suite, Whitetail Meadows\", \"vendor\": \"Priya Nair\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Menu tasting\", \"fields\": {\"date\": \"2026-09-12\", \"time\": \"11:00\", \"place\": \"Harvest Table Catering kitchen\", \"status\": \"held\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Cake and dessert table\", \"fields\": {\"vendor\": \"Bricktown Bakery\", \"amount\": \"680\", \"delivery_date\": \"2026-10-17\", \"delivery_place\": \"Whitetail Meadows\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Wedding florals\", \"fields\": {\"vendor\": \"Meadowlark Studio\", \"amount\": \"450\", \"palette\": \"sage and cream\", \"delivery_date\": \"2026-10-17\", \"status\": \"ordered\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"DJ package\", \"fields\": {\"vendor\": \"Celadon Sound\", \"amount\": \"760\", \"date\": \"2026-10-17\", \"hours\": \"5\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Guest shuttle vans\", \"fields\": {\"vendor\": \"Crestline Coach\", \"amount\": \"540\", \"date\": \"2026-10-17\", \"pickup_time\": \"22:00\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harlow–Beck couple\", \"fields\": {\"couple\": \"Maya Harlow and Jonah Beck\", \"palette\": \"sage green and cream\", \"guest_count\": \"120\", \"wedding_date\": \"2026-10-17\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"place\"], \"from\": \"Maya Harlow and Jonah Beck\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Maya Harlow and Jonah Beck\", \"rule\": \"e1\"}\n ],\n \"task\": \"Priya said she could do the wedding morning too — please go ahead and book her for hair and makeup on the wedding morning, Saturday 17 October, starting at 07:00 in the Maple Suite at Whitetail Meadows for the party of five, at her usual session rate.\",\n \"expect\": [\n  {\"create\": \"schedule\", \"fields\": {\"title\": \"Hair and makeup – wedding morning\", \"date\": \"2026-10-17\", \"time\": \"07:00\", \"place\": \"Maple Suite, Whitetail Meadows\", \"vendor\": \"Priya Nair\", \"status\": \"booked\"}, \"stale\": {\"time\": [\"09:00\"]}, \"task\": true}\n ],\n \"why\": \"This is a control: the change (Sweet Meridian Patisserie's new dessert-table pricing) is a new fact beside the topic — the cake order is already placed with Bricktown Bakery and no decision rests on Sweet Meridian, so no record may be touched and the assistant should not swap or re-price the dessert order. The task is a fresh booking that follows the plan as it stands: Priya Nair at her 190 dollar rate, 07:00 in the Maple Suite on 17 October. The distractor (Priya's 09:00 offer to a different couple at another venue) must not shift the start time; the standing consent rule protects the confirmed venue and trial bookings from any fiddling.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Bakery restock\", \"counterpart\": \"Bricktown Bakery\", \"org\": \"Bricktown Bakery\", \"item\": \"platter of breakfast pastries\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Ivory Lane Events office\"},\n  {\"kind\": \"booking\", \"topic\": \"Venue walkthrough slots\", \"counterpart\": \"Rosa Kim\", \"org\": \"Whitetail Meadows\", \"item\": \"walkthrough appointment\", \"unit\": \"\", \"values\": [\"Maple Suite\", \"Barn Hall\", \"Terrace\"], \"place\": \"Whitetail Meadows\"},\n  {\"kind\": \"order\", \"topic\": \"Floral supplies\", \"counterpart\": \"Meadowlark Studio\", \"org\": \"Meadowlark Studio\", \"item\": \"votive candles and holders\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Meadowlark Studio\"},\n  {\"kind\": \"booking\", \"topic\": \"Trial sessions\", \"counterpart\": \"Priya Nair\", \"org\": \"Priya Nair Beauty\", \"item\": \"hair and makeup trial session\", \"unit\": \"\", \"values\": [\"Maple Suite\", \"Ivory Lane Events studio\", \"client home\"], \"place\": \"Whitetail Meadows\"},\n  {\"kind\": \"order\", \"topic\": \"Print stationery\", \"counterpart\": \"Gilda Frost\", \"org\": \"Frost Paper Co.\", \"item\": \"printed place cards\", \"unit\": \"sets of 50\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Ivory Lane Events office\"},\n  {\"kind\": \"booking\", \"topic\": \"Planning meetings\", \"counterpart\": \"Maya Harlow\", \"org\": \"Harlow–Beck wedding\", \"item\": \"planning meeting room\", \"unit\": \"\", \"values\": [\"Ivory Lane Events studio\", \"Cafe Bellwether\", \"video call\"], \"place\": \"Ivory Lane Events studio\"},\n  {\"kind\": \"order\", \"topic\": \"Catering staff meals\", \"counterpart\": \"Harvest Table Catering\", \"org\": \"Harvest Table Catering\", \"item\": \"vendor meal trays\", \"unit\": \"trays\", \"values\": [\"3\", \"5\", \"7\"], \"place\": \"Whitetail Meadows\"},\n  {\"kind\": \"order\", \"topic\": \"Mirror rentals\", \"counterpart\": \"Gil Okafor\", \"org\": \"Halo Event Rentals\", \"item\": \"standing mirrors\", \"unit\": \"mirrors\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Whitetail Meadows\"},\n  {\"kind\": \"booking\", \"topic\": \"Engagement shoots\", \"counterpart\": \"Lena Marsh\", \"org\": \"Marsh Photography\", \"item\": \"engagement photo session\", \"unit\": \"\", \"values\": [\"Riverside Park\", \"Old Town pier\", \"studio\"], \"place\": \"Riverside Park\"},\n  {\"kind\": \"order\", \"topic\": \"Favour boxes\", \"counterpart\": \"Tilda Wu\", \"org\": \"Wu & Co. Packaging\", \"item\": \"small favour boxes\", \"unit\": \"boxes\", \"values\": [\"100\", \"120\", \"150\"], \"place\": \"Ivory Lane Events office\"},\n  {\"kind\": \"booking\", \"topic\": \"Tasting appointments\", \"counterpart\": \"Harvest Table Catering\", \"org\": \"Harvest Table Catering\", \"item\": \"menu tasting slot\", \"unit\": \"\", \"values\": [\"kitchen room A\", \"kitchen room B\", \"patio\"], \"place\": \"Harvest Table Catering kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"Linen restock\", \"counterpart\": \"Loom & Linen\", \"org\": \"Loom & Linen\", \"item\": \"runner rolls\", \"unit\": \"rolls\", \"values\": [\"6\", \"9\", \"12\"], \"place\": \"Ivory Lane Events office\"}\n ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3204,
+    "completion_tokens": 7444,
+    "reasoning_tokens": 2973,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03366416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Ivory Lane Events – Harlow–Beck wedding (control)",
+  "setting": "A freelance wedding planner at Ivory Lane Events whose assistant holds vendor contracts, timelines, and couple decisions",
+  "owner": "Nadine",
+  "org": "Ivory Lane Events",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Nadine",
+    "text": "Standing rule for Ivory Lane Events: once a booking for a couple is confirmed, nothing about it (date, place, time or vendor) may be moved or changed without the couple's own consent. Always ask Maya and Jonah first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Nadine",
+    "text": "Standing rule: any supplier order above 500 dollars needs sign-off from our finance lead Tom Reyes before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-10",
+    "type": "quote",
+    "from": "Whitetail Meadows (venue)",
+    "text": "Whitetail Meadows is available Saturday 17 October 2026 for a full-day wedding. Day rate 2400 dollars, includes the Maple Suite as the getting-ready suite and setup from 09:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Booked Whitetail Meadows for the Harlow–Beck wedding on Saturday 17 October 2026 at the 2400 dollar day rate, with the Maple Suite reserved as the getting-ready suite. Maya and Jonah confirmed they want this venue and date.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "quote",
+    "from": "Bricktown Bakery",
+    "text": "Bricktown Bakery quote: three-tier buttercream cake plus 120 dessert pieces for 120 guests, 680 dollars total, delivery to Whitetail Meadows on the day included.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Ordered the cake and dessert table from Bricktown Bakery for the Harlow–Beck wedding: three-tier cake plus 120 dessert pieces at 680 dollars, delivery to Whitetail Meadows on 17 October. Tom Reyes approved the order since it is above 500 dollars.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "quote",
+    "from": "Meadowlark Studio",
+    "text": "Meadowlark Studio quote for wedding florals: bride's bouquet, six bridesmaid posies, ten table arrangements and ceremony arch pieces in a sage and cream palette, 450 dollars.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-27",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Ordered wedding florals from Meadowlark Studio for the Harlow–Beck wedding at 450 dollars: bouquet, six posies, ten table arrangements and arch pieces in sage and cream. No sign-off needed as it is under 500 dollars.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e7"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "quote",
+    "from": "Celadon Sound",
+    "text": "Celadon Sound quote: DJ package with full sound system and lighting for five hours on 17 October, 760 dollars.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-05",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Booked Celadon Sound as DJ for the Harlow–Beck wedding, five-hour package on 17 October at 760 dollars. Tom Reyes approved since it is above 500 dollars.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e9"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Priya Nair (hair and makeup)",
+    "text": "Priya Nair here. I have Friday 16 October in the afternoon free for a hair and makeup trial, and I am available the morning of Saturday 17 October for the wedding itself. My rate is 190 dollars per session per party booking, on-site travel included.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Booked Priya Nair for the Harlow–Beck hair and makeup trial on Friday 16 October at 15:00 at the Maple Suite, Whitetail Meadows, at her 190 dollar session rate.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Maya Harlow",
+    "text": "From Maya: Jonah and I have settled the details — our palette is sage green and cream, and the final guest count is 120. Please keep everything in those colours.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-16",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Opened the client record for the Harlow–Beck wedding: palette sage green and cream, guest count 120, wedding date 17 October 2026 at Whitetail Meadows.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-22",
+    "type": "task",
+    "from": "Nadine",
+    "text": "To-do: send the final headcount of 120 to Whitetail Meadows by 3 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-05",
+    "type": "email",
+    "from": "Harvest Table Catering",
+    "text": "Three tasting menu options attached for 12 September: herb-roast chicken, wild mushroom risotto, or a split menu. Prices unchanged from our contract.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Scheduled the menu tasting with Harvest Table Catering for Saturday 12 September at 11:00 at their kitchen, for Maya, Jonah and me.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "Whitetail Meadows (venue)",
+    "text": "Introducing Rosa Kim, your day-of coordinator at Whitetail Meadows. She will handle setup from 09:00 on the day.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "note",
+    "from": "Nadine",
+    "text": "Note from the venue walkthrough: if it rains on 17 October, the ceremony moves indoors to the Barn Hall at Whitetail Meadows. The Maple Suite getting-ready space is unaffected.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-10",
+    "type": "email",
+    "from": "Priya Nair (hair and makeup)",
+    "text": "Confirming your trial booking: Friday 16 October at 15:00 at the Maple Suite. My rate stays 190 dollars per session, and I am still booked for wedding mornings on request.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "quote",
+    "from": "Crestline Coach",
+    "text": "Crestline Coach quote: two 20-seat shuttle vans for a 22:00 pickup from Whitetail Meadows on 17 October, 540 dollars total.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Loom & Linen",
+    "text": "Linen quote for 120 guests: sage and cream tablecloths with napkins, 380 dollars, delivery and pickup included.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Sweet Meridian Patisserie",
+    "text": "Sweet Meridian Patisserie now offers autumn wedding dessert-table menus starting at 520 dollars, with macaron towers and mini tarts. We are taking bookings for October weddings now.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Priya Nair (hair and makeup)",
+    "text": "For your other October bride at Riverstone: I can start her party at 09:00 on the Saturday morning. Let me know if that works.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-26",
+    "type": "decision",
+    "from": "Nadine",
+    "text": "Booked Crestline Coach for the Harlow–Beck wedding: two 20-seat shuttle vans, 22:00 pickup from Whitetail Meadows on 17 October, 540 dollars. Tom Reyes approved since it is above 500 dollars.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e21"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Maya Harlow",
+    "text": "Question from Maya: what happens if it rains on the day? Just want to be sure we have a plan.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "message",
+    "from": "Nadine",
+    "text": "Replied to Maya: the ceremony moves to the Barn Hall at Whitetail Meadows if it rains, and the Maple Suite getting-ready plan stays the same.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-03",
+    "type": "email",
+    "from": "Whitetail Meadows (venue)",
+    "text": "Final headcount of 120 received, thank you. We look forward to 17 October.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-04",
+    "type": "email",
+    "from": "Rosa Kim (Whitetail Meadows)",
+    "text": "Day-of timeline draft: couple in the Maple Suite from 07:00, ceremony at 15:00, dinner at 17:30, last shuttle at 22:00. Send any corrections by 10 October.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Harlow–Beck wedding – venue",
+    "fields": {
+     "date": "2026-10-17",
+     "place": "Whitetail Meadows",
+     "getting_ready": "Maple Suite",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Hair and makeup trial",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "15:00",
+     "place": "Maple Suite, Whitetail Meadows",
+     "vendor": "Priya Nair",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Menu tasting",
+    "fields": {
+     "date": "2026-09-12",
+     "time": "11:00",
+     "place": "Harvest Table Catering kitchen",
+     "status": "held"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Cake and dessert table",
+    "fields": {
+     "vendor": "Bricktown Bakery",
+     "amount": "680",
+     "delivery_date": "2026-10-17",
+     "delivery_place": "Whitetail Meadows",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Wedding florals",
+    "fields": {
+     "vendor": "Meadowlark Studio",
+     "amount": "450",
+     "palette": "sage and cream",
+     "delivery_date": "2026-10-17",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "DJ package",
+    "fields": {
+     "vendor": "Celadon Sound",
+     "amount": "760",
+     "date": "2026-10-17",
+     "hours": "5",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Guest shuttle vans",
+    "fields": {
+     "vendor": "Crestline Coach",
+     "amount": "540",
+     "date": "2026-10-17",
+     "pickup_time": "22:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harlow–Beck couple",
+    "fields": {
+     "couple": "Maya Harlow and Jonah Beck",
+     "palette": "sage green and cream",
+     "guest_count": "120",
+     "wedding_date": "2026-10-17",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "place"
+    ],
+    "from": "Maya Harlow and Jonah Beck",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Maya Harlow and Jonah Beck",
+    "rule": "e1"
+   }
+  ],
+  "task": "Priya said she could do the wedding morning too — please go ahead and book her for hair and makeup on the wedding morning, Saturday 17 October, starting at 07:00 in the Maple Suite at Whitetail Meadows for the party of five, at her usual session rate.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "title": "Hair and makeup – wedding morning",
+     "date": "2026-10-17",
+     "time": "07:00",
+     "place": "Maple Suite, Whitetail Meadows",
+     "vendor": "Priya Nair",
+     "status": "booked"
+    },
+    "stale": {
+     "time": [
+      "09:00"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change (Sweet Meridian Patisserie's new dessert-table pricing) is a new fact beside the topic — the cake order is already placed with Bricktown Bakery and no decision rests on Sweet Meridian, so no record may be touched and the assistant should not swap or re-price the dessert order. The task is a fresh booking that follows the plan as it stands: Priya Nair at her 190 dollar rate, 07:00 in the Maple Suite on 17 October. The distractor (Priya's 09:00 offer to a different couple at another venue) must not shift the start time; the standing consent rule protects the confirmed venue and trial bookings from any fiddling.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Bakery restock",
+    "counterpart": "Bricktown Bakery",
+    "org": "Bricktown Bakery",
+    "item": "platter of breakfast pastries",
+    "unit": "platters",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Venue walkthrough slots",
+    "counterpart": "Rosa Kim",
+    "org": "Whitetail Meadows",
+    "item": "walkthrough appointment",
+    "unit": "",
+    "values": [
+     "Maple Suite",
+     "Barn Hall",
+     "Terrace"
+    ],
+    "place": "Whitetail Meadows"
+   },
+   {
+    "kind": "order",
+    "topic": "Floral supplies",
+    "counterpart": "Meadowlark Studio",
+    "org": "Meadowlark Studio",
+    "item": "votive candles and holders",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Meadowlark Studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "Trial sessions",
+    "counterpart": "Priya Nair",
+    "org": "Priya Nair Beauty",
+    "item": "hair and makeup trial session",
+    "unit": "",
+    "values": [
+     "Maple Suite",
+     "Ivory Lane Events studio",
+     "client home"
+    ],
+    "place": "Whitetail Meadows"
+   },
+   {
+    "kind": "order",
+    "topic": "Print stationery",
+    "counterpart": "Gilda Frost",
+    "org": "Frost Paper Co.",
+    "item": "printed place cards",
+    "unit": "sets of 50",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Planning meetings",
+    "counterpart": "Maya Harlow",
+    "org": "Harlow–Beck wedding",
+    "item": "planning meeting room",
+    "unit": "",
+    "values": [
+     "Ivory Lane Events studio",
+     "Cafe Bellwether",
+     "video call"
+    ],
+    "place": "Ivory Lane Events studio"
+   },
+   {
+    "kind": "order",
+    "topic": "Catering staff meals",
+    "counterpart": "Harvest Table Catering",
+    "org": "Harvest Table Catering",
+    "item": "vendor meal trays",
+    "unit": "trays",
+    "values": [
+     "3",
+     "5",
+     "7"
+    ],
+    "place": "Whitetail Meadows"
+   },
+   {
+    "kind": "order",
+    "topic": "Mirror rentals",
+    "counterpart": "Gil Okafor",
+    "org": "Halo Event Rentals",
+    "item": "standing mirrors",
+    "unit": "mirrors",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Whitetail Meadows"
+   },
+   {
+    "kind": "booking",
+    "topic": "Engagement shoots",
+    "counterpart": "Lena Marsh",
+    "org": "Marsh Photography",
+    "item": "engagement photo session",
+    "unit": "",
+    "values": [
+     "Riverside Park",
+     "Old Town pier",
+     "studio"
+    ],
+    "place": "Riverside Park"
+   },
+   {
+    "kind": "order",
+    "topic": "Favour boxes",
+    "counterpart": "Tilda Wu",
+    "org": "Wu & Co. Packaging",
+    "item": "small favour boxes",
+    "unit": "boxes",
+    "values": [
+     "100",
+     "120",
+     "150"
+    ],
+    "place": "Ivory Lane Events office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Tasting appointments",
+    "counterpart": "Harvest Table Catering",
+    "org": "Harvest Table Catering",
+    "item": "menu tasting slot",
+    "unit": "",
+    "values": [
+     "kitchen room A",
+     "kitchen room B",
+     "patio"
+    ],
+    "place": "Harvest Table Catering kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "Linen restock",
+    "counterpart": "Loom & Linen",
+    "org": "Loom & Linen",
+    "item": "runner rolls",
+    "unit": "rolls",
+    "values": [
+     "6",
+     "9",
+     "12"
+    ],
+    "place": "Ivory Lane Events office"
+   }
+  ],
+  "id": "G500-4-01",
+  "tier": 500,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

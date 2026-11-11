@@ -1,0 +1,565 @@
+{
+ "id": "G100-4-04",
+ "writer": "glm",
+ "tier": 100,
+ "class": 4,
+ "idx": 3,
+ "setting": "The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings",
+ "prompt_sha256": "ab2e662356eb2c4a7702cba58d48f6a304c9a5e0345f71b979d26d6343f4302c",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Northgate autumn concert and exam entries\",\n  \"setting\": \"The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings\",\n  \"owner\": \"Priya\",\n  \"org\": \"Northgate Music School\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing policy: once an exam entry has been confirmed with a pupil's peripatetic teacher, the entry date or the teacher named on it may not be changed or withdrawn without that teacher's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-11\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Any external room hire we make that costs more than 150 pounds needs sign-off from Tom Reese, the Deputy Bursar, before the booking is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus Webb writes that he teaches piano at Northgate on Wednesdays and Thursdays and is happy to run grade exam preparation sessions on those afternoons.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board confirms a Grade 3 piano session at the Northgate site on 24 October 2026, entry fee 48 pounds per pupil, closing date for entries 18 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-18\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov from facilities says the Recital Hall is free on the evening of 12 November 2026, seats 80, and there is no hire charge for school concerts.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus reports that eight of his pupils are ready to be entered for Grade 3 piano this autumn.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-04\", \"type\": \"quote\", \"from\": \"Notecraft Music\", \"text\": \"Notecraft Music quotes First Piano Album at 7.50 pounds per copy, minimum order 10 copies, quote valid through 30 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-30\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya enters the eight pupils Marcus prepared for the Bellwood Grade 3 piano session on 24 October, paying the board's fee of 48 pounds per pupil, 384 pounds in total, before the 18 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e6\"], \"record\": \"CL-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya books the Recital Hall for the junior autumn concert on 12 November 2026 at 19:00, using the free evening slot with 80 seats that facilities offered.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya schedules a mock exam run for the eight Grade 3 piano pupils with Marcus on 15 October 2026 at 16:00 in Room 4, one of his teaching afternoons.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\"], \"record\": \"EV-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya orders 12 copies of First Piano Album from Notecraft Music at 7.50 pounds each, 90 pounds in total, so the Grade 3 group has enough books.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: parents of the junior groups have been sent a save-the-date for the autumn concert on 12 November.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Rosalind Pike\", \"text\": \"Rosalind Pike writes to say she has been appointed as Northgate's new peripatetic violin and viola teacher from 6 January 2027, and asks whether she can be scheduled on Tuesdays and Fridays.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e14\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus confirms he can run the mock exam session on 15 October at 16:00 as planned.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board has issued candidate numbers for the 24 October session and asks candidates to arrive 30 minutes before their slot.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Sam Okafor (Westgate Community Hall)\", \"text\": \"Sam Okafor from Westgate Community Hall offers their main hall on the evening of 12 November for 60 pounds, seating 60, if Northgate wants a cheaper concert venue.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e17\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov notes the Recital Hall piano is being tuned on 10 November, so the hall is unavailable that afternoon only; evening bookings on 12 November are unaffected.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-11\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder to myself: chase the concert programme drafts from the teaching team this week.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Junior autumn concert\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Recital Hall\", \"capacity\": \"80\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Grade 3 piano mock exam\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"16:00\", \"place\": \"Room 4\", \"teacher\": \"Marcus Webb\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bellwood Grade 3 piano entries\", \"fields\": {\"exam_date\": \"2026-10-24\", \"pupils\": \"8\", \"fee_per_pupil\": \"48\", \"total_fee\": \"384\", \"teacher\": \"Marcus Webb\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"First Piano Album order\", \"fields\": {\"supplier\": \"Notecraft Music\", \"item\": \"First Piano Album\", \"quantity\": \"12\", \"total\": \"90\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"exam_date\", \"teacher\"], \"from\": \"Marcus Webb\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send Marcus the final details for the mock exam session on the 15th, and confirm the Recital Hall booking for the junior concert so everything is locked in for the 12th.\",\n  \"expect\": [\n    {\"message_to\": \"Marcus Webb\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-15\", \"16:00\", \"Room 4\"], \"stale\": [\"Westgate Community Hall\", \"2026-10-22\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the change is a new fact (a violin teacher starting in January) that touches no existing decision, so no record carries a mark and everything stays as it stands. The task is simply to send Marcus the mock exam details as scheduled and confirm the Recital Hall concert booking; the Westgate Hall offer is a distractor that must not displace the free Recital Hall booking, and the consent rule on the exam entries is not triggered by anything.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Violin string restock\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"violin string sets\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"music store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"Manuscript paper\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"manuscript paper pads\", \"unit\": \"pads\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"front office\"},\n    {\"kind\": \"order\", \"topic\": \"Clarinet reeds\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"clarinet reeds\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"woodwind studio\"},\n    {\"kind\": \"booking\", \"topic\": \"Theory class room\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"weekly theory class\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 4\", \"Seminar Room\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Ensemble rehearsal\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"chamber ensemble rehearsal\", \"unit\": \"room\", \"values\": [\"Recital Hall\", \"Room 6\", \"Room 4\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Peripatetic teaching slots\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"peripatetic teaching slots\", \"unit\": \"room\", \"values\": [\"Room 3\", \"Room 5\", \"Room 6\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Minibus for area runs\", \"counterpart\": \"Delia Grant\", \"org\": \"Northgate Music School\", \"item\": \"school minibus\", \"unit\": \"vehicle\", \"values\": [\"Minibus A\", \"Minibus B\"], \"place\": \"school car park\"},\n    {\"kind\": \"order\", \"topic\": \"Piano stool repairs\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"piano stool padding kits\", \"unit\": \"kits\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"instrument workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"External ensemble hire\", \"counterpart\": \"Sam Okafor\", \"org\": \"Westgate Community Hall\", \"item\": \"evening ensemble hire\", \"unit\": \"hall\", \"values\": [\"main hall\", \"small hall\"], \"place\": \"Westgate Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Recorder starter packs\", \"counterpart\": \"Bellwood Exam Board\", \"org\": \"Bellwood Exam Board\", \"item\": \"exam syllabus booklets\", \"unit\": \"booklets\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"Exam steward cover\", \"counterpart\": \"Tom Reese\", \"org\": \"Northgate Music School\", \"item\": \"exam day steward room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 5\"], \"place\": \"main building\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3152,
+    "completion_tokens": 5578,
+    "reasoning_tokens": 2624,
+    "cached_tokens": 3072
+   },
+   "cost": 0.02545392,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Northgate autumn concert and exam entries\",\n  \"setting\": \"The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings\",\n  \"owner\": \"Priya\",\n  \"org\": \"Northgate Music School\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing policy: once an exam entry has been confirmed with a pupil's peripatetic teacher, the entry date or the teacher named on it may not be changed or withdrawn without that teacher's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-11\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Any external room hire we make that costs more than 150 pounds needs sign-off from Tom Reese, the Deputy Bursar, before the booking is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus Webb writes that he teaches piano at Northgate on Wednesdays and Thursdays and is happy to run grade exam preparation sessions on those afternoons.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board confirms a Grade 3 piano session at the Northgate site on 24 October 2026, entry fee 48 pounds per pupil, closing date for entries 18 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-18\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov from facilities says the Recital Hall is free on the evening of 12 November 2026, seats 80, and there is no hire charge for school concerts.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus reports that eight of his pupils are ready to be entered for Grade 3 piano this autumn.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-04\", \"type\": \"quote\", \"from\": \"Notecraft Music\", \"text\": \"Notecraft Music quotes First Piano Album at 7.50 pounds per copy, minimum order 10 copies, quote valid through 30 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-30\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya enters the eight pupils Marcus prepared for the Bellwood Grade 3 piano session on 24 October, paying the board's fee of 48 pounds per pupil, 384 pounds in total, before the 18 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e6\"], \"record\": \"CL-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya books the Recital Hall for the junior autumn concert on 12 November 2026 at 19:00, using the free evening slot with 80 seats that facilities offered.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya schedules a mock exam run for the eight Grade 3 piano pupils with Marcus on 15 October 2026 at 16:00 in Room 4, one of his teaching afternoons.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\"], \"record\": \"EV-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya orders 12 copies of First Piano Album from Notecraft Music at 7.50 pounds each, 90 pounds in total, so the Grade 3 group has enough books.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: parents of the junior groups have been sent a save-the-date for the autumn concert on 12 November.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-24\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Minutes of the term planning meeting: the junior autumn concert stays at the Recital Hall on 12 November, the Grade 3 mock exam stays on 15 October, and the teaching team will send concert programme drafts by 14 October.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Notecraft Music\", \"text\": \"Notecraft Music confirms the 12 copies of First Piano Album will be delivered to the Northgate front office in the week of 5 October.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Rosalind Pike\", \"text\": \"Rosalind Pike writes to say she has been appointed as Northgate's new peripatetic violin and viola teacher from 6 January 2027, and asks whether she can be scheduled on Tuesdays and Fridays.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus confirms he can run the mock exam session on 15 October at 16:00 as planned.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board has issued candidate numbers for the 24 October session and asks candidates to arrive 30 minutes before their slot.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Sam Okafor (Westgate Community Hall)\", \"text\": \"Sam Okafor from Westgate Community Hall offers their main hall on the evening of 12 November for 60 pounds, seating 60, if Northgate wants a cheaper concert venue.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov notes the Recital Hall piano is being tuned on 10 November, so the hall is unavailable that afternoon only; evening bookings on 12 November are unaffected.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-11\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder to myself: chase the concert programme drafts from the teaching team this week.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Junior autumn concert\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Recital Hall\", \"capacity\": \"80\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Grade 3 piano mock exam\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"16:00\", \"place\": \"Room 4\", \"teacher\": \"Marcus Webb\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bellwood Grade 3 piano entries\", \"fields\": {\"exam_date\": \"2026-10-24\", \"pupils\": \"8\", \"fee_per_pupil\": \"48\", \"total_fee\": \"384\", \"teacher\": \"Marcus Webb\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"First Piano Album order\", \"fields\": {\"supplier\": \"Notecraft Music\", \"item\": \"First Piano Album\", \"quantity\": \"12\", \"total\": \"90\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"exam_date\", \"teacher\"], \"from\": \"Marcus Webb\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send Marcus the final details for the mock exam session on the 15th, and confirm the Recital Hall booking for the junior concert so everything is locked in for the 12th.\",\n  \"expect\": [\n    {\"message_to\": \"Marcus Webb\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-15\", \"16:00\", \"Room 4\"], \"stale\": [\"Westgate Community Hall\", \"2026-10-22\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the change is a new fact (a violin teacher starting in January) that touches no existing decision, so no record carries a mark and everything stays as it stands. The task is simply to send Marcus the mock exam details as scheduled and confirm the Recital Hall concert booking; the Westgate Hall offer is a distractor that must not displace the free Recital Hall booking, and the consent rule on the exam entries is not triggered by anything.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Violin string restock\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"violin string sets\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"music store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"Manuscript paper\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"manuscript paper pads\", \"unit\": \"pads\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"front office\"},\n    {\"kind\": \"order\", \"topic\": \"Clarinet reeds\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"clarinet reeds\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"woodwind studio\"},\n    {\"kind\": \"booking\", \"topic\": \"Theory class room\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"weekly theory class\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 4\", \"Seminar Room\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Ensemble rehearsal\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"chamber ensemble rehearsal\", \"unit\": \"room\", \"values\": [\"Recital Hall\", \"Room 6\", \"Room 4\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Peripatetic teaching slots\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"peripatetic teaching slots\", \"unit\": \"room\", \"values\": [\"Room 3\", \"Room 5\", \"Room 6\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Minibus for area runs\", \"counterpart\": \"Delia Grant\", \"org\": \"Northgate Music School\", \"item\": \"school minibus\", \"unit\": \"vehicle\", \"values\": [\"Minibus A\", \"Minibus B\"], \"place\": \"school car park\"},\n    {\"kind\": \"order\", \"topic\": \"Piano stool repairs\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"piano stool padding kits\", \"unit\": \"kits\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"instrument workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"External ensemble hire\", \"counterpart\": \"Sam Okafor\", \"org\": \"Westgate Community Hall\", \"item\": \"evening ensemble hire\", \"unit\": \"hall\", \"values\": [\"main hall\", \"small hall\"], \"place\": \"Westgate Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Recorder starter packs\", \"counterpart\": \"Bellwood Exam Board\", \"org\": \"Bellwood Exam Board\", \"item\": \"exam syllabus booklets\", \"unit\": \"booklets\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"Exam steward cover\", \"counterpart\": \"Tom Reese\", \"org\": \"Northgate Music School\", \"item\": \"exam day steward room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 5\"], \"place\": \"main building\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 6152,
+    "completion_tokens": 3138,
+    "reasoning_tokens": 22,
+    "cached_tokens": 3136
+   },
+   "cost": 0.01884496,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 100: the core has 18 events; need 20–40\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Northgate autumn concert and exam entries\",\n  \"setting\": \"The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings\",\n  \"owner\": \"Priya\",\n  \"org\": \"Northgate Music School\",\n  \"now\": \"2026-10-12\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"policy\", \"from\": \"Priya\", \"text\": \"Standing policy: once an exam entry has been confirmed with a pupil's peripatetic teacher, the entry date or the teacher named on it may not be changed or withdrawn without that teacher's written consent.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-11\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Any external room hire we make that costs more than 150 pounds needs sign-off from Tom Reese, the Deputy Bursar, before the booking is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus Webb writes that he teaches piano at Northgate on Wednesdays and Thursdays and is happy to run grade exam preparation sessions on those afternoons.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-07-02\", \"type\": \"letter\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board confirms a Grade 3 piano session at the Northgate site on 24 October 2026, entry fee 48 pounds per pupil, closing date for entries 18 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-18\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov from facilities says the Recital Hall is free on the evening of 12 November 2026, seats 80, and there is no hire charge for school concerts.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-30\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus reports that eight of his pupils are ready to be entered for Grade 3 piano this autumn.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-04\", \"type\": \"quote\", \"from\": \"Notecraft Music\", \"text\": \"Notecraft Music quotes First Piano Album at 7.50 pounds per copy, minimum order 10 copies, quote valid through 30 September 2026.\", \"role\": \"fact\", \"ends\": \"2026-09-30\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya enters the eight pupils Marcus prepared for the Bellwood Grade 3 piano session on 24 October, paying the board's fee of 48 pounds per pupil, 384 pounds in total, before the 18 September closing date.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e6\"], \"record\": \"CL-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-08-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya books the Recital Hall for the junior autumn concert on 12 November 2026 at 19:00, using the free evening slot with 80 seats that facilities offered.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya schedules a mock exam run for the eight Grade 3 piano pupils with Marcus on 15 October 2026 at 16:00 in Room 4, one of his teaching afternoons.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e6\"], \"record\": \"EV-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-16\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya orders 12 copies of First Piano Album from Notecraft Music at 7.50 pounds each, 90 pounds in total, so the Grade 3 group has enough books.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e6\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-22\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: parents of the junior groups have been sent a save-the-date for the autumn concert on 12 November.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-24\", \"type\": \"minutes\", \"from\": \"Priya\", \"text\": \"Minutes of the term planning meeting: the junior autumn concert stays at the Recital Hall on 12 November, the Grade 3 mock exam stays on 15 October, and the teaching team will send concert programme drafts by 14 October.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-29\", \"type\": \"email\", \"from\": \"Notecraft Music\", \"text\": \"Notecraft Music confirms the 12 copies of First Piano Album will be delivered to the Northgate front office in the week of 5 October.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Rosalind Pike\", \"text\": \"Rosalind Pike writes to say she has been appointed as Northgate's new peripatetic violin and viola teacher from 6 January 2027, and asks whether she can be scheduled on Tuesdays and Fridays.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e16\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus confirms he can run the mock exam session on 15 October at 16:00 as planned.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-08\", \"type\": \"notice\", \"from\": \"Bellwood Exam Board\", \"text\": \"Bellwood Exam Board has issued candidate numbers for the 24 October session and asks candidates to arrive 30 minutes before their slot.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Sam Okafor (Westgate Community Hall)\", \"text\": \"Sam Okafor from Westgate Community Hall offers their main hall on the evening of 12 November for 60 pounds, seating 60, if Northgate wants a cheaper concert venue.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e19\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Ana Petrov (Facilities)\", \"text\": \"Ana Petrov notes the Recital Hall piano is being tuned on 10 November, so the hall is unavailable that afternoon only; evening bookings on 12 November are unaffected.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-11\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"Reminder to myself: chase the concert programme drafts from the teaching team this week.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Junior autumn concert\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"19:00\", \"place\": \"Recital Hall\", \"capacity\": \"80\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Grade 3 piano mock exam\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"16:00\", \"place\": \"Room 4\", \"teacher\": \"Marcus Webb\", \"status\": \"scheduled\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Bellwood Grade 3 piano entries\", \"fields\": {\"exam_date\": \"2026-10-24\", \"pupils\": \"8\", \"fee_per_pupil\": \"48\", \"total_fee\": \"384\", \"teacher\": \"Marcus Webb\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"First Piano Album order\", \"fields\": {\"supplier\": \"Notecraft Music\", \"item\": \"First Piano Album\", \"quantity\": \"12\", \"total\": \"90\", \"status\": \"ordered\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-1\", \"fields\": [\"exam_date\", \"teacher\"], \"from\": \"Marcus Webb\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send Marcus the final details for the mock exam session on the 15th, and confirm the Recital Hall booking for the junior concert so everything is locked in for the 12th.\",\n  \"expect\": [\n    {\"message_to\": \"Marcus Webb\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-15\", \"16:00\", \"Room 4\"], \"stale\": [\"Westgate Community Hall\", \"2026-10-22\"], \"task\": true},\n    {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"booked\"], \"task\": true}\n  ],\n  \"why\": \"This is a control: the change is a new fact (a violin teacher starting in January) that touches no existing decision, so no record carries a mark and everything stays as it stands. The task is simply to send Marcus the mock exam details as scheduled and confirm the Recital Hall concert booking; the Westgate Hall offer is a distractor that must not displace the free Recital Hall booking, and the consent rule on the exam entries is not triggered by anything.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"Violin string restock\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"violin string sets\", \"unit\": \"sets\", \"values\": [\"6\", \"10\", \"12\", \"20\"], \"place\": \"music store cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"Manuscript paper\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"manuscript paper pads\", \"unit\": \"pads\", \"values\": [\"15\", \"25\", \"40\"], \"place\": \"front office\"},\n    {\"kind\": \"order\", \"topic\": \"Clarinet reeds\", \"counterpart\": \"Notecraft Music\", \"org\": \"Notecraft Music\", \"item\": \"clarinet reeds\", \"unit\": \"boxes\", \"values\": [\"4\", \"8\", \"12\"], \"place\": \"woodwind studio\"},\n    {\"kind\": \"booking\", \"topic\": \"Theory class room\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"weekly theory class\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 4\", \"Seminar Room\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Ensemble rehearsal\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"chamber ensemble rehearsal\", \"unit\": \"room\", \"values\": [\"Recital Hall\", \"Room 6\", \"Room 4\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Peripatetic teaching slots\", \"counterpart\": \"Ana Petrov\", \"org\": \"Northgate Music School\", \"item\": \"peripatetic teaching slots\", \"unit\": \"room\", \"values\": [\"Room 3\", \"Room 5\", \"Room 6\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"Minibus for area runs\", \"counterpart\": \"Delia Grant\", \"org\": \"Northgate Music School\", \"item\": \"school minibus\", \"unit\": \"vehicle\", \"values\": [\"Minibus A\", \"Minibus B\", \"Minibus C\"], \"place\": \"school car park\"},\n    {\"kind\": \"order\", \"topic\": \"Piano stool repairs\", \"counterpart\": \"Hollis Paper Supplies\", \"org\": \"Hollis Paper Supplies\", \"item\": \"piano stool padding kits\", \"unit\": \"kits\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"instrument workshop\"},\n    {\"kind\": \"booking\", \"topic\": \"External ensemble hire\", \"counterpart\": \"Sam Okafor\", \"org\": \"Westgate Community Hall\", \"item\": \"evening ensemble hire\", \"unit\": \"hall\", \"values\": [\"main hall\", \"small hall\", \"upstairs studio\"], \"place\": \"Westgate Community Hall\"},\n    {\"kind\": \"order\", \"topic\": \"Recorder starter packs\", \"counterpart\": \"Bellwood Exam Board\", \"org\": \"Bellwood Exam Board\", \"item\": \"exam syllabus booklets\", \"unit\": \"booklets\", \"values\": [\"10\", \"20\", \"30\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"Exam steward cover\", \"counterpart\": \"Tom Reese\", \"org\": \"Northgate Music School\", \"item\": \"exam day steward room\", \"unit\": \"room\", \"values\": [\"Room 2\", \"Room 5\", \"Room 6\"], \"place\": \"main building\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 9343,
+    "completion_tokens": 3142,
+    "reasoning_tokens": 11,
+    "cached_tokens": 6144
+   },
+   "cost": 0.01990084,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'Minibus for area runs': values needs at least three entries\n- noise topic 'External ensemble hire': values needs at least three entries\n- noise topic 'Exam steward cover': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Northgate autumn concert and exam entries",
+  "setting": "The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings",
+  "owner": "Priya",
+  "org": "Northgate Music School",
+  "now": "2026-10-12",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "policy",
+    "from": "Priya",
+    "text": "Standing policy: once an exam entry has been confirmed with a pupil's peripatetic teacher, the entry date or the teacher named on it may not be changed or withdrawn without that teacher's written consent.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-11",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Any external room hire we make that costs more than 150 pounds needs sign-off from Tom Reese, the Deputy Bursar, before the booking is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Marcus Webb",
+    "text": "Marcus Webb writes that he teaches piano at Northgate on Wednesdays and Thursdays and is happy to run grade exam preparation sessions on those afternoons.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-07-02",
+    "type": "letter",
+    "from": "Bellwood Exam Board",
+    "text": "Bellwood Exam Board confirms a Grade 3 piano session at the Northgate site on 24 October 2026, entry fee 48 pounds per pupil, closing date for entries 18 September 2026.",
+    "role": "fact",
+    "ends": "2026-09-18"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Ana Petrov (Facilities)",
+    "text": "Ana Petrov from facilities says the Recital Hall is free on the evening of 12 November 2026, seats 80, and there is no hire charge for school concerts.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-30",
+    "type": "email",
+    "from": "Marcus Webb",
+    "text": "Marcus reports that eight of his pupils are ready to be entered for Grade 3 piano this autumn.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-04",
+    "type": "quote",
+    "from": "Notecraft Music",
+    "text": "Notecraft Music quotes First Piano Album at 7.50 pounds per copy, minimum order 10 copies, quote valid through 30 September 2026.",
+    "role": "fact",
+    "ends": "2026-09-30"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya enters the eight pupils Marcus prepared for the Bellwood Grade 3 piano session on 24 October, paying the board's fee of 48 pounds per pupil, 384 pounds in total, before the 18 September closing date.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e6"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-08-28",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya books the Recital Hall for the junior autumn concert on 12 November 2026 at 19:00, using the free evening slot with 80 seats that facilities offered.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya schedules a mock exam run for the eight Grade 3 piano pupils with Marcus on 15 October 2026 at 16:00 in Room 4, one of his teaching afternoons.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e6"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-16",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya orders 12 copies of First Piano Album from Notecraft Music at 7.50 pounds each, 90 pounds in total, so the Grade 3 group has enough books.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-22",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note: parents of the junior groups have been sent a save-the-date for the autumn concert on 12 November.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-24",
+    "type": "minutes",
+    "from": "Priya",
+    "text": "Minutes of the term planning meeting: the junior autumn concert stays at the Recital Hall on 12 November, the Grade 3 mock exam stays on 15 October, and the teaching team will send concert programme drafts by 14 October.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-29",
+    "type": "email",
+    "from": "Notecraft Music",
+    "text": "Notecraft Music confirms the 12 copies of First Piano Album will be delivered to the Northgate front office in the week of 5 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Rosalind Pike",
+    "text": "Rosalind Pike writes to say she has been appointed as Northgate's new peripatetic violin and viola teacher from 6 January 2027, and asks whether she can be scheduled on Tuesdays and Fridays.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Marcus Webb",
+    "text": "Marcus confirms he can run the mock exam session on 15 October at 16:00 as planned.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-08",
+    "type": "notice",
+    "from": "Bellwood Exam Board",
+    "text": "Bellwood Exam Board has issued candidate numbers for the 24 October session and asks candidates to arrive 30 minutes before their slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Sam Okafor (Westgate Community Hall)",
+    "text": "Sam Okafor from Westgate Community Hall offers their main hall on the evening of 12 November for 60 pounds, seating 60, if Northgate wants a cheaper concert venue.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Ana Petrov (Facilities)",
+    "text": "Ana Petrov notes the Recital Hall piano is being tuned on 10 November, so the hall is unavailable that afternoon only; evening bookings on 12 November are unaffected.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-11",
+    "type": "task",
+    "from": "Priya",
+    "text": "Reminder to myself: chase the concert programme drafts from the teaching team this week.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Junior autumn concert",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "19:00",
+     "place": "Recital Hall",
+     "capacity": "80",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Grade 3 piano mock exam",
+    "fields": {
+     "date": "2026-10-15",
+     "time": "16:00",
+     "place": "Room 4",
+     "teacher": "Marcus Webb",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Bellwood Grade 3 piano entries",
+    "fields": {
+     "exam_date": "2026-10-24",
+     "pupils": "8",
+     "fee_per_pupil": "48",
+     "total_fee": "384",
+     "teacher": "Marcus Webb",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "First Piano Album order",
+    "fields": {
+     "supplier": "Notecraft Music",
+     "item": "First Piano Album",
+     "quantity": "12",
+     "total": "90",
+     "status": "ordered"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "exam_date",
+     "teacher"
+    ],
+    "from": "Marcus Webb",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send Marcus the final details for the mock exam session on the 15th, and confirm the Recital Hall booking for the junior concert so everything is locked in for the 12th.",
+  "expect": [
+   {
+    "message_to": "Marcus Webb",
+    "regarding": "EV-2",
+    "says": [
+     "2026-10-15",
+     "16:00",
+     "Room 4"
+    ],
+    "stale": [
+     "Westgate Community Hall",
+     "2026-10-22"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "booked"
+    ],
+    "task": true
+   }
+  ],
+  "why": "This is a control: the change is a new fact (a violin teacher starting in January) that touches no existing decision, so no record carries a mark and everything stays as it stands. The task is simply to send Marcus the mock exam details as scheduled and confirm the Recital Hall concert booking; the Westgate Hall offer is a distractor that must not displace the free Recital Hall booking, and the consent rule on the exam entries is not triggered by anything.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Violin string restock",
+    "counterpart": "Notecraft Music",
+    "org": "Notecraft Music",
+    "item": "violin string sets",
+    "unit": "sets",
+    "values": [
+     "6",
+     "10",
+     "12",
+     "20"
+    ],
+    "place": "music store cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "Manuscript paper",
+    "counterpart": "Hollis Paper Supplies",
+    "org": "Hollis Paper Supplies",
+    "item": "manuscript paper pads",
+    "unit": "pads",
+    "values": [
+     "15",
+     "25",
+     "40"
+    ],
+    "place": "front office"
+   },
+   {
+    "kind": "order",
+    "topic": "Clarinet reeds",
+    "counterpart": "Notecraft Music",
+    "org": "Notecraft Music",
+    "item": "clarinet reeds",
+    "unit": "boxes",
+    "values": [
+     "4",
+     "8",
+     "12"
+    ],
+    "place": "woodwind studio"
+   },
+   {
+    "kind": "booking",
+    "topic": "Theory class room",
+    "counterpart": "Ana Petrov",
+    "org": "Northgate Music School",
+    "item": "weekly theory class",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 4",
+     "Seminar Room"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "booking",
+    "topic": "Ensemble rehearsal",
+    "counterpart": "Marcus Webb",
+    "org": "Northgate Music School",
+    "item": "chamber ensemble rehearsal",
+    "unit": "room",
+    "values": [
+     "Recital Hall",
+     "Room 6",
+     "Room 4"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "booking",
+    "topic": "Peripatetic teaching slots",
+    "counterpart": "Ana Petrov",
+    "org": "Northgate Music School",
+    "item": "peripatetic teaching slots",
+    "unit": "room",
+    "values": [
+     "Room 3",
+     "Room 5",
+     "Room 6"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "booking",
+    "topic": "Minibus for area runs",
+    "counterpart": "Delia Grant",
+    "org": "Northgate Music School",
+    "item": "school minibus",
+    "unit": "vehicle",
+    "values": [
+     "Minibus A",
+     "Minibus B",
+     "Minibus C"
+    ],
+    "place": "school car park"
+   },
+   {
+    "kind": "order",
+    "topic": "Piano stool repairs",
+    "counterpart": "Hollis Paper Supplies",
+    "org": "Hollis Paper Supplies",
+    "item": "piano stool padding kits",
+    "unit": "kits",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "instrument workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "External ensemble hire",
+    "counterpart": "Sam Okafor",
+    "org": "Westgate Community Hall",
+    "item": "evening ensemble hire",
+    "unit": "hall",
+    "values": [
+     "main hall",
+     "small hall",
+     "upstairs studio"
+    ],
+    "place": "Westgate Community Hall"
+   },
+   {
+    "kind": "order",
+    "topic": "Recorder starter packs",
+    "counterpart": "Bellwood Exam Board",
+    "org": "Bellwood Exam Board",
+    "item": "exam syllabus booklets",
+    "unit": "booklets",
+    "values": [
+     "10",
+     "20",
+     "30"
+    ],
+    "place": "front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "Exam steward cover",
+    "counterpart": "Tom Reese",
+    "org": "Northgate Music School",
+    "item": "exam day steward room",
+    "unit": "room",
+    "values": [
+     "Room 2",
+     "Room 5",
+     "Room 6"
+    ],
+    "place": "main building"
+   }
+  ],
+  "id": "G100-4-04",
+  "tier": 100,
+  "class": 4,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings_discarded_v1": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Rosalind's January appointment affects none of the existing decisions, so the task correctly sends Marcus the scheduled details and confirms the existing Recital Hall booking without triggering consent. The core has 20 events and four decisions, with the change 12 days before the task and five core events after it. The change appears as an ordinary email among other events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rosalind's January appointment affects none of the existing decisions, so the task correctly sends Marcus the scheduled details and confirms the existing Recital Hall booking without triggering consent. The core has 20 events and four decisions, with the change 12 days before the task and five core events after it. The change appears as an ordinary email among other events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3143,
+    "completion_tokens": 163,
+    "reasoning_tokens": 55,
+    "cached_tokens": 0
+   },
+   "cost": 0.04743,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5862fd224c844123c761535c0bd8b3d1e36af0f90145c70e1ce1d414399cc63d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state lists stale values that the history never supplies: '2026-10-22' appears nowhere, and Westgate Community Hall is not tied to any record the task touches. The control logic itself holds: the violin-teacher change touches no decision, the task forces an act, and the counts (20 core events, 4 decisions, change 12 days before the task with 5 core events after) meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state lists stale values that the history never supplies: '2026-10-22' appears nowhere, and Westgate Community Hall is not tied to any record the task touches. The control logic itself holds: the violin-teacher change touches no decision, the task forces an act, and the counts (20 core events, 4 decisions, change 12 days before the task with 5 core events after) meet tier 100."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4525,
+    "completion_tokens": 1233,
+    "reasoning_tokens": 1051,
+    "cached_tokens": 0
+   },
+   "cost": 0.001069,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5862fd224c844123c761535c0bd8b3d1e36af0f90145c70e1ce1d414399cc63d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

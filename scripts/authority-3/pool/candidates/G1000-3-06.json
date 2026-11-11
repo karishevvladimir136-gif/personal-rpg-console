@@ -1,0 +1,677 @@
+{
+ "id": "G1000-3-06",
+ "writer": "glm",
+ "tier": 1000,
+ "class": 3,
+ "idx": 5,
+ "setting": "The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings",
+ "prompt_sha256": "87f64a90de256905df6db4b08863060b32227718dd7274daa77c05dd45cbbc65",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Theory exam date moved\",\n  \"setting\": \"The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings\",\n  \"owner\": \"Priya\",\n  \"org\": \"Northgate Music School\",\n  \"now\": \"2026-11-02\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule from Priya: once a teaching or invigilation assignment has been confirmed with a teacher, no change to its date or time may be made without that teacher's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Helen Frost (school treasurer)\", \"text\": \"Finance policy confirmed by Helen: any exam entry or supplier order above 400 pounds in total needs Helen's written sign-off before it is submitted.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus Webb, our peripatetic piano teacher, confirms he is available every Wednesday and Saturday during term time for lessons and cover duties.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya set Marcus Webb's regular teaching day as Wednesdays in Studio 1 for the autumn term, based on his Wednesday availability.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Cedar Lodge Music\", \"text\": \"Cedar Lodge Music quoted 4.50 pounds per score for printed sheet music, delivered to the Northgate school office.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya ordered 40 scores from Cedar Lodge Music at 4.50 pounds each, a total of 180 pounds, for the autumn term library, staying under the 400 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e7\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz from Trinity's local liaison confirmed that the Trinity theory exam session hosted at Northgate Music School will be held on Saturday 21 November 2026, with an entry fee of 48 pounds per candidate.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked the Recital Room and set the Trinity theory exam session for Saturday 21 November 2026, starting 09:30, using the date given by the Trinity liaison.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya submitted Trinity theory entries for 12 candidates at the 48 pound fee, a total of 576 pounds, with Helen's sign-off obtained because the total exceeds 400 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya assigned Marcus Webb to invigilate the Trinity theory exam session booked for Saturday 21 November 2026, from 09:00, and confirmed the assignment with him.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e3\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Northgate Parents' Association\", \"text\": \"The Parents' Association asks for the annual parents' evening to be held in the second half of September; 24 September works for most families.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked Studio 2 for the parents' evening on Thursday 24 September 2026 from 18:00, following the Parents' Association's preferred date.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"EV-4\"},\n    {\"id\": \"e13\", \"date\": \"2026-08-04\", \"type\": \"quote\", \"from\": \"Alan Bright (Bright Pianos)\", \"text\": \"Bright Pianos quoted 95 pounds to tune the recital grand piano, visits on weekday mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked Alan Bright to tune the recital grand piano on the morning of Thursday 3 September 2026 at the quoted 95 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-5\"},\n    {\"id\": \"e15\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"ABRSM regional office\", \"text\": \"The ABRSM regional office confirmed practical graded exam fees of 62 pounds per candidate for the autumn session.\", \"role\": \"fact\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya entered 8 pupils for ABRSM practical exams at 62 pounds each, a total of 496 pounds, with Helen's sign-off obtained as the total is above 400 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e15\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e17\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Reminder from Dana Ortiz: the Trinity theory exam session at Northgate Music School is confirmed for Saturday 21 November 2026. Candidate numbers should be finalised by mid-October.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e18\", \"date\": \"2026-09-24\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: parents' evening in Studio 2 went ahead as planned; about 40 families attended.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Staff notice pinned in the common room: Trinity theory exam, Recital Room, Saturday 21 November, invigilation by Marcus Webb. Please keep the room free that morning.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e20\", \"date\": \"2026-10-05\", \"type\": \"call\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz phoned: the Trinity theory exam session at Northgate has had to be moved and will now be held on Saturday 28 November 2026 instead. The fee stays at 48 pounds per candidate and the session remains at Northgate. Apologies for the short notice; new confirmations will follow by post.\", \"role\": \"change\", \"revokes\": [\"e7\"]},\n    {\"id\": \"e21\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harbourview Community Centre\", \"text\": \"Harbourview Community Centre sent its room hire rates for external use: 30 pounds per evening for their main hall from January 2027.\", \"role\": \"fact\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"ABRSM regional office\", \"text\": \"The ABRSM regional office confirmed that the practical exams hosted at Northgate Music School will take place on Saturday 21 November 2026, as previously notified to candidates.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Tom Reyes\", \"text\": \"Tom Reyes, our new peripatetic guitar teacher, confirms he can start on Thursdays from the start of November.\", \"role\": \"fact\"},\n    {\"id\": \"e24\", \"date\": \"2026-10-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya set Tom Reyes's regular teaching day as Thursdays in Studio 3 for the rest of the autumn term, based on his Thursday availability.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-6\"},\n    {\"id\": \"e25\", \"date\": \"2026-11-01\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do this week: pay the Trinity invoice for the theory entries by 10 November 2026, total 576 pounds.\", \"role\": \"obligation\"},\n    {\"id\": \"e26\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz says Trinity is happy to keep using Northgate as a public centre as long as we can guarantee a quiet room and an invigilator on the day.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus asks whether the school can stock more duet material for his intermediate pupils; he'll send a list of titles.\", \"role\": \"other\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-03\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: piano tuning by Alan Bright completed this morning, invoice of 95 pounds to be paid from the instrument budget.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-09-18\", \"type\": \"letter\", \"from\": \"Northgate Music School\", \"text\": \"Term letter to parents: autumn term ends Friday 11 December 2026; the carol concert is booked for Tuesday 8 December in the Recital Room.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Helen Frost (school treasurer)\", \"text\": \"Helen confirms the Cedar Lodge Music invoice of 180 pounds has been paid; the theory entry invoice of 576 pounds is still pending and due in November.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Marcus Webb\", \"text\": \"Marcus messages: all fine for the November invigilation as agreed, and his Wednesday pupils are making good progress with the new duet books.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-07-18\", \"type\": \"email\", \"from\": \"Fairway Catering\", \"text\": \"Fairway Catering quoted 3.20 pounds per head for interval refreshments at evening events, delivered to the school hall.\", \"role\": \"fact\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Trinity theory exam session\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"09:30\", \"place\": \"Recital Room\", \"candidates\": \"12\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Theory exam invigilation\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"09:00\", \"assignee\": \"Marcus Webb\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marcus Webb teaching day\", \"fields\": {\"weekday\": \"Wednesday\", \"place\": \"Studio 1\", \"term\": \"autumn 2026\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Parents' evening\", \"fields\": {\"date\": \"2026-09-24\", \"time\": \"18:00\", \"place\": \"Studio 2\", \"status\": \"done\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Piano tuning visit\", \"fields\": {\"date\": \"2026-09-03\", \"time\": \"09:00\", \"assignee\": \"Alan Bright\", \"status\": \"done\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Tom Reyes teaching day\", \"fields\": {\"weekday\": \"Thursday\", \"place\": \"Studio 3\", \"term\": \"autumn 2026\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trinity theory exam entries\", \"fields\": {\"candidates\": \"12\", \"fee\": \"48\", \"total\": \"576\", \"exam\": \"Trinity theory\", \"status\": \"submitted\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Sheet music order\", \"fields\": {\"item\": \"printed scores\", \"quantity\": \"40\", \"total\": \"180\", \"supplier\": \"Cedar Lodge Music\", \"status\": \"paid\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"ABRSM practical exam entries\", \"fields\": {\"candidates\": \"8\", \"fee\": \"62\", \"total\": \"496\", \"exam\": \"ABRSM practical\", \"status\": \"submitted\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Marcus Webb\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send the confirmation email to the parents of the twelve theory exam candidates with the exam date and venue for the November Trinity session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-28\", \"stale\": [\"2026-11-21\"]},\n    {\"message_to\": \"parents of the twelve Trinity theory exam candidates\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 28 November 2026\", \"Recital Room at Northgate Music School\"], \"stale\": [\"Saturday 21 November 2026\"], \"task\": true}\n  ],\n  \"why\": \"The change moves the Trinity theory exam from 21 to 28 November, so the session record EV-1 (decision resting directly on the fact) must be revised to the new date. The invigilation assignment EV-2 rests on the booking, not the fact, so it is two hops away and ASK: its confirmed date cannot be moved without Marcus Webb's agreement under the standing rule. The entry order ORD-1 uses only the fee (48 pounds), which the change leaves standing, so it is KEEP. The task's confirmation to parents must carry the corrected date 28 November, never the stale 21 November, and the ABRSM practical exam on 21 November is a distractor not to be confused with the theory session.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"violin strings\", \"counterpart\": \"Nadia Field\", \"org\": \"Cedar Lodge Music\", \"item\": \"violin string sets\", \"unit\": \"sets\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"order\", \"topic\": \"reeds\", \"counterpart\": \"Nadia Field\", \"org\": \"Cedar Lodge Music\", \"item\": \"clarinet reeds\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"booking\", \"topic\": \"ensemble rehearsal\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"Recital Room for ensemble rehearsal\", \"unit\": \"\", \"values\": [\"Recital Room\", \"Studio 2\", \"school hall\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"booking\", \"topic\": \"Saturday group class\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"Saturday morning group piano class\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 3\", \"Recital Room\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"booking\", \"topic\": \"external exam hosting\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Trinity College local liaison\", \"item\": \"room hosting for candidate warm-ups\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Recital Room\", \"school hall\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"refreshments\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Fairway Catering\", \"item\": \"interval refreshments\", \"unit\": \"heads\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"school hall\"},\n    {\"kind\": \"booking\", \"topic\": \"peripatetic teaching rooms\", \"counterpart\": \"Tom Reyes\", \"org\": \"Northgate Music School\", \"item\": \"guitar lesson room\", \"unit\": \"\", \"values\": [\"Studio 3\", \"Studio 1\", \"Studio 2\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"piano stool repairs\", \"counterpart\": \"Alan Bright\", \"org\": \"Bright Pianos\", \"item\": \"piano stool repairs\", \"unit\": \"stools\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Recital Room\"},\n    {\"kind\": \"booking\", \"topic\": \"choir practice\", \"counterpart\": \"Elsa Munro\", \"org\": \"Northgate Music School\", \"item\": \"choir practice room\", \"unit\": \"\", \"values\": [\"school hall\", \"Recital Room\", \"Studio 2\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"music stands\", \"counterpart\": \"Peter Lang\", \"org\": \"Harbourview Supplies\", \"item\": \"collapsible music stands\", \"unit\": \"stands\", \"values\": [\"8\", \"10\", \"12\", \"16\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"booking\", \"topic\": \"theory class\", \"counterpart\": \"Elsa Munro\", \"org\": \"Northgate Music School\", \"item\": \"weekly theory class room\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Studio 1\", \"Recital Room\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Peter Lang\", \"org\": \"Harbourview Supplies\", \"item\": \"printer paper reams\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Northgate school office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3200,
+    "completion_tokens": 6768,
+    "reasoning_tokens": 2273,
+    "cached_tokens": 3136
+   },
+   "cost": 0.03068416,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Theory exam date moved\",\n  \"setting\": \"The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings\",\n  \"owner\": \"Priya\",\n  \"org\": \"Northgate Music School\",\n  \"now\": \"2026-11-02\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Priya\", \"text\": \"Standing rule from Priya: once a teaching or invigilation assignment has been confirmed with a teacher, no change to its date or time may be made without that teacher's agreement first.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Helen Frost (school treasurer)\", \"text\": \"Finance policy confirmed by Helen: any exam entry or supplier order above 400 pounds in total needs Helen's written sign-off before it is submitted.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus Webb, our peripatetic piano teacher, confirms he is available every Wednesday and Saturday during term time for lessons and cover duties.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya set Marcus Webb's regular teaching day as Wednesdays in Studio 1 for the autumn term, based on his Wednesday availability.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-3\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marcus Webb\", \"text\": \"Marcus asks whether the school can stock more duet material for his intermediate pupils; he'll send a list of titles.\", \"role\": \"other\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-20\", \"type\": \"quote\", \"from\": \"Cedar Lodge Music\", \"text\": \"Cedar Lodge Music quoted 4.50 pounds per score for printed sheet music, delivered to the Northgate school office.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya ordered 40 scores from Cedar Lodge Music at 4.50 pounds each, a total of 180 pounds, for the autumn term library, staying under the 400 pound sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz says Trinity is happy to keep using Northgate as a public centre as long as we can guarantee a quiet room and an invigilator on the day.\", \"role\": \"other\"},\n    {\"id\": \"e9\", \"date\": \"2026-07-02\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz from Trinity's local liaison confirmed that the Trinity theory exam session hosted at Northgate Music School will be held on Saturday 21 November 2026, with an entry fee of 48 pounds per candidate.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked the Recital Room and set the Trinity theory exam session for Saturday 21 November 2026, starting 09:30, using the date given by the Trinity liaison.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e11\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya submitted Trinity theory entries for 12 candidates at the 48 pound fee, a total of 576 pounds, with Helen's sign-off obtained because the total exceeds 400 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"KEEP\"},\n    {\"id\": \"e12\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya assigned Marcus Webb to invigilate the Trinity theory exam session booked for Saturday 21 November 2026, from 09:00, and confirmed the assignment with him.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e3\", \"e1\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-18\", \"type\": \"email\", \"from\": \"Fairway Catering\", \"text\": \"Fairway Catering quoted 3.20 pounds per head for interval refreshments at evening events, delivered to the school hall.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-22\", \"type\": \"email\", \"from\": \"Northgate Parents' Association\", \"text\": \"The Parents' Association asks for the annual parents' evening to be held in the second half of September; 24 September works for most families.\", \"role\": \"fact\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked Studio 2 for the parents' evening on Thursday 24 September 2026 from 18:00, following the Parents' Association's preferred date.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-4\"},\n    {\"id\": \"e16\", \"date\": \"2026-08-04\", \"type\": \"quote\", \"from\": \"Alan Bright (Bright Pianos)\", \"text\": \"Bright Pianos quoted 95 pounds to tune the recital grand piano, visits on weekday mornings.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-08-08\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya booked Alan Bright to tune the recital grand piano on the morning of Thursday 3 September 2026 at the quoted 95 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"EV-5\"},\n    {\"id\": \"e18\", \"date\": \"2026-08-20\", \"type\": \"email\", \"from\": \"ABRSM regional office\", \"text\": \"The ABRSM regional office confirmed practical graded exam fees of 62 pounds per candidate for the autumn session.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-25\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya entered 8 pupils for ABRSM practical exams at 62 pounds each, a total of 496 pounds, with Helen's sign-off obtained as the total is above 400 pounds.\", \"role\": \"decision\", \"rests_on\": [\"e18\", \"e2\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: piano tuning by Alan Bright completed this morning, invoice of 95 pounds to be paid from the instrument budget.\", \"role\": \"other\"},\n    {\"id\": \"e21\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Reminder from Dana Ortiz: the Trinity theory exam session at Northgate Music School is confirmed for Saturday 21 November 2026. Candidate numbers should be finalised by mid-October.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"letter\", \"from\": \"Northgate Music School\", \"text\": \"Term letter to parents: autumn term ends Friday 11 December 2026; the carol concert is booked for Tuesday 8 December in the Recital Room.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"note\", \"from\": \"Priya\", \"text\": \"Note: parents' evening in Studio 2 went ahead as planned; about 40 families attended.\", \"role\": \"other\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Priya\", \"text\": \"Staff notice pinned in the common room: Trinity theory exam, Recital Room, Saturday 21 November, invigilation by Marcus Webb. Please keep the room free that morning.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-10-05\", \"type\": \"call\", \"from\": \"Dana Ortiz (Trinity College local liaison)\", \"text\": \"Dana Ortiz phoned: the Trinity theory exam session at Northgate has had to be moved and will now be held on Saturday 28 November 2026 instead. The fee stays at 48 pounds per candidate and the session remains at Northgate. Apologies for the short notice; new confirmations will follow by post.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n    {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Helen Frost (school treasurer)\", \"text\": \"Helen confirms the Cedar Lodge Music invoice of 180 pounds has been paid; the theory entry invoice of 576 pounds is still pending and due in November.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Harbourview Community Centre\", \"text\": \"Harbourview Community Centre sent its room hire rates for external use: 30 pounds per evening for their main hall from January 2027.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"ABRSM regional office\", \"text\": \"The ABRSM regional office confirmed that the practical exams hosted at Northgate Music School will take place on Saturday 21 November 2026, as previously notified to candidates.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-10-22\", \"type\": \"email\", \"from\": \"Tom Reyes\", \"text\": \"Tom Reyes, our new peripatetic guitar teacher, confirms he can start on Thursdays from the start of November.\", \"role\": \"fact\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-26\", \"type\": \"message\", \"from\": \"Marcus Webb\", \"text\": \"Marcus messages: all fine for the November invigilation as agreed, and his Wednesday pupils are making good progress with the new duet books.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-28\", \"type\": \"decision\", \"from\": \"Priya\", \"text\": \"Priya set Tom Reyes's regular teaching day as Thursdays in Studio 3 for the rest of the autumn term, based on his Thursday availability.\", \"role\": \"decision\", \"rests_on\": [\"e29\"], \"record\": \"EV-6\"},\n    {\"id\": \"e32\", \"date\": \"2026-11-01\", \"type\": \"task\", \"from\": \"Priya\", \"text\": \"To do this week: pay the Trinity invoice for the theory entries by 10 November 2026, total 576 pounds.\", \"role\": \"obligation\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Trinity theory exam session\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"09:30\", \"place\": \"Recital Room\", \"candidates\": \"12\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Theory exam invigilation\", \"fields\": {\"date\": \"2026-11-21\", \"time\": \"09:00\", \"assignee\": \"Marcus Webb\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Marcus Webb teaching day\", \"fields\": {\"weekday\": \"Wednesday\", \"place\": \"Studio 1\", \"term\": \"autumn 2026\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Parents' evening\", \"fields\": {\"date\": \"2026-09-24\", \"time\": \"18:00\", \"place\": \"Studio 2\", \"status\": \"done\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Piano tuning visit\", \"fields\": {\"date\": \"2026-09-03\", \"time\": \"09:00\", \"assignee\": \"Alan Bright\", \"status\": \"done\"}},\n    {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Tom Reyes teaching day\", \"fields\": {\"weekday\": \"Thursday\", \"place\": \"Studio 3\", \"term\": \"autumn 2026\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Trinity theory exam entries\", \"fields\": {\"candidates\": \"12\", \"fee\": \"48\", \"total\": \"576\", \"exam\": \"Trinity theory\", \"status\": \"submitted\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Sheet music order\", \"fields\": {\"item\": \"printed scores\", \"quantity\": \"40\", \"total\": \"180\", \"supplier\": \"Cedar Lodge Music\", \"status\": \"paid\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"ABRSM practical exam entries\", \"fields\": {\"candidates\": \"8\", \"fee\": \"62\", \"total\": \"496\", \"exam\": \"ABRSM practical\", \"status\": \"submitted\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-2\", \"fields\": [\"date\", \"time\"], \"from\": \"Marcus Webb\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please send the confirmation email to the parents of the twelve theory exam candidates with the exam date and venue for the November Trinity session.\",\n  \"expect\": [\n    {\"record\": \"EV-1\", \"field\": \"date\", \"value\": \"2026-11-28\", \"stale\": [\"2026-11-21\"]},\n    {\"message_to\": \"parents of the twelve Trinity theory exam candidates\", \"regarding\": \"EV-1\", \"says\": [\"Saturday 28 November 2026\", \"Recital Room at Northgate Music School\"], \"stale\": [\"Saturday 21 November 2026\"], \"task\": true}\n  ],\n  \"why\": \"The change moves the Trinity theory exam from 21 to 28 November, so the session record EV-1 (decision resting directly on the fact) must be revised to the new date. The invigilation assignment EV-2 rests on the booking, not the fact, so it is two hops away and ASK: its confirmed date cannot be moved without Marcus Webb's agreement under the standing rule. The entry order ORD-1 uses only the fee (48 pounds), which the change leaves standing, so it is KEEP. The task's confirmation to parents must carry the corrected date 28 November, never the stale 21 November, and the ABRSM practical exam on 21 November is a distractor not to be confused with the theory session.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"violin strings\", \"counterpart\": \"Nadia Field\", \"org\": \"Cedar Lodge Music\", \"item\": \"violin string sets\", \"unit\": \"sets\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"order\", \"topic\": \"reeds\", \"counterpart\": \"Nadia Field\", \"org\": \"Cedar Lodge Music\", \"item\": \"clarinet reeds\", \"unit\": \"boxes\", \"values\": [\"6\", \"8\", \"12\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"booking\", \"topic\": \"ensemble rehearsal\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"Recital Room for ensemble rehearsal\", \"unit\": \"\", \"values\": [\"Recital Room\", \"Studio 2\", \"school hall\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"booking\", \"topic\": \"Saturday group class\", \"counterpart\": \"Marcus Webb\", \"org\": \"Northgate Music School\", \"item\": \"Saturday morning group piano class\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 3\", \"Recital Room\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"booking\", \"topic\": \"external exam hosting\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Trinity College local liaison\", \"item\": \"room hosting for candidate warm-ups\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Recital Room\", \"school hall\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"refreshments\", \"counterpart\": \"Ravi Chandra\", \"org\": \"Fairway Catering\", \"item\": \"interval refreshments\", \"unit\": \"heads\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"school hall\"},\n    {\"kind\": \"booking\", \"topic\": \"peripatetic teaching rooms\", \"counterpart\": \"Tom Reyes\", \"org\": \"Northgate Music School\", \"item\": \"guitar lesson room\", \"unit\": \"\", \"values\": [\"Studio 3\", \"Studio 1\", \"Studio 2\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"piano stool repairs\", \"counterpart\": \"Alan Bright\", \"org\": \"Bright Pianos\", \"item\": \"piano stool repairs\", \"unit\": \"stools\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Recital Room\"},\n    {\"kind\": \"booking\", \"topic\": \"choir practice\", \"counterpart\": \"Elsa Munro\", \"org\": \"Northgate Music School\", \"item\": \"choir practice room\", \"unit\": \"\", \"values\": [\"school hall\", \"Recital Room\", \"Studio 2\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"music stands\", \"counterpart\": \"Peter Lang\", \"org\": \"Harbourview Supplies\", \"item\": \"collapsible music stands\", \"unit\": \"stands\", \"values\": [\"8\", \"10\", \"12\", \"16\"], \"place\": \"Northgate school office\"},\n    {\"kind\": \"booking\", \"topic\": \"theory class\", \"counterpart\": \"Elsa Munro\", \"org\": \"Northgate Music School\", \"item\": \"weekly theory class room\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Studio 1\", \"Recital Room\"], \"place\": \"Northgate Music School\"},\n    {\"kind\": \"order\", \"topic\": \"printer paper\", \"counterpart\": \"Peter Lang\", \"org\": \"Harbourview Supplies\", \"item\": \"printer paper reams\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"Northgate school office\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 7740,
+    "completion_tokens": 4583,
+    "reasoning_tokens": 88,
+    "cached_tokens": 3136
+   },
+   "cost": 0.02742616,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e26 is dated before e25)\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Theory exam date moved",
+  "setting": "The registrar at Northgate Music School whose assistant schedules peripatetic teachers, exam entries, and room bookings",
+  "owner": "Priya",
+  "org": "Northgate Music School",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Priya",
+    "text": "Standing rule from Priya: once a teaching or invigilation assignment has been confirmed with a teacher, no change to its date or time may be made without that teacher's agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Helen Frost (school treasurer)",
+    "text": "Finance policy confirmed by Helen: any exam entry or supplier order above 400 pounds in total needs Helen's written sign-off before it is submitted.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Marcus Webb",
+    "text": "Marcus Webb, our peripatetic piano teacher, confirms he is available every Wednesday and Saturday during term time for lessons and cover duties.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya set Marcus Webb's regular teaching day as Wednesdays in Studio 1 for the autumn term, based on his Wednesday availability.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Marcus Webb",
+    "text": "Marcus asks whether the school can stock more duet material for his intermediate pupils; he'll send a list of titles.",
+    "role": "other"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-20",
+    "type": "quote",
+    "from": "Cedar Lodge Music",
+    "text": "Cedar Lodge Music quoted 4.50 pounds per score for printed sheet music, delivered to the Northgate school office.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya ordered 40 scores from Cedar Lodge Music at 4.50 pounds each, a total of 180 pounds, for the autumn term library, staying under the 400 pound sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Dana Ortiz (Trinity College local liaison)",
+    "text": "Dana Ortiz says Trinity is happy to keep using Northgate as a public centre as long as we can guarantee a quiet room and an invigilator on the day.",
+    "role": "other"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-02",
+    "type": "email",
+    "from": "Dana Ortiz (Trinity College local liaison)",
+    "text": "Dana Ortiz from Trinity's local liaison confirmed that the Trinity theory exam session hosted at Northgate Music School will be held on Saturday 21 November 2026, with an entry fee of 48 pounds per candidate.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya booked the Recital Room and set the Trinity theory exam session for Saturday 21 November 2026, starting 09:30, using the date given by the Trinity liaison.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya submitted Trinity theory entries for 12 candidates at the 48 pound fee, a total of 576 pounds, with Helen's sign-off obtained because the total exceeds 400 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya assigned Marcus Webb to invigilate the Trinity theory exam session booked for Saturday 21 November 2026, from 09:00, and confirmed the assignment with him.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e3",
+     "e1"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-18",
+    "type": "email",
+    "from": "Fairway Catering",
+    "text": "Fairway Catering quoted 3.20 pounds per head for interval refreshments at evening events, delivered to the school hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-22",
+    "type": "email",
+    "from": "Northgate Parents' Association",
+    "text": "The Parents' Association asks for the annual parents' evening to be held in the second half of September; 24 September works for most families.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya booked Studio 2 for the parents' evening on Thursday 24 September 2026 from 18:00, following the Parents' Association's preferred date.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-04",
+    "type": "quote",
+    "from": "Alan Bright (Bright Pianos)",
+    "text": "Bright Pianos quoted 95 pounds to tune the recital grand piano, visits on weekday mornings.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-08",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya booked Alan Bright to tune the recital grand piano on the morning of Thursday 3 September 2026 at the quoted 95 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-20",
+    "type": "email",
+    "from": "ABRSM regional office",
+    "text": "The ABRSM regional office confirmed practical graded exam fees of 62 pounds per candidate for the autumn session.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-25",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya entered 8 pupils for ABRSM practical exams at 62 pounds each, a total of 496 pounds, with Helen's sign-off obtained as the total is above 400 pounds.",
+    "role": "decision",
+    "rests_on": [
+     "e18",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-03",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note: piano tuning by Alan Bright completed this morning, invoice of 95 pounds to be paid from the instrument budget.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Dana Ortiz (Trinity College local liaison)",
+    "text": "Reminder from Dana Ortiz: the Trinity theory exam session at Northgate Music School is confirmed for Saturday 21 November 2026. Candidate numbers should be finalised by mid-October.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "letter",
+    "from": "Northgate Music School",
+    "text": "Term letter to parents: autumn term ends Friday 11 December 2026; the carol concert is booked for Tuesday 8 December in the Recital Room.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-24",
+    "type": "note",
+    "from": "Priya",
+    "text": "Note: parents' evening in Studio 2 went ahead as planned; about 40 families attended.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-30",
+    "type": "notice",
+    "from": "Priya",
+    "text": "Staff notice pinned in the common room: Trinity theory exam, Recital Room, Saturday 21 November, invigilation by Marcus Webb. Please keep the room free that morning.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-05",
+    "type": "call",
+    "from": "Dana Ortiz (Trinity College local liaison)",
+    "text": "Dana Ortiz phoned: the Trinity theory exam session at Northgate has had to be moved and will now be held on Saturday 28 November 2026 instead. The fee stays at 48 pounds per candidate and the session remains at Northgate. Apologies for the short notice; new confirmations will follow by post.",
+    "role": "change",
+    "revokes": [
+     "e9"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Helen Frost (school treasurer)",
+    "text": "Helen confirms the Cedar Lodge Music invoice of 180 pounds has been paid; the theory entry invoice of 576 pounds is still pending and due in November.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Harbourview Community Centre",
+    "text": "Harbourview Community Centre sent its room hire rates for external use: 30 pounds per evening for their main hall from January 2027.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "ABRSM regional office",
+    "text": "The ABRSM regional office confirmed that the practical exams hosted at Northgate Music School will take place on Saturday 21 November 2026, as previously notified to candidates.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-22",
+    "type": "email",
+    "from": "Tom Reyes",
+    "text": "Tom Reyes, our new peripatetic guitar teacher, confirms he can start on Thursdays from the start of November.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-26",
+    "type": "message",
+    "from": "Marcus Webb",
+    "text": "Marcus messages: all fine for the November invigilation as agreed, and his Wednesday pupils are making good progress with the new duet books.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-28",
+    "type": "decision",
+    "from": "Priya",
+    "text": "Priya set Tom Reyes's regular teaching day as Thursdays in Studio 3 for the rest of the autumn term, based on his Thursday availability.",
+    "role": "decision",
+    "rests_on": [
+     "e29"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-01",
+    "type": "task",
+    "from": "Priya",
+    "text": "To do this week: pay the Trinity invoice for the theory entries by 10 November 2026, total 576 pounds.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Trinity theory exam session",
+    "fields": {
+     "date": "2026-11-21",
+     "time": "09:30",
+     "place": "Recital Room",
+     "candidates": "12",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Theory exam invigilation",
+    "fields": {
+     "date": "2026-11-21",
+     "time": "09:00",
+     "assignee": "Marcus Webb",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Marcus Webb teaching day",
+    "fields": {
+     "weekday": "Wednesday",
+     "place": "Studio 1",
+     "term": "autumn 2026",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Parents' evening",
+    "fields": {
+     "date": "2026-09-24",
+     "time": "18:00",
+     "place": "Studio 2",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Piano tuning visit",
+    "fields": {
+     "date": "2026-09-03",
+     "time": "09:00",
+     "assignee": "Alan Bright",
+     "status": "done"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Tom Reyes teaching day",
+    "fields": {
+     "weekday": "Thursday",
+     "place": "Studio 3",
+     "term": "autumn 2026",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Trinity theory exam entries",
+    "fields": {
+     "candidates": "12",
+     "fee": "48",
+     "total": "576",
+     "exam": "Trinity theory",
+     "status": "submitted"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Sheet music order",
+    "fields": {
+     "item": "printed scores",
+     "quantity": "40",
+     "total": "180",
+     "supplier": "Cedar Lodge Music",
+     "status": "paid"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "ABRSM practical exam entries",
+    "fields": {
+     "candidates": "8",
+     "fee": "62",
+     "total": "496",
+     "exam": "ABRSM practical",
+     "status": "submitted"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Marcus Webb",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send the confirmation email to the parents of the twelve theory exam candidates with the exam date and venue for the November Trinity session.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "date",
+    "value": "2026-11-28",
+    "stale": [
+     "2026-11-21"
+    ]
+   },
+   {
+    "message_to": "parents of the twelve Trinity theory exam candidates",
+    "regarding": "EV-1",
+    "says": [
+     "Saturday 28 November 2026",
+     "Recital Room at Northgate Music School"
+    ],
+    "stale": [
+     "Saturday 21 November 2026"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change moves the Trinity theory exam from 21 to 28 November, so the session record EV-1 (decision resting directly on the fact) must be revised to the new date. The invigilation assignment EV-2 rests on the booking, not the fact, so it is two hops away and ASK: its confirmed date cannot be moved without Marcus Webb's agreement under the standing rule. The entry order ORD-1 uses only the fee (48 pounds), which the change leaves standing, so it is KEEP. The task's confirmation to parents must carry the corrected date 28 November, never the stale 21 November, and the ABRSM practical exam on 21 November is a distractor not to be confused with the theory session.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "violin strings",
+    "counterpart": "Nadia Field",
+    "org": "Cedar Lodge Music",
+    "item": "violin string sets",
+    "unit": "sets",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Northgate school office"
+   },
+   {
+    "kind": "order",
+    "topic": "reeds",
+    "counterpart": "Nadia Field",
+    "org": "Cedar Lodge Music",
+    "item": "clarinet reeds",
+    "unit": "boxes",
+    "values": [
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Northgate school office"
+   },
+   {
+    "kind": "booking",
+    "topic": "ensemble rehearsal",
+    "counterpart": "Marcus Webb",
+    "org": "Northgate Music School",
+    "item": "Recital Room for ensemble rehearsal",
+    "unit": "",
+    "values": [
+     "Recital Room",
+     "Studio 2",
+     "school hall"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "booking",
+    "topic": "Saturday group class",
+    "counterpart": "Marcus Webb",
+    "org": "Northgate Music School",
+    "item": "Saturday morning group piano class",
+    "unit": "",
+    "values": [
+     "Studio 1",
+     "Studio 3",
+     "Recital Room"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "booking",
+    "topic": "external exam hosting",
+    "counterpart": "Dana Ortiz",
+    "org": "Trinity College local liaison",
+    "item": "room hosting for candidate warm-ups",
+    "unit": "",
+    "values": [
+     "Studio 2",
+     "Recital Room",
+     "school hall"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "order",
+    "topic": "refreshments",
+    "counterpart": "Ravi Chandra",
+    "org": "Fairway Catering",
+    "item": "interval refreshments",
+    "unit": "heads",
+    "values": [
+     "30",
+     "40",
+     "50",
+     "60"
+    ],
+    "place": "school hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "peripatetic teaching rooms",
+    "counterpart": "Tom Reyes",
+    "org": "Northgate Music School",
+    "item": "guitar lesson room",
+    "unit": "",
+    "values": [
+     "Studio 3",
+     "Studio 1",
+     "Studio 2"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "order",
+    "topic": "piano stool repairs",
+    "counterpart": "Alan Bright",
+    "org": "Bright Pianos",
+    "item": "piano stool repairs",
+    "unit": "stools",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Recital Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "choir practice",
+    "counterpart": "Elsa Munro",
+    "org": "Northgate Music School",
+    "item": "choir practice room",
+    "unit": "",
+    "values": [
+     "school hall",
+     "Recital Room",
+     "Studio 2"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "order",
+    "topic": "music stands",
+    "counterpart": "Peter Lang",
+    "org": "Harbourview Supplies",
+    "item": "collapsible music stands",
+    "unit": "stands",
+    "values": [
+     "8",
+     "10",
+     "12",
+     "16"
+    ],
+    "place": "Northgate school office"
+   },
+   {
+    "kind": "booking",
+    "topic": "theory class",
+    "counterpart": "Elsa Munro",
+    "org": "Northgate Music School",
+    "item": "weekly theory class room",
+    "unit": "",
+    "values": [
+     "Studio 2",
+     "Studio 1",
+     "Recital Room"
+    ],
+    "place": "Northgate Music School"
+   },
+   {
+    "kind": "order",
+    "topic": "printer paper",
+    "counterpart": "Peter Lang",
+    "org": "Harbourview Supplies",
+    "item": "printer paper reams",
+    "unit": "reams",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Northgate school office"
+   }
+  ],
+  "id": "G1000-3-06",
+  "tier": 1000,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}

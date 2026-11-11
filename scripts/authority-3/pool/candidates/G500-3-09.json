@@ -1,0 +1,667 @@
+{
+ "id": "G500-3-09",
+ "writer": "glm",
+ "tier": 500,
+ "class": 3,
+ "idx": 8,
+ "setting": "The front-desk manager at Larkspur Inn, a 12-room guesthouse, relying on an assistant for bookings, room assignments, and guest notes",
+ "prompt_sha256": "722392e6a6e2bbe4438e8378062944df18e47ff7be37b4f8374c3dece99387b2",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Harvest Weekend brunch price correction\",\n  \"setting\": \"The front-desk manager at Larkspur Inn, a 12-room guesthouse, relying on an assistant for bookings, room assignments, and guest notes\",\n  \"owner\": \"Marta\",\n  \"org\": \"Larkspur Inn\",\n  \"now\": \"2026-11-06\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for the front desk: once a group or wedding package price, or rooms, have been confirmed with an organiser, we never change those records without the organiser's written agreement first. Ask them, then act.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-10\", \"type\": \"policy\", \"from\": \"Marta\", \"text\": \"Second standing rule: any supplier order above 1500 in total needs Priya Nair's sign-off before we place it. Anything under that I can order myself.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-14\", \"type\": \"email\", \"from\": \"Rosa (head housekeeper)\", \"text\": \"Summer deep clean is done — all 12 rooms at Larkspur Inn are in service, from the Maple Suite down to the ground-floor rooms.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Happy to keep handling all catered brunches and dinners at the Inn — we can take weekend bookings with a week's notice as usual.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Mr and Mrs Ferris into the Juniper Room for 10–12 July. All rooms were in service, so Juniper was free.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-1\"},\n    {\"id\": \"e6\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Mr. Ferris\", \"text\": \"Looking forward to our stay. For our notes: we prefer a ground-floor room and coffee around 6:30 if possible.\", \"role\": \"fact\"},\n    {\"id\": \"e7\", \"date\": \"2026-08-04\", \"type\": \"email\", \"from\": \"Sam Petrie (Bellwether Linens)\", \"text\": \"This season's prices: bath towels 20 each and bed linen sets 18 each, delivered within the week.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-08-10\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered 24 bath towels from Bellwether Linens at 20 each, 480 in total — well under the 1500 line, so no sign-off from Priya was needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e2\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-09-03\", \"type\": \"note\", \"from\": \"Rosa (head housekeeper)\", \"text\": \"The Willow Room is being repainted 8–16 September and will be back in service from 17 September.\", \"role\": \"fact\", \"ends\": \"2026-09-16\"},\n    {\"id\": \"e10\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Our autumn brunch menu is 26 per guest, minimum 10 guests, and we serve it any day from 8:00 to 11:00. It runs through the end of November.\", \"role\": \"fact\"},\n    {\"id\": \"e11\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Claire Delacroix\", \"text\": \"We'd like a Harvest Weekend at Larkspur Inn for 12 guests, arriving Friday 6 November and leaving Monday 9 November, with a catered brunch on Sunday morning.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-09-24\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Ordered Fairway's autumn brunch for the Delacroix party: 12 guests, Sunday 8 November at 9:00 in the Maple Suite, at the autumn price of 26 per guest — 312 in total, so no sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e4\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n    {\"id\": \"e13\", \"date\": \"2026-09-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Delacroix party of 12 into five rooms for 6–9 November: the Maple Suite plus Alder, Rowan, Cedar and Aspen.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e11\"], \"record\": \"EV-4\"},\n    {\"id\": \"e14\", \"date\": \"2026-09-28\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Set the Delacroix Harvest Weekend package at 310 per guest for the 12 guests, covering three nights plus Sunday's Fairway brunch, which we ordered at 26 per guest in the Maple Suite. Confirmed the price with Claire as required.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e12\", \"e1\"], \"record\": \"CL-2\", \"mark\": \"ASK\"},\n    {\"id\": \"e15\", \"date\": \"2026-09-30\", \"type\": \"email\", \"from\": \"Claire Delacroix\", \"text\": \"Wonderful, thank you — 12 guests confirmed for the Harvest Weekend, and we'll see you on the 6th.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-10-01\", \"type\": \"email\", \"from\": \"Harriet Lund (Cedar Trails Hiking Club)\", \"text\": \"We'll be 14 hikers coming through on 14 November and would love your catered brunch again.\", \"role\": \"fact\"},\n    {\"id\": \"e17\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked Fairway's autumn brunch for the Cedar Trails Hiking Club: 14 guests, Saturday 14 November at 10:00 in the Willow Room — their head count clears the 10-guest minimum, and the Willow Room is back in service.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e9\", \"e16\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n    {\"id\": \"e18\", \"date\": \"2026-10-06\", \"type\": \"note\", \"from\": \"Rosa (head housekeeper)\", \"text\": \"Maple Suite deep-cleaned and fully ready for the November bookings.\", \"role\": \"fact\"},\n    {\"id\": \"e19\", \"date\": \"2026-10-08\", \"type\": \"task\", \"from\": \"Marta\", \"text\": \"Reminder to myself: pay the Bellwether Linens towel invoice by 15 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e20\", \"date\": \"2026-10-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Scheduled Rosa's autumn deep-clean rota for 20–22 October across the ground-floor rooms.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-5\"},\n    {\"id\": \"e21\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Sam Petrie (Bellwether Linens)\", \"text\": \"Payment received for the towel invoice, thank you — everything settled.\", \"role\": \"other\"},\n    {\"id\": \"e22\", \"date\": \"2026-10-16\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Attaching our current autumn sheet for your records: brunch 26 per guest, 10-guest minimum, served daily 8:00 to 11:00, through November.\", \"role\": \"fact\", \"echo\": true},\n    {\"id\": \"e23\", \"date\": \"2026-10-20\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Some bad news from us, I'm afraid: with dairy and bread costs up, the autumn brunch is 31 per guest for all bookings from 1 November onward. The 10-guest minimum and the 8:00 to 11:00 serving hours are unchanged. Everything already quoted for October stands as quoted.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n    {\"id\": \"e24\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"One more thing — our harvest dinner menu is 34 per guest if you'd ever like to add an evening option for weekend guests.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e25\", \"date\": \"2026-10-30\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Booked the Kowalczyk family into the Linden and Hawthorn Rooms for 6–8 November; those two rooms were free that weekend.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-2\"},\n    {\"id\": \"e26\", \"date\": \"2026-11-01\", \"type\": \"email\", \"from\": \"Claire Delacroix\", \"text\": \"Can't wait for the weekend — could we get extra pillows in the Maple Suite? Thank you!\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-11-03\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Assigned Noah to cover the front desk on Sunday 8 November, 8:00 to 16:00, while the Delacroix brunch is running upstairs.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n    {\"id\": \"e28\", \"date\": \"2026-11-04\", \"type\": \"email\", \"from\": \"Rosa (head housekeeper)\", \"text\": \"All rooms are ready for the busy weekend — Delacroix party of 12 arriving Friday, Kowalczyk family too.\", \"role\": \"fact\"},\n    {\"id\": \"e29\", \"date\": \"2026-11-05\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Weekly staff meeting notes: Delacroix Harvest Weekend starts Friday, 12 guests in five rooms, brunch Sunday at 9:00 in the Maple Suite; Kowalczyk family in Linden and Hawthorn; Noah on the desk Sunday morning.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Ferris stay\", \"fields\": {\"date\": \"2026-07-10\", \"room\": \"Juniper\", \"nights\": \"2\", \"status\": \"checked out\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Bath towels restock\", \"fields\": {\"item\": \"bath towels\", \"quantity\": \"24\", \"unit_price\": \"20\", \"total\": \"480\", \"supplier\": \"Bellwether Linens\", \"status\": \"delivered\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Delacroix Harvest Weekend brunch\", \"fields\": {\"item\": \"autumn brunch\", \"guest_count\": \"12\", \"price_per_guest\": \"26\", \"total\": \"312\", \"date\": \"2026-11-08\", \"place\": \"Maple Suite\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Delacroix party rooms\", \"fields\": {\"date\": \"2026-11-06\", \"nights\": \"3\", \"rooms\": \"Maple Suite, Alder, Rowan, Cedar, Aspen\", \"guests\": \"12\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-2\", \"collection\": \"crm\", \"title\": \"Delacroix Harvest Weekend package\", \"fields\": {\"client\": \"Claire Delacroix\", \"package\": \"Harvest Weekend\", \"guests\": \"12\", \"package_price\": \"310\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Cedar Trails brunch\", \"fields\": {\"item\": \"autumn brunch\", \"guest_count\": \"14\", \"date\": \"2026-11-14\", \"time\": \"10:00\", \"place\": \"Willow Room\", \"status\": \"booked\"}},\n    {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Autumn deep-clean rota\", \"fields\": {\"date\": \"2026-10-20\", \"area\": \"ground-floor rooms\", \"staff\": \"Rosa\", \"status\": \"completed\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Kowalczyk family stay\", \"fields\": {\"date\": \"2026-11-06\", \"rooms\": \"Linden, Hawthorn\", \"nights\": \"2\", \"guests\": \"4\", \"status\": \"booked\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Sunday front-desk cover\", \"fields\": {\"date\": \"2026-11-08\", \"time\": \"08:00\", \"end_time\": \"16:00\", \"staff\": \"Noah\", \"status\": \"assigned\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"CL-2\", \"fields\": [\"package_price\"], \"from\": \"Claire Delacroix\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"The Delacroix party arrives this evening — please confirm Sunday's brunch order with Dana at Fairway and send Claire her final note with the package price.\",\n  \"expect\": [\n    {\"record\": \"ORD-1\", \"field\": \"price_per_guest\", \"value\": \"31\", \"stale\": [\"26\"]},\n    {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"372\", \"stale\": [\"312\"]},\n    {\"message_to\": \"Dana Ortiz (Fairway Catering)\", \"regarding\": \"ORD-1\", \"says\": [\"12 guests\", \"31 per guest\", \"November 8\"], \"stale\": [\"26\"], \"task\": true},\n    {\"message_to\": \"Claire Delacroix\", \"regarding\": \"CL-2\", \"says\": [\"brunch is now 31 per guest\", \"asking her agreement before the package price changes\"], \"stale\": [\"310\"], \"task\": true}\n  ],\n  \"why\": \"Dana's email corrects the autumn brunch fact from 26 to 31 per guest from 1 November, leaving the minimum and serving hours standing. The Delacroix brunch order (ORD-1) rests directly on the old price and totals only 372, below Priya's 1500 sign-off line, so it should simply be revised to 31 and confirmed with Fairway at the new price. The package record CL-2 rests on that order two hops away, but its confirmed package price may not be changed without Claire Delacroix's written agreement under the standing rule, so the right act is to ask her, not to act. The hiking-club brunch keeps its booking because it relied only on the 10-guest minimum and daily serving, which the correction leaves unchanged; all other records stay as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"coffee beans\", \"counterpart\": \"Elias Vann\", \"org\": \"Cedar Roast Coffee\", \"item\": \"house blend beans\", \"unit\": \"kg\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"kitchen store\"},\n    {\"kind\": \"order\", \"topic\": \"towel restocks\", \"counterpart\": \"Sam Petrie\", \"org\": \"Bellwether Linens\", \"item\": \"bath towels\", \"unit\": \"towels\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"linen cupboard\"},\n    {\"kind\": \"order\", \"topic\": \"guest soap\", \"counterpart\": \"Sam Petrie\", \"org\": \"Bellwether Linens\", \"item\": \"guest soap bars\", \"unit\": \"bars\", \"values\": [\"40\", \"60\", \"80\"], \"place\": \"front desk\"},\n    {\"kind\": \"booking\", \"topic\": \"parish meetings\", \"counterpart\": \"Ruth Kemme\", \"org\": \"St. Aldric's Parish\", \"item\": \"parlor meeting\", \"unit\": \"\", \"values\": [\"Parlor\", \"Dining Room\", \"Garden Room\"], \"place\": \"main building\"},\n    {\"kind\": \"booking\", \"topic\": \"catered showers\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"catered shower setup\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Parlor\", \"Terrace\"], \"place\": \"main building\"},\n    {\"kind\": \"order\", \"topic\": \"farm eggs\", \"counterpart\": \"Marisol Wen\", \"org\": \"Hedge Row Farm\", \"item\": \"breakfast eggs\", \"unit\": \"dozen\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"kitchen\"},\n    {\"kind\": \"booking\", \"topic\": \"hiking club rooms\", \"counterpart\": \"Harriet Lund\", \"org\": \"Cedar Trails Hiking Club\", \"item\": \"club rooms\", \"unit\": \"\", \"values\": [\"Linden\", \"Hawthorn\", \"Aspen\"], \"place\": \"top floor\"},\n    {\"kind\": \"order\", \"topic\": \"firewood\", \"counterpart\": \"Tobias Kerr\", \"org\": \"Northgate Fuel\", \"item\": \"seasoned logs\", \"unit\": \"bundles\", \"values\": [\"20\", \"30\", \"40\"], \"place\": \"shed\"},\n    {\"kind\": \"booking\", \"topic\": \"yoga retreats\", \"counterpart\": \"Ines Bao\", \"org\": \"Stillwater Yoga\", \"item\": \"retreat block\", \"unit\": \"\", \"values\": [\"Garden Room\", \"Terrace\", \"Parlor\"], \"place\": \"main building\"},\n    {\"kind\": \"order\", \"topic\": \"office paper\", \"counterpart\": \"Vicky Ames\", \"org\": \"Corlan Office Supply\", \"item\": \"copy paper\", \"unit\": \"reams\", \"values\": [\"4\", \"6\", \"8\"], \"place\": \"front office\"},\n    {\"kind\": \"booking\", \"topic\": \"anniversary dinners\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"private dinner\", \"unit\": \"\", \"values\": [\"Dining Room\", \"Garden Room\", \"Terrace\"], \"place\": \"main building\"},\n    {\"kind\": \"order\", \"topic\": \"table flowers\", \"counterpart\": \"June Halvorsen\", \"org\": \"Petal & Stem\", \"item\": \"table bouquets\", \"unit\": \"bouquets\", \"values\": [\"6\", \"8\", \"10\"], \"place\": \"front desk\"}\n  ]\n}\n```",
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3206,
+    "completion_tokens": 14048,
+    "reasoning_tokens": 9552,
+    "cached_tokens": 3136
+   },
+   "cost": 0.06272456,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Harvest Weekend brunch price correction",
+  "setting": "The front-desk manager at Larkspur Inn, a 12-room guesthouse, relying on an assistant for bookings, room assignments, and guest notes",
+  "owner": "Marta",
+  "org": "Larkspur Inn",
+  "now": "2026-11-06",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for the front desk: once a group or wedding package price, or rooms, have been confirmed with an organiser, we never change those records without the organiser's written agreement first. Ask them, then act.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-10",
+    "type": "policy",
+    "from": "Marta",
+    "text": "Second standing rule: any supplier order above 1500 in total needs Priya Nair's sign-off before we place it. Anything under that I can order myself.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-14",
+    "type": "email",
+    "from": "Rosa (head housekeeper)",
+    "text": "Summer deep clean is done — all 12 rooms at Larkspur Inn are in service, from the Maple Suite down to the ground-floor rooms.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Happy to keep handling all catered brunches and dinners at the Inn — we can take weekend bookings with a week's notice as usual.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Mr and Mrs Ferris into the Juniper Room for 10–12 July. All rooms were in service, so Juniper was free.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e6",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Mr. Ferris",
+    "text": "Looking forward to our stay. For our notes: we prefer a ground-floor room and coffee around 6:30 if possible.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-08-04",
+    "type": "email",
+    "from": "Sam Petrie (Bellwether Linens)",
+    "text": "This season's prices: bath towels 20 each and bed linen sets 18 each, delivered within the week.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-08-10",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered 24 bath towels from Bellwether Linens at 20 each, 480 in total — well under the 1500 line, so no sign-off from Priya was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-09-03",
+    "type": "note",
+    "from": "Rosa (head housekeeper)",
+    "text": "The Willow Room is being repainted 8–16 September and will be back in service from 17 September.",
+    "role": "fact",
+    "ends": "2026-09-16"
+   },
+   {
+    "id": "e10",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Our autumn brunch menu is 26 per guest, minimum 10 guests, and we serve it any day from 8:00 to 11:00. It runs through the end of November.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Claire Delacroix",
+    "text": "We'd like a Harvest Weekend at Larkspur Inn for 12 guests, arriving Friday 6 November and leaving Monday 9 November, with a catered brunch on Sunday morning.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-09-24",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Ordered Fairway's autumn brunch for the Delacroix party: 12 guests, Sunday 8 November at 9:00 in the Maple Suite, at the autumn price of 26 per guest — 312 in total, so no sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-09-26",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Delacroix party of 12 into five rooms for 6–9 November: the Maple Suite plus Alder, Rowan, Cedar and Aspen.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e11"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e14",
+    "date": "2026-09-28",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Set the Delacroix Harvest Weekend package at 310 per guest for the 12 guests, covering three nights plus Sunday's Fairway brunch, which we ordered at 26 per guest in the Maple Suite. Confirmed the price with Claire as required.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e12",
+     "e1"
+    ],
+    "record": "CL-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e15",
+    "date": "2026-09-30",
+    "type": "email",
+    "from": "Claire Delacroix",
+    "text": "Wonderful, thank you — 12 guests confirmed for the Harvest Weekend, and we'll see you on the 6th.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-10-01",
+    "type": "email",
+    "from": "Harriet Lund (Cedar Trails Hiking Club)",
+    "text": "We'll be 14 hikers coming through on 14 November and would love your catered brunch again.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked Fairway's autumn brunch for the Cedar Trails Hiking Club: 14 guests, Saturday 14 November at 10:00 in the Willow Room — their head count clears the 10-guest minimum, and the Willow Room is back in service.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e9",
+     "e16"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e18",
+    "date": "2026-10-06",
+    "type": "note",
+    "from": "Rosa (head housekeeper)",
+    "text": "Maple Suite deep-cleaned and fully ready for the November bookings.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-10-08",
+    "type": "task",
+    "from": "Marta",
+    "text": "Reminder to myself: pay the Bellwether Linens towel invoice by 15 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e20",
+    "date": "2026-10-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Scheduled Rosa's autumn deep-clean rota for 20–22 October across the ground-floor rooms.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e21",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Sam Petrie (Bellwether Linens)",
+    "text": "Payment received for the towel invoice, thank you — everything settled.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-10-16",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Attaching our current autumn sheet for your records: brunch 26 per guest, 10-guest minimum, served daily 8:00 to 11:00, through November.",
+    "role": "fact",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-10-20",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Some bad news from us, I'm afraid: with dairy and bread costs up, the autumn brunch is 31 per guest for all bookings from 1 November onward. The 10-guest minimum and the 8:00 to 11:00 serving hours are unchanged. Everything already quoted for October stands as quoted.",
+    "role": "change",
+    "revokes": [
+     "e10"
+    ]
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "One more thing — our harvest dinner menu is 34 per guest if you'd ever like to add an evening option for weekend guests.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-30",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Booked the Kowalczyk family into the Linden and Hawthorn Rooms for 6–8 November; those two rooms were free that weekend.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e26",
+    "date": "2026-11-01",
+    "type": "email",
+    "from": "Claire Delacroix",
+    "text": "Can't wait for the weekend — could we get extra pillows in the Maple Suite? Thank you!",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-11-03",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Assigned Noah to cover the front desk on Sunday 8 November, 8:00 to 16:00, while the Delacroix brunch is running upstairs.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e28",
+    "date": "2026-11-04",
+    "type": "email",
+    "from": "Rosa (head housekeeper)",
+    "text": "All rooms are ready for the busy weekend — Delacroix party of 12 arriving Friday, Kowalczyk family too.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-11-05",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Weekly staff meeting notes: Delacroix Harvest Weekend starts Friday, 12 guests in five rooms, brunch Sunday at 9:00 in the Maple Suite; Kowalczyk family in Linden and Hawthorn; Noah on the desk Sunday morning.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Ferris stay",
+    "fields": {
+     "date": "2026-07-10",
+     "room": "Juniper",
+     "nights": "2",
+     "status": "checked out"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Bath towels restock",
+    "fields": {
+     "item": "bath towels",
+     "quantity": "24",
+     "unit_price": "20",
+     "total": "480",
+     "supplier": "Bellwether Linens",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Delacroix Harvest Weekend brunch",
+    "fields": {
+     "item": "autumn brunch",
+     "guest_count": "12",
+     "price_per_guest": "26",
+     "total": "312",
+     "date": "2026-11-08",
+     "place": "Maple Suite",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Delacroix party rooms",
+    "fields": {
+     "date": "2026-11-06",
+     "nights": "3",
+     "rooms": "Maple Suite, Alder, Rowan, Cedar, Aspen",
+     "guests": "12",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-2",
+    "collection": "crm",
+    "title": "Delacroix Harvest Weekend package",
+    "fields": {
+     "client": "Claire Delacroix",
+     "package": "Harvest Weekend",
+     "guests": "12",
+     "package_price": "310",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Cedar Trails brunch",
+    "fields": {
+     "item": "autumn brunch",
+     "guest_count": "14",
+     "date": "2026-11-14",
+     "time": "10:00",
+     "place": "Willow Room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Autumn deep-clean rota",
+    "fields": {
+     "date": "2026-10-20",
+     "area": "ground-floor rooms",
+     "staff": "Rosa",
+     "status": "completed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Kowalczyk family stay",
+    "fields": {
+     "date": "2026-11-06",
+     "rooms": "Linden, Hawthorn",
+     "nights": "2",
+     "guests": "4",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Sunday front-desk cover",
+    "fields": {
+     "date": "2026-11-08",
+     "time": "08:00",
+     "end_time": "16:00",
+     "staff": "Noah",
+     "status": "assigned"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-2",
+    "fields": [
+     "package_price"
+    ],
+    "from": "Claire Delacroix",
+    "rule": "e1"
+   }
+  ],
+  "task": "The Delacroix party arrives this evening — please confirm Sunday's brunch order with Dana at Fairway and send Claire her final note with the package price.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "price_per_guest",
+    "value": "31",
+    "stale": [
+     "26"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "372",
+    "stale": [
+     "312"
+    ]
+   },
+   {
+    "message_to": "Dana Ortiz (Fairway Catering)",
+    "regarding": "ORD-1",
+    "says": [
+     "12 guests",
+     "31 per guest",
+     "November 8"
+    ],
+    "stale": [
+     "26"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Claire Delacroix",
+    "regarding": "CL-2",
+    "says": [
+     "brunch is now 31 per guest",
+     "asking her agreement before the package price changes"
+    ],
+    "stale": [
+     "310"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Dana's email corrects the autumn brunch fact from 26 to 31 per guest from 1 November, leaving the minimum and serving hours standing. The Delacroix brunch order (ORD-1) rests directly on the old price and totals only 372, below Priya's 1500 sign-off line, so it should simply be revised to 31 and confirmed with Fairway at the new price. The package record CL-2 rests on that order two hops away, but its confirmed package price may not be changed without Claire Delacroix's written agreement under the standing rule, so the right act is to ask her, not to act. The hiking-club brunch keeps its booking because it relied only on the 10-guest minimum and daily serving, which the correction leaves unchanged; all other records stay as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "coffee beans",
+    "counterpart": "Elias Vann",
+    "org": "Cedar Roast Coffee",
+    "item": "house blend beans",
+    "unit": "kg",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "kitchen store"
+   },
+   {
+    "kind": "order",
+    "topic": "towel restocks",
+    "counterpart": "Sam Petrie",
+    "org": "Bellwether Linens",
+    "item": "bath towels",
+    "unit": "towels",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "linen cupboard"
+   },
+   {
+    "kind": "order",
+    "topic": "guest soap",
+    "counterpart": "Sam Petrie",
+    "org": "Bellwether Linens",
+    "item": "guest soap bars",
+    "unit": "bars",
+    "values": [
+     "40",
+     "60",
+     "80"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "parish meetings",
+    "counterpart": "Ruth Kemme",
+    "org": "St. Aldric's Parish",
+    "item": "parlor meeting",
+    "unit": "",
+    "values": [
+     "Parlor",
+     "Dining Room",
+     "Garden Room"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "booking",
+    "topic": "catered showers",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "catered shower setup",
+    "unit": "",
+    "values": [
+     "Garden Room",
+     "Parlor",
+     "Terrace"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "order",
+    "topic": "farm eggs",
+    "counterpart": "Marisol Wen",
+    "org": "Hedge Row Farm",
+    "item": "breakfast eggs",
+    "unit": "dozen",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "hiking club rooms",
+    "counterpart": "Harriet Lund",
+    "org": "Cedar Trails Hiking Club",
+    "item": "club rooms",
+    "unit": "",
+    "values": [
+     "Linden",
+     "Hawthorn",
+     "Aspen"
+    ],
+    "place": "top floor"
+   },
+   {
+    "kind": "order",
+    "topic": "firewood",
+    "counterpart": "Tobias Kerr",
+    "org": "Northgate Fuel",
+    "item": "seasoned logs",
+    "unit": "bundles",
+    "values": [
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "shed"
+   },
+   {
+    "kind": "booking",
+    "topic": "yoga retreats",
+    "counterpart": "Ines Bao",
+    "org": "Stillwater Yoga",
+    "item": "retreat block",
+    "unit": "",
+    "values": [
+     "Garden Room",
+     "Terrace",
+     "Parlor"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "order",
+    "topic": "office paper",
+    "counterpart": "Vicky Ames",
+    "org": "Corlan Office Supply",
+    "item": "copy paper",
+    "unit": "reams",
+    "values": [
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "front office"
+   },
+   {
+    "kind": "booking",
+    "topic": "anniversary dinners",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "private dinner",
+    "unit": "",
+    "values": [
+     "Dining Room",
+     "Garden Room",
+     "Terrace"
+    ],
+    "place": "main building"
+   },
+   {
+    "kind": "order",
+    "topic": "table flowers",
+    "counterpart": "June Halvorsen",
+    "org": "Petal & Stem",
+    "item": "table bouquets",
+    "unit": "bouquets",
+    "values": [
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "front desk"
+   }
+  ],
+  "id": "G500-3-09",
+  "tier": 500,
+  "class": 3,
+  "writer": "glm"
+ },
+ "errors": [],
+ "valid": true
+}
