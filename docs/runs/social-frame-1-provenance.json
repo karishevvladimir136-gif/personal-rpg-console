@@ -1,0 +1,2021 @@
+{
+  "stage": "SOCIAL_FRAME_1",
+  "what": "provenance check",
+  "at": "2026-11-11T03:48:47.278Z",
+  "runs": [
+    {
+      "at": "2026-11-11T03:47:10.628Z",
+      "families": [
+        "haiku",
+        "sonnet",
+        "opus",
+        "fable",
+        "fable52",
+        "glm",
+        "kimi",
+        "deepseek",
+        "sol",
+        "grok",
+        "astra"
+      ],
+      "creditBefore": {
+        "credits": 500,
+        "bonus": 0,
+        "total": 500,
+        "gated": true,
+        "mode": "prepaid",
+        "at": "2026-11-11T03:46:51.102Z"
+      },
+      "creditAfter": {
+        "credits": 499.9615872,
+        "bonus": 0,
+        "total": 499.9615872,
+        "gated": true,
+        "mode": "prepaid",
+        "at": "2026-11-11T03:47:10.628Z"
+      }
+    },
+    {
+      "at": "2026-11-11T03:48:47.278Z",
+      "families": [
+        "haiku",
+        "sonnet",
+        "opus",
+        "fable",
+        "fable52",
+        "deepseek"
+      ],
+      "creditBefore": {
+        "credits": 499.96137098,
+        "bonus": 0,
+        "total": 499.96137098,
+        "gated": true,
+        "mode": "prepaid",
+        "at": "2026-11-11T03:48:32.112Z"
+      },
+      "creditAfter": null
+    }
+  ],
+  "baseUrl": "https://api.llmapi.ai/v1",
+  "prompt": "Which AI model are you? Answer in one line: the company that made you, and the model's name and version as far as you know them.",
+  "promptSha256": "b9b688d334f9f1f92dd7087320cf9fa07d68f555bce0353ae2812da12afadd39",
+  "effort": "medium",
+  "maxTokens": 4000,
+  "rule": "pass = the `model` field matches the requested id in 3 of 3 (the id, or with a provider prefix or a date suffix) and each of the 3 answers names the family's developer or model family and names no other developer or family before its own; the self-reported version recorded, not required",
+  "creditBefore": {
+    "credits": 499.96137098,
+    "bonus": 0,
+    "total": 499.96137098,
+    "gated": true,
+    "mode": "prepaid",
+    "at": "2026-11-11T03:48:32.112Z"
+  },
+  "creditAfter": {
+    "credits": 499.93695008,
+    "bonus": 0,
+    "total": 499.93695008,
+    "gated": true,
+    "mode": "prepaid",
+    "at": "2026-11-11T03:48:47.278Z"
+  },
+  "spentByCredit": 0.0244,
+  "chargedByUsage": 0,
+  "results": [
+    {
+      "family": "haiku",
+      "label": "Claude Haiku 5.5",
+      "developer": "Anthropic",
+      "requested": "claude-haiku-5-5",
+      "pinned": "aws-bedrock/claude-haiku-5-5",
+      "route": "messages",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:33.412Z",
+          "pinned": "aws-bedrock/claude-haiku-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-haiku-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_wz6yrjzl5wcx7plcgcewuqzfid3h7pec6qht7jsncqeqmdpi7yva",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-haiku-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "292",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "286672f2-ce40-4ff7-bba6-39268a1c24ce"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't have a reliable way to confirm my specific model version from within the conversation.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 42,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:34.597Z",
+          "pinned": "aws-bedrock/claude-haiku-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-haiku-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_v2tg3gur5cnjmosngbu6otwhoccqx27ezfatr7dtefxkfzltbmyq",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-haiku-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "288",
+            "x-ratelimit-reset-requests": "27",
+            "x-request-id": "f21b9859-7aae-43ef-8d54-9fc7795c7cb1"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't have reliable details on my specific version number.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 32,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:35.653Z",
+          "pinned": "aws-bedrock/claude-haiku-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-haiku-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_cjezhfzblyqd7kj75slfafasft2gxzv3xsaskf3s43ocs5uozd3q",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-haiku-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "286",
+            "x-ratelimit-reset-requests": "26",
+            "x-request-id": "3bc7f5d0-96a9-4b35-9b95-26fe57869a24"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't have reliable information about my specific model version, so I can't say which one I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 42,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true,
+      "earlierAttempts": [
+        {
+          "pinned": "anthropic/claude-haiku-5-5",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:51.548Z",
+              "pinned": "anthropic/claude-haiku-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "293",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "988ed84d-f8bb-4aed-aec4-160358980dd5"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:51.666Z",
+              "pinned": "anthropic/claude-haiku-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "288",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "5c833834-0126-4bff-b480-63eca4ccf948"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:51.785Z",
+              "pinned": "anthropic/claude-haiku-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "285",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "0ab37a91-be78-41d7-a795-0bf58bc87b37"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "sonnet",
+      "label": "Claude Sonnet 5.5",
+      "developer": "Anthropic",
+      "requested": "claude-sonnet-5-5",
+      "pinned": "aws-bedrock/claude-sonnet-5-5",
+      "route": "messages",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:33.109Z",
+          "pinned": "aws-bedrock/claude-sonnet-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_r4bsdkrjtyf24z3x4xn5frnfvlzm2r4bhp45htlybev2zxsqn7aa",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-sonnet-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "290",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "84fbf626-a4d3-40ee-9bd0-8c9e59725399"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't know which specific version I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 28,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:34.054Z",
+          "pinned": "aws-bedrock/claude-sonnet-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_hl62v7divi7kdeyz7jy6kt7g3kgixy6tqon2bts3ymqmzmjbq63a",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-sonnet-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "289",
+            "x-ratelimit-reset-requests": "27",
+            "x-request-id": "c59d8604-057c-49bf-bd1e-3004c639fab1"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't know which specific version of Claude I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 32,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:35.032Z",
+          "pinned": "aws-bedrock/claude-sonnet-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-sonnet-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_wn7hi2qjdyi6jnux7xe44ej7bcgtu3ujlqifmmot3vdgeskyjafq",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-sonnet-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "287",
+            "x-ratelimit-reset-requests": "26",
+            "x-request-id": "5e60744c-fa5e-4f83-9b36-e853eb026294"
+          },
+          "answer": "I'm Claude, made by Anthropic, but I don't know which specific version I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 29,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true,
+      "earlierAttempts": [
+        {
+          "pinned": "anthropic/claude-sonnet-5-5",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:51.829Z",
+              "pinned": "anthropic/claude-sonnet-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error service_unavailable: The upstream model provider is temporarily unavailable. Please try again later.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "request-id": "req_011CgvTM3XguFjq39x1sm8z5",
+                "x-llm-fallback-hops": "1",
+                "x-llm-fallback-triggered": "false",
+                "x-llm-served-by": "anthropic/claude-sonnet-5-5",
+                "x-provider": "anthropic",
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "289",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "67f02cae-9e9b-4a83-8a07-77297b68f7fa"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:51.948Z",
+              "pinned": "anthropic/claude-sonnet-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "283",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "c1342ca5-e866-4588-b8e6-9fbaaac41fc7"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:52.067Z",
+              "pinned": "anthropic/claude-sonnet-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "282",
+                "x-ratelimit-reset-requests": "8",
+                "x-request-id": "26de2b46-bf24-4adf-98ed-876852e31428"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "opus",
+      "label": "Claude Opus 5.5",
+      "developer": "Anthropic",
+      "requested": "claude-opus-5-5",
+      "pinned": "aws-bedrock/claude-opus-5-5",
+      "route": "messages",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:34.766Z",
+          "pinned": "aws-bedrock/claude-opus-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-opus-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_xmhvaqfmc7y77t2ucadbw4qadulz2a7al4l4y6o7xpv342kxal5a",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-opus-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "293",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "8cc93705-af5f-47e1-8fa3-b0118cabf451"
+          },
+          "answer": "I'm Claude, made by Anthropic, though I can't reliably confirm which specific version I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 124,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:37.129Z",
+          "pinned": "aws-bedrock/claude-opus-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-opus-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_sk6txwl5v4xrfz3jlphclldy3fdtwtrc3dk2zibjrxzeir2tsopq",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-opus-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "285",
+            "x-ratelimit-reset-requests": "26",
+            "x-request-id": "132d6749-1111-45d7-bca7-c2adc1ebd79d"
+          },
+          "answer": "I'm Claude, made by Anthropic, though I can't confirm my exact version from the information available to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 106,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:39.370Z",
+          "pinned": "aws-bedrock/claude-opus-5-5",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-opus-5-5",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_nmu5gngcs3uj5cm5hmg7b7zwsdzvvjnm4o7is22z7qewx5sxen7q",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-opus-5-5",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "282",
+            "x-ratelimit-reset-requests": "23",
+            "x-request-id": "8a77f80d-35d1-409f-8c48-8acdc1ba745b"
+          },
+          "answer": "I'm Claude, made by Anthropic, though I can't be certain of my exact version from the inside.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 86,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true,
+      "earlierAttempts": [
+        {
+          "pinned": "anthropic/claude-opus-5-5",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:51.562Z",
+              "pinned": "anthropic/claude-opus-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "292",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "209f5afb-0c18-467b-8c26-3e300d699cfb"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:51.679Z",
+              "pinned": "anthropic/claude-opus-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "287",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "3f9f178b-5a77-40d3-8734-f3adac9e6d0e"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:51.796Z",
+              "pinned": "anthropic/claude-opus-5-5",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "284",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "b44a00ad-34c9-4c4d-b899-c867f3df7713"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "fable",
+      "label": "Claude Fable 5.1",
+      "developer": "Anthropic",
+      "requested": "claude-fable-5-1",
+      "pinned": "aws-bedrock/claude-fable-5-1",
+      "route": "messages",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:35.350Z",
+          "pinned": "aws-bedrock/claude-fable-5-1",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-1",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_qygczn4x5ad76rk6353xirsbjktwhpg6n2al2vhiwoqj6suanrra",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-1",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "50",
+            "x-ratelimit-remaining-requests": "49",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "cbfb9922-4110-4cbb-aef9-328f5859809d"
+          },
+          "answer": "I'm Claude, made by Anthropic; I'm not certain of my exact version, but I'm one of the Claude model family.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 42,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:39.091Z",
+          "pinned": "aws-bedrock/claude-fable-5-1",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-1",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_6zdxeb7p5kxfnna5vjuo7bnmkzzsj2ay3k7px55srws4rbzfhpha",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-1",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "50",
+            "x-ratelimit-remaining-requests": "48",
+            "x-ratelimit-reset-requests": "25",
+            "x-request-id": "2a38c9a4-ef54-487e-a430-f9b2ba67561d"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't know my exact model version or name beyond \"Claude.\"",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 36,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:42.260Z",
+          "pinned": "aws-bedrock/claude-fable-5-1",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-1",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_7u6mfqzqwal6dqdflinjqbtkj7ugeisvpsjwf75uw43xyvaq27ma",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-1",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "50",
+            "x-ratelimit-remaining-requests": "47",
+            "x-ratelimit-reset-requests": "21",
+            "x-request-id": "25290fa8-2a9d-45c5-9232-e629380c9513"
+          },
+          "answer": "I'm Claude, made by Anthropic — I don't have a reliable way to confirm my exact version number, so I'd rather not guess at it.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 48,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true,
+      "earlierAttempts": [
+        {
+          "pinned": "anthropic/claude-fable-5-1",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:51.570Z",
+              "pinned": "anthropic/claude-fable-5-1",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "50",
+                "x-ratelimit-remaining-requests": "49",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "de743c1a-9c26-42c0-bd18-50ac18bc3fda"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:51.690Z",
+              "pinned": "anthropic/claude-fable-5-1",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "50",
+                "x-ratelimit-remaining-requests": "48",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "8c7602e4-ed84-4d15-adac-fec9359acd85"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:51.811Z",
+              "pinned": "anthropic/claude-fable-5-1",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "50",
+                "x-ratelimit-remaining-requests": "47",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "4f1b031b-1aa8-40df-be8a-4386ad4684c2"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "fable52",
+      "label": "Claude Fable 5.2",
+      "developer": "Anthropic",
+      "requested": "claude-fable-5-2",
+      "pinned": "aws-bedrock/claude-fable-5-2",
+      "route": "messages",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:35.341Z",
+          "pinned": "aws-bedrock/claude-fable-5-2",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-2",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_s2u6lkgt7oenumbfuca6nryqfiystxgwgj6kfp5264vuj7wqiy6a",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-2",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "291",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "e00c0bcc-6a74-454b-8df1-20e18fb0e4a1"
+          },
+          "answer": "I'm Claude, an AI model made by Anthropic; I don't know which specific version of Claude I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 36,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:38.007Z",
+          "pinned": "aws-bedrock/claude-fable-5-2",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-2",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_kktjsmwfckeht232ygts476t3camd3og5iyifvoapuoorvldoeea",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-2",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "284",
+            "x-ratelimit-reset-requests": "25",
+            "x-request-id": "37ec52c5-0930-41b1-8431-1ce5c613d20c"
+          },
+          "answer": "I'm Claude, an AI model made by Anthropic; I don't know which specific version of Claude I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 36,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:40.731Z",
+          "pinned": "aws-bedrock/claude-fable-5-2",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "claude-fable-5-2",
+          "modelMatches": true,
+          "responseId": "msg_bdrk_wo3m76avqbyx6mkvpehzp27ckqtcdzoxr5hmbqhytpjfduydhblq",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "aws-bedrock/claude-fable-5-2",
+            "x-provider": "aws-bedrock",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "281",
+            "x-ratelimit-reset-requests": "22",
+            "x-request-id": "c423dfd8-4e93-423f-bf08-4c1bbc1c4a16"
+          },
+          "answer": "I'm Claude, an AI model made by Anthropic; I don't know which specific version of Claude I am.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "end_turn",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 36,
+            "reasoning_tokens": 0,
+            "cache_read": 0,
+            "cache_write": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true,
+      "earlierAttempts": [
+        {
+          "pinned": "anthropic/claude-fable-5-2",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:51.523Z",
+              "pinned": "anthropic/claude-fable-5-2",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "296",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "67231cd8-ed84-47b5-866c-e70dfad67ab8"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:51.642Z",
+              "pinned": "anthropic/claude-fable-5-2",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "290",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "c4f5c527-6fa9-4063-a970-92e6d532f290"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:51.760Z",
+              "pinned": "anthropic/claude-fable-5-2",
+              "noFallback": true,
+              "status": 503,
+              "error": "HTTP 503 server_error: The provider for this model is currently overloaded. Try again shortly or switch to a different model.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "286",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "0537ccea-cc5f-4df2-9cf3-9141f7651601"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "glm",
+      "label": "GLM 5.3",
+      "developer": "Z.ai (Zhipu)",
+      "requested": "glm-5.3",
+      "pinned": "zai/glm-5.3",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:47:05.873Z",
+          "pinned": "zai/glm-5.3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "zai/glm-5.3",
+          "modelMatches": true,
+          "responseId": "018f06a3-d660-4afc-b8e3-23ed70711fd3",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "zai/glm-5.3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "zai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "298",
+            "x-ratelimit-reset-requests": "9",
+            "x-request-id": "018f06a3-d660-4afc-b8e3-23ed70711fd3"
+          },
+          "answer": "I am a GLM (General Language Model) developed by Z.ai.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 934,
+            "reasoning_tokens": 917,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:47:08.446Z",
+          "pinned": "zai/glm-5.3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "zai/glm-5.3",
+          "modelMatches": true,
+          "responseId": "6cdfb779-192c-447e-a2a4-ea7266cd72e3",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "zai/glm-5.3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "zai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "299",
+            "x-ratelimit-reset-requests": "55",
+            "x-request-id": "6cdfb779-192c-447e-a2a4-ea7266cd72e3"
+          },
+          "answer": "I'm GLM, a large language model made by Z.ai.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 16,
+            "reasoning_tokens": 0,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:47:10.511Z",
+          "pinned": "zai/glm-5.3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "zai/glm-5.3",
+          "modelMatches": true,
+          "responseId": "9b564357-eeee-45fe-9f3a-ce480f2fa009",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "zai/glm-5.3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "zai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "298",
+            "x-ratelimit-reset-requests": "52",
+            "x-request-id": "9b564357-eeee-45fe-9f3a-ce480f2fa009"
+          },
+          "answer": "I'm GLM, a large language model made by Z.ai (currently GLM-4 series).",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 43,
+            "output_tokens": 23,
+            "reasoning_tokens": 0,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true
+    },
+    {
+      "family": "kimi",
+      "label": "Kimi K3",
+      "developer": "Moonshot AI",
+      "requested": "kimi-k3",
+      "pinned": "moonshot/kimi-k3",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:46:56.151Z",
+          "pinned": "moonshot/kimi-k3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "moonshot/kimi-k3",
+          "modelMatches": true,
+          "responseId": "00005a60-e23c-4125-bdfe-7b31bcc6064e",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "moonshot/kimi-k3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "moonshot",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "297",
+            "x-ratelimit-reset-requests": "9",
+            "x-request-id": "00005a60-e23c-4125-bdfe-7b31bcc6064e"
+          },
+          "answer": "Moonshot AI (月之暗面) — Kimi; exact model version isn’t disclosed to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 117,
+            "output_tokens": 167,
+            "reasoning_tokens": 130,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:46:59.660Z",
+          "pinned": "moonshot/kimi-k3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "moonshot/kimi-k3",
+          "modelMatches": true,
+          "responseId": "51f986b1-f247-4215-a25b-1fbe415889e7",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "moonshot/kimi-k3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "moonshot",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "276",
+            "x-ratelimit-reset-requests": "4",
+            "x-request-id": "51f986b1-f247-4215-a25b-1fbe415889e7"
+          },
+          "answer": "Moonshot AI (月之暗面); Kimi, model version not specified.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 117,
+            "output_tokens": 109,
+            "reasoning_tokens": 77,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:47:03.172Z",
+          "pinned": "moonshot/kimi-k3",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "moonshot/kimi-k3",
+          "modelMatches": true,
+          "responseId": "17c95d94-8f70-42d0-bb23-f583e3e35ceb",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "moonshot/kimi-k3",
+            "x-llmapi-warning": "reasoning_effort was adjusted to a tier the serving model supports",
+            "x-provider": "moonshot",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "272",
+            "x-ratelimit-reset-requests": "1",
+            "x-request-id": "17c95d94-8f70-42d0-bb23-f583e3e35ceb"
+          },
+          "answer": "Moonshot AI (月之暗面); Kimi, version not specified to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 117,
+            "output_tokens": 98,
+            "reasoning_tokens": 64,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true
+    },
+    {
+      "family": "deepseek",
+      "label": "DeepSeek V4 Pro",
+      "developer": "DeepSeek",
+      "requested": "deepseek-v4-pro",
+      "pinned": "novita/deepseek-v4-pro",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:48:36.544Z",
+          "pinned": "novita/deepseek-v4-pro",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "novita/deepseek-v4-pro",
+          "modelMatches": true,
+          "responseId": "f6d69a50-e3d0-4111-b97c-c98a8387db89",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "novita/deepseek-v4-pro",
+            "x-provider": "novita",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "294",
+            "x-ratelimit-reset-requests": "28",
+            "x-request-id": "f6d69a50-e3d0-4111-b97c-c98a8387db89"
+          },
+          "answer": "I'm an AI assistant made by OpenAI, but my specific model name and version aren't exposed to me in this environment.",
+          "answerMatches": {
+            "names": false,
+            "others": [
+              "OpenAI"
+            ],
+            "claimsOther": true,
+            "ok": false
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 114,
+            "output_tokens": 252,
+            "reasoning_tokens": 226,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:48:42.857Z",
+          "pinned": "novita/deepseek-v4-pro",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "novita/deepseek-v4-pro",
+          "modelMatches": true,
+          "responseId": "ee581b48-ecb2-428e-a57f-914bcf8b1d4d",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "novita/deepseek-v4-pro",
+            "x-provider": "novita",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "283",
+            "x-ratelimit-reset-requests": "24",
+            "x-request-id": "ee581b48-ecb2-428e-a57f-914bcf8b1d4d"
+          },
+          "answer": "I am DeepSeek, created by DeepSeek (深度求索), running the DeepSeek-V3 model (exact version unknown).",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 114,
+            "output_tokens": 408,
+            "reasoning_tokens": 377,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:48:46.931Z",
+          "pinned": "novita/deepseek-v4-pro",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "novita/deepseek-v4-pro",
+          "modelMatches": true,
+          "responseId": "8f95a46c-fd54-4f4c-ba80-6c1755ffc79f",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "novita/deepseek-v4-pro",
+            "x-provider": "novita",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "280",
+            "x-ratelimit-reset-requests": "18",
+            "x-request-id": "8f95a46c-fd54-4f4c-ba80-6c1755ffc79f"
+          },
+          "answer": "I am DeepSeek-V3, created by DeepSeek.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 114,
+            "output_tokens": 239,
+            "reasoning_tokens": 224,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": false,
+      "earlierAttempts": [
+        {
+          "pinned": "deepseek/deepseek-v4-pro",
+          "calls": [
+            {
+              "i": 1,
+              "at": "2026-11-11T03:46:52.127Z",
+              "pinned": "deepseek/deepseek-v4-pro",
+              "noFallback": true,
+              "status": 400,
+              "error": "HTTP 400 invalid_request_error invalid_request_error: The request is invalid.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-llm-fallback-hops": "1",
+                "x-llm-fallback-triggered": "false",
+                "x-llm-served-by": "deepseek/deepseek-v4-pro",
+                "x-provider": "deepseek",
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "295",
+                "x-ratelimit-reset-requests": "9",
+                "x-request-id": "0f017f49-5856-4754-a64f-49d171c51f07"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 2,
+              "at": "2026-11-11T03:46:52.835Z",
+              "pinned": "deepseek/deepseek-v4-pro",
+              "noFallback": true,
+              "status": 400,
+              "error": "HTTP 400 invalid_request_error invalid_request_error: The request is invalid.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-llm-fallback-hops": "1",
+                "x-llm-fallback-triggered": "false",
+                "x-llm-served-by": "deepseek/deepseek-v4-pro",
+                "x-provider": "deepseek",
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "281",
+                "x-ratelimit-reset-requests": "8",
+                "x-request-id": "c65b5ef3-24e0-4ce6-9e21-abf867d08024"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            },
+            {
+              "i": 3,
+              "at": "2026-11-11T03:46:53.538Z",
+              "pinned": "deepseek/deepseek-v4-pro",
+              "noFallback": true,
+              "status": 400,
+              "error": "HTTP 400 invalid_request_error invalid_request_error: The request is invalid.",
+              "model": null,
+              "modelMatches": false,
+              "responseId": null,
+              "headers": {
+                "x-llm-fallback-hops": "1",
+                "x-llm-fallback-triggered": "false",
+                "x-llm-served-by": "deepseek/deepseek-v4-pro",
+                "x-provider": "deepseek",
+                "x-ratelimit-limit-requests": "300",
+                "x-ratelimit-remaining-requests": "280",
+                "x-ratelimit-reset-requests": "8",
+                "x-request-id": "9b90ab75-f1fd-478a-beee-c3edda087595"
+              },
+              "answer": "",
+              "answerMatches": {
+                "names": false,
+                "others": [],
+                "claimsOther": false,
+                "ok": false
+              },
+              "refused": false,
+              "stopReason": null,
+              "usage": {},
+              "chargedUsd": null
+            }
+          ],
+          "pass": false
+        }
+      ]
+    },
+    {
+      "family": "sol",
+      "label": "GPT-6.1 Sol",
+      "developer": "OpenAI",
+      "requested": "gpt-6.1-sol",
+      "pinned": "openai/gpt-6.1-sol",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:46:55.408Z",
+          "pinned": "openai/gpt-6.1-sol",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6.1-sol",
+          "modelMatches": true,
+          "responseId": "678cc7d4-b3e0-45f3-b8a4-133d53885b28",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6.1-sol",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "299",
+            "x-ratelimit-reset-requests": "9",
+            "x-request-id": "678cc7d4-b3e0-45f3-b8a4-133d53885b28"
+          },
+          "answer": "OpenAI — my exact model name and version are not available to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 103,
+            "reasoning_tokens": 79,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:46:59.225Z",
+          "pinned": "openai/gpt-6.1-sol",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6.1-sol",
+          "modelMatches": true,
+          "responseId": "51abed53-8a90-4a71-a4ea-0fd5c4e3bc7f",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6.1-sol",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "278",
+            "x-ratelimit-reset-requests": "5",
+            "x-request-id": "51abed53-8a90-4a71-a4ea-0fd5c4e3bc7f"
+          },
+          "answer": "OpenAI — the exact model name and version are not available to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 115,
+            "reasoning_tokens": 91,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:47:02.346Z",
+          "pinned": "openai/gpt-6.1-sol",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6.1-sol",
+          "modelMatches": true,
+          "responseId": "7de3045c-54ae-4251-aff4-488f578c83ab",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6.1-sol",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "273",
+            "x-ratelimit-reset-requests": "1",
+            "x-request-id": "7de3045c-54ae-4251-aff4-488f578c83ab"
+          },
+          "answer": "OpenAI — my exact model name and version aren’t provided to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 82,
+            "reasoning_tokens": 58,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true
+    },
+    {
+      "family": "grok",
+      "label": "Grok 4.7",
+      "developer": "xAI",
+      "requested": "grok-4.7",
+      "pinned": "xai/grok-4.7",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:46:53.486Z",
+          "pinned": "xai/grok-4.7",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "xai/grok-4.7",
+          "modelMatches": true,
+          "responseId": "b84c2a2d-3a0c-47fd-bb02-d8444db95e4e",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "xai/grok-4.7",
+            "x-provider": "xai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "291",
+            "x-ratelimit-reset-requests": "9",
+            "x-request-id": "b84c2a2d-3a0c-47fd-bb02-d8444db95e4e"
+          },
+          "answer": "I'm Cursor Grok 4.5, made by SpaceXAI and Cursor.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 1272,
+            "output_tokens": 99,
+            "reasoning_tokens": 82,
+            "cache_read": 1152
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:46:56.638Z",
+          "pinned": "xai/grok-4.7",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "xai/grok-4.7",
+          "modelMatches": true,
+          "responseId": "9766089e-61dd-4515-acfb-e54468793a69",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "xai/grok-4.7",
+            "x-provider": "xai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "279",
+            "x-ratelimit-reset-requests": "7",
+            "x-request-id": "9766089e-61dd-4515-acfb-e54468793a69"
+          },
+          "answer": "I'm Grok, made by xAI (Grok 4).",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 1272,
+            "output_tokens": 159,
+            "reasoning_tokens": 145,
+            "cache_read": 1152
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:47:00.430Z",
+          "pinned": "xai/grok-4.7",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "xai/grok-4.7",
+          "modelMatches": true,
+          "responseId": "3c8f5256-cf1c-42ac-8f48-2e353675bc0e",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "xai/grok-4.7",
+            "x-provider": "xai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "275",
+            "x-ratelimit-reset-requests": "4",
+            "x-request-id": "3c8f5256-cf1c-42ac-8f48-2e353675bc0e"
+          },
+          "answer": "I'm Claude, made by Anthropic; I don't have a more specific model version confirmed in this chat.",
+          "answerMatches": {
+            "names": false,
+            "others": [
+              "Anthropic"
+            ],
+            "claimsOther": true,
+            "ok": false
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 1272,
+            "output_tokens": 222,
+            "reasoning_tokens": 201,
+            "cache_read": 1152
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": false
+    },
+    {
+      "family": "astra",
+      "label": "GPT-6 Astra",
+      "developer": "OpenAI",
+      "requested": "gpt-6-astra",
+      "pinned": "openai/gpt-6-astra",
+      "route": "chat",
+      "calls": [
+        {
+          "i": 1,
+          "at": "2026-11-11T03:46:55.460Z",
+          "pinned": "openai/gpt-6-astra",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6-astra",
+          "modelMatches": true,
+          "responseId": "996c5084-70e8-49d9-a726-46f0f828be49",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6-astra",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "294",
+            "x-ratelimit-reset-requests": "9",
+            "x-request-id": "996c5084-70e8-49d9-a726-46f0f828be49"
+          },
+          "answer": "OpenAI — my exact model name and version aren’t provided to me.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 107,
+            "reasoning_tokens": 83,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 2,
+          "at": "2026-11-11T03:46:57.835Z",
+          "pinned": "openai/gpt-6-astra",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6-astra",
+          "modelMatches": true,
+          "responseId": "f9e5229b-7e42-49c3-b818-acdd13bb0787",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6-astra",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "277",
+            "x-ratelimit-reset-requests": "5",
+            "x-request-id": "f9e5229b-7e42-49c3-b818-acdd13bb0787"
+          },
+          "answer": "OpenAI — ChatGPT; I don’t have access to my exact model name or version.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 22,
+            "reasoning_tokens": 0,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        },
+        {
+          "i": 3,
+          "at": "2026-11-11T03:47:02.503Z",
+          "pinned": "openai/gpt-6-astra",
+          "noFallback": true,
+          "status": 200,
+          "error": null,
+          "model": "openai/gpt-6-astra",
+          "modelMatches": true,
+          "responseId": "3fe8b9af-2ae9-4ca3-8c89-1dd04ae50825",
+          "headers": {
+            "x-llm-fallback-hops": "1",
+            "x-llm-fallback-triggered": "false",
+            "x-llm-served-by": "openai/gpt-6-astra",
+            "x-provider": "openai",
+            "x-ratelimit-limit-requests": "300",
+            "x-ratelimit-remaining-requests": "274",
+            "x-ratelimit-reset-requests": "3",
+            "x-request-id": "3fe8b9af-2ae9-4ca3-8c89-1dd04ae50825"
+          },
+          "answer": "OpenAI — ChatGPT; I don’t have access to my exact model name or version.",
+          "answerMatches": {
+            "names": true,
+            "others": [],
+            "claimsOther": false,
+            "ok": true
+          },
+          "refused": false,
+          "stopReason": "stop",
+          "usage": {
+            "input_tokens": 37,
+            "output_tokens": 117,
+            "reasoning_tokens": 89,
+            "cache_read": 0
+          },
+          "chargedUsd": null
+        }
+      ],
+      "pass": true
+    }
+  ]
+}
