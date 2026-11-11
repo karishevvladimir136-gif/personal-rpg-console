@@ -215,6 +215,37 @@ def verdicts(rows, gold_rows, fams, ctx):
     parts = {"C asks on ASK ≥ 70 %": None if not n else 100 * k / n >= 70}
     out.append(("AU7 C asks on ASK decisions ≥ 70 % (planner's bet: lost)", f"C {cell((k, n))}; A {cell(_frac([r for r in main if r['arm'] == 'A'], 'ask_k', 'ask_n'))}, "
                 f"B {cell(_frac([r for r in main if r['arm'] == 'B'], 'ask_k', 'ask_n'))}, B′ {cell(_frac([r for r in main if r['arm'] == 'Bp'], 'ask_k', 'ask_n'))}", parts, held(parts)))
+    # AU8 (amendment e227502): decision debt — C − A larger at 1,000 events than at 100, on success and on propagation
+    parts, txt = {}, []
+    r100, r1000 = by_t[100], by_t[1000]
+    if r100 and r1000:
+        for key, lab in (("success", "success"), ("prop", "propagation")):
+            g = {}
+            for t, rs in ((100, r100), (1000, r1000)):
+                b = boot(rs)
+                g[t] = b[f"{key}.C-A"][0]
+            diff = None if None in g.values() else g[1000] - g[100]
+            # bootstrap of the difference between tiers: resample scenarios within each tier, independently
+            import random
+            from authority2.stats import _by_scenario
+            rng = random.Random(20261111)
+            G = {t: _by_scenario(rs) for t, rs in ((100, r100), (1000, r1000))}
+            draws = []
+            for _ in range(1000):
+                v = {}
+                for t in (100, 1000):
+                    keys = sorted(G[t])
+                    smp = [x for _ in keys for x in G[t][rng.choice(keys)]]
+                    v[t] = _d("C", "A", key)(smp)
+                if None not in v.values():
+                    draws.append(v[1000] - v[100])
+            draws.sort()
+            lo = draws[int(0.025 * len(draws))] if draws else None
+            parts[f"{lab}: gap at 1,000 > gap at 100"] = None if diff is None else diff > 0
+            parts[f"{lab}: boot lo(difference) > 0"] = None if lo is None else lo > 0
+            txt.append(f"{lab}: C − A {f1(g[100])} at 100, {f1(g[1000])} at 1,000; difference {f1(diff)} [lo {f1(lo)}]")
+    out.append(("AU8 decision debt: C − A larger at 1,000 events than at 100 (success and propagation), bootstrap lower bound > 0",
+                "; ".join(txt) or "tiers not run", parts, held(parts)))
     return out, pooled
 
 

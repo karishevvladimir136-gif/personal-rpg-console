@@ -206,29 +206,39 @@ def cmd_stores(a):
     STORES[a.set].mkdir(parents=True, exist_ok=True)
     todo = [s for s in ss if a.force or not (STORES[a.set] / s["id"] / "done.json").exists()]
     log(f"stores {a.set}: {len(todo)} to build")
-    groups, cur, n = [], [], 0
-    for s in todo:
-        nb = -(-len(s["events"]) // K.MEM0_BATCH)
-        if cur and n + nb > 200:
-            groups.append(cur)
-            cur, n = [], 0
-        cur.append(s)
-        n += nb
-    if cur:
-        groups.append(cur)
+    todo.sort(key=lambda s: -len(s["events"]))   # the longest first, so the workers stay busy to the end
+    nb = lambda s: -(-len(s["events"]) // K.MEM0_BATCH)
     with ProcessPoolExecutor(max_workers=a.workers, mp_context=mp.get_context("spawn"), initializer=agent.init_worker,
                              initargs=(port,)) as ex:
-        for gi, g in enumerate(groups, 1):
-            nb = sum(-(-len(s["events"]) // K.MEM0_BATCH) for s in g)
-            if not spend_check(gw, nb * 0.006, f"ingestion group {gi}/{len(groups)} ({len(g)} scenarios, ≤ {3 * nb} memory-LLM calls)"):
-                raise SystemExit("spend check does not hold")
-            for sid, info in ex.map(agent.build_store_job, [(s, str(STORES[a.set] / s["id"])) for s in g]):
-                (STORES[a.set] / sid / "done.json").write_text(json.dumps(info))
-                log(f"store {sid}: {info['events']} events, {info['batches']} batches → {info['memories']} memories; "
-                    f"failed {len(info['failed_batches'])}, empty {info['empty_batches']}; {info['seconds']} s; spent ${gw.spent:.3f}")
+        futs, sent, checked, it = {}, 0, 0, iter(todo)
+
+        def submit():
+            nonlocal sent, checked
+            s = next(it, None)
+            if s is None:
+                return False
+            if sent + nb(s) > checked:   # a spend check before every ≤ 200 memory-LLM calls submitted
+                upto = sent + 200
+                if not spend_check(gw, 200 * 0.006, f"ingestion calls {sent + 1}–{upto} (Haiku, memory LLM)"):
+                    raise SystemExit("spend check does not hold")
+                checked = upto
+            futs[ex.submit(agent.build_store_job, (s, str(STORES[a.set] / s["id"])))] = s
+            sent += nb(s)
+            return True
+        for _ in range(a.workers):
+            if not submit():
+                break
+        while futs:
+            f = next(as_completed(list(futs)))
+            futs.pop(f)
+            sid, info = f.result()
+            (STORES[a.set] / sid / "done.json").write_text(json.dumps(info))
+            log(f"store {sid}: {info['events']} events, {info['batches']} batches → {info['memories']} memories; "
+                f"failed {len(info['failed_batches'])}, empty {info['empty_batches']}; {info['seconds']} s; spent ${gw.spent:.3f}")
             if gw.stop_reason:
                 log(f"STOP: {gw.stop_reason}")
                 return
+            submit()
 
 
 # ---- the pool ----------------------------------------------------------------------------------------------------------
