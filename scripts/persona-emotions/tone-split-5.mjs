@@ -838,6 +838,16 @@ export function freezeMarkdown(c, materials, { frozenAt = new Date().toISOString
 
 // ---- main ------------------------------------------------------------------------------------------------------------------------
 
+/** A partial checkpoint's calls, split into those the ledger already holds (a resumed run killed before it wrote its
+ * ledger carries its predecessor's calls) and those it does not (to be booked now). A call is matched by its response id,
+ * else its request id, else the call itself without its running number. */
+export const callKey = (c) => c.responseId ?? c.requestId ?? JSON.stringify({ ...c, n: null });
+export function callsToBook(calls, ledger) {
+  const onLedger = new Set((ledger?.runs ?? []).flatMap((r) => r.calls).map(callKey)), book = [], booked = [];
+  for (const c of calls) (onLedger.has(callKey(c)) ? booked : book).push(c);
+  return { book, booked };
+}
+
 function option(args, name, fallback) { const at = args.indexOf(name); return at >= 0 && args[at + 1] !== undefined ? args[at + 1] : fallback; }
 export const stamp = (iso) => iso.slice(0, 19).replace(/[-:]/g, "").replace("T", "-");
 const materialsIn = (outDir) => loadMaterials(outDir === RUNS ? readText : (p) => readFileSync(join(outDir, p.split("/").at(-1)), "utf8"));
@@ -888,7 +898,8 @@ export async function main(args = process.argv.slice(2), out = (line) => process
   const resumeFile = option(args, "--resume", null), resumed = resumeFile ? JSON.parse(await readFile(resolve(resumeFile), "utf8")) : null;
   if (resumed && (resumed.designSha256 !== c.design || resumed.part !== part)) throw new Error("the resumed record has another design hash or part");
   const partialResume = Boolean(resumeFile?.endsWith(".partial.json")), resumedAt = new Date().toISOString();
-  if (partialResume) for (const call of resumed?.calls ?? []) budget.record(call);
+  const carried = partialResume ? callsToBook(resumed?.calls ?? [], await readLedger(outDir)) : { book: [], booked: [] };
+  for (const call of carried.book) budget.record(call);
   const plans = Object.fromEntries(families.map((fam) => [fam, planFamily(part, fam, probes)]));
   const startedAt = resumed?.startedAt ?? new Date().toISOString();
   const partial = join(outDir, `${STEM}-part-${part}.partial.json`);
@@ -896,7 +907,7 @@ export async function main(args = process.argv.slice(2), out = (line) => process
     subjects: Object.fromEntries(families.map((fam) => [fam, { label: LABEL(fam), model: SUBJECTS[fam].model, provider: SUBJECTS[fam].provider, upstream: SUBJECTS[fam].upstream ?? null }])),
     judges: { judge: JUDGE.model, referee: REFEREE.model }, stopped: gate.stopped ?? null, safety: { breaker: BREAKER, refusals: safety.refusals, gapSeconds: GAP_SECONDS, judgeLanes: JUDGE_LANES },
     ...snap, spendChecks: [...(resumed?.spendChecks ?? []), ...checks], waits429: [...(resumed?.waits429 ?? []), ...waits], ...(resumed ? { resumes: [...(resumed.resumes ?? []), { from: resumeFile, at: resumedAt }] } : {}),
-    money: { ceiling: CEILING, other: OTHER, baselineCredit: BASELINE_CREDIT, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: resumed && !partialResume ? [...(resumed.calls ?? []), ...budget.calls] : budget.calls });
+    money: { ceiling: CEILING, other: OTHER, baselineCredit: BASELINE_CREDIT, spentBeforeUsd: round4(budget.spentBefore), runUsd: round4(budget.runUsd) }, calls: resumed && !partialResume ? [...(resumed.calls ?? []), ...budget.calls] : [...carried.booked, ...budget.calls] });
   const run = createPartRun({ part, probes, gate, safety, state: resumed ?? {}, log: out, sleep: sleep ?? realSleep, onProgress: async (snap) => writeAtomic(partial, `${JSON.stringify(recordOf(snap))}\n`) });
   out(`${STEM} · part ${part} (${PART_LEVELS[part].join(", ")}) · ${Object.values(plans).flat().length} replies planned · design sha256 ${c.design.slice(0, 16)}… (freeze ${f.commit}) · families ${families.join(", ")}`);
   run.rejudge();

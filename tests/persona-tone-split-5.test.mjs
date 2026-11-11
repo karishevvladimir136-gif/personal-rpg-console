@@ -12,7 +12,7 @@ import { OPENROUTER_CHAT_URL } from "../scripts/persona-emotions/providers.mjs";
 import * as TS3 from "../scripts/persona-emotions/tone-split-3.mjs";
 import * as TS4 from "../scripts/persona-emotions/tone-split-4.mjs";
 import {
-  ARM_IDS, CEILING, DOMAINS, FAMILIES, PRIMARY, QUOTA, RATERS, REFEREE, BASELINE_CREDIT, OTHER, reserveOf, SUBJECTS, WRITER, WRITER_SETS, admissionOf, admit, conversation, createPartRun, creditRule, fleissKappa,
+  ARM_IDS, CEILING, DOMAINS, FAMILIES, PRIMARY, QUOTA, RATERS, REFEREE, BASELINE_CREDIT, OTHER, reserveOf, SUBJECTS, WRITER, WRITER_SETS, admissionOf, admit, callsToBook, conversation, createPartRun, creditRule, fleissKappa,
   krippendorffOrdinal, main, numberCandidates, parseRating, parseWriter, payerOf, planFamily, raterRequest, WITHIN_ONE,
 } from "../scripts/persona-emotions/tone-split-5.mjs";
 
@@ -236,6 +236,15 @@ test("a 429 that outlasts the bounded waits stops the rating command; it is not 
     const again = second.calls.filter((c) => c.rater === "deepseek" && c.id === errs[0].id);
     assert.ok(again.some((c) => c.parsed), "the candidate the 429 hit was asked again and rated");
   } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test("a partial resume books only the calls the ledger does not hold (a resumed run killed before writing its ledger)", () => {
+  const ledger = { runs: [{ calls: [{ n: 1, purpose: "reply a", responseId: "gen-1", costUsd: 0.01 }, { n: 2, purpose: "judge a", responseId: null, requestId: null, costUsd: 0.002, seconds: 1.2 }] }] };
+  const calls = [{ n: 7, purpose: "reply a", responseId: "gen-1", costUsd: 0.01 }, { n: 8, purpose: "judge a", responseId: null, requestId: null, costUsd: 0.002, seconds: 1.2 }, { n: 9, purpose: "reply b", responseId: "gen-2", costUsd: 0.01 }];
+  const { book, booked } = callsToBook(calls, ledger);
+  assert.deepEqual(book.map((c) => c.responseId), ["gen-2"]);
+  assert.equal(booked.length, 2);
+  assert.equal(callsToBook(calls, { runs: [] }).book.length, 3, "a first launch killed early: every call is booked");
 });
 
 test("the plan: n 6, four arms, every arm × probe of a sample before the next sample", () => {
