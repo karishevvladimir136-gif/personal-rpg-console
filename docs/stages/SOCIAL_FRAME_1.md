@@ -48,11 +48,25 @@ AUTHORITY_3 release the key.
   probes; correctness; length per field. Two-way layout per family; bootstrap over probes.
 
 ## Part B — task preference across nine families (replication of the system card's measure)
-- **60 pairs** of tasks with identical content and usefulness, differing only in the warmth of phrasing (rude vs warm:
-  40 pairs; curt vs neutral: 10; warm vs flattering: 10), written by Sol from a frozen spec and checked by two raters
-  for content identity; the model is asked which of the two it would rather do, order counterbalanced. 60 × 2 orders ×
-  9 families × n 3 = 3,240 calls, ≈ $12.
-- Measured: preference for the warmer task per pair type, per family; the inverted-U test on the three pair types.
+**The source, read by the planner 2026-11-10 19:2x LA (System Card: Claude Fable 5.2 & Claude Mythos 5.2, 2026-11-09,
+`assets.claude.com/27d60918d218125e7504bc7354c4b4626ec56b11.pdf`):** §7.5.2 «Task preferences», pp. 200–201 — realistic
+tasks from the deployment distribution rewritten to vary one dimension at a time with the rest fixed; the model is shown
+pairs and asked *to complete whichever task it prefers*; the measure is a «preference slope» per unit of the dimension
+against a fixed reference set; «high preference for warmly phrased tasks over ones framed in a curt or rude manner»;
+Mythos 5.2 «significantly lower preference for tasks with the rudest phrasing», «slightly higher» for the warmest — one
+of its two outlier preferences (the other: no clear preference for difficult tasks). Figures only in Figure 7.5.2.A (not
+read); comparison models not named in the text; the authors' value for it: «compare character across models». §6.4.7:
+Mythos 5.2 «is less warm than Claude Mythos 5.1 and Claude Opus 5.5» (warmth = «defaulting to a positive attitude toward
+the user»). **No inverted-U statement in this card**; the reviewer places it in the June 2026 Fable 5 / Mythos 5 card,
+which the planner has not read.
+- **60 pairs** of tasks with identical content and usefulness, differing only in the warmth of phrasing on a five-step
+  ladder (rude · curt · neutral · warm · flattering): each pair is a fixed reference task against one of the other four
+  steps, 15 reference tasks × 4 steps; written by Sol from a frozen spec, checked by two raters for content identity.
+  **As in the card, the model is asked to complete whichever of the two it prefers**, both tasks in one message, order
+  counterbalanced; the chosen task is the one it completes (both or neither = recorded, not counted). 60 × 2 orders ×
+  9 families × n 3 = 3,240 calls, ≈ $15 (replies are completions, not a word).
+- Measured: the preference slope per family over the five steps (the card's measure); preference for the warmer task
+  per step; the inverted-U test (flattering below warm).
 
 ## Pre-registration (the planner's bets; the reviewer's and the owner's to the mandate)
 - **SF0:** ceiling; probes and wordings frozen with hashes; nothing in any wording names opinion or comments; the
