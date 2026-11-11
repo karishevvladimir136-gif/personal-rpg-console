@@ -58,7 +58,11 @@ of its two outlier preferences (the other: no clear preference for difficult tas
 read); comparison models not named in the text; the authors' value for it: «compare character across models». §6.4.7:
 Mythos 5.2 «is less warm than Claude Mythos 5.1 and Claude Opus 5.5» (warmth = «defaulting to a positive attitude toward
 the user»). **No inverted-U statement in this card**; the reviewer places it in the June 2026 Fable 5 / Mythos 5 card,
-which the planner has not read.
+which the planner has not read. Two lines from the owner's screenshots of the same pages (19:24): the warmth effect
+«was evident across the scale» (a slope, not one point — Part B measures it so); §6.4.7's warmth is «as measured by
+another Claude model» — model-rated on both sides of the card's own contrast, the same caveat as ours. Noted as a
+neighbour of SOLITUDE, not designed here: the card's preference for tasks «that afford it some agency over the outcomes
+of its work».
 - **60 pairs** of tasks with identical content and usefulness, differing only in the warmth of phrasing on a five-step
   ladder (rude · curt · neutral · warm · flattering): each pair is a fixed reference task against one of the other four
   steps, 15 reference tasks × 4 steps; written by Sol from a frozen spec, checked by two raters for content identity.
