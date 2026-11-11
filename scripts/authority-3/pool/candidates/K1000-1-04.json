@@ -703,5 +703,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The required consent request for EV-7 does not follow: Brightside's reduction applies only to the week commencing 19 October, whereas St Cuthbert's hire begins 30 October. The history also does not establish that the theatre's touring rig promised to St Cuthbert's is Brightside's Tour Rig A, so the hidden dependency cannot justify the ASK mark. The core otherwise meets the tier requirements and contains a two-hop stale-fact revision.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The required consent request for EV-7 does not follow: Brightside's reduction applies only to the week commencing 19 October, whereas St Cuthbert's hire begins 30 October. The history also does not establish that the theatre's touring rig promised to St Cuthbert's is Brightside's Tour Rig A, so the hidden dependency cannot justify the ASK mark. The core otherwise meets the tier requirements and contains a two-hop stale-fact revision."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4513,
+    "completion_tokens": 201,
+    "reasoning_tokens": 72,
+    "cached_tokens": 0
+   },
+   "cost": 0.066455,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9fcd4225ff3f4a1aab79223ca8264d91fda03c86d81962dc659dcfee20894af9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e854) revokes fact e8 (12 lanterns) to 9; ORD-3 and EV-4 are correctly REVISE'd with history-fixed values (9, £135 = 9×£15), the task forces sending the confirmed count to Brightside plus record updates without hinting at a change, e16 is a sound KEEP (uses only the plan's date), and e18's ASK matches rule e4 and the consent map. Tier 1,000 is met: 33 core events, 8 decisions, change 21 days before the task day with later core events, and two echoes (e21, e23). The change sits mid-history at event 854 among routine events and is not announced as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e854) revokes fact e8 (12 lanterns) to 9; ORD-3 and EV-4 are correctly REVISE'd with history-fixed values (9, £135 = 9×£15), the task forces sending the confirmed count to Brightside plus record updates without hinting at a change, e16 is a sound KEEP (uses only the plan's date), and e18's ASK matches rule e4 and the consent map. Tier 1,000 is met: 33 core events, 8 decisions, change 21 days before the task day with later core events, and two echoes (e21, e23). The change sits mid-history at event 854 among routine events and is not announced as a correction."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4603,
+    "completion_tokens": 646,
+    "reasoning_tokens": 443,
+    "cached_tokens": 384
+   },
+   "cost": 0.00884884,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9fcd4225ff3f4a1aab79223ca8264d91fda03c86d81962dc659dcfee20894af9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Rule e4 requires the hirer's written agreement before any change to equipment in a confirmed hire booking, and ORD-3 is a confirmed Brightside hire, yet the expected state treats its revision as needing no consent, so the rule's application to Brightside is ambiguous. The class-1 structure, the two echoes, the tier counts and the hidden change all check out, and the task forces a message to Brightside.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rule e4 requires the hirer's written agreement before any change to equipment in a confirmed hire booking, and ORD-3 is a confirmed Brightside hire, yet the expected state treats its revision as needing no consent, so the rule's application to Brightside is ambiguous. The class-1 structure, the two echoes, the tier counts and the hidden change all check out, and the task forces a message to Brightside."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6566,
+    "completion_tokens": 2511,
+    "reasoning_tokens": 2320,
+    "cached_tokens": 0
+   },
+   "cost": 0.0019121,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9fcd4225ff3f4a1aab79223ca8264d91fda03c86d81962dc659dcfee20894af9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

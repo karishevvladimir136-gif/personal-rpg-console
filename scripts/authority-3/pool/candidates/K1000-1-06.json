@@ -690,5 +690,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The downgrade rules out carrying 55 kg in one SwiftHaul load, but the history does not establish two cargo bikes as the replacement, their capacity or rider availability, or exactly two loop runs. Nothing fixes a proposed pickup time of 10:30. Mara's consent is required for moving or splitting the confirmed pickup, but that rule does not determine the replacement arrangement.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The downgrade rules out carrying 55 kg in one SwiftHaul load, but the history does not establish two cargo bikes as the replacement, their capacity or rider availability, or exactly two loop runs. Nothing fixes a proposed pickup time of 10:30. Mara's consent is required for moving or splitting the confirmed pickup, but that rule does not determine the replacement arrangement."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4556,
+    "completion_tokens": 192,
+    "reasoning_tokens": 80,
+    "cached_tokens": 0
+   },
+   "cost": 0.0665425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f8b23bd4d0e2343c8ea9b62f93e1d1196073dd651d013ecefad8bd8dd4199ea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets the tier 1,000 counts (37 core events, 7 decisions), the change is 21 days before the task day with four core events after it, and two echoes (e15, e24) restate 60 kg. The stale-fact chain is sound: e8 and e10 rest directly on e4, and e9 is two hops away through e8, with the consent map matching rule e1. The only weak point is that the change's \\\"Important update\\\" wording slightly signals significance, and the two-cargo-bikes replacement is only loosely justified by the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets the tier 1,000 counts (37 core events, 7 decisions), the change is 21 days before the task day with four core events after it, and two echoes (e15, e24) restate 60 kg. The stale-fact chain is sound: e8 and e10 rest directly on e4, and e9 is two hops away through e8, with the consent map matching rule e1. The only weak point is that the change's \"Important update\" wording slightly signals significance, and the two-cargo-bikes replacement is only loosely justified by the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6818,
+    "completion_tokens": 1507,
+    "reasoning_tokens": 1279,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014353,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f8b23bd4d0e2343c8ea9b62f93e1d1196073dd651d013ecefad8bd8dd4199ea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change and mark structure (REVISE on e8/e9, ASK on e10 under rule e1, two-hop chain via e8→e9) are sound, and the class-1 design with echoes meets the tier. However, the expected values \\\"two cargo bikes\\\" and especially the \\\"10:30\\\" window are not fixed by anything in the history — nothing states who rides the second bike (Ana only rides Tue/Fri) or where 10:30 comes from, so the correct message content and EV-2/EV-1 values are ambiguous rather than derived from the change or the history's rules.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change and mark structure (REVISE on e8/e9, ASK on e10 under rule e1, two-hop chain via e8→e9) are sound, and the class-1 design with echoes meets the tier. However, the expected values \"two cargo bikes\" and especially the \"10:30\" window are not fixed by anything in the history — nothing states who rides the second bike (Ana only rides Tue/Fri) or where 10:30 comes from, so the correct message content and EV-2/EV-1 values are ambiguous rather than derived from the change or the history's rules."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4632,
+    "completion_tokens": 702,
+    "reasoning_tokens": 529,
+    "cached_tokens": 384
+   },
+   "cost": 0.00913584,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9f8b23bd4d0e2343c8ea9b62f93e1d1196073dd651d013ecefad8bd8dd4199ea",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

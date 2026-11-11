@@ -489,5 +489,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The packaging delivery change affects no decision or workplace record, so the cupping confirmation should use the unchanged session details without seeking consent. The core has 21 events and 5 decisions, with the change 10 days before the task and five core events after it. The change appears as an ordinary supplier email among other events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The packaging delivery change affects no decision or workplace record, so the cupping confirmation should use the unchanged session details without seeking consent. The core has 21 events and 5 decisions, with the change 10 days before the task and five core events after it. The change appears as an ordinary supplier email among other events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3267,
+    "completion_tokens": 140,
+    "reasoning_tokens": 38,
+    "cached_tokens": 0
+   },
+   "cost": 0.04783,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8965aaeb426b231e859f59007e2863a15a07d9764c56bfef80ac12967fdc8c38",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The Paperhouse change revokes e13, which no decision rests on, so the cupping plan and all records stand and the correct act is the confirmation message as specified. The task requires an outward act (sending confirmation) without hinting at any change. Tier 100 counts and timing hold, and the change is buried mid-history with later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The Paperhouse change revokes e13, which no decision rests on, so the cupping plan and all records stand and the correct act is the confirmation message as specified. The task requires an outward act (sending confirmation) without hinting at any change. Tier 100 counts and timing hold, and the change is buried mid-history with later core events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3330,
+    "completion_tokens": 263,
+    "reasoning_tokens": 147,
+    "cached_tokens": 384
+   },
+   "cost": 0.00538144,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8965aaeb426b231e859f59007e2863a15a07d9764c56bfef80ac12967fdc8c38",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e16, the Paperhouse box-date correction) touches no decision: none of ORD-1, ORD-2, EV-1, EV-2 or EV-3 rests on e13, so the control reading holds and the expected state is consistent with the history. The task requires sending a message now, and the core meets its counts (21 core events, 5 decisions, change 10 days before the task day with 5 core events after it). The correction is an ordinary email without a 'correction' label and has later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e16, the Paperhouse box-date correction) touches no decision: none of ORD-1, ORD-2, EV-1, EV-2 or EV-3 rests on e13, so the control reading holds and the expected state is consistent with the history. The task requires sending a message now, and the core meets its counts (21 core events, 5 decisions, change 10 days before the task day with 5 core events after it). The correction is an ordinary email without a 'correction' label and has later events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4775,
+    "completion_tokens": 1207,
+    "reasoning_tokens": 993,
+    "cached_tokens": 0
+   },
+   "cost": 0.001081,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8965aaeb426b231e859f59007e2863a15a07d9764c56bfef80ac12967fdc8c38",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -540,5 +540,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes fact e3; ORD-1 (on A) is REVISE with values fixed (11.20, 448), CL-1 (two hops, on B) is ASK under the e1 consent rule matching the consent map, and EV-1 keeps the unchanged delivery-days aspect (D), giving a clean chain of class 3. The task forces present action without naming the change. 20 core events, 5 decisions, change 11 days before the task day with two core events after it meet tier 100, and the change sits at event 90 of 100 as an ordinary supplier email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes fact e3; ORD-1 (on A) is REVISE with values fixed (11.20, 448), CL-1 (two hops, on B) is ASK under the e1 consent rule matching the consent map, and EV-1 keeps the unchanged delivery-days aspect (D), giving a clean chain of class 3. The task forces present action without naming the change. 20 core events, 5 decisions, change 11 days before the task day with two core events after it meet tier 100, and the change sits at event 90 of 100 as an ordinary supplier email."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3483,
+    "completion_tokens": 308,
+    "reasoning_tokens": 133,
+    "cached_tokens": 0
+   },
+   "cost": 0.0062314,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ff88b44f57eb648a8dcb75b286524c77c2fe9660117b5c4149bed92ed55c9ad",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new supplier price applies 'from this week' but does not explicitly reprice the already-confirmed June order, so changing ORD-1 to 11.20 and 448 is not unambiguously required. Sofia's instruction that six guests are vegetarian also makes retaining all 40 salmon portions without clarification questionable.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new supplier price applies 'from this week' but does not explicitly reprice the already-confirmed June order, so changing ORD-1 to 11.20 and 448 is not unambiguously required. Sofia's instruction that six guests are vegetarian also makes retaining all 40 salmon portions without clarification questionable."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3422,
+    "completion_tokens": 210,
+    "reasoning_tokens": 110,
+    "cached_tokens": 0
+   },
+   "cost": 0.0532675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ff88b44f57eb648a8dcb75b286524c77c2fe9660117b5c4149bed92ed55c9ad",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: the revoked salmon price (e3) feeds ORD-1 (B), which feeds CL-1 (C), while EV-1 cites e3 only for the delivery days that stand (KEEP). The expected message to Sofia is loosely specified, since it only requires the string \\\"11.20\\\" and gives no proposed per-guest price, so the consent request's content is underdetermined. Counts (20 core events, 5 decisions, change 11 days before the task day with two core events after it) and the unannounced \\\"heads-up\\\" phrasing meet the spec.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: the revoked salmon price (e3) feeds ORD-1 (B), which feeds CL-1 (C), while EV-1 cites e3 only for the delivery days that stand (KEEP). The expected message to Sofia is loosely specified, since it only requires the string \"11.20\" and gives no proposed per-guest price, so the consent request's content is underdetermined. Counts (20 core events, 5 decisions, change 11 days before the task day with two core events after it) and the unannounced \"heads-up\" phrasing meet the spec."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5010,
+    "completion_tokens": 1879,
+    "reasoning_tokens": 1636,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4ff88b44f57eb648a8dcb75b286524c77c2fe9660117b5c4149bed92ed55c9ad",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

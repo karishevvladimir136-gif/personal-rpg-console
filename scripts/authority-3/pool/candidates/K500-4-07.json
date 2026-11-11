@@ -626,5 +626,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The launch leaves current prices unchanged, so the requested order is 20 tubes and 10 developer bottles for 320, with no approval or existing-record changes needed. The core has 30 events and 6 decisions; the change precedes the task by 15 days and has five later core events, and class 4 requires no stale-value echo. The task requires placing and sending the order, while the change appears as an ordinary supplier email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The launch leaves current prices unchanged, so the requested order is 20 tubes and 10 developer bottles for 320, with no approval or existing-record changes needed. The core has 30 events and 6 decisions; the change precedes the task by 15 days and has five later core events, and class 4 requires no stale-value echo. The task requires placing and sending the order, while the change appears as an ordinary supplier email."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3933,
+    "completion_tokens": 194,
+    "reasoning_tokens": 67,
+    "cached_tokens": 0
+   },
+   "cost": 0.058855,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6d5277bb1a3e781a36158d1a526b458fafebd8abcb3df5b23cc6f575cde17966",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The PureTone launch email changes nothing (it explicitly says current prices are unchanged), so the control is clean: the correct act is placing the usual 20 tubes + 10 developer at 320 and messaging Tomas, with all records unchanged. Core has 30 events and 6 decisions within tier limits, the change is 15 days before the task day with later core events, and no echo is required for class 4. The change sits mid-history (event 449 of 500) as an ordinary supplier email with distractors (copper clearance, 14 price) that are correctly not acted upon.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The PureTone launch email changes nothing (it explicitly says current prices are unchanged), so the control is clean: the correct act is placing the usual 20 tubes + 10 developer at 320 and messaging Tomas, with all records unchanged. Core has 30 events and 6 decisions within tier limits, the change is 15 days before the task day with later core events, and no echo is required for class 4. The change sits mid-history (event 449 of 500) as an ordinary supplier email with distractors (copper clearance, 14 price) that are correctly not acted upon."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4002,
+    "completion_tokens": 272,
+    "reasoning_tokens": 103,
+    "cached_tokens": 384
+   },
+   "cost": 0.00636184,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6d5277bb1a3e781a36158d1a526b458fafebd8abcb3df5b23cc6f575cde17966",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The PureTone email explicitly leaves current colour prices unchanged, so no decision is touched and the expected plan (20 tubes, 10 developer, 320, under the 400 limit) follows from the history. The core has 30 events and 6 decisions, and the change falls 15 days before the task day with five core events after it. The change is an ordinary-looking email that is not the last event and is not labelled as a correction. Noise event E0451, which moves a bridal slot on 9 October, is a minor possible source of confusion but does not alter the expected state.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The PureTone email explicitly leaves current colour prices unchanged, so no decision is touched and the expected plan (20 tubes, 10 developer, 320, under the 400 limit) follows from the history. The core has 30 events and 6 decisions, and the change falls 15 days before the task day with five core events after it. The change is an ordinary-looking email that is not the last event and is not labelled as a correction. Noise event E0451, which moves a bridal slot on 9 October, is a minor possible source of confusion but does not alter the expected state."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5605,
+    "completion_tokens": 1887,
+    "reasoning_tokens": 1654,
+    "cached_tokens": 0
+   },
+   "cost": 0.001504,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6d5277bb1a3e781a36158d1a526b458fafebd8abcb3df5b23cc6f575cde17966",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

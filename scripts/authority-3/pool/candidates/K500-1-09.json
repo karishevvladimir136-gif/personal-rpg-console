@@ -655,5 +655,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment (e24) makes $165 effective only from 2026-10-15, but the task day is 2026-10-12, so the expected state's switch of CL-1, CL-2 and EV-1 to 165 on that day contradicts the history's own effective date. The rest of the structure (marks, two-hop ASK on EV-1, KEEP on CL-3, echo e18, tier counts, hidden change) checks out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment (e24) makes $165 effective only from 2026-10-15, but the task day is 2026-10-12, so the expected state's switch of CL-1, CL-2 and EV-1 to 165 on that day contradicts the history's own effective date. The rest of the structure (marks, two-hop ASK on EV-1, KEEP on CL-3, echo e18, tier counts, hidden change) checks out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5590,
+    "completion_tokens": 1430,
+    "reasoning_tokens": 1237,
+    "cached_tokens": 0
+   },
+   "cost": 0.001274,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "33be0ac051498c5e2a468650a7794366a4073a6e0ad7c17cd44cf5fd84356de4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task is on October 12, but $165 takes effect October 15; immediately changing the posted rate sheet to $165 while retaining its June effective date is not justified, and the final quote's applicable rate is not unambiguous given the pre-October-15 signing exception. The change is a conditional pricing-rule amendment that preserves signed leases while changing other transactions, fitting class 2 rather than a blanket stale-fact revocation. The core meets the tier requirements, and the change is embedded among ordinary events.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task is on October 12, but $165 takes effect October 15; immediately changing the posted rate sheet to $165 while retaining its June effective date is not justified, and the final quote's applicable rate is not unambiguous given the pre-October-15 signing exception. The change is a conditional pricing-rule amendment that preserves signed leases while changing other transactions, fitting class 2 rather than a blanket stale-fact revocation. The core meets the tier requirements, and the change is embedded among ordinary events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3873,
+    "completion_tokens": 303,
+    "reasoning_tokens": 161,
+    "cached_tokens": 0
+   },
+   "cost": 0.063555,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "33be0ac051498c5e2a468650a7794366a4073a6e0ad7c17cd44cf5fd84356de4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes the $145 climate-rate fact; CL-1 and CL-2 rest on it directly (REVISE to 165), EV-1 is two hops via the quote and its rate field requires Marcus's consent under e2 (ASK), and Priya's renewal is expressly grandfathered by the amendment's own terms (KEEP). The task requires concrete acts (send quote, update records) without hinting at the change. Counts, dates, and the echo (e18) meet tier 500; the only mild wrinkle is that the task day (10-12) precedes the new rate's effective date (10-15), but since the old fact is revoked and Marcus's move-in is after it, the expected 165 is still the defensible reading.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes the $145 climate-rate fact; CL-1 and CL-2 rest on it directly (REVISE to 165), EV-1 is two hops via the quote and its rate field requires Marcus's consent under e2 (ASK), and Priya's renewal is expressly grandfathered by the amendment's own terms (KEEP). The task requires concrete acts (send quote, update records) without hinting at the change. Counts, dates, and the echo (e18) meet tier 500; the only mild wrinkle is that the task day (10-12) precedes the new rate's effective date (10-15), but since the old fact is revoked and Marcus's move-in is after it, the expected 165 is still the defensible reading."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3943,
+    "completion_tokens": 647,
+    "reasoning_tokens": 443,
+    "cached_tokens": 384
+   },
+   "cost": 0.00792924,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "33be0ac051498c5e2a468650a7794366a4073a6e0ad7c17cd44cf5fd84356de4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -618,5 +618,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The compost credit note affects none of the workplace decisions or records; the history supports adding the 20 November pressing slot at 09:00 for 90 and messaging Owen. The task requires a new booking and message without hinting at the change. The core has 30 events and 8 decisions, with the change 18 days before the task and three later core events; class 4 does not require a stale-value echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The compost credit note affects none of the workplace decisions or records; the history supports adding the 20 November pressing slot at 09:00 for 90 and messaging Owen. The task requires a new booking and message without hinting at the change. The core has 30 events and 8 decisions, with the change 18 days before the task and three later core events; class 4 does not require a stale-value echo."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3942,
+    "completion_tokens": 201,
+    "reasoning_tokens": 77,
+    "cached_tokens": 0
+   },
+   "cost": 0.0593175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "38847a7eeb9261c82ece12f8adc3186a4667ec767fed5682c57ed43731ced4d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The credit-note correction (e27) revokes a settled invoice fact that no decision or record rests on, so the control class is correct and only the new pressing booking plus Owen's message are needed. The expected state correctly derives date/time/place/cost from e5, e6 and e30, and no consent rule applies to the new booking (the e2 rule covers school visits). Core has 30 events and 8 decisions, change 18 days before the task with core events after it, and the change sits mid-history among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The credit-note correction (e27) revokes a settled invoice fact that no decision or record rests on, so the control class is correct and only the new pressing booking plus Owen's message are needed. The expected state correctly derives date/time/place/cost from e5, e6 and e30, and no consent rule applies to the new booking (the e2 rule covers school visits). Core has 30 events and 8 decisions, change 18 days before the task with core events after it, and the change sits mid-history among routine events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4027,
+    "completion_tokens": 286,
+    "reasoning_tokens": 130,
+    "cached_tokens": 384
+   },
+   "cost": 0.00645844,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "38847a7eeb9261c82ece12f8adc3186a4667ec767fed5682c57ed43731ced4d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state marks the existing 2026-11-06 pressing slot (EV-1) as \\\"stale\\\" and requires the confirming message to omit it, but nothing in the history revokes or changes that booking; e30 confirms it, and the task only asks for an additional slot. The core otherwise meets the tier, the change at e27 touches no decision (e14 is a payment note, not a decision), and the task forces a booking and a message.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state marks the existing 2026-11-06 pressing slot (EV-1) as \"stale\" and requires the confirming message to omit it, but nothing in the history revokes or changes that booking; e30 confirms it, and the task only asks for an additional slot. The core otherwise meets the tier, the change at e27 touches no decision (e14 is a payment note, not a decision), and the task forces a booking and a message."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5665,
+    "completion_tokens": 1371,
+    "reasoning_tokens": 1177,
+    "cached_tokens": 0
+   },
+   "cost": 0.001252,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "38847a7eeb9261c82ece12f8adc3186a4667ec767fed5682c57ed43731ced4d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -640,5 +640,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not establish that moving flour arrivals automatically moves the Tuesday-night bake and Harbor Café delivery one day later, so Thursday is not uniquely determined. Also, replacing the standing order's delivery day immediately on October 20 loses the explicitly stated Tuesday schedule that remains effective until November; a future-effective update is needed.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not establish that moving flour arrivals automatically moves the Tuesday-night bake and Harbor Café delivery one day later, so Thursday is not uniquely determined. Also, replacing the standing order's delivery day immediately on October 20 loses the explicitly stated Tuesday schedule that remains effective until November; a future-effective update is needed."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4051,
+    "completion_tokens": 219,
+    "reasoning_tokens": 119,
+    "cached_tokens": 0
+   },
+   "cost": 0.06158,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "73b4f0121456160335caa1222e07363f4b6d5afb2343e5245518137d424003be",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The scenario cleanly instantiates class 3: the change corrects fact e5 (flour day), ORD-3 rests on it (REVISE to Wednesday), EV-2 is two hops away (ASK to Priya under e2's consent rule), and ORD-5 (price basis) and EV-1 (Friday service) are KEEPs on aspects the change leaves standing. Tier is met: 28 core events, 7 decisions, change 15 days before task day with 36 events after, and e18 restates the stale Tuesday delivery. The Thursday value for EV-2 is inferred rather than stated (bake follows flour day, delivery follows bake), but that inference is natural and the task itself requires proposing the new day, so the expected state follows.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scenario cleanly instantiates class 3: the change corrects fact e5 (flour day), ORD-3 rests on it (REVISE to Wednesday), EV-2 is two hops away (ASK to Priya under e2's consent rule), and ORD-5 (price basis) and EV-1 (Friday service) are KEEPs on aspects the change leaves standing. Tier is met: 28 core events, 7 decisions, change 15 days before task day with 36 events after, and e18 restates the stale Tuesday delivery. The Thursday value for EV-2 is inferred rather than stated (bake follows flour day, delivery follows bake), but that inference is natural and the task itself requires proposing the new day, so the expected state follows."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4123,
+    "completion_tokens": 553,
+    "reasoning_tokens": 351,
+    "cached_tokens": 384
+   },
+   "cost": 0.00776764,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "73b4f0121456160335caa1222e07363f4b6d5afb2343e5245518137d424003be",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e24 explicitly revokes the stale fact e5 (Tuesday flour delivery), and the touched decisions fit class 1: e8 is REVISE directly on e5, e10 is ASK two hops away, and e14 is KEEP, so the intended class 3 label is a mismatch. The expected state follows from the history, though the Thursday proposal depends on an inference that the bake runs overnight from the delivery day. The core meets the 500-tier counts (28 events, 7 decisions), the 15-day distance, the 36 later events, and the echo e18.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e24 explicitly revokes the stale fact e5 (Tuesday flour delivery), and the touched decisions fit class 1: e8 is REVISE directly on e5, e10 is ASK two hops away, and e14 is KEEP, so the intended class 3 label is a mismatch. The expected state follows from the history, though the Thursday proposal depends on an inference that the bake runs overnight from the delivery day. The core meets the 500-tier counts (28 events, 7 decisions), the 15-day distance, the 36 later events, and the echo e18."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6025,
+    "completion_tokens": 1628,
+    "reasoning_tokens": 1385,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014165,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "73b4f0121456160335caa1222e07363f4b6d5afb2343e5245518137d424003be",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

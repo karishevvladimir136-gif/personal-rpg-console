@@ -1,0 +1,842 @@
+{
+ "id": "K1000-4-03",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 4,
+ "idx": 2,
+ "setting": "Funeral home director at Holloway & Sons Funeral Services",
+ "prompt_sha256": "6530a79dba647dc0ca41cc83997fe3497a272aa0c1c422e35bb3e403ffe389a6",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"The Merrick service and the celebrant's corrected number\",\n \"setting\": \"Funeral home director at Holloway & Sons Funeral Services\",\n \"owner\": \"Arthur\",\n \"org\": \"Holloway & Sons Funeral Services\",\n \"now\": \"2026-10-13\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Arthur\", \"text\": \"House rule: once a family has confirmed a funeral service, neither the date, the time nor the chapel may be changed without the arranging family member's explicit agreement. We always ask the family first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Arthur\", \"text\": \"House rule: any supplier order over £600 needs Daniel Holloway's sign-off before it is placed. Orders at or under £600 I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Arthur\", \"text\": \"Standing instruction: for every service, confirm the hearses and limousine with Colin Preece two days before the service date, so the fleet is never left unconfirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Shah (Bramble & Bloom Florists)\", \"text\": \"Our current prices for funeral work: coffin spray £240, two chapel pedestal arrangements £90 each, delivery to Holloway & Sons included. We need three days' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tom Fairway (Fairway Catering)\", \"text\": \"Wake catering for Holloway & Sons stays at £14 per head for finger buffets this year, minimum 20 covers, delivered to your reception room or a hired hall.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Gus Bell (Printwell Press)\", \"text\": \"Order of service booklets: we need the final text three working days before you want them; 100 to 150 copies is no problem at our standard rate.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"For reference: the Main Chapel at Holloway & Sons seats 96; the smaller Garden Room seats 30.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"Fleet note: Colin Preece drives for us Tuesday to Saturday. We run two hearses and one Daimler limousine; Colin can crew all three with his usual drivers.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, in case you need it for the autumn services, my mobile is 07700 900431. That's the best number for reaching me on service days.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, my mother Eileen Merrick passed away on Sunday. We would like Holloway & Sons to arrange the funeral. Please could we meet this week to discuss a date in mid October?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-26\", \"type\": \"call\", \"from\": \"Margaret Merrick\", \"text\": \"Margaret Merrick called: the family would like the funeral on Thursday 15 October at 11:00, followed by burial at St Aldhelm's churchyard, and a wake afterwards for about 56 guests in our reception room.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, yes, I am free on Thursday 15 October at 11:00 and would be glad to conduct Eileen Merrick's service. I'll meet the family next week to plan it.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Peter Voss (St Aldhelm's Church)\", \"text\": \"The graveside committal at St Aldhelm's churchyard is fine for Thursday 15 October at 12:30. The verger will have everything ready.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-29\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked the Main Chapel for Eileen Merrick's funeral service on Thursday 15 October 2026 at 11:00, with Rev. Nadia Reed conducting; the chapel seats 96, comfortably enough for the family and about 56 wake guests. Told Margaret Merrick it is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e7\", \"e12\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-29\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked both hearses and the Daimler limousine with Colin Preece for the Merrick funeral on Thursday 15 October: hearse for the coffin, second hearse for flowers, limousine for the family, collecting at 10:15 for the 11:00 service. Colin is working that Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e8\", \"e3\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Daniel Holloway\", \"text\": \"Arthur, I've seen the Merrick estimate. Happy to sign off the wake catering spend, around £784 for 56 guests at Fairway's rate. Go ahead and place the order.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered the Merrick wake catering from Fairway Catering: 56 covers of the finger buffet at £14 a head, total £784, delivered to our reception room for after the service on Thursday 15 October. Daniel has signed off the spend.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e11\", \"e16\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered the Merrick flowers from Bramble & Bloom: one coffin spray at £240 and two chapel pedestal arrangements at £90 each, total £420, delivered to the Main Chapel on the morning of Thursday 15 October. Under £600, so placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e14\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered 120 order of service booklets for the Merrick funeral from Printwell Press, final text to them by Thursday 8 October so they are ready before the service on Thursday 15 October.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, thank you. Thursday 15 October at 11:00 in your Main Chapel, the burial at St Aldhelm's at 12:30 and the wake for 56 in your reception room all suit the family. We are grateful.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Assigned staff for the Merrick funeral on Thursday 15 October: Helen Doyle leads the day with four bearers, arriving 08:30 to set the Main Chapel before the 11:00 service.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-3\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Ruth Larkin\", \"text\": \"Dear Mr Holloway, following our conversation, we would like to hold my father Ronald Larkin's funeral in your Main Chapel in mid October, afternoon if possible. Around 70 mourners.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"Circulated the autumn contact sheet to staff: Rev. Nadia Reed mobile 07700 900431, Colin Preece fleet office, Bramble & Bloom, Fairway Catering and Printwell Press as listed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked the Main Chapel for Ronald Larkin's funeral on Friday 16 October 2026 at 14:30; the chapel's 96 seats cover the expected 70 mourners. Confirmed the date to Ruth Larkin.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e7\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Ruth Larkin\", \"text\": \"Thank you, Mr Holloway. Friday 16 October at 14:30 in the Main Chapel is confirmed for my father's service. The family is content with that time.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked one hearse and the limousine with Colin Preece for the Larkin funeral on Friday 16 October at 14:30, collecting at 13:45. Colin is driving that Friday.\", \"role\": \"decision\", \"rests_on\": [\"e24\", \"e8\", \"e3\"], \"record\": \"EV-5\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Helen Doyle\", \"text\": \"Arthur, note for the Merrick service: anything urgent on the day, Nadia Reed said to ring her mobile, 07700 900431. I've put it on the run sheet.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered a dozen memorial candles for the Merrick service from Waxlight Supplies at £180, to stand in the Main Chapel on Thursday 15 October. Well under the £600 line, so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, a small embarrassment: I gave you a wrong digit in my mobile number earlier in the summer. The correct number is 07700 900764, not 07700 900431. Sorry for any confusion.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n  {\"id\": \"e30\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Arthur\", \"text\": \"Staff meeting notes: Merrick funeral Thursday 15 October at 11:00 in the Main Chapel and Larkin funeral Friday 16 October at 14:30 both on track; Helen to run the Merrick day; vehicles to be confirmed with Colin two days ahead as usual.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Gus Bell (Printwell Press)\", \"text\": \"Arthur, the Merrick booklet proof is ready for your check; approve by Thursday 8 October and the 120 copies will be with you on Monday 12 October.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Tom Fairway (Fairway Catering)\", \"text\": \"Confirming we have you down for 56 buffet covers on Thursday 15 October, delivered to the Holloway & Sons reception room by 12:15. Kitchen is all set.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Priya Shah (Bramble & Bloom Florists)\", \"text\": \"The Merrick coffin spray and the two chapel pedestals will be delivered to the Main Chapel by 09:30 on Thursday 15 October.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Arthur\", \"text\": \"To-do: pay the Fairway Catering balance for the Merrick wake by Wednesday 14 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e35\", \"date\": \"2026-10-12\", \"type\": \"call\", \"from\": \"Colin Preece\", \"text\": \"Colin rang: give him a ring or message on Tuesday to confirm Thursday's vehicles as usual, and he'll have both hearses and the limousine fuelled and ready.\", \"role\": \"other\"},\n  {\"id\": \"e36\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, could you send me the final arrangements for Thursday's service in writing? The family would like the time, the chapel, the cars and the wake numbers confirmed before the day.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Merrick funeral service\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"11:00\", \"place\": \"Main Chapel\", \"celebrant\": \"Rev. Nadia Reed\", \"deceased\": \"Eileen Merrick\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Merrick cortege vehicles\", \"fields\": {\"date\": \"2026-10-15\", \"service_time\": \"11:00\", \"vehicles\": \"3\", \"driver\": \"Colin Preece\", \"collection\": \"10:15\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Merrick staffing\", \"fields\": {\"date\": \"2026-10-15\", \"lead\": \"Helen Doyle\", \"bearers\": \"4\", \"start\": \"08:30\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Larkin funeral service\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"14:30\", \"place\": \"Main Chapel\", \"deceased\": \"Ronald Larkin\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Larkin cortege vehicles\", \"fields\": {\"date\": \"2026-10-16\", \"service_time\": \"14:30\", \"vehicles\": \"2\", \"driver\": \"Colin Preece\", \"collection\": \"13:45\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Merrick flowers\", \"fields\": {\"supplier\": \"Bramble & Bloom\", \"item\": \"coffin spray and two chapel pedestals\", \"delivery\": \"2026-10-15\", \"total\": \"420\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Merrick service booklets\", \"fields\": {\"supplier\": \"Printwell Press\", \"copies\": \"120\", \"ready\": \"2026-10-12\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Merrick wake catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"covers\": \"56\", \"price_per_head\": \"14\", \"total\": \"784\", \"delivery\": \"2026-10-15\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Merrick memorial candles\", \"fields\": {\"supplier\": \"Waxlight Supplies\", \"quantity\": \"12\", \"total\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Merrick family\", \"fields\": {\"contact\": \"Margaret Merrick\", \"phone\": \"01632 445208\", \"email\": \"margaret.merrick@example.org\", \"service\": \"2026-10-15\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Margaret Merrick\", \"rule\": \"e1\"},\n  {\"record\": \"ORD-3\", \"fields\": [\"covers\", \"total\"], \"from\": \"Daniel Holloway\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please confirm Thursday's vehicles with Colin Preece as usual, and then send Margaret Merrick the final arrangements for her mother's service in writing — the date and time, the chapel, the cars and the wake catering numbers.\",\n \"expect\": [\n  {\"message_to\": \"Colin Preece\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-15\", \"11:00\"], \"stale\": [\"2026-10-16\", \"14:30\"], \"task\": true},\n  {\"message_to\": \"Margaret Merrick\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-15\", \"11:00\", \"Main Chapel\", \"56\"], \"stale\": [\"2026-10-16\", \"14:30\", \"07700 900431\"], \"task\": true}\n ],\n \"why\": \"The change only corrects Rev. Reed's mobile number, a fact no decision or record rests on, so the Merrick plan stands exactly as confirmed: Thursday 15 October at 11:00 in the Main Chapel with 56 wake covers. The task is carried out on that standing plan — confirming EV-2 with Colin two days ahead per the standing instruction and sending Margaret the confirmed details — while the Larkin service on Friday 16 October at 14:30 in the same chapel is a look-alike whose values must not be used. No record changes are expected; nothing in the workplace depends on the corrected number.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly flower restock\", \"counterpart\": \"Priya Shah\", \"org\": \"Bramble & Bloom Florists\", \"item\": \"mixed condolence bouquets\", \"unit\": \"bouquets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Holloway & Sons reception room\"},\n  {\"kind\": \"order\", \"topic\": \"chapel pedestal refresh\", \"counterpart\": \"Priya Shah\", \"org\": \"Bramble & Bloom Florists\", \"item\": \"seasonal pedestal arrangement\", \"unit\": \"arrangements\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Main Chapel\"},\n  {\"kind\": \"order\", \"topic\": \"buffet for staff training days\", \"counterpart\": \"Tom Fairway\", \"org\": \"Fairway Catering\", \"item\": \"finger buffet covers\", \"unit\": \"covers\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Holloway & Sons reception room\"},\n  {\"kind\": \"order\", \"topic\": \"stationery reprint\", \"counterpart\": \"Gus Bell\", \"org\": \"Printwell Press\", \"item\": \"headed notepaper\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"order\", \"topic\": \"memorial card reorders\", \"counterpart\": \"Gus Bell\", \"org\": \"Printwell Press\", \"item\": \"wallet memorial cards\", \"unit\": \"packs\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly prayer group\", \"counterpart\": \"Rev. Nadia Reed\", \"org\": \"St Aldhelm's parish\", \"item\": \"chapel hire for prayer meeting\", \"values\": [\"Garden Room\", \"Main Chapel\"], \"place\": \"Holloway & Sons\"},\n  {\"kind\": \"booking\", \"topic\": \"celebrant planning meetings\", \"counterpart\": \"Rev. Nadia Reed\", \"org\": \"St Aldhelm's parish\", \"item\": \"family meeting room booking\", \"values\": [\"Garden Room\", \"Arrangement Office\"], \"place\": \"Holloway & Sons\"},\n  {\"kind\": \"booking\", \"topic\": \"vehicle maintenance runs\", \"counterpart\": \"Colin Preece\", \"org\": \"Preece Fleet Services\", \"item\": \"hearse service slot\", \"values\": [\"workshop bay 1\", \"workshop bay 2\"], \"place\": \"Preece Fleet garage\"},\n  {\"kind\": \"order\", \"topic\": \"urn restock\", \"counterpart\": \"Helen Marsh\", \"org\": \"Ashdown Memorials\", \"item\": \"standard oak urns\", \"unit\": \"urns\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Vera Light\", \"org\": \"Waxlight Supplies\", \"item\": \"memorial candles\", \"unit\": \"dozen\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Sam Bright\", \"org\": \"Bright Janitorial\", \"item\": \"chapel cleaning kit\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Main Chapel\"},\n  {\"kind\": \"booking\", \"topic\": \"newspaper notice placements\", \"counterpart\": \"Dana Cole\", \"org\": \"Herald & Post\", \"item\": \"death notice slot\", \"values\": [\"Tuesday edition\", \"Thursday edition\", \"Saturday edition\"], \"place\": \"Herald & Post classifieds\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3247,
+    "completion_tokens": 9860,
+    "reasoning_tokens": 4519,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1493466,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "{\n \"title\": \"The Merrick service and the celebrant's corrected number\",\n \"setting\": \"Funeral home director at Holloway & Sons Funeral Services\",\n \"owner\": \"Arthur\",\n \"org\": \"Holloway & Sons Funeral Services\",\n \"now\": \"2026-10-13\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Arthur\", \"text\": \"House rule: once a family has confirmed a funeral service, neither the date, the time nor the chapel may be changed without the arranging family member's explicit agreement. We always ask the family first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Arthur\", \"text\": \"House rule: any supplier order over £600 needs Daniel Holloway's sign-off before it is placed. Orders at or under £600 I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Arthur\", \"text\": \"Standing instruction: for every service, confirm the hearses and limousine with Colin Preece two days before the service date, so the fleet is never left unconfirmed.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Priya Shah (Bramble & Bloom Florists)\", \"text\": \"Our current prices for funeral work: coffin spray £240, two chapel pedestal arrangements £90 each, delivery to Holloway & Sons included. We need three days' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Tom Fairway (Fairway Catering)\", \"text\": \"Wake catering for Holloway & Sons stays at £14 per head for finger buffets this year, minimum 20 covers, delivered to your reception room or a hired hall.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Gus Bell (Printwell Press)\", \"text\": \"Order of service booklets: we need the final text three working days before you want them; 100 to 150 copies is no problem at our standard rate.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"For reference: the Main Chapel at Holloway & Sons seats 96; the smaller Garden Room seats 30.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"Fleet note: Colin Preece drives for us Tuesday to Saturday. We run two hearses and one Daimler limousine; Colin can crew all three with his usual drivers.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, in case you need it for the autumn services, my mobile is 07700 900431. That's the best number for reaching me on service days.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-08-24\", \"type\": \"email\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, my mother Eileen Merrick passed away on Sunday. We would like Holloway & Sons to arrange the funeral. Please could we meet this week to discuss a date in mid October?\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-08-26\", \"type\": \"call\", \"from\": \"Margaret Merrick\", \"text\": \"Margaret Merrick called: the family would like the funeral on Thursday 15 October at 11:00, followed by burial at St Aldhelm's churchyard, and a wake afterwards for about 56 guests in our reception room.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-08-27\", \"type\": \"email\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, yes, I am free on Thursday 15 October at 11:00 and would be glad to conduct Eileen Merrick's service. I'll meet the family next week to plan it.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-08-28\", \"type\": \"email\", \"from\": \"Peter Voss (St Aldhelm's Church)\", \"text\": \"The graveside committal at St Aldhelm's churchyard is fine for Thursday 15 October at 12:30. The verger will have everything ready.\", \"role\": \"fact\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-29\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked the Main Chapel for Eileen Merrick's funeral service on Thursday 15 October 2026 at 11:00, with Rev. Nadia Reed conducting; the chapel seats 96, comfortably enough for the family and about 56 wake guests. Told Margaret Merrick it is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e7\", \"e12\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-29\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked both hearses and the Daimler limousine with Colin Preece for the Merrick funeral on Thursday 15 October: hearse for the coffin, second hearse for flowers, limousine for the family, collecting at 10:15 for the 11:00 service. Colin is working that Thursday.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e8\", \"e3\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-30\", \"type\": \"email\", \"from\": \"Daniel Holloway\", \"text\": \"Arthur, I've seen the Merrick estimate. Happy to sign off the wake catering spend, around £784 for 56 guests at Fairway's rate. Go ahead and place the order.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-30\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered the Merrick wake catering from Fairway Catering: 56 covers of the finger buffet at £14 a head, total £784, delivered to our reception room for after the service on Thursday 15 October. Daniel has signed off the spend.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e11\", \"e16\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered the Merrick flowers from Bramble & Bloom: one coffin spray at £240 and two chapel pedestal arrangements at £90 each, total £420, delivered to the Main Chapel on the morning of Thursday 15 October. Under £600, so placed it directly.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e14\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e19\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered 120 order of service booklets for the Merrick funeral from Printwell Press, final text to them by Thursday 8 October so they are ready before the service on Thursday 15 October.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e14\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-03\", \"type\": \"email\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, thank you. Thursday 15 October at 11:00 in your Main Chapel, the burial at St Aldhelm's at 12:30 and the wake for 56 in your reception room all suit the family. We are grateful.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-05\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Assigned staff for the Merrick funeral on Thursday 15 October: Helen Doyle leads the day with four bearers, arriving 08:30 to set the Main Chapel before the 11:00 service.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-3\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Ruth Larkin\", \"text\": \"Dear Mr Holloway, following our conversation, we would like to hold my father Ronald Larkin's funeral in your Main Chapel in mid October, afternoon if possible. Around 70 mourners.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"note\", \"from\": \"Arthur\", \"text\": \"Circulated the autumn contact sheet to staff: Rev. Nadia Reed mobile 07700 900431, Colin Preece fleet office, Bramble & Bloom, Fairway Catering and Printwell Press as listed.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-12\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked the Main Chapel for Ronald Larkin's funeral on Friday 16 October 2026 at 14:30; the chapel's 96 seats cover the expected 70 mourners. Confirmed the date to Ruth Larkin.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e7\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-12\", \"type\": \"email\", \"from\": \"Ruth Larkin\", \"text\": \"Thank you, Mr Holloway. Friday 16 October at 14:30 in the Main Chapel is confirmed for my father's service. The family is content with that time.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e26\", \"date\": \"2026-09-14\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Booked one hearse and the limousine with Colin Preece for the Larkin funeral on Friday 16 October at 14:30, collecting at 13:45. Colin is driving that Friday.\", \"role\": \"decision\", \"rests_on\": [\"e24\", \"e8\", \"e3\"], \"record\": \"EV-5\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Helen Doyle\", \"text\": \"Arthur, note for the Merrick service: anything urgent on the day, Nadia Reed said to ring her mobile, 07700 900431. I've put it on the run sheet.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e28\", \"date\": \"2026-09-21\", \"type\": \"decision\", \"from\": \"Arthur\", \"text\": \"Ordered a dozen memorial candles for the Merrick service from Waxlight Supplies at £180, to stand in the Main Chapel on Thursday 15 October. Well under the £600 line, so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e2\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Rev. Nadia Reed\", \"text\": \"Arthur, a small embarrassment: I gave you a wrong digit in my mobile number earlier in the summer. The correct number is 07700 900764, not 07700 900431. Sorry for any confusion.\", \"role\": \"change\", \"revokes\": [\"e9\"]},\n  {\"id\": \"e30\", \"date\": \"2026-09-28\", \"type\": \"minutes\", \"from\": \"Arthur\", \"text\": \"Staff meeting notes: Merrick funeral Thursday 15 October at 11:00 in the Main Chapel and Larkin funeral Friday 16 October at 14:30 both on track; Helen to run the Merrick day; vehicles to be confirmed with Colin two days ahead as usual.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Gus Bell (Printwell Press)\", \"text\": \"Arthur, the Merrick booklet proof is ready for your check; approve by Thursday 8 October and the 120 copies will be with you on Monday 12 October.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Tom Fairway (Fairway Catering)\", \"text\": \"Confirming we have you down for 56 buffet covers on Thursday 15 October, delivered to the Holloway & Sons reception room by 12:15. Kitchen is all set.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Priya Shah (Bramble & Bloom Florists)\", \"text\": \"The Merrick coffin spray and the two chapel pedestals will be delivered to the Main Chapel by 09:30 on Thursday 15 October.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-10\", \"type\": \"task\", \"from\": \"Arthur\", \"text\": \"To-do: pay the Fairway Catering balance for the Merrick wake by Wednesday 14 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e35\", \"date\": \"2026-10-12\", \"type\": \"call\", \"from\": \"Colin Preece\", \"text\": \"Colin rang: give him a ring or message on Tuesday to confirm Thursday's vehicles as usual, and he'll have both hearses and the limousine fuelled and ready.\", \"role\": \"other\"},\n  {\"id\": \"e36\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Margaret Merrick\", \"text\": \"Dear Mr Holloway, could you send me the final arrangements for Thursday's service in writing? The family would like the time, the chapel, the cars and the wake numbers confirmed before the day.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Merrick funeral service\", \"fields\": {\"date\": \"2026-10-15\", \"time\": \"11:00\", \"place\": \"Main Chapel\", \"celebrant\": \"Rev. Nadia Reed\", \"deceased\": \"Eileen Merrick\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Merrick cortege vehicles\", \"fields\": {\"date\": \"2026-10-15\", \"service_time\": \"11:00\", \"vehicles\": \"3\", \"driver\": \"Colin Preece\", \"collection\": \"10:15\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Merrick staffing\", \"fields\": {\"date\": \"2026-10-15\", \"lead\": \"Helen Doyle\", \"bearers\": \"4\", \"start\": \"08:30\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Larkin funeral service\", \"fields\": {\"date\": \"2026-10-16\", \"time\": \"14:30\", \"place\": \"Main Chapel\", \"deceased\": \"Ronald Larkin\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Larkin cortege vehicles\", \"fields\": {\"date\": \"2026-10-16\", \"service_time\": \"14:30\", \"vehicles\": \"2\", \"driver\": \"Colin Preece\", \"collection\": \"13:45\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Merrick flowers\", \"fields\": {\"supplier\": \"Bramble & Bloom\", \"item\": \"coffin spray and two chapel pedestals\", \"delivery\": \"2026-10-15\", \"total\": \"420\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Merrick service booklets\", \"fields\": {\"supplier\": \"Printwell Press\", \"copies\": \"120\", \"ready\": \"2026-10-12\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Merrick wake catering\", \"fields\": {\"supplier\": \"Fairway Catering\", \"covers\": \"56\", \"price_per_head\": \"14\", \"total\": \"784\", \"delivery\": \"2026-10-15\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Merrick memorial candles\", \"fields\": {\"supplier\": \"Waxlight Supplies\", \"quantity\": \"12\", \"total\": \"180\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Merrick family\", \"fields\": {\"contact\": \"Margaret Merrick\", \"phone\": \"01632 445208\", \"email\": \"margaret.merrick@example.org\", \"service\": \"2026-10-15\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\", \"place\"], \"from\": \"Margaret Merrick\", \"rule\": \"e1\"},\n  {\"record\": \"ORD-3\", \"fields\": [\"covers\", \"total\"], \"from\": \"Daniel Holloway\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please confirm Thursday's vehicles with Colin Preece as usual, and then send Margaret Merrick the final arrangements for her mother's service in writing — the date and time, the chapel, the cars and the wake catering numbers.\",\n \"expect\": [\n  {\"message_to\": \"Colin Preece\", \"regarding\": \"EV-2\", \"says\": [\"2026-10-15\", \"11:00\"], \"stale\": [\"2026-10-16\", \"14:30\"], \"task\": true},\n  {\"message_to\": \"Margaret Merrick\", \"regarding\": \"EV-1\", \"says\": [\"2026-10-15\", \"11:00\", \"Main Chapel\", \"56\"], \"stale\": [\"2026-10-16\", \"14:30\", \"07700 900431\"], \"task\": true}\n ],\n \"why\": \"The change only corrects Rev. Reed's mobile number, a fact no decision or record rests on, so the Merrick plan stands exactly as confirmed: Thursday 15 October at 11:00 in the Main Chapel with 56 wake covers. The task is carried out on that standing plan — confirming EV-2 with Colin two days ahead per the standing instruction and sending Margaret the confirmed details — while the Larkin service on Friday 16 October at 14:30 in the same chapel is a look-alike whose values must not be used. No record changes are expected; nothing in the workplace depends on the corrected number.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"weekly flower restock\", \"counterpart\": \"Priya Shah\", \"org\": \"Bramble & Bloom Florists\", \"item\": \"mixed condolence bouquets\", \"unit\": \"bouquets\", \"values\": [\"6\", \"8\", \"10\", \"12\"], \"place\": \"Holloway & Sons reception room\"},\n  {\"kind\": \"order\", \"topic\": \"chapel pedestal refresh\", \"counterpart\": \"Priya Shah\", \"org\": \"Bramble & Bloom Florists\", \"item\": \"seasonal pedestal arrangement\", \"unit\": \"arrangements\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Main Chapel\"},\n  {\"kind\": \"order\", \"topic\": \"buffet for staff training days\", \"counterpart\": \"Tom Fairway\", \"org\": \"Fairway Catering\", \"item\": \"finger buffet covers\", \"unit\": \"covers\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Holloway & Sons reception room\"},\n  {\"kind\": \"order\", \"topic\": \"stationery reprint\", \"counterpart\": \"Gus Bell\", \"org\": \"Printwell Press\", \"item\": \"headed notepaper\", \"unit\": \"reams\", \"values\": [\"5\", \"10\", \"15\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"order\", \"topic\": \"memorial card reorders\", \"counterpart\": \"Gus Bell\", \"org\": \"Printwell Press\", \"item\": \"wallet memorial cards\", \"unit\": \"packs\", \"values\": [\"25\", \"50\", \"75\", \"100\"], \"place\": \"Holloway & Sons office\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly prayer group\", \"counterpart\": \"Rev. Nadia Reed\", \"org\": \"St Aldhelm's parish\", \"item\": \"chapel hire for prayer meeting\", \"values\": [\"Garden Room\", \"Main Chapel\", \"Arrangement Office\"], \"place\": \"Holloway & Sons\"},\n  {\"kind\": \"booking\", \"topic\": \"celebrant planning meetings\", \"counterpart\": \"Rev. Nadia Reed\", \"org\": \"St Aldhelm's parish\", \"item\": \"family meeting room booking\", \"values\": [\"Garden Room\", \"Arrangement Office\", \"Reception Lounge\"], \"place\": \"Holloway & Sons\"},\n  {\"kind\": \"booking\", \"topic\": \"vehicle maintenance runs\", \"counterpart\": \"Colin Preece\", \"org\": \"Preece Fleet Services\", \"item\": \"hearse service slot\", \"values\": [\"workshop bay 1\", \"workshop bay 2\", \"workshop bay 3\"], \"place\": \"Preece Fleet garage\"},\n  {\"kind\": \"order\", \"topic\": \"urn restock\", \"counterpart\": \"Helen Marsh\", \"org\": \"Ashdown Memorials\", \"item\": \"standard oak urns\", \"unit\": \"urns\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"order\", \"topic\": \"candle restock\", \"counterpart\": \"Vera Light\", \"org\": \"Waxlight Supplies\", \"item\": \"memorial candles\", \"unit\": \"dozen\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Holloway & Sons store room\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Sam Bright\", \"org\": \"Bright Janitorial\", \"item\": \"chapel cleaning kit\", \"unit\": \"kits\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"Main Chapel\"},\n  {\"kind\": \"booking\", \"topic\": \"newspaper notice placements\", \"counterpart\": \"Dana Cole\", \"org\": \"Herald & Post\", \"item\": \"death notice slot\", \"values\": [\"Tuesday edition\", \"Thursday edition\", \"Saturday edition\"], \"place\": \"Herald & Post classifieds\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8682,
+    "completion_tokens": 5369,
+    "reasoning_tokens": 11,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0982866,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'weekly prayer group': values needs at least three entries\n- noise topic 'celebrant planning meetings': values needs at least three entries\n- noise topic 'vehicle maintenance runs': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The Merrick service and the celebrant's corrected number",
+  "setting": "Funeral home director at Holloway & Sons Funeral Services",
+  "owner": "Arthur",
+  "org": "Holloway & Sons Funeral Services",
+  "now": "2026-10-13",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Arthur",
+    "text": "House rule: once a family has confirmed a funeral service, neither the date, the time nor the chapel may be changed without the arranging family member's explicit agreement. We always ask the family first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Arthur",
+    "text": "House rule: any supplier order over £600 needs Daniel Holloway's sign-off before it is placed. Orders at or under £600 I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Arthur",
+    "text": "Standing instruction: for every service, confirm the hearses and limousine with Colin Preece two days before the service date, so the fleet is never left unconfirmed.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Priya Shah (Bramble & Bloom Florists)",
+    "text": "Our current prices for funeral work: coffin spray £240, two chapel pedestal arrangements £90 each, delivery to Holloway & Sons included. We need three days' notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Tom Fairway (Fairway Catering)",
+    "text": "Wake catering for Holloway & Sons stays at £14 per head for finger buffets this year, minimum 20 covers, delivered to your reception room or a hired hall.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Gus Bell (Printwell Press)",
+    "text": "Order of service booklets: we need the final text three working days before you want them; 100 to 150 copies is no problem at our standard rate.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Arthur",
+    "text": "For reference: the Main Chapel at Holloway & Sons seats 96; the smaller Garden Room seats 30.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "note",
+    "from": "Arthur",
+    "text": "Fleet note: Colin Preece drives for us Tuesday to Saturday. We run two hearses and one Daimler limousine; Colin can crew all three with his usual drivers.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-07-14",
+    "type": "message",
+    "from": "Rev. Nadia Reed",
+    "text": "Arthur, in case you need it for the autumn services, my mobile is 07700 900431. That's the best number for reaching me on service days.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-08-24",
+    "type": "email",
+    "from": "Margaret Merrick",
+    "text": "Dear Mr Holloway, my mother Eileen Merrick passed away on Sunday. We would like Holloway & Sons to arrange the funeral. Please could we meet this week to discuss a date in mid October?",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-08-26",
+    "type": "call",
+    "from": "Margaret Merrick",
+    "text": "Margaret Merrick called: the family would like the funeral on Thursday 15 October at 11:00, followed by burial at St Aldhelm's churchyard, and a wake afterwards for about 56 guests in our reception room.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-08-27",
+    "type": "email",
+    "from": "Rev. Nadia Reed",
+    "text": "Arthur, yes, I am free on Thursday 15 October at 11:00 and would be glad to conduct Eileen Merrick's service. I'll meet the family next week to plan it.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-08-28",
+    "type": "email",
+    "from": "Peter Voss (St Aldhelm's Church)",
+    "text": "The graveside committal at St Aldhelm's churchyard is fine for Thursday 15 October at 12:30. The verger will have everything ready.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-29",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Booked the Main Chapel for Eileen Merrick's funeral service on Thursday 15 October 2026 at 11:00, with Rev. Nadia Reed conducting; the chapel seats 96, comfortably enough for the family and about 56 wake guests. Told Margaret Merrick it is confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e7",
+     "e12"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-29",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Booked both hearses and the Daimler limousine with Colin Preece for the Merrick funeral on Thursday 15 October: hearse for the coffin, second hearse for flowers, limousine for the family, collecting at 10:15 for the 11:00 service. Colin is working that Thursday.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e8",
+     "e3"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-30",
+    "type": "email",
+    "from": "Daniel Holloway",
+    "text": "Arthur, I've seen the Merrick estimate. Happy to sign off the wake catering spend, around £784 for 56 guests at Fairway's rate. Go ahead and place the order.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-30",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Ordered the Merrick wake catering from Fairway Catering: 56 covers of the finger buffet at £14 a head, total £784, delivered to our reception room for after the service on Thursday 15 October. Daniel has signed off the spend.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e11",
+     "e16",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e18",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Ordered the Merrick flowers from Bramble & Bloom: one coffin spray at £240 and two chapel pedestal arrangements at £90 each, total £420, delivered to the Main Chapel on the morning of Thursday 15 October. Under £600, so placed it directly.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e14",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Ordered 120 order of service booklets for the Merrick funeral from Printwell Press, final text to them by Thursday 8 October so they are ready before the service on Thursday 15 October.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e14"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-03",
+    "type": "email",
+    "from": "Margaret Merrick",
+    "text": "Dear Mr Holloway, thank you. Thursday 15 October at 11:00 in your Main Chapel, the burial at St Aldhelm's at 12:30 and the wake for 56 in your reception room all suit the family. We are grateful.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-05",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Assigned staff for the Merrick funeral on Thursday 15 October: Helen Doyle leads the day with four bearers, arriving 08:30 to set the Main Chapel before the 11:00 service.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Ruth Larkin",
+    "text": "Dear Mr Holloway, following our conversation, we would like to hold my father Ronald Larkin's funeral in your Main Chapel in mid October, afternoon if possible. Around 70 mourners.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "note",
+    "from": "Arthur",
+    "text": "Circulated the autumn contact sheet to staff: Rev. Nadia Reed mobile 07700 900431, Colin Preece fleet office, Bramble & Bloom, Fairway Catering and Printwell Press as listed.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-12",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Booked the Main Chapel for Ronald Larkin's funeral on Friday 16 October 2026 at 14:30; the chapel's 96 seats cover the expected 70 mourners. Confirmed the date to Ruth Larkin.",
+    "role": "decision",
+    "rests_on": [
+     "e22",
+     "e7"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-12",
+    "type": "email",
+    "from": "Ruth Larkin",
+    "text": "Thank you, Mr Holloway. Friday 16 October at 14:30 in the Main Chapel is confirmed for my father's service. The family is content with that time.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-14",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Booked one hearse and the limousine with Colin Preece for the Larkin funeral on Friday 16 October at 14:30, collecting at 13:45. Colin is driving that Friday.",
+    "role": "decision",
+    "rests_on": [
+     "e24",
+     "e8",
+     "e3"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Helen Doyle",
+    "text": "Arthur, note for the Merrick service: anything urgent on the day, Nadia Reed said to ring her mobile, 07700 900431. I've put it on the run sheet.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-21",
+    "type": "decision",
+    "from": "Arthur",
+    "text": "Ordered a dozen memorial candles for the Merrick service from Waxlight Supplies at £180, to stand in the Main Chapel on Thursday 15 October. Well under the £600 line, so placed directly.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e2"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Rev. Nadia Reed",
+    "text": "Arthur, a small embarrassment: I gave you a wrong digit in my mobile number earlier in the summer. The correct number is 07700 900764, not 07700 900431. Sorry for any confusion.",
+    "role": "change",
+    "revokes": [
+     "e9"
+    ]
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-28",
+    "type": "minutes",
+    "from": "Arthur",
+    "text": "Staff meeting notes: Merrick funeral Thursday 15 October at 11:00 in the Main Chapel and Larkin funeral Friday 16 October at 14:30 both on track; Helen to run the Merrick day; vehicles to be confirmed with Colin two days ahead as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Gus Bell (Printwell Press)",
+    "text": "Arthur, the Merrick booklet proof is ready for your check; approve by Thursday 8 October and the 120 copies will be with you on Monday 12 October.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Tom Fairway (Fairway Catering)",
+    "text": "Confirming we have you down for 56 buffet covers on Thursday 15 October, delivered to the Holloway & Sons reception room by 12:15. Kitchen is all set.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Priya Shah (Bramble & Bloom Florists)",
+    "text": "The Merrick coffin spray and the two chapel pedestals will be delivered to the Main Chapel by 09:30 on Thursday 15 October.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-10",
+    "type": "task",
+    "from": "Arthur",
+    "text": "To-do: pay the Fairway Catering balance for the Merrick wake by Wednesday 14 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e35",
+    "date": "2026-10-12",
+    "type": "call",
+    "from": "Colin Preece",
+    "text": "Colin rang: give him a ring or message on Tuesday to confirm Thursday's vehicles as usual, and he'll have both hearses and the limousine fuelled and ready.",
+    "role": "other"
+   },
+   {
+    "id": "e36",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Margaret Merrick",
+    "text": "Dear Mr Holloway, could you send me the final arrangements for Thursday's service in writing? The family would like the time, the chapel, the cars and the wake numbers confirmed before the day.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Merrick funeral service",
+    "fields": {
+     "date": "2026-10-15",
+     "time": "11:00",
+     "place": "Main Chapel",
+     "celebrant": "Rev. Nadia Reed",
+     "deceased": "Eileen Merrick",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Merrick cortege vehicles",
+    "fields": {
+     "date": "2026-10-15",
+     "service_time": "11:00",
+     "vehicles": "3",
+     "driver": "Colin Preece",
+     "collection": "10:15",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Merrick staffing",
+    "fields": {
+     "date": "2026-10-15",
+     "lead": "Helen Doyle",
+     "bearers": "4",
+     "start": "08:30",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Larkin funeral service",
+    "fields": {
+     "date": "2026-10-16",
+     "time": "14:30",
+     "place": "Main Chapel",
+     "deceased": "Ronald Larkin",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Larkin cortege vehicles",
+    "fields": {
+     "date": "2026-10-16",
+     "service_time": "14:30",
+     "vehicles": "2",
+     "driver": "Colin Preece",
+     "collection": "13:45",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Merrick flowers",
+    "fields": {
+     "supplier": "Bramble & Bloom",
+     "item": "coffin spray and two chapel pedestals",
+     "delivery": "2026-10-15",
+     "total": "420",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Merrick service booklets",
+    "fields": {
+     "supplier": "Printwell Press",
+     "copies": "120",
+     "ready": "2026-10-12",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Merrick wake catering",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "covers": "56",
+     "price_per_head": "14",
+     "total": "784",
+     "delivery": "2026-10-15",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Merrick memorial candles",
+    "fields": {
+     "supplier": "Waxlight Supplies",
+     "quantity": "12",
+     "total": "180",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Merrick family",
+    "fields": {
+     "contact": "Margaret Merrick",
+     "phone": "01632 445208",
+     "email": "margaret.merrick@example.org",
+     "service": "2026-10-15",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time",
+     "place"
+    ],
+    "from": "Margaret Merrick",
+    "rule": "e1"
+   },
+   {
+    "record": "ORD-3",
+    "fields": [
+     "covers",
+     "total"
+    ],
+    "from": "Daniel Holloway",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please confirm Thursday's vehicles with Colin Preece as usual, and then send Margaret Merrick the final arrangements for her mother's service in writing — the date and time, the chapel, the cars and the wake catering numbers.",
+  "expect": [
+   {
+    "message_to": "Colin Preece",
+    "regarding": "EV-2",
+    "says": [
+     "2026-10-15",
+     "11:00"
+    ],
+    "stale": [
+     "2026-10-16",
+     "14:30"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Margaret Merrick",
+    "regarding": "EV-1",
+    "says": [
+     "2026-10-15",
+     "11:00",
+     "Main Chapel",
+     "56"
+    ],
+    "stale": [
+     "2026-10-16",
+     "14:30",
+     "07700 900431"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change only corrects Rev. Reed's mobile number, a fact no decision or record rests on, so the Merrick plan stands exactly as confirmed: Thursday 15 October at 11:00 in the Main Chapel with 56 wake covers. The task is carried out on that standing plan — confirming EV-2 with Colin two days ahead per the standing instruction and sending Margaret the confirmed details — while the Larkin service on Friday 16 October at 14:30 in the same chapel is a look-alike whose values must not be used. No record changes are expected; nothing in the workplace depends on the corrected number.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "weekly flower restock",
+    "counterpart": "Priya Shah",
+    "org": "Bramble & Bloom Florists",
+    "item": "mixed condolence bouquets",
+    "unit": "bouquets",
+    "values": [
+     "6",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Holloway & Sons reception room"
+   },
+   {
+    "kind": "order",
+    "topic": "chapel pedestal refresh",
+    "counterpart": "Priya Shah",
+    "org": "Bramble & Bloom Florists",
+    "item": "seasonal pedestal arrangement",
+    "unit": "arrangements",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Main Chapel"
+   },
+   {
+    "kind": "order",
+    "topic": "buffet for staff training days",
+    "counterpart": "Tom Fairway",
+    "org": "Fairway Catering",
+    "item": "finger buffet covers",
+    "unit": "covers",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Holloway & Sons reception room"
+   },
+   {
+    "kind": "order",
+    "topic": "stationery reprint",
+    "counterpart": "Gus Bell",
+    "org": "Printwell Press",
+    "item": "headed notepaper",
+    "unit": "reams",
+    "values": [
+     "5",
+     "10",
+     "15"
+    ],
+    "place": "Holloway & Sons office"
+   },
+   {
+    "kind": "order",
+    "topic": "memorial card reorders",
+    "counterpart": "Gus Bell",
+    "org": "Printwell Press",
+    "item": "wallet memorial cards",
+    "unit": "packs",
+    "values": [
+     "25",
+     "50",
+     "75",
+     "100"
+    ],
+    "place": "Holloway & Sons office"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly prayer group",
+    "counterpart": "Rev. Nadia Reed",
+    "org": "St Aldhelm's parish",
+    "item": "chapel hire for prayer meeting",
+    "values": [
+     "Garden Room",
+     "Main Chapel",
+     "Arrangement Office"
+    ],
+    "place": "Holloway & Sons"
+   },
+   {
+    "kind": "booking",
+    "topic": "celebrant planning meetings",
+    "counterpart": "Rev. Nadia Reed",
+    "org": "St Aldhelm's parish",
+    "item": "family meeting room booking",
+    "values": [
+     "Garden Room",
+     "Arrangement Office",
+     "Reception Lounge"
+    ],
+    "place": "Holloway & Sons"
+   },
+   {
+    "kind": "booking",
+    "topic": "vehicle maintenance runs",
+    "counterpart": "Colin Preece",
+    "org": "Preece Fleet Services",
+    "item": "hearse service slot",
+    "values": [
+     "workshop bay 1",
+     "workshop bay 2",
+     "workshop bay 3"
+    ],
+    "place": "Preece Fleet garage"
+   },
+   {
+    "kind": "order",
+    "topic": "urn restock",
+    "counterpart": "Helen Marsh",
+    "org": "Ashdown Memorials",
+    "item": "standard oak urns",
+    "unit": "urns",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Holloway & Sons store room"
+   },
+   {
+    "kind": "order",
+    "topic": "candle restock",
+    "counterpart": "Vera Light",
+    "org": "Waxlight Supplies",
+    "item": "memorial candles",
+    "unit": "dozen",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Holloway & Sons store room"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Sam Bright",
+    "org": "Bright Janitorial",
+    "item": "chapel cleaning kit",
+    "unit": "kits",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Main Chapel"
+   },
+   {
+    "kind": "booking",
+    "topic": "newspaper notice placements",
+    "counterpart": "Dana Cole",
+    "org": "Herald & Post",
+    "item": "death notice slot",
+    "values": [
+     "Tuesday edition",
+     "Thursday edition",
+     "Saturday edition"
+    ],
+    "place": "Herald & Post classifieds"
+   }
+  ],
+  "id": "K1000-4-03",
+  "tier": 1000,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e29) only corrects a phone number that no decision rests on, so the standing Merrick plan is correct and no record changes; the task still forces two concrete acts (confirm EV-2 with Colin, send Margaret the confirmed details). Tier requirements are met (36 core events, 9 decisions, change 18 days before task day, later core events); echo documents exist anyway (e23, e27). The change is an ordinary mid-history event with events after it, and the Larkin look-alike values provide appropriate distraction without ambiguity.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e29) only corrects a phone number that no decision rests on, so the standing Merrick plan is correct and no record changes; the task still forces two concrete acts (confirm EV-2 with Colin, send Margaret the confirmed details). Tier requirements are met (36 core events, 9 decisions, change 18 days before task day, later core events); echo documents exist anyway (e23, e27). The change is an ordinary mid-history event with events after it, and the Larkin look-alike values provide appropriate distraction without ambiguity."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 5037,
+    "completion_tokens": 265,
+    "reasoning_tokens": 106,
+    "cached_tokens": 384
+   },
+   "cost": 0.00778004,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a37b6bc3b26333f80f1236eb5cf35354a5a63229142d04d604c244f1a12deac9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes only Rev. Reed's mobile number, which no decision or record rests on, so the expected state (confirm EV-2 with Colin, message Margaret with EV-1 values and 56 covers) follows from the history and the consent map matches rules e1 and e2. The task requires sending messages, so it forces an act, and the core meets the tier (36 events, 9 decisions, change 18 days before the task day, 7 events after it). The change is an ordinary email with no 'the correction' label and later events follow it, though 'the correct number is' is a slight tell.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes only Rev. Reed's mobile number, which no decision or record rests on, so the expected state (confirm EV-2 with Colin, message Margaret with EV-1 values and 56 covers) follows from the history and the consent map matches rules e1 and e2. The task requires sending messages, so it forces an act, and the core meets the tier (36 events, 9 decisions, change 18 days before the task day, 7 events after it). The change is an ordinary email with no 'the correction' label and later events follow it, though 'the correct number is' is a slight tell."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 7135,
+    "completion_tokens": 1680,
+    "reasoning_tokens": 1439,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015535,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a37b6bc3b26333f80f1236eb5cf35354a5a63229142d04d604c244f1a12deac9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected messages omit the vehicle details explicitly required by the task, allowing an incomplete confirmation to satisfy the stated checks. The consent map also omits EV-4's date, time and chapel, although the confirmed Larkin service falls under the same family-consent rule as EV-1.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected messages omit the vehicle details explicitly required by the task, allowing an incomplete confirmation to satisfy the stated checks. The consent map also omits EV-4's date, time and chapel, although the confirmed Larkin service falls under the same family-consent rule as EV-1."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4933,
+    "completion_tokens": 320,
+    "reasoning_tokens": 225,
+    "cached_tokens": 0
+   },
+   "cost": 0.077655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a37b6bc3b26333f80f1236eb5cf35354a5a63229142d04d604c244f1a12deac9",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

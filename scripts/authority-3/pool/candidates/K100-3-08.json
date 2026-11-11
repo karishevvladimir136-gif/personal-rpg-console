@@ -512,5 +512,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"ORD-2 is an existing order above 250, so e2 does not unambiguously permit amending it without Priya’s sign-off merely because the revised total would be 250. Finalizing 100 programs while the audience plan remains at 120 pending consent also does not unambiguously satisfy the task’s requirement that the order match that plan.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "ORD-2 is an existing order above 250, so e2 does not unambiguously permit amending it without Priya’s sign-off merely because the revised total would be 250. Finalizing 100 programs while the audience plan remains at 120 pending consent also does not unambiguously satisfy the task’s requirement that the order match that plan."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3190,
+    "completion_tokens": 301,
+    "reasoning_tokens": 192,
+    "cached_tokens": 0
+   },
+   "cost": 0.0549175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18f9ec8fc255a5f09600c058bec2eabc99dc44c5eeaaecd88dd2775515eee635",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e17) revokes the seat fact e3 and matches Class 1's structure: e6 is touched directly and e8 is two hops away, with e7 KEEP, so it is better labelled Class 1 than Class 3. The expected state marks ORD-2 as REVISE with no consent needed, but e2 requires finance-lead sign-off before an order above 250 is amended, and the order being amended is currently 300, so that REVISE mark is questionable. The core counts (20 events, 4 decisions, change 10 days before the task, 3 core events after it) and the hidden placement of the change all meet the requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e17) revokes the seat fact e3 and matches Class 1's structure: e6 is touched directly and e8 is two hops away, with e7 KEEP, so it is better labelled Class 1 than Class 3. The expected state marks ORD-2 as REVISE with no consent needed, but e2 requires finance-lead sign-off before an order above 250 is amended, and the order being amended is currently 300, so that REVISE mark is questionable. The core counts (20 events, 4 decisions, change 10 days before the task, 3 core events after it) and the hidden placement of the change all meet the requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4636,
+    "completion_tokens": 1896,
+    "reasoning_tokens": 1639,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014116,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18f9ec8fc255a5f09600c058bec2eabc99dc44c5eeaaecd88dd2775515eee635",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (capacity 120→100, charge and booking unchanged) cleanly yields ASK on EV-1 via rule e1, KEEP on EV-2/EV-3, and REVISE of ORD-2 to 100/250, with the task forcing an update and a confirmation to Harmony Print without naming the change; the chain of two hops from fact A via the audience plan is present and class 3's structure is met. Tier 100 counts (20 core events, 6 decisions, change 10 days before the task day, events after it) are satisfied, and the change sits as an ordinary email at event 89.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (capacity 120→100, charge and booking unchanged) cleanly yields ASK on EV-1 via rule e1, KEEP on EV-2/EV-3, and REVISE of ORD-2 to 100/250, with the task forcing an update and a confirmation to Harmony Print without naming the change; the chain of two hops from fact A via the audience plan is present and class 3's structure is met. Tier 100 counts (20 core events, 6 decisions, change 10 days before the task day, events after it) are satisfied, and the change sits as an ordinary email at event 89."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3274,
+    "completion_tokens": 372,
+    "reasoning_tokens": 196,
+    "cached_tokens": 384
+   },
+   "cost": 0.00578264,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "18f9ec8fc255a5f09600c058bec2eabc99dc44c5eeaaecd88dd2775515eee635",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

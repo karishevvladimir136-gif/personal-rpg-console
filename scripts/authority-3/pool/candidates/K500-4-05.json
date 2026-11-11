@@ -606,5 +606,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 15 October email merely restates the standing consent rule in plainer words, revoking nothing, so no decisions are touched and the correct act is the final confirmation to Tom Alder with the standing values. The Fairway price update explicitly spares already-placed orders, so ORD-1 is untouched. 30 core events with 7 decisions, the change 15 days before the task with 6 core events after it, and the change sits mid-stream as an ordinary email, so tier and hiding requirements are met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 15 October email merely restates the standing consent rule in plainer words, revoking nothing, so no decisions are touched and the correct act is the final confirmation to Tom Alder with the standing values. The Fairway price update explicitly spares already-placed orders, so ORD-1 is untouched. 30 core events with 7 decisions, the change 15 days before the task with 6 core events after it, and the change sits mid-stream as an ordinary email, so tier and hiding requirements are met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4005,
+    "completion_tokens": 264,
+    "reasoning_tokens": 113,
+    "cached_tokens": 384
+   },
+   "cost": 0.00633084,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "044b0803e470d28002c99354a0df780534355cfc8ed2608e4974293d87a62f33",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 15 October email restates the consent rule without revoking any fact, so the control class and the unchanged records are consistent with the history, and the consent map matches rule e1. The task requires sending Tom Alder a message, which is an act, and it does not name or hint at the change. The core has 30 events, 6 decisions, a change 15 days before the task day, and 6 core events after it, which meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 15 October email restates the consent rule without revoking any fact, so the control class and the unchanged records are consistent with the history, and the consent map matches rule e1. The task requires sending Tom Alder a message, which is an act, and it does not name or hint at the change. The core has 30 events, 6 decisions, a change 15 days before the task day, and 6 core events after it, which meets the tier requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5663,
+    "completion_tokens": 1192,
+    "reasoning_tokens": 1004,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011623,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "044b0803e470d28002c99354a0df780534355cfc8ed2608e4974293d87a62f33",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected message omits the catering arrival time of 08:45, which the task explicitly requires and the history confirms, so the scoring target permits an incomplete confirmation. Otherwise, this is a valid control: the rule is merely restated, no records need changing, and the core meets the tier and change-placement requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected message omits the catering arrival time of 08:45, which the task explicitly requires and the history confirms, so the scoring target permits an incomplete confirmation. Otherwise, this is a valid control: the rule is merely restated, no records need changing, and the core meets the tier and change-placement requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3907,
+    "completion_tokens": 241,
+    "reasoning_tokens": 139,
+    "cached_tokens": 0
+   },
+   "cost": 0.06088,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "044b0803e470d28002c99354a0df780534355cfc8ed2608e4974293d87a62f33",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

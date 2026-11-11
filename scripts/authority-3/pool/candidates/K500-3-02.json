@@ -666,5 +666,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supplier increase fixes ORD-1 at £1.45 per plug and £435 total, but no rule requires passing the £75 increase to the client. £795 remains the agreed price; £870 is only a possible proposed price requiring consent, so mandating £870 and treating £795 as stale in the confirmation is not justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supplier increase fixes ORD-1 at £1.45 per plug and £435 total, but no rule requires passing the £75 increase to the client. £795 remains the agreed price; £870 is only a possible proposed price requiring consent, so mandating £870 and treating £795 as stale in the confirmation is not justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4485,
+    "completion_tokens": 192,
+    "reasoning_tokens": 87,
+    "cached_tokens": 0
+   },
+   "cost": 0.065655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4d1c799c9c6e676063c79210837cc30f4babffe81ed5c5bdf2e5de6ba4a77ffb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change corrects fact e3's price; e5 rests on it (REVISE to £1.45/£435), e7 rests on e5 two hops away and the standing rule e1 forces ASK rather than an edit, while e6/e8/e10 depend only on the unchanged dates/staffing (KEEP), a clean class-3 chain. The task's demand for a final confirmation with price forces a message carrying the recomputed £870 without naming any change. Core counts (28 events, 8 decisions), change timing (15 days before, many events after), echo e11 restating £360, and the hidden placement at event 444 all meet the tier.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change corrects fact e3's price; e5 rests on it (REVISE to £1.45/£435), e7 rests on e5 two hops away and the standing rule e1 forces ASK rather than an edit, while e6/e8/e10 depend only on the unchanged dates/staffing (KEEP), a clean class-3 chain. The task's demand for a final confirmation with price forces a message carrying the recomputed £870 without naming any change. Core counts (28 events, 8 decisions), change timing (15 days before, many events after), echo e11 restating £360, and the hidden placement at event 444 all meet the tier."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4562,
+    "completion_tokens": 414,
+    "reasoning_tokens": 225,
+    "cached_tokens": 384
+   },
+   "cost": 0.00777064,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4d1c799c9c6e676063c79210837cc30f4babffe81ed5c5bdf2e5de6ba4a77ffb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain holds: e3 is corrected by e17, e5 (ORD-1) rests on e3, e7 (CL-1) rests on e5 and e1, and e6 (EV-1) cites e3 for an unchanged delivery date, giving a KEEP. The £435 order stays under the £500 threshold, so REVISE is correct, and the £870 price follows from the unchanged labour and materials. The core has 28 events and 8 decisions, the change sits 15 days before the task day with 11 core events after it, and e11 is a valid echo of the old £1.20 and £360 values.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain holds: e3 is corrected by e17, e5 (ORD-1) rests on e3, e7 (CL-1) rests on e5 and e1, and e6 (EV-1) cites e3 for an unchanged delivery date, giving a KEEP. The £435 order stays under the £500 threshold, so REVISE is correct, and the £870 price follows from the unchanged labour and materials. The core has 28 events and 8 decisions, the change sits 15 days before the task day with 11 core events after it, and e11 is a valid echo of the old £1.20 and £360 values."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6569,
+    "completion_tokens": 1860,
+    "reasoning_tokens": 1610,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015869,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4d1c799c9c6e676063c79210837cc30f4babffe81ed5c5bdf2e5de6ba4a77ffb",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

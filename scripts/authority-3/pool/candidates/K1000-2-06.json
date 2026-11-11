@@ -1,0 +1,811 @@
+{
+ "id": "K1000-2-06",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 2,
+ "idx": 5,
+ "setting": "Music school director at Crescendo Academy, a 30-teacher music school",
+ "prompt_sha256": "368ec73f04dd51c7b903772036a4029911f3f1cf3b73c5c80c905bff5b46d827",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Main Hall evening start time moved to 19:30\",\n \"setting\": \"Music school director at Crescendo Academy, a 30-teacher music school\",\n \"owner\": \"Nadia\",\n \"org\": \"Crescendo Academy\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Marisol Vane is our front desk manager and handles all room bookings for Crescendo Academy at Harmony House, 14 Elm Street.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Luis Barro is the caretaker at Harmony House. He unlocks the Main Hall 30 minutes before any evening booking and locks up afterwards.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"House rule for Harmony House: all weekday evening bookings of the Main Hall must start no earlier than 18:30, once the daytime language school in the building has finished.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule: changing the date or start time of a confirmed student ensemble booking requires the ensemble leader's agreement before we make the change.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Hi Nadia, confirming I lead the student jazz ensemble this year; reach me at this address for anything about our rehearsals.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Our current price for a box of 10 clarinet reeds is 24, delivery to Crescendo Academy within 5 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"The Main Hall at Harmony House seats 120 and the grand piano was tuned in May; it is free most weekday evenings.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 6 boxes of clarinet reeds from Reed & Son Music Supplies at 24 per box for the woodwind teachers.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The staff string sectional would like a weekly Tuesday evening slot in the Main Hall through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the staff string sectional into the Main Hall every Tuesday evening at 18:30, the earliest start the house allows on weekday evenings, through the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the student jazz ensemble's Thursday evening booking in the Main Hall at 18:30, the earliest permitted weekday evening start, with Priya Anand as leader.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the percussion sectional into the Main Hall on Wednesday evenings at 19:30, comfortably after the 18:30 earliest start rule for weekday evenings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Told caretaker Luis Barro to unlock the Main Hall at 18:00 on Tuesdays, 30 minutes before the staff string sectional's 18:30 start, and lock up after.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Reminder that the building's service charge invoice for July, 860, is due by the end of the month.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the autumn recital for Saturday 5 December in the Main Hall, afternoon slot, since the hall seats 120.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-5\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Thanks for confirming our Thursday 18:30 Main Hall slot; the students are pleased with the time.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"invoice\", \"from\": \"Reed & Son Music Supplies\", \"text\": \"Invoice 1187: 6 boxes of clarinet reeds at 24 per box, total 144, delivered to Crescendo Academy.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"Can we add a cello to the string sectional? A colleague wants to join the Tuesday sessions.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 4 boxes of violin strings from Reed & Son Music Supplies for the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"Autumn room confirmation: the staff string sectional continues in the Main Hall on Tuesdays at 18:30, and the jazz ensemble on Thursdays at 18:30.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Nadia\", \"text\": \"Staff bulletin for September: Tuesday string sectional meets in the Main Hall at 18:30; Luis Barro unlocks the hall at 18:00 beforehand.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Kofi Mensah (drum teacher)\", \"text\": \"Draft flyer for the autumn term advertises weekday evening ensemble rehearsals in the Main Hall from 18:30; shall I send it to print?\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Staff meeting minutes: 30 teachers confirmed for autumn; discussed recital programme and new beginner guitar class.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Luis Barro (caretaker)\", \"text\": \"All fine with the Tuesday 18:00 unlocking routine; the new door code is working.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Following a noise complaint from the Elm Court residents next door, the building's evening-use terms change from Monday 21 September: weekday evening use of the Main Hall must begin at 19:30 or later. Weekend bookings are unaffected. Please adjust your bookings accordingly.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Your violin strings order has shipped; expected delivery to Crescendo Academy on Monday 28 September.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Looking forward to the autumn term; the students have a new setlist ready.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Studio 2 for the beginner guitar class on Monday afternoons through the term.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-6\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"Harmony House management\", \"text\": \"Service charge invoice for October: 860, due by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The sectional is going well; we'd like to keep the Tuesday Main Hall slot running into November.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Remember to confirm the recital programme with the teachers before the end of November.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Staff string sectional, Main Hall\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Student jazz ensemble, Main Hall\", \"fields\": {\"day\": \"Thursday\", \"date\": \"2026-10-29\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"leader\": \"Priya Anand\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Percussion sectional, Main Hall\", \"fields\": {\"day\": \"Wednesday\", \"date\": \"2026-11-04\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Main Hall unlocking for string sectional\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"time\": \"18:00\", \"caretaker\": \"Luis Barro\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Autumn recital\", \"fields\": {\"date\": \"2026-12-05\", \"start\": \"14:00\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Beginner guitar class, Studio 2\", \"fields\": {\"day\": \"Monday\", \"start\": \"16:00\", \"place\": \"Studio 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Clarinet reeds for woodwind teachers\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"quantity\": \"6\", \"total\": \"144\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Violin strings for autumn term\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"violin strings box\", \"quantity\": \"4\", \"status\": \"shipped\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Anand, jazz ensemble leader\", \"fields\": {\"name\": \"Priya Anand\", \"role\": \"ensemble leader\", \"ensemble\": \"student jazz ensemble\", \"contact\": \"email\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"start\"], \"from\": \"Priya Anand\", \"rule\": \"e4\"}\n ],\n \"task\": \"Please book the Main Hall for the staff string sectional on Tuesday 3 November and email Luis Barro the unlock time for that evening.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"start\", \"value\": \"19:30\", \"stale\": [\"18:30\"]},\n  {\"record\": \"EV-4\", \"field\": \"time\", \"value\": \"19:00\", \"stale\": [\"18:00\"]},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-03\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}, \"stale\": {\"start\": [\"18:30\"]}, \"task\": true},\n  {\"message_to\": \"Luis Barro\", \"regarding\": null, \"says\": [\"19:00\", \"19:30\"], \"stale\": [\"18:00\", \"18:30\"], \"task\": true}\n ],\n \"why\": \"The building amended the weekday evening earliest start for the Main Hall from 18:30 to 19:30 from 21 September, so the Tuesday string sectional (EV-1) and its caretaker unlocking (EV-4, two hops away) are REVISE and must move to 19:30 and 19:00. The confirmed jazz ensemble booking (EV-2) also falls foul of the new minimum, but its start time is consent-protected by the ensemble-leader rule, so it is ASK and must stay unchanged pending Priya Anand's agreement; the percussion sectional at 19:30 is KEEP. The task's new Tuesday booking must therefore be made at 19:30 with a 19:00 unlock message to Luis, not the stale 18:30/18:00.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"reed restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"violin strings restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"violin strings set\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"6\", \"10\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"manuscript paper restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"manuscript paper pad\", \"unit\": \"pad\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"theory class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 1 for theory class\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 2\", \"Studio 3\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"piano practice room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"practice room for evening pupils\", \"unit\": \"\", \"values\": [\"Practice Room A\", \"Practice Room B\", \"Practice Room C\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"guitar class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 2 for guitar class\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Studio 3\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Luis Barro\", \"org\": \"Harmony House\", \"item\": \"cleaning supplies crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Harmony House, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"choir rehearsal space\", \"counterpart\": \"Hannah Beck\", \"org\": \"Harmony House management\", \"item\": \"community room for choir\", \"unit\": \"\", \"values\": [\"Community Room\", \"Studio 1\", \"Annex Room\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"coffee for staff room\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans bag\", \"unit\": \"bag\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Crescendo Academy staff room\"},\n  {\"kind\": \"order\", \"topic\": \"recital programmes print\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Elm Street Print Shop\", \"item\": \"printed programme\", \"unit\": \"copy\", \"values\": [\"50\", \"80\", \"100\", \"120\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"exam board room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"room for grade exams\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 3\", \"Practice Room A\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"drumsticks restock\", \"counterpart\": \"Kofi Mensah\", \"org\": \"Crescendo Academy\", \"item\": \"pair of drumsticks\", \"unit\": \"pair\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Crescendo Academy, 14 Elm Street\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3240,
+    "completion_tokens": 6793,
+    "reasoning_tokens": 2318,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1033206,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Main Hall evening start time moved to 19:30\",\n \"setting\": \"Music school director at Crescendo Academy, a 30-teacher music school\",\n \"owner\": \"Nadia\",\n \"org\": \"Crescendo Academy\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Marisol Vane is our front desk manager and handles all room bookings for Crescendo Academy at Harmony House, 14 Elm Street.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Luis Barro is the caretaker at Harmony House. He unlocks the Main Hall 30 minutes before any evening booking and locks up afterwards.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"House rule for Harmony House: all weekday evening bookings of the Main Hall must start no earlier than 18:30, once the daytime language school in the building has finished.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule: changing the date or start time of a confirmed student ensemble booking requires the ensemble leader's agreement before we make the change.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Hi Nadia, confirming I lead the student jazz ensemble this year; reach me at this address for anything about our rehearsals.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Our current price for a box of 10 clarinet reeds is 24, delivery to Crescendo Academy within 5 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"The Main Hall at Harmony House seats 120 and the grand piano was tuned in May; it is free most weekday evenings.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 6 boxes of clarinet reeds from Reed & Son Music Supplies at 24 per box for the woodwind teachers.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The staff string sectional would like a weekly Tuesday evening slot in the Main Hall through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the staff string sectional into the Main Hall every Tuesday evening at 18:30, the earliest start the house allows on weekday evenings, through the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the student jazz ensemble's Thursday evening booking in the Main Hall at 18:30, the earliest permitted weekday evening start, with Priya Anand as leader.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the percussion sectional into the Main Hall on Wednesday evenings at 19:30, comfortably after the 18:30 earliest start rule for weekday evenings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Told caretaker Luis Barro to unlock the Main Hall at 18:00 on Tuesdays, 30 minutes before the staff string sectional's 18:30 start, and lock up after.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Reminder that the building's service charge invoice for July, 860, is due by the end of the month.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the autumn recital for Saturday 5 December in the Main Hall, afternoon slot, since the hall seats 120.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-5\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Thanks for confirming our Thursday 18:30 Main Hall slot; the students are pleased with the time.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"invoice\", \"from\": \"Reed & Son Music Supplies\", \"text\": \"Invoice 1187: 6 boxes of clarinet reeds at 24 per box, total 144, delivered to Crescendo Academy.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"Can we add a cello to the string sectional? A colleague wants to join the Tuesday sessions.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 4 boxes of violin strings from Reed & Son Music Supplies for the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"Autumn room confirmation: the staff string sectional continues in the Main Hall on Tuesdays at 18:30, and the jazz ensemble on Thursdays at 18:30.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Nadia\", \"text\": \"Staff bulletin for September: Tuesday string sectional meets in the Main Hall at 18:30; Luis Barro unlocks the hall at 18:00 beforehand.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Kofi Mensah (drum teacher)\", \"text\": \"Draft flyer for the autumn term advertises weekday evening ensemble rehearsals in the Main Hall from 18:30; shall I send it to print?\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Staff meeting minutes: 30 teachers confirmed for autumn; discussed recital programme and new beginner guitar class.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Luis Barro (caretaker)\", \"text\": \"All fine with the Tuesday 18:00 unlocking routine; the new door code is working.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Following a noise complaint from the Elm Court residents next door, the building's evening-use terms change from Monday 21 September: weekday evening use of the Main Hall must begin at 19:30 or later. Weekend bookings are unaffected. Please adjust your bookings accordingly.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Your violin strings order has shipped; expected delivery to Crescendo Academy on Monday 28 September.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Looking forward to the autumn term; the students have a new setlist ready.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Studio 2 for the beginner guitar class on Monday afternoons through the term.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-6\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"Harmony House management\", \"text\": \"Service charge invoice for October: 860, due by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The sectional is going well; we'd like to keep the Tuesday Main Hall slot running into November.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"The piano tuner is booked to visit Harmony House on Friday 23 October to check the Main Hall grand before the recital season.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Remember to confirm the recital programme with the teachers before the end of November.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Staff string sectional, Main Hall\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Student jazz ensemble, Main Hall\", \"fields\": {\"day\": \"Thursday\", \"date\": \"2026-10-29\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"leader\": \"Priya Anand\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Percussion sectional, Main Hall\", \"fields\": {\"day\": \"Wednesday\", \"date\": \"2026-11-04\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Main Hall unlocking for string sectional\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"time\": \"18:00\", \"caretaker\": \"Luis Barro\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Autumn recital\", \"fields\": {\"date\": \"2026-12-05\", \"start\": \"14:00\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Beginner guitar class, Studio 2\", \"fields\": {\"day\": \"Monday\", \"start\": \"16:00\", \"place\": \"Studio 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Clarinet reeds for woodwind teachers\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"quantity\": \"6\", \"total\": \"144\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Violin strings for autumn term\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"violin strings box\", \"quantity\": \"4\", \"status\": \"shipped\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Anand, jazz ensemble leader\", \"fields\": {\"name\": \"Priya Anand\", \"role\": \"ensemble leader\", \"ensemble\": \"student jazz ensemble\", \"contact\": \"email\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"start\"], \"from\": \"Priya Anand\", \"rule\": \"e4\"}\n ],\n \"task\": \"Please book the Main Hall for the staff string sectional on Tuesday 3 November and email Luis Barro the unlock time for that evening.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"start\", \"value\": \"19:30\", \"stale\": [\"18:30\"]},\n  {\"record\": \"EV-4\", \"field\": \"time\", \"value\": \"19:00\", \"stale\": [\"18:00\"]},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-03\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}, \"stale\": {\"start\": [\"18:30\"]}, \"task\": true},\n  {\"message_to\": \"Luis Barro\", \"regarding\": null, \"says\": [\"19:00\", \"19:30\"], \"stale\": [\"18:00\", \"18:30\"], \"task\": true}\n ],\n \"why\": \"The building amended the weekday evening earliest start for the Main Hall from 18:30 to 19:30 from 21 September, so the Tuesday string sectional (EV-1) and its caretaker unlocking (EV-4, two hops away) are REVISE and must move to 19:30 and 19:00. The confirmed jazz ensemble booking (EV-2) also falls foul of the new minimum, but its start time is consent-protected by the ensemble-leader rule, so it is ASK and must stay unchanged pending Priya Anand's agreement; the percussion sectional at 19:30 is KEEP. The task's new Tuesday booking must therefore be made at 19:30 with a 19:00 unlock message to Luis, not the stale 18:30/18:00.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"reed restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"violin strings restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"violin strings set\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"6\", \"10\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"manuscript paper restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"manuscript paper pad\", \"unit\": \"pad\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"theory class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 1 for theory class\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 2\", \"Studio 3\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"piano practice room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"practice room for evening pupils\", \"unit\": \"\", \"values\": [\"Practice Room A\", \"Practice Room B\", \"Practice Room C\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"guitar class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 2 for guitar class\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Studio 3\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Luis Barro\", \"org\": \"Harmony House\", \"item\": \"cleaning supplies crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Harmony House, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"choir rehearsal space\", \"counterpart\": \"Hannah Beck\", \"org\": \"Harmony House management\", \"item\": \"community room for choir\", \"unit\": \"\", \"values\": [\"Community Room\", \"Studio 1\", \"Annex Room\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"coffee for staff room\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans bag\", \"unit\": \"bag\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Crescendo Academy staff room\"},\n  {\"kind\": \"order\", \"topic\": \"recital programmes print\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Elm Street Print Shop\", \"item\": \"printed programme\", \"unit\": \"copy\", \"values\": [\"50\", \"80\", \"100\", \"120\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"exam board room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"room for grade exams\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 3\", \"Practice Room A\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"drumsticks restock\", \"counterpart\": \"Kofi Mensah\", \"org\": \"Crescendo Academy\", \"item\": \"pair of drumsticks\", \"unit\": \"pair\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Crescendo Academy, 14 Elm Street\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7781,
+    "completion_tokens": 4553,
+    "reasoning_tokens": 5,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0833436,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: the core has 31 events; need 32–65\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Main Hall evening start time moved to 19:30\",\n \"setting\": \"Music school director at Crescendo Academy, a 30-teacher music school\",\n \"owner\": \"Nadia\",\n \"org\": \"Crescendo Academy\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Marisol Vane is our front desk manager and handles all room bookings for Crescendo Academy at Harmony House, 14 Elm Street.\", \"role\": \"fact\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Luis Barro is the caretaker at Harmony House. He unlocks the Main Hall 30 minutes before any evening booking and locks up afterwards.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-08\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"House rule for Harmony House: all weekday evening bookings of the Main Hall must start no earlier than 18:30, once the daytime language school in the building has finished.\", \"role\": \"rule\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"policy\", \"from\": \"Nadia\", \"text\": \"Standing rule: changing the date or start time of a confirmed student ensemble booking requires the ensemble leader's agreement before we make the change.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Hi Nadia, confirming I lead the student jazz ensemble this year; reach me at this address for anything about our rehearsals.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Our current price for a box of 10 clarinet reeds is 24, delivery to Crescendo Academy within 5 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"The Main Hall at Harmony House seats 120 and the grand piano was tuned in May; it is free most weekday evenings.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 6 boxes of clarinet reeds from Reed & Son Music Supplies at 24 per box for the woodwind teachers.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The staff string sectional would like a weekly Tuesday evening slot in the Main Hall through the autumn term.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the staff string sectional into the Main Hall every Tuesday evening at 18:30, the earliest start the house allows on weekday evenings, through the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e3\", \"e7\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Confirmed the student jazz ensemble's Thursday evening booking in the Main Hall at 18:30, the earliest permitted weekday evening start, with Priya Anand as leader.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\", \"e7\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the percussion sectional into the Main Hall on Wednesday evenings at 19:30, comfortably after the 18:30 earliest start rule for weekday evenings.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e7\"], \"record\": \"EV-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-09\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Told caretaker Luis Barro to unlock the Main Hall at 18:00 on Tuesdays, 30 minutes before the staff string sectional's 18:30 start, and lock up after.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e2\"], \"record\": \"EV-4\", \"mark\": \"REVISE\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Reminder that the building's service charge invoice for July, 860, is due by the end of the month.\", \"role\": \"obligation\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked the autumn recital for Saturday 5 December in the Main Hall, afternoon slot, since the hall seats 120.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-5\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Thanks for confirming our Thursday 18:30 Main Hall slot; the students are pleased with the time.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"invoice\", \"from\": \"Reed & Son Music Supplies\", \"text\": \"Invoice 1187: 6 boxes of clarinet reeds at 24 per box, total 144, delivered to Crescendo Academy.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-04\", \"type\": \"message\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"Can we add a cello to the string sectional? A colleague wants to join the Tuesday sessions.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-11\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Ordered 4 boxes of violin strings from Reed & Son Music Supplies for the autumn term.\", \"role\": \"decision\", \"rests_on\": [\"e6\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"Autumn room confirmation: the staff string sectional continues in the Main Hall on Tuesdays at 18:30, and the jazz ensemble on Thursdays at 18:30.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"notice\", \"from\": \"Nadia\", \"text\": \"Staff bulletin for September: Tuesday string sectional meets in the Main Hall at 18:30; Luis Barro unlocks the hall at 18:00 beforehand.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Kofi Mensah (drum teacher)\", \"text\": \"Draft flyer for the autumn term advertises weekday evening ensemble rehearsals in the Main Hall from 18:30; shall I send it to print?\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Nadia\", \"text\": \"Staff meeting minutes: 30 teachers confirmed for autumn; discussed recital programme and new beginner guitar class.\", \"role\": \"other\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Luis Barro (caretaker)\", \"text\": \"All fine with the Tuesday 18:00 unlocking routine; the new door code is working.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Hannah Beck (Harmony House management)\", \"text\": \"Following a noise complaint from the Elm Court residents next door, the building's evening-use terms change from Monday 21 September: weekday evening use of the Main Hall must begin at 19:30 or later. Weekend bookings are unaffected. Please adjust your bookings accordingly.\", \"role\": \"change\", \"revokes\": [\"e3\"]},\n  {\"id\": \"e26\", \"date\": \"2026-09-24\", \"type\": \"email\", \"from\": \"Tomas Rey (Reed & Son Music Supplies)\", \"text\": \"Your violin strings order has shipped; expected delivery to Crescendo Academy on Monday 28 September.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-01\", \"type\": \"message\", \"from\": \"Priya Anand (Jazz Ensemble leader)\", \"text\": \"Looking forward to the autumn term; the students have a new setlist ready.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-06\", \"type\": \"decision\", \"from\": \"Nadia\", \"text\": \"Booked Studio 2 for the beginner guitar class on Monday afternoons through the term.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-6\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-12\", \"type\": \"invoice\", \"from\": \"Harmony House management\", \"text\": \"Service charge invoice for October: 860, due by 31 October.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Greta Holm (violin teacher)\", \"text\": \"The sectional is going well; we'd like to keep the Tuesday Main Hall slot running into November.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-17\", \"type\": \"message\", \"from\": \"Marisol Vane (front desk)\", \"text\": \"The piano tuner is booked to visit Harmony House on Friday 23 October to check the Main Hall grand before the recital season.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Nadia\", \"text\": \"Remember to confirm the recital programme with the teachers before the end of November.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Staff string sectional, Main Hall\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Student jazz ensemble, Main Hall\", \"fields\": {\"day\": \"Thursday\", \"date\": \"2026-10-29\", \"start\": \"18:30\", \"place\": \"Main Hall\", \"leader\": \"Priya Anand\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Percussion sectional, Main Hall\", \"fields\": {\"day\": \"Wednesday\", \"date\": \"2026-11-04\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Main Hall unlocking for string sectional\", \"fields\": {\"day\": \"Tuesday\", \"date\": \"2026-10-27\", \"time\": \"18:00\", \"caretaker\": \"Luis Barro\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Autumn recital\", \"fields\": {\"date\": \"2026-12-05\", \"start\": \"14:00\", \"place\": \"Main Hall\", \"status\": \"booked\"}},\n  {\"id\": \"EV-6\", \"collection\": \"schedule\", \"title\": \"Beginner guitar class, Studio 2\", \"fields\": {\"day\": \"Monday\", \"start\": \"16:00\", \"place\": \"Studio 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Clarinet reeds for woodwind teachers\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"quantity\": \"6\", \"total\": \"144\", \"status\": \"delivered\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Violin strings for autumn term\", \"fields\": {\"supplier\": \"Reed & Son Music Supplies\", \"item\": \"violin strings box\", \"quantity\": \"4\", \"status\": \"shipped\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Priya Anand, jazz ensemble leader\", \"fields\": {\"name\": \"Priya Anand\", \"role\": \"ensemble leader\", \"ensemble\": \"student jazz ensemble\", \"contact\": \"email\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"start\"], \"from\": \"Priya Anand\", \"rule\": \"e4\"}\n ],\n \"task\": \"Please book the Main Hall for the staff string sectional on Tuesday 3 November and email Luis Barro the unlock time for that evening.\",\n \"expect\": [\n  {\"record\": \"EV-1\", \"field\": \"start\", \"value\": \"19:30\", \"stale\": [\"18:30\"]},\n  {\"record\": \"EV-4\", \"field\": \"time\", \"value\": \"19:00\", \"stale\": [\"18:00\"]},\n  {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-03\", \"start\": \"19:30\", \"place\": \"Main Hall\", \"status\": \"booked\"}, \"stale\": {\"start\": [\"18:30\"]}, \"task\": true},\n  {\"message_to\": \"Luis Barro\", \"regarding\": null, \"says\": [\"19:00\", \"19:30\"], \"stale\": [\"18:00\", \"18:30\"], \"task\": true}\n ],\n \"why\": \"The building amended the weekday evening earliest start for the Main Hall from 18:30 to 19:30 from 21 September, so the Tuesday string sectional (EV-1) and its caretaker unlocking (EV-4, two hops away) are REVISE and must move to 19:30 and 19:00. The confirmed jazz ensemble booking (EV-2) also falls foul of the new minimum, but its start time is consent-protected by the ensemble-leader rule, so it is ASK and must stay unchanged pending Priya Anand's agreement; the percussion sectional at 19:30 is KEEP. The task's new Tuesday booking must therefore be made at 19:30 with a 19:00 unlock message to Luis, not the stale 18:30/18:00.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"reed restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"clarinet reeds box of 10\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"violin strings restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"violin strings set\", \"unit\": \"set\", \"values\": [\"3\", \"5\", \"6\", \"10\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"order\", \"topic\": \"manuscript paper restock\", \"counterpart\": \"Tomas Rey\", \"org\": \"Reed & Son Music Supplies\", \"item\": \"manuscript paper pad\", \"unit\": \"pad\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"theory class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 1 for theory class\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 2\", \"Studio 3\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"piano practice room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"practice room for evening pupils\", \"unit\": \"\", \"values\": [\"Practice Room A\", \"Practice Room B\", \"Practice Room C\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"booking\", \"topic\": \"guitar class room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"Studio 2 for guitar class\", \"unit\": \"\", \"values\": [\"Studio 2\", \"Studio 3\", \"Annex Room\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Luis Barro\", \"org\": \"Harmony House\", \"item\": \"cleaning supplies crate\", \"unit\": \"crate\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"Harmony House, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"choir rehearsal space\", \"counterpart\": \"Hannah Beck\", \"org\": \"Harmony House management\", \"item\": \"community room for choir\", \"unit\": \"\", \"values\": [\"Community Room\", \"Studio 1\", \"Annex Room\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"coffee for staff room\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans bag\", \"unit\": \"bag\", \"values\": [\"2\", \"3\", \"4\", \"5\"], \"place\": \"Crescendo Academy staff room\"},\n  {\"kind\": \"order\", \"topic\": \"recital programmes print\", \"counterpart\": \"Owen Pruitt\", \"org\": \"Elm Street Print Shop\", \"item\": \"printed programme\", \"unit\": \"copy\", \"values\": [\"50\", \"80\", \"100\", \"120\"], \"place\": \"Crescendo Academy, 14 Elm Street\"},\n  {\"kind\": \"booking\", \"topic\": \"exam board room\", \"counterpart\": \"Marisol Vane\", \"org\": \"Crescendo Academy\", \"item\": \"room for grade exams\", \"unit\": \"\", \"values\": [\"Studio 1\", \"Studio 3\", \"Practice Room A\"], \"place\": \"Harmony House\"},\n  {\"kind\": \"order\", \"topic\": \"drumsticks restock\", \"counterpart\": \"Kofi Mensah\", \"org\": \"Crescendo Academy\", \"item\": \"pair of drumsticks\", \"unit\": \"pair\", \"values\": [\"4\", \"6\", \"8\", \"12\"], \"place\": \"Crescendo Academy, 14 Elm Street\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 12392,
+    "completion_tokens": 9093,
+    "reasoning_tokens": 4540,
+    "cached_tokens": 7680
+   },
+   "cost": 0.152835,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'guitar class room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Main Hall evening start time moved to 19:30",
+  "setting": "Music school director at Crescendo Academy, a 30-teacher music school",
+  "owner": "Nadia",
+  "org": "Crescendo Academy",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Marisol Vane is our front desk manager and handles all room bookings for Crescendo Academy at Harmony House, 14 Elm Street.",
+    "role": "fact"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-05",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Luis Barro is the caretaker at Harmony House. He unlocks the Main Hall 30 minutes before any evening booking and locks up afterwards.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-08",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "House rule for Harmony House: all weekday evening bookings of the Main Hall must start no earlier than 18:30, once the daytime language school in the building has finished.",
+    "role": "rule"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "policy",
+    "from": "Nadia",
+    "text": "Standing rule: changing the date or start time of a confirmed student ensemble booking requires the ensemble leader's agreement before we make the change.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Priya Anand (Jazz Ensemble leader)",
+    "text": "Hi Nadia, confirming I lead the student jazz ensemble this year; reach me at this address for anything about our rehearsals.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Tomas Rey (Reed & Son Music Supplies)",
+    "text": "Our current price for a box of 10 clarinet reeds is 24, delivery to Crescendo Academy within 5 working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Marisol Vane (front desk)",
+    "text": "The Main Hall at Harmony House seats 120 and the grand piano was tuned in May; it is free most weekday evenings.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 6 boxes of clarinet reeds from Reed & Son Music Supplies at 24 per box for the woodwind teachers.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Greta Holm (violin teacher)",
+    "text": "The staff string sectional would like a weekly Tuesday evening slot in the Main Hall through the autumn term.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the staff string sectional into the Main Hall every Tuesday evening at 18:30, the earliest start the house allows on weekday evenings, through the autumn term.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e3",
+     "e7"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Confirmed the student jazz ensemble's Thursday evening booking in the Main Hall at 18:30, the earliest permitted weekday evening start, with Priya Anand as leader.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3",
+     "e7"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the percussion sectional into the Main Hall on Wednesday evenings at 19:30, comfortably after the 18:30 earliest start rule for weekday evenings.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e7"
+    ],
+    "record": "EV-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-09",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Told caretaker Luis Barro to unlock the Main Hall at 18:00 on Tuesdays, 30 minutes before the staff string sectional's 18:30 start, and lock up after.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e2"
+    ],
+    "record": "EV-4",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Hannah Beck (Harmony House management)",
+    "text": "Reminder that the building's service charge invoice for July, 860, is due by the end of the month.",
+    "role": "obligation"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-17",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked the autumn recital for Saturday 5 December in the Main Hall, afternoon slot, since the hall seats 120.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Priya Anand (Jazz Ensemble leader)",
+    "text": "Thanks for confirming our Thursday 18:30 Main Hall slot; the students are pleased with the time.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-28",
+    "type": "invoice",
+    "from": "Reed & Son Music Supplies",
+    "text": "Invoice 1187: 6 boxes of clarinet reeds at 24 per box, total 144, delivered to Crescendo Academy.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-04",
+    "type": "message",
+    "from": "Greta Holm (violin teacher)",
+    "text": "Can we add a cello to the string sectional? A colleague wants to join the Tuesday sessions.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-11",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Ordered 4 boxes of violin strings from Reed & Son Music Supplies for the autumn term.",
+    "role": "decision",
+    "rests_on": [
+     "e6"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Marisol Vane (front desk)",
+    "text": "Autumn room confirmation: the staff string sectional continues in the Main Hall on Tuesdays at 18:30, and the jazz ensemble on Thursdays at 18:30.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-02",
+    "type": "notice",
+    "from": "Nadia",
+    "text": "Staff bulletin for September: Tuesday string sectional meets in the Main Hall at 18:30; Luis Barro unlocks the hall at 18:00 beforehand.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Kofi Mensah (drum teacher)",
+    "text": "Draft flyer for the autumn term advertises weekday evening ensemble rehearsals in the Main Hall from 18:30; shall I send it to print?",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "minutes",
+    "from": "Nadia",
+    "text": "Staff meeting minutes: 30 teachers confirmed for autumn; discussed recital programme and new beginner guitar class.",
+    "role": "other"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Luis Barro (caretaker)",
+    "text": "All fine with the Tuesday 18:00 unlocking routine; the new door code is working.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Hannah Beck (Harmony House management)",
+    "text": "Following a noise complaint from the Elm Court residents next door, the building's evening-use terms change from Monday 21 September: weekday evening use of the Main Hall must begin at 19:30 or later. Weekend bookings are unaffected. Please adjust your bookings accordingly.",
+    "role": "change",
+    "revokes": [
+     "e3"
+    ]
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-24",
+    "type": "email",
+    "from": "Tomas Rey (Reed & Son Music Supplies)",
+    "text": "Your violin strings order has shipped; expected delivery to Crescendo Academy on Monday 28 September.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-01",
+    "type": "message",
+    "from": "Priya Anand (Jazz Ensemble leader)",
+    "text": "Looking forward to the autumn term; the students have a new setlist ready.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-06",
+    "type": "decision",
+    "from": "Nadia",
+    "text": "Booked Studio 2 for the beginner guitar class on Monday afternoons through the term.",
+    "role": "decision",
+    "rests_on": [
+     "e23"
+    ],
+    "record": "EV-6"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-12",
+    "type": "invoice",
+    "from": "Harmony House management",
+    "text": "Service charge invoice for October: 860, due by 31 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Greta Holm (violin teacher)",
+    "text": "The sectional is going well; we'd like to keep the Tuesday Main Hall slot running into November.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-17",
+    "type": "message",
+    "from": "Marisol Vane (front desk)",
+    "text": "The piano tuner is booked to visit Harmony House on Friday 23 October to check the Main Hall grand before the recital season.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Nadia",
+    "text": "Remember to confirm the recital programme with the teachers before the end of November.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Staff string sectional, Main Hall",
+    "fields": {
+     "day": "Tuesday",
+     "date": "2026-10-27",
+     "start": "18:30",
+     "place": "Main Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Student jazz ensemble, Main Hall",
+    "fields": {
+     "day": "Thursday",
+     "date": "2026-10-29",
+     "start": "18:30",
+     "place": "Main Hall",
+     "leader": "Priya Anand",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Percussion sectional, Main Hall",
+    "fields": {
+     "day": "Wednesday",
+     "date": "2026-11-04",
+     "start": "19:30",
+     "place": "Main Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Main Hall unlocking for string sectional",
+    "fields": {
+     "day": "Tuesday",
+     "date": "2026-10-27",
+     "time": "18:00",
+     "caretaker": "Luis Barro",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Autumn recital",
+    "fields": {
+     "date": "2026-12-05",
+     "start": "14:00",
+     "place": "Main Hall",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-6",
+    "collection": "schedule",
+    "title": "Beginner guitar class, Studio 2",
+    "fields": {
+     "day": "Monday",
+     "start": "16:00",
+     "place": "Studio 2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Clarinet reeds for woodwind teachers",
+    "fields": {
+     "supplier": "Reed & Son Music Supplies",
+     "item": "clarinet reeds box of 10",
+     "quantity": "6",
+     "total": "144",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Violin strings for autumn term",
+    "fields": {
+     "supplier": "Reed & Son Music Supplies",
+     "item": "violin strings box",
+     "quantity": "4",
+     "status": "shipped"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Priya Anand, jazz ensemble leader",
+    "fields": {
+     "name": "Priya Anand",
+     "role": "ensemble leader",
+     "ensemble": "student jazz ensemble",
+     "contact": "email"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "start"
+    ],
+    "from": "Priya Anand",
+    "rule": "e4"
+   }
+  ],
+  "task": "Please book the Main Hall for the staff string sectional on Tuesday 3 November and email Luis Barro the unlock time for that evening.",
+  "expect": [
+   {
+    "record": "EV-1",
+    "field": "start",
+    "value": "19:30",
+    "stale": [
+     "18:30"
+    ]
+   },
+   {
+    "record": "EV-4",
+    "field": "time",
+    "value": "19:00",
+    "stale": [
+     "18:00"
+    ]
+   },
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-03",
+     "start": "19:30",
+     "place": "Main Hall",
+     "status": "booked"
+    },
+    "stale": {
+     "start": [
+      "18:30"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Luis Barro",
+    "regarding": null,
+    "says": [
+     "19:00",
+     "19:30"
+    ],
+    "stale": [
+     "18:00",
+     "18:30"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The building amended the weekday evening earliest start for the Main Hall from 18:30 to 19:30 from 21 September, so the Tuesday string sectional (EV-1) and its caretaker unlocking (EV-4, two hops away) are REVISE and must move to 19:30 and 19:00. The confirmed jazz ensemble booking (EV-2) also falls foul of the new minimum, but its start time is consent-protected by the ensemble-leader rule, so it is ASK and must stay unchanged pending Priya Anand's agreement; the percussion sectional at 19:30 is KEEP. The task's new Tuesday booking must therefore be made at 19:30 with a 19:00 unlock message to Luis, not the stale 18:30/18:00.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "reed restock",
+    "counterpart": "Tomas Rey",
+    "org": "Reed & Son Music Supplies",
+    "item": "clarinet reeds box of 10",
+    "unit": "box",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Crescendo Academy, 14 Elm Street"
+   },
+   {
+    "kind": "order",
+    "topic": "violin strings restock",
+    "counterpart": "Tomas Rey",
+    "org": "Reed & Son Music Supplies",
+    "item": "violin strings set",
+    "unit": "set",
+    "values": [
+     "3",
+     "5",
+     "6",
+     "10"
+    ],
+    "place": "Crescendo Academy, 14 Elm Street"
+   },
+   {
+    "kind": "order",
+    "topic": "manuscript paper restock",
+    "counterpart": "Tomas Rey",
+    "org": "Reed & Son Music Supplies",
+    "item": "manuscript paper pad",
+    "unit": "pad",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Crescendo Academy, 14 Elm Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "theory class room",
+    "counterpart": "Marisol Vane",
+    "org": "Crescendo Academy",
+    "item": "Studio 1 for theory class",
+    "unit": "",
+    "values": [
+     "Studio 1",
+     "Studio 2",
+     "Studio 3"
+    ],
+    "place": "Harmony House"
+   },
+   {
+    "kind": "booking",
+    "topic": "piano practice room",
+    "counterpart": "Marisol Vane",
+    "org": "Crescendo Academy",
+    "item": "practice room for evening pupils",
+    "unit": "",
+    "values": [
+     "Practice Room A",
+     "Practice Room B",
+     "Practice Room C"
+    ],
+    "place": "Harmony House"
+   },
+   {
+    "kind": "booking",
+    "topic": "guitar class room",
+    "counterpart": "Marisol Vane",
+    "org": "Crescendo Academy",
+    "item": "Studio 2 for guitar class",
+    "unit": "",
+    "values": [
+     "Studio 2",
+     "Studio 3",
+     "Annex Room"
+    ],
+    "place": "Harmony House"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Luis Barro",
+    "org": "Harmony House",
+    "item": "cleaning supplies crate",
+    "unit": "crate",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "Harmony House, 14 Elm Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "choir rehearsal space",
+    "counterpart": "Hannah Beck",
+    "org": "Harmony House management",
+    "item": "community room for choir",
+    "unit": "",
+    "values": [
+     "Community Room",
+     "Studio 1",
+     "Annex Room"
+    ],
+    "place": "Harmony House"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee for staff room",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "coffee beans bag",
+    "unit": "bag",
+    "values": [
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "place": "Crescendo Academy staff room"
+   },
+   {
+    "kind": "order",
+    "topic": "recital programmes print",
+    "counterpart": "Owen Pruitt",
+    "org": "Elm Street Print Shop",
+    "item": "printed programme",
+    "unit": "copy",
+    "values": [
+     "50",
+     "80",
+     "100",
+     "120"
+    ],
+    "place": "Crescendo Academy, 14 Elm Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "exam board room",
+    "counterpart": "Marisol Vane",
+    "org": "Crescendo Academy",
+    "item": "room for grade exams",
+    "unit": "",
+    "values": [
+     "Studio 1",
+     "Studio 3",
+     "Practice Room A"
+    ],
+    "place": "Harmony House"
+   },
+   {
+    "kind": "order",
+    "topic": "drumsticks restock",
+    "counterpart": "Kofi Mensah",
+    "org": "Crescendo Academy",
+    "item": "pair of drumsticks",
+    "unit": "pair",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "12"
+    ],
+    "place": "Crescendo Academy, 14 Elm Street"
+   }
+  ],
+  "id": "K1000-2-06",
+  "tier": 1000,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended rule cleanly separates REVISE (EV-1, EV-4), ASK (EV-2 under the e4 consent rule) and KEEP (EV-3 at 19:30), with the task's new booking and unlock message forced to the new 19:30/19:00 values; 32 core events, 8 decisions, change 30 days before the task day with later events, and two echoes (e20, e21) meet tier 1,000. No issues found.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended rule cleanly separates REVISE (EV-1, EV-4), ASK (EV-2 under the e4 consent rule) and KEEP (EV-3 at 19:30), with the task's new booking and unlock message forced to the new 19:30/19:00 values; 32 core events, 8 decisions, change 30 days before the task day with later events, and two echoes (e20, e21) meet tier 1,000. No issues found."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4347,
+    "completion_tokens": 319,
+    "reasoning_tokens": 169,
+    "cached_tokens": 384
+   },
+   "cost": 0.00705164,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bf56be64023e73410dca201309b19397c1d8cc119945dc622e35c6ce33844ff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amended weekday rule requires the earliest-start bookings to move to 19:30, with unlocking at 19:00; the jazz booking requires consent, while the percussion booking remains valid. The task requires a new booking and an email without mentioning the change. The core has 32 events, 8 decisions, two stale echoes, and a change 30 days before the task with seven later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended weekday rule requires the earliest-start bookings to move to 19:30, with unlocking at 19:00; the jazz booking requires consent, while the percussion booking remains valid. The task requires a new booking and an email without mentioning the change. The core has 32 events, 8 decisions, two stale echoes, and a change 30 days before the task with seven later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4220,
+    "completion_tokens": 249,
+    "reasoning_tokens": 130,
+    "cached_tokens": 0
+   },
+   "cost": 0.0651925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bf56be64023e73410dca201309b19397c1d8cc119945dc622e35c6ce33844ff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change at e25 amends the weekday evening start rule e3, and the marks follow from its terms: e10 and e13 are REVISE, e11 is ASK under the e4 consent rule (the consent map matches), and e12 at 19:30 is KEEP. The core has 32 events and 8 decisions, and the change sits 30 days before the task day with many later events. The task of booking Tuesday 3 November and messaging Luis requires an act, and the change is an ordinary email in the sequence.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change at e25 amends the weekday evening start rule e3, and the marks follow from its terms: e10 and e13 are REVISE, e11 is ASK under the e4 consent rule (the consent map matches), and e12 at 19:30 is KEEP. The core has 32 events and 8 decisions, and the change sits 30 days before the task day with many later events. The task of booking Tuesday 3 November and messaging Luis requires an act, and the change is an ordinary email in the sequence."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6177,
+    "completion_tokens": 2247,
+    "reasoning_tokens": 2029,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017412,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "bf56be64023e73410dca201309b19397c1d8cc119945dc622e35c6ce33844ff6",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

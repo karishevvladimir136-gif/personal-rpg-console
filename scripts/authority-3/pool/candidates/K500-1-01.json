@@ -652,5 +652,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The reduced bread supply does not require halving an already-placed crate order: nothing establishes that the June order remains amendable or that surplus crates must be cancelled. Thus revising ORD-1 to 40 crates and £160 is not unambiguously supported by the history. The core otherwise meets class 1 and the tier requirements, and the task requires action without identifying the change.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The reduced bread supply does not require halving an already-placed crate order: nothing establishes that the June order remains amendable or that surplus crates must be cancelled. Thus revising ORD-1 to 40 crates and £160 is not unambiguously supported by the history. The core otherwise meets class 1 and the tier requirements, and the task requires action without identifying the change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4140,
+    "completion_tokens": 203,
+    "reasoning_tokens": 88,
+    "cached_tokens": 0
+   },
+   "cost": 0.0618925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "54377ba13fbcfcf4e4d4bd2db79c491bd91229032fd5710c24fbacfcc69d81d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change cleanly revokes fact e3, propagating two hops (e7 via e5) with correct REVISE values (40 trays, 40 crates at £4 = £160, 40 portions), and the ASK on EV-1 follows directly from e1's standing instruction covering time and place, matching the consent map. The task requires acting and messaging Tom without hinting at the change, and the change sits mid-history with later events. Counts (29 core events, 8 decisions, change 14 days before task day, echo at e22) meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change cleanly revokes fact e3, propagating two hops (e7 via e5) with correct REVISE values (40 trays, 40 crates at £4 = £160, 40 portions), and the ASK on EV-1 follows directly from e1's standing instruction covering time and place, matching the consent map. The task requires acting and messaging Tom without hinting at the change, and the change sits mid-history with later events. Counts (29 core events, 8 decisions, change 14 days before task day, echo at e22) meet tier 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4202,
+    "completion_tokens": 452,
+    "reasoning_tokens": 287,
+    "cached_tokens": 0
+   },
+   "cost": 0.0078716,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "54377ba13fbcfcf4e4d4bd2db79c491bd91229032fd5710c24fbacfcc69d81d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change moves the whole Harvest Mill collection from 80 trays to 40, but EV-1's quantity field is not in the consent map and the expected state leaves it at '80 trays', so the consent-gated mark on e5 is applied to a field the rule does not cover. The rest of the chain (EV-2, ORD-1 at 40 crates and £160, the message to Tom with 11:00 and Riverside depot) follows from the history. Structure, echo (e22), distance from the task day, event counts and the hidden placement all meet the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change moves the whole Harvest Mill collection from 80 trays to 40, but EV-1's quantity field is not in the consent map and the expected state leaves it at '80 trays', so the consent-gated mark on e5 is applied to a field the rule does not cover. The rest of the chain (EV-2, ORD-1 at 40 crates and £160, the message to Tom with 11:00 and Riverside depot) follows from the history. Structure, echo (e22), distance from the task day, event counts and the hidden placement all meet the tier requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6129,
+    "completion_tokens": 1976,
+    "reasoning_tokens": 1740,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016009,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "54377ba13fbcfcf4e4d4bd2db79c491bd91229032fd5710c24fbacfcc69d81d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

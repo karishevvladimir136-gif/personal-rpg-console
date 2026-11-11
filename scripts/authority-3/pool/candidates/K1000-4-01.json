@@ -1,0 +1,811 @@
+{
+ "id": "K1000-4-01",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 4,
+ "idx": 0,
+ "setting": "Pharmacy manager at Cornerstone Community Pharmacy",
+ "prompt_sha256": "a016b96781d014756c0f868c7535fbef5a7c157351a81f50f2a58542101ab333",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Friday flu vaccine delivery at Cornerstone\",\n  \"setting\": \"Pharmacy manager at Cornerstone Community Pharmacy\",\n  \"owner\": \"Marta\",\n  \"org\": \"Cornerstone Community Pharmacy\",\n  \"now\": \"2026-10-30\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for Cornerstone Community Pharmacy: any supplier order totalling more than 800 needs sign-off from Priya Shah, our responsible pharmacist, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: all refrigerated deliveries must be received by a pharmacist and logged in the fridge book within 30 minutes of arrival; never leave a cold-chain tote at the back door unattended.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Confirming Medwell Wholesale supplies Cornerstone Community Pharmacy from our Bristol depot; standard order line is 01454 555 210, cut-off for next-week delivery is Wednesday 17:00.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"I am on the rota as duty pharmacist every Friday at Cornerstone through the autumn, so I can receive cold-chain deliveries on Fridays without any extra cover.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Autumn flu vaccine stock is confirmed: we can supply Cornerstone Community Pharmacy 200 units of the seasonal flu vaccine per weekly drop, at 6.40 per unit, while autumn allocations last.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I set up the autumn flu vaccine arrangement: 200 units per week from Medwell Wholesale, delivered each Friday so Priya can receive the cold chain, starting Friday 26 June. At 6.40 a unit the weekly order is 1280, so Priya pre-approved the recurring weekly order under the 800 threshold rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\", \"e1\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Your delivery window at Cornerstone is Fridays between 09:00 and 11:00; the driver calls the shop when he is ten minutes away.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I booked the Friday 09:00 to 11:00 delivery window with Medwell for the weekly flu vaccine drop and put it in the delivery diary as a recurring booking.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Greendale Care Home (Sue Peters)\", \"text\": \"Greendale Care Home would like Cornerstone to run a flu jab morning for our 34 residents on site; our nurse suggests a Tuesday in early November.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I pencilled the Greendale Care Home flu jab morning for Tuesday 3 November at the care home, to be staffed by our locum pharmacist once we confirm one.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"First flu vaccine drop went out this morning: 200 units on the Friday van to Cornerstone, arriving in your 09:00 to 11:00 window.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Fridge book checked: first flu delivery logged by Priya at 09:40, all temperatures in range.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"LocumLink Agency (Fiona Marsh)\", \"text\": \"We can provide a locum pharmacist, Ade Bakare, for Cornerstone on Tuesdays in November including 3 November, day rate 410.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I booked Ade Bakare from LocumLink for Tuesday 3 November to cover the Greendale Care Home flu jab morning at 410 for the day.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e13\"], \"record\": \"EV-3\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Tuesday 3 November works for Greendale; we will have the residents ready in the lounge from 10:00.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"invoice\", \"from\": \"Medwell Wholesale\", \"text\": \"Invoice MW-4411: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 10 July to Cornerstone Community Pharmacy.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-17\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"Fridge capacity note: our vaccine fridge comfortably holds 250 units of flu stock plus the regular lines, so the weekly 200-unit drops leave us good headroom.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Reminder that Cornerstone's standing weekly flu order is 200 units every Friday; just reply by Wednesday 17:00 if any week needs a different quantity.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"County Health Board (Ruth Ellison)\", \"text\": \"Autumn flu campaign starts Monday 14 September; community pharmacies should expect walk-in demand roughly double the September baseline from mid-October.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Given the campaign starts 14 September and demand doubles from mid-October, I am keeping the weekly Medwell flu order at 200 units through October and will review quantities in November after we see actual walk-in numbers.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e19\", \"e17\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Noted, weekly flu drops for Cornerstone stay at 200 units each Friday through October.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-18\", \"type\": \"quote\", \"from\": \"Paper & Post Ltd (Gary Iles)\", \"text\": \"Quote for 5000 flu campaign leaflets, A5 double-sided: 96 including delivery to Cornerstone Community Pharmacy.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I ordered 5000 flu campaign leaflets from Paper & Post at 96; it is under the 800 sign-off threshold so no approval needed from Priya.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Team huddle minutes: autumn flu plan confirmed - 200 units weekly from Medwell on Fridays, Priya receives and logs, Greendale visit Tuesday 3 November with locum Ade Bakare, leaflets arriving mid-September.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Delivery diary confirms Cornerstone's recurring Friday 09:00-11:00 window is held for you every week through November.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"LocumLink Agency\", \"text\": \"Booking confirmation invoice LL-882: Ade Bakare, pharmacist, Tuesday 3 November at Cornerstone Community Pharmacy, 410.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Resident count for the flu morning is now 34 confirmed plus 2 maybes; we will finalise the list the week before.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Promotional note for November: we can offer a bulk flu vaccine bundle of 240 units per weekly drop at 6.10 a unit for pharmacies wanting extra stock over the winter peak.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-09-29\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Saw Medwell's winter bundle offer of 240 units a week; noted it for the November review, no change to the current 200-unit plan.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"County Health Board (Ruth Ellison)\", \"text\": \"Campaign update: the board's flu publicity van will visit the precinct outside Cornerstone Community Pharmacy on Wednesday 18 November, 10:00 to 14:00, handing out leaflets and directing walk-ins to participating pharmacies.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e31\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Good news about the publicity van on 18 November; no impact on the Friday deliveries, I will keep receiving them as usual.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Routine confirmation: your standing weekly flu order of 200 units each Friday continues; next drops 16, 23 and 30 October and 6 November.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-16\", \"type\": \"invoice\", \"from\": \"Medwell Wholesale\", \"text\": \"Invoice MW-4558: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 16 October to Cornerstone Community Pharmacy.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-20\", \"type\": \"call\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Sue called to confirm the Greendale flu morning on Tuesday 3 November is all set for 10:00 with 34 residents on the final list.\", \"role\": \"other\"},\n    {\"id\": \"e35\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Priya Shah\", \"text\": \"Fridge book: 200-unit drop received and logged 09:35 today; stock level after today's clinics is 96 units.\", \"role\": \"other\"},\n    {\"id\": \"e36\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Fiona Marsh (LocumLink Agency)\", \"text\": \"Final confirmation that Ade Bakare attends Cornerstone on Tuesday 3 November, 09:00 start, before travelling to Greendale Care Home for the 10:00 flu morning.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly flu vaccine order - Medwell\", \"fields\": {\"supplier\": \"Medwell Wholesale\", \"item\": \"seasonal flu vaccine\", \"qty\": \"200\", \"unit_price\": \"6.40\", \"delivery_day\": \"Friday\", \"status\": \"active\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Recurring Friday Medwell delivery window\", \"fields\": {\"day\": \"Friday\", \"start\": \"09:00\", \"end\": \"11:00\", \"supplier\": \"Medwell Wholesale\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Greendale Care Home flu jab morning\", \"fields\": {\"date\": \"2026-11-03\", \"place\": \"Greendale Care Home\", \"start\": \"10:00\", \"residents\": \"34\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Locum pharmacist cover - Ade Bakare\", \"fields\": {\"date\": \"2026-11-03\", \"locum\": \"Ade Bakare\", \"rate\": \"410\", \"start\": \"09:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"October flu order quantity review note\", \"fields\": {\"qty\": \"200\", \"review\": \"November\", \"basis\": \"campaign demand forecast\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Flu campaign leaflets - Paper & Post\", \"fields\": {\"supplier\": \"Paper & Post Ltd\", \"item\": \"A5 flu leaflets\", \"qty\": \"5000\", \"total\": \"96\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Greendale Care Home\", \"fields\": {\"contact\": \"Sue Peters\", \"residents\": \"34\", \"flu_visit\": \"2026-11-03\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"qty\"], \"from\": \"Priya Shah\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please confirm next Friday's flu vaccine delivery from Medwell in the delivery diary — the usual weekly drop, 200 units, Friday 6 November in our morning window — and mark it confirmed.\",\n  \"expect\": [\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-06\", \"item\": \"seasonal flu vaccine\", \"qty\": \"200\", \"supplier\": \"Medwell Wholesale\", \"start\": \"09:00\", \"end\": \"11:00\", \"status\": \"confirmed\"}, \"stale\": {\"qty\": [\"240\"]}, \"task\": true}\n  ],\n  \"why\": \"The change is a new fact beside the topic: the health board's publicity van on 18 November affects nothing in the standing plan, so no decision is touched or marked. The task books Friday 6 November's usual 200-unit Medwell drop exactly as planned; the tempting wrong value is Medwell's 240-unit winter bundle, which Marta explicitly noted for later review and never adopted. All existing records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Tom Reilly\", \"org\": \"Medwell Wholesale\", \"item\": \"nitrile gloves\", \"unit\": \"box\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"paracetamol restock\", \"counterpart\": \"Hannah Doyle\", \"org\": \"Medwell Wholesale\", \"item\": \"paracetamol 500mg packs\", \"unit\": \"pack\", \"values\": [\"48\", \"72\", \"96\", \"120\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"vitamin D restock\", \"counterpart\": \"Hannah Doyle\", \"org\": \"Medwell Wholesale\", \"item\": \"vitamin D tablets\", \"unit\": \"bottle\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"surgical masks\", \"counterpart\": \"Gary Iles\", \"org\": \"Paper & Post Ltd\", \"item\": \"surgical masks\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"counter leaflet refills\", \"counterpart\": \"Gary Iles\", \"org\": \"Paper & Post Ltd\", \"item\": \"counter leaflet holders\", \"unit\": \"unit\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"consultation room\", \"counterpart\": \"Priya Shah\", \"org\": \"Cornerstone Community Pharmacy\", \"item\": \"private consultation room\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"needle exchange clinic slot\", \"counterpart\": \"Ruth Ellison\", \"org\": \"County Health Board\", \"item\": \"supervised consumption slot\", \"unit\": \"\", \"values\": [\"morning\", \"afternoon\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van service\", \"counterpart\": \"Colm Brady\", \"org\": \"Brady Vehicle Hire\", \"item\": \"small delivery van\", \"unit\": \"\", \"values\": [\"Monday\", \"Wednesday\", \"Friday\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"care home dressings\", \"counterpart\": \"Sue Peters\", \"org\": \"Greendale Care Home\", \"item\": \"wound dressings\", \"unit\": \"pack\", \"values\": [\"12\", \"20\", \"30\"], \"place\": \"Greendale Care Home\"},\n    {\"kind\": \"order\", \"topic\": \"care home emollients\", \"counterpart\": \"Sue Peters\", \"org\": \"Greendale Care Home\", \"item\": \"emollient cream\", \"unit\": \"tub\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"Greendale Care Home\"},\n    {\"kind\": \"booking\", \"topic\": \"staff training evening\", \"counterpart\": \"Fiona Marsh\", \"org\": \"LocumLink Agency\", \"item\": \"CPD training room\", \"unit\": \"\", \"values\": [\"Room 1\", \"upstairs meeting room\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"blood pressure monitors\", \"counterpart\": \"Nadia Ford\", \"org\": \"HealthKit Direct\", \"item\": \"blood pressure monitor\", \"unit\": \"unit\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"HealthKit Direct\", \"item\": \"hand sanitiser 500ml\", \"unit\": \"bottle\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Cornerstone Community Pharmacy\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3241,
+    "completion_tokens": 5319,
+    "reasoning_tokens": 573,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0812136,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Friday flu vaccine delivery at Cornerstone\",\n  \"setting\": \"Pharmacy manager at Cornerstone Community Pharmacy\",\n  \"owner\": \"Marta\",\n  \"org\": \"Cornerstone Community Pharmacy\",\n  \"now\": \"2026-10-30\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule for Cornerstone Community Pharmacy: any supplier order totalling more than 800 needs sign-off from Priya Shah, our responsible pharmacist, before it is placed.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Marta\", \"text\": \"Standing rule: all refrigerated deliveries must be received by a pharmacist and logged in the fridge book within 30 minutes of arrival; never leave a cold-chain tote at the back door unattended.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Confirming Medwell Wholesale supplies Cornerstone Community Pharmacy from our Bristol depot; standard order line is 01454 555 210, cut-off for next-week delivery is Wednesday 17:00.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"I am on the rota as duty pharmacist every Friday at Cornerstone through the autumn, so I can receive cold-chain deliveries on Fridays without any extra cover.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Autumn flu vaccine stock is confirmed: we can supply Cornerstone Community Pharmacy 200 units of the seasonal flu vaccine per weekly drop, at 6.40 per unit, while autumn allocations last.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I set up the autumn flu vaccine arrangement: 200 units per week from Medwell Wholesale, delivered each Friday so Priya can receive the cold chain, starting Friday 26 June. At 6.40 a unit the weekly order is 1280, so Priya pre-approved the recurring weekly order under the 800 threshold rule.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e4\", \"e5\", \"e1\", \"e2\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Your delivery window at Cornerstone is Fridays between 09:00 and 11:00; the driver calls the shop when he is ten minutes away.\", \"role\": \"fact\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I booked the Friday 09:00 to 11:00 delivery window with Medwell for the weekly flu vaccine drop and put it in the delivery diary as a recurring booking.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-1\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-19\", \"type\": \"email\", \"from\": \"Greendale Care Home (Sue Peters)\", \"text\": \"Greendale Care Home would like Cornerstone to run a flu jab morning for our 34 residents on site; our nurse suggests a Tuesday in early November.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-23\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I pencilled the Greendale Care Home flu jab morning for Tuesday 3 November at the care home, to be staffed by our locum pharmacist once we confirm one.\", \"role\": \"decision\", \"rests_on\": [\"e9\"], \"record\": \"EV-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-26\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"First flu vaccine drop went out this morning: 200 units on the Friday van to Cornerstone, arriving in your 09:00 to 11:00 window.\", \"role\": \"other\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-30\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Fridge book checked: first flu delivery logged by Priya at 09:40, all temperatures in range.\", \"role\": \"other\"},\n    {\"id\": \"e13\", \"date\": \"2026-07-03\", \"type\": \"email\", \"from\": \"LocumLink Agency (Fiona Marsh)\", \"text\": \"We can provide a locum pharmacist, Ade Bakare, for Cornerstone on Tuesdays in November including 3 November, day rate 410.\", \"role\": \"fact\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I booked Ade Bakare from LocumLink for Tuesday 3 November to cover the Greendale Care Home flu jab morning at 410 for the day.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e13\"], \"record\": \"EV-3\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-10\", \"type\": \"message\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Tuesday 3 November works for Greendale; we will have the residents ready in the lounge from 10:00.\", \"role\": \"other\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"invoice\", \"from\": \"Medwell Wholesale\", \"text\": \"Invoice MW-4411: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 10 July to Cornerstone Community Pharmacy.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-17\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"Fridge capacity note: our vaccine fridge comfortably holds 250 units of flu stock plus the regular lines, so the weekly 200-unit drops leave us good headroom.\", \"role\": \"fact\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-21\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Reminder that Cornerstone's standing weekly flu order is 200 units every Friday; just reply by Wednesday 17:00 if any week needs a different quantity.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"County Health Board (Ruth Ellison)\", \"text\": \"Autumn flu campaign starts Monday 14 September; community pharmacies should expect walk-in demand roughly double the September baseline from mid-October.\", \"role\": \"fact\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-04\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"Given the campaign starts 14 September and demand doubles from mid-October, I am keeping the weekly Medwell flu order at 200 units through October and will review quantities in November after we see actual walk-in numbers.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e19\", \"e17\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e21\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Noted, weekly flu drops for Cornerstone stay at 200 units each Friday through October.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-18\", \"type\": \"quote\", \"from\": \"Paper & Post Ltd (Gary Iles)\", \"text\": \"Quote for 5000 flu campaign leaflets, A5 double-sided: 96 including delivery to Cornerstone Community Pharmacy.\", \"role\": \"fact\"},\n    {\"id\": \"e23\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I ordered 5000 flu campaign leaflets from Paper & Post at 96; it is under the 800 sign-off threshold so no approval needed from Priya.\", \"role\": \"decision\", \"rests_on\": [\"e22\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-01\", \"type\": \"minutes\", \"from\": \"Marta\", \"text\": \"Team huddle minutes: autumn flu plan confirmed - 200 units weekly from Medwell on Fridays, Priya receives and logs, Greendale visit Tuesday 3 November with locum Ade Bakare, leaflets arriving mid-September.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Delivery diary confirms Cornerstone's recurring Friday 09:00-11:00 window is held for you every week through November.\", \"role\": \"other\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"invoice\", \"from\": \"LocumLink Agency\", \"text\": \"Booking confirmation invoice LL-882: Ade Bakare, pharmacist, Tuesday 3 November at Cornerstone Community Pharmacy, 410.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Resident count for the flu morning is now 34 confirmed plus 2 maybes; we will finalise the list the week before.\", \"role\": \"fact\"},\n    {\"id\": \"e28\", \"date\": \"2026-09-25\", \"type\": \"email\", \"from\": \"Tom Reilly (Medwell Wholesale)\", \"text\": \"Promotional note for November: we can offer a bulk flu vaccine bundle of 240 units per weekly drop at 6.10 a unit for pharmacies wanting extra stock over the winter peak.\", \"role\": \"fact\", \"distractor\": true},\n    {\"id\": \"e29\", \"date\": \"2026-09-29\", \"type\": \"note\", \"from\": \"Marta\", \"text\": \"Saw Medwell's winter bundle offer of 240 units a week; noted it for the November review, no change to the current 200-unit plan.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-06\", \"type\": \"email\", \"from\": \"County Health Board (Ruth Ellison)\", \"text\": \"Campaign update: the board's flu publicity van will visit the precinct outside Cornerstone Community Pharmacy on Wednesday 18 November, 10:00 to 14:00, handing out leaflets and directing walk-ins to participating pharmacies.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e31\", \"date\": \"2026-10-09\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Good news about the publicity van on 18 November; no impact on the Friday deliveries, I will keep receiving them as usual.\", \"role\": \"other\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-13\", \"type\": \"email\", \"from\": \"Hannah Doyle (Medwell Wholesale)\", \"text\": \"Routine confirmation: your standing weekly flu order of 200 units each Friday continues; next drops 16, 23 and 30 October and 6 November.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-16\", \"type\": \"invoice\", \"from\": \"Medwell Wholesale\", \"text\": \"Invoice MW-4558: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 16 October to Cornerstone Community Pharmacy.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-20\", \"type\": \"call\", \"from\": \"Sue Peters (Greendale Care Home)\", \"text\": \"Sue called to confirm the Greendale flu morning on Tuesday 3 November is all set for 10:00 with 34 residents on the final list.\", \"role\": \"other\"},\n    {\"id\": \"e35\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Priya Shah\", \"text\": \"Fridge book: 200-unit drop received and logged 09:35 today; stock level after today's clinics is 96 units.\", \"role\": \"other\"},\n    {\"id\": \"e36\", \"date\": \"2026-10-24\", \"type\": \"email\", \"from\": \"HealthKit Direct (Nadia Ford)\", \"text\": \"Your account quote: emollient cream 500g tubs at 4.20 each, minimum order 10 tubs, delivery to Cornerstone in two working days.\", \"role\": \"fact\"},\n    {\"id\": \"e37\", \"date\": \"2026-10-26\", \"type\": \"decision\", \"from\": \"Marta\", \"text\": \"I ordered 24 tubs of emollient cream from HealthKit Direct at 4.20 a tub, total 100.80, to replenish the shelf and cover Greendale's regular request; well under the 800 sign-off threshold.\", \"role\": \"decision\", \"rests_on\": [\"e36\", \"e1\"], \"record\": \"ORD-4\"},\n    {\"id\": \"e38\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Fiona Marsh (LocumLink Agency)\", \"text\": \"Final confirmation that Ade Bakare attends Cornerstone on Tuesday 3 November, 09:00 start, before travelling to Greendale Care Home for the 10:00 flu morning.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly flu vaccine order - Medwell\", \"fields\": {\"supplier\": \"Medwell Wholesale\", \"item\": \"seasonal flu vaccine\", \"qty\": \"200\", \"unit_price\": \"6.40\", \"delivery_day\": \"Friday\", \"status\": \"active\"}},\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Recurring Friday Medwell delivery window\", \"fields\": {\"day\": \"Friday\", \"start\": \"09:00\", \"end\": \"11:00\", \"supplier\": \"Medwell Wholesale\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Greendale Care Home flu jab morning\", \"fields\": {\"date\": \"2026-11-03\", \"place\": \"Greendale Care Home\", \"start\": \"10:00\", \"residents\": \"34\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Locum pharmacist cover - Ade Bakare\", \"fields\": {\"date\": \"2026-11-03\", \"locum\": \"Ade Bakare\", \"rate\": \"410\", \"start\": \"09:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"October flu order quantity review note\", \"fields\": {\"qty\": \"200\", \"review\": \"November\", \"basis\": \"campaign demand forecast\", \"status\": \"confirmed\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Flu campaign leaflets - Paper & Post\", \"fields\": {\"supplier\": \"Paper & Post Ltd\", \"item\": \"A5 flu leaflets\", \"qty\": \"5000\", \"total\": \"96\", \"status\": \"ordered\"}},\n    {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Emollient cream restock - HealthKit Direct\", \"fields\": {\"supplier\": \"HealthKit Direct\", \"item\": \"emollient cream 500g\", \"qty\": \"24\", \"total\": \"100.80\", \"status\": \"ordered\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Greendale Care Home\", \"fields\": {\"contact\": \"Sue Peters\", \"residents\": \"34\", \"flu_visit\": \"2026-11-03\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"ORD-1\", \"fields\": [\"qty\"], \"from\": \"Priya Shah\", \"rule\": \"e1\"}\n  ],\n  \"task\": \"Please confirm next Friday's flu vaccine delivery from Medwell in the delivery diary — the usual weekly drop, 200 units, Friday 6 November in our morning window — and mark it confirmed.\",\n  \"expect\": [\n    {\"create\": \"schedule\", \"fields\": {\"date\": \"2026-11-06\", \"item\": \"seasonal flu vaccine\", \"qty\": \"200\", \"supplier\": \"Medwell Wholesale\", \"start\": \"09:00\", \"end\": \"11:00\", \"status\": \"confirmed\"}, \"stale\": {\"qty\": [\"240\"]}, \"task\": true}\n  ],\n  \"why\": \"The change is a new fact beside the topic: the health board's publicity van on 18 November affects nothing in the standing plan, so no decision is touched or marked. The task books Friday 6 November's usual 200-unit Medwell drop exactly as planned; the tempting wrong value is Medwell's 240-unit winter bundle, which Marta explicitly noted for later review and never adopted. All existing records stay exactly as they are.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"gloves restock\", \"counterpart\": \"Tom Reilly\", \"org\": \"Medwell Wholesale\", \"item\": \"nitrile gloves\", \"unit\": \"box\", \"values\": [\"10\", \"15\", \"20\", \"25\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"paracetamol restock\", \"counterpart\": \"Hannah Doyle\", \"org\": \"Medwell Wholesale\", \"item\": \"paracetamol 500mg packs\", \"unit\": \"pack\", \"values\": [\"48\", \"72\", \"96\", \"120\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"vitamin D restock\", \"counterpart\": \"Hannah Doyle\", \"org\": \"Medwell Wholesale\", \"item\": \"vitamin D tablets\", \"unit\": \"bottle\", \"values\": [\"24\", \"36\", \"48\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"surgical masks\", \"counterpart\": \"Gary Iles\", \"org\": \"Paper & Post Ltd\", \"item\": \"surgical masks\", \"unit\": \"box\", \"values\": [\"5\", \"8\", \"12\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"counter leaflet refills\", \"counterpart\": \"Gary Iles\", \"org\": \"Paper & Post Ltd\", \"item\": \"counter leaflet holders\", \"unit\": \"unit\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"consultation room\", \"counterpart\": \"Priya Shah\", \"org\": \"Cornerstone Community Pharmacy\", \"item\": \"private consultation room\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"Room 3\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"needle exchange clinic slot\", \"counterpart\": \"Ruth Ellison\", \"org\": \"County Health Board\", \"item\": \"supervised consumption slot\", \"unit\": \"\", \"values\": [\"morning\", \"midday\", \"afternoon\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"booking\", \"topic\": \"delivery van service\", \"counterpart\": \"Colm Brady\", \"org\": \"Brady Vehicle Hire\", \"item\": \"small delivery van\", \"unit\": \"\", \"values\": [\"Monday\", \"Wednesday\", \"Friday\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"care home dressings\", \"counterpart\": \"Sue Peters\", \"org\": \"Greendale Care Home\", \"item\": \"wound dressings\", \"unit\": \"pack\", \"values\": [\"12\", \"20\", \"30\"], \"place\": \"Greendale Care Home\"},\n    {\"kind\": \"order\", \"topic\": \"care home emollients\", \"counterpart\": \"Sue Peters\", \"org\": \"Greendale Care Home\", \"item\": \"emollient cream\", \"unit\": \"tub\", \"values\": [\"10\", \"16\", \"24\"], \"place\": \"Greendale Care Home\"},\n    {\"kind\": \"booking\", \"topic\": \"staff training evening\", \"counterpart\": \"Fiona Marsh\", \"org\": \"LocumLink Agency\", \"item\": \"CPD training room\", \"unit\": \"\", \"values\": [\"Room 1\", \"Room 2\", \"upstairs meeting room\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"blood pressure monitors\", \"counterpart\": \"Nadia Ford\", \"org\": \"HealthKit Direct\", \"item\": \"blood pressure monitor\", \"unit\": \"unit\", \"values\": [\"2\", \"3\", \"5\"], \"place\": \"Cornerstone Community Pharmacy\"},\n    {\"kind\": \"order\", \"topic\": \"hand sanitiser restock\", \"counterpart\": \"Nadia Ford\", \"org\": \"HealthKit Direct\", \"item\": \"hand sanitiser 500ml\", \"unit\": \"bottle\", \"values\": [\"12\", \"18\", \"24\"], \"place\": \"Cornerstone Community Pharmacy\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8096,
+    "completion_tokens": 5110,
+    "reasoning_tokens": 82,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0926436,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: 6 decisions; need 7–18\n- noise topic 'consultation room': values needs at least three entries\n- noise topic 'needle exchange clinic slot': values needs at least three entries\n- noise topic 'staff training evening': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Friday flu vaccine delivery at Cornerstone",
+  "setting": "Pharmacy manager at Cornerstone Community Pharmacy",
+  "owner": "Marta",
+  "org": "Cornerstone Community Pharmacy",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule for Cornerstone Community Pharmacy: any supplier order totalling more than 800 needs sign-off from Priya Shah, our responsible pharmacist, before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Marta",
+    "text": "Standing rule: all refrigerated deliveries must be received by a pharmacist and logged in the fridge book within 30 minutes of arrival; never leave a cold-chain tote at the back door unattended.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Tom Reilly (Medwell Wholesale)",
+    "text": "Confirming Medwell Wholesale supplies Cornerstone Community Pharmacy from our Bristol depot; standard order line is 01454 555 210, cut-off for next-week delivery is Wednesday 17:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Priya Shah",
+    "text": "I am on the rota as duty pharmacist every Friday at Cornerstone through the autumn, so I can receive cold-chain deliveries on Fridays without any extra cover.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Tom Reilly (Medwell Wholesale)",
+    "text": "Autumn flu vaccine stock is confirmed: we can supply Cornerstone Community Pharmacy 200 units of the seasonal flu vaccine per weekly drop, at 6.40 per unit, while autumn allocations last.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I set up the autumn flu vaccine arrangement: 200 units per week from Medwell Wholesale, delivered each Friday so Priya can receive the cold chain, starting Friday 26 June. At 6.40 a unit the weekly order is 1280, so Priya pre-approved the recurring weekly order under the 800 threshold rule.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e4",
+     "e5",
+     "e1",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Hannah Doyle (Medwell Wholesale)",
+    "text": "Your delivery window at Cornerstone is Fridays between 09:00 and 11:00; the driver calls the shop when he is ten minutes away.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I booked the Friday 09:00 to 11:00 delivery window with Medwell for the weekly flu vaccine drop and put it in the delivery diary as a recurring booking.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e7"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-19",
+    "type": "email",
+    "from": "Greendale Care Home (Sue Peters)",
+    "text": "Greendale Care Home would like Cornerstone to run a flu jab morning for our 34 residents on site; our nurse suggests a Tuesday in early November.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-23",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I pencilled the Greendale Care Home flu jab morning for Tuesday 3 November at the care home, to be staffed by our locum pharmacist once we confirm one.",
+    "role": "decision",
+    "rests_on": [
+     "e9"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-26",
+    "type": "email",
+    "from": "Tom Reilly (Medwell Wholesale)",
+    "text": "First flu vaccine drop went out this morning: 200 units on the Friday van to Cornerstone, arriving in your 09:00 to 11:00 window.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-30",
+    "type": "note",
+    "from": "Marta",
+    "text": "Fridge book checked: first flu delivery logged by Priya at 09:40, all temperatures in range.",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-03",
+    "type": "email",
+    "from": "LocumLink Agency (Fiona Marsh)",
+    "text": "We can provide a locum pharmacist, Ade Bakare, for Cornerstone on Tuesdays in November including 3 November, day rate 410.",
+    "role": "fact"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I booked Ade Bakare from LocumLink for Tuesday 3 November to cover the Greendale Care Home flu jab morning at 410 for the day.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-10",
+    "type": "message",
+    "from": "Sue Peters (Greendale Care Home)",
+    "text": "Tuesday 3 November works for Greendale; we will have the residents ready in the lounge from 10:00.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-14",
+    "type": "invoice",
+    "from": "Medwell Wholesale",
+    "text": "Invoice MW-4411: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 10 July to Cornerstone Community Pharmacy.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-17",
+    "type": "email",
+    "from": "Priya Shah",
+    "text": "Fridge capacity note: our vaccine fridge comfortably holds 250 units of flu stock plus the regular lines, so the weekly 200-unit drops leave us good headroom.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-21",
+    "type": "email",
+    "from": "Hannah Doyle (Medwell Wholesale)",
+    "text": "Reminder that Cornerstone's standing weekly flu order is 200 units every Friday; just reply by Wednesday 17:00 if any week needs a different quantity.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "County Health Board (Ruth Ellison)",
+    "text": "Autumn flu campaign starts Monday 14 September; community pharmacies should expect walk-in demand roughly double the September baseline from mid-October.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-04",
+    "type": "decision",
+    "from": "Marta",
+    "text": "Given the campaign starts 14 September and demand doubles from mid-October, I am keeping the weekly Medwell flu order at 200 units through October and will review quantities in November after we see actual walk-in numbers.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e19",
+     "e17"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Tom Reilly (Medwell Wholesale)",
+    "text": "Noted, weekly flu drops for Cornerstone stay at 200 units each Friday through October.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-18",
+    "type": "quote",
+    "from": "Paper & Post Ltd (Gary Iles)",
+    "text": "Quote for 5000 flu campaign leaflets, A5 double-sided: 96 including delivery to Cornerstone Community Pharmacy.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I ordered 5000 flu campaign leaflets from Paper & Post at 96; it is under the 800 sign-off threshold so no approval needed from Priya.",
+    "role": "decision",
+    "rests_on": [
+     "e22",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-01",
+    "type": "minutes",
+    "from": "Marta",
+    "text": "Team huddle minutes: autumn flu plan confirmed - 200 units weekly from Medwell on Fridays, Priya receives and logs, Greendale visit Tuesday 3 November with locum Ade Bakare, leaflets arriving mid-September.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-08",
+    "type": "email",
+    "from": "Hannah Doyle (Medwell Wholesale)",
+    "text": "Delivery diary confirms Cornerstone's recurring Friday 09:00-11:00 window is held for you every week through November.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "invoice",
+    "from": "LocumLink Agency",
+    "text": "Booking confirmation invoice LL-882: Ade Bakare, pharmacist, Tuesday 3 November at Cornerstone Community Pharmacy, 410.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Sue Peters (Greendale Care Home)",
+    "text": "Resident count for the flu morning is now 34 confirmed plus 2 maybes; we will finalise the list the week before.",
+    "role": "fact"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-25",
+    "type": "email",
+    "from": "Tom Reilly (Medwell Wholesale)",
+    "text": "Promotional note for November: we can offer a bulk flu vaccine bundle of 240 units per weekly drop at 6.10 a unit for pharmacies wanting extra stock over the winter peak.",
+    "role": "fact",
+    "distractor": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-29",
+    "type": "note",
+    "from": "Marta",
+    "text": "Saw Medwell's winter bundle offer of 240 units a week; noted it for the November review, no change to the current 200-unit plan.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-06",
+    "type": "email",
+    "from": "County Health Board (Ruth Ellison)",
+    "text": "Campaign update: the board's flu publicity van will visit the precinct outside Cornerstone Community Pharmacy on Wednesday 18 November, 10:00 to 14:00, handing out leaflets and directing walk-ins to participating pharmacies.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-09",
+    "type": "message",
+    "from": "Priya Shah",
+    "text": "Good news about the publicity van on 18 November; no impact on the Friday deliveries, I will keep receiving them as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-13",
+    "type": "email",
+    "from": "Hannah Doyle (Medwell Wholesale)",
+    "text": "Routine confirmation: your standing weekly flu order of 200 units each Friday continues; next drops 16, 23 and 30 October and 6 November.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-16",
+    "type": "invoice",
+    "from": "Medwell Wholesale",
+    "text": "Invoice MW-4558: 200 units seasonal flu vaccine at 6.40, total 1280, delivered Friday 16 October to Cornerstone Community Pharmacy.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-20",
+    "type": "call",
+    "from": "Sue Peters (Greendale Care Home)",
+    "text": "Sue called to confirm the Greendale flu morning on Tuesday 3 November is all set for 10:00 with 34 residents on the final list.",
+    "role": "other"
+   },
+   {
+    "id": "e35",
+    "date": "2026-10-23",
+    "type": "note",
+    "from": "Priya Shah",
+    "text": "Fridge book: 200-unit drop received and logged 09:35 today; stock level after today's clinics is 96 units.",
+    "role": "other"
+   },
+   {
+    "id": "e36",
+    "date": "2026-10-24",
+    "type": "email",
+    "from": "HealthKit Direct (Nadia Ford)",
+    "text": "Your account quote: emollient cream 500g tubs at 4.20 each, minimum order 10 tubs, delivery to Cornerstone in two working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e37",
+    "date": "2026-10-26",
+    "type": "decision",
+    "from": "Marta",
+    "text": "I ordered 24 tubs of emollient cream from HealthKit Direct at 4.20 a tub, total 100.80, to replenish the shelf and cover Greendale's regular request; well under the 800 sign-off threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e36",
+     "e1"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e38",
+    "date": "2026-10-27",
+    "type": "email",
+    "from": "Fiona Marsh (LocumLink Agency)",
+    "text": "Final confirmation that Ade Bakare attends Cornerstone on Tuesday 3 November, 09:00 start, before travelling to Greendale Care Home for the 10:00 flu morning.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing weekly flu vaccine order - Medwell",
+    "fields": {
+     "supplier": "Medwell Wholesale",
+     "item": "seasonal flu vaccine",
+     "qty": "200",
+     "unit_price": "6.40",
+     "delivery_day": "Friday",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Recurring Friday Medwell delivery window",
+    "fields": {
+     "day": "Friday",
+     "start": "09:00",
+     "end": "11:00",
+     "supplier": "Medwell Wholesale",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Greendale Care Home flu jab morning",
+    "fields": {
+     "date": "2026-11-03",
+     "place": "Greendale Care Home",
+     "start": "10:00",
+     "residents": "34",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Locum pharmacist cover - Ade Bakare",
+    "fields": {
+     "date": "2026-11-03",
+     "locum": "Ade Bakare",
+     "rate": "410",
+     "start": "09:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "October flu order quantity review note",
+    "fields": {
+     "qty": "200",
+     "review": "November",
+     "basis": "campaign demand forecast",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Flu campaign leaflets - Paper & Post",
+    "fields": {
+     "supplier": "Paper & Post Ltd",
+     "item": "A5 flu leaflets",
+     "qty": "5000",
+     "total": "96",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Emollient cream restock - HealthKit Direct",
+    "fields": {
+     "supplier": "HealthKit Direct",
+     "item": "emollient cream 500g",
+     "qty": "24",
+     "total": "100.80",
+     "status": "ordered"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Greendale Care Home",
+    "fields": {
+     "contact": "Sue Peters",
+     "residents": "34",
+     "flu_visit": "2026-11-03",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-1",
+    "fields": [
+     "qty"
+    ],
+    "from": "Priya Shah",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please confirm next Friday's flu vaccine delivery from Medwell in the delivery diary — the usual weekly drop, 200 units, Friday 6 November in our morning window — and mark it confirmed.",
+  "expect": [
+   {
+    "create": "schedule",
+    "fields": {
+     "date": "2026-11-06",
+     "item": "seasonal flu vaccine",
+     "qty": "200",
+     "supplier": "Medwell Wholesale",
+     "start": "09:00",
+     "end": "11:00",
+     "status": "confirmed"
+    },
+    "stale": {
+     "qty": [
+      "240"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The change is a new fact beside the topic: the health board's publicity van on 18 November affects nothing in the standing plan, so no decision is touched or marked. The task books Friday 6 November's usual 200-unit Medwell drop exactly as planned; the tempting wrong value is Medwell's 240-unit winter bundle, which Marta explicitly noted for later review and never adopted. All existing records stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "gloves restock",
+    "counterpart": "Tom Reilly",
+    "org": "Medwell Wholesale",
+    "item": "nitrile gloves",
+    "unit": "box",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "25"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "paracetamol restock",
+    "counterpart": "Hannah Doyle",
+    "org": "Medwell Wholesale",
+    "item": "paracetamol 500mg packs",
+    "unit": "pack",
+    "values": [
+     "48",
+     "72",
+     "96",
+     "120"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "vitamin D restock",
+    "counterpart": "Hannah Doyle",
+    "org": "Medwell Wholesale",
+    "item": "vitamin D tablets",
+    "unit": "bottle",
+    "values": [
+     "24",
+     "36",
+     "48"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "surgical masks",
+    "counterpart": "Gary Iles",
+    "org": "Paper & Post Ltd",
+    "item": "surgical masks",
+    "unit": "box",
+    "values": [
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "counter leaflet refills",
+    "counterpart": "Gary Iles",
+    "org": "Paper & Post Ltd",
+    "item": "counter leaflet holders",
+    "unit": "unit",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "booking",
+    "topic": "consultation room",
+    "counterpart": "Priya Shah",
+    "org": "Cornerstone Community Pharmacy",
+    "item": "private consultation room",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "Room 3"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "booking",
+    "topic": "needle exchange clinic slot",
+    "counterpart": "Ruth Ellison",
+    "org": "County Health Board",
+    "item": "supervised consumption slot",
+    "unit": "",
+    "values": [
+     "morning",
+     "midday",
+     "afternoon"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van service",
+    "counterpart": "Colm Brady",
+    "org": "Brady Vehicle Hire",
+    "item": "small delivery van",
+    "unit": "",
+    "values": [
+     "Monday",
+     "Wednesday",
+     "Friday"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "care home dressings",
+    "counterpart": "Sue Peters",
+    "org": "Greendale Care Home",
+    "item": "wound dressings",
+    "unit": "pack",
+    "values": [
+     "12",
+     "20",
+     "30"
+    ],
+    "place": "Greendale Care Home"
+   },
+   {
+    "kind": "order",
+    "topic": "care home emollients",
+    "counterpart": "Sue Peters",
+    "org": "Greendale Care Home",
+    "item": "emollient cream",
+    "unit": "tub",
+    "values": [
+     "10",
+     "16",
+     "24"
+    ],
+    "place": "Greendale Care Home"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff training evening",
+    "counterpart": "Fiona Marsh",
+    "org": "LocumLink Agency",
+    "item": "CPD training room",
+    "unit": "",
+    "values": [
+     "Room 1",
+     "Room 2",
+     "upstairs meeting room"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "blood pressure monitors",
+    "counterpart": "Nadia Ford",
+    "org": "HealthKit Direct",
+    "item": "blood pressure monitor",
+    "unit": "unit",
+    "values": [
+     "2",
+     "3",
+     "5"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   },
+   {
+    "kind": "order",
+    "topic": "hand sanitiser restock",
+    "counterpart": "Nadia Ford",
+    "org": "HealthKit Direct",
+    "item": "hand sanitiser 500ml",
+    "unit": "bottle",
+    "values": [
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Cornerstone Community Pharmacy"
+   }
+  ],
+  "id": "K1000-4-01",
+  "tier": 1000,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The publicity van announcement changes none of the standing arrangements, and the task explicitly requires confirming the usual 200-unit delivery on 6 November, 09:00–11:00. The existing recurring order is pre-approved; the 240-unit offer was never adopted. The core has 38 events and 7 decisions, with the change 24 days before the task and eight core events after it; stale-value echoes are not required for class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The publicity van announcement changes none of the standing arrangements, and the task explicitly requires confirming the usual 200-unit delivery on 6 November, 09:00–11:00. The existing recurring order is pre-approved; the 240-unit offer was never adopted. The core has 38 events and 7 decisions, with the change 24 days before the task and eight core events after it; stale-value echoes are not required for class 4."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4607,
+    "completion_tokens": 208,
+    "reasoning_tokens": 79,
+    "cached_tokens": 0
+   },
+   "cost": 0.06798,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d151f7323b98d089ef1b8a228e4fa2121c03c37a9cfca3d8430e10b83595e30",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (publicity van on 18 November) genuinely touches nothing in the standing plan, so the control class holds and the only correct act is confirming the usual 200-unit Friday 6 November drop as specified. The stale qty 240 correctly captures the tempting wrong value from the never-adopted winter bundle offer. Counts and timing meet tier 1,000 requirements (38 core events, 7 decisions, change 24 days before the task, 8 core events after it), and the change sits mid-history at event 829.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (publicity van on 18 November) genuinely touches nothing in the standing plan, so the control class holds and the only correct act is confirming the usual 200-unit Friday 6 November drop as specified. The stale qty 240 correctly captures the tempting wrong value from the never-adopted winter bundle offer. Counts and timing meet tier 1,000 requirements (38 core events, 7 decisions, change 24 days before the task, 8 core events after it), and the change sits mid-history at event 829."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4713,
+    "completion_tokens": 300,
+    "reasoning_tokens": 145,
+    "cached_tokens": 384
+   },
+   "cost": 0.00748044,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d151f7323b98d089ef1b8a228e4fa2121c03c37a9cfca3d8430e10b83595e30",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The publicity van on 18 November touches no decision: the Friday deliveries, the 3 November Greendale visit and the locum booking all stand, and Priya's e31 confirms it. The core has 38 events, 7 decisions, the change 24 days before the task day, and 8 events after it, all within tier limits. The expected-state 'stale' key is an odd scaffold artifact but does not make the expected state wrong.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The publicity van on 18 November touches no decision: the Friday deliveries, the 3 November Greendale visit and the locum booking all stand, and Priya's e31 confirms it. The core has 38 events, 7 decisions, the change 24 days before the task day, and 8 events after it, all within tier limits. The expected-state 'stale' key is an odd scaffold artifact but does not make the expected state wrong."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6908,
+    "completion_tokens": 1360,
+    "reasoning_tokens": 1167,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013708,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "0d151f7323b98d089ef1b8a228e4fa2121c03c37a9cfca3d8430e10b83595e30",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

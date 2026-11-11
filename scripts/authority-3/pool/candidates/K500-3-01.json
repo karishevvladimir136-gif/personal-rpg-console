@@ -653,5 +653,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history describes the vaccine delivery as the day before the original clinic but does not require that relative timing, so moving delivery to Saturday 14 November is not unambiguously warranted. The task also asks which six volunteers are scheduled, but neither the history nor the records identifies them. The chain structure, tier requirements, and placement of the change otherwise fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history describes the vaccine delivery as the day before the original clinic but does not require that relative timing, so moving delivery to Saturday 14 November is not unambiguously warranted. The task also asks which six volunteers are scheduled, but neither the history nor the records identifies them. The chain structure, tier requirements, and placement of the change otherwise fit."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4058,
+    "completion_tokens": 246,
+    "reasoning_tokens": 138,
+    "cached_tokens": 0
+   },
+   "cost": 0.0630175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "624bbdb32df9e440603c62d1387e3e977d68cda2b2c44888c09cf5083a2bb5ca",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is exactly class 3: e22 corrects fact e11; e13 (REVISE, EV-1 date) rests on e11; e15 (ASK, EV-2) rests on e13 two hops out; e17 (KEEP, EV-3) cites only the unchanged 10:00 opening. Tier 500 is met (28 core events, 7 decisions, change 16 days before task day, 6 events after it, echo e19 restating the 14 November booking), the consent map matches rule e1, ORD-1's new delivery of 2026-11-14 follows from the day-before logic, and the task forces acting (messaging Priya with the true new date) without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is exactly class 3: e22 corrects fact e11; e13 (REVISE, EV-1 date) rests on e11; e15 (ASK, EV-2) rests on e13 two hops out; e17 (KEEP, EV-3) cites only the unchanged 10:00 opening. Tier 500 is met (28 core events, 7 decisions, change 16 days before task day, 6 events after it, echo e19 restating the 14 November booking), the consent map matches rule e1, ORD-1's new delivery of 2026-11-14 follows from the day-before logic, and the task forces acting (messaging Priya with the true new date) without naming the change."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4130,
+    "completion_tokens": 594,
+    "reasoning_tokens": 393,
+    "cached_tokens": 384
+   },
+   "cost": 0.00795784,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "624bbdb32df9e440603c62d1387e3e977d68cda2b2c44888c09cf5083a2bb5ca",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e22 explicitly revokes the fact e11 and the touched decisions (e13, e16, e15, e17) follow the stale-fact pattern, with e15 two hops from e11, so the scenario is class 1 (stale fact) rather than the intended class 3 (chain correction). The expected final state, marks, consent map, tier counts, echo (e19), and hidden change all check out, and the task forces an act without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e22 explicitly revokes the fact e11 and the touched decisions (e13, e16, e15, e17) follow the stale-fact pattern, with e15 two hops from e11, so the scenario is class 1 (stale fact) rather than the intended class 3 (chain correction). The expected final state, marks, consent map, tier counts, echo (e19), and hidden change all check out, and the task forces an act without naming the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5887,
+    "completion_tokens": 1670,
+    "reasoning_tokens": 1472,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014237,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "624bbdb32df9e440603c62d1387e3e977d68cda2b2c44888c09cf5083a2bb5ca",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

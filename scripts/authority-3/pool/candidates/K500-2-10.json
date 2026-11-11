@@ -675,5 +675,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The change permits Friday-evening use of the nave from 16 October but does not require existing hall bookings to move or establish the nave as their default location. Consequently, moving Compline and its setup is not unambiguously required, nor is seeking consent to move the Riverside concert; the consent rule governs proposed changes rather than requiring them.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change permits Friday-evening use of the nave from 16 October but does not require existing hall bookings to move or establish the nave as their default location. Consequently, moving Compline and its setup is not unambiguously required, nor is seeking consent to move the Riverside concert; the consent rule governs proposed changes rather than requiring them."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3970,
+    "completion_tokens": 173,
+    "reasoning_tokens": 68,
+    "cached_tokens": 0
+   },
+   "cost": 0.0582675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aaeb95bf1c33695c9c5b64799c3b0b06b21276c5b71dfe127aaceeb3be4660ab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended rule e5 ends only from 16 October, so the 9 October rehearsal KEEPs, the 23 October Compline and its setup (parish-run, exempt from e1) REVISE to the nave, and the confirmed outside hire EV-2 requires the hirer's written agreement under e1, matching the consent map and expected state. The task (send final time/place notices) forces an immediate workplace act without hinting at the change. Tier fits: 30 core events, 9 decisions, change 13 days before task day with several core events after it, and the 14 September newsletter echoes the stale Friday-evening-hall arrangement.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended rule e5 ends only from 16 October, so the 9 October rehearsal KEEPs, the 23 October Compline and its setup (parish-run, exempt from e1) REVISE to the nave, and the confirmed outside hire EV-2 requires the hirer's written agreement under e1, matching the consent map and expected state. The task (send final time/place notices) forces an immediate workplace act without hinting at the change. Tier fits: 30 core events, 9 decisions, change 13 days before task day with several core events after it, and the 14 September newsletter echoes the stale Friday-evening-hall arrangement."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4060,
+    "completion_tokens": 489,
+    "reasoning_tokens": 308,
+    "cached_tokens": 384
+   },
+   "cost": 0.00739784,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aaeb95bf1c33695c9c5b64799c3b0b06b21276c5b71dfe127aaceeb3be4660ab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state follows from the history: e20 ends the Friday-evening hall rule from 16 October, so Compline and its setup move to the nave, the 9 October choir rehearsal stays put, and the outside concert needs Colin Marsh's consent. The wording is \\\"revokes e5\\\" rather than an amendment, which pushes toward class 1, but the date-limited terms fit the class 2 pattern of voided and standing decisions. The counts, the 13-day gap, the two later core events and the echo in e17 all meet the 500-tier requirements, and the change is buried among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state follows from the history: e20 ends the Friday-evening hall rule from 16 October, so Compline and its setup move to the nave, the 9 October choir rehearsal stays put, and the outside concert needs Colin Marsh's consent. The wording is \"revokes e5\" rather than an amendment, which pushes toward class 1, but the date-limited terms fit the class 2 pattern of voided and standing decisions. The counts, the 13-day gap, the two later core events and the echo in e17 all meet the 500-tier requirements, and the change is buried among routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5737,
+    "completion_tokens": 1681,
+    "reasoning_tokens": 1433,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014142,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aaeb95bf1c33695c9c5b64799c3b0b06b21276c5b71dfe127aaceeb3be4660ab",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

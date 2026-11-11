@@ -563,5 +563,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 9 October instruction explicitly restates the £800 rule with no change, so no decisions are touched and the control class is correct; the task forces a confirmation message and a candle order with values fixed by the history (£480, 200 candles, service details as booked). Tier requirements (24 core events, 5 decisions, change 11 days before task day, 7 events after) are met, and the change sits mid-history as an ordinary instruction. The £920 premium quote is properly a declined distractor excluded from the expected state.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 9 October instruction explicitly restates the £800 rule with no change, so no decisions are touched and the control class is correct; the task forces a confirmation message and a candle order with values fixed by the history (£480, 200 candles, service details as booked). Tier requirements (24 core events, 5 decisions, change 11 days before task day, 7 events after) are met, and the change sits mid-history as an ordinary instruction. The £920 premium quote is properly a declined distractor excluded from the expected state."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3894,
+    "completion_tokens": 296,
+    "reasoning_tokens": 140,
+    "cached_tokens": 0
+   },
+   "cost": 0.006754,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "def8d484c82fa9e43d16a92aaf20b9874f13f9095a264c35d6763e11791801b4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 9 October restatement (E0093) repeats the £800 rule from E0001 in new words, so nothing is touched and the control class holds. The task explicitly requires sending the confirmation and placing the restock, so it forces an act. Minor oddities remain: the expected order record lists 920 as a stale value even though that figure never appears in the new order, and the 'this week' restock is described against a 16 October due date that falls before the task day of 20 October.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 9 October restatement (E0093) repeats the £800 rule from E0001 in new words, so nothing is touched and the control class holds. The task explicitly requires sending the confirmation and placing the restock, so it forces an act. Minor oddities remain: the expected order record lists 920 as a stale value even though that figure never appears in the new order, and the 'this week' restock is described against a 16 October due date that falls before the task day of 20 October."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5485,
+    "completion_tokens": 1576,
+    "reasoning_tokens": 1374,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013365,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "def8d484c82fa9e43d16a92aaf20b9874f13f9095a264c35d6763e11791801b4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The purchasing instruction restates the existing rule without changing it, so the standing service arrangements and £480 candle order remain valid without additional consent. The task requires sending a confirmation and placing an order. The core has 24 events and five decisions, with the change 11 days before the task and five later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The purchasing instruction restates the existing rule without changing it, so the standing service arrangements and £480 candle order remain valid without additional consent. The task requires sending a confirmation and placing an order. The core has 24 events and five decisions, with the change 11 days before the task and five later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3792,
+    "completion_tokens": 312,
+    "reasoning_tokens": 211,
+    "cached_tokens": 0
+   },
+   "cost": 0.0629925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "def8d484c82fa9e43d16a92aaf20b9874f13f9095a264c35d6763e11791801b4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

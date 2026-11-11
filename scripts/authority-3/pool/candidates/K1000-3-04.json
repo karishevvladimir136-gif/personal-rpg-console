@@ -1,0 +1,786 @@
+{
+ "id": "K1000-3-04",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 3,
+ "idx": 3,
+ "setting": "Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster",
+ "prompt_sha256": "7f3dd4c40b57a72478e8af7580eee4d37d4a4cc62b52e922c679c4fac44c0871",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Guji lot price correction\",\n \"setting\": \"Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster\",\n \"owner\": \"Maya\",\n \"org\": \"Ember Roast Coffee\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule: any change to a confirmed client supply price must be agreed by that client's named contact before we apply it. No exceptions, even when our own costs move.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Supplier purchase orders stay in draft until the supplier's written confirmation is on file and I have given the order a final check.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Confirming I am the named contact for Northlane Cafés. Our standing order is 120 kilos of roasted Guji each month, delivered the first Monday of the month.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pricing note to self: single-origin wholesale price is the green cost plus 1.70 per kilo. Keep this consistent across accounts.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Good news — confirming the Ethiopian Guji lot at 6.80 per kilo, with 500 kilos available for you. Arrival at your warehouse is set for Monday 21 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"notice\", \"from\": \"Jorge Ruiz (RoastTech Services)\", \"text\": \"Reminder: the shop grinder is due its six-month service in the week of 20 July. Please book a slot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked warehouse bay 2 for the morning of Monday 21 September 2026 to receive the Adera Guji arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Raised a draft purchase order to Adera Coffee Exporters for 400 kilos of the Guji lot at 6.80 per kilo, total 2720. Keeping it in draft per my own rule until I give it a final check.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set Northlane Cafés' Guji supply price at 8.50 per kilo — the 6.80 green cost on the Adera draft order plus our standard 1.70 — for their 120 kilo monthly order, and recorded it on their account. Per the standing rule, any later change to this confirmed price needs Ines Vidal's agreement first.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"June delivery of 120 kilos received, all good. See you first Monday of July.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-01\", \"type\": \"quote\", \"from\": \"Selin Park (PackRight Packaging)\", \"text\": \"Quote: 250g kraft coffee bags at 0.14 each, minimum run 1000, delivery to your roastery within ten days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2000 kraft 250g bags from PackRight at 0.14 each, total 280, delivery to the roastery.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Shipping confirmation: your Guji lot at 6.80 per kilo, 400 kilos reserved for you, arrival Monday 21 September 2026. Documents to follow.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The cupping room is free every Friday from 09:00 to 12:00 if you want a regular QC slot.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the cupping room every Friday 09:00 to 12:00 for the QC cupping session.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Quote: printed label rolls, 22 per roll, any quantity from 10 rolls, one week turnaround.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 label rolls from NordPrint at 22 per roll, total 440.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Marek Duda (City Sprint Couriers)\", \"text\": \"We can give you a van every Monday for the north delivery route, 95 per run, collecting from warehouse bay 2 at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Monday north-route van run with City Sprint Couriers at 95 per run, collecting from warehouse bay 2 at 08:00, starting 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Invoice for the 20 label rolls, 440 total, payment due by 15 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"By the way, we also have a lovely Sidamo lot at 6.60 per kilo if you want a second origin this season. No pressure — your Guji is already reserved.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Intake prep checklist: Guji lot, 400 kilos at 6.80 per kilo, arrives Monday 21 September, warehouse bay 2, pallets and moisture meter ready.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The training room is free all day on Friday 9 October if you still want to run the new-starter barista session.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the new-starter barista training for Friday 9 October in the training room, Lena to lead.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Guji arrival received at warehouse bay 2 this morning, 400 kilos checked in, moisture readings fine.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Apologies, Maya — while preparing your final invoice we caught a keying error on our side. The confirmed price for your Guji lot is 7.40 per kilo, not the 6.80 we quoted you in June. The 400 kilos delivered in September are unaffected; please amend your purchase order at 7.40.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"Team minutes: roast roster for the rest of October agreed, packaging stock holding up, Friday cupping attendance good.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock rotation: move the Brazil lot to the front rack, Guji is cupping beautifully this week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Hi Maya, could we get samples of the December blend idea when you have them? November delivery as normal, first Monday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Purchase order — Adera Guji lot\", \"fields\": {\"supplier\": \"Adera Coffee Exporters\", \"item\": \"Ethiopian Guji green coffee\", \"quantity_kg\": \"400\", \"unit_price\": \"6.80\", \"total\": \"2720\", \"status\": \"draft\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northlane Cafés monthly Guji supply\", \"fields\": {\"contact\": \"Ines Vidal\", \"item\": \"Roasted Guji\", \"quantity_kg\": \"120\", \"price_per_kg\": \"8.50\", \"next_delivery\": \"2026-11-02\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Green coffee intake — Adera Guji\", \"fields\": {\"date\": \"2026-09-21\", \"time\": \"09:00\", \"place\": \"Warehouse bay 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"PackRight kraft bags\", \"fields\": {\"supplier\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"quantity\": \"2000\", \"total\": \"280\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday QC cupping\", \"fields\": {\"day\": \"Friday\", \"time\": \"09:00\", \"place\": \"Cupping room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"NordPrint label rolls\", \"fields\": {\"supplier\": \"NordPrint\", \"item\": \"Printed label rolls\", \"quantity\": \"20\", \"total\": \"440\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monday north-route van run\", \"fields\": {\"day\": \"Monday\", \"time\": \"08:00\", \"place\": \"Warehouse bay 2\", \"courier\": \"City Sprint Couriers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"New-starter barista training\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"09:30\", \"place\": \"Training room\", \"lead\": \"Lena Brooks\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price_per_kg\"], \"from\": \"Ines Vidal (Northlane Cafés)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you finalise our draft purchase order to Adera for the Guji lot, and send Ines at Northlane our per-kilo price for the November Guji supply so she can sign it off before Monday's delivery?\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"7.40\", \"stale\": [\"6.80\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"2960\", \"stale\": [\"2720\"]},\n  {\"message_to\": \"Ines Vidal (Northlane Cafés)\", \"regarding\": \"CL-1\", \"says\": [\"9.10\"], \"stale\": [\"8.50\"], \"task\": true}\n ],\n \"why\": \"Adera corrected the Guji green price from 6.80 to 7.40, so the draft purchase order (ORD-1) is REVISE: the assistant updates unit_price and total itself. Northlane's price was derived from the draft order (cost plus 1.70), so it becomes 9.10, but the standing rule makes any change to a confirmed client price subject to Ines Vidal's consent — the CL-1 field stays untouched and the assistant asks her with the correct 9.10 figure, never passing off 8.50. The intake booking (EV-1) only used the arrival date, which the correction leaves standing, so it is KEEP; the Sidamo offer at 6.60 is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Sidamo green restock\", \"counterpart\": \"Kadir Alemu\", \"org\": \"Adera Coffee Exporters\", \"item\": \"Sidamo green coffee\", \"unit\": \"kg\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Northlane house blend\", \"counterpart\": \"Ines Vidal\", \"org\": \"Northlane Cafés\", \"item\": \"Roasted house blend\", \"unit\": \"kg\", \"values\": [\"40\", \"60\", \"80\", \"120\"], \"place\": \"Northlane Cafés\"},\n  {\"kind\": \"order\", \"topic\": \"Kraft bag restock\", \"counterpart\": \"Selin Park\", \"org\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"unit\": \"units\", \"values\": [\"500\", \"1000\", \"2000\", \"3000\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Friday cupping slot\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"QC cupping session\", \"unit\": \"\", \"values\": [\"Cupping room\", \"Training room\"], \"place\": \"Roastery first floor\"},\n  {\"kind\": \"booking\", \"topic\": \"Monday courier run\", \"counterpart\": \"Marek Duda\", \"org\": \"City Sprint Couriers\", \"item\": \"Weekly delivery van run\", \"unit\": \"\", \"values\": [\"North route\", \"South route\", \"West route\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Label roll restock\", \"counterpart\": \"Petra Lind\", \"org\": \"NordPrint\", \"item\": \"Printed label rolls\", \"unit\": \"rolls\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"order\", \"topic\": \"Grinder cleaning tablets\", \"counterpart\": \"Owen Hart\", \"org\": \"PureBean Supplies\", \"item\": \"Grinder cleaning tablets\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekend market stall\", \"counterpart\": \"Ruth Coyle\", \"org\": \"Riverside Market\", \"item\": \"Coffee stall pitch\", \"unit\": \"\", \"values\": [\"Stall A\", \"Stall B\", \"Stall C\"], \"place\": \"Riverside Market\"},\n  {\"kind\": \"order\", \"topic\": \"Oat milk for tasting bar\", \"counterpart\": \"Fiona Doyle\", \"org\": \"GreenCart Wholesale\", \"item\": \"Oat milk cartons\", \"unit\": \"cases\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Roaster maintenance\", \"counterpart\": \"Jorge Ruiz\", \"org\": \"RoastTech Services\", \"item\": \"Roaster service visit\", \"unit\": \"\", \"values\": [\"Roaster 1\", \"Roaster 2\"], \"place\": \"Production floor\"},\n  {\"kind\": \"order\", \"topic\": \"Colombia green restock\", \"counterpart\": \"Ana Torres\", \"org\": \"Andes Green Traders\", \"item\": \"Colombia Excelso green coffee\", \"unit\": \"kg\", \"values\": [\"150\", \"200\", \"300\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training room\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"Barista training session\", \"unit\": \"\", \"values\": [\"Training room\", \"Cupping room\"], \"place\": \"Roastery first floor\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3238,
+    "completion_tokens": 10501,
+    "reasoning_tokens": 6143,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1589346,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Guji lot price correction\",\n \"setting\": \"Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster\",\n \"owner\": \"Maya\",\n \"org\": \"Ember Roast Coffee\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule: any change to a confirmed client supply price must be agreed by that client's named contact before we apply it. No exceptions, even when our own costs move.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Supplier purchase orders stay in draft until the supplier's written confirmation is on file and I have given the order a final check.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Confirming I am the named contact for Northlane Cafés. Our standing order is 120 kilos of roasted Guji each month, delivered the first Monday of the month.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pricing note to self: single-origin wholesale price is the green cost plus 1.70 per kilo. Keep this consistent across accounts.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Good news — confirming the Ethiopian Guji lot at 6.80 per kilo, with 500 kilos available for you. Arrival at your warehouse is set for Monday 21 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"notice\", \"from\": \"Jorge Ruiz (RoastTech Services)\", \"text\": \"Reminder: the shop grinder is due its six-month service in the week of 20 July. Please book a slot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked warehouse bay 2 for the morning of Monday 21 September 2026 to receive the Adera Guji arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Raised a draft purchase order to Adera Coffee Exporters for 400 kilos of the Guji lot at 6.80 per kilo, total 2720. Keeping it in draft per my own rule until I give it a final check.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set Northlane Cafés' Guji supply price at 8.50 per kilo — the 6.80 green cost on the Adera draft order plus our standard 1.70 — for their 120 kilo monthly order, and recorded it on their account. Per the standing rule, any later change to this confirmed price needs Ines Vidal's agreement first.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"June delivery of 120 kilos received, all good. See you first Monday of July.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-01\", \"type\": \"quote\", \"from\": \"Selin Park (PackRight Packaging)\", \"text\": \"Quote: 250g kraft coffee bags at 0.14 each, minimum run 1000, delivery to your roastery within ten days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2000 kraft 250g bags from PackRight at 0.14 each, total 280, delivery to the roastery.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Shipping confirmation: your Guji lot at 6.80 per kilo, 400 kilos reserved for you, arrival Monday 21 September 2026. Documents to follow.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The cupping room is free every Friday from 09:00 to 12:00 if you want a regular QC slot.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the cupping room every Friday 09:00 to 12:00 for the QC cupping session.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Quote: printed label rolls, 22 per roll, any quantity from 10 rolls, one week turnaround.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 label rolls from NordPrint at 22 per roll, total 440.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Marek Duda (City Sprint Couriers)\", \"text\": \"We can give you a van every Monday for the north delivery route, 95 per run, collecting from warehouse bay 2 at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Monday north-route van run with City Sprint Couriers at 95 per run, collecting from warehouse bay 2 at 08:00, starting 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Invoice for the 20 label rolls, 440 total, payment due by 15 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"By the way, we also have a lovely Sidamo lot at 6.60 per kilo if you want a second origin this season. No pressure — your Guji is already reserved.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Intake prep checklist: Guji lot, 400 kilos at 6.80 per kilo, arrives Monday 21 September, warehouse bay 2, pallets and moisture meter ready.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The training room is free all day on Friday 9 October if you still want to run the new-starter barista session.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the new-starter barista training for Friday 9 October in the training room, Lena to lead.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Guji arrival received at warehouse bay 2 this morning, 400 kilos checked in, moisture readings fine.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Apologies, Maya — while preparing your final invoice we caught a keying error on our side. The confirmed price for your Guji lot is 7.40 per kilo, not the 6.80 we quoted you in June. The 400 kilos delivered in September are unaffected; please amend your purchase order at 7.40.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"Team minutes: roast roster for the rest of October agreed, packaging stock holding up, Friday cupping attendance good.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock rotation: move the Brazil lot to the front rack, Guji is cupping beautifully this week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Hi Maya, could we get samples of the December blend idea when you have them? November delivery as normal, first Monday.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Fiona Doyle (GreenCart Wholesale)\", \"text\": \"Your account is set up with us. Oat milk cases ship twice weekly to the roastery, orders in by Tuesday and Thursday noon.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-07-31\", \"type\": \"call\", \"from\": \"Ruth Coyle (Riverside Market)\", \"text\": \"Called about autumn market pitches — weekend stalls from mid-September, first come first served.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Owen Hart (PureBean Supplies)\", \"text\": \"Your grinder cleaning tablet order went out today, should be with you Monday.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do: check the fire extinguisher service tags in the roastery before the end of September.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Purchase order — Adera Guji lot\", \"fields\": {\"supplier\": \"Adera Coffee Exporters\", \"item\": \"Ethiopian Guji green coffee\", \"quantity_kg\": \"400\", \"unit_price\": \"6.80\", \"total\": \"2720\", \"status\": \"draft\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northlane Cafés monthly Guji supply\", \"fields\": {\"contact\": \"Ines Vidal\", \"item\": \"Roasted Guji\", \"quantity_kg\": \"120\", \"price_per_kg\": \"8.50\", \"next_delivery\": \"2026-11-02\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Green coffee intake — Adera Guji\", \"fields\": {\"date\": \"2026-09-21\", \"time\": \"09:00\", \"place\": \"Warehouse bay 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"PackRight kraft bags\", \"fields\": {\"supplier\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"quantity\": \"2000\", \"total\": \"280\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday QC cupping\", \"fields\": {\"day\": \"Friday\", \"time\": \"09:00\", \"place\": \"Cupping room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"NordPrint label rolls\", \"fields\": {\"supplier\": \"NordPrint\", \"item\": \"Printed label rolls\", \"quantity\": \"20\", \"total\": \"440\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monday north-route van run\", \"fields\": {\"day\": \"Monday\", \"time\": \"08:00\", \"place\": \"Warehouse bay 2\", \"courier\": \"City Sprint Couriers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"New-starter barista training\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"09:30\", \"place\": \"Training room\", \"lead\": \"Lena Brooks\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price_per_kg\"], \"from\": \"Ines Vidal (Northlane Cafés)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you finalise our draft purchase order to Adera for the Guji lot, and send Ines at Northlane our per-kilo price for the November Guji supply so she can sign it off before Monday's delivery?\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"7.40\", \"stale\": [\"6.80\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"2960\", \"stale\": [\"2720\"]},\n  {\"message_to\": \"Ines Vidal (Northlane Cafés)\", \"regarding\": \"CL-1\", \"says\": [\"9.10\"], \"stale\": [\"8.50\"], \"task\": true}\n ],\n \"why\": \"Adera corrected the Guji green price from 6.80 to 7.40, so the draft purchase order (ORD-1) is REVISE: the assistant updates unit_price and total itself. Northlane's price was derived from the draft order (cost plus 1.70), so it becomes 9.10, but the standing rule makes any change to a confirmed client price subject to Ines Vidal's consent — the CL-1 field stays untouched and the assistant asks her with the correct 9.10 figure, never passing off 8.50. The intake booking (EV-1) only used the arrival date, which the correction leaves standing, so it is KEEP; the Sidamo offer at 6.60 is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Sidamo green restock\", \"counterpart\": \"Kadir Alemu\", \"org\": \"Adera Coffee Exporters\", \"item\": \"Sidamo green coffee\", \"unit\": \"kg\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Northlane house blend\", \"counterpart\": \"Ines Vidal\", \"org\": \"Northlane Cafés\", \"item\": \"Roasted house blend\", \"unit\": \"kg\", \"values\": [\"40\", \"60\", \"80\", \"120\"], \"place\": \"Northlane Cafés\"},\n  {\"kind\": \"order\", \"topic\": \"Kraft bag restock\", \"counterpart\": \"Selin Park\", \"org\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"unit\": \"units\", \"values\": [\"500\", \"1000\", \"2000\", \"3000\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Friday cupping slot\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"QC cupping session\", \"unit\": \"\", \"values\": [\"Cupping room\", \"Training room\"], \"place\": \"Roastery first floor\"},\n  {\"kind\": \"booking\", \"topic\": \"Monday courier run\", \"counterpart\": \"Marek Duda\", \"org\": \"City Sprint Couriers\", \"item\": \"Weekly delivery van run\", \"unit\": \"\", \"values\": [\"North route\", \"South route\", \"West route\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Label roll restock\", \"counterpart\": \"Petra Lind\", \"org\": \"NordPrint\", \"item\": \"Printed label rolls\", \"unit\": \"rolls\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"order\", \"topic\": \"Grinder cleaning tablets\", \"counterpart\": \"Owen Hart\", \"org\": \"PureBean Supplies\", \"item\": \"Grinder cleaning tablets\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekend market stall\", \"counterpart\": \"Ruth Coyle\", \"org\": \"Riverside Market\", \"item\": \"Coffee stall pitch\", \"unit\": \"\", \"values\": [\"Stall A\", \"Stall B\", \"Stall C\"], \"place\": \"Riverside Market\"},\n  {\"kind\": \"order\", \"topic\": \"Oat milk for tasting bar\", \"counterpart\": \"Fiona Doyle\", \"org\": \"GreenCart Wholesale\", \"item\": \"Oat milk cartons\", \"unit\": \"cases\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Roaster maintenance\", \"counterpart\": \"Jorge Ruiz\", \"org\": \"RoastTech Services\", \"item\": \"Roaster service visit\", \"unit\": \"\", \"values\": [\"Roaster 1\", \"Roaster 2\"], \"place\": \"Production floor\"},\n  {\"kind\": \"order\", \"topic\": \"Colombia green restock\", \"counterpart\": \"Ana Torres\", \"org\": \"Andes Green Traders\", \"item\": \"Colombia Excelso green coffee\", \"unit\": \"kg\", \"values\": [\"150\", \"200\", \"300\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training room\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"Barista training session\", \"unit\": \"\", \"values\": [\"Training room\", \"Cupping room\"], \"place\": \"Roastery first floor\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7662,
+    "completion_tokens": 4637,
+    "reasoning_tokens": 13,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0842466,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: the core has 29 events; need 32–65\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Guji lot price correction\",\n \"setting\": \"Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster\",\n \"owner\": \"Maya\",\n \"org\": \"Ember Roast Coffee\",\n \"now\": \"2026-10-30\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule: any change to a confirmed client supply price must be agreed by that client's named contact before we apply it. No exceptions, even when our own costs move.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Supplier purchase orders stay in draft until the supplier's written confirmation is on file and I have given the order a final check.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Confirming I am the named contact for Northlane Cafés. Our standing order is 120 kilos of roasted Guji each month, delivered the first Monday of the month.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pricing note to self: single-origin wholesale price is the green cost plus 1.70 per kilo. Keep this consistent across accounts.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-06-11\", \"type\": \"email\", \"from\": \"Fiona Doyle (GreenCart Wholesale)\", \"text\": \"Your account is set up with us. Oat milk cases ship twice weekly to the roastery, orders in by Tuesday and Thursday noon.\", \"role\": \"other\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Good news — confirming the Ethiopian Guji lot at 6.80 per kilo, with 500 kilos available for you. Arrival at your warehouse is set for Monday 21 September 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-18\", \"type\": \"notice\", \"from\": \"Jorge Ruiz (RoastTech Services)\", \"text\": \"Reminder: the shop grinder is due its six-month service in the week of 20 July. Please book a slot.\", \"role\": \"other\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked warehouse bay 2 for the morning of Monday 21 September 2026 to receive the Adera Guji arrival.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\", \"mark\": \"KEEP\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Raised a draft purchase order to Adera Coffee Exporters for 400 kilos of the Guji lot at 6.80 per kilo, total 2720. Keeping it in draft per my own rule until I give it a final check.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set Northlane Cafés' Guji supply price at 8.50 per kilo — the 6.80 green cost on the Adera draft order plus our standard 1.70 — for their 120 kilo monthly order, and recorded it on their account. Per the standing rule, any later change to this confirmed price needs Ines Vidal's agreement first.\", \"role\": \"decision\", \"rests_on\": [\"e8\", \"e4\", \"e1\"], \"record\": \"CL-1\", \"mark\": \"ASK\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"June delivery of 120 kilos received, all good. See you first Monday of July.\", \"role\": \"other\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-01\", \"type\": \"quote\", \"from\": \"Selin Park (PackRight Packaging)\", \"text\": \"Quote: 250g kraft coffee bags at 0.14 each, minimum run 1000, delivery to your roastery within ten days of order.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2000 kraft 250g bags from PackRight at 0.14 each, total 280, delivery to the roastery.\", \"role\": \"decision\", \"rests_on\": [\"e11\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-10\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Shipping confirmation: your Guji lot at 6.80 per kilo, 400 kilos reserved for you, arrival Monday 21 September 2026. Documents to follow.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e14\", \"date\": \"2026-07-14\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The cupping room is free every Friday from 09:00 to 12:00 if you want a regular QC slot.\", \"role\": \"fact\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-17\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the cupping room every Friday 09:00 to 12:00 for the QC cupping session.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"EV-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-24\", \"type\": \"quote\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Quote: printed label rolls, 22 per roll, any quantity from 10 rolls, one week turnaround.\", \"role\": \"fact\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-28\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 20 label rolls from NordPrint at 22 per roll, total 440.\", \"role\": \"decision\", \"rests_on\": [\"e16\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e31\", \"date\": \"2026-07-31\", \"type\": \"call\", \"from\": \"Ruth Coyle (Riverside Market)\", \"text\": \"Called about autumn market pitches — weekend stalls from mid-September, first come first served.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Marek Duda (City Sprint Couriers)\", \"text\": \"We can give you a van every Monday for the north delivery route, 95 per run, collecting from warehouse bay 2 at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Monday north-route van run with City Sprint Couriers at 95 per run, collecting from warehouse bay 2 at 08:00, starting 17 August.\", \"role\": \"decision\", \"rests_on\": [\"e18\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"invoice\", \"from\": \"Petra Lind (NordPrint)\", \"text\": \"Invoice for the 20 label rolls, 440 total, payment due by 15 November 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Owen Hart (PureBean Supplies)\", \"text\": \"Your grinder cleaning tablet order went out today, should be with you Monday.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"By the way, we also have a lovely Sidamo lot at 6.60 per kilo if you want a second origin this season. No pressure — your Guji is already reserved.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e33\", \"date\": \"2026-09-08\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do: check the fire extinguisher service tags in the roastery before the end of September.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Intake prep checklist: Guji lot, 400 kilos at 6.80 per kilo, arrives Monday 21 September, warehouse bay 2, pallets and moisture meter ready.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-09-16\", \"type\": \"message\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"The training room is free all day on Friday 9 October if you still want to run the new-starter barista session.\", \"role\": \"fact\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the new-starter barista training for Friday 9 October in the training room, Lena to lead.\", \"role\": \"decision\", \"rests_on\": [\"e23\"], \"record\": \"EV-4\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-21\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Guji arrival received at warehouse bay 2 this morning, 400 kilos checked in, moisture readings fine.\", \"role\": \"other\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-05\", \"type\": \"email\", \"from\": \"Kadir Alemu (Adera Coffee Exporters)\", \"text\": \"Apologies, Maya — while preparing your final invoice we caught a keying error on our side. The confirmed price for your Guji lot is 7.40 per kilo, not the 6.80 we quoted you in June. The 400 kilos delivered in September are unaffected; please amend your purchase order at 7.40.\", \"role\": \"change\", \"revokes\": [\"e5\"]},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"minutes\", \"from\": \"Lena Brooks (Ember Roast Coffee)\", \"text\": \"Team minutes: roast roster for the rest of October agreed, packaging stock holding up, Friday cupping attendance good.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock rotation: move the Brazil lot to the front rack, Guji is cupping beautifully this week.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-26\", \"type\": \"email\", \"from\": \"Ines Vidal (Northlane Cafés)\", \"text\": \"Hi Maya, could we get samples of the December blend idea when you have them? November delivery as normal, first Monday.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Purchase order — Adera Guji lot\", \"fields\": {\"supplier\": \"Adera Coffee Exporters\", \"item\": \"Ethiopian Guji green coffee\", \"quantity_kg\": \"400\", \"unit_price\": \"6.80\", \"total\": \"2720\", \"status\": \"draft\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Northlane Cafés monthly Guji supply\", \"fields\": {\"contact\": \"Ines Vidal\", \"item\": \"Roasted Guji\", \"quantity_kg\": \"120\", \"price_per_kg\": \"8.50\", \"next_delivery\": \"2026-11-02\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Green coffee intake — Adera Guji\", \"fields\": {\"date\": \"2026-09-21\", \"time\": \"09:00\", \"place\": \"Warehouse bay 2\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"PackRight kraft bags\", \"fields\": {\"supplier\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"quantity\": \"2000\", \"total\": \"280\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday QC cupping\", \"fields\": {\"day\": \"Friday\", \"time\": \"09:00\", \"place\": \"Cupping room\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"NordPrint label rolls\", \"fields\": {\"supplier\": \"NordPrint\", \"item\": \"Printed label rolls\", \"quantity\": \"20\", \"total\": \"440\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Monday north-route van run\", \"fields\": {\"day\": \"Monday\", \"time\": \"08:00\", \"place\": \"Warehouse bay 2\", \"courier\": \"City Sprint Couriers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"New-starter barista training\", \"fields\": {\"date\": \"2026-10-09\", \"time\": \"09:30\", \"place\": \"Training room\", \"lead\": \"Lena Brooks\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"CL-1\", \"fields\": [\"price_per_kg\"], \"from\": \"Ines Vidal (Northlane Cafés)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Can you finalise our draft purchase order to Adera for the Guji lot, and send Ines at Northlane our per-kilo price for the November Guji supply so she can sign it off before Monday's delivery?\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"unit_price\", \"value\": \"7.40\", \"stale\": [\"6.80\"]},\n  {\"record\": \"ORD-1\", \"field\": \"total\", \"value\": \"2960\", \"stale\": [\"2720\"]},\n  {\"message_to\": \"Ines Vidal (Northlane Cafés)\", \"regarding\": \"CL-1\", \"says\": [\"9.10\"], \"stale\": [\"8.50\"], \"task\": true}\n ],\n \"why\": \"Adera corrected the Guji green price from 6.80 to 7.40, so the draft purchase order (ORD-1) is REVISE: the assistant updates unit_price and total itself. Northlane's price was derived from the draft order (cost plus 1.70), so it becomes 9.10, but the standing rule makes any change to a confirmed client price subject to Ines Vidal's consent — the CL-1 field stays untouched and the assistant asks her with the correct 9.10 figure, never passing off 8.50. The intake booking (EV-1) only used the arrival date, which the correction leaves standing, so it is KEEP; the Sidamo offer at 6.60 is a distractor.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"Sidamo green restock\", \"counterpart\": \"Kadir Alemu\", \"org\": \"Adera Coffee Exporters\", \"item\": \"Sidamo green coffee\", \"unit\": \"kg\", \"values\": [\"100\", \"150\", \"200\", \"250\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Northlane house blend\", \"counterpart\": \"Ines Vidal\", \"org\": \"Northlane Cafés\", \"item\": \"Roasted house blend\", \"unit\": \"kg\", \"values\": [\"40\", \"60\", \"80\", \"120\"], \"place\": \"Northlane Cafés\"},\n  {\"kind\": \"order\", \"topic\": \"Kraft bag restock\", \"counterpart\": \"Selin Park\", \"org\": \"PackRight Packaging\", \"item\": \"250g kraft coffee bags\", \"unit\": \"units\", \"values\": [\"500\", \"1000\", \"2000\", \"3000\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Friday cupping slot\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"QC cupping session\", \"unit\": \"\", \"values\": [\"Cupping room\", \"Training room\", \"Tasting bar\"], \"place\": \"Roastery first floor\"},\n  {\"kind\": \"booking\", \"topic\": \"Monday courier run\", \"counterpart\": \"Marek Duda\", \"org\": \"City Sprint Couriers\", \"item\": \"Weekly delivery van run\", \"unit\": \"\", \"values\": [\"North route\", \"South route\", \"West route\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"order\", \"topic\": \"Label roll restock\", \"counterpart\": \"Petra Lind\", \"org\": \"NordPrint\", \"item\": \"Printed label rolls\", \"unit\": \"rolls\", \"values\": [\"10\", \"20\", \"40\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"order\", \"topic\": \"Grinder cleaning tablets\", \"counterpart\": \"Owen Hart\", \"org\": \"PureBean Supplies\", \"item\": \"Grinder cleaning tablets\", \"unit\": \"boxes\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Weekend market stall\", \"counterpart\": \"Ruth Coyle\", \"org\": \"Riverside Market\", \"item\": \"Coffee stall pitch\", \"unit\": \"\", \"values\": [\"Stall A\", \"Stall B\", \"Stall C\"], \"place\": \"Riverside Market\"},\n  {\"kind\": \"order\", \"topic\": \"Oat milk for tasting bar\", \"counterpart\": \"Fiona Doyle\", \"org\": \"GreenCart Wholesale\", \"item\": \"Oat milk cartons\", \"unit\": \"cases\", \"values\": [\"6\", \"12\", \"18\"], \"place\": \"Ember Roast roastery\"},\n  {\"kind\": \"booking\", \"topic\": \"Roaster maintenance\", \"counterpart\": \"Jorge Ruiz\", \"org\": \"RoastTech Services\", \"item\": \"Roaster service visit\", \"unit\": \"\", \"values\": [\"Roaster 1\", \"Roaster 2\", \"Roaster 3\"], \"place\": \"Production floor\"},\n  {\"kind\": \"order\", \"topic\": \"Colombia green restock\", \"counterpart\": \"Ana Torres\", \"org\": \"Andes Green Traders\", \"item\": \"Colombia Excelso green coffee\", \"unit\": \"kg\", \"values\": [\"150\", \"200\", \"300\"], \"place\": \"Warehouse bay 2\"},\n  {\"kind\": \"booking\", \"topic\": \"Staff training room\", \"counterpart\": \"Lena Brooks\", \"org\": \"Ember Roast Coffee\", \"item\": \"Barista training session\", \"unit\": \"\", \"values\": [\"Training room\", \"Cupping room\", \"Breakout space\"], \"place\": \"Roastery first floor\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 12396,
+    "completion_tokens": 4917,
+    "reasoning_tokens": 277,
+    "cached_tokens": 7424
+   },
+   "cost": 0.0908982,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- events must be listed in date order (e30 is dated before e29)\n- noise topic 'Friday cupping slot': values needs at least three entries\n- noise topic 'Roaster maintenance': values needs at least three entries\n- noise topic 'Staff training room': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Guji lot price correction",
+  "setting": "Coffee roastery operations lead at Ember Roast Coffee, a small-batch roaster",
+  "owner": "Maya",
+  "org": "Ember Roast Coffee",
+  "now": "2026-10-30",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Standing rule: any change to a confirmed client supply price must be agreed by that client's named contact before we apply it. No exceptions, even when our own costs move.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Supplier purchase orders stay in draft until the supplier's written confirmation is on file and I have given the order a final check.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Ines Vidal (Northlane Cafés)",
+    "text": "Confirming I am the named contact for Northlane Cafés. Our standing order is 120 kilos of roasted Guji each month, delivered the first Monday of the month.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "note",
+    "from": "Maya",
+    "text": "Pricing note to self: single-origin wholesale price is the green cost plus 1.70 per kilo. Keep this consistent across accounts.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-06-11",
+    "type": "email",
+    "from": "Fiona Doyle (GreenCart Wholesale)",
+    "text": "Your account is set up with us. Oat milk cases ship twice weekly to the roastery, orders in by Tuesday and Thursday noon.",
+    "role": "other"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Kadir Alemu (Adera Coffee Exporters)",
+    "text": "Good news — confirming the Ethiopian Guji lot at 6.80 per kilo, with 500 kilos available for you. Arrival at your warehouse is set for Monday 21 September 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-18",
+    "type": "notice",
+    "from": "Jorge Ruiz (RoastTech Services)",
+    "text": "Reminder: the shop grinder is due its six-month service in the week of 20 July. Please book a slot.",
+    "role": "other"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked warehouse bay 2 for the morning of Monday 21 September 2026 to receive the Adera Guji arrival.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Raised a draft purchase order to Adera Coffee Exporters for 400 kilos of the Guji lot at 6.80 per kilo, total 2720. Keeping it in draft per my own rule until I give it a final check.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set Northlane Cafés' Guji supply price at 8.50 per kilo — the 6.80 green cost on the Adera draft order plus our standard 1.70 — for their 120 kilo monthly order, and recorded it on their account. Per the standing rule, any later change to this confirmed price needs Ines Vidal's agreement first.",
+    "role": "decision",
+    "rests_on": [
+     "e8",
+     "e4",
+     "e1"
+    ],
+    "record": "CL-1",
+    "mark": "ASK"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Ines Vidal (Northlane Cafés)",
+    "text": "June delivery of 120 kilos received, all good. See you first Monday of July.",
+    "role": "other"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-01",
+    "type": "quote",
+    "from": "Selin Park (PackRight Packaging)",
+    "text": "Quote: 250g kraft coffee bags at 0.14 each, minimum run 1000, delivery to your roastery within ten days of order.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 2000 kraft 250g bags from PackRight at 0.14 each, total 280, delivery to the roastery.",
+    "role": "decision",
+    "rests_on": [
+     "e11"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-10",
+    "type": "email",
+    "from": "Kadir Alemu (Adera Coffee Exporters)",
+    "text": "Shipping confirmation: your Guji lot at 6.80 per kilo, 400 kilos reserved for you, arrival Monday 21 September 2026. Documents to follow.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-14",
+    "type": "message",
+    "from": "Lena Brooks (Ember Roast Coffee)",
+    "text": "The cupping room is free every Friday from 09:00 to 12:00 if you want a regular QC slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-17",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the cupping room every Friday 09:00 to 12:00 for the QC cupping session.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-24",
+    "type": "quote",
+    "from": "Petra Lind (NordPrint)",
+    "text": "Quote: printed label rolls, 22 per roll, any quantity from 10 rolls, one week turnaround.",
+    "role": "fact"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-28",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 20 label rolls from NordPrint at 22 per roll, total 440.",
+    "role": "decision",
+    "rests_on": [
+     "e16"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e31",
+    "date": "2026-07-31",
+    "type": "call",
+    "from": "Ruth Coyle (Riverside Market)",
+    "text": "Called about autumn market pitches — weekend stalls from mid-September, first come first served.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-10",
+    "type": "email",
+    "from": "Marek Duda (City Sprint Couriers)",
+    "text": "We can give you a van every Monday for the north delivery route, 95 per run, collecting from warehouse bay 2 at 08:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Monday north-route van run with City Sprint Couriers at 95 per run, collecting from warehouse bay 2 at 08:00, starting 17 August.",
+    "role": "decision",
+    "rests_on": [
+     "e18"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-20",
+    "type": "invoice",
+    "from": "Petra Lind (NordPrint)",
+    "text": "Invoice for the 20 label rolls, 440 total, payment due by 15 November 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-08-28",
+    "type": "message",
+    "from": "Owen Hart (PureBean Supplies)",
+    "text": "Your grinder cleaning tablet order went out today, should be with you Monday.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Kadir Alemu (Adera Coffee Exporters)",
+    "text": "By the way, we also have a lovely Sidamo lot at 6.60 per kilo if you want a second origin this season. No pressure — your Guji is already reserved.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e33",
+    "date": "2026-09-08",
+    "type": "task",
+    "from": "Maya",
+    "text": "To-do: check the fire extinguisher service tags in the roastery before the end of September.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-14",
+    "type": "note",
+    "from": "Maya",
+    "text": "Intake prep checklist: Guji lot, 400 kilos at 6.80 per kilo, arrives Monday 21 September, warehouse bay 2, pallets and moisture meter ready.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-16",
+    "type": "message",
+    "from": "Lena Brooks (Ember Roast Coffee)",
+    "text": "The training room is free all day on Friday 9 October if you still want to run the new-starter barista session.",
+    "role": "fact"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-18",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled the new-starter barista training for Friday 9 October in the training room, Lena to lead.",
+    "role": "decision",
+    "rests_on": [
+     "e23"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-21",
+    "type": "note",
+    "from": "Maya",
+    "text": "Guji arrival received at warehouse bay 2 this morning, 400 kilos checked in, moisture readings fine.",
+    "role": "other"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-05",
+    "type": "email",
+    "from": "Kadir Alemu (Adera Coffee Exporters)",
+    "text": "Apologies, Maya — while preparing your final invoice we caught a keying error on our side. The confirmed price for your Guji lot is 7.40 per kilo, not the 6.80 we quoted you in June. The 400 kilos delivered in September are unaffected; please amend your purchase order at 7.40.",
+    "role": "change",
+    "revokes": [
+     "e5"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-12",
+    "type": "minutes",
+    "from": "Lena Brooks (Ember Roast Coffee)",
+    "text": "Team minutes: roast roster for the rest of October agreed, packaging stock holding up, Friday cupping attendance good.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Maya",
+    "text": "Stock rotation: move the Brazil lot to the front rack, Guji is cupping beautifully this week.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-26",
+    "type": "email",
+    "from": "Ines Vidal (Northlane Cafés)",
+    "text": "Hi Maya, could we get samples of the December blend idea when you have them? November delivery as normal, first Monday.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Purchase order — Adera Guji lot",
+    "fields": {
+     "supplier": "Adera Coffee Exporters",
+     "item": "Ethiopian Guji green coffee",
+     "quantity_kg": "400",
+     "unit_price": "6.80",
+     "total": "2720",
+     "status": "draft"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Northlane Cafés monthly Guji supply",
+    "fields": {
+     "contact": "Ines Vidal",
+     "item": "Roasted Guji",
+     "quantity_kg": "120",
+     "price_per_kg": "8.50",
+     "next_delivery": "2026-11-02",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Green coffee intake — Adera Guji",
+    "fields": {
+     "date": "2026-09-21",
+     "time": "09:00",
+     "place": "Warehouse bay 2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "PackRight kraft bags",
+    "fields": {
+     "supplier": "PackRight Packaging",
+     "item": "250g kraft coffee bags",
+     "quantity": "2000",
+     "total": "280",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Friday QC cupping",
+    "fields": {
+     "day": "Friday",
+     "time": "09:00",
+     "place": "Cupping room",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "NordPrint label rolls",
+    "fields": {
+     "supplier": "NordPrint",
+     "item": "Printed label rolls",
+     "quantity": "20",
+     "total": "440",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Monday north-route van run",
+    "fields": {
+     "day": "Monday",
+     "time": "08:00",
+     "place": "Warehouse bay 2",
+     "courier": "City Sprint Couriers",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "New-starter barista training",
+    "fields": {
+     "date": "2026-10-09",
+     "time": "09:30",
+     "place": "Training room",
+     "lead": "Lena Brooks",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "CL-1",
+    "fields": [
+     "price_per_kg"
+    ],
+    "from": "Ines Vidal (Northlane Cafés)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Can you finalise our draft purchase order to Adera for the Guji lot, and send Ines at Northlane our per-kilo price for the November Guji supply so she can sign it off before Monday's delivery?",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "unit_price",
+    "value": "7.40",
+    "stale": [
+     "6.80"
+    ]
+   },
+   {
+    "record": "ORD-1",
+    "field": "total",
+    "value": "2960",
+    "stale": [
+     "2720"
+    ]
+   },
+   {
+    "message_to": "Ines Vidal (Northlane Cafés)",
+    "regarding": "CL-1",
+    "says": [
+     "9.10"
+    ],
+    "stale": [
+     "8.50"
+    ],
+    "task": true
+   }
+  ],
+  "why": "Adera corrected the Guji green price from 6.80 to 7.40, so the draft purchase order (ORD-1) is REVISE: the assistant updates unit_price and total itself. Northlane's price was derived from the draft order (cost plus 1.70), so it becomes 9.10, but the standing rule makes any change to a confirmed client price subject to Ines Vidal's consent — the CL-1 field stays untouched and the assistant asks her with the correct 9.10 figure, never passing off 8.50. The intake booking (EV-1) only used the arrival date, which the correction leaves standing, so it is KEEP; the Sidamo offer at 6.60 is a distractor.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "Sidamo green restock",
+    "counterpart": "Kadir Alemu",
+    "org": "Adera Coffee Exporters",
+    "item": "Sidamo green coffee",
+    "unit": "kg",
+    "values": [
+     "100",
+     "150",
+     "200",
+     "250"
+    ],
+    "place": "Warehouse bay 2"
+   },
+   {
+    "kind": "order",
+    "topic": "Northlane house blend",
+    "counterpart": "Ines Vidal",
+    "org": "Northlane Cafés",
+    "item": "Roasted house blend",
+    "unit": "kg",
+    "values": [
+     "40",
+     "60",
+     "80",
+     "120"
+    ],
+    "place": "Northlane Cafés"
+   },
+   {
+    "kind": "order",
+    "topic": "Kraft bag restock",
+    "counterpart": "Selin Park",
+    "org": "PackRight Packaging",
+    "item": "250g kraft coffee bags",
+    "unit": "units",
+    "values": [
+     "500",
+     "1000",
+     "2000",
+     "3000"
+    ],
+    "place": "Ember Roast roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "Friday cupping slot",
+    "counterpart": "Lena Brooks",
+    "org": "Ember Roast Coffee",
+    "item": "QC cupping session",
+    "unit": "",
+    "values": [
+     "Cupping room",
+     "Training room",
+     "Tasting bar"
+    ],
+    "place": "Roastery first floor"
+   },
+   {
+    "kind": "booking",
+    "topic": "Monday courier run",
+    "counterpart": "Marek Duda",
+    "org": "City Sprint Couriers",
+    "item": "Weekly delivery van run",
+    "unit": "",
+    "values": [
+     "North route",
+     "South route",
+     "West route"
+    ],
+    "place": "Warehouse bay 2"
+   },
+   {
+    "kind": "order",
+    "topic": "Label roll restock",
+    "counterpart": "Petra Lind",
+    "org": "NordPrint",
+    "item": "Printed label rolls",
+    "unit": "rolls",
+    "values": [
+     "10",
+     "20",
+     "40"
+    ],
+    "place": "Ember Roast roastery"
+   },
+   {
+    "kind": "order",
+    "topic": "Grinder cleaning tablets",
+    "counterpart": "Owen Hart",
+    "org": "PureBean Supplies",
+    "item": "Grinder cleaning tablets",
+    "unit": "boxes",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "Ember Roast roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "Weekend market stall",
+    "counterpart": "Ruth Coyle",
+    "org": "Riverside Market",
+    "item": "Coffee stall pitch",
+    "unit": "",
+    "values": [
+     "Stall A",
+     "Stall B",
+     "Stall C"
+    ],
+    "place": "Riverside Market"
+   },
+   {
+    "kind": "order",
+    "topic": "Oat milk for tasting bar",
+    "counterpart": "Fiona Doyle",
+    "org": "GreenCart Wholesale",
+    "item": "Oat milk cartons",
+    "unit": "cases",
+    "values": [
+     "6",
+     "12",
+     "18"
+    ],
+    "place": "Ember Roast roastery"
+   },
+   {
+    "kind": "booking",
+    "topic": "Roaster maintenance",
+    "counterpart": "Jorge Ruiz",
+    "org": "RoastTech Services",
+    "item": "Roaster service visit",
+    "unit": "",
+    "values": [
+     "Roaster 1",
+     "Roaster 2",
+     "Roaster 3"
+    ],
+    "place": "Production floor"
+   },
+   {
+    "kind": "order",
+    "topic": "Colombia green restock",
+    "counterpart": "Ana Torres",
+    "org": "Andes Green Traders",
+    "item": "Colombia Excelso green coffee",
+    "unit": "kg",
+    "values": [
+     "150",
+     "200",
+     "300"
+    ],
+    "place": "Warehouse bay 2"
+   },
+   {
+    "kind": "booking",
+    "topic": "Staff training room",
+    "counterpart": "Lena Brooks",
+    "org": "Ember Roast Coffee",
+    "item": "Barista training session",
+    "unit": "",
+    "values": [
+     "Training room",
+     "Cupping room",
+     "Breakout space"
+    ],
+    "place": "Roastery first floor"
+   }
+  ],
+  "id": "K1000-3-04",
+  "tier": 1000,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task asks to finalise ORD-1, but the expected state leaves its status as draft and does not resolve the standing requirement for Maya's final check. The corrected amounts, consent requirement, and unchanged intake booking otherwise follow from the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task asks to finalise ORD-1, but the expected state leaves its status as draft and does not resolve the standing requirement for Maya's final check. The corrected amounts, consent requirement, and unchanged intake booking otherwise follow from the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4399,
+    "completion_tokens": 271,
+    "reasoning_tokens": 185,
+    "cached_tokens": 0
+   },
+   "cost": 0.06853,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "553dab0666b5dcaf29eab6055a22f94a1583a7f53ae18e7c8eab1095db1700e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure holds: ORD-1 (B) rests on the corrected price, CL-1 (C) rests on ORD-1 and not directly on the correction, and EV-1 (D) cites the lot only for its arrival date, so it is KEEP. The counts meet tier 1,000 (33 core events, 8 decisions, change 25 days before the task day with 3 core events after it, and two echoes e13 and e22). The task's \\\"finalise\\\" wording sits slightly awkwardly with the expected state leaving ORD-1 in draft, though the e2 rule supports keeping it draft.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure holds: ORD-1 (B) rests on the corrected price, CL-1 (C) rests on ORD-1 and not directly on the correction, and EV-1 (D) cites the lot only for its arrival date, so it is KEEP. The counts meet tier 1,000 (33 core events, 8 decisions, change 25 days before the task day with 3 core events after it, and two echoes e13 and e22). The task's \"finalise\" wording sits slightly awkwardly with the expected state leaving ORD-1 in draft, though the e2 rule supports keeping it draft."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6294,
+    "completion_tokens": 1749,
+    "reasoning_tokens": 1497,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015039,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "553dab0666b5dcaf29eab6055a22f94a1583a7f53ae18e7c8eab1095db1700e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain structure fits class 3 (A=e5 corrected, B=e8/ORD-1 revised, C=e9/CL-1 two hops via B needing consent, D=e7/EV-1 kept on the untouched arrival date), and all expected values (7.40, 2960, 9.10) follow from the history's stated 1.70 markup and consent rule. The task forces real acts without naming the change, and the change sits mid-history with later events and two echoes of 6.80. Only minor ambiguity: the task says \\\"finalise\\\" the draft PO while the expected state leaves status \\\"draft\\\" and fixes only price/total, which could be scored either way.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain structure fits class 3 (A=e5 corrected, B=e8/ORD-1 revised, C=e9/CL-1 two hops via B needing consent, D=e7/EV-1 kept on the untouched arrival date), and all expected values (7.40, 2960, 9.10) follow from the history's stated 1.70 markup and consent rule. The task forces real acts without naming the change, and the change sits mid-history with later events and two echoes of 6.80. Only minor ambiguity: the task says \"finalise\" the draft PO while the expected state leaves status \"draft\" and fixes only price/total, which could be scored either way."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4512,
+    "completion_tokens": 696,
+    "reasoning_tokens": 503,
+    "cached_tokens": 384
+   },
+   "cost": 0.00894144,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "553dab0666b5dcaf29eab6055a22f94a1583a7f53ae18e7c8eab1095db1700e2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

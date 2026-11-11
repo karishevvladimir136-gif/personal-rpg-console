@@ -522,5 +522,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The catalogue addition leaves the standard gel price and all existing decisions unchanged, so ordering 20 standard bottles for 240 and confirming Darren's existing appointment are correct. The task requires a new order and a message without hinting at a change. The core has 22 events and five decisions, with the change 35 days before the task and two later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The catalogue addition leaves the standard gel price and all existing decisions unchanged, so ordering 20 standard bottles for 240 and confirming Darren's existing appointment are correct. The task requires a new order and a message without hinting at a change. The core has 22 events and five decisions, with the change 35 days before the task and two later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3431,
+    "completion_tokens": 176,
+    "reasoning_tokens": 66,
+    "cached_tokens": 0
+   },
+   "cost": 0.05168,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d40138b13e84f8fb7f888af7967bbd9bd8c192b096ce2ad68a9d800c865bd256",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change only introduces a new latex-free gel alongside the unchanged standard gel, revoking no fact or rule, so no decision is touched and the correct action is to carry out the task as planned: order 20 standard gel bottles at 12 (240, under the sign-off line) and confirm Darren's existing Friday 13 November 09:00 Room 2 appointment. The task requires concrete acts (ordering and messaging) without hinting at the change. Tier 100 requirements are met (22 core events, 5 decisions, change at event 84 of 100 with 16 events after, well over 5 days before 2026-11-09), and the change is an ordinary supplier email hidden mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change only introduces a new latex-free gel alongside the unchanged standard gel, revoking no fact or rule, so no decision is touched and the correct action is to carry out the task as planned: order 20 standard gel bottles at 12 (240, under the sign-off line) and confirm Darren's existing Friday 13 November 09:00 Room 2 appointment. The task requires concrete acts (ordering and messaging) without hinting at the change. Tier 100 requirements are met (22 core events, 5 decisions, change at event 84 of 100 with 16 events after, well over 5 days before 2026-11-09), and the change is an ordinary supplier email hidden mid-history."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3482,
+    "completion_tokens": 249,
+    "reasoning_tokens": 57,
+    "cached_tokens": 384
+   },
+   "cost": 0.00553264,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d40138b13e84f8fb7f888af7967bbd9bd8c192b096ce2ad68a9d800c865bd256",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e20, the latex-free gel at 14 that leaves the standard gel at 12 unchanged) revokes no fact, so no decision is touched and the expected state correctly keeps the plan intact. The task forces ordering and messaging, with no hint of a change, and the core meets the tier counts (22 events, 5 decisions, change 35 days before the task day with two events after it). The change is an ordinary catalogue email among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e20, the latex-free gel at 14 that leaves the standard gel at 12 unchanged) revokes no fact, so no decision is touched and the expected state correctly keeps the plan intact. The task forces ordering and messaging, with no hint of a change, and the core meets the tier counts (22 events, 5 decisions, change 35 days before the task day with two events after it). The change is an ordinary catalogue email among routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5062,
+    "completion_tokens": 1536,
+    "reasoning_tokens": 1336,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012742,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d40138b13e84f8fb7f888af7967bbd9bd8c192b096ce2ad68a9d800c865bd256",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

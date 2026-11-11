@@ -631,5 +631,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The scenario is a clean class-3 chain: the price change revokes fact e3, ORD-1 rests on it (REVISE to 48/8640), the invoice CL-1 rests on ORD-1 and is gated by the written-consent rule e1 (ASK), while EV-2 cites only date availability, which the change leaves standing (KEEP). Tier 500 constraints are met (28 core events, 8 decisions, change 15 days before task day, 6 core events after it, echo at e19 restating 42). The change is buried mid-history with ordinary surrounding events and the task phrasing never hints at it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scenario is a clean class-3 chain: the price change revokes fact e3, ORD-1 rests on it (REVISE to 48/8640), the invoice CL-1 rests on ORD-1 and is gated by the written-consent rule e1 (ASK), while EV-2 cites only date availability, which the change leaves standing (KEEP). Tier 500 constraints are met (28 core events, 8 decisions, change 15 days before task day, 6 core events after it, echo at e19 restating 42). The change is buried mid-history with ordinary surrounding events and the task phrasing never hints at it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4010,
+    "completion_tokens": 345,
+    "reasoning_tokens": 165,
+    "cached_tokens": 384
+   },
+   "cost": 0.00669424,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f61a5c1d74267e551dc4c999c35195b4df504f64009f9fecf7580b58409dc9c8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The new price fixes the order at 48 per plate and 8640 total; the dependent confirmed invoice requires Sofia's written consent before modification, while the availability-based tasting booking remains unchanged. The task requires updating and confirming the order and requesting consent without mentioning the change. The core has 28 events and 8 decisions, an old-price echo, and a change 15 days before the task with later events following it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new price fixes the order at 48 per plate and 8640 total; the dependent confirmed invoice requires Sofia's written consent before modification, while the availability-based tasting booking remains unchanged. The task requires updating and confirming the order and requesting consent without mentioning the change. The core has 28 events and 8 decisions, an old-price echo, and a change 15 days before the task with later events following it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3917,
+    "completion_tokens": 203,
+    "reasoning_tokens": 81,
+    "cached_tokens": 0
+   },
+   "cost": 0.059105,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f61a5c1d74267e551dc4c999c35195b4df504f64009f9fecf7580b58409dc9c8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state is internally consistent: 180 × 48 = 8640, the Dana message carries the new figures, CL-1 gets only a consent request, and the tasting booking stays KEEP. The intended class 3 is wrong, though: e22 revokes the 42 per-plate fact (e3), with ORD-1 touched one hop away and CL-1 two hops away, which is the stale-fact pattern of class 1, and the echo e19 fits that class. The core meets the tier counts, the 15-day gap before the task day, the six post-change core events and the echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state is internally consistent: 180 × 48 = 8640, the Dana message carries the new figures, CL-1 gets only a consent request, and the tasting booking stays KEEP. The intended class 3 is wrong, though: e22 revokes the 42 per-plate fact (e3), with ORD-1 touched one hop away and CL-1 two hops away, which is the stale-fact pattern of class 1, and the echo e19 fits that class. The core meets the tier counts, the 15-day gap before the task day, the six post-change core events and the echo."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5762,
+    "completion_tokens": 1447,
+    "reasoning_tokens": 1206,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012997,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "f61a5c1d74267e551dc4c999c35195b4df504f64009f9fecf7580b58409dc9c8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

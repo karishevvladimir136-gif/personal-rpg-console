@@ -546,5 +546,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change merely restates the 800 sign-off rule, so no existing decision is touched and the correct act is placing the 288 order directly. Core has 24 events, 6 decisions, change 40 days before the task day, with 5 core events after it, meeting tier 100. The change sits at event 69 of 100 as an ordinary notice, and the 900 quote is a fair distractor that would need sign-off but is not the task.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change merely restates the 800 sign-off rule, so no existing decision is touched and the correct act is placing the 288 order directly. Core has 24 events, 6 decisions, change 40 days before the task day, with 5 core events after it, meeting tier 100. The change sits at event 69 of 100 as an ordinary notice, and the 900 quote is a fair distractor that would need sign-off but is not the task."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3742,
+    "completion_tokens": 246,
+    "reasoning_tokens": 103,
+    "cached_tokens": 384
+   },
+   "cost": 0.00588344,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1da73cb409535457d09be7140b693cbd06dfcc5d2005aeba411015b1e295771f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state lists 'stale' entries (quantity 50 and totals 480 and 900) that imply an existing record is changed, which contradicts the control design that touches nothing; the 900 figure is a quote that was never recorded as a workplace record. The task itself requires placing an order, so completing it is an act, though the task does not hint at any change. The core meets the tier counts, the change's distance from the task day, and the post-change event requirement.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state lists 'stale' entries (quantity 50 and totals 480 and 900) that imply an existing record is changed, which contradicts the control design that touches nothing; the 900 figure is a quote that was never recorded as a workplace record. The task itself requires placing an order, so completing it is an act, though the task does not hint at any change. The core meets the tier counts, the change's distance from the task day, and the post-change event requirement."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5292,
+    "completion_tokens": 1257,
+    "reasoning_tokens": 1060,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011577,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1da73cb409535457d09be7140b693cbd06dfcc5d2005aeba411015b1e295771f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The notice restates the existing rule without changing it, so existing records remain unchanged and the requested 30-copy order totals 288 with no sign-off required. The core has 24 events and 6 decisions, with the change 40 days before the task and five core events after it. The task requires placing an order, and the notice is an ordinary event within the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The notice restates the existing rule without changing it, so existing records remain unchanged and the requested 30-copy order totals 288 with no sign-off required. The core has 24 events and 6 decisions, with the change 40 days before the task and five core events after it. The task requires placing an order, and the notice is an ordinary event within the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3675,
+    "completion_tokens": 173,
+    "reasoning_tokens": 59,
+    "cached_tokens": 0
+   },
+   "cost": 0.05458,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "1da73cb409535457d09be7140b693cbd06dfcc5d2005aeba411015b1e295771f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

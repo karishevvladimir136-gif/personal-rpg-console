@@ -1,0 +1,765 @@
+{
+ "id": "K1000-4-04",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 4,
+ "idx": 3,
+ "setting": "Charity shop manager at Second Chance Thrift, run by a homelessness charity",
+ "prompt_sha256": "bb3fd0bfca7d9de0598ca35fa99fab8e32aa42a3b0d5ee8e2298212943e98302",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Saturday collection run beside the new van depot\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Maya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-11-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a donor collection booking is confirmed with a donor, the date or time of that collection may only be changed with that donor's agreement. If a change is needed, ask the donor first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for ordering: any supplier order over 300 needs deputy manager Tom Riley's sign-off before it is placed. Orders of 300 or less I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Our Transit van KH-7 hires at 65 per day. It is collected from our main depot at 42 Harbour Road, where the yard opens at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Donation sacks are 4 each, price labels are 6 per roll, and gift-aid envelopes are 12 per box of 100. We deliver within 2 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"call\", \"from\": \"Ada Flynn\", \"text\": \"Ada Flynn called to offer a sofa and two armchairs from her late mother's flat. She would like them collected from 12 Mill Lane and said mornings suit her best.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"We have six bags of staff-donated clothing ready at the bakery. They will be bagged and waiting by the back door on Friday 13 November.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Volunteer rota: Paul Vickers drives the hire van for us every Saturday and holds the right licence for the Transit.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"Heads-up: the back stockroom only has floor space for about 12 sacks of donations at a time, so please keep incoming sack deliveries modest.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Just a reminder of our terms: all hired vans must be back at the depot by 17:00 on the hire day.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 40 donation sacks from TidyPack Supplies at 4 each, total 160, under the 300 sign-off limit, delivery expected within 2 working days.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-27\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Confirming your order of 40 donation sacks was delivered to Second Chance Thrift this morning.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 5 rolls of price labels from TidyPack Supplies at 6 per roll, total 30.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Transit van KH-7 from Kendal Vehicle Hire for Saturday 14 November at 65 for the day, to be collected from the main depot at 42 Harbour Road when the yard opens at 08:00 and returned by 17:00. Paul Vickers will drive.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the furniture collection run for Saturday 14 November: Paul Vickers will take the hired van KH-7 to 12 Mill Lane at 09:00 to collect Ada Flynn's sofa and two armchairs, which suits her morning preference.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Confirming your booking: Transit van KH-7 is reserved for Saturday 14 November, collection from our main depot at 42 Harbour Road.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the Greenfield Bakery clothing pickup for Friday 13 November at 10:30, collecting the six bags from the bakery's back door. Paul Vickers agreed to drive that morning using his own car.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned the sorting rota: volunteers Jen Okafor and Marco Reyes will sort the furniture-run donations in the stockroom on the afternoon of Saturday 14 November, after the morning collection from 12 Mill Lane.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e8\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"letter\", \"from\": \"Harbour Road Traders Association\", \"text\": \"Invitation to the autumn street market on Harbour Road; stalls cost 25 for charity organisations.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2 boxes of gift-aid envelopes (200 envelopes) from TidyPack Supplies at 12 per box, total 24.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Ada Flynn\", \"text\": \"Just checking the sofa collection is still on. I am happy with whatever morning time you land on, as long as someone lets me know.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Maya\", \"text\": \"Replied to Ada Flynn: yes, the collection of your sofa and two armchairs from 12 Mill Lane is firmly in the diary for the morning of Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-21\", \"type\": \"fact\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"New volunteer Marco Reyes starts with us in September and will need till training before he can cover the counter.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled till training for Marco Reyes in the shop back room on Thursday 12 November at 18:00, run by Tom Riley, so Marco can cover the counter afterwards.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-5\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"The staff are adding more clothes to the donation pile, so it may be seven bags rather than six by November.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Good news from Kendal Vehicle Hire: we have opened a second depot at Riverside Yard on Dock Street. Customers can now also collect and return hire vans there as well as at our main depot at 42 Harbour Road.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pinned reminder above my desk: Saturday 14 November run — collect van KH-7 from the main depot at 42 Harbour Road at 08:00, Ada Flynn's furniture at 12 Mill Lane at 09:00, van back by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-25\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"One practical note about our new site: Riverside Yard on Dock Street closes at 14:00 on Saturdays, while the main depot at 42 Harbour Road stays open until 17:00 as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Routine confirmation ahead of your hire: Transit van KH-7 remains booked for Saturday 14 November, to be collected from the main depot at 42 Harbour Road from 08:00 and returned by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Paul Vickers\", \"text\": \"Looking forward to the 14th. I will pick the van up at Harbour Road at eight and be at Mill Lane for nine as planned.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e30\", \"date\": \"2026-11-01\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Our November stock levels are healthy on donation sacks, price labels and gift-aid envelopes, so we can turn around orders quickly this month.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-11-02\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do before Friday 6 November: count how many donation sacks are left on the stockroom shelf after the weekend sort.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-03\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Counted the shelf: only 6 donation sacks left, and the November donations will need more.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-04\", \"type\": \"message\", \"from\": \"Jen Okafor\", \"text\": \"Marco and I are both confirmed for the sorting shift on the afternoon of Saturday 14 November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Donation sacks restock\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"40\", \"total\": \"160\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Price labels\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"price labels\", \"quantity\": \"5\", \"total\": \"30\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Gift-aid envelopes\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"quantity\": \"2\", \"total\": \"24\", \"status\": \"received\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Furniture collection run - Ada Flynn\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:00\", \"place\": \"12 Mill Lane\", \"driver\": \"Paul Vickers\", \"van\": \"Transit van KH-7\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Van hire KH-7\", \"fields\": {\"date\": \"2026-11-14\", \"van\": \"Transit van KH-7\", \"depot\": \"42 Harbour Road\", \"collect\": \"08:00\", \"return_by\": \"17:00\", \"cost\": \"65\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Greenfield Bakery clothing pickup\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:30\", \"place\": \"Greenfield Bakery back door\", \"driver\": \"Paul Vickers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Sorting shift - stockroom\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"14:00\", \"place\": \"shop stockroom\", \"volunteers\": \"Jen Okafor and Marco Reyes\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Till training - Marco Reyes\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"18:00\", \"place\": \"shop back room\", \"trainer\": \"Tom Riley\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ada Flynn\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send a note to Ada Flynn confirming we will be at 12 Mill Lane at 09:00 on Saturday 14 November to collect her sofa and armchairs, and order 20 more donation sacks from TidyPack Supplies — we are nearly out.\",\n \"expect\": [\n  {\"message_to\": \"Ada Flynn\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-14\", \"09:00\", \"12 Mill Lane\"], \"stale\": [\"Riverside Yard\", \"Dock Street\"], \"task\": true},\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"20\", \"total\": \"80\", \"status\": \"placed\"}, \"stale\": {\"quantity\": [\"40\"]}, \"task\": true}\n ],\n \"why\": \"The only change in the history is Kendal Vehicle Hire's new Riverside Yard depot, which is beside the topic and alters nothing: the van booking EV-2 stands at the main depot on 42 Harbour Road and the collection run EV-1 stands at 09:00 on 14 November, so no decision is touched and no record is marked. The task is carried out on the plan as it stands: a confirmation to Ada Flynn carrying the current date, time and address, and a new order of 20 sacks at 4 each (total 80, under the 300 sign-off limit). The Riverside Yard Saturday hours note is a distractor and must not move the depot or the schedule.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"donation sack restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"price labels\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"hanger restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"clothes hangers\", \"unit\": \"bundles\", \"values\": [\"4\", \"6\", \"10\", \"12\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"envelope restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"unit\": \"boxes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"multi-surface cleaner\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restocks\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly van for donation runs\", \"counterpart\": \"Sara Bloom\", \"org\": \"Kendal Vehicle Hire\", \"item\": \"Transit van hire\", \"values\": [\"42 Harbour Road\", \"Riverside Yard\"], \"place\": \"42 Harbour Road\"},\n  {\"kind\": \"booking\", \"topic\": \"bakery donation pickups\", \"counterpart\": \"Ruth Doyle\", \"org\": \"Greenfield Bakery\", \"item\": \"clothing donation pickup\", \"values\": [\"back door\", \"front counter\", \"side alley\"], \"place\": \"Greenfield Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"community hall table\", \"counterpart\": \"Lena Marsh\", \"org\": \"Harbour Road Community Hall\", \"item\": \"fundraising table booking\", \"values\": [\"main hall\", \"side room\", \"foyer\"], \"place\": \"Harbour Road Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"volunteer meeting room\", \"counterpart\": \"Tom Riley\", \"org\": \"Second Chance Thrift\", \"item\": \"volunteer briefing slot\", \"values\": [\"shop back room\", \"stockroom\", \"till area\"], \"place\": \"Second Chance Thrift\"},\n  {\"kind\": \"order\", \"topic\": \"tea and coffee for volunteers\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"instant coffee tins\", \"unit\": \"tins\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Second Chance Thrift kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3248,
+    "completion_tokens": 7447,
+    "reasoning_tokens": 2919,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1131546,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Saturday collection run beside the new van depot\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Maya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-11-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a donor collection booking is confirmed with a donor, the date or time of that collection may only be changed with that donor's agreement. If a change is needed, ask the donor first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for ordering: any supplier order over 300 needs deputy manager Tom Riley's sign-off before it is placed. Orders of 300 or less I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Our Transit van KH-7 hires at 65 per day. It is collected from our main depot at 42 Harbour Road, where the yard opens at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Donation sacks are 4 each, price labels are 6 per roll, and gift-aid envelopes are 12 per box of 100. We deliver within 2 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"call\", \"from\": \"Ada Flynn\", \"text\": \"Ada Flynn called to offer a sofa and two armchairs from her late mother's flat. She would like them collected from 12 Mill Lane and said mornings suit her best.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"We have six bags of staff-donated clothing ready at the bakery. They will be bagged and waiting by the back door on Friday 13 November.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Volunteer rota: Paul Vickers drives the hire van for us every Saturday and holds the right licence for the Transit.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"Heads-up: the back stockroom only has floor space for about 12 sacks of donations at a time, so please keep incoming sack deliveries modest.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Just a reminder of our terms: all hired vans must be back at the depot by 17:00 on the hire day.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 40 donation sacks from TidyPack Supplies at 4 each, total 160, under the 300 sign-off limit, delivery expected within 2 working days.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-27\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Confirming your order of 40 donation sacks was delivered to Second Chance Thrift this morning.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 5 rolls of price labels from TidyPack Supplies at 6 per roll, total 30.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Transit van KH-7 from Kendal Vehicle Hire for Saturday 14 November at 65 for the day, to be collected from the main depot at 42 Harbour Road when the yard opens at 08:00 and returned by 17:00. Paul Vickers will drive.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the furniture collection run for Saturday 14 November: Paul Vickers will take the hired van KH-7 to 12 Mill Lane at 09:00 to collect Ada Flynn's sofa and two armchairs, which suits her morning preference.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Confirming your booking: Transit van KH-7 is reserved for Saturday 14 November, collection from our main depot at 42 Harbour Road.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the Greenfield Bakery clothing pickup for Friday 13 November at 10:30, collecting the six bags from the bakery's back door. Paul Vickers agreed to drive that morning using his own car.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned the sorting rota: volunteers Jen Okafor and Marco Reyes will sort the furniture-run donations in the stockroom on the afternoon of Saturday 14 November, after the morning collection from 12 Mill Lane.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e8\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"letter\", \"from\": \"Harbour Road Traders Association\", \"text\": \"Invitation to the autumn street market on Harbour Road; stalls cost 25 for charity organisations.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2 boxes of gift-aid envelopes (200 envelopes) from TidyPack Supplies at 12 per box, total 24.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Ada Flynn\", \"text\": \"Just checking the sofa collection is still on. I am happy with whatever morning time you land on, as long as someone lets me know.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Maya\", \"text\": \"Replied to Ada Flynn: yes, the collection of your sofa and two armchairs from 12 Mill Lane is firmly in the diary for the morning of Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"New volunteer Marco Reyes starts with us in September and will need till training before he can cover the counter.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled till training for Marco Reyes in the shop back room on Thursday 12 November at 18:00, run by Tom Riley, so Marco can cover the counter afterwards.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-5\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"The staff are adding more clothes to the donation pile, so it may be seven bags rather than six by November.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Good news from Kendal Vehicle Hire: we have opened a second depot at Riverside Yard on Dock Street. Customers can now also collect and return hire vans there as well as at our main depot at 42 Harbour Road.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pinned reminder above my desk: Saturday 14 November run — collect van KH-7 from the main depot at 42 Harbour Road at 08:00, Ada Flynn's furniture at 12 Mill Lane at 09:00, van back by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-25\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"One practical note about our new site: Riverside Yard on Dock Street closes at 14:00 on Saturdays, while the main depot at 42 Harbour Road stays open until 17:00 as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Routine confirmation ahead of your hire: Transit van KH-7 remains booked for Saturday 14 November, to be collected from the main depot at 42 Harbour Road from 08:00 and returned by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Paul Vickers\", \"text\": \"Looking forward to the 14th. I will pick the van up at Harbour Road at eight and be at Mill Lane for nine as planned.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e30\", \"date\": \"2026-11-01\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Our November stock levels are healthy on donation sacks, price labels and gift-aid envelopes, so we can turn around orders quickly this month.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-11-02\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do before Friday 6 November: count how many donation sacks are left on the stockroom shelf after the weekend sort.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-03\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Counted the shelf: only 6 donation sacks left, and the November donations will need more.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-04\", \"type\": \"message\", \"from\": \"Jen Okafor\", \"text\": \"Marco and I are both confirmed for the sorting shift on the afternoon of Saturday 14 November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Donation sacks restock\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"40\", \"total\": \"160\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Price labels\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"price labels\", \"quantity\": \"5\", \"total\": \"30\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Gift-aid envelopes\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"quantity\": \"2\", \"total\": \"24\", \"status\": \"received\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Furniture collection run - Ada Flynn\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:00\", \"place\": \"12 Mill Lane\", \"driver\": \"Paul Vickers\", \"van\": \"Transit van KH-7\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Van hire KH-7\", \"fields\": {\"date\": \"2026-11-14\", \"van\": \"Transit van KH-7\", \"depot\": \"42 Harbour Road\", \"collect\": \"08:00\", \"return_by\": \"17:00\", \"cost\": \"65\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Greenfield Bakery clothing pickup\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:30\", \"place\": \"Greenfield Bakery back door\", \"driver\": \"Paul Vickers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Sorting shift - stockroom\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"14:00\", \"place\": \"shop stockroom\", \"volunteers\": \"Jen Okafor and Marco Reyes\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Till training - Marco Reyes\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"18:00\", \"place\": \"shop back room\", \"trainer\": \"Tom Riley\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ada Flynn\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send a note to Ada Flynn confirming we will be at 12 Mill Lane at 09:00 on Saturday 14 November to collect her sofa and armchairs, and order 20 more donation sacks from TidyPack Supplies — we are nearly out.\",\n \"expect\": [\n  {\"message_to\": \"Ada Flynn\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-14\", \"09:00\", \"12 Mill Lane\"], \"stale\": [\"Riverside Yard\", \"Dock Street\"], \"task\": true},\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"20\", \"total\": \"80\", \"status\": \"placed\"}, \"stale\": {\"quantity\": [\"40\"]}, \"task\": true}\n ],\n \"why\": \"The only change in the history is Kendal Vehicle Hire's new Riverside Yard depot, which is beside the topic and alters nothing: the van booking EV-2 stands at the main depot on 42 Harbour Road and the collection run EV-1 stands at 09:00 on 14 November, so no decision is touched and no record is marked. The task is carried out on the plan as it stands: a confirmation to Ada Flynn carrying the current date, time and address, and a new order of 20 sacks at 4 each (total 80, under the 300 sign-off limit). The Riverside Yard Saturday hours note is a distractor and must not move the depot or the schedule.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"donation sack restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"price labels\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"hanger restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"clothes hangers\", \"unit\": \"bundles\", \"values\": [\"4\", \"6\", \"10\", \"12\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"envelope restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"unit\": \"boxes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"multi-surface cleaner\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restocks\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly van for donation runs\", \"counterpart\": \"Sara Bloom\", \"org\": \"Kendal Vehicle Hire\", \"item\": \"Transit van hire\", \"values\": [\"42 Harbour Road\", \"Riverside Yard\"], \"place\": \"42 Harbour Road\"},\n  {\"kind\": \"booking\", \"topic\": \"bakery donation pickups\", \"counterpart\": \"Ruth Doyle\", \"org\": \"Greenfield Bakery\", \"item\": \"clothing donation pickup\", \"values\": [\"back door\", \"front counter\", \"side alley\"], \"place\": \"Greenfield Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"community hall table\", \"counterpart\": \"Lena Marsh\", \"org\": \"Harbour Road Community Hall\", \"item\": \"fundraising table booking\", \"values\": [\"main hall\", \"side room\", \"foyer\"], \"place\": \"Harbour Road Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"volunteer meeting room\", \"counterpart\": \"Tom Riley\", \"org\": \"Second Chance Thrift\", \"item\": \"volunteer briefing slot\", \"values\": [\"shop back room\", \"stockroom\", \"till area\"], \"place\": \"Second Chance Thrift\"},\n  {\"kind\": \"order\", \"topic\": \"tea and coffee for volunteers\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"instant coffee tins\", \"unit\": \"tins\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Second Chance Thrift kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7879,
+    "completion_tokens": 4536,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0833826,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e22: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Saturday collection run beside the new van depot\",\n \"setting\": \"Charity shop manager at Second Chance Thrift, run by a homelessness charity\",\n \"owner\": \"Maya\",\n \"org\": \"Second Chance Thrift\",\n \"now\": \"2026-11-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for the shop: once a donor collection booking is confirmed with a donor, the date or time of that collection may only be changed with that donor's agreement. If a change is needed, ask the donor first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Maya\", \"text\": \"Standing rule for ordering: any supplier order over 300 needs deputy manager Tom Riley's sign-off before it is placed. Orders of 300 or less I can place directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Our Transit van KH-7 hires at 65 per day. It is collected from our main depot at 42 Harbour Road, where the yard opens at 08:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"quote\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Donation sacks are 4 each, price labels are 6 per roll, and gift-aid envelopes are 12 per box of 100. We deliver within 2 working days.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"call\", \"from\": \"Ada Flynn\", \"text\": \"Ada Flynn called to offer a sofa and two armchairs from her late mother's flat. She would like them collected from 12 Mill Lane and said mornings suit her best.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"We have six bags of staff-donated clothing ready at the bakery. They will be bagged and waiting by the back door on Friday 13 November.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Volunteer rota: Paul Vickers drives the hire van for us every Saturday and holds the right licence for the Transit.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"Heads-up: the back stockroom only has floor space for about 12 sacks of donations at a time, so please keep incoming sack deliveries modest.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-20\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Just a reminder of our terms: all hired vans must be back at the depot by 17:00 on the hire day.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 40 donation sacks from TidyPack Supplies at 4 each, total 160, under the 300 sign-off limit, delivery expected within 2 working days.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-27\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Confirming your order of 40 donation sacks was delivered to Second Chance Thrift this morning.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 5 rolls of price labels from TidyPack Supplies at 6 per roll, total 30.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Transit van KH-7 from Kendal Vehicle Hire for Saturday 14 November at 65 for the day, to be collected from the main depot at 42 Harbour Road when the yard opens at 08:00 and returned by 17:00. Paul Vickers will drive.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e9\", \"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the furniture collection run for Saturday 14 November: Paul Vickers will take the hired van KH-7 to 12 Mill Lane at 09:00 to collect Ada Flynn's sofa and two armchairs, which suits her morning preference.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e13\"], \"record\": \"EV-1\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Confirming your booking: Transit van KH-7 is reserved for Saturday 14 November, collection from our main depot at 42 Harbour Road.\", \"role\": \"other\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-10\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the Greenfield Bakery clothing pickup for Friday 13 November at 10:30, collecting the six bags from the bakery's back door. Paul Vickers agreed to drive that morning using his own car.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e7\"], \"record\": \"EV-3\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned the sorting rota: volunteers Jen Okafor and Marco Reyes will sort the furniture-run donations in the stockroom on the afternoon of Saturday 14 November, after the morning collection from 12 Mill Lane.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e8\"], \"record\": \"EV-4\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"letter\", \"from\": \"Harbour Road Traders Association\", \"text\": \"Invitation to the autumn street market on Harbour Road; stalls cost 25 for charity organisations.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-08-03\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered 2 boxes of gift-aid envelopes (200 envelopes) from TidyPack Supplies at 12 per box, total 24.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e2\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-10\", \"type\": \"email\", \"from\": \"Ada Flynn\", \"text\": \"Just checking the sofa collection is still on. I am happy with whatever morning time you land on, as long as someone lets me know.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Maya\", \"text\": \"Replied to Ada Flynn: yes, the collection of your sofa and two armchairs from 12 Mill Lane is firmly in the diary for the morning of Saturday 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-21\", \"type\": \"email\", \"from\": \"Tom Riley (deputy manager)\", \"text\": \"New volunteer Marco Reyes starts with us in September and will need till training before he can cover the counter.\", \"role\": \"fact\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled till training for Marco Reyes in the shop back room on Thursday 12 November at 18:00, run by Tom Riley, so Marco can cover the counter afterwards.\", \"role\": \"decision\", \"rests_on\": [\"e22\"], \"record\": \"EV-5\"},\n  {\"id\": \"e24\", \"date\": \"2026-09-14\", \"type\": \"email\", \"from\": \"Ruth Doyle (Greenfield Bakery)\", \"text\": \"The staff are adding more clothes to the donation pile, so it may be seven bags rather than six by November.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-10\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Good news from Kendal Vehicle Hire: we have opened a second depot at Riverside Yard on Dock Street. Customers can now also collect and return hire vans there as well as at our main depot at 42 Harbour Road.\", \"role\": \"change\", \"revokes\": []},\n  {\"id\": \"e26\", \"date\": \"2026-10-20\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Pinned reminder above my desk: Saturday 14 November run — collect van KH-7 from the main depot at 42 Harbour Road at 08:00, Ada Flynn's furniture at 12 Mill Lane at 09:00, van back by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e27\", \"date\": \"2026-10-25\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"One practical note about our new site: Riverside Yard on Dock Street closes at 14:00 on Saturdays, while the main depot at 42 Harbour Road stays open until 17:00 as usual.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e28\", \"date\": \"2026-10-28\", \"type\": \"email\", \"from\": \"Sara Bloom (Kendal Vehicle Hire)\", \"text\": \"Routine confirmation ahead of your hire: Transit van KH-7 remains booked for Saturday 14 November, to be collected from the main depot at 42 Harbour Road from 08:00 and returned by 17:00.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e29\", \"date\": \"2026-10-30\", \"type\": \"message\", \"from\": \"Paul Vickers\", \"text\": \"Looking forward to the 14th. I will pick the van up at Harbour Road at eight and be at Mill Lane for nine as planned.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e30\", \"date\": \"2026-11-01\", \"type\": \"email\", \"from\": \"Nina Hale (TidyPack Supplies)\", \"text\": \"Our November stock levels are healthy on donation sacks, price labels and gift-aid envelopes, so we can turn around orders quickly this month.\", \"role\": \"fact\"},\n  {\"id\": \"e31\", \"date\": \"2026-11-02\", \"type\": \"task\", \"from\": \"Maya\", \"text\": \"To-do before Friday 6 November: count how many donation sacks are left on the stockroom shelf after the weekend sort.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-03\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Counted the shelf: only 6 donation sacks left, and the November donations will need more.\", \"role\": \"fact\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-04\", \"type\": \"message\", \"from\": \"Jen Okafor\", \"text\": \"Marco and I are both confirmed for the sorting shift on the afternoon of Saturday 14 November.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Donation sacks restock\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"40\", \"total\": \"160\", \"status\": \"received\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Price labels\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"price labels\", \"quantity\": \"5\", \"total\": \"30\", \"status\": \"received\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Gift-aid envelopes\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"quantity\": \"2\", \"total\": \"24\", \"status\": \"received\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Furniture collection run - Ada Flynn\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"09:00\", \"place\": \"12 Mill Lane\", \"driver\": \"Paul Vickers\", \"van\": \"Transit van KH-7\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Van hire KH-7\", \"fields\": {\"date\": \"2026-11-14\", \"van\": \"Transit van KH-7\", \"depot\": \"42 Harbour Road\", \"collect\": \"08:00\", \"return_by\": \"17:00\", \"cost\": \"65\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Greenfield Bakery clothing pickup\", \"fields\": {\"date\": \"2026-11-13\", \"time\": \"10:30\", \"place\": \"Greenfield Bakery back door\", \"driver\": \"Paul Vickers\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Sorting shift - stockroom\", \"fields\": {\"date\": \"2026-11-14\", \"time\": \"14:00\", \"place\": \"shop stockroom\", \"volunteers\": \"Jen Okafor and Marco Reyes\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-5\", \"collection\": \"schedule\", \"title\": \"Till training - Marco Reyes\", \"fields\": {\"date\": \"2026-11-12\", \"time\": \"18:00\", \"place\": \"shop back room\", \"trainer\": \"Tom Riley\", \"status\": \"booked\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"time\"], \"from\": \"Ada Flynn\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please send a note to Ada Flynn confirming we will be at 12 Mill Lane at 09:00 on Saturday 14 November to collect her sofa and armchairs, and order 20 more donation sacks from TidyPack Supplies — we are nearly out.\",\n \"expect\": [\n  {\"message_to\": \"Ada Flynn\", \"regarding\": \"EV-1\", \"says\": [\"2026-11-14\", \"09:00\", \"12 Mill Lane\"], \"stale\": [\"Riverside Yard\", \"Dock Street\"], \"task\": true},\n  {\"create\": \"orders\", \"fields\": {\"supplier\": \"TidyPack Supplies\", \"item\": \"donation sacks\", \"quantity\": \"20\", \"total\": \"80\", \"status\": \"placed\"}, \"stale\": {\"quantity\": [\"40\"]}, \"task\": true}\n ],\n \"why\": \"The only change in the history is Kendal Vehicle Hire's new Riverside Yard depot, which is beside the topic and alters nothing: the van booking EV-2 stands at the main depot on 42 Harbour Road and the collection run EV-1 stands at 09:00 on 14 November, so no decision is touched and no record is marked. The task is carried out on the plan as it stands: a confirmation to Ada Flynn carrying the current date, time and address, and a new order of 20 sacks at 4 each (total 80, under the 300 sign-off limit). The Riverside Yard Saturday hours note is a distractor and must not move the depot or the schedule.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"donation sack restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"price labels\", \"unit\": \"rolls\", \"values\": [\"3\", \"5\", \"8\", \"10\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"hanger restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"clothes hangers\", \"unit\": \"bundles\", \"values\": [\"4\", \"6\", \"10\", \"12\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"envelope restocks\", \"counterpart\": \"Nina Hale\", \"org\": \"TidyPack Supplies\", \"item\": \"gift-aid envelopes\", \"unit\": \"boxes\", \"values\": [\"1\", \"2\", \"3\", \"4\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning supplies\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"multi-surface cleaner\", \"unit\": \"bottles\", \"values\": [\"6\", \"12\", \"18\", \"24\"], \"place\": \"Second Chance Thrift stockroom\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bag restocks\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"paper carrier bags\", \"unit\": \"packs\", \"values\": [\"5\", \"10\", \"15\", \"20\"], \"place\": \"Second Chance Thrift till\"},\n  {\"kind\": \"booking\", \"topic\": \"weekly van for donation runs\", \"counterpart\": \"Sara Bloom\", \"org\": \"Kendal Vehicle Hire\", \"item\": \"Transit van hire\", \"values\": [\"Transit van KH-7\", \"Transit van KH-3\", \"Box van KB-2\"], \"place\": \"42 Harbour Road\"},\n  {\"kind\": \"booking\", \"topic\": \"bakery donation pickups\", \"counterpart\": \"Ruth Doyle\", \"org\": \"Greenfield Bakery\", \"item\": \"clothing donation pickup\", \"values\": [\"back door\", \"front counter\", \"side alley\"], \"place\": \"Greenfield Bakery\"},\n  {\"kind\": \"booking\", \"topic\": \"community hall table\", \"counterpart\": \"Lena Marsh\", \"org\": \"Harbour Road Community Hall\", \"item\": \"fundraising table booking\", \"values\": [\"main hall\", \"side room\", \"foyer\"], \"place\": \"Harbour Road Community Hall\"},\n  {\"kind\": \"booking\", \"topic\": \"volunteer meeting room\", \"counterpart\": \"Tom Riley\", \"org\": \"Second Chance Thrift\", \"item\": \"volunteer briefing slot\", \"values\": [\"shop back room\", \"stockroom\", \"till area\"], \"place\": \"Second Chance Thrift\"},\n  {\"kind\": \"order\", \"topic\": \"tea and coffee for volunteers\", \"counterpart\": \"Owen Price\", \"org\": \"BrightShelf Wholesale\", \"item\": \"instant coffee tins\", \"unit\": \"tins\", \"values\": [\"2\", \"4\", \"6\", \"8\"], \"place\": \"Second Chance Thrift kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 12471,
+    "completion_tokens": 4546,
+    "reasoning_tokens": 6,
+    "cached_tokens": 7680
+   },
+   "cost": 0.084867,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'weekly van for donation runs': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Saturday collection run beside the new van depot",
+  "setting": "Charity shop manager at Second Chance Thrift, run by a homelessness charity",
+  "owner": "Maya",
+  "org": "Second Chance Thrift",
+  "now": "2026-11-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Standing rule for the shop: once a donor collection booking is confirmed with a donor, the date or time of that collection may only be changed with that donor's agreement. If a change is needed, ask the donor first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Maya",
+    "text": "Standing rule for ordering: any supplier order over 300 needs deputy manager Tom Riley's sign-off before it is placed. Orders of 300 or less I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "Our Transit van KH-7 hires at 65 per day. It is collected from our main depot at 42 Harbour Road, where the yard opens at 08:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "quote",
+    "from": "Nina Hale (TidyPack Supplies)",
+    "text": "Donation sacks are 4 each, price labels are 6 per roll, and gift-aid envelopes are 12 per box of 100. We deliver within 2 working days.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "call",
+    "from": "Ada Flynn",
+    "text": "Ada Flynn called to offer a sofa and two armchairs from her late mother's flat. She would like them collected from 12 Mill Lane and said mornings suit her best.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Ruth Doyle (Greenfield Bakery)",
+    "text": "We have six bags of staff-donated clothing ready at the bakery. They will be bagged and waiting by the back door on Friday 13 November.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Maya",
+    "text": "Volunteer rota: Paul Vickers drives the hire van for us every Saturday and holds the right licence for the Transit.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Tom Riley (deputy manager)",
+    "text": "Heads-up: the back stockroom only has floor space for about 12 sacks of donations at a time, so please keep incoming sack deliveries modest.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-20",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "Just a reminder of our terms: all hired vans must be back at the depot by 17:00 on the hire day.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 40 donation sacks from TidyPack Supplies at 4 each, total 160, under the 300 sign-off limit, delivery expected within 2 working days.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-27",
+    "type": "email",
+    "from": "Nina Hale (TidyPack Supplies)",
+    "text": "Confirming your order of 40 donation sacks was delivered to Second Chance Thrift this morning.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 5 rolls of price labels from TidyPack Supplies at 6 per roll, total 30.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Transit van KH-7 from Kendal Vehicle Hire for Saturday 14 November at 65 for the day, to be collected from the main depot at 42 Harbour Road when the yard opens at 08:00 and returned by 17:00. Paul Vickers will drive.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e9",
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled the furniture collection run for Saturday 14 November: Paul Vickers will take the hired van KH-7 to 12 Mill Lane at 09:00 to collect Ada Flynn's sofa and two armchairs, which suits her morning preference.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e13"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-08",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "Confirming your booking: Transit van KH-7 is reserved for Saturday 14 November, collection from our main depot at 42 Harbour Road.",
+    "role": "other"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-10",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled the Greenfield Bakery clothing pickup for Friday 13 November at 10:30, collecting the six bags from the bakery's back door. Paul Vickers agreed to drive that morning using his own car.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e7"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Assigned the sorting rota: volunteers Jen Okafor and Marco Reyes will sort the furniture-run donations in the stockroom on the afternoon of Saturday 14 November, after the morning collection from 12 Mill Lane.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e8"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-20",
+    "type": "letter",
+    "from": "Harbour Road Traders Association",
+    "text": "Invitation to the autumn street market on Harbour Road; stalls cost 25 for charity organisations.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-03",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered 2 boxes of gift-aid envelopes (200 envelopes) from TidyPack Supplies at 12 per box, total 24.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e2"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-10",
+    "type": "email",
+    "from": "Ada Flynn",
+    "text": "Just checking the sofa collection is still on. I am happy with whatever morning time you land on, as long as someone lets me know.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Maya",
+    "text": "Replied to Ada Flynn: yes, the collection of your sofa and two armchairs from 12 Mill Lane is firmly in the diary for the morning of Saturday 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-21",
+    "type": "email",
+    "from": "Tom Riley (deputy manager)",
+    "text": "New volunteer Marco Reyes starts with us in September and will need till training before he can cover the counter.",
+    "role": "fact"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled till training for Marco Reyes in the shop back room on Thursday 12 November at 18:00, run by Tom Riley, so Marco can cover the counter afterwards.",
+    "role": "decision",
+    "rests_on": [
+     "e22"
+    ],
+    "record": "EV-5"
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-14",
+    "type": "email",
+    "from": "Ruth Doyle (Greenfield Bakery)",
+    "text": "The staff are adding more clothes to the donation pile, so it may be seven bags rather than six by November.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-10",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "Good news from Kendal Vehicle Hire: we have opened a second depot at Riverside Yard on Dock Street. Customers can now also collect and return hire vans there as well as at our main depot at 42 Harbour Road.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-20",
+    "type": "note",
+    "from": "Maya",
+    "text": "Pinned reminder above my desk: Saturday 14 November run — collect van KH-7 from the main depot at 42 Harbour Road at 08:00, Ada Flynn's furniture at 12 Mill Lane at 09:00, van back by 17:00.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-25",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "One practical note about our new site: Riverside Yard on Dock Street closes at 14:00 on Saturdays, while the main depot at 42 Harbour Road stays open until 17:00 as usual.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-28",
+    "type": "email",
+    "from": "Sara Bloom (Kendal Vehicle Hire)",
+    "text": "Routine confirmation ahead of your hire: Transit van KH-7 remains booked for Saturday 14 November, to be collected from the main depot at 42 Harbour Road from 08:00 and returned by 17:00.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-30",
+    "type": "message",
+    "from": "Paul Vickers",
+    "text": "Looking forward to the 14th. I will pick the van up at Harbour Road at eight and be at Mill Lane for nine as planned.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e30",
+    "date": "2026-11-01",
+    "type": "email",
+    "from": "Nina Hale (TidyPack Supplies)",
+    "text": "Our November stock levels are healthy on donation sacks, price labels and gift-aid envelopes, so we can turn around orders quickly this month.",
+    "role": "fact"
+   },
+   {
+    "id": "e31",
+    "date": "2026-11-02",
+    "type": "task",
+    "from": "Maya",
+    "text": "To-do before Friday 6 November: count how many donation sacks are left on the stockroom shelf after the weekend sort.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-03",
+    "type": "note",
+    "from": "Maya",
+    "text": "Counted the shelf: only 6 donation sacks left, and the November donations will need more.",
+    "role": "fact"
+   },
+   {
+    "id": "e33",
+    "date": "2026-11-04",
+    "type": "message",
+    "from": "Jen Okafor",
+    "text": "Marco and I are both confirmed for the sorting shift on the afternoon of Saturday 14 November.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Donation sacks restock",
+    "fields": {
+     "supplier": "TidyPack Supplies",
+     "item": "donation sacks",
+     "quantity": "40",
+     "total": "160",
+     "status": "received"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Price labels",
+    "fields": {
+     "supplier": "TidyPack Supplies",
+     "item": "price labels",
+     "quantity": "5",
+     "total": "30",
+     "status": "received"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Gift-aid envelopes",
+    "fields": {
+     "supplier": "TidyPack Supplies",
+     "item": "gift-aid envelopes",
+     "quantity": "2",
+     "total": "24",
+     "status": "received"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Furniture collection run - Ada Flynn",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "09:00",
+     "place": "12 Mill Lane",
+     "driver": "Paul Vickers",
+     "van": "Transit van KH-7",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Van hire KH-7",
+    "fields": {
+     "date": "2026-11-14",
+     "van": "Transit van KH-7",
+     "depot": "42 Harbour Road",
+     "collect": "08:00",
+     "return_by": "17:00",
+     "cost": "65",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Greenfield Bakery clothing pickup",
+    "fields": {
+     "date": "2026-11-13",
+     "time": "10:30",
+     "place": "Greenfield Bakery back door",
+     "driver": "Paul Vickers",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Sorting shift - stockroom",
+    "fields": {
+     "date": "2026-11-14",
+     "time": "14:00",
+     "place": "shop stockroom",
+     "volunteers": "Jen Okafor and Marco Reyes",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-5",
+    "collection": "schedule",
+    "title": "Till training - Marco Reyes",
+    "fields": {
+     "date": "2026-11-12",
+     "time": "18:00",
+     "place": "shop back room",
+     "trainer": "Tom Riley",
+     "status": "booked"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "time"
+    ],
+    "from": "Ada Flynn",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please send a note to Ada Flynn confirming we will be at 12 Mill Lane at 09:00 on Saturday 14 November to collect her sofa and armchairs, and order 20 more donation sacks from TidyPack Supplies — we are nearly out.",
+  "expect": [
+   {
+    "message_to": "Ada Flynn",
+    "regarding": "EV-1",
+    "says": [
+     "2026-11-14",
+     "09:00",
+     "12 Mill Lane"
+    ],
+    "stale": [
+     "Riverside Yard",
+     "Dock Street"
+    ],
+    "task": true
+   },
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "TidyPack Supplies",
+     "item": "donation sacks",
+     "quantity": "20",
+     "total": "80",
+     "status": "placed"
+    },
+    "stale": {
+     "quantity": [
+      "40"
+     ]
+    },
+    "task": true
+   }
+  ],
+  "why": "The only change in the history is Kendal Vehicle Hire's new Riverside Yard depot, which is beside the topic and alters nothing: the van booking EV-2 stands at the main depot on 42 Harbour Road and the collection run EV-1 stands at 09:00 on 14 November, so no decision is touched and no record is marked. The task is carried out on the plan as it stands: a confirmation to Ada Flynn carrying the current date, time and address, and a new order of 20 sacks at 4 each (total 80, under the 300 sign-off limit). The Riverside Yard Saturday hours note is a distractor and must not move the depot or the schedule.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "donation sack restocks",
+    "counterpart": "Nina Hale",
+    "org": "TidyPack Supplies",
+    "item": "price labels",
+    "unit": "rolls",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "10"
+    ],
+    "place": "Second Chance Thrift stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "hanger restocks",
+    "counterpart": "Nina Hale",
+    "org": "TidyPack Supplies",
+    "item": "clothes hangers",
+    "unit": "bundles",
+    "values": [
+     "4",
+     "6",
+     "10",
+     "12"
+    ],
+    "place": "Second Chance Thrift stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "envelope restocks",
+    "counterpart": "Nina Hale",
+    "org": "TidyPack Supplies",
+    "item": "gift-aid envelopes",
+    "unit": "boxes",
+    "values": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "Second Chance Thrift till"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning supplies",
+    "counterpart": "Owen Price",
+    "org": "BrightShelf Wholesale",
+    "item": "multi-surface cleaner",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Second Chance Thrift stockroom"
+   },
+   {
+    "kind": "order",
+    "topic": "carrier bag restocks",
+    "counterpart": "Owen Price",
+    "org": "BrightShelf Wholesale",
+    "item": "paper carrier bags",
+    "unit": "packs",
+    "values": [
+     "5",
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Second Chance Thrift till"
+   },
+   {
+    "kind": "booking",
+    "topic": "weekly van for donation runs",
+    "counterpart": "Sara Bloom",
+    "org": "Kendal Vehicle Hire",
+    "item": "Transit van hire",
+    "values": [
+     "Transit van KH-7",
+     "Transit van KH-3",
+     "Box van KB-2"
+    ],
+    "place": "42 Harbour Road"
+   },
+   {
+    "kind": "booking",
+    "topic": "bakery donation pickups",
+    "counterpart": "Ruth Doyle",
+    "org": "Greenfield Bakery",
+    "item": "clothing donation pickup",
+    "values": [
+     "back door",
+     "front counter",
+     "side alley"
+    ],
+    "place": "Greenfield Bakery"
+   },
+   {
+    "kind": "booking",
+    "topic": "community hall table",
+    "counterpart": "Lena Marsh",
+    "org": "Harbour Road Community Hall",
+    "item": "fundraising table booking",
+    "values": [
+     "main hall",
+     "side room",
+     "foyer"
+    ],
+    "place": "Harbour Road Community Hall"
+   },
+   {
+    "kind": "booking",
+    "topic": "volunteer meeting room",
+    "counterpart": "Tom Riley",
+    "org": "Second Chance Thrift",
+    "item": "volunteer briefing slot",
+    "values": [
+     "shop back room",
+     "stockroom",
+     "till area"
+    ],
+    "place": "Second Chance Thrift"
+   },
+   {
+    "kind": "order",
+    "topic": "tea and coffee for volunteers",
+    "counterpart": "Owen Price",
+    "org": "BrightShelf Wholesale",
+    "item": "instant coffee tins",
+    "unit": "tins",
+    "values": [
+     "2",
+     "4",
+     "6",
+     "8"
+    ],
+    "place": "Second Chance Thrift kitchen"
+   }
+  ],
+  "id": "K1000-4-04",
+  "tier": 1000,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The new depot is additive and beside the topic: EV-2's depot, time and return remain fixed by e3/e9/e28, so nothing is touched and the plan stands. The task's acts and values (message with 2026-11-14, 09:00, 12 Mill Lane; order of 20 sacks at 4 each = 80, under the 300 limit) follow directly from the history. Tier is met: 33 core events, 7 decisions, change 26 days before the task day with several core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The new depot is additive and beside the topic: EV-2's depot, time and return remain fixed by e3/e9/e28, so nothing is touched and the plan stands. The task's acts and values (message with 2026-11-14, 09:00, 12 Mill Lane; order of 20 sacks at 4 each = 80, under the 300 limit) follow directly from the history. Tier is met: 33 core events, 7 decisions, change 26 days before the task day with several core events after it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4416,
+    "completion_tokens": 229,
+    "reasoning_tokens": 67,
+    "cached_tokens": 384
+   },
+   "cost": 0.00675224,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2bf2575941c385cd2327da0480971b3b54266ac3d72cf56c7e62dd1a25c680d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The optional second depot changes neither the confirmed van booking nor Ada's collection, and the task requires a confirmation message and a new order of 20 sacks costing 80, with no consent needed. The core has 33 events and 8 decisions; the change is 26 days before the task, with multiple later events, and class 4 requires no stale-value echoes. The change appears as an ordinary email within the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The optional second depot changes neither the confirmed van booking nor Ada's collection, and the task requires a confirmation message and a new order of 20 sacks costing 80, with no consent needed. The core has 33 events and 8 decisions; the change is 26 days before the task, with multiple later events, and class 4 requires no stale-value echoes. The change appears as an ordinary email within the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4353,
+    "completion_tokens": 200,
+    "reasoning_tokens": 77,
+    "cached_tokens": 0
+   },
+   "cost": 0.064405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2bf2575941c385cd2327da0480971b3b54266ac3d72cf56c7e62dd1a25c680d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Riverside Yard depot) leaves EV-2's main-depot booking and EV-1's 09:00 run correct, so the control class and the no-marks expected state hold, and the consent map matches rule e1. Counts meet tier 1,000 (33 core events, 8 decisions, change 26 days before the task day with 8 core events after it). Minor blemishes: the expected state's \\\"stale\\\" annotation on the new order (quantity 40) is spurious because ORD-1 is correctly recorded, and 20 sacks sits uneasily with the 12-sack stockroom guidance in e8, though the 40-sack order already exceeded it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Riverside Yard depot) leaves EV-2's main-depot booking and EV-1's 09:00 run correct, so the control class and the no-marks expected state hold, and the consent map matches rule e1. Counts meet tier 1,000 (33 core events, 8 decisions, change 26 days before the task day with 8 core events after it). Minor blemishes: the expected state's \"stale\" annotation on the new order (quantity 40) is spurious because ORD-1 is correctly recorded, and 20 sacks sits uneasily with the 12-sack stockroom guidance in e8, though the 40-sack order already exceeded it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6365,
+    "completion_tokens": 1779,
+    "reasoning_tokens": 1509,
+    "cached_tokens": 0
+   },
+   "cost": 0.001526,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "2bf2575941c385cd2327da0480971b3b54266ac3d72cf56c7e62dd1a25c680d8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

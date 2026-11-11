@@ -652,5 +652,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The drafting-paper order, delivery confirmation, and supplier message follow from the task and amended rule. However, the task does not authorize progressing the unrelated marble order, and its approval rule requires consent before confirmation—not an immediate consent request whenever finance requirements change. Requiring an ORD-2 consent request therefore makes the expected final state unjustifiably broader than the task.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The drafting-paper order, delivery confirmation, and supplier message follow from the task and amended rule. However, the task does not authorize progressing the unrelated marble order, and its approval rule requires consent before confirmation—not an immediate consent request whenever finance requirements change. Requiring an ORD-2 consent request therefore makes the expected final state unjustifiably broader than the task."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4252,
+    "completion_tokens": 220,
+    "reasoning_tokens": 111,
+    "cached_tokens": 0
+   },
+   "cost": 0.0641425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4be555ef52e53dec166a1b10490170e8e11e8aa512a182206d0901a229bd25f8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The threshold change cleanly voids the sign-off basis of ORD-1 (580) and its two-hop dependent EV-2, keeps ORD-3 (920 > 750) standing, and ORD-2 correctly becomes ASK because the Harbourview client-approval rule (e6) still requires Tomas Reyes's consent. The task demands placing the order, confirming delivery and messaging Gill without hinting at the change. Tier requirements (28 core events, 7 decisions, change well before task day, echo at e20, events after the change) are all met and the change sits mid-history as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The threshold change cleanly voids the sign-off basis of ORD-1 (580) and its two-hop dependent EV-2, keeps ORD-3 (920 > 750) standing, and ORD-2 correctly becomes ASK because the Harbourview client-approval rule (e6) still requires Tomas Reyes's consent. The task demands placing the order, confirming delivery and messaging Gill without hinting at the change. Tier requirements (28 core events, 7 decisions, change well before task day, echo at e20, events after the change) are all met and the change sits mid-history as an ordinary email."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4353,
+    "completion_tokens": 436,
+    "reasoning_tokens": 265,
+    "cached_tokens": 384
+   },
+   "cost": 0.00757484,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4be555ef52e53dec166a1b10490170e8e11e8aa512a182206d0901a229bd25f8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change at e23 amends the sign-off rule e4 from 400 to 750 pounds, so ORD-1 (580) becomes REVISE, ORD-2 stays ASK under the Tomas consent rule, and ORD-3 (920) and ORD-4 (310) stay KEEP, which fits class 2. The core has 28 events, 7 decisions, a change 21 days before the task day, 5 core events after it, and an echo at e20, and the change is an ordinary-looking purchasing update.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change at e23 amends the sign-off rule e4 from 400 to 750 pounds, so ORD-1 (580) becomes REVISE, ORD-2 stays ASK under the Tomas consent rule, and ORD-3 (920) and ORD-4 (310) stay KEEP, which fits class 2. The core has 28 events, 7 decisions, a change 21 days before the task day, 5 core events after it, and an echo at e20, and the change is an ordinary-looking purchasing update."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6315,
+    "completion_tokens": 1833,
+    "reasoning_tokens": 1610,
+    "cached_tokens": 0
+   },
+   "cost": 0.001548,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4be555ef52e53dec166a1b10490170e8e11e8aa512a182206d0901a229bd25f8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

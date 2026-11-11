@@ -665,5 +665,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment governs orders placed from 1 November, but ORD-5 was already renewed in September; nothing explicitly requires retroactive sign-off for that existing commitment. The house policy prohibits placing or confirming without written consent, not changing an approval field to indicate that consent is required, so the consent-map restriction on relabeling ORD-1 and ORD-5 is unsupported. The remaining tier, task, class, and hiding requirements are met.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment governs orders placed from 1 November, but ORD-5 was already renewed in September; nothing explicitly requires retroactive sign-off for that existing commitment. The house policy prohibits placing or confirming without written consent, not changing an approval field to indicate that consent is required, so the consent-map restriction on relabeling ORD-1 and ORD-5 is unsupported. The remaining tier, task, class, and hiding requirements are met."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4147,
+    "completion_tokens": 245,
+    "reasoning_tokens": 120,
+    "cached_tokens": 0
+   },
+   "cost": 0.06408,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e06d108ed8bdaef9c5447220740d47482d192bd148e98ed202352e045f59a65",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment at e23 changes the sign-off rule R (e1) from 1000 to 800, and the marks on e6, e7, e8 and e11 follow from it: the 700 bottle order and the already-signed-off 1240 glass order stand, while the 950 cleaner restock and the 860 sanitiser draft are affected. The core has 29 events, 8 decisions, and a change 18 days before the task with 82 events after it, and it is phrased as an ordinary 'lowering the sign-off line' email. The task requires placing and confirming an order and finishing a draft, so it forces an action.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment at e23 changes the sign-off rule R (e1) from 1000 to 800, and the marks on e6, e7, e8 and e11 follow from it: the 700 bottle order and the already-signed-off 1240 glass order stand, while the 950 cleaner restock and the 860 sanitiser draft are affected. The core has 29 events, 8 decisions, and a change 18 days before the task with 82 events after it, and it is phrased as an ordinary 'lowering the sign-off line' email. The task requires placing and confirming an order and finishing a draft, so it forces an action."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6007,
+    "completion_tokens": 2219,
+    "reasoning_tokens": 1967,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017102,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e06d108ed8bdaef9c5447220740d47482d192bd148e98ed202352e045f59a65",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 800-threshold amendment cleanly yields ASK on ORD-1/ORD-5 (over 800, house policy e29 requires Marta's written consent before placing/confirming), REVISE on ORD-4's approval field (860 now over the line, label fixed by the change, no consent needed since the draft is only being readied, not sent), and KEEP on ORD-3 (700 under 800), ORD-2 (already signed off), and EV-2 (only delivery timing). The task forces present action (placing/confirming November's cleaner restock, finishing the draft) without hinting at the change, and tier requirements (28 core events, 8 decisions, change 18 days before task day, 5 core events after it, echo e21 restating the 1000 threshold) are all met, with the change embedded mid-history at event 418.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 800-threshold amendment cleanly yields ASK on ORD-1/ORD-5 (over 800, house policy e29 requires Marta's written consent before placing/confirming), REVISE on ORD-4's approval field (860 now over the line, label fixed by the change, no consent needed since the draft is only being readied, not sent), and KEEP on ORD-3 (700 under 800), ORD-2 (already signed off), and EV-2 (only delivery timing). The task forces present action (placing/confirming November's cleaner restock, finishing the draft) without hinting at the change, and tier requirements (28 core events, 8 decisions, change 18 days before task day, 5 core events after it, echo e21 restating the 1000 threshold) are all met, with the change embedded mid-history at event 418."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4268,
+    "completion_tokens": 876,
+    "reasoning_tokens": 645,
+    "cached_tokens": 384
+   },
+   "cost": 0.00939184,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9e06d108ed8bdaef9c5447220740d47482d192bd148e98ed202352e045f59a65",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

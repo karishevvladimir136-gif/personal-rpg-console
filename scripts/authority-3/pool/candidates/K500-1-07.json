@@ -624,5 +624,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The replacement fleet slot fixes the inspections at 09:30 on 3 and 10 November, while Amy's linked confirmed lesson requires her consent before moving. The revoked standing-slot fact affects both direct and downstream decisions, matching class 1. The core has 28 events and 7 decisions, a change 21 days before the task, a stale-value echo, and multiple later events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The replacement fleet slot fixes the inspections at 09:30 on 3 and 10 November, while Amy's linked confirmed lesson requires her consent before moving. The revoked standing-slot fact affects both direct and downstream decisions, matching class 1. The core has 28 events and 7 decisions, a change 21 days before the task, a stale-value echo, and multiple later events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4027,
+    "completion_tokens": 215,
+    "reasoning_tokens": 99,
+    "cached_tokens": 0
+   },
+   "cost": 0.06108,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "88fbf1e755437bdcc3f43b893d3b3a56018738a0f0174e848174dbc5b42811b5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e21) cleanly revokes fact e7, making EV-1 a direct REVISE and EV-2 a two-hop REVISE via e9, while EV-3 is ASK under Marta's standing consent rule e1, matching the consent map. The task requires emailing Marcus and updating the diary without hinting at any change. Tier 500 requirements are met (28 core events, 7 decisions, change 21 days before the task day, later core events, and echo e18 restating the stale Friday slot).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e21) cleanly revokes fact e7, making EV-1 a direct REVISE and EV-2 a two-hop REVISE via e9, while EV-3 is ASK under Marta's standing consent rule e1, matching the consent map. The task requires emailing Marcus and updating the diary without hinting at any change. Tier 500 requirements are met (28 core events, 7 decisions, change 21 days before the task day, later core events, and echo e18 restating the stale Friday slot)."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4109,
+    "completion_tokens": 336,
+    "reasoning_tokens": 181,
+    "cached_tokens": 384
+   },
+   "cost": 0.00679324,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "88fbf1e755437bdcc3f43b893d3b3a56018738a0f0174e848174dbc5b42811b5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e21) revokes the Friday 08:00 slot (e7), and the touched decisions are EV-1 (REVISE, one hop), EV-2 (REVISE, two hops via EV-1) and EV-3 (ASK, consent under e1), which fits class 1. The expected dates are correct (3 and 10 November are Tuesdays, and 6 and 13 November were Fridays), the consent map matches rule e1, and the core counts, change distance and echo (e18) meet the 500-tier requirements. The change is an ordinary 'one change on our side' email with later events after it, and the task forces an act without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e21) revokes the Friday 08:00 slot (e7), and the touched decisions are EV-1 (REVISE, one hop), EV-2 (REVISE, two hops via EV-1) and EV-3 (ASK, consent under e1), which fits class 1. The expected dates are correct (3 and 10 November are Tuesdays, and 6 and 13 November were Fridays), the consent map matches rule e1, and the core counts, change distance and echo (e18) meet the 500-tier requirements. The change is an ordinary 'one change on our side' email with later events after it, and the task forces an act without naming the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5830,
+    "completion_tokens": 2300,
+    "reasoning_tokens": 2036,
+    "cached_tokens": 0
+   },
+   "cost": 0.001733,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "88fbf1e755437bdcc3f43b893d3b3a56018738a0f0174e848174dbc5b42811b5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

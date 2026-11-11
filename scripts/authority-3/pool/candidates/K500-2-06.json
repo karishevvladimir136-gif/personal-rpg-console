@@ -636,5 +636,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Room A seats only eight, so moving the twelve-person internal meetings there is not an unambiguously valid arrangement. The amendment specifies review meetings, so the tax-update training session's prescribed move is not clearly covered. Contacting Gillian about December exceeds the task's explicit November scope, and Room B's reopening date is not fixed.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Room A seats only eight, so moving the twelve-person internal meetings there is not an unambiguously valid arrangement. The amendment specifies review meetings, so the tax-update training session's prescribed move is not clearly covered. Contacting Gillian about December exceeds the task's explicit November scope, and Room B's reopening date is not fixed."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4243,
+    "completion_tokens": 181,
+    "reasoning_tokens": 77,
+    "cached_tokens": 0
+   },
+   "cost": 0.06208,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e6c1e7c1e4df8f378c0ade7574c01f4de8dcfc56179caad8ceb724a9f1236d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The facilities instruction only redirects 'review meetings', but the expected state moves EV-4 (a tax-update training session) and the EV-5 planning meeting to Room A, and neither is a review, so the history does not fix those values or marks. The training session's rests_on e1 is therefore unsupported, which undermines the claimed REVISE and the Room A value. Counts, distance from the task day, post-change events and the hidden change all meet the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The facilities instruction only redirects 'review meetings', but the expected state moves EV-4 (a tax-update training session) and the EV-5 planning meeting to Room A, and neither is a review, so the history does not fix those values or marks. The training session's rests_on e1 is therefore unsupported, which undermines the claimed REVISE and the Room A value. Counts, distance from the task day, post-change events and the hidden change all meet the tier requirements."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6068,
+    "completion_tokens": 1942,
+    "reasoning_tokens": 1738,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015778,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e6c1e7c1e4df8f378c0ade7574c01f4de8dcfc56179caad8ceb724a9f1236d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends rule e1 with clear date terms (Room B closed from 12 Oct), so the KEEP on the 9 Oct meeting, the REVISEs on the November internal items, and the ASKs under the client-consent rule e2 all follow from the history; the expected values (Room A) are fixed by the change itself. The task forces action (contacting Nadia, updating records) without naming the change, and the broad phrase about the schedule covers the December meeting and catering order. Tier requirements (30 core events, 6 decisions, change 28 days before task day, 5 core events after it, echo at e22) are all met, though the task's 'November meeting arrangements' wording makes the EV-5/Gillian message slightly outside the literal scope — a minor stretch, not a contradiction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends rule e1 with clear date terms (Room B closed from 12 Oct), so the KEEP on the 9 Oct meeting, the REVISEs on the November internal items, and the ASKs under the client-consent rule e2 all follow from the history; the expected values (Room A) are fixed by the change itself. The task forces action (contacting Nadia, updating records) without naming the change, and the broad phrase about the schedule covers the December meeting and catering order. Tier requirements (30 core events, 6 decisions, change 28 days before task day, 5 core events after it, echo at e22) are all met, though the task's 'November meeting arrangements' wording makes the EV-5/Gillian message slightly outside the literal scope — a minor stretch, not a contradiction."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4331,
+    "completion_tokens": 795,
+    "reasoning_tokens": 578,
+    "cached_tokens": 384
+   },
+   "cost": 0.00912364,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "5e6c1e7c1e4df8f378c0ade7574c01f4de8dcfc56179caad8ceb724a9f1236d0",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

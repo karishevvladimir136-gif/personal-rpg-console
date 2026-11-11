@@ -1,0 +1,820 @@
+{
+ "id": "K1000-4-05",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 4,
+ "idx": 4,
+ "setting": "Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly",
+ "prompt_sha256": "11bc6f245cfc94b39c2e9d8e649bb798d52e20a7419d3359bf8ef789e1d1b6b4",
+ "rounds": [
+  {
+   "text": "```json\n{\n  \"title\": \"Restated sign-off rule at the food bank\",\n  \"setting\": \"Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly\",\n  \"owner\": \"Maya\",\n  \"org\": \"Bright Harbour Food Bank\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for Bright Harbour Food Bank: any supplier order with a total over 800 needs sign-off from our finance lead Priya Nair before it is placed. Orders of 800 or under I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule: a confirmed volunteer shift at the Dock Street warehouse may only be moved with the agreement of volunteer lead Sam Okafor.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Hello Maya, confirming our wholesale price for dried pasta is 0.86 per 500g pack for the rest of 2026, minimum order 200 packs, delivery free to Dock Street.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"We can supply surplus bread every Friday, about 120 loaves, for Saturday distribution. Collection from our Quay Road bakery at 15:00 works for us.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"fact\", \"from\": \"Maya\", \"text\": \"Our Saturday morning distribution at the Dock Street warehouse serves around 500 households and runs 08:00 to 12:00.\", \"role\": \"fact\", \"type_note\": null},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Saturday distribution at the Dock Street warehouse for 24 October 2026, 08:00 to 12:00, for 500 households.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up our recurring pasta restock with Maretti Foods: 560 packs at 0.86 each, delivery to the Dock Street warehouse on Thursdays. Total 482, well under the 800 sign-off line, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Friday bread collection from Harbour Mills Bakery on Quay Road at 15:00 each week, about 120 loaves for the Saturday distribution.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Our standing offer: mixed vegetable boxes at 14 per box, delivery Tuesdays to Dock Street. Let us know quantities weekly.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set the weekly vegetable order with City Fresh Produce at 30 boxes at 14 each, total 420, delivered Tuesdays to Dock Street. Under 800 so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"Saturday crew is confirmed: 14 volunteers for the Dock Street warehouse, including two drivers.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned Sam Okafor's 14-volunteer crew to the Saturday distribution at Dock Street, 08:00 start.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e13\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Quarterly budget note: food purchasing budget is on track. Keep sending me anything over the usual limits before you commit.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2214: 560 packs dried pasta at 0.86, total 482, delivered Thursday 2 July to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Note to self: send the October volunteer rota to Sam by Friday 16 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Thanks for the steady orders, Maya. Reminder that the pasta price of 0.86 per pack holds through December.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the large van from Harbour Vehicle Hire for Friday 23 October, 14:00 to 18:00, for the bread collection run to Quay Road.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-4\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Vegetable boxes stay at 14 each through autumn. Tuesday deliveries to Dock Street continue as normal.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Team meeting: Saturday distributions running smoothly at 500 households. Pasta restock of 560 packs weekly is covering demand.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"We have a new wholegrain pasta line at 0.92 per 500g pack if you ever want to switch. No pressure, your standard pasta stays at 0.86.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"confirmation\", \"from\": \"Maretti Foods\", \"text\": \"Standing order confirmed: 560 packs dried pasta weekly at 0.86 per pack, Thursday delivery to Dock Street warehouse.\", \"role\": \"other\", \"echo\": true, \"type\": \"email\"},\n    {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"One driver is away the first week of September; I have cover arranged. Saturday crew stays at 14.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"reminder\", \"from\": \"Maya\", \"text\": \"Reminder card on my desk: the pasta standing order is 560 packs at 0.86 each from Maretti Foods, Thursdays, Dock Street.\", \"role\": \"other\", \"echo\": true, \"type\": \"note\"},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"invoice\", \"from\": \"City Fresh Produce\", \"text\": \"Invoice 778: 30 vegetable boxes at 14, total 420, delivered Tuesday 8 September.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered a one-off 40 extra vegetable boxes from City Fresh Produce for the harvest festival week at 14 each, total 560, under the sign-off line so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Heads-up that I will be on leave from 2 November for two weeks. Please get anything needing my review to me before then.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Just to put our usual practice in writing again after the audit chat: nothing changes — if a supplier order comes to more than 800 in total, it lands on my desk for approval first; anything at or below that you can go ahead and place yourself. That has always been the arrangement.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e28\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2410: 560 packs dried pasta at 0.86, total 482, delivered Thursday 1 October to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"October rota confirmed: 14 volunteers each Saturday at Dock Street, same as before.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"Friday bread collection continues at 120 loaves, pickup 15:00 from Quay Road. All good for 23 October.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Registered the Harbour Street Community Centre as a new partner client for monthly parcel pickups, contact Dana Whitfield.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"CL-1\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Delivery slot this Thursday 15 October is confirmed for the usual 560 packs at 0.86. See you at Dock Street.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock check: pasta shelves will need the normal restock next week; vegetable boxes holding steady at 30 a week.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Sent the October volunteer rota to Sam today — done. Also, finance figures are filed for the quarter.\", \"role\": \"other\"},\n    {\"id\": \"e35\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Tuesday's delivery of 30 boxes at 14 each is on schedule for 20 October.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Saturday distribution 24 October\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"start\": \"08:00\", \"end\": \"12:00\", \"households\": \"500\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday bread collection\", \"fields\": {\"date\": \"2026-10-23\", \"place\": \"Quay Road bakery\", \"time\": \"15:00\", \"loaves\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday volunteer crew\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"volunteers\": \"14\", \"lead\": \"Sam Okafor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Van hire for bread run\", \"fields\": {\"date\": \"2026-10-23\", \"vehicle\": \"large van\", \"start\": \"14:00\", \"end\": \"18:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly pasta restock\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_day\": \"Thursday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Weekly vegetable boxes\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"30\", \"unit_price\": \"14\", \"total\": \"420\", \"delivery_day\": \"Tuesday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest festival extra vegetables\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"40\", \"unit_price\": \"14\", \"total\": \"560\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbour Street Community Centre\", \"fields\": {\"contact\": \"Dana Whitfield\", \"type\": \"partner\", \"pickup\": \"monthly parcel\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\", \"volunteers\"], \"from\": \"Sam Okafor (volunteer lead)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please place this week's pasta restock order with Maretti Foods — the usual 560 packs of dried pasta, delivery Thursday 22 October to the Dock Street warehouse — and email Toni at Maretti Foods to confirm the order and the price.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_date\": \"2026-10-22\", \"place\": \"Dock Street warehouse\"}, \"stale\": {\"unit_price\": [\"0.92\"], \"quantity\": [\"200\"]}, \"task\": true},\n    {\"message_to\": \"Toni Maretti (Maretti Foods)\", \"regarding\": null, \"says\": [\"560\", \"0.86\", \"2026-10-22\", \"Dock Street warehouse\"], \"stale\": [\"0.92\"], \"task\": true}\n  ],\n  \"why\": \"The change is only Priya restating the existing 800 sign-off rule in other words; it revokes nothing, so no record is touched and all standing plans stay as they are. The task is a routine restock: 560 packs at the agreed 0.86 (total 482, under 800, so Maya places it directly), and the confirmation email must carry 0.86, not the 0.92 wholegrain distractor price. All existing records, including EV-3 with its consent fields, remain unchanged.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"tinned tomatoes restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"tinned chopped tomatoes case\", \"unit\": \"cases\", \"values\": [\"20\", \"25\", \"30\", \"35\", \"40\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"rice restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"long grain rice 5kg bag\", \"unit\": \"bags\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"vegetable box top-up\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"fruit box order\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"seasonal fruit box\", \"unit\": \"boxes\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for collections\", \"counterpart\": \"Harbour Vehicle Hire desk\", \"org\": \"Harbour Vehicle Hire\", \"item\": \"large van\", \"unit\": \"booking\", \"values\": [\"large van\", \"medium van\", \"small van\", \"luton van\"], \"place\": \"Quay Road\"},\n    {\"kind\": \"booking\", \"topic\": \"community hall booking\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Harbour Street Community Centre\", \"item\": \"main hall for parcel pickup\", \"unit\": \"booking\", \"values\": [\"main hall\", \"side room\", \"upstairs room\"], \"place\": \"Harbour Street\"},\n    {\"kind\": \"order\", \"topic\": \"cooking oil restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"cooking oil 2l bottle\", \"unit\": \"bottles\", \"values\": [\"48\", \"60\", \"72\", \"96\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"cereal restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"breakfast cereal box\", \"unit\": \"boxes\", \"values\": [\"80\", \"100\", \"120\", \"150\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"warehouse meeting room\", \"counterpart\": \"Sam Okafor\", \"org\": \"Bright Harbour Food Bank\", \"item\": \"meeting room for volunteer briefing\", \"unit\": \"booking\", \"values\": [\"meeting room A\", \"meeting room B\", \"kitchen area\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"tea bags catering pack\", \"unit\": \"packs\", \"values\": [\"15\", \"20\", \"25\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"bread collection pickup slot\", \"counterpart\": \"Lena Voss\", \"org\": \"Harbour Mills Bakery\", \"item\": \"collection slot\", \"unit\": \"booking\", \"values\": [\"14:00\", \"15:00\", \"16:00\"], \"place\": \"Quay Road bakery\"},\n    {\"kind\": \"order\", \"topic\": \"nappies and baby supplies\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"nappy pack\", \"unit\": \"packs\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"Dock Street warehouse\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3253,
+    "completion_tokens": 5368,
+    "reasoning_tokens": 611,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0819846,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Restated sign-off rule at the food bank\",\n  \"setting\": \"Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly\",\n  \"owner\": \"Maya\",\n  \"org\": \"Bright Harbour Food Bank\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for Bright Harbour Food Bank: any supplier order with a total over 800 needs sign-off from our finance lead Priya Nair before it is placed. Orders of 800 or under I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule: a confirmed volunteer shift at the Dock Street warehouse may only be moved with the agreement of volunteer lead Sam Okafor.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Hello Maya, confirming our wholesale price for dried pasta is 0.86 per 500g pack for the rest of 2026, minimum order 200 packs, delivery free to Dock Street.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"We can supply surplus bread every Friday, about 120 loaves, for Saturday distribution. Collection from our Quay Road bakery at 15:00 works for us.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Our Saturday morning distribution at the Dock Street warehouse serves around 500 households and runs 08:00 to 12:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Saturday distribution at the Dock Street warehouse for 24 October 2026, 08:00 to 12:00, for 500 households.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up our recurring pasta restock with Maretti Foods: 560 packs at 0.86 each, delivery to the Dock Street warehouse on Thursdays. Total 482, well under the 800 sign-off line, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Friday bread collection from Harbour Mills Bakery on Quay Road at 15:00 each week, about 120 loaves for the Saturday distribution.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Our standing offer: mixed vegetable boxes at 14 per box, delivery Tuesdays to Dock Street. Let us know quantities weekly.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set the weekly vegetable order with City Fresh Produce at 30 boxes at 14 each, total 420, delivered Tuesdays to Dock Street. Under 800 so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"Saturday crew is confirmed: 14 volunteers for the Dock Street warehouse, including two drivers.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned Sam Okafor's 14-volunteer crew to the Saturday distribution at Dock Street, 08:00 start.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e13\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Quarterly budget note: food purchasing budget is on track. Keep sending me anything over the usual limits before you commit.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2214: 560 packs dried pasta at 0.86, total 482, delivered Thursday 2 July to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Note to self: send the October volunteer rota to Sam by Friday 16 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Thanks for the steady orders, Maya. Reminder that the pasta price of 0.86 per pack holds through December.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the large van from Harbour Vehicle Hire for Friday 23 October, 14:00 to 18:00, for the bread collection run to Quay Road.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-4\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Vegetable boxes stay at 14 each through autumn. Tuesday deliveries to Dock Street continue as normal.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Team meeting: Saturday distributions running smoothly at 500 households. Pasta restock of 560 packs weekly is covering demand.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"We have a new wholegrain pasta line at 0.92 per 500g pack if you ever want to switch. No pressure, your standard pasta stays at 0.86.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Maretti Foods\", \"text\": \"Standing order confirmed: 560 packs dried pasta weekly at 0.86 per pack, Thursday delivery to Dock Street warehouse.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"One driver is away the first week of September; I have cover arranged. Saturday crew stays at 14.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder card on my desk: the pasta standing order is 560 packs at 0.86 each from Maretti Foods, Thursdays, Dock Street.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"invoice\", \"from\": \"City Fresh Produce\", \"text\": \"Invoice 778: 30 vegetable boxes at 14, total 420, delivered Tuesday 8 September.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered a one-off 40 extra vegetable boxes from City Fresh Produce for the harvest festival week at 14 each, total 560, under the sign-off line so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Heads-up that I will be on leave from 2 November for two weeks. Please get anything needing my review to me before then.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Just to put our usual practice in writing again after the audit chat: nothing changes — if a supplier order comes to more than 800 in total, it lands on my desk for approval first; anything at or below that you can go ahead and place yourself. That has always been the arrangement.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e28\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2410: 560 packs dried pasta at 0.86, total 482, delivered Thursday 1 October to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"October rota confirmed: 14 volunteers each Saturday at Dock Street, same as before.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"Friday bread collection continues at 120 loaves, pickup 15:00 from Quay Road. All good for 23 October.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Registered the Harbour Street Community Centre as a new partner client for monthly parcel pickups, contact Dana Whitfield.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"CL-1\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Delivery slot this Thursday 15 October is confirmed for the usual 560 packs at 0.86. See you at Dock Street.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock check: pasta shelves will need the normal restock next week; vegetable boxes holding steady at 30 a week.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Sent the October volunteer rota to Sam today — done. Also, finance figures are filed for the quarter.\", \"role\": \"other\"},\n    {\"id\": \"e35\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Tuesday's delivery of 30 boxes at 14 each is on schedule for 20 October.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Saturday distribution 24 October\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"start\": \"08:00\", \"end\": \"12:00\", \"households\": \"500\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday bread collection\", \"fields\": {\"date\": \"2026-10-23\", \"place\": \"Quay Road bakery\", \"time\": \"15:00\", \"loaves\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday volunteer crew\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"volunteers\": \"14\", \"lead\": \"Sam Okafor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Van hire for bread run\", \"fields\": {\"date\": \"2026-10-23\", \"vehicle\": \"large van\", \"start\": \"14:00\", \"end\": \"18:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly pasta restock\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_day\": \"Thursday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Weekly vegetable boxes\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"30\", \"unit_price\": \"14\", \"total\": \"420\", \"delivery_day\": \"Tuesday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest festival extra vegetables\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"40\", \"unit_price\": \"14\", \"total\": \"560\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbour Street Community Centre\", \"fields\": {\"contact\": \"Dana Whitfield\", \"type\": \"partner\", \"pickup\": \"monthly parcel\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\", \"volunteers\"], \"from\": \"Sam Okafor (volunteer lead)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please place this week's pasta restock order with Maretti Foods — the usual 560 packs of dried pasta, delivery Thursday 22 October to the Dock Street warehouse — and email Toni at Maretti Foods to confirm the order and the price.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_date\": \"2026-10-22\", \"place\": \"Dock Street warehouse\"}, \"stale\": {\"unit_price\": [\"0.92\"], \"quantity\": [\"200\"]}, \"task\": true},\n    {\"message_to\": \"Toni Maretti (Maretti Foods)\", \"regarding\": null, \"says\": [\"560\", \"0.86\", \"2026-10-22\", \"Dock Street warehouse\"], \"stale\": [\"0.92\"], \"task\": true}\n  ],\n  \"why\": \"The change is only Priya restating the existing 800 sign-off rule in other words; it revokes nothing, so no record is touched and all standing plans stay as they are. The task is a routine restock: 560 packs at the agreed 0.86 (total 482, under 800, so Maya places it directly), and the confirmation email must carry 0.86, not the 0.92 wholegrain distractor price. All existing records, including EV-3 with its consent fields, remain unchanged.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"tinned tomatoes restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"tinned chopped tomatoes case\", \"unit\": \"cases\", \"values\": [\"20\", \"25\", \"30\", \"35\", \"40\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"rice restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"long grain rice 5kg bag\", \"unit\": \"bags\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"vegetable box top-up\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"fruit box order\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"seasonal fruit box\", \"unit\": \"boxes\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for collections\", \"counterpart\": \"Harbour Vehicle Hire desk\", \"org\": \"Harbour Vehicle Hire\", \"item\": \"large van\", \"unit\": \"booking\", \"values\": [\"large van\", \"medium van\", \"small van\", \"luton van\"], \"place\": \"Quay Road\"},\n    {\"kind\": \"booking\", \"topic\": \"community hall booking\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Harbour Street Community Centre\", \"item\": \"main hall for parcel pickup\", \"unit\": \"booking\", \"values\": [\"main hall\", \"side room\", \"upstairs room\"], \"place\": \"Harbour Street\"},\n    {\"kind\": \"order\", \"topic\": \"cooking oil restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"cooking oil 2l bottle\", \"unit\": \"bottles\", \"values\": [\"48\", \"60\", \"72\", \"96\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"cereal restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"breakfast cereal box\", \"unit\": \"boxes\", \"values\": [\"80\", \"100\", \"120\", \"150\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"warehouse meeting room\", \"counterpart\": \"Sam Okafor\", \"org\": \"Bright Harbour Food Bank\", \"item\": \"meeting room for volunteer briefing\", \"unit\": \"booking\", \"values\": [\"meeting room A\", \"meeting room B\", \"kitchen area\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"tea bags catering pack\", \"unit\": \"packs\", \"values\": [\"15\", \"20\", \"25\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"bread collection pickup slot\", \"counterpart\": \"Lena Voss\", \"org\": \"Harbour Mills Bakery\", \"item\": \"collection slot\", \"unit\": \"booking\", \"values\": [\"14:00\", \"15:00\", \"16:00\"], \"place\": \"Quay Road bakery\"},\n    {\"kind\": \"order\", \"topic\": \"nappies and baby supplies\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"nappy pack\", \"unit\": \"packs\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"Dock Street warehouse\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8113,
+    "completion_tokens": 4824,
+    "reasoning_tokens": 86,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0884046,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e5: type «fact» not in ['call', 'cancellation', 'contract', 'decision', 'email', 'instruction', 'invoice', 'letter', 'message', 'minutes', 'note', 'notice', 'policy', 'quote', 'task']\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n  \"title\": \"Restated sign-off rule at the food bank\",\n  \"setting\": \"Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly\",\n  \"owner\": \"Maya\",\n  \"org\": \"Bright Harbour Food Bank\",\n  \"now\": \"2026-10-19\",\n  \"events\": [\n    {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule for Bright Harbour Food Bank: any supplier order with a total over 800 needs sign-off from our finance lead Priya Nair before it is placed. Orders of 800 or under I can place directly.\", \"role\": \"rule\"},\n    {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule: a confirmed volunteer shift at the Dock Street warehouse may only be moved with the agreement of volunteer lead Sam Okafor.\", \"role\": \"rule\"},\n    {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Hello Maya, confirming our wholesale price for dried pasta is 0.86 per 500g pack for the rest of 2026, minimum order 200 packs, delivery free to Dock Street.\", \"role\": \"fact\"},\n    {\"id\": \"e4\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"We can supply surplus bread every Friday, about 120 loaves, for Saturday distribution. Collection from our Quay Road bakery at 15:00 works for us.\", \"role\": \"fact\"},\n    {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Our Saturday morning distribution at the Dock Street warehouse serves around 500 households and runs 08:00 to 12:00.\", \"role\": \"fact\"},\n    {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Saturday distribution at the Dock Street warehouse for 24 October 2026, 08:00 to 12:00, for 500 households.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"EV-1\"},\n    {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set up our recurring pasta restock with Maretti Foods: 560 packs at 0.86 each, delivery to the Dock Street warehouse on Thursdays. Total 482, well under the 800 sign-off line, so no finance sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\"},\n    {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the Friday bread collection from Harbour Mills Bakery on Quay Road at 15:00 each week, about 120 loaves for the Saturday distribution.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e5\"], \"record\": \"EV-2\"},\n    {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Our standing offer: mixed vegetable boxes at 14 per box, delivery Tuesdays to Dock Street. Let us know quantities weekly.\", \"role\": \"fact\"},\n    {\"id\": \"e10\", \"date\": \"2026-06-20\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Set the weekly vegetable order with City Fresh Produce at 30 boxes at 14 each, total 420, delivered Tuesdays to Dock Street. Under 800 so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-2\"},\n    {\"id\": \"e11\", \"date\": \"2026-06-23\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"Saturday crew is confirmed: 14 volunteers for the Dock Street warehouse, including two drivers.\", \"role\": \"fact\"},\n    {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Assigned Sam Okafor's 14-volunteer crew to the Saturday distribution at Dock Street, 08:00 start.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e6\"], \"record\": \"EV-3\"},\n    {\"id\": \"e13\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Quarterly budget note: food purchasing budget is on track. Keep sending me anything over the usual limits before you commit.\", \"role\": \"other\"},\n    {\"id\": \"e14\", \"date\": \"2026-07-03\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2214: 560 packs dried pasta at 0.86, total 482, delivered Thursday 2 July to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e15\", \"date\": \"2026-07-08\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Note to self: send the October volunteer rota to Sam by Friday 16 October.\", \"role\": \"obligation\"},\n    {\"id\": \"e16\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Thanks for the steady orders, Maya. Reminder that the pasta price of 0.86 per pack holds through December.\", \"role\": \"other\"},\n    {\"id\": \"e17\", \"date\": \"2026-07-21\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the large van from Harbour Vehicle Hire for Friday 23 October, 14:00 to 18:00, for the bread collection run to Quay Road.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"EV-4\"},\n    {\"id\": \"e18\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Vegetable boxes stay at 14 each through autumn. Tuesday deliveries to Dock Street continue as normal.\", \"role\": \"other\"},\n    {\"id\": \"e19\", \"date\": \"2026-08-04\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"Team meeting: Saturday distributions running smoothly at 500 households. Pasta restock of 560 packs weekly is covering demand.\", \"role\": \"other\"},\n    {\"id\": \"e20\", \"date\": \"2026-08-11\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"We have a new wholegrain pasta line at 0.92 per 500g pack if you ever want to switch. No pressure, your standard pasta stays at 0.86.\", \"role\": \"other\", \"distractor\": true},\n    {\"id\": \"e21\", \"date\": \"2026-08-18\", \"type\": \"email\", \"from\": \"Maretti Foods\", \"text\": \"Standing order confirmed: 560 packs dried pasta weekly at 0.86 per pack, Thursday delivery to Dock Street warehouse.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e22\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"One driver is away the first week of September; I have cover arranged. Saturday crew stays at 14.\", \"role\": \"other\"},\n    {\"id\": \"e23\", \"date\": \"2026-09-01\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder card on my desk: the pasta standing order is 560 packs at 0.86 each from Maretti Foods, Thursdays, Dock Street.\", \"role\": \"other\", \"echo\": true},\n    {\"id\": \"e24\", \"date\": \"2026-09-08\", \"type\": \"invoice\", \"from\": \"City Fresh Produce\", \"text\": \"Invoice 778: 30 vegetable boxes at 14, total 420, delivered Tuesday 8 September.\", \"role\": \"other\"},\n    {\"id\": \"e25\", \"date\": \"2026-09-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Ordered a one-off 40 extra vegetable boxes from City Fresh Produce for the harvest festival week at 14 each, total 560, under the sign-off line so placed directly.\", \"role\": \"decision\", \"rests_on\": [\"e9\", \"e1\"], \"record\": \"ORD-3\"},\n    {\"id\": \"e26\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Heads-up that I will be on leave from 2 November for two weeks. Please get anything needing my review to me before then.\", \"role\": \"other\"},\n    {\"id\": \"e27\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Just to put our usual practice in writing again after the audit chat: nothing changes — if a supplier order comes to more than 800 in total, it lands on my desk for approval first; anything at or below that you can go ahead and place yourself. That has always been the arrangement.\", \"role\": \"change\", \"revokes\": []},\n    {\"id\": \"e28\", \"date\": \"2026-10-01\", \"type\": \"invoice\", \"from\": \"Maretti Foods\", \"text\": \"Invoice 2410: 560 packs dried pasta at 0.86, total 482, delivered Thursday 1 October to Dock Street warehouse.\", \"role\": \"other\"},\n    {\"id\": \"e29\", \"date\": \"2026-10-05\", \"type\": \"message\", \"from\": \"Sam Okafor (volunteer lead)\", \"text\": \"October rota confirmed: 14 volunteers each Saturday at Dock Street, same as before.\", \"role\": \"other\"},\n    {\"id\": \"e30\", \"date\": \"2026-10-07\", \"type\": \"email\", \"from\": \"Lena Voss (Harbour Mills Bakery)\", \"text\": \"Friday bread collection continues at 120 loaves, pickup 15:00 from Quay Road. All good for 23 October.\", \"role\": \"other\"},\n    {\"id\": \"e31\", \"date\": \"2026-10-09\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"With 500 households to serve each week, I registered the Harbour Street Community Centre as a new partner client for monthly parcel pickups, contact Dana Whitfield.\", \"role\": \"decision\", \"rests_on\": [\"e5\"], \"record\": \"CL-1\"},\n    {\"id\": \"e32\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Toni Maretti (Maretti Foods)\", \"text\": \"Delivery slot this Thursday 15 October is confirmed for the usual 560 packs at 0.86. See you at Dock Street.\", \"role\": \"other\"},\n    {\"id\": \"e33\", \"date\": \"2026-10-14\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Stock check: pasta shelves will need the normal restock next week; vegetable boxes holding steady at 30 a week.\", \"role\": \"other\"},\n    {\"id\": \"e34\", \"date\": \"2026-10-16\", \"type\": \"message\", \"from\": \"Priya Nair (finance lead)\", \"text\": \"Sent the October volunteer rota to Sam today — done. Also, finance figures are filed for the quarter.\", \"role\": \"other\"},\n    {\"id\": \"e35\", \"date\": \"2026-10-17\", \"type\": \"email\", \"from\": \"Ruth Adler (City Fresh Produce)\", \"text\": \"Tuesday's delivery of 30 boxes at 14 each is on schedule for 20 October.\", \"role\": \"other\"}\n  ],\n  \"records\": [\n    {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Saturday distribution 24 October\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"start\": \"08:00\", \"end\": \"12:00\", \"households\": \"500\", \"status\": \"booked\"}},\n    {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Friday bread collection\", \"fields\": {\"date\": \"2026-10-23\", \"place\": \"Quay Road bakery\", \"time\": \"15:00\", \"loaves\": \"120\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Saturday volunteer crew\", \"fields\": {\"date\": \"2026-10-24\", \"place\": \"Dock Street warehouse\", \"volunteers\": \"14\", \"lead\": \"Sam Okafor\", \"status\": \"confirmed\"}},\n    {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Van hire for bread run\", \"fields\": {\"date\": \"2026-10-23\", \"vehicle\": \"large van\", \"start\": \"14:00\", \"end\": \"18:00\", \"status\": \"booked\"}},\n    {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly pasta restock\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_day\": \"Thursday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Weekly vegetable boxes\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"30\", \"unit_price\": \"14\", \"total\": \"420\", \"delivery_day\": \"Tuesday\", \"status\": \"standing\"}},\n    {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harvest festival extra vegetables\", \"fields\": {\"supplier\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"quantity\": \"40\", \"unit_price\": \"14\", \"total\": \"560\", \"status\": \"confirmed\"}},\n    {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Harbour Street Community Centre\", \"fields\": {\"contact\": \"Dana Whitfield\", \"type\": \"partner\", \"pickup\": \"monthly parcel\", \"status\": \"active\"}}\n  ],\n  \"consent\": [\n    {\"record\": \"EV-3\", \"fields\": [\"date\", \"volunteers\"], \"from\": \"Sam Okafor (volunteer lead)\", \"rule\": \"e2\"}\n  ],\n  \"task\": \"Please place this week's pasta restock order with Maretti Foods — the usual 560 packs of dried pasta, delivery Thursday 22 October to the Dock Street warehouse — and email Toni at Maretti Foods to confirm the order and the price.\",\n  \"expect\": [\n    {\"create\": \"orders\", \"fields\": {\"supplier\": \"Maretti Foods\", \"item\": \"dried pasta 500g pack\", \"quantity\": \"560\", \"unit_price\": \"0.86\", \"total\": \"482\", \"delivery_date\": \"2026-10-22\", \"place\": \"Dock Street warehouse\"}, \"stale\": {\"unit_price\": [\"0.92\"], \"quantity\": [\"200\"]}, \"task\": true},\n    {\"message_to\": \"Toni Maretti (Maretti Foods)\", \"regarding\": null, \"says\": [\"560\", \"0.86\", \"2026-10-22\", \"Dock Street warehouse\"], \"stale\": [\"0.92\"], \"task\": true}\n  ],\n  \"why\": \"The change is only Priya restating the existing 800 sign-off rule in other words; it revokes nothing, so no record is touched and all standing plans stay as they are. The task is a routine restock: 560 packs at the agreed 0.86 (total 482, under 800, so Maya places it directly), and the confirmation email must carry 0.86, not the 0.92 wholegrain distractor price. All existing records, including EV-3 with its consent fields, remain unchanged.\",\n  \"noise_kit\": [\n    {\"kind\": \"order\", \"topic\": \"tinned tomatoes restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"tinned chopped tomatoes case\", \"unit\": \"cases\", \"values\": [\"20\", \"25\", \"30\", \"35\", \"40\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"rice restock\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"long grain rice 5kg bag\", \"unit\": \"bags\", \"values\": [\"40\", \"50\", \"60\", \"70\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"vegetable box top-up\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"mixed vegetable box\", \"unit\": \"boxes\", \"values\": [\"10\", \"15\", \"20\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"fruit box order\", \"counterpart\": \"Ruth Adler\", \"org\": \"City Fresh Produce\", \"item\": \"seasonal fruit box\", \"unit\": \"boxes\", \"values\": [\"12\", \"18\", \"24\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"van hire for collections\", \"counterpart\": \"Harbour Vehicle Hire desk\", \"org\": \"Harbour Vehicle Hire\", \"item\": \"large van\", \"unit\": \"booking\", \"values\": [\"large van\", \"medium van\", \"small van\", \"luton van\"], \"place\": \"Quay Road\"},\n    {\"kind\": \"booking\", \"topic\": \"community hall booking\", \"counterpart\": \"Dana Whitfield\", \"org\": \"Harbour Street Community Centre\", \"item\": \"main hall for parcel pickup\", \"unit\": \"booking\", \"values\": [\"main hall\", \"side room\", \"upstairs room\"], \"place\": \"Harbour Street\"},\n    {\"kind\": \"order\", \"topic\": \"cooking oil restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"cooking oil 2l bottle\", \"unit\": \"bottles\", \"values\": [\"48\", \"60\", \"72\", \"96\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"cereal restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"breakfast cereal box\", \"unit\": \"boxes\", \"values\": [\"80\", \"100\", \"120\", \"150\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"warehouse meeting room\", \"counterpart\": \"Sam Okafor\", \"org\": \"Bright Harbour Food Bank\", \"item\": \"meeting room for volunteer briefing\", \"unit\": \"booking\", \"values\": [\"meeting room A\", \"meeting room B\", \"kitchen area\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"order\", \"topic\": \"tea and coffee restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Seaside Wholesale\", \"item\": \"tea bags catering pack\", \"unit\": \"packs\", \"values\": [\"15\", \"20\", \"25\", \"30\"], \"place\": \"Dock Street warehouse\"},\n    {\"kind\": \"booking\", \"topic\": \"bread collection pickup slot\", \"counterpart\": \"Lena Voss\", \"org\": \"Harbour Mills Bakery\", \"item\": \"collection slot\", \"unit\": \"booking\", \"values\": [\"14:00\", \"15:00\", \"16:00\"], \"place\": \"Quay Road bakery\"},\n    {\"kind\": \"order\", \"topic\": \"nappies and baby supplies\", \"counterpart\": \"Toni Maretti\", \"org\": \"Maretti Foods\", \"item\": \"nappy pack\", \"unit\": \"packs\", \"values\": [\"30\", \"40\", \"50\", \"60\"], \"place\": \"Dock Street warehouse\"}\n  ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 12913,
+    "completion_tokens": 4829,
+    "reasoning_tokens": 78,
+    "cached_tokens": 7936
+   },
+   "cost": 0.0897468,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e31: a decision must rest on at least one earlier event\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Restated sign-off rule at the food bank",
+  "setting": "Food bank coordinator at Bright Harbour Food Bank, serving 500 households weekly",
+  "owner": "Maya",
+  "org": "Bright Harbour Food Bank",
+  "now": "2026-10-19",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule for Bright Harbour Food Bank: any supplier order with a total over 800 needs sign-off from our finance lead Priya Nair before it is placed. Orders of 800 or under I can place directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule: a confirmed volunteer shift at the Dock Street warehouse may only be moved with the agreement of volunteer lead Sam Okafor.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "email",
+    "from": "Toni Maretti (Maretti Foods)",
+    "text": "Hello Maya, confirming our wholesale price for dried pasta is 0.86 per 500g pack for the rest of 2026, minimum order 200 packs, delivery free to Dock Street.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Lena Voss (Harbour Mills Bakery)",
+    "text": "We can supply surplus bread every Friday, about 120 loaves, for Saturday distribution. Collection from our Quay Road bakery at 15:00 works for us.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "note",
+    "from": "Maya",
+    "text": "Our Saturday morning distribution at the Dock Street warehouse serves around 500 households and runs 08:00 to 12:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Saturday distribution at the Dock Street warehouse for 24 October 2026, 08:00 to 12:00, for 500 households.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set up our recurring pasta restock with Maretti Foods: 560 packs at 0.86 each, delivery to the Dock Street warehouse on Thursdays. Total 482, well under the 800 sign-off line, so no finance sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the Friday bread collection from Harbour Mills Bakery on Quay Road at 15:00 each week, about 120 loaves for the Saturday distribution.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e5"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "email",
+    "from": "Ruth Adler (City Fresh Produce)",
+    "text": "Our standing offer: mixed vegetable boxes at 14 per box, delivery Tuesdays to Dock Street. Let us know quantities weekly.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-20",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Set the weekly vegetable order with City Fresh Produce at 30 boxes at 14 each, total 420, delivered Tuesdays to Dock Street. Under 800 so placed directly.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-23",
+    "type": "message",
+    "from": "Sam Okafor (volunteer lead)",
+    "text": "Saturday crew is confirmed: 14 volunteers for the Dock Street warehouse, including two drivers.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Assigned Sam Okafor's 14-volunteer crew to the Saturday distribution at Dock Street, 08:00 start.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e6"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Priya Nair (finance lead)",
+    "text": "Quarterly budget note: food purchasing budget is on track. Keep sending me anything over the usual limits before you commit.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-03",
+    "type": "invoice",
+    "from": "Maretti Foods",
+    "text": "Invoice 2214: 560 packs dried pasta at 0.86, total 482, delivered Thursday 2 July to Dock Street warehouse.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-08",
+    "type": "note",
+    "from": "Maya",
+    "text": "Note to self: send the October volunteer rota to Sam by Friday 16 October.",
+    "role": "obligation"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Toni Maretti (Maretti Foods)",
+    "text": "Thanks for the steady orders, Maya. Reminder that the pasta price of 0.86 per pack holds through December.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-21",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the large van from Harbour Vehicle Hire for Friday 23 October, 14:00 to 18:00, for the bread collection run to Quay Road.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Ruth Adler (City Fresh Produce)",
+    "text": "Vegetable boxes stay at 14 each through autumn. Tuesday deliveries to Dock Street continue as normal.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-04",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "Team meeting: Saturday distributions running smoothly at 500 households. Pasta restock of 560 packs weekly is covering demand.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-11",
+    "type": "email",
+    "from": "Toni Maretti (Maretti Foods)",
+    "text": "We have a new wholegrain pasta line at 0.92 per 500g pack if you ever want to switch. No pressure, your standard pasta stays at 0.86.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-18",
+    "type": "email",
+    "from": "Maretti Foods",
+    "text": "Standing order confirmed: 560 packs dried pasta weekly at 0.86 per pack, Thursday delivery to Dock Street warehouse.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-25",
+    "type": "message",
+    "from": "Sam Okafor (volunteer lead)",
+    "text": "One driver is away the first week of September; I have cover arranged. Saturday crew stays at 14.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-01",
+    "type": "note",
+    "from": "Maya",
+    "text": "Reminder card on my desk: the pasta standing order is 560 packs at 0.86 each from Maretti Foods, Thursdays, Dock Street.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-08",
+    "type": "invoice",
+    "from": "City Fresh Produce",
+    "text": "Invoice 778: 30 vegetable boxes at 14, total 420, delivered Tuesday 8 September.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Ordered a one-off 40 extra vegetable boxes from City Fresh Produce for the harvest festival week at 14 each, total 560, under the sign-off line so placed directly.",
+    "role": "decision",
+    "rests_on": [
+     "e9",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Priya Nair (finance lead)",
+    "text": "Heads-up that I will be on leave from 2 November for two weeks. Please get anything needing my review to me before then.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Priya Nair (finance lead)",
+    "text": "Just to put our usual practice in writing again after the audit chat: nothing changes — if a supplier order comes to more than 800 in total, it lands on my desk for approval first; anything at or below that you can go ahead and place yourself. That has always been the arrangement.",
+    "role": "change",
+    "revokes": []
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-01",
+    "type": "invoice",
+    "from": "Maretti Foods",
+    "text": "Invoice 2410: 560 packs dried pasta at 0.86, total 482, delivered Thursday 1 October to Dock Street warehouse.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-05",
+    "type": "message",
+    "from": "Sam Okafor (volunteer lead)",
+    "text": "October rota confirmed: 14 volunteers each Saturday at Dock Street, same as before.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-07",
+    "type": "email",
+    "from": "Lena Voss (Harbour Mills Bakery)",
+    "text": "Friday bread collection continues at 120 loaves, pickup 15:00 from Quay Road. All good for 23 October.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-09",
+    "type": "decision",
+    "from": "Maya",
+    "text": "With 500 households to serve each week, I registered the Harbour Street Community Centre as a new partner client for monthly parcel pickups, contact Dana Whitfield.",
+    "role": "decision",
+    "rests_on": [
+     "e5"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Toni Maretti (Maretti Foods)",
+    "text": "Delivery slot this Thursday 15 October is confirmed for the usual 560 packs at 0.86. See you at Dock Street.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-14",
+    "type": "note",
+    "from": "Maya",
+    "text": "Stock check: pasta shelves will need the normal restock next week; vegetable boxes holding steady at 30 a week.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-16",
+    "type": "message",
+    "from": "Priya Nair (finance lead)",
+    "text": "Sent the October volunteer rota to Sam today — done. Also, finance figures are filed for the quarter.",
+    "role": "other"
+   },
+   {
+    "id": "e35",
+    "date": "2026-10-17",
+    "type": "email",
+    "from": "Ruth Adler (City Fresh Produce)",
+    "text": "Tuesday's delivery of 30 boxes at 14 each is on schedule for 20 October.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Saturday distribution 24 October",
+    "fields": {
+     "date": "2026-10-24",
+     "place": "Dock Street warehouse",
+     "start": "08:00",
+     "end": "12:00",
+     "households": "500",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Friday bread collection",
+    "fields": {
+     "date": "2026-10-23",
+     "place": "Quay Road bakery",
+     "time": "15:00",
+     "loaves": "120",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Saturday volunteer crew",
+    "fields": {
+     "date": "2026-10-24",
+     "place": "Dock Street warehouse",
+     "volunteers": "14",
+     "lead": "Sam Okafor",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Van hire for bread run",
+    "fields": {
+     "date": "2026-10-23",
+     "vehicle": "large van",
+     "start": "14:00",
+     "end": "18:00",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly pasta restock",
+    "fields": {
+     "supplier": "Maretti Foods",
+     "item": "dried pasta 500g pack",
+     "quantity": "560",
+     "unit_price": "0.86",
+     "total": "482",
+     "delivery_day": "Thursday",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Weekly vegetable boxes",
+    "fields": {
+     "supplier": "City Fresh Produce",
+     "item": "mixed vegetable box",
+     "quantity": "30",
+     "unit_price": "14",
+     "total": "420",
+     "delivery_day": "Tuesday",
+     "status": "standing"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Harvest festival extra vegetables",
+    "fields": {
+     "supplier": "City Fresh Produce",
+     "item": "mixed vegetable box",
+     "quantity": "40",
+     "unit_price": "14",
+     "total": "560",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Harbour Street Community Centre",
+    "fields": {
+     "contact": "Dana Whitfield",
+     "type": "partner",
+     "pickup": "monthly parcel",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-3",
+    "fields": [
+     "date",
+     "volunteers"
+    ],
+    "from": "Sam Okafor (volunteer lead)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please place this week's pasta restock order with Maretti Foods — the usual 560 packs of dried pasta, delivery Thursday 22 October to the Dock Street warehouse — and email Toni at Maretti Foods to confirm the order and the price.",
+  "expect": [
+   {
+    "create": "orders",
+    "fields": {
+     "supplier": "Maretti Foods",
+     "item": "dried pasta 500g pack",
+     "quantity": "560",
+     "unit_price": "0.86",
+     "total": "482",
+     "delivery_date": "2026-10-22",
+     "place": "Dock Street warehouse"
+    },
+    "stale": {
+     "unit_price": [
+      "0.92"
+     ],
+     "quantity": [
+      "200"
+     ]
+    },
+    "task": true
+   },
+   {
+    "message_to": "Toni Maretti (Maretti Foods)",
+    "regarding": null,
+    "says": [
+     "560",
+     "0.86",
+     "2026-10-22",
+     "Dock Street warehouse"
+    ],
+    "stale": [
+     "0.92"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change is only Priya restating the existing 800 sign-off rule in other words; it revokes nothing, so no record is touched and all standing plans stay as they are. The task is a routine restock: 560 packs at the agreed 0.86 (total 482, under 800, so Maya places it directly), and the confirmation email must carry 0.86, not the 0.92 wholegrain distractor price. All existing records, including EV-3 with its consent fields, remain unchanged.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "tinned tomatoes restock",
+    "counterpart": "Toni Maretti",
+    "org": "Maretti Foods",
+    "item": "tinned chopped tomatoes case",
+    "unit": "cases",
+    "values": [
+     "20",
+     "25",
+     "30",
+     "35",
+     "40"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "rice restock",
+    "counterpart": "Toni Maretti",
+    "org": "Maretti Foods",
+    "item": "long grain rice 5kg bag",
+    "unit": "bags",
+    "values": [
+     "40",
+     "50",
+     "60",
+     "70"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "vegetable box top-up",
+    "counterpart": "Ruth Adler",
+    "org": "City Fresh Produce",
+    "item": "mixed vegetable box",
+    "unit": "boxes",
+    "values": [
+     "10",
+     "15",
+     "20",
+     "30"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "fruit box order",
+    "counterpart": "Ruth Adler",
+    "org": "City Fresh Produce",
+    "item": "seasonal fruit box",
+    "unit": "boxes",
+    "values": [
+     "12",
+     "18",
+     "24",
+     "30"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "van hire for collections",
+    "counterpart": "Harbour Vehicle Hire desk",
+    "org": "Harbour Vehicle Hire",
+    "item": "large van",
+    "unit": "booking",
+    "values": [
+     "large van",
+     "medium van",
+     "small van",
+     "luton van"
+    ],
+    "place": "Quay Road"
+   },
+   {
+    "kind": "booking",
+    "topic": "community hall booking",
+    "counterpart": "Dana Whitfield",
+    "org": "Harbour Street Community Centre",
+    "item": "main hall for parcel pickup",
+    "unit": "booking",
+    "values": [
+     "main hall",
+     "side room",
+     "upstairs room"
+    ],
+    "place": "Harbour Street"
+   },
+   {
+    "kind": "order",
+    "topic": "cooking oil restock",
+    "counterpart": "Petra Lund",
+    "org": "Seaside Wholesale",
+    "item": "cooking oil 2l bottle",
+    "unit": "bottles",
+    "values": [
+     "48",
+     "60",
+     "72",
+     "96"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "cereal restock",
+    "counterpart": "Petra Lund",
+    "org": "Seaside Wholesale",
+    "item": "breakfast cereal box",
+    "unit": "boxes",
+    "values": [
+     "80",
+     "100",
+     "120",
+     "150"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "warehouse meeting room",
+    "counterpart": "Sam Okafor",
+    "org": "Bright Harbour Food Bank",
+    "item": "meeting room for volunteer briefing",
+    "unit": "booking",
+    "values": [
+     "meeting room A",
+     "meeting room B",
+     "kitchen area"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "order",
+    "topic": "tea and coffee restock",
+    "counterpart": "Petra Lund",
+    "org": "Seaside Wholesale",
+    "item": "tea bags catering pack",
+    "unit": "packs",
+    "values": [
+     "15",
+     "20",
+     "25",
+     "30"
+    ],
+    "place": "Dock Street warehouse"
+   },
+   {
+    "kind": "booking",
+    "topic": "bread collection pickup slot",
+    "counterpart": "Lena Voss",
+    "org": "Harbour Mills Bakery",
+    "item": "collection slot",
+    "unit": "booking",
+    "values": [
+     "14:00",
+     "15:00",
+     "16:00"
+    ],
+    "place": "Quay Road bakery"
+   },
+   {
+    "kind": "order",
+    "topic": "nappies and baby supplies",
+    "counterpart": "Toni Maretti",
+    "org": "Maretti Foods",
+    "item": "nappy pack",
+    "unit": "packs",
+    "values": [
+     "30",
+     "40",
+     "50",
+     "60"
+    ],
+    "place": "Dock Street warehouse"
+   }
+  ],
+  "id": "K1000-4-05",
+  "tier": 1000,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change merely restates the existing 800 sign-off rule, revoking nothing, so all records stay as they are and the routine pasta order (560 packs at 0.86, total 482, under the sign-off line) plus the confirmation email follow directly from the history; the 0.92 wholegrain price is a well-planted distractor. Counts (35 core events, 8 decisions, change 21 days before task day with 7 core events after it) meet tier 1,000, and echoes are not required for class 4. The change is an ordinary email among routine events with later events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change merely restates the existing 800 sign-off rule, revoking nothing, so all records stay as they are and the routine pasta order (560 packs at 0.86, total 482, under the sign-off line) plus the confirmation email follow directly from the history; the 0.92 wholegrain price is a well-planted distractor. Counts (35 core events, 8 decisions, change 21 days before task day with 7 core events after it) meet tier 1,000, and echoes are not required for class 4. The change is an ordinary email among routine events with later events after it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4435,
+    "completion_tokens": 274,
+    "reasoning_tokens": 96,
+    "cached_tokens": 384
+   },
+   "cost": 0.00697684,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "511253e415fddfa2b08c5eb7abd7eb47b50372740e427928f83aa3599c67e228",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e27) restates the existing 800 sign-off rule in e1 without revoking any fact or amending any rule, so no record is touched and the expected state follows from the history. The task's order (560 packs at 0.86, total 482, under 800) and the confirmation email both require acting now. Core counts (35 events, 8 decisions), the 21-day gap from the change to the task day, and the events after the change all meet tier 1,000; the 'nothing changes' wording is a slight tell but the change reads as an ordinary event.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e27) restates the existing 800 sign-off rule in e1 without revoking any fact or amending any rule, so no record is touched and the expected state follows from the history. The task's order (560 packs at 0.86, total 482, under 800) and the confirmation email both require acting now. Core counts (35 events, 8 decisions), the 21-day gap from the change to the task day, and the events after the change all meet tier 1,000; the 'nothing changes' wording is a slight tell but the change reads as an ordinary event."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6322,
+    "completion_tokens": 1848,
+    "reasoning_tokens": 1621,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015562,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "511253e415fddfa2b08c5eb7abd7eb47b50372740e427928f83aa3599c67e228",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"560 packs at 0.86 total 481.60, not 482; no rounding rule resolves the discrepancy, so the expected total is not unambiguous. The consent map also requires approval for changing volunteer numbers, whereas the stated rule only requires agreement to move a confirmed shift. The unchanged-rule control classification and the tier, action, and concealment requirements otherwise hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "560 packs at 0.86 total 481.60, not 482; no rounding rule resolves the discrepancy, so the expected total is not unambiguous. The consent map also requires approval for changing volunteer numbers, whereas the stated rule only requires agreement to move a confirmed shift. The unchanged-rule control classification and the tier, action, and concealment requirements otherwise hold."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4350,
+    "completion_tokens": 268,
+    "reasoning_tokens": 155,
+    "cached_tokens": 0
+   },
+   "cost": 0.0677675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "511253e415fddfa2b08c5eb7abd7eb47b50372740e427928f83aa3599c67e228",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

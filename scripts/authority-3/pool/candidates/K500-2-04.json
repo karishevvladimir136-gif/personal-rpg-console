@@ -718,5 +718,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The consent map and ASK mark for EV-4 do not follow from e3: that rule requires consent for changes to confirmed Brightbyte bookings, but EV-4 is draft and its parent booking is pending. The history does not establish that confirming draft guest desks requires Lena's consent, so the expected state is not unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map and ASK mark for EV-4 do not follow from e3: that rule requires consent for changes to confirmed Brightbyte bookings, but EV-4 is draft and its parent booking is pending. The history does not establish that confirming draft guest desks requires Lena's consent, so the expected state is not unambiguous."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4736,
+    "completion_tokens": 194,
+    "reasoning_tokens": 90,
+    "cached_tokens": 0
+   },
+   "cost": 0.0688925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "931107e94bc217f30cd1b915b21faaab2d920419b87627316aa63cd0f6e52644",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 2026-09-28 amendment from 20 to 45 attendees clearly makes the 28- and 38-attendee bookings confirmable without Priya's sign-off while the 50-attendee booking still needs it (KEEP), the pending AV order tied to the Kestrel booking follows it to confirmed, and the guest desks require Lena's consent under the standing instruction; the task demands concrete acts (confirm, ask, email) without hinting at the change; the echo (e23), event/decision counts, and change placement all meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 2026-09-28 amendment from 20 to 45 attendees clearly makes the 28- and 38-attendee bookings confirmable without Priya's sign-off while the 50-attendee booking still needs it (KEEP), the pending AV order tied to the Kestrel booking follows it to confirmed, and the guest desks require Lena's consent under the standing instruction; the task demands concrete acts (confirm, ask, email) without hinting at the change; the echo (e23), event/decision counts, and change placement all meet tier 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4824,
+    "completion_tokens": 543,
+    "reasoning_tokens": 380,
+    "cached_tokens": 384
+   },
+   "cost": 0.00870504,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "931107e94bc217f30cd1b915b21faaab2d920419b87627316aa63cd0f6e52644",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ASK on EV-4 rests on the standing instruction e3, which covers changes to a confirmed Brightbyte booking, but EV-4 is a draft, so the consent requirement is contestable and the expected state for EV-4 is not clearly fixed by the history. The rest of the class-2 marks (EV-1 and EV-2 REVISE, EV-3 and EV-6 KEEP, ORD-1 REVISE, ORD-2 KEEP) follow from the 20-to-45 amendment. The core meets the tier counts, the change is 32 days before the task day with seven core events after it, and the echo e23 is present.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK on EV-4 rests on the standing instruction e3, which covers changes to a confirmed Brightbyte booking, but EV-4 is a draft, so the consent requirement is contestable and the expected state for EV-4 is not clearly fixed by the history. The rest of the class-2 marks (EV-1 and EV-2 REVISE, EV-3 and EV-6 KEEP, ORD-1 REVISE, ORD-2 KEEP) follow from the 20-to-45 amendment. The core meets the tier counts, the change is 32 days before the task day with seven core events after it, and the echo e23 is present."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6759,
+    "completion_tokens": 2364,
+    "reasoning_tokens": 2099,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018579,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "931107e94bc217f30cd1b915b21faaab2d920419b87627316aa63cd0f6e52644",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

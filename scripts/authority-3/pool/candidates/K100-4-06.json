@@ -570,5 +570,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The vitamin D3 correction affects no workplace decision; the requested confirmation correctly uses MediSource’s unchanged 0.89 price and updates the next delivery to 2026-10-23. The core has 23 events and five decisions, with the change 49 days before the task and six core events after it. The change appears as an ordinary supplier email within the history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The vitamin D3 correction affects no workplace decision; the requested confirmation correctly uses MediSource’s unchanged 0.89 price and updates the next delivery to 2026-10-23. The core has 23 events and five decisions, with the change 49 days before the task and six core events after it. The change appears as an ordinary supplier email within the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3630,
+    "completion_tokens": 221,
+    "reasoning_tokens": 108,
+    "cached_tokens": 0
+   },
+   "cost": 0.0564175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "71401dfff18ab18000bd76eddcc8c958c63c46e6ad99e4326c32825e8504ba05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (vitamin D3 promo price correction, e21) revokes a fact no decision rests on, so the plan stands and the task's required acts (confirm 40 packs at 0.89 for Friday 2026-10-23, update next_delivery) follow directly from the unchanged e3/e4 and the record. Tier 100 requirements are met (23 core events, 6 decisions, change well over 5 days before the task day with multiple core events after), and the change sits mid-history as an ordinary supplier email. The Northgate 0.82 distractor is properly handled by the expected state's stale marker.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (vitamin D3 promo price correction, e21) revokes a fact no decision rests on, so the plan stands and the task's required acts (confirm 40 packs at 0.89 for Friday 2026-10-23, update next_delivery) follow directly from the unchanged e3/e4 and the record. Tier 100 requirements are met (23 core events, 6 decisions, change well over 5 days before the task day with multiple core events after), and the change sits mid-history as an ordinary supplier email. The Northgate 0.82 distractor is properly handled by the expected state's stale marker."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3704,
+    "completion_tokens": 319,
+    "reasoning_tokens": 142,
+    "cached_tokens": 384
+   },
+   "cost": 0.00615144,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "71401dfff18ab18000bd76eddcc8c958c63c46e6ad99e4326c32825e8504ba05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e21) revokes only the June vitamin D3 promo price (e5), which no decision cites, so nothing in the plan moves and the expected state (ORD-1 next_delivery to 2026-10-23, confirmation at 0.89 for 40 packs) follows. The core has 23 events, 5 decisions, and the change falls 49 days before the task day with 6 core events after it. The change email's wording 'Small correction to my June promo note' is a mild signal, but it sits among routine events and is not the last event.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e21) revokes only the June vitamin D3 promo price (e5), which no decision cites, so nothing in the plan moves and the expected state (ORD-1 next_delivery to 2026-10-23, confirmation at 0.89 for 40 packs) follows. The core has 23 events, 5 decisions, and the change falls 49 days before the task day with 6 core events after it. The change email's wording 'Small correction to my June promo note' is a mild signal, but it sits among routine events and is not the last event."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5373,
+    "completion_tokens": 1554,
+    "reasoning_tokens": 1328,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013143,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "71401dfff18ab18000bd76eddcc8c958c63c46e6ad99e4326c32825e8504ba05",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -601,5 +601,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change clearly revokes the pickup fact; EV-1 and the two-hop EV-2 are correctly REVISE under rule e1, CL-1 is correctly ASK under e2 with a matching consent map, and CL-2 is a sound KEEP since only the unchanged duty desk number matters. The task compels a concrete act (send the confirmation, fix records) without naming the change. Tier 500 requirements (30 core events, 7 decisions, 18-day gap, echo at e21, hidden change at position 440 with later events) are all met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change clearly revokes the pickup fact; EV-1 and the two-hop EV-2 are correctly REVISE under rule e1, CL-1 is correctly ASK under e2 with a matching consent map, and CL-2 is a sound KEEP since only the unchanged duty desk number matters. The task compels a concrete act (send the confirmation, fix records) without naming the change. Tier 500 requirements (30 core events, 7 decisions, 18-day gap, echo at e21, hidden change at position 440 with later events) are all met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4243,
+    "completion_tokens": 473,
+    "reasoning_tokens": 310,
+    "cached_tokens": 384
+   },
+   "cost": 0.00758364,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4e5a9a7bed600a67478a9ae41db113bfd6145753c5b832bc9725d3eab721c225",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core has 30 events, 7 decisions, and the change (e24, 18 days before the task day) is followed by six core events, and the echo e21 restates Chapel Row. The marks follow from the house rules: e1 allows the controller to update EV-1 and EV-2 on a client's written change, e2 plus Priya's office-manager role make CL-1's address an ASK, and CL-2 relies only on the unchanged phone number. The task requires sending a message, and the change appears as an ordinary role-change email among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core has 30 events, 7 decisions, and the change (e24, 18 days before the task day) is followed by six core events, and the echo e21 restates Chapel Row. The marks follow from the house rules: e1 allows the controller to update EV-1 and EV-2 on a client's written change, e2 plus Priya's office-manager role make CL-1's address an ASK, and CL-2 relies only on the unchanged phone number. The task requires sending a message, and the change appears as an ordinary role-change email among routine events."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6018,
+    "completion_tokens": 1609,
+    "reasoning_tokens": 1382,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014063,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4e5a9a7bed600a67478a9ae41db113bfd6145753c5b832bc9725d3eab721c225",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Moving the shuttle pickup to another entrance does not establish that Fenwick House's CRM account address needs changing. The account rule requires Priya's confirmation before an address edit, but does not require seeking an address change whenever the pickup point changes; therefore the mandatory CL-1 consent request and message are not unambiguously supported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Moving the shuttle pickup to another entrance does not establish that Fenwick House's CRM account address needs changing. The account rule requires Priya's confirmation before an address edit, but does not require seeking an address change whenever the pickup point changes; therefore the mandatory CL-1 consent request and message are not unambiguously supported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4134,
+    "completion_tokens": 411,
+    "reasoning_tokens": 309,
+    "cached_tokens": 0
+   },
+   "cost": 0.0722175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "4e5a9a7bed600a67478a9ae41db113bfd6145753c5b832bc9725d3eab721c225",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

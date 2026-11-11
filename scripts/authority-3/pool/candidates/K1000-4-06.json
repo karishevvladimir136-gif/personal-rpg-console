@@ -1,0 +1,750 @@
+{
+ "id": "K1000-4-06",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 4,
+ "idx": 5,
+ "setting": "Marina office manager at Saltwick Marina, a 120-berth boat harbour",
+ "prompt_sha256": "8420be5943095c4c6a2e633f0b5c9097fbe276b44fe5fefd67d7e0a9d78cee39",
+ "rounds": [
+  {
+   "text": "{\n \"title\": \"Autumn Boat Jumble at Saltwick Marina\",\n \"setting\": \"Marina office manager at Saltwick Marina, a 120-berth boat harbour\",\n \"owner\": \"Tessa\",\n \"org\": \"Saltwick Marina\",\n \"now\": \"2026-10-05\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Tessa\", \"text\": \"Office rule: any single supplier order over £500 needs Rowan Pell's sign-off as finance lead before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Tessa\", \"text\": \"Office rule: once a contractor booking is confirmed, its date or start time may only be moved with that contractor's written agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"minutes\", \"from\": \"Saltwick Harbour Committee\", \"text\": \"The committee confirmed the Autumn Boat Jumble for Saturday 17 October 2026 on the north quay, open to berth holders and the public from 09:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-09\", \"type\": \"quote\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering quoted £18 per head for jumble day buffets, up to 80 guests, served from the north quay marquee.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Piran Ellis (Westcountry Marquees)\", \"text\": \"Westcountry Marquees has a 9 by 18 metre marquee free for Saturday 17 October 2026 at £640, with erection on the north quay on Friday 16 October.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-12\", \"type\": \"message\", \"from\": \"Hal Vose (Saltwick Safety Boat)\", \"text\": \"Hal Vose confirmed the marina safety boat and a two-person crew are available on Saturday 17 October 2026 from 08:00 to 16:00.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Booked the 9 by 18 metre marquee from Westcountry Marquees for Saturday 17 October 2026 on the north quay at £640, erection on Friday 16 October; Rowan Pell signed off the spend as it is over £500.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\", \"e1\"], \"record\": \"EV-1\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Ordered the Fairway Catering buffet for the Boat Jumble at 56 guests times £18 per head, £1008 in total, for Saturday 17 October 2026; Rowan Pell signed off the order as it is over £500.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e3\", \"e1\"], \"record\": \"ORD-1\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-17\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Booked the marina safety boat with Hal Vose's two-person crew for Saturday 17 October 2026, 08:00 to 16:00, to cover the Boat Jumble.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\", \"e2\"], \"record\": \"EV-2\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"quote\", \"from\": \"Lorna Tregear (Penwith Fuels)\", \"text\": \"Penwith Fuels quoted £1.42 per litre for a 2,000 litre winter diesel delivery to the marina fuel berth, price held until the end of October 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-23\", \"type\": \"contract\", \"from\": \"Tamar Fuels\", \"text\": \"Tamar Fuels' standing supply agreement with Saltwick Marina holds diesel at £1.36 per litre for scheduled fuel berth deliveries through 2026.\", \"role\": \"fact\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-25\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Ordered 1,800 litres of diesel for the fuel berth from Tamar Fuels under the standing agreement at £1.36 per litre for delivery on 12 October 2026; Rowan Pell signed off the £2448 spend.\", \"role\": \"decision\", \"rests_on\": [\"e11\", \"e1\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-26\", \"type\": \"notice\", \"from\": \"Tessa\", \"text\": \"Sent berth holders a notice that the Autumn Boat Jumble takes place on the north quay on Saturday 17 October 2026 and the quay will be busy from 08:00.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-06-30\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Scheduled the closure of Pontoon C on Friday 16 October 2026 so Westcountry Marquees can erect the jumble marquee beside the north quay.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-3\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-03\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Ordered 20 bags of ice and 200 reusable glasses from Harbourside Supplies for the Boat Jumble at £220; under the £500 threshold so no finance sign-off was needed.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-3\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-08\", \"type\": \"decision\", \"from\": \"Tessa\", \"text\": \"Assigned marina staff Kerri Bunt and Olly Pascoe to the jumble entrance gate on Saturday 17 October 2026, 08:30 to 15:30.\", \"role\": \"decision\", \"rests_on\": [\"e3\"], \"record\": \"EV-4\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-14\", \"type\": \"call\", \"from\": \"Tessa\", \"text\": \"Spoke with the crane engineer about dates for the winter lift-out programme; nothing booked yet.\", \"role\": \"other\"},\n  {\"id\": \"e18\", \"date\": \"2026-07-20\", \"type\": \"cancellation\", \"from\": \"Saltwick Sailing Club\", \"text\": \"The sailing club cancelled its dinghy race planned for 25 July 2026 because of the forecast gale.\", \"role\": \"other\"},\n  {\"id\": \"e19\", \"date\": \"2026-07-28\", \"type\": \"email\", \"from\": \"Morwenna Glasson (Saltwick Chandlery)\", \"text\": \"From 1 September 2026 the chandlery opens 08:30 to 17:00 on weekdays and 09:00 to 13:00 on Saturdays.\", \"role\": \"fact\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-05\", \"type\": \"letter\", \"from\": \"Beacon Marine Insurance\", \"text\": \"Beacon Marine Insurance sent the routine annual schedule for the marina's public liability cover, unchanged from last year.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-12\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering confirmed their van can use the north quay power point and the marina workshop sink for water on jumble day.\", \"role\": \"fact\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-27\", \"type\": \"minutes\", \"from\": \"Saltwick Harbour Committee\", \"text\": \"The committee's summer review noted that visitor moorings income was up and asked for a report on winter berth occupancy by November.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-02\", \"type\": \"email\", \"from\": \"Lorna Tregear (Penwith Fuels)\", \"text\": \"Penwith Fuels is still holding its quote of £1.42 per litre for Saltwick's 2,000 litre winter diesel delivery if the marina wants to take it up.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-05\", \"type\": \"email\", \"from\": \"Gareth Noy (Quayline Oils)\", \"text\": \"Quayline Oils offered autumn diesel at £1.41 per litre for deliveries over 1,500 litres to Cornish marinas this season.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e25\", \"date\": \"2026-09-08\", \"type\": \"note\", \"from\": \"Tessa\", \"text\": \"Office note: Penwith's winter diesel quote of £1.42 per litre for 2,000 litres is still on file for a decision later in the autumn.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Lorna Tregear (Penwith Fuels)\", \"text\": \"Apologies for the mix-up on our side: the correct price on our winter diesel quote for Saltwick Marina is £1.39 per litre for 2,000 litres, not £1.42; the quote still stands until the end of October.\", \"role\": \"change\", \"revokes\": [\"e10\"]},\n  {\"id\": \"e27\", \"date\": \"2026-09-18\", \"type\": \"minutes\", \"from\": \"Tessa\", \"text\": \"Jumble planning meeting: marquee, 56-cover buffet, safety boat and gate rota all confirmed for Saturday 17 October 2026; signage to go up from 12 October.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-22\", \"type\": \"email\", \"from\": \"Piran Ellis (Westcountry Marquees)\", \"text\": \"Westcountry Marquees' erection crew will arrive at the north quay at 08:00 on Friday 16 October 2026 to put up the jumble marquee.\", \"role\": \"fact\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Dana Ortiz (Fairway Catering)\", \"text\": \"Fairway Catering asked Saltwick Marina to send the final jumble headcount by Wednesday 7 October 2026; kitchen access arrangements are all fine.\", \"role\": \"fact\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-30\", \"type\": \"notice\", \"from\": \"Tessa\", \"text\": \"Reminded berth holders that Pontoon C will be closed on Friday 16 October 2026 for marquee erection ahead of the Boat Jumble.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-02\", \"type\": \"task\", \"from\": \"Tessa\", \"text\": \"To-do: send Fairway Catering the final headcount for the Boat Jumble buffet by Wednesday 7 October 2026.\", \"role\": \"obligation\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-03\", \"type\": \"note\", \"from\": \"Hal Vose (Saltwick Safety Boat)\", \"text\": \"Hal Vose ran the safety boat radio check ahead of jumble day; both handheld sets working.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-04\", \"type\": \"message\", \"from\": \"Tessa\", \"text\": \"Reminded Kerri Bunt and Olly Pascoe they are on the jumble entrance gate on Saturday 17 October 2026 from 08:30.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Westcountry Marquees marquee for Boat Jumble\", \"fields\": {\"date\": \"2026-10-17\", \"setup_date\": \"2026-10-16\", \"place\": \"north quay\", \"size\": \"9x18m\", \"contractor\": \"Westcountry Marquees\", \"cost\": \"640\", \"status\": \"booked\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Safety boat cover for Boat Jumble\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"08:00\", \"end\": \"16:00\", \"crew\": \"Hal Vose two-person crew\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Pontoon C closure for marquee erection\", \"fields\": {\"date\": \"2026-10-16\", \"place\": \"Pontoon C\", \"reason\": \"marquee erection\", \"status\": \"scheduled\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Jumble entrance gate rota\", \"fields\": {\"date\": \"2026-10-17\", \"start\": \"08:30\", \"end\": \"15:30\", \"staff\": \"Kerri Bunt and Olly Pascoe\", \"status\": \"assigned\"}},\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Fairway Catering buffet for Boat Jumble\", \"fields\": {\"supplier\": \"Fairway Catering\", \"date\": \"2026-10-17\", \"headcount\": \"56\", \"price_per_head\": \"18\", \"total\": \"1008\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Tamar Fuels diesel delivery for fuel berth\", \"fields\": {\"supplier\": \"Tamar Fuels\", \"quantity\": \"1800\", \"unit\": \"litres\", \"unit_price\": \"1.36\", \"delivery_date\": \"2026-10-12\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Harbourside Supplies ice and glasses for Boat Jumble\", \"fields\": {\"supplier\": \"Harbourside Supplies\", \"items\": \"20 bags ice, 200 reusable glasses\", \"total\": \"220\", \"status\": \"confirmed\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-1\", \"fields\": [\"date\", \"setup_date\"], \"from\": \"Piran Ellis (Westcountry Marquees)\", \"rule\": \"e2\"},\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"start\"], \"from\": \"Hal Vose (Saltwick Safety Boat)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please send Fairway Catering our final headcount of 56 for Saturday's Boat Jumble buffet and mark their catering order as confirmed.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"message_to\": \"Fairway Catering\", \"regarding\": \"ORD-1\", \"says\": [\"56\", \"2026-10-17\"], \"stale\": [], \"task\": true}\n ],\n \"why\": \"This is a control scenario: the only change is Penwith Fuels correcting its unused winter diesel quote from £1.42 to £1.39 per litre, and no decision ever rested on that quote, so nothing in the workplace needs to change. The task simply carries out the standing Boat Jumble plan: send Fairway Catering the decided headcount of 56 and set ORD-1 to confirmed. All other records, including the diesel order placed with Tamar Fuels under its separate standing agreement, must stay exactly as they are.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"café restock\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"sandwich platters for the marina café\", \"unit\": \"platters\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"marina café kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"cleaning consumables\", \"counterpart\": \"Jory Bennetts\", \"org\": \"Harbourside Supplies\", \"item\": \"boxes of nitrile gloves and deck cleaner\", \"unit\": \"boxes\", \"values\": [\"3\", \"5\", \"8\", \"12\"], \"place\": \"marina workshop\"},\n  {\"kind\": \"order\", \"topic\": \"fuel berth top-up\", \"counterpart\": \"Sam Curnow\", \"org\": \"Tamar Fuels\", \"item\": \"diesel for the fuel berth\", \"unit\": \"litres\", \"values\": [\"800\", \"1200\", \"1500\", \"2000\"], \"place\": \"fuel berth\"},\n  {\"kind\": \"order\", \"topic\": \"chandlery stock\", \"counterpart\": \"Morwenna Glasson\", \"org\": \"Saltwick Chandlery\", \"item\": \"mooring lines for resale\", \"unit\": \"coils\", \"values\": [\"6\", \"10\", \"14\", \"20\"], \"place\": \"chandlery store\"},\n  {\"kind\": \"booking\", \"topic\": \"chart room meeting\", \"counterpart\": \"Alys Rowe\", \"org\": \"Saltwick Sailing Club\", \"item\": \"chart room for committee meetings\", \"unit\": \"booking\", \"values\": [\"chart room\", \"training room\", \"harbour office meeting room\"], \"place\": \"harbour office\"},\n  {\"kind\": \"booking\", \"topic\": \"crane maintenance slot\", \"counterpart\": \"Vince Halloran\", \"org\": \"Helford Crane Services\", \"item\": \"crane inspection slot\", \"unit\": \"booking\", \"values\": [\"crane pad\", \"hoist bay\", \"south quay\"], \"place\": \"south quay\"},\n  {\"kind\": \"order\", \"topic\": \"laundry service\", \"counterpart\": \"Poppy Trewhella\", \"org\": \"Clifftop Laundry\", \"item\": \"shower block towels\", \"unit\": \"bundles\", \"values\": [\"5\", \"8\", \"10\", \"15\"], \"place\": \"amenities block\"},\n  {\"kind\": \"booking\", \"topic\": \"trailer park bay\", \"counterpart\": \"Ned Bosanko\", \"org\": \"Saltwick Sailing Club\", \"item\": \"boat trailer parking bay\", \"unit\": \"booking\", \"values\": [\"trailer park row A\", \"trailer park row B\", \"dinghy park\"], \"place\": \"trailer park\"},\n  {\"kind\": \"order\", \"topic\": \"coffee supplies\", \"counterpart\": \"Dana Ortiz\", \"org\": \"Fairway Catering\", \"item\": \"coffee beans for the marina café\", \"unit\": \"kilos\", \"values\": [\"3\", \"5\", \"7\", \"9\"], \"place\": \"marina café kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"waste oil collection\", \"counterpart\": \"Ruth Angove\", \"org\": \"Greenport Environmental\", \"item\": \"waste oil collection run\", \"unit\": \"booking\", \"values\": [\"waste oil point\", \"north quay\", \"boatyard apron\"], \"place\": \"boatyard apron\"},\n  {\"kind\": \"order\", \"topic\": \"pontoon hardware\", \"counterpart\": \"Jory Bennetts\", \"org\": \"Harbourside Supplies\", \"item\": \"cleats and shackles for pontoon repairs\", \"unit\": \"sets\", \"values\": [\"4\", \"6\", \"10\", \"16\"], \"place\": \"marina workshop\"},\n  {\"kind\": \"booking\", \"topic\": \"visitor berth allocation\", \"counterpart\": \"Tessa\", \"org\": \"Saltwick Marina\", \"item\": \"visitor berth for overnight yachts\", \"unit\": \"booking\", \"values\": [\"pontoon A berth 3\", \"pontoon B berth 7\", \"pontoon D berth 1\", \"hammerhead berth\"], \"place\": \"visitor pontoons\"}\n ]\n}",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3253,
+    "completion_tokens": 8182,
+    "reasoning_tokens": 3493,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1241946,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  }
+ ],
+ "core": {
+  "title": "Autumn Boat Jumble at Saltwick Marina",
+  "setting": "Marina office manager at Saltwick Marina, a 120-berth boat harbour",
+  "owner": "Tessa",
+  "org": "Saltwick Marina",
+  "now": "2026-10-05",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Tessa",
+    "text": "Office rule: any single supplier order over £500 needs Rowan Pell's sign-off as finance lead before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Tessa",
+    "text": "Office rule: once a contractor booking is confirmed, its date or start time may only be moved with that contractor's written agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "minutes",
+    "from": "Saltwick Harbour Committee",
+    "text": "The committee confirmed the Autumn Boat Jumble for Saturday 17 October 2026 on the north quay, open to berth holders and the public from 09:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-09",
+    "type": "quote",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering quoted £18 per head for jumble day buffets, up to 80 guests, served from the north quay marquee.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Piran Ellis (Westcountry Marquees)",
+    "text": "Westcountry Marquees has a 9 by 18 metre marquee free for Saturday 17 October 2026 at £640, with erection on the north quay on Friday 16 October.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-12",
+    "type": "message",
+    "from": "Hal Vose (Saltwick Safety Boat)",
+    "text": "Hal Vose confirmed the marina safety boat and a two-person crew are available on Saturday 17 October 2026 from 08:00 to 16:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Booked the 9 by 18 metre marquee from Westcountry Marquees for Saturday 17 October 2026 on the north quay at £640, erection on Friday 16 October; Rowan Pell signed off the spend as it is over £500.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3",
+     "e1"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Ordered the Fairway Catering buffet for the Boat Jumble at 56 guests times £18 per head, £1008 in total, for Saturday 17 October 2026; Rowan Pell signed off the order as it is over £500.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-17",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Booked the marina safety boat with Hal Vose's two-person crew for Saturday 17 October 2026, 08:00 to 16:00, to cover the Boat Jumble.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e3",
+     "e2"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "quote",
+    "from": "Lorna Tregear (Penwith Fuels)",
+    "text": "Penwith Fuels quoted £1.42 per litre for a 2,000 litre winter diesel delivery to the marina fuel berth, price held until the end of October 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-23",
+    "type": "contract",
+    "from": "Tamar Fuels",
+    "text": "Tamar Fuels' standing supply agreement with Saltwick Marina holds diesel at £1.36 per litre for scheduled fuel berth deliveries through 2026.",
+    "role": "fact"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-25",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Ordered 1,800 litres of diesel for the fuel berth from Tamar Fuels under the standing agreement at £1.36 per litre for delivery on 12 October 2026; Rowan Pell signed off the £2448 spend.",
+    "role": "decision",
+    "rests_on": [
+     "e11",
+     "e1"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-26",
+    "type": "notice",
+    "from": "Tessa",
+    "text": "Sent berth holders a notice that the Autumn Boat Jumble takes place on the north quay on Saturday 17 October 2026 and the quay will be busy from 08:00.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-06-30",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Scheduled the closure of Pontoon C on Friday 16 October 2026 so Westcountry Marquees can erect the jumble marquee beside the north quay.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-03",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Ordered 20 bags of ice and 200 reusable glasses from Harbourside Supplies for the Boat Jumble at £220; under the £500 threshold so no finance sign-off was needed.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-3"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-08",
+    "type": "decision",
+    "from": "Tessa",
+    "text": "Assigned marina staff Kerri Bunt and Olly Pascoe to the jumble entrance gate on Saturday 17 October 2026, 08:30 to 15:30.",
+    "role": "decision",
+    "rests_on": [
+     "e3"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-14",
+    "type": "call",
+    "from": "Tessa",
+    "text": "Spoke with the crane engineer about dates for the winter lift-out programme; nothing booked yet.",
+    "role": "other"
+   },
+   {
+    "id": "e18",
+    "date": "2026-07-20",
+    "type": "cancellation",
+    "from": "Saltwick Sailing Club",
+    "text": "The sailing club cancelled its dinghy race planned for 25 July 2026 because of the forecast gale.",
+    "role": "other"
+   },
+   {
+    "id": "e19",
+    "date": "2026-07-28",
+    "type": "email",
+    "from": "Morwenna Glasson (Saltwick Chandlery)",
+    "text": "From 1 September 2026 the chandlery opens 08:30 to 17:00 on weekdays and 09:00 to 13:00 on Saturdays.",
+    "role": "fact"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-05",
+    "type": "letter",
+    "from": "Beacon Marine Insurance",
+    "text": "Beacon Marine Insurance sent the routine annual schedule for the marina's public liability cover, unchanged from last year.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-12",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering confirmed their van can use the north quay power point and the marina workshop sink for water on jumble day.",
+    "role": "fact"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-27",
+    "type": "minutes",
+    "from": "Saltwick Harbour Committee",
+    "text": "The committee's summer review noted that visitor moorings income was up and asked for a report on winter berth occupancy by November.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-02",
+    "type": "email",
+    "from": "Lorna Tregear (Penwith Fuels)",
+    "text": "Penwith Fuels is still holding its quote of £1.42 per litre for Saltwick's 2,000 litre winter diesel delivery if the marina wants to take it up.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-05",
+    "type": "email",
+    "from": "Gareth Noy (Quayline Oils)",
+    "text": "Quayline Oils offered autumn diesel at £1.41 per litre for deliveries over 1,500 litres to Cornish marinas this season.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-08",
+    "type": "note",
+    "from": "Tessa",
+    "text": "Office note: Penwith's winter diesel quote of £1.42 per litre for 2,000 litres is still on file for a decision later in the autumn.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Lorna Tregear (Penwith Fuels)",
+    "text": "Apologies for the mix-up on our side: the correct price on our winter diesel quote for Saltwick Marina is £1.39 per litre for 2,000 litres, not £1.42; the quote still stands until the end of October.",
+    "role": "change",
+    "revokes": [
+     "e10"
+    ]
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-18",
+    "type": "minutes",
+    "from": "Tessa",
+    "text": "Jumble planning meeting: marquee, 56-cover buffet, safety boat and gate rota all confirmed for Saturday 17 October 2026; signage to go up from 12 October.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-22",
+    "type": "email",
+    "from": "Piran Ellis (Westcountry Marquees)",
+    "text": "Westcountry Marquees' erection crew will arrive at the north quay at 08:00 on Friday 16 October 2026 to put up the jumble marquee.",
+    "role": "fact"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Dana Ortiz (Fairway Catering)",
+    "text": "Fairway Catering asked Saltwick Marina to send the final jumble headcount by Wednesday 7 October 2026; kitchen access arrangements are all fine.",
+    "role": "fact"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-30",
+    "type": "notice",
+    "from": "Tessa",
+    "text": "Reminded berth holders that Pontoon C will be closed on Friday 16 October 2026 for marquee erection ahead of the Boat Jumble.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-02",
+    "type": "task",
+    "from": "Tessa",
+    "text": "To-do: send Fairway Catering the final headcount for the Boat Jumble buffet by Wednesday 7 October 2026.",
+    "role": "obligation"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-03",
+    "type": "note",
+    "from": "Hal Vose (Saltwick Safety Boat)",
+    "text": "Hal Vose ran the safety boat radio check ahead of jumble day; both handheld sets working.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-04",
+    "type": "message",
+    "from": "Tessa",
+    "text": "Reminded Kerri Bunt and Olly Pascoe they are on the jumble entrance gate on Saturday 17 October 2026 from 08:30.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Westcountry Marquees marquee for Boat Jumble",
+    "fields": {
+     "date": "2026-10-17",
+     "setup_date": "2026-10-16",
+     "place": "north quay",
+     "size": "9x18m",
+     "contractor": "Westcountry Marquees",
+     "cost": "640",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Safety boat cover for Boat Jumble",
+    "fields": {
+     "date": "2026-10-17",
+     "start": "08:00",
+     "end": "16:00",
+     "crew": "Hal Vose two-person crew",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Pontoon C closure for marquee erection",
+    "fields": {
+     "date": "2026-10-16",
+     "place": "Pontoon C",
+     "reason": "marquee erection",
+     "status": "scheduled"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Jumble entrance gate rota",
+    "fields": {
+     "date": "2026-10-17",
+     "start": "08:30",
+     "end": "15:30",
+     "staff": "Kerri Bunt and Olly Pascoe",
+     "status": "assigned"
+    }
+   },
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Fairway Catering buffet for Boat Jumble",
+    "fields": {
+     "supplier": "Fairway Catering",
+     "date": "2026-10-17",
+     "headcount": "56",
+     "price_per_head": "18",
+     "total": "1008",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Tamar Fuels diesel delivery for fuel berth",
+    "fields": {
+     "supplier": "Tamar Fuels",
+     "quantity": "1800",
+     "unit": "litres",
+     "unit_price": "1.36",
+     "delivery_date": "2026-10-12",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Harbourside Supplies ice and glasses for Boat Jumble",
+    "fields": {
+     "supplier": "Harbourside Supplies",
+     "items": "20 bags ice, 200 reusable glasses",
+     "total": "220",
+     "status": "confirmed"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-1",
+    "fields": [
+     "date",
+     "setup_date"
+    ],
+    "from": "Piran Ellis (Westcountry Marquees)",
+    "rule": "e2"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "start"
+    ],
+    "from": "Hal Vose (Saltwick Safety Boat)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please send Fairway Catering our final headcount of 56 for Saturday's Boat Jumble buffet and mark their catering order as confirmed.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Fairway Catering",
+    "regarding": "ORD-1",
+    "says": [
+     "56",
+     "2026-10-17"
+    ],
+    "stale": [],
+    "task": true
+   }
+  ],
+  "why": "This is a control scenario: the only change is Penwith Fuels correcting its unused winter diesel quote from £1.42 to £1.39 per litre, and no decision ever rested on that quote, so nothing in the workplace needs to change. The task simply carries out the standing Boat Jumble plan: send Fairway Catering the decided headcount of 56 and set ORD-1 to confirmed. All other records, including the diesel order placed with Tamar Fuels under its separate standing agreement, must stay exactly as they are.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "café restock",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "sandwich platters for the marina café",
+    "unit": "platters",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "marina café kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "cleaning consumables",
+    "counterpart": "Jory Bennetts",
+    "org": "Harbourside Supplies",
+    "item": "boxes of nitrile gloves and deck cleaner",
+    "unit": "boxes",
+    "values": [
+     "3",
+     "5",
+     "8",
+     "12"
+    ],
+    "place": "marina workshop"
+   },
+   {
+    "kind": "order",
+    "topic": "fuel berth top-up",
+    "counterpart": "Sam Curnow",
+    "org": "Tamar Fuels",
+    "item": "diesel for the fuel berth",
+    "unit": "litres",
+    "values": [
+     "800",
+     "1200",
+     "1500",
+     "2000"
+    ],
+    "place": "fuel berth"
+   },
+   {
+    "kind": "order",
+    "topic": "chandlery stock",
+    "counterpart": "Morwenna Glasson",
+    "org": "Saltwick Chandlery",
+    "item": "mooring lines for resale",
+    "unit": "coils",
+    "values": [
+     "6",
+     "10",
+     "14",
+     "20"
+    ],
+    "place": "chandlery store"
+   },
+   {
+    "kind": "booking",
+    "topic": "chart room meeting",
+    "counterpart": "Alys Rowe",
+    "org": "Saltwick Sailing Club",
+    "item": "chart room for committee meetings",
+    "unit": "booking",
+    "values": [
+     "chart room",
+     "training room",
+     "harbour office meeting room"
+    ],
+    "place": "harbour office"
+   },
+   {
+    "kind": "booking",
+    "topic": "crane maintenance slot",
+    "counterpart": "Vince Halloran",
+    "org": "Helford Crane Services",
+    "item": "crane inspection slot",
+    "unit": "booking",
+    "values": [
+     "crane pad",
+     "hoist bay",
+     "south quay"
+    ],
+    "place": "south quay"
+   },
+   {
+    "kind": "order",
+    "topic": "laundry service",
+    "counterpart": "Poppy Trewhella",
+    "org": "Clifftop Laundry",
+    "item": "shower block towels",
+    "unit": "bundles",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "15"
+    ],
+    "place": "amenities block"
+   },
+   {
+    "kind": "booking",
+    "topic": "trailer park bay",
+    "counterpart": "Ned Bosanko",
+    "org": "Saltwick Sailing Club",
+    "item": "boat trailer parking bay",
+    "unit": "booking",
+    "values": [
+     "trailer park row A",
+     "trailer park row B",
+     "dinghy park"
+    ],
+    "place": "trailer park"
+   },
+   {
+    "kind": "order",
+    "topic": "coffee supplies",
+    "counterpart": "Dana Ortiz",
+    "org": "Fairway Catering",
+    "item": "coffee beans for the marina café",
+    "unit": "kilos",
+    "values": [
+     "3",
+     "5",
+     "7",
+     "9"
+    ],
+    "place": "marina café kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "waste oil collection",
+    "counterpart": "Ruth Angove",
+    "org": "Greenport Environmental",
+    "item": "waste oil collection run",
+    "unit": "booking",
+    "values": [
+     "waste oil point",
+     "north quay",
+     "boatyard apron"
+    ],
+    "place": "boatyard apron"
+   },
+   {
+    "kind": "order",
+    "topic": "pontoon hardware",
+    "counterpart": "Jory Bennetts",
+    "org": "Harbourside Supplies",
+    "item": "cleats and shackles for pontoon repairs",
+    "unit": "sets",
+    "values": [
+     "4",
+     "6",
+     "10",
+     "16"
+    ],
+    "place": "marina workshop"
+   },
+   {
+    "kind": "booking",
+    "topic": "visitor berth allocation",
+    "counterpart": "Tessa",
+    "org": "Saltwick Marina",
+    "item": "visitor berth for overnight yachts",
+    "unit": "booking",
+    "values": [
+     "pontoon A berth 3",
+     "pontoon B berth 7",
+     "pontoon D berth 1",
+     "hammerhead berth"
+    ],
+    "place": "visitor pontoons"
+   }
+  ],
+  "id": "K1000-4-06",
+  "tier": 1000,
+  "class": 4,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Penwith correcting an unused quote) touches no decision, so the control class is correct: the only expected acts are the standing task's — send Fairway the decided headcount of 56 and confirm ORD-1 — and all other records, including the Tamar diesel order under its separate agreement, rightly stay unchanged. The 33 core events and 7 decisions meet tier 1,000 counts, the change is 20 days before the task with several core events after it, and echoes are not required for class 4. The change sits mid-history among routine events and is not flagged, so it is properly hidden.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Penwith correcting an unused quote) touches no decision, so the control class is correct: the only expected acts are the standing task's — send Fairway the decided headcount of 56 and confirm ORD-1 — and all other records, including the Tamar diesel order under its separate agreement, rightly stay unchanged. The 33 core events and 7 decisions meet tier 1,000 counts, the change is 20 days before the task with several core events after it, and echoes are not required for class 4. The change sits mid-history among routine events and is not flagged, so it is properly hidden."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4458,
+    "completion_tokens": 271,
+    "reasoning_tokens": 98,
+    "cached_tokens": 384
+   },
+   "cost": 0.00699584,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "334f01cde650cbc07bbea432ca72fc03d48c8bb79944d39c451adb524efc7bf1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The only change (e26) revises the Penwith quote e10, but no decision rests on e10: ORD-2 rests on the Tamar agreement e11, and the echoes e23 and e25 are non-decision notes, so nothing is touched and the control class holds. The task requires sending a message and setting ORD-1 to confirmed, which forces an act, and the expected state matches the history. The core has 33 events, 7 decisions, and the change falls 20 days before the task day with 7 core events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The only change (e26) revises the Penwith quote e10, but no decision rests on e10: ORD-2 rests on the Tamar agreement e11, and the echoes e23 and e25 are non-decision notes, so nothing is touched and the control class holds. The task requires sending a message and setting ORD-1 to confirmed, which forces an act, and the expected state matches the history. The core has 33 events, 7 decisions, and the change falls 20 days before the task day with 7 core events after it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6308,
+    "completion_tokens": 1591,
+    "reasoning_tokens": 1373,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014263,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "334f01cde650cbc07bbea432ca72fc03d48c8bb79944d39c451adb524efc7bf1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The task's reference to “Saturday's” buffet is ambiguous on Monday 5 October: the upcoming Saturday is 10 October, whereas the history and expected message specify 17 October. Naming 17 October explicitly in the task would remove this ambiguity. Otherwise, the unused Penwith quote correction supports class 4, and the core meets the tier and concealment requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The task's reference to “Saturday's” buffet is ambiguous on Monday 5 October: the upcoming Saturday is 10 October, whereas the history and expected message specify 17 October. Naming 17 October explicitly in the task would remove this ambiguity. Otherwise, the unused Penwith quote correction supports class 4, and the core meets the tier and concealment requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4351,
+    "completion_tokens": 568,
+    "reasoning_tokens": 457,
+    "cached_tokens": 0
+   },
+   "cost": 0.08278,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "334f01cde650cbc07bbea432ca72fc03d48c8bb79944d39c451adb524efc7bf1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

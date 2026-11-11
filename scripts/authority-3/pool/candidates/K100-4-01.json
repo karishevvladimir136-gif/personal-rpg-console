@@ -492,5 +492,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Ana Ruiz joining as backup contact) touches no decision, price, or record, so the correct act is the routine order exactly as the plan stands. The expected state fixes the right values (12 bags, 45, regular kibble, Wednesday, main kennel store), the stale alternatives correctly exclude the premium quote distractor, and no consent boundary applies. Core counts (20 events, 5 decisions, change at event 94 with 6 events after, 14 days before the task day) meet tier 100 and the change is hidden among ordinary correspondence.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Ana Ruiz joining as backup contact) touches no decision, price, or record, so the correct act is the routine order exactly as the plan stands. The expected state fixes the right values (12 bags, 45, regular kibble, Wednesday, main kennel store), the stale alternatives correctly exclude the premium quote distractor, and no consent boundary applies. Core counts (20 events, 5 decisions, change at event 94 with 6 events after, 14 days before the task day) meet tier 100 and the change is hidden among ordinary correspondence."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3241,
+    "completion_tokens": 184,
+    "reasoning_tokens": 23,
+    "cached_tokens": 384
+   },
+   "cost": 0.00490924,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6a850b12b629b7d6462c06056d1805807061068e6dd753d5a97f2f07baed989f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state's \\\"stale\\\" key, which lists unit_price 52 and the premium kibble item on the new order, is ambiguous: it could mean those values must be written into the record or only that they must not be used, and a checker cannot tell which. Otherwise the control class, the forced routine order, the 20-event and 4-decision counts, the 14-day gap, and the hidden placement of the change at event 94 all hold.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state's \"stale\" key, which lists unit_price 52 and the premium kibble item on the new order, is ambiguous: it could mean those values must be written into the record or only that they must not be used, and a checker cannot tell which. Otherwise the control class, the forced routine order, the 20-event and 4-decision counts, the 14-day gap, and the hidden placement of the change at event 94 all hold."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4596,
+    "completion_tokens": 1384,
+    "reasoning_tokens": 1194,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011516,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6a850b12b629b7d6462c06056d1805807061068e6dd753d5a97f2f07baed989f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected new order omits delivery_day, although the task explicitly requires Wednesday delivery and the history fixes that value. Add delivery_day: Wednesday to the created order; otherwise the control classification, tier requirements, and hidden-change placement are satisfied.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected new order omits delivery_day, although the task explicitly requires Wednesday delivery and the history fixes that value. Add delivery_day: Wednesday to the created order; otherwise the control classification, tier requirements, and hidden-change placement are satisfied."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3181,
+    "completion_tokens": 256,
+    "reasoning_tokens": 171,
+    "cached_tokens": 0
+   },
+   "cost": 0.052555,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6a850b12b629b7d6462c06056d1805807061068e6dd753d5a97f2f07baed989f",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

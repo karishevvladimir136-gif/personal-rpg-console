@@ -137,7 +137,14 @@ def reserve_6(credit_left=None, stage_spent=0.0):
     return max(0.0, K.CEILING_6 - spent6), src
 
 
+def ledger_total():
+    return sum(float(json.loads(x).get("cost") or 0) for x in LEDGER.read_text().splitlines() if x.strip()) if LEDGER.exists() else 0.0
+
+
 def spend_check(gw, need, label):
+    # the stage's spend is the whole ledger (every process of this stage), not this process's view of it
+    with gw.lock:
+        gw.spent = max(gw.spent, ledger_total())
     c = client.credits()
     res, src = reserve_6(c.get("left"), gw.spent) if "error" not in c else (K.CEILING_6, "credit unreadable")
     avail = (c["left"] - res) if "error" not in c else None

@@ -696,5 +696,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The standing consent rule covers any confirmed client event, with no stated exemption for the school booking, so changing its sailing format without Priya's consent is not justified. Reduced vessel capacity does not change the gala's 46 guests or canapé requirements, and no stated rule requires consent to change canapé covers, so the ORD-1 ASK mark and consent mapping are unsupported. EV-1 also records only 44 passengers despite the 48-person party, yet the expected state requires that field to remain unchanged.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The standing consent rule covers any confirmed client event, with no stated exemption for the school booking, so changing its sailing format without Priya's consent is not justified. Reduced vessel capacity does not change the gala's 46 guests or canapé requirements, and no stated rule requires consent to change canapé covers, so the ORD-1 ASK mark and consent mapping are unsupported. EV-1 also records only 44 passengers despite the 48-person party, yet the expected state requires that field to remain unchanged."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4420,
+    "completion_tokens": 225,
+    "reasoning_tokens": 88,
+    "cached_tokens": 0
+   },
+   "cost": 0.0664925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "018ffe01cae436def00f2341a2ef5782586c6159b8a316c719da435e66de526e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The REVISE mark on EV-1 is contestable: the standing rule (e1) requires Priya's consent for any change to the date, time or format of a confirmed client event, and splitting the crossing into two sailings arguably changes the format of the Sandwick school visit, which e7 calls 'fixed'. The history does not settle whether that visit counts as 'confirmed', so the expected EV-1 change and the no-consent treatment are not clearly fixed. The structure, counts, class 1 chain, echoes and hidden change otherwise check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The REVISE mark on EV-1 is contestable: the standing rule (e1) requires Priya's consent for any change to the date, time or format of a confirmed client event, and splitting the crossing into two sailings arguably changes the format of the Sandwick school visit, which e7 calls 'fixed'. The history does not settle whether that visit counts as 'confirmed', so the expected EV-1 change and the no-consent treatment are not clearly fixed. The structure, counts, class 1 chain, echoes and hidden change otherwise check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6366,
+    "completion_tokens": 2313,
+    "reasoning_tokens": 2079,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017931,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "018ffe01cae436def00f2341a2ef5782586c6159b8a316c719da435e66de526e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The revoked 48-passenger fact cleanly forces EV-1 to two sailings (09:30 and 11:00 are offered in e15), the gala EV-2 and ORD-1 (two hops) are plausibly ASK under the standing rule e1, and the change sits mid-history with later events and two echoes of the stale value. Minor weakness: mapping ORD-1's 'covers' field to rule e1 (which speaks of date/time/format of a confirmed client event) is a slight stretch, but the consent map is consistent with the writer's intent and the rest is unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revoked 48-passenger fact cleanly forces EV-1 to two sailings (09:30 and 11:00 are offered in e15), the gala EV-2 and ORD-1 (two hops) are plausibly ASK under the standing rule e1, and the change sits mid-history with later events and two echoes of the stale value. Minor weakness: mapping ORD-1's 'covers' field to rule e1 (which speaks of date/time/format of a confirmed client event) is a slight stretch, but the consent map is consistent with the writer's intent and the rest is unambiguous."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4503,
+    "completion_tokens": 772,
+    "reasoning_tokens": 602,
+    "cached_tokens": 384
+   },
+   "cost": 0.00926324,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "018ffe01cae436def00f2341a2ef5782586c6159b8a316c719da435e66de526e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -735,5 +735,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The safety-policy restatement changes no operative requirement, so existing records remain unchanged; the lunch booking and confirmation follow the current catering terms. The core has 33 events and 11 decisions, with the restatement 16 days before the task and four core events after it. The consent map matches the stated haulage booking rule.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The safety-policy restatement changes no operative requirement, so existing records remain unchanged; the lunch booking and confirmation follow the current catering terms. The core has 33 events and 11 decisions, with the restatement 16 days before the task and four core events after it. The consent map matches the stated haulage booking rule."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4598,
+    "completion_tokens": 221,
+    "reasoning_tokens": 118,
+    "cached_tokens": 0
+   },
+   "cost": 0.0685175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "da0b12cf495290bca1b12779ad13786e1e061c91dc046fb7d0699c42a3ea512c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"e28 restates the e1 Bay 2 fire-watch and pre-07:00 grinding rules with the same content, so it revokes nothing and the control class holds. The core has 32 events, 11 decisions, and the change falls 16 days before the task day with four core events after it. One minor issue: Fairway's terms require 48 hours' notice, and booking on Wednesday 14 October for Friday 16 October sits at the edge of that window, though the expected state does not depend on it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "e28 restates the e1 Bay 2 fire-watch and pre-07:00 grinding rules with the same content, so it revokes nothing and the control class holds. The core has 32 events, 11 decisions, and the change falls 16 days before the task day with four core events after it. One minor issue: Fairway's terms require 48 hours' notice, and booking on Wednesday 14 October for Friday 16 October sits at the edge of that window, though the expected state does not depend on it."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6819,
+    "completion_tokens": 1722,
+    "reasoning_tokens": 1509,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015429,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "da0b12cf495290bca1b12779ad13786e1e061c91dc046fb7d0699c42a3ea512c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e28) merely restates the standing safety rule, touching no decision, so class 4 is correct and all records stay unchanged; the task independently requires a new booking and a message to Dana. Core counts (32 events, 11 decisions), the change's distance (16 days before task day), and post-change events (4) meet tier 500. The change sits at event 462 of 500, plainly worded, with later core and routine events after it.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e28) merely restates the standing safety rule, touching no decision, so class 4 is correct and all records stay unchanged; the task independently requires a new booking and a message to Dana. Core counts (32 events, 11 decisions), the change's distance (16 days before task day), and post-change events (4) meet tier 500. The change sits at event 462 of 500, plainly worded, with later core and routine events after it."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4689,
+    "completion_tokens": 377,
+    "reasoning_tokens": 232,
+    "cached_tokens": 384
+   },
+   "cost": 0.00778564,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "da0b12cf495290bca1b12779ad13786e1e061c91dc046fb7d0699c42a3ea512c",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

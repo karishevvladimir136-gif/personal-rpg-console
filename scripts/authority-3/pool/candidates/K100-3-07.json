@@ -534,5 +534,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the fact correction (delivery 08:00→10:00) flows to ORD-1 (REVISE), then EV-3 (REVISE, 10:30 after 30 min of shots), while EV-2 requires the couple's consent under rule e1 (ASK) and ORD-2 only rests on the untouched palette (KEEP). The task forces updating EV-3 and messaging Kim without hinting at the change. Tier-100 requirements (22 core events, 6 decisions, change 9 days before the task day, two core events after it, change hidden at event 89/100) are all met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the fact correction (delivery 08:00→10:00) flows to ORD-1 (REVISE), then EV-3 (REVISE, 10:30 after 30 min of shots), while EV-2 requires the couple's consent under rule e1 (ASK) and ORD-2 only rests on the untouched palette (KEEP). The task forces updating EV-3 and messaging Kim without hinting at the change. Tier-100 requirements (22 core events, 6 decisions, change 9 days before the task day, two core events after it, change hidden at event 89/100) are all met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3717,
+    "completion_tokens": 352,
+    "reasoning_tokens": 174,
+    "cached_tokens": 0
+   },
+   "cost": 0.0067526,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8d9ca6f713cc2c680cfdfa724c51fa47b4263881e6e4486d71bc05443616b8af",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The couple-consent rule covers any timing on their confirmed schedule, including Kim's start, so treating EV-3 as freely revisable while protecting only EV-2 is unsupported. Kim's requested 30 minutes is a shooting duration, not an explicit delivery-to-start offset, so the history does not uniquely fix her revised start at 10:30.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The couple-consent rule covers any timing on their confirmed schedule, including Kim's start, so treating EV-3 as freely revisable while protecting only EV-2 is unsupported. Kim's requested 30 minutes is a shooting duration, not an explicit delivery-to-start offset, so the history does not uniquely fix her revised start at 10:30."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3671,
+    "completion_tokens": 237,
+    "reasoning_tokens": 129,
+    "cached_tokens": 0
+   },
+   "cost": 0.05773,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8d9ca6f713cc2c680cfdfa724c51fa47b4263881e6e4486d71bc05443616b8af",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state follows from the history: ORD-1 and EV-3 are revised to 10:00 and 10:30, EV-2 needs the Hartleys' consent under e1, and ORD-2 is KEEP because the palette still stands. The core has 22 events (within 20–40), 5 decisions (within 4–10), a change 9 days before the task day, and 2 core events after it, and the change is an unlabelled routine-style update. The one soft spot is that e20 is annotated as revoking e6 as a whole, which reads like class 1, though the palette-based KEEP on e12 fits the chain structure.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state follows from the history: ORD-1 and EV-3 are revised to 10:00 and 10:30, EV-2 needs the Hartleys' consent under e1, and ORD-2 is KEEP because the palette still stands. The core has 22 events (within 20–40), 5 decisions (within 4–10), a change 9 days before the task day, and 2 core events after it, and the change is an unlabelled routine-style update. The one soft spot is that e20 is annotated as revoking e6 as a whole, which reads like class 1, though the palette-based KEEP on e12 fits the chain structure."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5318,
+    "completion_tokens": 2220,
+    "reasoning_tokens": 1964,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016418,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8d9ca6f713cc2c680cfdfa724c51fa47b4263881e6e4486d71bc05443616b8af",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

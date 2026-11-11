@@ -617,5 +617,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (Harbour Frames account reshuffle) explicitly leaves Clearview's visits and deliveries untouched, so the correct response is the routine restock alone, matching the prior order exactly (60 bottles at 360, under the 400 sign-off threshold, no consent needed). The catalogue price distractor is correctly scoped to November. Tier requirements (31 core events, 7 decisions, change 17 days before task day, later events after it, echo not required for class 4) are met and the change is buried mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (Harbour Frames account reshuffle) explicitly leaves Clearview's visits and deliveries untouched, so the correct response is the routine restock alone, matching the prior order exactly (60 bottles at 360, under the 400 sign-off threshold, no consent needed). The catalogue price distractor is correctly scoped to November. Tier requirements (31 core events, 7 decisions, change 17 days before task day, later events after it, echo not required for class 4) are met and the change is buried mid-history."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3831,
+    "completion_tokens": 268,
+    "reasoning_tokens": 116,
+    "cached_tokens": 384
+   },
+   "cost": 0.00610484,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7266230a5502770e713d8cd2bbb0d73bbae9366f7a34cf04ce6e32f3225e7d59",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The usual reorder is 60 bottles for 360, below the finance sign-off threshold, and the Harbour Frames reshuffle explicitly leaves Clearview unaffected. The core has 31 events and 7 decisions, with the change 17 days before the task and six core events afterward; class 4 requires no stale-value echo. The task requires placing a new order without mentioning the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The usual reorder is 60 bottles for 360, below the finance sign-off threshold, and the Harbour Frames reshuffle explicitly leaves Clearview unaffected. The core has 31 events and 7 decisions, with the change 17 days before the task and six core events afterward; class 4 requires no stale-value echo. The task requires placing a new order without mentioning the change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3763,
+    "completion_tokens": 256,
+    "reasoning_tokens": 142,
+    "cached_tokens": 0
+   },
+   "cost": 0.05983,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7266230a5502770e713d8cd2bbb0d73bbae9366f7a34cf04ce6e32f3225e7d59",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (E0025) explicitly leaves Harbour Frames' visits and deliveries unchanged, and the consent map's rule e2 applies only to a supplier representative moving a confirmed delivery, so no record should move. The core meets the tier counts (31 events, 7 decisions), sits 17 days before the task day, and has six core events after it. The change is an ordinary email among routine events, and the task forces an order to be created.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (E0025) explicitly leaves Harbour Frames' visits and deliveries unchanged, and the consent map's rule e2 applies only to a supplier representative moving a confirmed delivery, so no record should move. The core meets the tier counts (31 events, 7 decisions), sits 17 days before the task day, and has six core events after it. The change is an ordinary email among routine events, and the task forces an order to be created."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5531,
+    "completion_tokens": 1356,
+    "reasoning_tokens": 1160,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012311,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "7266230a5502770e713d8cd2bbb0d73bbae9366f7a34cf04ce6e32f3225e7d59",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

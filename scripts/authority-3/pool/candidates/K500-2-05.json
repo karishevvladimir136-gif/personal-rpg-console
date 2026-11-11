@@ -671,5 +671,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Rule e29 requires Marcus Hale’s consent for any booked delivery cost change, so ORD-1 and ORD-2 also require consent before their costs change; the consent map and REVISE marks contradict that rule. The amendment covers outgoing document bundles, so applying its courier and £18 rate to the archive-box run is not unambiguous.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rule e29 requires Marcus Hale’s consent for any booked delivery cost change, so ORD-1 and ORD-2 also require consent before their costs change; the consent map and REVISE marks contradict that rule. The amendment covers outgoing document bundles, so applying its courier and £18 rate to the archive-box run is not unambiguous."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4359,
+    "completion_tokens": 203,
+    "reasoning_tokens": 97,
+    "cached_tokens": 0
+   },
+   "cost": 0.06463,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "785116b5e8af7fdeeeae5cc816b3a285a06682e26eddf1e28b5f84c215a330a2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The office rule e29 requires Marcus Hale's sign-off for any change to an agreed delivery cost, whatever the amount, yet ORD-1 and ORD-2 cost fields are marked REVISE with no consent, and the consent map lists only ORD-3. Those cost changes should be ASK under the history's own rule, so the expected state is inconsistent. The rest of the structure (class 2, tier counts, echo at e14, hidden change at event 448) is sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The office rule e29 requires Marcus Hale's sign-off for any change to an agreed delivery cost, whatever the amount, yet ORD-1 and ORD-2 cost fields are marked REVISE with no consent, and the consent map lists only ORD-3. Those cost changes should be ASK under the history's own rule, so the expected state is inconsistent. The rest of the structure (class 2, tier counts, echo at e14, hidden change at event 448) is sound."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6482,
+    "completion_tokens": 1334,
+    "reasoning_tokens": 1122,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013152,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "785116b5e8af7fdeeeae5cc816b3a285a06682e26eddf1e28b5f84c215a330a2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment's own terms (SwiftRun from 1 October, 25-pound threshold, pre-October bookings unaffected) cleanly fix ORD-1/ORD-2 to SwiftRun at 18, keep ORD-4, and the standing cost-change rule e29 makes ORD-3's cost change ASK. The task forces a same-day send plus confirmation email without hinting at the change. Counts (~29 core events, 6 decisions, change 25 days before task day, echo e14, later core events) all meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment's own terms (SwiftRun from 1 October, 25-pound threshold, pre-October bookings unaffected) cleanly fix ORD-1/ORD-2 to SwiftRun at 18, keep ORD-4, and the standing cost-change rule e29 makes ORD-3's cost change ASK. The task forces a same-day send plus confirmation email without hinting at the change. Counts (~29 core events, 6 decisions, change 25 days before task day, echo e14, later core events) all meet tier 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4425,
+    "completion_tokens": 540,
+    "reasoning_tokens": 384,
+    "cached_tokens": 384
+   },
+   "cost": 0.00813324,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "785116b5e8af7fdeeeae5cc816b3a285a06682e26eddf1e28b5f84c215a330a2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

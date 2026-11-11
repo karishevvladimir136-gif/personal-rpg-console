@@ -744,5 +744,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e28) revokes fact e20; decisions resting on it directly (e22, e23, e25) and two hops via e22 (e24) are correctly touched, with REVISE/ASK/KEEP marks following from the history's rules (e1 consent rule for in-flat work; the notice still covering the correct week). The expected values are fixed unambiguously by e28 (2026-10-21, 13:00–16:00), and untouched records clearly stay. Tier requirements (36 core events, 10 decisions, change 15 days before task day, two echoes at e26/e27, events after the change) are all met, and the change sits at event 917 among routine events with distractor e29.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e28) revokes fact e20; decisions resting on it directly (e22, e23, e25) and two hops via e22 (e24) are correctly touched, with REVISE/ASK/KEEP marks following from the history's rules (e1 consent rule for in-flat work; the notice still covering the correct week). The expected values are fixed unambiguously by e28 (2026-10-21, 13:00–16:00), and untouched records clearly stay. Tier requirements (36 core events, 10 decisions, change 15 days before task day, two echoes at e26/e27, events after the change) are all met, and the change sits at event 917 among routine events with distractor e29."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4875,
+    "completion_tokens": 386,
+    "reasoning_tokens": 180,
+    "cached_tokens": 384
+   },
+   "cost": 0.00808564,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "90d6c9155bb44b72456b4a9a974bbd9f6df5c6afbea42dfb8906d3b503d4253d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change revokes e20, and the marks follow from the history: e22 and e24 are REVISE (two hops from e20), e23 is ASK under the e1 house rule, and e25 is KEEP because the 'week of 19 October' notice still holds. The tier counts are met (36 core events, 10 decisions, change 15 days before the task day, 8 core events after it, 2 echoes). The only soft spot is that the new 13:00 arrival time is inferred from the 13:00–16:00 window rather than stated outright.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change revokes e20, and the marks follow from the history: e22 and e24 are REVISE (two hops from e20), e23 is ASK under the e1 house rule, and e25 is KEEP because the 'week of 19 October' notice still holds. The tier counts are met (36 core events, 10 decisions, change 15 days before the task day, 8 core events after it, 2 echoes). The only soft spot is that the new 13:00 arrival time is inferred from the 13:00–16:00 window rather than stated outright."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6879,
+    "completion_tokens": 2188,
+    "reasoning_tokens": 1961,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017819,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "90d6c9155bb44b72456b4a9a974bbd9f6df5c6afbea42dfb8906d3b503d4253d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The loading-bay reservation clearly needs moving, but the history does not uniquely fix its new window as 12:30–16:30. That value assumes the original half-hour margins must be preserved, without an instruction establishing that requirement; the remaining expected actions and consent restriction follow from the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The loading-bay reservation clearly needs moving, but the history does not uniquely fix its new window as 12:30–16:30. That value assumes the original half-hour margins must be preserved, without an instruction establishing that requirement; the remaining expected actions and consent restriction follow from the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4818,
+    "completion_tokens": 408,
+    "reasoning_tokens": 311,
+    "cached_tokens": 0
+   },
+   "cost": 0.0806175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "90d6c9155bb44b72456b4a9a974bbd9f6df5c6afbea42dfb8906d3b503d4253d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

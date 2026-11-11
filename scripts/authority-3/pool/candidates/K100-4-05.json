@@ -493,5 +493,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change at e17 restates the £800 sign-off rule with the same substance, so no decision is touched and the expected state follows. The task requires placing an order, and the core meets the tier counts (20 events, 4 decisions, change 12 days before the task day, 3 core events after it). The change is an ordinary message buried among routine events, though its 'reminder' wording is a mild tell and the 'stale' field notation in the expected state is unusually terse.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change at e17 restates the £800 sign-off rule with the same substance, so no decision is touched and the expected state follows. The task requires placing an order, and the core meets the tier counts (20 events, 4 decisions, change 12 days before the task day, 3 core events after it). The change is an ordinary message buried among routine events, though its 'reminder' wording is a mild tell and the 'stale' field notation in the expected state is unusually terse."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4591,
+    "completion_tokens": 1354,
+    "reasoning_tokens": 1153,
+    "cached_tokens": 0
+   },
+   "cost": 0.0011361,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9082a303efcc8349e96391f947171385cf01c1756b1c87b75c7e2d0e2304fa4e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change only restates the £800 sign-off rule in other words, so nothing is revoked and all records stay; the task is a new act (order 6m herringbone at the standing £68 = £408, under threshold, sent straight out), with £72/£432 as the stale distractor Luca's forward-looking email supports avoiding. One minor wrinkle: the task doesn't explicitly say present stock, so £408 vs £432 rests on e15's statement that the current list price stands for present stock, but this is still reasonably unambiguous. Everything else is consistent: consent map matches e1, change is mid-history with later events, and tier counts are met (20 core events, 4 decisions, change 12 days before the task).\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change only restates the £800 sign-off rule in other words, so nothing is revoked and all records stay; the task is a new act (order 6m herringbone at the standing £68 = £408, under threshold, sent straight out), with £72/£432 as the stale distractor Luca's forward-looking email supports avoiding. One minor wrinkle: the task doesn't explicitly say present stock, so £408 vs £432 rests on e15's statement that the current list price stands for present stock, but this is still reasonably unambiguous. Everything else is consistent: consent map matches e1, change is mid-history with later events, and tier counts are met (20 core events, 4 decisions, change 12 days before the task)."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3263,
+    "completion_tokens": 395,
+    "reasoning_tokens": 189,
+    "cached_tokens": 384
+   },
+   "cost": 0.00586844,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9082a303efcc8349e96391f947171385cf01c1756b1c87b75c7e2d0e2304fa4e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The routine events introduce unresolved ambiguity about existing records: E0078–E0080 order the same supplier's 8 metres of cupro lining at a different amount, and E0087–E0088 schedule an unidentified measuring session at a different time and place from EV-2. Without visible record mappings, these cannot unambiguously be treated as unrelated events while all existing records remain unchanged. The designated change itself is a harmless rule restatement, and the core meets the tier requirements.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The routine events introduce unresolved ambiguity about existing records: E0078–E0080 order the same supplier's 8 metres of cupro lining at a different amount, and E0087–E0088 schedule an unidentified measuring session at a different time and place from EV-2. Without visible record mappings, these cannot unambiguously be treated as unrelated events while all existing records remain unchanged. The designated change itself is a harmless rule restatement, and the core meets the tier requirements."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3219,
+    "completion_tokens": 257,
+    "reasoning_tokens": 121,
+    "cached_tokens": 0
+   },
+   "cost": 0.05308,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "9082a303efcc8349e96391f947171385cf01c1756b1c87b75c7e2d0e2304fa4e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -541,5 +541,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The surname correction affects no decision or workplace record, so only the requested pickup-confirmation email is needed; no consent is required. The core has 22 events and five decisions, with the change 28 days before the task and three core events after it. The change appears as an ordinary accounts email among other events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The surname correction affects no decision or workplace record, so only the requested pickup-confirmation email is needed; no consent is required. The core has 22 events and five decisions, with the change 28 days before the task and three core events after it. The change appears as an ordinary accounts email among other events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3495,
+    "completion_tokens": 132,
+    "reasoning_tokens": 31,
+    "cached_tokens": 0
+   },
+   "cost": 0.05028,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "af49cbf1e03d62eade32ef83b138a5ab329e55358813fe4f3bfd9f993f49f5ac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The only change (surname correction Kline→Kohl) touches no decision or record, so the correct act is simply emailing Marta the unchanged pickup details; the £14 small-roll offer is a clean distractor on a different product. The change is at event 86 of 100 with 14 later events, ~28 days before the task day, and the core has 22 events and 5 decisions, meeting tier 100. The consent map correctly reflects e2 and is not triggered since nothing about the booking changes.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The only change (surname correction Kline→Kohl) touches no decision or record, so the correct act is simply emailing Marta the unchanged pickup details; the £14 small-roll offer is a clean distractor on a different product. The change is at event 86 of 100 with 14 later events, ~28 days before the task day, and the core has 22 events and 5 decisions, meeting tier 100. The consent map correctly reflects e2 and is not triggered since nothing about the booking changes."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3539,
+    "completion_tokens": 254,
+    "reasoning_tokens": 103,
+    "cached_tokens": 384
+   },
+   "cost": 0.00563444,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "af49cbf1e03d62eade32ef83b138a5ab329e55358813fe4f3bfd9f993f49f5ac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e19) revokes only the Kline spelling in e17, and no decision (e8, e9, e10, e12, e14) rests on e17, so nothing is touched and class 4 holds. The core meets the tier: 22 core events, 5 decisions, and the change is 28 days before the task day with 3 core events after it. The change's phrasing ('Apologies for the confusion… had it wrong') leans toward signalling a correction, which is the only borderline point on hiding, and the expected 'stale' strings ('2026-10-18', '10:00') appear nowhere in the history, though they serve only as negative checks.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e19) revokes only the Kline spelling in e17, and no decision (e8, e9, e10, e12, e14) rests on e17, so nothing is touched and class 4 holds. The core meets the tier: 22 core events, 5 decisions, and the change is 28 days before the task day with 3 core events after it. The change's phrasing ('Apologies for the confusion… had it wrong') leans toward signalling a correction, which is the only borderline point on hiding, and the expected 'stale' strings ('2026-10-18', '10:00') appear nowhere in the history, though they serve only as negative checks."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5046,
+    "completion_tokens": 2179,
+    "reasoning_tokens": 1921,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015941,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "af49cbf1e03d62eade32ef83b138a5ab329e55358813fe4f3bfd9f993f49f5ac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

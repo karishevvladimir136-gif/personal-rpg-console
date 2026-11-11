@@ -683,5 +683,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The scenario cleanly instantiates class 3: fact A (e5's price) is corrected by e24, decision B (ORD-1) rests on A, decision C (ORD-2) rests on B and requires consent at the corrected 1020 total, and D (EV-1) cites only the unchanged Monday delivery (KEEP). All tier-500 requirements hold: 34 core events, 6 decisions, the change 17 days before the task day with 10 core events after it, and an echo (e17) restating the stale price. The task legitimately forces an act (firming up ORD-2) without hinting at the change, and the change sits mid-history among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scenario cleanly instantiates class 3: fact A (e5's price) is corrected by e24, decision B (ORD-1) rests on A, decision C (ORD-2) rests on B and requires consent at the corrected 1020 total, and D (EV-1) cites only the unchanged Monday delivery (KEEP). All tier-500 requirements hold: 34 core events, 6 decisions, the change 17 days before the task day with 10 core events after it, and an echo (e17) restating the stale price. The task legitimately forces an act (firming up ORD-2) without hinting at the change, and the change sits mid-history among routine events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4355,
+    "completion_tokens": 334,
+    "reasoning_tokens": 142,
+    "cached_tokens": 384
+   },
+   "cost": 0.00712884,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "174fe673e39c41aa69917c61c8a083a622a1042e97ee0189fbf28599128d06de",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain fits: e5 (price) is corrected by e24, B=e8 rests directly on it and is REVISE, C=e11 rests on e8 and e2 and is ASK, and D=e13 cites e5 only for the unchanged Monday delivery and is KEEP, with e17 as the echo. Counts (34 core events, 6 decisions, change 17 days before the task, 8 core events after it) meet the tier, and the change is an ordinary-looking email among routine events, not the last event and not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain fits: e5 (price) is corrected by e24, B=e8 rests directly on it and is REVISE, C=e11 rests on e8 and e2 and is ASK, and D=e13 cites e5 only for the unchanged Monday delivery and is KEEP, with e17 as the echo. Counts (34 core events, 6 decisions, change 17 days before the task, 8 core events after it) meet the tier, and the change is an ordinary-looking email among routine events, not the last event and not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6257,
+    "completion_tokens": 1402,
+    "reasoning_tokens": 1173,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013267,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "174fe673e39c41aa69917c61c8a083a622a1042e97ee0189fbf28599128d06de",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The approval rule requires Marcus's written sign-off before confirming an order over £800, but does not prohibit correcting a draft's amount. The consent map therefore adds an unsupported restriction on ORD-2's amount, making the expected requirement to leave it at £840 rather than update it to £1,020 ambiguous. The chain structure, tier requirements, and placement of the change otherwise fit.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The approval rule requires Marcus's written sign-off before confirming an order over £800, but does not prohibit correcting a draft's amount. The consent map therefore adds an unsupported restriction on ORD-2's amount, making the expected requirement to leave it at £840 rather than update it to £1,020 ambiguous. The chain structure, tier requirements, and placement of the change otherwise fit."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4252,
+    "completion_tokens": 306,
+    "reasoning_tokens": 191,
+    "cached_tokens": 0
+   },
+   "cost": 0.0684425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "174fe673e39c41aa69917c61c8a083a622a1042e97ee0189fbf28599128d06de",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

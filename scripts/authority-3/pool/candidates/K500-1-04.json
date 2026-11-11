@@ -643,5 +643,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (28-set cap) cleanly forces REVISE on ORD-1 (28 sets, 504 total) and the message to Lena, KEEP on ORD-2 (10 fits under 28), and ASK on CL-1 two hops away via ORD-1 with consent rule e2 matching the consent map. Core has 30 events and 8 decisions within tier limits, the change sits 12 days before the task day with 34 events after it, and the echo (e14) restates the stale 40-set value. The change appears as an ordinary supplier email, not flagged, and the task demands concrete workplace action without hinting at any change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (28-set cap) cleanly forces REVISE on ORD-1 (28 sets, 504 total) and the message to Lena, KEEP on ORD-2 (10 fits under 28), and ASK on CL-1 two hops away via ORD-1 with consent rule e2 matching the consent map. Core has 30 events and 8 decisions within tier limits, the change sits 12 days before the task day with 34 events after it, and the echo (e14) restates the stale 40-set value. The change appears as an ordinary supplier email, not flagged, and the task demands concrete workplace action without hinting at any change."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4096,
+    "completion_tokens": 354,
+    "reasoning_tokens": 172,
+    "cached_tokens": 384
+   },
+   "cost": 0.00685424,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c9865975b579d0257175aba66d1ce1d23aeee4fc1a286f7bdd579593faa4fe99",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"A guarantee of only 28 sets establishes a supply shortfall but does not unambiguously authorize reducing the confirmed order to exactly 28 or establish that the client booking must change rather than arranging replacement equipment. The revised order still exceeds 500, and the history does not clearly establish that Johan's earlier approval covers the revised order or overrides his instruction to route all supplier drafts through him.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "A guarantee of only 28 sets establishes a supply shortfall but does not unambiguously authorize reducing the confirmed order to exactly 28 or establish that the client booking must change rather than arranging replacement equipment. The revised order still exceeds 500, and the history does not clearly establish that Johan's earlier approval covers the revised order or overrides his instruction to route all supplier drafts through him."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3982,
+    "completion_tokens": 253,
+    "reasoning_tokens": 139,
+    "cached_tokens": 0
+   },
+   "cost": 0.0624175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c9865975b579d0257175aba66d1ce1d23aeee4fc1a286f7bdd579593faa4fe99",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state marks ORD-1 as REVISE with no sign-off needed, but the revised total of 504 is over 500, so rule e1 requires Johan Berg's sign-off before the order is sent, and his earlier approval covered only 540. The expected state and the email to Lena therefore conflict with the history's own rule. The rest of the structure (class 1 chain to CL-1 at two hops, tier counts, hidden change at event 466 of 500) checks out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state marks ORD-1 as REVISE with no sign-off needed, but the revised total of 504 is over 500, so rule e1 requires Johan Berg's sign-off before the order is sent, and his earlier approval covered only 540. The expected state and the email to Lena therefore conflict with the history's own rule. The rest of the structure (class 1 chain to CL-1 at two hops, tier counts, hidden change at event 466 of 500) checks out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5757,
+    "completion_tokens": 1704,
+    "reasoning_tokens": 1495,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014277,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c9865975b579d0257175aba66d1ce1d23aeee4fc1a286f7bdd579593faa4fe99",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

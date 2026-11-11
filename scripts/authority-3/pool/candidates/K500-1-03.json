@@ -626,5 +626,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rate change (e25) clearly revokes the 15 dollar fact (e3) for all November bookings, making EV-1 and two-hop ORD-2 REVISE cases at 18, the 288 total correct, and CL-1 an ASK case under Marta's stated confirmed-package rule; the kayak email is a clean distractor. The task demands a concrete act (sending a confirmation with totals) without hinting at the change. Tier 500 requirements (30 core events, 6 decisions, change 15 days before the task day, later core events, and the echo at e20) are all met, and the change sits mid-history among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rate change (e25) clearly revokes the 15 dollar fact (e3) for all November bookings, making EV-1 and two-hop ORD-2 REVISE cases at 18, the 288 total correct, and CL-1 an ASK case under Marta's stated confirmed-package rule; the kayak email is a clean distractor. The task demands a concrete act (sending a confirmation with totals) without hinting at the change. Tier 500 requirements (30 core events, 6 decisions, change 15 days before the task day, later core events, and the echo at e20) are all met, and the change sits mid-history among routine events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4212,
+    "completion_tokens": 398,
+    "reasoning_tokens": 213,
+    "cached_tokens": 384
+   },
+   "cost": 0.00721024,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b0427adc84ff115d0f53db5fc0d6e7eb22e84ff23d06c30223529d9acb71f58a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale fact e3 is revoked by e25, touching e7 (REVISE, direct), e11 (ASK, direct), and e9 (REVISE, two hops via e7). The 288 total (216 + 72) and the consent route for CL-1 both follow from the history, and e20 serves as the echo. The change sits mid-history, 15 days before the task day, with five core events after it, and the task requires an outbound confirmation.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale fact e3 is revoked by e25, touching e7 (REVISE, direct), e11 (ASK, direct), and e9 (REVISE, two hops via e7). The 288 total (216 + 72) and the consent route for CL-1 both follow from the history, and e20 serves as the echo. The change sits mid-history, 15 days before the task day, with five core events after it, and the task requires an outbound confirmation."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5919,
+    "completion_tokens": 1950,
+    "reasoning_tokens": 1753,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015669,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b0427adc84ff115d0f53db5fc0d6e7eb22e84ff23d06c30223529d9acb71f58a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The supplier rate change fixes EV-1 and ORD-2 at 18 dollars and their combined total at 288 dollars. It does not require passing the increased cost through to Gwen's confirmed package: e1 requires consent if its price changes, but does not require proposing a change. Thus the mandatory ASK on CL-1 is not unambiguously supported.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The supplier rate change fixes EV-1 and ORD-2 at 18 dollars and their combined total at 288 dollars. It does not require passing the increased cost through to Gwen's confirmed package: e1 requires consent if its price changes, but does not require proposing a change. Thus the mandatory ASK on CL-1 is not unambiguously supported."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4141,
+    "completion_tokens": 310,
+    "reasoning_tokens": 201,
+    "cached_tokens": 0
+   },
+   "cost": 0.067255,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b0427adc84ff115d0f53db5fc0d6e7eb22e84ff23d06c30223529d9acb71f58a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

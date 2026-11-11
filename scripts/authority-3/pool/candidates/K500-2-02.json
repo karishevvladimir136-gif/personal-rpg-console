@@ -635,5 +635,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment sets an 08:30 dispatch deadline, not an exact dispatch time, and no instruction fixes loading at 07:30–08:30. The original loading shift ends 30 minutes before dispatch, so the expected shift also silently removes that buffer. The ASK and KEEP distinctions follow the rules, but the exact REVISE values are underdetermined.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment sets an 08:30 dispatch deadline, not an exact dispatch time, and no instruction fixes loading at 07:30–08:30. The original loading shift ends 30 minutes before dispatch, so the expected shift also silently removes that buffer. The ASK and KEEP distinctions follow the rules, but the exact REVISE values are underdetermined."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4041,
+    "completion_tokens": 205,
+    "reasoning_tokens": 94,
+    "cached_tokens": 0
+   },
+   "cost": 0.060755,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "37676eb2560e74e234d1fc8953e59c0e3e97951564dc78587b28a35a56b1bc8e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended dispatch rule cleanly fixes 08:30, and the marks follow from the consent rule (e1) and the change's own Bramley exception; the 07:30 loading-shift start is a reasonable inference (one-hour shift ending at the new 08:30 cutoff) though slightly underdetermined. Core counts (28 events, 6 decisions), change distance, echo, and hiding all satisfy tier 500. The task requires present action without hinting at any change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended dispatch rule cleanly fixes 08:30, and the marks follow from the consent rule (e1) and the change's own Bramley exception; the 07:30 loading-shift start is a reasonable inference (one-hour shift ending at the new 08:30 cutoff) though slightly underdetermined. Core counts (28 events, 6 decisions), change distance, echo, and hiding all satisfy tier 500. The task requires present action without hinting at any change."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4101,
+    "completion_tokens": 406,
+    "reasoning_tokens": 263,
+    "cached_tokens": 384
+   },
+   "cost": 0.00709004,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "37676eb2560e74e234d1fc8953e59c0e3e97951564dc78587b28a35a56b1bc8e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The changed rule e7 is amended by e22, with e8 and e10 void (ASK), e9 standing (KEEP via the Bramley exception), and e16 touched two hops away, which fits class 2 and the consent map. The one soft spot is that telling Mira the 08:30 time while also requesting consent to change EV-1 sits awkwardly with the no-touch rule in e1, though the request framing makes it defensible. The core meets the tier counts (28 events, 6 decisions), the change is 50 days before the task day with many later events, and e19 is a valid echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The changed rule e7 is amended by e22, with e8 and e10 void (ASK), e9 standing (KEEP via the Bramley exception), and e16 touched two hops away, which fits class 2 and the consent map. The one soft spot is that telling Mira the 08:30 time while also requesting consent to change EV-1 sits awkwardly with the no-touch rule in e1, though the request framing makes it defensible. The core meets the tier counts (28 events, 6 decisions), the change is 50 days before the task day with many later events, and e19 is a valid echo."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5883,
+    "completion_tokens": 1882,
+    "reasoning_tokens": 1638,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015293,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "37676eb2560e74e234d1fc8953e59c0e3e97951564dc78587b28a35a56b1bc8e",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

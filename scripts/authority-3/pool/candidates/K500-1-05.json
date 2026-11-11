@@ -587,5 +587,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 10-diver recertification revokes e5's capacity fact while leaving the Saturday-schedule aspect standing, correctly yielding REVISE for ORD-1 (12 tanks, 108) two hops away, ASK for EV-1 under rule e2, and KEEP for e8; the task demands concrete acts (finalize order, email Dana) without hinting at the change. Tier 500 requirements are met: 28 core events, 7 decisions, change 13 days before the task day with core events after it, and echo e15 restating the stale 14-diver value. The change sits mid-history among routine noise and is not flagged.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 10-diver recertification revokes e5's capacity fact while leaving the Saturday-schedule aspect standing, correctly yielding REVISE for ORD-1 (12 tanks, 108) two hops away, ASK for EV-1 under rule e2, and KEEP for e8; the task demands concrete acts (finalize order, email Dana) without hinting at the change. Tier 500 requirements are met: 28 core events, 7 decisions, change 13 days before the task day with core events after it, and echo e15 restating the stale 14-diver value. The change sits mid-history among routine noise and is not flagged."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4031,
+    "completion_tokens": 346,
+    "reasoning_tokens": 166,
+    "cached_tokens": 384
+   },
+   "cost": 0.00672804,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "546b71341cec65831cbab5c6d536e7c3fcbdee4525d91fd246dfc9db8bc457b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The core meets tier 500: 28 events, 7 decisions, the change (e20, 2026-10-15) is 13 days before the task day with later core events after it, and the echo e15 restates the 14-diver value. The marks follow from the chain: e12 is REVISE two hops from the revoked fact via e10, e10 is ASK on the divers field under the e2 rule, and e8 is KEEP. One minor ambiguity is that the task says \\\"finalise\\\" the order, but the expected state leaves ORD-1's status as draft.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The core meets tier 500: 28 events, 7 decisions, the change (e20, 2026-10-15) is 13 days before the task day with later core events after it, and the echo e15 restates the 14-diver value. The marks follow from the chain: e12 is REVISE two hops from the revoked fact via e10, e10 is ASK on the divers field under the e2 rule, and e8 is KEEP. One minor ambiguity is that the task says \"finalise\" the order, but the expected state leaves ORD-1's status as draft."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5823,
+    "completion_tokens": 1635,
+    "reasoning_tokens": 1404,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013998,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "546b71341cec65831cbab5c6d536e7c3fcbdee4525d91fd246dfc9db8bc457b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The capacity change does not unambiguously fix the tank order at 12: reducing the group to 10 still requires consent, and the history does not clearly exclude the two diving staff from the certified diver limit. The expected state also leaves the order in draft despite the task asking to finalise it. The structure matches class 3: a corrected fact affects a booking and its downstream order while leaving the Saturday-schedule aspect standing.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The capacity change does not unambiguously fix the tank order at 12: reducing the group to 10 still requires consent, and the history does not clearly exclude the two diving staff from the certified diver limit. The expected state also leaves the order in draft despite the task asking to finalise it. The structure matches class 3: a corrected fact affects a booking and its downstream order while leaving the Saturday-schedule aspect standing."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3939,
+    "completion_tokens": 366,
+    "reasoning_tokens": 242,
+    "cached_tokens": 0
+   },
+   "cost": 0.06753,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "546b71341cec65831cbab5c6d536e7c3fcbdee4525d91fd246dfc9db8bc457b8",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -630,5 +630,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The history does not establish a fixed unloading duration or onward scheduling constraint that forces Aldermont's 10:30 appointment to move to 12:30. With Riverside arrival at 08:00 and a 90-minute onward journey, 10:30 may remain feasible, so neither the ASK mark nor the required 12:30 proposal is unambiguously justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The history does not establish a fixed unloading duration or onward scheduling constraint that forces Aldermont's 10:30 appointment to move to 12:30. With Riverside arrival at 08:00 and a 90-minute onward journey, 10:30 may remain feasible, so neither the ASK mark nor the required 12:30 proposal is unambiguously justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3706,
+    "completion_tokens": 248,
+    "reasoning_tokens": 137,
+    "cached_tokens": 0
+   },
+   "cost": 0.0587175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dab013b7964dd25872fe6fc5d3de93c47fbbb7245ac99da3251deb5a58911fe2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is well-formed: e5 (one hop) gets REVISE with the history-fixed 06:30/08:00 values, e7 (two hops via e5) is ASK under e1's consent rule with the consent map matching, and e8 is KEEP because the change explicitly preserves the refrigerated-pallet setup. The proposed 12:30 follows the same offset pattern as the original schedule, the task forces a concrete act without naming any change, and tier requirements (28 core events, 6 decisions, change 14 days before, echo at e13, 5 core events after the change) are all met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is well-formed: e5 (one hop) gets REVISE with the history-fixed 06:30/08:00 values, e7 (two hops via e5) is ASK under e1's consent rule with the consent map matching, and e8 is KEEP because the change explicitly preserves the refrigerated-pallet setup. The proposed 12:30 follows the same offset pattern as the original schedule, the task forces a concrete act without naming any change, and tier requirements (28 core events, 6 decisions, change 14 days before, echo at e13, 5 core events after the change) are all met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3786,
+    "completion_tokens": 794,
+    "reasoning_tokens": 618,
+    "cached_tokens": 384
+   },
+   "cost": 0.00835624,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dab013b7964dd25872fe6fc5d3de93c47fbbb7245ac99da3251deb5a58911fe2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected state follows from the history: e5 is a one-hop REVISE, e7 is a two-hop ASK under the e1 consent rule matching the consent map, and e8 is a KEEP because the correction leaves the refrigerated aspect standing. The scenario also meets the tier counts (28 core events, 6 decisions, change 14 days before the task day with later core events, and the e13 echo), and the change at event 446 is an ordinary-looking notice. The main ambiguity is that the change is keyed as revoking e3 and so also fits class 1, but the chain structure with a standing-aspect KEEP is the class 3 signature.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state follows from the history: e5 is a one-hop REVISE, e7 is a two-hop ASK under the e1 consent rule matching the consent map, and e8 is a KEEP because the correction leaves the refrigerated aspect standing. The scenario also meets the tier counts (28 core events, 6 decisions, change 14 days before the task day with later core events, and the e13 echo), and the change at event 446 is an ordinary-looking notice. The main ambiguity is that the change is keyed as revoking e3 and so also fits class 1, but the chain structure with a standing-aspect KEEP is the class 3 signature."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5373,
+    "completion_tokens": 2358,
+    "reasoning_tokens": 2093,
+    "cached_tokens": 0
+   },
+   "cost": 0.0017163,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "dab013b7964dd25872fe6fc5d3de93c47fbbb7245ac99da3251deb5a58911fe2",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

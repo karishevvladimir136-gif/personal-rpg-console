@@ -1,0 +1,817 @@
+{
+ "id": "K1000-2-03",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 2,
+ "idx": 2,
+ "setting": "Florist shop manager at Petal & Post, a delivery-focused flower studio",
+ "prompt_sha256": "eaa598dd350ea7deb86815ac598a9ad41bdc22c3d6092ae548793460b70717fb",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Petal & Post\",\n \"setting\": \"Florist shop manager at Petal & Post, a delivery-focused flower studio\",\n \"owner\": \"Maya\",\n \"org\": \"Petal & Post\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"From now on, any supplier order over 400 must come to me, Tomás Vega, for sign-off before we confirm it with the supplier. Anything at 400 or under can be confirmed straight away.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule at Petal & Post: once a client delivery date is confirmed, we do not move it without that client's explicit agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Quote for Petal & Post: 40 bunches of Esperance roses at 560 total, delivered to Unit 4, Harbour Lane, price holds through December 2026.\", \"role\": \"fact\", \"ends\": \"2026-12-31\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Quote for Petal & Post: 20 phalaenopsis orchid plants at 950 total, delivery to Unit 4, Harbour Lane, valid until the end of 2026.\", \"role\": \"fact\", \"ends\": \"2026-12-31\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-06\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Quote for Petal & Post: 30 bundles of eucalyptus and ruscus greenery at 320 total, delivered to Unit 4, Harbour Lane.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-08\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"I can cover the Friday morning delivery run every week through November, van is free 08:00 to 12:00 those days.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Confirming our standing order: a table arrangement delivered to Harbourview Events, 12 Pier Road, every second Friday, billed monthly.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"Please note our café bud vase deliveries moved to Clementine Café's new address, 4 Anchor Street, from July onward.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Cold room at Unit 4, Harbour Lane holds about 60 bunches comfortably; keep weekly restocks within that.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Placed the weekly rose restock with Dutch Stem Co: 40 bunches of Esperance roses at 560. Since it is over 400 it needs Tomás Vega's sign-off, so I logged it as pending until he approves.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Placed the orchid order with Glasshouse Orchids: 20 phalaenopsis plants at 950. Well over the 400 sign-off line, so it stays pending until Tomás Vega approves it.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the Friday morning delivery run for the rose restock with Sam Okafor, 08:00 to 12:00, but left it pending until the Dutch Stem Co rose order itself is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed the greenery order with Dutch Stem Co: 30 bundles at 320. That is under the 400 sign-off line so no finance approval was needed; it is confirmed for weekly delivery.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the biweekly Harbourview Events table arrangement delivery for 12 Pier Road, next delivery Friday 6 November 2026, with the date confirmed by Nadia Bell.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Updated Clementine Café's bud vase deliveries to 4 Anchor Street and logged Priya Lal as the contact there.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-1\"},\n  {\"id\": \"e16\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"I have the rose order at 560 and the orchid order at 950 on my desk for sign-off; chasing my own backlog this week, will get to them.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-06-24\", \"type\": \"invoice\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Invoice for the June greenery bundles delivered to Unit 4, Harbour Lane: 320, payable within 30 days.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-06-26\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Van service booked for early July, so no Friday run that first week of July.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Thanks for the June arrangements. Same plan for the autumn: every second Friday at 12 Pier Road.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Quarter-start checklist for Petal & Post: remember every supplier order over 400 comes to me for sign-off before you confirm it. The rose order at 560 and the orchids at 950 are both still in that bucket.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Checking in: the 20 phalaenopsis plants at 950 are still reserved for Petal & Post pending your confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-12\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"August team huddle notes: supplier spend process unchanged — anything over 400 goes to Tomás Vega for sign-off first; rose restock (560) and orchid order (950) remain pending his approval.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-08-19\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Seasonal offer for Petal & Post: 50 bunches of tulips at 780 total for November delivery to Unit 4, Harbour Lane, if you want them.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"Could we add a second bud vase for the counter from October? Same weekly visit to 4 Anchor Street.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Added the second counter bud vase to Clementine Café's weekly delivery at 4 Anchor Street, starting in October, as Priya Lal asked.\", \"role\": \"decision\", \"rests_on\": [\"e24\", \"e15\"], \"record\": \"EV-3\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"call\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Quick call: Sam confirmed he is still good for the Friday morning runs through November, 08:00 start from Unit 4, Harbour Lane.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-08\", \"type\": \"invoice\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Pro-forma invoice for the 20 phalaenopsis orchids: 950, payable on order confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Looking forward to the autumn arrangements. Our reception team will sign for deliveries at 12 Pier Road as usual.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder to myself: clear the pending supplier orders before the Christmas ordering rush starts in November.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Good news on cash flow after a strong summer. From today I am raising my sign-off threshold: only supplier orders over 800 need my approval before you confirm them. Orders at 800 or under you can confirm yourselves straight away, effective for all pending and new orders.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e31\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"The two bud vases look lovely, thanks. October invoice received.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"The weekly greenery deliveries continue smoothly; next drop at Unit 4, Harbour Lane on schedule.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Monthly finance summary attached. No blockers from my side on routine supplier spend this month.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-14\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Sam Okafor for the Harbourview Events arrangement delivery on Friday 6 November 2026, 10:00 drop at 12 Pier Road.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e26\"], \"record\": \"EV-4\"},\n  {\"id\": \"e35\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Van is fuelled and ready for the November runs; Friday mornings are all clear on my side.\", \"role\": \"other\"},\n  {\"id\": \"e36\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Gentle nudge: the orchid order at 950 is still awaiting your confirmation; plants remain reserved for Petal & Post.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly rose restock — Dutch Stem Co\", \"fields\": {\"supplier\": \"Dutch Stem Co\", \"item\": \"Esperance roses\", \"quantity\": \"40 bunches\", \"amount\": \"560\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Orchid order — Glasshouse Orchids\", \"fields\": {\"supplier\": \"Glasshouse Orchids\", \"item\": \"phalaenopsis orchid plants\", \"quantity\": \"20\", \"amount\": \"950\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Weekly greenery — Dutch Stem Co\", \"fields\": {\"supplier\": \"Dutch Stem Co\", \"item\": \"eucalyptus and ruscus bundles\", \"quantity\": \"30\", \"amount\": \"320\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Friday rose restock delivery run\", \"fields\": {\"date\": \"2026-11-06\", \"driver\": \"Sam Okafor\", \"start\": \"08:00\", \"end\": \"12:00\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbourview Events table arrangement\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"place\": \"12 Pier Road\", \"client\": \"Harbourview Events\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Clementine Café weekly bud vases\", \"fields\": {\"weekday\": \"Wednesday\", \"place\": \"4 Anchor Street\", \"client\": \"Clementine Café\", \"count\": \"2\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Driver booking — Harbourview delivery\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"driver\": \"Sam Okafor\", \"place\": \"12 Pier Road\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Clementine Café\", \"fields\": {\"contact\": \"Priya Lal\", \"address\": \"4 Anchor Street\", \"service\": \"weekly bud vases\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-2\", \"fields\": [\"status\"], \"from\": \"Tomás Vega (Petal & Post finance)\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Nadia Bell (Harbourview Events)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please get the weekly rose restock with Dutch Stem Co confirmed at last — 40 bunches of Esperance roses — and lock in Sam's Friday delivery run for it this week, then send Lena Hoff at Dutch Stem Co a confirmation with the quantity and the 560 total.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"message_to\": \"Lena Hoff (Dutch Stem Co)\", \"regarding\": \"ORD-1\", \"says\": [\"40\", \"560\"], \"stale\": [\"pending\"], \"task\": true}\n ],\n \"why\": \"The 20 September email raised Tomás's sign-off threshold from 400 to 800 for all pending and new orders. The 560 rose order no longer needs approval, so ORD-1 and its dependent Friday delivery run (two hops from the rule) are REVISE — Maya can confirm them herself, which is exactly what the task does. The 950 orchid order still exceeds 800, so ORD-2 is ASK and must stay pending with a consent request; the 320 greenery order was under both thresholds and is KEEP. The 780 tulip offer is a distractor: it is only an offer, no decision rests on it, and it must not be touched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"greenery restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"eucalyptus and ruscus bundles\", \"unit\": \"bundles\", \"values\": [\"20\", \"25\", \"30\", \"35\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"carnation restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"carnation bunches\", \"unit\": \"bunches\", \"values\": [\"15\", \"20\", \"30\", \"40\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"lily restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"oriental lily bunches\", \"unit\": \"bunches\", \"values\": [\"10\", \"12\", \"18\", \"24\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"orchid plant top-up\", \"counterpart\": \"Prakash Rao\", \"org\": \"Glasshouse Orchids\", \"item\": \"mini phalaenopsis plants\", \"unit\": \"plants\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"wrapping supplies\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"kraft wrap rolls\", \"unit\": \"rolls\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"vase restock\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"glass bud vases\", \"unit\": \"vases\", \"values\": [\"12\", \"20\", \"24\", \"36\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"driver van run\", \"counterpart\": \"Sam Okafor\", \"org\": \"Petal & Post\", \"item\": \"weekly delivery run\", \"unit\": \"run\", \"values\": [\"Friday 08:00\", \"Wednesday 09:00\", \"Thursday 08:30\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"café bud vase visit\", \"counterpart\": \"Priya Lal\", \"org\": \"Clementine Café\", \"item\": \"weekly bud vase refresh\", \"unit\": \"visit\", \"values\": [\"Wednesday morning\", \"Wednesday afternoon\"], \"place\": \"4 Anchor Street\"},\n  {\"kind\": \"booking\", \"topic\": \"hotel arrangement delivery\", \"counterpart\": \"Nadia Bell\", \"org\": \"Harbourview Events\", \"item\": \"table arrangement delivery\", \"unit\": \"delivery\", \"values\": [\"Friday 10:00\", \"Friday 11:00\"], \"place\": \"12 Pier Road\"},\n  {\"kind\": \"order\", \"topic\": \"plant food restock\", \"counterpart\": \"Prakash Rao\", \"org\": \"Glasshouse Orchids\", \"item\": \"orchid feed bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"ribbon restock\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"satin ribbon spools\", \"unit\": \"spools\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop table hire\", \"counterpart\": \"Iris Chan\", \"org\": \"Makers Loft\", \"item\": \"flower workshop table\", \"unit\": \"table\", \"values\": [\"Loft room A\", \"Loft room B\", \"main studio\"], \"place\": \"Makers Loft, 9 Rope Walk\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3239,
+    "completion_tokens": 7048,
+    "reasoning_tokens": 2016,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1071426,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Petal & Post\",\n \"setting\": \"Florist shop manager at Petal & Post, a delivery-focused flower studio\",\n \"owner\": \"Maya\",\n \"org\": \"Petal & Post\",\n \"now\": \"2026-11-02\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"From now on, any supplier order over 400 must come to me, Tomás Vega, for sign-off before we confirm it with the supplier. Anything at 400 or under can be confirmed straight away.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"policy\", \"from\": \"Maya\", \"text\": \"Standing rule at Petal & Post: once a client delivery date is confirmed, we do not move it without that client's explicit agreement.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Quote for Petal & Post: 40 bunches of Esperance roses at 560 total, delivered to Unit 4, Harbour Lane, price holds through December 2026.\", \"role\": \"fact\", \"ends\": \"2026-12-31\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"quote\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Quote for Petal & Post: 20 phalaenopsis orchid plants at 950 total, delivery to Unit 4, Harbour Lane, valid until the end of 2026.\", \"role\": \"fact\", \"ends\": \"2026-12-31\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-06\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Quote for Petal & Post: 30 bundles of eucalyptus and ruscus greenery at 320 total, delivered to Unit 4, Harbour Lane.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-08\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"I can cover the Friday morning delivery run every week through November, van is free 08:00 to 12:00 those days.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-09\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Confirming our standing order: a table arrangement delivered to Harbourview Events, 12 Pier Road, every second Friday, billed monthly.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"Please note our café bud vase deliveries moved to Clementine Café's new address, 4 Anchor Street, from July onward.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-12\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Cold room at Unit 4, Harbour Lane holds about 60 bunches comfortably; keep weekly restocks within that.\", \"role\": \"fact\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Placed the weekly rose restock with Dutch Stem Co: 40 bunches of Esperance roses at 560. Since it is over 400 it needs Tomás Vega's sign-off, so I logged it as pending until he approves.\", \"role\": \"decision\", \"rests_on\": [\"e3\", \"e1\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-15\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Placed the orchid order with Glasshouse Orchids: 20 phalaenopsis plants at 950. Well over the 400 sign-off line, so it stays pending until Tomás Vega approves it.\", \"role\": \"decision\", \"rests_on\": [\"e4\", \"e1\"], \"record\": \"ORD-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Scheduled the Friday morning delivery run for the rose restock with Sam Okafor, 08:00 to 12:00, but left it pending until the Dutch Stem Co rose order itself is confirmed.\", \"role\": \"decision\", \"rests_on\": [\"e10\", \"e6\"], \"record\": \"EV-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e13\", \"date\": \"2026-06-16\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Confirmed the greenery order with Dutch Stem Co: 30 bundles at 320. That is under the 400 sign-off line so no finance approval was needed; it is confirmed for weekly delivery.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e1\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e14\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked the biweekly Harbourview Events table arrangement delivery for 12 Pier Road, next delivery Friday 6 November 2026, with the date confirmed by Nadia Bell.\", \"role\": \"decision\", \"rests_on\": [\"e7\"], \"record\": \"EV-2\"},\n  {\"id\": \"e15\", \"date\": \"2026-06-19\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Updated Clementine Café's bud vase deliveries to 4 Anchor Street and logged Priya Lal as the contact there.\", \"role\": \"decision\", \"rests_on\": [\"e8\"], \"record\": \"CL-1\"},\n  {\"id\": \"e16\", \"date\": \"2026-06-22\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"I have the rose order at 560 and the orchid order at 950 on my desk for sign-off; chasing my own backlog this week, will get to them.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-06-24\", \"type\": \"invoice\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Invoice for the June greenery bundles delivered to Unit 4, Harbour Lane: 320, payable within 30 days.\", \"role\": \"obligation\"},\n  {\"id\": \"e18\", \"date\": \"2026-06-26\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Van service booked for early July, so no Friday run that first week of July.\", \"role\": \"fact\"},\n  {\"id\": \"e19\", \"date\": \"2026-06-30\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Thanks for the June arrangements. Same plan for the autumn: every second Friday at 12 Pier Road.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-07-15\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Quarter-start checklist for Petal & Post: remember every supplier order over 400 comes to me for sign-off before you confirm it. The rose order at 560 and the orchids at 950 are both still in that bucket.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-07-20\", \"type\": \"email\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Checking in: the 20 phalaenopsis plants at 950 are still reserved for Petal & Post pending your confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e22\", \"date\": \"2026-08-12\", \"type\": \"minutes\", \"from\": \"Maya\", \"text\": \"August team huddle notes: supplier spend process unchanged — anything over 400 goes to Tomás Vega for sign-off first; rose restock (560) and orchid order (950) remain pending his approval.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e23\", \"date\": \"2026-08-19\", \"type\": \"quote\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"Seasonal offer for Petal & Post: 50 bunches of tulips at 780 total for November delivery to Unit 4, Harbour Lane, if you want them.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-08-25\", \"type\": \"message\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"Could we add a second bud vase for the counter from October? Same weekly visit to 4 Anchor Street.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-01\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Added the second counter bud vase to Clementine Café's weekly delivery at 4 Anchor Street, starting in October, as Priya Lal asked.\", \"role\": \"decision\", \"rests_on\": [\"e24\", \"e15\"], \"record\": \"EV-3\"},\n  {\"id\": \"e26\", \"date\": \"2026-09-04\", \"type\": \"call\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Quick call: Sam confirmed he is still good for the Friday morning runs through November, 08:00 start from Unit 4, Harbour Lane.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-09-08\", \"type\": \"invoice\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Pro-forma invoice for the 20 phalaenopsis orchids: 950, payable on order confirmation.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-09-11\", \"type\": \"email\", \"from\": \"Nadia Bell (Harbourview Events)\", \"text\": \"Looking forward to the autumn arrangements. Our reception team will sign for deliveries at 12 Pier Road as usual.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-09-15\", \"type\": \"note\", \"from\": \"Maya\", \"text\": \"Reminder to myself: clear the pending supplier orders before the Christmas ordering rush starts in November.\", \"role\": \"obligation\"},\n  {\"id\": \"e30\", \"date\": \"2026-09-20\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Good news on cash flow after a strong summer. From today I am raising my sign-off threshold: only supplier orders over 800 need my approval before you confirm them. Orders at 800 or under you can confirm yourselves straight away, effective for all pending and new orders.\", \"role\": \"change\", \"revokes\": [\"e1\"]},\n  {\"id\": \"e31\", \"date\": \"2026-09-24\", \"type\": \"message\", \"from\": \"Priya Lal (Clementine Café)\", \"text\": \"The two bud vases look lovely, thanks. October invoice received.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Lena Hoff (Dutch Stem Co)\", \"text\": \"The weekly greenery deliveries continue smoothly; next drop at Unit 4, Harbour Lane on schedule.\", \"role\": \"other\"},\n  {\"id\": \"e33\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Tomás Vega (Petal & Post finance)\", \"text\": \"Monthly finance summary attached. No blockers from my side on routine supplier spend this month.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-10-14\", \"type\": \"decision\", \"from\": \"Maya\", \"text\": \"Booked Sam Okafor for the Harbourview Events arrangement delivery on Friday 6 November 2026, 10:00 drop at 12 Pier Road.\", \"role\": \"decision\", \"rests_on\": [\"e14\", \"e26\"], \"record\": \"EV-4\"},\n  {\"id\": \"e35\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Sam Okafor (Petal & Post driver)\", \"text\": \"Van is fuelled and ready for the November runs; Friday mornings are all clear on my side.\", \"role\": \"other\"},\n  {\"id\": \"e36\", \"date\": \"2026-10-27\", \"type\": \"email\", \"from\": \"Prakash Rao (Glasshouse Orchids)\", \"text\": \"Gentle nudge: the orchid order at 950 is still awaiting your confirmation; plants remain reserved for Petal & Post.\", \"role\": \"obligation\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Weekly rose restock — Dutch Stem Co\", \"fields\": {\"supplier\": \"Dutch Stem Co\", \"item\": \"Esperance roses\", \"quantity\": \"40 bunches\", \"amount\": \"560\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Orchid order — Glasshouse Orchids\", \"fields\": {\"supplier\": \"Glasshouse Orchids\", \"item\": \"phalaenopsis orchid plants\", \"quantity\": \"20\", \"amount\": \"950\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Weekly greenery — Dutch Stem Co\", \"fields\": {\"supplier\": \"Dutch Stem Co\", \"item\": \"eucalyptus and ruscus bundles\", \"quantity\": \"30\", \"amount\": \"320\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Friday rose restock delivery run\", \"fields\": {\"date\": \"2026-11-06\", \"driver\": \"Sam Okafor\", \"start\": \"08:00\", \"end\": \"12:00\", \"place\": \"Unit 4, Harbour Lane\", \"status\": \"pending\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Harbourview Events table arrangement\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"place\": \"12 Pier Road\", \"client\": \"Harbourview Events\", \"status\": \"booked\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Clementine Café weekly bud vases\", \"fields\": {\"weekday\": \"Wednesday\", \"place\": \"4 Anchor Street\", \"client\": \"Clementine Café\", \"count\": \"2\", \"status\": \"booked\"}},\n  {\"id\": \"EV-4\", \"collection\": \"schedule\", \"title\": \"Driver booking — Harbourview delivery\", \"fields\": {\"date\": \"2026-11-06\", \"time\": \"10:00\", \"driver\": \"Sam Okafor\", \"place\": \"12 Pier Road\", \"status\": \"booked\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Clementine Café\", \"fields\": {\"contact\": \"Priya Lal\", \"address\": \"4 Anchor Street\", \"service\": \"weekly bud vases\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"ORD-2\", \"fields\": [\"status\"], \"from\": \"Tomás Vega (Petal & Post finance)\", \"rule\": \"e1\"},\n  {\"record\": \"EV-2\", \"fields\": [\"date\"], \"from\": \"Nadia Bell (Harbourview Events)\", \"rule\": \"e2\"}\n ],\n \"task\": \"Please get the weekly rose restock with Dutch Stem Co confirmed at last — 40 bunches of Esperance roses — and lock in Sam's Friday delivery run for it this week, then send Lena Hoff at Dutch Stem Co a confirmation with the quantity and the 560 total.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"record\": \"EV-1\", \"field\": \"status\", \"value\": \"confirmed\", \"stale\": [\"pending\"], \"task\": true},\n  {\"message_to\": \"Lena Hoff (Dutch Stem Co)\", \"regarding\": \"ORD-1\", \"says\": [\"40\", \"560\"], \"stale\": [\"pending\"], \"task\": true}\n ],\n \"why\": \"The 20 September email raised Tomás's sign-off threshold from 400 to 800 for all pending and new orders. The 560 rose order no longer needs approval, so ORD-1 and its dependent Friday delivery run (two hops from the rule) are REVISE — Maya can confirm them herself, which is exactly what the task does. The 950 orchid order still exceeds 800, so ORD-2 is ASK and must stay pending with a consent request; the 320 greenery order was under both thresholds and is KEEP. The 780 tulip offer is a distractor: it is only an offer, no decision rests on it, and it must not be touched.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"greenery restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"eucalyptus and ruscus bundles\", \"unit\": \"bundles\", \"values\": [\"20\", \"25\", \"30\", \"35\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"carnation restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"carnation bunches\", \"unit\": \"bunches\", \"values\": [\"15\", \"20\", \"30\", \"40\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"lily restock\", \"counterpart\": \"Lena Hoff\", \"org\": \"Dutch Stem Co\", \"item\": \"oriental lily bunches\", \"unit\": \"bunches\", \"values\": [\"10\", \"12\", \"18\", \"24\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"orchid plant top-up\", \"counterpart\": \"Prakash Rao\", \"org\": \"Glasshouse Orchids\", \"item\": \"mini phalaenopsis plants\", \"unit\": \"plants\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"wrapping supplies\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"kraft wrap rolls\", \"unit\": \"rolls\", \"values\": [\"5\", \"8\", \"10\", \"12\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"vase restock\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"glass bud vases\", \"unit\": \"vases\", \"values\": [\"12\", \"20\", \"24\", \"36\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"driver van run\", \"counterpart\": \"Sam Okafor\", \"org\": \"Petal & Post\", \"item\": \"weekly delivery run\", \"unit\": \"run\", \"values\": [\"Friday 08:00\", \"Wednesday 09:00\", \"Thursday 08:30\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"café bud vase visit\", \"counterpart\": \"Priya Lal\", \"org\": \"Clementine Café\", \"item\": \"weekly bud vase refresh\", \"unit\": \"visit\", \"values\": [\"Wednesday morning\", \"Wednesday afternoon\", \"Thursday morning\"], \"place\": \"4 Anchor Street\"},\n  {\"kind\": \"booking\", \"topic\": \"hotel arrangement delivery\", \"counterpart\": \"Nadia Bell\", \"org\": \"Harbourview Events\", \"item\": \"table arrangement delivery\", \"unit\": \"delivery\", \"values\": [\"Friday 10:00\", \"Friday 11:00\", \"Friday 14:00\"], \"place\": \"12 Pier Road\"},\n  {\"kind\": \"order\", \"topic\": \"plant food restock\", \"counterpart\": \"Prakash Rao\", \"org\": \"Glasshouse Orchids\", \"item\": \"orchid feed bottles\", \"unit\": \"bottles\", \"values\": [\"6\", \"10\", \"14\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"order\", \"topic\": \"ribbon restock\", \"counterpart\": \"Greta Molnar\", \"org\": \"Paper & Twine\", \"item\": \"satin ribbon spools\", \"unit\": \"spools\", \"values\": [\"10\", \"15\", \"20\"], \"place\": \"Unit 4, Harbour Lane\"},\n  {\"kind\": \"booking\", \"topic\": \"workshop table hire\", \"counterpart\": \"Iris Chan\", \"org\": \"Makers Loft\", \"item\": \"flower workshop table\", \"unit\": \"table\", \"values\": [\"Loft room A\", \"Loft room B\", \"main studio\"], \"place\": \"Makers Loft, 9 Rope Walk\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 8350,
+    "completion_tokens": 5049,
+    "reasoning_tokens": 6,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0924906,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'café bud vase visit': values needs at least three entries\n- noise topic 'hotel arrangement delivery': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at Petal & Post",
+  "setting": "Florist shop manager at Petal & Post, a delivery-focused flower studio",
+  "owner": "Maya",
+  "org": "Petal & Post",
+  "now": "2026-11-02",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Tomás Vega (Petal & Post finance)",
+    "text": "From now on, any supplier order over 400 must come to me, Tomás Vega, for sign-off before we confirm it with the supplier. Anything at 400 or under can be confirmed straight away.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "policy",
+    "from": "Maya",
+    "text": "Standing rule at Petal & Post: once a client delivery date is confirmed, we do not move it without that client's explicit agreement.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Lena Hoff (Dutch Stem Co)",
+    "text": "Quote for Petal & Post: 40 bunches of Esperance roses at 560 total, delivered to Unit 4, Harbour Lane, price holds through December 2026.",
+    "role": "fact",
+    "ends": "2026-12-31"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "quote",
+    "from": "Prakash Rao (Glasshouse Orchids)",
+    "text": "Quote for Petal & Post: 20 phalaenopsis orchid plants at 950 total, delivery to Unit 4, Harbour Lane, valid until the end of 2026.",
+    "role": "fact",
+    "ends": "2026-12-31"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-06",
+    "type": "quote",
+    "from": "Lena Hoff (Dutch Stem Co)",
+    "text": "Quote for Petal & Post: 30 bundles of eucalyptus and ruscus greenery at 320 total, delivered to Unit 4, Harbour Lane.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-08",
+    "type": "message",
+    "from": "Sam Okafor (Petal & Post driver)",
+    "text": "I can cover the Friday morning delivery run every week through November, van is free 08:00 to 12:00 those days.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-09",
+    "type": "email",
+    "from": "Nadia Bell (Harbourview Events)",
+    "text": "Confirming our standing order: a table arrangement delivered to Harbourview Events, 12 Pier Road, every second Friday, billed monthly.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Priya Lal (Clementine Café)",
+    "text": "Please note our café bud vase deliveries moved to Clementine Café's new address, 4 Anchor Street, from July onward.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-12",
+    "type": "note",
+    "from": "Maya",
+    "text": "Cold room at Unit 4, Harbour Lane holds about 60 bunches comfortably; keep weekly restocks within that.",
+    "role": "fact"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Placed the weekly rose restock with Dutch Stem Co: 40 bunches of Esperance roses at 560. Since it is over 400 it needs Tomás Vega's sign-off, so I logged it as pending until he approves.",
+    "role": "decision",
+    "rests_on": [
+     "e3",
+     "e1"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-15",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Placed the orchid order with Glasshouse Orchids: 20 phalaenopsis plants at 950. Well over the 400 sign-off line, so it stays pending until Tomás Vega approves it.",
+    "role": "decision",
+    "rests_on": [
+     "e4",
+     "e1"
+    ],
+    "record": "ORD-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Scheduled the Friday morning delivery run for the rose restock with Sam Okafor, 08:00 to 12:00, but left it pending until the Dutch Stem Co rose order itself is confirmed.",
+    "role": "decision",
+    "rests_on": [
+     "e10",
+     "e6"
+    ],
+    "record": "EV-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e13",
+    "date": "2026-06-16",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Confirmed the greenery order with Dutch Stem Co: 30 bundles at 320. That is under the 400 sign-off line so no finance approval was needed; it is confirmed for weekly delivery.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e1"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e14",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked the biweekly Harbourview Events table arrangement delivery for 12 Pier Road, next delivery Friday 6 November 2026, with the date confirmed by Nadia Bell.",
+    "role": "decision",
+    "rests_on": [
+     "e7"
+    ],
+    "record": "EV-2"
+   },
+   {
+    "id": "e15",
+    "date": "2026-06-19",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Updated Clementine Café's bud vase deliveries to 4 Anchor Street and logged Priya Lal as the contact there.",
+    "role": "decision",
+    "rests_on": [
+     "e8"
+    ],
+    "record": "CL-1"
+   },
+   {
+    "id": "e16",
+    "date": "2026-06-22",
+    "type": "email",
+    "from": "Tomás Vega (Petal & Post finance)",
+    "text": "I have the rose order at 560 and the orchid order at 950 on my desk for sign-off; chasing my own backlog this week, will get to them.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-06-24",
+    "type": "invoice",
+    "from": "Lena Hoff (Dutch Stem Co)",
+    "text": "Invoice for the June greenery bundles delivered to Unit 4, Harbour Lane: 320, payable within 30 days.",
+    "role": "obligation"
+   },
+   {
+    "id": "e18",
+    "date": "2026-06-26",
+    "type": "message",
+    "from": "Sam Okafor (Petal & Post driver)",
+    "text": "Van service booked for early July, so no Friday run that first week of July.",
+    "role": "fact"
+   },
+   {
+    "id": "e19",
+    "date": "2026-06-30",
+    "type": "email",
+    "from": "Nadia Bell (Harbourview Events)",
+    "text": "Thanks for the June arrangements. Same plan for the autumn: every second Friday at 12 Pier Road.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-07-15",
+    "type": "email",
+    "from": "Tomás Vega (Petal & Post finance)",
+    "text": "Quarter-start checklist for Petal & Post: remember every supplier order over 400 comes to me for sign-off before you confirm it. The rose order at 560 and the orchids at 950 are both still in that bucket.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-07-20",
+    "type": "email",
+    "from": "Prakash Rao (Glasshouse Orchids)",
+    "text": "Checking in: the 20 phalaenopsis plants at 950 are still reserved for Petal & Post pending your confirmation.",
+    "role": "other"
+   },
+   {
+    "id": "e22",
+    "date": "2026-08-12",
+    "type": "minutes",
+    "from": "Maya",
+    "text": "August team huddle notes: supplier spend process unchanged — anything over 400 goes to Tomás Vega for sign-off first; rose restock (560) and orchid order (950) remain pending his approval.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e23",
+    "date": "2026-08-19",
+    "type": "quote",
+    "from": "Lena Hoff (Dutch Stem Co)",
+    "text": "Seasonal offer for Petal & Post: 50 bunches of tulips at 780 total for November delivery to Unit 4, Harbour Lane, if you want them.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-08-25",
+    "type": "message",
+    "from": "Priya Lal (Clementine Café)",
+    "text": "Could we add a second bud vase for the counter from October? Same weekly visit to 4 Anchor Street.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-01",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Added the second counter bud vase to Clementine Café's weekly delivery at 4 Anchor Street, starting in October, as Priya Lal asked.",
+    "role": "decision",
+    "rests_on": [
+     "e24",
+     "e15"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e26",
+    "date": "2026-09-04",
+    "type": "call",
+    "from": "Sam Okafor (Petal & Post driver)",
+    "text": "Quick call: Sam confirmed he is still good for the Friday morning runs through November, 08:00 start from Unit 4, Harbour Lane.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-09-08",
+    "type": "invoice",
+    "from": "Prakash Rao (Glasshouse Orchids)",
+    "text": "Pro-forma invoice for the 20 phalaenopsis orchids: 950, payable on order confirmation.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-09-11",
+    "type": "email",
+    "from": "Nadia Bell (Harbourview Events)",
+    "text": "Looking forward to the autumn arrangements. Our reception team will sign for deliveries at 12 Pier Road as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-09-15",
+    "type": "note",
+    "from": "Maya",
+    "text": "Reminder to myself: clear the pending supplier orders before the Christmas ordering rush starts in November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e30",
+    "date": "2026-09-20",
+    "type": "email",
+    "from": "Tomás Vega (Petal & Post finance)",
+    "text": "Good news on cash flow after a strong summer. From today I am raising my sign-off threshold: only supplier orders over 800 need my approval before you confirm them. Orders at 800 or under you can confirm yourselves straight away, effective for all pending and new orders.",
+    "role": "change",
+    "revokes": [
+     "e1"
+    ]
+   },
+   {
+    "id": "e31",
+    "date": "2026-09-24",
+    "type": "message",
+    "from": "Priya Lal (Clementine Café)",
+    "text": "The two bud vases look lovely, thanks. October invoice received.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Lena Hoff (Dutch Stem Co)",
+    "text": "The weekly greenery deliveries continue smoothly; next drop at Unit 4, Harbour Lane on schedule.",
+    "role": "other"
+   },
+   {
+    "id": "e33",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Tomás Vega (Petal & Post finance)",
+    "text": "Monthly finance summary attached. No blockers from my side on routine supplier spend this month.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-10-14",
+    "type": "decision",
+    "from": "Maya",
+    "text": "Booked Sam Okafor for the Harbourview Events arrangement delivery on Friday 6 November 2026, 10:00 drop at 12 Pier Road.",
+    "role": "decision",
+    "rests_on": [
+     "e14",
+     "e26"
+    ],
+    "record": "EV-4"
+   },
+   {
+    "id": "e35",
+    "date": "2026-10-20",
+    "type": "message",
+    "from": "Sam Okafor (Petal & Post driver)",
+    "text": "Van is fuelled and ready for the November runs; Friday mornings are all clear on my side.",
+    "role": "other"
+   },
+   {
+    "id": "e36",
+    "date": "2026-10-27",
+    "type": "email",
+    "from": "Prakash Rao (Glasshouse Orchids)",
+    "text": "Gentle nudge: the orchid order at 950 is still awaiting your confirmation; plants remain reserved for Petal & Post.",
+    "role": "obligation"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Weekly rose restock — Dutch Stem Co",
+    "fields": {
+     "supplier": "Dutch Stem Co",
+     "item": "Esperance roses",
+     "quantity": "40 bunches",
+     "amount": "560",
+     "place": "Unit 4, Harbour Lane",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Orchid order — Glasshouse Orchids",
+    "fields": {
+     "supplier": "Glasshouse Orchids",
+     "item": "phalaenopsis orchid plants",
+     "quantity": "20",
+     "amount": "950",
+     "place": "Unit 4, Harbour Lane",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Weekly greenery — Dutch Stem Co",
+    "fields": {
+     "supplier": "Dutch Stem Co",
+     "item": "eucalyptus and ruscus bundles",
+     "quantity": "30",
+     "amount": "320",
+     "place": "Unit 4, Harbour Lane",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Friday rose restock delivery run",
+    "fields": {
+     "date": "2026-11-06",
+     "driver": "Sam Okafor",
+     "start": "08:00",
+     "end": "12:00",
+     "place": "Unit 4, Harbour Lane",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Harbourview Events table arrangement",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "10:00",
+     "place": "12 Pier Road",
+     "client": "Harbourview Events",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Clementine Café weekly bud vases",
+    "fields": {
+     "weekday": "Wednesday",
+     "place": "4 Anchor Street",
+     "client": "Clementine Café",
+     "count": "2",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "EV-4",
+    "collection": "schedule",
+    "title": "Driver booking — Harbourview delivery",
+    "fields": {
+     "date": "2026-11-06",
+     "time": "10:00",
+     "driver": "Sam Okafor",
+     "place": "12 Pier Road",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Clementine Café",
+    "fields": {
+     "contact": "Priya Lal",
+     "address": "4 Anchor Street",
+     "service": "weekly bud vases",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "ORD-2",
+    "fields": [
+     "status"
+    ],
+    "from": "Tomás Vega (Petal & Post finance)",
+    "rule": "e1"
+   },
+   {
+    "record": "EV-2",
+    "fields": [
+     "date"
+    ],
+    "from": "Nadia Bell (Harbourview Events)",
+    "rule": "e2"
+   }
+  ],
+  "task": "Please get the weekly rose restock with Dutch Stem Co confirmed at last — 40 bunches of Esperance roses — and lock in Sam's Friday delivery run for it this week, then send Lena Hoff at Dutch Stem Co a confirmation with the quantity and the 560 total.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "record": "EV-1",
+    "field": "status",
+    "value": "confirmed",
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Lena Hoff (Dutch Stem Co)",
+    "regarding": "ORD-1",
+    "says": [
+     "40",
+     "560"
+    ],
+    "stale": [
+     "pending"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The 20 September email raised Tomás's sign-off threshold from 400 to 800 for all pending and new orders. The 560 rose order no longer needs approval, so ORD-1 and its dependent Friday delivery run (two hops from the rule) are REVISE — Maya can confirm them herself, which is exactly what the task does. The 950 orchid order still exceeds 800, so ORD-2 is ASK and must stay pending with a consent request; the 320 greenery order was under both thresholds and is KEEP. The 780 tulip offer is a distractor: it is only an offer, no decision rests on it, and it must not be touched.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "greenery restock",
+    "counterpart": "Lena Hoff",
+    "org": "Dutch Stem Co",
+    "item": "eucalyptus and ruscus bundles",
+    "unit": "bundles",
+    "values": [
+     "20",
+     "25",
+     "30",
+     "35"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "carnation restock",
+    "counterpart": "Lena Hoff",
+    "org": "Dutch Stem Co",
+    "item": "carnation bunches",
+    "unit": "bunches",
+    "values": [
+     "15",
+     "20",
+     "30",
+     "40"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "lily restock",
+    "counterpart": "Lena Hoff",
+    "org": "Dutch Stem Co",
+    "item": "oriental lily bunches",
+    "unit": "bunches",
+    "values": [
+     "10",
+     "12",
+     "18",
+     "24"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "orchid plant top-up",
+    "counterpart": "Prakash Rao",
+    "org": "Glasshouse Orchids",
+    "item": "mini phalaenopsis plants",
+    "unit": "plants",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "wrapping supplies",
+    "counterpart": "Greta Molnar",
+    "org": "Paper & Twine",
+    "item": "kraft wrap rolls",
+    "unit": "rolls",
+    "values": [
+     "5",
+     "8",
+     "10",
+     "12"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "vase restock",
+    "counterpart": "Greta Molnar",
+    "org": "Paper & Twine",
+    "item": "glass bud vases",
+    "unit": "vases",
+    "values": [
+     "12",
+     "20",
+     "24",
+     "36"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "driver van run",
+    "counterpart": "Sam Okafor",
+    "org": "Petal & Post",
+    "item": "weekly delivery run",
+    "unit": "run",
+    "values": [
+     "Friday 08:00",
+     "Wednesday 09:00",
+     "Thursday 08:30"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "café bud vase visit",
+    "counterpart": "Priya Lal",
+    "org": "Clementine Café",
+    "item": "weekly bud vase refresh",
+    "unit": "visit",
+    "values": [
+     "Wednesday morning",
+     "Wednesday afternoon",
+     "Thursday morning"
+    ],
+    "place": "4 Anchor Street"
+   },
+   {
+    "kind": "booking",
+    "topic": "hotel arrangement delivery",
+    "counterpart": "Nadia Bell",
+    "org": "Harbourview Events",
+    "item": "table arrangement delivery",
+    "unit": "delivery",
+    "values": [
+     "Friday 10:00",
+     "Friday 11:00",
+     "Friday 14:00"
+    ],
+    "place": "12 Pier Road"
+   },
+   {
+    "kind": "order",
+    "topic": "plant food restock",
+    "counterpart": "Prakash Rao",
+    "org": "Glasshouse Orchids",
+    "item": "orchid feed bottles",
+    "unit": "bottles",
+    "values": [
+     "6",
+     "10",
+     "14"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "order",
+    "topic": "ribbon restock",
+    "counterpart": "Greta Molnar",
+    "org": "Paper & Twine",
+    "item": "satin ribbon spools",
+    "unit": "spools",
+    "values": [
+     "10",
+     "15",
+     "20"
+    ],
+    "place": "Unit 4, Harbour Lane"
+   },
+   {
+    "kind": "booking",
+    "topic": "workshop table hire",
+    "counterpart": "Iris Chan",
+    "org": "Makers Loft",
+    "item": "flower workshop table",
+    "unit": "table",
+    "values": [
+     "Loft room A",
+     "Loft room B",
+     "main studio"
+    ],
+    "place": "Makers Loft, 9 Rope Walk"
+   }
+  ],
+  "id": "K1000-2-03",
+  "tier": 1000,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amendment cleanly splits decisions citing R: ORD-1 at 560 (now under 800) is REVISE with its dependent EV-1, ORD-2 at 950 is ASK since it still needs Tomás's approval, and ORD-3 at 320 is KEEP under both thresholds; the consent map's ORD-2 entry remains valid because 950 exceeds the amended threshold. The task requires concrete acts (confirm ORD-1 and EV-1, message Lena with 40 and 560) without hinting at the change. Core has 36 events, 8 decisions, change 43 days before the task day with 6 core events after it, and two echoes (e20, e22) restating the old 400 threshold.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment cleanly splits decisions citing R: ORD-1 at 560 (now under 800) is REVISE with its dependent EV-1, ORD-2 at 950 is ASK since it still needs Tomás's approval, and ORD-3 at 320 is KEEP under both thresholds; the consent map's ORD-2 entry remains valid because 950 exceeds the amended threshold. The task requires concrete acts (confirm ORD-1 and EV-1, message Lena with 40 and 560) without hinting at the change. Core has 36 events, 8 decisions, change 43 days before the task day with 6 core events after it, and two echoes (e20, e22) restating the old 400 threshold."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4783,
+    "completion_tokens": 433,
+    "reasoning_tokens": 231,
+    "cached_tokens": 384
+   },
+   "cost": 0.00816364,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "002edca82bf2aafaaaed98c15e402acf5c41337f2316085e29388e6746f713bd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The 950 orchid order still requires approval under both thresholds, so its existing pending decision remains valid rather than becoming an ASK decision because of the amendment. Neither the change nor the rose-only task requires a new consent request for ORD-2, making that mandatory expected action unsupported. The rose confirmation, dependent delivery confirmation, and supplier message otherwise follow.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 950 orchid order still requires approval under both thresholds, so its existing pending decision remains valid rather than becoming an ASK decision because of the amendment. Neither the change nor the rose-only task requires a new consent request for ORD-2, making that mandatory expected action unsupported. The rose confirmation, dependent delivery confirmation, and supplier message otherwise follow."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4669,
+    "completion_tokens": 268,
+    "reasoning_tokens": 162,
+    "cached_tokens": 0
+   },
+   "cost": 0.071755,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "002edca82bf2aafaaaed98c15e402acf5c41337f2316085e29388e6746f713bd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e30) amends the sign-off rule in e1 from 400 to 800, so ORD-1 (560) becomes REVISE, ORD-2 (950) stays ASK, and ORD-3 (320) is KEEP, with EV-1 touched through ORD-1. The core has 36 events, 8 decisions, the change 43 days before the task day, and 6 core events after it, which meets the tier-1,000 requirements. The change is an ordinary mid-history event not labelled as a correction.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e30) amends the sign-off rule in e1 from 400 to 800, so ORD-1 (560) becomes REVISE, ORD-2 (950) stays ASK, and ORD-3 (320) is KEEP, with EV-1 touched through ORD-1. The core has 36 events, 8 decisions, the change 43 days before the task day, and 6 core events after it, which meets the tier-1,000 requirements. The change is an ordinary mid-history event not labelled as a correction."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6841,
+    "completion_tokens": 1805,
+    "reasoning_tokens": 1583,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015866,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "002edca82bf2aafaaaed98c15e402acf5c41337f2316085e29388e6746f713bd",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

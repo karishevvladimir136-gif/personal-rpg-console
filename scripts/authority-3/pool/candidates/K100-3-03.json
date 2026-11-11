@@ -530,5 +530,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: the change revokes fact e3 (Tuesday deliveries), e7 rests on it (REVISE to Thursday 2026-10-01), e8 rests on e7 (ASK Harriet for 2026-10-02 under rule e1), e12 rests on e8 (ASK the estate office under rule e21), and e9 keeps since only the minimum-order aspect survives. The task forces concrete acts without naming the change, dates check out (29 Sept is Tuesday; 1 Oct is Thursday; 2 Oct precedes 5 Oct), and the change sits mid-history with events after it. Counts (20 core events, 4 decisions, change 9 days before task day) meet tier 100.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: the change revokes fact e3 (Tuesday deliveries), e7 rests on it (REVISE to Thursday 2026-10-01), e8 rests on e7 (ASK Harriet for 2026-10-02 under rule e1), e12 rests on e8 (ASK the estate office under rule e21), and e9 keeps since only the minimum-order aspect survives. The task forces concrete acts without naming the change, dates check out (29 Sept is Tuesday; 1 Oct is Thursday; 2 Oct precedes 5 Oct), and the change sits mid-history with events after it. Counts (20 core events, 4 decisions, change 9 days before task day) meet tier 100."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3624,
+    "completion_tokens": 398,
+    "reasoning_tokens": 201,
+    "cached_tokens": 0
+   },
+   "cost": 0.0068248,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "98ee72996df8c92cf2a60d9b5c54665bff808ac147e34887aa393ff549ac5ba7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"no\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"ORD-4 explicitly specifies Tuesday delivery, so the Thursday-round change affects it too; its unchanged minimum quantity does not justify KEEP, leaving no valid unchanged-aspect decision for class 3. The task requires action but hints at the change with 'when their round now runs.' The history also does not identify Sylvia Brandt as the estate office's consent contact.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "no",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "ORD-4 explicitly specifies Tuesday delivery, so the Thursday-round change affects it too; its unchanged minimum quantity does not justify KEEP, leaving no valid unchanged-aspect decision for class 3. The task requires action but hints at the change with 'when their round now runs.' The history also does not identify Sylvia Brandt as the estate office's consent contact."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3521,
+    "completion_tokens": 253,
+    "reasoning_tokens": 144,
+    "cached_tokens": 0
+   },
+   "cost": 0.056655,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "98ee72996df8c92cf2a60d9b5c54665bff808ac147e34887aa393ff549ac5ba7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e18) revokes the Tuesday delivery fact for all Fernbrook deliveries, yet the expected state keeps ORD-4 unchanged even though ORD-4 records delivery_day 'Tuesday' and e9 says 'Delivery on an ordinary Tuesday'; that is substance touched, so the KEEP mark and the ORD-4 expectation are unsupported. The mechanics (a revoked fact with a decision two hops away) match class 1 more closely than the intended class 3, though the chain shape is partly present. Tier counts, change distance, and hiding of the change are fine.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e18) revokes the Tuesday delivery fact for all Fernbrook deliveries, yet the expected state keeps ORD-4 unchanged even though ORD-4 records delivery_day 'Tuesday' and e9 says 'Delivery on an ordinary Tuesday'; that is substance touched, so the KEEP mark and the ORD-4 expectation are unsupported. The mechanics (a revoked fact with a decision two hops away) match class 1 more closely than the intended class 3, though the chain shape is partly present. Tier counts, change distance, and hiding of the change are fine."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5264,
+    "completion_tokens": 2754,
+    "reasoning_tokens": 2497,
+    "cached_tokens": 0
+   },
+   "cost": 0.0019034,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "98ee72996df8c92cf2a60d9b5c54665bff808ac147e34887aa393ff549ac5ba7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

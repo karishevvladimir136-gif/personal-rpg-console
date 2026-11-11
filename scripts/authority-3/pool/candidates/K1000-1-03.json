@@ -750,5 +750,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e28 revokes e6's £2,400 hire and touches e8, e10 and e12, with e11 two hops from e6, so class 1 fits and the REVISE, ASK and KEEP marks follow from the stated rules. The core has 34 events and 10 decisions, the change is 21 days before the task day with six core events after it, and two echo documents (e18, e23) restate the stale values. The change is an ordinary dated email in the middle of the history, and the task forces payment and an email without naming the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e28 revokes e6's £2,400 hire and touches e8, e10 and e12, with e11 two hops from e6, so class 1 fits and the REVISE, ASK and KEEP marks follow from the stated rules. The core has 34 events and 10 decisions, the change is 21 days before the task day with six core events after it, and two echo documents (e18, e23) restate the stale values. The change is an ordinary dated email in the middle of the history, and the task forces payment and an email without naming the change."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 7063,
+    "completion_tokens": 1525,
+    "reasoning_tokens": 1303,
+    "cached_tokens": 0
+   },
+   "cost": 0.0014688,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8cec4f83f52a0ffed28ca42b2be10a95b74b967235aefc4de1e12e400a89cdb4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale fact (e6's £2,400 price, revoked by e28's £2,700) propagates correctly: ORD-1 and ORD-3 are REVISE with history-fixed values, the budget decision is ASK under e2's explicit consent rule matching the consent map, and the KEEP marks follow because only the price changed while dates and logistics stand. The task requires concrete acts (payment and email) without hinting at the change, and the deposit is unambiguously half of the new hire (£1,350). Tier requirements are met: 34 core events, 10 decisions, change 21 days before the task day with later core events, two echoes (e18, e23) restating the stale £2,400, and the change sits at event 868 of 1,000 among routine events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale fact (e6's £2,400 price, revoked by e28's £2,700) propagates correctly: ORD-1 and ORD-3 are REVISE with history-fixed values, the budget decision is ASK under e2's explicit consent rule matching the consent map, and the KEEP marks follow because only the price changed while dates and logistics stand. The task requires concrete acts (payment and email) without hinting at the change, and the deposit is unambiguously half of the new hire (£1,350). Tier requirements are met: 34 core events, 10 decisions, change 21 days before the task day with later core events, two echoes (e18, e23) restating the stale £2,400, and the change sits at event 868 of 1,000 among routine events."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4988,
+    "completion_tokens": 576,
+    "reasoning_tokens": 358,
+    "cached_tokens": 384
+   },
+   "cost": 0.00907984,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8cec4f83f52a0ffed28ca42b2be10a95b74b967235aefc4de1e12e400a89cdb4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The approved budget is internally inconsistent: £2,400 + £4,560 + £240 totals £7,200, not £6,800. The history also does not unambiguously establish that Alan’s sign-off on the £2,400 order authorizes confirming the increased £2,700 order without renewed approval, which the consent map omits.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The approved budget is internally inconsistent: £2,400 + £4,560 + £240 totals £7,200, not £6,800. The history also does not unambiguously establish that Alan’s sign-off on the £2,400 order authorizes confirming the increased £2,700 order without renewed approval, which the consent map omits."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4885,
+    "completion_tokens": 340,
+    "reasoning_tokens": 230,
+    "cached_tokens": 0
+   },
+   "cost": 0.078055,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "8cec4f83f52a0ffed28ca42b2be10a95b74b967235aefc4de1e12e400a89cdb4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

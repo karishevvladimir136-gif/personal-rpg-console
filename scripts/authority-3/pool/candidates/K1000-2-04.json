@@ -1,0 +1,781 @@
+{
+ "id": "K1000-2-04",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 2,
+ "idx": 3,
+ "setting": "Catering director at Saffron Table Catering, a corporate lunch caterer",
+ "prompt_sha256": "0c16bdd43172ac9828fdb9e46b7544aca27bf19a2af82f213162ba0687617521",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Saffron Table Catering\",\n \"setting\": \"Catering director at Saffron Table Catering, a corporate lunch caterer\",\n \"owner\": \"Mara\",\n \"org\": \"Saffron Table Catering\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: once a client event is confirmed in our schedule, any change to its menu or its date must be agreed with the client contact first. No exceptions, even for small swaps.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for purchasing: any supplier order over 500 must be signed off by our finance lead Priya Shah before it is placed with the supplier. Orders of 500 or under can go ahead directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Confirming our standing monthly supply: boneless lamb shoulder for your lunch service, 780 per monthly order, delivered to your Saffron Table kitchen on the first Monday of each month. Reach me at the Glenbrook office any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Priya Shah is our finance lead. She handles all supplier sign-offs and keeps the purchasing ledger. Her desk is in the Harcourt Lane office.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Marchetti (Costa Verde Oils)\", \"text\": \"Your bulk extra-virgin olive oil restock for the autumn quarter comes to 1240 for the agreed 80 tins, delivery to the Harcourt Lane kitchen. Let me know when you want it released.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your monthly saffron and ras el hanout restock for the Saffron Table kitchen totals 640 per month on the current list. Happy to combine delivery with any other drop to save you a slot.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Smoked salmon sides for a 40-guest board lunch come to 720 per event, delivered chilled the morning of the event. Just give us three days' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Helix Partners would like Saffron Table to cater our quarterly board lunch again this autumn, around 40 guests, at our Riverside offices. Please propose a date and menu.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-17\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Ledger is tidy for May. Reminder to the team that I sign off supplier orders before anything large goes out.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the fortnightly bread order with Hallow Bakery, 320 for the lunch-service rolls and focaccia. Under the sign-off line, so it went straight through.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set the autumn kitchen rota: Tomas on prep, Adele on hot section, kitchen team of six for weekday lunch service, starting 7 September.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Ruth Vale (Meridian Consulting)\", \"text\": \"Thanks for the June lunches. Can we keep the same Thursday slot for our team lunch through the autumn?\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Kitchen meeting notes: autumn menus drafted, two new grain salads trialled, tasting for prospective clients to be scheduled in September.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the September monthly lamb shoulder order with Glenbrook Meats at the standing 780 and sent it to Priya Shah for sign-off before it goes to Dev Anand, since it is over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the autumn bulk olive oil order with Costa Verde Oils at 1240 and sent it to Priya Shah for sign-off, as it is well over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the monthly saffron and ras el hanout restock with Ember & Vine Spices at 640 and sent it to Priya Shah alongside the Glenbrook lamb order for sign-off, so both can share the early-September delivery slot once approved.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked and confirmed the Helix Partners quarterly board lunch for Friday 13 November 2026 at their Riverside offices, 40 guests, menu set as the seasonal board menu with a Northsea smoked salmon platter. The salmon at 720 sits over the 500 sign-off line, so its order is queued for Priya's sign-off before we commit it.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Team reminder: anything over 500 to a supplier comes across my desk before it is placed. Two orders are waiting with me now — lamb and olive oil.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a tasting for prospective clients at the Harcourt Lane kitchen on 24 September, six guests, using the autumn draft menu.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Shah\", \"text\": \"Finance check-in minutes: purchasing controls reviewed; the rule stands that supplier orders above 500 require finance sign-off before placement. Current queue: Glenbrook lamb 780, Costa Verde oil 1240, Ember & Vine spices 640.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"For client billing, I have started asking for a 10% deposit on any client invoice over 2000 before we lock dates. Supplier-side controls are unchanged.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Looking forward to the board lunch on Friday 13 November. Please keep the menu as agreed — the partners specifically asked after the salmon platter.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Purchasing update, effective 1 September: with our new bulk-supply agreement in place, the sign-off threshold moves from 500 to 900. Supplier orders of 900 or under no longer need Priya Shah's sign-off and can be placed directly; only orders above 900 still go to Priya. Please clear the queue on that basis.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Checking in on the September lamb order — we held the shoulder aside. Shall we line up the October delivery as usual?\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-06\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"By 16 October, confirm which autumn client events still need staffing assigned for November.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your October saffron shipment is ready to go whenever you confirm. Same list as usual.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"The Costa Verde olive oil at 1240 is still with me — that one stays on my desk under the new threshold since it is above 900.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Confirming we can cover a 40-guest smoked salmon platter for mid-November with three days' notice, at the quoted 720.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Busy week: two tastings, the Meridian Thursday lunch, and November planning. Clear outstanding supplier orders first.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly lamb shoulder — Glenbrook Meats\", \"fields\": {\"supplier\": \"Glenbrook Meats\", \"item\": \"boneless lamb shoulder\", \"amount\": \"780\", \"status\": \"pending sign-off\", \"contact\": \"Dev Anand\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn bulk olive oil — Costa Verde Oils\", \"fields\": {\"supplier\": \"Costa Verde Oils\", \"item\": \"extra-virgin olive oil tins\", \"amount\": \"1240\", \"status\": \"pending sign-off\", \"contact\": \"Lena Marchetti\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Monthly spice restock — Ember & Vine Spices\", \"fields\": {\"supplier\": \"Ember & Vine Spices\", \"item\": \"saffron and ras el hanout\", \"amount\": \"640\", \"status\": \"pending sign-off\", \"contact\": \"Yusuf Adeyemi\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Fortnightly bread — Hallow Bakery\", \"fields\": {\"supplier\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"amount\": \"320\", \"status\": \"placed\", \"contact\": \"Nina Hallow\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn kitchen rota\", \"fields\": {\"date\": \"2026-09-07\", \"team\": \"Tomas on prep, Adele on hot section\", \"headcount\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Helix Partners quarterly board lunch\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Helix Partners Riverside offices\", \"menu\": \"seasonal board menu with smoked salmon platter\", \"guests\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Prospective client tasting\", \"fields\": {\"date\": \"2026-09-24\", \"place\": \"Harcourt Lane kitchen\", \"guests\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helix Partners\", \"fields\": {\"contact\": \"Tessa Quill\", \"place\": \"Riverside offices\", \"status\": \"active client\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"menu\", \"date\"], \"from\": \"Tessa Quill (Helix Partners)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please place the Glenbrook Meats lamb order that's still sitting in the queue — confirm with Dev Anand that our monthly lamb shoulder order at 780 is going ahead.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"message_to\": \"Dev Anand (Glenbrook Meats)\", \"regarding\": \"ORD-1\", \"says\": [\"780\", \"confirmed\"], \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"]}\n ],\n \"why\": \"Mara's amendment raised the sign-off threshold from 500 to 900 effective 1 September, so the lamb order (780) and the spice restock (640, which rides on the lamb order) no longer need Priya's sign-off and should be placed; the olive oil at 1240 stays above 900 and is KEEP. The Helix board lunch is touched through the queued salmon order, but its confirmed menu can only be changed with Tessa Quill's consent under the client-change rule, so it is ASK and its record stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"chicken restock\", \"counterpart\": \"Dev Anand\", \"org\": \"Glenbrook Meats\", \"item\": \"free-range chicken supremes\", \"unit\": \"order\", \"values\": [\"260\", \"340\", \"410\", \"295\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"spice top-up\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Ember & Vine Spices\", \"item\": \"smoked paprika and cumin\", \"unit\": \"order\", \"values\": [\"120\", \"185\", \"240\", \"150\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"vinegar restock\", \"counterpart\": \"Lena Marchetti\", \"org\": \"Costa Verde Oils\", \"item\": \"sherry vinegar bottles\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"5\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"white fish delivery\", \"counterpart\": \"Ingrid Vollan\", \"org\": \"Northsea Fish\", \"item\": \"haddock fillets\", \"unit\": \"order\", \"values\": [\"210\", \"280\", \"330\", \"255\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bread restock\", \"counterpart\": \"Nina Hallow\", \"org\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"unit\": \"order\", \"values\": [\"280\", \"320\", \"350\", \"300\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"produce delivery\", \"counterpart\": \"Colm Draper\", \"org\": \"Draper & Field Produce\", \"item\": \"seasonal salad boxes\", \"unit\": \"box\", \"values\": [\"12\", \"16\", \"20\", \"14\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Meadowgate Dairy\", \"item\": \"butter and cream\", \"unit\": \"order\", \"values\": [\"150\", \"190\", \"225\", \"170\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"disposables restock\", \"counterpart\": \"Pete Ransom\", \"org\": \"Ransom Packaging\", \"item\": \"compostable lunch boxes\", \"unit\": \"case\", \"values\": [\"10\", \"14\", \"18\", \"12\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"tasting room\", \"counterpart\": \"Tessa Quill\", \"org\": \"Helix Partners\", \"item\": \"riverside meeting room for menu tasting\", \"unit\": \"booking\", \"values\": [\"Willow Room\", \"Alder Room\", \"Birch Room\"], \"place\": \"Helix Partners Riverside offices\"},\n  {\"kind\": \"booking\", \"topic\": \"team lunch slot\", \"counterpart\": \"Ruth Vale\", \"org\": \"Meridian Consulting\", \"item\": \"Thursday team lunch setup\", \"unit\": \"booking\", \"values\": [\"Atrium\", \"Garden Room\", \"North Lounge\"], \"place\": \"Meridian Consulting offices\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery van\", \"counterpart\": \"Kofi Mensah\", \"org\": \"SwiftHire Vans\", \"item\": \"refrigerated van for lunch runs\", \"unit\": \"booking\", \"values\": [\"Van 2\", \"Van 4\", \"Van 5\"], \"place\": \"Harcourt Lane depot\"},\n  {\"kind\": \"booking\", \"topic\": \"kitchen prep slot\", \"counterpart\": \"Mara\", \"org\": \"Saffron Table Catering\", \"item\": \"weekend prep kitchen session\", \"unit\": \"booking\", \"values\": [\"Main kitchen\", \"Prep annex\", \"Cold room\"], \"place\": \"Harcourt Lane kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3238,
+    "completion_tokens": 7800,
+    "reasoning_tokens": 3371,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1184196,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Saffron Table Catering\",\n \"setting\": \"Catering director at Saffron Table Catering, a corporate lunch caterer\",\n \"owner\": \"Mara\",\n \"org\": \"Saffron Table Catering\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: once a client event is confirmed in our schedule, any change to its menu or its date must be agreed with the client contact first. No exceptions, even for small swaps.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for purchasing: any supplier order over 500 must be signed off by our finance lead Priya Shah before it is placed with the supplier. Orders of 500 or under can go ahead directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Confirming our standing monthly supply: boneless lamb shoulder for your lunch service, 780 per monthly order, delivered to your Saffron Table kitchen on the first Monday of each month. Reach me at the Glenbrook office any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Priya Shah is our finance lead. She handles all supplier sign-offs and keeps the purchasing ledger. Her desk is in the Harcourt Lane office.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Marchetti (Costa Verde Oils)\", \"text\": \"Your bulk extra-virgin olive oil restock for the autumn quarter comes to 1240 for the agreed 80 tins, delivery to the Harcourt Lane kitchen. Let me know when you want it released.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your monthly saffron and ras el hanout restock for the Saffron Table kitchen totals 640 per month on the current list. Happy to combine delivery with any other drop to save you a slot.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Smoked salmon sides for a 40-guest board lunch come to 720 per event, delivered chilled the morning of the event. Just give us three days' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Helix Partners would like Saffron Table to cater our quarterly board lunch again this autumn, around 40 guests, at our Riverside offices. Please propose a date and menu.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-17\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Ledger is tidy for May. Reminder to the team that I sign off supplier orders before anything large goes out.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the fortnightly bread order with Hallow Bakery, 320 for the lunch-service rolls and focaccia. Under the sign-off line, so it went straight through.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set the autumn kitchen rota: Tomas on prep, Adele on hot section, kitchen team of six for weekday lunch service, starting 7 September.\", \"role\": \"decision\", \"rests_on\": [], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Ruth Vale (Meridian Consulting)\", \"text\": \"Thanks for the June lunches. Can we keep the same Thursday slot for our team lunch through the autumn?\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Kitchen meeting notes: autumn menus drafted, two new grain salads trialled, tasting for prospective clients to be scheduled in September.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the September monthly lamb shoulder order with Glenbrook Meats at the standing 780 and sent it to Priya Shah for sign-off before it goes to Dev Anand, since it is over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the autumn bulk olive oil order with Costa Verde Oils at 1240 and sent it to Priya Shah for sign-off, as it is well over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the monthly saffron and ras el hanout restock with Ember & Vine Spices at 640 and sent it to Priya Shah alongside the Glenbrook lamb order for sign-off, so both can share the early-September delivery slot once approved.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked and confirmed the Helix Partners quarterly board lunch for Friday 13 November 2026 at their Riverside offices, 40 guests, menu set as the seasonal board menu with a Northsea smoked salmon platter. The salmon at 720 sits over the 500 sign-off line, so its order is queued for Priya's sign-off before we commit it.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Team reminder: anything over 500 to a supplier comes across my desk before it is placed. Two orders are waiting with me now — lamb and olive oil.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a tasting for prospective clients at the Harcourt Lane kitchen on 24 September, six guests, using the autumn draft menu.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Shah\", \"text\": \"Finance check-in minutes: purchasing controls reviewed; the rule stands that supplier orders above 500 require finance sign-off before placement. Current queue: Glenbrook lamb 780, Costa Verde oil 1240, Ember & Vine spices 640.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"For client billing, I have started asking for a 10% deposit on any client invoice over 2000 before we lock dates. Supplier-side controls are unchanged.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Looking forward to the board lunch on Friday 13 November. Please keep the menu as agreed — the partners specifically asked after the salmon platter.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Purchasing update, effective 1 September: with our new bulk-supply agreement in place, the sign-off threshold moves from 500 to 900. Supplier orders of 900 or under no longer need Priya Shah's sign-off and can be placed directly; only orders above 900 still go to Priya. Please clear the queue on that basis.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Checking in on the September lamb order — we held the shoulder aside. Shall we line up the October delivery as usual?\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-06\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"By 16 October, confirm which autumn client events still need staffing assigned for November.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your October saffron shipment is ready to go whenever you confirm. Same list as usual.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Nina Hallow (Hallow Bakery)\", \"text\": \"Your next fortnightly bread drop is booked in for Monday morning as usual. Let me know if quantities shift for the colder months.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"The Costa Verde olive oil at 1240 is still with me — that one stays on my desk under the new threshold since it is above 900.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Ruth Vale (Meridian Consulting)\", \"text\": \"Confirming the Thursday team lunch this week at our offices, Atrium room, 22 covers. Same salad bowls as last month please.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Confirming we can cover a 40-guest smoked salmon platter for mid-November with three days' notice, at the quoted 720.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The client tasting on 24 September went well — two of the six guests asked for proposals. Filing their details this week.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Busy week: two tastings, the Meridian Thursday lunch, and November planning. Clear outstanding supplier orders first.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly lamb shoulder — Glenbrook Meats\", \"fields\": {\"supplier\": \"Glenbrook Meats\", \"item\": \"boneless lamb shoulder\", \"amount\": \"780\", \"status\": \"pending sign-off\", \"contact\": \"Dev Anand\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn bulk olive oil — Costa Verde Oils\", \"fields\": {\"supplier\": \"Costa Verde Oils\", \"item\": \"extra-virgin olive oil tins\", \"amount\": \"1240\", \"status\": \"pending sign-off\", \"contact\": \"Lena Marchetti\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Monthly spice restock — Ember & Vine Spices\", \"fields\": {\"supplier\": \"Ember & Vine Spices\", \"item\": \"saffron and ras el hanout\", \"amount\": \"640\", \"status\": \"pending sign-off\", \"contact\": \"Yusuf Adeyemi\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Fortnightly bread — Hallow Bakery\", \"fields\": {\"supplier\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"amount\": \"320\", \"status\": \"placed\", \"contact\": \"Nina Hallow\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn kitchen rota\", \"fields\": {\"date\": \"2026-09-07\", \"team\": \"Tomas on prep, Adele on hot section\", \"headcount\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Helix Partners quarterly board lunch\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Helix Partners Riverside offices\", \"menu\": \"seasonal board menu with smoked salmon platter\", \"guests\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Prospective client tasting\", \"fields\": {\"date\": \"2026-09-24\", \"place\": \"Harcourt Lane kitchen\", \"guests\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helix Partners\", \"fields\": {\"contact\": \"Tessa Quill\", \"place\": \"Riverside offices\", \"status\": \"active client\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"menu\", \"date\"], \"from\": \"Tessa Quill (Helix Partners)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please place the Glenbrook Meats lamb order that's still sitting in the queue — confirm with Dev Anand that our monthly lamb shoulder order at 780 is going ahead.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"message_to\": \"Dev Anand (Glenbrook Meats)\", \"regarding\": \"ORD-1\", \"says\": [\"780\", \"confirmed\"], \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"]}\n ],\n \"why\": \"Mara's amendment raised the sign-off threshold from 500 to 900 effective 1 September, so the lamb order (780) and the spice restock (640, which rides on the lamb order) no longer need Priya's sign-off and should be placed; the olive oil at 1240 stays above 900 and is KEEP. The Helix board lunch is touched through the queued salmon order, but its confirmed menu can only be changed with Tessa Quill's consent under the client-change rule, so it is ASK and its record stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"chicken restock\", \"counterpart\": \"Dev Anand\", \"org\": \"Glenbrook Meats\", \"item\": \"free-range chicken supremes\", \"unit\": \"order\", \"values\": [\"260\", \"340\", \"410\", \"295\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"spice top-up\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Ember & Vine Spices\", \"item\": \"smoked paprika and cumin\", \"unit\": \"order\", \"values\": [\"120\", \"185\", \"240\", \"150\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"vinegar restock\", \"counterpart\": \"Lena Marchetti\", \"org\": \"Costa Verde Oils\", \"item\": \"sherry vinegar bottles\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"5\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"white fish delivery\", \"counterpart\": \"Ingrid Vollan\", \"org\": \"Northsea Fish\", \"item\": \"haddock fillets\", \"unit\": \"order\", \"values\": [\"210\", \"280\", \"330\", \"255\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bread restock\", \"counterpart\": \"Nina Hallow\", \"org\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"unit\": \"order\", \"values\": [\"280\", \"320\", \"350\", \"300\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"produce delivery\", \"counterpart\": \"Colm Draper\", \"org\": \"Draper & Field Produce\", \"item\": \"seasonal salad boxes\", \"unit\": \"box\", \"values\": [\"12\", \"16\", \"20\", \"14\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Meadowgate Dairy\", \"item\": \"butter and cream\", \"unit\": \"order\", \"values\": [\"150\", \"190\", \"225\", \"170\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"disposables restock\", \"counterpart\": \"Pete Ransom\", \"org\": \"Ransom Packaging\", \"item\": \"compostable lunch boxes\", \"unit\": \"case\", \"values\": [\"10\", \"14\", \"18\", \"12\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"tasting room\", \"counterpart\": \"Tessa Quill\", \"org\": \"Helix Partners\", \"item\": \"riverside meeting room for menu tasting\", \"unit\": \"booking\", \"values\": [\"Willow Room\", \"Alder Room\", \"Birch Room\"], \"place\": \"Helix Partners Riverside offices\"},\n  {\"kind\": \"booking\", \"topic\": \"team lunch slot\", \"counterpart\": \"Ruth Vale\", \"org\": \"Meridian Consulting\", \"item\": \"Thursday team lunch setup\", \"unit\": \"booking\", \"values\": [\"Atrium\", \"Garden Room\", \"North Lounge\"], \"place\": \"Meridian Consulting offices\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery van\", \"counterpart\": \"Kofi Mensah\", \"org\": \"SwiftHire Vans\", \"item\": \"refrigerated van for lunch runs\", \"unit\": \"booking\", \"values\": [\"Van 2\", \"Van 4\", \"Van 5\"], \"place\": \"Harcourt Lane depot\"},\n  {\"kind\": \"booking\", \"topic\": \"kitchen prep slot\", \"counterpart\": \"Mara\", \"org\": \"Saffron Table Catering\", \"item\": \"weekend prep kitchen session\", \"unit\": \"booking\", \"values\": [\"Main kitchen\", \"Prep annex\", \"Cold room\"], \"place\": \"Harcourt Lane kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7733,
+    "completion_tokens": 4654,
+    "reasoning_tokens": 8,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0847146,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- tier 1000: the core has 29 events; need 32–65\nFix them and reply with the whole corrected JSON object and nothing else."
+  },
+  {
+   "text": "```json\n{\n \"title\": \"Sign-off threshold raised at Saffron Table Catering\",\n \"setting\": \"Catering director at Saffron Table Catering, a corporate lunch caterer\",\n \"owner\": \"Mara\",\n \"org\": \"Saffron Table Catering\",\n \"now\": \"2026-10-20\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule: once a client event is confirmed in our schedule, any change to its menu or its date must be agreed with the client contact first. No exceptions, even for small swaps.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Standing rule for purchasing: any supplier order over 500 must be signed off by our finance lead Priya Shah before it is placed with the supplier. Orders of 500 or under can go ahead directly.\", \"role\": \"rule\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Confirming our standing monthly supply: boneless lamb shoulder for your lunch service, 780 per monthly order, delivered to your Saffron Table kitchen on the first Monday of each month. Reach me at the Glenbrook office any weekday.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Priya Shah is our finance lead. She handles all supplier sign-offs and keeps the purchasing ledger. Her desk is in the Harcourt Lane office.\", \"role\": \"fact\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Lena Marchetti (Costa Verde Oils)\", \"text\": \"Your bulk extra-virgin olive oil restock for the autumn quarter comes to 1240 for the agreed 80 tins, delivery to the Harcourt Lane kitchen. Let me know when you want it released.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-10\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your monthly saffron and ras el hanout restock for the Saffron Table kitchen totals 640 per month on the current list. Happy to combine delivery with any other drop to save you a slot.\", \"role\": \"fact\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-12\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Smoked salmon sides for a 40-guest board lunch come to 720 per event, delivered chilled the morning of the event. Just give us three days' notice.\", \"role\": \"fact\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Helix Partners would like Saffron Table to cater our quarterly board lunch again this autumn, around 40 guests, at our Riverside offices. Please propose a date and menu.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-17\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Ledger is tidy for May. Reminder to the team that I sign off supplier orders before anything large goes out.\", \"role\": \"other\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Placed the fortnightly bread order with Hallow Bakery, 320 for the lunch-service rolls and focaccia. Under the sign-off line, so it went straight through.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-5\", \"mark\": \"KEEP\"},\n  {\"id\": \"e11\", \"date\": \"2026-07-06\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set the autumn kitchen rota: Tomas on prep, Adele on hot section, kitchen team of six for weekday lunch service, starting 7 September. Priya has the office rota copy at her desk.\", \"role\": \"decision\", \"rests_on\": [\"e4\"], \"record\": \"EV-1\"},\n  {\"id\": \"e12\", \"date\": \"2026-07-14\", \"type\": \"email\", \"from\": \"Ruth Vale (Meridian Consulting)\", \"text\": \"Thanks for the June lunches. Can we keep the same Thursday slot for our team lunch through the autumn?\", \"role\": \"other\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-28\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Kitchen meeting notes: autumn menus drafted, two new grain salads trialled, tasting for prospective clients to be scheduled in September.\", \"role\": \"other\"},\n  {\"id\": \"e14\", \"date\": \"2026-08-12\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the September monthly lamb shoulder order with Glenbrook Meats at the standing 780 and sent it to Priya Shah for sign-off before it goes to Dev Anand, since it is over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e3\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e15\", \"date\": \"2026-08-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the autumn bulk olive oil order with Costa Verde Oils at 1240 and sent it to Priya Shah for sign-off, as it is well over the 500 sign-off line.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e5\"], \"record\": \"ORD-2\", \"mark\": \"KEEP\"},\n  {\"id\": \"e16\", \"date\": \"2026-08-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Prepared the monthly saffron and ras el hanout restock with Ember & Vine Spices at 640 and sent it to Priya Shah alongside the Glenbrook lamb order for sign-off, so both can share the early-September delivery slot once approved.\", \"role\": \"decision\", \"rests_on\": [\"e14\"], \"record\": \"ORD-3\", \"mark\": \"REVISE\"},\n  {\"id\": \"e17\", \"date\": \"2026-08-20\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked and confirmed the Helix Partners quarterly board lunch for Friday 13 November 2026 at their Riverside offices, 40 guests, menu set as the seasonal board menu with a Northsea smoked salmon platter. The salmon at 720 sits over the 500 sign-off line, so its order is queued for Priya's sign-off before we commit it.\", \"role\": \"decision\", \"rests_on\": [\"e2\", \"e7\", \"e8\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-28\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"Team reminder: anything over 500 to a supplier comes across my desk before it is placed. Two orders are waiting with me now — lamb and olive oil.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Scheduled a tasting for prospective clients at the Harcourt Lane kitchen on 24 September, six guests, using the autumn draft menu.\", \"role\": \"decision\", \"rests_on\": [\"e13\"], \"record\": \"EV-3\"},\n  {\"id\": \"e20\", \"date\": \"2026-09-10\", \"type\": \"minutes\", \"from\": \"Priya Shah\", \"text\": \"Finance check-in minutes: purchasing controls reviewed; the rule stands that supplier orders above 500 require finance sign-off before placement. Current queue: Glenbrook lamb 780, Costa Verde oil 1240, Ember & Vine spices 640.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e21\", \"date\": \"2026-09-15\", \"type\": \"email\", \"from\": \"Priya Shah\", \"text\": \"For client billing, I have started asking for a 10% deposit on any client invoice over 2000 before we lock dates. Supplier-side controls are unchanged.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e22\", \"date\": \"2026-09-18\", \"type\": \"email\", \"from\": \"Tessa Quill (Helix Partners)\", \"text\": \"Looking forward to the board lunch on Friday 13 November. Please keep the menu as agreed — the partners specifically asked after the salmon platter.\", \"role\": \"other\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-24\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Purchasing update, effective 1 September: with our new bulk-supply agreement in place, the sign-off threshold moves from 500 to 900. Supplier orders of 900 or under no longer need Priya Shah's sign-off and can be placed directly; only orders above 900 still go to Priya. Please clear the queue on that basis.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e24\", \"date\": \"2026-10-02\", \"type\": \"email\", \"from\": \"Dev Anand (Glenbrook Meats)\", \"text\": \"Checking in on the September lamb order — we held the shoulder aside. Shall we line up the October delivery as usual?\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-10-06\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"By 16 October, confirm which autumn client events still need staffing assigned for November.\", \"role\": \"obligation\"},\n  {\"id\": \"e26\", \"date\": \"2026-10-08\", \"type\": \"email\", \"from\": \"Yusuf Adeyemi (Ember & Vine Spices)\", \"text\": \"Your October saffron shipment is ready to go whenever you confirm. Same list as usual.\", \"role\": \"other\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-09\", \"type\": \"email\", \"from\": \"Nina Hallow (Hallow Bakery)\", \"text\": \"Your next fortnightly bread drop is booked in for Monday morning as usual. Let me know if quantities shift for the colder months.\", \"role\": \"other\"},\n  {\"id\": \"e28\", \"date\": \"2026-10-12\", \"type\": \"message\", \"from\": \"Priya Shah\", \"text\": \"The Costa Verde olive oil at 1240 is still with me — that one stays on my desk under the new threshold since it is above 900.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-13\", \"type\": \"message\", \"from\": \"Ruth Vale (Meridian Consulting)\", \"text\": \"Confirming the Thursday team lunch this week at our offices, Atrium room, 22 covers. Same salad bowls as last month please.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-15\", \"type\": \"email\", \"from\": \"Ingrid Vollan (Northsea Fish)\", \"text\": \"Confirming we can cover a 40-guest smoked salmon platter for mid-November with three days' notice, at the quoted 720.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-16\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The client tasting on 24 September went well — two of the six guests asked for proposals. Filing their details this week.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-10-19\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Busy week: two tastings, the Meridian Thursday lunch, and November planning. Clear outstanding supplier orders first.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Monthly lamb shoulder — Glenbrook Meats\", \"fields\": {\"supplier\": \"Glenbrook Meats\", \"item\": \"boneless lamb shoulder\", \"amount\": \"780\", \"status\": \"pending sign-off\", \"contact\": \"Dev Anand\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Autumn bulk olive oil — Costa Verde Oils\", \"fields\": {\"supplier\": \"Costa Verde Oils\", \"item\": \"extra-virgin olive oil tins\", \"amount\": \"1240\", \"status\": \"pending sign-off\", \"contact\": \"Lena Marchetti\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Monthly spice restock — Ember & Vine Spices\", \"fields\": {\"supplier\": \"Ember & Vine Spices\", \"item\": \"saffron and ras el hanout\", \"amount\": \"640\", \"status\": \"pending sign-off\", \"contact\": \"Yusuf Adeyemi\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Fortnightly bread — Hallow Bakery\", \"fields\": {\"supplier\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"amount\": \"320\", \"status\": \"placed\", \"contact\": \"Nina Hallow\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Autumn kitchen rota\", \"fields\": {\"date\": \"2026-09-07\", \"team\": \"Tomas on prep, Adele on hot section\", \"headcount\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Helix Partners quarterly board lunch\", \"fields\": {\"date\": \"2026-11-13\", \"place\": \"Helix Partners Riverside offices\", \"menu\": \"seasonal board menu with smoked salmon platter\", \"guests\": \"40\", \"status\": \"confirmed\"}},\n  {\"id\": \"EV-3\", \"collection\": \"schedule\", \"title\": \"Prospective client tasting\", \"fields\": {\"date\": \"2026-09-24\", \"place\": \"Harcourt Lane kitchen\", \"guests\": \"6\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Helix Partners\", \"fields\": {\"contact\": \"Tessa Quill\", \"place\": \"Riverside offices\", \"status\": \"active client\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"menu\", \"date\"], \"from\": \"Tessa Quill (Helix Partners)\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please place the Glenbrook Meats lamb order that's still sitting in the queue — confirm with Dev Anand that our monthly lamb shoulder order at 780 is going ahead.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"message_to\": \"Dev Anand (Glenbrook Meats)\", \"regarding\": \"ORD-1\", \"says\": [\"780\", \"confirmed\"], \"stale\": [\"pending sign-off\"], \"task\": true},\n  {\"record\": \"ORD-3\", \"field\": \"status\", \"value\": \"placed\", \"stale\": [\"pending sign-off\"]}\n ],\n \"why\": \"Mara's amendment raised the sign-off threshold from 500 to 900 effective 1 September, so the lamb order (780) and the spice restock (640, which rides on the lamb order) no longer need Priya's sign-off and should be placed; the olive oil at 1240 and the already-placed bread order at 320 are unaffected in substance and are KEEP. The Helix board lunch is touched through the queued salmon order, but its confirmed menu can only be changed with Tessa Quill's consent under the client-change rule, so it is ASK and its record stays as it is.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"chicken restock\", \"counterpart\": \"Dev Anand\", \"org\": \"Glenbrook Meats\", \"item\": \"free-range chicken supremes\", \"unit\": \"order\", \"values\": [\"260\", \"340\", \"410\", \"295\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"spice top-up\", \"counterpart\": \"Yusuf Adeyemi\", \"org\": \"Ember & Vine Spices\", \"item\": \"smoked paprika and cumin\", \"unit\": \"order\", \"values\": [\"120\", \"185\", \"240\", \"150\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"vinegar restock\", \"counterpart\": \"Lena Marchetti\", \"org\": \"Costa Verde Oils\", \"item\": \"sherry vinegar bottles\", \"unit\": \"case\", \"values\": [\"4\", \"6\", \"8\", \"5\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"white fish delivery\", \"counterpart\": \"Ingrid Vollan\", \"org\": \"Northsea Fish\", \"item\": \"haddock fillets\", \"unit\": \"order\", \"values\": [\"210\", \"280\", \"330\", \"255\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"bread restock\", \"counterpart\": \"Nina Hallow\", \"org\": \"Hallow Bakery\", \"item\": \"lunch rolls and focaccia\", \"unit\": \"order\", \"values\": [\"280\", \"320\", \"350\", \"300\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"produce delivery\", \"counterpart\": \"Colm Draper\", \"org\": \"Draper & Field Produce\", \"item\": \"seasonal salad boxes\", \"unit\": \"box\", \"values\": [\"12\", \"16\", \"20\", \"14\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"dairy restock\", \"counterpart\": \"Sofia Lindqvist\", \"org\": \"Meadowgate Dairy\", \"item\": \"butter and cream\", \"unit\": \"order\", \"values\": [\"150\", \"190\", \"225\", \"170\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"order\", \"topic\": \"disposables restock\", \"counterpart\": \"Pete Ransom\", \"org\": \"Ransom Packaging\", \"item\": \"compostable lunch boxes\", \"unit\": \"case\", \"values\": [\"10\", \"14\", \"18\", \"12\"], \"place\": \"Harcourt Lane kitchen\"},\n  {\"kind\": \"booking\", \"topic\": \"tasting room\", \"counterpart\": \"Tessa Quill\", \"org\": \"Helix Partners\", \"item\": \"riverside meeting room for menu tasting\", \"unit\": \"booking\", \"values\": [\"Willow Room\", \"Alder Room\", \"Birch Room\"], \"place\": \"Helix Partners Riverside offices\"},\n  {\"kind\": \"booking\", \"topic\": \"team lunch slot\", \"counterpart\": \"Ruth Vale\", \"org\": \"Meridian Consulting\", \"item\": \"Thursday team lunch setup\", \"unit\": \"booking\", \"values\": [\"Atrium\", \"Garden Room\", \"North Lounge\"], \"place\": \"Meridian Consulting offices\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery van\", \"counterpart\": \"Kofi Mensah\", \"org\": \"SwiftHire Vans\", \"item\": \"refrigerated van for lunch runs\", \"unit\": \"booking\", \"values\": [\"Van 2\", \"Van 4\", \"Van 5\"], \"place\": \"Harcourt Lane depot\"},\n  {\"kind\": \"booking\", \"topic\": \"kitchen prep slot\", \"counterpart\": \"Mara\", \"org\": \"Saffron Table Catering\", \"item\": \"weekend prep kitchen session\", \"unit\": \"booking\", \"values\": [\"Main kitchen\", \"Prep annex\", \"Cold room\"], \"place\": \"Harcourt Lane kitchen\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 12466,
+    "completion_tokens": 4749,
+    "reasoning_tokens": 72,
+    "cached_tokens": 7680
+   },
+   "cost": 0.087897,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- e11: a decision must rest on at least one earlier event\n- decisions resting (directly or through other decisions) on what the change revokes need a mark: ['e10']\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "Sign-off threshold raised at Saffron Table Catering",
+  "setting": "Catering director at Saffron Table Catering, a corporate lunch caterer",
+  "owner": "Mara",
+  "org": "Saffron Table Catering",
+  "now": "2026-10-20",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule: once a client event is confirmed in our schedule, any change to its menu or its date must be agreed with the client contact first. No exceptions, even for small swaps.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Standing rule for purchasing: any supplier order over 500 must be signed off by our finance lead Priya Shah before it is placed with the supplier. Orders of 500 or under can go ahead directly.",
+    "role": "rule"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "email",
+    "from": "Dev Anand (Glenbrook Meats)",
+    "text": "Confirming our standing monthly supply: boneless lamb shoulder for your lunch service, 780 per monthly order, delivered to your Saffron Table kitchen on the first Monday of each month. Reach me at the Glenbrook office any weekday.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "note",
+    "from": "Mara",
+    "text": "Priya Shah is our finance lead. She handles all supplier sign-offs and keeps the purchasing ledger. Her desk is in the Harcourt Lane office.",
+    "role": "fact"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Lena Marchetti (Costa Verde Oils)",
+    "text": "Your bulk extra-virgin olive oil restock for the autumn quarter comes to 1240 for the agreed 80 tins, delivery to the Harcourt Lane kitchen. Let me know when you want it released.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-10",
+    "type": "email",
+    "from": "Yusuf Adeyemi (Ember & Vine Spices)",
+    "text": "Your monthly saffron and ras el hanout restock for the Saffron Table kitchen totals 640 per month on the current list. Happy to combine delivery with any other drop to save you a slot.",
+    "role": "fact"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-12",
+    "type": "email",
+    "from": "Ingrid Vollan (Northsea Fish)",
+    "text": "Smoked salmon sides for a 40-guest board lunch come to 720 per event, delivered chilled the morning of the event. Just give us three days' notice.",
+    "role": "fact"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-15",
+    "type": "email",
+    "from": "Tessa Quill (Helix Partners)",
+    "text": "Helix Partners would like Saffron Table to cater our quarterly board lunch again this autumn, around 40 guests, at our Riverside offices. Please propose a date and menu.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-17",
+    "type": "message",
+    "from": "Priya Shah",
+    "text": "Ledger is tidy for May. Reminder to the team that I sign off supplier orders before anything large goes out.",
+    "role": "other"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Placed the fortnightly bread order with Hallow Bakery, 320 for the lunch-service rolls and focaccia. Under the sign-off line, so it went straight through.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-5",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e11",
+    "date": "2026-07-06",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set the autumn kitchen rota: Tomas on prep, Adele on hot section, kitchen team of six for weekday lunch service, starting 7 September. Priya has the office rota copy at her desk.",
+    "role": "decision",
+    "rests_on": [
+     "e4"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e12",
+    "date": "2026-07-14",
+    "type": "email",
+    "from": "Ruth Vale (Meridian Consulting)",
+    "text": "Thanks for the June lunches. Can we keep the same Thursday slot for our team lunch through the autumn?",
+    "role": "other"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-28",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Kitchen meeting notes: autumn menus drafted, two new grain salads trialled, tasting for prospective clients to be scheduled in September.",
+    "role": "other"
+   },
+   {
+    "id": "e14",
+    "date": "2026-08-12",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Prepared the September monthly lamb shoulder order with Glenbrook Meats at the standing 780 and sent it to Priya Shah for sign-off before it goes to Dev Anand, since it is over the 500 sign-off line.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e3"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e15",
+    "date": "2026-08-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Prepared the autumn bulk olive oil order with Costa Verde Oils at 1240 and sent it to Priya Shah for sign-off, as it is well over the 500 sign-off line.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e5"
+    ],
+    "record": "ORD-2",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e16",
+    "date": "2026-08-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Prepared the monthly saffron and ras el hanout restock with Ember & Vine Spices at 640 and sent it to Priya Shah alongside the Glenbrook lamb order for sign-off, so both can share the early-September delivery slot once approved.",
+    "role": "decision",
+    "rests_on": [
+     "e14"
+    ],
+    "record": "ORD-3",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e17",
+    "date": "2026-08-20",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked and confirmed the Helix Partners quarterly board lunch for Friday 13 November 2026 at their Riverside offices, 40 guests, menu set as the seasonal board menu with a Northsea smoked salmon platter. The salmon at 720 sits over the 500 sign-off line, so its order is queued for Priya's sign-off before we commit it.",
+    "role": "decision",
+    "rests_on": [
+     "e2",
+     "e7",
+     "e8"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-28",
+    "type": "message",
+    "from": "Priya Shah",
+    "text": "Team reminder: anything over 500 to a supplier comes across my desk before it is placed. Two orders are waiting with me now — lamb and olive oil.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-09-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Scheduled a tasting for prospective clients at the Harcourt Lane kitchen on 24 September, six guests, using the autumn draft menu.",
+    "role": "decision",
+    "rests_on": [
+     "e13"
+    ],
+    "record": "EV-3"
+   },
+   {
+    "id": "e20",
+    "date": "2026-09-10",
+    "type": "minutes",
+    "from": "Priya Shah",
+    "text": "Finance check-in minutes: purchasing controls reviewed; the rule stands that supplier orders above 500 require finance sign-off before placement. Current queue: Glenbrook lamb 780, Costa Verde oil 1240, Ember & Vine spices 640.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e21",
+    "date": "2026-09-15",
+    "type": "email",
+    "from": "Priya Shah",
+    "text": "For client billing, I have started asking for a 10% deposit on any client invoice over 2000 before we lock dates. Supplier-side controls are unchanged.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-18",
+    "type": "email",
+    "from": "Tessa Quill (Helix Partners)",
+    "text": "Looking forward to the board lunch on Friday 13 November. Please keep the menu as agreed — the partners specifically asked after the salmon platter.",
+    "role": "other"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-24",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Purchasing update, effective 1 September: with our new bulk-supply agreement in place, the sign-off threshold moves from 500 to 900. Supplier orders of 900 or under no longer need Priya Shah's sign-off and can be placed directly; only orders above 900 still go to Priya. Please clear the queue on that basis.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e24",
+    "date": "2026-10-02",
+    "type": "email",
+    "from": "Dev Anand (Glenbrook Meats)",
+    "text": "Checking in on the September lamb order — we held the shoulder aside. Shall we line up the October delivery as usual?",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-10-06",
+    "type": "task",
+    "from": "Mara",
+    "text": "By 16 October, confirm which autumn client events still need staffing assigned for November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-08",
+    "type": "email",
+    "from": "Yusuf Adeyemi (Ember & Vine Spices)",
+    "text": "Your October saffron shipment is ready to go whenever you confirm. Same list as usual.",
+    "role": "other"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-09",
+    "type": "email",
+    "from": "Nina Hallow (Hallow Bakery)",
+    "text": "Your next fortnightly bread drop is booked in for Monday morning as usual. Let me know if quantities shift for the colder months.",
+    "role": "other"
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-12",
+    "type": "message",
+    "from": "Priya Shah",
+    "text": "The Costa Verde olive oil at 1240 is still with me — that one stays on my desk under the new threshold since it is above 900.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-13",
+    "type": "message",
+    "from": "Ruth Vale (Meridian Consulting)",
+    "text": "Confirming the Thursday team lunch this week at our offices, Atrium room, 22 covers. Same salad bowls as last month please.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-15",
+    "type": "email",
+    "from": "Ingrid Vollan (Northsea Fish)",
+    "text": "Confirming we can cover a 40-guest smoked salmon platter for mid-November with three days' notice, at the quoted 720.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-16",
+    "type": "note",
+    "from": "Mara",
+    "text": "The client tasting on 24 September went well — two of the six guests asked for proposals. Filing their details this week.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-10-19",
+    "type": "note",
+    "from": "Mara",
+    "text": "Busy week: two tastings, the Meridian Thursday lunch, and November planning. Clear outstanding supplier orders first.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Monthly lamb shoulder — Glenbrook Meats",
+    "fields": {
+     "supplier": "Glenbrook Meats",
+     "item": "boneless lamb shoulder",
+     "amount": "780",
+     "status": "pending sign-off",
+     "contact": "Dev Anand"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Autumn bulk olive oil — Costa Verde Oils",
+    "fields": {
+     "supplier": "Costa Verde Oils",
+     "item": "extra-virgin olive oil tins",
+     "amount": "1240",
+     "status": "pending sign-off",
+     "contact": "Lena Marchetti"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Monthly spice restock — Ember & Vine Spices",
+    "fields": {
+     "supplier": "Ember & Vine Spices",
+     "item": "saffron and ras el hanout",
+     "amount": "640",
+     "status": "pending sign-off",
+     "contact": "Yusuf Adeyemi"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Fortnightly bread — Hallow Bakery",
+    "fields": {
+     "supplier": "Hallow Bakery",
+     "item": "lunch rolls and focaccia",
+     "amount": "320",
+     "status": "placed",
+     "contact": "Nina Hallow"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Autumn kitchen rota",
+    "fields": {
+     "date": "2026-09-07",
+     "team": "Tomas on prep, Adele on hot section",
+     "headcount": "6",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Helix Partners quarterly board lunch",
+    "fields": {
+     "date": "2026-11-13",
+     "place": "Helix Partners Riverside offices",
+     "menu": "seasonal board menu with smoked salmon platter",
+     "guests": "40",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "EV-3",
+    "collection": "schedule",
+    "title": "Prospective client tasting",
+    "fields": {
+     "date": "2026-09-24",
+     "place": "Harcourt Lane kitchen",
+     "guests": "6",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Helix Partners",
+    "fields": {
+     "contact": "Tessa Quill",
+     "place": "Riverside offices",
+     "status": "active client"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "menu",
+     "date"
+    ],
+    "from": "Tessa Quill (Helix Partners)",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please place the Glenbrook Meats lamb order that's still sitting in the queue — confirm with Dev Anand that our monthly lamb shoulder order at 780 is going ahead.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "status",
+    "value": "placed",
+    "stale": [
+     "pending sign-off"
+    ],
+    "task": true
+   },
+   {
+    "message_to": "Dev Anand (Glenbrook Meats)",
+    "regarding": "ORD-1",
+    "says": [
+     "780",
+     "confirmed"
+    ],
+    "stale": [
+     "pending sign-off"
+    ],
+    "task": true
+   },
+   {
+    "record": "ORD-3",
+    "field": "status",
+    "value": "placed",
+    "stale": [
+     "pending sign-off"
+    ]
+   }
+  ],
+  "why": "Mara's amendment raised the sign-off threshold from 500 to 900 effective 1 September, so the lamb order (780) and the spice restock (640, which rides on the lamb order) no longer need Priya's sign-off and should be placed; the olive oil at 1240 and the already-placed bread order at 320 are unaffected in substance and are KEEP. The Helix board lunch is touched through the queued salmon order, but its confirmed menu can only be changed with Tessa Quill's consent under the client-change rule, so it is ASK and its record stays as it is.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "chicken restock",
+    "counterpart": "Dev Anand",
+    "org": "Glenbrook Meats",
+    "item": "free-range chicken supremes",
+    "unit": "order",
+    "values": [
+     "260",
+     "340",
+     "410",
+     "295"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "spice top-up",
+    "counterpart": "Yusuf Adeyemi",
+    "org": "Ember & Vine Spices",
+    "item": "smoked paprika and cumin",
+    "unit": "order",
+    "values": [
+     "120",
+     "185",
+     "240",
+     "150"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "vinegar restock",
+    "counterpart": "Lena Marchetti",
+    "org": "Costa Verde Oils",
+    "item": "sherry vinegar bottles",
+    "unit": "case",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "5"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "white fish delivery",
+    "counterpart": "Ingrid Vollan",
+    "org": "Northsea Fish",
+    "item": "haddock fillets",
+    "unit": "order",
+    "values": [
+     "210",
+     "280",
+     "330",
+     "255"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "bread restock",
+    "counterpart": "Nina Hallow",
+    "org": "Hallow Bakery",
+    "item": "lunch rolls and focaccia",
+    "unit": "order",
+    "values": [
+     "280",
+     "320",
+     "350",
+     "300"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "produce delivery",
+    "counterpart": "Colm Draper",
+    "org": "Draper & Field Produce",
+    "item": "seasonal salad boxes",
+    "unit": "box",
+    "values": [
+     "12",
+     "16",
+     "20",
+     "14"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "dairy restock",
+    "counterpart": "Sofia Lindqvist",
+    "org": "Meadowgate Dairy",
+    "item": "butter and cream",
+    "unit": "order",
+    "values": [
+     "150",
+     "190",
+     "225",
+     "170"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "order",
+    "topic": "disposables restock",
+    "counterpart": "Pete Ransom",
+    "org": "Ransom Packaging",
+    "item": "compostable lunch boxes",
+    "unit": "case",
+    "values": [
+     "10",
+     "14",
+     "18",
+     "12"
+    ],
+    "place": "Harcourt Lane kitchen"
+   },
+   {
+    "kind": "booking",
+    "topic": "tasting room",
+    "counterpart": "Tessa Quill",
+    "org": "Helix Partners",
+    "item": "riverside meeting room for menu tasting",
+    "unit": "booking",
+    "values": [
+     "Willow Room",
+     "Alder Room",
+     "Birch Room"
+    ],
+    "place": "Helix Partners Riverside offices"
+   },
+   {
+    "kind": "booking",
+    "topic": "team lunch slot",
+    "counterpart": "Ruth Vale",
+    "org": "Meridian Consulting",
+    "item": "Thursday team lunch setup",
+    "unit": "booking",
+    "values": [
+     "Atrium",
+     "Garden Room",
+     "North Lounge"
+    ],
+    "place": "Meridian Consulting offices"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery van",
+    "counterpart": "Kofi Mensah",
+    "org": "SwiftHire Vans",
+    "item": "refrigerated van for lunch runs",
+    "unit": "booking",
+    "values": [
+     "Van 2",
+     "Van 4",
+     "Van 5"
+    ],
+    "place": "Harcourt Lane depot"
+   },
+   {
+    "kind": "booking",
+    "topic": "kitchen prep slot",
+    "counterpart": "Mara",
+    "org": "Saffron Table Catering",
+    "item": "weekend prep kitchen session",
+    "unit": "booking",
+    "values": [
+     "Main kitchen",
+     "Prep annex",
+     "Cold room"
+    ],
+    "place": "Harcourt Lane kitchen"
+   }
+  ],
+  "id": "K1000-2-04",
+  "tier": 1000,
+  "class": 2,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The ASK mark on e17 and required consent request to Tessa do not follow: the purchasing amendment removes finance sign-off for the 720 salmon order but requires no change to the confirmed lunch's menu or date. The client-consent rule therefore is not triggered; the other class and tier requirements are met.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK mark on e17 and required consent request to Tessa do not follow: the purchasing amendment removes finance sign-off for the 720 salmon order but requires no change to the confirmed lunch's menu or date. The client-consent rule therefore is not triggered; the other class and tier requirements are met."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4440,
+    "completion_tokens": 149,
+    "reasoning_tokens": 50,
+    "cached_tokens": 0
+   },
+   "cost": 0.0629425,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "755b832d09550d247ddea2778cb802e33c0ef0db66079eeef2029d93644ad27b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The ASK mark on e17 does not follow from the history: the threshold change touches only the salmon supplier order, and nothing in the task or change alters EV-2's menu or date, so the consent-gated rule in e1 is never triggered. The expected consent request to Tessa Quill is therefore unjustified, and the salmon order itself has no record, leaving that part of the expected state ambiguous. The other marks (ORD-1, ORD-3 REVISE; ORD-2, ORD-5 KEEP) and the tier counts are consistent with the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The ASK mark on e17 does not follow from the history: the threshold change touches only the salmon supplier order, and nothing in the task or change alters EV-2's menu or date, so the consent-gated rule in e1 is never triggered. The expected consent request to Tessa Quill is therefore unjustified, and the salmon order itself has no record, leaving that part of the expected state ambiguous. The other marks (ORD-1, ORD-3 REVISE; ORD-2, ORD-5 KEEP) and the tier counts are consistent with the history."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6556,
+    "completion_tokens": 1779,
+    "reasoning_tokens": 1542,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015451,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "755b832d09550d247ddea2778cb802e33c0ef0db66079eeef2029d93644ad27b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasones\": \"The ASK on EV-2 does not follow from the history: raising the sign-off threshold to 900 means the 720 salmon order no longer needs Priya's sign-off, but nothing in the change alters the confirmed event's menu or date, so e1's consent rule is never triggered and the expected consent request to Tessa Quill is unmotivated (it should be KEEP). Everything else (REVISE on ORD-1/ORD-3, KEEP on ORD-2/ORD-5) follows cleanly from the threshold change, and the tier, hiding and class-2 structure are all sound.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": ""
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4561,
+    "completion_tokens": 856,
+    "reasoning_tokens": 687,
+    "cached_tokens": 384
+   },
+   "cost": 0.00971404,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "755b832d09550d247ddea2778cb802e33c0ef0db66079eeef2029d93644ad27b",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,772 @@
+{
+ "id": "K1000-3-03",
+ "writer": "kimi",
+ "tier": 1000,
+ "class": 3,
+ "idx": 2,
+ "setting": "Bookstore manager at Lantern Books, an independent shop with a café",
+ "prompt_sha256": "c35b5143bf4561b0f24fa18a754e97e7e07ebe448aa37c474174caf397173157",
+ "rounds": [
+  {
+   "text": "```json\n{\n \"title\": \"The roastery rep who left\",\n \"setting\": \"Bookstore manager at Lantern Books, an independent shop with a café\",\n \"owner\": \"Mara\",\n \"org\": \"Lantern Books\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: no change to a confirmed partner event at Lantern Books — its date, its room, or its named host — without that partner's written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Hello from Hearth & Vine Roastery. I'm Tessa Vale, your new account rep — tessa.vale@hearthvine.example, 01473 555 018. Reminder that delivery is free on any order over 150 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The Café Room at Lantern Books seats 40 and can be booked for evening events until 22:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Any supplier order over 500 pounds needs Priya Nair's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Ruth Ellison (Tuesday Readers)\", \"text\": \"The Tuesday Readers book club meets on the first Tuesday of each month at 18:30; please keep booking us the Café Room.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-09\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up a standing weekly order with Hearth & Vine Roastery: 4 kg of house blend beans delivered every Thursday to the café, with Tessa Vale as our named contact there.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-11\", \"type\": \"quote\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Nimbus Paper quotes 28 pounds per box of 500 printed Lantern Books carrier bags, minimum four boxes.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Jo works Thursdays to Saturdays in the café and can receive the Thursday bean delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Order 12 kg of Hearth & Vine beans as festival stock for 168 pounds; delivery is free because the order is over their 150-pound threshold.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed with our roastery account rep: a Meet the Roaster cupping evening hosted for us by Tessa Vale of Hearth & Vine in the Café Room on Friday 20 November, 19:00 start.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-25\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Staff meeting minutes: window display rota fixed, Jo to check milk fridge seals weekly, card machine receipt roll reorder point set at two boxes.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Petra Lund (Cardamom Kitchen)\", \"text\": \"Cardamom Kitchen can supply the café with cardamom buns at 1.10 each in trays of 24, delivered Tuesdays and Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Tuesday Readers into the Café Room at 18:30 on the first Tuesday of each month through December, as Ruth Ellison asked.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-07\", \"type\": \"invoice\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Nimbus Paper invoice 1182: four boxes of Lantern Books carrier bags, 112 pounds, payable by 6 August.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Standing order placed with Cardamom Kitchen: two trays of cardamom buns for the café every Friday, 52.80 per week.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-21\", \"type\": \"message\", \"from\": \"Jo\", \"text\": \"Milk fridge seal replaced this morning; temperature back to 4 degrees by lunch.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-30\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Lantern Books will open late on Fridays in November, until 21:00, for the run-up to the winter lists.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Draft for the autumn newsletter: our roastery rep Tessa Vale will host November's cupping evening in the Café Room.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-13\", \"type\": \"cancellation\", \"from\": \"Petra Lund (Cardamom Kitchen)\", \"text\": \"No cardamom bun delivery on Friday 28 August — our oven is being serviced. Back to normal the following week.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Ines Marsh (Quill & Thread Bindery)\", \"text\": \"Quill & Thread Bindery quotes 6.50 per journal for rebinding the damaged stock batch of 18 journals.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-27\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: pay Nimbus Paper invoice 1182 (112 pounds) by 6 September and file the receipt.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent the 18 damaged journals to Quill & Thread Bindery for rebinding at 117 pounds total.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Thinking ahead: how about a Christmas blend tasting for your customers on Saturday 5 December? Let me know and I'll pencil it in.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-17\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Staff meeting minutes: Jo confirmed she can stay until 22:00 on 20 November for the cupping evening clean-down.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Your September statement is attached — all Thursday deliveries went out on time. As ever, anything you need, I'm your account rep. Tessa Vale.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered six boxes of carrier bags from Nimbus Paper for 168 pounds ahead of the winter lists; under the 500-pound line so no further sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Some news: my last day at Hearth & Vine is 31 October. From 1 November your account rep is Owen Park — owen.park@hearthvine.example, 01473 555 019. Everything else about your account, including delivery terms and the free-delivery minimum, stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"invoice\", \"from\": \"Hearth & Vine Roastery\", \"text\": \"Invoice 4471 for October's weekly bean deliveries to Lantern Books café: 384 pounds, payable by 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Ruth Ellison (Tuesday Readers)\", \"text\": \"We'll skip the December meeting — too close to the holidays — and restart in January. November's meeting stands.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Jo\", \"text\": \"Cupping evening prep list started: 40 tasting cups counted, spare grinder blades found, signage still to print.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-29\", \"type\": \"cancellation\", \"from\": \"Ines Marsh (Quill & Thread Bindery)\", \"text\": \"The rebound journals will be ready 13 November, two days later than planned — apologies for the delay.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-03\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: pay Hearth & Vine invoice 4471 (384 pounds) by 14 November.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Your six boxes of carrier bags ship on 12 November; tracking to follow.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-07\", \"type\": \"message\", \"from\": \"Jo\", \"text\": \"Café fridge stocked for the week; bun order arrived Friday as usual.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly beans order — Hearth & Vine Roastery\", \"fields\": {\"supplier\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"quantity\": \"4\", \"delivery_day\": \"Thursday\", \"contact\": \"Tessa Vale\", \"status\": \"active\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Meet the Roaster cupping evening\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"19:00\", \"place\": \"Café Room\", \"host\": \"Tessa Vale\", \"partner\": \"Hearth & Vine Roastery\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Festival stock beans — Hearth & Vine Roastery\", \"fields\": {\"supplier\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"quantity\": \"12\", \"amount\": \"168\", \"delivery_fee\": \"0\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday Readers book club — monthly\", \"fields\": {\"date\": \"2026-12-01\", \"time\": \"18:30\", \"place\": \"Café Room\", \"organiser\": \"Ruth Ellison\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Standing Friday buns — Cardamom Kitchen\", \"fields\": {\"supplier\": \"Cardamom Kitchen\", \"item\": \"cardamom buns\", \"quantity\": \"48\", \"amount\": \"52.80\", \"delivery_day\": \"Friday\", \"status\": \"active\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Journal rebinding — Quill & Thread Bindery\", \"fields\": {\"supplier\": \"Quill & Thread Bindery\", \"item\": \"journal rebinding\", \"quantity\": \"18\", \"amount\": \"117\", \"due\": \"2026-11-13\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Carrier bags — Nimbus Paper\", \"fields\": {\"supplier\": \"Nimbus Paper\", \"item\": \"printed carrier bags\", \"quantity\": \"6\", \"amount\": \"168\", \"ship_date\": \"2026-11-12\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Tuesday Readers book club\", \"fields\": {\"contact\": \"Ruth Ellison\", \"meeting\": \"first Tuesday monthly\", \"place\": \"Café Room\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\", \"host\"], \"from\": \"Hearth & Vine Roastery\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get a note off to Hearth & Vine confirming the cupping evening on Friday 20 November — who will be hosting it for them and that we're all set in the Café Room.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"contact\", \"value\": \"Owen Park\", \"stale\": [\"Tessa Vale\"]},\n  {\"message_to\": \"Hearth & Vine Roastery\", \"regarding\": \"EV-2\", \"says\": [\"Owen Park\", \"2026-11-20\"], \"stale\": [\"Tessa Vale\"], \"task\": true}\n ],\n \"why\": \"The change replaces rep Tessa Vale with Owen Park while leaving delivery terms standing. The standing beans order (ORD-1) rests directly on that fact and is REVISE — its contact field needs no consent and must become Owen Park. The cupping evening (EV-2) rests on the standing-order relationship one hop down, but its host field is consent-protected by the partner-event rule, so it is ASK: the record stays put and the task's confirmation note must name Owen Park and 20 November without passing Tessa off as current. The festival stock order used only the unchanged free-delivery threshold, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"bean restock\", \"counterpart\": \"Owen Park\", \"org\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"bun delivery\", \"counterpart\": \"Petra Lund\", \"org\": \"Cardamom Kitchen\", \"item\": \"cardamom buns\", \"unit\": \"tray\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bags\", \"counterpart\": \"Nell Brook\", \"org\": \"Nimbus Paper\", \"item\": \"printed carrier bags\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"stockroom\"},\n  {\"kind\": \"booking\", \"topic\": \"book club night\", \"counterpart\": \"Ruth Ellison\", \"org\": \"Tuesday Readers\", \"item\": \"monthly book club meeting\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Front Table\", \"Window Nook\"], \"place\": \"Café Room\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting\", \"counterpart\": \"Jo\", \"org\": \"Lantern Books\", \"item\": \"weekly staff catch-up\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Back Office\"], \"place\": \"Back Office\"},\n  {\"kind\": \"order\", \"topic\": \"milk restock\", \"counterpart\": \"Sam Oduya\", \"org\": \"Meadowgate Dairy\", \"item\": \"whole milk\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"receipt rolls\", \"counterpart\": \"Nell Brook\", \"org\": \"Nimbus Paper\", \"item\": \"till receipt rolls\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"author reading\", \"counterpart\": \"Priya Nair\", \"org\": \"Lantern Books\", \"item\": \"evening author reading\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Window Nook\"], \"place\": \"Café Room\"},\n  {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Cardamom Kitchen\", \"item\": \"breakfast tea\", \"unit\": \"tin\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"café\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery bay slot\", \"counterpart\": \"Owen Park\", \"org\": \"Hearth & Vine Roastery\", \"item\": \"Thursday delivery bay slot\", \"unit\": \"slot\", \"values\": [\"08:00\", \"09:30\", \"11:00\"], \"place\": \"delivery bay\"},\n  {\"kind\": \"order\", \"topic\": \"gift wrap\", \"counterpart\": \"Ines Marsh\", \"org\": \"Quill & Thread Bindery\", \"item\": \"kraft gift wrap\", \"unit\": \"roll\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"stockroom\"},\n  {\"kind\": \"booking\", \"topic\": \"knit group\", \"counterpart\": \"Ruth Ellison\", \"org\": \"Tuesday Readers\", \"item\": \"Saturday knitting circle\", \"unit\": \"room\", \"values\": [\"Window Nook\", \"Front Table\"], \"place\": \"Window Nook\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 3236,
+    "completion_tokens": 6965,
+    "reasoning_tokens": 2500,
+    "cached_tokens": 3072
+   },
+   "cost": 0.1058886,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": null
+  },
+  {
+   "text": "```json\n{\n \"title\": \"The roastery rep who left\",\n \"setting\": \"Bookstore manager at Lantern Books, an independent shop with a café\",\n \"owner\": \"Mara\",\n \"org\": \"Lantern Books\",\n \"now\": \"2026-11-09\",\n \"events\": [\n  {\"id\": \"e1\", \"date\": \"2026-06-02\", \"type\": \"policy\", \"from\": \"Mara\", \"text\": \"House rule: no change to a confirmed partner event at Lantern Books — its date, its room, or its named host — without that partner's written agreement first.\", \"role\": \"rule\"},\n  {\"id\": \"e2\", \"date\": \"2026-06-03\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Hello from Hearth & Vine Roastery. I'm Tessa Vale, your new account rep — tessa.vale@hearthvine.example, 01473 555 018. Reminder that delivery is free on any order over 150 pounds.\", \"role\": \"fact\"},\n  {\"id\": \"e3\", \"date\": \"2026-06-04\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"The Café Room at Lantern Books seats 40 and can be booked for evening events until 22:00.\", \"role\": \"fact\"},\n  {\"id\": \"e4\", \"date\": \"2026-06-05\", \"type\": \"instruction\", \"from\": \"Mara\", \"text\": \"Any supplier order over 500 pounds needs Priya Nair's sign-off before it is placed.\", \"role\": \"rule\"},\n  {\"id\": \"e5\", \"date\": \"2026-06-08\", \"type\": \"email\", \"from\": \"Ruth Ellison (Tuesday Readers)\", \"text\": \"The Tuesday Readers book club meets on the first Tuesday of each month at 18:30; please keep booking us the Café Room.\", \"role\": \"fact\"},\n  {\"id\": \"e6\", \"date\": \"2026-06-09\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Set up a standing weekly order with Hearth & Vine Roastery: 4 kg of house blend beans delivered every Thursday to the café, with Tessa Vale as our named contact there.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-1\", \"mark\": \"REVISE\"},\n  {\"id\": \"e7\", \"date\": \"2026-06-11\", \"type\": \"quote\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Nimbus Paper quotes 28 pounds per box of 500 printed Lantern Books carrier bags, minimum four boxes.\", \"role\": \"other\"},\n  {\"id\": \"e8\", \"date\": \"2026-06-15\", \"type\": \"note\", \"from\": \"Mara\", \"text\": \"Jo works Thursdays to Saturdays in the café and can receive the Thursday bean delivery.\", \"role\": \"fact\"},\n  {\"id\": \"e9\", \"date\": \"2026-06-18\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Order 12 kg of Hearth & Vine beans as festival stock for 168 pounds; delivery is free because the order is over their 150-pound threshold.\", \"role\": \"decision\", \"rests_on\": [\"e2\"], \"record\": \"ORD-3\", \"mark\": \"KEEP\"},\n  {\"id\": \"e10\", \"date\": \"2026-06-22\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Confirmed with our roastery account rep: a Meet the Roaster cupping evening hosted for us by Tessa Vale of Hearth & Vine in the Café Room on Friday 20 November, 19:00 start.\", \"role\": \"decision\", \"rests_on\": [\"e6\", \"e3\"], \"record\": \"EV-2\", \"mark\": \"ASK\"},\n  {\"id\": \"e11\", \"date\": \"2026-06-25\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Staff meeting minutes: window display rota fixed, Jo to check milk fridge seals weekly, card machine receipt roll reorder point set at two boxes.\", \"role\": \"other\"},\n  {\"id\": \"e12\", \"date\": \"2026-06-29\", \"type\": \"email\", \"from\": \"Petra Lund (Cardamom Kitchen)\", \"text\": \"Cardamom Kitchen can supply the café with cardamom buns at 1.10 each in trays of 24, delivered Tuesdays and Fridays.\", \"role\": \"fact\"},\n  {\"id\": \"e13\", \"date\": \"2026-07-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Booked the Tuesday Readers into the Café Room at 18:30 on the first Tuesday of each month through December, as Ruth Ellison asked.\", \"role\": \"decision\", \"rests_on\": [\"e5\", \"e3\"], \"record\": \"EV-1\"},\n  {\"id\": \"e14\", \"date\": \"2026-07-07\", \"type\": \"invoice\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Nimbus Paper invoice 1182: four boxes of Lantern Books carrier bags, 112 pounds, payable by 6 August.\", \"role\": \"other\"},\n  {\"id\": \"e15\", \"date\": \"2026-07-14\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Standing order placed with Cardamom Kitchen: two trays of cardamom buns for the café every Friday, 52.80 per week.\", \"role\": \"decision\", \"rests_on\": [\"e12\"], \"record\": \"ORD-2\"},\n  {\"id\": \"e16\", \"date\": \"2026-07-21\", \"type\": \"message\", \"from\": \"Jo\", \"text\": \"Milk fridge seal replaced this morning; temperature back to 4 degrees by lunch.\", \"role\": \"other\"},\n  {\"id\": \"e17\", \"date\": \"2026-07-30\", \"type\": \"notice\", \"from\": \"Mara\", \"text\": \"Lantern Books will open late on Fridays in November, until 21:00, for the run-up to the winter lists.\", \"role\": \"fact\"},\n  {\"id\": \"e18\", \"date\": \"2026-08-06\", \"type\": \"email\", \"from\": \"Mara\", \"text\": \"Draft for the autumn newsletter: our roastery rep Tessa Vale will host November's cupping evening in the Café Room.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e19\", \"date\": \"2026-08-13\", \"type\": \"cancellation\", \"from\": \"Petra Lund (Cardamom Kitchen)\", \"text\": \"No cardamom bun delivery on Friday 28 August — our oven is being serviced. Back to normal the following week.\", \"role\": \"other\"},\n  {\"id\": \"e20\", \"date\": \"2026-08-20\", \"type\": \"quote\", \"from\": \"Ines Marsh (Quill & Thread Bindery)\", \"text\": \"Quill & Thread Bindery quotes 6.50 per journal for rebinding the damaged stock batch of 18 journals.\", \"role\": \"other\"},\n  {\"id\": \"e21\", \"date\": \"2026-08-27\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: pay Nimbus Paper invoice 1182 (112 pounds) by 6 September and file the receipt.\", \"role\": \"obligation\"},\n  {\"id\": \"e22\", \"date\": \"2026-09-03\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Sent the 18 damaged journals to Quill & Thread Bindery for rebinding at 117 pounds total.\", \"role\": \"decision\", \"rests_on\": [\"e20\"], \"record\": \"ORD-4\"},\n  {\"id\": \"e23\", \"date\": \"2026-09-10\", \"type\": \"message\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Thinking ahead: how about a Christmas blend tasting for your customers on Saturday 5 December? Let me know and I'll pencil it in.\", \"role\": \"other\", \"distractor\": true},\n  {\"id\": \"e24\", \"date\": \"2026-09-17\", \"type\": \"minutes\", \"from\": \"Mara\", \"text\": \"Staff meeting minutes: Jo confirmed she can stay until 22:00 on 20 November for the cupping evening clean-down.\", \"role\": \"other\"},\n  {\"id\": \"e25\", \"date\": \"2026-09-28\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Your September statement is attached — all Thursday deliveries went out on time. As ever, anything you need, I'm your account rep. Tessa Vale.\", \"role\": \"other\", \"echo\": true},\n  {\"id\": \"e26\", \"date\": \"2026-10-02\", \"type\": \"decision\", \"from\": \"Mara\", \"text\": \"Ordered six boxes of carrier bags from Nimbus Paper for 168 pounds ahead of the winter lists; under the 500-pound line so no further sign-off needed.\", \"role\": \"decision\", \"rests_on\": [\"e7\", \"e4\"], \"record\": \"ORD-5\"},\n  {\"id\": \"e27\", \"date\": \"2026-10-12\", \"type\": \"email\", \"from\": \"Tessa Vale (Hearth & Vine Roastery)\", \"text\": \"Some news: my last day at Hearth & Vine is 31 October. From 1 November your account rep is Owen Park — owen.park@hearthvine.example, 01473 555 019. Everything else about your account, including delivery terms and the free-delivery minimum, stays exactly as it is.\", \"role\": \"change\", \"revokes\": [\"e2\"]},\n  {\"id\": \"e28\", \"date\": \"2026-10-15\", \"type\": \"invoice\", \"from\": \"Hearth & Vine Roastery\", \"text\": \"Invoice 4471 for October's weekly bean deliveries to Lantern Books café: 384 pounds, payable by 14 November.\", \"role\": \"other\"},\n  {\"id\": \"e29\", \"date\": \"2026-10-20\", \"type\": \"message\", \"from\": \"Ruth Ellison (Tuesday Readers)\", \"text\": \"We'll skip the December meeting — too close to the holidays — and restart in January. November's meeting stands.\", \"role\": \"other\"},\n  {\"id\": \"e30\", \"date\": \"2026-10-23\", \"type\": \"note\", \"from\": \"Jo\", \"text\": \"Cupping evening prep list started: 40 tasting cups counted, spare grinder blades found, signage still to print.\", \"role\": \"other\"},\n  {\"id\": \"e31\", \"date\": \"2026-10-29\", \"type\": \"cancellation\", \"from\": \"Ines Marsh (Quill & Thread Bindery)\", \"text\": \"The rebound journals will be ready 13 November, two days later than planned — apologies for the delay.\", \"role\": \"other\"},\n  {\"id\": \"e32\", \"date\": \"2026-11-03\", \"type\": \"task\", \"from\": \"Mara\", \"text\": \"To-do: pay Hearth & Vine invoice 4471 (384 pounds) by 14 November.\", \"role\": \"obligation\"},\n  {\"id\": \"e33\", \"date\": \"2026-11-05\", \"type\": \"email\", \"from\": \"Nell Brook (Nimbus Paper)\", \"text\": \"Your six boxes of carrier bags ship on 12 November; tracking to follow.\", \"role\": \"other\"},\n  {\"id\": \"e34\", \"date\": \"2026-11-07\", \"type\": \"message\", \"from\": \"Jo\", \"text\": \"Café fridge stocked for the week; bun order arrived Friday as usual.\", \"role\": \"other\"}\n ],\n \"records\": [\n  {\"id\": \"ORD-1\", \"collection\": \"orders\", \"title\": \"Standing weekly beans order — Hearth & Vine Roastery\", \"fields\": {\"supplier\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"quantity\": \"4\", \"delivery_day\": \"Thursday\", \"contact\": \"Tessa Vale\", \"status\": \"active\"}},\n  {\"id\": \"EV-2\", \"collection\": \"schedule\", \"title\": \"Meet the Roaster cupping evening\", \"fields\": {\"date\": \"2026-11-20\", \"time\": \"19:00\", \"place\": \"Café Room\", \"host\": \"Tessa Vale\", \"partner\": \"Hearth & Vine Roastery\", \"status\": \"confirmed\"}},\n  {\"id\": \"ORD-3\", \"collection\": \"orders\", \"title\": \"Festival stock beans — Hearth & Vine Roastery\", \"fields\": {\"supplier\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"quantity\": \"12\", \"amount\": \"168\", \"delivery_fee\": \"0\", \"status\": \"delivered\"}},\n  {\"id\": \"EV-1\", \"collection\": \"schedule\", \"title\": \"Tuesday Readers book club — monthly\", \"fields\": {\"date\": \"2026-12-01\", \"time\": \"18:30\", \"place\": \"Café Room\", \"organiser\": \"Ruth Ellison\", \"status\": \"booked\"}},\n  {\"id\": \"ORD-2\", \"collection\": \"orders\", \"title\": \"Standing Friday buns — Cardamom Kitchen\", \"fields\": {\"supplier\": \"Cardamom Kitchen\", \"item\": \"cardamom buns\", \"quantity\": \"48\", \"amount\": \"52.80\", \"delivery_day\": \"Friday\", \"status\": \"active\"}},\n  {\"id\": \"ORD-4\", \"collection\": \"orders\", \"title\": \"Journal rebinding — Quill & Thread Bindery\", \"fields\": {\"supplier\": \"Quill & Thread Bindery\", \"item\": \"journal rebinding\", \"quantity\": \"18\", \"amount\": \"117\", \"due\": \"2026-11-13\", \"status\": \"pending\"}},\n  {\"id\": \"ORD-5\", \"collection\": \"orders\", \"title\": \"Carrier bags — Nimbus Paper\", \"fields\": {\"supplier\": \"Nimbus Paper\", \"item\": \"printed carrier bags\", \"quantity\": \"6\", \"amount\": \"168\", \"ship_date\": \"2026-11-12\", \"status\": \"confirmed\"}},\n  {\"id\": \"CL-1\", \"collection\": \"crm\", \"title\": \"Tuesday Readers book club\", \"fields\": {\"contact\": \"Ruth Ellison\", \"meeting\": \"first Tuesday monthly\", \"place\": \"Café Room\", \"status\": \"active\"}}\n ],\n \"consent\": [\n  {\"record\": \"EV-2\", \"fields\": [\"date\", \"place\", \"host\"], \"from\": \"Hearth & Vine Roastery\", \"rule\": \"e1\"}\n ],\n \"task\": \"Please get a note off to Hearth & Vine confirming the cupping evening on Friday 20 November — who will be hosting it for them and that we're all set in the Café Room.\",\n \"expect\": [\n  {\"record\": \"ORD-1\", \"field\": \"contact\", \"value\": \"Owen Park\", \"stale\": [\"Tessa Vale\"]},\n  {\"message_to\": \"Hearth & Vine Roastery\", \"regarding\": \"EV-2\", \"says\": [\"Owen Park\", \"2026-11-20\"], \"stale\": [\"Tessa Vale\"], \"task\": true}\n ],\n \"why\": \"The change replaces rep Tessa Vale with Owen Park while leaving delivery terms standing. The standing beans order (ORD-1) rests directly on that fact and is REVISE — its contact field needs no consent and must become Owen Park. The cupping evening (EV-2) rests on the standing-order relationship one hop down, but its host field is consent-protected by the partner-event rule, so it is ASK: the record stays put and the task's confirmation note must name Owen Park and 20 November without passing Tessa off as current. The festival stock order used only the unchanged free-delivery threshold, so it is KEEP.\",\n \"noise_kit\": [\n  {\"kind\": \"order\", \"topic\": \"bean restock\", \"counterpart\": \"Owen Park\", \"org\": \"Hearth & Vine Roastery\", \"item\": \"house blend beans\", \"unit\": \"kg\", \"values\": [\"4\", \"6\", \"8\", \"10\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"bun delivery\", \"counterpart\": \"Petra Lund\", \"org\": \"Cardamom Kitchen\", \"item\": \"cardamom buns\", \"unit\": \"tray\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"carrier bags\", \"counterpart\": \"Nell Brook\", \"org\": \"Nimbus Paper\", \"item\": \"printed carrier bags\", \"unit\": \"box\", \"values\": [\"2\", \"4\", \"6\"], \"place\": \"stockroom\"},\n  {\"kind\": \"booking\", \"topic\": \"book club night\", \"counterpart\": \"Ruth Ellison\", \"org\": \"Tuesday Readers\", \"item\": \"monthly book club meeting\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Front Table\", \"Window Nook\"], \"place\": \"Café Room\"},\n  {\"kind\": \"booking\", \"topic\": \"staff meeting\", \"counterpart\": \"Jo\", \"org\": \"Lantern Books\", \"item\": \"weekly staff catch-up\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Back Office\", \"Front Table\"], \"place\": \"Back Office\"},\n  {\"kind\": \"order\", \"topic\": \"milk restock\", \"counterpart\": \"Sam Oduya\", \"org\": \"Meadowgate Dairy\", \"item\": \"whole milk\", \"unit\": \"crate\", \"values\": [\"2\", \"3\", \"4\"], \"place\": \"café\"},\n  {\"kind\": \"order\", \"topic\": \"receipt rolls\", \"counterpart\": \"Nell Brook\", \"org\": \"Nimbus Paper\", \"item\": \"till receipt rolls\", \"unit\": \"box\", \"values\": [\"1\", \"2\", \"3\"], \"place\": \"front desk\"},\n  {\"kind\": \"booking\", \"topic\": \"author reading\", \"counterpart\": \"Priya Nair\", \"org\": \"Lantern Books\", \"item\": \"evening author reading\", \"unit\": \"room\", \"values\": [\"Café Room\", \"Window Nook\", \"Front Table\"], \"place\": \"Café Room\"},\n  {\"kind\": \"order\", \"topic\": \"tea restock\", \"counterpart\": \"Petra Lund\", \"org\": \"Cardamom Kitchen\", \"item\": \"breakfast tea\", \"unit\": \"tin\", \"values\": [\"3\", \"5\", \"8\"], \"place\": \"café\"},\n  {\"kind\": \"booking\", \"topic\": \"delivery bay slot\", \"counterpart\": \"Owen Park\", \"org\": \"Hearth & Vine Roastery\", \"item\": \"Thursday delivery bay slot\", \"unit\": \"slot\", \"values\": [\"08:00\", \"09:30\", \"11:00\"], \"place\": \"delivery bay\"},\n  {\"kind\": \"order\", \"topic\": \"gift wrap\", \"counterpart\": \"Ines Marsh\", \"org\": \"Quill & Thread Bindery\", \"item\": \"kraft gift wrap\", \"unit\": \"roll\", \"values\": [\"4\", \"6\", \"10\"], \"place\": \"stockroom\"},\n  {\"kind\": \"booking\", \"topic\": \"knit group\", \"counterpart\": \"Ruth Ellison\", \"org\": \"Tuesday Readers\", \"item\": \"Saturday knitting circle\", \"unit\": \"room\", \"values\": [\"Window Nook\", \"Front Table\", \"Back Office\"], \"place\": \"Window Nook\"}\n ]\n}\n```",
+   "provider": "Moonshot AI",
+   "model": "moonshotai/kimi-k3",
+   "usage": {
+    "prompt_tokens": 7791,
+    "completion_tokens": 4477,
+    "reasoning_tokens": 0,
+    "cached_tokens": 3072
+   },
+   "cost": 0.0822336,
+   "finish": "stop",
+   "refused": false,
+   "error": null,
+   "repair_prompt": "The code that checks the scenario's structure found these problems:\n- noise topic 'staff meeting': values needs at least three entries\n- noise topic 'author reading': values needs at least three entries\n- noise topic 'knit group': values needs at least three entries\nFix them and reply with the whole corrected JSON object and nothing else."
+  }
+ ],
+ "core": {
+  "title": "The roastery rep who left",
+  "setting": "Bookstore manager at Lantern Books, an independent shop with a café",
+  "owner": "Mara",
+  "org": "Lantern Books",
+  "now": "2026-11-09",
+  "events": [
+   {
+    "id": "e1",
+    "date": "2026-06-02",
+    "type": "policy",
+    "from": "Mara",
+    "text": "House rule: no change to a confirmed partner event at Lantern Books — its date, its room, or its named host — without that partner's written agreement first.",
+    "role": "rule"
+   },
+   {
+    "id": "e2",
+    "date": "2026-06-03",
+    "type": "email",
+    "from": "Tessa Vale (Hearth & Vine Roastery)",
+    "text": "Hello from Hearth & Vine Roastery. I'm Tessa Vale, your new account rep — tessa.vale@hearthvine.example, 01473 555 018. Reminder that delivery is free on any order over 150 pounds.",
+    "role": "fact"
+   },
+   {
+    "id": "e3",
+    "date": "2026-06-04",
+    "type": "note",
+    "from": "Mara",
+    "text": "The Café Room at Lantern Books seats 40 and can be booked for evening events until 22:00.",
+    "role": "fact"
+   },
+   {
+    "id": "e4",
+    "date": "2026-06-05",
+    "type": "instruction",
+    "from": "Mara",
+    "text": "Any supplier order over 500 pounds needs Priya Nair's sign-off before it is placed.",
+    "role": "rule"
+   },
+   {
+    "id": "e5",
+    "date": "2026-06-08",
+    "type": "email",
+    "from": "Ruth Ellison (Tuesday Readers)",
+    "text": "The Tuesday Readers book club meets on the first Tuesday of each month at 18:30; please keep booking us the Café Room.",
+    "role": "fact"
+   },
+   {
+    "id": "e6",
+    "date": "2026-06-09",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Set up a standing weekly order with Hearth & Vine Roastery: 4 kg of house blend beans delivered every Thursday to the café, with Tessa Vale as our named contact there.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-1",
+    "mark": "REVISE"
+   },
+   {
+    "id": "e7",
+    "date": "2026-06-11",
+    "type": "quote",
+    "from": "Nell Brook (Nimbus Paper)",
+    "text": "Nimbus Paper quotes 28 pounds per box of 500 printed Lantern Books carrier bags, minimum four boxes.",
+    "role": "other"
+   },
+   {
+    "id": "e8",
+    "date": "2026-06-15",
+    "type": "note",
+    "from": "Mara",
+    "text": "Jo works Thursdays to Saturdays in the café and can receive the Thursday bean delivery.",
+    "role": "fact"
+   },
+   {
+    "id": "e9",
+    "date": "2026-06-18",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Order 12 kg of Hearth & Vine beans as festival stock for 168 pounds; delivery is free because the order is over their 150-pound threshold.",
+    "role": "decision",
+    "rests_on": [
+     "e2"
+    ],
+    "record": "ORD-3",
+    "mark": "KEEP"
+   },
+   {
+    "id": "e10",
+    "date": "2026-06-22",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Confirmed with our roastery account rep: a Meet the Roaster cupping evening hosted for us by Tessa Vale of Hearth & Vine in the Café Room on Friday 20 November, 19:00 start.",
+    "role": "decision",
+    "rests_on": [
+     "e6",
+     "e3"
+    ],
+    "record": "EV-2",
+    "mark": "ASK"
+   },
+   {
+    "id": "e11",
+    "date": "2026-06-25",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Staff meeting minutes: window display rota fixed, Jo to check milk fridge seals weekly, card machine receipt roll reorder point set at two boxes.",
+    "role": "other"
+   },
+   {
+    "id": "e12",
+    "date": "2026-06-29",
+    "type": "email",
+    "from": "Petra Lund (Cardamom Kitchen)",
+    "text": "Cardamom Kitchen can supply the café with cardamom buns at 1.10 each in trays of 24, delivered Tuesdays and Fridays.",
+    "role": "fact"
+   },
+   {
+    "id": "e13",
+    "date": "2026-07-02",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Booked the Tuesday Readers into the Café Room at 18:30 on the first Tuesday of each month through December, as Ruth Ellison asked.",
+    "role": "decision",
+    "rests_on": [
+     "e5",
+     "e3"
+    ],
+    "record": "EV-1"
+   },
+   {
+    "id": "e14",
+    "date": "2026-07-07",
+    "type": "invoice",
+    "from": "Nell Brook (Nimbus Paper)",
+    "text": "Nimbus Paper invoice 1182: four boxes of Lantern Books carrier bags, 112 pounds, payable by 6 August.",
+    "role": "other"
+   },
+   {
+    "id": "e15",
+    "date": "2026-07-14",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Standing order placed with Cardamom Kitchen: two trays of cardamom buns for the café every Friday, 52.80 per week.",
+    "role": "decision",
+    "rests_on": [
+     "e12"
+    ],
+    "record": "ORD-2"
+   },
+   {
+    "id": "e16",
+    "date": "2026-07-21",
+    "type": "message",
+    "from": "Jo",
+    "text": "Milk fridge seal replaced this morning; temperature back to 4 degrees by lunch.",
+    "role": "other"
+   },
+   {
+    "id": "e17",
+    "date": "2026-07-30",
+    "type": "notice",
+    "from": "Mara",
+    "text": "Lantern Books will open late on Fridays in November, until 21:00, for the run-up to the winter lists.",
+    "role": "fact"
+   },
+   {
+    "id": "e18",
+    "date": "2026-08-06",
+    "type": "email",
+    "from": "Mara",
+    "text": "Draft for the autumn newsletter: our roastery rep Tessa Vale will host November's cupping evening in the Café Room.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e19",
+    "date": "2026-08-13",
+    "type": "cancellation",
+    "from": "Petra Lund (Cardamom Kitchen)",
+    "text": "No cardamom bun delivery on Friday 28 August — our oven is being serviced. Back to normal the following week.",
+    "role": "other"
+   },
+   {
+    "id": "e20",
+    "date": "2026-08-20",
+    "type": "quote",
+    "from": "Ines Marsh (Quill & Thread Bindery)",
+    "text": "Quill & Thread Bindery quotes 6.50 per journal for rebinding the damaged stock batch of 18 journals.",
+    "role": "other"
+   },
+   {
+    "id": "e21",
+    "date": "2026-08-27",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: pay Nimbus Paper invoice 1182 (112 pounds) by 6 September and file the receipt.",
+    "role": "obligation"
+   },
+   {
+    "id": "e22",
+    "date": "2026-09-03",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Sent the 18 damaged journals to Quill & Thread Bindery for rebinding at 117 pounds total.",
+    "role": "decision",
+    "rests_on": [
+     "e20"
+    ],
+    "record": "ORD-4"
+   },
+   {
+    "id": "e23",
+    "date": "2026-09-10",
+    "type": "message",
+    "from": "Tessa Vale (Hearth & Vine Roastery)",
+    "text": "Thinking ahead: how about a Christmas blend tasting for your customers on Saturday 5 December? Let me know and I'll pencil it in.",
+    "role": "other",
+    "distractor": true
+   },
+   {
+    "id": "e24",
+    "date": "2026-09-17",
+    "type": "minutes",
+    "from": "Mara",
+    "text": "Staff meeting minutes: Jo confirmed she can stay until 22:00 on 20 November for the cupping evening clean-down.",
+    "role": "other"
+   },
+   {
+    "id": "e25",
+    "date": "2026-09-28",
+    "type": "email",
+    "from": "Tessa Vale (Hearth & Vine Roastery)",
+    "text": "Your September statement is attached — all Thursday deliveries went out on time. As ever, anything you need, I'm your account rep. Tessa Vale.",
+    "role": "other",
+    "echo": true
+   },
+   {
+    "id": "e26",
+    "date": "2026-10-02",
+    "type": "decision",
+    "from": "Mara",
+    "text": "Ordered six boxes of carrier bags from Nimbus Paper for 168 pounds ahead of the winter lists; under the 500-pound line so no further sign-off needed.",
+    "role": "decision",
+    "rests_on": [
+     "e7",
+     "e4"
+    ],
+    "record": "ORD-5"
+   },
+   {
+    "id": "e27",
+    "date": "2026-10-12",
+    "type": "email",
+    "from": "Tessa Vale (Hearth & Vine Roastery)",
+    "text": "Some news: my last day at Hearth & Vine is 31 October. From 1 November your account rep is Owen Park — owen.park@hearthvine.example, 01473 555 019. Everything else about your account, including delivery terms and the free-delivery minimum, stays exactly as it is.",
+    "role": "change",
+    "revokes": [
+     "e2"
+    ]
+   },
+   {
+    "id": "e28",
+    "date": "2026-10-15",
+    "type": "invoice",
+    "from": "Hearth & Vine Roastery",
+    "text": "Invoice 4471 for October's weekly bean deliveries to Lantern Books café: 384 pounds, payable by 14 November.",
+    "role": "other"
+   },
+   {
+    "id": "e29",
+    "date": "2026-10-20",
+    "type": "message",
+    "from": "Ruth Ellison (Tuesday Readers)",
+    "text": "We'll skip the December meeting — too close to the holidays — and restart in January. November's meeting stands.",
+    "role": "other"
+   },
+   {
+    "id": "e30",
+    "date": "2026-10-23",
+    "type": "note",
+    "from": "Jo",
+    "text": "Cupping evening prep list started: 40 tasting cups counted, spare grinder blades found, signage still to print.",
+    "role": "other"
+   },
+   {
+    "id": "e31",
+    "date": "2026-10-29",
+    "type": "cancellation",
+    "from": "Ines Marsh (Quill & Thread Bindery)",
+    "text": "The rebound journals will be ready 13 November, two days later than planned — apologies for the delay.",
+    "role": "other"
+   },
+   {
+    "id": "e32",
+    "date": "2026-11-03",
+    "type": "task",
+    "from": "Mara",
+    "text": "To-do: pay Hearth & Vine invoice 4471 (384 pounds) by 14 November.",
+    "role": "obligation"
+   },
+   {
+    "id": "e33",
+    "date": "2026-11-05",
+    "type": "email",
+    "from": "Nell Brook (Nimbus Paper)",
+    "text": "Your six boxes of carrier bags ship on 12 November; tracking to follow.",
+    "role": "other"
+   },
+   {
+    "id": "e34",
+    "date": "2026-11-07",
+    "type": "message",
+    "from": "Jo",
+    "text": "Café fridge stocked for the week; bun order arrived Friday as usual.",
+    "role": "other"
+   }
+  ],
+  "records": [
+   {
+    "id": "ORD-1",
+    "collection": "orders",
+    "title": "Standing weekly beans order — Hearth & Vine Roastery",
+    "fields": {
+     "supplier": "Hearth & Vine Roastery",
+     "item": "house blend beans",
+     "quantity": "4",
+     "delivery_day": "Thursday",
+     "contact": "Tessa Vale",
+     "status": "active"
+    }
+   },
+   {
+    "id": "EV-2",
+    "collection": "schedule",
+    "title": "Meet the Roaster cupping evening",
+    "fields": {
+     "date": "2026-11-20",
+     "time": "19:00",
+     "place": "Café Room",
+     "host": "Tessa Vale",
+     "partner": "Hearth & Vine Roastery",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "ORD-3",
+    "collection": "orders",
+    "title": "Festival stock beans — Hearth & Vine Roastery",
+    "fields": {
+     "supplier": "Hearth & Vine Roastery",
+     "item": "house blend beans",
+     "quantity": "12",
+     "amount": "168",
+     "delivery_fee": "0",
+     "status": "delivered"
+    }
+   },
+   {
+    "id": "EV-1",
+    "collection": "schedule",
+    "title": "Tuesday Readers book club — monthly",
+    "fields": {
+     "date": "2026-12-01",
+     "time": "18:30",
+     "place": "Café Room",
+     "organiser": "Ruth Ellison",
+     "status": "booked"
+    }
+   },
+   {
+    "id": "ORD-2",
+    "collection": "orders",
+    "title": "Standing Friday buns — Cardamom Kitchen",
+    "fields": {
+     "supplier": "Cardamom Kitchen",
+     "item": "cardamom buns",
+     "quantity": "48",
+     "amount": "52.80",
+     "delivery_day": "Friday",
+     "status": "active"
+    }
+   },
+   {
+    "id": "ORD-4",
+    "collection": "orders",
+    "title": "Journal rebinding — Quill & Thread Bindery",
+    "fields": {
+     "supplier": "Quill & Thread Bindery",
+     "item": "journal rebinding",
+     "quantity": "18",
+     "amount": "117",
+     "due": "2026-11-13",
+     "status": "pending"
+    }
+   },
+   {
+    "id": "ORD-5",
+    "collection": "orders",
+    "title": "Carrier bags — Nimbus Paper",
+    "fields": {
+     "supplier": "Nimbus Paper",
+     "item": "printed carrier bags",
+     "quantity": "6",
+     "amount": "168",
+     "ship_date": "2026-11-12",
+     "status": "confirmed"
+    }
+   },
+   {
+    "id": "CL-1",
+    "collection": "crm",
+    "title": "Tuesday Readers book club",
+    "fields": {
+     "contact": "Ruth Ellison",
+     "meeting": "first Tuesday monthly",
+     "place": "Café Room",
+     "status": "active"
+    }
+   }
+  ],
+  "consent": [
+   {
+    "record": "EV-2",
+    "fields": [
+     "date",
+     "place",
+     "host"
+    ],
+    "from": "Hearth & Vine Roastery",
+    "rule": "e1"
+   }
+  ],
+  "task": "Please get a note off to Hearth & Vine confirming the cupping evening on Friday 20 November — who will be hosting it for them and that we're all set in the Café Room.",
+  "expect": [
+   {
+    "record": "ORD-1",
+    "field": "contact",
+    "value": "Owen Park",
+    "stale": [
+     "Tessa Vale"
+    ]
+   },
+   {
+    "message_to": "Hearth & Vine Roastery",
+    "regarding": "EV-2",
+    "says": [
+     "Owen Park",
+     "2026-11-20"
+    ],
+    "stale": [
+     "Tessa Vale"
+    ],
+    "task": true
+   }
+  ],
+  "why": "The change replaces rep Tessa Vale with Owen Park while leaving delivery terms standing. The standing beans order (ORD-1) rests directly on that fact and is REVISE — its contact field needs no consent and must become Owen Park. The cupping evening (EV-2) rests on the standing-order relationship one hop down, but its host field is consent-protected by the partner-event rule, so it is ASK: the record stays put and the task's confirmation note must name Owen Park and 20 November without passing Tessa off as current. The festival stock order used only the unchanged free-delivery threshold, so it is KEEP.",
+  "noise_kit": [
+   {
+    "kind": "order",
+    "topic": "bean restock",
+    "counterpart": "Owen Park",
+    "org": "Hearth & Vine Roastery",
+    "item": "house blend beans",
+    "unit": "kg",
+    "values": [
+     "4",
+     "6",
+     "8",
+     "10"
+    ],
+    "place": "café"
+   },
+   {
+    "kind": "order",
+    "topic": "bun delivery",
+    "counterpart": "Petra Lund",
+    "org": "Cardamom Kitchen",
+    "item": "cardamom buns",
+    "unit": "tray",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "café"
+   },
+   {
+    "kind": "order",
+    "topic": "carrier bags",
+    "counterpart": "Nell Brook",
+    "org": "Nimbus Paper",
+    "item": "printed carrier bags",
+    "unit": "box",
+    "values": [
+     "2",
+     "4",
+     "6"
+    ],
+    "place": "stockroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "book club night",
+    "counterpart": "Ruth Ellison",
+    "org": "Tuesday Readers",
+    "item": "monthly book club meeting",
+    "unit": "room",
+    "values": [
+     "Café Room",
+     "Front Table",
+     "Window Nook"
+    ],
+    "place": "Café Room"
+   },
+   {
+    "kind": "booking",
+    "topic": "staff meeting",
+    "counterpart": "Jo",
+    "org": "Lantern Books",
+    "item": "weekly staff catch-up",
+    "unit": "room",
+    "values": [
+     "Café Room",
+     "Back Office",
+     "Front Table"
+    ],
+    "place": "Back Office"
+   },
+   {
+    "kind": "order",
+    "topic": "milk restock",
+    "counterpart": "Sam Oduya",
+    "org": "Meadowgate Dairy",
+    "item": "whole milk",
+    "unit": "crate",
+    "values": [
+     "2",
+     "3",
+     "4"
+    ],
+    "place": "café"
+   },
+   {
+    "kind": "order",
+    "topic": "receipt rolls",
+    "counterpart": "Nell Brook",
+    "org": "Nimbus Paper",
+    "item": "till receipt rolls",
+    "unit": "box",
+    "values": [
+     "1",
+     "2",
+     "3"
+    ],
+    "place": "front desk"
+   },
+   {
+    "kind": "booking",
+    "topic": "author reading",
+    "counterpart": "Priya Nair",
+    "org": "Lantern Books",
+    "item": "evening author reading",
+    "unit": "room",
+    "values": [
+     "Café Room",
+     "Window Nook",
+     "Front Table"
+    ],
+    "place": "Café Room"
+   },
+   {
+    "kind": "order",
+    "topic": "tea restock",
+    "counterpart": "Petra Lund",
+    "org": "Cardamom Kitchen",
+    "item": "breakfast tea",
+    "unit": "tin",
+    "values": [
+     "3",
+     "5",
+     "8"
+    ],
+    "place": "café"
+   },
+   {
+    "kind": "booking",
+    "topic": "delivery bay slot",
+    "counterpart": "Owen Park",
+    "org": "Hearth & Vine Roastery",
+    "item": "Thursday delivery bay slot",
+    "unit": "slot",
+    "values": [
+     "08:00",
+     "09:30",
+     "11:00"
+    ],
+    "place": "delivery bay"
+   },
+   {
+    "kind": "order",
+    "topic": "gift wrap",
+    "counterpart": "Ines Marsh",
+    "org": "Quill & Thread Bindery",
+    "item": "kraft gift wrap",
+    "unit": "roll",
+    "values": [
+     "4",
+     "6",
+     "10"
+    ],
+    "place": "stockroom"
+   },
+   {
+    "kind": "booking",
+    "topic": "knit group",
+    "counterpart": "Ruth Ellison",
+    "org": "Tuesday Readers",
+    "item": "Saturday knitting circle",
+    "unit": "room",
+    "values": [
+     "Window Nook",
+     "Front Table",
+     "Back Office"
+    ],
+    "place": "Window Nook"
+   }
+  ],
+  "id": "K1000-3-03",
+  "tier": 1000,
+  "class": 3,
+  "writer": "kimi"
+ },
+ "errors": [],
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change replaces Tessa Vale with Owen Park while keeping delivery terms; ORD-1's contact is a direct REVISE to Owen Park, EV-2 is ASK two hops away because its host is consent-protected by rule e1, and ORD-3 is KEEP since only the unchanged free-delivery threshold was used. The task requires sending a confirmation note now without hinting at any change. Tier requirements (34 core events, 7 decisions, change 28 days before, later events, two echoes at e18/e25) are met and the change is buried mid-history.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change replaces Tessa Vale with Owen Park while keeping delivery terms; ORD-1's contact is a direct REVISE to Owen Park, EV-2 is ASK two hops away because its host is consent-protected by rule e1, and ORD-3 is KEEP since only the unchanged free-delivery threshold was used. The task requires sending a confirmation note now without hinting at any change. Tier requirements (34 core events, 7 decisions, change 28 days before, later events, two echoes at e18/e25) are met and the change is buried mid-history."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4324,
+    "completion_tokens": 405,
+    "reasoning_tokens": 242,
+    "cached_tokens": 384
+   },
+   "cost": 0.00739784,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a357aaab392720fc7b760d0b0294e8a5994cc7dc3a60f9d86038799c3564a3e5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Owen succeeds Tessa as account rep, not necessarily as the confirmed event host; asking the partner to clarify hosting is justified, but confirming Owen as host is not fixed by the history. The visible event decision relies directly on the rep identity, not on the standing beans order, so this is a stale-fact scenario rather than the claimed chain. Also, the December club cancellation conflicts with treating its still-booked December record as clearly unchanged.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Owen succeeds Tessa as account rep, not necessarily as the confirmed event host; asking the partner to clarify hosting is justified, but confirming Owen as host is not fixed by the history. The visible event decision relies directly on the rep identity, not on the standing beans order, so this is a stale-fact scenario rather than the claimed chain. Also, the December club cancellation conflicts with treating its still-booked December record as clearly unchanged."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4250,
+    "completion_tokens": 385,
+    "reasoning_tokens": 259,
+    "cached_tokens": 0
+   },
+   "cost": 0.0723675,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a357aaab392720fc7b760d0b0294e8a5994cc7dc3a60f9d86038799c3564a3e5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The intended class 3 is wrong: e27 revokes one fact (e2, Tessa as rep) and touches decisions two hops away (EV-2 via ORD-1), with ORD-3 as KEEP, which is the stale-fact pattern. The noise sample also leaks the change: Owen Park appears as a Hearth & Vine sender on 2026-10-12 and 10-14, before his 1 November start, and it prices in dollars where the core uses pounds. Counts, distance, echoes (e18, e25) and the consent map all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The intended class 3 is wrong: e27 revokes one fact (e2, Tessa as rep) and touches decisions two hops away (EV-2 via ORD-1), with ORD-3 as KEEP, which is the stale-fact pattern. The noise sample also leaks the change: Owen Park appears as a Hearth & Vine sender on 2026-10-12 and 10-14, before his 1 November start, and it prices in dollars where the core uses pounds. Counts, distance, echoes (e18, e25) and the consent map all check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6218,
+    "completion_tokens": 2528,
+    "reasoning_tokens": 2291,
+    "cached_tokens": 0
+   },
+   "cost": 0.0018858,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a357aaab392720fc7b760d0b0294e8a5994cc7dc3a60f9d86038799c3564a3e5",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
+}

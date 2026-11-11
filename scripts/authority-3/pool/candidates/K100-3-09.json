@@ -537,5 +537,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Nothing in the history fixes the revised coverage end at 13:00: the pickup change specifies no return time or trip duration. Consequently, neither the 13:00–13:45 lunch-prep block nor the required EV-2 end-time revision is justified.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Nothing in the history fixes the revised coverage end at 13:00: the pickup change specifies no return time or trip duration. Consequently, neither the 13:00–13:45 lunch-prep block nor the required EV-2 end-time revision is justified."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3521,
+    "completion_tokens": 169,
+    "reasoning_tokens": 78,
+    "cached_tokens": 0
+   },
+   "cost": 0.052455,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "11a60cb7172d676aae51aa5e5b7ff16f5ae6efa52b0ac0542876d0db6761ae93",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The structure fits class 3: e2 is corrected, e5 (EV-1) and e6 (EV-2) are touched in a chain, and e7 (EV-3) is a KEEP that cites e2 for the 20 seats. The expected state is internally inconsistent, though: EV-2's coverage window is defined by the library trip, which the writer marks ASK and leaves at 09:15 pending Harbourside's consent, yet EV-2 is revised to 10:00 now. The tier counts (20 core events, 5 decisions, change 18 days before the task, 4 core events after it) and the hidden placement of the change are fine.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The structure fits class 3: e2 is corrected, e5 (EV-1) and e6 (EV-2) are touched in a chain, and e7 (EV-3) is a KEEP that cites e2 for the 20 seats. The expected state is internally inconsistent, though: EV-2's coverage window is defined by the library trip, which the writer marks ASK and leaves at 09:15 pending Harbourside's consent, yet EV-2 is revised to 10:00 now. The tier counts (20 core events, 5 decisions, change 18 days before the task, 4 core events after it) and the hidden placement of the change are fine."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4993,
+    "completion_tokens": 2238,
+    "reasoning_tokens": 1976,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016183,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "11a60cb7172d676aae51aa5e5b7ff16f5ae6efa52b0ac0542876d0db6761ae93",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Class 3 is correctly realized: e5 rests on the corrected fact e2 (ASK via rule e1), e6 rests on e5 (one hop further, REVISE), and e7 cites only the unchanged 20-seat aspect (KEEP). The 13:00 end for EV-2 is an inference (uniform 45-minute shift) rather than an explicitly stated value, but it follows naturally from the 10:00 pickup and the task's requirement that lunch prep start right after coverage, so the expected state is defensible and otherwise unambiguous. Tier, event counts, change distance, and hiddenness all check out.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Class 3 is correctly realized: e5 rests on the corrected fact e2 (ASK via rule e1), e6 rests on e5 (one hop further, REVISE), and e7 cites only the unchanged 20-seat aspect (KEEP). The 13:00 end for EV-2 is an inference (uniform 45-minute shift) rather than an explicitly stated value, but it follows naturally from the 10:00 pickup and the task's requirement that lunch prep start right after coverage, so the expected state is defensible and otherwise unambiguous. Tier, event counts, change distance, and hiddenness all check out."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3565,
+    "completion_tokens": 773,
+    "reasoning_tokens": 600,
+    "cached_tokens": 384
+   },
+   "cost": 0.00795444,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "11a60cb7172d676aae51aa5e5b7ff16f5ae6efa52b0ac0542876d0db6761ae93",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

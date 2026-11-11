@@ -630,5 +630,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amended threshold releases the craft fair and its dependent setup, while the choir still requires Tom's consent; the other bookings remain valid unchanged. The core has 28 events and 6 decisions, with the change 27 days before the task, multiple later events, and an old-policy echo. The task requires confirmation and an email without revealing the change, which appears as an ordinary historical email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended threshold releases the craft fair and its dependent setup, while the choir still requires Tom's consent; the other bookings remain valid unchanged. The core has 28 events and 6 decisions, with the change 27 days before the task, multiple later events, and an old-policy echo. The task requires confirmation and an email without revealing the change, which appears as an ordinary historical email."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4113,
+    "completion_tokens": 240,
+    "reasoning_tokens": 124,
+    "cached_tokens": 0
+   },
+   "cost": 0.063405,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6e9984a2465f6ba03f6554e039a81108de90e1d65739de18432b1f91f94d36e4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The rule change cleanly splits decisions citing e2: Brampton (£450, now under £700) is REVISE along with its dependent setup sheet, the £880 kitchen hire stays above the new threshold (KEEP), the £380 toddler session was never covered (KEEP), and Larkspur is ASK because e3's Tom Reece consent for the 18:00 start still applies. Tier counts (28 core events, 6 decisions, change 27 days before the task, echo at e18) are met, the change sits at event 419 of 500 with later events, and the task forces concrete acts without hinting at the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The rule change cleanly splits decisions citing e2: Brampton (£450, now under £700) is REVISE along with its dependent setup sheet, the £880 kitchen hire stays above the new threshold (KEEP), the £380 toddler session was never covered (KEEP), and Larkspur is ASK because e3's Tom Reece consent for the 18:00 start still applies. Tier counts (28 core events, 6 decisions, change 27 days before the task, echo at e18) are met, the change sits at event 419 of 500 with later events, and the task forces concrete acts without hinting at the change."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4181,
+    "completion_tokens": 346,
+    "reasoning_tokens": 166,
+    "cached_tokens": 384
+   },
+   "cost": 0.00693804,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6e9984a2465f6ba03f6554e039a81108de90e1d65739de18432b1f91f94d36e4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change e25 amends the countersign rule e2, so e6 (£450) becomes REVISE, e10 (£620) becomes ASK because of Tom's consent under e3, and e8 (£880) and e12 (£380) stay KEEP, which matches class 2. The core has 28 events, 6 decisions, the change 27 days before the task day, and three core events after it, and the change reads as an ordinary email with 81 events following it. The expected state and consent map follow from the history, and the task forces a booking confirmation and email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change e25 amends the countersign rule e2, so e6 (£450) becomes REVISE, e10 (£620) becomes ASK because of Tom's consent under e3, and e8 (£880) and e12 (£380) stay KEEP, which matches class 2. The core has 28 events, 6 decisions, the change 27 days before the task day, and three core events after it, and the change reads as an ordinary email with 81 events following it. The expected state and consent map follow from the history, and the task forces a booking confirmation and email."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5917,
+    "completion_tokens": 1543,
+    "reasoning_tokens": 1315,
+    "cached_tokens": 0
+   },
+   "cost": 0.0013632,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "6e9984a2465f6ba03f6554e039a81108de90e1d65739de18432b1f91f94d36e4",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

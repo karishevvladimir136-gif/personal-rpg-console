@@ -630,5 +630,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":4,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Tomas merely restates the existing rule, so the 620-pound malt order needs no sign-off and all existing records remain unchanged. The task requires placing the order and sending Ellen confirmation. The core has 30 events and 7 decisions, with the change 15 days before the task and multiple later events; class 4 requires no stale-value echo.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Tomas merely restates the existing rule, so the 620-pound malt order needs no sign-off and all existing records remain unchanged. The task requires placing the order and sending Ellen confirmation. The core has 30 events and 7 decisions, with the change 15 days before the task and multiple later events; class 4 requires no stale-value echo."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4210,
+    "completion_tokens": 180,
+    "reasoning_tokens": 71,
+    "cached_tokens": 0
+   },
+   "cost": 0.0616175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c33f087a0c62203785644cb53d8cbb23371859018987d53a6a03b0046e6b7563",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change merely restates the 800-pound sign-off rule, touching nothing, and the 620-pound malt order falls under it so Mara can place it directly — expected state (create order at 620 for 2026-10-21, message Ellen) follows from the standing order and Ellen's Wednesday 21 October slot. The task requires acting now without hinting at any change. Core has ~30 events and 7 decisions within tier 500 limits, the change is 15 days before the task day with later core events, and no echo is needed for class 4.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change merely restates the 800-pound sign-off rule, touching nothing, and the 620-pound malt order falls under it so Mara can place it directly — expected state (create order at 620 for 2026-10-21, message Ellen) follows from the standing order and Ellen's Wednesday 21 October slot. The task requires acting now without hinting at any change. Core has ~30 events and 7 decisions within tier 500 limits, the change is 15 days before the task day with later core events, and no echo is needed for class 4."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4322,
+    "completion_tokens": 285,
+    "reasoning_tokens": 120,
+    "cached_tokens": 384
+   },
+   "cost": 0.00686704,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c33f087a0c62203785644cb53d8cbb23371859018987d53a6a03b0046e6b7563",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 4, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change (e16) restates the 800-pound sign-off rule without altering it, so the decisions resting on e1 (ORD-1, ORD-2) are KEEP and the expected state of placing the 620-pound malt order and confirming to Ellen follows. The task explicitly asks for the order and confirmation, so it forces an act. The core meets the 500-tier counts (30 events, 7 decisions, change 15 days before the task with 9 events after it), and the change is an ordinary message with no correction label.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 4,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change (e16) restates the 800-pound sign-off rule without altering it, so the decisions resting on e1 (ORD-1, ORD-2) are KEEP and the expected state of placing the 620-pound malt order and confirming to Ellen follows. The task explicitly asks for the order and confirmation, so it forces an act. The core meets the 500-tier counts (30 events, 7 decisions, change 15 days before the task with 9 events after it), and the change is an ordinary message with no correction label."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6125,
+    "completion_tokens": 1807,
+    "reasoning_tokens": 1585,
+    "cached_tokens": 0
+   },
+   "cost": 0.001516,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "c33f087a0c62203785644cb53d8cbb23371859018987d53a6a03b0046e6b7563",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

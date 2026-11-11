@@ -671,5 +671,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The expected state books the recheck for 12 November based on a proposed 29 October dental appointment, but Ana has not consented to that move and EV-2 remains on 27 October. The history therefore does not unambiguously establish 12 November as two weeks after Maple's dental; the dental date must be resolved before that recheck date can be treated as settled.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected state books the recheck for 12 November based on a proposed 29 October dental appointment, but Ana has not consented to that move and EV-2 remains on 27 October. The history therefore does not unambiguously establish 12 November as two weeks after Maple's dental; the dental date must be resolved before that recheck date can be treated as settled."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4300,
+    "completion_tokens": 165,
+    "reasoning_tokens": 51,
+    "cached_tokens": 0
+   },
+   "cost": 0.0619925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d2ace19cff597bd1b17535add3b67a041f27e80f74ff5ef8de07bf3f6782e022",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The expected recheck date is inconsistent with the expected state: the task says two weeks after the dental, but the expected state leaves EV-2 on 27 October pending Ana's consent, which would give 10 November, not 12 November. The 12 November date only follows if the dental has already moved to 29 October, which the expected state does not do. Otherwise the structure fits: the change is a hidden revocation, the marks are consistent with the rules, and the counts meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The expected recheck date is inconsistent with the expected state: the task says two weeks after the dental, but the expected state leaves EV-2 on 27 October pending Ana's consent, which would give 10 November, not 12 November. The 12 November date only follows if the dental has already moved to 29 October, which the expected state does not do. Otherwise the structure fits: the change is a hidden revocation, the marks are consistent with the rules, and the counts meet tier 500."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6486,
+    "completion_tokens": 1876,
+    "reasoning_tokens": 1669,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015866,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d2ace19cff597bd1b17535add3b67a041f27e80f74ff5ef8de07bf3f6782e022",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain fits class 3: A=e3 revoked, B=e7 and C=e10 (resting on B) touched, D=e11 cites A for a still-standing aspect (Okafor still does all surgery). REVISE values (Thursday 2026-10-29) follow directly from the change's own terms; ASK on EV-2 matches the e1 client-consent rule in the consent map; KEEP on ORD-1 is explicit in the change. One mild point: the recheck date 2026-11-12 assumes the dental's new Thursday footing even though EV-2 is pending consent, but this is consistent with the change's clear implication; the change is buried at event 448 with 52 later events, counts (31 core events, 6 decisions) and echo e20 meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain fits class 3: A=e3 revoked, B=e7 and C=e10 (resting on B) touched, D=e11 cites A for a still-standing aspect (Okafor still does all surgery). REVISE values (Thursday 2026-10-29) follow directly from the change's own terms; ASK on EV-2 matches the e1 client-consent rule in the consent map; KEEP on ORD-1 is explicit in the change. One mild point: the recheck date 2026-11-12 assumes the dental's new Thursday footing even though EV-2 is pending consent, but this is consistent with the change's clear implication; the change is buried at event 448 with 52 later events, counts (31 core events, 6 decisions) and echo e20 meet tier 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4412,
+    "completion_tokens": 691,
+    "reasoning_tokens": 473,
+    "cached_tokens": 384
+   },
+   "cost": 0.00877944,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "d2ace19cff597bd1b17535add3b67a041f27e80f74ff5ef8de07bf3f6782e022",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

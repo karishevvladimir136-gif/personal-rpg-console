@@ -658,5 +658,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The amendment allows Wednesday or Saturday deliveries but does not specify how existing bookings move to those days. Thus Saturday 17 October for the mussels and Wednesday 14 October for the hake are plausible choices, not uniquely fixed values; Tomas's revised shift date is likewise undetermined. The consent requirement and the KEEP marks for completed deliveries otherwise follow from the history.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amendment allows Wednesday or Saturday deliveries but does not specify how existing bookings move to those days. Thus Saturday 17 October for the mussels and Wednesday 14 October for the hake are plausible choices, not uniquely fixed values; Tomas's revised shift date is likewise undetermined. The consent requirement and the KEEP marks for completed deliveries otherwise follow from the history."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4023,
+    "completion_tokens": 184,
+    "reasoning_tokens": 76,
+    "cached_tokens": 0
+   },
+   "cost": 0.05948,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "336ecab23787c972f1c21f8a5eb4b22e1de4e94eb164fbeb7edf74961f713aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The consent map lists Priya Hall's consent to change ORD-3's date under rule e6, which contradicts the ASK mark and the expected state's requirement that Priya's consent is still needed. The REVISE value 2026-10-17 is also only inferred (the nearest Wed/Sat after the task day), not fixed by the history. The tier counts, the 14-day gap before the task day, the echo (E0420), and the hidden placement of the change are all met.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The consent map lists Priya Hall's consent to change ORD-3's date under rule e6, which contradicts the ASK mark and the expected state's requirement that Priya's consent is still needed. The REVISE value 2026-10-17 is also only inferred (the nearest Wed/Sat after the task day), not fixed by the history. The tier counts, the 14-day gap before the task day, the echo (E0420), and the hidden placement of the change are all met."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5736,
+    "completion_tokens": 2661,
+    "reasoning_tokens": 2456,
+    "cached_tokens": 0
+   },
+   "cost": 0.0019041,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "336ecab23787c972f1c21f8a5eb4b22e1de4e94eb164fbeb7edf74961f713aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The amended delivery-days rule (e26 revoking e3) clearly makes ORD-2 and EV-1 REVISE and ORD-3 ASK under e6, while ORD-1/ORD-4 predate the amendment and stay KEEP; the task forces confirming deliveries and fixing the rota without hinting at the change. A minor caveat: the amendment permits both Wednesday 14 and Saturday 17 for ORD-2, so the designated Saturday value is a choice rather than uniquely forced, though the answer key fixes it and the rest of the state follows cleanly. Tier requirements (event/decision counts, change 14 days before task day, echo e24, later core events) are all met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The amended delivery-days rule (e26 revoking e3) clearly makes ORD-2 and EV-1 REVISE and ORD-3 ASK under e6, while ORD-1/ORD-4 predate the amendment and stay KEEP; the task forces confirming deliveries and fixing the rota without hinting at the change. A minor caveat: the amendment permits both Wednesday 14 and Saturday 17 for ORD-2, so the designated Saturday value is a choice rather than uniquely forced, though the answer key fixes it and the rest of the state follows cleanly. Tier requirements (event/decision counts, change 14 days before task day, echo e24, later core events) are all met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4100,
+    "completion_tokens": 1306,
+    "reasoning_tokens": 1119,
+    "cached_tokens": 384
+   },
+   "cost": 0.01104864,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "336ecab23787c972f1c21f8a5eb4b22e1de4e94eb164fbeb7edf74961f713aac",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

@@ -680,5 +680,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The scenario is sound: the photographer's email revokes fact e12, and the touched decisions follow it at one and two hops (EV-4 rests on e13, satisfying the two-hop requirement); the ASK on EV-3 follows from rule e02 and the confirmed appointment with Ada Rowe, KEEP on ORD-3 follows since only the unchanged rate underlies it, and the distractor quote is properly inert. The task forces concrete action (revising EV-2 and emailing Kellan) without hinting at any change. Tier requirements (34 core events, 8 decisions, change 21 days before, multiple later events, two echoes) are all met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The scenario is sound: the photographer's email revokes fact e12, and the touched decisions follow it at one and two hops (EV-4 rests on e13, satisfying the two-hop requirement); the ASK on EV-3 follows from rule e02 and the confirmed appointment with Ada Rowe, KEEP on ORD-3 follows since only the unchanged rate underlies it, and the distractor quote is properly inert. The task forces concrete action (revising EV-2 and emailing Kellan) without hinting at any change. Tier requirements (34 core events, 8 decisions, change 21 days before, multiple later events, two echoes) are all met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4606,
+    "completion_tokens": 462,
+    "reasoning_tokens": 281,
+    "cached_tokens": 384
+   },
+   "cost": 0.00804344,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d7e8e0c6525c499e4960590c3bbb596ecd896b8dbc744ed423c0d7df76081d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The stale fact e12 is revoked by e28, touching e13 and e15 directly, e17 as a KEEP, and e16 two hops away via e13, which matches class 1. The expected marks follow from the office rule in e02 and the 220 rate that e28 keeps, and the consent map matches e02 for Ada Rowe. The core has 34 events, 8 decisions, a change 21 days before the task day with 6 core events after it, and two echoes (e21, e24), and the change sits mid-history as an ordinary request.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The stale fact e12 is revoked by e28, touching e13 and e15 directly, e17 as a KEEP, and e16 two hops away via e13, which matches class 1. The expected marks follow from the office rule in e02 and the 220 rate that e28 keeps, and the consent map matches e02 for Ada Rowe. The core has 34 events, 8 decisions, a change 21 days before the task day with 6 core events after it, and two echoes (e21, e24), and the change sits mid-history as an ordinary request."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6522,
+    "completion_tokens": 1949,
+    "reasoning_tokens": 1720,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016267,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d7e8e0c6525c499e4960590c3bbb596ecd896b8dbc744ed423c0d7df76081d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The replacement date supports revising EV-2 and its dependent EV-4, while Ada's confirmed appointment requires consent and the unchanged rate leaves ORD-3 intact. The core has 34 events and 8 decisions, two stale-date echoes, and a change 21 days before the task with later events following it. The task requires diary action and an email without revealing the change.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The replacement date supports revising EV-2 and its dependent EV-4, while Ada's confirmed appointment requires consent and the unchanged rate leaves ORD-3 intact. The core has 34 events and 8 decisions, two stale-date echoes, and a change 21 days before the task with later events following it. The task requires diary action and an email without revealing the change."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4547,
+    "completion_tokens": 296,
+    "reasoning_tokens": 182,
+    "cached_tokens": 0
+   },
+   "cost": 0.07163,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "82d7e8e0c6525c499e4960590c3bbb596ecd896b8dbc744ed423c0d7df76081d",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

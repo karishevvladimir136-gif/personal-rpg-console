@@ -686,5 +686,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 1-in-6 amendment cleanly yields 4 adults for the 20-youth climbing trip (ASK under e1's consent rule), 3 for the 16-youth museum trip (ASK), and a mechanical seat rise to 24 for the coach (REVISE), while the farm trip at 10/2 still satisfies the new ratio (KEEP). The task demands concrete acts (messages, consent requests, coach confirmation) without hinting at the change, and the notice sits mid-history with many events after it. Core counts (31 events, 7 decisions, echo in e20) meet tier 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 1-in-6 amendment cleanly yields 4 adults for the 20-youth climbing trip (ASK under e1's consent rule), 3 for the 16-youth museum trip (ASK), and a mechanical seat rise to 24 for the coach (REVISE), while the farm trip at 10/2 still satisfies the new ratio (KEEP). The task demands concrete acts (messages, consent requests, coach confirmation) without hinting at the change, and the notice sits mid-history with many events after it. Core counts (31 events, 7 decisions, echo in e20) meet tier 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4510,
+    "completion_tokens": 426,
+    "reasoning_tokens": 255,
+    "cached_tokens": 384
+   },
+   "cost": 0.00775064,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b43117572c6162bc55872fb7b13c04ce6c5f15253ebea425b71dca18638c71e1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 2, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The change amends the staffing rule e3 from 1-in-8 to 1-in-6, which voids e6 and e10 (ASK) and leaves e7 (KEEP) standing, with the coach e8 touched through e6 (REVISE). The expected values check out: 20 youths need 4 adults, 16 need 3, 10 need 2, and the coach goes from 23 to 24 seats, with consent needed only for the adults fields under e1. The core has 31 events, 7 decisions, the change 14 days before the task day, and 7 core events after it, and the change is phrased as a routine notice.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The change amends the staffing rule e3 from 1-in-8 to 1-in-6, which voids e6 and e10 (ASK) and leaves e7 (KEEP) standing, with the coach e8 touched through e6 (REVISE). The expected values check out: 20 youths need 4 adults, 16 need 3, 10 need 2, and the coach goes from 23 to 24 seats, with consent needed only for the adults fields under e1. The core has 31 events, 7 decisions, the change 14 days before the task day, and 7 core events after it, and the change is phrased as a routine notice."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6410,
+    "completion_tokens": 1444,
+    "reasoning_tokens": 1191,
+    "cached_tokens": 0
+   },
+   "cost": 0.001363,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b43117572c6162bc55872fb7b13c04ce6c5f15253ebea425b71dca18638c71e1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":2,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The revised staffing implies 24 passengers for climbing, but does not establish that a 24-seat coach can be booked or confirmed. The history establishes a booked 23-seat coach and an available 30-seat upgrade, so changing the booked capacity to exactly 24 is not unambiguously justified; requesting sufficient capacity is distinct from confirming it.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 2,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The revised staffing implies 24 passengers for climbing, but does not establish that a 24-seat coach can be booked or confirmed. The history establishes a booked 23-seat coach and an available 30-seat upgrade, so changing the booked capacity to exactly 24 is not unambiguously justified; requesting sufficient capacity is distinct from confirming it."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4434,
+    "completion_tokens": 272,
+    "reasoning_tokens": 167,
+    "cached_tokens": 0
+   },
+   "cost": 0.0690175,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "b43117572c6162bc55872fb7b13c04ce6c5f15253ebea425b71dca18638c71e1",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

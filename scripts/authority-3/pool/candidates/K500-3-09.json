@@ -651,5 +651,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The chain is clean: e5's day aspect is revoked, EV-1 (one hop, REVISE to Friday 2026-11-06 after the Thursday collection) and EV-2 (two hops via the clean, ASK under rule e1 with consent map matching) follow from the history's own timing constraints, while EV-3 keeps its Dock 2 aspect. 29 core events, 7 decisions, change 21 days before the task day with several events after it, and an echo (e20) meet tier 500. The task demands concrete acts (fix the record, send Priya the approval request) without naming the change, which sits buried at event 426 of 500.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The chain is clean: e5's day aspect is revoked, EV-1 (one hop, REVISE to Friday 2026-11-06 after the Thursday collection) and EV-2 (two hops via the clean, ASK under rule e1 with consent map matching) follow from the history's own timing constraints, while EV-3 keeps its Dock 2 aspect. 29 core events, 7 decisions, change 21 days before the task day with several events after it, and an echo (e20) meet tier 500. The task demands concrete acts (fix the record, send Priya the approval request) without naming the change, which sits buried at event 426 of 500."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4428,
+    "completion_tokens": 498,
+    "reasoning_tokens": 307,
+    "cached_tokens": 384
+   },
+   "cost": 0.00795264,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a8c42660d2849daa4f52ca34d668297d02bdfeedc33ecdf45daeba9d90f4e05a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"Rule e1 requires Priya Anand's consent for any move of a confirmed contractor booking inside a tenant's unit or private areas, and EV-1 (the Unit 7 bin store clean) is such a booking, yet the answer key marks it REVISE and the consent map covers only EV-2. The EV-1 mark and consent map are therefore inconsistent with the history's own rule, and EV-1 should likely be ASK. The rest of the structure (class 3 chain, tier counts, hidden change, echo e20) holds.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rule e1 requires Priya Anand's consent for any move of a confirmed contractor booking inside a tenant's unit or private areas, and EV-1 (the Unit 7 bin store clean) is such a booking, yet the answer key marks it REVISE and the consent map covers only EV-2. The EV-1 mark and consent map are therefore inconsistent with the history's own rule, and EV-1 should likely be ASK. The rest of the structure (class 3 chain, tier counts, hidden change, echo e20) holds."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 6487,
+    "completion_tokens": 1717,
+    "reasoning_tokens": 1486,
+    "cached_tokens": 0
+   },
+   "cost": 0.0015072,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a8c42660d2849daa4f52ca34d668297d02bdfeedc33ecdf45daeba9d90f4e05a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"Rule e1 requires Priya's consent to move any confirmed contractor booking in a tenant's private area, so EV-1 must also be ASK; the consent map and expected direct revision contradict that rule. Keeping the deep clean at 19:00 also puts its four-hour duration beyond Brightbay's stated 22:00 availability.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "Rule e1 requires Priya's consent to move any confirmed contractor booking in a tenant's private area, so EV-1 must also be ASK; the consent map and expected direct revision contradict that rule. Keeping the deep clean at 19:00 also puts its four-hour duration beyond Brightbay's stated 22:00 availability."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 4349,
+    "completion_tokens": 225,
+    "reasoning_tokens": 121,
+    "cached_tokens": 0
+   },
+   "cost": 0.065605,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "a8c42660d2849daa4f52ca34d668297d02bdfeedc33ecdf45daeba9d90f4e05a",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

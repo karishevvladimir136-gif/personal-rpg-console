@@ -632,5 +632,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "astra": {
+   "text": "{\"final_state_follows\":\"no\",\"forces_act\":\"yes\",\"class\":1,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"EV-1 is marked confirmed and its class is already running, so moving it without Ana's consent is not unambiguously permitted by the standing rule; the consent map omits this case. Reducing Room 4's capacity does not fix an already placed and invoiced chair order at 16 chairs or authorize that amendment. The Spanish-focused task also does not clearly require changes to the independent chair order or a consent request for German C1.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-1 is marked confirmed and its class is already running, so moving it without Ana's consent is not unambiguously permitted by the standing rule; the consent map omits this case. Reducing Room 4's capacity does not fix an already placed and invoiced chair order at 16 chairs or authorize that amendment. The Spanish-focused task also does not clearly require changes to the independent chair order or a consent request for German C1."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3985,
+    "completion_tokens": 258,
+    "reasoning_tokens": 131,
+    "cached_tokens": 0
+   },
+   "cost": 0.062705,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "35b3529842e3f9af327560acfb30c061445b881d62927dfac7c05cb1eb0beeee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The 16-seat correction cleanly propagates: Room 6 (26 seats, free Mondays to 21:00) is the only viable alternative, the ASK on EV-2 follows from e1's consent rule since the class was confirmed to students, e13 is a two-hop REVISE via e10, and e14 (12 students) stays within 16 seats. The chair order's reduction to 16/192 follows from the corrected capacity and stays under the sign-off line. All tier requirements (29 core events, 6 decisions, change 14 days before task day, later core events, and the e18 echo) are met.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The 16-seat correction cleanly propagates: Room 6 (26 seats, free Mondays to 21:00) is the only viable alternative, the ASK on EV-2 follows from e1's consent rule since the class was confirmed to students, e13 is a two-hop REVISE via e10, and e14 (12 students) stays within 16 seats. The chair order's reduction to 16/192 follows from the corrected capacity and stays under the sign-off line. All tier requirements (29 core events, 6 decisions, change 14 days before task day, later core events, and the e18 echo) are met."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 4070,
+    "completion_tokens": 495,
+    "reasoning_tokens": 318,
+    "cached_tokens": 384
+   },
+   "cost": 0.00743824,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "35b3529842e3f9af327560acfb30c061445b881d62927dfac7c05cb1eb0beeee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"no\", \"forces_act\": \"yes\", \"class\": 1, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"EV-1 is recorded as status \\\"confirmed\\\", and rule e1 bars moving a confirmed class without the teacher's agreement, yet the consent map lists only EV-2 and the expected state treats EV-1 as freely movable, so the consent status of EV-1 is ambiguous. The ORD-1 change to 16 chairs is also questionable because the order was already placed and invoiced (e21), so REVISE may not be the right mark. Class, tier counts, change distance, and hiding otherwise check out.\"}",
+   "parsed": {
+    "final_state_follows": "no",
+    "forces_act": "yes",
+    "class": 1,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "EV-1 is recorded as status \"confirmed\", and rule e1 bars moving a confirmed class without the teacher's agreement, yet the consent map lists only EV-2 and the expected state treats EV-1 as freely movable, so the consent status of EV-1 is ambiguous. The ORD-1 change to 16 chairs is also questionable because the order was already placed and invoiced (e21), so REVISE may not be the right mark. Class, tier counts, change distance, and hiding otherwise check out."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 5753,
+    "completion_tokens": 2160,
+    "reasoning_tokens": 1935,
+    "cached_tokens": 0
+   },
+   "cost": 0.0016553,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "35b3529842e3f9af327560acfb30c061445b881d62927dfac7c05cb1eb0beeee",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }

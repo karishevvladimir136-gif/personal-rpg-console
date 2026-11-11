@@ -473,5 +473,97 @@
   "writer": "kimi"
  },
  "errors": [],
- "valid": true
+ "valid": true,
+ "ratings": {
+  "glm": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"yes\", \"reasons\": \"The correction (e19) revokes fact e3's hire fee; EV-1 rests on it (REVISE to 260), CL-1 rests on the booking (ASK: total 780 is consent-gated by e1), and EV-2 cites only the unchanged date/venue (KEEP), a clean two-hop chain with a KEEP on the untouched aspect. The task requires sending the confirmation and fixing the record without naming the change. Core has 22 events, 4 decisions, the change 10 days before the task with 3 core events after, and the change sits mid-history as an ordinary email.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The correction (e19) revokes fact e3's hire fee; EV-1 rests on it (REVISE to 260), CL-1 rests on the booking (ASK: total 780 is consent-gated by e1), and EV-2 cites only the unchanged date/venue (KEEP), a clean two-hop chain with a KEEP on the untouched aspect. The task requires sending the confirmation and fixing the record without naming the change. Core has 22 events, 4 decisions, the change 10 days before the task with 3 core events after, and the change sits mid-history as an ordinary email."
+   },
+   "provider": "Z.AI",
+   "model": "z-ai/glm-5.3",
+   "usage": {
+    "prompt_tokens": 3358,
+    "completion_tokens": 332,
+    "reasoning_tokens": 160,
+    "cached_tokens": 0
+   },
+   "cost": 0.006162,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aeaa4d5407ec7d42cfc99521a439131936fca4117e715d5735d8c10ac443a9a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "haiku": {
+   "text": "{\"final_state_follows\": \"yes\", \"forces_act\": \"yes\", \"class\": 3, \"tier_right\": \"yes\", \"change_hidden\": \"no\", \"reasons\": \"The structure fits class 3: e3 (A) is corrected, e6 (B) rests on A, e8 (C) rests on B but not directly on A, and e9 (D) cites A for the date and venue that still stand. The change itself is announced as \\\"One correction on your 14 November booking\\\" with \\\"revokes e3\\\" in its label, which conflicts with the requirement that the change not be announced as the correction, even though it sits 6 events before the end.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "no",
+    "reasons": "The structure fits class 3: e3 (A) is corrected, e6 (B) rests on A, e8 (C) rests on B but not directly on A, and e9 (D) cites A for the date and venue that still stand. The change itself is announced as \"One correction on your 14 November booking\" with \"revokes e3\" in its label, which conflicts with the requirement that the change not be announced as the correction, even though it sits 6 events before the end."
+   },
+   "provider": "Anthropic",
+   "model": "anthropic/claude-haiku-5.5",
+   "usage": {
+    "prompt_tokens": 4669,
+    "completion_tokens": 1624,
+    "reasoning_tokens": 1425,
+    "cached_tokens": 0
+   },
+   "cost": 0.0012789,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aeaa4d5407ec7d42cfc99521a439131936fca4117e715d5735d8c10ac443a9a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  },
+  "astra": {
+   "text": "{\"final_state_follows\":\"yes\",\"forces_act\":\"yes\",\"class\":3,\"tier_right\":\"yes\",\"change_hidden\":\"yes\",\"reasons\":\"The corrected hire fee propagates through the booking to the client total, while the unchanged date and venue leave the van run intact. The message must present 780 for Priya's approval, not as an already-approved total, and CL-1 must remain unchanged pending consent. The core has 22 events and four decisions, with the change ten days before the task and three later core events.\"}",
+   "parsed": {
+    "final_state_follows": "yes",
+    "forces_act": "yes",
+    "class": 3,
+    "tier_right": "yes",
+    "change_hidden": "yes",
+    "reasons": "The corrected hire fee propagates through the booking to the client total, while the unchanged date and venue leave the van run intact. The message must present 780 for Priya's approval, not as an already-approved total, and CL-1 must remain unchanged pending consent. The core has 22 events and four decisions, with the change ten days before the task and three later core events."
+   },
+   "provider": "OpenAI",
+   "model": "openai/gpt-6-astra",
+   "usage": {
+    "prompt_tokens": 3292,
+    "completion_tokens": 367,
+    "reasoning_tokens": 251,
+    "cached_tokens": 0
+   },
+   "cost": 0.0594925,
+   "refused": false,
+   "error": null,
+   "prompt_sha256": "aeaa4d5407ec7d42cfc99521a439131936fca4117e715d5735d8c10ac443a9a7",
+   "tries": [
+    {
+     "error": null,
+     "refused": false,
+     "parsed": true
+    }
+   ]
+  }
+ }
 }
