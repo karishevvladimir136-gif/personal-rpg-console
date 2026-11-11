@@ -797,7 +797,7 @@ def cmd_report(a):
     L += ["", "## By tier and arm (families pooled; Wilson 95 % in brackets)", ""]
     L.append(R.table([(f"{t} · {R.ARM_NAME[a]}", [r for r in rows if r["tier"] == t and r["arm"] == a]) for t in R.TIERS for a in ("A", "B", "Bp", "C")]))
     L += ["", "## By family, tier and arm", ""]
-    L.append(R.table([(f"{R.FAM[f].split()[0]} {t} · {R.ARM_NAME[a]}", [r for r in rows if r["family"] == f and r["tier"] == t and r["arm"] == a])
+    L.append(R.table([(f"{R.SHORT[f]} {t} · {R.ARM_NAME[a]}", [r for r in rows if r["family"] == f and r["tier"] == t and r["arm"] == a])
                       for f in fams for t in R.TIERS for a in ("A", "B", "Bp", "C")]))
     L += ["", "## By class and arm (all tiers and families)", ""]
     L.append(R.table([(f"class {c} · {R.ARM_NAME[a]}", [r for r in rows if r["cls"] == c and r["arm"] == a]) for c in (1, 2, 3, 4) for a in ("A", "B", "Bp", "C")]))
@@ -808,12 +808,12 @@ def cmd_report(a):
           "and a careful reader can «reconcile» one record with the other thread; (2) the unnecessary-intervention clause "
           "dropped altogether (the task, every REVISE value, every ASK asked, no stale act, no act without consent).", ""]
     L.append(R.table_posthoc([(f"{t} · {R.ARM_NAME[a]}", [r for r in rows if r["tier"] == t and r["arm"] == a]) for t in R.TIERS for a in ("A", "B", "Bp", "C")]
-                             + [(f"{R.FAM[f].split()[0]} · {R.ARM_NAME[a]}", [r for r in rows if r["family"] == f and r["arm"] == a]) for f in fams for a in ("A", "B", "Bp", "C")]))
+                             + [(f"{R.SHORT[f]} · {R.ARM_NAME[a]}", [r for r in rows if r["family"] == f and r["arm"] == a]) for f in fams for a in ("A", "B", "Bp", "C")]))
     bpost = R.boot([r for r in rows if r["arm"] in ("A", "B", "Bp", "C")])
     L += ["", "Bootstrap, pooled (points): " + "; ".join(f"{lab} C − A {R.bci(bpost, k + '.C-A')}, C − B {R.bci(bpost, k + '.C-B')}, C − B′ {R.bci(bpost, k + '.C-Bp')}"
                                                       for lab, k in (("without the unnecessary clause:", "succ_nounn"), ("noise edits not counted:", "succ_nonoise")))]
     L += ["", "## C-gold on the 500 tier (one repeat) beside A and C", ""]
-    L.append(R.table([(f"{R.FAM[f].split()[0]} 500 · {nm}", rs) for f in K.FAMILIES for nm, rs in
+    L.append(R.table([(f"{R.SHORT[f]} 500 · {nm}", rs) for f in K.FAMILIES for nm, rs in
                       (("A", [r for r in rows if r["family"] == f and r["tier"] == 500 and r["arm"] == "A"]),
                        ("C", [r for r in rows if r["family"] == f and r["tier"] == 500 and r["arm"] == "C"]),
                        ("C-gold", [r for r in grows if r["family"] == f and r["arm"] == "Cg"]))]))
@@ -825,7 +825,7 @@ def cmd_report(a):
         d[1] += bool(u["retrieval_diag"]["change"])
         d[2] += bool(u["retrieval_diag"]["touched"])
     L += ["## Diagnostics", "", "- The search on the task text (top 10) returned the change in: " +
-          "; ".join(f"{R.FAM[f].split()[0]} {t}: {v[1]}/{v[0]}" for (f, t), v in sorted(diag.items())),
+          "; ".join(f"{R.SHORT[f]} {t}: {v[1]}/{v[0]}" for (f, t), v in sorted(diag.items())),
           f"- Subject refusals: {sum(1 for r in rows + grows if r['refused'])}; arm-runs halted before the loop: "
           f"{sum(1 for r in rows + grows if not r['ok'])}; arm-runs still pending a message judgment: {sum(1 for r in rows + grows if r.get('pending'))}.",
           f"- Pool: {len(adm['rows'])} candidates, {sum(1 for x in adm['rows'] if x['valid'])} valid, {len(adm['admitted'])} admitted; shortfall {adm['shortfall']}."]

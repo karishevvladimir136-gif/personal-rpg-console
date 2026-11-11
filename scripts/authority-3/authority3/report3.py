@@ -12,6 +12,7 @@ from . import specs3 as K
 
 ARM_NAME = {"A": "A", "B": "B", "Bp": "B′", "C": "C", "Cg": "C-gold"}
 FAM = {"deepseek": "DeepSeek V4 Pro", "sol": "GPT-6.1 Sol", "opus": "Claude Opus 5.5", "haiku": "Claude Haiku 5.5"}
+SHORT = {"deepseek": "DeepSeek", "sol": "Sol", "opus": "Opus", "haiku": "Haiku"}
 TIERS = (100, 500, 1000)
 
 
@@ -229,7 +230,7 @@ def verdicts(rows, gold_rows, fams, ctx):
                 rs = [r for r in by_t[t] if r["family"] == f]
                 a, c = pct(_rate([r for r in rs if r["arm"] == "A"], "success")), pct(_rate([r for r in rs if r["arm"] == "C"], "success"))
                 g[f] = None if None in (a, c) else c - a
-            txt.append(f"{t}: " + ", ".join(f"{FAM[f].split()[0]} {f1(g[f])}" for f in fams))
+            txt.append(f"{t}: " + ", ".join(f"{SHORT[f]} {f1(g[f])}" for f in fams))
             parts[f"{t}: Opus smallest"] = None if None in g.values() else g["opus"] <= min(g.values())
         out.append(("AU6 C − A smallest for Opus on every tier (success, points)", "; ".join(txt), parts, held(parts)))
     # AU7
