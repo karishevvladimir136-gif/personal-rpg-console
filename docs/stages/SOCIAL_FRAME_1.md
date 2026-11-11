@@ -97,7 +97,13 @@ of its work».
   produced a ranking no individual set had):** every pair's preference is given for each presentation order
   separately, and a family's preference counts only where it holds in both orders; a transitivity check over the
   five steps per family (any cycle is reported before the slope); pooled figures are the last row of every table,
-  never the first.
+  never the first. *Read in full by the planner 20:3x LA:* Wasson et al. tested five non-reasoning models (Llama 4
+  Maverick, GPT-5.2, Gemini 2.5 Flash, DeepSeek V3.2, Grok 4.1 fast; Claude excluded for lack of token probabilities),
+  first-token choice, 7 principles × 6 severity blocks × 2 orders; WUM 36/60, HCM 8/60, G-RUM 13/60; order changed
+  rankings in 26/30; aggregation gave 4/5 the same ranking that no single set had. They leave open «whether deliberation
+  adds transitive structure». **Exploratory, not a bet:** Part B's five warmth steps per family are tested against WUM
+  (≥ ½) — a transitivity check on full completions with reasoning on, Claude included, the case their design could not
+  reach; HCM (≥ 0.9) is reported but not decidable at 6 samples per pair, and the report says so.
 
 ## Part C — Decomposing the Cold Preamble (the reviewer's title, 19:30)
 **Was the loss of epistemic initiative caused by the social tone, the brevity instruction, the restriction on judgment,
