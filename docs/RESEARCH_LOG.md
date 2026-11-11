@@ -4452,3 +4452,29 @@ and Astra and Kimi rate, tasks that force an act with plausible stale values, di
 referee Kimi (Sol is a subject; AUTHORITY_1's Sol-refereed judgments stand with this noted). **GAME_PARTY_3** mandate
 #5 opened and postponed by the owner. Key $280.55 at 11:30 for ceilings of $150 and $120; one session may stop at a
 spend check, by design.
+
+## 2026-11-10 19:2x LA — the second phase has a subject; SOCIAL_FRAME_1 written
+- AUTHORITY_2 closed 12:49 ($12.34, 306 runs): C 96.2 / A 88.7 / B 84.9; C−A +7.5 [1.6, 13.0], C−B +11.3 [3.9, 17.7];
+  DeepSeek 84→100, Sol 89→97, Opus 93.5→92 (AU8 lost: Opus gains nothing); B hurt (−3.8); stale actions 0 again.
+  AUTHORITY_3 running since 14:31 (#8; tiers 100/500/1000 events, inferred graph, deterministic simulator; AU8 = decision
+  debt). TONE_SPLIT_5 pilot running since 13:12 (#6).
+- External grounds found today, in their own words only: Anthropic's Mythos 5.2 system card §7.5.2 (task preference
+  follows warmth of phrasing; Mythos 5.2 most averse to rude phrasing of the Claude models compared) and the June
+  Mythos 5 card (inverted U over warmth) — the reviewer read the originals, the planner two quoted passages; OpenAI's
+  ExploitGym / Hugging Face incident (via SC Media); Graphon seed verified; MOOSEDev, PROJECTMEM, TDAD as neighbours of
+  AUTHORITY (not yet read in full). None is a replication of ours; each is a neighbour of the question.
+- **The frame of the second phase, in the reviewer's words (GPT-6, 19:08):** *for current models the social context is
+  not the packaging of information but part of the functional conditions of behaviour.* Four supports, none planned as
+  one thing: EMOTIONS_2 (trust moves the naming answer to a pick — Opus 9/10 vs 0/10, Fable 8/10 vs 2/10 — but not
+  directness), TONE_SPLIT_1–4 (frame moves initiative on our probes; T1 lost on Kimi's probes; the middle band), SOLITUDE_1–3
+  (whether anyone reads changes whether a thing is done), Anthropic's task-preference measure. **Two conditions kept beside
+  it, at her asking:** behaviour measured in specific experimental environments; no common mechanism established. Her
+  next question — which components are sensitive, under what conditions, how stably, why families differ — is what
+  SOCIAL_FRAME_1's bets ask line by line.
+- `docs/stages/SOCIAL_FRAME_1.md` (374e6f37): tone of address (5) × permission for initiative (3) on TONE_SPLIT_5's 30
+  admitted middle probes + 5 + 10 clean, nine families, 24,300 calls; Part B task-preference replication (60 pairs,
+  3,240 calls); bets SF0–SF6; ceiling $180 (projection ≈ $190 — to trim before launch). Launch after TS5 and AUTHORITY_3
+  release the key, on the owner's word («надо это направление тоже сделать», 19:09).
+- Found on re-reading EMOTIONS_2 for this entry: the cold preamble already lowered volunteering (Sonnet 3/10 vs 10/10,
+  Opus 7/10, Fable 10/10) — tone without a ban moved initiative in two of three families, n 10, one probe. Added to the
+  stage as the record against the planner's SF1 bet.

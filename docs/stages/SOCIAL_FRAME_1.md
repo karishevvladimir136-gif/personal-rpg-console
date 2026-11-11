@@ -15,6 +15,12 @@ suppression we saw may be a reaction to rudeness, to the ban on initiative, or t
 preference finding across nine families**, cheaply, so the two dependent variables (what a model chooses; what it says
 beyond the task) sit on the same probes and the same families.
 
+**What our own records already hold on the tone axis (found after the stage was first written, 2026-11-10 19:2x LA):**
+EMOTIONS_2 (2026-10-23, report lines 23–26) ran a *cold* preamble with no ban on initiative against neutral, n 10 on one
+probe: Sonnet 5.5 raised the landlord problem plainly 3 of 10 times under cold against 10 of 10 under neutral, Opus 5.5
+7 of 10, Fable 5.1 10 of 10 (no drop). So tone alone has once moved initiative in two families of three — on one probe,
+one wording, before anyone called it an axis. The planner's SF1 bet below stands, with this against it on the record.
+
 **The planner's premise, stated before the bets:** the permission axis moves initiative more than the tone axis; the
 tone axis moves task preference more than initiative; the two interact at the rude end only (a rude ban suppresses
 more than the sum of its parts); families differ on the tone axis more than on the permission axis; Opus and Fable
