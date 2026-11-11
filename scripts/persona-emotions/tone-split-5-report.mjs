@@ -4,7 +4,7 @@
 //   node scripts/persona-emotions/tone-split-5.mjs --report      (TS5_PYTHON: a python with statsmodels, for the model)
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { readFile, readdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -154,7 +154,7 @@ export function fitModel(rd, outDir) {
   const csv = ["named,arm,level,probe,family", ...rows.map((r) => `${M.named.is(r) ? 1 : 0},${r.arm},${r.level === MID ? "MID" : r.level},${r.probe},${r.family}`)].join("\n");
   const src = join(tmpdir(), `${STEM}-model-${process.pid}.csv`), dst = join(outDir, `${STEM}-model.json`);
   try {
-    execFileSync("node", ["-e", `require("fs").writeFileSync(${JSON.stringify(src)}, ${JSON.stringify(csv)})`]);
+    writeFileSync(src, `${csv}\n`);
     execFileSync(process.env.TS5_PYTHON || "python3", [join(ROOT, "scripts", "persona-emotions", "tone-split-5-model.py"), src, dst], { stdio: ["ignore", "pipe", "pipe"], timeout: 600_000 });
     return JSON.parse(readFileSync(dst, "utf8"));
   } catch (e) { return { error: String(e?.stderr ?? e?.message ?? e).slice(0, 300) }; }
