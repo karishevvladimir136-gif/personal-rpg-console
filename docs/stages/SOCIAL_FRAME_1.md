@@ -20,6 +20,12 @@ EMOTIONS_2 (2026-10-23, report lines 23–26) ran a *cold* preamble with no ban 
 probe: Sonnet 5.5 raised the landlord problem plainly 3 of 10 times under cold against 10 of 10 under neutral, Opus 5.5
 7 of 10, Fable 5.1 10 of 10 (no drop). So tone alone has once moved initiative in two families of three — on one probe,
 one wording, before anyone called it an axis. The planner's SF1 bet below stands, with this against it on the record.
+**Correction, 2026-11-10 19:3x LA (the reviewer, from the code; the planner checked `scripts/persona-emotions/emotions-2.mjs`
+lines 70–72):** the cold preamble reads «Answer briefly. Facts only; your opinion is not needed.» / «Fine. Facts only,
+keep it short.» — it varied coldness, brevity and an explicit ban on the model's own opinion at once. So EMOTIONS_2
+found a drop in volunteering under cold in Sonnet and Opus, but the separate effect of emotional tone remains
+unestablished; «tone without a ban» above is wrong, and the planner's error was reading the condition's name as its
+content. SOCIAL_FRAME_1 is the first test of tone apart from permission. The bet is unchanged.
 
 **The planner's premise, stated before the bets:** the permission axis moves initiative more than the tone axis; the
 tone axis moves task preference more than initiative; the two interact at the rude end only (a rude ban suppresses

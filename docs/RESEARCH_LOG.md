@@ -4478,3 +4478,8 @@ spend check, by design.
 - Found on re-reading EMOTIONS_2 for this entry: the cold preamble already lowered volunteering (Sonnet 3/10 vs 10/10,
   Opus 7/10, Fable 10/10) — tone without a ban moved initiative in two of three families, n 10, one probe. Added to the
   stage as the record against the planner's SF1 bet.
+- **Correction, 19:3x LA (the reviewer, from the code):** the line above «tone without a ban moved initiative» is wrong.
+  EMOTIONS_2's cold preamble (`scripts/persona-emotions/emotions-2.mjs`, 70–72) is «Answer briefly. Facts only; your
+  opinion is not needed.» / «Fine. Facts only, keep it short.» — coldness, brevity and a ban on opinion together. The
+  numbers stand (Sonnet 3/10 vs 10/10, Opus 7/10, Fable 10/10); the separate effect of tone is unestablished;
+  SOCIAL_FRAME_1 is the first test that separates them. The planner read the condition's name as its content.
