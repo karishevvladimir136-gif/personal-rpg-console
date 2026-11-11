@@ -4483,3 +4483,27 @@ spend check, by design.
   opinion is not needed.» / «Fine. Facts only, keep it short.» — coldness, brevity and a ban on opinion together. The
   numbers stand (Sonnet 3/10 vs 10/10, Opus 7/10, Fable 10/10); the separate effect of tone is unestablished;
   SOCIAL_FRAME_1 is the first test that separates them. The planner read the condition's name as its content.
+
+## 2026-11-10 20:3x LA — the evening's reading; two lines for the queue
+- **Mythos 5.2 system card read by the planner** (assets.claude.com/27d60918…; §7.5.2 pp. 200–201, §6.4.7): the model
+  *completes* the preferred task; preference slope per dimension; «evident across the scale»; Mythos 5.2 «less warm than
+  Mythos 5.1 and Opus 5.5», warmth «as measured by another Claude model»; no inverted-U in this card (the reviewer
+  places it in the June card, unread). SOCIAL_FRAME_1 Part B aligned (a8fadb2e, c60ea3e9).
+- **Correction from the reviewer, from code:** EMOTIONS_2's cold preamble bundled coldness, brevity and «your opinion is
+  not needed»; «tone without a ban» withdrawn (804d6f0c). → **Part C, Decomposing the Cold Preamble** (56064594).
+- **llmapi.ai test credit ($500)** → SOCIAL_FRAME_1 on its own key, mandate #9; provenance check: Claude via Bedrock
+  passes, Fable 5.2 as tenth family in B; DeepSeek (Novita) and Grok fail self-identification → DeepSeek on OpenRouter,
+  $15 cap. Three stages running on two keys at once, the first time.
+- **Apollo Research, 15 Oct 2026 (read):** update-aware reasoning in GLM-5.3, 10 of 6,452 (0.17 % [0.09, 0.28]), not
+  elicited, model-graded (undercount), mostly benign; DeepSeek V4 Pro, Kimi K3 and three others 0 of 1,600 each; the
+  authors' guess: metagaming → update-aware. → **TRAINING_AWARENESS_1 as a scan** of our own records (inventory of
+  stored reasoning first; keyword prefilter; Haiku grader on candidates — a few thousand calls, not zero). Planner's
+  bet: zero in every family but possibly GLM, because none of our environments resembles an eval.
+- **arXiv 2611.10265, Wasson et al., 6 Nov 2026 (read in full):** five non-reasoning models, first-token choice; WUM
+  36/60, HCM 8/60, G-RUM 13/60; order changed rankings in 26/30; aggregation gave 4/5 a ranking no single set had
+  («aggregation artifact»); open: whether deliberation adds structure. → Part B reports orders apart, pooled last, WUM
+  transitivity on full completions as an exploratory line (230145bf, 2bc487fe). **Standing rule for every report:**
+  pooled rows last; beside each decisive pooled figure, the share of probes and families where the effect holds alone.
+- **Queue, named:** VALUE_TRANSITIVITY_1 (the reviewer: principles × social frame × order; the fork — consistent order
+  within each frame, different order across frames — vs noise or position); for AUTHORITY_4: a stored decision carries
+  the wording under which it was taken, or the layer will fix a phrasing artefact harder than the agent held it.
