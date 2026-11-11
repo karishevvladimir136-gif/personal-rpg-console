@@ -134,6 +134,11 @@ def scoped_walk(s, graph, retrieved_ids):
         root = w["paths"][d][0]
         if d in R and root not in rel:
             rel.append(root)
+    # one correction, one scope: whatever a relevant root's reviser revokes is relevant too
+    revisers = {c for r in rel for c in w["revoked_by"].get(r, [])}
+    for r in w["roots"]:
+        if r not in rel and set(w["revoked_by"].get(r, [])) & revisers:
+            rel.append(r)
     walked = [d for d in w["walked"] if w["paths"][d][0] in rel][: K.WALK_CAP]
     cut = {"items": w["items"], "revoked_by": w["revoked_by"], "expired": [x for x in w["expired"] if x in rel],
            "roots": rel, "walked": walked, "paths": {d: w["paths"][d] for d in walked}}

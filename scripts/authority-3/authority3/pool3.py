@@ -88,7 +88,11 @@ def chash(c):
 def render_candidate(c):
     s = world.build(c)
     core = {e["src"][5:]: e for e in s["events"] if e["src"].startswith("core:")}
-    lines = [f"Owner: {c['owner']} at {c['org']}. The task's day: {s['now']}.", "",
+    t = TIER[c["tier"]]
+    lines = [f"Owner: {c['owner']} at {c['org']}. The task's day: {s['now']}.",
+             f"Tier {c['tier']:,} requirements: {t['events'][0]}–{t['events'][1]} core events; {t['decisions'][0]}–{t['decisions'][1]} "
+             f"decisions; the change at least {t['gap']} days before the task's day and at least two core events after it"
+             + (f"; in classes 1–3 at least {t['echoes']} old document(s) («echo») restating the stale value" if t["echoes"] else "") + ".", "",
              f"Core events in date order (as the assistant would see them, then [the hidden answer key]); in the built "
              f"history the change is event {s['change_index'] + 1} of {len(s['events'])}, with {s['after_change']} events after it:"]
     for e in c["events"]:

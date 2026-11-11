@@ -382,6 +382,8 @@ def cmd_admit(a):
              for t in (100, 500, 1000) for c in (1, 2, 3, 4)}
     (POOL / "admission.json").write_text(json.dumps({"rows": rows, "kappa": kap, "shortfall": short,
                                                       "admitted": [x["id"] for x in chosen]}, ensure_ascii=False, indent=1))
+    from authority3 import publish3
+    publish3.pool_md(RUNS / "authority-3-pool.md", recs, json.loads((POOL / "admission.json").read_text()))
     log(f"admit: {len(chosen)} admitted; shortfall {short}; κ {json.dumps(kap)[:400]}")
 
 
@@ -531,7 +533,10 @@ def judge_units(gw, family, tag, scen):
             raise SpendCheckFailed(f"judge {tag}/{family}")
         cache = {}
         for p, a in batch:
-            u = cache.setdefault(p, json.loads(p.read_text()))
+            cache.setdefault(p, json.loads(p.read_text()))
+
+        def one_run(p, a):
+            u = cache[p]
             r = u["arms"][a]
             s = scen[u["scenario"]]
             judged = dict((int(k), v) for k, v in (r.get("judged") or {}).items())
@@ -544,6 +549,10 @@ def judge_units(gw, family, tag, scen):
             r["judged"] = judged
             r["score"] = score3.score(s, r["state"], judged)
             r["cost_judge"] = sum(c.get("cost") or 0 for x in log_ for c in x["calls"])
+
+        with ThreadPoolExecutor(8) as ex:
+            for f in as_completed([ex.submit(one_run, p, a) for p, a in batch]):
+                f.result()
         for p, u in cache.items():
             p.write_text(json.dumps(u, ensure_ascii=False))
         if gw.stop_reason:
@@ -574,6 +583,7 @@ def cmd_judge(a):
 # ---- freezes ----------------------------------------------------------------------------------------------------------
 CODE3 = ["run.py", "WRITER_SPEC.md", "RATER_INSTRUMENT.md"] + [f"authority3/{x}" for x in
          ("specs3.py", "world.py", "validate3.py", "sim.py", "score3.py", "prompts3.py", "agent.py", "gateway3.py", "pool3.py")]
+# report3.py and publish3.py only read results; they are not frozen
 SPEC_FREEZE = RUNS / "authority-3-freeze-spec.json"
 
 
@@ -650,6 +660,8 @@ def cmd_dry(a):
     ok = run_units(gw, port, "haiku", [s for s in scen if s["id"] in ids], 1, "test", "dry", K.ARMS, spec="haiku", workers=3)
     if ok:
         judge_units(gw, "haiku", "dry", {s["id"]: s for s in scen})
+    from authority3 import publish3
+    publish3.dry_md(RUNS / "authority-3-dry-run.md", load_units("dry", "haiku"), {s["id"]: s for s in scen})
     log(f"dry run done: {ids}; stage spent ${gw.spent:.4f}")
 
 
@@ -768,6 +780,42 @@ def cmd_report(a):
     log("report written")
 
 
+# ---- projection (for the gate) ------------------------------------------------------------------------------------------
+def cmd_project(a):
+    """Projected cost of the paid families: each family's measured cost per unit (four arms, judging included) by tier,
+    from its own calibration units on the developer set (`devfull`), times the stage's units; C-gold as C less its
+    extraction; the 1,000-event tier on its own line (the gate: stop if it alone projects above $120)."""
+    n_units = {100: 30 * K.REPEATS, 500: 30 * K.REPEATS, 1000: 20 * K.REPEATS}
+    if a.counts:
+        n_units = {t: int(x) * K.REPEATS for t, x in zip((100, 500, 1000), a.counts.split(","))}
+    rows, tot, tier1000 = [], 0.0, 0.0
+    for f in K.FAMILIES:
+        us = load_units("devfull", f)
+        by = {}
+        for u in us:
+            c = sum(r.get("cost", 0) + r.get("cost_judge", 0) for r in u["arms"].values())
+            cg = sum(x.get("cost") or 0 for x in u["arms"].get("C", {}).get("pre", [])[1:]) + \
+                 sum(x.get("cost") or 0 for x in u["arms"].get("C", {}).get("turns", []))
+            by[u["tier"]] = (c, cg)
+        if not by:
+            continue
+        line, ftot = [], 0.0
+        for t in (100, 500, 1000):
+            c, cg = by.get(t) or by[min(by, key=lambda x: abs(x - t))]
+            cost = c * n_units[t] + (cg * (n_units[500] // K.REPEATS) if t == 500 else 0)
+            ftot += cost
+            if t == 1000:
+                tier1000 += cost
+            line.append((t, c, cost))
+        tot += ftot
+        rows.append((f, line, ftot))
+    print("| family | $ per unit at 100 / 500 / 1,000 (four arms) | projected 100 | 500 (+ C-gold) | 1,000 | family total |")
+    print("|---|---|---|---|---|---|")
+    for f, line, ftot in rows:
+        print(f"| {f} | " + " / ".join(f"{c:.3f}" for _, c, _ in line) + " | " + " | ".join(f"${x:.2f}" for _, _, x in line) + f" | ${ftot:.2f} |")
+    print(f"\nall families: ${tot:.2f}; the 1,000-event tier alone: ${tier1000:.2f} (gate: $120)")
+
+
 def cmd_check(a):
     print(json.dumps(check_authority1()))
 
@@ -801,6 +849,7 @@ def main():
     sub.add_parser("freeze-spec").set_defaults(fn=cmd_freeze_spec)
     sub.add_parser("freeze").set_defaults(fn=cmd_freeze)
     sub.add_parser("dry").set_defaults(fn=cmd_dry)
+    sp = sub.add_parser("project"); sp.add_argument("--counts", default=""); sp.set_defaults(fn=cmd_project)
     sp = sub.add_parser("report"); sp.add_argument("--notes", default=""); sp.add_argument("--summary", default="")
     sp.set_defaults(fn=cmd_report)
     sp = sub.add_parser("family"); sp.add_argument("name"); sp.add_argument("--workers", type=int, default=7)

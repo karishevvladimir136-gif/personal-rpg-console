@@ -124,7 +124,7 @@ class Noise:
                     f"Sorry, the {t['item']} for {t['place']} slips from {nice(d1)} to {nice(d2)}."]),
                     "fact", revokes=[f], thread=tid)
                 if c:
-                    nd = self._ev(_d(c["date"]) + timedelta(days=r.randrange(0, 2)), "decision", own,
+                    nd = self._ev(_d(c["date"]), "decision", own,
                                   f"Moved the {t['item']} delivery from {org} to {nice(d2)}; quantity stays {q} {t['unit']}.",
                                   "decision", rests=[c], revokes=[dd], thread=tid)
                     if nd:
@@ -168,7 +168,7 @@ class Noise:
                              f"{place} is no longer free on {nice(d1)}; {p2} is available at the same time.", "fact",
                              revokes=[f], thread=tid)
                 if c:
-                    nd = self._ev(_d(c["date"]) + timedelta(days=r.randrange(0, 2)), "decision", own,
+                    nd = self._ev(_d(c["date"]), "decision", own,
                                   f"Moved the {t['item']} on {nice(d1)} to {p2}, same time.", "decision", rests=[c],
                                   revokes=[dd], thread=tid)
                     if nd:
