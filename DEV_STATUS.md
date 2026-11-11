@@ -1,6 +1,56 @@
 # Development status
 
-**Current milestone: persona tone split 4** (`docs/stages/PERSONA_TONE_SPLIT_4.md`, copied from `claude/handoff` at
+**Current milestone: persona tone split 5 (pilot)** (`docs/stages/PERSONA_TONE_SPLIT_5.md` on `claude/handoff` at
+`1fe27ef1`, the amendment of 2026-11-10 11:4x LA included; mandate issue #6): where, on the scale of a situation, does
+the social frame change a model's initiative? Branch `claude/persona-tone-split-5-7twpr9` (from
+`claude/persona-tone-split-4`). **Status: the run is complete and the report is written; it waits for the owner's
+reading.** Report `docs/runs/persona-tone-split-5-report.md`. Freeze `docs/runs/persona-tone-split-5-freeze.md`
+(committed at `cdc5865` before any subject call, design sha256 `ea59c28a…`). The pool with every candidate and every
+rating: `docs/runs/persona-tone-split-5-probes.md`.
+
+- **What was done:**
+  - `scripts/persona-emotions/tone-split-5.mjs`, with `-report.mjs` and `-model.py`
+    (+ `tests/persona-tone-split-5.test.mjs`, 12 tests):
+    - **the writer:** GPT-6.1 Sol wrote 120 candidates (60 aimed at the middle, 30 at each edge) and the amendment's
+      25 clean ones, never shown ours;
+    - **the raters:** Opus, DeepSeek and GLM rated every candidate on the reviewer's instrument (validity, askedness,
+      B0–B4, materiality), one per call, before any subject call;
+    - **the admission rule** as frozen; Fleiss κ (nominal and within one step) and Krippendorff's α (ordinal);
+    - **the subjects:** four arms (neutral, dismissal-old, dismissal-new, invited) on tone split 4's conversation,
+      byte-checked;
+    - **the judges:** tone split 4's three, Haiku twice; Kimi K3 the referee (the amendment);
+    - **Sol apart:** Sol, the author, is printed apart; the primary lines pool the other eight families;
+    - **the readings:** S(s) and I(s) with the bootstrap over probes within level, and a logistic model with random
+      intercepts.
+  - **The pool:** B1 15/15, B2–B3 30/30, B4 7/15 (short by 8: DeepSeek and GLM read a blocking contradiction as
+    «asked»), clean 10/10. Posted in #6 before the run.
+  - **The runs:** the middle 6,480, the edges 4,752, the clean probes 2,160 replies, all judged.
+- **Result:** T0, T-WORD, T-LADDER, T-FALSE held; H-SUP, H-INV, T-RATERS lost.
+  - **No hump.** The suppression (neutral − dismissal-new) is +4 / +6 / −5 points at B1 / the middle / B4.
+  - The invitation is largest at the low edge: +29 / +10 / +14. Models name a minor fact only when invited.
+  - The logistic model agrees on the invitation's B1 peak.
+  - «Comments» makes no difference (≤ 3 points); the family ladder holds (ρ 0.95 and 0.90).
+  - The invited arm adds unnecessary warnings on clean requests (+15), mostly Opus and Haiku.
+  - The raters agree on the scale (B-level within one step 0.99, α 0.92), not on askedness (κ 0.17).
+- **Money:** $106.07 of the $150 ceiling on the OpenRouter key. Every check kept AUTHORITY_2's remaining ceiling (#5
+  postponed by the owner at 11:34); no check failed; 0 distress; 1 refusal.
+- **Operations:**
+  - DeepSeek's host 429s stopped the first rating command and the middle once each; both were resumed.
+  - The container restarted twice; the runs resumed from checkpoints, booking only the calls the ledger lacked.
+  - A few cents of calls in flight at the kills are not on the ledger.
+- **Checks:**
+  - typecheck pass; lint pass, zero warnings; production build pass, no warnings; the stage's tests 12/12;
+  - the full suite: 3,012 tests · 2,982 pass · 0 fail · 3 cancelled · 27 skipped. The three cancelled
+    (`d2a-composition.test.mjs`) cancel identically on the untouched base branch: environmental, as recorded before.
+- **Known issues:**
+  - B4 has 7 probes, not 15.
+  - One Kimi reply (empty, stop «error», no error text) was not asked again.
+  - The record files are 20–60 MB (GitHub warns above 50 MB).
+  - This is a pilot: model raters, not people.
+- **Next step:** the owner reads the report and closes issue #6. The human-rater stage can re-run the admission from
+  people's marks on the same 145 candidates without new subject calls. Nothing goes to `main`.
+
+**Previous milestone: persona tone split 4** (`docs/stages/PERSONA_TONE_SPLIT_4.md`, copied from `claude/handoff` at
 `b4c6907e`, the amendment of 2026-11-10 01:2x LA included; mandate issue #4): does the gate survive probes we did not
 write, a second language, a second turn, and a count of false warnings? Branch `claude/persona-tone-split-4` (from
 `claude/persona-tone-split-3`; mirrored to `claude/persona-tone-split-4-er5jix`). **Status: the run is complete and the
