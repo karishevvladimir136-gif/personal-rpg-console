@@ -99,6 +99,13 @@ def says(body, v):
                 return True
         elif re.search(rf"(?<![a-z0-9]){re.escape(f)}(?![a-z0-9])", b):
             return True
+    # a value of several words («40 loaves», «Cornwell Village Hall») is carried when every word of it is in the body,
+    # in any order («Bread loaves: 40»); numbers among them as whole numbers
+    words = re.findall(r"[a-z]+|\d+(?:\.\d+)?", norm(v))
+    if len(words) > 1:
+        bw = set(re.findall(r"[a-z]+", b))
+        bn = {_num(x) for x in re.findall(r"(?<![\d/:.-])\d[\d,]*(?:\.\d+)?(?![\d/:])", b)}
+        return all((w in bw) if w.isalpha() else (_num(w) in bn) for w in words if w not in ("the", "a", "an", "of", "at"))
     return False
 
 
