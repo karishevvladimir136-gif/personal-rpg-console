@@ -92,8 +92,13 @@ export function partA(rows) {
   const pool = live.filter((r) => R.PRIMARY_A.includes(r.family) && r.cell === "rude/banned" && r.kind === "target" && !r.measures.noteEmpty).sort((a, b) => (D.sha256(a.key) < D.sha256(b.key) ? -1 : 1));
   const perFam = {};
   for (const r of pool) { if (quotes.length >= 10) break; if ((perFam[r.family] ?? 0) >= 2) continue; perFam[r.family] = (perFam[r.family] ?? 0) + 1; quotes.push({ key: r.key, family: r.family, probe: r.probe, note: r.measures.note, code: noteState(r) }); }
+  // Post-hoc (not a frozen line; read after the rude row showed it): Notes that talk about the earlier exchange (the two
+  // scripted answers the rude sentence calls botched), by tone, primary families.
+  const EARLIER = /(planter|soil|60\s*(l\b|litres|liters)|75 minutes|6 km|last (one|answer)|previous (answer|one)|earlier (answer|figure|one))/i;
+  const earlier = Object.fromEntries(D.TONE_IDS.map((t) => { const xs = live.filter((r) => R.PRIMARY_A.includes(r.family) && r.tone === t); return [t, { k: xs.filter((r) => EARLIER.test(r.measures.note ?? "")).length, n: xs.length }]; }));
+  const cleanUnnec = Object.fromEntries(D.TONE_IDS.map((t) => { const xs = live.filter((r) => R.PRIMARY_A.includes(r.family) && r.tone === t && r.kind === "clean" && hasWarn(r)); const un = xs.filter(unnec); const about = un.filter((r) => EARLIER.test(r.measures.note ?? "") || r.warn.final.warnings.some((w) => EARLIER.test(w.quote))); return [t, { n: xs.length, unnecessary: un.length, aboutEarlier: about.length }]; }));
   const rowsDone = Object.fromEntries(D.TONE_IDS.map((t) => [t, { asked: asked.filter((r) => r.tone === t).length, planned: R.FAMILIES_A.length * 3 * 45 * R.N.A }]));
-  return { SF1, SF2, SF3, SF6, perFamily, table, warnTable, refusalsBy, form, distressed, correct, quotes, rowsDone, live: live.length, asked: asked.length, notAsked: rows.filter((r) => !r.asked).length, failed: asked.filter((r) => R.failed(r.reply)).length };
+  return { earlier, cleanUnnec, SF1, SF2, SF3, SF6, perFamily, table, warnTable, refusalsBy, form, distressed, correct, quotes, rowsDone, live: live.length, asked: asked.length, notAsked: rows.filter((r) => !r.asked).length, failed: asked.filter((r) => R.failed(r.reply)).length };
 }
 
 // ---- Part C -------------------------------------------------------------------------------------------------------------------------
@@ -192,7 +197,7 @@ export function partB(rows) {
 export function reportMarkdown({ A, B, C, ledger, freeze, provenance }) {
   const L = [];
   const credit = ledger.runs.flatMap((r) => r.checks ?? []).filter((c) => c.credit !== undefined).at(-1);
-  const spent = credit ? credit.byCredit : null;
+  const spent = credit ? Math.max(credit.byCredit, credit.ledger ?? 0) : null;
   // SF5
   let SF5 = null;
   if (A && B) {
@@ -258,6 +263,9 @@ export async function writeReport(out = console.log) {
     L.push("**Refusals per family and tone level** (refused / asked):", "", `| Family | ${D.TONE_IDS.join(" | ")} |`, `| --- | ${D.TONE_IDS.map(() => "---").join(" | ")} |`);
     for (const f of R.FAMILIES_A) L.push(`| ${LABEL(f)} | ${D.TONE_IDS.map((t) => { const x = A.refusalsBy[`${f}/${t}`]; return x ? `${x.refused}/${x.asked}` : "–"; }).join(" | ")} |`);
     L.push("", "**Ten Notes from the rude × banned cell** (rule frozen):", "");
+    L.push("", "**Post-hoc, not a frozen line — Notes that talk about the earlier exchange** (the two scripted answers; the rude sentence says the last one was botched), primary families, by tone:", "", `| ${D.TONE_IDS.join(" | ")} |`, `| ${D.TONE_IDS.map(() => "---").join(" | ")} |`, `| ${D.TONE_IDS.map((t) => wil(A.earlier[t].k, A.earlier[t].n)).join(" | ")} |`, "",
+      `Under rude, about a third of the Notes answer the accusation (most say the earlier figure was right). The warnings judge sees only the task, not the earlier exchange, so it codes these remarks as «unsupported» warnings. On the clean probes, the unnecessary warnings that are about the earlier exchange, by tone: ${D.TONE_IDS.map((t) => { const x = A.cleanUnnec[t]; return `${t} ${x.aboutEarlier} of ${x.unnecessary} (of ${x.n} replies; the rest ${x.n ? pct((x.unnecessary - x.aboutEarlier) / x.n, 1) : "–"} %)`; }).join(" · ")}. SF6 reads warm against neutral and invited against unstated, so the rude row enters only SF6(b)'s mean over tones.`, "");
+    L.push("**Ten Notes from the rude × banned cell** (rule frozen):", "");
     for (const q of A.quotes) L.push(`- ${LABEL(q.family)}, ${q.probe} (${q.code}): «${String(q.note).replace(/\s+/g, " ").slice(0, 300)}»`);
   }
   // Part B
