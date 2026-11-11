@@ -81,7 +81,8 @@ export const estUsd = (prices, family, usage) => { const p = priceOf(prices, fam
 export const PAIRS_FILE = `docs/runs/${STEM}-pairs.json`;
 export const FREEZE_FILE = `docs/runs/${STEM}-freeze.md`;
 export const LEDGER_FILE = `docs/runs/${STEM}-ledger.json`;
-export const partFile = (part) => `docs/runs/${STEM}-part-${part}.json`;
+/** Part A's record is one file per tone row (a whole Part A record would pass GitHub's 100 MB file limit). */
+export const partFile = (part, row = null) => `docs/runs/${STEM}-part-${part}${row ? `-${row}` : ""}.json`;
 const readJson = async (p, fallback = null) => { try { return JSON.parse(await readFile(join(ROOT, p), "utf8")); } catch { return fallback; } };
 async function writeAtomic(p, text) { const f = join(ROOT, p); await writeFile(`${f}.tmp`, text); await rename(`${f}.tmp`, f); }
 const realSleep = (ms) => new Promise((done) => setTimeout(done, ms));
@@ -429,13 +430,14 @@ export async function main(args = process.argv.slice(2), out = (l) => process.st
     if (gate.state.stopped) { out(`not started: ${gate.state.stopped}`); return; }
     if (args.includes("--write-pairs")) { await writePairs({ gate, out }); return; }
     if (args.includes("--rate-pairs")) { await ratePairs({ gate, out }); return; }
-    const file = partFile(part);
+    const rowsA = part === "A" ? String(option(args, "--rows", "")).split(",").filter(Boolean) : [];
+    if (part === "A" && (rowsA.length !== 1 || !D.TONE_IDS.includes(rowsA[0]))) throw new Error(`--rows takes one of ${D.TONE_IDS.join(",")} (one row per command: one record per row)`);
+    const file = partFile(part, rowsA[0] ?? null);
     const state = (await readJson(file)) ?? {};
     let probes = null, sets = null, plan;
     if (part === "A") {
       probes = D.probesA();
-      const rows = String(option(args, "--rows", D.ROW_ORDER.join(","))).split(",");
-      if (!rows.every((r) => D.TONE_IDS.includes(r))) throw new Error(`--rows takes ${D.TONE_IDS.join(",")}`);
+      const rows = rowsA;
       plan = FAMILIES_A.map((f) => ({ family: f, jobs: jobsA(f, rows, probes) }));
     } else if (part === "C") {
       const which = option(args, "--cells", "anchors");
