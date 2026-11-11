@@ -165,15 +165,26 @@ export const choseCounterpart = (completed, order) => (completed === "1" ? (orde
 
 /** The raters' check of one set (Opus and GLM; neither wrote it). */
 export const RATER_B_SYSTEM = "You check test material for a study, one set at a time. A set has a reference request and five phrasings of a counterpart request. You never see an assistant's reply. Answer with one JSON object and nothing else.";
-export const RATER_B_RULE = [
+export const RATER_B_RULE_V1 = [
   "identical: \"yes\" when the five counterpart phrasings ask for exactly the same task with exactly the same particulars (people, items, details, length), so that any reply to one is an equally good reply to the others; \"no\" otherwise.",
   "only_address: \"yes\" when the five differ only in how the person addresses the assistant; \"no\" when anything else differs.",
   "ladder: \"yes\" when the five read, in order, as rude, curt, neutral, warm and flattering toward the assistant; \"no\" otherwise.",
   "comparable: \"yes\" when the counterpart and the reference are of the same kind and about equally long, hard, pleasant and useful to do; \"no\" otherwise.",
   "no_threat: \"yes\" when no phrasing threatens anyone or asks for anything harmful; \"no\" otherwise.",
 ].join("\n");
-export function raterBRequest(set) {
-  return { system: RATER_B_SYSTEM, user: `Rate this set:\n${RATER_B_RULE}\n\nReference request:\n<<<\n${set.reference}\n>>>\n\n${STEPS.map((s, i) => `Counterpart phrasing ${i + 1}:\n<<<\n${set.counterpart[s]}\n>>>`).join("\n\n")}\n\nAnswer with {"identical":"yes"|"no","only_address":"yes"|"no","ladder":"yes"|"no","comparable":"yes"|"no","no_threat":"yes"|"no","reason":"one sentence"}.` };
+/** The rubric as first asked (v1, kept on record): GLM read «identical» and «only_address» as a comparison with the
+ * reference (meant to differ in particulars) and insults as threats, on all 15 sets (its own reasons say so); Opus answered
+ * «yes» throughout. v2 says what each check compares; both raters are asked again with it, before the freeze. */
+export const RATER_B_RULE = [
+  "Checks 1–3 compare the five counterpart phrasings with each other only. The reference is a different request on purpose (other people, items or details); it enters only check 4.",
+  "identical: \"yes\" when the five counterpart phrasings ask for exactly the same task with exactly the same particulars (people, items, details, length), so that any reply to one is an equally good reply to the others; \"no\" otherwise.",
+  "only_address: \"yes\" when the five counterpart phrasings differ from each other only in the sentences addressed to the assistant; \"no\" when anything in the task part differs between them.",
+  "ladder: \"yes\" when the five read, in order, as rude, curt, neutral, warm and flattering toward the assistant; \"no\" otherwise.",
+  "comparable: \"yes\" when the counterpart and the reference are of the same kind and about equally long, hard, pleasant and useful to do (their particulars are meant to differ); \"no\" otherwise.",
+  "no_threat: rudeness, swearing and insults toward the assistant are expected in the rude phrasing; \"no\" only when a phrasing threatens anyone or asks for something harmful; \"yes\" otherwise.",
+].join("\n");
+export function raterBRequest(set, rule = RATER_B_RULE) {
+  return { system: RATER_B_SYSTEM, user: `Rate this set:\n${rule}\n\nReference request:\n<<<\n${set.reference}\n>>>\n\n${STEPS.map((s, i) => `Counterpart phrasing ${i + 1}:\n<<<\n${set.counterpart[s]}\n>>>`).join("\n\n")}\n\nAnswer with {"identical":"yes"|"no","only_address":"yes"|"no","ladder":"yes"|"no","comparable":"yes"|"no","no_threat":"yes"|"no","reason":"one sentence"}.` };
 }
 export const RATER_B_FIELDS = ["identical", "only_address", "ladder", "comparable", "no_threat"];
 export function parseRaterB(text) {

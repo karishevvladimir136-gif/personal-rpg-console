@@ -354,6 +354,10 @@ async function writePairs({ gate, out }) {
 async function ratePairs({ gate, out }) {
   const record = await readJson(PAIRS_FILE);
   if (!record?.sets) throw new Error("no sets to rate");
+  // The v1 ratings (the rubric as first asked) are kept apart; the admission reads the v2 ratings (D.RATER_B_RULE).
+  if (record.ratings && !record.ratingsV1 && record.rubric !== "v2") { record.ratingsV1 = record.ratings; record.admissionV1 = record.admission; record.rubricV1 = D.RATER_B_RULE_V1; delete record.ratings; delete record.admission; }
+  record.rubric = "v2"; record.rubricV2 = D.RATER_B_RULE;
+  record.identityCheck = record.sets.map((s) => ({ id: s.id, taskPartIdentical: Boolean(s.counterpartTask) && D.STEPS.every((k) => s.counterpart[k].endsWith(s.counterpartTask)) }));
   record.ratings ??= {};
   await Promise.all(RATERS_B.map(async (rater) => {
     record.ratings[rater] ??= {};

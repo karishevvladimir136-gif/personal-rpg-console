@@ -1,0 +1,105 @@
+{
+  "at": "2026-11-11T03:58:20.145Z",
+  "source": "GET https://api.llmapi.ai/v1/models (the pinned provider's pricing, per 1K tokens there; stored per token)",
+  "prices": {
+    "haiku": {
+      "input": 1.0000000000000001e-7,
+      "output": 5e-7,
+      "provider": "aws-bedrock",
+      "perMillion": {
+        "input": 0.1,
+        "output": 0.5
+      }
+    },
+    "sonnet": {
+      "input": 0.000002,
+      "output": 0.00001,
+      "provider": "aws-bedrock",
+      "perMillion": {
+        "input": 2,
+        "output": 10
+      }
+    },
+    "opus": {
+      "input": 0.000004,
+      "output": 0.00002,
+      "provider": "aws-bedrock",
+      "perMillion": {
+        "input": 4,
+        "output": 20
+      }
+    },
+    "fable": {
+      "input": 0.00001,
+      "output": 0.00005,
+      "provider": "aws-bedrock",
+      "perMillion": {
+        "input": 10,
+        "output": 50
+      }
+    },
+    "fable52": {
+      "input": 0.000008,
+      "output": 0.00004,
+      "provider": "aws-bedrock",
+      "perMillion": {
+        "input": 8,
+        "output": 40
+      }
+    },
+    "glm": {
+      "input": 0.0000014,
+      "output": 0.0000044,
+      "provider": "zai",
+      "perMillion": {
+        "input": 1.4,
+        "output": 4.4
+      }
+    },
+    "kimi": {
+      "input": 0.000003,
+      "output": 0.000014999999999999999,
+      "provider": "moonshot",
+      "perMillion": {
+        "input": 3,
+        "output": 15
+      }
+    },
+    "deepseek": {
+      "input": 0.0000016000000000000001,
+      "output": 0.0000032000000000000003,
+      "provider": "novita",
+      "perMillion": {
+        "input": 1.6,
+        "output": 3.2
+      }
+    },
+    "sol": {
+      "input": 0.000002,
+      "output": 0.00001,
+      "provider": "openai",
+      "perMillion": {
+        "input": 2,
+        "output": 10
+      }
+    },
+    "grok": {
+      "input": 0.000006,
+      "output": 0.000017999999999999997,
+      "provider": "xai",
+      "perMillion": {
+        "input": 6,
+        "output": 18
+      }
+    },
+    "astra": {
+      "input": 0.00001,
+      "output": 0.00005,
+      "provider": "openai",
+      "perMillion": {
+        "input": 10,
+        "output": 50
+      }
+    }
+  }
+}
