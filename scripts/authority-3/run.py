@@ -115,13 +115,15 @@ class SpendCheckFailed(Exception):
 
 
 KEY_BASE = 280.5466        # the key's credit when #6 and AUTHORITY_2 started (19:49 UTC, both sessions' first check)
+KEY_BASE_USAGE = 1900 - KEY_BASE   # the key's cumulative usage then (robust to top-ups: usage only grows with spend)
 A2_SPENT = 12.3419        # AUTHORITY_2's whole spend on the key (its report)
+NEED_6 = 95.0 + 30.0 + 2.2147   # the owner's rule of 2026-11-11 01:58 UTC (#8): #6's own projection, subjects + judges, from $2.21
 
 
-def reserve_6(credit_left=None, stage_spent=0.0):
-    """#6's remaining ceiling: $150 less #6's spend. #6's spend is the larger of what it last reported (thread or
-    ledger, recorded in RESERVE_LOG) and what the key shows: the fall since $280.55 less AUTHORITY_2's and this stage's
-    own spend (no other user of the key is known). Zero once #6 has posted its closing spend."""
+def reserve_6(credit=None, stage_spent=0.0):
+    """The owner's rule (#8, 01:58 UTC): keep for #6 only its remaining projected need — ≈ $95 subjects + $30 judges,
+    less what it has spent on the key since its $2.21 — not its ceiling. #6's spend is the larger of what it last
+    reported and what the key shows (cumulative usage since $280.55, less AUTHORITY_2's and this stage's own spend)."""
     spent6, src, closed = 0.0, "no spend reported by #6", False
     if RESERVE_LOG.exists():
         rows = [json.loads(x) for x in RESERVE_LOG.read_text().splitlines() if x.strip()]
@@ -130,11 +132,11 @@ def reserve_6(credit_left=None, stage_spent=0.0):
             closed = any(r.get("closed") for r in rows)
     if closed:
         return 0.0, f"#6 closed: {src}"
-    if credit_left is not None:
-        on_key = KEY_BASE - credit_left - A2_SPENT - stage_spent
+    if credit and credit.get("usage") is not None:
+        on_key = credit["usage"] - KEY_BASE_USAGE - A2_SPENT - stage_spent
         if on_key > spent6:
-            spent6, src = on_key, f"the key's fall since ${KEY_BASE} less AUTHORITY_2 and this stage (#6 last reported ${spent6:.2f}: {src})"
-    return max(0.0, K.CEILING_6 - spent6), src
+            spent6, src = on_key, f"the key's usage since ${KEY_BASE} less AUTHORITY_2 and this stage (#6 last reported ${spent6:.2f}: {src})"
+    return max(0.0, NEED_6 - spent6), src
 
 
 def ledger_total():
@@ -146,7 +148,7 @@ def spend_check(gw, need, label):
     with gw.lock:
         gw.spent = max(gw.spent, ledger_total())
     c = client.credits()
-    res, src = reserve_6(c.get("left"), gw.spent) if "error" not in c else (K.CEILING_6, "credit unreadable")
+    res, src = reserve_6(c, gw.spent) if "error" not in c else (K.CEILING_6, "credit unreadable")
     avail = (c["left"] - res) if "error" not in c else None
     ok = avail is not None and avail >= need + 5 and gw.spent + need <= gw.cap
     row = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"), "before": label, "credit_left": c.get("left"),
@@ -714,7 +716,14 @@ def cmd_family(a):
     fam = a.name
     assert fam in K.FAMILIES
     scen = built("test")
-    order = sorted(scen, key=lambda s: ({1000: 0, 500: 1, 100: 2}[s["tier"]] if a.big_first else 0, s["id"]))
+    # round-robin over the tiers (each tier in id order), so a family the money stops partway covers every tier evenly
+    by_t = {t: sorted([s for s in scen if s["tier"] == t], key=lambda s: s["id"]) for t in (100, 500, 1000)}
+    order, i = [], 0
+    while any(by_t.values()):
+        for t in (1000, 500, 100):
+            if by_t[t] and (t != 1000 or i % 3 != 2):   # 18 : 30 : 29 — the 1,000 tier skips every third round
+                order.append(by_t[t].pop(0))
+        i += 1
     gw, port = start_gateway()
     try:
         if run_units(gw, port, fam, order, K.REPEATS, "test", "test", K.ARMS, spec=fam, workers=a.workers):
@@ -868,7 +877,8 @@ def cmd_spend(a):
     _stub_embedder()
     gw, _ = start_gateway(embed=False)
     c = client.credits()
-    print(json.dumps({"credit": c, "reserve_for_6": reserve_6(c.get("left"), gw.spent), "stage_spent": gw.spent, "cap": gw.cap}))
+    gw.spent = max(gw.spent, ledger_total())
+    print(json.dumps({"credit": c, "reserve_for_6": reserve_6(c, gw.spent), "stage_spent": gw.spent, "cap": gw.cap}))
 
 
 def main():
