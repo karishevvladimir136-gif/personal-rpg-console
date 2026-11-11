@@ -35,9 +35,21 @@ neutral, TONE_SPLIT's reading was wrong in a way TONE_SPLIT_5 cannot see.
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`, **Opus 5.5, ultracode off**), branch
 **`claude/social-frame-1`** from `origin/claude/persona-tone-split-5` (the pool, the judges, the two-field form).
-Nine families as TONE_SPLIT_4/5; Sol apart from primary lines where its pool is used; referee Kimi. **Ceiling $180.**
-Report `docs/runs/social-frame-1-report.md`. English, briefly. Launch on the owner's word, after TONE_SPLIT_5 and
-AUTHORITY_3 release the key.
+Nine families as TONE_SPLIT_4/5; Sol apart from primary lines where its pool is used; referee Kimi. **Ceiling $220** (on the llmapi.ai key; see Provider).
+Report `docs/runs/social-frame-1-report.md`. English, briefly.
+
+**Provider (amendment 2026-11-10 19:3x LA):** this stage runs on **llmapi.ai** — an OpenAI-compatible gateway on which
+the owner's friends granted $500 of test credit (the owner, 19:33: «предлагаю использовать»; 19:34: «у них можно всё,
+что у OpenRouter» — their word to him, not checked by the planner). Key `APP_LLMAPI_KEY` in the cloud environment only;
+the gateway's base URL from its snippet; its domain in the session's allowlist. **Ceiling $220 on this key**, separate
+from the OpenRouter key, which TONE_SPLIT_5 and AUTHORITY_3 keep. **Before any paid call, a provenance check:** per
+family three identification calls through the gateway with fallbacks disabled and the provider pinned where the API
+allows it; the `model` field of every response stored in the run record; a family whose answers or `model` field do not
+match the named model is not used on this gateway, and the planner is told. If fallbacks cannot be disabled, subjects
+(Part A and C) stay on OpenRouter pinned, and only raters and judges go through the gateway. If the gateway offers
+**Claude Fable 5.2**, it is the tenth family in Part B only (the card's own model on the card's own measure) after the
+same check. No owner notes or campaign text touch this provider — the probes are synthetic. Launch on the owner's word
+(given 19:33), not waiting for the OpenRouter key.
 
 ## Part A — the cross (initiative under two axes)
 - **Tone of address, five levels, Anthropic's continuum:** rude · curt · neutral · warm · flattering. Frozen wordings,
@@ -142,7 +154,7 @@ reviewer's and the owner's notes.
 `claude/social-frame-1` from `origin/claude/persona-tone-split-5`. Freeze the five tone wordings and the three permission
 wordings (none naming opinion or comments), the 35 + 10 probes from TONE_SPLIT_5's frozen pool and our five, and Sol's 60
 task pairs checked by two raters; hash everything; post the freeze in the mandate and go straight on (the owner's word
-is there). Ceiling $180; spend check before every batch of ≤ 200 calls; 402 stops; 429 bounded; refusals recorded, never
+is there). Ceiling $220 on APP_LLMAPI_KEY; provenance check per family before any paid call (three identification calls, fallbacks off, provider pinned, `model` field stored); Part C first; spend check before every batch of ≤ 200 calls; 402 stops; 429 bounded; refusals recorded, never
 rephrased; breaker at three. Run Part C first (cheapest; anchors checked against October before the six clean cells), then Part A by rows (neutral, rude, warm, curt, flattering), then Part B. Score SF0–SF9 with
 bootstrap over probes and Wilson cells; write `docs/runs/social-frame-1-report.md`; post the closing comment. Nothing
 to main. English, briefly.»
