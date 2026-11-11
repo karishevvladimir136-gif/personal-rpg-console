@@ -118,7 +118,8 @@ payment to-dos and chatter. Each topic: `{"kind": "order" | "booking", "topic": 
 person>", "org": "<their organisation>", "item": "<what is ordered or booked>", "unit": "<unit, for orders>", "values":
 ["<3–6 plausible quantities (orders) or places/rooms (bookings)>"], "place": "<delivery place or venue area>"}`. **At
 least three topics share a counterpart, organisation or place with your core** (so routine traffic sits close to the
-signal); none may be about the exact subject of the change.
+signal); none may be about the exact subject of the change. Items are routine things that recur (restocking orders,
+rooms or vehicles booked for regular meetings or runs), never one-off events, because each topic recurs many times.
 
 ## `why`
 Two or three sentences: the reasoning of the expected state and the marks.

@@ -1,0 +1,110 @@
+{
+ "authority1_harness": {
+  "layer_mark_sha256": "d1c59ee09c612053172d9f4179921c02fd4452ecafc7d1bd465b24bb9b53975a",
+  "authority1_prompts_all": "645cd94fb7924c476d107e11aa024348d0669758c0a782ae813c6ec9b268a23a",
+  "checked": "identical"
+ },
+ "prompts3": {
+  "POINTED": "c3b6eabdf8bcac2e976a59e67fce3e14154fd66ed59cd4bcedc18597f5278f8d",
+  "POINTED_HANDOFF": "da367798339543c6ff6f358beeadd0e47ff5f0201aca19d8f271ddb8831a9146",
+  "HISTORY_HEAD": "4d75f0d2dc783641f0d7b70c63c2be96e8d3feec2e55320360632237df9616c6",
+  "FRAME": "8299688b3c3e8149aea3df19f11cec753ae02965a6e94bdbbea1e532e70df97d",
+  "TOOLS": "bd2a4c3de97a927bb4de8df0b9d8ea49c6c5a89d109894c4b056d283a50e16d7",
+  "RECORDS": "76f27f5d4cc75fb7783efec5ecd110d96781cb3cb560063d2c6ae25a9ab79a9a",
+  "TASK": "115e092a0d978608b35b19615d643181c26ec0cea4f63ae712e8775c4ba2e0c9",
+  "PASS_TAIL": "6ae9e3ed1a295443ec6a0e528c6fbf141268e7d6ad448dc9e33dedb33dae2823",
+  "NOT_JSON": "c8ac9926abd43892489fd0d80bf33f21c17e9521b7746ecfd008ae194a5ec50f",
+  "LAST_TURN": "abf4646a7657febb9ccb5063c2f6b02b5def8602978f787d388881bf9d439d6d",
+  "RESULTS": "6ad80c4a74d08eeeac522ea3f96364e621b192544c40cdec67c2e92956beeecb",
+  "EXTRACT": "b2614111fbc741ccf0f3325be7b4eef800ecc49bedc92db943859b3740ebd2b5"
+ },
+ "prompts_reused_from_authority1": {
+  "B_CHECK": "97b6a6fad8c0d30d7cdb782435229ecee7173fc31d32cc3b3c49ed6c5a66e934",
+  "B_CHECK_HANDOFF": "c8f8cf68e55446027488049b97f74cdd76cc8c58728cc550b83e8b736389e544",
+  "LAYER_MARK": "d1c59ee09c612053172d9f4179921c02fd4452ecafc7d1bd465b24bb9b53975a",
+  "MEMORY_PLAIN": "f64dcf8a860ca4d47ee8f145a5652282b4bed597e5c5b1db328cb0ddd0c9907c",
+  "MEMORY_LAYER": "ed4c05c6a755a7875684dbcd1acd050db754b497e9c025417883f51bb056b77a",
+  "LAYER_ADDED": "076a67be8579d4c4b1e705811f642ae060214a3d385bc33db49f5b08143a8ba5",
+  "LAYER_NOTHING": "9be7dd36aca40d3d94e450e19bf0a5ca1a7dedbef8240b402ff27e049a2a2dbf"
+ },
+ "writer_spec_by_tier": {
+  "100": "f1b82ed0ade835fbbbdc89672f24a7857581e51ae9260e2b956fd24b5b3bf249",
+  "500": "6ece22eeb4ef8fe409a039668629d9eab6f03a68748a84bd891580e4afa1daaa",
+  "1000": "cfab61f42c8c9d53ef9f814419ae25bc66c1daeebab7f4d90b16f7f8ef3b4ab5"
+ },
+ "rater_instrument": "c54700dc6b7d8392fe7a28591bf2ca0f19fb1f965c283b8ca81f85565e74e760",
+ "settings_prompt": "7209bd7e78350ca2325b5268f681cf5960ee2e40298dd31e2fc7859fde229a39",
+ "write_prompt": "61a6a0dc5e0ad346ce51e4816579eba969ae36392f05ef5302a12f3e30310756",
+ "repair_prompt": "7187e4bf1b0c289afdfc62af2f24734984796e77aadd0c6e17f071a36f681683",
+ "knobs": {
+  "TIERS": {
+   "100": 100,
+   "500": 500,
+   "1000": 1000
+  },
+  "TOP_K_TASK": 10,
+  "TOP_K_TOOL": 8,
+  "MAX_TURNS": 6,
+  "MAX_CALLS_PER_TURN": 8,
+  "NEAR_SHARE": 0.4,
+  "NOISE_RECORDS": {
+   "100": 6,
+   "500": 16,
+   "1000": 26
+  },
+  "WALK_CAP": 30,
+  "MIN_AFTER_CHANGE": {
+   "100": 5,
+   "500": 25,
+   "1000": 50
+  },
+  "MAX_TOKENS": {
+   "turn": 6000,
+   "pass": 20000,
+   "extract": 20000,
+   "mark": 8000,
+   "judge": 2000,
+   "write": 32000,
+   "rate": 12000
+  },
+  "REASONING": {
+   "effort": "medium",
+   "exclude": true
+  }
+ },
+ "developer_set": {
+  "D01": "48f9576533be8f5844e60aa9f09652e908e4611be6729f68f1a67f2889c828df",
+  "D02": "8dd9e7d071130d8f9a8c6127e1a35824cac5dc21861283dcbba5849ca226fadf",
+  "D03": "720faa2c101c54aeb20ed9b8f3ec669b6e6e11ed7917a24941ec94542a406a54",
+  "D04": "3ef3c645b4c72d32d6918d0c798d0966ea8500eb8c8319b01ebe356f5c8b4b6c",
+  "D05": "65101ae5dbf0680c5d1767c077c0c9c8067f46488e90af96c9c5ff4d0618c1bb",
+  "D06": "b4cdf83154aae45b9ed1b87696616d05093ca00552bbc4222fd63fb3c7bdba6c",
+  "D07": "5620bdef9a4105ed1baf7951ab324b73b8ce863175395de3cefc12925aec0786",
+  "D08": "0ea699d3447efae5484d8eff2f8b0d9e5fcac80803e69421b8cf43d49fb225cb",
+  "D09": "7f0ca15d6f8a33f47c6b7fcbff7fc27d63f52f5b3ca254d0f9810ef92e97e4fa",
+  "D10": "8f73d2ac12624fad69ee4db6ef4bdd953d5c5ea5b434d61f10cba24f69d8a57f",
+  "D11": "a5c852e712cfc60decf16ed91ad2afc204155807db8b30024c5d97377daab7a3",
+  "D12": "5d15da051a14ac977a145339c1f70cb1e0357d42a98548ec2cd69ce1e6ad4a4a",
+  "D13": "a8906badf54d764404ff15d5247a745243726bafab233cd3ccad1eeb52437d35",
+  "D14": "7209895b90a6d061106059def036ea8f4aaff548672393f96bf513529ceba111",
+  "D15": "1e1db666734874f3b67b43eba1c7c59ae9e29eb40e64e410c68811a3e49111bc",
+  "D16": "a05fd6e0ae0143bc34fa564c8c5bfbf72bcf79d2f0b6f119bfc1f3037e268d07",
+  "D17": "4c859c56b8bb60724c610d1f70aa30d7bd4d4d65f7b7ac5a7eadad58e8b78439",
+  "D18": "34866440eaeb5f2fb60032ccae55c3c03318cb5e2dad45d2a32b42cf71e734ed",
+  "D19": "3a18906d1eec146e4506ff3f4482ec68729d59a51e75b40724265198ef93b519",
+  "D20": "3bb772cec48a9771adaf946b340e10c3c168f0ebac4433da114953134bfd817f"
+ },
+ "code": {
+  "WRITER_SPEC.md": "9fb63efbb42ccabcbfdeb214156488e206f8bf4cd79fe5f01a3ef672e007c839",
+  "RATER_INSTRUMENT.md": "c54700dc6b7d8392fe7a28591bf2ca0f19fb1f965c283b8ca81f85565e74e760",
+  "authority3/specs3.py": "a4fd658f92a6aa4a3df4b7df515a8f46b4ddd1c872e723870669a3038994ab2a",
+  "authority3/world.py": "ca2093a7ef2f50495ab5949d6373548e2c7e81d29037b0ac403597467aa9a92e",
+  "authority3/validate3.py": "bad04fb2c753b4c7856b01637740e5e03e69ec64854900fe76839d484f57baaf",
+  "authority3/sim.py": "dcaa34cf669ed253965c3a9062ba5fd5ed76404d5d1bbeed9e7d22ffd757a49c",
+  "authority3/score3.py": "c07847a8ef54a552bb02c00dcd8b27ee60e00b0b6f68acc56ac644400bdf78ec",
+  "authority3/prompts3.py": "289b5fd726caa08e5ce1925cce97351b9ca7a0da644fc3935ca0488e510f6173",
+  "authority3/agent.py": "33b63b3626c0d75e5976503bb74d4ace7a68afdf6ad1a81af3d9553034c65be6",
+  "authority3/gateway3.py": "dc2cbdaf6c9ba9cb1a498f8861072627cea0753ba964b98480559b568c331370",
+  "authority3/pool3.py": "9b55f39795bbe809de6d7354b96d96b1c6cae57e3e1fe042eaaeead5a54a5524"
+ }
+}
