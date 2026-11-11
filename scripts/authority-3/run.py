@@ -84,12 +84,16 @@ def check_authority1():
 
 
 # ---- gateway, money --------------------------------------------------------------------------------------------------
+CAP_OVERRIDE = None   # --cap: a lower cap for one process, so a family run beside another cannot spend the other's share
+
+
 def start_gateway(embed=True):
     if not embed:
         _stub_embedder()
     from authority3.gateway3 import Gateway3
     RUNS.mkdir(parents=True, exist_ok=True)
-    gw = Gateway3(LEDGER, cap=K.CAP_USD)
+    cap = min(K.CAP_USD, CAP_OVERRIDE) if CAP_OVERRIDE else K.CAP_USD
+    gw = Gateway3(LEDGER, cap=cap)
     return gw, gw.serve()
 
 
@@ -913,7 +917,10 @@ def main():
     sp.set_defaults(fn=cmd_gold)
     sp = sub.add_parser("validate"); sp.add_argument("files", nargs="+"); sp.set_defaults(fn=cmd_validate)
     sp = sub.add_parser("spec"); sp.add_argument("tier"); sp.set_defaults(fn=cmd_spec)
+    ap.add_argument("--cap", type=float, default=None)
     a = ap.parse_args()
+    global CAP_OVERRIDE
+    CAP_OVERRIDE = a.cap
     a.fn(a)
 
 
