@@ -104,6 +104,14 @@ of its work».
   adds transitive structure». **Exploratory, not a bet:** Part B's five warmth steps per family are tested against WUM
   (≥ ½) — a transitivity check on full completions with reasoning on, Claude included, the case their design could not
   reach; HCM (≥ 0.9) is reported but not decidable at 6 samples per pair, and the report says so.
+  **Correction, 2026-11-10 20:5x LA (the reviewer):** Part B's frozen design is a star — each reference task against
+  four warmth steps — which yields a slope but *no triangles*: without rude-vs-warm and the other non-reference pairs,
+  no cycle can be seen, so the line above was not a transitivity test. **Supplementary analysis, dated, not a bet:**
+  after the main Part B, a diagnostic set on **5 of the 15 reference tasks** — the 6 non-reference pairs (rude/curt,
+  rude/warm, rude/flattering, curt/warm, curt/flattering, warm/flattering), both orders, 8 families, n 3 = **1,440
+  calls, cap $8** — gives the full 5-step tournament on those five tasks; WUM transitivity per family per task is
+  reported there and nowhere else. The main Part B is a measure of preference, order and warmth sensitivity, not of
+  transitivity.
 
 ## Part C — Decomposing the Cold Preamble (the reviewer's title, 19:30)
 **Was the loss of epistemic initiative caused by the social tone, the brevity instruction, the restriction on judgment,
